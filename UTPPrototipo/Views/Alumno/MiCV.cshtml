@@ -1,0 +1,1655 @@
+﻿@{
+    Layout = "~/Views/Alumno/_LayoutAlumno.cshtml";
+    ViewBag.Title = "Mi CV";
+}
+<div class="container" style="margin-top:2px;">
+    <div class="panel-group" id="datos-cuenta" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingOne" style="padding: 2px 2px 2px 6px;">
+                <h5 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="font-size:12px;">
+                        Tu Cuenta - Karina María Barrionuevo Chang
+                    </a>
+                </h5>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body">
+                    <div class="col-md-3">
+                        <table>
+                            <tr>
+                                <td>
+                                    <img class="foto-usuario" src="~/img/Alumna.png" />
+                                </td>
+                                <td style="vertical-align:top;">
+                                    <strong>
+                                        Karina María
+                                        <br />Barrionuevo Chang
+                                    </strong>
+                                    <br />Ingeniería Industrial
+                                    <br /><a href="#" style="font-size:10px;">Modificar Datos ...</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-md-3" style="font-size:10px;">
+                        Código <strong>82727128</strong><br />
+                        DNI <strong>89226681</strong><br />
+                        E-mail 1 <strong>karina_barrionuevo@hotmail.com</strong><br />
+                        E-mail 2 <strong>kabarrionuevo@elportal.com</strong><br />
+                        Celular <strong>954123876</strong>
+
+                    </div>
+                    <div class="col-md-3" style="font-size:10px;">
+                        Dirección <strong>Av del Pozo 3453, San Martín de Porres Lima Perú</strong><br />
+                        Teléfono <strong>456-1234</strong><br />
+                    </div>
+                    <div class="col-md-3">
+                        <div class="btn btn-primary" style="border:none; margin-bottom: 3px; font-size: 12px; background-color: rgb( 180,30,34);padding: 5px 5px 5px 5px;">
+                            <span>Eventos Nuevos </span>
+                            <span class="badge">7</span>
+                        </div>
+
+                        <div class="btn btn-primary" style="border: none; margin-bottom: 3px; font-size: 12px; background-color: rgb(233, 149, 34); padding: 5px 5px 5px 5px;">
+                            <span>Mensajes Nuevos </span>
+                            <span class="badge">4</span>
+                        </div>
+                        <div class="btn btn-primary" style="border: none; margin-bottom: 3px; font-size: 12px; background-color: rgb(129, 130, 134); padding: 5px 5px 5px 5px; ">
+                            <span>Invitaciones </span>
+                            <span class="badge">3</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel-group" id="oferta-datos-generales" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingDatosGenerales" style="padding: 2px 2px 2px 6px;">
+                        <h5 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseDatosGenerales" aria-expanded="true" aria-controls="collapseDatosGenerales" style="font-size:12px;">
+                                Datos Generales
+                            </a>
+                        </h5>
+                    </div>
+                    <div id="collapseDatosGenerales" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingDatosGenerales">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="input-group fuente-pequeña">
+                                        <span class="input-group-addon">CV</span>
+                                        <select id="ListaCVs" class="form-control">
+                                            <option value="" selected>Mi CV</option>
+                                            <option value="1">CV 2</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="input-group fuente-pequeña">
+                                        <span class="input-group-addon">Plantilla</span>
+                                        <select id="ListaPlantillas" class="form-control">
+                                            <option value="1" selected>Plantilla UTP</option>
+                                            <option value="2">Plantilla Moderno</option>
+                                            <option value="2">Plantilla Clásico</option>
+                                            <option value="2">Plantilla Tecnológico</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <span>
+                                        <button type="button" class="btn btn-default fuente-pequeña color-verde" style="color:white;">Crear Nuevo</button>
+                                    </span>
+                                </div>
+                                <div class="col-md-1">
+                                    <span class="fuente-pequeña">
+                                        <a href="#">ver Plantilla</a>
+                                    </span>
+                                </div>
+                                <div class="col-md-1">
+                                    <span class="fuente-pequeña">
+                                        <a href="#">descargar</a>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="input-group fuente-pequeña">
+                                        <span class="input-group-addon"><input type="checkbox"></span>
+                                        <span class="form-control" style="padding-top:8px;">Correo kabarrionuevo@elportal.com</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="input-group fuente-pequeña">
+                                        <span class="input-group-addon"><input type="checkbox"></span>
+                                        <span class="form-control" style="padding-top:8px;">Telefono de casa 456-1234</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="input-group fuente-pequeña">
+                                        <span class="input-group-addon"><input type="checkbox"></span>
+                                        <span class="form-control" style="padding-top:8px;">Incluir Foto</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="input-group fuente-pequeña">
+                                        <span class="input-group-addon"><input type="checkbox"></span>
+                                        <span class="form-control" style="padding-top:8px;">Incluir dirección Av del Pozo 3453, San Martín de Porres Lima Perú</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="input-group fuente-pequeña">
+                                        <span class="input-group-addon" >Perfil</span>
+                                        <textarea class="form-control" rows="6" placeholder="Perfil profesional"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="panel-group" id="oferta-experiencia-laboral" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingExperienciaLaboral" style="padding: 2px 2px 2px 6px;">
+                        <h5 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseExperienciaLaboral" aria-expanded="true" aria-controls="collapseExperienciaLaboral" style="font-size:12px;">
+                                Experiencia laboral
+                            </a>
+                        </h5>
+                    </div>
+                    <div id="collapseExperienciaLaboral" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingExperienciaLaboral">
+                        <div class="panel-body fuente-pequeña">
+                            <div class="col-md-12 text-right"><button type="button" data-toggle="modal" data-target="#Modal-experiencia-laboral" class="btn btn-default color-verde fuente-pequeña" style="color:white;margin-bottom:10px;">Agregar Experiencia</button></div>
+                            <div class="row row-cv">
+                                <div class="col-md-1">
+                                    <span>Incluir </span><input type="checkbox" />
+                                </div>
+                                <div class="col-md-11">
+                                    <div class="row row-primera-linea">
+
+                                        <div class="col-md-3">
+                                            <span><strong>ABACO del Perú S.A.</strong></span>
+                                        </div>
+                                        <div class="col-md-3">
+                                            Tecnología y Software
+                                        </div>
+                                        <div class="col-md-3">
+                                            Lima-Perú
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <span class="valor-icono2">H&nbsp;</span><strong>Jefe de Proyectos</strong><span class="valor-palabra">&nbsp;&nbsp;(Ejecutivo)</span>
+                                            <br />
+                                            13/12/2012 - Actualidad
+                                        </div>
+                                        <div class="col-md-8">
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque purus ligula, tempor ac ultrices sed, facilisis ac odio. Ut condimentum tellus velit, eu sagittis tellus pulvinar vitae. Nunc vitae mi metus. Phasellus at nulla sapien. Cras rutrum venenatis eros scelerisque pulvinar. In quam felis, sodales a vehicula ultricies, elementum in tortor. Nulla facilisi. Mauris gravida velit porttitor consectetur vehicula. Nam commodo dui a gravida venenatis. Nunc sed pellentesque magna. Suspendisse potenti. Etiam eu placerat elit.
+                                        </div>
+                                        <div class="col-md-1 fui fa-2x" style="color:gray;">
+                                            1 l
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row row-cv">
+                                <div class="col-md-1">
+                                    <span>Incluir </span><input type="checkbox" />
+                                </div>
+                                <div class="col-md-11">
+                                    <div class="row">
+
+                                        <div class="col-md-3">
+                                            <span><strong>Corporación Barlovento S.A.</strong></span>
+                                        </div>
+                                        <div class="col-md-3">
+                                            Industria
+                                        </div>
+                                        <div class="col-md-3">
+                                            Lima-Perú
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <span class="valor-icono2">3&nbsp;</span><strong>Jefe de Proyectos</strong><span class="valor-palabra">&nbsp;&nbsp;(Ejecutivo)</span>
+                                            <br />
+                                            01/01/2011 - 30/11/2012
+                                        </div>
+                                        <div class="col-md-8">
+                                            Pellentesque purus ligula, tempor ac ultrices sed, facilisis ac odio. Ut condimentum tellus velit, eu sagittis tellus pulvinar vitae. Nunc vitae mi metus. Phasellus at nulla sapien. Cras rutrum venenatis eros scelerisque pulvinar. In quam felis, sodales a vehicula ultricies, elementum in tortor. Nulla facilisi. Mauris gravida velit porttitor consectetur vehicula. Nam commodo dui a gravida venenatis. Nunc sed pellentesque magna. Suspendisse potenti. Etiam eu placerat elit.
+                                        </div>
+                                        <div class="col-md-1 fui fa-2x" style="color:gray;">
+                                            1 l
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <span class="valor-icono2">4&nbsp;</span><strong>Consultor Senior</strong><span class="valor-palabra">&nbsp;&nbsp;(Ejecutivo)</span>
+                                            <br />
+                                            01/06/2008 - 31/12/2010
+                                        </div>
+                                        <div class="col-md-8">
+                                            Suspendisse potenti. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque purus ligula, tempor ac ultrices sed, facilisis ac odio. Ut condimentum tellus velit, eu sagittis tellus pulvinar vitae. Nunc vitae mi metus. Phasellus at nulla sapien. Cras rutrum venenatis eros scelerisque pulvinar. In quam felis, sodales a vehicula ultricies, elementum in tortor. Nulla facilisi. Mauris gravida velit porttitor consectetur vehicula. Nam commodo dui a gravida venenatis. Etiam eu placerat elit.
+                                        </div>
+                                        <div class="col-md-1 fui fa-2x" style="color:gray;">
+                                            1 l
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1">
+                                    <span>Incluir </span><input type="checkbox" />
+                                </div>
+                                <div class="col-md-11">
+                                    <div class="row">
+
+                                        <div class="col-md-3">
+                                            <span><strong>Industrial del Papel S.A.</strong></span>
+                                        </div>
+                                        <div class="col-md-3">
+                                            Industria
+                                        </div>
+                                        <div class="col-md-3">
+                                            Lima-Perú
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <span class="valor-icono2">4&nbsp;</span><strong>Consultor Senior</strong><span class="valor-palabra">&nbsp;&nbsp;(Ejecutivo)</span>
+                                            <br />
+                                            01/06/2005 - 31/05/2008
+                                        </div>
+                                        <div class="col-md-8">
+                                            Suspendisse potenti. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque purus ligula, tempor ac ultrices sed, facilisis ac odio. Ut condimentum tellus velit, eu sagittis tellus pulvinar vitae. Nunc vitae mi metus. Phasellus at nulla sapien. Cras rutrum venenatis eros scelerisque pulvinar. In quam felis, sodales a vehicula ultricies, elementum in tortor. Nulla facilisi. Mauris gravida velit porttitor consectetur vehicula. Nam commodo dui a gravida venenatis. Etiam eu placerat elit.
+                                        </div>
+                                        <div class="col-md-1 fui fa-2x" style="color:gray;">
+                                            1 l
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="panel-group" id="oferta-educacion" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingEducacion" style="padding: 2px 2px 2px 6px;">
+                        <h5 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseEducacion" aria-expanded="true" aria-controls="collapseEducacion" style="font-size:12px;">
+                                Estudios
+                            </a>
+                        </h5>
+                    </div>
+                    <div id="collapseEducacion" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingEducacion">
+                        <div class="panel-body fuente-pequeña">
+                            <div class="col-md-12 text-right"><button type="button" data-toggle="modal" data-target="#Modal-estudio" class="btn btn-default color-verde fuente-pequeña" style="color: white; margin-bottom: 10px;">Agregar Estudio</button></div>
+                            <div class="row row-cv">
+                                <div class="col-md-1">
+                                    <span>Incluir </span><input type="checkbox" />
+                                </div>
+                                <div class="col-md-11">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <span><strong>Universidad Tecnológica del Perú</strong></span>
+                                        </div>
+                                        <div class="col-md-4">
+                                            Escuela: <strong>ING. INDUSTRIAL Y DE SISTEMAS </strong>
+                                        </div>
+                                        <div class="col-md-4">
+                                            Especialidad: <strong>ING. SISTEMAS E INFORMATICA</strong>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <strong>01/01/2001 - 31/12/2005</strong>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <span class="valor-icono2">B</span><span class="valor-palabra">Grado Universitario</span>
+                                        </div>
+                                        <div class="col-md-2">
+                                            Finalizado
+                                        </div>
+                                        <div class="col-md-5">
+                                            Pellentesque purus ligula, tempor ac ultrices sed, facilisis ac odio. Ut condimentum tellus velit, eu sagittis tellus pulvinar vitae. Nunc vitae mi metus.
+                                        </div>
+                                        <div class="col-md-1 fui fa-2x" style="color:gray;">
+                                            1 l
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1">
+                                    <span>Incluir </span><input type="checkbox" />
+                                </div>
+                                <div class="col-md-11">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <span><strong>Universidad Tecnológica del Perú</strong></span>
+                                        </div>
+                                        <div class="col-md-4">
+                                            Escuela: <strong>Maestrías </strong>
+                                        </div>
+                                        <div class="col-md-4">
+                                            Especialidad: <strong>Administración de Negocios </strong>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <strong>01/01/2006 - 31/12/2007</strong>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <span class="valor-icono2">C</span><span class="valor-palabra">Maestría</span>
+                                        </div>
+                                        <div class="col-md-2">
+                                            Finalizado
+                                        </div>
+                                        <div class="col-md-5">
+                                            Facilisis ac odio. Ut condimentum tellus velit, eu sagittis tellus pulvinar vitae. Nunc vitae mi metus.
+                                        </div>
+                                        <div class="col-md-1 fui fa-2x" style="color:gray;">
+                                            1 l
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="panel-group" id="oferta-anuncio" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOferta" style="padding: 2px 2px 2px 6px;">
+                        <h5 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOferta" aria-expanded="true" aria-controls="collapseOferta" style="font-size:12px;">
+                                Otros Conocimientos
+                            </a>
+                        </h5>
+                    </div>
+                    <div id="collapseOferta" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOferta">
+                        <div class="panel-body fuente-pequeña">
+                            <div class="col-md-12 text-right"><button type="button" data-toggle="modal" data-target="#Modal-otro-conocimiento" class="btn btn-default color-verde fuente-pequeña" style="color: white; margin-bottom: 10px;">Agregar Otro Conocimiento</button></div>
+                            <div class="row row-cv">
+                                <div class="col-md-1">
+                                    <span>Incluir </span><input type="checkbox" />
+                                </div>
+                                <div class="col-md-11">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <span><strong>Idioma</strong></span>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <strong>Inglés </strong>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <span class="valor-icono2">x</span><span class="valor-palabra">Nivel Medio</span>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <strong>2009</strong>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <strong>Lima - Perú</strong>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <strong>Instituto de Idiomas ICPNA</strong>
+                                        </div>
+                                        <div class="col-md-3">
+                                            2 años
+                                        </div>
+                                        <div class="col-md-1 fui fa-2x" style="color:gray;">
+                                            1 l
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row row-cv">
+                                <div class="col-md-1">
+                                    <span>Incluir </span><input type="checkbox" />
+                                </div>
+                                <div class="col-md-11">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <span><strong>Idioma</strong></span>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <strong>Francés </strong>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <span class="valor-icono2">w</span><span class="valor-palabra">Nivel Básico</span>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <strong>2011</strong>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <strong>Lima - Perú</strong>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <strong>Alianza Francesa de Los Olivos</strong>
+                                        </div>
+                                        <div class="col-md-3">
+                                            1 año
+                                        </div>
+                                        <div class="col-md-1 fui fa-2x" style="color:gray;">
+                                            1 l
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row row-cv">
+                                <div class="col-md-1">
+                                    <span>Incluir </span><input type="checkbox" />
+                                </div>
+                                <div class="col-md-11">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <span><strong>Curso</strong></span>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <strong>Administración efectiva de Aplicaciones de Software</strong>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <span class="valor-icono2">y</span><span class="valor-palabra">Nivel Avanzado</span>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <strong>2013</strong>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <strong>Buenos Aires - Argentina</strong>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <strong>Universidad de Belgrano</strong>
+                                        </div>
+                                        <div class="col-md-3">
+                                            1 año
+                                        </div>
+                                        <div class="col-md-1 fui fa-2x" style="color:gray;">
+                                            1 l
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-1">
+                                    <span>Incluir </span><input type="checkbox" />
+                                </div>
+                                <div class="col-md-11">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <span><strong>Software</strong></span>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <strong>Microsoft Office 2013</strong>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <span class="valor-icono2">z</span><span class="valor-palabra">Nivel Experto</span>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <strong>2013</strong>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <strong>Lima - Perú</strong>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <strong></strong>
+                                        </div>
+                                        <div class="col-md-3">
+                                            1 año
+                                        </div>
+                                        <div class="col-md-1 fui fa-2x" style="color:gray;">
+                                            1 l
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="Modal-experiencia-laboral" tabindex="-1" role="dialog" aria-labelledby="ExperienciaLaboral" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="ExperienciaLaboral">Experiencia Laboral</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="input-group fuente-pequeña">
+                            <span class="input-group-addon">Empresa</span>
+                            <input type="text" class="form-control" placeholder="Nombre de la Empresa">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="input-group fuente-pequeña">
+                            <span class="input-group-addon">Sector 1</span>
+                            <select id="Lista" class="form-control">
+                                <option value="" selected>- - -</option>
+                                <option value="1">Auditoría y Consultoría</option>
+                                <option value="1">Banca y Seguros</option>
+                                <option value="1">Construcción e Inmobiliaria</option>
+                                <option value="1">Energía</option>
+                                <option value="1">Industria</option>
+                                <option value="1">Servicios</option>
+                                <option value="1">Tecnología y Software</option>
+                                <option value="1">Telecomunicaciones</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="input-group fuente-pequeña" >
+                            <span class="input-group-addon" style="width:0px;">2</span>
+                            <select id="Lista" class="form-control" >
+                                <option value="" selected>- - -</option>
+                                <option value="1">Auditoría y Consultoría</option>
+                                <option value="1">Banca y Seguros</option>
+                                <option value="1">Construcción e Inmobiliaria</option>
+                                <option value="1">Energía</option>
+                                <option value="1">Industria</option>
+                                <option value="1">Servicios</option>
+                                <option value="1">Tecnología y Software</option>
+                                <option value="1">Telecomunicaciones</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="input-group fuente-pequeña">
+                            <span class="input-group-addon" style="width:0px;">3</span>
+                            <select id="Lista" class="form-control">
+                                <option value="" selected>- - -</option>
+                                <option value="1">Auditoría y Consultoría</option>
+                                <option value="1">Banca y Seguros</option>
+                                <option value="1">Construcción e Inmobiliaria</option>
+                                <option value="1">Energía</option>
+                                <option value="1">Industria</option>
+                                <option value="1">Servicios</option>
+                                <option value="1">Tecnología y Software</option>
+                                <option value="1">Telecomunicaciones</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="input-group fuente-pequeña">
+                            <span class="input-group-addon">País</span>
+                            <select id="Lista" class="form-control">
+                                <option value="" selected>País donde trabajó</option>
+                                <option>Afganistán</option>
+                                <option>Albania</option>
+                                <option>Alemania</option>
+                                <option>Andorra</option>
+                                <option>Angola</option>
+                                <option>Anguila</option>
+                                <option>Antigua y Barbuda</option>
+                                <option>Antillas Neerlandesas</option>
+                                <option>Antártida</option>
+                                <option>Arabia Saudí</option>
+                                <option>Argelia</option>
+                                <option>Argentina</option>
+                                <option>Armenia</option>
+                                <option>Aruba</option>
+                                <option>Australia</option>
+                                <option>Austria</option>
+                                <option>Azerbaiyán</option>
+                                <option>Bahamas</option>
+                                <option>Bangladesh</option>
+                                <option>Barbados</option>
+                                <option>Barhéin</option>
+                                <option>Belice</option>
+                                <option>Benín</option>
+                                <option>Bermudas</option>
+                                <option>Bielorrusia</option>
+                                <option>Bolivia</option>
+                                <option>Bosnia Herzegovina</option>
+                                <option>Botsuana</option>
+                                <option>Brasil</option>
+                                <option>Brunei Darussalam</option>
+                                <option>Bulgaria</option>
+                                <option>Burkina Faso</option>
+                                <option>Burundi</option>
+                                <option>Bután</option>
+                                <option>Bélgica</option>
+                                <option>Cabo Verde</option>
+                                <option>Camboya</option>
+                                <option>Camerún</option>
+                                <option>Canadá</option>
+                                <option>Chad</option>
+                                <option>Chile</option>
+                                <option>China</option>
+                                <option>Chipre</option>
+                                <option>Colombia</option>
+                                <option>Comoras</option>
+                                <option>Congo</option>
+                                <option>Costa Rica</option>
+                                <option>Costa de Marfil</option>
+                                <option>Croacia</option>
+                                <option>Cuba</option>
+                                <option>Dinamarca</option>
+                                <option>Dominica</option>
+                                <option>Ecuador</option>
+                                <option>Egipto</option>
+                                <option>El Salvador</option>
+                                <option>El Vaticano (Est Ciu Vaticano)</option>
+                                <option>Emiratos Árabes Unidos</option>
+                                <option>Eritrea</option>
+                                <option>Escocia</option>
+                                <option>Eslovaquia</option>
+                                <option>Eslovenia</option>
+                                <option>España</option>
+                                <option>Estados Unidos</option>
+                                <option>Estonia</option>
+                                <option>Etiopía</option>
+                                <option>Ex Repúb Yugosl de Macedonia</option>
+                                <option>Federación Rusa</option>
+                                <option>Filipinas</option>
+                                <option>Finlandia</option>
+                                <option>Fiyi</option>
+                                <option>Francia</option>
+                                <option>Gabón</option>
+                                <option>Gales</option>
+                                <option>Gambia</option>
+                                <option>Georgia</option>
+                                <option>Ghana</option>
+                                <option>Gibraltar</option>
+                                <option>Granada</option>
+                                <option>Grecia</option>
+                                <option>Groenlandia</option>
+                                <option>Guadalupe</option>
+                                <option>Guam</option>
+                                <option>Guatemala</option>
+                                <option>Guayana Francesa</option>
+                                <option>Guernsey</option>
+                                <option>Guinea</option>
+                                <option>Guinea Ecuatorial</option>
+                                <option>Guinea-Bisau</option>
+                                <option>Guyana</option>
+                                <option>Haití</option>
+                                <option>Honduras</option>
+                                <option>Hong Kong</option>
+                                <option>Hungría</option>
+                                <option>I Pitcairn</option>
+                                <option>India</option>
+                                <option>Indonesia</option>
+                                <option>Inglaterra</option>
+                                <option>Irak</option>
+                                <option>Irlanda</option>
+                                <option>Irlanda del Norte</option>
+                                <option>Irán (República Islámica de)</option>
+                                <option>Isla Bouvet</option>
+                                <option>Isla Christmas</option>
+                                <option>Isla Norfolk</option>
+                                <option>Isla de Man</option>
+                                <option>Islandia</option>
+                                <option>Islas Caimán</option>
+                                <option>Islas Cocos</option>
+                                <option>Islas Cook</option>
+                                <option>Islas Feroe</option>
+                                <option>Islas Georgia S y Sandwich S</option>
+                                <option>Islas Heard y McDonald</option>
+                                <option>Islas Malvinas</option>
+                                <option>Islas Marianas del Norte</option>
+                                <option>Islas Marshall</option>
+                                <option>Islas Menores Alejadas de EEUU</option>
+                                <option>Islas Salomón</option>
+                                <option>Islas Turcas y Caicos</option>
+                                <option>Islas Vírgenes Americanas</option>
+                                <option>Islas Vírgenes Británicas</option>
+                                <option>Islas de Aland</option>
+                                <option>Israel</option>
+                                <option>Italia</option>
+                                <option>Jamaica</option>
+                                <option>Japón</option>
+                                <option>Jersey</option>
+                                <option>Jordania</option>
+                                <option>Kazajstán</option>
+                                <option>Kenia</option>
+                                <option>Kirguizistán</option>
+                                <option>Kiribati</option>
+                                <option>Kosovo</option>
+                                <option>Kuwait</option>
+                                <option>Lesoto</option>
+                                <option>Letonia</option>
+                                <option>Liberia</option>
+                                <option>Libia, Yamahiriya Árabe</option>
+                                <option>Liechtenstein</option>
+                                <option>Lituania</option>
+                                <option>Luxemburgo</option>
+                                <option>Líbano</option>
+                                <option>Macao</option>
+                                <option>Madagascar</option>
+                                <option>Malasia</option>
+                                <option>Malaui</option>
+                                <option>Maldivas</option>
+                                <option>Malta</option>
+                                <option>Malí</option>
+                                <option>Marruecos</option>
+                                <option>Martinica</option>
+                                <option>Mauricio</option>
+                                <option>Mauritania</option>
+                                <option>Mayotte</option>
+                                <option>Mianmar</option>
+                                <option>Micronesia</option>
+                                <option>Mongolia</option>
+                                <option>Montserrat</option>
+                                <option>Mozambique</option>
+                                <option>México</option>
+                                <option>Mónaco</option>
+                                <option>Namibia</option>
+                                <option>Naurú</option>
+                                <option>Nepal</option>
+                                <option>Nicaragua</option>
+                                <option>Nigeria</option>
+                                <option>Niue</option>
+                                <option>Noruega</option>
+                                <option>Nueva Caledonia</option>
+                                <option>Nueva Zelanda</option>
+                                <option>Níger</option>
+                                <option>Omán</option>
+                                <option>Palaos</option>
+                                <option>Panamá</option>
+                                <option>Papúa Nueva Guinea</option>
+                                <option>Paquistán</option>
+                                <option>Paraguay</option>
+                                <option>Países Bajos</option>
+                                <option>Perú</option>
+                                <option>Polinesia Francesa</option>
+                                <option>Polonia</option>
+                                <option>Portugal</option>
+                                <option>Puerto Rico</option>
+                                <option>Qatar</option>
+                                <option>Reino Unido</option>
+                                <option>Rep Democrática del Congo</option>
+                                <option>Repúb Democrática Pop Laos</option>
+                                <option>Repúb Democrática Pop de Corea</option>
+                                <option>República Centroafricana</option>
+                                <option>República Checa</option>
+                                <option>República Dominicana</option>
+                                <option>República Unida de Tanzania</option>
+                                <option>República de Corea</option>
+                                <option>República de Moldavia</option>
+                                <option>República de Montenegro</option>
+                                <option>República de Serbia</option>
+                                <option>República Árabe Siria</option>
+                                <option>Reunión</option>
+                                <option>Ruanda</option>
+                                <option>Rumanía</option>
+                                <option>Samoa</option>
+                                <option>Samoa Americana</option>
+                                <option>San Bartolomé</option>
+                                <option>San Cristóbal y Nieves</option>
+                                <option>San Marino</option>
+                                <option>San Martín</option>
+                                <option>San Pedro y Miquelón</option>
+                                <option>San Vicente y las Granadinas</option>
+                                <option>Santa Elena</option>
+                                <option>Santa Lucía</option>
+                                <option>Santo Tomé y Príncipe</option>
+                                <option>Senegal</option>
+                                <option>Seychelles</option>
+                                <option>Sierra Leona</option>
+                                <option>Singapur</option>
+                                <option>Somalia</option>
+                                <option>Sri Lanka</option>
+                                <option>Suazilandia</option>
+                                <option>Sudáfrica</option>
+                                <option>Sudán</option>
+                                <option>Sudán del Sur</option>
+                                <option>Suecia</option>
+                                <option>Suiza</option>
+                                <option>Surinam</option>
+                                <option>Svalbard y Jan Mayen</option>
+                                <option>Sáhara Occidental</option>
+                                <option>Tailandia</option>
+                                <option>Taiwán</option>
+                                <option>Tayiquistán</option>
+                                <option>Terr Australes Franceses</option>
+                                <option>Terr Britán Océano Índico</option>
+                                <option>Terr Palestinos Ocupados</option>
+                                <option>Timor Oriental</option>
+                                <option>Togo</option>
+                                <option>Tokelau</option>
+                                <option>Tonga</option>
+                                <option>Trinidad y Tobago</option>
+                                <option>Turkmenistán</option>
+                                <option>Turquía</option>
+                                <option>Tuvalú</option>
+                                <option>Túnez</option>
+                                <option>Ucrania</option>
+                                <option>Uganda</option>
+                                <option>Uruguay</option>
+                                <option>Uzbekistán</option>
+                                <option>Vanuatú</option>
+                                <option>Venezuela</option>
+                                <option>Vietnam</option>
+                                <option>Wallis y Futuna</option>
+                                <option>Yemen</option>
+                                <option>Yibuti</option>
+                                <option>Yugoslavia</option>
+                                <option>Zambia</option>
+                                <option>Zimbabue</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-group fuente-pequeña">
+                            <span class="input-group-addon">Ciudad</span>
+                            <input type="text" class="form-control" placeholder="Ciudad donde trabajó">
+                        </div>
+                    </div>
+
+                    
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="input-group fuente-pequeña">
+                            <span class="input-group-addon">T.Cargo</span>
+                            <select id="Lista" class="form-control">
+                                <option value="" selected>- - -</option>
+                                <option value="1">Practicante</option>
+                                <option value="1">Obrero</option>
+                                <option value="1">Empleado</option>
+                                <option value="1">Supervisor</option>
+                                <option value="1">Ejecutivo</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="input-group fuente-pequeña">
+                            <span class="input-group-addon">Cargo</span>
+                            <input type="text" class="form-control" placeholder="Nombre del Cargo">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="input-group fuente-pequeña">
+                            <span class="input-group-addon">Inicio</span>
+                            <input type="text" class="form-control" placeholder="Fecha de Inicio">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-group fuente-pequeña">
+                            <span class="input-group-addon">Fin</span>
+                            <input type="text" class="form-control" placeholder="Vacío si aun trabaja">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="input-group fuente-pequeña">
+                            <span class="input-group-addon">Cargo</span>
+                            <textarea class="form-control" placeholder="Descripción de la experiencia" rows="5"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-right"><button type="button" class="btn btn-default color-verde fuente-pequeña" style="color: white; margin-bottom: 10px;">Grabar Experiencia Laboral</button></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="Modal-estudio" tabindex="-1" role="dialog" aria-labelledby="Estudio" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="Estudio">Estudio</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="input-group fuente-pequeña">
+                            <span class="input-group-addon">Institución</span>
+                            <input type="text" class="form-control" placeholder="Nombre de la Institución Educativa">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="input-group fuente-pequeña">
+                            <span class="input-group-addon">Carrera</span>
+                            <select id="Lista" class="form-control">
+                                <option value="" selected>- - -</option>
+                                <option>CONTABILIDAD Y FINANZAS       </option>
+                                <option>ADMINISTRACION Y NEGOCIOS     </option>
+                                <option>CAPACITACION EMPRESARIAL      </option>
+                                <option>DERECHO,CIEN. POLIT.Y REL.INT.</option>
+                                <option>ING. ELECTRONICA Y MECATRONICA</option>
+                                <option>ING. INDUSTRIAL Y DE SISTEMAS </option>
+                                <option>CETIS                         </option>
+                                <option>INSTITUTO DE IDIOMAS          </option>
+                                <option>PROGRAMA DE EXTENSION         </option>
+                                <option>TELECOMUNICACIONES TELEMATICA </option>
+                                <option>CIENCIAS DE LA COMUNICACION   </option>
+                                <option>ESCUELA DE POSTGRADO          </option>
+                                <option>SOLUCIONES EMPRESARIALES      </option>
+                                <option>ING. MEC. AERON. AUT. Y SOFTW.</option>
+                                <option>ING. NAVAL Y CIENCIAS DEL MAR </option>
+                                <option>PROF. ADULTOS Y ED.TECNOLOGICA</option>
+                                <option>RANGERS                       </option>
+                                <option>GESTION DE NEGOCIOS           </option>
+                                <option>MAESTRIA EN EDUCACION         </option>
+                                <option>Business Administration       </option>
+                                <option>Systems Engineering           </option>
+                                <option>Information Technology Eng.   </option>
+                                <option>EXTENSION PROFESIONAL UTP     </option>
+                                <option>Telecommunications Network Eng</option>
+                                <option>PROFESIONALIZAC. PARA ADULTOS </option>
+                                <option>Maestria Gestion TI           </option>
+                                <option>POSTGRADO DE CONTABILIDAD     </option>
+                                <option>TECHNOL.UNIVERSITY OF AMERICA </option>
+                                <option>SISTEMAS Y ELECTRONIC.CHICLAYO</option>
+                                <option>INDUSTRIAL Y MECANICA CHICLAYO</option>
+                                <option>ADMINISTRACION Y NEG. CHICLAYO</option>
+                                <option>ING. DE SISTEMAS Y ELECTRONICA</option>
+                                <option>ING. INDUSTRIAL Y MECANICA    </option>
+                                <option>PROG.DE AVANCE UNIVER. - LIMA </option>
+                                <option>PROG.DE AVANCE UNIVER. -CHICL.</option>
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-group fuente-pequeña">
+                            <span class="input-group-addon">Especialidad</span>
+                            <select id="Lista" class="form-control">
+                                <option value="" selected>- - -</option>
+                                <option>ING. SISTEMAS E INFORMATICA   </option>
+                                <option>INGENIERIA INDUSTRIAL         </option>
+                                <option>INGENIERIA DE SISTEMAS(PROCOU)</option>
+                                <option>ADMINISTRACION DE EMPRESAS    </option>
+                                <option>ADM. DE EMPRESAS (PROCOU)     </option>
+                                <option>CONTABILIDAD                  </option>
+                                <option>CONTABILIDAD (PROCOU)         </option>
+                                <option>SISTEMAS E INFORMATICA        </option>
+                                <option>SEMINARIO ING. SISTEMAS       </option>
+                                <option>SEMINARIO ING. ELECTRONICA    </option>
+                                <option>SEMINARIO ING. INDUSTRIAL     </option>
+                                <option>SEMINARIO ING. SISTEMAS(PROCOU</option>
+                                <option>SEMINARIO ING. ELECTRONICA(PRO</option>
+                                <option>SEMINARIO ADMINISTRACION      </option>
+                                <option>SEMINARIO ADMINISTRACION(PROCO</option>
+                                <option>SEMINARIO CONTABILIDAD        </option>
+                                <option>SEMINARIO CONTABILIDAD (PROCOU</option>
+                                <option>DERECHO                       </option>
+                                <option>INGENIERIA ELECTRONICA        </option>
+                                <option>INGENIERIA ELECTRONICA(PROCOU)</option>
+                                <option>DIPLOMADO EN REDES NETWORKING </option>
+                                <option>ESCUELA DE INGLES             </option>
+                                <option>PET  ADMINISTRACION           </option>
+                                <option>PETP CONTABILIDAD             </option>
+                                <option>PETP INGENIERIA DE SISTEMAS   </option>
+                                <option>ESCUELA DE ITALIANO           </option>
+                                <option>SECRETARIADO UNIVERSITARIO    </option>
+                                <option>DIPLOMADO EN TECNOLOGIAS .NET </option>
+                                <option>ESCUELA DE FRANCES            </option>
+                                <option>ESPECIALISTA .NET MCAD        </option>
+                                <option>ESPECIALISTA .NET MCSD        </option>
+                                <option>PETP INGENIERIA ELECTRONICA   </option>
+                                <option>CURSOS LIBRES                 </option>
+                                <option>ADMINISTRADOR DE BD ORACLE DBA</option>
+                                <option>ESCUELA DE PORTUGUES          </option>
+                                <option>ADM. NEGOCIOS INTERNACIONALES </option>
+                                <option>ADMINISTRACION Y MARKETING    </option>
+                                <option>INGENIERIA MECATRONICA        </option>
+                                <option>INGENIERIA TELECOMUNICACIONES </option>
+                                <option>ADM.NEG.INTERNACIONALES(PROCOU</option>
+                                <option>ADM. Y MARKETING (PROCOU)     </option>
+                                <option>CIENCIAS DE LA COMUNICACION   </option>
+                                <option>DIPLOMADOS DE CONTABILIDAD    </option>
+                                <option>PETP INGENIERIA INDUSTRIAL    </option>
+                                <option>DESARROLLADOR APLICACION .NET </option>
+                                <option>ESPECIALISTA EN OFFICE        </option>
+                                <option>SOLUCIONES EMPRESARIALES      </option>
+                                <option>DIPLOMADOS DE ING. ELECTRONICA</option>
+                                <option>ING. TEXTIL Y CONFECCIONES    </option>
+                                <option>INGENIERIA MARITIMA           </option>
+                                <option>INGENIERIA NAVAL              </option>
+                                <option>INGENIERIA AERONAUTICA        </option>
+                                <option>INGENIERIA AUTOMOTRIZ         </option>
+                                <option>INGENIERIA DE SOFTWARE        </option>
+                                <option>PETP DERECHO                  </option>
+                                <option>CERTIFICACION REDES WIRELESS  </option>
+                                <option>HELP DESK                     </option>
+                                <option>EVENTOS - SEMINARIOS CETIS    </option>
+                                <option>POST. AUTOMATIZ. INDUSTRIAL   </option>
+                                <option>POST. SEGURIDAD Y DEFEN.CIVIL </option>
+                                <option>LICENCIATURA EN EDUCACION     </option>
+                                <option>PROGRAMACION JAVA             </option>
+                                <option>IT ESSENCIALT`S               </option>
+                                <option>INGENIERIA ECONOMICA          </option>
+                                <option>INGENIERIA MECANICA           </option>
+                                <option>ADMINISTRACION Y FINANZAS     </option>
+                                <option>INGENIERIA DE TRANSPORTE      </option>
+                                <option>ADM. Y FINANZAS(PROCOU)       </option>
+                                <option>POST. CODIGO PROCESAL PENAL   </option>
+                                <option>POST. TEC. DE LITIGACION ORAL </option>
+                                <option>RANGERS                       </option>
+                                <option>CERTIFICACION DE TRAGAMONEDAS </option>
+                                <option>AGENTE INMOBILIARIO           </option>
+                                <option>POST. INV.EN LA ESC.DEL CRIMEN</option>
+                                <option>POST. DER. DE FAM.Y VIOL.FAM. </option>
+                                <option>ING. REDES Y COMUNICACIONES   </option>
+                                <option>ING.SEGUR.Y AUDITOR.INFORMATIC</option>
+                                <option>Tecnico en Redes CCENT -CISCO </option>
+                                <option>RELACIONES INTERNACIONALES    </option>
+                                <option>MARKETING Y VENTAS            </option>
+                                <option>ADMINIST. Y ALTA DIRECCION    </option>
+                                <option>DIPLOMADOS DE ESC.DE POSTGRADO</option>
+                                <option>SEMINARIOS DE ESC.DE POSTGRADO</option>
+                                <option>SEMINARIOS TELECOMUNICACIONES </option>
+                                <option>Profes. en redes CISCO CCNP   </option>
+                                <option>Centro de Certificaciones     </option>
+                                <option>ADM. HOTELERA Y DE TURISMO    </option>
+                                <option>ING. DE DISEÑO GRAFICO        </option>
+                                <option>ING. ELECTROMECANICA          </option>
+                                <option>ING. DE DISEÑO COMPUTACIONAL  </option>
+                                <option>ING. ELECTRICA Y DE POTENCIA  </option>
+                                <option>INGENIERIA BIOMEDICA          </option>
+                                <option>PET INGENIERIA DE SISTEMAS    </option>
+                                <option>Fast Track Oracle             </option>
+                                <option>Fast Track CCENT              </option>
+                                <option>Espec. en Redes CCNA Security </option>
+                                <option>ING.REDES Y COMUNICAC.(PROCOU)</option>
+                                <option>Administrador Linux           </option>
+                                <option>Cableado Estructurado         </option>
+                                <option>Edumatica y Docencia Univers. </option>
+                                <option>Docencia y Gestion Educativa  </option>
+                                <option>Taller de Linux               </option>
+                                <option>Windows 7                     </option>
+                                <option>Redes Inalambricas            </option>
+                                <option>MAEST. EN ING.TEL.Y NETWORK.  </option>
+                                <option>MAEST.EN ING. SEG. INFORMATICA</option>
+                                <option>MAEST.EN ING.TEL.Y NETWORK.-FT</option>
+                                <option>MAEST.EN ING.SEG. INFORM.- FT.</option>
+                                <option>Linux Basico                  </option>
+                                <option>CECINAVAL                     </option>
+                                <option>Capacitacion Office (Empresas)</option>
+                                <option>PETP CIENCIAS DE LA COMUNICAC.</option>
+                                <option>DIP.DER.GEST.PUB.MUNIC.Y REG. </option>
+                                <option>DIPLOM. EN MATEMATICA APLICADA</option>
+                                <option>ORACLE FUSION MIDDLEWARE      </option>
+                                <option>Esc.de Inteligencia de Neg.   </option>
+                                <option>PET INGENIERIA INDUSTRIAL     </option>
+                                <option>ING.DE DISEÑO GRAFICO (PROCOU)</option>
+                                <option>PROG. ACTUALIZACION CONTINUA  </option>
+                                <option>Business Administration       </option>
+                                <option>Systems Engineering           </option>
+                                <option>Information Technology Eng.   </option>
+                                <option>Telecommunication & Net. Eng. </option>
+                                <option>DISEÑO DIGITAL PUBLICITARIO   </option>
+                                <option>DIP.EN INV.Y DOC.UNIVERSITARIA</option>
+                                <option>DIP. EN DERECHO PROCESAL CIVIL</option>
+                                <option>DIPLOM. EN DERECHO LABORAL    </option>
+                                <option>AGENTE INMOBILIARIO           </option>
+                                <option>ADMINISTRACION DE NEGOCIOS    </option>
+                                <option>NEGOCIOS INTERNACIONALES      </option>
+                                <option>ADMIN. DE NEGOCIOS Y MARKETING</option>
+                                <option>ADMIN. DE NEGOCIOS Y FINANZAS </option>
+                                <option>Ciencias Penales              </option>
+                                <option>Derecho Const. y Der.Humanos  </option>
+                                <option>Gobierno y Gest. de Politicas </option>
+                                <option>DISEÑO DIGITAL PUBLIC.(PROCOU)</option>
+                                <option>PSICOLOGIA CRIMINAL           </option>
+                                <option>DIDACTICA PARA ELAB. DE TESIS </option>
+                                <option>EXEG.DEL CODIGO PROCESAL PENAL</option>
+                                <option>TEC.INT.Y LIT.ORAL EN PR.PENAL</option>
+                                <option>MAESTRIA EN ADM. EMPRESAS     </option>
+                                <option>MAESTRIA EN ADM.NEG. INTERNAC.</option>
+                                <option>PET  NEGOCIOS INTERNACIONALES </option>
+                                <option>Telefonia IP con Asterisk     </option>
+                                <option>DOCTORADO EN ADM. DE EMPRESAS </option>
+                                <option>DELITOS SEXUALES              </option>
+                                <option>MTA Fundamentos de Security   </option>
+                                <option>CONTRATACIONES DE ESTADO      </option>
+                                <option>MARKETING PARA LOS NEGOCIOS   </option>
+                                <option>COMERCIO EXTERIOR             </option>
+                                <option>GESTION PUBLICA               </option>
+                                <option>INV.CRIMINAL Y SEG. CIUDADANA </option>
+                                <option>EST.PED.PARA EJERCER DOC.UNIV.</option>
+                                <option>ESTADISTICA APLICADA          </option>
+                                <option>PETP INGENIERIA MECATRONICA   </option>
+                                <option>DLINK Modulo Conectividad     </option>
+                                <option>Mineria de datos (Data Mining)</option>
+                                <option>INGENIERIA MECATRONICA(PROCOU)</option>
+                                <option>DIPLOMADOS DE ADMINISTRACIOES </option>
+                                <option>GESTION DE PROY.DE INVERSIO.  </option>
+                                <option>INGLES EN EDUMATICA           </option>
+                                <option>IMP.SEG. EN ROUTERS Y SWITCHES</option>
+                                <option>MARKETING OFFLINE Y ONLINE    </option>
+                                <option>SEL.Y EVAL.DEL TALENTO HUMANO </option>
+                                <option>PLANEAMIENTO ESTRATEGICO      </option>
+                                <option>GEST. DE TEC. DE LA INFORM.   </option>
+                                <option>DIPLOMADOS DE NIAS            </option>
+                                <option>DIPLOMADO DE NIIF             </option>
+                                <option>TUA - Branch Lima             </option>
+                                <option>INGLES POSTGRADO              </option>
+                                <option>CONTABILIDAD FINACIERA        </option>
+                                <option>DERECHO EMPRESARIAL           </option>
+                                <option>ELACIONES INTERNACIONALES     </option>
+                                <option>ING.DE PRODUCCION INDUSTRIAL  </option>
+                                <option>ING.DE SISTEMAS EMPRESARIALES </option>
+                                <option>ING.DE SOFTWARE (PROCOU)      </option>
+                                <option>PETP INGENIERIA AERONAUTICA   </option>
+                                <option>MAEST.EN ING.SEG. INFORM.-    </option>
+                                <option>MAEST.EN ING.TEL.Y NETWORK.   </option>
+                                <option>Mark.Digital y Comun.Empres   </option>
+                                <option>ING. SISTEMAS E INF.- CHICLAYO</option>
+                                <option>ING. INDUSTRIAL     - CHICLAYO</option>
+                                <option>SEG.INDUST.Y MINERA - CHICLAYO</option>
+                                <option>ADMIN. DE EMPRESAS  - CHICLAYO</option>
+                                <option>ADMIN. Y MARKETING  - CHICLAYO</option>
+                                <option>ADM.DE NEG.INTERNAC.- CHICLAYO</option>
+                                <option>ADM. NEG. INTERNACIONALES -PAU</option>
+                                <option>ADMINISTRACION Y MARKETING-PAU</option>
+                                <option>ADMINISTRACION Y FINANZAS-PAU </option>
+                                <option>ADM. HOTELERA Y DE TURISMO-PAU</option>
+                                <option>CONTABILIDAD - PAU            </option>
+                                <option>CIENCIAS DE LA COMUNIC. -PAU  </option>
+                                <option>DISEÑO DIG. PUBLICITARIO - PAU</option>
+                                <option>DERECHO -PAU                  </option>
+                                <option>RELACIONES INTERNACIONALES-PAU</option>
+                                <option>INGENIERIA ELECTRONICA -PAU   </option>
+                                <option>INGENIERIA MECATRONICA -PAU   </option>
+                                <option>ING. TEXTIL Y CONFECCIONES-PAU</option>
+                                <option>ING. ELECTR. Y DE POTENCIA-PAU</option>
+                                <option>INGENIERIA BIOMEDICA -PAU     </option>
+                                <option>INGENIERIA MARITIMA -PAU      </option>
+                                <option>INGENIERIA NAVAL -PAU         </option>
+                                <option>ING. SISTEMAS E INFORMAT. -PAU</option>
+                                <option>INGENIERIA INDUSTRIAL -PAU    </option>
+                                <option>INGENIERIA ECONOMICA -PAU     </option>
+                                <option>INGENIERIA AERONAUTICA -PAU   </option>
+                                <option>INGENIERIA AUTOMOTRIZ -PAU    </option>
+                                <option>INGENIERIA DE SOFTWARE -PAU   </option>
+                                <option>INGENIERIA MECANICA -PAU      </option>
+                                <option>ING. DE DISEÑO GRAFICO -PAU   </option>
+                                <option>ING. ELECTROMECANICA -PAU     </option>
+                                <option>ING. DISEÑO COMPUTACIONAL -PAU</option>
+                                <option>ING.DE TELECOMUNICACIONES -PAU</option>
+                                <option>ING.REDES Y COMUNICACIONES-PAU</option>
+                                <option>ING.SEG.Y AUD.INFORMATICA -PAU</option>
+                                <option>ING. SISTEMAS E INF.-PAU-CHIC.</option>
+                                <option>ING. INDUSTRIAL -PAU-CHIC.    </option>
+                                <option>SEG.INDUST.Y MINERA -PAU-CHIC.</option>
+                                <option>ADMIN. DE EMPRESAS  -PAU-CHIC.</option>
+                                <option>ADMIN. Y MARKETING  -PAU-CHIC.</option>
+                                <option>ADM.DE NEG.INTERNAC.-PAU-CHIC.</option>
+                                <option>ADMINISTRACION DE EMPRESAS-PAU</option>
+                                <option>DIP.MERC.VALORES.OPER.BURSAT  </option>
+                                <option>CERTIFICACION INSTRUCTOR CISCO</option>
+                                <option>DIP.GEREN. PROY. PMBOK        </option>
+                                <option>DIP.COM.INT.GEST.ADUANERA     </option>
+                                <option>DIP.GEST.SEG.SALUD OCUPACIONAL</option>
+                                <option>PET INGENERIA DE SOFTWARE     </option>
+                                <option>PET INGENIERIA TELECOMUNICACIO</option>
+                                <option>PET ING.REDES Y COMUNICACIONES</option>
+                                <option>PET ING.SEGUR.Y AUDIT.INFORMAT</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="input-group fuente-pequeña">
+                            <span class="input-group-addon">Grado</span>
+                            <select id="Lista" class="form-control">
+                                <option value="" selected>Grado que se obtiene</option>
+                                <option value="1">Técnico</option>
+                                <option value="1">Universitario</option>
+                                <option value="1">Post-Grado</option>
+                                <option value="1">Doctorado</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="input-group fuente-pequeña">
+                            <span class="input-group-addon">Observaciones</span>
+                            <textarea class="form-control" placeholder="Observaciones sobre el estudio" rows="5"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="input-group fuente-pequeña">
+                            <span class="input-group-addon">Inicio</span>
+                            <input type="text" class="form-control" placeholder="Fecha de Inicio">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-group fuente-pequeña">
+                            <span class="input-group-addon">Fin</span>
+                            <input type="text" class="form-control" placeholder="Fecha de Fin">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="input-group fuente-pequeña">
+                            <span class="input-group-addon"><input type="checkbox"></span>
+
+                            <span class="form-control">Estudio finalizado</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-12 text-right"><button type="button" class="btn btn-default color-verde fuente-pequeña" style="color: white; margin-bottom: 10px;">Grabar Estudio</button></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="Modal-otro-conocimiento" tabindex="-1" role="dialog" aria-labelledby="Estudio" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="Estudio">Otro Conocimiento</h4>
+            </div>
+            <div class="modal-body">
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="input-group fuente-pequeña">
+                            <span class="input-group-addon">Tipo</span>
+                            <select id="Lista" class="form-control">
+                                <option value="" selected>Tipo de Conocimiento</option>
+                                <option>Software</option>
+                                <option>Idioma</option>
+                                <option>Curso</option>
+                                <option>Seminario</option>
+                                <option>Pasatiempo</option>
+                                <option>Tecnologia</option>
+                                <option>Competencia</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="input-group fuente-pequeña">
+                            <span class="input-group-addon">Nombre</span>
+                            <input type="text" class="form-control" placeholder="Nombre del Otro Conocimiento">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="input-group fuente-pequeña">
+                            <span class="input-group-addon">Nivel</span>
+                            <select id="Lista" class="form-control">
+                                <option value="" selected>Nivel del conocimiento</option>
+                                <option>Básico</option>
+                                <option>Medio</option>
+                                <option>Avanzado</option>
+                                <option>Experto</option>
+                             </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="input-group fuente-pequeña">
+                            <span class="input-group-addon">Fecha</span>
+                            <input type="text" class="form-control" placeholder="Fecha exacta">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="input-group fuente-pequeña">
+                            <span class="input-group-addon">Año</span>
+                            <input type="text" class="form-control" placeholder="Solo el año">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="input-group fuente-pequeña">
+                            <span class="input-group-addon">País</span>
+                            <select id="Lista" class="form-control">
+                                <option value="" selected>País donde lo obtuvo</option>
+                                <option>Afganistán</option>
+                                <option>Albania</option>
+                                <option>Alemania</option>
+                                <option>Andorra</option>
+                                <option>Angola</option>
+                                <option>Anguila</option>
+                                <option>Antigua y Barbuda</option>
+                                <option>Antillas Neerlandesas</option>
+                                <option>Antártida</option>
+                                <option>Arabia Saudí</option>
+                                <option>Argelia</option>
+                                <option>Argentina</option>
+                                <option>Armenia</option>
+                                <option>Aruba</option>
+                                <option>Australia</option>
+                                <option>Austria</option>
+                                <option>Azerbaiyán</option>
+                                <option>Bahamas</option>
+                                <option>Bangladesh</option>
+                                <option>Barbados</option>
+                                <option>Barhéin</option>
+                                <option>Belice</option>
+                                <option>Benín</option>
+                                <option>Bermudas</option>
+                                <option>Bielorrusia</option>
+                                <option>Bolivia</option>
+                                <option>Bosnia Herzegovina</option>
+                                <option>Botsuana</option>
+                                <option>Brasil</option>
+                                <option>Brunei Darussalam</option>
+                                <option>Bulgaria</option>
+                                <option>Burkina Faso</option>
+                                <option>Burundi</option>
+                                <option>Bután</option>
+                                <option>Bélgica</option>
+                                <option>Cabo Verde</option>
+                                <option>Camboya</option>
+                                <option>Camerún</option>
+                                <option>Canadá</option>
+                                <option>Chad</option>
+                                <option>Chile</option>
+                                <option>China</option>
+                                <option>Chipre</option>
+                                <option>Colombia</option>
+                                <option>Comoras</option>
+                                <option>Congo</option>
+                                <option>Costa Rica</option>
+                                <option>Costa de Marfil</option>
+                                <option>Croacia</option>
+                                <option>Cuba</option>
+                                <option>Dinamarca</option>
+                                <option>Dominica</option>
+                                <option>Ecuador</option>
+                                <option>Egipto</option>
+                                <option>El Salvador</option>
+                                <option>El Vaticano (Est Ciu Vaticano)</option>
+                                <option>Emiratos Árabes Unidos</option>
+                                <option>Eritrea</option>
+                                <option>Escocia</option>
+                                <option>Eslovaquia</option>
+                                <option>Eslovenia</option>
+                                <option>España</option>
+                                <option>Estados Unidos</option>
+                                <option>Estonia</option>
+                                <option>Etiopía</option>
+                                <option>Ex Repúb Yugosl de Macedonia</option>
+                                <option>Federación Rusa</option>
+                                <option>Filipinas</option>
+                                <option>Finlandia</option>
+                                <option>Fiyi</option>
+                                <option>Francia</option>
+                                <option>Gabón</option>
+                                <option>Gales</option>
+                                <option>Gambia</option>
+                                <option>Georgia</option>
+                                <option>Ghana</option>
+                                <option>Gibraltar</option>
+                                <option>Granada</option>
+                                <option>Grecia</option>
+                                <option>Groenlandia</option>
+                                <option>Guadalupe</option>
+                                <option>Guam</option>
+                                <option>Guatemala</option>
+                                <option>Guayana Francesa</option>
+                                <option>Guernsey</option>
+                                <option>Guinea</option>
+                                <option>Guinea Ecuatorial</option>
+                                <option>Guinea-Bisau</option>
+                                <option>Guyana</option>
+                                <option>Haití</option>
+                                <option>Honduras</option>
+                                <option>Hong Kong</option>
+                                <option>Hungría</option>
+                                <option>I Pitcairn</option>
+                                <option>India</option>
+                                <option>Indonesia</option>
+                                <option>Inglaterra</option>
+                                <option>Irak</option>
+                                <option>Irlanda</option>
+                                <option>Irlanda del Norte</option>
+                                <option>Irán (República Islámica de)</option>
+                                <option>Isla Bouvet</option>
+                                <option>Isla Christmas</option>
+                                <option>Isla Norfolk</option>
+                                <option>Isla de Man</option>
+                                <option>Islandia</option>
+                                <option>Islas Caimán</option>
+                                <option>Islas Cocos</option>
+                                <option>Islas Cook</option>
+                                <option>Islas Feroe</option>
+                                <option>Islas Georgia S y Sandwich S</option>
+                                <option>Islas Heard y McDonald</option>
+                                <option>Islas Malvinas</option>
+                                <option>Islas Marianas del Norte</option>
+                                <option>Islas Marshall</option>
+                                <option>Islas Menores Alejadas de EEUU</option>
+                                <option>Islas Salomón</option>
+                                <option>Islas Turcas y Caicos</option>
+                                <option>Islas Vírgenes Americanas</option>
+                                <option>Islas Vírgenes Británicas</option>
+                                <option>Islas de Aland</option>
+                                <option>Israel</option>
+                                <option>Italia</option>
+                                <option>Jamaica</option>
+                                <option>Japón</option>
+                                <option>Jersey</option>
+                                <option>Jordania</option>
+                                <option>Kazajstán</option>
+                                <option>Kenia</option>
+                                <option>Kirguizistán</option>
+                                <option>Kiribati</option>
+                                <option>Kosovo</option>
+                                <option>Kuwait</option>
+                                <option>Lesoto</option>
+                                <option>Letonia</option>
+                                <option>Liberia</option>
+                                <option>Libia, Yamahiriya Árabe</option>
+                                <option>Liechtenstein</option>
+                                <option>Lituania</option>
+                                <option>Luxemburgo</option>
+                                <option>Líbano</option>
+                                <option>Macao</option>
+                                <option>Madagascar</option>
+                                <option>Malasia</option>
+                                <option>Malaui</option>
+                                <option>Maldivas</option>
+                                <option>Malta</option>
+                                <option>Malí</option>
+                                <option>Marruecos</option>
+                                <option>Martinica</option>
+                                <option>Mauricio</option>
+                                <option>Mauritania</option>
+                                <option>Mayotte</option>
+                                <option>Mianmar</option>
+                                <option>Micronesia</option>
+                                <option>Mongolia</option>
+                                <option>Montserrat</option>
+                                <option>Mozambique</option>
+                                <option>México</option>
+                                <option>Mónaco</option>
+                                <option>Namibia</option>
+                                <option>Naurú</option>
+                                <option>Nepal</option>
+                                <option>Nicaragua</option>
+                                <option>Nigeria</option>
+                                <option>Niue</option>
+                                <option>Noruega</option>
+                                <option>Nueva Caledonia</option>
+                                <option>Nueva Zelanda</option>
+                                <option>Níger</option>
+                                <option>Omán</option>
+                                <option>Palaos</option>
+                                <option>Panamá</option>
+                                <option>Papúa Nueva Guinea</option>
+                                <option>Paquistán</option>
+                                <option>Paraguay</option>
+                                <option>Países Bajos</option>
+                                <option>Perú</option>
+                                <option>Polinesia Francesa</option>
+                                <option>Polonia</option>
+                                <option>Portugal</option>
+                                <option>Puerto Rico</option>
+                                <option>Qatar</option>
+                                <option>Reino Unido</option>
+                                <option>Rep Democrática del Congo</option>
+                                <option>Repúb Democrática Pop Laos</option>
+                                <option>Repúb Democrática Pop de Corea</option>
+                                <option>República Centroafricana</option>
+                                <option>República Checa</option>
+                                <option>República Dominicana</option>
+                                <option>República Unida de Tanzania</option>
+                                <option>República de Corea</option>
+                                <option>República de Moldavia</option>
+                                <option>República de Montenegro</option>
+                                <option>República de Serbia</option>
+                                <option>República Árabe Siria</option>
+                                <option>Reunión</option>
+                                <option>Ruanda</option>
+                                <option>Rumanía</option>
+                                <option>Samoa</option>
+                                <option>Samoa Americana</option>
+                                <option>San Bartolomé</option>
+                                <option>San Cristóbal y Nieves</option>
+                                <option>San Marino</option>
+                                <option>San Martín</option>
+                                <option>San Pedro y Miquelón</option>
+                                <option>San Vicente y las Granadinas</option>
+                                <option>Santa Elena</option>
+                                <option>Santa Lucía</option>
+                                <option>Santo Tomé y Príncipe</option>
+                                <option>Senegal</option>
+                                <option>Seychelles</option>
+                                <option>Sierra Leona</option>
+                                <option>Singapur</option>
+                                <option>Somalia</option>
+                                <option>Sri Lanka</option>
+                                <option>Suazilandia</option>
+                                <option>Sudáfrica</option>
+                                <option>Sudán</option>
+                                <option>Sudán del Sur</option>
+                                <option>Suecia</option>
+                                <option>Suiza</option>
+                                <option>Surinam</option>
+                                <option>Svalbard y Jan Mayen</option>
+                                <option>Sáhara Occidental</option>
+                                <option>Tailandia</option>
+                                <option>Taiwán</option>
+                                <option>Tayiquistán</option>
+                                <option>Terr Australes Franceses</option>
+                                <option>Terr Britán Océano Índico</option>
+                                <option>Terr Palestinos Ocupados</option>
+                                <option>Timor Oriental</option>
+                                <option>Togo</option>
+                                <option>Tokelau</option>
+                                <option>Tonga</option>
+                                <option>Trinidad y Tobago</option>
+                                <option>Turkmenistán</option>
+                                <option>Turquía</option>
+                                <option>Tuvalú</option>
+                                <option>Túnez</option>
+                                <option>Ucrania</option>
+                                <option>Uganda</option>
+                                <option>Uruguay</option>
+                                <option>Uzbekistán</option>
+                                <option>Vanuatú</option>
+                                <option>Venezuela</option>
+                                <option>Vietnam</option>
+                                <option>Wallis y Futuna</option>
+                                <option>Yemen</option>
+                                <option>Yibuti</option>
+                                <option>Yugoslavia</option>
+                                <option>Zambia</option>
+                                <option>Zimbabue</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="input-group fuente-pequeña">
+                            <span class="input-group-addon">Ciudad</span>
+                            <input type="text" class="form-control" placeholder="Ciudad donde lo obtuvo">
+                        </div>
+                    </div>    
+                </div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="input-group fuente-pequeña">
+                            <span class="input-group-addon">Institución</span>
+                            <input type="text" class="form-control" placeholder="Institución donde lo obtuvo">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="input-group fuente-pequeña">
+                            <span class="input-group-addon">Experiencia</span>
+                            <input type="text" class="form-control" placeholder="Años de experiencia">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-right"><button type="button" class="btn btn-default color-verde fuente-pequeña" style="color: white; margin-bottom: 10px;">Grabar Otro Conocimiento</button></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="~/Scripts/jquery-2.1.1.min.js"></script>
+<script>
+
+    $(document).ready(function () {
+        $("#divFinalCabecera").removeClass("BPUTP BPDirEmp BPNoticias BPInicio").addClass("BPEventos");
+    });
+
+
+</script>

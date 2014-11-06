@@ -1,0 +1,171 @@
+\\192.168.1.180\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\UTPPrototipo.dll.config
+\\192.168.1.180\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\UTPPrototipo.dll
+\\192.168.1.180\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\UTPPrototipo.pdb
+\\192.168.1.180\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\Antlr3.Runtime.dll
+\\192.168.1.180\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\EntityFramework.dll
+\\192.168.1.180\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\EntityFramework.SqlServer.dll
+\\192.168.1.180\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\Microsoft.AspNet.Identity.Core.dll
+\\192.168.1.180\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+\\192.168.1.180\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\Microsoft.AspNet.Identity.Owin.dll
+\\192.168.1.180\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\Microsoft.Owin.dll
+\\192.168.1.180\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\Microsoft.Owin.Host.SystemWeb.dll
+\\192.168.1.180\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\Microsoft.Owin.Security.Cookies.dll
+\\192.168.1.180\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\Microsoft.Owin.Security.dll
+\\192.168.1.180\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\Microsoft.Owin.Security.Facebook.dll
+\\192.168.1.180\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\Microsoft.Owin.Security.Google.dll
+\\192.168.1.180\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+\\192.168.1.180\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\Microsoft.Owin.Security.OAuth.dll
+\\192.168.1.180\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\Microsoft.Owin.Security.Twitter.dll
+\\192.168.1.180\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\Microsoft.Web.Infrastructure.dll
+\\192.168.1.180\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\Newtonsoft.Json.dll
+\\192.168.1.180\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\Owin.dll
+\\192.168.1.180\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\System.Web.Helpers.dll
+\\192.168.1.180\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\System.Web.Mvc.dll
+\\192.168.1.180\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\System.Web.Optimization.dll
+\\192.168.1.180\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\System.Web.Razor.dll
+\\192.168.1.180\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\System.Web.WebPages.Deployment.dll
+\\192.168.1.180\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\System.Web.WebPages.dll
+\\192.168.1.180\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\System.Web.WebPages.Razor.dll
+\\192.168.1.180\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\WebGrease.dll
+\\192.168.1.180\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\System.Web.Helpers.xml
+\\192.168.1.180\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\System.Web.Mvc.xml
+\\192.168.1.180\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\System.Web.Optimization.xml
+\\192.168.1.180\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\System.Web.Razor.xml
+\\192.168.1.180\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\System.Web.WebPages.xml
+\\192.168.1.180\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\System.Web.WebPages.Deployment.xml
+\\192.168.1.180\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\System.Web.WebPages.Razor.xml
+\\192.168.1.180\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\Newtonsoft.Json.xml
+\\192.168.1.180\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\Antlr3.Runtime.pdb
+\\192.168.1.180\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\EntityFramework.xml
+\\192.168.1.180\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\EntityFramework.SqlServer.xml
+\\192.168.1.180\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\Microsoft.AspNet.Identity.Core.xml
+\\192.168.1.180\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\Microsoft.AspNet.Identity.Owin.xml
+\\192.168.1.180\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+\\192.168.1.180\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\Microsoft.Owin.xml
+\\192.168.1.180\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\Microsoft.Owin.Host.SystemWeb.xml
+\\192.168.1.180\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\Microsoft.Owin.Security.xml
+\\192.168.1.180\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\Microsoft.Owin.Security.Facebook.xml
+\\192.168.1.180\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\Microsoft.Owin.Security.Cookies.xml
+\\192.168.1.180\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\Microsoft.Owin.Security.OAuth.xml
+\\192.168.1.180\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\Microsoft.Owin.Security.Google.xml
+\\192.168.1.180\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\Microsoft.Owin.Security.Twitter.xml
+\\192.168.1.180\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+\\192.168.1.180\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\obj\Debug\UTPPrototipo.csprojResolveAssemblyReference.cache
+\\192.168.1.180\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\obj\Debug\UTPPrototipo.dll
+\\192.168.1.180\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\obj\Debug\UTPPrototipo.pdb
+C:\Users\VictorCanal\SkyDrive\Documentos\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\UTPPrototipo.dll.config
+C:\Users\VictorCanal\SkyDrive\Documentos\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\UTPPrototipo.dll
+C:\Users\VictorCanal\SkyDrive\Documentos\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\UTPPrototipo.pdb
+C:\Users\VictorCanal\SkyDrive\Documentos\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\Antlr3.Runtime.dll
+C:\Users\VictorCanal\SkyDrive\Documentos\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\EntityFramework.dll
+C:\Users\VictorCanal\SkyDrive\Documentos\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\EntityFramework.SqlServer.dll
+C:\Users\VictorCanal\SkyDrive\Documentos\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\VictorCanal\SkyDrive\Documentos\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\VictorCanal\SkyDrive\Documentos\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\VictorCanal\SkyDrive\Documentos\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\Microsoft.Owin.dll
+C:\Users\VictorCanal\SkyDrive\Documentos\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\VictorCanal\SkyDrive\Documentos\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\VictorCanal\SkyDrive\Documentos\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\Microsoft.Owin.Security.dll
+C:\Users\VictorCanal\SkyDrive\Documentos\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\VictorCanal\SkyDrive\Documentos\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\VictorCanal\SkyDrive\Documentos\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\VictorCanal\SkyDrive\Documentos\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\VictorCanal\SkyDrive\Documentos\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\VictorCanal\SkyDrive\Documentos\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\VictorCanal\SkyDrive\Documentos\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\Newtonsoft.Json.dll
+C:\Users\VictorCanal\SkyDrive\Documentos\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\Owin.dll
+C:\Users\VictorCanal\SkyDrive\Documentos\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\System.Web.Helpers.dll
+C:\Users\VictorCanal\SkyDrive\Documentos\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\System.Web.Mvc.dll
+C:\Users\VictorCanal\SkyDrive\Documentos\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\System.Web.Optimization.dll
+C:\Users\VictorCanal\SkyDrive\Documentos\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\System.Web.Razor.dll
+C:\Users\VictorCanal\SkyDrive\Documentos\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\System.Web.WebPages.Deployment.dll
+C:\Users\VictorCanal\SkyDrive\Documentos\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\System.Web.WebPages.dll
+C:\Users\VictorCanal\SkyDrive\Documentos\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\System.Web.WebPages.Razor.dll
+C:\Users\VictorCanal\SkyDrive\Documentos\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\WebGrease.dll
+C:\Users\VictorCanal\SkyDrive\Documentos\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\System.Web.Helpers.xml
+C:\Users\VictorCanal\SkyDrive\Documentos\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\System.Web.Mvc.xml
+C:\Users\VictorCanal\SkyDrive\Documentos\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\System.Web.Optimization.xml
+C:\Users\VictorCanal\SkyDrive\Documentos\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\System.Web.Razor.xml
+C:\Users\VictorCanal\SkyDrive\Documentos\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\System.Web.WebPages.xml
+C:\Users\VictorCanal\SkyDrive\Documentos\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\System.Web.WebPages.Deployment.xml
+C:\Users\VictorCanal\SkyDrive\Documentos\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\System.Web.WebPages.Razor.xml
+C:\Users\VictorCanal\SkyDrive\Documentos\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\Newtonsoft.Json.xml
+C:\Users\VictorCanal\SkyDrive\Documentos\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\Antlr3.Runtime.pdb
+C:\Users\VictorCanal\SkyDrive\Documentos\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\EntityFramework.xml
+C:\Users\VictorCanal\SkyDrive\Documentos\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\EntityFramework.SqlServer.xml
+C:\Users\VictorCanal\SkyDrive\Documentos\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\VictorCanal\SkyDrive\Documentos\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\VictorCanal\SkyDrive\Documentos\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\VictorCanal\SkyDrive\Documentos\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\Microsoft.Owin.xml
+C:\Users\VictorCanal\SkyDrive\Documentos\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\VictorCanal\SkyDrive\Documentos\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\Microsoft.Owin.Security.xml
+C:\Users\VictorCanal\SkyDrive\Documentos\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\VictorCanal\SkyDrive\Documentos\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\VictorCanal\SkyDrive\Documentos\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\VictorCanal\SkyDrive\Documentos\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\VictorCanal\SkyDrive\Documentos\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\VictorCanal\SkyDrive\Documentos\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\VictorCanal\SkyDrive\Documentos\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\obj\Debug\UTPPrototipo.csprojResolveAssemblyReference.cache
+C:\Users\VictorCanal\SkyDrive\Documentos\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\obj\Debug\UTPPrototipo.dll
+C:\Users\VictorCanal\SkyDrive\Documentos\CriteriaIT\CIT-Operaciones\Proyectos\UTP\Portal de Empleabilidad\03. Construcción\Prototipo\UTPPrototipo\UTPPrototipo\obj\Debug\UTPPrototipo.pdb
+C:\Users\Aldo Chocos\Documents\GitHub\UTPPrototipo\UTPPrototipo\bin\UTPPrototipo.dll.config
+C:\Users\Aldo Chocos\Documents\GitHub\UTPPrototipo\UTPPrototipo\bin\UTPPrototipo.dll
+C:\Users\Aldo Chocos\Documents\GitHub\UTPPrototipo\UTPPrototipo\bin\UTPPrototipo.pdb
+C:\Users\Aldo Chocos\Documents\GitHub\UTPPrototipo\UTPPrototipo\bin\Antlr3.Runtime.dll
+C:\Users\Aldo Chocos\Documents\GitHub\UTPPrototipo\UTPPrototipo\bin\EntityFramework.dll
+C:\Users\Aldo Chocos\Documents\GitHub\UTPPrototipo\UTPPrototipo\bin\EntityFramework.SqlServer.dll
+C:\Users\Aldo Chocos\Documents\GitHub\UTPPrototipo\UTPPrototipo\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Aldo Chocos\Documents\GitHub\UTPPrototipo\UTPPrototipo\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Aldo Chocos\Documents\GitHub\UTPPrototipo\UTPPrototipo\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\Aldo Chocos\Documents\GitHub\UTPPrototipo\UTPPrototipo\bin\Microsoft.Owin.dll
+C:\Users\Aldo Chocos\Documents\GitHub\UTPPrototipo\UTPPrototipo\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\Aldo Chocos\Documents\GitHub\UTPPrototipo\UTPPrototipo\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\Aldo Chocos\Documents\GitHub\UTPPrototipo\UTPPrototipo\bin\Microsoft.Owin.Security.dll
+C:\Users\Aldo Chocos\Documents\GitHub\UTPPrototipo\UTPPrototipo\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\Aldo Chocos\Documents\GitHub\UTPPrototipo\UTPPrototipo\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\Aldo Chocos\Documents\GitHub\UTPPrototipo\UTPPrototipo\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\Aldo Chocos\Documents\GitHub\UTPPrototipo\UTPPrototipo\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\Aldo Chocos\Documents\GitHub\UTPPrototipo\UTPPrototipo\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\Aldo Chocos\Documents\GitHub\UTPPrototipo\UTPPrototipo\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Aldo Chocos\Documents\GitHub\UTPPrototipo\UTPPrototipo\bin\Newtonsoft.Json.dll
+C:\Users\Aldo Chocos\Documents\GitHub\UTPPrototipo\UTPPrototipo\bin\Owin.dll
+C:\Users\Aldo Chocos\Documents\GitHub\UTPPrototipo\UTPPrototipo\bin\System.Web.Helpers.dll
+C:\Users\Aldo Chocos\Documents\GitHub\UTPPrototipo\UTPPrototipo\bin\System.Web.Mvc.dll
+C:\Users\Aldo Chocos\Documents\GitHub\UTPPrototipo\UTPPrototipo\bin\System.Web.Optimization.dll
+C:\Users\Aldo Chocos\Documents\GitHub\UTPPrototipo\UTPPrototipo\bin\System.Web.Razor.dll
+C:\Users\Aldo Chocos\Documents\GitHub\UTPPrototipo\UTPPrototipo\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Aldo Chocos\Documents\GitHub\UTPPrototipo\UTPPrototipo\bin\System.Web.WebPages.dll
+C:\Users\Aldo Chocos\Documents\GitHub\UTPPrototipo\UTPPrototipo\bin\System.Web.WebPages.Razor.dll
+C:\Users\Aldo Chocos\Documents\GitHub\UTPPrototipo\UTPPrototipo\bin\WebGrease.dll
+C:\Users\Aldo Chocos\Documents\GitHub\UTPPrototipo\UTPPrototipo\bin\System.Web.Helpers.xml
+C:\Users\Aldo Chocos\Documents\GitHub\UTPPrototipo\UTPPrototipo\bin\System.Web.Mvc.xml
+C:\Users\Aldo Chocos\Documents\GitHub\UTPPrototipo\UTPPrototipo\bin\System.Web.Optimization.xml
+C:\Users\Aldo Chocos\Documents\GitHub\UTPPrototipo\UTPPrototipo\bin\System.Web.Razor.xml
+C:\Users\Aldo Chocos\Documents\GitHub\UTPPrototipo\UTPPrototipo\bin\System.Web.WebPages.xml
+C:\Users\Aldo Chocos\Documents\GitHub\UTPPrototipo\UTPPrototipo\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Aldo Chocos\Documents\GitHub\UTPPrototipo\UTPPrototipo\bin\System.Web.WebPages.Razor.xml
+C:\Users\Aldo Chocos\Documents\GitHub\UTPPrototipo\UTPPrototipo\bin\Newtonsoft.Json.xml
+C:\Users\Aldo Chocos\Documents\GitHub\UTPPrototipo\UTPPrototipo\bin\Antlr3.Runtime.pdb
+C:\Users\Aldo Chocos\Documents\GitHub\UTPPrototipo\UTPPrototipo\bin\EntityFramework.xml
+C:\Users\Aldo Chocos\Documents\GitHub\UTPPrototipo\UTPPrototipo\bin\EntityFramework.SqlServer.xml
+C:\Users\Aldo Chocos\Documents\GitHub\UTPPrototipo\UTPPrototipo\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Aldo Chocos\Documents\GitHub\UTPPrototipo\UTPPrototipo\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\Aldo Chocos\Documents\GitHub\UTPPrototipo\UTPPrototipo\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Aldo Chocos\Documents\GitHub\UTPPrototipo\UTPPrototipo\bin\Microsoft.Owin.xml
+C:\Users\Aldo Chocos\Documents\GitHub\UTPPrototipo\UTPPrototipo\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\Aldo Chocos\Documents\GitHub\UTPPrototipo\UTPPrototipo\bin\Microsoft.Owin.Security.xml
+C:\Users\Aldo Chocos\Documents\GitHub\UTPPrototipo\UTPPrototipo\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\Aldo Chocos\Documents\GitHub\UTPPrototipo\UTPPrototipo\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\Aldo Chocos\Documents\GitHub\UTPPrototipo\UTPPrototipo\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\Aldo Chocos\Documents\GitHub\UTPPrototipo\UTPPrototipo\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\Aldo Chocos\Documents\GitHub\UTPPrototipo\UTPPrototipo\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\Aldo Chocos\Documents\GitHub\UTPPrototipo\UTPPrototipo\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\Aldo Chocos\Documents\GitHub\UTPPrototipo\UTPPrototipo\obj\Debug\UTPPrototipo.csprojResolveAssemblyReference.cache
+C:\Users\Aldo Chocos\Documents\GitHub\UTPPrototipo\UTPPrototipo\obj\Debug\UTPPrototipo.dll
+C:\Users\Aldo Chocos\Documents\GitHub\UTPPrototipo\UTPPrototipo\obj\Debug\UTPPrototipo.pdb
+C:\Users\Aldo Chocos\Documents\GitHub\UTPPrototipo\UTPPrototipo\bin\UTP.PortalEmpleabilidad.Logica.dll
+C:\Users\Aldo Chocos\Documents\GitHub\UTPPrototipo\UTPPrototipo\bin\UTP.PortalEmpleabilidad.Modelo.dll
+C:\Users\Aldo Chocos\Documents\GitHub\UTPPrototipo\UTPPrototipo\bin\UTP.PortalEmpleabilidad.Logica.pdb
+C:\Users\Aldo Chocos\Documents\GitHub\UTPPrototipo\UTPPrototipo\bin\UTP.PortalEmpleabilidad.Modelo.pdb
+C:\Users\Aldo Chocos\Documents\GitHub\UTPPrototipo\UTPPrototipo\bin\UTP.PortalEmpleabilidad.Datos.dll
+C:\Users\Aldo Chocos\Documents\GitHub\UTPPrototipo\UTPPrototipo\bin\UTP.PortalEmpleabilidad.Datos.pdb

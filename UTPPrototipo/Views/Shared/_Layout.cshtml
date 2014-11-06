@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal de Empleabilidad - @ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body class="cuerpo-zona-publica">
+
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color:rgb(245, 245, 245);border:0px;" role="navigation">
+        <div class="container">
+            @Html.ActionLink(" ", "Index", "Home", new { @class = "LogoUTPPE" })
+            <div class="navbar-header posicion-menu">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" style="margin: 6px 5px 3px 0px">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+        </div>
+        <div class="row" style="background-color:rgb(230,230,230);">
+            <div class="container">
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="boton-menu-utp">
+                            <a class="a-menu-utp" href="..\Home\Index" style="padding:6px 15px 6px 15px;color:rgb(180,30,34)">Inicio</a>
+                        </li>
+                        <li id="OpcionMenuUTP" class="boton-menu-utp">
+                            <a class="a-menu-utp" href="..\Home\UTP" style="padding:6px 15px 6px 15px;">UTP</a>
+                        </li>
+                        <li id="OpcionMenuEmpleabilidad" class="boton-menu-utp">
+                            <a class="a-menu-utp" href="..\Home\DirEmp" style="padding: 6px 15px 6px 15px;">Empleabilidad</a>
+                        </li>
+                        <li id="OpcionMenuEventos" class="boton-menu-utp">
+                            <a class="a-menu-utp" href="..\Home\Eventos" style="padding: 6px 15px 6px 15px; ">Eventos</a>
+                        </li>
+                        <li id="OpcionMenuNoticias" class="boton-menu-utp">
+                            <a class="a-menu-utp" href="..\Home\Noticias" style="padding: 6px 15px 6px 15px; ">Noticias</a>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right" style="padding-right: 15px; ">
+                        <li>
+                            <a href="#" class="LetraLog" style="color: black;padding: 5px 15px 0px 5px;font-size:12px;">Regístrese</a>
+                        </li>
+                        <li>
+                            <a href="#" class="LetraLog" style="color: black; padding: 5px 10px 0px 5px; font-size: 12px;" data-toggle="modal" data-target="#Modal-ingresar">INGRESAR</a>
+                        </li>
+                    </ul>
+                    <!--@Html.Partial("_LoginPartial")-->
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!--<div class="container body-content">-->
+    <div>
+        @RenderBody()
+        <hr />
+        <footer style="background-color:rgb(131, 131, 129);">
+            <div class="container">
+                <p style="text-align:right;margin-top:10px;">
+                    <i class="fa fa-facebook-square fa-3x" style="margin-right: 5px;color:rgb(180,30,34);"></i>
+                    <i class="fa fa-twitter-square fa-3x" style="margin-right: 5px; color: rgb(180,30,34); "></i>
+                    <i class="fa fa-google-plus-square fa-3x" style="margin-right: 5px; color: rgb(180,30,34); "></i>
+                </p>
+                <p style="text-align:center;color:white;font-size:16px;">
+                    Universidad Tecnológica del Perú
+                </p>
+                <p style="text-align:center;color:white;font-size:10px;padding-bottom:0px;padding-top:0px;">
+                    Esquina Av. 28 de Julio y Av. Pettit Thouars, Lima Perú | teléfono: 315-9600 e-mail: admision@utp.edu.pe
+                </p>
+                <p style="text-align:center;color:white;font-size:10px;">
+                    Campus Chiclayo: Esquina Prol. Augusto B. Leguía con Av. Herman Meiner | teléfono: (074) 622121 | Informes: Calle San José 720 - teléfono: (074) 624 998 | e-mail: admisionchiclayo@utp.edu.pe
+                </p>
+                <p style="text-align:center;color:white;font-size:14px;">
+                    2014 UTP &copy; - Términos de Uso - Política de Privacidad - FAQ
+                </p>
+            </div>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <!-- Modal -->
+    <div class="modal" id="Modal-ingresar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Ingreso de Usuario</h4>
+                </div>
+                @using (Html.BeginForm("Index", "Alumno", FormMethod.Post))
+                {
+                    <div class="modal-body">
+
+                        <div class="input-group grupo-ingreso">
+                            <span class="input-group-addon nombre-campo">Usuario</span>
+                            <input type="text" class="form-control" placeholder="Usuario" style="width:100%;">
+                        </div>
+                        <div class="input-group grupo-ingreso">
+                            <span class="input-group-addon nombre-campo">Clave</span>
+                            <input type="password" class="form-control" placeholder="Clave">
+                        </div>
+                        <br />
+                        <div class="grupo-ingreso" style="text-align:center;">
+                            <input type="checkbox">
+                            <span class="label-sistema"> No Cerrar mi Sesión </span>
+                        </div>
+                        <br />
+                        <div class="text-center" style="width: 100%;">
+                            <span class="btn btn-default"><a href="../Alumno/Index">Ingresar Alumno</a></span>
+                        </div>
+                        <div class="text-center" style="width: 100%;">
+                            <span class="btn btn-default"><a href="../Empresa/Index">Ingresar Empresa</a></span>
+                        </div>
+
+                    </div>
+                }
+                <div class="modal-footer">
+                    <span class="label-sistema">Recuperar Clave</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="label-sistema">Registrarse</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

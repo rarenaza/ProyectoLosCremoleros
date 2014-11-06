@@ -1,0 +1,222 @@
+﻿/*!
+ *   Fuentes para Íconos Sistema Portal de Empleabilidad UTP
+ * -------------------------- */
+@font-face {
+    font-family: "Font-UTP-Icon";
+    src: url("../fonts/UTP FONT ICON.eot?") format("eot"), 
+        url("../fonts/UTP FONT ICON.woff") format("woff"), 
+        url("../fonts/UTP FONT ICON.ttf") format("truetype"), 
+        url("../../fonts/UTP FONT ICON.svg#UTP FONT ICON") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+.fui {
+  display: inline-block;
+  font: normal normal normal 14px/1 Font-UTP-Icon;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color:rgb(180,30,34);
+    }
+.fui-nivel-basico:before {
+    content: "!";
+    }
+.fui-nivel-medio:before {
+    content: '"';
+    }
+.fui-nivel-avanzado:before {
+    content: "#";
+    }
+.fui-nivel-experto:before {
+    content: "$";
+    }
+.fui-desactivado:before {
+    content: "%";
+    }
+.fui-suspendido:before {
+    content: "&";
+    }
+.fui-masculino:before {
+    content: "'";
+    }
+.fui-femenino:before {
+    content: "(";
+    }
+.fui-no-determinado:before {
+    content: ")";
+    }
+.fui-dni:before {
+    content: "*";
+    }
+.fui-carnet-de-extrangeria:before {
+    content: "+";
+    }
+.fui-pasaporte:before {
+    content: ",";
+    }
+.fui-grado-tecnico:before {
+    content: "-";
+    }
+.fui-grado-universitario:before {
+    content: ".";
+    }
+.fui-grado-post-grado:before {
+    content: "/";
+    }
+.fui-grado-doctorado:before {
+    content: "0";
+    }
+.fui-practicante:before {
+    content: "1";
+    }
+.fui-obrero:before {
+    content: "2";
+    }
+.fui-supervisor:before {
+    content: "3";
+    }
+.fui-empleado:before {
+    content: "4";
+    }
+.fui-ejecutivo:before {
+    content: "H";
+    }
+.fui-oficina-principal:before {
+    content: "5";
+    }
+.fui-sucursal:before {
+    content: "6";
+    }
+.fui-planta:before {
+    content: "7";
+    }
+.fui-evento-activo:before {
+    content: "8";
+    }
+.fui-evento-suspendido:before {
+    content: "9";
+    }
+.fui-evento-finalizado:before {
+    content: ":";
+    }
+.fui-usuario-empresa:before {
+    content: ";";
+    }
+.fui-publico-general:before {
+    content: "<";
+    }
+.fui-usuario-UTP:before {
+    content: "=";
+    }
+.fui-ticket-emitido:before {
+    content: ">";
+    }
+.fui-ticket-pendiente-emitir:before {
+    content: "?";
+    }
+.fui-ticket-usado:before {
+    content: "@";
+    }
+.fui-mensaje-no-leido:before {
+    content: "A";
+    }
+.fui-mensaje-leido:before {
+    content: "B";
+    }
+.fui-mensaje-contestado:before {
+    content: "C";
+    }
+.fui-oferta-activa:before {
+    content: "D";
+    }
+.fui-oferta-finalizada:before {
+    content: "E";
+    }
+.fui-oferta-pendiente-revision:before {
+    content: "F";
+    }
+.fui-oferta-suspendida:before {
+    content: "G";
+    }
+.fui-tiempo-completo:before {
+    content: "I";
+    }
+.fui-medio-tiempo:before {
+    content: "J";
+    }
+.fui-temporal:before {
+    content: "K";
+    }
+.fui-freelance:before {
+    content: "L";
+    }
+.fui-recibo-x-honorarios:before {
+    content: "M";
+    }
+.fui-en-planilla:before {
+    content: "N";
+    }
+.fui-revision-cv:before {
+    content: "O";
+    }
+.fui-primera-entrevista:before {
+    content: "P";
+    }
+.fui-evaluacion-psicologica:before {
+    content: "Q";
+    }
+.fui-examen-medico:before {
+    content: "R";
+    }
+.fui-dinamica-grupal:before {
+    content: "S";
+    }
+.fui-entrevista-final:before {
+    content: "T";
+    }
+.fui-contratacion:before {
+    content: "U";
+    }
+.fui-pendiente-revision:before {
+    content: "V";
+    }
+.fui-en-proceso-seleccion:before {
+    content: "W";
+    }
+.fui-no-seleccionado:before {
+    content: "X";
+    }
+.fui-aviso-finalizado:before {
+    content: "Y";
+    }
+.fui-formulario:before {
+    content: "Z";
+    }
+.fui-plantilla-correo:before {
+    content: "[";
+    }
+.fui-plantilla-cv:before {
+    content: "\f092";
+    }
+.fui-empleado-empresa-registrada:before {
+    content: "]";
+    }
+.fui-usuario-activo:before {
+    content: "^";
+    }
+.fui-usuario-finalizado:before {
+    content: "_";
+    }
+.fui-usuario-no-activo:before {
+    content: "`";
+    }
+.fui-usuario-pendiente-validacion:before {
+    content: "a";
+    }
+.fui-CV:before {
+    content: "b";
+    }
+.fui-ex-alumno-UTP:before {
+    content: " ";
+    }

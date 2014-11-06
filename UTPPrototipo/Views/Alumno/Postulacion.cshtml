@@ -1,0 +1,382 @@
+﻿@{
+    Layout = "~/Views/Alumno/_LayoutAlumno.cshtml";
+    ViewBag.Title = "Postulaciones";
+}
+<script src="~/Scripts/jquery-2.1.1.min.js"></script>
+<script>
+
+    $(document).ready(function () {
+        $("#divFinalCabecera").removeClass("BPEventos BPDirEmp BPNoticias BPInicio").addClass("BPUTP");
+    });
+
+
+</script>
+<div class="container" style="margin-top:2px;">
+    <div class="panel-group" id="datos-cuenta" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingOne" style="padding: 2px 2px 2px 6px;">
+                <h5 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="fuente-seccion">
+                        Tu Cuenta - Karina María Barrionuevo Chang
+                    </a>
+                </h5>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body">
+                    <div class="col-md-4 fuente-seccion">
+                        <table>
+                            <tr>
+                                <td>
+                                    <img class="foto-usuario" src="~/img/Alumna.png" />
+                                </td>
+                                <td style="vertical-align:top;">
+                                    <strong>
+                                        Karina María
+                                        <br />Barrionuevo Chang
+                                    </strong>
+                                    <br />Ingeniería Industrial
+                                    <br /><a href="#" class="fuente-pequeña">Modificar Datos ...</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-md-4 fuente-pequeña">
+                        Código <strong>82727128</strong><br />
+                        DNI <strong>89226681</strong><br />
+                        <strong>karina_barrionuevo@hotmail.com</strong><br />
+                        <strong>kabarrionuevo@elportaldelvago.com</strong>
+
+                    </div>
+                    <div class="col-md-4 fuente-pequeña">
+                        Dirección <strong>Av del Pozo 3453, San Martín de Porres Lima Perú</strong><br />
+                        Teléfono <strong>456-1234</strong><br />
+                        Celular <strong>954123876</strong>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="panel-group" id="CriterioBusquedaPostulacion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="CabeceraColapsaBusqueda" style="padding: 2px 2px 2px 6px;">
+                <h5 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#CriterioBusquedaPostulacion" href="#ColapsaBusqueda" aria-expanded="true" aria-controls="ColapsaBusqueda" class="fuente-seccion">
+                        Búsqueda
+                    </a>
+                </h5>
+            </div>
+            <div id="ColapsaBusqueda" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="CabeceraColapsaBusqueda">
+                <div class="panel-body">
+                    <div class="col-md-6">
+                        <div class="input-group fuente-pequeña">
+                            <span class="input-group-addon">Palabra Clave</span>
+                            <input type="text" class="form-control" placeholder="Palabra clave">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <span class="col-md-6 btn-group">
+                            <button type="button" class="btn btn-default ">Buscar</button>
+                        </span>
+                    </div>
+                            
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="CabeceraColapsaBusquedaAvanzada" style="padding: 2px 2px 2px 6px;">
+                <h5 class="panel-title">
+                    <a class="collapsed fuente-seccion" data-toggle="collapse" data-parent="#CriterioBusquedaPostulacion" href="#ColapsaBusquedaAvanzada" aria-expanded="false" aria-controls="ColapsaBusquedaAvanzada">
+                        Búsqueda avanzada
+                    </a>
+                </h5>
+            </div>
+            <div id="ColapsaBusquedaAvanzada" class="panel-collapse collapse" role="tabpanel" aria-labelledby="CabeceraColapsaBusquedaAvanzada">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="input-group fuente-pequeña">
+                                <span class="input-group-addon">Sector</span>
+                                <select id="Lista" class="form-control">
+                                    <option value="" selected>- - -</option>
+                                    <option value="1">Auditoría y Consultoría</option>
+                                    <option value="1">Banca y Seguros</option>
+                                    <option value="1">Construcción e Inmobiliaria</option>
+                                    <option value="1">Energía</option>
+                                    <option value="1">Industria</option>
+                                    <option value="1">Servicios</option>
+                                    <option value="1">Tecnología y Software</option>
+                                    <option value="1">Telecomunicaciones</option>
+                                </select>
+                            </div>
+                            <div class="input-group fuente-pequeña">
+                                <span class="input-group-addon "># Empleados</span>
+                                <select id="Lista" class="form-control">
+                                    <option value="" selected>- - -</option>
+                                    <option value="1">De 1 a 10 empleados</option>
+                                    <option value="1">De 11 a 50 empleados</option>
+                                    <option value="1">De 51 a 100 empleados</option>
+                                    <option value="1">De 101 a 500 empleados</option>
+                                    <option value="1">Más de 500 empleados</option>
+                                </select>
+                            </div>
+                            <div class="input-group fuente-pequeña">
+                                <span class="input-group-addon ">Locación</span>
+                                <input type="text" class="form-control" placeholder="Locación">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="input-group fuente-pequeña">
+                                <span class="input-group-addon">Tipo</span>
+                                <select id="Lista" class="form-control">
+                                    <option value="" selected>- - -</option>
+                                    <option value="1">Tiempo Completo</option>
+                                    <option value="1">Medio tiempo</option>
+                                    <option value="1">Temporal</option>
+                                    <option value="1">De 101 a 500 empleados</option>
+                                    <option value="1">Freelance</option>
+                                </select>
+                            </div>
+                            <div class="input-group fuente-pequeña">
+                                <span class="input-group-addon">Contrato</span>
+                                <select id="Lista" class="form-control">
+                                    <option value="" selected>- - -</option>
+                                    <option value="1">En Planilla</option>
+                                    <option value="1">Por Honorarios</option>
+                                </select>
+                            </div>
+                            <div class="input-group fuente-pequeña">
+                                <span class="input-group-addon">T.Cargo</span>
+                                <select id="Lista" class="form-control">
+                                    <option value="" selected>- - -</option>
+                                    <option value="1">Practicante</option>
+                                    <option value="1">Obrero</option>
+                                    <option value="1">Empleado</option>
+                                    <option value="1">Supervisor</option>
+                                    <option value="1">Ejecutivo</option>
+                                </select>
+                            </div>
+                            <div class="input-group fuente-pequeña">
+                                <span class="input-group-addon">Cargo</span>
+                                <input type="text" class="form-control" placeholder="Cargo ofrecido">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="input-group fuente-pequeña">
+                                <span class="input-group-addon">Carrera</span>
+                                <select id="Lista" class="form-control">
+                                    <option value="" selected>- - -</option>
+                                    <option value="1">Ingeniería</option>
+                                    <option value="1">Medicina</option>
+                                    <option value="1">Empleado</option>
+                                    <option value="1">Supervisor</option>
+                                    <option value="1">Ejecutivo</option>
+                                </select>
+                            </div>
+                            <div class="input-group fuente-pequeña">
+                                <span class="input-group-addon">Especialidad</span>
+                                <select id="Lista" class="form-control">
+                                    <option value="" selected>- - -</option>
+                                    <option value="1">De Minas</option>
+                                    <option value="1">Civil</option>
+                                    <option value="1">Empleado</option>
+                                    <option value="1">Supervisor</option>
+                                    <option value="1">Ejecutivo</option>
+                                </select>
+                            </div>
+                            <div class="input-group fuente-pequeña">
+                                <span class="input-group-addon">Grado</span>
+                                <select id="Lista" class="form-control">
+                                    <option value="" selected>- - -</option>
+                                    <option value="1">Técnico</option>
+                                    <option value="1">Universitario</option>
+                                    <option value="1">Post-Grado</option>
+                                    <option value="1">Doctorado</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="input-group fuente-pequeña">
+                                <span class="input-group-addon">Fase</span>
+                                <select id="Lista" class="form-control">
+                                    <option value="" selected>- - -</option>
+                                    <option value="1">Revisión de CV</option>
+                                    <option value="1">Primera Entrevista</option>
+                                    <option value="1">Evaluaciones Psicológicas/Psicotécnicas</option>
+                                    <option value="1">Examen Médico</option>
+                                    <option value="1">Dinámica Grupal</option>
+                                    <option value="1">Entrevista final</option>
+                                    <option value="1">Contratación</option>
+                                    <option value="1">Aviso finalizado</option>
+                                </select>
+                            </div>
+                            <div class="input-group fuente-pequeña">
+                                <span class="input-group-addon">Estado</span>
+                                <select id="Lista" class="form-control">
+                                    <option value="" selected>- - -</option>
+                                    <option value="1">Pendiente de revisión</option>
+                                    <option value="1">En proceso de selección</option>
+                                    <option value="1">No has sido seleccionado</option>
+                                    <option value="1">Oferta Laboral!</option>
+                                </select>
+                            </div>
+                            <div class="input-group fuente-pequeña">
+                                <span class="input-group-addon">Publicado el</span>
+                                <input type="text" class="form-control" placeholder="Fecha de Publicación">
+                            </div>
+                            <br />
+                            <div>
+                                <button type="button" class="btn btn-default fuente-pequeña">Buscar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="row grilla1-cabecera color-UTP">
+                <div class="col-xs-12 col-sm-3">Cargo - Empresa</div>
+                <!-- Optional: clear the XS cols if their content doesn't match in height -->
+                <div class="clearfix visible-xs-block"></div>
+                <div class="col-xs-3 col-sm-2">Postuló</div>
+                <div class="col-xs-3 col-sm-2">Publicado</div>
+                <div class="col-xs-2 col-sm-2">Fase</div>
+                <div class="col-xs-2 col-sm-2">Estado</div>
+                <div class="col-xs-2 col-sm-1">Msj</div>
+            </div>
+            <div class="row grilla1-linea">
+                <div class="col-xs-12 col-sm-3 linea-destacada"><a href="..\Alumno\postulacionOferta"><b>Gerente de Proyectos en Desarrollo de Software</b> en <b>Criteria IT S.A.C.</b></a></div>
+                <!-- Optional: clear the XS cols if their content doesn't match in height -->
+                <div class="clearfix visible-xs-block"></div>
+                <div class="col-xs-3 col-sm-2"><div><span class="etiqueta-oculta">Pt-</span><span>21/10/2014</span></div></div>
+                <div class="col-xs-3 col-sm-2"><div><span class="etiqueta-oculta">Pb-</span><span>19/10/2014</span></div></div>
+                <div class="col-xs-2 col-sm-2"><div><span class="valor-palabra">Revisión de CV</span><span class="valor-icono2">O</span></div></div>
+                <div class="col-xs-2 col-sm-2"><div><span class="valor-palabra">Pendiente de revisión</span><span class="valor-icono2">V</span></div></div>
+                <div class="col-xs-2 col-sm-1"><span class="fui fa-2x valor-icono">h</span>&nbsp;&nbsp;2/6</div>
+            </div>
+            <div class="row grilla1-linea">
+                <div class="col-xs-12 col-sm-3 linea-destacada"><a href="..\Alumno\postulacionOferta"><b>Jefe de Proyectos</b> en <b>Indra S.A.</b></a></div>
+                <!-- Optional: clear the XS cols if their content doesn't match in height -->
+                <div class="clearfix visible-xs-block"></div>
+                <div class="col-xs-3 col-sm-2"><div><span class="etiqueta-oculta">Pt-</span><span>11/10/2014</span></div></div>
+                <div class="col-xs-3 col-sm-2"><div><span class="etiqueta-oculta">Pb-</span><span>09/10/2014</span></div></div>
+                <div class="col-xs-2 col-sm-2"><div><span class="valor-palabra">Primera Entrevista</span><span class="valor-icono2">P</span></div></div>
+                <div class="col-xs-2 col-sm-2"><div><span class="valor-palabra">En Procesos de Selección</span><span class="valor-icono2">W</span></div></div>
+                <div class="col-xs-2 col-sm-1"><span class="fui fa-2x valor-icono">h</span>&nbsp;&nbsp;2/4</div>
+            </div>
+            <div class="row grilla1-linea">
+                <div class="col-xs-12 col-sm-3 linea-destacada"><a href="..\Alumno\postulacionOferta"><b>Analista Programador</b> en <b>EVERIS</b></a></div>
+                <!-- Optional: clear the XS cols if their content doesn't match in height -->
+                <div class="clearfix visible-xs-block"></div>
+                <div class="col-xs-3 col-sm-2"><div><span class="etiqueta-oculta">Pt-</span><span>27/10/2014</span></div></div>
+                <div class="col-xs-3 col-sm-2"><div><span class="etiqueta-oculta">Pb-</span><span>26/10/2014</span></div></div>
+                <div class="col-xs-2 col-sm-2"><div><span class="valor-palabra">Dinámica Grupal</span><span class="valor-icono2">S</span></div></div>
+                <div class="col-xs-2 col-sm-2"><div><span class="valor-palabra">Aviso Finalizado</span><span class="valor-icono2">Y</span></div></div>
+                <div class="col-xs-2 col-sm-1"><span class="fui fa-2x valor-icono">h</span>&nbsp;&nbsp;1/6</div>
+            </div>
+            <div class="row grilla1-linea">
+                <div class="col-xs-12 col-sm-3 linea-destacada"><a href="..\Alumno\postulacionOferta"><b>Administrador de Centro de Datos</b> en <b>Hiraoka SA</b></a></div>
+                <!-- Optional: clear the XS cols if their content doesn't match in height -->
+                <div class="clearfix visible-xs-block"></div>
+                <div class="col-xs-3 col-sm-2"><div><span class="etiqueta-oculta">Pt-</span><span>21/10/2014</span></div></div>
+                <div class="col-xs-3 col-sm-2"><div><span class="etiqueta-oculta">Pb-</span><span>19/10/2014</span></div></div>
+                <div class="col-xs-2 col-sm-2"><div><span class="valor-palabra">Entrevista Final</span><span class="valor-icono2">T</span></div></div>
+                <div class="col-xs-2 col-sm-2"><div><span class="valor-palabra">No has sido seleccionado</span><span class="valor-icono2">X</span></div></div>
+                <div class="col-xs-2 col-sm-1"><span class="fui fa-2x valor-icono">h</span>&nbsp;&nbsp;5/5</div>
+            </div>
+            <div class="row grilla1-linea">
+                <div class="col-xs-12 col-sm-3 linea-destacada"><a href="..\Alumno\postulacionOferta"><b>Gerente de Proyectos</b> en <b>IBM del Perú</b></a></div>
+                <!-- Optional: clear the XS cols if their content doesn't match in height -->
+                <div class="clearfix visible-xs-block"></div>
+                <div class="col-xs-3 col-sm-2"><div><span class="etiqueta-oculta">Pt-</span><span>21/10/2014</span></div></div>
+                <div class="col-xs-3 col-sm-2"><div><span class="etiqueta-oculta">Pb-</span><span>19/10/2014</span></div></div>
+                <div class="col-xs-2 col-sm-2"><div><span class="valor-palabra">Evaluaciones psicológicas</span><span class="valor-icono2">Q</span></div></div>
+                <div class="col-xs-2 col-sm-2"><div><span class="valor-palabra">Pendiente de revisión</span><span class="valor-icono2">V</span></div></div>
+                <div class="col-xs-2 col-sm-1"><span class="fui fa-2x valor-icono">h</span>&nbsp;&nbsp;1/2</div>
+            </div>
+            <br />
+        </div>
+        <div class="col-md-4">
+
+            <div class="panel-group" id="postulacion-lonuevo" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingLoNuevo" style="padding: 2px 2px 2px 6px;">
+                        <h5 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseLoNuevo" aria-expanded="true" aria-controls="collapseLoNuevo" class="fuente-seccion">
+                                Lo Nuevo
+                            </a>
+                        </h5>
+                    </div>
+                    <div id="collapseLoNuevo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingLoNuevo">
+                        <div class="panel-body fuente-pequeña">
+                            <div class="row">
+                                <div class="col-sm-1">
+                                    <span class="fui fa-3x">k</span>
+                                </div>
+                                <div class="col-sm-10">
+                                    <a href="..\Alumno\postulacionOferta"><b>Administrador de Centro de Datos</b> en <b>Hiraoka SA</b></a>
+                                </div>
+                                <div class="col-sm-4">
+                                    29/10/2014 18:32
+                                </div>
+                                <div class="col-sm-6">
+                                    Nuevo Mensaje
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-sm-1">
+                                    <span class="fui fa-3x">W</span>
+                                </div>
+                                <div class="col-sm-10">
+                                    <a href="..\Alumno\postulacionOferta"><b>Gerente de Proyectos en Desarrollo de Software</b> en <b>Criteria IT S.A.C.</b></a>
+                                </div>
+                                <div class="col-sm-4">
+                                    29/10/2014 14:25
+                                </div>
+                                <div class="col-sm-6">
+                                    Tu Estado cambió
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-sm-1">
+                                    <span class="fui fa-3x">P</span>
+                                </div>
+                                <div class="col-sm-10">
+                                    <a href="..\Alumno\postulacionOferta"><b>Gerente de Proyectos en Desarrollo de Software</b> en <b>Criteria IT S.A.C.</b></a>
+                                </div>
+                                <div class="col-sm-4">
+                                    28/10/2014 10:12
+                                </div>
+                                <div class="col-sm-6">
+                                    Nueva Fase
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-sm-1">
+                                    <span class="fui fa-3x">r</span>
+                                </div>
+                                <div class="col-sm-10">
+                                    <a href="..\Alumno\postulacionOferta"><b>Gerente de Proyectos en Desarrollo de Software</b> en <b>Criteria IT S.A.C.</b></a>
+                                </div>
+                                <div class="col-sm-4">
+                                    27/10/2014 11:10
+                                </div>
+                                <div class="col-sm-6">
+                                    Postulación enviada
+                                </div>
+                            </div>
+                            <br />
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

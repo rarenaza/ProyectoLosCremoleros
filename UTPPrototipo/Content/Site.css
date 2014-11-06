@@ -1,0 +1,622 @@
+﻿@font-face {
+    font-family: "GothamRnd-Book";
+    src: url("../fonts/GothamRnd-Book.eot?") format("eot"), 
+        url("../fonts/GothamRnd-Book.woff") format("woff"), 
+        url("../fonts/GothamRnd-Book.ttf") format("truetype"), 
+        url("../../fonts/GothamRnd-Book.svg#Gotham Rounded Book") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "GothamRnd-Bold";
+    src: url("../fonts/GothamRnd-Bold.eot?") format("eot"), 
+        url("../fonts/GothamRnd-Bold.woff") format("woff"), 
+        url("../fonts/GothamRnd-Bold.ttf") format("truetype"), 
+        url("../../fonts/GothamRnd-Bold.svg#Gotham Rounded Bold") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "GothamRnd-Light";
+    src: url("../fonts/GothamRnd-Light.eot?") format("eot"), 
+        url("../fonts/GothamRnd-Light.woff") format("woff"), 
+        url("../fonts/GothamRnd-Light.ttf") format("truetype"), 
+        url("../../fonts/GothamRnd-Light.svg#Gotham Rounded Light") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+.cuerpo-zona-publica {
+    padding-top: 112px;
+    font-family: GothamRnd-Book;
+}
+.cuerpo-zona-alumno {
+    padding-top: 106px;
+    font-family: GothamRnd-Book;
+    }
+
+.cuerpo-zona-empresa {
+    padding-top: 106px;
+    font-family: GothamRnd-Book;
+    }
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+/* styles for validation helpers */
+.field-validation-error {
+    color: #b94a48;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+input.input-validation-error {
+    border: 1px solid #b94a48;
+}
+
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #b94a48;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+
+.LogoUTPPE {
+    content: url("../img/LogoUTPPE2.png");
+    padding-bottom:5px;
+}
+
+.LogoUTPPE2 {
+    content: url("../img/LogoUTPPE2.png");
+}
+
+.Boton_pestana {
+    border-radius: 10px 10px 0px 0px;
+    width: 110px;
+    margin: 0px 0px 0px 5px;
+    border-bottom: 0px;
+    padding: 2px 2px 2px 2px;
+    font-size: 12px;
+}
+
+.BPInicio {
+    background-color:rgb(60, 172, 201);
+    color:white;
+}
+
+.BPUTP {
+    background-color:rgb(180,30,34);
+    color:white;
+}
+
+.BPDirEmp {
+    background-color:rgb(233, 149, 34);
+
+}
+
+.BPEventos {
+    background-color:rgb(14, 158, 149);
+}
+
+.BPNoticias {
+    background-color:rgb(129, 130, 134);
+}
+.BPIngresar {
+    background-color:rgb(15, 175, 188);
+}
+
+.LetraLog {
+    color:black;
+    font-size:15px;
+}
+
+.final-cabecera {
+    height:6px;
+    width:100%;
+    border-radius: 3px 3px 3px 3px;
+}
+
+.UTPLoginBtnIzq {
+    font-size: 14px;
+    color: gray;
+    background-color: rgb(150, 158, 14);
+}
+
+.BannerSuperTitulo {
+    font-size: 50px;
+    font-family: GothamRnd-Bold;
+    color:rgb(220, 220, 220);
+}
+
+.BannerTitulo {
+    font-size: 35px;
+    font-family: GothamRnd-Bold;
+    color:rgb(220, 220, 220);
+}
+
+.BannerSubTitulo {
+    font-size: 25px;
+    font-family: GothamRnd-Book;
+    color:rgb(220, 220, 220);
+}
+
+.BoxBox {
+    border-radius: 10px 10px 10px 10px; 
+    background-color: white; 
+    border: solid; 
+    border-width: 2px; 
+    margin-top: 20px; 
+    margin-right: 10px; 
+}
+
+.BoxBoxCabecera {
+    width: 100%; 
+    border-radius: 8px 8px 0px 0px; 
+    padding:10px 10px 10px 10px;
+}
+.BoxBoxTextoVert {
+    position:absolute;
+    left:51%;
+    width:48%;
+    top:10px;
+}
+
+.BoxBoxTextoHori {
+    width:98%;
+}
+
+.BoxCabecera {
+    color: white;
+    font-size: 15px;
+    font-family: GothamRnd-Bold;
+}
+
+.BoxTitulo {
+    font-size: 20px;
+    font-family: GothamRnd-Bold;
+    color:black;
+}
+.BoxTexto {
+    font-size: 16px;
+    font-family: GothamRnd-Light;
+    color:rgb(240, 240, 240);
+}
+
+.BoxImgVert {
+    width:48%;
+    border:solid;
+    border-width:1px;
+    border-color:black;
+}
+.BoxImgHori {
+    width:98%;
+    border:solid;
+    border-width:1px;
+    border-color:black;
+}
+
+.posicion-menu {
+    position:absolute;
+    top:0px;
+    right: 30px;
+}
+
+.color-gris {
+    background-color:rgb(129, 130, 134);
+    }
+
+.color-verde {
+    background-color:rgb(14, 158, 149);
+    }
+
+.color-UTP {
+    background-color:rgb(180, 30, 34);
+    }
+
+.color-naranja {
+    background-color:rgb(233, 149, 34);
+    }
+
+.boton-menu-utp {
+    margin: 0px 1px 0px 1px;
+    background-color:rgb(220,220,220);
+    text-align:center;
+    padding: 0px 6px 0px 6px;
+    font-size: 14px;
+    }
+
+.grilla1-cabecera {
+    color:white;
+    font-size:11px;
+    margin-left:3px;
+    margin-right:3px;
+    padding: 2px 2px 2px 2px;
+    border-radius: 5px 5px 0px 0px;
+}
+
+.grilla1-linea {
+    background-color:rgb(240, 240, 240);
+    color:gray;
+    font-size:11px;
+    margin-left:3px;
+    margin-right:3px;
+    padding: 2px 2px 2px 2px;
+    border-bottom:solid;
+    border-bottom-width:1px;
+    border-bottom-color:lightgray;
+}
+
+.valor-palabra {
+    visibility:visible;
+}
+
+.valor-icono {
+    visibility:hidden;
+}
+
+.valor-icono2 {
+    font: normal normal normal 14px/1 Font-UTP-Icon;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color:rgb(180,30,34);
+    visibility:hidden;
+    font-size:0px;
+}
+
+.etiqueta-oculta {
+    visibility:hidden;
+    }
+
+.linea-destacada {
+    color:black;
+    }
+
+.foto-usuario {
+    height: 80px;
+    border:solid;
+    border-width:1px;
+    border-color:rgb(180,30,34);
+    margin-right:5px;
+    }
+
+.foto-empresa {
+    height: 100px;
+    margin-right:10px;
+    }
+
+
+.logo-empresa {
+    width: 100px;
+    padding: 5px 10px 5px 5px;
+    margin: 5px 10px 5px 0px;
+    border-right:solid;
+    border-width:1px;
+    border-color:rgb(220, 220, 220);
+    }
+
+.logo-empresa2 {
+    width: 100px;
+    margin-bottom: 10px;
+    }
+
+.tabla-empresa {
+    margin: 0px 0px 10px 0px;
+    border-radius:5px 5px 5px 5px;
+    border:solid;
+    border-width:1px;
+    border-color:rgb(220, 220, 220);
+    }
+.celda-nombre {
+    padding: 2px 6px 2px 6px;
+    text-align:right;
+}
+.celda-datos {
+    padding: 2px 6px 2px 6px;
+    text-align:left;
+    }
+.sub-titulo-seccion {
+    font-size: 12px;
+    }
+.si-cumple {
+    color: green;
+    }
+.no-cumple {
+    color:red;
+    }
+.icono-menu {
+    padding: 2px 4px 0px 4px;
+    }
+
+@media screen and (max-width: 1400px) {
+.LogoUTPPE {
+    width:317px;
+    }
+.LogoUTPPE2 {
+    width:190px;
+
+    }
+.cuerpo-zona-alumno {
+    padding-top: 78px;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+.LogoUTPPE {
+    width:317px;
+    }
+.LogoUTPPE2 {
+    width:190px;
+    }
+.BannerSuperTitulo {
+    font-size: 40px;
+    }
+.BannerTitulo {
+    font-size: 28px;
+    }
+.BannerSubTitulo {
+    font-size: 20px;
+    }
+.BoxTitulo {
+    font-size: 16px;
+    font-family: GothamRnd-Bold;
+    color:black;
+    }
+.BoxTexto {
+    font-size: 12px;
+    font-family: GothamRnd-Light;
+    color:rgb(240, 240, 240);
+    }
+.logo-empresa2 {
+    width:80px;
+    }
+}
+
+@media screen and (max-width: 992px) {
+.LogoUTPPE {
+    width:262px;
+    }
+.LogoUTPPE2 {
+    width:157px;
+    }
+.Boton_pestana {
+    border-radius: 10px 10px 0px 0px;
+    width: 100px;
+    margin-left:2px;
+    }
+.BannerSuperTitulo {
+    font-size: 30px;
+    }
+.BannerTitulo {
+    font-size: 21px;
+    }
+.BannerSubTitulo {
+    font-size: 15px;
+    }
+.cuerpo-zona-publica {
+    padding-top: 100px;
+    }
+.cuerpo-zona-alumno {
+    padding-top: 70px;
+    }
+.BoxTitulo {
+    font-size: 20px;
+    }
+.BoxTexto {
+    font-size: 16px;
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+.LogoUTPPE {
+    width:203px;
+    }
+.LogoUTPPE2 {
+    margin-bottom:9px;
+    }
+.Boton_pestana {
+    border-radius: 10px 10px 10px 10px;
+    width: 120px;
+    margin-left:0px;
+    }
+.BannerSuperTitulo {
+        font-size: 20px;
+    }
+.BannerTitulo {
+    font-size: 14px;
+    }
+.BannerSubTitulo {
+    font-size: 11px;
+    }
+.cuerpo-zona-publica {
+    padding-top: 56px;
+    }
+.cuerpo-zona-alumno {
+    padding-top: 50px;
+    }
+.BoxCabecera {
+    font-size:12px;
+    }
+.BoxTitulo {
+    font-size: 16px;
+    }
+.BoxTexto {
+    font-size: 12px;
+    }
+.valor-palabra {
+    visibility:hidden;
+    font-size:0px;
+    }
+.valor-icono {
+    visibility:visible;
+    }
+.valor-icono2 {
+    visibility:visible;
+    font-size: 30px;
+    }
+.grilla1-cabecera {
+    height:3px;
+    font-size:0px;
+    }
+.etiqueta-oculta {
+    visibility:visible;
+    }
+}
+
+@media screen and (max-width: 480px) {
+.BannerSuperTitulo {
+    font-size: 12px;
+}
+.BannerTitulo {
+    font-size: 8px;
+    }
+.BannerSubTitulo {
+    font-size: 6px;
+    }
+.cuerpo-zona-publica {
+    padding-top: 56px;
+    }
+.BoxCabecera {
+    font-size:10px;
+    }
+.BoxTitulo {
+    font-size: 12px;
+   }
+.BoxTexto {
+    font-size: 8px;
+    }
+}
+
+.grupo-ingreso {
+    margin:10px 10px 10px 10px;
+    width:100%;
+}
+
+.nombre-campo {
+    width: 100px;
+    text-align: right;
+}
+
+label-sistema {
+    color: gray;
+    font-size:12px;
+}
+
+
+.animated2 {
+    -webkit-animation-delay: 500ms;
+}
+
+.animated3 {
+    -webkit-animation-delay: 1s;
+}
+
+.animated4 {
+    -webkit-animation-delay: 1500ms;
+}
+
+.animated5 {
+    -webkit-animation-delay: 2s;
+}
+
+.animated6 {
+    -webkit-animation-delay: 2500ms;
+}
+
+.animated7 {
+    -webkit-animation-delay: 3s;
+}
+
+.animated8 {
+    -webkit-animation-delay: 3500ms;
+}
+
+.fuente-pequeña {
+    font-size:11px;
+    }
+
+.fuente-seccion {
+    font-size:12px;
+    }
+
+.input-group {
+    font-size:11px;
+    width:100%;
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 4px 0px;
+    }
+
+.input-group-addon {
+    font-size:11px;
+    margin: 0px 0px 0px 0px;
+    padding: 0px 4px 0px 4px;
+    width: 70px;
+    text-align: right;
+    text-space-collapse:collapse;
+    }
+
+.form-control {
+    font-size:11px;
+    margin: 0px 0px 0px 0px;
+    padding: 0px 4px 0px 4px;
+    }
+
+input, select, option, textarea {
+    font-size:11px;
+    margin: 0px 0px 0px 0px;
+    padding: 0px 4px 0px 4px;
+    max-width:initial;
+    }
+
+.row-contenido1 {
+    padding: 20px 0px 10px 0px;
+    background-color:white;
+}
+
+.row-contenido2 {
+    padding: 20px 0px 10px 0px;
+    background-color:rgb(250,250,250);
+}
+
+.opcion-seleccionada {
+    background-color:rgb(200,200,200);
+    color:white;
+    }
+
+.imagen-portal1 {
+    border-radius:10px 10px 10px 10px;
+    width:94%;
+    }
+
+.boton-accion {
+    color:grey;
+    }
+
+.row-cv {
+    border-bottom:solid;
+    border-width:1px;
+    border-color:rgb(220,220,220);
+    padding-bottom: 5px;
+    margin-bottom:5px;
+    }
