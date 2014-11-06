@@ -19,5 +19,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string TelefonoFijoCasa { get; set; }
 
         public string TelefonoCelular { get; set; }
+
+        public int pruebaGitHub { get; set; }
     }
 }
