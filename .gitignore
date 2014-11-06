@@ -15,12 +15,16 @@ $RECYCLE.BIN/
 *.msp
 
 
-#*.dll
-#*.pdb
-#*.exe
-#*.nupkg
-#*.nuspec
-#*.scc
+*.dll
+*.pdb
+*.exe
+*.nupkg
+*.nuspec
+*.scc
+
+Packages/
+obj/
+bin/
 
 # =========================
 # Operating System Files
