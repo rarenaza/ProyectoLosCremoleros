@@ -21,5 +21,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string TelefonoCelular { get; set; }
 
         public int pruebaGitHub { get; set; }
+
+        public int propiedad2 { get; set; }
     }
 }
