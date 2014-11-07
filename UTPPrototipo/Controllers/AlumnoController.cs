@@ -12,10 +12,8 @@ namespace UTPPrototipo.Controllers
     {
         public ActionResult Index()
         {
-            LNAlumno ln = new LNAlumno();
-            Alumno alumno = ln.ObtenerAlumnoPorCodigo("82727128");
-
-            return View(alumno);
+           
+            return View();
         }
         public ActionResult Postulacion() 
         {

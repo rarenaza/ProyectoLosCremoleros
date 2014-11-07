@@ -13,7 +13,7 @@
                     </a>
                 </h5>
             </div>
-            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+            <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                 <div class="panel-body">
                     <div class="col-md-4 fuente-seccion">
                         <table>
@@ -255,6 +255,54 @@
         </div>
 
         <div class="col-md-5">
+            
+            
+
+
+            <div class="panel-group" id="oferta-postulacion" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingPostulacion" style="padding: 2px 2px 2px 6px;">
+                        <h5 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapsePostulacion" aria-expanded="true" aria-controls="collapsePostulacion" class="fuente-seccion">
+                                Postulación
+                            </a>
+                        </h5>
+                    </div>
+                    <div id="collapsePostulacion" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingPostulacion">
+                        <div class="panel-body fuente-pequeña">
+                            <br />
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <button type="button" id="BotonHazPostulado" class="btn btn-default" style="background-color:rgb(60, 172, 201);color:white;">Haz Postulado</button>
+                                    </div>
+                                <div class="col-md-7">
+                                    <table class="fuente-pequeña" id="DatosDePostulacion">
+                                        <tr>
+                                            <td class="celda-nombre">
+                                                <span>Fecha Postulción</span>
+                                            </td>
+                                            <td class="celda-datos">
+                                                <strong>27/10/2014 11:10</strong>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="celda-nombre">
+                                                CV de Postulación
+                                            </td>
+                                            <td class="celda-datos">
+                                                <strong>Mi CV</strong>&nbsp;&nbsp;<a href="#">descargar</a>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <br />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
             <div class="panel-group" id="oferta-requisito" role="tablist" aria-multiselectable="true">
                 <div class="panel panel-default">
                     <div class="panel-heading" role="tab" id="headingRequisito" style="padding: 2px 2px 2px 6px;">
@@ -265,7 +313,7 @@
 
                         </h5>
                         <div class="progress" style="background-color:white;margin:5px 10px 5px 10px;">
-                            <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                            <div class="progress-bar progress-bar-success progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
                                 80% Cumplimiento
                             </div>
                         </div>
@@ -327,8 +375,8 @@
                                         <span class="valor-palabra si-cumple"><strong>Si cumple</strong></span><span class="valor-icono2 si-cumple">g</span>
                                     </td>
                                 </tr>
-                                
-                                
+
+
                             </table>
                             <br />
 
@@ -336,54 +384,6 @@
                     </div>
                 </div>
             </div>
-            
-
-
-            <div class="panel-group" id="oferta-postulacion" role="tablist" aria-multiselectable="true">
-                <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingPostulacion" style="padding: 2px 2px 2px 6px;">
-                        <h5 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapsePostulacion" aria-expanded="true" aria-controls="collapsePostulacion" class="fuente-seccion">
-                                Postulación
-                            </a>
-                        </h5>
-                    </div>
-                    <div id="collapsePostulacion" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingPostulacion">
-                        <div class="panel-body fuente-pequeña">
-                            <br />
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <button type="button" id="BotonHazPostulado" class="btn btn-default color-UTP" style="color:white">Haz Postulado</button>
-                                    </div>
-                            </div>
-                            <br />
-                            
-                            <table class="fuente-pequeña" id="DatosDePostulacion">
-                                <tr>
-                                    <td class="celda-nombre">
-                                        <span>Fecha Postulción</span>
-                                    </td>
-                                    <td class="celda-datos">
-                                        <strong>27/10/2014 11:10</strong>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="celda-nombre">
-                                        CV de Postulación
-                                    </td>
-                                    <td class="celda-datos">
-                                        <strong>Mi CV</strong>&nbsp;&nbsp;<a href="#">descargar</a>
-                                    </td>
-                                </tr>
-                            </table>
-                            <br />
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-
 
             <div class="panel-group" id="oferta-detalle" role="tablist" aria-multiselectable="true">
                 <div class="panel panel-default">
@@ -579,7 +579,7 @@
 <script>
 
     $(document).ready(function () {
-        $("#divFinalCabecera").removeClass("BPDirEmp BPEventos BPNoticias BPInicio").addClass("BPUTP");
+        $("#divFinalCabecera").removeClass("BPUTP BPDirEmp BPEventos BPNoticias").addClass("BPInicio");
     });
 
 
