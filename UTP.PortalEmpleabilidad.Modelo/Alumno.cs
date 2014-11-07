@@ -23,5 +23,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public int pruebaGitHub { get; set; }
 
         public int propiedad2 { get; set; }
+
+        public int propiedad3 { get; set; }
     }
 }
