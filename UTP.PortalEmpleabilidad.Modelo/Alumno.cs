@@ -25,5 +25,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public int propiedad2 { get; set; }
 
         public int propiedad3 { get; set; }
+
+        public int propiedad4 { get; set; }
     }
 }
