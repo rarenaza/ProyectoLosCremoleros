@@ -10,7 +10,9 @@
     <link href="~/Content/font-awesome.css" rel="stylesheet" />
 </head>
 <body class="cuerpo-zona-empresa">
-
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
     <div class="navbar navbar-inverse navbar-fixed-top" style="background-color:rgb(240, 240, 240);border:0px;">
         <div class="container">
 
@@ -56,7 +58,7 @@
                 </ul>
 
             </div>
-            <div id="divFinalCabecera" class="final-cabecera color-paleta1"></div>
+            <div id="divFinalCabeceraEmpresa" class="final-cabecera color-paleta1"></div>
         </div>
     </div>
     <!--<div class="container body-content">-->
@@ -82,8 +84,6 @@
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+
 </body>
 </html>
