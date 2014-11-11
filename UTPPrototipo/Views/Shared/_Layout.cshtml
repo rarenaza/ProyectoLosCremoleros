@@ -13,7 +13,7 @@
         <div class="container">
             @Html.ActionLink(" ", "Index", "Home", new { @class = "LogoUTPPE" })
             <div class="navbar-header posicion-menu">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" style="margin: 6px 5px 3px 0px">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" style="margin: 6px 5px 3px 0px;">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -25,31 +25,38 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li class="boton-menu-utp">
-                            <a class="a-menu-utp" href="..\Home\Index" style="padding:6px 15px 6px 15px;color:rgb(180,30,34)">Inicio</a>
+                            <a class=" a-menu-utp" href="..\Home\Index" style="height:100%;padding:6px 6px 6px 6px;color:rgb(180,30,34)">
+                                <br />Inicio
+                            </a>
                         </li>
                         <li id="OpcionMenuUTP" class="boton-menu-utp">
-                            <a class="a-menu-utp" href="..\Home\UTP" style="padding:6px 15px 6px 15px;">UTP</a>
+                            <a class="a-menu-utp" href="..\Home\DirEmp" style="padding:6px 5px 6px 5px;">Dirección de<br />Empleabilidad</a>
                         </li>
                         <li id="OpcionMenuEmpleabilidad" class="boton-menu-utp">
-                            <a class="a-menu-utp" href="..\Home\DirEmp" style="padding: 6px 15px 6px 15px;">Empleabilidad</a>
+                            <a class="a-menu-utp" href="..\Home\Servicios" style="padding: 6px 5px 6px 5px;">Servicios a tu<br /> disposición</a>
                         </li>
                         <li id="OpcionMenuEventos" class="boton-menu-utp">
-                            <a class="a-menu-utp" href="..\Home\Eventos" style="padding: 6px 15px 6px 15px; ">Eventos</a>
+                            <a class="a-menu-utp" href="..\Home\NoticiasEventos" style="padding: 6px 5px 6px 5px; ">Noticias<br />y Eventos</a>
                         </li>
                         <li id="OpcionMenuNoticias" class="boton-menu-utp">
-                            <a class="a-menu-utp" href="..\Home\Noticias" style="padding: 6px 15px 6px 15px; ">Noticias</a>
+                            <a class="a-menu-utp" href="..\Home\Testimonios" style="padding: 6px 5px 6px 5px; "><br />Testimonios</a>
+                        </li>
+                        <li id="OpcionMenuNoticias" class="boton-menu-utp">
+                            <a class=" a-menu-utp" href="..\Home\ParaEmpleadores" style="padding: 6px 5px 6px 5px; ">
+                                Para<br />Empleadores
+                            </a>
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right" style="padding-right: 15px; ">
                         <li>
-                            <a href="#" class="LetraLog" style="color: black;padding: 5px 15px 0px 5px;font-size:12px;">Regístrese</a>
+                            <a href="#" style="padding: 18px 0px 0px 15px;"><span class="fui color-icono-paleta2" style="font-size:40px;">!</span></a>
                         </li>
                         <li>
-                            <a href="#" class="LetraLog" style="color: black; padding: 5px 10px 0px 5px; font-size: 12px;" data-toggle="modal" data-target="#Modal-ingresar">INGRESAR</a>
-                        </li>
-                    </ul>
-                    <!--@Html.Partial("_LoginPartial")-->
-                </div>
+                            <a href="#" style="padding: 18px 0px 0px 15px;" data-toggle="modal" data-target="#Modal-ingresar"><span class="fui color-icono-paleta2" style="font-size:40px;">,</span></a>
+                </li>
+                </ul>
+                <!--@Html.Partial("_LoginPartial")-->
+            </div>
             </div>
 
         </div>

@@ -11,13 +11,11 @@
     font-style: normal;
 }
 .fui {
-  display: inline-block;
-  font: normal normal normal 14px/1 Font-UTP-Icon;
+  font-family: Font-UTP-Icon;
   font-size: inherit;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color:rgb(180,30,34);
     }
 .fui-nivel-basico:before {
     content: "!";
