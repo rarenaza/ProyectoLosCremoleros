@@ -8,7 +8,6 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body class="cuerpo-zona-publica">
-
     <div class="navbar navbar-inverse navbar-fixed-top" style="background-color:rgb(245, 245, 245);border:0px;" role="navigation">
         <div class="container">
             @Html.ActionLink(" ", "Index", "Home", new { @class = "LogoUTPPE" })
@@ -30,48 +29,48 @@
                             </a>
                         </li>
                         <li id="OpcionMenuUTP" class="boton-menu-utp">
-                            <a class="a-menu-utp" href="..\Home\DirEmp" style="padding:6px 5px 6px 5px;">Dirección de<br />Empleabilidad</a>
+                            <a href="..\Home\DirEmp" style="padding: 6px 3px 6px 3px;">Dirección de<br />Empleabilidad</a>
                         </li>
                         <li id="OpcionMenuEmpleabilidad" class="boton-menu-utp">
-                            <a class="a-menu-utp" href="..\Home\Servicios" style="padding: 6px 5px 6px 5px;">Servicios a tu<br /> disposición</a>
+                            <a href="..\Home\Servicios" style="padding: 6px 3px 6px 3px;">Servicios a tu<br /> disposición</a>
                         </li>
                         <li id="OpcionMenuEventos" class="boton-menu-utp">
-                            <a class="a-menu-utp" href="..\Home\NoticiasEventos" style="padding: 6px 5px 6px 5px; ">Noticias<br />y Eventos</a>
+                            <a href="..\Home\NoticiasEventos" style="padding: 6px 3px 6px 3px;">Noticias<br />y Eventos</a>
                         </li>
                         <li id="OpcionMenuNoticias" class="boton-menu-utp">
-                            <a class="a-menu-utp" href="..\Home\Testimonios" style="padding: 6px 5px 6px 5px; "><br />Testimonios</a>
+                            <a href="..\Home\Testimonios" style="padding: 6px 3px 6px 3px;"><br />Testimonios</a>
                         </li>
                         <li id="OpcionMenuNoticias" class="boton-menu-utp">
-                            <a class=" a-menu-utp" href="..\Home\ParaEmpleadores" style="padding: 6px 5px 6px 5px; ">
+                            <a href="..\Home\ParaEmpleadores" style="padding: 6px 3px 6px 3px;">
                                 Para<br />Empleadores
                             </a>
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right" style="padding-right: 15px; ">
                         <li>
-                            <a href="#" style="padding: 18px 0px 0px 15px;"><span class="fui color-icono-paleta2" style="font-size:40px;">!</span></a>
+                            <a href="#" style="padding: 18px 0px 0px 9px;"><span class="fui color-icono-facebook" style="font-size:35px;">)</span></a>
                         </li>
                         <li>
-                            <a href="#" style="padding: 18px 0px 0px 15px;" data-toggle="modal" data-target="#Modal-ingresar"><span class="fui color-icono-paleta2" style="font-size:40px;">,</span></a>
-                </li>
-                </ul>
-                <!--@Html.Partial("_LoginPartial")-->
-            </div>
+                            <a href="#" style="padding: 18px 0px 0px 9px;"><span class="fui color-icono-paleta2" style="font-size:35px;">!</span></a>
+                        </li>
+                        <li>
+                            <a href="#" style="padding: 18px 0px 0px 9px;" data-toggle="modal" data-target="#Modal-ingresar"><span class="fui color-icono-paleta2" style="font-size:35px;">,</span></a>
+                        </li>
+                    </ul>
+                    <!--@Html.Partial("_LoginPartial")-->
+                </div>
             </div>
 
         </div>
     </div>
-    <!--<div class="container body-content">-->
+    
+    @RenderBody()
     <div>
-        @RenderBody()
-        <hr />
+        
+        
         <footer style="background-color:rgb(131, 131, 129);">
+            <br />
             <div class="container">
-                <p style="text-align:right;margin-top:10px;">
-                    <i class="fa fa-facebook-square fa-3x" style="margin-right: 5px;color:rgb(180,30,34);"></i>
-                    <i class="fa fa-twitter-square fa-3x" style="margin-right: 5px; color: rgb(180,30,34); "></i>
-                    <i class="fa fa-google-plus-square fa-3x" style="margin-right: 5px; color: rgb(180,30,34); "></i>
-                </p>
                 <p style="text-align:center;color:white;font-size:16px;">
                     Universidad Tecnológica del Perú
                 </p>
