@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="ADAlumno.cs" />
     <Compile Include="ADConexion.cs" />
+    <Compile Include="ADLista.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

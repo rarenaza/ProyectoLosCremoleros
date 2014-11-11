@@ -1,0 +1,83 @@
+﻿
+@model IEnumerable<UTP.PortalEmpleabilidad.Modelo.Lista>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Lista</h2>
+
+<p>
+
+    @Html.ActionLink("Registrar Lista", "Lista_insertar")
+
+</p>
+<table class="table">
+    <tr>
+
+
+        <th>
+            @Html.DisplayNameFor(model => model.IDLista)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NombreLista)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DescripcionLista)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Modificable)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Creadopor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaCreacion)
+        </th>
+        <th>
+            @Html.Label("Lista")
+        </th>
+       
+       
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.IDLista)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreLista)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DescripcionLista)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Modificable)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Creadopor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaCreacion)
+            </td>
+            <td>
+                @Html.ActionLink("Editar Lista", "Lista_Buscar", new { id = item.IDLista }) |
+            </td>
+            
+            @*<td>
+
+                @Html.ActionLink("Edit", "BuscarPersona", new { id = item.ID }) |
+
+                @Html.ActionLink("Details", "Detalle", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Eliminar", new { id = item.ID })
+            </td>*@
+        </tr>
+    }
+
+</table>
+
+

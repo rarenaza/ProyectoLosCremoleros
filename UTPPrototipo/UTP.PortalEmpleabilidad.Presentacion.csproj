@@ -171,6 +171,7 @@
     <Compile Include="Controllers\CuentaController.cs" />
     <Compile Include="Controllers\EmpresaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ListaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -297,6 +298,9 @@
     <Content Include="Views\Empresa\Index.cshtml" />
     <Content Include="Views\Empresa\Publicacion.cshtml" />
     <Content Include="Views\Empresa\Oferta.cshtml" />
+    <Content Include="Views\Lista\Index.cshtml" />
+    <Content Include="Views\Lista\Lista_Buscar.cshtml" />
+    <Content Include="Views\Lista\Lista_insertar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

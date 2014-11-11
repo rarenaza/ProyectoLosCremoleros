@@ -1,0 +1,69 @@
+﻿@model UTP.PortalEmpleabilidad.Modelo.Lista
+@{
+    ViewBag.Title = "Lista_insertar";
+}
+
+<h2>Lista_insertar</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>PERSONA</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IDLista, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.IDLista)
+                @Html.ValidationMessageFor(model => model.IDLista)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NombreLista, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NombreLista)
+                @Html.ValidationMessageFor(model => model.NombreLista)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DescripcionLista, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DescripcionLista)
+
+                @Html.ValidationMessageFor(model => model.DescripcionLista)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Modificable, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Modificable)
+
+                @Html.ValidationMessageFor(model => model.Modificable)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Creadopor, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Creadopor)
+
+                @Html.ValidationMessageFor(model => model.Creadopor)
+            </div>
+        </div>
+       
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+
+    </div>
+}
+
