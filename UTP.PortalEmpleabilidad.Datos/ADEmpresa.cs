@@ -26,14 +26,14 @@ namespace UTP.PortalEmpleabilidad.Datos
             cmd.Parameters.Add(new SqlParameter("@Pais", SqlDbType.VarChar, 6)).Value = empresa.Pais;
             cmd.Parameters.Add(new SqlParameter("@IdentificadorTributario", SqlDbType.VarChar, 20)).Value = empresa.IdentificadorTributario;
             cmd.Parameters.Add(new SqlParameter("@DescripcionEmpresa", SqlDbType.VarChar, 500)).Value = empresa.DescripcionEmpresa;
-            cmd.Parameters.Add(new SqlParameter("@Usuario", SqlDbType.VarChar, -1)).Value = empresa.PresentacionEmpresa;
-            cmd.Parameters.Add(new SqlParameter("@Usuario", SqlDbType.Int)).Value = empresa.AnoCreacion;
-            cmd.Parameters.Add(new SqlParameter("@Usuario", SqlDbType.VarChar, 6)).Value = empresa.NumeroEmpleados;
-            cmd.Parameters.Add(new SqlParameter("@Usuario", SqlDbType.VarChar, 6)).Value = empresa.EstadoEmpresa;
-            cmd.Parameters.Add(new SqlParameter("@Usuario", SqlDbType.VarChar, 6)).Value = empresa.SectorEmpresarial;
-            cmd.Parameters.Add(new SqlParameter("@Usuario", SqlDbType.VarChar, 6)).Value = empresa.SectorEmpresarial2;
-            cmd.Parameters.Add(new SqlParameter("@Usuario", SqlDbType.VarChar, 6)).Value = empresa.SectorEmpresarial3;
-            cmd.Parameters.Add(new SqlParameter("@Usuario", SqlDbType.VarChar, 50)).Value = empresa.CreadoPor;            
+            cmd.Parameters.Add(new SqlParameter("@PresentacionEmpresa", SqlDbType.VarChar, -1)).Value = empresa.PresentacionEmpresa;
+            cmd.Parameters.Add(new SqlParameter("@AnoCreacion", SqlDbType.Int)).Value = empresa.AnoCreacion;
+            cmd.Parameters.Add(new SqlParameter("@NumeroEmpleados", SqlDbType.VarChar, 6)).Value = empresa.NumeroEmpleados;
+            cmd.Parameters.Add(new SqlParameter("@EstadoEmpresa", SqlDbType.VarChar, 6)).Value = empresa.EstadoEmpresa;
+            cmd.Parameters.Add(new SqlParameter("@SectorEmpresarial", SqlDbType.VarChar, 6)).Value = empresa.SectorEmpresarial;
+            cmd.Parameters.Add(new SqlParameter("@SectorEmpresarial2", SqlDbType.VarChar, 6)).Value = empresa.SectorEmpresarial2;
+            cmd.Parameters.Add(new SqlParameter("@SectorEmpresarial3", SqlDbType.VarChar, 6)).Value = empresa.SectorEmpresarial3;
+            cmd.Parameters.Add(new SqlParameter("@CreadoPor", SqlDbType.VarChar, 50)).Value = empresa.CreadoPor;            
 
             cmd.ExecuteNonQuery();            
 
