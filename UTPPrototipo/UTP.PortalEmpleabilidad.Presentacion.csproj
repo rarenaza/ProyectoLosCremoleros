@@ -204,6 +204,7 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="img\Alumna.png" />
+    <Content Include="img\testimonio\customer-testimonials.jpg" />
     <Content Include="img\empleabilidad\imagen4.jpg" />
     <Content Include="img\evento\Evento1.jpg" />
     <Content Include="img\evento\Evento2.jpg" />
@@ -223,6 +224,7 @@
     <Content Include="img\noticia\Noticia1.jpg" />
     <Content Include="img\noticia\Noticia2.jpg" />
     <Content Include="img\noticia\Noticia3.jpg" />
+    <Content Include="img\testimonio\customer.gif" />
     <Content Include="img\UTP\imagen1.jpg" />
     <Content Include="img\UTP\imagen2.jpg" />
     <Content Include="img\UTP\imagen3.jpg" />
@@ -269,7 +271,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\ParaEmpleadores.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
@@ -283,9 +285,8 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\DirEmp.cshtml" />
-    <Content Include="Views\Home\UTP.cshtml" />
-    <Content Include="Views\Home\Eventos.cshtml" />
-    <Content Include="Views\Home\Noticias.cshtml" />
+    <Content Include="Views\Home\Testimonios.cshtml" />
+    <Content Include="Views\Home\NoticiasEventos.cshtml" />
     <Content Include="Views\Cuenta\Ingresar.cshtml" />
     <Content Include="Views\Alumno\Index.cshtml" />
     <Content Include="Views\Alumno\_LayoutAlumno.cshtml" />
@@ -301,6 +302,10 @@
     <Content Include="Views\Lista\Index.cshtml" />
     <Content Include="Views\Lista\Lista_Buscar.cshtml" />
     <Content Include="Views\Lista\Lista_insertar.cshtml" />
+    <Content Include="Views\Home\Servicios.cshtml" />
+    <Content Include="Views\Home\TerminosDeUso.cshtml" />
+    <Content Include="Views\Home\FAQ.cshtml" />
+    <Content Include="Views\Home\PoliticasDePrivacidad.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

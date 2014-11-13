@@ -13,20 +13,15 @@ namespace UTPPrototipo.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult ParaEmpleadores()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
-
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
-        public ActionResult UTP()
+        public ActionResult Testimonios()
         {
             return View();
         }
@@ -34,11 +29,23 @@ namespace UTPPrototipo.Controllers
         {
             return View();
         }
-        public ActionResult Eventos()
+        public ActionResult NoticiasEventos()
         {
             return View();
         }
-        public ActionResult Noticias()
+        public ActionResult Servicios()
+        {
+            return View();
+        }
+        public ActionResult TerminosDeUso()
+        {
+            return View();
+        }
+        public ActionResult PoliticasDePrivacidad()
+        {
+            return View();
+        }
+        public ActionResult FAQ()
         {
             return View();
         }

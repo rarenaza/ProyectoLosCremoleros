@@ -351,6 +351,11 @@ input[type="checkbox"].input-validation-error {
 .icono-menu {
     padding: 2px 4px 0px 4px;
     }
+.espacios {
+    font-size:12px;
+    content: "&nbsp;&nbsp;&nbsp;&nbsp;";
+}
+
 
 @media screen and (max-width: 1400px) {
 .LogoUTPPE {
@@ -418,7 +423,7 @@ input[type="checkbox"].input-validation-error {
     font-size: 15px;
     }
 .cuerpo-zona-publica {
-    padding-top: 100px;
+    padding-top: 120px;
     }
 .cuerpo-zona-alumno {
     padding-top: 70px;
@@ -454,7 +459,7 @@ input[type="checkbox"].input-validation-error {
     font-size: 11px;
     }
 .cuerpo-zona-publica {
-    padding-top: 56px;
+    padding-top: 55px;
     }
 .cuerpo-zona-alumno {
     padding-top: 50px;

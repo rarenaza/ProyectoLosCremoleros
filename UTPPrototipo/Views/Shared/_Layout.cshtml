@@ -7,6 +7,9 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@RenderSection("scripts", required: false)
 <body class="cuerpo-zona-publica">
     <div class="navbar navbar-inverse navbar-fixed-top" style="background-color:rgb(245, 245, 245);border:0px;" role="navigation">
         <div class="container">
@@ -24,24 +27,24 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li class="boton-menu-utp">
-                            <a class=" a-menu-utp" href="..\Home\Index" style="height:100%;padding:6px 6px 6px 6px;color:rgb(180,30,34)">
-                                <br />Inicio
+                            <a class=" a-menu-utp" href="..\Home\Index" style="text-align:left;height:100%;padding:6px 6px 6px 6px;color:rgb(180,30,34)">
+                                Inicio<br />&nbsp;
                             </a>
                         </li>
-                        <li id="OpcionMenuUTP" class="boton-menu-utp">
-                            <a href="..\Home\DirEmp" style="padding: 6px 3px 6px 3px;">Dirección de<br />Empleabilidad</a>
-                        </li>
                         <li id="OpcionMenuEmpleabilidad" class="boton-menu-utp">
-                            <a href="..\Home\Servicios" style="padding: 6px 3px 6px 3px;">Servicios a tu<br /> disposición</a>
+                            <a href="..\Home\DirEmp" style="text-align:left;padding: 6px 3px 6px 3px;">Dirección de<br />Empleabilidad</a>
                         </li>
-                        <li id="OpcionMenuEventos" class="boton-menu-utp">
-                            <a href="..\Home\NoticiasEventos" style="padding: 6px 3px 6px 3px;">Noticias<br />y Eventos</a>
+                        <li id="OpcionMenuServicios" class="boton-menu-utp">
+                            <a href="..\Home\Servicios" style="text-align:left;padding: 6px 3px 6px 3px;">Servicios a tu<br /> disposición</a>
                         </li>
-                        <li id="OpcionMenuNoticias" class="boton-menu-utp">
-                            <a href="..\Home\Testimonios" style="padding: 6px 3px 6px 3px;"><br />Testimonios</a>
+                        <li id="OpcionMenuNoticiasEventos" class="boton-menu-utp">
+                            <a href="..\Home\NoticiasEventos" style="text-align:left;padding: 6px 3px 6px 3px;">Noticias<br />y Eventos</a>
                         </li>
-                        <li id="OpcionMenuNoticias" class="boton-menu-utp">
-                            <a href="..\Home\ParaEmpleadores" style="padding: 6px 3px 6px 3px;">
+                        <li id="OpcionMenuTestimonios" class="boton-menu-utp">
+                            <a href="..\Home\Testimonios" style="text-align:left;padding: 6px 3px 6px 3px;">Testimonios<br />&nbsp;</a>
+                        </li>
+                        <li id="OpcionMenuParaEmpleadores" class="boton-menu-utp">
+                            <a href="..\Home\ParaEmpleadores" style="text-align:left;padding: 6px 3px 6px 3px;">
                                 Para<br />Empleadores
                             </a>
                         </li>
@@ -66,7 +69,7 @@
     
     @RenderBody()
     <div>
-        
+       
         
         <footer style="background-color:rgb(131, 131, 129);">
             <br />
@@ -81,15 +84,13 @@
                     Campus Chiclayo: Esquina Prol. Augusto B. Leguía con Av. Herman Meiner | teléfono: (074) 622121 | Informes: Calle San José 720 - teléfono: (074) 624 998 | e-mail: admisionchiclayo@utp.edu.pe
                 </p>
                 <p style="text-align:center;color:white;font-size:14px;">
-                    2014 UTP &copy; - Términos de Uso - Política de Privacidad - FAQ
+                    2014 UTP &copy; - <a href="../Home/TerminosDeUso" style="color:white;">Términos de Uso</a> - <a href="../Home/PoliticasDePrivacidad" style="color:white;">Política de Privacidad</a> - <a href="../Home/FAQ" style="color:white;">FAQ</a>
                 </p>
             </div>
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+
     <!-- Modal -->
     <div class="modal" id="Modal-ingresar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
