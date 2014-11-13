@@ -53,3 +53,6 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+*.dll
+UTP.PortalEmpleabilidad.Datos/bin/Debug/UTP.PortalEmpleabilidad.Datos.dll
+*.dll
