@@ -10,14 +10,19 @@ namespace UTPPrototipo.Controllers
 {
     public class AlumnoController : Controller
     {
+        LNAlumno lnAlumno = new LNAlumno();
+
         public ActionResult Index()
         {
-           
-            return View();
+            VistaPanelAlumno panel = lnAlumno.ObtenerPanel("82727128");
+
+            return View(panel);
         }
         public ActionResult Postulacion() 
         {
-            return View();
+            VistaPanelAlumnoPostulaciones panel = lnAlumno.ObtenerPanelPostulaciones("82727128");
+
+            return View(panel);
         }
         public ActionResult PostulacionOferta()
         {
@@ -29,7 +34,8 @@ namespace UTPPrototipo.Controllers
         }
         public ActionResult BusquedaOferta()
         {
-            return View();
+            VistaPanelAlumnoPostulaciones panel = lnAlumno.ObtenerPanelPostulaciones("82727128");
+            return View(panel);
         }
         public ActionResult MiCV()
         {

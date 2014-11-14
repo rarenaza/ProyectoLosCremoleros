@@ -31,9 +31,30 @@ namespace UTP.PortalEmpleabilidad.Logica
                 alumno.DireccionLinea1 = dtResultado.Rows[0]["DireccionLinea1"].ToString();
                 alumno.TelefonoFijoCasa = dtResultado.Rows[0]["TelefonoFijoCasa"].ToString();
                 alumno.TelefonoCelular = dtResultado.Rows[0]["TelefonoCelular"].ToString();
+                alumno.Carrera = dtResultado.Rows[0]["Carrera"].ToString();
             }
 
             return alumno;
+        }
+
+        public VistaPanelAlumno ObtenerPanel(string codigoAlumno)
+        {
+            VistaPanelAlumno panel = new VistaPanelAlumno();
+
+            //Se llenan los datos del alumno.
+            panel.Alumno = ObtenerAlumnoPorCodigo(codigoAlumno);
+
+            return panel;
+        }
+
+        public VistaPanelAlumnoPostulaciones ObtenerPanelPostulaciones(string codigoAlumno)
+        {
+            VistaPanelAlumnoPostulaciones panel = new VistaPanelAlumnoPostulaciones();
+
+            //Se llenan los datos del alumno.
+            panel.Alumno = ObtenerAlumnoPorCodigo(codigoAlumno);
+
+            return panel;
         }
     }
 }

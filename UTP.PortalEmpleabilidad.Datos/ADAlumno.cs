@@ -34,7 +34,7 @@ namespace UTP.PortalEmpleabilidad.Datos
         public DataTable ObtenerAlumnoPorCodigo(string codigoAlumno)
         {
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.CommandText = "ObtenerAlumnoPorCodigo";
+            cmd.CommandText = "Alumno_ObtenerPorCodigo";
             cmd.Connection = cnn.cn;
             cnn.Conectar();
             cmd.Parameters.Add(new SqlParameter("@CodAlumnoUtp", SqlDbType.NVarChar)).Value = codigoAlumno;

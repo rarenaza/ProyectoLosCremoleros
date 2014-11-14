@@ -20,6 +20,8 @@ namespace UTP.PortalEmpleabilidad.Modelo
 
         public string TelefonoCelular { get; set; }
 
+        public string Carrera { get; set; }
+
         public int pruebaGitHub { get; set; }
 
         public int propiedad2 { get; set; }
@@ -27,5 +29,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public int propiedad3 { get; set; }
 
         public int propiedad4 { get; set; }
+
+
     }
 }
