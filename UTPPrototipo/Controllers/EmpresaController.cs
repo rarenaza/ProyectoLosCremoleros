@@ -28,6 +28,7 @@ namespace UTPPrototipo.Controllers
             return View();
         }
 
+
         public ActionResult VistaCabecera()
         {
             //System.Threading.Thread.Sleep(4000);
@@ -37,6 +38,11 @@ namespace UTPPrototipo.Controllers
             panel = lnEmpresa.ObtenerPanelCabecera(usuarioEmpresa);
 
             return PartialView("_DatosUsuario", panel);
+        }
+
+        public ActionResult Postulante()
+        {
+            return View();
         }
 	}
 }
