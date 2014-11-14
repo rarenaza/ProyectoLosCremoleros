@@ -5,7 +5,14 @@
 }
 <link href="~/Content/font-awesome.css" rel="stylesheet" />
 <div class="container" style="margin-top:2px;">
-    <div class="panel-group" id="datos-cuenta" role="tablist" aria-multiselectable="true">
+
+    @{Html.RenderAction("VistaCabecera","Empresa");}
+
+   @*<div class="vistaParcial" data-url="/Empresa/VistaCabecera">
+       <img src="~/img/cargando.gif" /> Cargando ... 
+   </div>*@
+      
+    @*<div class="panel-group" id="datos-cuenta" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default">
             <div class="panel-heading" role="tab" id="headingOne" style="padding: 2px 2px 2px 6px;">
                 <h5 class="panel-title">
@@ -50,7 +57,7 @@
             </div>
         </div>
 
-    </div>
+    </div>*@
     <div class="row">
         <div class="col-md-4">
             <div class="panel-group" id="oferta-mensaje" role="tablist" aria-multiselectable="true">
@@ -111,7 +118,11 @@
     </div>
 </div>
 <script>
+
     $(document).ready(function () {
+
         $("#divFinalCabeceraEmpresa").removeClass("color-paleta2 color-paleta3 color-paleta4 color-paleta5").addClass("color-paleta1");
+
+
     });
 </script>

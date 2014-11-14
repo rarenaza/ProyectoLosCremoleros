@@ -3,7 +3,10 @@
     ViewBag.Title = "Publicaciones";
 }
 <div class="container" style="margin-top:2px;">
-    <div class="panel-group" id="datos-cuenta" role="tablist" aria-multiselectable="true">
+
+    @{Html.RenderAction("VistaCabecera", "Empresa");}
+
+    @*<div class="panel-group" id="datos-cuenta" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default">
             <div class="panel-heading" role="tab" id="headingOne" style="padding: 2px 2px 2px 6px;">
                 <h5 class="panel-title">
@@ -48,7 +51,8 @@
             </div>
         </div>
 
-    </div>
+    </div>*@
+
     <div class="panel-group" id="CriterioBusquedaPostulacion" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default">
             <div class="panel-heading" role="tab" id="CabeceraColapsaBusqueda" style="padding: 2px 2px 2px 6px;">

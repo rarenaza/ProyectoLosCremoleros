@@ -204,6 +204,7 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="img\Alumna.png" />
+    <Content Include="img\cargando.gif" />
     <Content Include="img\testimonio\customer-testimonials.jpg" />
     <Content Include="img\empleabilidad\imagen4.jpg" />
     <Content Include="img\evento\Evento1.jpg" />
@@ -246,6 +247,7 @@
     <Content Include="fonts\UTP FONT ICON.eot" />
     <Content Include="fonts\UTP FONT ICON.ttf" />
     <Content Include="fonts\UTP FONT ICON.woff" />
+    <Content Include="Scripts\carga.asincrona.js" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
@@ -307,6 +309,7 @@
     <Content Include="Views\Home\FAQ.cshtml" />
     <Content Include="Views\Home\PoliticasDePrivacidad.cshtml" />
     <Content Include="Views\Alumno\_DatosPersonales.cshtml" />
+    <Content Include="Views\Empresa\_DatosUsuario.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

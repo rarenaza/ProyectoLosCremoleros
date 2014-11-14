@@ -56,5 +56,25 @@ namespace UTP.PortalEmpleabilidad.Logica
 
             return panel;
         }
+
+        public VistaPanelAlumnoOfertas ObtenerPanelOfertas(string codigoAlumno)
+        {
+            VistaPanelAlumnoOfertas panel = new VistaPanelAlumnoOfertas();
+
+            //Se llenan los datos del alumno.
+            panel.Alumno = ObtenerAlumnoPorCodigo(codigoAlumno);
+
+            return panel;
+        }
+
+        public VistaPanelAlumnoMiCV ObtenerPanelMiCV(string codigoAlumno)
+        {
+            VistaPanelAlumnoMiCV panel = new VistaPanelAlumnoMiCV();
+
+            //Se llenan los datos del alumno.
+            panel.Alumno = ObtenerAlumnoPorCodigo(codigoAlumno);
+
+            return panel;
+        }
     }
 }

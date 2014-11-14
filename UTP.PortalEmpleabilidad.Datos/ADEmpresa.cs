@@ -39,5 +39,23 @@ namespace UTP.PortalEmpleabilidad.Datos
 
             cnn.Desconectar();            
         }
+
+        public DataTable ObtenerCabeceraPorCodigoUsuario(string usuarioEmpresa)
+        {
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "Empresa_ObtenerCabeceraPorCodigoUsuario";
+            cmd.Connection = cnn.cn;
+            cnn.Conectar();
+            cmd.Parameters.Add(new SqlParameter("@UsuarioEmpresa", SqlDbType.VarChar, 50)).Value = usuarioEmpresa;
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+
+            da.Fill(dt);
+
+            cnn.Desconectar();
+
+            return dt;
+        }
     }
 }
