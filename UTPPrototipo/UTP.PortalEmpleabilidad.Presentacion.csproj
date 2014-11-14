@@ -307,6 +307,7 @@
     <Content Include="Views\Home\FAQ.cshtml" />
     <Content Include="Views\Home\PoliticasDePrivacidad.cshtml" />
     <Content Include="Views\Alumno\_DatosPersonales.cshtml" />
+    <Content Include="Views\Empresa\Postulante.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -22,5 +22,9 @@ namespace UTPPrototipo.Controllers
         {
             return View();
         }
+        public ActionResult Postulante()
+        {
+            return View();
+        }
 	}
 }
