@@ -311,6 +311,7 @@
     <Content Include="Views\Alumno\_DatosPersonales.cshtml" />
     <Content Include="Views\Empresa\_DatosUsuario.cshtml" />
     <Content Include="Views\Empresa\Postulante.cshtml" />
+    <Content Include="Views\Empresa\NuevaOferta.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

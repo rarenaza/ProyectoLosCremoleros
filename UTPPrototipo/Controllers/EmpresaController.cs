@@ -27,6 +27,10 @@ namespace UTPPrototipo.Controllers
         {
             return View();
         }
+        public ActionResult NuevaOferta()
+        {
+            return View();
+        }
 
 
         public ActionResult VistaCabecera()
