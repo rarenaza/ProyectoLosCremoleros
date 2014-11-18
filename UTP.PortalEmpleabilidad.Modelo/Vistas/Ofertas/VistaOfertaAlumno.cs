@@ -15,9 +15,11 @@ namespace UTP.PortalEmpleabilidad.Modelo.Vistas.Ofertas
 
         public string CargoOfrecido { get; set; }
         
+
         public string TipoTrabajo { get; set; }
 
-        public DateTime  Horario { get; set; }
+        public DateTime Horario { get; set; }
+       
 
         public decimal RemuneracionOfrecida { get; set; }
 

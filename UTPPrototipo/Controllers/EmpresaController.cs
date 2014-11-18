@@ -5,12 +5,15 @@ using System.Web;
 using System.Web.Mvc;
 using UTP.PortalEmpleabilidad.Logica;
 using UTP.PortalEmpleabilidad.Modelo.Vistas.Empresa;
+using UTP.PortalEmpleabilidad.Modelo.Vistas.Ofertas;
 
 namespace UTPPrototipo.Controllers
 {
     public class EmpresaController : Controller
     {
         LNEmpresa lnEmpresa = new LNEmpresa();
+        LNOferta lnOferta = new LNOferta();
+
         public string usuarioEmpresa = "82727128";
 
         //
@@ -21,7 +24,9 @@ namespace UTPPrototipo.Controllers
         }
         public ActionResult Publicacion()
         {
-            return View();
+            List<VistaOfertaEmpresa> lista = lnOferta.Obtener_PanelEmpresa(0);
+
+            return View(lista);
         }
         public ActionResult Oferta()
         {

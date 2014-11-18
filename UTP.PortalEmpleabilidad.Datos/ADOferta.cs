@@ -48,6 +48,33 @@ namespace UTP.PortalEmpleabilidad.Datos
 
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "Oferta_Obtener";
+                //cmd.Parameters.Add(new SqlParameter("@Usuario", SqlDbType.VarChar)).Value = nombreUsuario;
+
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+
+                da.Fill(dt);
+
+                conexion.Close();
+            }
+
+            return dtResultado;
+        }
+
+        public DataTable Obtener_PanelEmpresa(int idEmpresa)
+        {
+            DataTable dtResultado = new DataTable();
+
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Oferta_ObtenerPanelEmpresa";
                 cmd.Connection = conexion;
 
                 conexion.Open();
