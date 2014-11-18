@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UTP.PortalEmpleabilidad.Datos;
 using UTP.PortalEmpleabilidad.Modelo;
-
+using UTP.PortalEmpleabilidad.Modelo.Vistas.Ofertas;
 
 namespace UTP.PortalEmpleabilidad.Logica
 {
@@ -43,9 +43,29 @@ namespace UTP.PortalEmpleabilidad.Logica
 
         }
 
-        public DataTable Obtener_PanelEmpresa(int idEmpresa)
+        public List<VistaOfertaEmpresa> Obtener_PanelEmpresa(int idEmpresa)
         {
-            return new DataTable();
+            List<VistaOfertaEmpresa> lista = new List<VistaOfertaEmpresa>();
+
+            DataTable dtResultados = adOferta.Obtener_PanelEmpresa(idEmpresa);
+
+            foreach(DataRow fila in dtResultados.Rows)
+            {
+                VistaOfertaEmpresa vista = new VistaOfertaEmpresa();
+                vista.IdOferta = Convert.ToInt32(fila["IdOferta"]);
+                vista.FechaPublicacion = Convert.ToDateTime(fila["FechaPublicacion"]);
+                vista.Cargo = Convert.ToString(fila["CargoOfrecido"]);
+                vista.CVPendientesRevision = Convert.ToInt32(fila["CVPendientesRevision"]);
+                vista.CVTotales = Convert.ToInt32(fila["CVTotales"]);
+                vista.FaseActual = Convert.ToString(fila["FaseActual"]);
+                vista.EstadoOferta = Convert.ToString(fila["EstadoOferta"]);
+                vista.MensajesNoLeidos = Convert.ToInt32(fila["MensajesNoLeidos"]);
+                vista.MensajesTotales = Convert.ToInt32(fila["MensajesTotales"]);
+
+                lista.Add(vista);
+            }
+
+            return lista;
         }
 
     }
