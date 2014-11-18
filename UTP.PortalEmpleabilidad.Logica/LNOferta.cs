@@ -17,5 +17,10 @@ namespace UTP.PortalEmpleabilidad.Logica
         {
             return adOferta.Obtener();
         }
+
+        public DataTable Obtener_PanelEmpresa(int idEmpresa)
+        {
+            return new DataTable();
+        }
     }
 }
