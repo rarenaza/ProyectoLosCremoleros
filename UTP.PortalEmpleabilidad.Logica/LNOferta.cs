@@ -56,12 +56,9 @@ namespace UTP.PortalEmpleabilidad.Logica
 
             DataTable dtResultado = adOferta.Obtener();
 
-
             for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
             {
                 VistaOfertaAlumno oferta = new VistaOfertaAlumno();
-
-
 
                 oferta.FechaPublicacion = Convert.ToDateTime(dtResultado.Rows[i]["FechaPublicacion"]);
                 oferta.Empresa = dtResultado.Rows[i]["Empresa"].ToString();
@@ -76,8 +73,6 @@ namespace UTP.PortalEmpleabilidad.Logica
                 listaOferta.Add(oferta);
             }
             return listaOferta;
-
-
         }
 
         public List<VistaOfertaEmpresa> Obtener_PanelEmpresa(int idEmpresa)

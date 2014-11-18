@@ -5,12 +5,16 @@ using System.Web;
 using System.Web.Mvc;
 using UTP.PortalEmpleabilidad.Logica;
 using UTP.PortalEmpleabilidad.Modelo;
+using UTP.PortalEmpleabilidad.Modelo.Vistas.Ofertas;
 
 namespace UTPPrototipo.Controllers
 {
     public class AlumnoController : Controller
     {
         LNAlumno lnAlumno = new LNAlumno();
+
+        LNOferta lnoferta = new LNOferta();
+
         public string codigoAlumno = "82727128";
 
         public ActionResult Index()
@@ -35,8 +39,11 @@ namespace UTPPrototipo.Controllers
         }
         public ActionResult BusquedaOferta()
         {
-            VistaPanelAlumnoOfertas panel = lnAlumno.ObtenerPanelOfertas(codigoAlumno);
-            return View(panel);
+            List<VistaOfertaAlumno> listaOferta = new List<VistaOfertaAlumno>();
+
+            listaOferta = lnoferta.Oferta_Mostrar();
+
+            return View(listaOferta);
         }
         public ActionResult MiCV()
         {
@@ -44,5 +51,14 @@ namespace UTPPrototipo.Controllers
             return View(panel);
         }
 
+        public ActionResult VistaCabecera()
+        {
+            string codigoAlumno = "82727128";
+
+            VistaPanelAlumno panel = lnAlumno.ObtenerPanel(codigoAlumno);
+
+            return PartialView("_DatosPersonales", panel.Alumno);
+
+        }
 	}
 }
