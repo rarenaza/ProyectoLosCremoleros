@@ -170,8 +170,10 @@
     <Compile Include="Controllers\AlumnoController.cs" />
     <Compile Include="Controllers\CuentaController.cs" />
     <Compile Include="Controllers\EmpresaController.cs" />
+    <Compile Include="Controllers\Evento_Controller.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ListaController.cs" />
+    <Compile Include="Controllers\OfertaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -312,6 +314,8 @@
     <Content Include="Views\Empresa\_DatosUsuario.cshtml" />
     <Content Include="Views\Empresa\Postulante.cshtml" />
     <Content Include="Views\Empresa\NuevaOferta.cshtml" />
+    <Content Include="Views\Evento_\Evento_Mostrar.cshtml" />
+    <Content Include="Views\Oferta\Oferta_Mostrar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

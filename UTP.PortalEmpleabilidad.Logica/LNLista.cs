@@ -12,8 +12,8 @@ namespace UTP.PortalEmpleabilidad.Logica
   public   class LNLista
     {
       ADLista ad = new ADLista();
-            
-      public List<Lista> MostrarLista()
+
+      public List<Lista> Evento_Mostrar()
       {
           List<Lista> lista = new List<Lista>();
 
@@ -87,7 +87,7 @@ namespace UTP.PortalEmpleabilidad.Logica
               listavalor.NombreLista = dtResultado.Rows[0]["NombreLista"].ToString();
               listavalor.DescripcionLista = dtResultado.Rows[0]["DescripcionLista"].ToString();
               listavalor.Modificable = Convert.ToInt32(dtResultado.Rows[0]["Modificable"]);
-              listavalor.Creadopor = dtResultado.Rows[0]["CreadoPor"].ToString();
+           listavalor.Creadopor = dtResultado.Rows[0]["CreadoPor"].ToString();
               listavalor.FechaCreacion = Convert.ToDateTime(dtResultado.Rows[0]["FechaCreacion"].ToString());
           }
 
