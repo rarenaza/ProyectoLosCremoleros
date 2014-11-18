@@ -17,8 +17,8 @@ namespace UTPPrototipo.Controllers
         public ActionResult Index()
         {
             List<Lista> lista = new List<Lista>();
-          
-            lista = ad.MostrarLista();           
+
+            lista = ad.Evento_Mostrar();           
 
             return View(lista); 
         }
