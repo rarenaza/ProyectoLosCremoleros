@@ -1,0 +1,85 @@
+﻿
+@model IEnumerable<UTP.PortalEmpleabilidad.Modelo.Evento>
+
+@{
+    ViewBag.Title = "Evento";
+}
+
+<h2>Lista Evento</h2>
+
+<p>
+
+    @Html.ActionLink("Registrar Evento", "")
+
+</p>
+<table class="table">
+    <tr>
+
+
+        <th>
+            @Html.DisplayNameFor(model => model.IdEvento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NombreEvento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EstadoEvento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TipoEvento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdEmpresa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DescripcionEvento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaEvento)
+        </th>
+       
+        <th>
+            @Html.Label("Lista")
+        </th>
+
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.IdEvento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreEvento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EstadoEvento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoEvento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdEmpresa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DescripcionEvento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaEvento)
+            </td>
+           
+            @*<td>
+                @Html.ActionLink("Editar Lista", "Lista_Buscar", new { id = item.IDLista }) |
+            </td>*@
+
+           
+        </tr>
+    }
+
+</table>
+
+
