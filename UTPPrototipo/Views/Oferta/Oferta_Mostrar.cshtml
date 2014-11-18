@@ -1,4 +1,4 @@
-﻿@model IEnumerable<UTP.PortalEmpleabilidad.Modelo.Oferta>
+﻿@model IEnumerable<UTP.PortalEmpleabilidad.Modelo.Vistas.Ofertas.VistaOfertaAlumno>
 
 @{
     ViewBag.Title = "Oferta Mostrar";
@@ -19,7 +19,13 @@
             @Html.DisplayNameFor(model => model.FechaPublicacion)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.Empresa)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.CargoOfrecido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TipoTrabajo)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Horario)
@@ -48,7 +54,13 @@
                 @Html.DisplayFor(modelItem => item.FechaPublicacion)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.Empresa)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.CargoOfrecido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoTrabajo)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Horario)
@@ -60,9 +72,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.EstadoOferta)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.FechaCreacion)
-            </td>
+      
             <td>
                 @*@Html.ActionLink("Editar Lista", "Lista_Buscar", new { id = item.IDLista }) |*@
             </td>
