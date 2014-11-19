@@ -27,12 +27,12 @@ namespace UTPPrototipo.Controllers
         /// Obtiene los datos que van en la cabecera del alumno
         /// </summary>
         /// <returns></returns>
-        public ActionResult VistaCabecera()
-        {
-            VistaPanelAlumno panel = lnAlumno.ObtenerPanel(codigoAlumno);
+        //public ActionResult VistaCabecera()
+        //{
+        //    VistaPanelAlumno panel = lnAlumno.ObtenerPanel(codigoAlumno);
 
-            return PartialView("_DatosPersonales", panel);
-        }
+        //    return PartialView("_DatosPersonales", panel);
+        //}
 
         public ActionResult Postulacion() 
         {

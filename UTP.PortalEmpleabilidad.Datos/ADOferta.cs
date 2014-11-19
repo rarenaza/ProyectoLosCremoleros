@@ -65,6 +65,11 @@ namespace UTP.PortalEmpleabilidad.Datos
             return dtResultado;
         }
 
+        /// <summary>
+        /// Obtiene las ofertas que se muestran en el panel de la empresa.
+        /// </summary>
+        /// <param name="idEmpresa"></param>
+        /// <returns></returns>
         public DataTable Obtener_PanelEmpresa(int idEmpresa)
         {
             DataTable dtResultado = new DataTable();
@@ -75,6 +80,7 @@ namespace UTP.PortalEmpleabilidad.Datos
 
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "Oferta_ObtenerPanelEmpresa";
+                cmd.Parameters.Add(new SqlParameter("@IdEmpresa", idEmpresa));
                 cmd.Connection = conexion;
 
                 conexion.Open();
