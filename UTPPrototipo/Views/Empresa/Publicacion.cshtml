@@ -111,7 +111,7 @@
                 </div>
             }
 
-            <div class="row grilla1-linea">
+            @*<div class="row grilla1-linea">
                 <div class="col-xs-3 col-sm-2"><span>Ayer</span></div>
                 <div class="col-xs-9 col-sm-3 linea-destacada"><a href="..\Empresa\Oferta"><strong>Gerente de Proyectos en Desarrollo de Software</strong></a></div>
                 <!-- Optional: clear the XS cols if their content doesn't match in height -->
@@ -160,8 +160,15 @@
                 <div class="col-xs-2 col-sm-2"><span class="valor-palabra">Revisión de CV</span><span class="valor-icono2">O</span></div>
                 <div class="col-xs-2 col-sm-2"><span class="valor-palabra">Pendiente de Activación</span><span class="valor-icono2">F</span></div>
                 <div class="col-xs-2 col-sm-1"><span class="valor-icono2">h</span>&nbsp;2/4</div>
+
+            </div>*@
+           @*<a href="~/Views/Empresa/NuevaOferta"></a><button class="btn btn-default" style="margin:10px 10px 10px 10px;color:white;background-color:rgb(60, 172, 201);">Crear Oferta </button>*@
+        @Html.ActionLink("Nueva oferta", "Crear")
+
+
             </div>
-            <a href="~/Views/Empresa/NuevaOferta"></a><button class="btn btn-default" style="margin:10px 10px 10px 10px;color:white;background-color:rgb(60, 172, 201);">Crear Oferta </button>
+            @*<a href="../Empresa/NuevaOferta"><span class="btn btn-default" style="margin:10px 10px 10px 10px;color:white;background-color:rgb(60, 172, 201);">Crear Oferta </span></a>*@
+
             <nav class="navbar-right">
                 <ul class="pagination">
                     <li><a href="#">&laquo;</a></li>
