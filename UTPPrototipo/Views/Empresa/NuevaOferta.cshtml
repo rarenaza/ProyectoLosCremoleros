@@ -58,7 +58,7 @@
             <input type="checkbox" /><span> Recibir correos&nbsp;&nbsp;&nbsp;&nbsp;</span><button class="btn btn-default color-paleta2" style="margin-bottom:5px;">Grabar Cambios</button>
         </div>
     </div>
-
+    <script src="~/Scripts/ckeditor/ckeditor.js"></script>
     <div class="row">
         <div class="col-sm-6">
             <div class="panel-group" id="oferta-anuncio" role="tablist" aria-multiselectable="true">
@@ -78,11 +78,17 @@
                             </div>
                             <div class="input-group">
                                 <span class="input-group-addon">Funciones</span>
-                                <textarea class="form-control" rows="6"></textarea>
+                                @*<textarea class="form-control" rows="6"></textarea>*@
+                                <textarea name="editor1" id="editor1" rows="6" cols="80">
+                                    
+                                </textarea>
                             </div>
                             <div class="input-group">
                                 <span class="input-group-addon">Compe-<br />tencias</span>
-                                <textarea class="form-control" rows="4"></textarea>
+                                @*<textarea class="form-control" rows="4"></textarea>*@
+                                <textarea name="editor2" id="editor2" rows="6" cols="80">
+                                   
+                                </textarea>
                             </div>
                             <br />
 
@@ -91,7 +97,10 @@
                 </div>
             </div>
 
-
+            <script>    
+                CKEDITOR.replace('editor1');
+                CKEDITOR.replace('editor2');
+            </script>
 
             <div class="panel-group" id="oferta-detalle" role="tablist" aria-multiselectable="true">
                 <div class="panel panel-default">
