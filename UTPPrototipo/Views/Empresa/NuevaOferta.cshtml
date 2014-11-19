@@ -50,7 +50,17 @@
 
     </div>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-sm-6 fuente-seccion">
+            Nueva Oferta Laboral
+        </div>
+        
+        <div class="col-sm-6 fuente-seccion" style="text-align:right;">
+            <input type="checkbox" /><span> Recibir correos&nbsp;&nbsp;&nbsp;&nbsp;</span><button class="btn btn-default color-paleta2" style="margin-bottom:5px;">Grabar Cambios</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
             <div class="panel-group" id="oferta-anuncio" role="tablist" aria-multiselectable="true">
                 <div class="panel panel-default">
                     <div class="panel-heading" role="tab" id="headingOferta" style="padding: 2px 2px 2px 6px;">
@@ -71,7 +81,7 @@
                                 <textarea class="form-control" rows="6"></textarea>
                             </div>
                             <div class="input-group">
-                                <span class="input-group-addon">Competencias</span>
+                                <span class="input-group-addon">Compe-<br />tencias</span>
                                 <textarea class="form-control" rows="4"></textarea>
                             </div>
                             <br />
@@ -143,7 +153,7 @@
                                         Freelance
                                     </option>
                                 </select>
-                            </div>    
+                            </div>
                             <div class="input-group">
                                 <span class="input-group-addon">Tipo de<br />Contrato</span>
                                 <select class="form-control">
@@ -157,30 +167,27 @@
                                         Recibo por Honorarios
                                     </option>
                                 </select>
-                            </div>   
+                            </div>
                             <div class="input-group">
                                 <span class="input-group-addon">Duración<br />en meses</span>
                                 <input type="text" class="form-control" placeholder="Vacio si es indeterminada">
-                            </div>   
-                            
-                               
+                            </div>
+
+
                             <div class="input-group">
                                 <span class="input-group-addon">Horario</span>
                                 <input type="text" class="form-control" placeholder="Ej: De Lunes a Viernes de 9:00am a 6:00pm">
-                            </div> 
-                                
-                           
-                            
-                                    <div class="input-group">
-                                        <span class="input-group-addon">Sueldo S/.</span>
-                                        <input type="text" class="form-control" placeholder="Sueldo a pagar en Nuevos Soles">
-                                    </div>
-                                
-                            
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon">Sueldo S/.</span>
+                                <input type="text" class="form-control" placeholder="Sueldo a pagar en Nuevos Soles">
+                            </div>
+
+
                             <div class="input-group">
                                 <span class="input-group-addon">Vacantes</span>
                                 <input type="text" class="form-control" placeholder="Número de vacantes para el puesto">
-                            </div> 
+                            </div>
                             <div class="input-group">
                                 <span class="input-group-addon">Locación</span>
                                 <select class="form-control">
@@ -193,10 +200,10 @@
                                     <option>
                                         Software Factory: Calle Saturno 1067, Cercado de Lima
                                     </option>
-                                    
+
                                 </select>
-                            </div>       
-                              
+                            </div>
+
                             <br />
                         </div>
                     </div>
@@ -205,7 +212,7 @@
 
         </div>
 
-        <div class="col-md-6">
+        <div class="col-sm-6">
 
 
             <div class="panel-group" id="oferta-fases" role="tablist" aria-multiselectable="true">
@@ -219,6 +226,25 @@
                     </div>
                     <div id="collapseFases" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFases">
                         <div class="panel-body fuente-pequeña">
+                            <p>Seleccionar Fases para esta Oferta</p>
+                            <p><span><input type="checkbox" checked disabled /></span> CVs Pendientes de Revisión</p>
+                            <p>
+                                <span><input type="checkbox" checked disabled /></span> CVs en Revisión
+                            </p>
+                            <p>
+                                <span><input type="checkbox" /></span> Dinámica Grupal
+                            </p>
+                            <p>
+                                <span><input type="checkbox" /></span> Primera Entrevista
+                            </p>
+                            <p>
+                                <span><input type="checkbox" /></span> Examen de Conocimientos
+                            </p>
+                            <p><span><input type="checkbox" /></span> Evaluaciones Psicológicas/Psicotécnicas</p>
+                            <p><span><input type="checkbox" /></span> Examen Médico</p>
+                            <p><span><input type="checkbox" /></span> Entrevista Final</p>
+                            <p><span><input type="checkbox" /></span> Contratación</p>
+                            <p><span><input type="checkbox" checked disabled /></span> Proceso Finalizado</p>
 
 
                         </div>
@@ -245,30 +271,82 @@
                                 </div>
                             </div>
                             <br />
+                            <div class="input-group">
+                                <span class="input-group-addon">Tipo de<br />Estudio</span>
+                                <select class="form-control">
+                                    <option value="">
+                                        -- Selecciones un Tipo mínimo de Estudio --
+                                    </option>
+                                    <option>
+                                        Escolar
+                                    </option>
+                                    <option>
+                                        Técnico
+                                    </option>
+                                    <option>
+                                        Grado Universitario
+                                    </option>
+                                    <option>
+                                        Post-Grado
+                                    </option>
+                                    <option>
+                                        Doctorado
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon">Estado del<br />Estudio</span>
+                                <select class="form-control">
+                                    <option value="">
+                                        -- Selecciones un Estado mínimo del Estudio --
+                                    </option>
+                                    <option>
+                                        Estudiante
+                                    </option>
+                                    <option>
+                                        Egresado
+                                    </option>
+                                    <option>
+                                        Bachiller
+                                    </option>
+                                    <option>
+                                        Titulado
+                                    </option>
+                                    <option>
+                                        Magister
+                                    </option>
+                                    <option>
+                                        Doctor
+                                    </option>
+                                    <option>
+                                        Inconcluso
+                                    </option>
+                                </select>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <strong class="sub-titulo-seccion">Estudios específicos</strong>
+                                </div>
+                            </div>
+                            <br />
                             <table class="fuente-pequeña">
                                 <tr>
                                     <td class="celda-nombre">Tipo</td>
                                     <td class="celda-datos">Universitario</td>
                                 </tr>
                                 <tr>
-                                    <td class="celda-nombre">Carrera</td>
-                                    <td class="celda-datos">ING. INDUSTRIAL Y DE SISTEMAS</td>
-                                </tr>
-                                <tr>
-                                    <td class="celda-nombre">Especialidad</td>
+                                    <td class="celda-nombre">Estudio</td>
                                     <td class="celda-datos">ING. SISTEMAS E INFORMATICA</td>
                                 </tr>
-                                <tr>
-                                    <td class="celda-nombre">Ciclo mínimo</td>
-                                    <td class="celda-datos">3</td>
-                                </tr>
+
                                 <tr>
                                     <td class="celda-nombre">Estado</td>
                                     <td class="celda-datos">Bachiller</td>
                                 </tr>
                                 <tr>
-                                    <td class="celda-nombre">Requerido</td>
-                                    <td class="celda-datos">Si</td>
+                                    <td class="celda-nombre">Ciclo mínimo</td>
+                                    <td class="celda-datos">3</td>
                                 </tr>
                                 <tr>
                                     <td class="celda-nombre"></td>
@@ -286,24 +364,16 @@
                                     <td class="celda-datos">Post-Grado</td>
                                 </tr>
                                 <tr>
-                                    <td class="celda-nombre">Carrera</td>
+                                    <td class="celda-nombre">Estudio</td>
                                     <td class="celda-datos">Business Administration</td>
-                                </tr>
-                                <tr>
-                                    <td class="celda-nombre">Especialidad</td>
-                                    <td class="celda-datos">Business Administration</td>
-                                </tr>
-                                <tr>
-                                    <td class="celda-nombre">Ciclo mínimo</td>
-                                    <td class="celda-datos">-</td>
                                 </tr>
                                 <tr>
                                     <td class="celda-nombre">Estado</td>
                                     <td class="celda-datos">Magister</td>
                                 </tr>
                                 <tr>
-                                    <td class="celda-nombre">Requerido</td>
-                                    <td class="celda-datos">No</td>
+                                    <td class="celda-nombre">Ciclo mínimo</td>
+                                    <td class="celda-datos">-</td>
                                 </tr>
                                 <tr>
                                     <td class="celda-nombre"></td>
@@ -318,18 +388,25 @@
 
                             <div class="row">
                                 <div class="col-sm-12" style="text-align:right;">
-                                    <button class="btn btn-default color-paleta2">Nuevo Estudio</button>
+                                    <button data-toggle="modal" data-target="#Modal-estudio-especifico" class="btn btn-default color-paleta2">Agregar un Estudio específico</button>
                                 </div>
                             </div>
                             <hr />
 
-
                             <div class="row">
                                 <div class="col-md-12">
-                                    <strong class="sub-titulo-seccion">Expericencia x Sector</strong>
+                                    <input type="checkbox" /><span> ¿Requiere Experiencia Laboral?</span>
                                 </div>
                             </div>
                             <br />
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <strong class="sub-titulo-seccion">Expericencia específica por Sector</strong>
+                                </div>
+                            </div>
+                            <br />
+
                             <table class="fuente-pequeña">
                                 <tr>
                                     <td class="celda-nombre">Sector</td>
@@ -377,7 +454,7 @@
                             </table>
                             <div class="row">
                                 <div class="col-sm-12" style="text-align:right;">
-                                    <button class="btn btn-default color-paleta2">Nueva Experiencia Laboral</button>
+                                    <button data-toggle="modal" data-target="#Modal-experiencia-sector" class="btn btn-default color-paleta2">Agregar Experiencia x Sector</button>
                                 </div>
                             </div>
                             <hr />
@@ -469,7 +546,7 @@
                             </table>
                             <div class="row">
                                 <div class="col-sm-12" style="text-align:right;">
-                                    <button class="btn btn-default color-paleta2">Nueva Información Adicional</button>
+                                    <button data-toggle="modal" data-target="#Modal-inf-adicional" class="btn btn-default color-paleta2">Agregar Información Adicional</button>
                                 </div>
                             </div>
                             <br />
@@ -477,15 +554,441 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $("#divFinalCabeceraEmpresa").removeClass("color-paleta1 color-paleta3 color-paleta4 color-paleta5").addClass("color-paleta2");
+    });
+</script>
 
 
-
-
+<!-- Modal Estudio Específico-->
+<div class="modal" id="Modal-estudio-especifico" tabindex="-1" role="dialog" aria-labelledby="Estudio" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="Estudio">Estudio específico</h4>
+            </div>
+            <div class="modal-body">
+                
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="input-group fuente-pequeña">
+                            <span class="input-group-addon">Tipo</span>
+                            <select id="Lista" class="form-control">
+                                <option value="" selected>-- Elegir Tipo de Estudio requerido --</option>
+                                <option value="1">Técnico</option>
+                                <option value="1">Universitario</option>
+                                <option value="1">Post-Grado</option>
+                                <option value="1">Doctorado</option>
+                            </select>
                         </div>
                     </div>
                 </div>
-                <script>
-                    $(document).ready(function () {
-                        $("#divFinalCabeceraEmpresa").removeClass("color-paleta1 color-paleta3 color-paleta4 color-paleta5").addClass("color-paleta2");
-                    });
-                </script>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="input-group fuente-pequeña">
+                            <span class="input-group-addon">Estudio</span>
+                            <select id="Lista" class="form-control">
+                                <option value="" selected>- - -</option>
+                                <option>ING. SISTEMAS E INFORMATICA   </option>
+                                <option>INGENIERIA INDUSTRIAL         </option>
+                                <option>INGENIERIA DE SISTEMAS(PROCOU)</option>
+                                <option>ADMINISTRACION DE EMPRESAS    </option>
+                                <option>ADM. DE EMPRESAS (PROCOU)     </option>
+                                <option>CONTABILIDAD                  </option>
+                                <option>CONTABILIDAD (PROCOU)         </option>
+                                <option>SISTEMAS E INFORMATICA        </option>
+                                <option>SEMINARIO ING. SISTEMAS       </option>
+                                <option>SEMINARIO ING. ELECTRONICA    </option>
+                                <option>SEMINARIO ING. INDUSTRIAL     </option>
+                                <option>SEMINARIO ING. SISTEMAS(PROCOU</option>
+                                <option>SEMINARIO ING. ELECTRONICA(PRO</option>
+                                <option>SEMINARIO ADMINISTRACION      </option>
+                                <option>SEMINARIO ADMINISTRACION(PROCO</option>
+                                <option>SEMINARIO CONTABILIDAD        </option>
+                                <option>SEMINARIO CONTABILIDAD (PROCOU</option>
+                                <option>DERECHO                       </option>
+                                <option>INGENIERIA ELECTRONICA        </option>
+                                <option>INGENIERIA ELECTRONICA(PROCOU)</option>
+                                <option>DIPLOMADO EN REDES NETWORKING </option>
+                                <option>ESCUELA DE INGLES             </option>
+                                <option>PET  ADMINISTRACION           </option>
+                                <option>PETP CONTABILIDAD             </option>
+                                <option>PETP INGENIERIA DE SISTEMAS   </option>
+                                <option>ESCUELA DE ITALIANO           </option>
+                                <option>SECRETARIADO UNIVERSITARIO    </option>
+                                <option>DIPLOMADO EN TECNOLOGIAS .NET </option>
+                                <option>ESCUELA DE FRANCES            </option>
+                                <option>ESPECIALISTA .NET MCAD        </option>
+                                <option>ESPECIALISTA .NET MCSD        </option>
+                                <option>PETP INGENIERIA ELECTRONICA   </option>
+                                <option>CURSOS LIBRES                 </option>
+                                <option>ADMINISTRADOR DE BD ORACLE DBA</option>
+                                <option>ESCUELA DE PORTUGUES          </option>
+                                <option>ADM. NEGOCIOS INTERNACIONALES </option>
+                                <option>ADMINISTRACION Y MARKETING    </option>
+                                <option>INGENIERIA MECATRONICA        </option>
+                                <option>INGENIERIA TELECOMUNICACIONES </option>
+                                <option>ADM.NEG.INTERNACIONALES(PROCOU</option>
+                                <option>ADM. Y MARKETING (PROCOU)     </option>
+                                <option>CIENCIAS DE LA COMUNICACION   </option>
+                                <option>DIPLOMADOS DE CONTABILIDAD    </option>
+                                <option>PETP INGENIERIA INDUSTRIAL    </option>
+                                <option>DESARROLLADOR APLICACION .NET </option>
+                                <option>ESPECIALISTA EN OFFICE        </option>
+                                <option>SOLUCIONES EMPRESARIALES      </option>
+                                <option>DIPLOMADOS DE ING. ELECTRONICA</option>
+                                <option>ING. TEXTIL Y CONFECCIONES    </option>
+                                <option>INGENIERIA MARITIMA           </option>
+                                <option>INGENIERIA NAVAL              </option>
+                                <option>INGENIERIA AERONAUTICA        </option>
+                                <option>INGENIERIA AUTOMOTRIZ         </option>
+                                <option>INGENIERIA DE SOFTWARE        </option>
+                                <option>PETP DERECHO                  </option>
+                                <option>CERTIFICACION REDES WIRELESS  </option>
+                                <option>HELP DESK                     </option>
+                                <option>EVENTOS - SEMINARIOS CETIS    </option>
+                                <option>POST. AUTOMATIZ. INDUSTRIAL   </option>
+                                <option>POST. SEGURIDAD Y DEFEN.CIVIL </option>
+                                <option>LICENCIATURA EN EDUCACION     </option>
+                                <option>PROGRAMACION JAVA             </option>
+                                <option>IT ESSENCIALT`S               </option>
+                                <option>INGENIERIA ECONOMICA          </option>
+                                <option>INGENIERIA MECANICA           </option>
+                                <option>ADMINISTRACION Y FINANZAS     </option>
+                                <option>INGENIERIA DE TRANSPORTE      </option>
+                                <option>ADM. Y FINANZAS(PROCOU)       </option>
+                                <option>POST. CODIGO PROCESAL PENAL   </option>
+                                <option>POST. TEC. DE LITIGACION ORAL </option>
+                                <option>RANGERS                       </option>
+                                <option>CERTIFICACION DE TRAGAMONEDAS </option>
+                                <option>AGENTE INMOBILIARIO           </option>
+                                <option>POST. INV.EN LA ESC.DEL CRIMEN</option>
+                                <option>POST. DER. DE FAM.Y VIOL.FAM. </option>
+                                <option>ING. REDES Y COMUNICACIONES   </option>
+                                <option>ING.SEGUR.Y AUDITOR.INFORMATIC</option>
+                                <option>Tecnico en Redes CCENT -CISCO </option>
+                                <option>RELACIONES INTERNACIONALES    </option>
+                                <option>MARKETING Y VENTAS            </option>
+                                <option>ADMINIST. Y ALTA DIRECCION    </option>
+                                <option>DIPLOMADOS DE ESC.DE POSTGRADO</option>
+                                <option>SEMINARIOS DE ESC.DE POSTGRADO</option>
+                                <option>SEMINARIOS TELECOMUNICACIONES </option>
+                                <option>Profes. en redes CISCO CCNP   </option>
+                                <option>Centro de Certificaciones     </option>
+                                <option>ADM. HOTELERA Y DE TURISMO    </option>
+                                <option>ING. DE DISEÑO GRAFICO        </option>
+                                <option>ING. ELECTROMECANICA          </option>
+                                <option>ING. DE DISEÑO COMPUTACIONAL  </option>
+                                <option>ING. ELECTRICA Y DE POTENCIA  </option>
+                                <option>INGENIERIA BIOMEDICA          </option>
+                                <option>PET INGENIERIA DE SISTEMAS    </option>
+                                <option>Fast Track Oracle             </option>
+                                <option>Fast Track CCENT              </option>
+                                <option>Espec. en Redes CCNA Security </option>
+                                <option>ING.REDES Y COMUNICAC.(PROCOU)</option>
+                                <option>Administrador Linux           </option>
+                                <option>Cableado Estructurado         </option>
+                                <option>Edumatica y Docencia Univers. </option>
+                                <option>Docencia y Gestion Educativa  </option>
+                                <option>Taller de Linux               </option>
+                                <option>Windows 7                     </option>
+                                <option>Redes Inalambricas            </option>
+                                <option>MAEST. EN ING.TEL.Y NETWORK.  </option>
+                                <option>MAEST.EN ING. SEG. INFORMATICA</option>
+                                <option>MAEST.EN ING.TEL.Y NETWORK.-FT</option>
+                                <option>MAEST.EN ING.SEG. INFORM.- FT.</option>
+                                <option>Linux Basico                  </option>
+                                <option>CECINAVAL                     </option>
+                                <option>Capacitacion Office (Empresas)</option>
+                                <option>PETP CIENCIAS DE LA COMUNICAC.</option>
+                                <option>DIP.DER.GEST.PUB.MUNIC.Y REG. </option>
+                                <option>DIPLOM. EN MATEMATICA APLICADA</option>
+                                <option>ORACLE FUSION MIDDLEWARE      </option>
+                                <option>Esc.de Inteligencia de Neg.   </option>
+                                <option>PET INGENIERIA INDUSTRIAL     </option>
+                                <option>ING.DE DISEÑO GRAFICO (PROCOU)</option>
+                                <option>PROG. ACTUALIZACION CONTINUA  </option>
+                                <option>Business Administration       </option>
+                                <option>Systems Engineering           </option>
+                                <option>Information Technology Eng.   </option>
+                                <option>Telecommunication & Net. Eng. </option>
+                                <option>DISEÑO DIGITAL PUBLICITARIO   </option>
+                                <option>DIP.EN INV.Y DOC.UNIVERSITARIA</option>
+                                <option>DIP. EN DERECHO PROCESAL CIVIL</option>
+                                <option>DIPLOM. EN DERECHO LABORAL    </option>
+                                <option>AGENTE INMOBILIARIO           </option>
+                                <option>ADMINISTRACION DE NEGOCIOS    </option>
+                                <option>NEGOCIOS INTERNACIONALES      </option>
+                                <option>ADMIN. DE NEGOCIOS Y MARKETING</option>
+                                <option>ADMIN. DE NEGOCIOS Y FINANZAS </option>
+                                <option>Ciencias Penales              </option>
+                                <option>Derecho Const. y Der.Humanos  </option>
+                                <option>Gobierno y Gest. de Politicas </option>
+                                <option>DISEÑO DIGITAL PUBLIC.(PROCOU)</option>
+                                <option>PSICOLOGIA CRIMINAL           </option>
+                                <option>DIDACTICA PARA ELAB. DE TESIS </option>
+                                <option>EXEG.DEL CODIGO PROCESAL PENAL</option>
+                                <option>TEC.INT.Y LIT.ORAL EN PR.PENAL</option>
+                                <option>MAESTRIA EN ADM. EMPRESAS     </option>
+                                <option>MAESTRIA EN ADM.NEG. INTERNAC.</option>
+                                <option>PET  NEGOCIOS INTERNACIONALES </option>
+                                <option>Telefonia IP con Asterisk     </option>
+                                <option>DOCTORADO EN ADM. DE EMPRESAS </option>
+                                <option>DELITOS SEXUALES              </option>
+                                <option>MTA Fundamentos de Security   </option>
+                                <option>CONTRATACIONES DE ESTADO      </option>
+                                <option>MARKETING PARA LOS NEGOCIOS   </option>
+                                <option>COMERCIO EXTERIOR             </option>
+                                <option>GESTION PUBLICA               </option>
+                                <option>INV.CRIMINAL Y SEG. CIUDADANA </option>
+                                <option>EST.PED.PARA EJERCER DOC.UNIV.</option>
+                                <option>ESTADISTICA APLICADA          </option>
+                                <option>PETP INGENIERIA MECATRONICA   </option>
+                                <option>DLINK Modulo Conectividad     </option>
+                                <option>Mineria de datos (Data Mining)</option>
+                                <option>INGENIERIA MECATRONICA(PROCOU)</option>
+                                <option>DIPLOMADOS DE ADMINISTRACIOES </option>
+                                <option>GESTION DE PROY.DE INVERSIO.  </option>
+                                <option>INGLES EN EDUMATICA           </option>
+                                <option>IMP.SEG. EN ROUTERS Y SWITCHES</option>
+                                <option>MARKETING OFFLINE Y ONLINE    </option>
+                                <option>SEL.Y EVAL.DEL TALENTO HUMANO </option>
+                                <option>PLANEAMIENTO ESTRATEGICO      </option>
+                                <option>GEST. DE TEC. DE LA INFORM.   </option>
+                                <option>DIPLOMADOS DE NIAS            </option>
+                                <option>DIPLOMADO DE NIIF             </option>
+                                <option>TUA - Branch Lima             </option>
+                                <option>INGLES POSTGRADO              </option>
+                                <option>CONTABILIDAD FINACIERA        </option>
+                                <option>DERECHO EMPRESARIAL           </option>
+                                <option>ELACIONES INTERNACIONALES     </option>
+                                <option>ING.DE PRODUCCION INDUSTRIAL  </option>
+                                <option>ING.DE SISTEMAS EMPRESARIALES </option>
+                                <option>ING.DE SOFTWARE (PROCOU)      </option>
+                                <option>PETP INGENIERIA AERONAUTICA   </option>
+                                <option>MAEST.EN ING.SEG. INFORM.-    </option>
+                                <option>MAEST.EN ING.TEL.Y NETWORK.   </option>
+                                <option>Mark.Digital y Comun.Empres   </option>
+                                <option>ING. SISTEMAS E INF.- CHICLAYO</option>
+                                <option>ING. INDUSTRIAL     - CHICLAYO</option>
+                                <option>SEG.INDUST.Y MINERA - CHICLAYO</option>
+                                <option>ADMIN. DE EMPRESAS  - CHICLAYO</option>
+                                <option>ADMIN. Y MARKETING  - CHICLAYO</option>
+                                <option>ADM.DE NEG.INTERNAC.- CHICLAYO</option>
+                                <option>ADM. NEG. INTERNACIONALES -PAU</option>
+                                <option>ADMINISTRACION Y MARKETING-PAU</option>
+                                <option>ADMINISTRACION Y FINANZAS-PAU </option>
+                                <option>ADM. HOTELERA Y DE TURISMO-PAU</option>
+                                <option>CONTABILIDAD - PAU            </option>
+                                <option>CIENCIAS DE LA COMUNIC. -PAU  </option>
+                                <option>DISEÑO DIG. PUBLICITARIO - PAU</option>
+                                <option>DERECHO -PAU                  </option>
+                                <option>RELACIONES INTERNACIONALES-PAU</option>
+                                <option>INGENIERIA ELECTRONICA -PAU   </option>
+                                <option>INGENIERIA MECATRONICA -PAU   </option>
+                                <option>ING. TEXTIL Y CONFECCIONES-PAU</option>
+                                <option>ING. ELECTR. Y DE POTENCIA-PAU</option>
+                                <option>INGENIERIA BIOMEDICA -PAU     </option>
+                                <option>INGENIERIA MARITIMA -PAU      </option>
+                                <option>INGENIERIA NAVAL -PAU         </option>
+                                <option>ING. SISTEMAS E INFORMAT. -PAU</option>
+                                <option>INGENIERIA INDUSTRIAL -PAU    </option>
+                                <option>INGENIERIA ECONOMICA -PAU     </option>
+                                <option>INGENIERIA AERONAUTICA -PAU   </option>
+                                <option>INGENIERIA AUTOMOTRIZ -PAU    </option>
+                                <option>INGENIERIA DE SOFTWARE -PAU   </option>
+                                <option>INGENIERIA MECANICA -PAU      </option>
+                                <option>ING. DE DISEÑO GRAFICO -PAU   </option>
+                                <option>ING. ELECTROMECANICA -PAU     </option>
+                                <option>ING. DISEÑO COMPUTACIONAL -PAU</option>
+                                <option>ING.DE TELECOMUNICACIONES -PAU</option>
+                                <option>ING.REDES Y COMUNICACIONES-PAU</option>
+                                <option>ING.SEG.Y AUD.INFORMATICA -PAU</option>
+                                <option>ING. SISTEMAS E INF.-PAU-CHIC.</option>
+                                <option>ING. INDUSTRIAL -PAU-CHIC.    </option>
+                                <option>SEG.INDUST.Y MINERA -PAU-CHIC.</option>
+                                <option>ADMIN. DE EMPRESAS  -PAU-CHIC.</option>
+                                <option>ADMIN. Y MARKETING  -PAU-CHIC.</option>
+                                <option>ADM.DE NEG.INTERNAC.-PAU-CHIC.</option>
+                                <option>ADMINISTRACION DE EMPRESAS-PAU</option>
+                                <option>DIP.MERC.VALORES.OPER.BURSAT  </option>
+                                <option>CERTIFICACION INSTRUCTOR CISCO</option>
+                                <option>DIP.GEREN. PROY. PMBOK        </option>
+                                <option>DIP.COM.INT.GEST.ADUANERA     </option>
+                                <option>DIP.GEST.SEG.SALUD OCUPACIONAL</option>
+                                <option>PET INGENERIA DE SOFTWARE     </option>
+                                <option>PET INGENIERIA TELECOMUNICACIO</option>
+                                <option>PET ING.REDES Y COMUNICACIONES</option>
+                                <option>PET ING.SEGUR.Y AUDIT.INFORMAT</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="input-group fuente-pequeña">
+                            <span class="input-group-addon">Estado</span>
+                            <select id="Lista" class="form-control">
+                                <option value="" selected>- - -</option>
+                                <option>Estudiante</option>
+                                <option>
+                                    Egresado
+                                </option>
+                                <option>
+                                    Bachiller
+                                </option>
+                                <option>
+                                    Titulado
+                                </option>
+                                <option>
+                                    Magister
+                                </option>
+                                <option>
+                                    Doctor
+                                </option>
+                                <option>
+                                    Inconcluso
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="input-group fuente-pequeña">
+                            <span class="input-group-addon">Ciclo</span>
+                            <input type="text" class="form-control" placeholder="Ciclo míninmo del Estudio">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-right"><button type="button" class="btn btn-default color-paleta2 fuente-pequeña" style="color: white; margin-bottom: 10px;">Grabar Estudio específico</button></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="Modal-experiencia-sector" tabindex="-1" role="dialog" aria-labelledby="ExperienciaLaboral" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="ExperienciaLaboral">Experiencia x Sector</h4>
+            </div>
+            <div class="modal-body">
+                
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="input-group fuente-pequeña">
+                            <span class="input-group-addon">Sector</span>
+                            <select id="Lista" class="form-control">
+                                <option value="" selected>- - -</option>
+                                <option value="1">Auditoría y Consultoría</option>
+                                <option value="1">Banca y Seguros</option>
+                                <option value="1">Construcción e Inmobiliaria</option>
+                                <option value="1">Energía</option>
+                                <option value="1">Industria</option>
+                                <option value="1">Servicios</option>
+                                <option value="1">Tecnología y Software</option>
+                                <option value="1">Telecomunicaciones</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="input-group fuente-pequeña">
+                            <span class="input-group-addon">Años de<br />Experiencia</span>
+                            <input type="text" class="form-control" placeholder="Años de experiencia mínimos">
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="input-group fuente-pequeña">
+                            <span class="input-group-addon"><input type="checkbox"></span>
+
+                            <span class="form-control">Excluyente</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-sm-12 text-right"><button type="button" class="btn btn-default color-paleta2 fuente-pequeña" style="color: white; margin-bottom: 10px;">Grabar Experiencia x Sector</button></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="Modal-inf-adicional" tabindex="-1" role="dialog" aria-labelledby="Estudio" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="Estudio">Información adicional</h4>
+            </div>
+            <div class="modal-body">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="input-group fuente-pequeña">
+                            <span class="input-group-addon">Tipo</span>
+                            <select id="Lista" class="form-control">
+                                <option value="" selected>-- Seleccione el Tipo de Conocimiento --</option>
+                                <option>Informática</option>
+                                <option>Idioma</option>
+                                <option>Cursos/Seminarios</option>
+                                <option>Pasatiempo</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="input-group fuente-pequeña">
+                            <span class="input-group-addon">Nombre</span>
+                            <input type="text" class="form-control" placeholder="Nombre del Conocimiento">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="input-group fuente-pequeña">
+                            <span class="input-group-addon">Nivel</span>
+                            <select id="Lista" class="form-control">
+                                <option value="" selected>Nivel del conocimiento</option>
+                                <option>Básico</option>
+                                <option>Medio</option>
+                                <option>Avanzado</option>
+                                <option>Experto</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="input-group fuente-pequeña">
+                            <span class="input-group-addon">Años de<br />Experienia</span>
+                            <input type="text" class="form-control" placeholder="Años de Experiencia">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 text-right"><button type="button" class="btn btn-default color-paleta4 fuente-pequeña" style="color: white; margin-bottom: 10px;">Grabar Información Adicional</button></div>
+                </div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
