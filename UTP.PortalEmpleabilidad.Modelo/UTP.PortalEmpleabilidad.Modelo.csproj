@@ -54,6 +54,7 @@
     <Compile Include="Vistas\Empresa\VistaPanelCabecera.cs" />
     <Compile Include="Vistas\Ofertas\VistaOfertaAlumno.cs" />
     <Compile Include="Vistas\Ofertas\VistaOfertaEmpresa.cs" />
+    <Compile Include="Vistas\Ofertas\VistaPostulacionAlumno.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,0 +1,92 @@
+﻿@model IEnumerable<UTP.PortalEmpleabilidad.Modelo.Vistas.Ofertas.VistaPostulacionAlumno>
+
+@{
+    ViewBag.Title = "VistaPostuante";
+}
+
+<h2>Lista Postulante</h2>
+
+<p>
+
+    @Html.ActionLink("Registrar Oferta", "")
+
+</p>
+<table class="table">
+    <tr>
+
+
+        <th>
+            @Html.DisplayNameFor(model => model.FechaPublicacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaPostulacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Empresa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CargoOfrecido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TipoTrabajo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Horario)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RemuneracionOfrecida)
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.EstadoOferta)
+        </th>
+       
+        <th>
+            @Html.Label("Lista")
+        </th>
+
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaPublicacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaPostulacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Empresa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CargoOfrecido)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoTrabajo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Horario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RemuneracionOfrecida)
+            </td>
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.EstadoOferta)
+            </td>
+      
+            <td>
+                @*@Html.ActionLink("Editar Lista", "Lista_Buscar", new { id = item.IDLista }) |*@
+            </td>
+                       
+        </tr>
+    }
+
+</table>
+
+
+

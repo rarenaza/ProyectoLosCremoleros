@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -15,6 +16,8 @@ namespace UTPPrototipo.Controllers
 
         LNOferta lnoferta = new LNOferta();
 
+       
+
         public string codigoAlumno = "82727128";
 
         public ActionResult Index()
@@ -23,12 +26,22 @@ namespace UTPPrototipo.Controllers
 
             return View(panel);
         }
-        public ActionResult Postulacion() 
-        {
-            VistaPanelAlumnoPostulaciones panel = lnAlumno.ObtenerPanelPostulaciones(codigoAlumno);
+        //public ActionResult Postulacion() 
+        //{
+        //    VistaPanelAlumnoPostulaciones panel = lnAlumno.ObtenerPanelPostulaciones(codigoAlumno);
 
-            return View(panel);
+        //    return View(panel);
+        //}
+
+        public ActionResult Postulacion()
+        {
+            List<VistaPostulacionAlumno> lista = new List<VistaPostulacionAlumno>();
+
+            lista = lnoferta.ObtenerPostulantes();
+
+            return View(lista);
         }
+
         public ActionResult PostulacionOferta()
         {
             return View();
@@ -42,8 +55,10 @@ namespace UTPPrototipo.Controllers
             List<VistaOfertaAlumno> listaOferta = new List<VistaOfertaAlumno>();
 
             listaOferta = lnoferta.Oferta_Mostrar();
-
+            
             return View(listaOferta);
+                    
+            
         }
         public ActionResult MiCV()
         {
@@ -51,6 +66,7 @@ namespace UTPPrototipo.Controllers
             return View(panel);
         }
 
+        //vista cabeceraa Oferta
         public ActionResult VistaCabecera()
         {
             string codigoAlumno = "82727128";
@@ -60,5 +76,6 @@ namespace UTPPrototipo.Controllers
             return PartialView("_DatosPersonales", panel.Alumno);
 
         }
+            
 	}
 }

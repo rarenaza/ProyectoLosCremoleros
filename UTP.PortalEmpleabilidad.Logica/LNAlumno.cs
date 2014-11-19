@@ -13,7 +13,7 @@ namespace UTP.PortalEmpleabilidad.Logica
     {
         ADAlumno ad = new ADAlumno();
 
-        public Alumno ObtenerAlumnoPorCodigo(string codigoAlumno)
+        public Alumno ObtenerAlumnoPorCodigo(string codigoAlumno) 
         {
             Alumno alumno = new Alumno();
 
@@ -35,7 +35,7 @@ namespace UTP.PortalEmpleabilidad.Logica
             }
 
             return alumno;
-        }
+        }    
 
         public VistaPanelAlumno ObtenerPanel(string codigoAlumno)
         {
@@ -45,7 +45,7 @@ namespace UTP.PortalEmpleabilidad.Logica
             panel.Alumno = ObtenerAlumnoPorCodigo(codigoAlumno);
 
             return panel;
-        }
+        } 
 
         public VistaPanelAlumnoPostulaciones ObtenerPanelPostulaciones(string codigoAlumno)
         {
@@ -62,7 +62,7 @@ namespace UTP.PortalEmpleabilidad.Logica
             VistaPanelAlumnoOfertas panel = new VistaPanelAlumnoOfertas();
 
             //Se llenan los datos del alumno.
-            panel.Alumno = ObtenerAlumnoPorCodigo(codigoAlumno);
+            panel.Alumno = ObtenerAlumnoPorCodigo(codigoAlumno); 
 
             return panel;
         }

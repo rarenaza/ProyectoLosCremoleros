@@ -20,6 +20,7 @@ namespace UTPPrototipo.Controllers
         // GET: /Empresa/
         public ActionResult Index()
         {
+           
             return View();
         }
         public ActionResult Publicacion()
@@ -36,12 +37,9 @@ namespace UTPPrototipo.Controllers
         {
             return View();
         }
-
-
+        
         public ActionResult VistaCabecera()
         {
-            //System.Threading.Thread.Sleep(4000);
-
             VistaPanelCabecera panel = new VistaPanelCabecera();
 
             panel = lnEmpresa.ObtenerPanelCabecera(usuarioEmpresa);
