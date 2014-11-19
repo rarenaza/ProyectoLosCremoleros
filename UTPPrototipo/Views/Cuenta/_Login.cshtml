@@ -1,0 +1,40 @@
+﻿@model UTP.PortalEmpleabilidad.Modelo.Usuario
+
+@using (Html.BeginForm("Autenticar", "Cuenta", FormMethod.Post))
+{
+    <div class="modal-body">
+
+        <div class="input-group grupo-ingreso">
+            <span class="input-group-addon nombre-campo">Usuario</span>
+            @*<input type="text" class="form-control" placeholder="Usuario" style="width:100%;">*@
+            @Html.TextBoxFor(m => m.NombreUsuario, new { @class = "form-control" })
+        </div>
+        <div class="input-group grupo-ingreso">
+            <span class="input-group-addon nombre-campo">Clave</span>
+            @*<input type="password" class="form-control" placeholder="Clave">*@
+            @Html.TextBoxFor(m => m.Contrasena, new { @class = "form-control" })
+        </div>
+        <br />
+        <div class="grupo-ingreso" style="text-align:center;">
+            <input type="checkbox">
+            <span class="label-sistema"> No Cerrar mi Sesión </span>
+        </div>
+        <br />
+        <div class="text-center" style="width: 100%;">
+            <span class="btn btn-default">
+            
+            @*<a href="../Alumno/Index">Ingresar Alumno</a></span>*@
+
+            <input type="submit" value="Ingresar" class="btn btn-default" />
+        </div>
+        @*<div class="text-center" style="width: 100%;">
+            <span class="btn btn-default">
+                <a href="../Empresa/Index">Ingresar Empresa</a>
+            </span>
+        </div>*@
+
+    </div>
+}
+<div class="modal-footer">
+    <span class="label-sistema">Recuperar Clave</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="label-sistema">Registrarse</span>
+</div>

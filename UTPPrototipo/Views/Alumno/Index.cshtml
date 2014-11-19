@@ -1,4 +1,4 @@
-﻿@model UTP.PortalEmpleabilidad.Modelo.VistaPanelAlumno
+﻿
 
 @{
     Layout = "~/Views/Alumno/_LayoutAlumno.cshtml";
@@ -9,7 +9,7 @@
 <div class="container" style="margin-top:2px;">
 
     @*Prueba de control de usuario*@
-    @Html.Partial("_DatosPersonales", Model.Alumno)
+    @{Html.RenderAction("VistaCabecera", "Alumno");}
 
     @*<div class="panel-group" id="datos-cuenta" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default">

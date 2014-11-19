@@ -316,6 +316,7 @@
     <Content Include="Views\Empresa\NuevaOferta.cshtml" />
     <Content Include="Views\Evento_\Evento_Mostrar.cshtml" />
     <Content Include="Views\Oferta\Oferta_Mostrar.cshtml" />
+    <Content Include="Views\Cuenta\_Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

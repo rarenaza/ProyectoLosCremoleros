@@ -18,11 +18,22 @@ namespace UTPPrototipo.Controllers
         public string codigoAlumno = "82727128";
 
         public ActionResult Index()
+        {            
+
+            return View();
+        }
+
+        /// <summary>
+        /// Obtiene los datos que van en la cabecera del alumno
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult VistaCabecera()
         {
             VistaPanelAlumno panel = lnAlumno.ObtenerPanel(codigoAlumno);
 
-            return View(panel);
+            return PartialView("_DatosPersonales", panel);
         }
+
         public ActionResult Postulacion() 
         {
             VistaPanelAlumnoPostulaciones panel = lnAlumno.ObtenerPanelPostulaciones(codigoAlumno);
