@@ -15,41 +15,7 @@ namespace UTP.PortalEmpleabilidad.Logica
 
         ADOferta adOferta = new ADOferta();
         
-        /// <summary>
-        /// Obtiene las Ofertas Para la Pantalla Oferta
-        /// </summary>
-        /// <returns></returns>
-        /// 
-        //public List<Oferta> Oferta_Mostrar()
-        //{
-        //    List<Oferta> listaOferta = new List<Oferta>();
-
-        //    DataTable dtResultado = adOferta.Obtener();
-
-
-        //    for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
-        //    {
-        //        Oferta oferta = new Oferta();
-
-
-
-        //        oferta.FechaPublicacion = Convert.ToDateTime(dtResultado.Rows[i]["FechaPublicacion"]);
-
-        //        oferta.CargoOfrecido = dtResultado.Rows[i]["CargoOfrecido"].ToString();
-        //        oferta.Horario = Convert.ToDateTime(dtResultado.Rows[i]["Horario"]);
-
-        //        oferta.RemuneracionOfrecida = Convert.ToDecimal(dtResultado.Rows[i]["RangoRemuneracionDesde"]);
-
-        //        oferta.EstadoOferta = dtResultado.Rows[i]["EstadoOferta"].ToString();
-
-        //        listaOferta.Add(oferta);
-        //    }
-        //    return listaOferta;
-
-            
-
-        //}
-
+          
         public List<VistaOfertaAlumno> Oferta_Mostrar()
         {
             List<VistaOfertaAlumno> listaOferta = new List<VistaOfertaAlumno>();
@@ -73,6 +39,36 @@ namespace UTP.PortalEmpleabilidad.Logica
                 listaOferta.Add(oferta);
             }
             return listaOferta;
+        }
+
+        public List<VistaPostulacionAlumno> ObtenerPostulantes()
+        {
+            List<VistaPostulacionAlumno> listapostulacion = new List<VistaPostulacionAlumno>();
+
+            DataTable dtResultado = adOferta.ObtenerPostulantes();
+
+            for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
+            {
+                VistaPostulacionAlumno postulacion = new VistaPostulacionAlumno();
+
+                postulacion.FechaPublicacion = Convert.ToDateTime(dtResultado.Rows[i]["FechaPublicacion"]);
+                postulacion.FechaPostulacion = Convert.ToDateTime(dtResultado.Rows[i]["FechaPostulacion"]);
+                postulacion.Empresa = dtResultado.Rows[i]["Empresa"].ToString();
+                postulacion.CargoOfrecido = dtResultado.Rows[i]["CargoOfrecido"].ToString();
+                postulacion.TipoTrabajo = dtResultado.Rows[i]["TipoTrabajo"].ToString();
+                postulacion.Horario = Convert.ToDateTime(dtResultado.Rows[i]["Horario"]);
+                postulacion.RemuneracionOfrecida = Convert.ToDecimal(dtResultado.Rows[i]["RangoRemuneracionDesde"]);
+                postulacion.EstadoOferta = dtResultado.Rows[i]["EstadoOferta"].ToString();
+
+                listapostulacion.Add(postulacion);
+            }
+            return listapostulacion;
+        }
+
+        public DataTable ObtenerBusquedaAbanzada(int IdLista)
+        {
+            return adOferta.ObtenerBusquedaAbanzada(IdLista);
+
         }
 
         public List<VistaOfertaEmpresa> Obtener_PanelEmpresa(int idEmpresa)
@@ -99,7 +95,7 @@ namespace UTP.PortalEmpleabilidad.Logica
 
             return lista;
         }
-                     
+     
 
     }
 

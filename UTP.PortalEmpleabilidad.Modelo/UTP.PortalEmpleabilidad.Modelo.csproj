@@ -54,10 +54,9 @@
     <Compile Include="Vistas\Empresa\VistaPanelCabecera.cs" />
     <Compile Include="Vistas\Ofertas\VistaOfertaAlumno.cs" />
     <Compile Include="Vistas\Ofertas\VistaOfertaEmpresa.cs" />
+    <Compile Include="Vistas\Ofertas\VistaPostulacionAlumno.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Vistas\Cuenta\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

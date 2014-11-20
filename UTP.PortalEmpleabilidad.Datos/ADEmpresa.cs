@@ -34,9 +34,7 @@ namespace UTP.PortalEmpleabilidad.Datos
             cmd.Parameters.Add(new SqlParameter("@SectorEmpresarial2", SqlDbType.VarChar, 6)).Value = empresa.SectorEmpresarial2;
             cmd.Parameters.Add(new SqlParameter("@SectorEmpresarial3", SqlDbType.VarChar, 6)).Value = empresa.SectorEmpresarial3;
             cmd.Parameters.Add(new SqlParameter("@CreadoPor", SqlDbType.VarChar, 50)).Value = empresa.CreadoPor;            
-
             cmd.ExecuteNonQuery();            
-
             cnn.Desconectar();            
         }
 

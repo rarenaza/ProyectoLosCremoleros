@@ -25,5 +25,7 @@ namespace UTP.PortalEmpleabilidad.Modelo.Vistas.Ofertas
 
         public string  EstadoOferta { get; set; }
 
+
+
     }
 }
