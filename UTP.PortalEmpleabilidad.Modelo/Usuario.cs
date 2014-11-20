@@ -13,6 +13,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string EstadoUsuario { get; set; }
         public string Rol { get; set; }
 
+        public string Contrasena { get; set; }
 
     }
 }
