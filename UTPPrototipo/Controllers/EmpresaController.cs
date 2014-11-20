@@ -37,6 +37,10 @@ namespace UTPPrototipo.Controllers
             return View();
         }
 
+        public ActionResult Reclutar()
+        {
+            return View();
+        }
 
         public ActionResult VistaCabecera()
         {

@@ -6,54 +6,54 @@
 }
 <div class="container" style="margin-top:2px;">
 
-    @{Html.RenderAction ("VistaCabecera", "Empresa");}
+    @{Html.RenderAction("VistaCabecera", "Empresa");}
 
     @*<div class="panel-group" id="datos-cuenta" role="tablist" aria-multiselectable="true">
-        <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingOne" style="padding: 2px 2px 2px 6px;">
-                <h5 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="fuente-seccion">
-                        Cuenta - Criteria IT S.A.C. - Aldo Junior Barja Brito
-                    </a>
-                </h5>
-            </div>
-            <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                <div class="panel-body">
-                    <div class="col-md-4">
-                        <table>
-                            <tr>
-                                <td>
-                                    <img class="foto-empresa" src="~/img/logos/LogoCriteria.jpg" />
-                                </td>
-                                <td style="vertical-align:top;">
-                                    <strong>
-                                        Criteria IT S.A.C.
-                                        <br />20555167581
-                                    </strong>
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingOne" style="padding: 2px 2px 2px 6px;">
+                    <h5 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="fuente-seccion">
+                            Cuenta - Criteria IT S.A.C. - Aldo Junior Barja Brito
+                        </a>
+                    </h5>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="panel-body">
+                        <div class="col-md-4">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <img class="foto-empresa" src="~/img/logos/LogoCriteria.jpg" />
+                                    </td>
+                                    <td style="vertical-align:top;">
+                                        <strong>
+                                            Criteria IT S.A.C.
+                                            <br />20555167581
+                                        </strong>
 
-                                    <br /><a href="#" class="fuente-pequeña">Modificar Datos ...</a>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="col-md-4 fuente-pequeña">
-                        Usuario <strong>
-                            Aldo Junior Barja Brito<br />
-                        </strong>
-                        DNI <strong>89226681</strong><br />
-                        E-mail <strong>aldo.barja@criteriait.com</strong><br />
-                        Celular <strong>954123876</strong>
-                    </div>
-                    <div class="col-md-4 fuente-pequeña">
-                        Locación <strong>Software Factory</strong><br />
-                        Dirección <strong>Calle Saturno 1067, Urb. La Luz, Cercado de Lima</strong><br />
-                        Teléfono <strong>7149968</strong><br />
+                                        <br /><a href="#" class="fuente-pequeña">Modificar Datos ...</a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="col-md-4 fuente-pequeña">
+                            Usuario <strong>
+                                Aldo Junior Barja Brito<br />
+                            </strong>
+                            DNI <strong>89226681</strong><br />
+                            E-mail <strong>aldo.barja@criteriait.com</strong><br />
+                            Celular <strong>954123876</strong>
+                        </div>
+                        <div class="col-md-4 fuente-pequeña">
+                            Locación <strong>Software Factory</strong><br />
+                            Dirección <strong>Calle Saturno 1067, Urb. La Luz, Cercado de Lima</strong><br />
+                            Teléfono <strong>7149968</strong><br />
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-    </div>*@
+        </div>*@
 
     <div class="panel-group" id="CriterioBusquedaPostulacion" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default">
@@ -81,7 +81,7 @@
                 </div>
             </div>
         </div>
-        
+
     </div>
 
 
@@ -102,7 +102,7 @@
             {
                 <div class="row grilla1-linea">
                     <div class="col-xs-3 col-sm-2"><span>@item.FechaPublicacion</span></div>
-                    <div class="col-xs-9 col-sm-3 linea-destacada"><a href="..\Empresa\Oferta"><strong>@item.Cargo</strong></a></div>                    
+                    <div class="col-xs-9 col-sm-3 linea-destacada"><a href="..\Empresa\Oferta"><strong>@item.Cargo</strong></a></div>
                     <div class="clearfix visible-xs-block"></div>
                     <div class="col-xs-3 col-sm-2"><span class="valor-icono2">r</span>&nbsp;@item.CVPendientesRevision / @item.CVTotales</div>
                     <div class="col-xs-2 col-sm-2"><span class="valor-palabra">@item.FaseActual</span><span class="valor-icono2">P</span></div>
@@ -112,78 +112,79 @@
             }
 
             @*<div class="row grilla1-linea">
-                <div class="col-xs-3 col-sm-2"><span>Ayer</span></div>
-                <div class="col-xs-9 col-sm-3 linea-destacada"><a href="..\Empresa\Oferta"><strong>Gerente de Proyectos en Desarrollo de Software</strong></a></div>
-                <!-- Optional: clear the XS cols if their content doesn't match in height -->
-                <div class="clearfix visible-xs-block"></div>
-                <div class="col-xs-3 col-sm-2"><span class="valor-icono2">r</span>&nbsp;2/7</div>
-                <div class="col-xs-2 col-sm-2"><span class="valor-palabra">Primera Entrevista</span><span class="valor-icono2">P</span></div>
-                <div class="col-xs-2 col-sm-2"><span class="valor-palabra">Activa</span><span class="valor-icono2">D</span></div>
-                <div class="col-xs-2 col-sm-1"><span class="valor-icono2">h</span>&nbsp;7/20</div>
-            </div>
-            <div class="row grilla1-linea">
-                <div class="col-xs-3 col-sm-2"><span>Hace 2 días</span></div>
-                <div class="col-xs-9 col-sm-3 linea-destacada"><a href="..\Empresa\Oferta"><strong>Gerente de Servicios</strong></a></div>
-                <!-- Optional: clear the XS cols if their content doesn't match in height -->
-                <div class="clearfix visible-xs-block"></div>
-                <div class="col-xs-3 col-sm-2"><span class="valor-icono2">r</span>&nbsp;1/18</div>
-                <div class="col-xs-2 col-sm-2"><span class="valor-palabra">Revisión de CV</span><span class="valor-icono2">O</span></div>
-                <div class="col-xs-2 col-sm-2"><span class="valor-palabra">Pendiente de Activación</span><span class="valor-icono2">F</span></div>
-                <div class="col-xs-2 col-sm-1"><span class="valor-icono2">h</span>&nbsp;2/4</div>
-            </div>
-            <div class="row grilla1-linea">
-                <div class="col-xs-3 col-sm-2"><span>Hace 3 días</span></div>
-                <div class="col-xs-9 col-sm-3 linea-destacada"><a href="..\Empresa\Oferta"><strong>Gerente de Servicios</strong></a></div>
-                <!-- Optional: clear the XS cols if their content doesn't match in height -->
-                <div class="clearfix visible-xs-block"></div>
-                <div class="col-xs-3 col-sm-2"><span class="valor-icono2">r</span>&nbsp;1/18</div>
-                <div class="col-xs-2 col-sm-2"><span class="valor-palabra">Revisión de CV</span><span class="valor-icono2">O</span></div>
-                <div class="col-xs-2 col-sm-2"><span class="valor-palabra">Pendiente de Activación</span><span class="valor-icono2">F</span></div>
-                <div class="col-xs-2 col-sm-1"><span class="valor-icono2">h</span>&nbsp;2/4</div>
-            </div>
-            <div class="row grilla1-linea">
-                <div class="col-xs-3 col-sm-2"><span>Hace una semana</span></div>
-                <div class="col-xs-9 col-sm-3 linea-destacada"><a href="..\Empresa\Oferta"><strong>Gerente de Servicios</strong></a></div>
-                <!-- Optional: clear the XS cols if their content doesn't match in height -->
-                <div class="clearfix visible-xs-block"></div>
-                <div class="col-xs-3 col-sm-2"><span class="valor-icono2">r</span>&nbsp;2/18</div>
-                <div class="col-xs-2 col-sm-2"><span class="valor-palabra">Revisión de CV</span><span class="valor-icono2">O</span></div>
-                <div class="col-xs-2 col-sm-2"><span class="valor-palabra">Pendiente de Activación</span><span class="valor-icono2">F</span></div>
-                <div class="col-xs-2 col-sm-1"><span class="valor-icono2">h</span>&nbsp;2/4</div>
-            </div>
-            <div class="row grilla1-linea">
-                <div class="col-xs-3 col-sm-2"><span>09/10/2014</span></div>
-                <div class="col-xs-9 col-sm-3 linea-destacada"><a href="..\Empresa\Oferta"><strong>Gerente de Servicios</strong></a></div>
-                <!-- Optional: clear the XS cols if their content doesn't match in height -->
-                <div class="clearfix visible-xs-block"></div>
-                <div class="col-xs-3 col-sm-2"><span class="valor-icono2">r</span>&nbsp;3/28</div>
-                <div class="col-xs-2 col-sm-2"><span class="valor-palabra">Revisión de CV</span><span class="valor-icono2">O</span></div>
-                <div class="col-xs-2 col-sm-2"><span class="valor-palabra">Pendiente de Activación</span><span class="valor-icono2">F</span></div>
-                <div class="col-xs-2 col-sm-1"><span class="valor-icono2">h</span>&nbsp;2/4</div>
+                    <div class="col-xs-3 col-sm-2"><span>Ayer</span></div>
+                    <div class="col-xs-9 col-sm-3 linea-destacada"><a href="..\Empresa\Oferta"><strong>Gerente de Proyectos en Desarrollo de Software</strong></a></div>
+                    <!-- Optional: clear the XS cols if their content doesn't match in height -->
+                    <div class="clearfix visible-xs-block"></div>
+                    <div class="col-xs-3 col-sm-2"><span class="valor-icono2">r</span>&nbsp;2/7</div>
+                    <div class="col-xs-2 col-sm-2"><span class="valor-palabra">Primera Entrevista</span><span class="valor-icono2">P</span></div>
+                    <div class="col-xs-2 col-sm-2"><span class="valor-palabra">Activa</span><span class="valor-icono2">D</span></div>
+                    <div class="col-xs-2 col-sm-1"><span class="valor-icono2">h</span>&nbsp;7/20</div>
+                </div>
+                <div class="row grilla1-linea">
+                    <div class="col-xs-3 col-sm-2"><span>Hace 2 días</span></div>
+                    <div class="col-xs-9 col-sm-3 linea-destacada"><a href="..\Empresa\Oferta"><strong>Gerente de Servicios</strong></a></div>
+                    <!-- Optional: clear the XS cols if their content doesn't match in height -->
+                    <div class="clearfix visible-xs-block"></div>
+                    <div class="col-xs-3 col-sm-2"><span class="valor-icono2">r</span>&nbsp;1/18</div>
+                    <div class="col-xs-2 col-sm-2"><span class="valor-palabra">Revisión de CV</span><span class="valor-icono2">O</span></div>
+                    <div class="col-xs-2 col-sm-2"><span class="valor-palabra">Pendiente de Activación</span><span class="valor-icono2">F</span></div>
+                    <div class="col-xs-2 col-sm-1"><span class="valor-icono2">h</span>&nbsp;2/4</div>
+                </div>
+                <div class="row grilla1-linea">
+                    <div class="col-xs-3 col-sm-2"><span>Hace 3 días</span></div>
+                    <div class="col-xs-9 col-sm-3 linea-destacada"><a href="..\Empresa\Oferta"><strong>Gerente de Servicios</strong></a></div>
+                    <!-- Optional: clear the XS cols if their content doesn't match in height -->
+                    <div class="clearfix visible-xs-block"></div>
+                    <div class="col-xs-3 col-sm-2"><span class="valor-icono2">r</span>&nbsp;1/18</div>
+                    <div class="col-xs-2 col-sm-2"><span class="valor-palabra">Revisión de CV</span><span class="valor-icono2">O</span></div>
+                    <div class="col-xs-2 col-sm-2"><span class="valor-palabra">Pendiente de Activación</span><span class="valor-icono2">F</span></div>
+                    <div class="col-xs-2 col-sm-1"><span class="valor-icono2">h</span>&nbsp;2/4</div>
+                </div>
+                <div class="row grilla1-linea">
+                    <div class="col-xs-3 col-sm-2"><span>Hace una semana</span></div>
+                    <div class="col-xs-9 col-sm-3 linea-destacada"><a href="..\Empresa\Oferta"><strong>Gerente de Servicios</strong></a></div>
+                    <!-- Optional: clear the XS cols if their content doesn't match in height -->
+                    <div class="clearfix visible-xs-block"></div>
+                    <div class="col-xs-3 col-sm-2"><span class="valor-icono2">r</span>&nbsp;2/18</div>
+                    <div class="col-xs-2 col-sm-2"><span class="valor-palabra">Revisión de CV</span><span class="valor-icono2">O</span></div>
+                    <div class="col-xs-2 col-sm-2"><span class="valor-palabra">Pendiente de Activación</span><span class="valor-icono2">F</span></div>
+                    <div class="col-xs-2 col-sm-1"><span class="valor-icono2">h</span>&nbsp;2/4</div>
+                </div>
+                <div class="row grilla1-linea">
+                    <div class="col-xs-3 col-sm-2"><span>09/10/2014</span></div>
+                    <div class="col-xs-9 col-sm-3 linea-destacada"><a href="..\Empresa\Oferta"><strong>Gerente de Servicios</strong></a></div>
+                    <!-- Optional: clear the XS cols if their content doesn't match in height -->
+                    <div class="clearfix visible-xs-block"></div>
+                    <div class="col-xs-3 col-sm-2"><span class="valor-icono2">r</span>&nbsp;3/28</div>
+                    <div class="col-xs-2 col-sm-2"><span class="valor-palabra">Revisión de CV</span><span class="valor-icono2">O</span></div>
+                    <div class="col-xs-2 col-sm-2"><span class="valor-palabra">Pendiente de Activación</span><span class="valor-icono2">F</span></div>
+                    <div class="col-xs-2 col-sm-1"><span class="valor-icono2">h</span>&nbsp;2/4</div>
 
-            </div>*@
-           @*<a href="~/Views/Empresa/NuevaOferta"></a><button class="btn btn-default" style="margin:10px 10px 10px 10px;color:white;background-color:rgb(60, 172, 201);">Crear Oferta </button>*@
-        @Html.ActionLink("Nueva oferta", "Crear")
+                </div>*@
+            @*<a href="~/Views/Empresa/NuevaOferta"></a><button class="btn btn-default" style="margin:10px 10px 10px 10px;color:white;background-color:rgb(60, 172, 201);">Crear Oferta </button>*@
+            @Html.ActionLink("Nueva oferta", "Crear")
 
 
-            </div>
-            @*<a href="../Empresa/NuevaOferta"><span class="btn btn-default" style="margin:10px 10px 10px 10px;color:white;background-color:rgb(60, 172, 201);">Crear Oferta </span></a>*@
-
-            <nav class="navbar-right">
-                <ul class="pagination">
-                    <li><a href="#">&laquo;</a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#">&raquo;</a></li>
-                </ul>
-            </nav>
         </div>
-        
-        
+        @*<a href="../Empresa/NuevaOferta"><span class="btn btn-default" style="margin:10px 10px 10px 10px;color:white;background-color:rgb(60, 172, 201);">Crear Oferta </span></a>*@
+
+        <nav class="navbar-right">
+            <ul class="pagination">
+                <li><a href="#">&laquo;</a></li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#">&raquo;</a></li>
+            </ul>
+        </nav>
     </div>
+
+
+</div>
+
     
 </div>
 <script>
