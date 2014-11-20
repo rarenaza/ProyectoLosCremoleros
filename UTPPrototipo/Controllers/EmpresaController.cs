@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using UTP.PortalEmpleabilidad.Logica;
+using UTP.PortalEmpleabilidad.Modelo;
 using UTP.PortalEmpleabilidad.Modelo.Vistas.Empresa;
 using UTP.PortalEmpleabilidad.Modelo.Vistas.Ofertas;
 
@@ -13,6 +14,7 @@ namespace UTPPrototipo.Controllers
     {
         LNEmpresa lnEmpresa = new LNEmpresa();
         LNOferta lnOferta = new LNOferta();
+        LNOfertaEmpresa lnOfertaEmpresa = new LNOfertaEmpresa();
 
         public string usuarioEmpresa = "82727128";
 
@@ -34,8 +36,33 @@ namespace UTPPrototipo.Controllers
         }
         public ActionResult NuevaOferta()
         {
+            Oferta oferta = new Oferta();
+            oferta.IdEmpresa = 1;
+            oferta.UsuarioPropietarioEmpresa = "";
+            oferta.EstadoOferta = "OFERPR"; //Estado pendiente de activación.
+            oferta.FechaPublicacion = DateTime.Now;
+            oferta.FechaFinProceso = DateTime.Now;
+            oferta.IdEmpresaLocacion = 1; //TODO: Reemplazar por combo.
+            oferta.DescripcionOferta = "descripci[on de la oferta";
+            oferta.TipoTrabajo = "OFTTTC"; //Tipo de trabajo: Tiempo completo.
+            //oferta.CargoOfrecido = "";  //Este dato viene del formulario.
+            oferta.CreadoPor = "admin";
+
+            return View(oferta);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult NuevaOferta(Oferta oferta)
+        {
+            if (ModelState.IsValid)
+            {
+                lnOfertaEmpresa.Insertar(oferta);
+            }
+
             return View();
         }
+
 
         public ActionResult Reclutar()
         {
@@ -44,13 +71,13 @@ namespace UTPPrototipo.Controllers
 
         public ActionResult VistaCabecera()
         {
-            //System.Threading.Thread.Sleep(4000);
+            ////System.Threading.Thread.Sleep(4000);
 
-            VistaPanelCabecera panel = new VistaPanelCabecera();
+            //VistaPanelCabecera panel = new VistaPanelCabecera();
 
-            panel = lnEmpresa.ObtenerPanelCabecera(usuarioEmpresa);
+            //panel = lnEmpresa.ObtenerPanelCabecera(usuarioEmpresa);
 
-            return PartialView("_DatosUsuario", panel);
+            return PartialView("_DatosUsuario");
         }
 
         public ActionResult Postulante()

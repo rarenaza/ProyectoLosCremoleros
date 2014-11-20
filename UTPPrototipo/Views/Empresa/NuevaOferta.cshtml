@@ -1,4 +1,6 @@
-﻿@{
+﻿@model UTP.PortalEmpleabilidad.Modelo.Oferta
+
+@{
     Layout = "~/Views/Empresa/_LayoutEmpresa.cshtml";
     ViewBag.Title = "Nueva Oferta Laboral";
 }
@@ -79,7 +81,8 @@
                         <div class="panel-body fuente-pequeña">
                             <div class="input-group">
                                 <span class="input-group-addon">Cargo</span>
-                                <input type="text" class="form-control" placeholder="Nombre del cargo a publicar">
+                                @*<input type="text" class="form-control" placeholder="Nombre del cargo a publicar">*@
+                                @Html.EditorFor(model => model.CargoOfrecido)
                             </div>
                             <div class="input-group">
                                 <span class="input-group-addon">Funciones</span>

@@ -44,6 +44,7 @@
     <Compile Include="LNLista.cs" />
     <Compile Include="LNEmpresa.cs" />
     <Compile Include="LNOferta.cs" />
+    <Compile Include="LNOfertaEmpresa.cs" />
     <Compile Include="LNUsuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
