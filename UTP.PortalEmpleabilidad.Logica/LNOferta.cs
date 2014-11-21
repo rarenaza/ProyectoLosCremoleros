@@ -65,11 +65,12 @@ namespace UTP.PortalEmpleabilidad.Logica
             return listapostulacion;
         }
 
-        public DataTable ObtenerBusquedaAbanzada(int IdLista)
+        //Obtiene las Listas de opciones (Todo los Combos)
+        public DataTable ObtenerLista_ListaValor(int cod)
         {
-            return adOferta.ObtenerBusquedaAbanzada(IdLista);
+            return adOferta.ObtenerLista_ListaValor(cod);
+        }    
 
-        }
 
         public List<VistaOfertaEmpresa> Obtener_PanelEmpresa(int idEmpresa)
         {

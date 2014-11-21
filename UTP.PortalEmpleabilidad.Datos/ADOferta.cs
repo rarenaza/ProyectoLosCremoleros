@@ -33,9 +33,9 @@ namespace UTP.PortalEmpleabilidad.Datos
                 conexion.Open();
                
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
+                dtResultado = new DataTable();
 
-                da.Fill(dt);
+                da.Fill(dtResultado);
 
                 conexion.Close();
             }
@@ -60,9 +60,10 @@ namespace UTP.PortalEmpleabilidad.Datos
                 conexion.Open();
 
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
+              
+                dtResultado = new DataTable();
 
-                da.Fill(dt);
+                da.Fill(dtResultado);
 
                 conexion.Close();
             }
@@ -70,7 +71,8 @@ namespace UTP.PortalEmpleabilidad.Datos
             return dtResultado;
         }
 
-        public DataTable ObtenerBusquedaAbanzada(int IdLista)
+        //Obtiene las Listas de opciones (Todo los Combos)
+        public DataTable ObtenerLista_ListaValor(int Cod)
         {
             DataTable dtResultado = new DataTable();
 
@@ -80,22 +82,25 @@ namespace UTP.PortalEmpleabilidad.Datos
 
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "Lista_ListaValor";
-                cmd.Parameters.Add(new SqlParameter("@IdLista", SqlDbType.Int)).Value = IdLista;
+                cmd.Parameters.Add(new SqlParameter("@IdLista", SqlDbType.NVarChar)).Value = Cod;
                 cmd.Connection = conexion;
 
                 conexion.Open();
 
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
+                dtResultado = new DataTable();
 
-                da.Fill(dt);
+                da.Fill(dtResultado);
 
                 conexion.Close();
+
             }
 
             return dtResultado;
         }
+        
 
+                       
         public DataTable Obtener_PanelEmpresa(int idEmpresa)
         {
             DataTable dtResultado = new DataTable();
