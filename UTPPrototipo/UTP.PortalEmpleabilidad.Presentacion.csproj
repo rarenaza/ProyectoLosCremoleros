@@ -668,8 +668,10 @@
     <Content Include="Views\Evento_\Evento_Mostrar.cshtml" />
     <Content Include="Views\Oferta\Oferta_Mostrar.cshtml" />
     <Content Include="Views\Cuenta\_Login.cshtml" />
+    <Content Include="Views\Empresa\Reclutar.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Html.cshtml" />
     <Content Include="Views\Alumno\ObtenerLista_Cargo.cshtml" />
+    <Content Include="Views\Empresa\Registrar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

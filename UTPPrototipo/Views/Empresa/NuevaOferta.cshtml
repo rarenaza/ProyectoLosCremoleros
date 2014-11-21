@@ -1,4 +1,6 @@
-﻿@{
+﻿@model UTP.PortalEmpleabilidad.Modelo.Oferta
+
+@{
     Layout = "~/Views/Empresa/_LayoutEmpresa.cshtml";
     ViewBag.Title = "Nueva Oferta Laboral";
 }
@@ -50,12 +52,17 @@
 
     </div>
     <div class="row">
-        <div class="col-sm-6 fuente-seccion">
+        <div class="col-sm-3 fuente-seccion">
             Nueva Oferta Laboral
         </div>
-        
-        <div class="col-sm-6 fuente-seccion" style="text-align:right;">
-            <input type="checkbox" /><span> Recibir correos&nbsp;&nbsp;&nbsp;&nbsp;</span><button class="btn btn-default color-paleta2" style="margin-bottom:5px;">Grabar Cambios</button>
+        <div class="col-sm-3 fuente-seccion">
+            Estado: Pendiente de Activación
+        </div>
+        <div class="col-sm-3 fuente-seccion">
+            <input type="checkbox" /><span> Recibir correos&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        </div>
+        <div class="col-sm-3 fuente-seccion" style="text-align:right;">
+            <button class="btn btn-default color-paleta2" style="margin-bottom:5px;">Grabar Cambios</button>
         </div>
     </div>
     <script src="~/Scripts/ckeditor/ckeditor.js"></script>
@@ -74,7 +81,8 @@
                         <div class="panel-body fuente-pequeña">
                             <div class="input-group">
                                 <span class="input-group-addon">Cargo</span>
-                                <input type="text" class="form-control" placeholder="Nombre del cargo a publicar">
+                                @*<input type="text" class="form-control" placeholder="Nombre del cargo a publicar">*@
+                                @Html.EditorFor(model => model.CargoOfrecido)
                             </div>
                             <div class="input-group">
                                 <span class="input-group-addon">Funciones</span>
@@ -181,8 +189,6 @@
                                 <span class="input-group-addon">Duración<br />en meses</span>
                                 <input type="text" class="form-control" placeholder="Vacio si es indeterminada">
                             </div>
-
-
                             <div class="input-group">
                                 <span class="input-group-addon">Horario</span>
                                 <input type="text" class="form-control" placeholder="Ej: De Lunes a Viernes de 9:00am a 6:00pm">
@@ -197,20 +203,27 @@
                                 <span class="input-group-addon">Vacantes</span>
                                 <input type="text" class="form-control" placeholder="Número de vacantes para el puesto">
                             </div>
-                            <div class="input-group">
-                                <span class="input-group-addon">Locación</span>
-                                <select class="form-control">
-                                    <option value="">
-                                        -- Seleccione un Locación de su Empresa --
-                                    </option>
-                                    <option>
-                                        Oficina Principal: Av del Sur 310, Of 102, Surco
-                                    </option>
-                                    <option>
-                                        Software Factory: Calle Saturno 1067, Cercado de Lima
-                                    </option>
+                            <div class="row">
+                                <div class="col-sm-7">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Ubicación</span>
+                                        <select class="form-control">
+                                            <option value="">
+                                                -- Seleccione Ubicación del Trabajo --
+                                            </option>
+                                            <option>
+                                                Oficina Principal: Av del Sur 310, Of 102, Surco
+                                            </option>
+                                            <option>
+                                                Software Factory: Calle Saturno 1067, Cercado de Lima
+                                            </option>
 
-                                </select>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-5 fuente-pequeña" style="text-align:right;">
+                                    <button class="btn btn-default color-paleta2">Nueva Ubicación</button>
+                                </div>
                             </div>
 
                             <br />
@@ -280,65 +293,6 @@
                                 </div>
                             </div>
                             <br />
-                            <div class="input-group">
-                                <span class="input-group-addon">Tipo de<br />Estudio</span>
-                                <select class="form-control">
-                                    <option value="">
-                                        -- Selecciones un Tipo mínimo de Estudio --
-                                    </option>
-                                    <option>
-                                        Escolar
-                                    </option>
-                                    <option>
-                                        Técnico
-                                    </option>
-                                    <option>
-                                        Grado Universitario
-                                    </option>
-                                    <option>
-                                        Post-Grado
-                                    </option>
-                                    <option>
-                                        Doctorado
-                                    </option>
-                                </select>
-                            </div>
-                            <div class="input-group">
-                                <span class="input-group-addon">Estado del<br />Estudio</span>
-                                <select class="form-control">
-                                    <option value="">
-                                        -- Selecciones un Estado mínimo del Estudio --
-                                    </option>
-                                    <option>
-                                        Estudiante
-                                    </option>
-                                    <option>
-                                        Egresado
-                                    </option>
-                                    <option>
-                                        Bachiller
-                                    </option>
-                                    <option>
-                                        Titulado
-                                    </option>
-                                    <option>
-                                        Magister
-                                    </option>
-                                    <option>
-                                        Doctor
-                                    </option>
-                                    <option>
-                                        Inconcluso
-                                    </option>
-                                </select>
-                            </div>
-                            <br />
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <strong class="sub-titulo-seccion">Estudios específicos</strong>
-                                </div>
-                            </div>
-                            <br />
                             <table class="fuente-pequeña">
                                 <tr>
                                     <td class="celda-nombre">Tipo</td>
@@ -402,16 +356,11 @@
                             </div>
                             <hr />
 
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <input type="checkbox" /><span> ¿Requiere Experiencia Laboral?</span>
-                                </div>
-                            </div>
-                            <br />
+                            
 
                             <div class="row">
                                 <div class="col-md-12">
-                                    <strong class="sub-titulo-seccion">Expericencia específica por Sector</strong>
+                                    <strong class="sub-titulo-seccion">Expericencia por Sector Empresarial</strong>
                                 </div>
                             </div>
                             <br />
@@ -463,7 +412,7 @@
                             </table>
                             <div class="row">
                                 <div class="col-sm-12" style="text-align:right;">
-                                    <button data-toggle="modal" data-target="#Modal-experiencia-sector" class="btn btn-default color-paleta2">Agregar Experiencia x Sector</button>
+                                    <button data-toggle="modal" data-target="#Modal-experiencia-sector" class="btn btn-default color-paleta2">Agregar Experiencia por Sector</button>
                                 </div>
                             </div>
                             <hr />
@@ -891,7 +840,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="ExperienciaLaboral">Experiencia x Sector</h4>
+                <h4 class="modal-title" id="ExperienciaLaboral">Experiencia Por Sector</h4>
             </div>
             <div class="modal-body">
                 
