@@ -13,5 +13,12 @@ namespace UTP.PortalEmpleabilidad.Modelo
         //Estado del alumno que postula:  CV's pendientes de revisión.
         public static string ESTADO_ALUMNO_CV_PENDIENTE_DE_REVISION = "OFFAPR";   //Fase de una oferta.
 
+
+        #region Estados de la Empresa
+
+        public static string ESTADO_EMPRESA_PENDIENTE_APROBACION = "EMPRRV";
+
+        #endregion
+
     }
 }

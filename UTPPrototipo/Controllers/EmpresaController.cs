@@ -84,5 +84,36 @@ namespace UTPPrototipo.Controllers
         {
             return View();
         }
+
+        public ActionResult Registrar()
+        {
+            Empresa empresa = new Empresa();
+
+            return View(empresa);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Registrar(Empresa empresa)
+        {
+            if (ModelState.IsValid)
+            {
+                empresa.EstadoEmpresa = Constantes.ESTADO_EMPRESA_PENDIENTE_APROBACION;
+                empresa.SectorEmpresarial = "SETECN"; //Data de prueba.
+                empresa.DescripcionEmpresa = "";
+                empresa.LinkVideo = "";
+                empresa.AnoCreacion = 2014;
+                empresa.NumeroEmpleados = "";
+                empresa.SectorEmpresarial2 = "";
+                empresa.SectorEmpresarial3 = "";
+
+                empresa.CreadoPor = "admin";
+
+                lnEmpresa.Insertar(empresa);
+            }
+
+
+            return RedirectToAction("Index", "Home");
+        }
 	}
 }

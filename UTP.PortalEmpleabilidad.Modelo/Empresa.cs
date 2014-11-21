@@ -9,12 +9,12 @@ namespace UTP.PortalEmpleabilidad.Modelo
     public class Empresa
     {
         public int IdEmpresa { get; set; }
-        public string Nombre { get; set; }
+        public string NombreComercial { get; set; }
         public string RazonSocial { get; set; }
         public string Pais { get; set; }
         public string IdentificadorTributario { get; set; }
         public string DescripcionEmpresa { get; set; }
-        public string PresentacionEmpresa { get; set; }
+        public string LinkVideo { get; set; }
         public int AnoCreacion { get; set; }
         public string NumeroEmpleados { get; set; }
         public string EstadoEmpresa { get; set; }
@@ -22,6 +22,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string SectorEmpresarial2 { get; set; }
         public string SectorEmpresarial3 { get; set; }
         public string CreadoPor { get; set; }
+        public string UsuarioEC { get; set; }
 
     }
 }

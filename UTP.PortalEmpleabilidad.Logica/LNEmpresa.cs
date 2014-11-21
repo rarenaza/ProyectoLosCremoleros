@@ -12,14 +12,14 @@ namespace UTP.PortalEmpleabilidad.Logica
 {
     public class LNEmpresa
     {
-        ADEmpresa ad = new ADEmpresa();
+        ADEmpresa adEmpresa = new ADEmpresa();
 
         public VistaPanelCabecera ObtenerPanelCabecera(string usuarioEmpresa)
         {
             VistaPanelCabecera panel = new VistaPanelCabecera();
 
             //Se llenan los datos del alumno.
-            DataTable dtResultado = ad.ObtenerCabeceraPorCodigoUsuario(usuarioEmpresa);
+            DataTable dtResultado = adEmpresa.ObtenerCabeceraPorCodigoUsuario(usuarioEmpresa);
 
             if (dtResultado.Rows.Count > 0)
             {
@@ -50,6 +50,11 @@ namespace UTP.PortalEmpleabilidad.Logica
             }
 
             return panel;
+        }
+
+        public void Insertar(Empresa empresa)
+        {
+            adEmpresa.Insertar(empresa);
         }
     }
 }
