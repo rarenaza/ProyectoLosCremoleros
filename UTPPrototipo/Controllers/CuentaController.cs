@@ -33,6 +33,16 @@ namespace UTPPrototipo.Controllers
             else
                 if (usuario.NombreUsuario == "empresa")
                 {
+                    //Realizar la busqueda del usuario empresa en la BD y obtener su informacion
+                    //El metodo que va a la BD debe devolver el tipo Sesion.
+                    //Para propositos de desarrollo se crea temporalmente esa variable en la capa de presentación.
+
+                    Ticket ticket = new Ticket();
+                    ticket.UsuarioNombre = usuario.NombreUsuario;
+                    ticket.IdEmpresa = 1;
+
+                    Session["Ticket"] = ticket;
+
                     return RedirectToAction("Index", "Empresa");
                 }
                 else

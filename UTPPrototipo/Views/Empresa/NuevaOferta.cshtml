@@ -5,515 +5,483 @@
     ViewBag.Title = "Nueva Oferta Laboral";
 }
 <div class="container" style="margin-top:2px;">
-    <div class="panel-group" id="datos-cuenta" role="tablist" aria-multiselectable="true">
-        <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingOne" style="padding: 2px 2px 2px 6px;">
-                <h5 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="fuente-seccion">
-                        Cuenta - Criteria IT S.A.C. - Aldo Junior Barja Brito
-                    </a>
-                </h5>
-            </div>
-            <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                <div class="panel-body">
-                    <div class="col-md-4">
-                        <table>
-                            <tr>
-                                <td>
-                                    <img class="foto-empresa" src="~/img/logos/LogoCriteria.jpg" />
-                                </td>
-                                <td style="vertical-align:top;">
-                                    <strong>
-                                        Criteria IT S.A.C.
-                                        <br />20555167581
-                                    </strong>
 
-                                    <br /><a href="#" class="fuente-pequeña">Modificar Datos ...</a>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="col-md-4 fuente-pequeña">
-                        Usuario <strong>
-                            Aldo Junior Barja Brito<br />
-                        </strong>
-                        DNI <strong>89226681</strong><br />
-                        E-mail <strong>aldo.barja@criteriait.com</strong><br />
-                        Celular <strong>954123876</strong>
-                    </div>
-                    <div class="col-md-4 fuente-pequeña">
-                        Locación <strong>Software Factory</strong><br />
-                        Dirección <strong>Calle Saturno 1067, Urb. La Luz, Cercado de Lima</strong><br />
-                        Teléfono <strong>7149968</strong><br />
-                    </div>
-                </div>
+    @{Html.RenderAction("VistaCabecera", "Empresa");}
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+    
+        @Html.HiddenFor(model => model.IdEmpresa)
+        @Html.HiddenFor(model => model.CreadoPor)
+        
+        <div class="row">
+            <div class="col-sm-3 fuente-seccion">
+                Nueva Oferta Laboral
+            </div>
+            <div class="col-sm-3 fuente-seccion">
+                Estado: Pendiente de Activación
+            </div>
+            <div class="col-sm-3 fuente-seccion">
+                <input type="checkbox" /><span> Recibir correos&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            </div>
+            <div class="col-sm-3 fuente-seccion" style="text-align:right;">
+                <button class="btn btn-default color-paleta2" style="margin-bottom:5px;">Grabar Cambios</button>
             </div>
         </div>
 
-    </div>
-    <div class="row">
-        <div class="col-sm-3 fuente-seccion">
-            Nueva Oferta Laboral
-        </div>
-        <div class="col-sm-3 fuente-seccion">
-            Estado: Pendiente de Activación
-        </div>
-        <div class="col-sm-3 fuente-seccion">
-            <input type="checkbox" /><span> Recibir correos&nbsp;&nbsp;&nbsp;&nbsp;</span>
-        </div>
-        <div class="col-sm-3 fuente-seccion" style="text-align:right;">
-            <button class="btn btn-default color-paleta2" style="margin-bottom:5px;">Grabar Cambios</button>
-        </div>
-    </div>
-    <script src="~/Scripts/ckeditor/ckeditor.js"></script>
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="panel-group" id="oferta-anuncio" role="tablist" aria-multiselectable="true">
-                <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingOferta" style="padding: 2px 2px 2px 6px;">
-                        <h5 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOferta" aria-expanded="true" aria-controls="collapseOferta" class="fuente-seccion">
-                                Descripción de la Oferta
-                            </a>
-                        </h5>
-                    </div>
-                    <div id="collapseOferta" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOferta">
-                        <div class="panel-body fuente-pequeña">
-                            <div class="input-group">
-                                <span class="input-group-addon">Cargo</span>
-                                @*<input type="text" class="form-control" placeholder="Nombre del cargo a publicar">*@
-                                @Html.EditorFor(model => model.CargoOfrecido)
-                            </div>
-                            <div class="input-group">
-                                <span class="input-group-addon">Funciones</span>
-                                @*<textarea class="form-control" rows="6"></textarea>*@
-                                <textarea name="editor1" id="editor1" rows="6" cols="80">
-                                    
-                                </textarea>
-                            </div>
-                            <div class="input-group">
-                                <span class="input-group-addon">Compe-<br />tencias</span>
-                                @*<textarea class="form-control" rows="4"></textarea>*@
-                                <textarea name="editor2" id="editor2" rows="6" cols="80">
-                                   
-                                </textarea>
-                            </div>
-                            <br />
+        <script src="~/Scripts/ckeditor/ckeditor.js"></script>
 
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="panel-group" id="oferta-anuncio" role="tablist" aria-multiselectable="true">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingOferta" style="padding: 2px 2px 2px 6px;">
+                            <h5 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOferta" aria-expanded="true" aria-controls="collapseOferta" class="fuente-seccion">
+                                    Descripción de la Oferta
+                                </a>
+                            </h5>
+                        </div>
+                        <div id="collapseOferta" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOferta">
+                            <div class="panel-body fuente-pequeña">
+                                <div class="input-group">
+                                    <span class="input-group-addon">Cargo</span>
+                                    @*<input type="text" class="form-control" placeholder="Nombre del cargo a publicar">*@
+                                    @Html.EditorFor(model => model.CargoOfrecido, new { @class = "form-control" })
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-addon">Funciones</span>
+                                    @*<textarea class="form-control" rows="6"></textarea>*@
+                                    <textarea name="editor1" id="editor1" rows="6" cols="80"></textarea>
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-addon">Compe-<br />tencias</span>
+                                    @*<textarea class="form-control" rows="4"></textarea>*@
+                                    <textarea name="editor2" id="editor2" rows="6" cols="80"></textarea>
+                                </div>
+                                <br />
+
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <script>    
-                CKEDITOR.replace('editor1');
-                CKEDITOR.replace('editor2');
-            </script>
+                <script>
 
-            <div class="panel-group" id="oferta-detalle" role="tablist" aria-multiselectable="true">
-                <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingDetalle" style="padding: 2px 2px 2px 6px;">
-                        <h5 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseDetalle" aria-expanded="true" aria-controls="collapseDetalle" class="fuente-seccion">
-                                Condiciones de la Oferta
-                            </a>
-                        </h5>
-                    </div>
-                    <div id="collapseDetalle" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingDetalle">
-                        <div class="panel-body fuente-pequeña">
-                            <div class="input-group">
-                                <span class="input-group-addon">Recibir<br />CVs hasta</span>
-                                <input type="text" class="form-control" placeholder="Fecha de fin de publicación">
-                            </div>
-                            <div class="input-group">
-                                <span class="input-group-addon">Área</span>
-                                <input type="text" class="form-control" placeholder="Área o división de la empresa">
-                            </div>
-                            <div class="input-group">
-                                <span class="input-group-addon">Tipo de<br />Cargo</span>
-                                <select class="form-control">
-                                    <option value="">
-                                        -- Selecciones un Tipo de Cargo --
-                                    </option>
+                    CKEDITOR.replace('editor1');
+                    CKEDITOR.replace('editor2');
+                </script>
 
-                                    <option>Practicante</option>
-                                    <option>
-                                        Obrero
-                                    </option>
-                                    <option>
-                                        Empleado
-                                    </option>
-                                    <option>
-                                        Supervisor
-                                    </option>
-                                    <option>
-                                        Ejecutivo
-                                    </option>
-                                </select>
-                            </div>
-                            <div class="input-group">
-                                <span class="input-group-addon">Tipo de<br />Trabajo</span>
-                                <select class="form-control">
-                                    <option value="">
-                                        -- Selecciones un Tipo de Trabajo --
-                                    </option>
-                                    <option>
-                                        Tiempo Completo
-                                    </option>
-                                    <option>
-                                        Medio tiempo
-                                    </option>
-                                    <option>
-                                        Temporal
-                                    </option>
-                                    <option>
-                                        Freelance
-                                    </option>
-                                </select>
-                            </div>
-                            <div class="input-group">
-                                <span class="input-group-addon">Tipo de<br />Contrato</span>
-                                <select class="form-control">
-                                    <option value="">
-                                        -- Selecciones un Tipo de Contrato --
-                                    </option>
-                                    <option>
-                                        En Planilla
-                                    </option>
-                                    <option>
-                                        Recibo por Honorarios
-                                    </option>
-                                </select>
-                            </div>
-                            <div class="input-group">
-                                <span class="input-group-addon">Duración<br />en meses</span>
-                                <input type="text" class="form-control" placeholder="Vacio si es indeterminada">
-                            </div>
-                            <div class="input-group">
-                                <span class="input-group-addon">Horario</span>
-                                <input type="text" class="form-control" placeholder="Ej: De Lunes a Viernes de 9:00am a 6:00pm">
-                            </div>
-                            <div class="input-group">
-                                <span class="input-group-addon">Sueldo S/.</span>
-                                <input type="text" class="form-control" placeholder="Sueldo a pagar en Nuevos Soles">
-                            </div>
+                <div class="panel-group" id="oferta-detalle" role="tablist" aria-multiselectable="true">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingDetalle" style="padding: 2px 2px 2px 6px;">
+                            <h5 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseDetalle" aria-expanded="true" aria-controls="collapseDetalle" class="fuente-seccion">
+                                    Condiciones de la Oferta
+                                </a>
+                            </h5>
+                        </div>
+                        <div id="collapseDetalle" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingDetalle">
+                            <div class="panel-body fuente-pequeña">
+                                <div class="input-group">
+                                    <span class="input-group-addon">Recibir<br />CVs hasta</span>
+                                    <input type="text" class="form-control" placeholder="Fecha de fin de publicación">
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-addon">Área</span>
+                                    <input type="text" class="form-control" placeholder="Área o división de la empresa">
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-addon">Tipo de<br />Cargo</span>
+                                    <select class="form-control">
+                                        <option value="">
+                                            -- Selecciones un Tipo de Cargo --
+                                        </option>
+
+                                        <option>Practicante</option>
+                                        <option>
+                                            Obrero
+                                        </option>
+                                        <option>
+                                            Empleado
+                                        </option>
+                                        <option>
+                                            Supervisor
+                                        </option>
+                                        <option>
+                                            Ejecutivo
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-addon">Tipo de<br />Trabajo</span>
+                                    <select class="form-control">
+                                        <option value="">
+                                            -- Selecciones un Tipo de Trabajo --
+                                        </option>
+                                        <option>
+                                            Tiempo Completo
+                                        </option>
+                                        <option>
+                                            Medio tiempo
+                                        </option>
+                                        <option>
+                                            Temporal
+                                        </option>
+                                        <option>
+                                            Freelance
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-addon">Tipo de<br />Contrato</span>
+                                    <select class="form-control">
+                                        <option value="">
+                                            -- Selecciones un Tipo de Contrato --
+                                        </option>
+                                        <option>
+                                            En Planilla
+                                        </option>
+                                        <option>
+                                            Recibo por Honorarios
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-addon">Duración<br />en meses</span>
+                                    <input type="text" class="form-control" placeholder="Vacio si es indeterminada">
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-addon">Horario</span>
+                                    <input type="text" class="form-control" placeholder="Ej: De Lunes a Viernes de 9:00am a 6:00pm">
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-addon">Sueldo S/.</span>
+                                    <input type="text" class="form-control" placeholder="Sueldo a pagar en Nuevos Soles">
+                                </div>
 
 
-                            <div class="input-group">
-                                <span class="input-group-addon">Vacantes</span>
-                                <input type="text" class="form-control" placeholder="Número de vacantes para el puesto">
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-7">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">Ubicación</span>
-                                        <select class="form-control">
-                                            <option value="">
-                                                -- Seleccione Ubicación del Trabajo --
-                                            </option>
-                                            <option>
-                                                Oficina Principal: Av del Sur 310, Of 102, Surco
-                                            </option>
-                                            <option>
-                                                Software Factory: Calle Saturno 1067, Cercado de Lima
-                                            </option>
+                                <div class="input-group">
+                                    <span class="input-group-addon">Vacantes</span>
+                                    <input type="text" class="form-control" placeholder="Número de vacantes para el puesto">
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-7">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">Ubicación</span>
+                                            <select class="form-control">
+                                                <option value="">
+                                                    -- Seleccione Ubicación del Trabajo --
+                                                </option>
+                                                <option>
+                                                    Oficina Principal: Av del Sur 310, Of 102, Surco
+                                                </option>
+                                                <option>
+                                                    Software Factory: Calle Saturno 1067, Cercado de Lima
+                                                </option>
 
-                                        </select>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-5 fuente-pequeña" style="text-align:right;">
+                                        <button class="btn btn-default color-paleta2">Nueva Ubicación</button>
                                     </div>
                                 </div>
-                                <div class="col-sm-5 fuente-pequeña" style="text-align:right;">
-                                    <button class="btn btn-default color-paleta2">Nueva Ubicación</button>
-                                </div>
-                            </div>
 
-                            <br />
+                                <br />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-sm-6">
+
+
+                <div class="panel-group" id="oferta-fases" role="tablist" aria-multiselectable="true">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingFases" style="padding: 2px 2px 2px 6px;">
+                            <h5 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#oferta-fases" href="#collapseFases" aria-expanded="true" aria-controls="collapseFases" class="fuente-seccion">
+                                    Fases de la Oferta
+                                </a>
+                            </h5>
+                        </div>
+                        <div id="collapseFases" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFases">
+                            <div class="panel-body fuente-pequeña">
+                                <p>Seleccionar Fases para esta Oferta</p>
+                                <p><span><input type="checkbox" checked disabled /></span> CVs Pendientes de Revisión</p>
+                                <p>
+                                    <span><input type="checkbox" checked disabled /></span> CVs en Revisión
+                                </p>
+                                <p>
+                                    <span><input type="checkbox" /></span> Dinámica Grupal
+                                </p>
+                                <p>
+                                    <span><input type="checkbox" /></span> Primera Entrevista
+                                </p>
+                                <p>
+                                    <span><input type="checkbox" /></span> Examen de Conocimientos
+                                </p>
+                                <p><span><input type="checkbox" /></span> Evaluaciones Psicológicas/Psicotécnicas</p>
+                                <p><span><input type="checkbox" /></span> Examen Médico</p>
+                                <p><span><input type="checkbox" /></span> Entrevista Final</p>
+                                <p><span><input type="checkbox" /></span> Contratación</p>
+                                <p><span><input type="checkbox" checked disabled /></span> Proceso Finalizado</p>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="panel-group" id="oferta-requisito" role="tablist" aria-multiselectable="true">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingRequisito" style="padding: 2px 2px 2px 6px;">
+                            <h5 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#oferta-requisito" href="#collapseRequisito" aria-expanded="true" aria-controls="collapseRequisito" class="fuente-seccion">
+                                    Requisitos de la Oferta
+                                </a>
+                            </h5>
+                        </div>
+                        <div id="collapseRequisito" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingRequisito">
+                            <div class="panel-body fuente-pequeña">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <strong class="sub-titulo-seccion">Estudios</strong>
+                                    </div>
+                                </div>
+                                <br />
+                                <table class="fuente-pequeña">
+                                    <tr>
+                                        <td class="celda-nombre">Tipo</td>
+                                        <td class="celda-datos">Universitario</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="celda-nombre">Estudio</td>
+                                        <td class="celda-datos">ING. SISTEMAS E INFORMATICA</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="celda-nombre">Estado</td>
+                                        <td class="celda-datos">Bachiller</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="celda-nombre">Ciclo mínimo</td>
+                                        <td class="celda-datos">3</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="celda-nombre"></td>
+                                        <td class="celda-datos">
+                                            <p class="fui fa-2x" style="color:gray;">
+                                                1 l
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <br />
+                                <table class="fuente-pequeña">
+                                    <tr>
+                                        <td class="celda-nombre">Tipo</td>
+                                        <td class="celda-datos">Post-Grado</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="celda-nombre">Estudio</td>
+                                        <td class="celda-datos">Business Administration</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="celda-nombre">Estado</td>
+                                        <td class="celda-datos">Magister</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="celda-nombre">Ciclo mínimo</td>
+                                        <td class="celda-datos">-</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="celda-nombre"></td>
+                                        <td class="celda-datos">
+                                            <p class="fui fa-2x" style="color:gray;">
+                                                1 l
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </table>
+
+                                <div class="row">
+                                    <div class="col-sm-12" style="text-align:right;">
+                                        <button data-toggle="modal" data-target="#Modal-estudio-especifico" class="btn btn-default color-paleta2">Agregar un Estudio específico</button>
+                                    </div>
+                                </div>
+                                <hr />
+
+                               @{Html.RenderAction("ObtenerSectoresEmpresariales", "OfertaSectorEmpresarial", new { idOferta = Model.IdOferta }); }
+
+                                @*<div class="row">
+                                    <div class="col-md-12">
+                                        <strong class="sub-titulo-seccion">Expericencia por Sector Empresarial</strong>
+                                    </div>
+                                </div>
+                                <br />
+
+                                <table class="fuente-pequeña">
+                                    <tr>
+                                        <td class="celda-nombre">Sector</td>
+                                        <td class="celda-datos">Tecnología y Software</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="celda-nombre">Años de experiencia</td>
+                                        <td class="celda-datos">3</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="celda-nombre">Excluyente</td>
+                                        <td class="celda-datos">Si</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="celda-nombre"></td>
+                                        <td class="celda-datos">
+                                            <p class="fui fa-2x" style="color:gray;">
+                                                1 l
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <br />
+                                <table class="fuente-pequeña">
+                                    <tr>
+                                        <td class="celda-nombre">Sector</td>
+                                        <td class="celda-datos">Servicios</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="celda-nombre">Años de experiencia</td>
+                                        <td class="celda-datos"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="celda-nombre">Excluyente</td>
+                                        <td class="celda-datos">No</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="celda-nombre"></td>
+                                        <td class="celda-datos">
+                                            <p class="fui fa-2x" style="color:gray;">
+                                                1 l
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div class="row">
+                                    <div class="col-sm-12" style="text-align:right;">
+                                        <button data-toggle="modal" data-target="#Modal-experiencia-sector" class="btn btn-default color-paleta2">Agregar Experiencia por Sector</button>
+                                    </div>
+                                </div>*@
+                                <hr />
+                               
+                                @{Html.RenderAction("ObtenerInformacionAdicional", "OfertaInformacionAdicional", new { idOferta = @Model.IdOferta });}
+
+                                @*<div class="row">
+                                    <div class="col-md-12">
+                                        <strong class="sub-titulo-seccion">Información Adicional</strong>
+                                    </div>
+                                </div>
+                                <br />
+                                <table class="fuente-pequeña">
+                                    <tr>
+                                        <td class="celda-nombre">Tipo</td>
+                                        <td class="celda-datos">Sistemas</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="celda-nombre">Conocimiento</td>
+                                        <td class="celda-datos">Microsoft Project 2010</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="celda-nombre">Nivel</td>
+                                        <td class="celda-datos">Experto</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="celda-nombre">Años de experiencia</td>
+                                        <td class="celda-datos">2</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="celda-nombre"></td>
+                                        <td class="celda-datos">
+                                            <p class="fui fa-2x" style="color:gray;">
+                                                1 l
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <br />
+                                <table class="fuente-pequeña">
+                                    <tr>
+                                        <td class="celda-nombre">Tipo</td>
+                                        <td class="celda-datos">Pasatiempo</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="celda-nombre">Conocimiento</td>
+                                        <td class="celda-datos">Karate</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="celda-nombre">Nivel</td>
+                                        <td class="celda-datos">Medio</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="celda-nombre">Años de experiencia</td>
+                                        <td class="celda-datos">3</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="celda-nombre"></td>
+                                        <td class="celda-datos">
+                                            <p class="fui fa-2x" style="color:gray;">
+                                                1 l
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <br />
+                                <table class="fuente-pequeña">
+                                    <tr>
+                                        <td class="celda-nombre">Tipo</td>
+                                        <td class="celda-datos">Sistemas</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="celda-nombre">Conocimiento</td>
+                                        <td class="celda-datos">Gestión de Proyectos PMI</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="celda-nombre">Nivel</td>
+                                        <td class="celda-datos">Experto</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="celda-nombre">Años de experiencia</td>
+                                        <td class="celda-datos">5</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="celda-nombre"></td>
+                                        <td class="celda-datos">
+                                            <p class="fui fa-2x" style="color:gray;">
+                                                1 l
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div class="row">
+                                    <div class="col-sm-12" style="text-align:right;">
+                                        <button data-toggle="modal" data-target="#Modal-inf-adicional" class="btn btn-default color-paleta2">Agregar Información Adicional</button>
+                                    </div>
+                                </div>*@
+                                <br />
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
 
-        <div class="col-sm-6">
-
-
-            <div class="panel-group" id="oferta-fases" role="tablist" aria-multiselectable="true">
-                <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingFases" style="padding: 2px 2px 2px 6px;">
-                        <h5 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#oferta-fases" href="#collapseFases" aria-expanded="true" aria-controls="collapseFases" class="fuente-seccion">
-                                Fases de la Oferta
-                            </a>
-                        </h5>
-                    </div>
-                    <div id="collapseFases" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFases">
-                        <div class="panel-body fuente-pequeña">
-                            <p>Seleccionar Fases para esta Oferta</p>
-                            <p><span><input type="checkbox" checked disabled /></span> CVs Pendientes de Revisión</p>
-                            <p>
-                                <span><input type="checkbox" checked disabled /></span> CVs en Revisión
-                            </p>
-                            <p>
-                                <span><input type="checkbox" /></span> Dinámica Grupal
-                            </p>
-                            <p>
-                                <span><input type="checkbox" /></span> Primera Entrevista
-                            </p>
-                            <p>
-                                <span><input type="checkbox" /></span> Examen de Conocimientos
-                            </p>
-                            <p><span><input type="checkbox" /></span> Evaluaciones Psicológicas/Psicotécnicas</p>
-                            <p><span><input type="checkbox" /></span> Examen Médico</p>
-                            <p><span><input type="checkbox" /></span> Entrevista Final</p>
-                            <p><span><input type="checkbox" /></span> Contratación</p>
-                            <p><span><input type="checkbox" checked disabled /></span> Proceso Finalizado</p>
-
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-
-            <div class="panel-group" id="oferta-requisito" role="tablist" aria-multiselectable="true">
-                <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingRequisito" style="padding: 2px 2px 2px 6px;">
-                        <h5 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#oferta-requisito" href="#collapseRequisito" aria-expanded="true" aria-controls="collapseRequisito" class="fuente-seccion">
-                                Requisitos de la Oferta
-                            </a>
-                        </h5>
-                    </div>
-                    <div id="collapseRequisito" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingRequisito">
-                        <div class="panel-body fuente-pequeña">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <strong class="sub-titulo-seccion">Estudios</strong>
-                                </div>
-                            </div>
-                            <br />
-                            <table class="fuente-pequeña">
-                                <tr>
-                                    <td class="celda-nombre">Tipo</td>
-                                    <td class="celda-datos">Universitario</td>
-                                </tr>
-                                <tr>
-                                    <td class="celda-nombre">Estudio</td>
-                                    <td class="celda-datos">ING. SISTEMAS E INFORMATICA</td>
-                                </tr>
-
-                                <tr>
-                                    <td class="celda-nombre">Estado</td>
-                                    <td class="celda-datos">Bachiller</td>
-                                </tr>
-                                <tr>
-                                    <td class="celda-nombre">Ciclo mínimo</td>
-                                    <td class="celda-datos">3</td>
-                                </tr>
-                                <tr>
-                                    <td class="celda-nombre"></td>
-                                    <td class="celda-datos">
-                                        <p class="fui fa-2x" style="color:gray;">
-                                            1 l
-                                        </p>
-                                    </td>
-                                </tr>
-                            </table>
-                            <br />
-                            <table class="fuente-pequeña">
-                                <tr>
-                                    <td class="celda-nombre">Tipo</td>
-                                    <td class="celda-datos">Post-Grado</td>
-                                </tr>
-                                <tr>
-                                    <td class="celda-nombre">Estudio</td>
-                                    <td class="celda-datos">Business Administration</td>
-                                </tr>
-                                <tr>
-                                    <td class="celda-nombre">Estado</td>
-                                    <td class="celda-datos">Magister</td>
-                                </tr>
-                                <tr>
-                                    <td class="celda-nombre">Ciclo mínimo</td>
-                                    <td class="celda-datos">-</td>
-                                </tr>
-                                <tr>
-                                    <td class="celda-nombre"></td>
-                                    <td class="celda-datos">
-                                        <p class="fui fa-2x" style="color:gray;">
-                                            1 l
-                                        </p>
-                                    </td>
-                                </tr>
-                            </table>
-
-
-                            <div class="row">
-                                <div class="col-sm-12" style="text-align:right;">
-                                    <button data-toggle="modal" data-target="#Modal-estudio-especifico" class="btn btn-default color-paleta2">Agregar un Estudio específico</button>
-                                </div>
-                            </div>
-                            <hr />
-
-                            
-
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <strong class="sub-titulo-seccion">Expericencia por Sector Empresarial</strong>
-                                </div>
-                            </div>
-                            <br />
-
-                            <table class="fuente-pequeña">
-                                <tr>
-                                    <td class="celda-nombre">Sector</td>
-                                    <td class="celda-datos">Tecnología y Software</td>
-                                </tr>
-                                <tr>
-                                    <td class="celda-nombre">Años de experiencia</td>
-                                    <td class="celda-datos">3</td>
-                                </tr>
-                                <tr>
-                                    <td class="celda-nombre">Excluyente</td>
-                                    <td class="celda-datos">Si</td>
-                                </tr>
-                                <tr>
-                                    <td class="celda-nombre"></td>
-                                    <td class="celda-datos">
-                                        <p class="fui fa-2x" style="color:gray;">
-                                            1 l
-                                        </p>
-                                    </td>
-                                </tr>
-                            </table>
-                            <br />
-                            <table class="fuente-pequeña">
-                                <tr>
-                                    <td class="celda-nombre">Sector</td>
-                                    <td class="celda-datos">Servicios</td>
-                                </tr>
-                                <tr>
-                                    <td class="celda-nombre">Años de experiencia</td>
-                                    <td class="celda-datos"></td>
-                                </tr>
-                                <tr>
-                                    <td class="celda-nombre">Excluyente</td>
-                                    <td class="celda-datos">No</td>
-                                </tr>
-                                <tr>
-                                    <td class="celda-nombre"></td>
-                                    <td class="celda-datos">
-                                        <p class="fui fa-2x" style="color:gray;">
-                                            1 l
-                                        </p>
-                                    </td>
-                                </tr>
-                            </table>
-                            <div class="row">
-                                <div class="col-sm-12" style="text-align:right;">
-                                    <button data-toggle="modal" data-target="#Modal-experiencia-sector" class="btn btn-default color-paleta2">Agregar Experiencia por Sector</button>
-                                </div>
-                            </div>
-                            <hr />
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <strong class="sub-titulo-seccion">Información Adicional</strong>
-                                </div>
-                            </div>
-                            <br />
-                            <table class="fuente-pequeña">
-                                <tr>
-                                    <td class="celda-nombre">Tipo</td>
-                                    <td class="celda-datos">Sistemas</td>
-                                </tr>
-                                <tr>
-                                    <td class="celda-nombre">Conocimiento</td>
-                                    <td class="celda-datos">Microsoft Project 2010</td>
-                                </tr>
-                                <tr>
-                                    <td class="celda-nombre">Nivel</td>
-                                    <td class="celda-datos">Experto</td>
-                                </tr>
-                                <tr>
-                                    <td class="celda-nombre">Años de experiencia</td>
-                                    <td class="celda-datos">2</td>
-                                </tr>
-                                <tr>
-                                    <td class="celda-nombre"></td>
-                                    <td class="celda-datos">
-                                        <p class="fui fa-2x" style="color:gray;">
-                                            1 l
-                                        </p>
-                                    </td>
-                                </tr>
-                            </table>
-                            <br />
-                            <table class="fuente-pequeña">
-                                <tr>
-                                    <td class="celda-nombre">Tipo</td>
-                                    <td class="celda-datos">Pasatiempo</td>
-                                </tr>
-                                <tr>
-                                    <td class="celda-nombre">Conocimiento</td>
-                                    <td class="celda-datos">Karate</td>
-                                </tr>
-                                <tr>
-                                    <td class="celda-nombre">Nivel</td>
-                                    <td class="celda-datos">Medio</td>
-                                </tr>
-                                <tr>
-                                    <td class="celda-nombre">Años de experiencia</td>
-                                    <td class="celda-datos">3</td>
-                                </tr>
-                                <tr>
-                                    <td class="celda-nombre"></td>
-                                    <td class="celda-datos">
-                                        <p class="fui fa-2x" style="color:gray;">
-                                            1 l
-                                        </p>
-                                    </td>
-                                </tr>
-                            </table>
-                            <br />
-                            <table class="fuente-pequeña">
-                                <tr>
-                                    <td class="celda-nombre">Tipo</td>
-                                    <td class="celda-datos">Sistemas</td>
-                                </tr>
-                                <tr>
-                                    <td class="celda-nombre">Conocimiento</td>
-                                    <td class="celda-datos">Gestión de Proyectos PMI</td>
-                                </tr>
-                                <tr>
-                                    <td class="celda-nombre">Nivel</td>
-                                    <td class="celda-datos">Experto</td>
-                                </tr>
-                                <tr>
-                                    <td class="celda-nombre">Años de experiencia</td>
-                                    <td class="celda-datos">5</td>
-                                </tr>
-                                <tr>
-                                    <td class="celda-nombre"></td>
-                                    <td class="celda-datos">
-                                        <p class="fui fa-2x" style="color:gray;">
-                                            1 l
-                                        </p>
-                                    </td>
-                                </tr>
-                            </table>
-                            <div class="row">
-                                <div class="col-sm-12" style="text-align:right;">
-                                    <button data-toggle="modal" data-target="#Modal-inf-adicional" class="btn btn-default color-paleta2">Agregar Información Adicional</button>
-                                </div>
-                            </div>
-                            <br />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    }
 </div>
 <script>
     $(document).ready(function () {
@@ -531,7 +499,7 @@
                 <h4 class="modal-title" id="Estudio">Estudio específico</h4>
             </div>
             <div class="modal-body">
-                
+
                 <div class="row">
                     <div class="col-md-12">
                         <div class="input-group fuente-pequeña">
@@ -843,7 +811,7 @@
                 <h4 class="modal-title" id="ExperienciaLaboral">Experiencia Por Sector</h4>
             </div>
             <div class="modal-body">
-                
+
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="input-group fuente-pequeña">
@@ -878,7 +846,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="row">
                     <div class="col-sm-12 text-right"><button type="button" class="btn btn-default color-paleta2 fuente-pequeña" style="color: white; margin-bottom: 10px;">Grabar Experiencia x Sector</button></div>
                 </div>

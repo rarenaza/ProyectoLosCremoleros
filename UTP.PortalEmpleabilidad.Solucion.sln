@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UTP.PortalEmpleabilidad.Presentacion", "UTPPrototipo\UTP.PortalEmpleabilidad.Presentacion.csproj", "{78020A99-CCDF-4961-9B4D-95EEE3B8EB97}"
 EndProject

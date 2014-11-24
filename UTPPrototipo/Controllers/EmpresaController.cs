@@ -15,7 +15,6 @@ namespace UTPPrototipo.Controllers
         LNEmpresa lnEmpresa = new LNEmpresa();
         LNOferta lnOferta = new LNOferta();
         LNOfertaEmpresa lnOfertaEmpresa = new LNOfertaEmpresa();
-
         public string usuarioEmpresa = "82727128";
 
         //
@@ -26,7 +25,11 @@ namespace UTPPrototipo.Controllers
         }
         public ActionResult Publicacion()
         {
-            List<VistaOfertaEmpresa> lista = lnOferta.Obtener_PanelEmpresa(0);
+            //Se obtiene los datos de la sesion.
+            Ticket ticket = (Ticket)Session["Ticket"];
+            int idEmpresa = ticket.IdEmpresa;
+
+            List<VistaOfertaEmpresa> lista = lnOferta.Obtener_PanelEmpresa(idEmpresa);
 
             return View(lista);
         }
@@ -36,6 +39,7 @@ namespace UTPPrototipo.Controllers
         }
         public ActionResult NuevaOferta()
         {
+
             Oferta oferta = new Oferta();
             oferta.IdEmpresa = 1;
             oferta.UsuarioPropietarioEmpresa = "";
@@ -53,11 +57,27 @@ namespace UTPPrototipo.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        //public ActionResult NuevaOferta([Bind(Include = "CreadorPor")] Oferta oferta)
         public ActionResult NuevaOferta(Oferta oferta)
         {
             if (ModelState.IsValid)
             {
+                oferta.UsuarioPropietarioEmpresa = "usuarioEmpresa";
+                oferta.EstadoOferta = "OFERPR"; //Estado pendiente de activación.
+                oferta.FechaPublicacion = DateTime.Now;
+                oferta.FechaFinProceso = DateTime.Now.AddDays(10);
+                oferta.IdEmpresaLocacion = 1; //TODO: Reemplazar por combo.
+                oferta.DescripcionOferta = "descripcion de la oferta";
+                oferta.TipoTrabajo = "OFTTTC"; //Tipo de trabajo: Tiempo completo.    
+                oferta.TipoContrato = "";
+                oferta.TipoCargo = "";
+                oferta.Horario = "";
+                oferta.AreaEmpresa = "";
+                oferta.CreadoPor = "admin";
+
                 lnOfertaEmpresa.Insertar(oferta);
+
+                return RedirectToAction("Publicacion");
             }
 
             return View();
@@ -73,11 +93,11 @@ namespace UTPPrototipo.Controllers
         {
             ////System.Threading.Thread.Sleep(4000);
 
-            //VistaPanelCabecera panel = new VistaPanelCabecera();
+            VistaPanelCabecera panel = new VistaPanelCabecera();
 
-            //panel = lnEmpresa.ObtenerPanelCabecera(usuarioEmpresa);
+            panel = lnEmpresa.ObtenerPanelCabecera(usuarioEmpresa);
 
-            return PartialView("_DatosUsuario");
+            return PartialView("_DatosUsuario", panel);
         }
 
         public ActionResult Postulante()

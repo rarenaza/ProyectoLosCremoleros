@@ -46,6 +46,8 @@
     <Compile Include="ADLista.cs" />
     <Compile Include="ADEmpresa.cs" />
     <Compile Include="ADOferta.cs" />
+    <Compile Include="ADOfertaInformacionAdicional.cs" />
+    <Compile Include="ADOfertaSectorEmpresarial.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

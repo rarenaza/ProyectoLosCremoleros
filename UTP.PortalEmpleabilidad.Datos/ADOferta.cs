@@ -117,10 +117,8 @@ namespace UTP.PortalEmpleabilidad.Datos
 
                 conexion.Open();
 
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
-
-                da.Fill(dt);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);               
+                da.Fill(dtResultado);
 
                 conexion.Close();
             }
@@ -142,7 +140,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.Parameters.Add(new SqlParameter("@UsuarioPropietarioEmpresa", oferta.UsuarioPropietarioEmpresa));
                 cmd.Parameters.Add(new SqlParameter("@EstadoOferta", oferta.EstadoOferta));
                 cmd.Parameters.Add(new SqlParameter("@FechaPublicacion", oferta.FechaPublicacion));
-                cmd.Parameters.Add(new SqlParameter("@FechaFinRecepcionCV", oferta.FechaFinRecepcionCV));
+                //cmd.Parameters.Add(new SqlParameter("@FechaFinRecepcionCV", oferta.FechaFinRecepcionCV));
                 cmd.Parameters.Add(new SqlParameter("@FechaFinProceso", oferta.FechaFinProceso));
                 cmd.Parameters.Add(new SqlParameter("@IdEmpresaLocacion", oferta.IdEmpresaLocacion));
                 cmd.Parameters.Add(new SqlParameter("@DescripcionOferta", oferta.DescripcionOferta));
@@ -152,7 +150,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.Parameters.Add(new SqlParameter("@TipoCargo", oferta.TipoCargo));
                 cmd.Parameters.Add(new SqlParameter("@CargoOfrecido", oferta.CargoOfrecido));
                 cmd.Parameters.Add(new SqlParameter("@RemuneracionOfrecida", oferta.RemuneracionOfrecida));                
-                cmd.Parameters.Add(new SqlParameter("@FechaInicioLabores", oferta.FechaInicioLabores));
+                //cmd.Parameters.Add(new SqlParameter("@FechaInicioLabores", oferta.FechaInicioLabores));
                 cmd.Parameters.Add(new SqlParameter("@Horario", oferta.Horario));                
                 cmd.Parameters.Add(new SqlParameter("@AreaEmpresa", oferta.AreaEmpresa));
                 cmd.Parameters.Add(new SqlParameter("@NumeroVacantes", oferta.NumeroVacantes));
@@ -168,5 +166,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                 conexion.Close();
             }
         }
+
+       
     }
 }

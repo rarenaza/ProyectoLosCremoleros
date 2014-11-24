@@ -19,8 +19,8 @@
                             </td>
                             <td style="vertical-align:top;">
                                 <strong>
-                                    @*@Model.EmpresaRazonSocial
-                                    <br />@Model.EmpresaIdentificadorTributario*@
+                                    @Model.EmpresaRazonSocial
+                                    <br />@Model.EmpresaIdentificadorTributario
                                 </strong>
 
                                 <br /><a href="#" class="fuente-pequeña">Modificar Datos ...</a>
@@ -29,17 +29,17 @@
                     </table>
                 </div>
                 <div class="col-md-4 fuente-pequeña">
-                    @*Usuario <strong>
-                        Aldo Junior Barja Brito<br />
+                    Usuario <strong>
+                        @Model.UsuarioNombre @Model.UsuarioApellido<br />
                     </strong>
-                    DNI <strong>89226681</strong><br />
-                    E-mail <strong>aldo.barja@criteriait.com</strong><br />
-                    Celular <strong>954123876</strong>*@
+                    DNI <strong>@Model.UsuarioNumeroDocumento</strong><br />
+                    E-mail <strong>@Model.UsuarioCorreoElectronico</strong><br />
+                    Celular <strong>@Model.UsuarioTelefonoCelular</strong>
                 </div>
                 <div class="col-md-4 fuente-pequeña">
-                    Locación <strong>Software Factory</strong><br />
-                    Dirección <strong>Calle Saturno 1067, Urb. La Luz, Cercado de Lima</strong><br />
-                    Teléfono <strong>7149968</strong><br />
+                    Locación <strong>@Model.LocacionNombre</strong><br />
+                    Dirección <strong>@Model.LocacionDireccion</strong><br />
+                    Teléfono <strong>@Model.LocacionTelefonoFijo</strong><br />
                 </div>
             </div>
         </div>

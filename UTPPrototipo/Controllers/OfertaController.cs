@@ -10,10 +10,7 @@ namespace UTPPrototipo.Controllers
 {
     public class OfertaController : Controller
     {
-       
-    
-      
-       
+             
 
     }
 }
