@@ -13,5 +13,7 @@ namespace UTPPrototipo.Models
             : base("DefaultConnection")
         {
         }
+
+        public System.Data.Entity.DbSet<UTP.PortalEmpleabilidad.Modelo.Contenido> Contenidoes { get; set; }
     }
 }

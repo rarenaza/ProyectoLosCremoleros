@@ -170,6 +170,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AlumnoController.cs" />
+    <Compile Include="Controllers\ContenidoController.cs" />
     <Compile Include="Controllers\CuentaController.cs" />
     <Compile Include="Controllers\EmpresaController.cs" />
     <Compile Include="Controllers\Evento_Controller.cs" />
@@ -210,6 +211,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Views\Contenido\imagen\Guid01.jpg" />
+    <Content Include="Views\Contenido\imagen\Guid02.jpg" />
     <Content Include="img\Alumna.png" />
     <Content Include="img\cargando.gif" />
     <Content Include="img\testimonio\customer-testimonials.jpg" />
@@ -669,7 +672,6 @@
     <Content Include="Views\Empresa\NuevaOferta.cshtml" />
     <Content Include="Views\Alumno\VistaPostulante.cshtml" />
     <Content Include="Views\Evento_\Evento_Mostrar.cshtml" />
-    <Content Include="Views\Oferta\Oferta_Mostrar.cshtml" />
     <Content Include="Views\Cuenta\_Login.cshtml" />
     <Content Include="Views\Empresa\Reclutar.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Html.cshtml" />
@@ -677,6 +679,10 @@
     <Content Include="Views\Empresa\Registrar.cshtml" />
     <Content Include="Views\OfertaInformacionAdicional\_OfertaInformacionAdicional.cshtml" />
     <Content Include="Views\OfertaSectorEmpresarial\_OfertaSectorEmpresarial.cshtml" />
+    <Content Include="Views\Contenido\Index.cshtml" />
+    <Content Include="Views\Alumno\ObtenerListaOpciones.cshtml" />
+    <Content Include="Views\Contenido\Contenido_insertar.cshtml" />
+    <Content Include="Views\Contenido\Contenido_Buscar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

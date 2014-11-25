@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LNAlumno.cs" />
+    <Compile Include="LNContenido.cs" />
     <Compile Include="LNEvento.cs" />
     <Compile Include="LNLista.cs" />
     <Compile Include="LNEmpresa.cs" />

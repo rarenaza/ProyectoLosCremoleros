@@ -8,7 +8,7 @@ namespace UTP.PortalEmpleabilidad.Modelo.Vistas.Ofertas
 {
   public   class VistaComboAlumno
     {
-      public int ID { get; set; }
+      public int Id { get; set; }
      public string Cargo { get; set; }
      public string IDListaValor { get; set; }
 

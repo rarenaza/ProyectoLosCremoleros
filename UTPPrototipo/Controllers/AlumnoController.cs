@@ -226,9 +226,66 @@ namespace UTPPrototipo.Controllers
             }
 
             ViewData["ListaValor"] = li;
+
+   
             return View();
 
         }
+
+        public ActionResult ObtenerListaOpciones()
+        {
+
+            //Busca  en la tabla lista a carrera profesional
+            const int id = 5;
+
+            DataTable dtprueba = lnoferta.ObtenerLista_ListaValor(id);
+            VistaComboAlumno vista = new VistaComboAlumno();
+
+            List<SelectListItem> listitem2 = new List<SelectListItem>();
+
+            for (int i = 0; i <= dtprueba.Rows.Count - 1; i++)
+            {
+                vista.Cargo = dtprueba.Rows[i]["DescripcionValor"].ToString();
+                vista.IDListaValor = dtprueba.Rows[i]["IDListaValor"].ToString();
+
+
+                listitem2.Add(new SelectListItem() { Value = vista.Cargo, Text = vista.IDListaValor.ToString() });
+
+
+            }
+
+
+            ViewBag.DropDownValues2 = new SelectList(listitem2, "Text", "Value");
+
+            //---------------------
+
+            //Busca  en la tabla lista Grado
+            const int id7 = 7;
+
+            DataTable dtprueba7 = lnoferta.ObtenerLista_ListaValor(id7);
+            VistaComboAlumno vista7 = new VistaComboAlumno();
+
+            List<SelectListItem> listitem7 = new List<SelectListItem>();
+
+            for (int i7 = 0; i7 <= dtprueba7.Rows.Count - 1; i7++)
+            {
+                vista7.Cargo = dtprueba7.Rows[i7]["DescripcionValor"].ToString();
+                vista7.IDListaValor = dtprueba7.Rows[i7]["IDListaValor"].ToString();
+
+
+                listitem7.Add(new SelectListItem() { Value = vista7.Cargo, Text = vista7.IDListaValor.ToString() });
+
+
+            }
+
+
+            ViewBag.DropDownValues7 = new SelectList(listitem7, "Text", "Value");
+
+            return View();
+        }
+
+      
+
             
 	}
 }
