@@ -1,8 +1,176 @@
-﻿
+﻿@*@model IEnumerable<UTP.PortalEmpleabilidad.Modelo.Contenido>*@
+
+
+@using UTP.PortalEmpleabilidad.Modelo;
+
 @{
     ViewBag.Title = "Eventos";
+    int contador = 1;
 }
-<div class="row row-contenido1">
+
+@{
+    var listaNoticias = ((List<Contenido>)(ViewBag.Noticias));
+
+    foreach (var itemNoticias in listaNoticias)
+    {
+        <li>
+            @if (contador % 2 == 0)
+            {
+                <div class="row row-contenido1">
+                    <div class="container">
+
+                        <div class="col-md-8">
+                            <h3 style="color:rgb(180,34,30)"><strong>@itemNoticias.Titulo</strong></h3>
+                            <h6>"@itemNoticias.SubTitulo"</h6>
+                            <p>
+                                @itemNoticias.Descripcion
+                            </p>
+                        </div>
+                        <div class="col-md-4">
+                            <img src="/Content/imagen/@itemNoticias.Imagen" height="100" width="100" />
+
+                        </div>
+
+                    </div>
+                </div>
+
+            }
+            else
+            {
+                <div class="row row-contenido2">
+                    <div class="container">
+                        <div class="col-md-8">
+                            <img src="/Content/imagen/@itemNoticias.Imagen" height="100" width="100" />
+
+                        </div>
+                        <div class="col-md-4">
+                            <h3 style="color:rgb(180,34,30)"><strong>@itemNoticias.Titulo</strong></h3>
+                            <h6>"@itemNoticias.SubTitulo"</h6>
+                            <p>@itemNoticias.Descripcion</p>
+                        </div>
+
+                    </div>
+                </div>
+
+            }
+
+        </li>
+
+            contador++;
+
+    }
+
+    }
+
+@{
+    var listaEventos = ((List<Contenido>)(ViewBag.Eventos));
+
+    foreach (var itemEventos in listaEventos)
+    {
+        <li>
+            @if (contador % 2 == 0)
+            {
+                <div class="row row-contenido1">
+                    <div class="container">
+
+                        <div class="col-md-8">
+                            <h3 style="color:rgb(180,34,30)"><strong>@itemEventos.Titulo</strong></h3>
+                            <h6>"@itemEventos.SubTitulo"</h6>
+                            <p>
+                                @itemEventos.Descripcion
+                            </p>
+                        </div>
+                        <div class="col-md-4">
+                            <img src="/Content/imagen/@itemEventos.Imagen" height="100" width="100" />
+
+                        </div>
+
+                    </div>
+                </div>
+
+            }
+            else
+            {
+                <div class="row row-contenido2">
+                    <div class="container">
+                        <div class="col-md-8">
+                            <img src="/Content/imagen/@itemEventos.Imagen" height="100" width="100" />
+
+                        </div>
+                        <div class="col-md-4">
+                            <h3 style="color:rgb(180,34,30)"><strong>@itemEventos.Titulo</strong></h3>
+                            <h6>"@itemEventos.SubTitulo"</h6>
+                            <p>@itemEventos.Descripcion</p>
+                        </div>
+
+                    </div>
+                </div>
+
+            }
+
+        </li>
+
+            contador++;
+
+    }
+
+}
+
+
+
+@*@foreach (var item in Model)
+{
+    <li>
+        @if (contador % 2 == 0)
+        {
+            <div class="row row-contenido1">
+                <div class="container">
+
+                    <div class="col-md-8">
+                        <h3 style="color:rgb(180,34,30)"><strong>@item.Titulo</strong></h3>
+                        <h6>"@item.SubTitulo"</h6>
+                        <p>
+                        @item.Descripcion
+                        </p>
+                    </div>
+                    <div class="col-md-4">
+                        <img src="/Content/imagen/@item.Imagen" height="100" width="100" />
+
+                    </div>
+
+
+                </div>
+            </div>
+               
+
+        }
+        else
+        {
+            <div class="row row-contenido2">
+                <div class="container">
+                    <div class="col-md-8">
+                        <img src="/Content/imagen/@item.Imagen" height="100" width="100" />
+
+                    </div>
+                    <div class="col-md-4">
+                        <h3 style="color:rgb(180,34,30)"><strong>@item.Titulo</strong></h3>
+                        <h6>"@item.SubTitulo"</h6>
+                        <p>@item.Descripcion</p>
+                    </div>
+
+                </div>
+            </div>
+                        
+        }
+
+
+    </li>
+
+        contador++;
+}*@
+
+
+@*<div class="row row-contenido1">
     <div class="container">
         <div class="col-md-4">
             <img src="~/img/evento/Evento1.jpg" class="imagen-portal1" />
@@ -41,7 +209,7 @@
         </div>
 
     </div>
-</div>
+</div>*@
 <script>
     $(document).ready(function () {
         debugger;

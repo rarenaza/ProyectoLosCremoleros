@@ -30,9 +30,9 @@ namespace UTP.PortalEmpleabilidad.Logica
                 oferta.Empresa = dtResultado.Rows[i]["Empresa"].ToString();
 
                 oferta.CargoOfrecido = dtResultado.Rows[i]["CargoOfrecido"].ToString();
-                oferta.Horario = Convert.ToDateTime(dtResultado.Rows[i]["Horario"]);
+                oferta.Horario = dtResultado.Rows[i]["Horario"].ToString ();
 
-                oferta.RemuneracionOfrecida = Convert.ToDecimal(dtResultado.Rows[i]["RangoRemuneracionDesde"]);
+                oferta.RemuneracionOfrecida = Convert.ToDecimal(dtResultado.Rows[i]["RemuneracionOfrecida"]);
 
                 oferta.EstadoOferta = dtResultado.Rows[i]["EstadoOferta"].ToString();
 

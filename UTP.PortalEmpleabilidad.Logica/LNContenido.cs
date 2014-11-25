@@ -67,15 +67,43 @@ namespace UTP.PortalEmpleabilidad.Logica
             {
                 Contenido contenido     = new Contenido();
 
-                contenido.Menu       = dtResultado.Rows[i]["CodMenu"].ToString();
+                contenido.Menu          = dtResultado.Rows[i]["CodMenu"].ToString();
                 contenido.Titulo        = dtResultado.Rows[i]["Titulo"].ToString();
                 contenido.SubTitulo     = dtResultado.Rows[i]["SubTitulo"].ToString();
                 contenido.Descripcion   = dtResultado.Rows[i]["Descripcion"].ToString();
                 contenido.Imagen        = dtResultado.Rows[i]["Imagen"].ToString();
+                contenido.IdContenido   = Convert.ToInt32 (dtResultado.Rows[i]["IdContenido"]);
+            
                 lista.Add(contenido);
 
             }
 
+
+            return lista;
+        }
+
+        public List<Contenido> ContenidoEDitar_Buscar(int Id)
+        {
+            List<Contenido> lista = new List<Contenido>();
+            Contenido contenido = new Contenido();
+
+            DataTable dtResultado = ad.ContenidoEDitar_Buscar(Id);
+            
+
+            if (dtResultado.Rows.Count > 0)
+            {
+                contenido.IdContenido = Convert.ToInt32(dtResultado.Rows[0]["IdContenido"]);
+                contenido.Menu = dtResultado.Rows[0]["CodMenu"].ToString();
+                contenido.Titulo = dtResultado.Rows[0]["Titulo"].ToString();
+                contenido.SubTitulo = dtResultado.Rows[0]["SubTitulo"].ToString();
+                contenido.Descripcion = dtResultado.Rows[0]["Descripcion"].ToString();
+                contenido.Imagen = dtResultado.Rows[0]["Imagen"].ToString();
+               
+                lista.Add(contenido);
+
+
+            }
+                  
 
             return lista;
         }

@@ -79,5 +79,22 @@ namespace UTPPrototipo.Controllers
 
         }
 
+        public ActionResult ContenidoEDitar_Buscar()
+        {
+
+
+            //List<Contenido> contenido = new List<Contenido>();
+            Contenido listacontenido = new Contenido();
+
+            return View(ln.ContenidoEDitar_Buscar(listacontenido.IdContenido)); 
+            
+
+        }
+
+        
+
+        
+
+
     }
 }

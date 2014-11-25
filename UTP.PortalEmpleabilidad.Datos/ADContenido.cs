@@ -11,12 +11,13 @@ namespace UTP.PortalEmpleabilidad.Datos
 {
   public   class ADContenido
     {
-        ADConexion cnn = new ADConexion();
-        SqlCommand cmd = new SqlCommand();
-
-
+       
+        
         public DataTable Contenido_Mostrar()
         {
+            ADConexion cnn = new ADConexion();
+            SqlCommand cmd = new SqlCommand();
+
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = "Contenido_Mostrar";
             cmd.Connection = cnn.cn;
@@ -34,6 +35,8 @@ namespace UTP.PortalEmpleabilidad.Datos
         }
         public DataTable ContenidoMenu_Mostrar()
         {
+            ADConexion cnn = new ADConexion();
+            SqlCommand cmd = new SqlCommand();
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = "ContenidoMenu_Mostrar";
             cmd.Connection = cnn.cn;
@@ -51,6 +54,9 @@ namespace UTP.PortalEmpleabilidad.Datos
         }
         public bool Contenido_Insertar(Contenido contenido)
         {
+            ADConexion cnn = new ADConexion();
+            SqlCommand cmd = new SqlCommand();
+
             try
             {
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -79,9 +85,13 @@ namespace UTP.PortalEmpleabilidad.Datos
 
         public DataTable Contenido_Buscar(string Id)
         {
+            ADConexion cnn = new ADConexion();
+            SqlCommand cmd = new SqlCommand();
+
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = "Contenido_Buscar";
             cmd.Connection = cnn.cn;
+
             cnn.Conectar();
             cmd.Parameters.Add(new SqlParameter("@CodMenu", SqlDbType.VarChar,50)).Value = Id;
 
@@ -95,7 +105,23 @@ namespace UTP.PortalEmpleabilidad.Datos
             return dt;
         }
 
+        public DataTable ContenidoEDitar_Buscar(int Cod)
+        {
+            ADConexion cnn = new ADConexion();
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "ContenidoEDitar_Buscar";
+            cmd.Connection = cnn.cn;
+            cnn.Conectar();
+            cmd.Parameters.Add(new SqlParameter("@IdContenido", SqlDbType.Int)).Value = Cod;
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
 
+            da.Fill(dt);
+
+            cnn.Desconectar();
+            return dt;
+        }
 
 
     }

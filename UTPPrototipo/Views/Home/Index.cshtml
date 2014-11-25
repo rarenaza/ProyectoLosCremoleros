@@ -1,6 +1,9 @@
 ﻿@{
     ViewBag.Title = "Home";
+    
 }
+
+@using UTP.PortalEmpleabilidad.Modelo;
 
 <script src="~/Scripts/jquery.jcarousel.js"></script>
 
@@ -66,33 +69,79 @@
         <div class="col-sm-4">
             <h3>Noticias</h3>
             <hr />
-            <span>
-                <img src="~/img/noticia/Noticia1.jpg" style="border:solid;border-width:1px;border-color:rgb(220,220,220);border-radius: 6px 6px 6px 6px;width:100%;" />
-            </span>
-            <h4><strong>Quisque pulvinar quam quis maximus pharetra</strong></h4>
-            <span>Consectetur adipiscing elit. Nam vel ipsum id nisi tristique venenatis. Quisque pulvinar quam quis maximus pharetra. Vestibulum lobortis, sem vel sollicitudin malesuada, nunc quam dignissim dui. Pellentesque ipsum lectus, rhoncus quis.</span>
-            <hr />
-            <span>
-                <img src="~/img/noticia/Noticia2.jpg" style="border:solid;border-width:1px;border-color:rgb(220,220,220);border-radius: 6px 6px 6px 6px;width:100%;" />
-            </span>
-            <h4><strong>Vestibulum lobortis</strong></h4>
-            <span>Consectetur adipiscing elit. Nam vel ipsum id nisi tristique venenatis. Quisque pulvinar quam quis maximus pharetra. Vestibulum lobortis, sem vel sollicitudin malesuada, nunc quam dignissim dui. Pellentesque ipsum lectus, rhoncus quis.</span>
 
+
+            @{
+                var listaNoticias = ((List<Contenido>)(ViewBag.ListaNoticias));
+
+                foreach (var itemNoticias in listaNoticias)
+                {
+                    <span>
+                        <img src="/Content/imagen/@itemNoticias.Imagen" style="border:solid;border-width:1px;border-color:rgb(220,220,220);border-radius: 6px 6px 6px 6px;width:100%;" />
+                        @*<img src="/Content/imagen/@item.Imagen" height="100" width="100" />*@
+                    
+                    
+                    </span>
+                    <h4><strong>@itemNoticias.Titulo</strong></h4>
+                    <span>@itemNoticias.Descripcion</span>
+                    <hr />
+                }
+            }
+           
         </div>
         <div class="col-sm-4">
             <h3>Eventos</h3>
             <hr />
-            <span>
-                <img src="~/img/evento/Evento1.jpg" style="border:solid;border-width:1px;border-color:rgb(220,220,220);border-radius: 6px 6px 6px 6px;width:100%;" /> 
-            </span>
-            <span>Consectetur adipiscing elit. Nam vel ipsum id nisi tristique venenatis. Quisque pulvinar quam quis maximus pharetra.
-            Vestibulum lobortis, sem vel sollicitudin malesuada, nunc quam dignissim dui. Pellentesque ipsum lectus, rhoncus quis.</span>
+            @{
+                var listaEventos = ((List<Contenido>)(ViewBag.ListaEventos));
 
+                foreach (var itemEventos in listaEventos)
+                {
+                    <span>
+                        <img src="/Content/imagen/@itemEventos.Imagen" style="border:solid;border-width:1px;border-color:rgb(220,220,220);border-radius: 6px 6px 6px 6px;width:100%;" />
+                        @*<img src="/Content/imagen/@item.Imagen" height="100" width="100" />*@
+
+
+                    </span>
+                    <h4><strong>@itemEventos.Titulo</strong></h4>
+                    <span>@itemEventos.Descripcion</span>
+                    <hr />
+                }
+            }
+
+
+            @*<span>
+                    <img src="~/img/evento/Evento1.jpg" style="border:solid;border-width:1px;border-color:rgb(220,220,220);border-radius: 6px 6px 6px 6px;width:100%;" />
+                </span>
+                <span>Consectetur adipiscing elit. Nam vel ipsum id nisi tristique venenatis. Quisque pulvinar quam quis maximus pharetra.
+                Vestibulum lobortis, sem vel sollicitudin malesuada, nunc quam dignissim dui. Pellentesque ipsum lectus, rhoncus quis.</span>
+
+            </div>*@
         </div>
         <div class="col-sm-4 " >
             <h3>Testimonios</h3>
             <hr />
-            <span>
+
+            @{
+                var listaTestimonios = ((List<Contenido>)(ViewBag.listaTestimonios));
+
+                foreach (var itemtestimonio in listaTestimonios)
+                {
+                    <span>
+                        <img src="/Content/imagen/@itemtestimonio.Imagen" style="border:solid;border-width:1px;border-color:rgb(220,220,220);border-radius: 6px 6px 6px 6px;width:100%;" />
+                     
+                    </span>
+                    <span>
+                      "@itemtestimonio.SubTitulo"
+                    </span>
+                    <hr />
+                            
+                }
+            }
+
+
+
+            @*<span>
                 <img src="~/img/testimonio/customer-testimonials.jpg" style="border:solid;border-width:1px;border-color:rgb(220,220,220);border-radius: 6px 6px 6px 6px;width:100%;" />
             </span>
             <span>
@@ -106,7 +155,8 @@
             </span>
             <span>
                 "Vestibulum lobortis, sem vel sollicitudin malesuada consectetur adipiscing elit. Nam vel ipsum id nisi tristique venenatis."
-            </span>
+            </span>*@
+
         </div>
 
 

@@ -1,9 +1,61 @@
-﻿
+﻿@model IEnumerable<UTP.PortalEmpleabilidad.Modelo.Contenido>
 @{
     ViewBag.Title = "Servicios a su disposición";
+    int contador = 1;
 }
 
-<h5></h5>
+@foreach (var item in Model)
+{
+    <li>
+        @if (contador % 2 == 0)
+        {
+            <div class="row row-contenido1">
+                <div class="container">
+
+                    <div class="col-md-6">
+                        <h3 style="color:rgb(180,34,30)"><strong>@item.Titulo</strong></h3>
+                        <h6>"@item.SubTitulo"</h6>
+                        <p>@item.Descripcion</p>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="/Content/imagen/@item.Imagen" height="100" width="100" />
+
+                    </div>
+
+
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="row row-contenido2">
+                <div class="container">
+                    <div class="col-md-6">
+                        <img src="/Content/imagen/@item.Imagen" height="100" width="100" />
+
+                    </div>
+                    <div class="col-md-6">
+                        <h3 style="color:rgb(180,34,30)"><strong>@item.Titulo</strong></h3>
+                        <h6>"@item.SubTitulo"</h6>
+                        <p>@item.Descripcion</p>
+                    </div>
+
+
+
+                </div>
+            </div>
+        }
+
+
+    </li>
+
+        contador++;
+
+
+}
+
+
+@*<h5></h5>
 <div class="row row-contenido1">
     <div class="container">
 
@@ -43,7 +95,7 @@
             <img src="~/img/UTP/imagen3.jpg" class="imagen-portal1" />
         </div>
     </div>
-</div>
+</div>*@
 
 <script>
 
