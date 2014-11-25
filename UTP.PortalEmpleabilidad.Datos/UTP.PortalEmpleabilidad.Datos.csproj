@@ -41,13 +41,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ADAlumno.cs" />
+    <Compile Include="ADBase.cs" />
     <Compile Include="ADConexion.cs" />
     <Compile Include="ADContenido.cs" />
+    <Compile Include="ADEmpresaLocacion.cs" />
     <Compile Include="ADEvento.cs" />
+    <Compile Include="ADGeneral.cs" />
     <Compile Include="ADLista.cs" />
     <Compile Include="ADEmpresa.cs" />
     <Compile Include="ADOferta.cs" />
     <Compile Include="ADOfertaInformacionAdicional.cs" />
+    <Compile Include="ADOfertaEstudio.cs" />
     <Compile Include="ADOfertaSectorEmpresarial.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

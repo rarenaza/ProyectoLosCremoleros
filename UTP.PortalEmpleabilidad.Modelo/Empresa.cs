@@ -24,5 +24,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string CreadoPor { get; set; }
         public string UsuarioEC { get; set; }
 
+        public List<EmpresaLocacion> locaciones { get; set; }
+
     }
 }

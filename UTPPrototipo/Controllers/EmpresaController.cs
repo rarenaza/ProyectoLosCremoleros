@@ -37,42 +37,55 @@ namespace UTPPrototipo.Controllers
         {
             return View();
         }
+
+        
         public ActionResult NuevaOferta()
         {
+            Ticket ticket = (Ticket)Session["Ticket"];
 
+            //Se envían datos de prueba.
             Oferta oferta = new Oferta();
-            oferta.IdEmpresa = 1;
+            oferta.IdEmpresa = ticket.IdEmpresa;
             oferta.UsuarioPropietarioEmpresa = "";
             oferta.EstadoOferta = "OFERPR"; //Estado pendiente de activación.
             oferta.FechaPublicacion = DateTime.Now;
             oferta.FechaFinProceso = DateTime.Now;
             oferta.IdEmpresaLocacion = 1; //TODO: Reemplazar por combo.
-            oferta.DescripcionOferta = "descripci[on de la oferta";
-            oferta.TipoTrabajo = "OFTTTC"; //Tipo de trabajo: Tiempo completo.
+            oferta.DescripcionOferta = "descripción de la oferta";
+            //oferta.TipoTrabajo = "OFTTTC"; //Tipo de trabajo: Tiempo completo.
             //oferta.CargoOfrecido = "";  //Este dato viene del formulario.
             oferta.CreadoPor = "admin";
+
+            LNGeneral lnGeneral = new LNGeneral();
+            LNEmpresaLocacion lnEmpresaLocacion = new LNEmpresaLocacion ();
+
+            ViewBag.ListaTipoCargo = lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_CARGO); 
+            ViewBag.ListaTipoTrabajo = lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_TRABAJO); 
+            ViewBag.ListaTipoContrato = lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_CONTRATO);
+            ViewBag.ListaLocaciones = lnEmpresaLocacion.ObtenerLocaciones(ticket.IdEmpresa);
 
             return View(oferta);
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpPost, ValidateInput(false), ValidateAntiForgeryToken]        
         //public ActionResult NuevaOferta([Bind(Include = "CreadorPor")] Oferta oferta)
         public ActionResult NuevaOferta(Oferta oferta)
         {
+            Ticket ticket = (Ticket)Session["Ticket"];
+
             if (ModelState.IsValid)
             {
                 oferta.UsuarioPropietarioEmpresa = "usuarioEmpresa";
                 oferta.EstadoOferta = "OFERPR"; //Estado pendiente de activación.
                 oferta.FechaPublicacion = DateTime.Now;
-                oferta.FechaFinProceso = DateTime.Now.AddDays(10);
-                oferta.IdEmpresaLocacion = 1; //TODO: Reemplazar por combo.
+                //oferta.FechaFinProceso = DateTime.Now.AddDays(10);
+                //oferta.IdEmpresaLocacion = 1; //TODO: Reemplazar por combo.
                 oferta.DescripcionOferta = "descripcion de la oferta";
-                oferta.TipoTrabajo = "OFTTTC"; //Tipo de trabajo: Tiempo completo.    
-                oferta.TipoContrato = "";
-                oferta.TipoCargo = "";
-                oferta.Horario = "";
-                oferta.AreaEmpresa = "";
+                //oferta.TipoTrabajo = "OFTTTC"; //Tipo de trabajo: Tiempo completo.    
+                //oferta.TipoContrato = "";
+                //oferta.TipoCargo = "";
+                //oferta.Horario = "";
+                //oferta.AreaEmpresa = "";
                 oferta.CreadoPor = "admin";
 
                 lnOfertaEmpresa.Insertar(oferta);
@@ -80,7 +93,16 @@ namespace UTPPrototipo.Controllers
                 return RedirectToAction("Publicacion");
             }
 
-            return View();
+            //Si existe error, se debe cargar nuevamente la información.
+            LNGeneral lnGeneral = new LNGeneral();
+            LNEmpresaLocacion lnEmpresaLocacion = new LNEmpresaLocacion();
+
+            ViewBag.ListaTipoCargo = lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_CARGO);
+            ViewBag.ListaTipoTrabajo = lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_TRABAJO);
+            ViewBag.ListaTipoContrato = lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_CONTRATO);
+            ViewBag.ListaLocaciones = lnEmpresaLocacion.ObtenerLocaciones(ticket.IdEmpresa);
+
+            return View(oferta);
         }
 
 

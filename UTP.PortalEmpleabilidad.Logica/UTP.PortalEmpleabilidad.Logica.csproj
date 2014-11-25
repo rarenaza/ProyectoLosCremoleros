@@ -41,11 +41,14 @@
   <ItemGroup>
     <Compile Include="LNAlumno.cs" />
     <Compile Include="LNContenido.cs" />
+    <Compile Include="LNEmpresaLocacion.cs" />
     <Compile Include="LNEvento.cs" />
+    <Compile Include="LNGeneral.cs" />
     <Compile Include="LNLista.cs" />
     <Compile Include="LNEmpresa.cs" />
     <Compile Include="LNOferta.cs" />
     <Compile Include="LNOfertaEmpresa.cs" />
+    <Compile Include="LNOfertaEstudio.cs" />
     <Compile Include="LNOfertaInformacionAdicional.cs" />
     <Compile Include="LNOfertaSectorEmpresarial.cs" />
     <Compile Include="LNUsuario.cs" />

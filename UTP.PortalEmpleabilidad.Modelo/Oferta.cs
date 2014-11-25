@@ -12,7 +12,12 @@ namespace UTP.PortalEmpleabilidad.Modelo
 
         public int IdOferta { get; set; }
         public int IdEmpresa { get; set; }
+
+        [Required(ErrorMessage="No ha ingresado el cargo")]
+        public string CargoOfrecido { get; set; }
         public string UsuarioPropietarioEmpresa { get; set; }
+        public string Funciones { get; set; }
+        public string Competencias { get; set; }
         public string  EstadoOferta { get; set; }
         
         [DataType(DataType.Date)]
@@ -22,15 +27,17 @@ namespace UTP.PortalEmpleabilidad.Modelo
         [Obsolete]
         public DateTime FechaFinRecepcionCV { get; set; }
 
+        [Required(ErrorMessage="No se ha ingresado la fecha de fin del proceso")]
         [DataType(DataType.Date)]    
         public DateTime FechaFinProceso { get; set; }
+
         public int IdEmpresaLocacion { get; set; }
         public string  DescripcionOferta { get; set; }
         public string TipoTrabajo { get; set; }
         public string TipoContrato { get; set; }
         public int DuracionContrato { get; set; }
         public string TipoCargo { get; set; }
-        public string CargoOfrecido { get; set; }
+        
   
         public decimal RemuneracionOfrecida { get; set; }
        

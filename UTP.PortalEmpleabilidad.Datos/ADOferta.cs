@@ -136,7 +136,11 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.CommandText = "Oferta_Insertar";
 
                 //Parámetros:
-                cmd.Parameters.Add(new SqlParameter("@IdEmpresa", oferta.IdEmpresa ));
+                cmd.Parameters.Add(new SqlParameter("@IdEmpresa", oferta.IdEmpresa));
+
+                cmd.Parameters.Add(new SqlParameter("@Funciones", oferta.Funciones));
+                cmd.Parameters.Add(new SqlParameter("@Competencias", oferta.Competencias));
+
                 cmd.Parameters.Add(new SqlParameter("@UsuarioPropietarioEmpresa", oferta.UsuarioPropietarioEmpresa));
                 cmd.Parameters.Add(new SqlParameter("@EstadoOferta", oferta.EstadoOferta));
                 cmd.Parameters.Add(new SqlParameter("@FechaPublicacion", oferta.FechaPublicacion));

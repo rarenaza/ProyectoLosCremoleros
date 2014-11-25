@@ -10,6 +10,6 @@ namespace UTP.PortalEmpleabilidad.Modelo
     {
         public string UsuarioNombre { get; set; }
         public int IdEmpresa { get; set; }
-
+        public Empresa Empresa { get; set; }
     }
 }
