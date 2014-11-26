@@ -4,18 +4,19 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace UTP.PortalEmpleabilidad.Modelo
 {
    public  class Oferta
     {
-
         public int IdOferta { get; set; }
         public int IdEmpresa { get; set; }
 
         [Required(ErrorMessage="No ha ingresado el cargo")]
         public string CargoOfrecido { get; set; }
         public string UsuarioPropietarioEmpresa { get; set; }
+        
         public string Funciones { get; set; }
         public string Competencias { get; set; }
         public string  EstadoOferta { get; set; }
@@ -23,14 +24,10 @@ namespace UTP.PortalEmpleabilidad.Modelo
         [DataType(DataType.Date)]
         public DateTime FechaPublicacion { get; set; }
 
-
-        [Obsolete]
-        public DateTime FechaFinRecepcionCV { get; set; }
-
-        [Required(ErrorMessage="No se ha ingresado la fecha de fin del proceso")]
+        [Required(ErrorMessage = "No se ha ingresado la fecha de fin de recepción de CV's")]
         [DataType(DataType.Date)]    
-        public DateTime FechaFinProceso { get; set; }
-
+        public DateTime FechaFinRecepcionCV { get; set; }
+        
         public int IdEmpresaLocacion { get; set; }
         public string  DescripcionOferta { get; set; }
         public string TipoTrabajo { get; set; }

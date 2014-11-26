@@ -97,8 +97,44 @@ namespace UTP.PortalEmpleabilidad.Logica
             return lista;
         }
      
-       
+        public Oferta ObtenerPorId(int idOferta)
+        {
+            Oferta oferta = null;
 
+            DataTable dtResultado = adOferta.ObtenerPorId(idOferta);
+
+            if (dtResultado.Rows.Count > 0)
+            {
+                oferta = new Oferta();
+
+                oferta.IdOferta = Convert.ToInt32(dtResultado.Rows[0]["IdOferta"]);
+                oferta.IdEmpresa = Convert.ToInt32(dtResultado.Rows[0]["IdEmpresa"]);
+                oferta.CargoOfrecido = Convert.ToString(dtResultado.Rows[0]["CargoOfrecido"]);
+                oferta.Funciones = Convert.ToString(dtResultado.Rows[0]["Funciones"]);
+                oferta.Competencias = Convert.ToString(dtResultado.Rows[0]["Competencias"]);
+                oferta.TipoTrabajo = Convert.ToString(dtResultado.Rows[0]["TipoTrabajo"]);
+                oferta.TipoCargo = Convert.ToString(dtResultado.Rows[0]["TipoCargo"]);
+                oferta.RemuneracionOfrecida = Convert.ToDecimal(dtResultado.Rows[0]["RemuneracionOfrecida"]);
+                oferta.Horario = Convert.ToString(dtResultado.Rows[0]["Horario"]);
+                oferta.AreaEmpresa = Convert.ToString(dtResultado.Rows[0]["AreaEmpresa"]);
+                oferta.NumeroVacantes = Convert.ToInt32(dtResultado.Rows[0]["NumeroVacantes"]);
+
+            }
+
+            return oferta;
+        }
+
+        public bool Actualizar(Oferta oferta)
+        {
+            try
+            {
+                return adOferta.Actualizar(oferta);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 
 }

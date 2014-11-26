@@ -15,6 +15,8 @@
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true)
 
+        <!--Se guardar los Id's en archivos temporales-->
+        @Html.HiddenFor(model => model.IdOferta)
         @Html.HiddenFor(model => model.IdEmpresa)
         @Html.HiddenFor(model => model.CreadoPor)
 
@@ -49,7 +51,7 @@
                         <div class="panel-body fuente-pequeña">
                             <div class="input-group">
                                 <span class="input-group-addon">Cargo</span>
-                                <input id="CargoOfrecido" name="CargoOfrecido" type="text" class="form-control" placeholder="Nombre del cargo a publicar">
+                                <input id="CargoOfrecido" data-val="true" data-val-required="No ha ingresado el campo" name="CargoOfrecido" type="text" class="form-control" placeholder="Nombre del cargo a publicar" value="@Model.CargoOfrecido">                               
                                 @Html.ValidationMessageFor(m => m.CargoOfrecido)
                                 @*<input class="text-box single-line" id="CargoOfrecido" name="CargoOfrecido" type="text" value="">*@
                                 @*@Html.EditorFor(model => model.CargoOfrecido, new { @class = "form-control" })*@
@@ -57,13 +59,13 @@
                             <div class="input-group">
                                 <span class="input-group-addon">Funciones</span>
                                 @*<textarea class="form-control" rows="6"></textarea>*@
-                                <textarea name="Funciones" id="Funciones" rows="6" cols="80"></textarea>
+                                <textarea name="Funciones" id="Funciones" rows="6" cols="80">@Html.Raw(@Model.Funciones)</textarea>
                                 @Html.ValidationMessageFor(m => m.Funciones)
                             </div>
                             <div class="input-group">
                                 <span class="input-group-addon">Compe-<br />tencias</span>
                                 @*<textarea class="form-control" rows="4"></textarea>*@
-                                <textarea name="Competencias" id="Competencias" rows="6" cols="80"></textarea>
+                                <textarea name="Competencias" id="Competencias" rows="6" cols="80">@Html.Raw(@Model.Competencias)</textarea>
                                 @Html.ValidationMessageFor(m => m.Competencias)
                             </div>
                             <br />
@@ -159,13 +161,13 @@
                                             -- Seleccione un Tipo de Trabajo --
                                         </option>
                                         @{
-        var itemsTipoTrabajo = ((List<ListaValor>)(ViewBag.ListaTipoTrabajo));
-        foreach (var item in itemsTipoTrabajo)
-        {
-            <option value="@item.IdListaValor">
-                @item.Valor
-            </option>
-        }
+                                            var itemsTipoTrabajo = ((List<ListaValor>)(ViewBag.ListaTipoTrabajo));
+                                            foreach (var item in itemsTipoTrabajo)
+                                            {
+                                                <option value="@item.IdListaValor">
+                                                    @item.Valor
+                                                </option>
+                                            }
                                         }
                                     </select>
                                     @Html.ValidationMessageFor(m => m.TipoTrabajo)
@@ -177,37 +179,48 @@
                                             -- Seleccione un Tipo de Contrato --
                                         </option>
                                         @{
-        var itemsTipoContrato = ((List<ListaValor>)(ViewBag.ListaTipoContrato));
-        foreach (var item in itemsTipoContrato)
-        {
-            <option value="@item.IdListaValor">
-                @item.Valor
-            </option>
-        }
-                                        }
+                                        var itemsTipoContrato = ((List<ListaValor>)(ViewBag.ListaTipoContrato));
+                                        foreach (var item in itemsTipoContrato)
+                                        {
+                                            if (item.IdListaValor == Model.TipoContrato)
+                                            {
+                                                <option value="@item.IdListaValor" selected="selected">
+                                                    @item.Valor
+                                                </option>
+                                            }
+                                            else
+                                            {
+
+                                                <option value="@item.IdListaValor">
+                                                    @item.Valor
+                                                </option>
+                                            }
+                                            }
+                                         }
                                     </select>
+
                                     @Html.ValidationMessageFor(m => m.TipoContrato)
                                 </div>
                                 <div class="input-group">
                                     <span class="input-group-addon">Duración<br />en meses</span>
-                                    <input id="DuracionContrato" name="DuracionContrato" type="text" class="form-control" placeholder="Vacio si es indeterminada">
+                                    <input id="DuracionContrato" name="DuracionContrato" type="text" class="form-control" placeholder="Vacio si es indeterminada" value="@Model.DuracionContrato">
                                     @Html.ValidationMessageFor(m => m.DuracionContrato)
                                 </div>
                                 <div class="input-group">
                                     <span class="input-group-addon">Horario</span>
-                                    <input id="Horario" name="Horario" type="text" class="form-control" placeholder="Ej: De Lunes a Viernes de 9:00am a 6:00pm">
+                                    <input id="Horario" name="Horario" type="text" class="form-control" placeholder="Ej: De Lunes a Viernes de 9:00am a 6:00pm" value="@Model.Horario">
                                     @Html.ValidationMessageFor(m => m.Horario)
                                 </div>
                                 <div class="input-group">
                                     <span class="input-group-addon">Sueldo S/.</span>
-                                    <input id="RemuneracionOfrecida" name="RemuneracionOfrecida" type="text" class="form-control" placeholder="Sueldo a pagar en Nuevos Soles">
+                                    <input id="RemuneracionOfrecida" name="RemuneracionOfrecida" type="text" class="form-control" placeholder="Sueldo a pagar en Nuevos Soles" value="@Model.RemuneracionOfrecida">
                                     @Html.ValidationMessageFor(m => m.RemuneracionOfrecida)
                                 </div>
 
 
                                 <div class="input-group">
                                     <span class="input-group-addon">Vacantes</span>
-                                    <input id="NumeroVacantes" name="NumeroVacantes" type="text" class="form-control" placeholder="Número de vacantes para el puesto">
+                                    <input id="NumeroVacantes" name="NumeroVacantes" type="text" class="form-control" placeholder="Número de vacantes para el puesto" value="@Model.NumeroVacantes">
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-7">

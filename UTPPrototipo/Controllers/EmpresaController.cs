@@ -39,6 +39,59 @@ namespace UTPPrototipo.Controllers
         }
 
         
+        public ActionResult EditarOferta(int idOferta)
+        {
+            Ticket ticket = (Ticket)Session["Ticket"];
+
+            Oferta oferta = lnOferta.ObtenerPorId(idOferta);
+
+            LNGeneral lnGeneral = new LNGeneral();
+            LNEmpresaLocacion lnEmpresaLocacion = new LNEmpresaLocacion();
+
+            ViewBag.ListaTipoCargo = lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_CARGO);
+            ViewBag.ListaTipoTrabajo = lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_TRABAJO);
+            ViewBag.ListaTipoContrato = lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_CONTRATO);
+            ViewBag.ListaLocaciones = lnEmpresaLocacion.ObtenerLocaciones(ticket.IdEmpresa);
+
+            return View(oferta);
+        }
+
+        [HttpPost, ValidateInput(false), ValidateAntiForgeryToken]        
+        public ActionResult EditarOferta(Oferta oferta)
+        {
+            Ticket ticket = (Ticket)Session["Ticket"];
+
+            if (ModelState.IsValid)
+            {
+                oferta.UsuarioPropietarioEmpresa = "";
+                oferta.ModificadoPor = "adminEmpresa";
+
+                lnOferta.Actualizar(oferta);
+
+                //1. Mostrar mensaje de exito.
+
+                //2. Redireccionar a la lista.
+                return RedirectToAction("Publicacion");
+            }
+            else
+            {
+                var errors = ModelState.Select(x => x.Value.Errors)
+                           .Where(y => y.Count > 0)
+                           .ToList();
+
+                int a = 0;
+            }
+            LNGeneral lnGeneral = new LNGeneral();
+            LNEmpresaLocacion lnEmpresaLocacion = new LNEmpresaLocacion();
+
+            ViewBag.ListaTipoCargo = lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_CARGO);
+            ViewBag.ListaTipoTrabajo = lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_TRABAJO);
+            ViewBag.ListaTipoContrato = lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_CONTRATO);
+            ViewBag.ListaLocaciones = lnEmpresaLocacion.ObtenerLocaciones(ticket.IdEmpresa);
+
+            return View(oferta);
+        }
+
         public ActionResult NuevaOferta()
         {
             Ticket ticket = (Ticket)Session["Ticket"];
@@ -46,15 +99,9 @@ namespace UTPPrototipo.Controllers
             //Se envían datos de prueba.
             Oferta oferta = new Oferta();
             oferta.IdEmpresa = ticket.IdEmpresa;
-            oferta.UsuarioPropietarioEmpresa = "";
-            oferta.EstadoOferta = "OFERPR"; //Estado pendiente de activación.
-            oferta.FechaPublicacion = DateTime.Now;
-            oferta.FechaFinProceso = DateTime.Now;
-            oferta.IdEmpresaLocacion = 1; //TODO: Reemplazar por combo.
-            oferta.DescripcionOferta = "descripción de la oferta";
-            //oferta.TipoTrabajo = "OFTTTC"; //Tipo de trabajo: Tiempo completo.
-            //oferta.CargoOfrecido = "";  //Este dato viene del formulario.
-            oferta.CreadoPor = "admin";
+            oferta.UsuarioPropietarioEmpresa = "";            
+            oferta.FechaPublicacion = DateTime.Now;                        
+            oferta.CreadoPor = ticket.UsuarioNombre;
 
             LNGeneral lnGeneral = new LNGeneral();
             LNEmpresaLocacion lnEmpresaLocacion = new LNEmpresaLocacion ();
