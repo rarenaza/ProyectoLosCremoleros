@@ -18,9 +18,9 @@
 
                     </div>
                     <div class="col-md-6">
-                        <h3 style="color:rgb(180,34,30)"><strong>@item.Titulo</strong></h3>
-                        <h6>@item.SubTitulo</h6>
-                        <p>@item.Descripcion</p>
+                        <h3 style="color:rgb(180,34,30)"><strong>@Html.Raw(@item.Titulo)</strong></h3>
+                        <h6>@Html.Raw(@item.SubTitulo)</h6>
+                        <p>@Html.Raw(@item.Descripcion)</p>
                     </div>
 
                 </div>
@@ -30,11 +30,11 @@
         {
             <div class="row row-contenido2">
                 <div class="container">
-                    
+
                     <div class="col-md-6">
-                        <h3 style="color:rgb(180,34,30)"><strong>@item.Titulo</strong></h3>
-                        <h6>@item.SubTitulo</h6>
-                        <p>@item.Descripcion</p>
+                        <h3 style="color:rgb(180,34,30)"><strong>@Html.Raw(@item.Titulo)</strong></h3>
+                        <h6>@Html.Raw(@item.SubTitulo)</h6>
+                        <p>@Html.Raw(@item.Descripcion)</p>
                     </div>
                     <div class="col-md-6">
                         <img src="/Content/imagen/@item.Imagen" class="imagen-portal1" />

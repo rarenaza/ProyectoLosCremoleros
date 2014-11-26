@@ -82,12 +82,12 @@
                     
                     
                     </span>
-                    <h4><strong>@itemNoticias.Titulo</strong></h4>
-                    <span>@itemNoticias.Descripcion</span>
+                    <h4><strong>@Html.Raw(@itemNoticias.Titulo)</strong></h4>
+                    <span>@Html.Raw(@itemNoticias.Descripcion)</span>
                     <hr />
                 }
             }
-           
+
         </div>
         <div class="col-sm-4">
             <h3>Eventos</h3>
@@ -103,8 +103,8 @@
 
 
                     </span>
-                    <h4><strong>@itemEventos.Titulo</strong></h4>
-                    <span>@itemEventos.Descripcion</span>
+                    <h4><strong>@Html.Raw(@itemEventos.Titulo)</strong></h4>
+                    <span>@Html.Raw(@itemEventos.Descripcion)</span>
                     <hr />
                 }
             }
@@ -129,18 +129,15 @@
                 {
                     <span>
                         <img src="/Content/imagen/@itemtestimonio.Imagen" style="border:solid;border-width:1px;border-color:rgb(220,220,220);border-radius: 6px 6px 6px 6px;width:100%;" />
-                     
                     </span>
+                        <h4><strong>@Html.Raw(@itemtestimonio.Titulo)</strong></h4>
                     <span>
-                      "@itemtestimonio.SubTitulo"
+                      @Html.Raw(@itemtestimonio.Descripcion)
                     </span>
                     <hr />
-                            
+
                 }
             }
-
-
-
             @*<span>
                 <img src="~/img/testimonio/customer-testimonials.jpg" style="border:solid;border-width:1px;border-color:rgb(220,220,220);border-radius: 6px 6px 6px 6px;width:100%;" />
             </span>

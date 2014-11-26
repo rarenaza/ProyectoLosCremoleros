@@ -206,6 +206,7 @@
     <Content Include="Content\imagen\6.jpg" />
     <Content Include="Content\imagen\7.jpg" />
     <Content Include="Content\imagen\8.jpg" />
+    <Content Include="Content\imagen\firmabeatriz.png" />
     <Content Include="Content\UTP-Icons.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />

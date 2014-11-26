@@ -18,14 +18,14 @@
                 <div class="row row-contenido1">
                     <div class="container">
 
-                        <div class="col-md-8">
-                            <h3 style="color:rgb(180,34,30)"><strong>@itemNoticias.Titulo</strong></h3>
-                            <h6>@itemNoticias.SubTitulo</h6>
+                        <div class="col-md-6">
+                            <h3 style="color:rgb(180,34,30)"><strong>@Html.Raw(@itemNoticias.Titulo)</strong></h3>
+                            <h6>@Html.Raw(@itemNoticias.SubTitulo)</h6>
                             <p>
-                                @itemNoticias.Descripcion
+                                @Html.Raw(@itemNoticias.Descripcion)
                             </p>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <img src="/Content/imagen/@itemNoticias.Imagen" class="imagen-portal1" />
 
                         </div>
@@ -38,14 +38,14 @@
             {
                 <div class="row row-contenido2">
                     <div class="container">
-                        <div class="col-md-8">
+                        <div class="col-md-6">
                             <img src="/Content/imagen/@itemNoticias.Imagen" class="imagen-portal1" />
 
                         </div>
-                        <div class="col-md-4">
-                            <h3 style="color:rgb(180,34,30)"><strong>@itemNoticias.Titulo</strong></h3>
-                            <h6>@itemNoticias.SubTitulo</h6>
-                            <p>@itemNoticias.Descripcion</p>
+                        <div class="col-md-6">
+                            <h3 style="color:rgb(180,34,30)"><strong>@Html.Raw(@itemNoticias.Titulo)</strong></h3>
+                            <h6>@Html.Raw(@itemNoticias.SubTitulo)</h6>
+                            <p>@Html.Raw(@itemNoticias.Descripcion)</p>
                         </div>
 
                     </div>
@@ -53,7 +53,7 @@
 
             }
 
-      
+
 
             contador++;
 
@@ -72,14 +72,14 @@
                 <div class="row row-contenido1">
                     <div class="container">
 
-                        <div class="col-md-8">
-                            <h3 style="color:rgb(180,34,30)"><strong>@itemEventos.Titulo</strong></h3>
-                            <h6>@itemEventos.SubTitulo</h6>
+                        <div class="col-md-4">
+                            <h3 style="color:rgb(180,34,30)"><strong>@Html.Raw(@itemEventos.Titulo)</strong></h3>
+                            <h6>@Html.Raw(@itemEventos.SubTitulo)</h6>
                             <p>
-                                @itemEventos.Descripcion
+                                @Html.Raw(@itemEventos.Descripcion)
                             </p>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-8">
                             <img src="/Content/imagen/@itemEventos.Imagen" class="imagen-portal1" />
 
                         </div>
@@ -97,9 +97,9 @@
 
                         </div>
                         <div class="col-md-4">
-                            <h3 style="color:rgb(180,34,30)"><strong>@itemEventos.Titulo</strong></h3>
-                            <h6>@itemEventos.SubTitulo</h6>
-                            <p>@itemEventos.Descripcion</p>
+                            <h3 style="color:rgb(180,34,30)"><strong>@Html.Raw(@itemEventos.Titulo)</strong></h3>
+                            <h6>@Html.Raw(@itemEventos.SubTitulo)</h6>
+                            <p>@Html.Raw(@itemEventos.Descripcion)</p>
                         </div>
 
                     </div>
