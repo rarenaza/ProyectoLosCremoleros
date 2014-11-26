@@ -692,6 +692,7 @@
     <Content Include="Views\Contenido\Contenido_insertar.cshtml" />
     <Content Include="Views\Contenido\Contenido_Buscar.cshtml" />
     <Content Include="Views\OfertaEstudio\_OfertaEstudio.cshtml" />
+    <Content Include="Views\Contenido\ContenidoEDitar_Buscar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -82,14 +82,13 @@ namespace UTP.PortalEmpleabilidad.Logica
             return lista;
         }
 
-        public List<Contenido> ContenidoEDitar_Buscar(int Id)
+        public Contenido ContenidoEDitar_Buscar(int Id)
         {
-            List<Contenido> lista = new List<Contenido>();
+         
             Contenido contenido = new Contenido();
 
             DataTable dtResultado = ad.ContenidoEDitar_Buscar(Id);
             
-
             if (dtResultado.Rows.Count > 0)
             {
                 contenido.IdContenido = Convert.ToInt32(dtResultado.Rows[0]["IdContenido"]);
@@ -98,14 +97,11 @@ namespace UTP.PortalEmpleabilidad.Logica
                 contenido.SubTitulo = dtResultado.Rows[0]["SubTitulo"].ToString();
                 contenido.Descripcion = dtResultado.Rows[0]["Descripcion"].ToString();
                 contenido.Imagen = dtResultado.Rows[0]["Imagen"].ToString();
-               
-                lista.Add(contenido);
-
-
+                            
             }
-                  
+            return contenido;
 
-            return lista;
+          
         }
 
       

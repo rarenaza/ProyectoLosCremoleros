@@ -57,13 +57,13 @@ namespace UTP.PortalEmpleabilidad.Datos
 
         }
 
-        public DataTable Lista_Buscar(int IdLista)
+        public DataTable Lista_Buscar(int Id)
         {
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = "Lista_Buscar";
             cmd.Connection = cnn.cn;
             cnn.Conectar();
-            cmd.Parameters.Add(new SqlParameter("@IDLista", SqlDbType.Int)).Value = IdLista;
+            cmd.Parameters.Add(new SqlParameter("@IDLista", SqlDbType.Int)).Value = Id;
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
