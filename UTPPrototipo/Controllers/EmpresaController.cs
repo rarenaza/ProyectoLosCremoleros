@@ -84,6 +84,7 @@ namespace UTPPrototipo.Controllers
             LNGeneral lnGeneral = new LNGeneral();
             LNEmpresaLocacion lnEmpresaLocacion = new LNEmpresaLocacion();
 
+            ViewBag.ListaFaseOferta = lnGeneral.ObtenerListaValor(Constantes.IDLISTA_FASE_OFERTA);
             ViewBag.ListaTipoCargo = lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_CARGO);
             ViewBag.ListaTipoTrabajo = lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_TRABAJO);
             ViewBag.ListaTipoContrato = lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_CONTRATO);
@@ -203,6 +204,11 @@ namespace UTPPrototipo.Controllers
 
 
             return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult Administrar()
+        {
+            return View();
         }
 	}
 }

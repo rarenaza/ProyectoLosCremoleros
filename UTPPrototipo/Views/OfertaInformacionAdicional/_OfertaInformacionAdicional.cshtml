@@ -7,46 +7,45 @@
 </div>
 <br />
 
-    @foreach (var item in Model)
-    {
-        <table class="fuente-pequeña">
-            <tr>
-                <td class="celda-nombre">Tipo</td>
-                <td class="celda-datos">@item.TipoConocimiento</td>
-            </tr>
-            <tr>
-                <td class="celda-nombre">Conocimiento</td>
-                <td class="celda-datos">@item.Conocimiento</td>
-            </tr>
-            <tr>
-                <td class="celda-nombre">Nivel</td>
-                <td class="celda-datos">@item.NivelConocimiento</td>
-            </tr>
-            <tr>
-                <td class="celda-nombre">Años de experiencia</td>
-                <td class="celda-datos">@item.AniosExperiencia</td>
-            </tr>
-            <tr>
-                <td class="celda-nombre"></td>
-                <td class="celda-datos">
-                    <p class="fui fa-2x" style="color:gray;">
-                        1 l
-                    </p>
-                </td>
-            </tr>
-        </table>
-        <br />
-    }
-
-
-@using (Html.BeginForm("Crear","OfertaInformacionAdicional"))
+@foreach (var item in Model)
 {
-    <div class="row">
-        <div class="col-sm-12" style="text-align:right;">
-            <button data-toggle="modal" data-target="#Modal-inf-adicional" class="btn btn-default color-paleta2">Agregar Información Adicional</button>
-        </div>
-    </div>
+    <table class="fuente-pequeña">
+        <tr>
+            <td class="celda-nombre">Tipo</td>
+            <td class="celda-datos">@item.TipoConocimiento</td>
+        </tr>
+        <tr>
+            <td class="celda-nombre">Conocimiento</td>
+            <td class="celda-datos">@item.Conocimiento</td>
+        </tr>
+        <tr>
+            <td class="celda-nombre">Nivel</td>
+            <td class="celda-datos">@item.NivelConocimiento</td>
+        </tr>
+        <tr>
+            <td class="celda-nombre">Años de experiencia</td>
+            <td class="celda-datos">@item.AniosExperiencia</td>
+        </tr>
+        <tr>
+            <td class="celda-nombre"></td>
+            <td class="celda-datos">
+                <p class="fui fa-2x" style="color:gray;">
+                    1 l
+                </p>
+            </td>
+        </tr>
+    </table>
+    <br />
 }
+
+
+
+<div class="row">
+    <div class="col-sm-12" style="text-align:right;">
+        <button data-toggle="modal" data-target="#Modal-inf-adicional" class="btn btn-default color-paleta2">Agregar Información Adicional</button>
+    </div>
+</div>
+
 
 <div class="modal" id="Modal-inf-adicional" tabindex="-1" role="dialog" aria-labelledby="Estudio" aria-hidden="true">
     <div class="modal-dialog">
@@ -61,6 +60,8 @@
                     <div class="col-md-12">
                         <div class="input-group fuente-pequeña">
                             <span class="input-group-addon">Tipo</span>
+
+                            
                             <select id="Lista" class="form-control">
                                 <option value="" selected>-- Seleccione el Tipo de Conocimiento --</option>
                                 <option>Informática</option>

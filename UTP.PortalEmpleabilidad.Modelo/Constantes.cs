@@ -23,9 +23,10 @@ namespace UTP.PortalEmpleabilidad.Modelo
         #region ID Lista
 
         public static int IDLISTA_TIPO_CARGO = 9;
+        public static int IDLISTA_TIPO_OTRO_CONOCIMIENTO = 10;
         public static int IDLISTA_TIPO_TRABAJO = 29;
         public static int IDLISTA_TIPO_CONTRATO = 30;
-        public static int IDLISTA_FAS_EOFERTA = 32;
+        public static int IDLISTA_FASE_OFERTA = 32;
 
 
         #endregion

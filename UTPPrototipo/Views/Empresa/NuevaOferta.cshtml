@@ -35,7 +35,9 @@
 
         <script src="~/Scripts/ckeditor/ckeditor.js"></script>
 
-        <div id="divDescripcionOferta" class="row">
+    <div id="divDescripcionOferta" class="row">
+
+        <div class="col-sm-6">
             <div class="panel-group" id="oferta-anuncio" role="tablist" aria-multiselectable="true">
                 <div class="panel panel-default">
                     <div class="panel-heading" role="tab" id="headingOferta" style="padding: 2px 2px 2px 6px;">
@@ -72,17 +74,150 @@
                     </div>
                 </div>
             </div>
-
-            <script>
-
-                CKEDITOR.replace('Funciones');
-                CKEDITOR.replace('Competencias');
-            </script>
-
         </div>
+
+        <script>
+            CKEDITOR.replace('Funciones');
+            CKEDITOR.replace('Competencias');
+        </script>
+
+        <div class="col-sm-6">
+            <div class="panel-group" id="oferta-condiciones" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingDetalle" style="padding: 2px 2px 2px 6px;">
+                        <h5 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseDetalle" aria-expanded="true" aria-controls="collapseDetalle" class="fuente-seccion">
+                                Condiciones de la Oferta
+                            </a>
+                        </h5>
+                    </div>
+                    <div id="collapseDetalle" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingDetalle">
+                        <div class="panel-body fuente-pequeña">
+                            <div class="input-group">
+                                <span class="input-group-addon">Recibir<br />CVs hasta</span>
+                                <input type="date" id="FechaFinRecepcionCV" name="FechaFinRecepcionCV" class="form-control" placeholder="Fecha de fin de publicación">
+                                @Html.ValidationMessageFor(m => m.FechaFinRecepcionCV)
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon">Área</span>
+                                <input id="AreaEmpresa" name="AreaEmpresa" type="text" class="form-control" placeholder="Área o división de la empresa">
+                                @Html.ValidationMessageFor(m => m.AreaEmpresa)
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon">Tipo de<br />Cargo</span>
+                                <select id="TipoCargo" name="TipoCargo" class="form-control">
+                                    <option value="">
+                                        -- Seleccione un Tipo de Cargo --
+                                    </option>
+                                    @{
+                                            var itemsTipoCargo = ((List<ListaValor>)(ViewBag.ListaTipoCargo));
+                                            foreach (var item in itemsTipoCargo)
+                                            {
+                                    <option value="@item.IdListaValor">
+                                        @item.Valor
+                                    </option>
+                                            }
+                                    }
+
+                                </select>
+                                @Html.ValidationMessageFor(m => m.TipoCargo)
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon">Tipo de<br />Trabajo</span>
+                                <select id="TipoTrabajo" name="TipoTrabajo" class="form-control">
+                                    <option value="0">
+                                        -- Seleccione un Tipo de Trabajo --
+                                    </option>
+                                    @{
+        var itemsTipoTrabajo = ((List<ListaValor>)(ViewBag.ListaTipoTrabajo));
+        foreach (var item in itemsTipoTrabajo)
+        {
+                                    <option value="@item.IdListaValor">
+                                        @item.Valor
+                                    </option>
+        }
+                                    }
+                                </select>
+                                @Html.ValidationMessageFor(m => m.TipoTrabajo)
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon">Tipo de<br />Contrato</span>
+                                <select id="TipoContrato" name="TipoContrato" class="form-control">
+                                    <option value="">
+                                        -- Seleccione un Tipo de Contrato --
+                                    </option>
+                                    @{
+        var itemsTipoContrato = ((List<ListaValor>)(ViewBag.ListaTipoContrato));
+        foreach (var item in itemsTipoContrato)
+        {
+                                    <option value="@item.IdListaValor">
+                                        @item.Valor
+                                    </option>
+        }
+                                    }
+                                </select>
+                                @Html.ValidationMessageFor(m => m.TipoContrato)
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon">Duración<br />en meses</span>
+                                <input id="DuracionContrato" name="DuracionContrato" type="text" class="form-control" placeholder="Vacio si es indeterminada">
+                                @Html.ValidationMessageFor(m => m.DuracionContrato)
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon">Horario</span>
+                                <input id="Horario" name="Horario" type="text" class="form-control" placeholder="Ej: De Lunes a Viernes de 9:00am a 6:00pm">
+                                @Html.ValidationMessageFor(m => m.Horario)
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon">Sueldo S/.</span>
+                                <input id="RemuneracionOfrecida" name="RemuneracionOfrecida" type="text" class="form-control" placeholder="Sueldo a pagar en Nuevos Soles">
+                                @Html.ValidationMessageFor(m => m.RemuneracionOfrecida)
+                            </div>
+
+
+                            <div class="input-group">
+                                <span class="input-group-addon">Vacantes</span>
+                                <input id="NumeroVacantes" name="NumeroVacantes" type="text" class="form-control" placeholder="Número de vacantes para el puesto">
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-7">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Ubicación</span>
+                                        <select id="IdEmpresaLocacion" name="IdEmpresaLocacion" class="form-control">
+                                            <option value="">
+                                                -- Seleccione Ubicación del Trabajo --
+                                            </option>
+                                            @{
+        var locaciones = ((List<EmpresaLocacion>)(ViewBag.ListaLocaciones));
+        foreach (var locacion in locaciones)
+        {
+                                            <option value="@locacion.IdEmpresaLocacion">
+                                                @locacion.NombreLocacion, @locacion.DireccionLinea1, @locacion.DireccionDistrito
+                                            </option>
+        }
+                                            }
+
+                                        </select>
+
+                                    </div>
+                                </div>
+                                <div class="col-sm-5 fuente-pequeña" style="text-align:right;">
+                                    <button class="btn btn-default color-paleta2">Nueva Ubicación</button>
+                                </div>
+                            </div>
+
+                            <br />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         
-        <div class="row">
-            <div class="col-sm-6">                
+    </div>
+    }
+        <div id="fila2" class="row">
+            <div id="filaRequisitos" class="col-sm-6">
                 <div class="panel-group" id="oferta-requisito" role="tablist" aria-multiselectable="true">
                     <div class="panel panel-default">
                         <div class="panel-heading" role="tab" id="headingRequisito" style="padding: 2px 2px 2px 6px;">
@@ -95,7 +230,8 @@
                         <div id="collapseRequisito" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingRequisito">
                             <div class="panel-body fuente-pequeña">
 
-                                @{Html.RenderAction("ObtenerEstudios", "OfertaEstudio", new { idOferta = Model.IdOferta }); }
+                                <!--{Html.RenderAction("ObtenerEstudios", "OfertaEstudio", new { idOferta = Model.IdOferta }); }-->
+                                @Html.Action("ObtenerEstudios", "OfertaEstudio", new { idOferta = Model.IdOferta })
 
                                 <hr />
 
@@ -111,137 +247,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6">
-                <div class="panel-group" id="oferta-condiciones" role="tablist" aria-multiselectable="true">
-                    <div class="panel panel-default">
-                        <div class="panel-heading" role="tab" id="headingDetalle" style="padding: 2px 2px 2px 6px;">
-                            <h5 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseDetalle" aria-expanded="true" aria-controls="collapseDetalle" class="fuente-seccion">
-                                    Condiciones de la Oferta
-                                </a>
-                            </h5>
-                        </div>
-                        <div id="collapseDetalle" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingDetalle">
-                            <div class="panel-body fuente-pequeña">
-                                <div class="input-group">
-                                    <span class="input-group-addon">Recibir<br />CVs hasta</span>
-                                    <input type="date" id="FechaFinRecepcionCV" name="FechaFinRecepcionCV" class="form-control" placeholder="Fecha de fin de publicación">
-                                    @Html.ValidationMessageFor(m => m.FechaFinRecepcionCV)    
-                                </div>
-                                <div class="input-group">
-                                    <span class="input-group-addon">Área</span>
-                                    <input id="AreaEmpresa" name="AreaEmpresa" type="text" class="form-control" placeholder="Área o división de la empresa">
-                                    @Html.ValidationMessageFor(m => m.AreaEmpresa)
-                                </div>
-                                <div class="input-group">
-                                    <span class="input-group-addon">Tipo de<br />Cargo</span>
-                                    <select id="TipoCargo" name="TipoCargo" class="form-control">
-                                        <option value="">
-                                            -- Seleccione un Tipo de Cargo --
-                                        </option>
-                                        @{
-                                            var itemsTipoCargo = ((List<ListaValor>)(ViewBag.ListaTipoCargo));
-                                            foreach (var item in itemsTipoCargo)
-                                            {
-                                                <option value="@item.IdListaValor">
-                                                    @item.Valor
-                                                </option>
-                                            }
-                                         }
 
-                                    </select>
-                                    @Html.ValidationMessageFor(m => m.TipoCargo)
-                                </div>
-                                <div class="input-group">
-                                    <span class="input-group-addon">Tipo de<br />Trabajo</span>
-                                    <select id="TipoTrabajo" name="TipoTrabajo" class="form-control">
-                                        <option value="0">
-                                            -- Seleccione un Tipo de Trabajo --
-                                        </option>
-                                        @{
-        var itemsTipoTrabajo = ((List<ListaValor>)(ViewBag.ListaTipoTrabajo));
-        foreach (var item in itemsTipoTrabajo)
-        {
-            <option value="@item.IdListaValor">
-                @item.Valor
-            </option>
-        }
-                                        }
-                                    </select>
-                                    @Html.ValidationMessageFor(m => m.TipoTrabajo)
-                                </div>
-                                <div class="input-group">
-                                    <span class="input-group-addon">Tipo de<br />Contrato</span>
-                                    <select id="TipoContrato" name="TipoContrato" class="form-control">
-                                        <option value="">
-                                            -- Seleccione un Tipo de Contrato --
-                                        </option>
-                                        @{
-        var itemsTipoContrato = ((List<ListaValor>)(ViewBag.ListaTipoContrato));
-        foreach (var item in itemsTipoContrato)
-        {
-            <option value="@item.IdListaValor">
-                @item.Valor
-            </option>
-        }
-                                        }
-                                    </select>
-                                    @Html.ValidationMessageFor(m => m.TipoContrato)
-                                </div>
-                                <div class="input-group">
-                                    <span class="input-group-addon">Duración<br />en meses</span>
-                                    <input id="DuracionContrato" name="DuracionContrato" type="text" class="form-control" placeholder="Vacio si es indeterminada">
-                                    @Html.ValidationMessageFor(m => m.DuracionContrato)
-                                </div>
-                                <div class="input-group">
-                                    <span class="input-group-addon">Horario</span>
-                                    <input id="Horario" name="Horario" type="text" class="form-control" placeholder="Ej: De Lunes a Viernes de 9:00am a 6:00pm">
-                                    @Html.ValidationMessageFor(m => m.Horario)
-                                </div>
-                                <div class="input-group">
-                                    <span class="input-group-addon">Sueldo S/.</span>
-                                    <input id="RemuneracionOfrecida" name="RemuneracionOfrecida" type="text" class="form-control" placeholder="Sueldo a pagar en Nuevos Soles">
-                                    @Html.ValidationMessageFor(m => m.RemuneracionOfrecida)
-                                </div>
-
-
-                                <div class="input-group">
-                                    <span class="input-group-addon">Vacantes</span>
-                                    <input id="NumeroVacantes" name="NumeroVacantes" type="text" class="form-control" placeholder="Número de vacantes para el puesto">
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-7">
-                                        <div class="input-group">
-                                            <span class="input-group-addon">Ubicación</span>
-                                            <select id="IdEmpresaLocacion" name="IdEmpresaLocacion" class="form-control">
-                                                <option value="">
-                                                    -- Seleccione Ubicación del Trabajo --
-                                                </option>
-                                                @{
-        var locaciones = ((List<EmpresaLocacion>)(ViewBag.ListaLocaciones));
-        foreach (var locacion in locaciones)
-        {
-            <option value="@locacion.IdEmpresaLocacion">
-                @locacion.NombreLocacion, @locacion.DireccionLinea1, @locacion.DireccionDistrito
-            </option>
-        }
-                                                }
-
-                                            </select>
-
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-5 fuente-pequeña" style="text-align:right;">
-                                        <button class="btn btn-default color-paleta2">Nueva Ubicación</button>
-                                    </div>
-                                </div>
-
-                                <br />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+            <div id="filaFases" class="col-sm-6">
                 <div class="panel-group" id="oferta-fases" role="tablist" aria-multiselectable="true">
                     <div class="panel panel-default">
                         <div class="panel-heading" role="tab" id="headingFases" style="padding: 2px 2px 2px 6px;">
@@ -278,15 +285,14 @@
                         </div>
                     </div>
                 </div>
+
             </div>
 
-            
         </div>
 
-    }
 </div>
-<script>
-    $(document).ready(function () {
-        $("#divFinalCabeceraEmpresa").removeClass("color-paleta1 color-paleta3 color-paleta4 color-paleta5").addClass("color-paleta2");
-    });
-</script>
+        <script>
+            $(document).ready(function () {
+                $("#divFinalCabeceraEmpresa").removeClass("color-paleta1 color-paleta3 color-paleta4 color-paleta5").addClass("color-paleta2");
+            });
+        </script>

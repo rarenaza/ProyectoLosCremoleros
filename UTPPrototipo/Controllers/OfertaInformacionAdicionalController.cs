@@ -16,6 +16,10 @@ namespace UTPPrototipo.Controllers
         {
             List<OfertaInformacionAdicional> lista = infoAdicional.ObtenerInformacionAdicional(idOferta);
 
+            LNGeneral lnGeneral = new LNGeneral();
+            ViewBag.ListaTipoConocimiento = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_OTRO_CONOCIMIENTO), "IdListaValor", "Valor");
+                //lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_OTRO_CONOCIMIENTO);
+
             return PartialView("_OfertaInformacionAdicional",lista);
         }
 
