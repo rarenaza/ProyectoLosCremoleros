@@ -1,0 +1,26 @@
+﻿@model  IEnumerable<UTPPrototipo.Models.ViewModels.Empresa.VistaNuevasPostulaciones>
+
+@foreach (var item in Model)
+{
+    <div class="row">
+        <div class="col-sm-3">
+            @item.CargaOfrecido
+        </div>
+        <div class="col-sm-3">
+            @item.FechaPostulacion
+        </div>
+        <div class="col-sm-4">
+            <a href="../Empresa/Postulante"><strong>@item.AlumnoNombres @item.AlumnoApellidos</strong></a>
+        </div>
+        <div class="col-sm-2" style="height:20px;">
+            <div class="progress">
+                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="@item.Cumplimiento" aria-valuemin="0" aria-valuemax="100" style="width:90%;">
+                    @item.Cumplimiento
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+

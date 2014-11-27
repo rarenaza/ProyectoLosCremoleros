@@ -135,6 +135,11 @@ namespace UTP.PortalEmpleabilidad.Logica
                 throw ex;
             }
         }
+
+        public DataTable ObtenerPostulacionesPorEmpresa(int idEmpresa)
+        {
+            return adOferta.ObtenerPostulacionesPorEmpresa(idEmpresa);
+        }
     }
 
 }

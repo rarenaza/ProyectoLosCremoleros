@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -7,6 +8,7 @@ using UTP.PortalEmpleabilidad.Logica;
 using UTP.PortalEmpleabilidad.Modelo;
 using UTP.PortalEmpleabilidad.Modelo.Vistas.Empresa;
 using UTP.PortalEmpleabilidad.Modelo.Vistas.Ofertas;
+using UTPPrototipo.Models.ViewModels.Empresa;
 
 namespace UTPPrototipo.Controllers
 {
@@ -209,6 +211,30 @@ namespace UTPPrototipo.Controllers
         public ActionResult Administrar()
         {
             return View();
+        }
+
+        public ActionResult ObtenerNuevasPostulaciones()
+        {
+            Ticket ticket = (Ticket)Session["Ticket"];
+
+            LNOferta lnOferta = new LNOferta();
+            List<VistaNuevasPostulaciones> lista = new List<VistaNuevasPostulaciones>();
+
+            DataTable dtResultado = lnOferta.ObtenerPostulacionesPorEmpresa(ticket.IdEmpresa);
+
+            foreach (DataRow fila in dtResultado.Rows)
+            {
+                VistaNuevasPostulaciones vista = new VistaNuevasPostulaciones();
+                vista.CargaOfrecido = Convert.ToString(fila["CargoOfrecido"]);
+                vista.FechaPostulacion = Convert.ToDateTime(fila["FechaPostulacion"]);
+                vista.AlumnoNombres = Convert.ToString(fila["AlumnoNombres"]);
+                vista.AlumnoApellidos = Convert.ToString(fila["AlumnoApellidos"]);
+                vista.Cumplimiento = Convert.ToInt32(fila["Cumplimiento"]);
+
+                lista.Add(vista);
+            }
+
+            return PartialView("_VistaNuevasPostulaciones", lista);
         }
 	}
 }
