@@ -92,6 +92,7 @@
         <div class="col-sm-4">
             <h3>Eventos</h3>
             <hr />
+
             @{
                 var listaEventos = ((List<Contenido>)(ViewBag.ListaEventos));
 
@@ -122,20 +123,46 @@
             <h3>Testimonios</h3>
             <hr />
 
+            
+
             @{
+                int contador = 1;
                 var listaTestimonios = ((List<Contenido>)(ViewBag.listaTestimonios));
 
-                foreach (var itemtestimonio in listaTestimonios)
+                foreach (var itemTestimonios in listaTestimonios)
                 {
-                    <span>
-                        <img src="/Content/imagen/@itemtestimonio.Imagen" style="border:solid;border-width:1px;border-color:rgb(220,220,220);border-radius: 6px 6px 6px 6px;width:100%;" />
-                    </span>
-                        <h4><strong>@Html.Raw(@itemtestimonio.Titulo)</strong></h4>
-                    <span>
-                      @Html.Raw(@itemtestimonio.Descripcion)
-                    </span>
-                    <hr />
+                    if (contador % 2 == 0)
+                    {
+                        <div class="row ">
+                            <div class="col-sm-6">
+                                <img src="/Content/imagen/@itemTestimonios.Imagen" style="border:solid;border-width:1px;border-color:rgb(220,220,220);border-radius: 6px 6px 6px 6px;width:100%;" />
+                            </div>
+                            <div class="col-sm-6">
+                                <h3 style="color:rgb(180,34,30)"><strong>@Html.Raw(@itemTestimonios.Titulo)</strong></h3>
+                                <h6>@Html.Raw(@itemTestimonios.SubTitulo)</h6>
+                               
+                            </div>
 
+                        </div>
+                    
+                    }
+                    else
+                    {
+                        
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <h3 style="color:rgb(180,34,30)"><strong>@Html.Raw(@itemTestimonios.Titulo)</strong></h3>
+                                    <h6>@Html.Raw(@itemTestimonios.SubTitulo)</h6>
+                                   
+                                </div>
+                                <div class="col-sm-6">
+                                    <img src="/Content/imagen/@itemTestimonios.Imagen" style="border:solid;border-width:1px;border-color:rgb(220,220,220);border-radius: 6px 6px 6px 6px;width:100%;" />
+                                </div>
+                            </div>
+                       
+                    }
+                    contador++;
+                    <hr />
                 }
             }
             @*<span>
