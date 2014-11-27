@@ -13,6 +13,7 @@ namespace UTP.PortalEmpleabilidad.Logica
     {
       ADContenido ad = new ADContenido();
 
+
         public List<Contenido> Contenido_Mostrar()
         {
             List<Contenido> contenido = new List<Contenido>();
@@ -28,7 +29,11 @@ namespace UTP.PortalEmpleabilidad.Logica
                 listacontenido.Titulo = dtResultado.Rows[i]["Titulo"].ToString();
                 listacontenido.SubTitulo = dtResultado.Rows[i]["SubTitulo"].ToString();
                 listacontenido.Descripcion = dtResultado.Rows[i]["Descripcion"].ToString();
-                listacontenido.Imagen = dtResultado.Rows[i]["Imagen"].ToString();
+
+                listacontenido.Imagen = Encoding.UTF8 .GetBytes  (dtResultado.Rows[i]["Imagen"].ToString());
+                
+                
+                //listacontenido.Imagen = dtResultado.Rows[i]["Imagen"].ToString();
               
                 contenido.Add(listacontenido);
             }
@@ -71,7 +76,10 @@ namespace UTP.PortalEmpleabilidad.Logica
                 contenido.Titulo        = dtResultado.Rows[i]["Titulo"].ToString();
                 contenido.SubTitulo     = dtResultado.Rows[i]["SubTitulo"].ToString();
                 contenido.Descripcion   = dtResultado.Rows[i]["Descripcion"].ToString();
-                contenido.Imagen        = dtResultado.Rows[i]["Imagen"].ToString();
+
+                contenido.Imagen = Encoding.UTF8.GetBytes (dtResultado.Rows[i]["Imagen"].ToString());
+                //contenido.Imagen        = dtResultado.Rows[i]["Imagen"].ToString();
+
                 contenido.IdContenido   = Convert.ToInt32 (dtResultado.Rows[i]["IdContenido"]);
 
                 contenido.EnPantallaPrincipal = Convert.ToBoolean(dtResultado.Rows[i]["EnPantallaPrincipal"]);
@@ -99,7 +107,8 @@ namespace UTP.PortalEmpleabilidad.Logica
                 contenido.Titulo = dtResultado.Rows[i]["Titulo"].ToString();
                 contenido.SubTitulo = dtResultado.Rows[i]["SubTitulo"].ToString();
                 contenido.Descripcion = dtResultado.Rows[i]["Descripcion"].ToString();
-                contenido.Imagen = dtResultado.Rows[i]["Imagen"].ToString();
+                //contenido.Imagen = dtResultado.Rows[i]["Imagen"].ToString();
+                contenido.Imagen = Encoding.UTF8.GetBytes(dtResultado.Rows[i]["Imagen"].ToString());
                 contenido.IdContenido = Convert.ToInt32(dtResultado.Rows[i]["IdContenido"]);
    
 
@@ -126,7 +135,8 @@ namespace UTP.PortalEmpleabilidad.Logica
                 contenido.Titulo = dtResultado.Rows[0]["Titulo"].ToString();
                 contenido.SubTitulo = dtResultado.Rows[0]["SubTitulo"].ToString();
                 contenido.Descripcion = dtResultado.Rows[0]["Descripcion"].ToString();
-                contenido.Imagen = dtResultado.Rows[0]["Imagen"].ToString();
+                contenido.Imagen = Encoding.UTF8.GetBytes(dtResultado.Rows[0]["Imagen"].ToString());
+                //contenido.Imagen = dtResultado.Rows[0]["Imagen"].ToString();
                             
             }
             return contenido;

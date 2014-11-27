@@ -1,4 +1,4 @@
-﻿@model UTP.PortalEmpleabilidad.Modelo.Contenido
+﻿@model UTPPrototipo.Models.ViewModels.Contenido.ContenidoVista
 
 @{
     ViewBag.Title = "Contenido_insertar";
@@ -6,7 +6,9 @@
 
 <h2>Contenido_insertar</h2>
 
-@using (Html.BeginForm()) 
+
+@*@using (Html.BeginForm())*@ 
+    @using (Html.BeginForm("Contenido_insertar", "Contenido", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     
@@ -57,10 +59,12 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Imagen, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ImagenHtml, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Imagen)
-                @Html.ValidationMessageFor(model => model.Imagen)
+                @Html.TextBoxFor(model => model.ImagenHtml, new { type = "file" })
+                
+                @*@Html.EditorFor(model => model.Imagen)*@
+                @Html.ValidationMessageFor(model => model.ImagenHtml)
             </div>
         </div>
 

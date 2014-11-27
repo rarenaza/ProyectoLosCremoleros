@@ -66,7 +66,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.Parameters.Add(new SqlParameter("@Titulo", SqlDbType.VarChar, 50)).Value = contenido.Titulo;
                 cmd.Parameters.Add(new SqlParameter("@SubTitulo", SqlDbType.VarChar, 50)).Value = contenido.SubTitulo;
                 cmd.Parameters.Add(new SqlParameter("@Descripcion", SqlDbType.VarChar, -1)).Value = contenido.Descripcion;
-                cmd.Parameters.Add(new SqlParameter("@Imagen", SqlDbType.VarChar,50)).Value = contenido.Imagen;
+                cmd.Parameters.Add(new SqlParameter("@Imagen", SqlDbType.Image)).Value = contenido.Imagen;
                 cmd.Parameters.Add(new SqlParameter("@EnPantallaPrincipal", SqlDbType.Bit)).Value = contenido.EnPantallaPrincipal;
                 cmd.Parameters.Add(new SqlParameter("@CodMenu", SqlDbType.VarChar,50)).Value = contenido.Menu;
                 cmd.Parameters.Add(new SqlParameter("@CreadoPor", SqlDbType.VarChar, 50)).Value = contenido.CreadoPor;

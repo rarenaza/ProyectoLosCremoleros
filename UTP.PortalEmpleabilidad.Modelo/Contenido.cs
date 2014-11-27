@@ -13,8 +13,8 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string Titulo { get; set; }
         public string SubTitulo { get; set;}
         public string Descripcion { get; set; }
-        //public byte[] Imagen { get; set; }
-        public string  Imagen { get; set; }
+        public byte[] Imagen { get; set; }
+        //public string  Imagen { get; set; }
         public string  Menu { get; set; }
         public string CreadoPor { get; set; }
         public DateTime FechaCreacion { get; set; }
