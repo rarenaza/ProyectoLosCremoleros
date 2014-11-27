@@ -29,7 +29,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 listacontenido.SubTitulo = dtResultado.Rows[i]["SubTitulo"].ToString();
                 listacontenido.Descripcion = dtResultado.Rows[i]["Descripcion"].ToString();
                 listacontenido.Imagen = dtResultado.Rows[i]["Imagen"].ToString();
-               
+              
                 contenido.Add(listacontenido);
             }
             return contenido;
@@ -55,13 +55,13 @@ namespace UTP.PortalEmpleabilidad.Logica
 
         }
 
-
-        public List<Contenido> Contenido_Buscar(string IdLista)
+        //muestra datos en el index solo lo que me instereza mostrar
+        public List<Contenido> Contenido_BuscarIndex(string IdLista)
         {
             List<Contenido> lista = new List<Contenido>();
 
 
-            DataTable dtResultado = ad.Contenido_Buscar(IdLista);
+            DataTable dtResultado = ad.Contenido_BuscarIndex(IdLista);
 
             for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
             {
@@ -73,7 +73,9 @@ namespace UTP.PortalEmpleabilidad.Logica
                 contenido.Descripcion   = dtResultado.Rows[i]["Descripcion"].ToString();
                 contenido.Imagen        = dtResultado.Rows[i]["Imagen"].ToString();
                 contenido.IdContenido   = Convert.ToInt32 (dtResultado.Rows[i]["IdContenido"]);
-            
+
+                contenido.EnPantallaPrincipal = Convert.ToBoolean(dtResultado.Rows[i]["EnPantallaPrincipal"]);
+
                 lista.Add(contenido);
 
             }
@@ -81,6 +83,34 @@ namespace UTP.PortalEmpleabilidad.Logica
 
             return lista;
         }
+
+        public List<Contenido> Contenido_BuscarNoticiasEventosOtros(string IdLista)
+        {
+            List<Contenido> lista = new List<Contenido>();
+
+
+            DataTable dtResultado = ad.Contenido_BuscarNoticiasEventosOtros(IdLista);
+
+            for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
+            {
+                Contenido contenido = new Contenido();
+
+                contenido.Menu = dtResultado.Rows[i]["CodMenu"].ToString();
+                contenido.Titulo = dtResultado.Rows[i]["Titulo"].ToString();
+                contenido.SubTitulo = dtResultado.Rows[i]["SubTitulo"].ToString();
+                contenido.Descripcion = dtResultado.Rows[i]["Descripcion"].ToString();
+                contenido.Imagen = dtResultado.Rows[i]["Imagen"].ToString();
+                contenido.IdContenido = Convert.ToInt32(dtResultado.Rows[i]["IdContenido"]);
+   
+
+                lista.Add(contenido);
+
+            }
+
+
+            return lista;
+        }
+
 
         public Contenido ContenidoEDitar_Buscar(int Id)
         {

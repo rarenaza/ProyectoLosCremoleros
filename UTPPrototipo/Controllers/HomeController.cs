@@ -13,9 +13,9 @@ namespace UTPPrototipo.Controllers
         LNContenido ln = new LNContenido();
         public ActionResult Index()
         {    
-            ViewBag.ListaNoticias = ln.Contenido_Buscar("4");
-            ViewBag.ListaEventos = ln.Contenido_Buscar("7");
-            ViewBag.ListaTestimonios = ln.Contenido_Buscar("5");
+            ViewBag.ListaNoticias = ln.Contenido_BuscarIndex("4");
+            ViewBag.ListaEventos = ln.Contenido_BuscarIndex("7");
+            ViewBag.ListaTestimonios = ln.Contenido_BuscarIndex("5");
             
             return View();
         }
@@ -24,7 +24,7 @@ namespace UTPPrototipo.Controllers
         {
             List<Contenido> contenido = new List<Contenido>();
             string x = "6";
-            contenido = ln.Contenido_Buscar(x);
+            contenido = ln.Contenido_BuscarNoticiasEventosOtros(x);
 
             return View(contenido);
         }
@@ -36,7 +36,7 @@ namespace UTPPrototipo.Controllers
         {
             List<Contenido> contenido = new List<Contenido>();
             string x = "5";
-            contenido = ln.Contenido_Buscar(x);
+            contenido = ln.Contenido_BuscarNoticiasEventosOtros(x);
 
             return View(contenido);
         }
@@ -45,15 +45,15 @@ namespace UTPPrototipo.Controllers
             ////
             List<Contenido> contenido = new List<Contenido>();
             string x = "2";
-            contenido = ln.Contenido_Buscar(x);
+            contenido = ln.Contenido_BuscarNoticiasEventosOtros(x);
 
             return View(contenido);
                        
         }
         public ActionResult NoticiasEventos()
         {
-            ViewBag.Noticias = ln.Contenido_Buscar("4");
-            ViewBag.Eventos = ln.Contenido_Buscar("7");
+            ViewBag.Noticias = ln.Contenido_BuscarNoticiasEventosOtros("4");
+            ViewBag.Eventos = ln.Contenido_BuscarNoticiasEventosOtros("7");
 
 
             return View();
@@ -70,7 +70,7 @@ namespace UTPPrototipo.Controllers
         {
             List<Contenido> contenido = new List<Contenido>();
             string x = "3";
-            contenido = ln.Contenido_Buscar(x);
+            contenido = ln.Contenido_BuscarNoticiasEventosOtros(x);
 
             return View(contenido);
 

@@ -67,6 +67,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.Parameters.Add(new SqlParameter("@SubTitulo", SqlDbType.VarChar, 50)).Value = contenido.SubTitulo;
                 cmd.Parameters.Add(new SqlParameter("@Descripcion", SqlDbType.VarChar, -1)).Value = contenido.Descripcion;
                 cmd.Parameters.Add(new SqlParameter("@Imagen", SqlDbType.VarChar,50)).Value = contenido.Imagen;
+                cmd.Parameters.Add(new SqlParameter("@EnPantallaPrincipal", SqlDbType.Bit)).Value = contenido.EnPantallaPrincipal;
                 cmd.Parameters.Add(new SqlParameter("@CodMenu", SqlDbType.VarChar,50)).Value = contenido.Menu;
                 cmd.Parameters.Add(new SqlParameter("@CreadoPor", SqlDbType.VarChar, 50)).Value = contenido.CreadoPor;
 
@@ -83,7 +84,8 @@ namespace UTP.PortalEmpleabilidad.Datos
 
         }
 
-        public DataTable Contenido_Buscar(string Id)
+      //muestra datos en el index solo lo que me instereza mostrar
+        public DataTable Contenido_BuscarIndex(string Id)
         {
             ADConexion cnn = new ADConexion();
             SqlCommand cmd = new SqlCommand();
@@ -94,6 +96,28 @@ namespace UTP.PortalEmpleabilidad.Datos
 
             cnn.Conectar();
             cmd.Parameters.Add(new SqlParameter("@CodMenu", SqlDbType.VarChar,50)).Value = Id;
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+
+            da.Fill(dt);
+
+            cnn.Desconectar();
+
+            return dt;
+        }
+
+        public DataTable Contenido_BuscarNoticiasEventosOtros(string Id)
+        {
+            ADConexion cnn = new ADConexion();
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "Contenido_BuscarNoticiasEventos";
+            cmd.Connection = cnn.cn;
+
+            cnn.Conectar();
+            cmd.Parameters.Add(new SqlParameter("@CodMenu", SqlDbType.VarChar, 50)).Value = Id;
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();

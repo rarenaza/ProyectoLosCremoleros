@@ -15,6 +15,8 @@ namespace UTPPrototipo.Controllers
         LNContenido ln = new LNContenido();
 
         // GET: Lista
+
+        //muestra un contenido nuevo el la pantalla contenido Index
         public ActionResult Index()
         {
             List<Contenido> contenido = new List<Contenido>();
@@ -73,7 +75,7 @@ namespace UTPPrototipo.Controllers
         {
             List<Contenido> contenido = new List<Contenido>();
             string x = "2";
-            contenido = ln.Contenido_Buscar(x);
+            contenido = ln.Contenido_BuscarIndex(x);
 
             return View(contenido);
 
