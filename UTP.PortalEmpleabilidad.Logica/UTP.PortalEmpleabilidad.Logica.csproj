@@ -46,6 +46,7 @@
     <Compile Include="LNGeneral.cs" />
     <Compile Include="LNLista.cs" />
     <Compile Include="LNEmpresa.cs" />
+    <Compile Include="LNMensaje.cs" />
     <Compile Include="LNOferta.cs" />
     <Compile Include="LNOfertaEmpresa.cs" />
     <Compile Include="LNOfertaEstudio.cs" />

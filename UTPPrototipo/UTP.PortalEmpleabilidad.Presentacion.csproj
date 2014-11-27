@@ -697,6 +697,12 @@
     <Content Include="Views\Contenido\ContenidoEDitar_Buscar.cshtml" />
     <Content Include="Views\Empresa\EditarOferta.cshtml" />
     <Content Include="Views\Empresa\_VistaNuevasPostulaciones.cshtml" />
+    <Content Include="Views\Empresa\_VistaNuevosMensajes.cshtml" />
+    <Content Include="Views\Empresa\_VistaOfertaAnuncio.cshtml" />
+    <Content Include="Views\Empresa\_VistaOfertaPostulantes.cshtml" />
+    <Content Include="Views\Empresa\_VistaOfertaCondiciones.cshtml" />
+    <Content Include="Views\Empresa\_VistaOfertaRequisitos.cshtml" />
+    <Content Include="Views\Empresa\_VistaOfertaMensajes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

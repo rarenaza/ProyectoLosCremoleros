@@ -1,0 +1,21 @@
+﻿@model  IEnumerable<UTP.PortalEmpleabilidad.Modelo.Mensaje>
+
+<div class="col-md-5 fuente-pequeña">
+    <h5>Nuevos Mensajes</h5>
+    <hr />
+
+    @foreach (var item in Model)
+    {
+        <div class="row">
+            <div class="col-md-3"><strong>@item.FechaEnvio</strong><br /><a href="#">Contestar</a></div>
+            <div class="col-md-9">
+                <strong>@item.Asunto</strong>
+                <br />De: @item.DeUsuario
+                <br />Oferta: <a href="../Alumno/PostulacionOferta">@item.Oferta.CargoOfrecido</a>
+                <br />@item.MensajeTexto<a href="#">Mostrar</a>
+            </div>
+        </div>
+        <hr />
+    }
+
+</div>

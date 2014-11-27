@@ -221,7 +221,8 @@ namespace UTPPrototipo.Controllers
             List<VistaNuevasPostulaciones> lista = new List<VistaNuevasPostulaciones>();
 
             DataTable dtResultado = lnOferta.ObtenerPostulacionesPorEmpresa(ticket.IdEmpresa);
-
+            
+            //Se realiza el FOR en esta porque se está utilizando una vista modelo de presentación.
             foreach (DataRow fila in dtResultado.Rows)
             {
                 VistaNuevasPostulaciones vista = new VistaNuevasPostulaciones();
@@ -236,5 +237,43 @@ namespace UTPPrototipo.Controllers
 
             return PartialView("_VistaNuevasPostulaciones", lista);
         }
-	}
+
+        public ActionResult ObtenerNuevosMensajes()
+        {
+            Ticket ticket = (Ticket)Session["Ticket"];
+
+            LNMensaje lnMensaje = new LNMensaje ();
+            List<Mensaje> lista = lnMensaje.ObtenerPorIdEmpresa(ticket.IdEmpresa);
+
+            return PartialView("_VistaNuevosMensajes", lista);
+        }
+
+        #region Vistas parciales de la Oferta
+
+        public ActionResult VistaOfertaAnuncio()
+        {
+            return PartialView("_VistaOfertaAnuncio");
+        }
+
+        public ActionResult VistaOfertaPostulantes()
+        {
+            return PartialView("_VistaOfertaPostulantes");
+        }
+
+        public ActionResult VistaOfertaCondiciones()
+        {
+            return PartialView("_VistaOfertaCondiciones");
+        }
+
+        public ActionResult VistaOfertaRequisitos()
+        {
+            return PartialView("_VistaOfertaRequisitos");
+        }
+
+        public ActionResult VistaOfertaMensajes()
+        {
+            return PartialView("_VistaOfertaMensajes");
+        }
+        #endregion
+    }
 }

@@ -48,6 +48,7 @@
     <Compile Include="Lista.cs" />
     <Compile Include="Constantes.cs" />
     <Compile Include="Empresa.cs" />
+    <Compile Include="Mensaje.cs" />
     <Compile Include="Oferta.cs" />
     <Compile Include="OfertaEstudio.cs" />
     <Compile Include="OfertaInformacionAdicional.cs" />

@@ -49,6 +49,7 @@
     <Compile Include="ADGeneral.cs" />
     <Compile Include="ADLista.cs" />
     <Compile Include="ADEmpresa.cs" />
+    <Compile Include="ADMensaje.cs" />
     <Compile Include="ADOferta.cs" />
     <Compile Include="ADOfertaInformacionAdicional.cs" />
     <Compile Include="ADOfertaEstudio.cs" />
