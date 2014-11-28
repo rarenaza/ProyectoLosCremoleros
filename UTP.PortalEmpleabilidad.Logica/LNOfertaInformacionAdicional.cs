@@ -26,10 +26,10 @@ namespace UTP.PortalEmpleabilidad.Logica
                 infoAdicional.IdOfertaInformacionAdicional = Convert.ToInt32(fila["IdOfertaInformacionAdicional"]);
                 infoAdicional.IdOferta = Convert.ToInt32(fila["IdOferta"]);
                 infoAdicional.Conocimiento = Convert.ToString(fila["Conocimiento"]);
-                infoAdicional.TipoConocimiento = Convert.ToString(fila["TipoConocimiento"]);
-                infoAdicional.NivelConocimiento = Convert.ToString(fila["NivelConocimiento"]);
+                infoAdicional.TipoConocimiento.Valor = Convert.ToString(fila["TipoConocimientoDescripcion"]);
+                infoAdicional.NivelConocimiento.Valor = Convert.ToString(fila["NivelConocimientoDescripcion"]);
                 infoAdicional.AniosExperiencia = Convert.ToInt32(fila["AniosExperiencia"]);
-                infoAdicional.EstadoOfertaInformacionAdicional = Convert.ToString(fila["EstadoOfertaInformacionAdicional"]);
+                infoAdicional.EstadoOfertaInformacionAdicional.Valor = Convert.ToString(fila["EstadoOfertaInformacionAdicionalDescripcion"]);
                 infoAdicional.CreadoPor = Convert.ToString(fila["CreadoPor"]);
 
             }

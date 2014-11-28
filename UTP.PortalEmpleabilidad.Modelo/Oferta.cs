@@ -8,8 +8,8 @@ using System.Web;
 
 namespace UTP.PortalEmpleabilidad.Modelo
 {
-   public  class Oferta
-    {
+   public class Oferta
+    {       
         public int IdOferta { get; set; }
         public int IdEmpresa { get; set; }
 
@@ -30,12 +30,11 @@ namespace UTP.PortalEmpleabilidad.Modelo
         
         public int IdEmpresaLocacion { get; set; }
         public string  DescripcionOferta { get; set; }
-        public string TipoTrabajo { get; set; }
-        public string TipoContrato { get; set; }
+        //public string TipoTrabajo { get; set; }
+        //public string TipoContrato { get; set; }
         public int DuracionContrato { get; set; }
-        public string TipoCargo { get; set; }
-        
-  
+        //public string TipoCargo { get; set; }
+          
         public decimal RemuneracionOfrecida { get; set; }
        
         public DateTime FechaInicioLabores { get; set; }
@@ -50,9 +49,24 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string ModificadoPor { get; set; }
         public DateTime  FechaModificacion{ get; set; }
 
-        public List<OfertaInformacionAdicional> listaInformacionAdicional { get; set; }
-        
+        public List<OfertaInformacionAdicional> ListaInformacionAdicional { get; set; }
+
+        public List<OfertaEstudio> ListaEstudios { get; set; }
+        public List<OfertaSectorEmpresarial> ListaSectores { get; set; }
+
+        public ListaValor TipoCargo { get; set; }
+        public ListaValor TipoTrabajo { get; set; }
+        public ListaValor TipoContrato { get; set; }
 
 
+       public Oferta() {
+
+           TipoCargo = new ListaValor();
+           TipoTrabajo = new ListaValor();
+           TipoContrato = new ListaValor();
+           ListaEstudios = new List<OfertaEstudio>();
+           ListaSectores = new List<OfertaSectorEmpresarial>();
+           ListaInformacionAdicional = new List<OfertaInformacionAdicional>();
+        }
     }
 }

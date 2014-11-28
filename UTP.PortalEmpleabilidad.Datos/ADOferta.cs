@@ -220,9 +220,9 @@ namespace UTP.PortalEmpleabilidad.Datos
             return procesoExitoso;
         }
 
-        public DataTable ObtenerPorId(int idOferta)
+        public DataSet ObtenerPorId(int idOferta)
         {
-            DataTable dtResultado = new DataTable();
+            DataSet dsResultado = new DataSet();
 
             using (SqlConnection conexion = new SqlConnection(cadenaConexion))
             {
@@ -235,15 +235,13 @@ namespace UTP.PortalEmpleabilidad.Datos
 
                 conexion.Open();
 
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                dtResultado = new DataTable();
-
-                da.Fill(dtResultado);
+                SqlDataAdapter da = new SqlDataAdapter(cmd);                
+                da.Fill(dsResultado);
 
                 conexion.Close();
             }
 
-            return dtResultado;
+            return dsResultado;
         }
 
         /// <summary>
@@ -267,6 +265,34 @@ namespace UTP.PortalEmpleabilidad.Datos
                 conexion.Open();
 
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
+                dtResultado = new DataTable();
+
+                da.Fill(dtResultado);
+
+                conexion.Close();
+            }
+
+            return dtResultado;
+        }
+
+        public DataTable ObtenerPostulantesPorIdOferta(int idOferta)
+        {
+            DataTable dtResultado = new DataTable();
+
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Oferta_ObtenerPostulantesPorIdOferta";
+                cmd.Parameters.Add(new SqlParameter("@IdOferta", idOferta));
+
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+
                 dtResultado = new DataTable();
 
                 da.Fill(dtResultado);

@@ -1,4 +1,5 @@
-﻿
+﻿@model IEnumerable<UTP.PortalEmpleabilidad.Modelo.Mensaje>
+
 <div class="panel panel-default">
     <div class="panel-heading" role="tab" id="headingMensaje" style="padding: 2px 2px 2px 6px;">
         <h5 class="panel-title">
@@ -7,6 +8,7 @@
             </a>
         </h5>
     </div>
+    <!--Completar con una vista parcial y un formulario con AjaxBegin para ingresar nuevos mensajes.-->
     <div id="collapseMensaje" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingMensaje">
         <div class="panel-body fuente-pequeña">
             <div class="row">
@@ -46,57 +48,29 @@
                     </div>
                 </div>
             </div>
-            <hr />
-            <div class="row">
-                <div class="col-md-1"><span class="fui fa-3x">k</span></div>
-                <div class="col-md-2"><strong>30/10/2014 20:12:12</strong><br /><a href="#">Contestar</a></div>
-                <div class="col-sm-9">
-                    <div class="row">
-                        <div class="col-md-12"><strong>De: Pedro Miguel Benavides Olguín</strong></div>
-                    </div><div class="row">
-                        <div class="col-md-12"><strong>RE: Bienvenido a la Postulación</strong></div>
+
+            @foreach (var item in Model)
+            {
+                <hr />
+                <div class="row">
+                    <div class="col-md-1"><span class="fui fa-3x">k</span></div>
+                    <div class="col-md-2"><strong>@item.FechaEnvio</strong><br /><a href="#">Contestar</a></div>
+                    <div class="col-sm-9">
+                        <div class="row">
+                            <div class="col-md-12"><strong>De: @item.DeUsuario</strong></div>
+                        </div><div class="row">
+                            <div class="col-md-12"><strong>@item.Asunto</strong></div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            Estimada Karina Barrionuevo, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tellus sem, porttitor id dapibus tempor, consequat sed...<a href="#">Mostrar</a>
+                            @item.MensajeTexto
+                            <a href="#">Mostrar</a>
                         </div>
                     </div>
                 </div>
             </div>
-            <hr />
-            <div class="row">
-                <div class="col-md-1"><span class="fui fa-3x">k</span></div>
-                <div class="col-md-2"><strong>30/10/2014 20:12:12</strong><br /><a href="#">Contestar</a></div>
-                <div class="col-sm-9">
-                    <div class="row">
-                        <div class="col-md-12"><strong>De: Pedro Miguel Benavides Olguín</strong></div>
-                    </div><div class="row">
-                        <div class="col-md-12"><strong>RE: Bienvenido a la Postulación</strong></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            Estimada Karina Barrionuevo, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tellus sem, porttitor id dapibus tempor, consequat sed...<a href="#">Mostrar</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <hr />
-            <div class="row">
-                <div class="col-md-1"><span class="fui fa-3x">k</span></div>
-                <div class="col-md-2"><strong>30/10/2014 20:12:12</strong><br /><a href="#">Contestar</a></div>
-                <div class="col-sm-9">
-                    <div class="row">
-                        <div class="col-md-12"><strong>De: Pedro Miguel Benavides Olguín</strong></div>
-                    </div><div class="row">
-                        <div class="col-md-12"><strong>RE: Bienvenido a la Postulación</strong></div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            Estimada Karina Barrionuevo, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tellus sem, porttitor id dapibus tempor, consequat sed...<a href="#">Mostrar</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            }
+                        
         </div>
     </div>
 </div>

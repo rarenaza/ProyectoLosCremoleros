@@ -10,12 +10,18 @@ namespace UTP.PortalEmpleabilidad.Modelo
     {
         public int IdOfertaSectorEmpresarial { get; set; }
         public int IdOferta { get; set; }
-        public string SectorEmpresarial { get; set; }
+        public ListaValor SectorEmpresarial { get; set; }
         public bool ExperienciaExcluyente { get; set; }
         public int AniosTrabajados { get; set; }
-        public string EstadoOfertaSectorEmpresarial { get; set; }
+        public ListaValor EstadoOfertaSectorEmpresarial { get; set; }
         public string CreadorPor { get; set; }
         public string ModificadoPor { get; set; }
+
+        public OfertaSectorEmpresarial()
+        {
+            SectorEmpresarial = new ListaValor();
+            EstadoOfertaSectorEmpresarial = new ListaValor();
+        }
 
     }
 }

@@ -52,6 +52,7 @@
     <Compile Include="Oferta.cs" />
     <Compile Include="OfertaEstudio.cs" />
     <Compile Include="OfertaInformacionAdicional.cs" />
+    <Compile Include="OfertaPostulante.cs" />
     <Compile Include="OfertaSectorEmpresarial.cs" />
     <Compile Include="Contenido.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

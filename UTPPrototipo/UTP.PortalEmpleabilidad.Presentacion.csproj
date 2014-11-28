@@ -704,6 +704,7 @@
     <Content Include="Views\Empresa\_VistaOfertaCondiciones.cshtml" />
     <Content Include="Views\Empresa\_VistaOfertaRequisitos.cshtml" />
     <Content Include="Views\Empresa\_VistaOfertaMensajes.cshtml" />
+    <Content Include="Views\OfertaEstudio\_OfertaEstudioListado.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

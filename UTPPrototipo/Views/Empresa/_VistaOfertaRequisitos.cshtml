@@ -1,4 +1,6 @@
-﻿<div class="panel panel-default">
+﻿@model UTP.PortalEmpleabilidad.Modelo.Oferta
+
+<div class="panel panel-default">
     <div class="panel-heading" role="tab" id="headingRequisito" style="padding: 2px 2px 2px 6px;">
         <h5 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseRequisito" aria-expanded="true" aria-controls="collapseRequisito" class="fuente-seccion">
@@ -14,59 +16,38 @@
                 </div>
             </div>
             <br />
-            <table class="fuente-pequeña">
-                <tr>
-                    <td class="celda-nombre">Tipo</td>
-                    <td class="celda-datos">Universitario</td>
-                </tr>
-                <tr>
-                    <td class="celda-nombre">Carrera</td>
-                    <td class="celda-datos">ING. INDUSTRIAL Y DE SISTEMAS</td>
-                </tr>
-                <tr>
-                    <td class="celda-nombre">Especialidad</td>
-                    <td class="celda-datos">ING. SISTEMAS E INFORMATICA</td>
-                </tr>
-                <tr>
-                    <td class="celda-nombre">Ciclo mínimo</td>
-                    <td class="celda-datos">3</td>
-                </tr>
-                <tr>
-                    <td class="celda-nombre">Estado</td>
-                    <td class="celda-datos">Bachiller</td>
-                </tr>
-                <tr>
-                    <td class="celda-nombre">Requerido</td>
-                    <td class="celda-datos">Si</td>
-                </tr>
-            </table>
-            <br />
-            <table class="fuente-pequeña">
-                <tr>
-                    <td class="celda-nombre">Tipo</td>
-                    <td class="celda-datos">Post-Grado</td>
-                </tr>
-                <tr>
-                    <td class="celda-nombre">Carrera</td>
-                    <td class="celda-datos">Business Administration</td>
-                </tr>
-                <tr>
-                    <td class="celda-nombre">Especialidad</td>
-                    <td class="celda-datos">Business Administration</td>
-                </tr>
-                <tr>
-                    <td class="celda-nombre">Ciclo mínimo</td>
-                    <td class="celda-datos">-</td>
-                </tr>
-                <tr>
-                    <td class="celda-nombre">Estado</td>
-                    <td class="celda-datos">Magister</td>
-                </tr>
-                <tr>
-                    <td class="celda-nombre">Requerido</td>
-                    <td class="celda-datos">No</td>
-                </tr>
-            </table>
+
+            @foreach (var itemEstudio in Model.ListaEstudios)
+            {
+                <table class="fuente-pequeña">
+                    <tr>
+                        <td class="celda-nombre">Tipo</td>
+                        <td class="celda-datos">@itemEstudio.TipoDeEstudio.Valor</td>
+                    </tr>
+                    <tr>
+                        <td class="celda-nombre">Carrera</td>
+                        <td class="celda-datos">FALTA</td>
+                    </tr>
+                    <tr>
+                        <td class="celda-nombre">Especialidad</td>
+                        <td class="celda-datos">FALTA</td>
+                    </tr>
+                    <tr>
+                        <td class="celda-nombre">Ciclo mínimo</td>
+                        <td class="celda-datos">@itemEstudio.CicloEstudio</td>
+                    </tr>
+                    <tr>
+                        <td class="celda-nombre">Estado</td>
+                        <td class="celda-datos">@itemEstudio.EstadoDelEstudio.Valor</td>
+                    </tr>
+                    <tr>
+                        <td class="celda-nombre">Requerido</td>
+                        <td class="celda-datos">FALTA</td>
+                    </tr>
+                </table>
+                <br />
+            }
+                        
             <hr />
             <div class="row">
                 <div class="col-md-12">
@@ -74,35 +55,25 @@
                 </div>
             </div>
             <br />
-            <table class="fuente-pequeña">
-                <tr>
-                    <td class="celda-nombre">Sector</td>
-                    <td class="celda-datos">Tecnología y Software</td>
-                </tr>
-                <tr>
-                    <td class="celda-nombre">Años de experiencia</td>
-                    <td class="celda-datos">3</td>
-                </tr>
-                <tr>
-                    <td class="celda-nombre">Excluyente</td>
-                    <td class="celda-datos">Si</td>
-                </tr>
-            </table>
-            <br />
-            <table class="fuente-pequeña">
-                <tr>
-                    <td class="celda-nombre">Sector</td>
-                    <td class="celda-datos">Servicios</td>
-                </tr>
-                <tr>
-                    <td class="celda-nombre">Años de experiencia</td>
-                    <td class="celda-datos"></td>
-                </tr>
-                <tr>
-                    <td class="celda-nombre">Excluyente</td>
-                    <td class="celda-datos">No</td>
-                </tr>
-            </table>
+            @foreach (var itemSector in Model.ListaSectores)
+            {
+                <table class="fuente-pequeña">
+                    <tr>
+                        <td class="celda-nombre">Sector</td>
+                        <td class="celda-datos">@itemSector.SectorEmpresarial.Valor</td>
+                    </tr>
+                    <tr>
+                        <td class="celda-nombre">Años de experiencia</td>
+                        <td class="celda-datos">@itemSector.AniosTrabajados</td>
+                    </tr>
+                    <tr>
+                        <td class="celda-nombre">Excluyente</td>
+                        <td class="celda-datos">@itemSector.ExperienciaExcluyente</td>
+                    </tr>
+                </table>
+                <br />
+            }
+                      
             <hr />
             <div class="row">
                 <div class="col-md-12">
@@ -110,63 +81,28 @@
                 </div>
             </div>
             <br />
-            <table class="fuente-pequeña">
-                <tr>
-                    <td class="celda-nombre">Tipo</td>
-                    <td class="celda-datos">Sistemas</td>
-                </tr>
-                <tr>
-                    <td class="celda-nombre">Conocimiento</td>
-                    <td class="celda-datos">Microsoft Project 2010</td>
-                </tr>
-                <tr>
-                    <td class="celda-nombre">Nivel</td>
-                    <td class="celda-datos">Experto</td>
-                </tr>
-                <tr>
-                    <td class="celda-nombre">Años de experiencia</td>
-                    <td class="celda-datos">2</td>
-                </tr>
-            </table>
-            <br />
-            <table class="fuente-pequeña">
-                <tr>
-                    <td class="celda-nombre">Tipo</td>
-                    <td class="celda-datos">Pasatiempo</td>
-                </tr>
-                <tr>
-                    <td class="celda-nombre">Conocimiento</td>
-                    <td class="celda-datos">Karate</td>
-                </tr>
-                <tr>
-                    <td class="celda-nombre">Nivel</td>
-                    <td class="celda-datos">Medio</td>
-                </tr>
-                <tr>
-                    <td class="celda-nombre">Años de experiencia</td>
-                    <td class="celda-datos">3</td>
-                </tr>
-            </table>
-            <br />
-            <table class="fuente-pequeña">
-                <tr>
-                    <td class="celda-nombre">Tipo</td>
-                    <td class="celda-datos">Sistemas</td>
-                </tr>
-                <tr>
-                    <td class="celda-nombre">Conocimiento</td>
-                    <td class="celda-datos">Gestión de Proyectos PMI</td>
-                </tr>
-                <tr>
-                    <td class="celda-nombre">Nivel</td>
-                    <td class="celda-datos">Experto</td>
-                </tr>
-                <tr>
-                    <td class="celda-nombre">Años de experiencia</td>
-                    <td class="celda-datos">5</td>
-                </tr>
-            </table>
-            <br />
+            @foreach (var itemInfoAdicional in Model.ListaInformacionAdicional)
+            {
+                <table class="fuente-pequeña">
+                    <tr>
+                        <td class="celda-nombre">Tipo</td>
+                        <td class="celda-datos">@itemInfoAdicional.TipoConocimiento.Valor</td>
+                    </tr>
+                    <tr>
+                        <td class="celda-nombre">Conocimiento</td>
+                        <td class="celda-datos">@itemInfoAdicional.Conocimiento</td>
+                    </tr>
+                    <tr>
+                        <td class="celda-nombre">Nivel</td>
+                        <td class="celda-datos">@itemInfoAdicional.NivelConocimiento.Valor</td>
+                    </tr>
+                    <tr>
+                        <td class="celda-nombre">Años de experiencia</td>
+                        <td class="celda-datos">@itemInfoAdicional.AniosExperiencia</td>
+                    </tr>
+                </table>
+                <br />
+            }
         </div>
     </div>
 </div>

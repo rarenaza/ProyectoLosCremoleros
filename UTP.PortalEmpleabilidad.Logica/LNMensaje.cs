@@ -13,11 +13,11 @@ namespace UTP.PortalEmpleabilidad.Logica
     {
         ADMensaje adMensaje = new ADMensaje();
 
-        public List<Mensaje> ObtenerPorIdEmpresa(int idEmpresa)
+        public List<Mensaje> ObtenerPorIdEmpresaIdOferta(int idEmpresa, int idOferta)
         {
             List<Mensaje> lista = new List<Mensaje>();
 
-            DataTable dtResultado = adMensaje.ObtenerPorIdEmpresa(idEmpresa);
+            DataTable dtResultado = adMensaje.ObtenerPorIdEmpresa(idEmpresa, idOferta);
 
             foreach (DataRow fila in dtResultado.Rows)
             {

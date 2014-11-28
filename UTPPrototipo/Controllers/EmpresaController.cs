@@ -35,9 +35,11 @@ namespace UTPPrototipo.Controllers
 
             return View(lista);
         }
-        public ActionResult Oferta()
+        public ActionResult Oferta(int idOferta)
         {
-            return View();
+            Oferta oferta = lnOferta.ObtenerPorId(idOferta);
+
+            return View(oferta);
         }
 
         
@@ -243,36 +245,49 @@ namespace UTPPrototipo.Controllers
             Ticket ticket = (Ticket)Session["Ticket"];
 
             LNMensaje lnMensaje = new LNMensaje ();
-            List<Mensaje> lista = lnMensaje.ObtenerPorIdEmpresa(ticket.IdEmpresa);
+            //Se envía 0 para que obtener los mensajes de todas las ofertas.
+            List<Mensaje> lista = lnMensaje.ObtenerPorIdEmpresaIdOferta(ticket.IdEmpresa, 0);
 
             return PartialView("_VistaNuevosMensajes", lista);
         }
 
         #region Vistas parciales de la Oferta
 
-        public ActionResult VistaOfertaAnuncio()
+        public ActionResult VistaOfertaAnuncio(Oferta oferta)
         {
-            return PartialView("_VistaOfertaAnuncio");
+
+            return PartialView("_VistaOfertaAnuncio", oferta);
         }
 
-        public ActionResult VistaOfertaPostulantes()
+        public ActionResult VistaOfertaPostulantes(Oferta oferta)
         {
-            return PartialView("_VistaOfertaPostulantes");
+            LNOferta lnOferta = new LNOferta ();
+            List<OfertaPostulante> postulantes = lnOferta.ObtenerPostulantesPorIdOferta(oferta.IdOferta);
+            
+            return PartialView("_VistaOfertaPostulantes", postulantes);
         }
 
-        public ActionResult VistaOfertaCondiciones()
+        public ActionResult VistaOfertaCondiciones(Oferta oferta)
         {
-            return PartialView("_VistaOfertaCondiciones");
+
+            return PartialView("_VistaOfertaCondiciones", oferta);
         }
 
-        public ActionResult VistaOfertaRequisitos()
+        public ActionResult VistaOfertaRequisitos(Oferta oferta)
         {
-            return PartialView("_VistaOfertaRequisitos");
+
+            return PartialView("_VistaOfertaRequisitos", oferta);
         }
 
-        public ActionResult VistaOfertaMensajes()
+        public ActionResult VistaOfertaMensajes(Oferta oferta)
         {
-            return PartialView("_VistaOfertaMensajes");
+            Ticket ticket = (Ticket)Session["Ticket"];
+
+            LNMensaje lnMensaje = new LNMensaje();
+            //Se envía 0 para que obtener los mensajes de todas las ofertas.
+            List<Mensaje> mensajes = lnMensaje.ObtenerPorIdEmpresaIdOferta(ticket.IdEmpresa, oferta.IdOferta);
+
+            return PartialView("_VistaOfertaMensajes", mensajes);
         }
         #endregion
     }

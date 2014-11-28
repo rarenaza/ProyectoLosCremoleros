@@ -1,4 +1,5 @@
-﻿
+﻿@model UTP.PortalEmpleabilidad.Modelo.Oferta
+
 @{
     Layout = "~/Views/Empresa/_LayoutEmpresa.cshtml";
     ViewBag.Title = "Oferta Laboral";
@@ -11,11 +12,11 @@
         <div class="col-md-7">
 
              <div class="panel-group" id="oferta-anuncio" role="tablist" aria-multiselectable="true">
-                @Html.Action("VistaOfertaAnuncio", "Empresa")
+                @Html.Action("VistaOfertaAnuncio", "Empresa", new { oferta = @Model})
              </div>
 
              <div class="panel-group" id="oferta-postulante" role="tablist" aria-multiselectable="true">
-                @Html.Action("VistaOfertaPostulantes", "Empresa")
+                @Html.Action("VistaOfertaPostulantes", "Empresa", new { oferta = @Model })
              </div>
 
 
@@ -24,13 +25,13 @@
         <div class="col-md-5">
 
             <div class="panel-group" id="oferta-condiciones" role="tablist" aria-multiselectable="true">
-                @Html.Action("VistaOfertaCondiciones", "Empresa")
+                @Html.Action("VistaOfertaCondiciones", "Empresa", new { oferta = @Model })
             </div>
             <div class="panel-group" id="oferta-requisito" role="tablist" aria-multiselectable="true">
-                @Html.Action("VistaOfertaRequisitos", "Empresa")
+                @Html.Action("VistaOfertaRequisitos", "Empresa", new { oferta = @Model })
             </div>
             <div class="panel-group" id="oferta-mensaje" role="tablist" aria-multiselectable="true">
-                @Html.Action("VistaOfertaMensajes", "Empresa")
+                @Html.Action("VistaOfertaMensajes", "Empresa", new { oferta = @Model })
             </div>
 
         </div>

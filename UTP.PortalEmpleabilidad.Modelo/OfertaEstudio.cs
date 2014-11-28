@@ -13,10 +13,17 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string CicloEstudio { get; set; }
         public string Estudio { get; set; }
         public string NivelConocimiento { get; set; }
-        public string TipoDeEstudio { get; set; }
-        public string EstadoDelEstudio { get; set; }
-        public string EstadoOfertaEstudio { get; set; }
+        public ListaValor TipoDeEstudio { get; set; }
+        public ListaValor EstadoDelEstudio { get; set; }
+        public ListaValor EstadoOfertaEstudio { get; set; }
         public string CreadoPor { get; set; }
         public string ModificadoPor { get; set; }
+
+        public OfertaEstudio()
+        {
+            TipoDeEstudio = new ListaValor();
+            EstadoDelEstudio = new ListaValor();
+            EstadoOfertaEstudio = new ListaValor();
+        }
     }
 }

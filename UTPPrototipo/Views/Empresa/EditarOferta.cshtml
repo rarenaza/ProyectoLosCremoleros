@@ -155,7 +155,7 @@
         var itemsTipoContrato = ((List<ListaValor>)(ViewBag.ListaTipoContrato));
         foreach (var item in itemsTipoContrato)
         {
-            if (item.IdListaValor == Model.TipoContrato)
+            if (item.IdListaValor == Model.TipoContrato.IdListaValor)
             {
                 <option value="@item.IdListaValor" selected="selected">
                     @item.Valor

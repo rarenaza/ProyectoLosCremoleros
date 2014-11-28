@@ -1,43 +1,7 @@
-﻿@model List<UTP.PortalEmpleabilidad.Modelo.OfertaEstudio>
+﻿@model IEnumerable<UTP.PortalEmpleabilidad.Modelo.OfertaEstudio>
 
-<div class="row">
-    <div class="col-md-12">
-        <strong class="sub-titulo-seccion">Estudios</strong>
-    </div>
-</div>
-<br />
 
-@foreach (var item in Model)
-{
-    <table class="fuente-pequeña">
-        <tr>
-            <td class="celda-nombre">Tipo</td>
-            <td class="celda-datos">@item.TipoDeEstudio</td>
-        </tr>
-        <tr>
-            <td class="celda-nombre">Estudio</td>
-            <td class="celda-datos">@item.Estudio</td>
-        </tr>
-
-        <tr>
-            <td class="celda-nombre">Estado</td>
-            <td class="celda-datos">@item.EstadoDelEstudio</td>
-        </tr>
-        <tr>
-            <td class="celda-nombre">Ciclo mínimo</td>
-            <td class="celda-datos">@item.CicloEstudio</td>
-        </tr>
-        <tr>
-            <td class="celda-nombre"></td>
-            <td class="celda-datos">
-                <p class="fui fa-2x" style="color:gray;">
-                    1 l
-                </p>
-            </td>
-        </tr>
-    </table>
-    <br />
-}
+@Html.Partial("_OfertaEstudioListado", @Model)
 
 <div class="row">
     <div class="col-sm-12" style="text-align:right;">

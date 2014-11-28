@@ -27,9 +27,9 @@ namespace UTP.PortalEmpleabilidad.Logica
                 estudio.IdOferta = Convert.ToInt32(fila["IdOferta"]);
                 estudio.CicloEstudio = Convert.ToString(fila["CicloEstudio"]);
                 estudio.Estudio = Convert.ToString(fila["Estudio"]);
-                estudio.TipoDeEstudio = Convert.ToString(fila["TipoDeEstudio"]);
-                estudio.EstadoDelEstudio = Convert.ToString(fila["EstadoDelEstudio"]);
-                estudio.EstadoOfertaEstudio = Convert.ToString(fila["EstadoOfertaEstudio"]);
+                estudio.TipoDeEstudio.Valor = Convert.ToString(fila["TipoDeEstudioDescripcion"]);
+                estudio.EstadoDelEstudio.Valor = Convert.ToString(fila["EstadoDelEstudioDescripcion"]);
+                estudio.EstadoOfertaEstudio.Valor = Convert.ToString(fila["EstadoOfertaEstudioDescripcion"]);
                 estudio.CreadoPor = Convert.ToString(fila["CreadoPor"]);
 
             }

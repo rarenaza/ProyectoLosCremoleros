@@ -1,39 +1,19 @@
-﻿
+﻿@model UTP.PortalEmpleabilidad.Modelo.Oferta
+
     <div class="panel panel-default">
         <div class="panel-heading" role="tab" id="headingOferta" style="padding: 2px 2px 2px 6px;">
             <h5 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseOferta" aria-expanded="true" aria-controls="collapseOferta" class="fuente-seccion">
-                    Gerente de Proyectos en Desarrollo de Software
+                    @Model.CargoOfrecido
                 </a>
             </h5>
         </div>
         <div id="collapseOferta" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOferta">
             <div class="panel-body fuente-pequeña">
 
-                <p>
-                    Importante Empresa del Sector Tecnológico, desea integrar a su Grupo de Trabajo un Gerente de Proyectos, el mismo que deberá reunir los siguientes requisitos:
-                </p><br />
-                <p>
-                    Formación educacional:
-                </p>
+                @Html.Raw(@Model.Funciones)
                 <br />
-                <p>
-                    - Carreras profesionales ligadas a Ingeniería Electrónica, Análisis de Sistemas o Informática
-                </p>
-                <p>
-                    - Experiencia mínima en el area: 3 años Gerencia de Dirección en Proyectos de Software.
-                </p>
-                <p>
-                    - Habilidades Técnicas de negociación, relacionamiento con clientes, experiencia en administración de proyectos complejos, análisis financiero, comunicación, razonamiento lógico, técnicas de ventas, conocimientos de bases de datos relacionales e integración de sistemas. Tecnicas de Gestión de proyectos (PMI), proyectos de integración de sistemas, Manejo de idioma ingles deseable
-                </p> <br />
-
-                Propósito del cargo
-
-                <p>
-                </p>  - Asegurar la puesta en marcha de los proyectos asignados de acuerdo a las fechas contractuales, mediante la planificaci0n y seguimiento de sus actividades, en coordinación directa con los clientes externos, proveedores y clientes internos.
-                <p>
-                </p> - Lograr que los proyectos se realicen de forma eficiente, ajustándose al alcance de servicio definido y según los estándares de calidad de ADP.
-                <br />
+                @Html.Raw(@Model.Competencias)
 
             </div>
         </div>

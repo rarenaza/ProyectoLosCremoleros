@@ -12,7 +12,7 @@ namespace UTP.PortalEmpleabilidad.Datos
 {
     public class ADMensaje : ADBase
     {
-        public DataTable ObtenerPorIdEmpresa(int idEmpresa)
+        public DataTable ObtenerPorIdEmpresa(int idEmpresa, int idOferta)
         {
             DataTable dtResultado = new DataTable();
 
@@ -21,8 +21,9 @@ namespace UTP.PortalEmpleabilidad.Datos
                 SqlCommand cmd = new SqlCommand();
 
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "Mensaje_ObtenerPorIdEmpresa";
+                cmd.CommandText = "Mensaje_ObtenerPorIdEmpresaIdOferta";
                 cmd.Parameters.Add(new SqlParameter("@IdEmpresa", idEmpresa));
+                cmd.Parameters.Add(new SqlParameter("@IdOferta", idOferta));
                 cmd.Connection = conexion;
 
                 conexion.Open();
