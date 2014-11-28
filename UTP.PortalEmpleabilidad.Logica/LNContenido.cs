@@ -40,6 +40,10 @@ namespace UTP.PortalEmpleabilidad.Logica
             return contenido;
         }
 
+
+
+
+
         public DataTable ContenidoMenu_Mostrar()
         {
             return ad.ContenidoMenu_Mostrar();
@@ -136,12 +140,44 @@ namespace UTP.PortalEmpleabilidad.Logica
                 contenido.SubTitulo = dtResultado.Rows[0]["SubTitulo"].ToString();
                 contenido.Descripcion = dtResultado.Rows[0]["Descripcion"].ToString();
                 contenido.Imagen = Encoding.UTF8.GetBytes(dtResultado.Rows[0]["Imagen"].ToString());
+                contenido.EnPantallaPrincipal = Convert.ToBoolean(dtResultado.Rows[0]["EnPantallaPrincipal"].ToString());
+                contenido.ArchivoNombreOriginal = dtResultado.Rows[0]["ArchivoNombreOriginal"].ToString();
                 //contenido.Imagen = dtResultado.Rows[0]["Imagen"].ToString();
                             
             }
             return contenido;
 
           
+        }
+     
+
+        public bool Contenido_Actualizar(Contenido contenido)
+        {
+
+
+            if (ad.Contenido_Actualizar(contenido) == true)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+        public bool Contenido_RemoverImagen(int id)
+        {
+            //return ad.Contenido_RemoverImagen(contenido);
+
+            if (ad.Contenido_RemoverImagen(id) == true)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
         }
 
       

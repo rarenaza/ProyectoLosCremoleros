@@ -62,6 +62,7 @@
     <Compile Include="VistaPanelAlumnoMiCV.cs" />
     <Compile Include="VistaPanelAlumnoOfertas.cs" />
     <Compile Include="VistaPanelAlumnoPostulaciones.cs" />
+    <Compile Include="Vistas\ContenidoCombo\ContenidoVistaCombo.cs" />
     <Compile Include="Vistas\Empresa\VistaPanelCabecera.cs" />
     <Compile Include="Vistas\Ofertas\VistaComboAlumno.cs" />
     <Compile Include="Vistas\Ofertas\VistaOfertaAlumno.cs" />

@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using UTP.PortalEmpleabilidad.Logica;
 using UTP.PortalEmpleabilidad.Modelo;
+using UTP.PortalEmpleabilidad.Modelo.Vistas.ContenidoCombo;
 using UTPPrototipo.Models;
 using UTPPrototipo.Models.ViewModels.Contenido;
 
@@ -13,28 +14,15 @@ namespace UTPPrototipo.Controllers
 {
     public class ContenidoController : Controller
     {
-      
 
+    
 
         // GET: Contenido
         LNContenido ln = new LNContenido();
 
         // GET: Lista
 
-        //muestra un contenido nuevo el la pantalla contenido Index
-        public ActionResult Index()
-        {
-            List<Contenido> contenido = new List<Contenido>();
-
-
-
-            contenido = ln.Contenido_Mostrar();
-
-            return View(contenido);
-
-           
-        }
-        
+       
         public ActionResult Contenido_insertar()
         {
 
@@ -81,6 +69,7 @@ namespace UTPPrototipo.Controllers
             contenido.SubTitulo = contenidoHTML.SubTitulo;
             contenido.Descripcion = contenidoHTML.Descripcion;
             contenido.Imagen = contenidoHTML.Imagen;
+            contenido.ArchivoNombreOriginal = contenidoHTML.ArchivoNombreOriginal;
             contenido.EnPantallaPrincipal = contenidoHTML.EnPantallaPrincipal;
             contenido.Menu = contenidoHTML.Menu;
             contenido.CreadoPor = contenidoHTML.CreadoPor;         
@@ -98,66 +87,7 @@ namespace UTPPrototipo.Controllers
                 return View(contenido);
             }
             
-
-
-
         }
-
-
-        public ActionResult RetrieveImage(int id)
-        {
-            byte[] cover = GetImageFromDataBase(id);
-            if (cover != null)
-            {
-                return File(cover, "image/jpg");
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-             
-
-
-        public byte[] GetImageFromDataBase(int Id)
-        {
-
-
-            //List<Contenido> contenido = ln.Contenido_Mostrar();
-
-            //List<ContenidoVista> listaVista = new List<ContenidoVista>();
-
-            //foreach (var itemBD in contenido)
-            //{
-            //    ContenidoVista vista = new ContenidoVista();
-
-            //    vista.Titulo = itemBD.Titulo;
-            //    vista.SubTitulo = itemBD.SubTitulo;
-            //    vista.Descripcion = itemBD.Descripcion;
-            //    vista.Imagen = itemBD.Imagen;
-            //    vista.EnPantallaPrincipal = itemBD.EnPantallaPrincipal;
-            //    vista.Menu = itemBD.Menu;
-            //    vista.CreadoPor = itemBD.CreadoPor;
-
-
-            //    listaVista.Add(vista);
-
-
-
-            //}
-
-
-
-            //return View(listaVista);
-
-
-
-            var q = from temp in ln.Contenido_Mostrar() where temp.IdContenido == Id select temp.Imagen;
-            byte[] cover = q.First();
-            return cover;
-        }
-
 
 
 
@@ -173,13 +103,133 @@ namespace UTPPrototipo.Controllers
 
         public ActionResult ContenidoEDitar_Buscar(int id)
         {
-    
+
+
+            DataTable dtprueba = ln.ContenidoMenu_Mostrar();
+
+            ContenidoVistaCombo vista = new ContenidoVistaCombo();
+     
+
+            List<SelectListItem> listitem1 = new List<SelectListItem>();
+
+            for (int i = 0; i <= dtprueba.Rows.Count - 1; i++)
+            {
+                vista.Titulo = dtprueba.Rows[i]["Titulo"].ToString();
+                vista.IDMenu = dtprueba.Rows[i]["IDMenu"].ToString();
+
+
+                listitem1.Add(new SelectListItem() { Value = vista.Titulo, Text = vista.IDMenu.ToString() });
+
+            }
+
+            ViewBag.DropDownValues1 = new SelectList(listitem1, "Text", "Value");
+
+
             return View(ln.ContenidoEDitar_Buscar(id)); 
             
 
         }
-          
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ContenidoEDitar_Buscar([Bind(Include = "")] Contenido contenido)
+        {
+                      
+
+            //if (ModelState.IsValid)
+            //{
+         
+           
+            if (ln.Contenido_Actualizar(contenido) == true)
+            {
+                ViewBag.Message = "Datos Actualizado";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                ViewBag.Message = "Error al Actualizar";
+                return View(contenido);
+            }
+
+            //}
+
+
+        }
        
+        public ActionResult RemoverArchivo(int id)
+        {
+ 
+            var contenido = ContenidoEDitar_Buscar(id);
+
+            bool esExitoso = ln.Contenido_RemoverImagen(id);
+
+            if (esExitoso)
+            {         
+               
+                return RedirectToAction("ContenidoEDitar_Buscar", new { id = id });
+            }            
+
+            return View(contenido);
+
+
+            //var req = db.Requerimientoes.Where(r => r.Id == id).FirstOrDefault();
+
+            //if (req != null)
+            //{
+            //    //Se limpian los datos de la base de datos.
+            //    req.ArchivoBD = null;
+            //    req.ArchivoMimeType = "";
+            //    req.ArchivoNombreOriginal = "";
+
+            //    db.SaveChanges();
+
+            //    return RedirectToAction("Edit", new { id = id });
+            //}
+
+            //return View(req);
+            
+            }
+
+        //muestra un contenido nuevo el la pantalla contenido Index
+
+        public ActionResult Index()
+        {
+
+
+            List<Contenido> contenido = new List<Contenido>();
+
+            contenido = ln.Contenido_Mostrar();
+
+            return View(contenido);
+
+
+        }
+
+        public ActionResult ObtenerListaContenidoMenu()
+        {
+                                  
+            DataTable dtprueba = ln.ContenidoMenu_Mostrar();
+
+            ContenidoVistaCombo vista = new ContenidoVistaCombo();
+
+            List<SelectListItem> listitem1 = new List<SelectListItem>();
+
+            for (int i = 0; i <= dtprueba.Rows.Count - 1; i++)
+            {
+                vista.Titulo = dtprueba.Rows[i]["DescripcionValor"].ToString();
+                vista.IDMenu = dtprueba.Rows[i]["IDListaValor"].ToString();
+
+
+                listitem1.Add(new SelectListItem() { Value = vista.Titulo, Text = vista.IDMenu.ToString() });
+
+            }
+            
+            ViewBag.DropDownValues1 = new SelectList(listitem1, "Text", "Value");
+
+            return View();
+        }
+
+
+        }
 
     }
-}

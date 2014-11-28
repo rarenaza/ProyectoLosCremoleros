@@ -67,6 +67,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.Parameters.Add(new SqlParameter("@SubTitulo", SqlDbType.VarChar, 50)).Value = contenido.SubTitulo;
                 cmd.Parameters.Add(new SqlParameter("@Descripcion", SqlDbType.VarChar, -1)).Value = contenido.Descripcion;
                 cmd.Parameters.Add(new SqlParameter("@Imagen", SqlDbType.Image)).Value = contenido.Imagen;
+                cmd.Parameters.Add(new SqlParameter("@ArchivoNombreOriginal", SqlDbType.VarChar, 100)).Value = contenido.ArchivoNombreOriginal;
                 cmd.Parameters.Add(new SqlParameter("@EnPantallaPrincipal", SqlDbType.Bit)).Value = contenido.EnPantallaPrincipal;
                 cmd.Parameters.Add(new SqlParameter("@CodMenu", SqlDbType.VarChar,50)).Value = contenido.Menu;
                 cmd.Parameters.Add(new SqlParameter("@CreadoPor", SqlDbType.VarChar, 50)).Value = contenido.CreadoPor;
@@ -128,7 +129,7 @@ namespace UTP.PortalEmpleabilidad.Datos
 
             return dt;
         }
-
+      //Busca Los Datos a Actualizar
         public DataTable ContenidoEDitar_Buscar(int Cod)
         {
             ADConexion cnn = new ADConexion();
@@ -145,6 +146,68 @@ namespace UTP.PortalEmpleabilidad.Datos
 
             cnn.Desconectar();
             return dt;
+        }
+
+      
+        //Actualiza Los datos Buscados
+        public bool Contenido_Actualizar(Contenido contenido)
+        {
+            ADConexion cnn = new ADConexion();
+            SqlCommand cmd = new SqlCommand();
+
+            try
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Contenido_Actualizar";
+                cmd.Connection = cnn.cn;
+
+                cmd.Parameters.Add(new SqlParameter("@Titulo", SqlDbType.VarChar, 50)).Value = contenido.Titulo;
+                cmd.Parameters.Add(new SqlParameter("@SubTitulo", SqlDbType.VarChar, 50)).Value = contenido.SubTitulo;
+                cmd.Parameters.Add(new SqlParameter("@Descripcion", SqlDbType.VarChar, -1)).Value = contenido.Descripcion;
+                //cmd.Parameters.Add(new SqlParameter("@Imagen", SqlDbType.Image)).Value = contenido.Imagen;
+                cmd.Parameters.Add(new SqlParameter("@CodMenu", SqlDbType.VarChar, 50)).Value = contenido.Menu;
+                cmd.Parameters.Add(new SqlParameter("@EnPantallaPrincipal", SqlDbType.Bit)).Value = contenido.EnPantallaPrincipal;
+                cmd.Parameters.Add(new SqlParameter("@ArchivoNombreOriginal", SqlDbType.VarChar, 100)).Value = contenido.ArchivoNombreOriginal;
+                cmd.Parameters.Add(new SqlParameter("@ModificadoPor", SqlDbType.VarChar, 50)).Value = contenido.ModificadoPor;
+                cmd.Parameters.Add(new SqlParameter("@IdContenido", SqlDbType.VarChar, 50)).Value = contenido.IdContenido;
+
+                cnn.Conectar();
+                cmd.ExecuteNonQuery();
+                cmd.Parameters.Clear();
+                cnn.Desconectar();
+                return true;
+            }
+            catch (SqlException)
+            {
+                return false;
+            }
+
+        }
+
+        public bool Contenido_RemoverImagen(int id)
+        {
+            ADConexion cnn = new ADConexion();
+            SqlCommand cmd = new SqlCommand();
+
+            try
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Contenido_RemoverImagen";
+                cmd.Connection = cnn.cn;
+                              
+                cmd.Parameters.Add(new SqlParameter("@IdContenido", SqlDbType.VarChar, 50)).Value = id;
+
+                cnn.Conectar();
+                cmd.ExecuteNonQuery();
+                cmd.Parameters.Clear();
+                cnn.Desconectar();
+                return true;
+            }
+            catch (SqlException)
+            {
+                return false;
+            }
+
         }
 
 

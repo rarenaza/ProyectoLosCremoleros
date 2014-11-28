@@ -23,13 +23,17 @@ namespace UTPPrototipo.Models.ViewModels.Contenido
         public string ArchivoNombreOriginal { get; set; }
         public string ArchivoMimeType { get; set; } 
         public  byte[] Imagen { get; set; }
- 
+
         public string Menu { get; set; }
+             
+
         public string CreadoPor { get; set; }
         public DateTime FechaCreacion { get; set; }
         public string ModificadoPor { get; set; }
         public DateTime FechaModificacion { get; set; }
 
         public bool EnPantallaPrincipal { get; set; }
+ 
+     
     }
 }

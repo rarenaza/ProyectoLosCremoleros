@@ -1,5 +1,4 @@
-﻿@*@model IEnumerable<UTP.PortalEmpleabilidad.Modelo.Contenido>*@
-
+﻿
 @model IEnumerable<UTP.PortalEmpleabilidad.Modelo.Contenido>
 
 @*@model IEnumerable<UTPPrototipo.Models.ViewModels.Contenido.ContenidoVista>*@
@@ -43,7 +42,7 @@
                 @Html.DisplayNameFor(model => model.Imagen)
             </th>
             
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.CreadoPor)
             </th>
             <th>
@@ -54,7 +53,7 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.FechaModificacion)
-            </th>
+            </th>*@
             <th>
                 <b>Editar</b>
             </th>
@@ -94,10 +93,12 @@
             @*<img src="/Content/imagen/@item.Imagen" height="100" width="100" />*@
 
             <img src="/Contenido/RetrieveImage/@item.IdContenido" alt="" height=100 width=200 />
+                                       
+
 
 </td>
        
-        <td>
+        @*<td>
             @Html.DisplayFor(modelItem => item.CreadoPor)
         </td>
         <td>
@@ -108,7 +109,7 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.FechaModificacion)
-        </td>
+        </td>*@
         <td>
             @Html.ActionLink("Editar", "ContenidoEDitar_Buscar", new { id = item.IdContenido }) 
 
