@@ -1,0 +1,219 @@
+﻿@{
+    Layout = "~/Views/UTP/_LayoutUTP.cshtml";
+    ViewBag.Title = "Mantenimiento de Registros";
+}
+
+<link href="~/Content/font-awesome.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/Content/style.min.css" />
+<div class="container" style="margin-top:2px;">
+
+
+
+    <div class="panel-group" id="datos-cuenta" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingOne" style="padding: 2px 2px 2px 6px;">
+                <h5 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="fuente-seccion">
+                        Cuenta - Mario Valentin Perez Garcia
+                    </a>
+                </h5>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body">
+                    <div class="col-md-6 fuente-pequeña">
+                        <table>
+                            <tr>
+                                <td class="celda-nombre">Usuario:</td>
+                                <td class="celda-datos">MarioValentin</td>
+                            </tr>
+                            <tr>
+                                <td class="celda-nombre">Nombre:</td>
+                                <td class="celda-datos">Mario Valentin Perez Garcia</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-md-6 fuente-pequeña">
+                        DNI <strong>89226681</strong><br />
+                        <strong>mperez@grupoutp.edu.pe</strong><br />
+                        <strong>954123876</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-sm-6 fuente-pequeña">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel-group" id="busqueda-alumno" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingBusquedaAlumno" style="padding: 2px 2px 2px 6px;">
+                                <h5 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#busqueda-alumno" href="#collapseBusquedaAlumno" aria-expanded="true" aria-controls="collapseBusquedaAlumno" class="fuente-seccion">
+                                        Filtros de Búsqueda Alumnos
+                                    </a>
+                                </h5>
+                            </div>
+                            <div id="collapseBusquedaAlumno" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingBusquedaAlumno">
+                                <div class="panel-body fuente-pequeña">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Palabra clave</span>
+                                        <input id="CargoOfrecido" name="CargoOfrecido" type="text" class="form-control" placeholder="Palabra clave buscada">
+
+                                    </div>
+                                    <br />
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+
+
+                    <div class="panel-group" id="arbol-alumno" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingArbolAlumno" style="padding: 2px 2px 2px 6px;">
+                                <h5 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#arbol-alumno" href="#collapseArbolAlumno" aria-expanded="true" aria-controls="collapseArbolAlumno" class="fuente-seccion">
+                                        Alumnos
+                                    </a>
+                                </h5>
+                            </div>
+                            <div id="collapseArbolAlumno" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingArbolAlumno">
+                                <div class="panel-body fuente-pequeña">
+                                    
+                                    <div id="jstree">
+                                        <!-- in this example the tree is populated from inline HTML -->
+                                        <ul>
+                                            <li>
+                                                Root node 1
+                                                <ul>
+                                                    <li id="child_node_1">Child node 1</li>
+                                                    <li>Child node 2</li>
+                                                </ul>
+                                            </li>
+                                            <li>Root node 2</li>
+                                        </ul>
+                                    </div>
+                                    <button>demo button</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    
+
+
+
+                </div>
+
+            </div>
+        </div>
+        <div class="col-sm-6 fuente-pequeña">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel-group" id="busqueda-empresa" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingBusquedaEmpresa" style="padding: 2px 2px 2px 6px;">
+                                <h5 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#busqueda-empresa" href="#collapseBusquedaEmpresa" aria-expanded="true" aria-controls="collapseBusquedaEmpresa" class="fuente-seccion">
+                                        Filtros de Búsqueda Empresa
+                                    </a>
+                                </h5>
+                            </div>
+                            <div id="collapseBusquedaEmpresa" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingBusquedaEmpresa">
+                                <div class="panel-body fuente-pequeña">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Palabra clave</span>
+                                        <input id="CargoOfrecido" name="CargoOfrecido" type="text" class="form-control" placeholder="Palabra clave buscada">
+
+                                    </div>
+                                    <br />
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+
+
+                    <div class="panel-group" id="arbol-empresa" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingArbolEmpresa" style="padding: 2px 2px 2px 6px;">
+                                <h5 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#arbol-empresa" href="#collapseArbolEmpresa" aria-expanded="true" aria-controls="collapseArbolEmpresa" class="fuente-seccion">
+                                        Empresas
+                                    </a>
+                                </h5>
+                            </div>
+                            <div id="collapseArbolEmpresa" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingArbolEmpresa">
+                                <div class="panel-body fuente-pequeña">
+
+                                    <div id="jstree">
+                                        <!-- in this example the tree is populated from inline HTML -->
+                                        <ul>
+                                            <li>
+                                                Root node 1
+                                                <ul>
+                                                    <li id="child_node_1">Child node 1</li>
+                                                    <li>Child node 2</li>
+                                                </ul>
+                                            </li>
+                                            <li>Root node 2</li>
+                                        </ul>
+                                    </div>
+                                    <button>demo button</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="~/Scripts/jstree.min.js"></script>
+<script src="~/Scripts/jquery-2.1.1.min.js"></script>
+<script>
+    $(function () {
+        // 6 create an instance when the DOM is ready
+        $('#jstree').jstree();
+        // 7 bind to events triggered on the tree
+        $('#jstree').on("changed.jstree", function (e, data) {
+            console.log(data.selected);
+        });
+        // 8 interact with the tree - either way is OK
+        $('button').on('click', function () {
+            $('#jstree').jstree(true).select_node('child_node_1');
+            $('#jstree').jstree('select_node', 'child_node_1');
+            $.jstree.reference('#jstree').select_node('child_node_1');
+        });
+    });
+</script>
+<script>
+
+    $(document).ready(function () {
+        $("#divFinalCabecera").removeClass("color-paleta1 color-paleta3 color-paleta4 color-paleta5").addClass("color-paleta2");
+    });
+
+
+</script>
+

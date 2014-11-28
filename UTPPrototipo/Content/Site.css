@@ -334,10 +334,13 @@ input[type="checkbox"].input-validation-error {
 .celda-nombre {
     padding: 2px 6px 2px 6px;
     text-align:right;
+    vertical-align:top;
 }
 .celda-datos {
     padding: 2px 6px 2px 6px;
     text-align:left;
+    vertical-align:top;
+    font-weight:700;
     }
 .sub-titulo-seccion {
     font-size: 12px;

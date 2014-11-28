@@ -7,7 +7,7 @@
         <div class="panel panel-default">
             <div class="panel-heading" role="tab" id="headingOne" style="padding: 2px 2px 2px 6px;">
                 <h5 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="fuente-seccion">
+                    <a data-toggle="collapse" data-parent="#datos-cuenta" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="fuente-seccion">
                         Cuenta - Criteria IT S.A.C. - Aldo Junior Barja Brito
                     </a>
                 </h5>
@@ -49,38 +49,267 @@
         </div>
 
     </div>
+    <div class="panel-group" id="datos-empresa" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingDatosEmpresa" style="padding: 2px 2px 2px 6px;">
+                <h5 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#datos-empresa" href="#collapseDatosEmpresa" aria-expanded="true" aria-controls="collapseDatosEmpresa" class="fuente-seccion">
+                        Datos empresa - Criteria IT
+                    </a>
+                </h5>
+            </div>
+            <div id="collapseDatosEmpresa" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingDatosEmpresa">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-2" style="text-align:center;">
+                            <img src="~/img/logos/LogoCriteria.jpg" style="width:100%;" /><hr />
+                            <a href="~/Views/Empresa/CambiarImagen">Cambiar Imagen</a>
+                            <br />
+                            
+                            
+                        </div>
+                        <div class="col-sm-10">
+                            <table class="fuente-pequeña">
+                                <tr>
+                                    <td class="celda-nombre">Nombre</td>
+                                    <td class="celda-datos">Criteria IT</td>
+                                </tr>
+                                <tr>
+                                    <td class="celda-nombre">Razón Social</td>
+                                    <td class="celda-datos">Criteria IT S.A.C.</td>
+                                </tr>
+                                <tr>
+                                    <td class="celda-nombre">País</td>
+                                    <td class="celda-datos">Perú</td>
+                                </tr>
+                                <tr>
+                                    <td class="celda-nombre">RUC</td>
+                                    <td class="celda-datos">20555167581</td>
+                                </tr>
+                                <tr>
+                                    <td class="celda-nombre">Descripción de la Empresa</td>
+                                    <td class="celda-datos">Duis non purus vitae velit iaculis volutpat quis a arcu. Sed tempor, nunc bibendum sollicitudin feugiat, sapien tortor fermentum felis, eget tincidunt orci arcu ut nulla. </td>
+                                </tr>
+                                <tr>
+                                    <td class="celda-nombre">Presentación de la Empresa</td>
+                                    <td class="celda-datos">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris molestie neque ac augue lacinia ullamcorper. Cras condimentum libero non urna fringilla consectetur sit amet vel nisi. Mauris maximus tempus dui maximus volutpat. Donec quis tempor justo, quis pretium tellus. Suspendisse velit nunc, sodales sed interdum at, egestas eget velit. Donec blandit ultricies eleifend. Ut laoreet eleifend blandit. In dapibus massa risus, et accumsan augue tempus nec. </td>
+                                </tr>
+                                <tr>
+                                    <td class="celda-nombre">Año de Creación</td>
+                                    <td class="celda-datos">2013</td>
+                                </tr>
+                                <tr>
+                                    <td class="celda-nombre">Número de Empleados</td>
+                                    <td class="celda-datos">Entre 10 a 50</td>
+                                </tr>
+                                <tr>
+                                    <td class="celda-nombre">Sector Empresarial</td>
+                                    <td class="celda-datos">Tecnología y Software, Servicios</td>
+                                </tr>
+                            </table>
+                            
+                            <div class="row" style="text-align:right;">
+                                <div class="col-sm-12">
+                                    <button data-toggle="modal" data-target="#Modal-modifica-datos-empresa" class="btn btn-default color-paleta4">Cambiar Datos</button>
+                                </div>
+                            </div>
+                            
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
     <div class="row fuente-pequeña">
         <div class="col-sm-6">
             <h5>Ubicaciones</h5>
-            <hr />
-            <div class="row">
-                <div class="col-sm-3">
-                    Nombre Ubicación
+
+            <div class="row grilla1-cabecera color-paleta4">
+                <div class="col-sm-2">
+                    Ubicación
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-2">
+                    Tipo
+                </div>
+                <div class="col-sm-4">
                     Dirección
                 </div>
                 <div class="col-sm-2">
                     Estado
                 </div>
             </div>
+
+            <div class="row grilla1-linea">
+                <div class="col-sm-2">
+                    <a href="../Empresa/VerUbicacion">Headquarters</a>
+                </div>
+                <div class="col-sm-2">
+                    Oficina Prinicpal
+                </div>
+                <div class="col-sm-4">
+                    Av del Cerro 456, Santiago de Surco, Lima
+                </div>
+                <div class="col-sm-2">
+                    Activa
+                </div>
+                <div class="col-sm-2 fui fa-2x" style="color:gray;">
+                    <a href="ModificaUbicacion">1</a> <a href="EliminaUbicacion">l</a>
+                </div>
+            </div>
+
+            <div class="row grilla1-linea">
+                <div class="col-sm-2">
+                    <a href="../Empresa/VerUbicacion">Planta</a>
+                </div>
+                <div class="col-sm-2">
+                    Planta
+                </div>
+                <div class="col-sm-4">
+                    Calle Separadora Industrial 1023, Ate Vitarte, Lima
+                </div>
+                <div class="col-sm-2">
+                    Activa
+                </div>
+                <div class="col-sm-2 fui fa-2x" style="color:gray;">
+                    <a href="ModificaUbicacion">1</a> <a href="EliminaUbicacion">l</a>
+                </div>
+            </div>
+
+            <div class="row  grilla1-linea">
+                <div class="col-sm-2">
+                    <a href="../Empresa/VerUbicacion">Oficina Miraflores</a>
+                </div>
+                <div class="col-sm-2">
+                    Sucursal
+                </div>
+                <div class="col-sm-4">
+                    Jr El Rabino 666, Oficina 1302, Miraflores, Lima
+                </div>
+                <div class="col-sm-2">
+                    Activa
+                </div>
+                <div class="col-sm-2 fui fa-2x" style="color:gray;">
+                    <a href="ModificaUbicacion">1</a> <a href="EliminaUbicacion">l</a>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-sm-12" style="text-align:right;">
+                    <button data-toggle="modal" data-target="#Modal-nueva-ubicacion" class="btn btn-default color-paleta4">Nueva Ubicación</button>
+                </div>
+            </div>
             <hr />
+
         </div>
+
         <div class="col-sm-6">
             <h5>Usuarios</h5>
-            <hr />
-            <div class="row">
+
+            <div class="row grilla1-cabecera color-paleta4">
                 <div class="col-sm-3">
                     Usuario
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                     Nombre
                 </div>
                 <div class="col-sm-2">
-                    Tipo
+                    Rol
                 </div>
                 <div class="col-sm-2">
                     Estado
+                </div>
+            </div>
+            <div class="row grilla1-linea">
+                <div class="col-sm-3">
+                    <a href="../Empresa/VerUsuarioEmpresa">Matias Bermejo</a>
+                </div>
+                <div class="col-sm-3">
+                    Matias Bermejo Benavides
+                </div>
+                <div class="col-sm-2">
+                    Administrador Empresa
+                </div>
+                <div class="col-sm-2">
+                    Activo
+                </div>
+                <div class="col-sm-2 fui fa-2x" style="color:gray;">
+                    <a href="ModificaUsuarioEmpresa">1</a> <a href="EliminaUsuarioEmpresa">l</a>
+                </div>
+            </div>
+            <div class="row grilla1-linea">
+                <div class="col-sm-3">
+                    <a href="../Empresa/VerUsuarioEmpresa">Luis X</a>
+                </div>
+                <div class="col-sm-3">
+                    Luis Alberto Décimo Martinez
+                </div>
+                <div class="col-sm-2">
+                    Supervisor Empresa
+                </div>
+                <div class="col-sm-2">
+                    Activo
+                </div>
+                <div class="col-sm-2 fui fa-2x" style="color:gray;">
+                    <a href="ModificaUsuarioEmpresa">1</a> <a href="EliminaUsuarioEmpresa">l</a>
+                </div>
+            </div>
+            <div class="row grilla1-linea">
+                <div class="col-sm-3">
+                    <a href="../Empresa/VerUsuarioEmpresa">AlbertoDiaz</a>
+                </div>
+                <div class="col-sm-3">
+                    Alberto Mario Diaz Fuenzalida
+                </div>
+                <div class="col-sm-2">
+                    Usuario Empresa
+                </div>
+                <div class="col-sm-2">
+                    Activo
+                </div>
+                <div class="col-sm-2 fui fa-2x" style="color:gray;">
+                    <a href="ModificaUsuarioEmpresa">1</a> <a href="EliminaUsuarioEmpresa">l</a>
+                </div>
+            </div>
+            <div class="row grilla1-linea">
+                <div class="col-sm-3">
+                    <a href="../Empresa/VerUsuarioEmpresa">Denis2014</a>
+                </div>
+                <div class="col-sm-3">
+                    Denis José Huayta Riquelme
+                </div>
+                <div class="col-sm-2">
+                    Usuario Empresa
+                </div>
+                <div class="col-sm-2">
+                    Activo
+                </div>
+                <div class="col-sm-2 fui fa-2x" style="color:gray;">
+                    <a href="ModificaUsuarioEmpresa">1</a> <a href="EliminaUsuarioEmpresa">l</a>
+                </div>
+            </div>
+            <div class="row grilla1-linea">
+                <div class="col-sm-3">
+                    <a href="../Empresa/VerUsuarioEmpresa">JulitoDixie</a>
+                </div>
+                <div class="col-sm-3">
+                    Julio André Medrano
+                </div>
+                <div class="col-sm-2">
+                    Usuario Empresa Correo
+                </div>
+                <div class="col-sm-2">
+                    Usuario Pendiente de Activación
+                </div>
+                <div class="col-sm-2 fui fa-2x" style="color:gray;">
+                    <a href="ModificaUsuarioEmpresa">1</a> <a href="EliminaUsuarioEmpresa">l</a>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-sm-12" style="text-align:right;">
+                    <button class="btn btn-default color-paleta4">Nuevo Usuario</button>
                 </div>
             </div>
             <hr />
@@ -92,3 +321,665 @@
         $("#divFinalCabeceraEmpresa").removeClass("color-paleta1 color-paleta2 color-paleta3 color-paleta5").addClass("color-paleta4");
     });
 </script>
+
+<!-- Modal -->
+<div class="modal" id="Modal-modifica-datos-empresa" tabindex="-1" role="dialog" aria-labelledby="ModificaDatosEmpresa" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="ModificaDatosEmpresa">Datos de la Empresa</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="input-group">
+                            <span class="input-group-addon">Nombre</span>
+                            <input type="text" class="form-control" placeholder="Nombre Comercial de la Empresa">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="input-group">
+                            <span class="input-group-addon">Razón<br />Social</span>
+                            <input type="text" class="form-control" placeholder="Razón Social de la Empresa">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="input-group fuente-pequeña">
+                            <span class="input-group-addon">País</span>
+                            <select id="Lista" class="form-control">
+                                <option value="" selected>País de la Empresa</option>
+                                <option>Afganistán</option>
+                                <option>Albania</option>
+                                <option>Alemania</option>
+                                <option>Andorra</option>
+                                <option>Angola</option>
+                                <option>Anguila</option>
+                                <option>Antigua y Barbuda</option>
+                                <option>Antillas Neerlandesas</option>
+                                <option>Antártida</option>
+                                <option>Arabia Saudí</option>
+                                <option>Argelia</option>
+                                <option>Argentina</option>
+                                <option>Armenia</option>
+                                <option>Aruba</option>
+                                <option>Australia</option>
+                                <option>Austria</option>
+                                <option>Azerbaiyán</option>
+                                <option>Bahamas</option>
+                                <option>Bangladesh</option>
+                                <option>Barbados</option>
+                                <option>Barhéin</option>
+                                <option>Belice</option>
+                                <option>Benín</option>
+                                <option>Bermudas</option>
+                                <option>Bielorrusia</option>
+                                <option>Bolivia</option>
+                                <option>Bosnia Herzegovina</option>
+                                <option>Botsuana</option>
+                                <option>Brasil</option>
+                                <option>Brunei Darussalam</option>
+                                <option>Bulgaria</option>
+                                <option>Burkina Faso</option>
+                                <option>Burundi</option>
+                                <option>Bután</option>
+                                <option>Bélgica</option>
+                                <option>Cabo Verde</option>
+                                <option>Camboya</option>
+                                <option>Camerún</option>
+                                <option>Canadá</option>
+                                <option>Chad</option>
+                                <option>Chile</option>
+                                <option>China</option>
+                                <option>Chipre</option>
+                                <option>Colombia</option>
+                                <option>Comoras</option>
+                                <option>Congo</option>
+                                <option>Costa Rica</option>
+                                <option>Costa de Marfil</option>
+                                <option>Croacia</option>
+                                <option>Cuba</option>
+                                <option>Dinamarca</option>
+                                <option>Dominica</option>
+                                <option>Ecuador</option>
+                                <option>Egipto</option>
+                                <option>El Salvador</option>
+                                <option>El Vaticano (Est Ciu Vaticano)</option>
+                                <option>Emiratos Árabes Unidos</option>
+                                <option>Eritrea</option>
+                                <option>Escocia</option>
+                                <option>Eslovaquia</option>
+                                <option>Eslovenia</option>
+                                <option>España</option>
+                                <option>Estados Unidos</option>
+                                <option>Estonia</option>
+                                <option>Etiopía</option>
+                                <option>Ex Repúb Yugosl de Macedonia</option>
+                                <option>Federación Rusa</option>
+                                <option>Filipinas</option>
+                                <option>Finlandia</option>
+                                <option>Fiyi</option>
+                                <option>Francia</option>
+                                <option>Gabón</option>
+                                <option>Gales</option>
+                                <option>Gambia</option>
+                                <option>Georgia</option>
+                                <option>Ghana</option>
+                                <option>Gibraltar</option>
+                                <option>Granada</option>
+                                <option>Grecia</option>
+                                <option>Groenlandia</option>
+                                <option>Guadalupe</option>
+                                <option>Guam</option>
+                                <option>Guatemala</option>
+                                <option>Guayana Francesa</option>
+                                <option>Guernsey</option>
+                                <option>Guinea</option>
+                                <option>Guinea Ecuatorial</option>
+                                <option>Guinea-Bisau</option>
+                                <option>Guyana</option>
+                                <option>Haití</option>
+                                <option>Honduras</option>
+                                <option>Hong Kong</option>
+                                <option>Hungría</option>
+                                <option>I Pitcairn</option>
+                                <option>India</option>
+                                <option>Indonesia</option>
+                                <option>Inglaterra</option>
+                                <option>Irak</option>
+                                <option>Irlanda</option>
+                                <option>Irlanda del Norte</option>
+                                <option>Irán (República Islámica de)</option>
+                                <option>Isla Bouvet</option>
+                                <option>Isla Christmas</option>
+                                <option>Isla Norfolk</option>
+                                <option>Isla de Man</option>
+                                <option>Islandia</option>
+                                <option>Islas Caimán</option>
+                                <option>Islas Cocos</option>
+                                <option>Islas Cook</option>
+                                <option>Islas Feroe</option>
+                                <option>Islas Georgia S y Sandwich S</option>
+                                <option>Islas Heard y McDonald</option>
+                                <option>Islas Malvinas</option>
+                                <option>Islas Marianas del Norte</option>
+                                <option>Islas Marshall</option>
+                                <option>Islas Menores Alejadas de EEUU</option>
+                                <option>Islas Salomón</option>
+                                <option>Islas Turcas y Caicos</option>
+                                <option>Islas Vírgenes Americanas</option>
+                                <option>Islas Vírgenes Británicas</option>
+                                <option>Islas de Aland</option>
+                                <option>Israel</option>
+                                <option>Italia</option>
+                                <option>Jamaica</option>
+                                <option>Japón</option>
+                                <option>Jersey</option>
+                                <option>Jordania</option>
+                                <option>Kazajstán</option>
+                                <option>Kenia</option>
+                                <option>Kirguizistán</option>
+                                <option>Kiribati</option>
+                                <option>Kosovo</option>
+                                <option>Kuwait</option>
+                                <option>Lesoto</option>
+                                <option>Letonia</option>
+                                <option>Liberia</option>
+                                <option>Libia, Yamahiriya Árabe</option>
+                                <option>Liechtenstein</option>
+                                <option>Lituania</option>
+                                <option>Luxemburgo</option>
+                                <option>Líbano</option>
+                                <option>Macao</option>
+                                <option>Madagascar</option>
+                                <option>Malasia</option>
+                                <option>Malaui</option>
+                                <option>Maldivas</option>
+                                <option>Malta</option>
+                                <option>Malí</option>
+                                <option>Marruecos</option>
+                                <option>Martinica</option>
+                                <option>Mauricio</option>
+                                <option>Mauritania</option>
+                                <option>Mayotte</option>
+                                <option>Mianmar</option>
+                                <option>Micronesia</option>
+                                <option>Mongolia</option>
+                                <option>Montserrat</option>
+                                <option>Mozambique</option>
+                                <option>México</option>
+                                <option>Mónaco</option>
+                                <option>Namibia</option>
+                                <option>Naurú</option>
+                                <option>Nepal</option>
+                                <option>Nicaragua</option>
+                                <option>Nigeria</option>
+                                <option>Niue</option>
+                                <option>Noruega</option>
+                                <option>Nueva Caledonia</option>
+                                <option>Nueva Zelanda</option>
+                                <option>Níger</option>
+                                <option>Omán</option>
+                                <option>Palaos</option>
+                                <option>Panamá</option>
+                                <option>Papúa Nueva Guinea</option>
+                                <option>Paquistán</option>
+                                <option>Paraguay</option>
+                                <option>Países Bajos</option>
+                                <option>Perú</option>
+                                <option>Polinesia Francesa</option>
+                                <option>Polonia</option>
+                                <option>Portugal</option>
+                                <option>Puerto Rico</option>
+                                <option>Qatar</option>
+                                <option>Reino Unido</option>
+                                <option>Rep Democrática del Congo</option>
+                                <option>Repúb Democrática Pop Laos</option>
+                                <option>Repúb Democrática Pop de Corea</option>
+                                <option>República Centroafricana</option>
+                                <option>República Checa</option>
+                                <option>República Dominicana</option>
+                                <option>República Unida de Tanzania</option>
+                                <option>República de Corea</option>
+                                <option>República de Moldavia</option>
+                                <option>República de Montenegro</option>
+                                <option>República de Serbia</option>
+                                <option>República Árabe Siria</option>
+                                <option>Reunión</option>
+                                <option>Ruanda</option>
+                                <option>Rumanía</option>
+                                <option>Samoa</option>
+                                <option>Samoa Americana</option>
+                                <option>San Bartolomé</option>
+                                <option>San Cristóbal y Nieves</option>
+                                <option>San Marino</option>
+                                <option>San Martín</option>
+                                <option>San Pedro y Miquelón</option>
+                                <option>San Vicente y las Granadinas</option>
+                                <option>Santa Elena</option>
+                                <option>Santa Lucía</option>
+                                <option>Santo Tomé y Príncipe</option>
+                                <option>Senegal</option>
+                                <option>Seychelles</option>
+                                <option>Sierra Leona</option>
+                                <option>Singapur</option>
+                                <option>Somalia</option>
+                                <option>Sri Lanka</option>
+                                <option>Suazilandia</option>
+                                <option>Sudáfrica</option>
+                                <option>Sudán</option>
+                                <option>Sudán del Sur</option>
+                                <option>Suecia</option>
+                                <option>Suiza</option>
+                                <option>Surinam</option>
+                                <option>Svalbard y Jan Mayen</option>
+                                <option>Sáhara Occidental</option>
+                                <option>Tailandia</option>
+                                <option>Taiwán</option>
+                                <option>Tayiquistán</option>
+                                <option>Terr Australes Franceses</option>
+                                <option>Terr Britán Océano Índico</option>
+                                <option>Terr Palestinos Ocupados</option>
+                                <option>Timor Oriental</option>
+                                <option>Togo</option>
+                                <option>Tokelau</option>
+                                <option>Tonga</option>
+                                <option>Trinidad y Tobago</option>
+                                <option>Turkmenistán</option>
+                                <option>Turquía</option>
+                                <option>Tuvalú</option>
+                                <option>Túnez</option>
+                                <option>Ucrania</option>
+                                <option>Uganda</option>
+                                <option>Uruguay</option>
+                                <option>Uzbekistán</option>
+                                <option>Vanuatú</option>
+                                <option>Venezuela</option>
+                                <option>Vietnam</option>
+                                <option>Wallis y Futuna</option>
+                                <option>Yemen</option>
+                                <option>Yibuti</option>
+                                <option>Yugoslavia</option>
+                                <option>Zambia</option>
+                                <option>Zimbabue</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="input-group fuente-pequeña">
+                            <span class="input-group-addon">RUC</span>
+                            <input type="text" class="form-control" placeholder="RUC o Identificador Tributario">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="input-group fuente-pequeña">
+                            <span class="input-group-addon">Descrip-<br />ción</span>
+                            <textarea class="form-control" placeholder="Descripción de la Empresa" rows="3"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="input-group fuente-pequeña">
+                            <span class="input-group-addon">Año de<br />Creación</span>
+                            <input type="text" class="form-control" placeholder="Año de Creación">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="input-group fuente-pequeña">
+                            <span class="input-group-addon">Número de<br />Empleados</span>
+                            <select class="form-control">
+                                <option>De 1 a 10 empleados</option>
+                                <option>
+                                    De 11 a 50 empleados
+                                </option>
+                                <option>
+                                    De 51 a 100 empleados
+                                </option>
+                                <option>
+                                    De 101 a 500 empleados
+                                </option>
+                                <option>
+                                    Más de 500 empleados
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="input-group fuente-pequeña">
+                            <span class="input-group-addon">Sector<br />Principal</span>
+                            <select id="Lista" class="form-control">
+                                <option value="" selected>- Elija el Sector Empresarial principal -</option>
+                                <option value="1">Auditoría y Consultoría</option>
+                                <option value="1">Banca y Seguros</option>
+                                <option value="1">Construcción e Inmobiliaria</option>
+                                <option value="1">Energía</option>
+                                <option value="1">Industria</option>
+                                <option value="1">Servicios</option>
+                                <option value="1">Tecnología y Software</option>
+                                <option value="1">Telecomunicaciones</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="input-group fuente-pequeña">
+                            <span class="input-group-addon">Sector 2</span>
+                            <select id="Lista" class="form-control">
+                                <option value="" selected>- Elija el Sector Empresarial principal -</option>
+                                <option value="1">Auditoría y Consultoría</option>
+                                <option value="1">Banca y Seguros</option>
+                                <option value="1">Construcción e Inmobiliaria</option>
+                                <option value="1">Energía</option>
+                                <option value="1">Industria</option>
+                                <option value="1">Servicios</option>
+                                <option value="1">Tecnología y Software</option>
+                                <option value="1">Telecomunicaciones</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="input-group fuente-pequeña">
+                            <span class="input-group-addon">Sector 3</span>
+                            <select id="Lista" class="form-control">
+                                <option value="" selected>- Elija el Sector Empresarial principal -</option>
+                                <option value="1">Auditoría y Consultoría</option>
+                                <option value="1">Banca y Seguros</option>
+                                <option value="1">Construcción e Inmobiliaria</option>
+                                <option value="1">Energía</option>
+                                <option value="1">Industria</option>
+                                <option value="1">Servicios</option>
+                                <option value="1">Tecnología y Software</option>
+                                <option value="1">Telecomunicaciones</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-sm-12" style="text-align:right;">
+                        <button type="button" class="btn btn-default color-paleta4 fuente-pequeña" style="color: white; margin-bottom: 10px;">Guardar</button>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="Modal-nueva-ubicacion" tabindex="-1" role="dialog" aria-labelledby="NuevaUbicacion" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="NuevaUbicacion">Nueva Ubicación</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="input-group fuente-pequeña">
+                            <span class="input-group-addon">Tipo</span>
+                            <select id="Lista" class="form-control">
+                                <option value="" selected>Tipo de Ubicación</option>
+                                <option>
+                                    Oficina Principal
+                                </option>
+                                <option>
+                                    Sucursal
+                                </option>
+                                <option>
+                                    Planta
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="input-group">
+                            <span class="input-group-addon">Nombre</span>
+                            <input type="text" class="form-control" placeholder="Nombre de la Ubicación">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="input-group">
+                            <span class="input-group-addon">E-Mail</span>
+                            <input type="text" class="form-control" placeholder="Dirección electrónica para la Ubicación">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="input-group">
+                            <span class="input-group-addon">Teléfono</span>
+                            <input type="text" class="form-control" placeholder="Teléfono de la Ubicación">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="input-group">
+                            <span class="input-group-addon">Dirección</span>
+                            <textarea class="form-control" placeholder="Calle y Número de la Ubicación, interior, depto, oficina, urbanización" rows="2" ></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="input-group fuente-pequeña">
+                            <span class="input-group-addon">Departa-<br />mento</span>
+                            <select id="Lista" class="form-control">
+                                <option value="" selected>Departamento, Región o Estado</option>
+                                <option>Lima</option>
+                                <option>Cajamarca</option>
+                                <option>Loreto</option>
+                                <option>La Libertad</option>
+                                <option>Ancash</option>
+                                <option>Ica</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="input-group fuente-pequeña">
+                            <span class="input-group-addon">Ciudad</span>
+                            <select id="Lista" class="form-control">
+                                <option value="" selected>Seleccione Ciudad</option>
+                                <option>Lima</option>
+                                <option>Cajamarca</option>
+                                <option>Chincha</option>
+                                <option>Pisco</option>
+                                <option>Tacna</option>
+                               
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="input-group fuente-pequeña">
+                            <span class="input-group-addon">Distrito</span>
+                            <select id="Lista" class="form-control">
+                                <option value="" selected>Seleccione Distrito</option>
+                                <option>Cercado de Lima</option>
+                                <option>Barranco</option>
+                                <option>Miraflores</option>
+                                <option>San Isidro</option>
+                                <option>Pueblo Libre</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="input-group fuente-pequeña">
+                            <span class="input-group-addon">Estado</span>
+                            <select id="Lista" class="form-control">
+                                <option value="" selected>Seleccione Estado</option>
+                                <option>Activa</option>
+                                <option>No Activa</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12" style="text-align:right;">
+                        <button type="button" class="btn btn-default color-paleta4 fuente-pequeña" style="color: white; margin-bottom: 10px;">Guardar</button>
+                    </div>
+                </div>
+
+            </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="Modal-nuevo-usuario" tabindex="-1" role="dialog" aria-labelledby="NuevaUbicacion" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="NuevoUsuario">Nuevo Usuario</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="input-group fuente-pequeña">
+                            <span class="input-group-addon">Tipo</span>
+                            <select id="Lista" class="form-control">
+                                <option value="" selected>Tipo de Ubicación</option>
+                                <option>
+                                    Oficina Principal
+                                </option>
+                                <option>
+                                    Sucursal
+                                </option>
+                                <option>
+                                    Planta
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="input-group">
+                            <span class="input-group-addon">Nombre</span>
+                            <input type="text" class="form-control" placeholder="Nombre de la Ubicación">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="input-group">
+                            <span class="input-group-addon">E-Mail</span>
+                            <input type="text" class="form-control" placeholder="Dirección electrónica para la Ubicación">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="input-group">
+                            <span class="input-group-addon">Teléfono</span>
+                            <input type="text" class="form-control" placeholder="Teléfono de la Ubicación">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="input-group">
+                            <span class="input-group-addon">Dirección</span>
+                            <textarea class="form-control" placeholder="Calle y Número de la Ubicación, interior, depto, oficina, urbanización" rows="2"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="input-group fuente-pequeña">
+                            <span class="input-group-addon">Departa-<br />mento</span>
+                            <select id="Lista" class="form-control">
+                                <option value="" selected>Departamento, Región o Estado</option>
+                                <option>Lima</option>
+                                <option>Cajamarca</option>
+                                <option>Loreto</option>
+                                <option>La Libertad</option>
+                                <option>Ancash</option>
+                                <option>Ica</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="input-group fuente-pequeña">
+                            <span class="input-group-addon">Ciudad</span>
+                            <select id="Lista" class="form-control">
+                                <option value="" selected>Seleccione Ciudad</option>
+                                <option>Lima</option>
+                                <option>Cajamarca</option>
+                                <option>Chincha</option>
+                                <option>Pisco</option>
+                                <option>Tacna</option>
+
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="input-group fuente-pequeña">
+                            <span class="input-group-addon">Distrito</span>
+                            <select id="Lista" class="form-control">
+                                <option value="" selected>Seleccione Distrito</option>
+                                <option>Cercado de Lima</option>
+                                <option>Barranco</option>
+                                <option>Miraflores</option>
+                                <option>San Isidro</option>
+                                <option>Pueblo Libre</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="input-group fuente-pequeña">
+                            <span class="input-group-addon">Estado</span>
+                            <select id="Lista" class="form-control">
+                                <option value="" selected>Seleccione Estado</option>
+                                <option>Activa</option>
+                                <option>No Activa</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12" style="text-align:right;">
+                        <button type="button" class="btn btn-default color-paleta4 fuente-pequeña" style="color: white; margin-bottom: 10px;">Guardar</button>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
