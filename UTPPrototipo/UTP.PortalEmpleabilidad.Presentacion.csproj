@@ -180,6 +180,7 @@
     <Compile Include="Controllers\OfertaEstudioController.cs" />
     <Compile Include="Controllers\OfertaInformacionAdicionalController.cs" />
     <Compile Include="Controllers\OfertaSectorEmpresarialController.cs" />
+    <Compile Include="Controllers\UTPController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -705,6 +706,10 @@
     <Content Include="Views\Empresa\_VistaOfertaMensajes.cshtml" />
     <Content Include="Views\OfertaEstudio\_OfertaEstudioListado.cshtml" />
     <Content Include="Views\Contenido\ContenidoEDitar_Buscar.cshtml" />
+    <Content Include="Views\UTP\Index.cshtml" />
+    <Content Include="Views\UTP\Portal.cshtml" />
+    <Content Include="Views\UTP\Registros.cshtml" />
+    <Content Include="Views\UTP\_LayoutUTP.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -13,13 +13,10 @@ namespace UTPPrototipo.Controllers
         {
             return View();
         }
-        public ActionResult Registros()
-        {
-            return View();
-        }
         public ActionResult Portal()
         {
             return View();
         }
+
     }
 }
