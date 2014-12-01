@@ -11,20 +11,33 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public int IdEmpresa { get; set; }
         public string NombreComercial { get; set; }
         public string RazonSocial { get; set; }
-        public string Pais { get; set; }
+        public ListaValor Pais { get; set; }
         public string IdentificadorTributario { get; set; }
         public string DescripcionEmpresa { get; set; }
         public string LinkVideo { get; set; }
         public int AnoCreacion { get; set; }
-        public string NumeroEmpleados { get; set; }
-        public string EstadoEmpresa { get; set; }
-        public string SectorEmpresarial { get; set; }
-        public string SectorEmpresarial2 { get; set; }
-        public string SectorEmpresarial3 { get; set; }
+        public ListaValor NumeroEmpleados { get; set; }        
+        public ListaValor EstadoEmpresa { get; set; }
+        public ListaValor SectorEmpresarial { get; set; }
+        public ListaValor SectorEmpresarial2 { get; set; }
+        public ListaValor SectorEmpresarial3 { get; set; }
         public string CreadoPor { get; set; }
         public string UsuarioEC { get; set; }
 
-        public List<EmpresaLocacion> locaciones { get; set; }
+        public List<EmpresaLocacion> Locaciones { get; set; }
+        public List<EmpresaUsuario> Usuarios { get; set; }
+
+        public Empresa()
+        {
+            Pais = new ListaValor();
+            SectorEmpresarial = new ListaValor();
+            SectorEmpresarial2 = new ListaValor();
+            SectorEmpresarial3 = new ListaValor();
+            NumeroEmpleados = new ListaValor();
+            EstadoEmpresa = new ListaValor();
+            Locaciones = new List<EmpresaLocacion>();
+            Usuarios = new List<EmpresaUsuario>();
+        }
 
     }
 }

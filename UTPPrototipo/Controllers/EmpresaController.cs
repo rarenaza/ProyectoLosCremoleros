@@ -192,14 +192,14 @@ namespace UTPPrototipo.Controllers
         {
             if (ModelState.IsValid)
             {
-                empresa.EstadoEmpresa = Constantes.ESTADO_EMPRESA_PENDIENTE_APROBACION;
-                empresa.SectorEmpresarial = "SETECN"; //Data de prueba.
+                empresa.EstadoEmpresa.Valor = Constantes.ESTADO_EMPRESA_PENDIENTE_APROBACION;
+                empresa.SectorEmpresarial.Valor = "SETECN"; //Data de prueba.
                 empresa.DescripcionEmpresa = "";
                 empresa.LinkVideo = "";
                 empresa.AnoCreacion = 2014;
-                empresa.NumeroEmpleados = "";
-                empresa.SectorEmpresarial2 = "";
-                empresa.SectorEmpresarial3 = "";
+                empresa.NumeroEmpleados.Valor = "";
+                empresa.SectorEmpresarial2.Valor = "";
+                empresa.SectorEmpresarial3.Valor = "";
 
                 empresa.CreadoPor = "admin";
 
@@ -212,6 +212,11 @@ namespace UTPPrototipo.Controllers
 
         public ActionResult Administrar()
         {
+            //Ticket ticket = (Ticket)Session["Ticket"];
+
+            //LNEmpresa lnEmpresa = new LNEmpresa();
+            //var empresa = lnEmpresa.ObtenerDatosPorId(ticket.IdEmpresa);
+            
             return View();
         }
 

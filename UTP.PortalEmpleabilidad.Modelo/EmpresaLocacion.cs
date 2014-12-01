@@ -10,7 +10,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
     {
         public int IdEmpresaLocacion { get; set; }
         public int IdEmpresa { get; set; }
-        public string TipoLocacion { get; set; }
+        public ListaValor TipoLocacion { get; set; }
         public string NombreLocacion { get; set; }
         public string CorreoElectronico { get; set; }
         public string TelefonoFijo { get; set; }
@@ -20,7 +20,12 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string DireccionDistrito { get; set; }
         public string DireccionCiudad { get; set; }
         public string DireccionRegion { get; set; }
-        public string EstadoLocacion { get; set; }
+        public ListaValor EstadoLocacion { get; set; }
+
+        public EmpresaLocacion() {
+            TipoLocacion = new ListaValor();
+            EstadoLocacion = new ListaValor();
+        }
 
     }
 }

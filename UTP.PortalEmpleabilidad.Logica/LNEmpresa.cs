@@ -56,5 +56,77 @@ namespace UTP.PortalEmpleabilidad.Logica
         {
             adEmpresa.Insertar(empresa);
         }
+
+        public Empresa ObtenerDatosEmpresaPorId(int idEmpresa)
+        {
+            Empresa empresa = new Empresa();
+
+            DataSet dsResultado = adEmpresa.ObtenerDatosEmpresaPorId(idEmpresa);
+
+            //Datos generales de la empresa.
+            if (dsResultado.Tables.Count > 0)
+            {
+                if (dsResultado.Tables[0].Rows.Count > 0)
+                {
+                    empresa.IdEmpresa = Convert.ToInt32(dsResultado.Tables[0].Rows[0]["IdEmpresa"]);
+                    empresa.NombreComercial = Convert.ToString(dsResultado.Tables[0].Rows[0]["NombreComercial"]);
+                    empresa.RazonSocial = Convert.ToString(dsResultado.Tables[0].Rows[0]["RazonSocial"]);
+                    empresa.Pais.Valor = Convert.ToString(dsResultado.Tables[0].Rows[0]["PaisDescripcion"]);
+                    empresa.IdentificadorTributario = Convert.ToString(dsResultado.Tables[0].Rows[0]["IdentificadorTributario"]);
+                    empresa.DescripcionEmpresa = Convert.ToString(dsResultado.Tables[0].Rows[0]["DescripcionEmpresa"]);
+                    empresa.LinkVideo = Convert.ToString(dsResultado.Tables[0].Rows[0]["LinkVideo"]);
+                    empresa.AnoCreacion = Convert.ToInt32(dsResultado.Tables[0].Rows[0]["AnoCreacion"]);
+                    empresa.NumeroEmpleados.Valor = Convert.ToString(dsResultado.Tables[0].Rows[0]["NumeroEmpleadosDescripcion"]);
+                    empresa.EstadoEmpresa.Valor = Convert.ToString(dsResultado.Tables[0].Rows[0]["EstadoEmpresaDescripcion"]);
+                    empresa.SectorEmpresarial.Valor = Convert.ToString(dsResultado.Tables[0].Rows[0]["SectorEmpresarialDescripcion"]);
+                    empresa.SectorEmpresarial2.Valor = Convert.ToString(dsResultado.Tables[0].Rows[0]["SectorEmpresarial2Descripcion"]);
+                    empresa.SectorEmpresarial3.Valor = Convert.ToString(dsResultado.Tables[0].Rows[0]["SectorEmpresarial3Descripcion"]);
+                }
+            }
+
+            //Locaciones
+            foreach (DataRow locacionBD in dsResultado.Tables[0].Rows)
+            {
+                EmpresaLocacion empresaLocacion = new EmpresaLocacion();
+                empresaLocacion.IdEmpresaLocacion = Convert.ToInt32(locacionBD["IdEmpresaLocacion"]);
+                empresaLocacion.IdEmpresa = Convert.ToInt32(locacionBD["IdEmpresaLocacion"]);
+                empresaLocacion.TipoLocacion.Valor = Convert.ToString(locacionBD["TipoLocacionDescripcion"]);
+                empresaLocacion.NombreLocacion = Convert.ToString(locacionBD["NombreLocacion"]);
+                empresaLocacion.CorreoElectronico = Convert.ToString(locacionBD["CorreoElectronico"]);
+                empresaLocacion.TelefonoFijo = Convert.ToString(locacionBD["TelefonoFijo"]);
+                empresaLocacion.DireccionLinea1 = Convert.ToString(locacionBD["DireccionLinea1"]);
+                empresaLocacion.DireccionLinea2 = Convert.ToString(locacionBD["DireccionLinea2"]);
+                empresaLocacion.DireccionLinea3 = Convert.ToString(locacionBD["DireccionLinea3"]);
+                empresaLocacion.DireccionDistrito = Convert.ToString(locacionBD["DireccionDistrito"]);
+                empresaLocacion.DireccionCiudad = Convert.ToString(locacionBD["DireccionCiudad"]);
+                empresaLocacion.DireccionRegion = Convert.ToString(locacionBD["DireccionRegion"]);
+                empresaLocacion.EstadoLocacion.Valor = Convert.ToString(locacionBD["EstadoLocacionDescripcion"]);
+
+                empresa.Locaciones.Add(empresaLocacion);
+            }
+
+            //Usuarios>
+            foreach (DataRow usuarioBD in dsResultado.Tables[1].Rows)
+            {
+                EmpresaUsuario empresaUsuario = new EmpresaUsuario();
+                empresaUsuario.IdEmpresaUsuario = Convert.ToInt32(usuarioBD["IdEmpresaUsuario"]);
+                empresaUsuario.Empresa.IdEmpresa = Convert.ToInt32(usuarioBD["IdEmpresa"]); ;
+                empresaUsuario.Usuario = Convert.ToString(usuarioBD["Usuario"]);
+                empresaUsuario.Nombres = Convert.ToString(usuarioBD["Nombres"]);
+                empresaUsuario.Apellidos = Convert.ToString(usuarioBD["Apellidos"]);
+                empresaUsuario.TipoDocumento.Valor = Convert.ToString(usuarioBD["TipoDocumentoDescripcion"]);
+                empresaUsuario.NumeroDocumento = Convert.ToString(usuarioBD["NumeroDocumento"]);
+                empresaUsuario.Sexo.Valor = Convert.ToString(usuarioBD["SexoDescripcion"]);
+                empresaUsuario.CorreoElectronico = Convert.ToString(usuarioBD["CorreoElectronico"]);
+                empresaUsuario.TelefonoFijo = Convert.ToString(usuarioBD["TelefonoFijo"]);
+                empresaUsuario.TelefonoCelular = Convert.ToString(usuarioBD["TelefonoCelular"]);
+                empresaUsuario.TelefonoAnexo = Convert.ToString(usuarioBD["TelefonoAnexo"]);
+
+                empresa.Usuarios.Add(empresaUsuario);
+            }
+
+            return empresa;
+        }
+        
     }
 }

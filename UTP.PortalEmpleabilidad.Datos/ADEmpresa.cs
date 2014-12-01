@@ -10,7 +10,7 @@ using UTP.PortalEmpleabilidad.Modelo;
 
 namespace UTP.PortalEmpleabilidad.Datos
 {
-    public class ADEmpresa
+    public class ADEmpresa : ADBase
     {
         ADConexion cnn = new ADConexion();
         SqlCommand cmd = new SqlCommand();
@@ -54,6 +54,31 @@ namespace UTP.PortalEmpleabilidad.Datos
             cnn.Desconectar();
 
             return dt;
+        }
+
+        public DataSet ObtenerDatosEmpresaPorId(int idEmpresa)
+        {
+            DataSet dsResultado = new DataSet();
+
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Empresa_ObtenerPorId";
+                cmd.Connection = conexion;
+                
+                conexion.Open();
+
+                cmd.Parameters.Add(new SqlParameter("@IdEmpresa", idEmpresa));
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+
+                da.Fill(dsResultado);
+
+                conexion.Close();
+            }
+         
+            return dsResultado;
         }
     }
 }

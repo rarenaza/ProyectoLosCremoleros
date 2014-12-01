@@ -24,7 +24,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 EmpresaLocacion locacion = new EmpresaLocacion();
                 locacion.IdEmpresaLocacion = Convert.ToInt32(fila["IdEmpresaLocacion"]);
                 locacion.IdEmpresa = Convert.ToInt32(fila["IdEmpresa"]);
-                locacion.TipoLocacion = Convert.ToString(fila["TipoLocacion"]);
+                locacion.TipoLocacion.Valor = Convert.ToString(fila["TipoLocacion"]);
                 locacion.NombreLocacion = Convert.ToString(fila["NombreLocacion"]);
                 locacion.CorreoElectronico = Convert.ToString(fila["CorreoElectronico"]);
                 locacion.TelefonoFijo = Convert.ToString(fila["TelefonoFijo"]);
@@ -34,7 +34,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 locacion.DireccionDistrito = Convert.ToString(fila["DireccionDistrito"]);
                 locacion.DireccionCiudad = Convert.ToString(fila["DireccionCiudad"]);
                 locacion.DireccionRegion = Convert.ToString(fila["DireccionRegion"]);
-                locacion.EstadoLocacion = Convert.ToString(fila["EstadoLocacion"]);
+                locacion.EstadoLocacion.Valor = Convert.ToString(fila["EstadoLocacion"]);
 
                 locaciones.Add(locacion);
             }
