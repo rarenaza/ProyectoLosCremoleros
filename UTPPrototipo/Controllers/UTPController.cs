@@ -17,6 +17,25 @@ namespace UTPPrototipo.Controllers
         {
             return View();
         }
-
+        public ActionResult Alumnos()
+        {
+            return View();
+        }
+        public ActionResult Empresas()
+        {
+            return View();
+        }
+        public ActionResult Sistema()
+        {
+            return View();
+        }
+        public ActionResult Reportes()
+        {
+            return View();
+        }
+        public ActionResult Eventos()
+        {
+            return View();
+        }
     }
 }

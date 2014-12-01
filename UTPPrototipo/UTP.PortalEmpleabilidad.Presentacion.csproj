@@ -710,6 +710,11 @@
     <Content Include="Views\UTP\Portal.cshtml" />
     <Content Include="Views\UTP\Registros.cshtml" />
     <Content Include="Views\UTP\_LayoutUTP.cshtml" />
+    <Content Include="Views\UTP\Empresas.cshtml" />
+    <Content Include="Views\UTP\Alumnos.cshtml" />
+    <Content Include="Views\UTP\Eventos.cshtml" />
+    <Content Include="Views\UTP\Reportes.cshtml" />
+    <Content Include="Views\UTP\Sistema.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
