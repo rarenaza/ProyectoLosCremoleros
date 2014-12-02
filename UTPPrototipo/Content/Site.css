@@ -224,7 +224,10 @@ input[type="checkbox"].input-validation-error {
     background-color:rgb(129, 130, 134);
 	color:white;
     }
-
+.color-paleta7 {
+    background-color:rgb(43, 86, 177);
+	color:white;
+    }
 .color-icono-paleta1 {
     color: rgb(180, 30, 34);
     }
