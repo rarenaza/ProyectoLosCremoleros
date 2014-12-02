@@ -1,8 +1,12 @@
 ﻿@model UTPPrototipo.Models.ViewModels.Contenido.ContenidoVista
 
 
+@{
+    Layout = "~/Views/UTP/_LayoutUTP.cshtml";
+    ViewBag.Title = "Mantenimiento de Portal";
+}
 
-    @using (Html.BeginForm("ContenidoEDitar_Buscar", "Contenido", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    @using (Html.BeginForm("Portal_Editar_Buscar", "UTP", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
     @Html.AntiForgeryToken()
 
@@ -133,3 +137,11 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+<script>
+
+    $(document).ready(function () {
+        $("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta4 color-paleta5").addClass("color-paleta3");
+    });
+
+
+</script>

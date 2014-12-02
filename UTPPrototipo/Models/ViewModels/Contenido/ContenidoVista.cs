@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 namespace UTPPrototipo.Models.ViewModels.Contenido
 {
@@ -18,10 +19,11 @@ namespace UTPPrototipo.Models.ViewModels.Contenido
         public string SubTitulo { get; set; }
          
         public string Descripcion { get; set; }
-
+           [Required]
         public HttpPostedFileBase ImagenHtml { get; set; }
         public string ArchivoNombreOriginal { get; set; }
-        public string ArchivoMimeType { get; set; } 
+        public string ArchivoMimeType { get; set; }
+        [Required]
         public  byte[] Imagen { get; set; }
 
         public string Menu { get; set; }

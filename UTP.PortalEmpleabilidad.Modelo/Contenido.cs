@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,10 +14,11 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string Titulo { get; set; }
         public string SubTitulo { get; set;}
         public string Descripcion { get; set; }
+        [Required]
         public byte[] Imagen { get; set; }
         //public string  Imagen { get; set; }
         //public string  Menu { get; set; }
-
+ 
        public string  Menu { get; set; }
            
 
@@ -28,6 +30,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public bool EnPantallaPrincipal { get; set; }
 
         public string ArchivoNombreOriginal { get; set; }
-       
+        public string ArchivoMimeType { get; set; }
+        public string TituloMenu { get; set; }
     }
 }

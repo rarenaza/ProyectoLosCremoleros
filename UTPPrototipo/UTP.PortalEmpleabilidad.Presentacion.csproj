@@ -715,6 +715,9 @@
     <Content Include="Views\UTP\Eventos.cshtml" />
     <Content Include="Views\UTP\Reportes.cshtml" />
     <Content Include="Views\UTP\Sistema.cshtml" />
+    <Content Include="Views\UTP\Portal_insertar.cshtml" />
+    <Content Include="Views\UTP\Portal_Editar_Buscar.cshtml" />
+    <Content Include="Views\UTP\BuscarGrilla.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

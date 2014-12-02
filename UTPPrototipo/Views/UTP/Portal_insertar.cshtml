@@ -1,18 +1,34 @@
 ﻿@model UTPPrototipo.Models.ViewModels.Contenido.ContenidoVista
 
 
+@{
+    Layout = "~/Views/UTP/_LayoutUTP.cshtml";
+    ViewBag.Title = "Mantenimiento de Portal";
+}
 
-    @using (Html.BeginForm("ContenidoEDitar_Buscar", "Contenido", FormMethod.Post, new { enctype = "multipart/form-data" }))
-    {
+<h2>Contenido_insertar</h2>
+
+
+@*@using (Html.BeginForm())*@ 
+    @using (Html.BeginForm("Portal_insertar", "UTP", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
     @Html.AntiForgeryToken()
-
+    
     <div class="form-horizontal">
         <h4>Contenido</h4>
         <hr />
         @Html.ValidationSummary(true)
-        @Html.HiddenFor(model => model.id)
 
         <div class="form-group">
+            @Html.LabelFor(model => model.Menu, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.Menu)*@
+                @Html.DropDownList("Menu", ViewData["ContenidoMenu"] as List<SelectListItem>, "Seleccione...")
+                @Html.ValidationMessageFor(model => model.Menu)
+            </div>
+        </div>
+
+        <div class="form-group" style="display:none">
             @Html.LabelFor(model => model.IdContenido, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.IdContenido)
@@ -43,45 +59,28 @@
                 @Html.ValidationMessageFor(model => model.Descripcion)
             </div>
         </div>
+
         <div class="form-group">
-            @Html.LabelFor(model => model.Menu, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.ImagenHtml, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @*@Html.EditorFor(model => model.Menu)*@
-                @Html.DropDownList("Menu", ViewData["ContenidoMenu"] as List<SelectListItem>)
-                @Html.ValidationMessageFor(model => model.Menu)
+                @Html.TextBoxFor(model => model.ImagenHtml, new { type = "file" })
+                
+                @*@Html.EditorFor(model => model.Imagen)*@
+                @Html.ValidationMessageFor(model => model.ImagenHtml)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ImagenHtml, htmlAttributes: new { @class = "control-label col-md-2" })
-
-            @if (Model.ArchivoNombreOriginal == "" || Model.ArchivoNombreOriginal == null)
-            {
-                <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.ImagenHtml, new { type = "file" })
-                    @*@Html.EditorFor(model => model.Imagen)*@
-                    @Html.ValidationMessageFor(model => model.ImagenHtml)
-                </div>
-
-            }
-            else
-            {
-                <div class="col-md-10">
-                    <fieldset>
-
-                        <input class="form-control disabled" value="@Model.ArchivoNombreOriginal" disabled />
-                    </fieldset>
-
-                    @Html.ActionLink("Remover", "RemoverArchivo", new { id = Model.IdContenido})
-                </div>
-
-            }
-
+        @Html.LabelFor(model => model.EnPantallaPrincipal, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+      
+                @Html.EditorFor(model => model.EnPantallaPrincipal)
+                @Html.ValidationMessageFor(model => model.EnPantallaPrincipal)
+            </div>
         </div>
-
        
 
-        <div class="form-group" style="display:none">
+        <div class="form-group">
             @Html.LabelFor(model => model.CreadoPor, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.CreadoPor)
@@ -96,15 +95,8 @@
                 @Html.ValidationMessageFor(model => model.FechaCreacion)
             </div>
         </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.EnPantallaPrincipal, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.EnPantallaPrincipal)
-                @Html.ValidationMessageFor(model => model.EnPantallaPrincipal)
-            </div>
-        </div>
 
-        <div class="form-group">
+        <div class="form-group" style="display:none">
             @Html.LabelFor(model => model.ModificadoPor, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.ModificadoPor)
@@ -120,11 +112,9 @@
             </div>
         </div>
 
-
-
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
     </div>
@@ -133,3 +123,11 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+<script>
+
+    $(document).ready(function () {
+        $("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta4 color-paleta5").addClass("color-paleta3");
+    });
+
+
+</script>

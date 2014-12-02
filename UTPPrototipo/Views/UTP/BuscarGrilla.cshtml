@@ -1,0 +1,105 @@
+﻿@model IEnumerable<UTP.PortalEmpleabilidad.Modelo.Contenido>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdContenido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Titulo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SubTitulo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Imagen)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Menu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreadoPor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaCreacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ModificadoPor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FechaModificacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EnPantallaPrincipal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ArchivoNombreOriginal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ArchivoMimeType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TituloMenu)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdContenido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Titulo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SubTitulo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Imagen)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Menu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreadoPor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaCreacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ModificadoPor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FechaModificacion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EnPantallaPrincipal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ArchivoNombreOriginal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ArchivoMimeType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TituloMenu)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

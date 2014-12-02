@@ -14,36 +14,38 @@ namespace UTP.PortalEmpleabilidad.Logica
       ADContenido ad = new ADContenido();
 
 
-        public List<Contenido> Contenido_Mostrar()
-        {
-            List<Contenido> contenido = new List<Contenido>();
+      public List<Contenido> Contenido_Mostrar()
+      {
+          List<Contenido> contenido = new List<Contenido>();
 
-            DataTable dtResultado = ad.Contenido_Mostrar();
-
-
-            for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
-            {
-                Contenido listacontenido = new Contenido();
-                listacontenido.IdContenido = Convert.ToInt32 (dtResultado.Rows[i]["IdContenido"]);
-                listacontenido.Menu = dtResultado.Rows[i]["CodMenu"].ToString();
-                listacontenido.Titulo = dtResultado.Rows[i]["Titulo"].ToString();
-                listacontenido.SubTitulo = dtResultado.Rows[i]["SubTitulo"].ToString();
-                listacontenido.Descripcion = dtResultado.Rows[i]["Descripcion"].ToString();
-
-                listacontenido.Imagen = Encoding.UTF8 .GetBytes  (dtResultado.Rows[i]["Imagen"].ToString());
-                
-                
-                //listacontenido.Imagen = dtResultado.Rows[i]["Imagen"].ToString();
-              
-                contenido.Add(listacontenido);
-            }
-            return contenido;
-        }
+          DataTable dtResultado = ad.Contenido_Mostrar();
 
 
+          for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
+          {
+              Contenido listacontenido = new Contenido();
+              listacontenido.IdContenido = Convert.ToInt32(dtResultado.Rows[i]["IdContenido"]);
+              listacontenido.Menu = dtResultado.Rows[i]["CodMenu"].ToString();
+              listacontenido.Titulo = dtResultado.Rows[i]["Titulo"].ToString();
+              listacontenido.SubTitulo = dtResultado.Rows[i]["SubTitulo"].ToString();
+              listacontenido.Descripcion = dtResultado.Rows[i]["Descripcion"].ToString();
 
+              listacontenido.Imagen = Encoding.UTF8.GetBytes(dtResultado.Rows[i]["Imagen"].ToString());
 
+              listacontenido.TituloMenu = dtResultado.Rows[i]["Menu"].ToString();
 
+              //listacontenido.Imagen = dtResultado.Rows[i]["Imagen"].ToString();
+
+              contenido.Add(listacontenido);
+          }
+          return contenido;
+      }
+
+      public DataTable Contenido_Mostrar2(string id)
+      {
+          return ad.Contenido_Mostrar2(id);
+      }
+     
         public DataTable ContenidoMenu_Mostrar()
         {
             return ad.ContenidoMenu_Mostrar();
@@ -62,6 +64,11 @@ namespace UTP.PortalEmpleabilidad.Logica
                 return false;
             }
 
+        }
+
+        public DataTable Contenido_mostrar_imagen(int Cod)
+        {
+            return ad.Contenido_Mostrar_Imagen(Cod);
         }
 
         //muestra datos en el index solo lo que me instereza mostrar
@@ -125,32 +132,35 @@ namespace UTP.PortalEmpleabilidad.Logica
         }
 
 
-        public Contenido ContenidoEDitar_Buscar(int Id)
+        //public Contenido ContenidoEDitar_Buscar(int Id)
+        //{
+
+        //    Contenido contenido = new Contenido();
+
+        //    DataTable dtResultado = ad.ContenidoEDitar_Buscar(Id);
+
+        //    if (dtResultado.Rows.Count > 0)
+        //    {
+        //        contenido.IdContenido = Convert.ToInt32(dtResultado.Rows[0]["IdContenido"]);
+        //        contenido.Menu = dtResultado.Rows[0]["CodMenu"].ToString();
+        //        contenido.Titulo = dtResultado.Rows[0]["Titulo"].ToString();
+        //        contenido.SubTitulo = dtResultado.Rows[0]["SubTitulo"].ToString();
+        //        contenido.Descripcion = dtResultado.Rows[0]["Descripcion"].ToString();
+        //        //contenido.Imagen = Encoding.UTF8.GetBytes(dtResultado.Rows[0]["Imagen"].ToString());
+        //        contenido.EnPantallaPrincipal = Convert.ToBoolean(dtResultado.Rows[0]["EnPantallaPrincipal"].ToString());
+        //        contenido.ArchivoNombreOriginal = dtResultado.Rows[0]["ArchivoNombreOriginal"].ToString();
+        //        //contenido.Imagen = dtResultado.Rows[0]["Imagen"].ToString();
+
+        //    }
+        //    return contenido;
+
+
+        //}
+        public DataTable ContenidoEDitar_Buscar(int Cod)
         {
-         
-            Contenido contenido = new Contenido();
-
-            DataTable dtResultado = ad.ContenidoEDitar_Buscar(Id);
-            
-            if (dtResultado.Rows.Count > 0)
-            {
-                contenido.IdContenido = Convert.ToInt32(dtResultado.Rows[0]["IdContenido"]);
-                contenido.Menu = dtResultado.Rows[0]["CodMenu"].ToString();
-                contenido.Titulo = dtResultado.Rows[0]["Titulo"].ToString();
-                contenido.SubTitulo = dtResultado.Rows[0]["SubTitulo"].ToString();
-                contenido.Descripcion = dtResultado.Rows[0]["Descripcion"].ToString();
-                contenido.Imagen = Encoding.UTF8.GetBytes(dtResultado.Rows[0]["Imagen"].ToString());
-                contenido.EnPantallaPrincipal = Convert.ToBoolean(dtResultado.Rows[0]["EnPantallaPrincipal"].ToString());
-                contenido.ArchivoNombreOriginal = dtResultado.Rows[0]["ArchivoNombreOriginal"].ToString();
-                //contenido.Imagen = dtResultado.Rows[0]["Imagen"].ToString();
-                            
-            }
-            return contenido;
-
-          
+            return ad.ContenidoEDitar_Buscar(Cod);
         }
-     
-
+      
         public bool Contenido_Actualizar(Contenido contenido)
         {
 

@@ -1,7 +1,7 @@
 ﻿
-@model IEnumerable<UTP.PortalEmpleabilidad.Modelo.Contenido>
+@*@model IEnumerable<UTP.PortalEmpleabilidad.Modelo.Contenido>*@
 
-@*@model IEnumerable<UTPPrototipo.Models.ViewModels.Contenido.ContenidoVista>*@
+@model IEnumerable<UTPPrototipo.Models.ViewModels.Contenido.ContenidoVista>
 
 
 
@@ -93,10 +93,8 @@
             @*<img src="/Content/imagen/@item.Imagen" height="100" width="100" />*@
 
             <img src="/Contenido/RetrieveImage/@item.IdContenido" alt="" height=100 width=200 />
-                                       
-
-
-</td>
+            
+        </td>
        
         @*<td>
             @Html.DisplayFor(modelItem => item.CreadoPor)

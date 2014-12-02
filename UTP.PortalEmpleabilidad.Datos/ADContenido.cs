@@ -33,6 +33,43 @@ namespace UTP.PortalEmpleabilidad.Datos
 
             return dt;
         }
+
+        public DataTable Contenido_Mostrar2(string id)
+        {
+            ADConexion cnn = new ADConexion();
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "Contenido_Mostrar2";
+            cmd.Connection = cnn.cn;
+            cnn.Conectar();
+            cmd.Parameters.Add(new SqlParameter("@CodMenu", SqlDbType.VarChar,50)).Value = id;
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+
+            da.Fill(dt);
+
+            cnn.Desconectar();
+            return dt;
+        }
+
+
+        public DataTable Contenido_Mostrar_Imagen(int Cod)
+        {
+            ADConexion cnn = new ADConexion();
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "Contenido_Mostrar_imagen";
+            cmd.Connection = cnn.cn;
+            cnn.Conectar();
+            cmd.Parameters.Add(new SqlParameter("@IdContenido", SqlDbType.Int)).Value = Cod;
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+
+            da.Fill(dt);
+
+            cnn.Desconectar();
+            return dt;
+        }
         public DataTable ContenidoMenu_Mostrar()
         {
             ADConexion cnn = new ADConexion();
@@ -66,8 +103,9 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.Parameters.Add(new SqlParameter("@Titulo", SqlDbType.VarChar, 50)).Value = contenido.Titulo;
                 cmd.Parameters.Add(new SqlParameter("@SubTitulo", SqlDbType.VarChar, 50)).Value = contenido.SubTitulo;
                 cmd.Parameters.Add(new SqlParameter("@Descripcion", SqlDbType.VarChar, -1)).Value = contenido.Descripcion;
-                cmd.Parameters.Add(new SqlParameter("@Imagen", SqlDbType.Image)).Value = contenido.Imagen;
+                cmd.Parameters.Add(new SqlParameter("@Imagen", SqlDbType.Binary)).Value = contenido.Imagen;
                 cmd.Parameters.Add(new SqlParameter("@ArchivoNombreOriginal", SqlDbType.VarChar, 100)).Value = contenido.ArchivoNombreOriginal;
+                cmd.Parameters.Add(new SqlParameter("@ArchivoMimeType", SqlDbType.VarChar, 50)).Value = contenido.ArchivoMimeType;
                 cmd.Parameters.Add(new SqlParameter("@EnPantallaPrincipal", SqlDbType.Bit)).Value = contenido.EnPantallaPrincipal;
                 cmd.Parameters.Add(new SqlParameter("@CodMenu", SqlDbType.VarChar,50)).Value = contenido.Menu;
                 cmd.Parameters.Add(new SqlParameter("@CreadoPor", SqlDbType.VarChar, 50)).Value = contenido.CreadoPor;
@@ -130,7 +168,7 @@ namespace UTP.PortalEmpleabilidad.Datos
             return dt;
         }
       //Busca Los Datos a Actualizar
-        public DataTable ContenidoEDitar_Buscar(int Cod)
+        public DataTable ContenidoEDitar_Buscar(int Cod) 
         {
             ADConexion cnn = new ADConexion();
             SqlCommand cmd = new SqlCommand();
@@ -164,11 +202,14 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.Parameters.Add(new SqlParameter("@Titulo", SqlDbType.VarChar, 50)).Value = contenido.Titulo;
                 cmd.Parameters.Add(new SqlParameter("@SubTitulo", SqlDbType.VarChar, 50)).Value = contenido.SubTitulo;
                 cmd.Parameters.Add(new SqlParameter("@Descripcion", SqlDbType.VarChar, -1)).Value = contenido.Descripcion;
-                //cmd.Parameters.Add(new SqlParameter("@Imagen", SqlDbType.Image)).Value = contenido.Imagen;
+                cmd.Parameters.Add(new SqlParameter("@Imagen", SqlDbType.Image)).Value  =  contenido.Imagen;
+
+
                 cmd.Parameters.Add(new SqlParameter("@CodMenu", SqlDbType.VarChar, 50)).Value = contenido.Menu;
                 cmd.Parameters.Add(new SqlParameter("@EnPantallaPrincipal", SqlDbType.Bit)).Value = contenido.EnPantallaPrincipal;
                 cmd.Parameters.Add(new SqlParameter("@ArchivoNombreOriginal", SqlDbType.VarChar, 100)).Value = contenido.ArchivoNombreOriginal;
                 cmd.Parameters.Add(new SqlParameter("@ModificadoPor", SqlDbType.VarChar, 50)).Value = contenido.ModificadoPor;
+                            
                 cmd.Parameters.Add(new SqlParameter("@IdContenido", SqlDbType.VarChar, 50)).Value = contenido.IdContenido;
 
                 cnn.Conectar();
