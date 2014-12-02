@@ -102,7 +102,7 @@ namespace UTP.PortalEmpleabilidad.Datos
         
 
                        
-        public DataTable Obtener_PanelEmpresa(int idEmpresa)
+        public DataTable Obtener_PanelEmpresa(int idEmpresa, string filtroBusqueda)
         {
             DataTable dtResultado = new DataTable();
 
@@ -113,6 +113,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "Oferta_ObtenerPanelEmpresa";
                 cmd.Parameters.Add(new SqlParameter("@IdEmpresa", idEmpresa));
+                cmd.Parameters.Add(new SqlParameter("@FiltroBusqueda", filtroBusqueda));
                 cmd.Connection = conexion;
 
                 conexion.Open();

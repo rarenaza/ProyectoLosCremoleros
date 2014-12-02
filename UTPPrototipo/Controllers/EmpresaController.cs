@@ -25,13 +25,15 @@ namespace UTPPrototipo.Controllers
         {
             return View();
         }
-        public ActionResult Publicacion()
+        public ActionResult Publicacion(string filtroBusqueda)
         {
             //Se obtiene los datos de la sesion.
             Ticket ticket = (Ticket)Session["Ticket"];
             int idEmpresa = ticket.IdEmpresa;
 
-            List<VistaOfertaEmpresa> lista = lnOferta.Obtener_PanelEmpresa(idEmpresa);
+            string filtro = filtroBusqueda == null ? "" : filtroBusqueda;
+
+            List<VistaOfertaEmpresa> lista = lnOferta.Obtener_PanelEmpresa(idEmpresa, filtro);
 
             return View(lista);
         }

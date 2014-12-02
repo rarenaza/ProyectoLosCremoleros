@@ -69,14 +69,14 @@ namespace UTP.PortalEmpleabilidad.Logica
         public DataTable ObtenerLista_ListaValor(int cod)
         {
             return adOferta.ObtenerLista_ListaValor(cod);
-        }    
+        }
 
 
-        public List<VistaOfertaEmpresa> Obtener_PanelEmpresa(int idEmpresa)
+        public List<VistaOfertaEmpresa> Obtener_PanelEmpresa(int idEmpresa, string filtroBusqueda)
         {
             List<VistaOfertaEmpresa> lista = new List<VistaOfertaEmpresa>();
 
-            DataTable dtResultados = adOferta.Obtener_PanelEmpresa(idEmpresa);
+            DataTable dtResultados = adOferta.Obtener_PanelEmpresa(idEmpresa, filtroBusqueda);
 
             foreach(DataRow fila in dtResultados.Rows)
             {
