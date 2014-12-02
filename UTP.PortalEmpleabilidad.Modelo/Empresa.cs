@@ -14,6 +14,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public ListaValor Pais { get; set; }
         public string IdentificadorTributario { get; set; }
         public string DescripcionEmpresa { get; set; }
+        public string PresentacionEmpresa { get; set; }
         public string LinkVideo { get; set; }
         public int AnoCreacion { get; set; }
         public ListaValor NumeroEmpleados { get; set; }        

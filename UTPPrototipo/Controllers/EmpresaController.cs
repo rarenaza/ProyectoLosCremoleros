@@ -206,18 +206,19 @@ namespace UTPPrototipo.Controllers
                 lnEmpresa.Insertar(empresa);
             }
 
-
             return RedirectToAction("Index", "Home");
         }
 
         public ActionResult Administrar()
         {
-            //Ticket ticket = (Ticket)Session["Ticket"];
+            Ticket ticket = (Ticket)Session["Ticket"];
 
-            //LNEmpresa lnEmpresa = new LNEmpresa();
-            //var empresa = lnEmpresa.ObtenerDatosPorId(ticket.IdEmpresa);
-            
-            return View();
+            LNEmpresa lnEmpresa = new LNEmpresa();
+            var empresa = lnEmpresa.ObtenerDatosEmpresaPorId(ticket.IdEmpresa);
+
+            ViewBag.IdEmpresa = ticket.IdEmpresa;
+
+            return View(empresa);
         }
 
         public ActionResult ObtenerNuevasPostulaciones()

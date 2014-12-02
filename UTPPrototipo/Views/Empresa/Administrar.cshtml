@@ -1,60 +1,19 @@
-﻿@{
+﻿@model UTP.PortalEmpleabilidad.Modelo.Empresa
+
+@{
     Layout = "~/Views/Empresa/_LayoutEmpresa.cshtml";
     ViewBag.Title = "Admnistrar el registro de la Empresa";
 }
 <div class="container" style="margin-top:2px;">
-    <div class="panel-group" id="datos-cuenta" role="tablist" aria-multiselectable="true">
-        <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingOne" style="padding: 2px 2px 2px 6px;">
-                <h5 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#datos-cuenta" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="fuente-seccion">
-                        Cuenta - Criteria IT S.A.C. - Aldo Junior Barja Brito
-                    </a>
-                </h5>
-            </div>
-            <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                <div class="panel-body">
-                    <div class="col-md-4">
-                        <table>
-                            <tr>
-                                <td>
-                                    <img class="foto-empresa" src="~/img/logos/LogoCriteria.jpg" />
-                                </td>
-                                <td style="vertical-align:top;">
-                                    <strong>
-                                        Criteria IT S.A.C.
-                                        <br />20555167581
-                                    </strong>
 
-                                    <br /><a href="#" class="fuente-pequeña">Modificar Datos ...</a>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="col-md-4 fuente-pequeña">
-                        Usuario <strong>
-                            Aldo Junior Barja Brito<br />
-                        </strong>
-                        DNI <strong>89226681</strong><br />
-                        <strong>aldo.barja@criteriait.com</strong><br />
-                        <strong>954123876</strong>
-                    </div>
-                    <div class="col-md-4 fuente-pequeña">
-                        Ubicación <strong>Software Factory</strong><br />
-                        <strong>Calle Saturno 1067, Urb. La Luz, Cercado de Lima</strong><br />
-                        <strong>7149968</strong><br />
-                    </div>
-                </div>
-            </div>
-        </div>
+    @{Html.RenderAction("VistaCabecera", "Empresa");}
 
-    </div>
     <div class="panel-group" id="datos-empresa" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default">
             <div class="panel-heading" role="tab" id="headingDatosEmpresa" style="padding: 2px 2px 2px 6px;">
                 <h5 class="panel-title">
                     <a data-toggle="collapse" data-parent="#datos-empresa" href="#collapseDatosEmpresa" aria-expanded="true" aria-controls="collapseDatosEmpresa" class="fuente-seccion">
-                        Datos empresa - Criteria IT
+                        Datos empresa - @Model.NombreComercial
                     </a>
                 </h5>
             </div>
@@ -65,55 +24,51 @@
                             <img src="~/img/logos/LogoCriteria.jpg" style="width:100%;" /><hr />
                             <a href="~/Views/Empresa/CambiarImagen">Cambiar Imagen</a>
                             <br />
-                            
-                            
+
+
                         </div>
                         <div class="col-sm-10">
                             <table class="fuente-pequeña">
                                 <tr>
                                     <td class="celda-nombre">Nombre</td>
-                                    <td class="celda-datos">Criteria IT</td>
+                                    <td class="celda-datos">@Model.NombreComercial</td>
                                 </tr>
                                 <tr>
                                     <td class="celda-nombre">Razón Social</td>
-                                    <td class="celda-datos">Criteria IT S.A.C.</td>
+                                    <td class="celda-datos">@Model.RazonSocial</td>
                                 </tr>
                                 <tr>
                                     <td class="celda-nombre">País</td>
-                                    <td class="celda-datos">Perú</td>
+                                    <td class="celda-datos">@Model.Pais.Valor</td>
                                 </tr>
                                 <tr>
                                     <td class="celda-nombre">RUC</td>
-                                    <td class="celda-datos">20555167581</td>
+                                    <td class="celda-datos">@Model.IdentificadorTributario</td>
                                 </tr>
                                 <tr>
                                     <td class="celda-nombre">Descripción de la Empresa</td>
-                                    <td class="celda-datos">Duis non purus vitae velit iaculis volutpat quis a arcu. Sed tempor, nunc bibendum sollicitudin feugiat, sapien tortor fermentum felis, eget tincidunt orci arcu ut nulla. </td>
-                                </tr>
-                                <tr>
-                                    <td class="celda-nombre">Presentación de la Empresa</td>
-                                    <td class="celda-datos">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris molestie neque ac augue lacinia ullamcorper. Cras condimentum libero non urna fringilla consectetur sit amet vel nisi. Mauris maximus tempus dui maximus volutpat. Donec quis tempor justo, quis pretium tellus. Suspendisse velit nunc, sodales sed interdum at, egestas eget velit. Donec blandit ultricies eleifend. Ut laoreet eleifend blandit. In dapibus massa risus, et accumsan augue tempus nec. </td>
+                                    <td class="celda-datos">@Model.DescripcionEmpresa</td>
                                 </tr>
                                 <tr>
                                     <td class="celda-nombre">Año de Creación</td>
-                                    <td class="celda-datos">2013</td>
+                                    <td class="celda-datos">@Model.AnoCreacion</td>
                                 </tr>
                                 <tr>
                                     <td class="celda-nombre">Número de Empleados</td>
-                                    <td class="celda-datos">Entre 10 a 50</td>
+                                    <td class="celda-datos">@Model.NumeroEmpleados.Valor</td>
                                 </tr>
                                 <tr>
                                     <td class="celda-nombre">Sector Empresarial</td>
-                                    <td class="celda-datos">Tecnología y Software, Servicios</td>
+                                    <td class="celda-datos">@Model.SectorEmpresarial.Valor @Model.SectorEmpresarial2.Valor @Model.SectorEmpresarial3.Valor</td>
                                 </tr>
                             </table>
-                            
+
                             <div class="row" style="text-align:right;">
                                 <div class="col-sm-12">
                                     <button data-toggle="modal" data-target="#Modal-modifica-datos-empresa" class="btn btn-default color-paleta4">Cambiar Datos</button>
                                 </div>
                             </div>
-                            
+
                         </div>
 
                     </div>
@@ -141,59 +96,27 @@
                 </div>
             </div>
 
-            <div class="row grilla1-linea">
-                <div class="col-sm-2">
-                    <a href="../Empresa/VerUbicacion">Headquarters</a>
+            @foreach (var locacion in Model.Locaciones)
+            {
+                <div class="row grilla1-linea">
+                    <div class="col-sm-2">
+                        <a href="../Empresa/VerUbicacion">@locacion.NombreLocacion</a>
+                    </div>
+                    <div class="col-sm-2">
+                        @locacion.TipoLocacion.Valor
+                    </div>
+                    <div class="col-sm-4">
+                        @locacion.DireccionLinea1
+                    </div>
+                    <div class="col-sm-2">
+                        @locacion.EstadoLocacion.Valor
+                    </div>
+                    <div class="col-sm-2 fui fa-2x" style="color:gray;">
+                        <a href="ModificaUbicacion">1</a> <a href="EliminaUbicacion">l</a>
+                    </div>
                 </div>
-                <div class="col-sm-2">
-                    Oficina Prinicpal
-                </div>
-                <div class="col-sm-4">
-                    Av del Cerro 456, Santiago de Surco, Lima
-                </div>
-                <div class="col-sm-2">
-                    Activa
-                </div>
-                <div class="col-sm-2 fui fa-2x" style="color:gray;">
-                    <a href="ModificaUbicacion">1</a> <a href="EliminaUbicacion">l</a>
-                </div>
-            </div>
+            }
 
-            <div class="row grilla1-linea">
-                <div class="col-sm-2">
-                    <a href="../Empresa/VerUbicacion">Planta</a>
-                </div>
-                <div class="col-sm-2">
-                    Planta
-                </div>
-                <div class="col-sm-4">
-                    Calle Separadora Industrial 1023, Ate Vitarte, Lima
-                </div>
-                <div class="col-sm-2">
-                    Activa
-                </div>
-                <div class="col-sm-2 fui fa-2x" style="color:gray;">
-                    <a href="ModificaUbicacion">1</a> <a href="EliminaUbicacion">l</a>
-                </div>
-            </div>
-
-            <div class="row  grilla1-linea">
-                <div class="col-sm-2">
-                    <a href="../Empresa/VerUbicacion">Oficina Miraflores</a>
-                </div>
-                <div class="col-sm-2">
-                    Sucursal
-                </div>
-                <div class="col-sm-4">
-                    Jr El Rabino 666, Oficina 1302, Miraflores, Lima
-                </div>
-                <div class="col-sm-2">
-                    Activa
-                </div>
-                <div class="col-sm-2 fui fa-2x" style="color:gray;">
-                    <a href="ModificaUbicacion">1</a> <a href="EliminaUbicacion">l</a>
-                </div>
-            </div>
             <br />
             <div class="row">
                 <div class="col-sm-12" style="text-align:right;">
@@ -221,91 +144,30 @@
                     Estado
                 </div>
             </div>
-            <div class="row grilla1-linea">
-                <div class="col-sm-3">
-                    <a href="../Empresa/VerUsuarioEmpresa">Matias Bermejo</a>
+
+            @foreach (var usuario in Model.Usuarios)
+            {
+                <div class="row grilla1-linea">
+                    <div class="col-sm-3">
+                        <a href="../Empresa/VerUsuarioEmpresa">@usuario.Usuario</a>
+                    </div>
+                    <div class="col-sm-3">
+                        @usuario.Nombres @usuario.Apellidos
+                    </div>
+                    <div class="col-sm-2">
+                        @usuario.Usuario.Rol.Valor
+                    </div>
+                    <div class="col-sm-2">
+                        @usuario.Usuario.EstadoUsuario.Valor
+                    </div>
+                    <div class="col-sm-2 fui fa-2x" style="color:gray;">
+                        <a href="ModificaUsuarioEmpresa">1</a> <a href="EliminaUsuarioEmpresa">l</a>
+                    </div>
                 </div>
-                <div class="col-sm-3">
-                    Matias Bermejo Benavides
-                </div>
-                <div class="col-sm-2">
-                    Administrador Empresa
-                </div>
-                <div class="col-sm-2">
-                    Activo
-                </div>
-                <div class="col-sm-2 fui fa-2x" style="color:gray;">
-                    <a href="ModificaUsuarioEmpresa">1</a> <a href="EliminaUsuarioEmpresa">l</a>
-                </div>
-            </div>
-            <div class="row grilla1-linea">
-                <div class="col-sm-3">
-                    <a href="../Empresa/VerUsuarioEmpresa">Luis X</a>
-                </div>
-                <div class="col-sm-3">
-                    Luis Alberto Décimo Martinez
-                </div>
-                <div class="col-sm-2">
-                    Supervisor Empresa
-                </div>
-                <div class="col-sm-2">
-                    Activo
-                </div>
-                <div class="col-sm-2 fui fa-2x" style="color:gray;">
-                    <a href="ModificaUsuarioEmpresa">1</a> <a href="EliminaUsuarioEmpresa">l</a>
-                </div>
-            </div>
-            <div class="row grilla1-linea">
-                <div class="col-sm-3">
-                    <a href="../Empresa/VerUsuarioEmpresa">AlbertoDiaz</a>
-                </div>
-                <div class="col-sm-3">
-                    Alberto Mario Diaz Fuenzalida
-                </div>
-                <div class="col-sm-2">
-                    Usuario Empresa
-                </div>
-                <div class="col-sm-2">
-                    Activo
-                </div>
-                <div class="col-sm-2 fui fa-2x" style="color:gray;">
-                    <a href="ModificaUsuarioEmpresa">1</a> <a href="EliminaUsuarioEmpresa">l</a>
-                </div>
-            </div>
-            <div class="row grilla1-linea">
-                <div class="col-sm-3">
-                    <a href="../Empresa/VerUsuarioEmpresa">Denis2014</a>
-                </div>
-                <div class="col-sm-3">
-                    Denis José Huayta Riquelme
-                </div>
-                <div class="col-sm-2">
-                    Usuario Empresa
-                </div>
-                <div class="col-sm-2">
-                    Activo
-                </div>
-                <div class="col-sm-2 fui fa-2x" style="color:gray;">
-                    <a href="ModificaUsuarioEmpresa">1</a> <a href="EliminaUsuarioEmpresa">l</a>
-                </div>
-            </div>
-            <div class="row grilla1-linea">
-                <div class="col-sm-3">
-                    <a href="../Empresa/VerUsuarioEmpresa">JulitoDixie</a>
-                </div>
-                <div class="col-sm-3">
-                    Julio André Medrano
-                </div>
-                <div class="col-sm-2">
-                    Usuario Empresa Correo
-                </div>
-                <div class="col-sm-2">
-                    Usuario Pendiente de Activación
-                </div>
-                <div class="col-sm-2 fui fa-2x" style="color:gray;">
-                    <a href="ModificaUsuarioEmpresa">1</a> <a href="EliminaUsuarioEmpresa">l</a>
-                </div>
-            </div>
+            }
+
+            
+           
             <br />
             <div class="row">
                 <div class="col-sm-12" style="text-align:right;">
@@ -347,7 +209,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="input-group fuente-pequeña">
@@ -777,7 +639,7 @@
                     <div class="col-sm-12">
                         <div class="input-group">
                             <span class="input-group-addon">Dirección</span>
-                            <textarea class="form-control" placeholder="Calle y Número de la Ubicación, interior, depto, oficina, urbanización" rows="2" ></textarea>
+                            <textarea class="form-control" placeholder="Calle y Número de la Ubicación, interior, depto, oficina, urbanización" rows="2"></textarea>
                         </div>
                     </div>
                 </div>
@@ -807,7 +669,7 @@
                                 <option>Chincha</option>
                                 <option>Pisco</option>
                                 <option>Tacna</option>
-                               
+
                             </select>
                         </div>
                     </div>
@@ -846,9 +708,9 @@
                 </div>
 
             </div>
-                <div class="modal-footer">
-                </div>
+            <div class="modal-footer">
             </div>
+        </div>
     </div>
 </div>
 

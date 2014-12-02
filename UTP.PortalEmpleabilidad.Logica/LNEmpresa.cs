@@ -85,11 +85,11 @@ namespace UTP.PortalEmpleabilidad.Logica
             }
 
             //Locaciones
-            foreach (DataRow locacionBD in dsResultado.Tables[0].Rows)
+            foreach (DataRow locacionBD in dsResultado.Tables[1].Rows)
             {
                 EmpresaLocacion empresaLocacion = new EmpresaLocacion();
                 empresaLocacion.IdEmpresaLocacion = Convert.ToInt32(locacionBD["IdEmpresaLocacion"]);
-                empresaLocacion.IdEmpresa = Convert.ToInt32(locacionBD["IdEmpresaLocacion"]);
+                empresaLocacion.IdEmpresa = Convert.ToInt32(locacionBD["IdEmpresa"]);
                 empresaLocacion.TipoLocacion.Valor = Convert.ToString(locacionBD["TipoLocacionDescripcion"]);
                 empresaLocacion.NombreLocacion = Convert.ToString(locacionBD["NombreLocacion"]);
                 empresaLocacion.CorreoElectronico = Convert.ToString(locacionBD["CorreoElectronico"]);
@@ -106,12 +106,14 @@ namespace UTP.PortalEmpleabilidad.Logica
             }
 
             //Usuarios>
-            foreach (DataRow usuarioBD in dsResultado.Tables[1].Rows)
+            foreach (DataRow usuarioBD in dsResultado.Tables[2].Rows)
             {
                 EmpresaUsuario empresaUsuario = new EmpresaUsuario();
                 empresaUsuario.IdEmpresaUsuario = Convert.ToInt32(usuarioBD["IdEmpresaUsuario"]);
                 empresaUsuario.Empresa.IdEmpresa = Convert.ToInt32(usuarioBD["IdEmpresa"]); ;
-                empresaUsuario.Usuario = Convert.ToString(usuarioBD["Usuario"]);
+                empresaUsuario.Usuario.NombreUsuario = Convert.ToString(usuarioBD["Usuario"]);
+                empresaUsuario.Usuario.Rol.Valor = Convert.ToString(usuarioBD["UsuarioRolDescripcion"]);
+                empresaUsuario.Usuario.EstadoUsuario.Valor = Convert.ToString(usuarioBD["UsuarioEstadoDescripcion"]);
                 empresaUsuario.Nombres = Convert.ToString(usuarioBD["Nombres"]);
                 empresaUsuario.Apellidos = Convert.ToString(usuarioBD["Apellidos"]);
                 empresaUsuario.TipoDocumento.Valor = Convert.ToString(usuarioBD["TipoDocumentoDescripcion"]);
@@ -124,9 +126,7 @@ namespace UTP.PortalEmpleabilidad.Logica
 
                 empresa.Usuarios.Add(empresaUsuario);
             }
-
             return empresa;
-        }
-        
+        }        
     }
 }

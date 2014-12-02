@@ -9,10 +9,9 @@ namespace UTP.PortalEmpleabilidad.Modelo
     public class Usuario
     {
         public string NombreUsuario { get; set; }
-        public string TipoUsuario { get; set; }
-        public string EstadoUsuario { get; set; }
-        public string Rol { get; set; }
-
+        public ListaValor TipoUsuario { get; set; }
+        public ListaValor EstadoUsuario { get; set; }
+        public ListaValor Rol { get; set; }        
         public string Contrasena { get; set; }
 
     }
