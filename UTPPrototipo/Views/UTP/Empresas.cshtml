@@ -1,1 +1,333 @@
-﻿
+﻿@{
+    Layout = "~/Views/UTP/_LayoutUTP.cshtml";
+    ViewBag.Title = "Empresas";
+}
+
+<link href="~/Content/font-awesome.css" rel="stylesheet" />
+<div class="container" style="margin-top:2px;">
+    <div class="panel-group" id="datos-cuenta" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingOne" style="padding: 2px 2px 2px 6px;">
+                <h5 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="fuente-seccion">
+                        Cuenta - Mario Valentin Perez Garcia
+                    </a>
+                </h5>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body">
+                    <div class="col-md-6 fuente-pequeña">
+                        <table>
+                            <tr>
+                                <td class="celda-nombre">Usuario:</td>
+                                <td class="celda-datos">MarioValentin</td>
+                            </tr>
+                            <tr>
+                                <td class="celda-nombre">Nombre:</td>
+                                <td class="celda-datos">Mario Valentin Perez Garcia</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-md-6 fuente-pequeña">
+                        DNI <strong>89226681</strong><br />
+                        <strong>mperez@grupoutp.edu.pe</strong><br />
+                        <strong>954123876</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="panel-group" id="CriterioBusquedaPostulacion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="CabeceraColapsaBusqueda" style="padding: 2px 2px 2px 6px;">
+                <h5 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#CriterioBusquedaPostulacion" href="#ColapsaBusqueda" aria-expanded="true" aria-controls="ColapsaBusqueda" class="fuente-seccion">
+                        Búsqueda
+                    </a>
+                </h5>
+            </div>
+            <div id="ColapsaBusqueda" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="CabeceraColapsaBusqueda">
+                <div class="panel-body">
+                    <table style="width:100%;">
+                        <tr>
+                            <td>
+                                <div class="input-group fuente-pequeña">
+                                    <span class="input-group-addon fuente-pequeña">Palabra Clave</span>
+                                    <input type="text" class="form-control fuente-pequeña" placeholder="Palabra clave">
+                                </div>
+                            </td>
+                            <td style="text-align:right;">
+                                <span class="col-md-6 btn-group">
+                                    <span class="fui" style="font-size:30px;">(</span>
+                                </span>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="CabeceraColapsaBusquedaAvanzada" style="padding: 2px 2px 2px 6px;">
+                <h5 class="panel-title">
+                    <a class="collapsed fuente-seccion" data-toggle="collapse" data-parent="#CriterioBusquedaPostulacion" href="#ColapsaBusquedaAvanzada" aria-expanded="false" aria-controls="ColapsaBusquedaAvanzada">
+                        Búsqueda avanzada
+                    </a>
+                </h5>
+            </div>
+            <div id="ColapsaBusquedaAvanzada" class="panel-collapse collapse" role="tabpanel" aria-labelledby="CabeceraColapsaBusquedaAvanzada">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="input-group fuente-pequeña">
+                                <span class="input-group-addon">Estado</span>
+                                <select id="Lista" class="form-control">
+                                    <option value="" selected>- - -</option>
+                                    <option>Activa</option>
+                                    <option>
+                                        Pendiente de aprobación de registro
+                                    </option>
+                                    <option>
+                                        No Activa
+                                    </option>
+                                    <option>
+                                        Suspendida
+                                    </option>
+
+                                </select>
+                            </div>
+                            <div class="input-group fuente-pequeña">
+                                <span class="input-group-addon">Nombre</span>
+                                <input type="text" class="form-control" placeholder="Nombre de la empresa">
+                            </div>
+                            <div class="input-group fuente-pequeña">
+                                <span class="input-group-addon">Razón<br />Social</span>
+                                <input type="text" class="form-control" placeholder="Razón Social de la empresa">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="input-group fuente-pequeña">
+                                <span class="input-group-addon">RUC</span>
+                                <input type="text" class="form-control" placeholder="Identificador Tributario de la empresa">
+                            </div>
+                            <div class="input-group fuente-pequeña">
+                                <span class="input-group-addon">Sector</span>
+                                <select id="Lista" class="form-control">
+                                    <option value="" selected>Sector empresarial</option>
+                                    <option value="1">Auditoría y Consultoría</option>
+                                    <option value="1">Banca y Seguros</option>
+                                    <option value="1">Construcción e Inmobiliaria</option>
+                                    <option value="1">Energía</option>
+                                    <option value="1">Industria</option>
+                                    <option value="1">Servicios</option>
+                                    <option value="1">Tecnología y Software</option>
+                                    <option value="1">Telecomunicaciones</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <div class="input-group fuente-pequeña">
+                                <span class="input-group-addon"><input type="checkbox" /></span>
+                                <span class="form-control">Tiene Ofertas activas</span>
+                                </div>
+                            <div class="input-group fuente-pequeña">
+                                <span class="input-group-addon"><input type="checkbox" /></span> 
+                                <span class="form-control">Tiene Ofertas pendientes de activar</span>
+                            </div>
+                            <br />
+
+                            <div>
+                                <span class="fui" style="font-size:30px;">(</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row grilla1-cabecera color-paleta2">
+
+        <div class="col-sm-2">
+            Nombre
+        </div>
+        <div class="col-sm-2">
+            Razón Social
+        </div>
+        <div class="col-sm-1">
+            RUC
+        </div>
+        <div class="col-sm-2">
+            Estado
+        </div>
+        <div class="col-sm-3">
+            Sector Empresarial
+        </div>
+        <div class="col-sm-2">
+            Ofertas
+        </div>
+        
+    </div>
+    <div class="row grilla1-linea">
+
+        <div class="col-sm-2">
+            <a href="../UTP/Empresa">IBM del Perú</a>
+        </div>
+        <div class="col-sm-2">
+            IBM PERU S.A.
+        </div>
+        <div class="col-sm-1">
+            20555678121
+        </div>
+        <div class="col-sm-2">
+            Activa
+        </div>
+        <div class="col-sm-3">
+            Tecnología y Software
+        </div>
+        <div class="col-sm-2">
+            Tot: 10, Act: 2, Pend: 1
+        </div>
+
+    </div>
+    <div class="row grilla1-linea">
+
+        <div class="col-sm-2">
+            <a href="../UTP/Empresa">Criteria IT</a>
+        </div>
+        <div class="col-sm-2">
+            Criteria IT SAC
+        </div>
+        <div class="col-sm-1">
+            20555167581
+        </div>
+        <div class="col-sm-2">
+            Activa
+        </div>
+        <div class="col-sm-3">
+            Tecnología y Software, Servicios
+        </div>
+        <div class="col-sm-2">
+            Tot: 10, Act: 2, Pend: 1
+        </div>
+
+    </div>
+    <div class="row grilla1-linea">
+
+        <div class="col-sm-2">
+            <a href="../UTP/Empresa">IBM del Perú</a>
+        </div>
+        <div class="col-sm-2">
+            IBM PERU S.A.
+        </div>
+        <div class="col-sm-1">
+            20555678121
+        </div>
+        <div class="col-sm-2">
+            Activa
+        </div>
+        <div class="col-sm-3">
+            Tecnología y Software
+        </div>
+        <div class="col-sm-2">
+            Tot: 10, Act: 2, Pend: 1
+        </div>
+
+    </div>
+    <div class="row grilla1-linea">
+
+        <div class="col-sm-2">
+            <a href="../UTP/Empresa">Criteria IT</a>
+        </div>
+        <div class="col-sm-2">
+            Criteria IT SAC
+        </div>
+        <div class="col-sm-1">
+            20555167581
+        </div>
+        <div class="col-sm-2">
+            Activa
+        </div>
+        <div class="col-sm-3">
+            Tecnología y Software, Servicios
+        </div>
+        <div class="col-sm-2">
+            Tot: 10, Act: 2, Pend: 1
+        </div>
+
+    </div>
+    <div class="row grilla1-linea">
+
+        <div class="col-sm-2">
+            <a href="../UTP/Empresa">IBM del Perú</a>
+        </div>
+        <div class="col-sm-2">
+            IBM PERU S.A.
+        </div>
+        <div class="col-sm-1">
+            20555678121
+        </div>
+        <div class="col-sm-2">
+            Activa
+        </div>
+        <div class="col-sm-3">
+            Tecnología y Software
+        </div>
+        <div class="col-sm-2">
+            Tot: 10, Act: 2, Pend: 1
+        </div>
+
+    </div>
+    <div class="row grilla1-linea">
+
+        <div class="col-sm-2">
+            <a href="../UTP/Empresa">Criteria IT</a>
+        </div>
+        <div class="col-sm-2">
+            Criteria IT SAC
+        </div>
+        <div class="col-sm-1">
+            20555167581
+        </div>
+        <div class="col-sm-2">
+            Activa
+        </div>
+        <div class="col-sm-3">
+            Tecnología y Software, Servicios
+        </div>
+        <div class="col-sm-2">
+            Tot: 10, Act: 2, Pend: 1
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-sm-12" style="text-align:right;">
+            <nav>
+                <nav>
+                    <ul class="pagination pagination-sm">
+                        <li><a href="#"><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>
+                        <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#"><span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span></a></li>
+                    </ul>
+                </nav>
+            </nav>
+        </div>
+    </div>
+</div>
+
+
+
+    <script>
+
+        $(document).ready(function () {
+            $("#divFinalCabecera").removeClass("color-paleta1 color-paleta3 color-paleta4 color-paleta5 color-paleta6 color-paleta7").addClass("color-paleta2");
+        });
+
+
+    </script>
+

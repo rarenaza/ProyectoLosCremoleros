@@ -724,6 +724,8 @@
     <Content Include="Views\UTP\Portal_Editar_Buscar.cshtml" />
     <Content Include="Views\UTP\BuscarGrilla.cshtml" />
     <Content Include="Views\Empresa\Administrar.cshtml" />
+    <Content Include="Views\UTP\Empresa.cshtml" />
+    <Content Include="Views\UTP\Oferta.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

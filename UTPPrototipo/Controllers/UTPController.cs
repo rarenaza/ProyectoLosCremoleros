@@ -251,6 +251,14 @@ namespace UTPPrototipo.Controllers
         {
             return View();
         }
+        public ActionResult Empresa()
+        {
+            return View();
+        }
+        public ActionResult Oferta()
+        {
+            return View();
+        }
         public ActionResult Sistema()
         {
             return View();
