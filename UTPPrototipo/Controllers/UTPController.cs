@@ -255,6 +255,14 @@ namespace UTPPrototipo.Controllers
         {
             return View();
         }
+        public ActionResult EmpresaUsuario()
+        {
+            return View();
+        }
+        public ActionResult EmpresaLocacion()
+        {
+            return View();
+        }
         public ActionResult Oferta()
         {
             return View();

@@ -726,9 +726,13 @@
     <Content Include="Views\Empresa\Administrar.cshtml" />
     <Content Include="Views\UTP\Empresa.cshtml" />
     <Content Include="Views\UTP\Oferta.cshtml" />
+    <Content Include="Views\UTP\UsuarioEmpresa.cshtml" />
+    <Content Include="Views\UTP\LocacionEmpresa.cshtml" />
+    <Content Include="Views\UTP\OfertaEmpresa.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Mensaje\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
