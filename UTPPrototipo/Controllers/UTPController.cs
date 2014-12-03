@@ -19,11 +19,14 @@ namespace UTPPrototipo.Controllers
             return View();
         }
        
-        public ActionResult Portal(string id)
+        public ActionResult Portal(string id, string Menu)
         {
+            LNContenido ln = new LNContenido();
+
+
 
             DataTable dtresultado = ln.ContenidoMenu_Mostrar();
-
+                       
             List<SelectListItem> li = new List<SelectListItem>();
 
             for (int i = 0; i <= dtresultado.Rows.Count - 1; i++)
@@ -37,70 +40,29 @@ namespace UTPPrototipo.Controllers
 
             }
             ViewData["ContenidoMenu"] = li;
+                     
 
-            List<Contenido> lista = new List<Contenido>();
-            if (id == null)
+            List<Contenido> contenido = new List<Contenido>();
+
+
+            int codMenu = Convert.ToInt32(Menu);
+
+            if (Menu == null)
             {
-               
+                contenido  = ln.Contenido_ObtenerPorCodMenu(0);
             }
-
             else
             {
-                              
-                DataTable dtResultado = ln.Contenido_Mostrar2(id);
-
-                for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
-                {
-                    Contenido contenido = new Contenido();
-                    contenido.IdContenido = Convert.ToInt32(dtResultado.Rows[i]["IdContenido"]);
-                    contenido.Menu = dtResultado.Rows[i]["CodMenu"].ToString();
-                    contenido.Titulo = dtResultado.Rows[i]["Titulo"].ToString();
-                    contenido.SubTitulo = dtResultado.Rows[i]["SubTitulo"].ToString();
-                    contenido.Descripcion = dtResultado.Rows[i]["Descripcion"].ToString();
-
-                    //contenido.Imagen = Encoding.UTF8.GetBytes(dtResultado.Rows[0]["Imagen"].ToString());
-                    lista.Add(contenido);
-
-                }
-
+                contenido = ln.Contenido_ObtenerPorCodMenu(codMenu);
             }
+            
+                      
 
-
-            return View(lista);
-
-            //return View();
-
-            //List<Contenido> contenido = new List<Contenido>();
-
-            //contenido = ln.Contenido_Mostrar();
-
-            //return View(contenido);
+            return View(contenido);
           
           
         }
-        public ActionResult BuscarGrilla()
-        {
-            List<Contenido> lista = new List<Contenido>(); 
-          
-            string x;
-            x = "5";
-            DataTable dtResultado = ln.Contenido_Mostrar2(x);
-
-            for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
-            {
-                Contenido contenido = new Contenido();
-                contenido.IdContenido = Convert.ToInt32(dtResultado.Rows[i]["IdContenido"]);
-                contenido.Menu = dtResultado.Rows[i]["CodMenu"].ToString();
-                contenido.Titulo = dtResultado.Rows[i]["Titulo"].ToString();
-                contenido.SubTitulo = dtResultado.Rows[i]["SubTitulo"].ToString();
-                contenido.Descripcion = dtResultado.Rows[i]["Descripcion"].ToString();
-                
-                //contenido.Imagen = Encoding.UTF8.GetBytes(dtResultado.Rows[0]["Imagen"].ToString());
-                lista.Add(contenido);
       
-            }
-            return View(lista);
-        }
 
         public ActionResult Portal_insertar()
         {
@@ -153,6 +115,7 @@ namespace UTPPrototipo.Controllers
             contenido.ArchivoMimeType = contenidoHTML.ArchivoMimeType;
             contenido.ArchivoNombreOriginal = contenidoHTML.ArchivoNombreOriginal;
             contenido.EnPantallaPrincipal = contenidoHTML.EnPantallaPrincipal;
+            contenido.Activo = contenidoHTML.Activo;
             contenido.Menu = contenidoHTML.Menu;
             contenido.CreadoPor = contenidoHTML.CreadoPor;
 
@@ -203,6 +166,7 @@ namespace UTPPrototipo.Controllers
                 contenido.Descripcion = dtResultado.Rows[0]["Descripcion"].ToString();
                 contenido.ModificadoPor = dtResultado.Rows[0]["ModificadoPor"] == null ? "" : dtResultado.Rows[0]["ModificadoPor"].ToString();
                 contenido.EnPantallaPrincipal = Convert.ToBoolean(dtResultado.Rows[0]["EnPantallaPrincipal"].ToString());
+                contenido.Activo = Convert.ToBoolean(dtResultado.Rows[0]["Activo"] == DBNull.Value ? 0 : dtResultado.Rows[0]["Activo"]);
                 contenido.ArchivoNombreOriginal = dtResultado.Rows[0]["ArchivoNombreOriginal"].ToString();
 
 
@@ -235,18 +199,18 @@ namespace UTPPrototipo.Controllers
             contenido.Titulo = contenidoHTML.Titulo;
             contenido.SubTitulo = contenidoHTML.SubTitulo;
             contenido.Descripcion = contenidoHTML.Descripcion;
-            contenido.Imagen = contenidoHTML.Imagen;
-            contenido.ArchivoNombreOriginal = contenidoHTML.ArchivoNombreOriginal;
+            contenido.Imagen  = contenidoHTML.Imagen;
+          
+            //contenido.ArchivoNombreOriginal = contenidoHTML.ArchivoNombreOriginal;
             contenido.EnPantallaPrincipal = contenidoHTML.EnPantallaPrincipal;
+            contenido.Activo = contenidoHTML.Activo;
             contenido.Menu = contenidoHTML.Menu;
             contenido.ModificadoPor = contenidoHTML.ModificadoPor;
             contenido.IdContenido = contenidoHTML.IdContenido;
-
-
+            
             //if (ModelState.IsValid)
             //{
-
-
+            
             if (ln.Contenido_Actualizar(contenido) == true)
             {
                 ViewBag.Message = "Datos Actualizado";
@@ -259,8 +223,7 @@ namespace UTPPrototipo.Controllers
             }
 
             //}
-
-
+            
         }
 
         public ActionResult RemoverArchivo(int id)

@@ -28,6 +28,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public DateTime FechaModificacion { get; set; }
 
         public bool EnPantallaPrincipal { get; set; }
+        public bool Activo { get; set; }
 
         public string ArchivoNombreOriginal { get; set; }
         public string ArchivoMimeType { get; set; }

@@ -11,15 +11,17 @@ namespace UTP.PortalEmpleabilidad.Datos
 {
   public   class ADContenido
     {
-       
-        
-        public DataTable Contenido_Mostrar()
+
+
+      public DataTable Contenido_ObtenerPorCodMenu(int codMenu)
         {
             ADConexion cnn = new ADConexion();
             SqlCommand cmd = new SqlCommand();
 
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.CommandText = "Contenido_Mostrar";
+            cmd.CommandText = "Contenido_ObtenerPorCodMenu";
+            cmd.Parameters.Add(new SqlParameter("@CodMenu", codMenu));
+
             cmd.Connection = cnn.cn;
             cnn.Conectar();
 
@@ -34,23 +36,23 @@ namespace UTP.PortalEmpleabilidad.Datos
             return dt;
         }
 
-        public DataTable Contenido_Mostrar2(string id)
-        {
-            ADConexion cnn = new ADConexion();
-            SqlCommand cmd = new SqlCommand();
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.CommandText = "Contenido_Mostrar2";
-            cmd.Connection = cnn.cn;
-            cnn.Conectar();
-            cmd.Parameters.Add(new SqlParameter("@CodMenu", SqlDbType.VarChar,50)).Value = id;
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
+        //public DataTable Contenido_Mostrar2(string id)
+        //{
+        //    ADConexion cnn = new ADConexion();
+        //    SqlCommand cmd = new SqlCommand();
+        //    cmd.CommandType = CommandType.StoredProcedure;
+        //    cmd.CommandText = "Contenido_Mostrar2";
+        //    cmd.Connection = cnn.cn;
+        //    cnn.Conectar();
+        //    cmd.Parameters.Add(new SqlParameter("@CodMenu", SqlDbType.VarChar,50)).Value = id;
+        //    SqlDataAdapter da = new SqlDataAdapter(cmd);
+        //    DataTable dt = new DataTable();
 
-            da.Fill(dt);
+        //    da.Fill(dt);
 
-            cnn.Desconectar();
-            return dt;
-        }
+        //    cnn.Desconectar();
+        //    return dt;
+        //}
 
 
         public DataTable Contenido_Mostrar_Imagen(int Cod)
@@ -104,6 +106,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.Parameters.Add(new SqlParameter("@SubTitulo", SqlDbType.VarChar, 50)).Value = contenido.SubTitulo;
                 cmd.Parameters.Add(new SqlParameter("@Descripcion", SqlDbType.VarChar, -1)).Value = contenido.Descripcion;
                 cmd.Parameters.Add(new SqlParameter("@Imagen", SqlDbType.Binary)).Value = contenido.Imagen;
+                cmd.Parameters.Add(new SqlParameter("@Activo", SqlDbType.Bit)).Value = contenido.Activo;
                 cmd.Parameters.Add(new SqlParameter("@ArchivoNombreOriginal", SqlDbType.VarChar, 100)).Value = contenido.ArchivoNombreOriginal;
                 cmd.Parameters.Add(new SqlParameter("@ArchivoMimeType", SqlDbType.VarChar, 50)).Value = contenido.ArchivoMimeType;
                 cmd.Parameters.Add(new SqlParameter("@EnPantallaPrincipal", SqlDbType.Bit)).Value = contenido.EnPantallaPrincipal;
@@ -203,10 +206,11 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.Parameters.Add(new SqlParameter("@SubTitulo", SqlDbType.VarChar, 50)).Value = contenido.SubTitulo;
                 cmd.Parameters.Add(new SqlParameter("@Descripcion", SqlDbType.VarChar, -1)).Value = contenido.Descripcion;
                 cmd.Parameters.Add(new SqlParameter("@Imagen", SqlDbType.Image)).Value  =  contenido.Imagen;
-
+                
 
                 cmd.Parameters.Add(new SqlParameter("@CodMenu", SqlDbType.VarChar, 50)).Value = contenido.Menu;
                 cmd.Parameters.Add(new SqlParameter("@EnPantallaPrincipal", SqlDbType.Bit)).Value = contenido.EnPantallaPrincipal;
+                cmd.Parameters.Add(new SqlParameter("@Activo", SqlDbType.Bit)).Value = contenido.Activo;
                 cmd.Parameters.Add(new SqlParameter("@ArchivoNombreOriginal", SqlDbType.VarChar, 100)).Value = contenido.ArchivoNombreOriginal;
                 cmd.Parameters.Add(new SqlParameter("@ModificadoPor", SqlDbType.VarChar, 50)).Value = contenido.ModificadoPor;
                             

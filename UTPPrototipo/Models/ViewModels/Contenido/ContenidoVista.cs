@@ -35,7 +35,7 @@ namespace UTPPrototipo.Models.ViewModels.Contenido
         public DateTime FechaModificacion { get; set; }
 
         public bool EnPantallaPrincipal { get; set; }
- 
+        public bool Activo { get; set; }
      
     }
 }

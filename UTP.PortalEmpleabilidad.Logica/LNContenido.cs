@@ -14,11 +14,11 @@ namespace UTP.PortalEmpleabilidad.Logica
       ADContenido ad = new ADContenido();
 
 
-      public List<Contenido> Contenido_Mostrar()
+      public List<Contenido> Contenido_ObtenerPorCodMenu(int codMenu)
       {
           List<Contenido> contenido = new List<Contenido>();
 
-          DataTable dtResultado = ad.Contenido_Mostrar();
+          DataTable dtResultado = ad.Contenido_ObtenerPorCodMenu(codMenu);
 
 
           for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
@@ -41,10 +41,10 @@ namespace UTP.PortalEmpleabilidad.Logica
           return contenido;
       }
 
-      public DataTable Contenido_Mostrar2(string id)
-      {
-          return ad.Contenido_Mostrar2(id);
-      }
+      //public DataTable Contenido_Mostrar2(string id)
+      //{
+      //    return ad.Contenido_Mostrar2(id);
+      //}
      
         public DataTable ContenidoMenu_Mostrar()
         {

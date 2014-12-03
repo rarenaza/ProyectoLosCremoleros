@@ -12,14 +12,14 @@
     <p>
         @Html.ActionLink("Crear", "Portal_insertar")
     </p>
-    @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "" }))
+    @using (Html.BeginForm())
     {
         <b>Lista</b>
 
         @Html.DropDownList("Menu", ViewData["ContenidoMenu"] as List<SelectListItem>)
 
-        <input type="submit" value="Buscar" class="btn btn-default" onclick="refresca_lista()" />
-              
+        <input type="submit" value="Buscar" class="btn btn-default" />                     
+        }
 
         <h2></h2>
                 
@@ -116,7 +116,7 @@
             }
 
         </table>
-    }
+    
 
 
 </div>
