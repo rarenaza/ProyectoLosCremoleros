@@ -57,6 +57,11 @@ namespace UTP.PortalEmpleabilidad.Logica
             adEmpresa.Insertar(empresa);
         }
 
+        public void Actualizar(Empresa empresa)
+        {
+            adEmpresa.Actualizar(empresa);
+        }
+
         public Empresa ObtenerDatosEmpresaPorId(int idEmpresa)
         {
             Empresa empresa = new Empresa();

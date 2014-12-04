@@ -627,8 +627,10 @@
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
     <Content Include="Scripts\jquery-2.1.1.min.map" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.jcarousel.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -730,6 +732,8 @@
     <Content Include="Views\UTP\LocacionEmpresa.cshtml" />
     <Content Include="Views\UTP\OfertaEmpresa.cshtml" />
     <Content Include="Views\UTP\verimagen.cshtml" />
+    <Content Include="Views\Empresa\_EditarEmpresa.cshtml" />
+    <Content Include="Views\Empresa\_AdministrarDatosGenerales.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

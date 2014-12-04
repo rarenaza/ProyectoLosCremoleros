@@ -4,15 +4,18 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portal de Empleabilidad: Empresa - @ViewBag.Title</title>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <link href="~/Content/animate.css" rel="stylesheet" />
     <link href="~/Content/font-awesome.css" rel="stylesheet" />
 </head>
 <body class="cuerpo-zona-empresa">
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+
     <div class="navbar navbar-inverse navbar-fixed-top" style="background-color:rgb(240, 240, 240);border:0px;">
         <div class="container">
 
@@ -64,7 +67,7 @@
     <!--<div class="container body-content">-->
     <div>
         @RenderBody()
-        
+
         <footer style="background-color:rgb(131, 131, 129);">
             <div class="container">
                 <br />
@@ -84,6 +87,11 @@
         </footer>
     </div>
 
+    @*@Scripts.Render("~/bundles/jquery")*@
+    @Scripts.Render("~/bundles/jqueryval")
+    @*@Scripts.Render("~/bundles/bootstrap")*@
+    @*@RenderSection("scripts", required: false)*@
+    
     <script src="~/Scripts/carga.asincrona.js"></script>
     <script>site.baseUrl = "@Url.Content("~/").TrimEnd('/')";</script>
 </body>

@@ -298,5 +298,38 @@ namespace UTPPrototipo.Controllers
             return PartialView("_VistaOfertaMensajes", mensajes);
         }
         #endregion
+
+        [HttpGet] // esta acción devuelve la vista parcial con los datos para cargar el modal.
+        public PartialViewResult EditarEmpresa(int id)
+        {
+            //Se obtiene la información de la BD
+            var empresa = lnEmpresa.ObtenerDatosEmpresaPorId(id);
+            
+            return PartialView("_EditarEmpresa", empresa);
+        }
+
+        [ValidateAntiForgeryToken] // this action takes the viewModel from the modal
+        public PartialViewResult EditarEmpresa(Empresa empresa) //Este es como el submit
+        {  
+            if (ModelState.IsValid)
+            {
+                lnEmpresa.Actualizar(empresa);
+
+                empresa = lnEmpresa.ObtenerDatosEmpresaPorId(empresa.IdEmpresa);
+
+                return PartialView("_AdministrarDatosGenerales", empresa);
+
+                //return RedirectToAction("Administrar");
+            }
+
+            return PartialView("_EditarEmpresa", empresa);
+        }
+
+        public PartialViewResult _AdministrarDatosGenerales(int idEmpresa)
+        {
+            var empresa = lnEmpresa.ObtenerDatosEmpresaPorId(idEmpresa);
+
+            return PartialView("_AdministrarDatosGenerales", empresa);
+        }
     }
 }
