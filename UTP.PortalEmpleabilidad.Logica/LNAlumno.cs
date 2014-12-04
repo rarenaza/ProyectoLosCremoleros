@@ -43,10 +43,10 @@ namespace UTP.PortalEmpleabilidad.Logica
         public VistaPanelAlumno ObtenerPanel(string codigoAlumno)
         {
             VistaPanelAlumno panel = new VistaPanelAlumno();
-
+            LNEvento eventos=new LNEvento();
             //Se llenan los datos del alumno.
             panel.Alumno = ObtenerAlumnoPorCodigo(codigoAlumno);
-
+            panel.ListaEventos = eventos.Evento_MostrarUltimos();
             return panel;
         } 
 

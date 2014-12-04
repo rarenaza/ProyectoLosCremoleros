@@ -31,6 +31,7 @@ namespace UTPPrototipo.Controllers
         {
             VistaPanelAlumno panel = lnAlumno.ObtenerPanel(codigoAlumno);
 
+
             return View(panel);
         }
         //public ActionResult Postulacion() 

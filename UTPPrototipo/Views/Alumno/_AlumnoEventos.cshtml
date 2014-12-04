@@ -1,0 +1,22 @@
+﻿@model IEnumerable< UTP.PortalEmpleabilidad.Modelo.Evento>
+<div class="col-sm-4">
+    <h5>Eventos</h5>
+    <hr />
+    @foreach (var item in Model)
+    {
+        <div class="row grilla1-linea fuente-pequeña">
+            <div class="col-sm-4">
+                <a href="~/Views/Alumno/Eventos">@Html.DisplayFor(modelItem => item.NombreEvento)</a>
+            </div>
+            <div class="col-sm-4">
+                @Html.DisplayFor(modelItem => item.FechaEventoTexto)
+            </div>
+            <div class="col-sm-4">
+               @Html.DisplayFor(modelItem => item.LugarEvento)
+            </div>
+        </div>
+        <hr />
+
+    }
+
+</div>

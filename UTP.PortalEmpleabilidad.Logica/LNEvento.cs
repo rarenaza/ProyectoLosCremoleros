@@ -52,7 +52,20 @@ namespace UTP.PortalEmpleabilidad.Logica
             }
             return lista;
         }
-
+       public List<Evento> Evento_MostrarUltimos()
+       {
+           List<Evento> lista = new List<Evento>();
+           DataTable dtResultado = ad.Evento_MostrarUltimos();
+           for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
+           {
+               Evento listaEvento = new Evento();
+               listaEvento.NombreEvento =Funciones.ToString( dtResultado.Rows[i]["NombreEvento"]);
+               listaEvento.FechaEventoTexto = Funciones.ToString(dtResultado.Rows[i]["FechaEventoTexto"]);
+               listaEvento.LugarEvento = Funciones.ToString( dtResultado.Rows[i]["LugarEvento"]);
+               lista.Add(listaEvento);
+           }
+           return lista;
+       }
        public bool Evento_insertar(Evento evento)
        {
 
