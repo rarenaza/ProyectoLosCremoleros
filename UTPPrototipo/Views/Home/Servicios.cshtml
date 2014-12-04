@@ -1,4 +1,6 @@
-﻿@model IEnumerable<UTP.PortalEmpleabilidad.Modelo.Contenido>
+﻿@*@model IEnumerable<UTP.PortalEmpleabilidad.Modelo.Contenido>*@
+@model  IEnumerable<UTPPrototipo.Models.ViewModels.Contenido.ContenidoVista>
+
 @{
     ViewBag.Title = "Servicios a su disposición";
     int contador = 1;
@@ -11,7 +13,9 @@
             <div class="row row-contenido1">
                 <div class="container">
                     <div class="col-md-6">
-                        <img src="/Content/imagen/@item.Imagen" class="imagen-portal1" />
+                       
+
+                        <img alt="" class="imagen-portal1" src='@Url.Action("Imagen_Servicios", "Home", new { id = @item.IdContenido })' />
 
                     </div>
                     <div class="col-md-6">
@@ -35,7 +39,7 @@
                         <p>@Html.Raw(@item.Descripcion)</p>
                     </div>
                     <div class="col-md-6">
-                        <img src="/Content/imagen/@item.Imagen" class="imagen-portal1" />
+                        <img alt="" class="imagen-portal1" src='@Url.Action("Imagen_Servicios", "Home", new { id = @item.IdContenido  })' />
 
                     </div>
 

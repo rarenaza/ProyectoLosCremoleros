@@ -46,28 +46,182 @@ namespace UTPPrototipo.Controllers
             ViewData["ContenidoMenu"] = li;
                      
 
-            List<Contenido> contenido = new List<Contenido>();
+            //List<Contenido> contenido = new List<Contenido>();
+
+
+            //int codMenu = Convert.ToInt32(Menu);
+
+            //if (Menu == null)
+            //{
+            //    contenido  = ln.Contenido_ObtenerPorCodMenu(0);
+            //}
+            //else
+            //{
+            //    contenido = ln.Contenido_ObtenerPorCodMenu(codMenu);
+            //}
+            
+                      
+
+            //return View(contenido);
+
+            List<Contenido> lista = new List<Contenido>();
 
 
             int codMenu = Convert.ToInt32(Menu);
 
             if (Menu == null)
             {
-                contenido  = ln.Contenido_ObtenerPorCodMenu(0);
+                
+                DataTable dtResultado = ln.Contenido_ObtenerPorCodMenu(0);
+
+
+                for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
+                {
+                    Contenido contenido = new Contenido();
+                    contenido.IdContenido = Convert.ToInt32(dtResultado.Rows[i]["IdContenido"]);
+                    contenido.Menu = dtResultado.Rows[i]["CodMenu"].ToString();
+                    contenido.Titulo = dtResultado.Rows[i]["Titulo"].ToString();
+                    contenido.SubTitulo = dtResultado.Rows[i]["SubTitulo"].ToString();
+                    contenido.Descripcion = dtResultado.Rows[i]["Descripcion"].ToString();
+
+                    contenido.Imagen = (byte[])dtResultado.Rows[i]["Imagen"];
+
+                    contenido.TituloMenu = dtResultado.Rows[i]["Menu"].ToString();
+
+
+                    lista.Add(contenido);
+                }
+                
+
             }
             else
             {
-                contenido = ln.Contenido_ObtenerPorCodMenu(codMenu);
-            }
-            
-                      
+                
+                DataTable dtResultado = ln.Contenido_ObtenerPorCodMenu(codMenu);
 
-            return View(contenido);
-          
+
+                for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
+                {
+                    Contenido contenido = new Contenido();
+                    contenido.IdContenido = Convert.ToInt32(dtResultado.Rows[i]["IdContenido"]);
+                    contenido.Menu = dtResultado.Rows[i]["CodMenu"].ToString();
+                    contenido.Titulo = dtResultado.Rows[i]["Titulo"].ToString();
+                    contenido.SubTitulo = dtResultado.Rows[i]["SubTitulo"].ToString();
+                    contenido.Descripcion = dtResultado.Rows[i]["Descripcion"].ToString();
+
+                    contenido.Imagen = (byte[])dtResultado.Rows[i]["Imagen"];
+
+                    contenido.TituloMenu = dtResultado.Rows[i]["Menu"].ToString();
+
+
+                    lista.Add(contenido);
+                }
+            }
+
+
+            
+
+
+            List<ContenidoVista> contentModel = lista.Select(item => new ContenidoVista()
+            {
+                IdContenido = item.IdContenido,
+                Menu =item.Menu,
+                Titulo = item.Titulo,
+                SubTitulo  = item.SubTitulo,
+                Descripcion =item .Descripcion,
+                Imagen = item.Imagen,
+                TituloMenu =item .TituloMenu 
+
+            }).ToList();
+            return View(contentModel);
+
+            //return View();
           
         }
-      
+        public FileResult Imagen2(int id, string Menu)
+        {
+            const string alternativePicturePath = @"/Content/Images/question_mark.jpg";
 
+
+            List<Contenido> lista = new List<Contenido>();
+
+
+            int codMenu = Convert.ToInt32(Menu);
+
+            if (Menu == null)
+            {
+
+                DataTable dtResultado = ln.Contenido_ObtenerPorCodMenu(0);
+
+
+                for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
+                {
+                    Contenido contenido = new Contenido();
+                    contenido.IdContenido = Convert.ToInt32(dtResultado.Rows[i]["IdContenido"]);
+                    contenido.Menu = dtResultado.Rows[i]["CodMenu"].ToString();
+                    contenido.Titulo = dtResultado.Rows[i]["Titulo"].ToString();
+                    contenido.SubTitulo = dtResultado.Rows[i]["SubTitulo"].ToString();
+                    contenido.Descripcion = dtResultado.Rows[i]["Descripcion"].ToString();
+
+                    contenido.Imagen = (byte[])dtResultado.Rows[i]["Imagen"];
+
+                    contenido.TituloMenu = dtResultado.Rows[i]["Menu"].ToString();
+
+
+                    lista.Add(contenido);
+                }
+
+
+            }
+            else
+            {
+
+                DataTable dtResultado = ln.Contenido_ObtenerPorCodMenu(codMenu);
+
+
+                for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
+                {
+                    Contenido contenido = new Contenido();
+                    contenido.IdContenido = Convert.ToInt32(dtResultado.Rows[i]["IdContenido"]);
+                    contenido.Menu = dtResultado.Rows[i]["CodMenu"].ToString();
+                    contenido.Titulo = dtResultado.Rows[i]["Titulo"].ToString();
+                    contenido.SubTitulo = dtResultado.Rows[i]["SubTitulo"].ToString();
+                    contenido.Descripcion = dtResultado.Rows[i]["Descripcion"].ToString();
+
+                    contenido.Imagen = (byte[])dtResultado.Rows[i]["Imagen"];
+
+                    contenido.TituloMenu = dtResultado.Rows[i]["Menu"].ToString();
+
+
+                    lista.Add(contenido);
+                }
+            }
+
+
+
+            Contenido producto = lista.Where(k => k.IdContenido == id).FirstOrDefault();
+
+            MemoryStream stream;
+
+            if (producto != null && producto.Imagen != null)
+            {
+                stream = new MemoryStream(producto.Imagen);
+            }
+            else
+            {
+                stream = new MemoryStream();
+
+                var path = Server.MapPath(alternativePicturePath);
+                var image = new System.Drawing.Bitmap(path);
+
+                image.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
+                stream.Seek(0, SeekOrigin.Begin);
+            }
+
+            return new FileStreamResult(stream, "image/jpeg");
+        }
+
+         [ValidateInput(false)]
         public ActionResult Portal_insertar()
         {
 
@@ -93,6 +247,7 @@ namespace UTPPrototipo.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult Portal_insertar([Bind(Include = "")] ContenidoVista contenidoHTML)
         {
             Contenido contenido = new Contenido();
@@ -161,7 +316,7 @@ namespace UTPPrototipo.Controllers
             }
 
         }
-
+          [ValidateInput(false)]
         public ActionResult Portal_Editar_Buscar(int id)
         {
             DataTable dtresultado = ln.ContenidoMenu_Mostrar();
@@ -212,6 +367,7 @@ namespace UTPPrototipo.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult Portal_Editar_Buscar([Bind(Include = "")] ContenidoVista contenidoHTML)
         {
       
@@ -342,8 +498,6 @@ namespace UTPPrototipo.Controllers
 
             List<Contenido> lista = new List<Contenido>();
 
-
-
             DataTable dtResulatdo = ln.Contenido_Mostrar_imagen();
 
             for (int i = 0; i <= dtResulatdo.Rows.Count - 1; i++)
@@ -355,60 +509,26 @@ namespace UTPPrototipo.Controllers
 
 
                 contenido.Imagen = (byte[])dtResulatdo.Rows[i]["Imagen"];
-
-                //contenido.Imagen = ByteArrayToImage(dtResulatdo.Rows[i]["Imagen"]);
-               
-
-
-                //contenido.Imagen = Encoding.UTF8.GetBytes(dtResulatdo.Rows[i]["Imagen"].ToString());
-                       
-                              
+           
                 lista.Add(contenido);
             }
-
-      
 
             List<ContenidoVista> contentModel = lista.Select(item => new ContenidoVista()
             {
                 IdContenido = item.IdContenido,
                 Titulo = item.Titulo,
                 Imagen = item.Imagen,
-               
+
             }).ToList();
             return View(contentModel);
 
             //return View();
-
            
         }
-        public static Image ByteArrayToImage(byte[] byteArrayIn)
+      
+        public FileResult Imagen(int id)
         {
-
-            MemoryStream ms = new MemoryStream(byteArrayIn);
-
-            return Image.FromStream(ms);
-
-        }
-        public ActionResult RetrieveImage(int id)
-        {
-            byte[] cover = GetImageFromDataBase(id);
-            if (cover != null)
-            {
-                return File(cover, "image/jpeg");
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-       
-
-
-
-
-        public byte[] GetImageFromDataBase(int Id)
-        {
+            const string alternativePicturePath = @"/Content/Images/question_mark.jpg";
 
             List<Contenido> lista = new List<Contenido>();
 
@@ -426,11 +546,28 @@ namespace UTPPrototipo.Controllers
                 lista.Add(contenido);
             }
 
-            var q = from temp in lista where temp.IdContenido == Id select temp.Imagen;
-            byte[] cover = q.First();
-            return cover;
-        }
+            Contenido producto = lista.Where(k => k.IdContenido== id).FirstOrDefault();
 
+            MemoryStream stream;
+
+            if (producto != null && producto.Imagen != null)
+            {
+                stream = new MemoryStream(producto.Imagen);
+            }
+            else
+            {
+                stream = new MemoryStream();
+
+                var path = Server.MapPath(alternativePicturePath);
+                var image = new System.Drawing.Bitmap(path);
+
+                image.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
+                stream.Seek(0, SeekOrigin.Begin);
+            }
+
+            return new FileStreamResult(stream, "image/jpeg");
+        } 
+         
 
 
 

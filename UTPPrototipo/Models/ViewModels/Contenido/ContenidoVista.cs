@@ -36,6 +36,6 @@ namespace UTPPrototipo.Models.ViewModels.Contenido
 
         public bool EnPantallaPrincipal { get; set; }
         public bool Activo { get; set; }
-     
+        public string TituloMenu { get; set; }
     }
 }

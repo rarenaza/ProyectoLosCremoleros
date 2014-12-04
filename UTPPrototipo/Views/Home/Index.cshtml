@@ -18,18 +18,28 @@
         </ol>
 
         <div class="carousel-inner" style="padding: 0px; width: 100%; height: auto;">
+           
 
-            @foreach (var item in Model)
+
+            @{
+                var ListaIndex = ((List<Contenido>)(ViewBag.ListaIndex));
+
+                foreach (var itemIndex in ListaIndex)
             {
 
                 if (contadorPanel == 1)
                 {
                     <div class="item active">
-                        <img src="~/img/imagen1.jpg" style="width:100%;" />
-                        <div style="width: 100%; height:100%;background-image: url(../../img/imagen1-banda.png);position:absolute;top:60%;left:0px;padding-right:10%;" class="slideInRight animated animated2">
+
+                        <img src='@Url.Action("Imagen_Index", "Home", new { id = itemIndex.IdContenido })' style="width:100%;" />
+
+                      @*  <img src='@Url.Action("Imagen_Noticia", "Home", new { id = itemIndex.IdContenido })' style="border:solid;border-width:1px;border-color:rgb(220,220,220);border-radius: 6px 6px 6px 6px;width:100%;" />*@
+
+                        <div style="width: 100%; height:100%;position:absolute;top:35%;left:0px;padding-left:5%;">
                             <div class="container">
-                                <p class="BannerSuperTitulo slideInRight animated animated3" style="text-align:right;">@item.Titulo</p>
-                                <p class="BannerTitulo slideInRight animated animated4" style="text-align:right;">@item.SubTitulo</p>
+                                @Html.Raw(itemIndex.Titulo)
+                                @Html.Raw(itemIndex.SubTitulo)
+                                @Html.Raw(itemIndex.Descripcion)
                             </div>
                         </div>
                     </div>
@@ -38,11 +48,13 @@
                 else
                 {
                     <div class="item">
-                        <img src="~/img/imagen1.jpg" style="width:100%;" />
-                        <div style="width: 100%; height:100%;background-image: url(../../img/imagen1-banda.png);position:absolute;top:60%;left:0px;padding-right:10%;" class="slideInRight animated animated2">
+                        @*<img src="~/img/imagen1.jpg" style="width:100%;" />*@
+                        <img src='@Url.Action("Imagen_Index", "Home", new { id = itemIndex.IdContenido })' style="width:100%;" />
+                        <div style="width: 100%; height:100%;position:absolute;top:35%;left:0px;padding-left:5%;">
                             <div class="container">
-                                <p class="BannerSuperTitulo slideInRight animated animated3" style="text-align:right;">@item.Titulo</p>
-                                <p class="BannerTitulo slideInRight animated animated4" style="text-align:right;">@item.SubTitulo</p>
+                                @Html.Raw(itemIndex.Titulo)
+                                @Html.Raw(itemIndex.SubTitulo)
+                                @Html.Raw(itemIndex.Descripcion)
                             </div>
                         </div>
                     </div>
@@ -51,6 +63,7 @@
 
                 contadorPanel++;
             }
+}
 
         </div>
 
@@ -160,7 +173,9 @@
                 foreach (var itemNoticias in listaNoticias)
                 {
                     <span>
-                        <img src="/Content/imagen/@itemNoticias.Imagen" style="border:solid;border-width:1px;border-color:rgb(220,220,220);border-radius: 6px 6px 6px 6px;width:100%;" />
+                        <img src='@Url.Action("Imagen_Noticia", "Home", new { id = @itemNoticias.IdContenido })' style="border:solid;border-width:1px;border-color:rgb(220,220,220);border-radius: 6px 6px 6px 6px;width:100%;" />
+
+                       
                         @*<img src="/Content/imagen/@item.Imagen" height="100" width="100" />*@
                     
                     
@@ -183,8 +198,14 @@
                 foreach (var itemEventos in listaEventos)
                 {
                     <span>
-                        <img src="/Content/imagen/@itemEventos.Imagen" style="border:solid;border-width:1px;border-color:rgb(220,220,220);border-radius: 6px 6px 6px 6px;width:100%;" />
-                        @*<img src="/Content/imagen/@item.Imagen" height="100" width="100" />*@
+                        @*<img src="/Content/imagen/@itemEventos.Imagen" style="border:solid;border-width:1px;border-color:rgb(220,220,220);border-radius: 6px 6px 6px 6px;width:100%;" />*@
+                       
+                        
+                        
+                        <img src='@Url.Action("Imagen_Eventos", "Home", new { id = @itemEventos.IdContenido })' style="border:solid;border-width:1px;border-color:rgb(220,220,220);border-radius: 6px 6px 6px 6px;width:100%;" />
+                        
+                        
+                         @*<img src="/Content/imagen/@item.Imagen" height="100" width="100" />*@
 
 
                     </span>
@@ -219,7 +240,12 @@
                     {
                         <div class="row ">
                             <div class="col-sm-6">
-                                <img src="/Content/imagen/@itemTestimonios.Imagen" style="border:solid;border-width:1px;border-color:rgb(220,220,220);border-radius: 6px 6px 6px 6px;width:100%;" />
+
+
+                                <img src='@Url.Action("Imagen_Testimonios", "Home", new { id = @itemTestimonios.IdContenido })' style="border:solid;border-width:1px;border-color:rgb(220,220,220);border-radius: 6px 6px 6px 6px;width:100%;" />
+
+
+                               @* <img src="/Content/imagen/@itemTestimonios.Imagen" style="border:solid;border-width:1px;border-color:rgb(220,220,220);border-radius: 6px 6px 6px 6px;width:100%;" />*@
                             </div>
                             <div class="col-sm-6">
                                 <h3 style="color:rgb(180,34,30)"><strong>@Html.Raw(@itemTestimonios.Titulo)</strong></h3>
@@ -240,7 +266,8 @@
                                    
                                 </div>
                                 <div class="col-sm-6">
-                                    <img src="/Content/imagen/@itemTestimonios.Imagen" style="border:solid;border-width:1px;border-color:rgb(220,220,220);border-radius: 6px 6px 6px 6px;width:100%;" />
+                                    <img src='@Url.Action("Imagen_Testimonios", "Home", new { id = @itemTestimonios.IdContenido })' style="border:solid;border-width:1px;border-color:rgb(220,220,220);border-radius: 6px 6px 6px 6px;width:100%;" />
+                                  @*  <img src="/Content/imagen/@itemTestimonios.Imagen" style="border:solid;border-width:1px;border-color:rgb(220,220,220);border-radius: 6px 6px 6px 6px;width:100%;" />*@
                                 </div>
                             </div>
                        

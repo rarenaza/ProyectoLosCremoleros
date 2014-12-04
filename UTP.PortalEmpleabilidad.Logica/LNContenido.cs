@@ -14,32 +14,44 @@ namespace UTP.PortalEmpleabilidad.Logica
       ADContenido ad = new ADContenido();
 
 
-      public List<Contenido> Contenido_ObtenerPorCodMenu(int codMenu)
+      //public List<Contenido> Contenido_ObtenerPorCodMenu(int codMenu)
+      //{
+      //    List<Contenido> contenido = new List<Contenido>();
+
+      //    DataTable dtResultado = ad.Contenido_ObtenerPorCodMenu(codMenu);
+
+
+      //    for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
+      //    {
+      //        Contenido listacontenido = new Contenido();
+      //        listacontenido.IdContenido = Convert.ToInt32(dtResultado.Rows[i]["IdContenido"]);
+      //        listacontenido.Menu = dtResultado.Rows[i]["CodMenu"].ToString();
+      //        listacontenido.Titulo = dtResultado.Rows[i]["Titulo"].ToString();
+      //        listacontenido.SubTitulo = dtResultado.Rows[i]["SubTitulo"].ToString();
+      //        listacontenido.Descripcion = dtResultado.Rows[i]["Descripcion"].ToString();
+
+      //        listacontenido.Imagen = Encoding.UTF8.GetBytes(dtResultado.Rows[i]["Imagen"].ToString());
+
+      //        listacontenido.TituloMenu = dtResultado.Rows[i]["Menu"].ToString();
+
+
+      //        contenido.Add(listacontenido);
+      //    }
+      //    return contenido;
+      //}
+
+      public DataTable Contenido_ObtenerPorCodMenu(int codMenu)
       {
-          List<Contenido> contenido = new List<Contenido>();
 
-          DataTable dtResultado = ad.Contenido_ObtenerPorCodMenu(codMenu);
-
-
-          for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
-          {
-              Contenido listacontenido = new Contenido();
-              listacontenido.IdContenido = Convert.ToInt32(dtResultado.Rows[i]["IdContenido"]);
-              listacontenido.Menu = dtResultado.Rows[i]["CodMenu"].ToString();
-              listacontenido.Titulo = dtResultado.Rows[i]["Titulo"].ToString();
-              listacontenido.SubTitulo = dtResultado.Rows[i]["SubTitulo"].ToString();
-              listacontenido.Descripcion = dtResultado.Rows[i]["Descripcion"].ToString();
-
-              listacontenido.Imagen = Encoding.UTF8.GetBytes(dtResultado.Rows[i]["Imagen"].ToString());
-
-              listacontenido.TituloMenu = dtResultado.Rows[i]["Menu"].ToString();
-
-             
-              contenido.Add(listacontenido);
-          }
-          return contenido;
+          return ad.Contenido_ObtenerPorCodMenu(codMenu);
       }
 
+
+      public DataTable Contenido_Mostrar_imagen()
+      {
+
+          return ad.Contenido_Mostrar_imagen();
+      }
     
         public DataTable ContenidoMenu_Mostrar()
         {
@@ -94,6 +106,8 @@ namespace UTP.PortalEmpleabilidad.Logica
             return lista;
         }
 
+          
+
         public List<Contenido> Contenido_BuscarNoticiasEventosOtros(string IdLista)
         {
             List<Contenido> lista = new List<Contenido>();
@@ -109,8 +123,8 @@ namespace UTP.PortalEmpleabilidad.Logica
                 contenido.Titulo = dtResultado.Rows[i]["Titulo"].ToString();
                 contenido.SubTitulo = dtResultado.Rows[i]["SubTitulo"].ToString();
                 contenido.Descripcion = dtResultado.Rows[i]["Descripcion"].ToString();
-                //contenido.Imagen = dtResultado.Rows[i]["Imagen"].ToString();
-                contenido.Imagen = Encoding.UTF8.GetBytes(dtResultado.Rows[i]["Imagen"].ToString());
+                contenido.Imagen = (byte[])dtResultado.Rows[i]["Imagen"];
+                //contenido.Imagen = Encoding.UTF8.GetBytes(dtResultado.Rows[i]["Imagen"].ToString());
                 contenido.IdContenido = Convert.ToInt32(dtResultado.Rows[i]["IdContenido"]);
    
 
@@ -156,11 +170,7 @@ namespace UTP.PortalEmpleabilidad.Logica
 
         }
 
-        public DataTable Contenido_Mostrar_imagen()
-        {
-
-            return ad.Contenido_Mostrar_imagen();
-        }
+      
 
       
     }

@@ -26,7 +26,9 @@
                             </p>
                         </div>
                         <div class="col-md-6">
-                            <img src="/Content/imagen/@itemNoticias.Imagen" class="imagen-portal1" />
+                           @* <img src="/Content/imagen/@itemNoticias.Imagen" class="imagen-portal1" />*@
+
+                            <img alt="" class="imagen-portal1" src='@Url.Action("Imagen_Noticia", "Home", new { id = @itemNoticias.IdContenido })' />
 
                         </div>
 
@@ -39,7 +41,8 @@
                 <div class="row row-contenido2">
                     <div class="container">
                         <div class="col-md-6">
-                            <img src="/Content/imagen/@itemNoticias.Imagen" class="imagen-portal1" />
+                           @* <img src="/Content/imagen/@itemNoticias.Imagen" class="imagen-portal1" />*@
+                            <img alt="" class="imagen-portal1" src='@Url.Action("Imagen_Noticia", "Home", new { id = @itemNoticias.IdContenido })' />
 
                         </div>
                         <div class="col-md-6">
@@ -80,7 +83,8 @@
                             </p>
                         </div>
                         <div class="col-md-8">
-                            <img src="/Content/imagen/@itemEventos.Imagen" class="imagen-portal1" />
+                            @*<img src="/Content/imagen/@itemEventos.Imagen" class="imagen-portal1" />*@
+                            <img alt="" class="imagen-portal1" src='@Url.Action("Imagen_Eventos", "Home", new { id = @itemEventos.IdContenido })' />
 
                         </div>
 
@@ -93,7 +97,8 @@
                 <div class="row row-contenido2">
                     <div class="container">
                         <div class="col-md-8">
-                            <img src="/Content/imagen/@itemEventos.Imagen" class="imagen-portal1" />
+                            @*<img src="/Content/imagen/@itemEventos.Imagen" class="imagen-portal1" />*@
+                            <img alt="" class="imagen-portal1" src='@Url.Action("Imagen_Eventos", "Home", new { id = @itemEventos.IdContenido })' />
 
                         </div>
                         <div class="col-md-4">

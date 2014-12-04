@@ -71,7 +71,9 @@
         </td>
         <td>
             @*@Html.DisplayFor(modelItem => item.Imagen)*@
-            <img src="/UTP/RetrieveImage/@item.IdContenido" alt="" height=100 width=200 />
+            @*<img src="/UTP/RetrieveImage/@item.IdContenido" alt="" height=100 width=200 />*@
+
+            <img alt="" height=100 width=200 src='@Url.Action("Imagen", "UTP", new { id = @item.IdContenido })' />
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Menu)
