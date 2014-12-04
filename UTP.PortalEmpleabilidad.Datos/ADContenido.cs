@@ -102,8 +102,8 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.CommandText = "Contenido_Insertar";
                 cmd.Connection = cnn.cn;
          
-                cmd.Parameters.Add(new SqlParameter("@Titulo", SqlDbType.VarChar, 50)).Value = contenido.Titulo;
-                cmd.Parameters.Add(new SqlParameter("@SubTitulo", SqlDbType.VarChar, 50)).Value = contenido.SubTitulo;
+                cmd.Parameters.Add(new SqlParameter("@Titulo", SqlDbType.VarChar, 500)).Value = contenido.Titulo;
+                cmd.Parameters.Add(new SqlParameter("@SubTitulo", SqlDbType.VarChar, 500)).Value = contenido.SubTitulo;
                 //cmd.Parameters.Add(new SqlParameter("@Descripcion", SqlDbType.VarChar, -1)).Value = contenido.Descripcion;
 
                 cmd.Parameters.Add(new SqlParameter("@Descripcion", SqlDbType.VarChar, -1)).Value = (contenido.Descripcion == null ? "" : contenido.Descripcion);
@@ -213,8 +213,8 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.CommandText = "Contenido_Actualizar";
                 cmd.Connection = cnn.cn;
 
-                cmd.Parameters.Add(new SqlParameter("@Titulo", SqlDbType.VarChar, 50)).Value = contenido.Titulo;
-                cmd.Parameters.Add(new SqlParameter("@SubTitulo", SqlDbType.VarChar, 50)).Value = contenido.SubTitulo;
+                cmd.Parameters.Add(new SqlParameter("@Titulo", SqlDbType.VarChar, 500)).Value = contenido.Titulo;
+                cmd.Parameters.Add(new SqlParameter("@SubTitulo", SqlDbType.VarChar, 500)).Value = contenido.SubTitulo;
                 //cmd.Parameters.Add(new SqlParameter("@Descripcion", SqlDbType.VarChar, -1)).Value = contenido.Descripcion;
                 cmd.Parameters.Add(new SqlParameter("@Descripcion", SqlDbType.VarChar, -1)).Value = (contenido.Descripcion == null ? "" : contenido.Descripcion);
                 cmd.Parameters.Add(new SqlParameter("@Imagen", SqlDbType.Image)).Value = (contenido.Imagen == null ? new byte[] { } : contenido.Imagen);
