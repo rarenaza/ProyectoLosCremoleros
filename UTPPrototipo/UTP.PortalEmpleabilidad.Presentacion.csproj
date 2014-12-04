@@ -743,6 +743,7 @@
     <Content Include="Views\Empresa\_AdministrarUsuarios.cshtml" />
     <Content Include="Views\Empresa\_AdministrarNuevaUbicacion.cshtml" />
     <Content Include="Views\Empresa\_AdministrarNuevoUsuario.cshtml" />
+    <Content Include="Views\Alumno\_AlumnoUltimasOfertas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

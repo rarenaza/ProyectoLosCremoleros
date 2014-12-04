@@ -18,7 +18,31 @@ namespace UTP.PortalEmpleabilidad.Datos
         /// </summary>
         /// <returns></returns>
         ///
+        public DataTable MostrarUltimasOfertas(int IdAlumno)
+        {
+            DataTable dtResultado = new DataTable();
 
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Oferta_ListarUltimosAlumno";
+                cmd.Parameters.Add(new SqlParameter("@IdAlumno", DbType.Int32)).Value = IdAlumno;
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                dtResultado = new DataTable();
+
+                da.Fill(dtResultado);
+
+                conexion.Close();
+            }
+
+            return dtResultado;
+        }
         public DataTable Obtener()
         {
             DataTable dtResultado = new DataTable();
