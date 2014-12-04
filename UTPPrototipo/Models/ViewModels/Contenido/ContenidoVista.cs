@@ -19,11 +19,11 @@ namespace UTPPrototipo.Models.ViewModels.Contenido
         public string SubTitulo { get; set; }
          
         public string Descripcion { get; set; }
-           [Required]
+      
         public HttpPostedFileBase ImagenHtml { get; set; }
         public string ArchivoNombreOriginal { get; set; }
         public string ArchivoMimeType { get; set; }
-        [Required]
+        //[Required]
         public  byte[] Imagen { get; set; }
 
         public string Menu { get; set; }

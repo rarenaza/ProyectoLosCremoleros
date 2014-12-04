@@ -729,6 +729,7 @@
     <Content Include="Views\UTP\UsuarioEmpresa.cshtml" />
     <Content Include="Views\UTP\LocacionEmpresa.cshtml" />
     <Content Include="Views\UTP\OfertaEmpresa.cshtml" />
+    <Content Include="Views\UTP\verimagen.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

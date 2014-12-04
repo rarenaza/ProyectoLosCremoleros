@@ -12,12 +12,22 @@ namespace UTPPrototipo.Controllers
     {
         LNContenido ln = new LNContenido();
         public ActionResult Index()
-        {    
+        {
+
+            List<Contenido> contenido = new List<Contenido>();
+            string x = "1";
+            contenido = ln.Contenido_BuscarNoticiasEventosOtros(x);
+
+           
+
+
+
             ViewBag.ListaNoticias = ln.Contenido_BuscarIndex("4");
             ViewBag.ListaEventos = ln.Contenido_BuscarIndex("7");
             ViewBag.ListaTestimonios = ln.Contenido_BuscarIndex("5");
             
-            return View();
+            //return View();
+            return View(contenido);
         }
 
         public ActionResult ParaEmpleadores()

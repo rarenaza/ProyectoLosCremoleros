@@ -104,11 +104,22 @@ namespace UTP.PortalEmpleabilidad.Datos
          
                 cmd.Parameters.Add(new SqlParameter("@Titulo", SqlDbType.VarChar, 50)).Value = contenido.Titulo;
                 cmd.Parameters.Add(new SqlParameter("@SubTitulo", SqlDbType.VarChar, 50)).Value = contenido.SubTitulo;
-                cmd.Parameters.Add(new SqlParameter("@Descripcion", SqlDbType.VarChar, -1)).Value = contenido.Descripcion;
+                //cmd.Parameters.Add(new SqlParameter("@Descripcion", SqlDbType.VarChar, -1)).Value = contenido.Descripcion;
+
+                cmd.Parameters.Add(new SqlParameter("@Descripcion", SqlDbType.VarChar, -1)).Value = (contenido.Descripcion == null ? "" : contenido.Descripcion);
+
                 cmd.Parameters.Add(new SqlParameter("@Imagen", SqlDbType.Binary)).Value = contenido.Imagen;
+
+                //cmd.Parameters.Add(new SqlParameter("@Imagen", SqlDbType.Binary)).Value = (contenido.Imagen == null ? new byte[] { } : contenido.Imagen);
+                           
+
                 cmd.Parameters.Add(new SqlParameter("@Activo", SqlDbType.Bit)).Value = contenido.Activo;
-                cmd.Parameters.Add(new SqlParameter("@ArchivoNombreOriginal", SqlDbType.VarChar, 100)).Value = contenido.ArchivoNombreOriginal;
-                cmd.Parameters.Add(new SqlParameter("@ArchivoMimeType", SqlDbType.VarChar, 50)).Value = contenido.ArchivoMimeType;
+                //cmd.Parameters.Add(new SqlParameter("@ArchivoNombreOriginal", SqlDbType.VarChar, 100)).Value = contenido.ArchivoNombreOriginal;
+                cmd.Parameters.Add(new SqlParameter("@ArchivoNombreOriginal", SqlDbType.VarChar, 100)).Value = (contenido.ArchivoNombreOriginal == null ? "" : contenido.ArchivoNombreOriginal);
+                cmd.Parameters.Add(new SqlParameter("@ArchivoMimeType", SqlDbType.VarChar, 100)).Value = (contenido.ArchivoMimeType == null ? "" : contenido.ArchivoMimeType);
+                
+                
+                //cmd.Parameters.Add(new SqlParameter("@ArchivoMimeType", SqlDbType.VarChar, 50)).Value = contenido.ArchivoMimeType;
                 cmd.Parameters.Add(new SqlParameter("@EnPantallaPrincipal", SqlDbType.Bit)).Value = contenido.EnPantallaPrincipal;
                 cmd.Parameters.Add(new SqlParameter("@CodMenu", SqlDbType.VarChar,50)).Value = contenido.Menu;
                 cmd.Parameters.Add(new SqlParameter("@CreadoPor", SqlDbType.VarChar, 50)).Value = contenido.CreadoPor;
@@ -119,7 +130,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cnn.Desconectar();
                 return true;
             }
-            catch (SqlException)
+            catch (Exception ex)
             {
                 return false;
             }
@@ -204,17 +215,19 @@ namespace UTP.PortalEmpleabilidad.Datos
 
                 cmd.Parameters.Add(new SqlParameter("@Titulo", SqlDbType.VarChar, 50)).Value = contenido.Titulo;
                 cmd.Parameters.Add(new SqlParameter("@SubTitulo", SqlDbType.VarChar, 50)).Value = contenido.SubTitulo;
-                cmd.Parameters.Add(new SqlParameter("@Descripcion", SqlDbType.VarChar, -1)).Value = contenido.Descripcion;
-                cmd.Parameters.Add(new SqlParameter("@Imagen", SqlDbType.Image)).Value  =  contenido.Imagen;
+                //cmd.Parameters.Add(new SqlParameter("@Descripcion", SqlDbType.VarChar, -1)).Value = contenido.Descripcion;
+                cmd.Parameters.Add(new SqlParameter("@Descripcion", SqlDbType.VarChar, -1)).Value = (contenido.Descripcion == null ? "" : contenido.Descripcion);
+                cmd.Parameters.Add(new SqlParameter("@Imagen", SqlDbType.Image)).Value = (contenido.Imagen == null ? new byte[] { } : contenido.Imagen);
                 
-
                 cmd.Parameters.Add(new SqlParameter("@CodMenu", SqlDbType.VarChar, 50)).Value = contenido.Menu;
                 cmd.Parameters.Add(new SqlParameter("@EnPantallaPrincipal", SqlDbType.Bit)).Value = contenido.EnPantallaPrincipal;
                 cmd.Parameters.Add(new SqlParameter("@Activo", SqlDbType.Bit)).Value = contenido.Activo;
-                cmd.Parameters.Add(new SqlParameter("@ArchivoNombreOriginal", SqlDbType.VarChar, 100)).Value = contenido.ArchivoNombreOriginal;
+                cmd.Parameters.Add(new SqlParameter("@ArchivoNombreOriginal", SqlDbType.VarChar, 100)).Value = (contenido.ArchivoNombreOriginal == null ? "" : contenido.ArchivoNombreOriginal);
+                cmd.Parameters.Add(new SqlParameter("@ArchivoMimeType", SqlDbType.VarChar, 100)).Value = (contenido.ArchivoMimeType == null ? "" : contenido.ArchivoMimeType);
                 cmd.Parameters.Add(new SqlParameter("@ModificadoPor", SqlDbType.VarChar, 50)).Value = contenido.ModificadoPor;
                             
                 cmd.Parameters.Add(new SqlParameter("@IdContenido", SqlDbType.VarChar, 50)).Value = contenido.IdContenido;
+                cmd.Parameters.Add(new SqlParameter("@ImagenCambiada", SqlDbType.VarChar, 2)).Value = (contenido.Imagen==null ? "NO":"SI");
 
                 cnn.Conectar();
                 cmd.ExecuteNonQuery();
@@ -222,7 +235,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cnn.Desconectar();
                 return true;
             }
-            catch (SqlException)
+            catch (Exception ex)
             {
                 return false;
             }
@@ -253,6 +266,24 @@ namespace UTP.PortalEmpleabilidad.Datos
                 return false;
             }
 
+        }
+
+        public DataTable Contenido_Mostrar_imagen()
+        {
+            ADConexion cnn = new ADConexion();
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "Contenido_Mostrar_imagen";
+            cmd.Connection = cnn.cn;
+            cnn.Conectar();
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+
+            da.Fill(dt);
+
+            cnn.Desconectar();
+            return dt;
         }
 
 

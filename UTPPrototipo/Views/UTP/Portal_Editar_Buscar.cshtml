@@ -1,5 +1,8 @@
-﻿@model UTPPrototipo.Models.ViewModels.Contenido.ContenidoVista
+﻿@model  UTPPrototipo.Models.ViewModels.Contenido.ContenidoVista
 
+
+
+@*@model UTP.PortalEmpleabilidad.Modelo.Contenido*@ 
 
 @{
     Layout = "~/Views/UTP/_LayoutUTP.cshtml";
@@ -51,11 +54,15 @@
             @Html.LabelFor(model => model.Menu, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @*@Html.EditorFor(model => model.Menu)*@
-                @Html.DropDownList("Menu", ViewData["ContenidoMenu"] as List<SelectListItem>)
+                @Html.DropDownList("Menu", ViewData["ContenidoMenu"] as List<SelectListItem>) 
+
+                @*@Html.DropDownList("Menu", (IEnumerable<SelectListItem>)ViewBag.DropDownValues2)*@
+            
+
                 @Html.ValidationMessageFor(model => model.Menu)
             </div>
         </div>
-
+       
         <div class="form-group">
             @Html.LabelFor(model => model.ImagenHtml, htmlAttributes: new { @class = "control-label col-md-2" })
 
