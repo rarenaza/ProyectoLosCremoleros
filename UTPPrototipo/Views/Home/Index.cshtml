@@ -26,11 +26,13 @@
                 {
                     <div class="item active">
                         <img src="~/img/imagen1.jpg" style="width:100%;" />
-                        <div style="width: 100%; height:100%;background-image: url(../../img/imagen1-banda.png);position:absolute;top:60%;left:0px;padding-right:10%;" class="slideInRight animated animated2">
-                            <div class="container">
-                                <p class="BannerSuperTitulo slideInRight animated animated3" style="text-align:right;">@item.Titulo</p>
-                                <p class="BannerTitulo slideInRight animated animated4" style="text-align:right;">@item.SubTitulo</p>
-                            </div>
+
+                        <div class="container">
+                            @Html.Raw(item.Titulo)
+                            @Html.Raw(item.SubTitulo)
+                            @Html.Raw(item.Descripcion)
+
+
                         </div>
                     </div>
 
@@ -39,11 +41,13 @@
                 {
                     <div class="item">
                         <img src="~/img/imagen1.jpg" style="width:100%;" />
-                        <div style="width: 100%; height:100%;background-image: url(../../img/imagen1-banda.png);position:absolute;top:60%;left:0px;padding-right:10%;" class="slideInRight animated animated2">
-                            <div class="container">
-                                <p class="BannerSuperTitulo slideInRight animated animated3" style="text-align:right;">@item.Titulo</p>
-                                <p class="BannerTitulo slideInRight animated animated4" style="text-align:right;">@item.SubTitulo</p>
-                            </div>
+
+                        <div class="container">
+                            @Html.Raw(item.Titulo)
+                            @Html.Raw(item.SubTitulo)
+                            @Html.Raw(item.Descripcion)
+
+
                         </div>
                     </div>
 
