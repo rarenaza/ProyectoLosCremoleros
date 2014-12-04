@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace UTP.PortalEmpleabilidad.Modelo
 {
-    public class VistaPanelAlumnoMiCV
+    public class AlumnoCVEstudio
     {
-        public Alumno Alumno { get; set; }
-        public List<AlumnoEstudio> ListaAlumnoEstudio { get; set; }
-         
+        public int IdCVEstudio { get; set; }
+        public int IdCV { get; set; }
+        public int IdEstudio { get; set; }
 
     }
-
 }

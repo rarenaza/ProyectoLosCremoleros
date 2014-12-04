@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace UTP.PortalEmpleabilidad.Modelo
 {
-    public class VistaPanelAlumnoPostulaciones
+    public class PlantillaCV
     {
-        public Alumno Alumno { get; set; }
+        public int IdPlantillaCV { get; set; }
+        public string DescripcionPlantilla { get; set; }
+        public string Plantilla { get; set; }
 
 
     }

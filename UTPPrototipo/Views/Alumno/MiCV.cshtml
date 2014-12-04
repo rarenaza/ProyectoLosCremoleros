@@ -1,4 +1,4 @@
-﻿@model UTP.PortalEmpleabilidad.Modelo.VistaPanelAlumnoMiCV
+﻿@model  UTPPrototipo.Models.ViewModels.VistaPanelAlumnoMiCV
 
 @{
     Layout = "~/Views/Alumno/_LayoutAlumno.cshtml";
@@ -6,7 +6,7 @@
 }
 <div class="container" style="margin-top:2px;">
 
-    @Html.Partial("_DatosPersonales", Model.Alumno)
+    @Html.Partial("_DatosPersonales", Model.alumno)
 
 
     @*<div class="panel-group" id="datos-cuenta" role="tablist" aria-multiselectable="true">
@@ -59,247 +59,18 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="panel-group" id="mi-cv-opciones" role="tablist" aria-multiselectable="true">
-                <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingMiCVOpciones" style="padding: 2px 2px 2px 6px;background-color:rgb(14, 158, 149);color:white;">
-                        <h5 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseMiCVOpciones" aria-expanded="true" aria-controls="collapseMiCVOpciones" style="font-size:12px;">
-                                Opciones de CV
-                            </a>
-                        </h5>
-                    </div>
-                    <div id="collapseMiCVOpciones" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingMiCVOpciones">
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-sm-4">
-                                    <div class="input-group fuente-pequeña">
-                                        <span class="input-group-addon">CV</span>
-                                        <select id="ListaCVs" class="form-control">
-                                            <option value="" selected>Mi CV</option>
-                                            <option value="1">CV 2</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="input-group fuente-pequeña">
-                                        <span class="input-group-addon">Plantilla</span>
-                                        <select id="ListaPlantillas" class="form-control">
-                                            <option value="1" selected>Plantilla UTP</option>
-                                            <option value="2">Plantilla Moderno</option>
-                                            <option value="2">Plantilla Clásico</option>
-                                            <option value="2">Plantilla Tecnológico</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-sm-2">
-                                    <span>
-                                        <button type="button" class="btn btn-default fuente-pequeña color-paleta4" style="color:white;">Crear Nuevo</button>
-                                    </span>
-                                </div>
-                                <div class="col-sm-1">
-                                    <span class="fuente-pequeña">
-                                        <a href="#">Ver CV</a>
-                                    </span>
-                                </div>
-                                <div class="col-sm-1">
-                                    <span class="fuente-pequeña">
-                                        <a href="#">Descargar</a>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+     @{Html.RenderAction("OpcionesCV", "Alumno");}
             </div>
         </div>
-        <div class="col-sm-12">
-            <div class="panel-group" id="mi-cv-datos-generales" role="tablist" aria-multiselectable="true">
-                <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingMiCVDatosGenerales" style="padding: 2px 2px 2px 6px;">
-                        <h5 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseMiCVDatosGenerales" aria-expanded="true" aria-controls="collapseMiCVDatosGenerales" style="font-size:12px;">
-                                Datos Generales
-                            </a><span style="font-size:12px;">&nbsp;&nbsp; -&nbsp;&nbsp;Terminado <input type="checkbox"></span>
-
-                        </h5>
-                    </div>
-                    <div id="collapseMiCVDatosGenerales" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingMiCVDatosGenerales">
-                        <div class="panel-body">
-                            <p style="text-align:center;">
-                                <strong>
-                                    <input type="checkbox" checked />Karina <input type="checkbox" checked />María Barrionuevo Chang
-                                </strong>
-                            </p>
-                            <p style="text-align:center;">
-                                karina_barrionuevo@utp.edu.pe / 954123876
-                            </p>
-                            <div class="row">
-                                <div class="col-sm-4">
-                                    <div class="input-group fuente-pequeña">
-                                        <span class="input-group-addon"><input type="checkbox"></span>
-                                        <span class="form-control" style="padding-top:8px;">kabarrionuevo@elportal.com</span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="input-group fuente-pequeña">
-                                        <span class="input-group-addon"><input type="checkbox"></span>
-                                        <span class="form-control" style="padding-top:8px;">456-1234</span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="input-group fuente-pequeña">
-                                        <span class="input-group-addon"><input type="checkbox"></span>
-                                        <span class="form-control" style="padding-top:8px;">Foto</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-8">
-                                    <div class="input-group fuente-pequeña">
-                                        <span class="input-group-addon"><input type="checkbox"></span>
-                                        <span class="form-control" style="padding-top:8px;">Av del Pozo 3453, San Martín de Porres Lima Perú </span>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
-            </div>
+        <div id="alumno-datos-generales">
         </div>
-
-        <div class="col-sm-12">
-            <div class="panel-group" id="mi-cv-perfil" role="tablist" aria-multiselectable="true">
-                <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingMiCVPerfil" style="padding: 2px 2px 2px 6px;">
-                        <h5 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseMiCVPerfil" aria-expanded="true" aria-controls="collapseMiCVPerfil" style="font-size:12px;">
-                                Perfil
-                            </a><span style="font-size:12px;">&nbsp;&nbsp; -&nbsp;&nbsp;Terminado <input type="checkbox"></span>
-                        </h5>
-                    </div>
-                    <div id="collapseMiCVPerfil" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingMiCVPerfil">
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="input-group fuente-pequeña">
-                                        <span class="input-group-addon">Perfil</span>
-                                        <textarea class="form-control" rows="6" placeholder="Perfil profesional"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
-
 
         <div class="col-sm-12">
             <div class="panel-group" id="mi-cv-educacion" role="tablist" aria-multiselectable="true">
-                <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingMiCVEducacion" style="padding: 2px 2px 2px 6px;">
-                        <h5 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseMiCVEducacion" aria-expanded="true" aria-controls="collapseMiCVEducacion" style="font-size:12px;">
-                                Estudios
-                            </a><span style="font-size:12px;">&nbsp;&nbsp; -&nbsp;&nbsp;Terminado <input type="checkbox"></span>
-                        </h5>
-                    </div>
-                    <div id="collapseMiCVEducacion" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingMiCVEducacion">
-                        <div class="panel-body fuente-pequeña">
-                            <div class="row">
-                                <div class="col-sm-12 text-right"><button type="button" data-toggle="modal" data-target="#Modal-estudio" class="btn btn-default color-paleta4 fuente-pequeña" style="color: white; margin-bottom: 10px;">Agregar Estudio</button></div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-1">
-                                    <span>Incluir </span><input type="checkbox" />
-                                </div>
-                                <div class="col-sm-10">
-                                    <div class="row">
-                                        <div class="col-sm-2">
-                                            <strong>01/2001 - 12/2005</strong>
-                                        </div>
-                                        <div class="col-sm-5">
-                                            <span><strong>Universidad Tecnológica del Perú</strong></span>
-                                        </div>
 
-                                        <div class="col-sm-5">
-                                            Estudio: <strong>ING. SISTEMAS E INFORMATICA</strong>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-2">
-
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <span class="valor-icono2">B</span><span class="valor-palabra">Universitario</span>
-                                        </div>
-                                        <div class="col-sm-3">
-                                            Bachiller
-                                        </div>
-                                        <div class="col-sm-3">
-                                            Quinto Superior
-                                        </div>
-                                        <div class="col-sm-2">
-                                            Ciclo: 5
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="col-sm-1 fui fa-2x" style="color:gray;">
-                                    1 l
-                                </div>
-                            </div>
-                            <hr />
-                            <div class="row">
-                                <div class="col-sm-1">
-                                    <span>Incluir </span><input type="checkbox" />
-                                </div>
-                                <div class="col-sm-10">
-                                    <div class="row">
-                                        <div class="col-sm-2">
-                                            <strong>01/2001 - 12/2005</strong>
-                                        </div>
-                                        <div class="col-sm-5">
-                                            <span><strong>Universidad Tecnológica del Perú</strong></span>
-                                        </div>
-
-                                        <div class="col-sm-5">
-                                            Estudio: <strong>ING. SISTEMAS E INFORMATICA</strong>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-sm-2">
-
-                                        </div>
-                                        <div class="col-sm-2">
-                                            <span class="valor-icono2">B</span><span class="valor-palabra">Universitario</span>
-                                        </div>
-                                        <div class="col-sm-3">
-                                            Bachiller
-                                        </div>
-                                        <div class="col-sm-3">
-                                            Quinto Superior
-                                        </div>
-                                        <div class="col-sm-2">
-                                            Ciclo: 5
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="col-sm-1 fui fa-2x" style="color:gray;">
-                                    1 l
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
+
         <div class="col-sm-12">
 
             <div class="panel-group" id="mi-cv-experiencia-laboral" role="tablist" aria-multiselectable="true">
@@ -308,7 +79,7 @@
                         <h5 class="panel-title">
                             <a data-toggle="collapse" data-parent="#accordion" href="#collapseMiCVExperienciaLaboral" aria-expanded="true" aria-controls="collapseMiCVExperienciaLaboral" style="font-size:12px;">
                                 Experiencia laboral
-                            </a><span style="font-size:12px;">&nbsp;&nbsp; -&nbsp;&nbsp;Terminado <input type="checkbox"></span>
+                            </a>@*<span style="font-size:12px;">&nbsp;&nbsp; -&nbsp;&nbsp;Terminado <input type="checkbox"></span>*@
                         </h5>
                     </div>
                     <div id="collapseMiCVExperienciaLaboral" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingMiCVExperienciaLaboral">
@@ -435,7 +206,7 @@
                         <h5 class="panel-title">
                             <a data-toggle="collapse" data-parent="#accordion" href="#collapseMiCVInformacionAdicional" aria-expanded="true" aria-controls="collapseMiCVInformacionAdicional" style="font-size:12px;">
                                 Información Adicional
-                            </a><span style="font-size:12px;">&nbsp;&nbsp; -&nbsp;&nbsp;Terminado <input type="checkbox"></span>
+                            </a>@*<span style="font-size:12px;">&nbsp;&nbsp; -&nbsp;&nbsp;Terminado <input type="checkbox"></span>*@
                         </h5>
                     </div>
                     <div id="collapseMiCVInformacionAdicional" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingMiCVInformacionAdicional">
@@ -1685,7 +1456,49 @@
 
     $(document).ready(function () {
         $("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta3 color-paleta5").addClass("color-paleta4");
+        //LoadPartialView("mi-cv-opciones", "/Alumno/OpcionesCV");
+        
+        //$("#mi-cv-opciones").load("/Alumno/OpcionesCV");
+        var Id = 1;
+        //var Id = $("#ListaCVs").val();
+
+        //LoadPartialView("alumno-datos-generales", "/Alumno/AlumnoDatosGenerales/" + Id);
+        //LoadPartialView("mi-cv-educacion", "/Alumno/AlumnoEstudiosCV/" + Id);
+        //Cargar("mi-cv-opciones", "/Alumno/OpcionesCV/");
+        Cargar("alumno-datos-generales", "/Alumno/AlumnoDatosGenerales/" + Id);
+        Cargar("mi-cv-educacion", "/Alumno/AlumnoEstudiosCV/" + Id);
+
+
     });
+    $("#ListaCVs").change(function () {
+        alert('Hola');
+        var Id = $(this).val();
+        //LoadPartialView("mi-cv-opciones", "/Alumno/OpcionesCV/" + Id);
+        //LoadPartialView("alumno-datos-generales", "/Alumno/AlumnoDatosGenerales/" + Id);
+        //LoadPartialView("mi-cv-educacion", "/Alumno/AlumnoEstudiosCV/" + Id);
+        //Cargar("mi-cv-opciones", "/Alumno/OpcionesCV/" + Id);
+        Cargar("alumno-datos-generales", "/Alumno/AlumnoDatosGenerales/" + Id);
+        Cargar("mi-cv-educacion", "/Alumno/AlumnoEstudiosCV/" + Id);
+    });
+    function LoadPartialView(id, link) {
+        alert(id + url);
+        $("#"+id).load(url);
+    }
+    function Cargar(id, link) {
+        $.ajax({
+            url: link,
+            contentType: 'application/html; charset=utf-8',
+            type: 'GET',
+            dataType: 'html'
 
-
+        })
+        .success(function (result) {
+            //alert(result);
+            //$("#" + id).html(result);
+            document.getElementById(id).innerHTML = result;
+        })
+        .error(function (xhr, status) {
+            alert(status);
+        })
+    }
 </script>

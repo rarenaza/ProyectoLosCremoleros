@@ -4,15 +4,22 @@ using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using UTP.PortalEmpleabilidad.Logica;
 using UTP.PortalEmpleabilidad.Modelo;
 using UTP.PortalEmpleabilidad.Modelo.Vistas.Ofertas;
+using UTPPrototipo.Models.ViewModels;
 
 namespace UTPPrototipo.Controllers
 {
     public class AlumnoController : Controller
     {
         LNAlumno lnAlumno = new LNAlumno();
+        LNAlumnoEstudio lnAlumnoEstudio = new LNAlumnoEstudio();
+        LNAlumnoCV lnAlumnoCV = new LNAlumnoCV();
+        LNAlumnoCVEstudio lnAlumnoCVEstudio = new LNAlumnoCVEstudio();
+
+        LNPlantillaCV lnPlantillaCV = new LNPlantillaCV();
 
         LNOferta lnoferta = new LNOferta();
 
@@ -60,21 +67,174 @@ namespace UTPPrototipo.Controllers
                     
             
         }
+
+        private VistaPanelAlumnoMiCV VistaMICV(int? IdCV)
+        {
+            //Declaracion de objetos
+            VistaPanelAlumnoMiCV panel = new VistaPanelAlumnoMiCV();
+            AlumnoCV alumnocv = new AlumnoCV();
+            //Datos del Alumno
+            panel.alumno = lnAlumno.ObtenerAlumnoPorCodigo(codigoAlumno);
+
+            //Lista de Curriculos del Alumno
+            alumnocv.IdAlumno = panel.alumno.IdAlumno;
+            alumnocv.IdPlantillaCV = int.Parse(Common.Util.ObtenerSettings("IdPlantillaCV"));
+            alumnocv.NombreCV = Common.Util.ObtenerSettings("NameAlumnoCV");
+            alumnocv.IncluirTelefonoFijo = false;
+            alumnocv.IncluirCorreoElectronico2 = false;
+            alumnocv.IncluirFoto = false;
+            alumnocv.IncluirDireccion = false;
+            alumnocv.Perfil = string.Empty;
+            alumnocv.EstadoCV = "CVACT";
+            alumnocv.CreadoPor = "administrador";
+            panel.ListaAlumnoCV = lnAlumnoCV.ObtenerAlumnoCVPorIdAlumno(alumnocv);
+
+            //Hallar el ID del Curriculo del alumno
+            if (IdCV != null)
+            {
+                panel.IdCV = (int)IdCV;
+                for (int i = 0; i <= panel.ListaAlumnoCV.Count - 1; i++) {
+                    if (panel.ListaAlumnoCV[i].IdCV == IdCV)
+                    {
+                        panel.IdPlantillaCV = panel.ListaAlumnoCV[i].IdPlantillaCV;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                panel.IdCV = panel.ListaAlumnoCV[0].IdCV;
+                panel.IdPlantillaCV = panel.ListaAlumnoCV[0].IdPlantillaCV;
+            }
+            
+
+            //Lista las plantilla de curriculo
+            panel.ListaPlantillaCV = lnPlantillaCV.MostrarPlantillaCV();
+
+
+            return panel;
+        }
         public ActionResult MiCV()
         {
-            VistaPanelAlumnoMiCV panel = lnAlumno.ObtenerPanelMiCV(codigoAlumno);
+            
+            VistaPanelAlumnoMiCV panel = new VistaPanelAlumnoMiCV();
+            panel = VistaMICV(null);
+
             return View(panel);
         }
+        public ActionResult OpcionesCV(int? Id)
+        {
+            VistaPanelAlumnoMiCV panel = new VistaPanelAlumnoMiCV();
+            panel = VistaMICV(Id);
+ 
+
+            List<SelectListItem> listItems = new List<SelectListItem>();
+            foreach (AlumnoCV entidad in panel.ListaAlumnoCV)
+            {
+                SelectListItem item = new SelectListItem();
+                item.Text = entidad.NombreCV;
+                item.Value = entidad.IdCV.ToString();
+                listItems.Add(item);
+            }
+            List<SelectListItem> listItemsPlantillaCV = new List<SelectListItem>();
+            foreach (PlantillaCV entidad in panel.ListaPlantillaCV)
+            {
+                SelectListItem item = new SelectListItem();
+                item.Text = entidad.Plantilla;
+                item.Value = entidad.IdPlantillaCV.ToString();
+                listItemsPlantillaCV.Add(item);
+            }
+            ViewBag.ListaAlumnoCV = listItems;
+            ViewBag.ListaPlantillaCV = listItemsPlantillaCV;
+
+            return PartialView("_OpcionesAlumnoCV");
+        }
+        //public ActionResult OpcionesCV()
+        //{
+        //    VistaPanelAlumnoMiCV panel = new VistaPanelAlumnoMiCV();
+        //    Alumno alumno = new Alumno();
+        //    AlumnoCV alumnocv = new AlumnoCV();
+
+        //    alumno = lnAlumno.ObtenerAlumnoPorCodigo(codigoAlumno);
+        //    alumnocv.IdAlumno = alumno.IdAlumno;
+        //    alumnocv.IdPlantillaCV = int.Parse(Common.Util.ObtenerSettings("IdPlantillaCV"));
+        //    alumnocv.NombreCV = Common.Util.ObtenerSettings("NameAlumnoCV");
+        //    alumnocv.IncluirTelefonoFijo = false;
+        //    alumnocv.IncluirCorreoElectronico2 = false;
+        //    alumnocv.IncluirFoto = false;
+        //    alumnocv.Perfil = string.Empty;
+        //    alumnocv.EstadoCV = "CVACT";
+
+        //    alumnocv.CreadoPor = "administrador";
+        //    var listaalumnocv = lnAlumnoCV.ObtenerAlumnoCVPorIdAlumno(alumnocv);
+        //    var listaplantillacv = lnPlantillaCV.MostrarPlantillaCV();
+
+        //    List<SelectListItem> listItems = new List<SelectListItem>();
+        //    foreach (AlumnoCV entidad in listaalumnocv)
+        //    {
+        //        SelectListItem item = new SelectListItem();
+        //        item.Text = entidad.NombreCV;
+        //        item.Value = entidad.IdCV.ToString();
+        //        listItems.Add(item);
+        //    }
+        //    List<SelectListItem> listItemsPlantillaCV = new List<SelectListItem>();
+        //    foreach (PlantillaCV entidad in listaplantillacv)
+        //    {
+        //        SelectListItem item = new SelectListItem();
+        //        item.Text = entidad.Plantilla;
+        //        item.Value = entidad.IdPlantillaCV.ToString();
+        //        listItemsPlantillaCV.Add(item);
+        //    }
+        //    panel.IdPlantillaCV = listaalumnocv[0].IdPlantillaCV;
+        //    ViewBag.ListaAlumnoCV = listItems;
+        //    ViewBag.ListaPlantillaCV = listItemsPlantillaCV;
+
+        //    return PartialView("_OpcionesAlumnoCV", panel);
+        //}
+        public ActionResult AlumnoDatosGenerales(int Id)
+        {
+
+            Alumno alumno = new Alumno();
+            AlumnoCV alumnocv = new AlumnoCV();
+
+            alumno = lnAlumno.ObtenerAlumnoPorCodigo(codigoAlumno);
+            if (alumno != null)
+            {
+                alumnocv = lnAlumnoCV.ObtenerAlumnoCVPorIdAlumnoYIdCV(alumno.IdAlumno, Id);
+                alumno.IncluirCorreoElectronico1 = alumnocv.IncluirCorreoElectronico2;
+                alumno.IncluirFoto = alumnocv.IncluirFoto;
+                alumno.IncluirTelefonoFijo = alumnocv.IncluirTelefonoFijo;
+                alumno.IncluirDireccion = alumnocv.IncluirDireccion;
+                alumno.Perfil = alumnocv.Perfil;
+            }
+            return PartialView("_AlumnoDatosGenerales", alumno);
+        }
+
+        public ActionResult AlumnoEstudiosCV(int Id)
+        {
+
+            Alumno alumno = new Alumno();
+            List<AlumnoEstudio> listaalumnoestudio = new List<AlumnoEstudio>();
+
+            alumno = lnAlumno.ObtenerAlumnoPorCodigo(codigoAlumno);
+            listaalumnoestudio = lnAlumnoEstudio.ObtenerAlumnoEstudioPorIdAlumno(alumno.IdAlumno);
+            if (alumno != null && listaalumnoestudio.Count>0)
+            {
+                listaalumnoestudio = lnAlumnoCVEstudio.ObtenerAlumnoCVEstudioPorIdCVYIdEstudio(Id, listaalumnoestudio);
+            }
+            return PartialView("_AlumnoEstudiosCV", listaalumnoestudio);
+        }
+
+
+
+
 
         //vista cabeceraa Oferta
         public ActionResult VistaCabecera()
         {
-            string codigoAlumno = "82727128";
-
+            //string codigoAlumno = "82727128";
             VistaPanelAlumno panel = lnAlumno.ObtenerPanel(codigoAlumno);
-
             return PartialView("_DatosPersonales", panel.Alumno);
-
         }
 
 
