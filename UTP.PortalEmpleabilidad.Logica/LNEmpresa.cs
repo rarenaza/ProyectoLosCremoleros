@@ -99,9 +99,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 empresaLocacion.NombreLocacion = Convert.ToString(locacionBD["NombreLocacion"]);
                 empresaLocacion.CorreoElectronico = Convert.ToString(locacionBD["CorreoElectronico"]);
                 empresaLocacion.TelefonoFijo = Convert.ToString(locacionBD["TelefonoFijo"]);
-                empresaLocacion.DireccionLinea1 = Convert.ToString(locacionBD["DireccionLinea1"]);
-                empresaLocacion.DireccionLinea2 = Convert.ToString(locacionBD["DireccionLinea2"]);
-                empresaLocacion.DireccionLinea3 = Convert.ToString(locacionBD["DireccionLinea3"]);
+                empresaLocacion.Direccion = Convert.ToString(locacionBD["Direccion"]);                
                 empresaLocacion.DireccionDistrito = Convert.ToString(locacionBD["DireccionDistrito"]);
                 empresaLocacion.DireccionCiudad = Convert.ToString(locacionBD["DireccionCiudad"]);
                 empresaLocacion.DireccionRegion = Convert.ToString(locacionBD["DireccionRegion"]);

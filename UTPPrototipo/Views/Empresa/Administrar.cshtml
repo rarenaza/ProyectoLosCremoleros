@@ -1,125 +1,39 @@
-﻿@model UTP.PortalEmpleabilidad.Modelo.Empresa
+﻿@*@model UTP.PortalEmpleabilidad.Modelo.Empresa*@
 
 @{
     Layout = "~/Views/Empresa/_LayoutEmpresa.cshtml";
     ViewBag.Title = "Admnistrar el registro de la Empresa";
 }
+
 <div class="container" style="margin-top:2px;">
 
+    <!--Panel superior donde se muestra los datos del usuario autenticado. - Ancho 12-->
     @{Html.RenderAction("VistaCabecera", "Empresa");}
 
-    @Html.Action("_AdministrarDatosGenerales", "Empresa", new { IdEmpresa = @Model.IdEmpresa })
+    <!--Panel de datos generales de la emrpesa - Ancho 12-->
+    @Html.Action("_AdministrarDatosGenerales", "Empresa", new { IdEmpresa = @ViewBag.IdEmpresa })
 
     <div class="row fuente-pequeña">
-        <div class="col-sm-6">
-            <h5>Ubicaciones</h5>
 
-            <div class="row grilla1-cabecera color-paleta4">
-                <div class="col-sm-2">
-                    Ubicación
-                </div>
-                <div class="col-sm-2">
-                    Tipo
-                </div>
-                <div class="col-sm-4">
-                    Dirección
-                </div>
-                <div class="col-sm-2">
-                    Estado
-                </div>
-            </div>
-
-            @foreach (var locacion in Model.Locaciones)
-                {
-                    <div class="row grilla1-linea">
-                    <div class="col-sm-2">
-                        <a href="../Empresa/VerUbicacion">@locacion.NombreLocacion</a>
-                    </div>
-                    <div class="col-sm-2">
-                        @locacion.TipoLocacion.Valor
-                    </div>
-                    <div class="col-sm-4">
-                        @locacion.DireccionLinea1
-                    </div>
-                    <div class="col-sm-2">
-                        @locacion.EstadoLocacion.Valor
-                    </div>
-                    <div class="col-sm-2 fui fa-2x" style="color:gray;">
-                        <a href="ModificaUbicacion">1</a> <a href="EliminaUbicacion">l</a>
-                    </div>
-                </div>
-                }
-
-            <br />
-            <div class="row">
-                <div class="col-sm-12" style="text-align:right;">
-                    <button data-toggle="modal" data-target="#Modal-nueva-ubicacion" class="btn btn-default color-paleta4">Nueva Ubicación</button>
-                </div>
-            </div>
-            <hr />
-
+        <!--Columna de Ubicaciones - Ancho 6-->
+        <div id="divListaUbicaciones" class="col-sm-6">
+            @Html.Action("_AdministrarUbicaciones", "Empresa", new { IdEmpresa = @ViewBag.IdEmpresa })
         </div>
 
-        <div class="col-sm-6">
-            <h5>Usuarios</h5>
+            <!--Columna de Usuarios - Ancho 6-->
+            @Html.Action("_AdministrarUsuarios", "Empresa", new { IdEmpresa = @ViewBag.IdEmpresa })
 
-            <div class="row grilla1-cabecera color-paleta4">
-                <div class="col-sm-3">
-                    Usuario
-                </div>
-                <div class="col-sm-3">
-                    Nombre
-                </div>
-                <div class="col-sm-2">
-                    Rol
-                </div>
-                <div class="col-sm-2">
-                    Estado
-                </div>
-            </div>
-
-            @foreach (var usuario in Model.Usuarios)
-                {
-                    <div class="row grilla1-linea">
-                    <div class="col-sm-3">
-                        <a href="../Empresa/VerUsuarioEmpresa">@usuario.Usuario</a>
-                    </div>
-                    <div class="col-sm-3">
-                        @usuario.Nombres @usuario.Apellidos
-                    </div>
-                    <div class="col-sm-2">
-                        @usuario.Usuario.Rol.Valor
-                    </div>
-                    <div class="col-sm-2">
-                        @usuario.Usuario.EstadoUsuario.Valor
-                    </div>
-                    <div class="col-sm-2 fui fa-2x" style="color:gray;">
-                        <a href="ModificaUsuarioEmpresa">1</a> <a href="EliminaUsuarioEmpresa">l</a>
-                    </div>
-                </div>
-                }
-
-
-
-            <br />
-            <div class="row">
-                <div class="col-sm-12" style="text-align:right;">
-                    <button class="btn btn-default color-paleta4">Nuevo Usuario</button>
-                </div>
-            </div>
-            <hr />
         </div>
-    </div>
 </div>
 
 
 <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
-<!-- Modal -->
+<!-- Modal Datos Generales -->
 <div div="divEditarModal" class="modal" id="Modal-modifica-datos-empresa" tabindex="-1" role="dialog" aria-labelledby="ModificaDatosEmpresa" aria-hidden="true">
 
-    @using (Ajax.BeginForm("EditarEmpresa", "Empresa", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "datos-empresa", OnComplete = "cerrarEditarEmpresa" }))
+    @using (Ajax.BeginForm("EditarEmpresa", "Empresa", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "datos-empresa", OnComplete = "cerrarModal" }))
     {
         @Html.AntiForgeryToken()
 
@@ -130,6 +44,32 @@
 
 </div>
 
+<!-- Modal Ubicaciones-->
+<div id="divModalNuevaUbicacion" class="modal" tabindex="-1" role="dialog" aria-labelledby="NuevaUbicacion" aria-hidden="true">
+
+    @using (Ajax.BeginForm("_AdministrarNuevaUbicacion", "Empresa", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divListaUbicaciones", OnComplete = "cerrarModal" }))
+    {    
+        @Html.AntiForgeryToken()
+        
+        <div id="divNuevaUbicacionContenedor" class="modal-dialog">
+
+        </div>
+    
+    }
+</div>
+
+<!-- Modal Usuarios-->
+<div class="modal" id="divModalNuevoUsuario" tabindex="-1" role="dialog" aria-labelledby="NuevaUbicacion" aria-hidden="true">
+
+    @using (Ajax.BeginForm("AdministrarNuevoUsuario", "Empresa", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divListaUbicaciones", OnComplete = "cerrarModal" }))
+    {
+        @Html.AntiForgeryToken()
+    
+        <div id="divNuevoUsuarioContenedor" class="modal-dialog">
+
+        </div>    
+    }
+</div>
 
 <script>
     $(document).ready(function () {
@@ -145,287 +85,39 @@
             });
         });
 
+        $('#btnNuevaUbicacion').click(function () {
+            debugger;
+            var url = "/Empresa/_AdministrarNuevaUbicacion"; // el url del controlador            
+            $.get(url, function (data) {
+                $('#divNuevaUbicacionContenedor').html(data);
+                $('#divModalNuevaUbicacion').modal('show');
+            });
+        });
+
+        $('#btnNuevoUsuario').click(function () {
+
+            var url = "/Empresa/AdministrarNuevoUsuario"; // el url del controlador           
+            $.get(url, function (data) {
+                $('#divNuevoUsuarioContenedor').html(data);
+                $('#divModalNuevoUsuario').modal('show');
+            });
+        });
     });
 
-    function cerrarEditarEmpresa() {
+    function cerrarModal() {
 
         //debugger;
+        //$('#divEditarModal').modal('hide'); Prueba 1
+
+        //$("#divEditarModal").modal('hide').on('hidden.bs.modal', functionThatEndsUpDestroyingTheDOM); //Prueba 2
+
+        //$('#divEditarModal').removeClass('fade');
         //$('#divEditarModal').modal('hide');
 
-        //$("#divEditarModal").modal('hide').on('hidden.bs.modal', functionThatEndsUpDestroyingTheDOM);
-
-        $('#divEditarModal').removeClass('fade');
-        $('#divEditarModal').modal('hide');
-
-        $('.modal.in').modal('hide')
+        $('.modal.in').modal('hide');
     }
 
 </script>
 
 
 
-
-
-<!-- Modal -->
-<div class="modal" id="Modal-nueva-ubicacion" tabindex="-1" role="dialog" aria-labelledby="NuevaUbicacion" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="NuevaUbicacion">Nueva Ubicación</h4>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="input-group fuente-pequeña">
-                            <span class="input-group-addon">Tipo</span>
-                            <select id="Lista" class="form-control">
-                                <option value="" selected>Tipo de Ubicación</option>
-                                <option>
-                                    Oficina Principal
-                                </option>
-                                <option>
-                                    Sucursal
-                                </option>
-                                <option>
-                                    Planta
-                                </option>
-                            </select>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="input-group">
-                            <span class="input-group-addon">Nombre</span>
-                            <input type="text" class="form-control" placeholder="Nombre de la Ubicación">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="input-group">
-                            <span class="input-group-addon">E-Mail</span>
-                            <input type="text" class="form-control" placeholder="Dirección electrónica para la Ubicación">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="input-group">
-                            <span class="input-group-addon">Teléfono</span>
-                            <input type="text" class="form-control" placeholder="Teléfono de la Ubicación">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="input-group">
-                            <span class="input-group-addon">Dirección</span>
-                            <textarea class="form-control" placeholder="Calle y Número de la Ubicación, interior, depto, oficina, urbanización" rows="2"></textarea>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="input-group fuente-pequeña">
-                            <span class="input-group-addon">Departa-<br />mento</span>
-                            <select id="Lista" class="form-control">
-                                <option value="" selected>Departamento, Región o Estado</option>
-                                <option>Lima</option>
-                                <option>Cajamarca</option>
-                                <option>Loreto</option>
-                                <option>La Libertad</option>
-                                <option>Ancash</option>
-                                <option>Ica</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="input-group fuente-pequeña">
-                            <span class="input-group-addon">Ciudad</span>
-                            <select id="Lista" class="form-control">
-                                <option value="" selected>Seleccione Ciudad</option>
-                                <option>Lima</option>
-                                <option>Cajamarca</option>
-                                <option>Chincha</option>
-                                <option>Pisco</option>
-                                <option>Tacna</option>
-
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="input-group fuente-pequeña">
-                            <span class="input-group-addon">Distrito</span>
-                            <select id="Lista" class="form-control">
-                                <option value="" selected>Seleccione Distrito</option>
-                                <option>Cercado de Lima</option>
-                                <option>Barranco</option>
-                                <option>Miraflores</option>
-                                <option>San Isidro</option>
-                                <option>Pueblo Libre</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="input-group fuente-pequeña">
-                            <span class="input-group-addon">Estado</span>
-                            <select id="Lista" class="form-control">
-                                <option value="" selected>Seleccione Estado</option>
-                                <option>Activa</option>
-                                <option>No Activa</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12" style="text-align:right;">
-                        <button type="button" class="btn btn-default color-paleta4 fuente-pequeña" style="color: white; margin-bottom: 10px;">Guardar</button>
-                    </div>
-                </div>
-
-            </div>
-            <div class="modal-footer">
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Modal -->
-<div class="modal" id="Modal-nuevo-usuario" tabindex="-1" role="dialog" aria-labelledby="NuevaUbicacion" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="NuevoUsuario">Nuevo Usuario</h4>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="input-group fuente-pequeña">
-                            <span class="input-group-addon">Tipo</span>
-                            <select id="Lista" class="form-control">
-                                <option value="" selected>Tipo de Ubicación</option>
-                                <option>
-                                    Oficina Principal
-                                </option>
-                                <option>
-                                    Sucursal
-                                </option>
-                                <option>
-                                    Planta
-                                </option>
-                            </select>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="input-group">
-                            <span class="input-group-addon">Nombre</span>
-                            <input type="text" class="form-control" placeholder="Nombre de la Ubicación">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="input-group">
-                            <span class="input-group-addon">E-Mail</span>
-                            <input type="text" class="form-control" placeholder="Dirección electrónica para la Ubicación">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="input-group">
-                            <span class="input-group-addon">Teléfono</span>
-                            <input type="text" class="form-control" placeholder="Teléfono de la Ubicación">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="input-group">
-                            <span class="input-group-addon">Dirección</span>
-                            <textarea class="form-control" placeholder="Calle y Número de la Ubicación, interior, depto, oficina, urbanización" rows="2"></textarea>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="input-group fuente-pequeña">
-                            <span class="input-group-addon">Departa-<br />mento</span>
-                            <select id="Lista" class="form-control">
-                                <option value="" selected>Departamento, Región o Estado</option>
-                                <option>Lima</option>
-                                <option>Cajamarca</option>
-                                <option>Loreto</option>
-                                <option>La Libertad</option>
-                                <option>Ancash</option>
-                                <option>Ica</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="input-group fuente-pequeña">
-                            <span class="input-group-addon">Ciudad</span>
-                            <select id="Lista" class="form-control">
-                                <option value="" selected>Seleccione Ciudad</option>
-                                <option>Lima</option>
-                                <option>Cajamarca</option>
-                                <option>Chincha</option>
-                                <option>Pisco</option>
-                                <option>Tacna</option>
-
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="input-group fuente-pequeña">
-                            <span class="input-group-addon">Distrito</span>
-                            <select id="Lista" class="form-control">
-                                <option value="" selected>Seleccione Distrito</option>
-                                <option>Cercado de Lima</option>
-                                <option>Barranco</option>
-                                <option>Miraflores</option>
-                                <option>San Isidro</option>
-                                <option>Pueblo Libre</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="input-group fuente-pequeña">
-                            <span class="input-group-addon">Estado</span>
-                            <select id="Lista" class="form-control">
-                                <option value="" selected>Seleccione Estado</option>
-                                <option>Activa</option>
-                                <option>No Activa</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12" style="text-align:right;">
-                        <button type="button" class="btn btn-default color-paleta4 fuente-pequeña" style="color: white; margin-bottom: 10px;">Guardar</button>
-                    </div>
-                </div>
-
-            </div>
-            <div class="modal-footer">
-            </div>
-        </div>
-    </div>
-</div>

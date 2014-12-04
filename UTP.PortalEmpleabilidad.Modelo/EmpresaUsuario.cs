@@ -20,6 +20,15 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string TelefonoFijo { get; set; }
         public string TelefonoAnexo { get; set; }
         public string TelefonoCelular { get; set; }
+        public EmpresaLocacion EmpresaLocacion { get; set; }
+
+        public EmpresaUsuario() 
+        {
+            Empresa = new Empresa();
+            Usuario = new Usuario();
+            TipoDocumento = new ListaValor();
+            Sexo = new ListaValor();
+        }
 
     }
 }

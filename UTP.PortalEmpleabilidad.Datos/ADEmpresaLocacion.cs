@@ -37,6 +37,37 @@ namespace UTP.PortalEmpleabilidad.Datos
             return dtResultado;
         }
 
+        public void Insertar(EmpresaLocacion empresaLocacion, string usuarioCreacion)
+        {
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "EmpresaLocacion_Insertar";
+
+                //Parámetros:
+                cmd.Parameters.Add(new SqlParameter("@IdEmpresa", empresaLocacion.IdEmpresa));
+                cmd.Parameters.Add(new SqlParameter("@TipoLocacion", empresaLocacion.TipoLocacion.IdListaValor));
+                cmd.Parameters.Add(new SqlParameter("@NombreLocacion", empresaLocacion.NombreLocacion));
+                cmd.Parameters.Add(new SqlParameter("@CorreoElectronico", empresaLocacion.CorreoElectronico));
+                cmd.Parameters.Add(new SqlParameter("@TelefonoFijo", empresaLocacion.TelefonoFijo));
+                cmd.Parameters.Add(new SqlParameter("@Direccion", empresaLocacion.Direccion));
+                cmd.Parameters.Add(new SqlParameter("@DireccionDistrito", empresaLocacion.DireccionDistrito));
+                cmd.Parameters.Add(new SqlParameter("@DireccionCiudad", empresaLocacion.DireccionCiudad));
+                cmd.Parameters.Add(new SqlParameter("@DireccionRegion", empresaLocacion.DireccionRegion));
+                cmd.Parameters.Add(new SqlParameter("@EstadoLocacion", empresaLocacion.EstadoLocacion.IdListaValor));
+                cmd.Parameters.Add(new SqlParameter("@CreadoPor", usuarioCreacion));
+
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                cmd.ExecuteNonQuery();
+
+                conexion.Close();
+            }
+        }
 
     }
 }

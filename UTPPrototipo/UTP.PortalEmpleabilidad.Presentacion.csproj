@@ -739,6 +739,10 @@
     <Content Include="Views\Alumno\_AlumnoDatosGenerales.cshtml" />
     <Content Include="Views\Alumno\_AlumnoEstudiosCV.cshtml" />
     <Content Include="Views\Alumno\_AlumnoEventos.cshtml" />
+    <Content Include="Views\Empresa\_AdministrarUbicaciones.cshtml" />
+    <Content Include="Views\Empresa\_AdministrarUsuarios.cshtml" />
+    <Content Include="Views\Empresa\_AdministrarNuevaUbicacion.cshtml" />
+    <Content Include="Views\Empresa\_AdministrarNuevoUsuario.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

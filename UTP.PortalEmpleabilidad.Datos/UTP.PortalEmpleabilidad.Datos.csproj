@@ -48,6 +48,7 @@
     <Compile Include="ADConexion.cs" />
     <Compile Include="ADContenido.cs" />
     <Compile Include="ADEmpresaLocacion.cs" />
+    <Compile Include="ADEmpresaUsuario.cs" />
     <Compile Include="ADEvento.cs" />
     <Compile Include="ADGeneral.cs" />
     <Compile Include="ADLista.cs" />

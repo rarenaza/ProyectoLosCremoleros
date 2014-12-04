@@ -1,0 +1,57 @@
+﻿@model IEnumerable<UTP.PortalEmpleabilidad.Modelo.EmpresaUsuario>
+
+<div id="divListaUsuarios" class="col-sm-6">
+    <h5>Usuarios</h5>
+
+    <div class="row grilla1-cabecera color-paleta4">
+        <div class="col-sm-3">
+            Usuario
+        </div>
+        <div class="col-sm-3">
+            Nombre
+        </div>
+        <div class="col-sm-2">
+            Rol
+        </div>
+        <div class="col-sm-2">
+            Estado
+        </div>
+    </div>
+
+    @foreach (var usuario in Model)
+    {
+        <div class="row grilla1-linea">
+            <div class="col-sm-3">
+                <a href="../Empresa/VerUsuarioEmpresa">@usuario.Usuario.NombreUsuario</a>
+            </div>
+            <div class="col-sm-3">
+                @usuario.Nombres @usuario.Apellidos
+            </div>
+            <div class="col-sm-2">
+                @usuario.Usuario.Rol.Valor
+            </div>
+            <div class="col-sm-2">
+                @usuario.Usuario.EstadoUsuario.Valor
+            </div>
+            <div class="col-sm-2 fui fa-2x" style="color:gray;">
+                <a href="ModificaUsuarioEmpresa">1</a> <a href="EliminaUsuarioEmpresa">l</a>
+            </div>
+        </div>
+    }
+
+
+
+    <br />
+    <div class="row">
+        <div class="col-sm-12" style="text-align:right;">
+            <button class="btn btn-default color-paleta4">Nuevo Usuario</button>
+
+            <button data-toggle="modal" id="btnAgregarUsuario" data-target="#Modal-nuevo-usuario" class="btn btn-default color-paleta4" data-id="@ViewBag.IdEmpresa">
+                Nuevo Usuario
+            </button>     
+
+        </div>
+    </div>
+    <hr />
+</div>
+
