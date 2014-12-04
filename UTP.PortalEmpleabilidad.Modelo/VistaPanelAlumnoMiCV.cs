@@ -9,6 +9,8 @@ namespace UTP.PortalEmpleabilidad.Modelo
     public class VistaPanelAlumnoMiCV
     {
         public Alumno Alumno { get; set; }
+        public List<AlumnoEstudio> ListaAlumnoEstudio { get; set; }
+         
 
     }
 

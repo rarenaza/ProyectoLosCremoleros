@@ -32,6 +32,23 @@ namespace UTP.PortalEmpleabilidad.Datos
 
             return dt;
         }
+        public DataTable Evento_MostrarUltimos()
+        {
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "Evento_ListarUltimos";
+            cmd.Connection = cnn.cn;
+            cnn.Conectar();
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+
+            da.Fill(dt);
+
+            cnn.Desconectar();
+
+            return dt;
+        }
+
         public bool Evento_insertar(Evento evento)
         {
             try

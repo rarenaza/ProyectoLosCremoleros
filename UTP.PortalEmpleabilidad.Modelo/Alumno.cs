@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace UTP.PortalEmpleabilidad.Modelo
 {
-    public class Alumno
+    public partial class Alumno
     {
+        public int IdAlumno { get; set; }
         public string CodAlumnoUTP { get; set; }
         public string Usuario { get; set; }
         public string NumeroDocumento { get; set; }

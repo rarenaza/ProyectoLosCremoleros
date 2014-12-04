@@ -168,6 +168,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Common\Util.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AlumnoController.cs" />
     <Compile Include="Controllers\ContenidoController.cs" />
@@ -187,6 +188,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Temporal.cs" />
+    <Compile Include="Models\ViewModels\Alumno\VistaPanelAlumnoMiCV.cs" />
     <Compile Include="Models\ViewModels\Contenido\ContenidoVista.cs" />
     <Compile Include="Models\ViewModels\Empresa\VistaNuevasPostulaciones.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -627,8 +629,10 @@
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
     <Content Include="Scripts\jquery-2.1.1.min.map" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.jcarousel.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -726,10 +730,19 @@
     <Content Include="Views\Empresa\Administrar.cshtml" />
     <Content Include="Views\UTP\Empresa.cshtml" />
     <Content Include="Views\UTP\Oferta.cshtml" />
-    <Content Include="Views\UTP\UsuarioEmpresa.cshtml" />
-    <Content Include="Views\UTP\LocacionEmpresa.cshtml" />
-    <Content Include="Views\UTP\OfertaEmpresa.cshtml" />
+    <Content Include="Views\UTP\EmpresaUsuario.cshtml" />
+    <Content Include="Views\UTP\EmpresaLocacion.cshtml" />
     <Content Include="Views\UTP\verimagen.cshtml" />
+    <Content Include="Views\Empresa\_EditarEmpresa.cshtml" />
+    <Content Include="Views\Empresa\_AdministrarDatosGenerales.cshtml" />
+    <Content Include="Views\Alumno\_OpcionesAlumnoCV.cshtml" />
+    <Content Include="Views\Alumno\_AlumnoDatosGenerales.cshtml" />
+    <Content Include="Views\Alumno\_AlumnoEstudiosCV.cshtml" />
+    <Content Include="Views\Alumno\_AlumnoEventos.cshtml" />
+    <Content Include="Views\Empresa\_AdministrarUbicaciones.cshtml" />
+    <Content Include="Views\Empresa\_AdministrarUsuarios.cshtml" />
+    <Content Include="Views\Empresa\_AdministrarNuevaUbicacion.cshtml" />
+    <Content Include="Views\Empresa\_AdministrarNuevoUsuario.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

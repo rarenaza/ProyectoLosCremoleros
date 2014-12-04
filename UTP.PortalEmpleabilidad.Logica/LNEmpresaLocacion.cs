@@ -28,9 +28,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 locacion.NombreLocacion = Convert.ToString(fila["NombreLocacion"]);
                 locacion.CorreoElectronico = Convert.ToString(fila["CorreoElectronico"]);
                 locacion.TelefonoFijo = Convert.ToString(fila["TelefonoFijo"]);
-                locacion.DireccionLinea1 = Convert.ToString(fila["DireccionLinea1"]);
-                locacion.DireccionLinea2 = Convert.ToString(fila["DireccionLinea2"]);
-                locacion.DireccionLinea3 = Convert.ToString(fila["DireccionLinea3"]);
+                locacion.Direccion = Convert.ToString(fila["Direccion"]);                
                 locacion.DireccionDistrito = Convert.ToString(fila["DireccionDistrito"]);
                 locacion.DireccionCiudad = Convert.ToString(fila["DireccionCiudad"]);
                 locacion.DireccionRegion = Convert.ToString(fila["DireccionRegion"]);
@@ -40,6 +38,11 @@ namespace UTP.PortalEmpleabilidad.Logica
             }
          
             return locaciones;
+        }
+
+        public void Insertar(EmpresaLocacion empresaLocacion, string usuarioCreacion)
+        {
+            adEmpresaLocacion.Insertar(empresaLocacion, usuarioCreacion);
         }
         
     }

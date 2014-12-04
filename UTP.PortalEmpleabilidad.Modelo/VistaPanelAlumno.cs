@@ -9,6 +9,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
     public class VistaPanelAlumno
     {
         public Alumno Alumno { get; set; }
+        public List<Evento> ListaEventos { get; set; }
 
         //Otras propiedades.
     }

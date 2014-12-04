@@ -1,0 +1,46 @@
+﻿@model  UTPPrototipo.Models.ViewModels.VistaPanelAlumnoMiCV
+<div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingMiCVOpciones" style="padding: 2px 2px 2px 6px;background-color:rgb(14, 158, 149);color:white;">
+        <h5 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseMiCVOpciones" aria-expanded="true" aria-controls="collapseMiCVOpciones" style="font-size:12px;">
+                Opciones de CV
+            </a>
+        </h5>
+    </div>
+    <div id="collapseMiCVOpciones" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingMiCVOpciones">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="input-group fuente-pequeña">
+                        <span class="input-group-addon">CV</span>
+                        @Html.DropDownList("ListaCVs", new SelectList(ViewBag.ListaAlumnoCV, "Value", "Text"), new { @class = "form-control" })
+
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="input-group fuente-pequeña">
+                        <span class="input-group-addon">Plantilla</span>
+                        @Html.DropDownListFor(m => m.IdPlantillaCV, new SelectList(ViewBag.ListaPlantillaCV, "Value", "Text"), new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <span>
+                        <button type="button" class="btn btn-default fuente-pequeña color-paleta4" style="color:white;">Crear Nuevo</button>
+                    </span>
+                </div>
+
+
+                <div class="col-sm-1">
+                    <span class="fuente-pequeña">
+                        <a href="#">Ver CV</a>
+                    </span>
+                </div>
+                <div class="col-sm-1">
+                    <span class="fuente-pequeña">
+                        <a href="#">Descargar</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

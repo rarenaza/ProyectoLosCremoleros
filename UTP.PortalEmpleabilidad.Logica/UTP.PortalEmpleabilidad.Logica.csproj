@@ -39,9 +39,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Funciones.cs" />
     <Compile Include="LNAlumno.cs" />
+    <Compile Include="LNAlumnoCV.cs" />
+    <Compile Include="LNAlumnoCVEstudio.cs" />
+    <Compile Include="LNAlumnoEstudio.cs" />
     <Compile Include="LNContenido.cs" />
     <Compile Include="LNEmpresaLocacion.cs" />
+    <Compile Include="LNEmpresaUsuario.cs" />
     <Compile Include="LNEvento.cs" />
     <Compile Include="LNGeneral.cs" />
     <Compile Include="LNLista.cs" />
@@ -52,6 +57,7 @@
     <Compile Include="LNOfertaEstudio.cs" />
     <Compile Include="LNOfertaInformacionAdicional.cs" />
     <Compile Include="LNOfertaSectorEmpresarial.cs" />
+    <Compile Include="LNPlantillaCV.cs" />
     <Compile Include="LNUsuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

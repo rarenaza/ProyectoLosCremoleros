@@ -41,10 +41,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ADAlumno.cs" />
+    <Compile Include="ADAlumnoCV.cs" />
+    <Compile Include="ADAlumnoCVEstudio.cs" />
+    <Compile Include="ADAlumnoEstudio.cs" />
     <Compile Include="ADBase.cs" />
     <Compile Include="ADConexion.cs" />
     <Compile Include="ADContenido.cs" />
     <Compile Include="ADEmpresaLocacion.cs" />
+    <Compile Include="ADEmpresaUsuario.cs" />
     <Compile Include="ADEvento.cs" />
     <Compile Include="ADGeneral.cs" />
     <Compile Include="ADLista.cs" />
@@ -54,6 +58,7 @@
     <Compile Include="ADOfertaInformacionAdicional.cs" />
     <Compile Include="ADOfertaEstudio.cs" />
     <Compile Include="ADOfertaSectorEmpresarial.cs" />
+    <Compile Include="ADPlantilla.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

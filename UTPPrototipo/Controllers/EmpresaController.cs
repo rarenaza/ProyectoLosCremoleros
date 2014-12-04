@@ -215,12 +215,12 @@ namespace UTPPrototipo.Controllers
         {
             Ticket ticket = (Ticket)Session["Ticket"];
 
-            LNEmpresa lnEmpresa = new LNEmpresa();
-            var empresa = lnEmpresa.ObtenerDatosEmpresaPorId(ticket.IdEmpresa);
+            //LNEmpresa lnEmpresa = new LNEmpresa();
+            //var empresa = lnEmpresa.ObtenerDatosEmpresaPorId(ticket.IdEmpresa);
 
             ViewBag.IdEmpresa = ticket.IdEmpresa;
 
-            return View(empresa);
+            return View();
         }
 
         public ActionResult ObtenerNuevasPostulaciones()
@@ -298,5 +298,114 @@ namespace UTPPrototipo.Controllers
             return PartialView("_VistaOfertaMensajes", mensajes);
         }
         #endregion
+
+        [HttpGet] // esta acción devuelve la vista parcial con los datos para cargar el modal.
+        public PartialViewResult EditarEmpresa(int id)
+        {
+            //Se obtiene la información de la BD
+            var empresa = lnEmpresa.ObtenerDatosEmpresaPorId(id);
+            
+            return PartialView("_EditarEmpresa", empresa);
+        }
+
+        [ValidateAntiForgeryToken] // this action takes the viewModel from the modal
+        public PartialViewResult EditarEmpresa(Empresa empresa) //Este es como el submit
+        {  
+            if (ModelState.IsValid)
+            {
+                lnEmpresa.Actualizar(empresa);
+
+                empresa = lnEmpresa.ObtenerDatosEmpresaPorId(empresa.IdEmpresa);
+
+                return PartialView("_AdministrarDatosGenerales", empresa);
+
+                //return RedirectToAction("Administrar");
+            }
+
+            return PartialView("_EditarEmpresa", empresa);
+        }
+
+        public PartialViewResult _AdministrarDatosGenerales(int idEmpresa)
+        {
+            var empresa = lnEmpresa.ObtenerDatosEmpresaPorId(idEmpresa);
+
+            return PartialView("_AdministrarDatosGenerales", empresa);
+        }
+
+        public PartialViewResult _AdministrarUbicaciones(int idEmpresa)
+        {
+            var empresa = lnEmpresa.ObtenerDatosEmpresaPorId(idEmpresa);
+
+            return PartialView("_AdministrarUbicaciones", empresa.Locaciones);
+        }
+
+        public PartialViewResult _AdministrarUsuarios(int idEmpresa)
+        {
+            var empresa = lnEmpresa.ObtenerDatosEmpresaPorId(idEmpresa);
+
+            return PartialView("_AdministrarUsuarios", empresa.Usuarios);
+        }
+
+        [HttpGet] // esta acción devuelve la vista parcial con los datos para cargar el modal.
+        public PartialViewResult _AdministrarNuevaUbicacion()
+        {            
+            return PartialView("_AdministrarNuevaUbicacion");
+        }
+
+        [HttpGet] // esta acción devuelve la vista parcial con los datos para cargar el modal.
+        public PartialViewResult _AdministrarNuevoUsuario()
+        {
+            return PartialView("_AdministrarNuevoUsuario");
+        }
+
+        [ValidateAntiForgeryToken] 
+        public PartialViewResult _AdministrarNuevaUbicacion(EmpresaLocacion empresaLocacion) //Acá llega el submit
+        {
+            if (ModelState.IsValid)
+            {
+                Ticket ticket = (Ticket)Session["Ticket"];
+                string usuarioCreacion = ticket.UsuarioNombre;
+
+                empresaLocacion.IdEmpresa = ticket.IdEmpresa;
+                empresaLocacion.TipoLocacion.IdListaValor = "TIPO123";
+                empresaLocacion.NombreLocacion = "Nueva " + DateTime.Now.ToString();
+                empresaLocacion.CorreoElectronico = "correo " + DateTime.Now.ToString();
+                empresaLocacion.Direccion = "" + DateTime.Now.ToString();
+                empresaLocacion.TelefonoFijo = "" + DateTime.Now.ToString();
+                empresaLocacion.DireccionDistrito = "" + DateTime.Now.ToString(); ;
+                empresaLocacion.DireccionCiudad = "" + DateTime.Now.ToString(); ;
+                empresaLocacion.DireccionRegion = "" + DateTime.Now.ToString(); ;
+                empresaLocacion.EstadoLocacion.IdListaValor = "EST123";
+
+                LNEmpresaLocacion lnEmpresaLocacion = new LNEmpresaLocacion ();
+                lnEmpresaLocacion.Insertar(empresaLocacion, usuarioCreacion);
+
+                var empresa = lnEmpresa.ObtenerDatosEmpresaPorId(ticket.IdEmpresa);
+
+                return PartialView("_AdministrarUbicaciones", empresa.Locaciones);
+                
+            }
+
+            return PartialView("_AdministrarNuevaUbicacion", empresaLocacion);
+        }
+
+        [ValidateAntiForgeryToken] 
+        public PartialViewResult _AdministrarNuevoUsuario(EmpresaUsuario empresaUsuario) 
+        {
+            if (ModelState.IsValid)
+            {
+                Ticket ticket = (Ticket)Session["Ticket"];
+                string usuarioCreacion = ticket.UsuarioNombre;
+              
+                LNEmpresaUsuario lnEmpresaUsuario = new LNEmpresaUsuario();
+                lnEmpresaUsuario.Insertar(empresaUsuario, usuarioCreacion);
+
+                var empresa = lnEmpresa.ObtenerDatosEmpresaPorId(ticket.IdEmpresa);
+
+                return PartialView("_AdministrarUsuario", empresa.Usuarios);
+            }
+
+            return PartialView("_AdministrarNuevoUsuario", empresaUsuario);
+        }
     }
 }

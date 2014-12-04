@@ -24,6 +24,8 @@ namespace UTP.PortalEmpleabilidad.Modelo
        
       public DateTime  FechaEvento { get; set; }
 
+      public string FechaEventoTexto { get; set; }
+
        public string DireccionEvento { get; set; }
       public string DireccionDistrito{get;set;}
 	
@@ -50,6 +52,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
    public string ModificadoPor{get;set;}
 
    public DateTime FechaModificacion{get;set;}
+   public string LugarEvento { get; set; }
  
  
 

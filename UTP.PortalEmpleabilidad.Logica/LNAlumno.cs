@@ -12,8 +12,8 @@ namespace UTP.PortalEmpleabilidad.Logica
     public class LNAlumno
     {
         ADAlumno ad = new ADAlumno();
-
-        public Alumno ObtenerAlumnoPorCodigo(string codigoAlumno) 
+        
+        public Alumno ObtenerAlumnoPorCodigo(string codigoAlumno)
         {
             Alumno alumno = new Alumno();
 
@@ -21,6 +21,7 @@ namespace UTP.PortalEmpleabilidad.Logica
 
             if (dtResultado.Rows.Count > 0)
             {
+                alumno.IdAlumno = int.Parse( dtResultado.Rows[0]["IdAlumno"].ToString());
                 alumno.CodAlumnoUTP = dtResultado.Rows[0]["CodAlumnoUTP"].ToString();
                 alumno.Usuario = dtResultado.Rows[0]["Usuario"].ToString();
                 alumno.NumeroDocumento = dtResultado.Rows[0]["NumeroDocumento"].ToString();
@@ -35,15 +36,17 @@ namespace UTP.PortalEmpleabilidad.Logica
             }
 
             return alumno;
-        }    
+        }
+
+     
 
         public VistaPanelAlumno ObtenerPanel(string codigoAlumno)
         {
             VistaPanelAlumno panel = new VistaPanelAlumno();
-
+            LNEvento eventos=new LNEvento();
             //Se llenan los datos del alumno.
             panel.Alumno = ObtenerAlumnoPorCodigo(codigoAlumno);
-
+            panel.ListaEventos = eventos.Evento_MostrarUltimos();
             return panel;
         } 
 
@@ -67,14 +70,6 @@ namespace UTP.PortalEmpleabilidad.Logica
             return panel;
         }
 
-        public VistaPanelAlumnoMiCV ObtenerPanelMiCV(string codigoAlumno)
-        {
-            VistaPanelAlumnoMiCV panel = new VistaPanelAlumnoMiCV();
 
-            //Se llenan los datos del alumno.
-            panel.Alumno = ObtenerAlumnoPorCodigo(codigoAlumno);
-
-            return panel;
-        }
     }
 }

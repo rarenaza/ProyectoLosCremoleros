@@ -1,5 +1,4 @@
-﻿
-@model IEnumerable<UTP.PortalEmpleabilidad.Modelo.Contenido>
+﻿@model IEnumerable<UTP.PortalEmpleabilidad.Modelo.Contenido>
 @{
     ViewBag.Title = "Home";
     int contadorPanel = 1;
@@ -9,31 +8,32 @@
 
 <script src="~/Scripts/jquery.jcarousel.js"></script>
 
-    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-        <!-- Indicators -->
-        <ol class="carousel-indicators">
-            <li data-target="#carousel-example-generic" data-slide-to="0" class="active" style="border-color: gray;"></li>
-            <li data-target="#carousel-example-generic" data-slide-to="1" style="border-color: gray;"></li>
-            <li data-target="#carousel-example-generic" data-slide-to="2" style="border-color: gray;"></li>
-        </ol>
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#carousel-example-generic" data-slide-to="0" class="active" style="border-color: gray;"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="1" style="border-color: gray;"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="2" style="border-color: gray;"></li>
+    </ol>
 
-        <div class="carousel-inner" style="padding: 0px; width: 100%; height: auto;">
-           
+    <div class="carousel-inner" style="padding: 0px; width: 100%; height: auto;">
 
 
-            @{
-                var ListaIndex = ((List<Contenido>)(ViewBag.ListaIndex));
 
-                foreach (var itemIndex in ListaIndex)
+        @{
+            var ListaIndex = ((List<Contenido>)(ViewBag.ListaIndex));
+
+            foreach (var itemIndex in ListaIndex)
             {
 
                 if (contadorPanel == 1)
                 {
                     <div class="item active">
 
+
                         <img src='@Url.Action("Imagen_Index", "Home", new { id = itemIndex.IdContenido })' style="width:100%;" />
 
-                      @*  <img src='@Url.Action("Imagen_Noticia", "Home", new { id = itemIndex.IdContenido })' style="border:solid;border-width:1px;border-color:rgb(220,220,220);border-radius: 6px 6px 6px 6px;width:100%;" />*@
+                        @*  <img src='@Url.Action("Imagen_Noticia", "Home", new { id = itemIndex.IdContenido })' style="border:solid;border-width:1px;border-color:rgb(220,220,220);border-radius: 6px 6px 6px 6px;width:100%;" />*@
 
                         <div style="width: 100%; height:100%;position:absolute;top:35%;left:0px;padding-left:5%;">
                             <div class="container">
@@ -41,6 +41,7 @@
                                 @Html.Raw(itemIndex.SubTitulo)
                                 @Html.Raw(itemIndex.Descripcion)
                             </div>
+
                         </div>
                     </div>
 
@@ -48,6 +49,7 @@
                 else
                 {
                     <div class="item">
+
                         @*<img src="~/img/imagen1.jpg" style="width:100%;" />*@
                         <img src='@Url.Action("Imagen_Index", "Home", new { id = itemIndex.IdContenido })' style="width:100%;" />
                         <div style="width: 100%; height:100%;position:absolute;top:35%;left:0px;padding-left:5%;">
@@ -56,6 +58,7 @@
                                 @Html.Raw(itemIndex.SubTitulo)
                                 @Html.Raw(itemIndex.Descripcion)
                             </div>
+
                         </div>
                     </div>
 
@@ -63,56 +66,56 @@
 
                 contadorPanel++;
             }
-}
+        }
 
-        </div>
-
-
+    </div>
 
 
 
-                @*<div class="item active">
-                    <img src="~/img/imagen1.jpg" style="width:100%;" />
-                    <div style="width: 100%; height:100%;background-image: url(../../img/imagen1-banda.png);position:absolute;top:60%;left:0px;padding-right:10%;" class="slideInRight animated animated2">
-                        <div class="container">
-                            <p class="BannerSuperTitulo slideInRight animated animated3" style="text-align:right;">@item.Titulo</p>
-                            <p class="BannerTitulo slideInRight animated animated4" style="text-align:right;">@item.SubTitulo</p>
-                        </div>
-                    </div>
-                </div>*@
 
-                @*<div class="item">
-                    <img src="~/img/imagen2.jpg" style="width:100%;" />
 
-                    <div style="width: 100%; height:100%;position:absolute;top:35%;left:0px;padding-left:5%;">
-                        <div class="container">
-                            <p class="BannerSuperTitulo lightSpeedIn animated animated2" style="color: black; text-align: left;">Lorem ipsum dolor</p>
-                            <p class="BannerTitulo lightSpeedIn animated animated3" style="color: gray; text-align: left;">Phasellus volutpat, justo quis</p>
-                        </div>
-                    </div>
+    @*<div class="item active">
+            <img src="~/img/imagen1.jpg" style="width:100%;" />
+            <div style="width: 100%; height:100%;background-image: url(../../img/imagen1-banda.png);position:absolute;top:60%;left:0px;padding-right:10%;" class="slideInRight animated animated2">
+                <div class="container">
+                    <p class="BannerSuperTitulo slideInRight animated animated3" style="text-align:right;">@item.Titulo</p>
+                    <p class="BannerTitulo slideInRight animated animated4" style="text-align:right;">@item.SubTitulo</p>
                 </div>
-                <div class="item">
-                    <img src="~/img/imagen3.jpg" width="1080" height="400" style="width:100%;" />
+            </div>
+        </div>*@
 
-                    <div style="width: 100%; height:100%;position:absolute;top:10%;left:0px;padding-left:5%;">
-                        <div class="container">
-                            <p class="BannerSuperTitulo rollIn animated animated2" style="color: rgb(233, 149, 34); text-align: left;">Lorem ipsum dolor </p>
-                            <p class="BannerTitulo rollIn animated animated3" style="color: rgb(15, 175, 188); text-align: left;">Phasellus volutpat, justo quis efficitur </p>
-                            <p class="BannerSubTitulo rollIn animated animated4" style="color: white; text-align: left;">"...pellentesque justo purus, posuere eget magna vel, ultricies ..."</p>
+    @*<div class="item">
+            <img src="~/img/imagen2.jpg" style="width:100%;" />
 
-                            <img src="~/img/LogoUTP2.png" style="width:30%;" class="tada animated animated5" />
-                        </div>
-                    </div>
-                </div>*@
+            <div style="width: 100%; height:100%;position:absolute;top:35%;left:0px;padding-left:5%;">
+                <div class="container">
+                    <p class="BannerSuperTitulo lightSpeedIn animated animated2" style="color: black; text-align: left;">Lorem ipsum dolor</p>
+                    <p class="BannerTitulo lightSpeedIn animated animated3" style="color: gray; text-align: left;">Phasellus volutpat, justo quis</p>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <img src="~/img/imagen3.jpg" width="1080" height="400" style="width:100%;" />
+
+            <div style="width: 100%; height:100%;position:absolute;top:10%;left:0px;padding-left:5%;">
+                <div class="container">
+                    <p class="BannerSuperTitulo rollIn animated animated2" style="color: rgb(233, 149, 34); text-align: left;">Lorem ipsum dolor </p>
+                    <p class="BannerTitulo rollIn animated animated3" style="color: rgb(15, 175, 188); text-align: left;">Phasellus volutpat, justo quis efficitur </p>
+                    <p class="BannerSubTitulo rollIn animated animated4" style="color: white; text-align: left;">"...pellentesque justo purus, posuere eget magna vel, ultricies ..."</p>
+
+                    <img src="~/img/LogoUTP2.png" style="width:30%;" class="tada animated animated5" />
+                </div>
+            </div>
+        </div>*@
 
 
-       
 
 
 
 
-        <!-- Wrapper for slides -->
-        @*<div class="carousel-inner" style="padding: 0px; width: 100%; height: auto;">
+
+    <!-- Wrapper for slides -->
+    @*<div class="carousel-inner" style="padding: 0px; width: 100%; height: auto;">
             <div class="item active">
                 <img src="~/img/imagen1.jpg" style="width:100%;" />
                 <div style="width: 100%; height:100%;background-image: url(../../img/imagen1-banda.png);position:absolute;top:60%;left:0px;padding-right:10%;" class="slideInRight animated animated2" >
@@ -148,14 +151,14 @@
         </div>*@
 
 
-        <!-- Controls -->
-        <a class="left carousel-control"  href="#carousel-example-generic" role="button" data-slide="prev" style="background-image: none">
-            <span class="glyphicon glyphicon-chevron-left" style="color: rgb(180, 30, 34);"></span>
-        </a>
-        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next" style="background-image: none;">
-            <span class="glyphicon glyphicon-chevron-right" style="color: rgb(180, 30, 34);"></span>
-        </a>
-    </div>
+    <!-- Controls -->
+    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev" style="background-image: none">
+        <span class="glyphicon glyphicon-chevron-left" style="color: rgb(180, 30, 34);"></span>
+    </a>
+    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next" style="background-image: none;">
+        <span class="glyphicon glyphicon-chevron-right" style="color: rgb(180, 30, 34);"></span>
+    </a>
+</div>
 
 
 
@@ -175,10 +178,10 @@
                     <span>
                         <img src='@Url.Action("Imagen_Noticia", "Home", new { id = @itemNoticias.IdContenido })' style="border:solid;border-width:1px;border-color:rgb(220,220,220);border-radius: 6px 6px 6px 6px;width:100%;" />
 
-                       
+
                         @*<img src="/Content/imagen/@item.Imagen" height="100" width="100" />*@
-                    
-                    
+
+
                     </span>
                     <h4><strong>@Html.Raw(@itemNoticias.Titulo)</strong></h4>
                     <p>@Html.Raw(@itemNoticias.SubTitulo)</p>
@@ -199,13 +202,13 @@
                 {
                     <span>
                         @*<img src="/Content/imagen/@itemEventos.Imagen" style="border:solid;border-width:1px;border-color:rgb(220,220,220);border-radius: 6px 6px 6px 6px;width:100%;" />*@
-                       
-                        
-                        
+
+
+
                         <img src='@Url.Action("Imagen_Eventos", "Home", new { id = @itemEventos.IdContenido })' style="border:solid;border-width:1px;border-color:rgb(220,220,220);border-radius: 6px 6px 6px 6px;width:100%;" />
-                        
-                        
-                         @*<img src="/Content/imagen/@item.Imagen" height="100" width="100" />*@
+
+
+                        @*<img src="/Content/imagen/@item.Imagen" height="100" width="100" />*@
 
 
                     </span>
@@ -217,18 +220,18 @@
 
 
             @*<span>
-                    <img src="~/img/evento/Evento1.jpg" style="border:solid;border-width:1px;border-color:rgb(220,220,220);border-radius: 6px 6px 6px 6px;width:100%;" />
-                </span>
-                <span>Consectetur adipiscing elit. Nam vel ipsum id nisi tristique venenatis. Quisque pulvinar quam quis maximus pharetra.
-                Vestibulum lobortis, sem vel sollicitudin malesuada, nunc quam dignissim dui. Pellentesque ipsum lectus, rhoncus quis.</span>
+                        <img src="~/img/evento/Evento1.jpg" style="border:solid;border-width:1px;border-color:rgb(220,220,220);border-radius: 6px 6px 6px 6px;width:100%;" />
+                    </span>
+                    <span>Consectetur adipiscing elit. Nam vel ipsum id nisi tristique venenatis. Quisque pulvinar quam quis maximus pharetra.
+                    Vestibulum lobortis, sem vel sollicitudin malesuada, nunc quam dignissim dui. Pellentesque ipsum lectus, rhoncus quis.</span>
 
-            </div>*@
+                </div>*@
         </div>
-        <div class="col-sm-4 " >
+        <div class="col-sm-4 ">
             <h3>Testimonios</h3>
             <hr />
 
-            
+
 
             @{
                 int contador = 1;
@@ -245,57 +248,57 @@
                                 <img src='@Url.Action("Imagen_Testimonios", "Home", new { id = @itemTestimonios.IdContenido })' style="border:solid;border-width:1px;border-color:rgb(220,220,220);border-radius: 6px 6px 6px 6px;width:100%;" />
 
 
-                               @* <img src="/Content/imagen/@itemTestimonios.Imagen" style="border:solid;border-width:1px;border-color:rgb(220,220,220);border-radius: 6px 6px 6px 6px;width:100%;" />*@
+                                @* <img src="/Content/imagen/@itemTestimonios.Imagen" style="border:solid;border-width:1px;border-color:rgb(220,220,220);border-radius: 6px 6px 6px 6px;width:100%;" />*@
                             </div>
                             <div class="col-sm-6">
                                 <h3 style="color:rgb(180,34,30)"><strong>@Html.Raw(@itemTestimonios.Titulo)</strong></h3>
                                 <h6>@Html.Raw(@itemTestimonios.SubTitulo)</h6>
-                               
+
                             </div>
 
                         </div>
-                    
+
                     }
                     else
                     {
-                        
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <h3 style="color:rgb(180,34,30)"><strong>@Html.Raw(@itemTestimonios.Titulo)</strong></h3>
-                                    <h6>@Html.Raw(@itemTestimonios.SubTitulo)</h6>
-                                   
-                                </div>
-                                <div class="col-sm-6">
-                                    <img src='@Url.Action("Imagen_Testimonios", "Home", new { id = @itemTestimonios.IdContenido })' style="border:solid;border-width:1px;border-color:rgb(220,220,220);border-radius: 6px 6px 6px 6px;width:100%;" />
-                                  @*  <img src="/Content/imagen/@itemTestimonios.Imagen" style="border:solid;border-width:1px;border-color:rgb(220,220,220);border-radius: 6px 6px 6px 6px;width:100%;" />*@
-                                </div>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <h3 style="color:rgb(180,34,30)"><strong>@Html.Raw(@itemTestimonios.Titulo)</strong></h3>
+                                <h6>@Html.Raw(@itemTestimonios.SubTitulo)</h6>
+
                             </div>
-                       
+                            <div class="col-sm-6">
+                                <img src='@Url.Action("Imagen_Testimonios", "Home", new { id = @itemTestimonios.IdContenido })' style="border:solid;border-width:1px;border-color:rgb(220,220,220);border-radius: 6px 6px 6px 6px;width:100%;" />
+                                @*  <img src="/Content/imagen/@itemTestimonios.Imagen" style="border:solid;border-width:1px;border-color:rgb(220,220,220);border-radius: 6px 6px 6px 6px;width:100%;" />*@
+                            </div>
+                        </div>
+
                     }
                     contador++;
                     <hr />
                 }
             }
             @*<span>
-                <img src="~/img/testimonio/customer-testimonials.jpg" style="border:solid;border-width:1px;border-color:rgb(220,220,220);border-radius: 6px 6px 6px 6px;width:100%;" />
-            </span>
-            <span>
-                "Consectetur adipiscing elit. Nam vel ipsum id nisi tristique venenatis.
-                Quisque pulvinar quam quis maximus pharetra. Vestibulum lobortis, sem vel sollicitudin malesuada"
-            </span>
-            <hr />
-            <span>
+                    <img src="~/img/testimonio/customer-testimonials.jpg" style="border:solid;border-width:1px;border-color:rgb(220,220,220);border-radius: 6px 6px 6px 6px;width:100%;" />
+                </span>
+                <span>
+                    "Consectetur adipiscing elit. Nam vel ipsum id nisi tristique venenatis.
+                    Quisque pulvinar quam quis maximus pharetra. Vestibulum lobortis, sem vel sollicitudin malesuada"
+                </span>
+                <hr />
+                <span>
 
-                <img src="~/img/testimonio/customer.gif" style="border:solid;border-width:1px;border-color:rgb(220,220,220);border-radius: 6px 6px 6px 6px;width:100%;" />
-            </span>
-            <span>
-                "Vestibulum lobortis, sem vel sollicitudin malesuada consectetur adipiscing elit. Nam vel ipsum id nisi tristique venenatis."
-            </span>*@
+                    <img src="~/img/testimonio/customer.gif" style="border:solid;border-width:1px;border-color:rgb(220,220,220);border-radius: 6px 6px 6px 6px;width:100%;" />
+                </span>
+                <span>
+                    "Vestibulum lobortis, sem vel sollicitudin malesuada consectetur adipiscing elit. Nam vel ipsum id nisi tristique venenatis."
+                </span>*@
 
         </div>
 
 
     </div>
-    
+
 </div>
 <br />

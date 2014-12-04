@@ -10,5 +10,6 @@ namespace UTP.PortalEmpleabilidad.Modelo
     {
         public Alumno Alumno { get; set; }
 
+
     }
 }

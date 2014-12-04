@@ -1,0 +1,140 @@
+﻿@model UTP.PortalEmpleabilidad.Modelo.Alumno
+<div class="col-sm-12">
+    <div class="panel-group" id="mi-cv-datos-generales" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingMiCVDatosGenerales" style="padding: 2px 2px 2px 6px;">
+                <h5 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseMiCVDatosGenerales" aria-expanded="true" aria-controls="collapseMiCVDatosGenerales" style="font-size:12px;">
+                        Datos Generales
+                    </a>@*<span style="font-size:12px;">&nbsp;&nbsp; -&nbsp;&nbsp;Terminado <input type="checkbox"></span>*@
+
+                </h5>
+            </div>
+            <div id="collapseMiCVDatosGenerales" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingMiCVDatosGenerales">
+                <div class="panel-body">
+                    <p style="text-align:center;">
+                        <strong>
+                            <input type="checkbox" checked />Karina <input type="checkbox" checked />María Barrionuevo Chang
+                        </strong>
+                    </p>
+                    <p style="text-align:center;">
+                        @Model.CorreoElectronico1 / @Model.TelefonoCelular
+                        @*karina_barrionuevo@utp.edu.pe / 954123876*@
+
+                    </p>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="input-group fuente-pequeña">
+                                <span class="input-group-addon">
+                                    @if (Model.IncluirCorreoElectronico1)
+                                    {
+                                    <input type="checkbox" checked>
+
+                                    }
+                                    else
+                                    {
+                                    <input type="checkbox">
+                                    }
+                                </span>
+                                <span class="form-control" style="padding-top:8px;">@Model.CorreoElectronico1</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="input-group fuente-pequeña">
+                                <span class="input-group-addon">
+
+                                    @if (Model.IncluirTelefonoFijo)
+                                    {
+                                    <input type="checkbox" checked>
+
+                                    }
+                                    else
+                                    {
+                                    <input type="checkbox">
+                                    }
+                                </span>
+                                <span class="form-control" style="padding-top:8px;">@Model.TelefonoFijoCasa</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="input-group fuente-pequeña">
+                                <span class="input-group-addon">
+                                    @if (Model.IncluirFoto)
+                                    {
+                                    <input type="checkbox" checked>
+
+                                    }
+                                    else
+                                    {
+                                    <input type="checkbox">
+                                    }
+                                </span>
+                                <span class="form-control" style="padding-top:8px;">Foto</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <div class="input-group fuente-pequeña">
+                                <span class="input-group-addon">
+                                    @if (Model.IncluirDireccion)
+                                    {
+                                    <input type="checkbox" checked>
+
+                                    }
+                                    else
+                                    {
+                                    <input type="checkbox">
+                                    }
+                                </span>
+                                <span class="form-control" style="padding-top:8px;">@Model.DireccionLinea1</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-sm-12">
+    <div class="panel-group" id="mi-cv-perfil" role="tablist" aria-multiselectable="true">
+    
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingMiCVPerfil" style="padding: 2px 2px 2px 6px;">
+                <h5 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseMiCVPerfil" aria-expanded="true" aria-controls="collapseMiCVPerfil" style="font-size:12px;">
+                        Perfil
+                    </a>
+                </h5>
+            </div>
+            <div id="collapseMiCVPerfil" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingMiCVPerfil">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="input-group fuente-pequeña">
+                                <span class="input-group-addon">Perfil</span>
+
+                                @if (string.IsNullOrEmpty(@Model.Perfil) == false)
+                                {
+                                    <textarea class="form-control" rows="6" placeholder="Perfil profesional">@Model.Perfil</textarea>
+
+                                }
+                                else
+                                {
+                                    <textarea class="form-control" rows="6" placeholder="Perfil profesional"></textarea>
+                                }
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>

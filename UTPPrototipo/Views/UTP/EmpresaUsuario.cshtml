@@ -1,0 +1,316 @@
+﻿@{
+    Layout = "~/Views/UTP/_LayoutUTP.cshtml";
+    ViewBag.Title = "Usuario de Empresa";
+}
+
+<link href="~/Content/font-awesome.css" rel="stylesheet" />
+<div class="container" style="margin-top:2px;">
+    <div class="panel-group" id="datos-cuenta" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingOne" style="padding: 2px 2px 2px 6px;">
+                <h5 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="fuente-seccion">
+                        Cuenta - Mario Valentin Perez Garcia
+                    </a>
+                </h5>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body">
+                    <div class="col-md-6 fuente-pequeña">
+                        <table>
+                            <tr>
+                                <td class="celda-nombre">Usuario:</td>
+                                <td class="celda-datos">MarioValentin</td>
+                            </tr>
+                            <tr>
+                                <td class="celda-nombre">Nombre:</td>
+                                <td class="celda-datos">Mario Valentin Perez Garcia</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-md-6 fuente-pequeña">
+                        DNI <strong>89226681</strong><br />
+                        <strong>mperez@grupoutp.edu.pe</strong><br />
+                        <strong>954123876</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <h5>Empresa: IBM del Perú - Usuario: MarioAlberti</h5>
+    <br />
+    <table>
+        <tr>
+            <td class="celda-nombre">
+                Nombre
+            </td>
+            <td class="celda-datos">
+                Mario Alberti Sanguinetti
+            </td>
+        </tr>
+        <tr>
+            <td class="celda-nombre">
+                Estado
+            </td>
+            <td class="celda-datos">
+                <select>
+                    <option>
+                        Usuario activo
+                    </option>
+                    <option>
+                        Usuario pendiente de validación
+                    </option>
+                    <option>
+                        Usuario No activo
+                    </option>
+                    <option>
+                        Usuario finalizado
+                    </option>
+                </select>
+                <span>&nbsp;&nbsp;<button class="btn btn-default">Guardar</button></span>
+            </td>
+        </tr>
+        <tr>
+            <td class="celda-nombre">
+                Rol
+            </td>
+            <td class="celda-datos">
+                Administrador
+            </td>
+        </tr>
+        <tr>
+            <td class="celda-nombre">
+                Documento
+            </td>
+            <td class="celda-datos">
+                DNI 06772289
+            </td>
+        </tr>
+        <tr>
+            <td class="celda-nombre">
+                Sexo
+            </td>
+            <td class="celda-datos">
+                Masculino
+            </td>
+        </tr>
+        <tr>
+            <td class="celda-nombre">
+                Ubicación
+            </td>
+            <td class="celda-datos">
+                Sede Central La Milona (La Molina)
+            </td>
+        </tr>
+        <tr>
+            <td class="celda-nombre">
+                Correo Electrónico
+            </td>
+            <td class="celda-datos">
+                mario.alberti@ibm.com
+            </td>
+        </tr>
+        <tr>
+            <td class="celda-nombre">
+                Teléfono Fijo
+            </td>
+            <td class="celda-datos">
+                014567891 (Anexo 223)
+            </td>
+        </tr>
+        <tr>
+            <td class="celda-nombre">
+                Celular
+            </td>
+            <td class="celda-datos">
+                998718381
+            </td>
+        </tr>
+        <tr>
+            <td class="celda-nombre">
+                Creado Por
+            </td>
+            <td class="celda-datos">
+                MarioAlberti
+            </td>
+        </tr>
+        <tr>
+            <td class="celda-nombre">
+                Creado el
+            </td>
+            <td class="celda-datos">
+                10/01/2015 12:45:51
+            </td>
+        </tr>
+        <tr>
+            <td class="celda-nombre">
+                Modificado Por
+            </td>
+            <td class="celda-datos">
+                ---
+            </td>
+        </tr>
+        <tr>
+            <td class="celda-nombre">
+                Modificado el
+            </td>
+            <td class="celda-datos">
+                ---
+            </td>
+        </tr>
+    </table>
+    <hr />
+    <div class="col-sm-6">
+        <h5>Mensajes</h5>
+        <hr />
+        <div class="row grilla1-cabecera color-paleta2">
+            <div class="col-sm-1">
+
+            </div>
+            <div class="col-sm-2">
+                Fecha
+            </div>
+            <div class="col-sm-3">
+                Asunto
+            </div>
+            <div class="col-sm-3">
+                Remitente
+            </div>
+            <div class="col-sm-3">
+                Oferta/Evento
+            </div>
+        </div>
+        <div class="row grilla1-linea">
+            <div class="col-sm-1">
+                <span class="fui fa-3x color-icono-paleta1">-</span>
+            </div>
+            <div class="col-sm-2">
+                Hace 2 horas
+            </div>
+            <div class="col-sm-3">
+                <a href="../Mensaje/VerMensaje">Bienvenido a la Postulación</a>
+            </div>
+            <div class="col-sm-3">
+                Criteria IT S.A.C.
+            </div>
+            <div class="col-sm-3">
+                Gerente de Proyecto (Postulando)
+            </div>
+        </div>
+        <div class="row grilla1-linea">
+            <div class="col-sm-1">
+                <span class="fui fa-3x color-icono-paleta1">i</span>
+            </div>
+            <div class="col-sm-2">
+                Hace 2 horas
+            </div>
+            <div class="col-sm-3">
+                <a href="../Mensaje/VerMensaje">Bienvenido a la Postulación</a>
+            </div>
+            <div class="col-sm-3">
+                Criteria IT S.A.C.
+            </div>
+            <div class="col-sm-3">
+                Gerente de Proyecto (Postulando)
+            </div>
+        </div>
+        <div class="row grilla1-linea">
+            <div class="col-sm-1">
+                <span class="fui fa-3x color-icono-paleta1">j</span>
+            </div>
+            <div class="col-sm-2">
+                Hace 2 horas
+            </div>
+            <div class="col-sm-3">
+                <a href="../Mensaje/VerMensaje">Bienvenido a la Postulación</a>
+            </div>
+            <div class="col-sm-3">
+                Criteria IT S.A.C.
+            </div>
+            <div class="col-sm-3">
+                Gerente de Proyecto (Postulando)
+            </div>
+        </div>
+        <div class="row grilla1-linea">
+            <div class="col-sm-1">
+                <span class="fui fa-3x color-icono-paleta1">-</span>
+            </div>
+            <div class="col-sm-2">
+                Hace 2 horas
+            </div>
+            <div class="col-sm-3">
+                <a href="../Mensaje/VerMensaje">Bienvenido a la Postulación</a>
+            </div>
+            <div class="col-sm-3">
+                IBM del Perú (MarioValentin)
+            </div>
+            <div class="col-sm-3">
+                Gerente de Proyecto (Postulando)
+            </div>
+        </div>
+        <div class="row grilla1-linea">
+            <div class="col-sm-1">
+                <span class="fui fa-3x color-icono-paleta1">i</span>
+            </div>
+            <div class="col-sm-2">
+                Hace 2 horas
+            </div>
+            <div class="col-sm-3">
+                <a href="../Mensaje/VerMensaje">Bienvenido a la Postulación</a>
+            </div>
+            <div class="col-sm-3">
+                Criteria IT S.A.C.
+            </div>
+            <div class="col-sm-3">
+                Gerente de Proyecto (Postulando)
+            </div>
+        </div>
+        <div class="row grilla1-linea">
+            <div class="col-sm-1">
+                <span class="fui fa-3x color-icono-paleta1">j</span>
+            </div>
+            <div class="col-sm-2">
+                Hace 2 horas
+            </div>
+            <div class="col-sm-3">
+                <a href="../Mensaje/VerMensaje">Bienvenido a la Postulación</a>
+            </div>
+            <div class="col-sm-3">
+                Criteria IT S.A.C.
+            </div>
+            <div class="col-sm-3">
+                Gerente de Proyecto (Postulando)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12" style="text-align:right;">
+                <nav>
+                    <nav>
+                        <ul class="pagination pagination-sm">
+                            <li><a href="#"><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>
+                            <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li><a href="#"><span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span></a></li>
+                        </ul>
+                    </nav>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+
+    $(document).ready(function () {
+        $("#divFinalCabecera").removeClass("color-paleta1 color-paleta3 color-paleta4 color-paleta5 color-paleta6 color-paleta7").addClass("color-paleta2");
+    });
+
+
+</script>

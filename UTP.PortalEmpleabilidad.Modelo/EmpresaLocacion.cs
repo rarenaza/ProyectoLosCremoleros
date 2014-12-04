@@ -14,9 +14,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string NombreLocacion { get; set; }
         public string CorreoElectronico { get; set; }
         public string TelefonoFijo { get; set; }
-        public string DireccionLinea1 { get; set; }
-        public string DireccionLinea2 { get; set; }
-        public string DireccionLinea3 { get; set; }
+        public string Direccion { get; set; }     
         public string DireccionDistrito { get; set; }
         public string DireccionCiudad { get; set; }
         public string DireccionRegion { get; set; }
