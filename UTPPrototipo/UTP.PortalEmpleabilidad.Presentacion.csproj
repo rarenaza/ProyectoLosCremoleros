@@ -730,9 +730,8 @@
     <Content Include="Views\Empresa\Administrar.cshtml" />
     <Content Include="Views\UTP\Empresa.cshtml" />
     <Content Include="Views\UTP\Oferta.cshtml" />
-    <Content Include="Views\UTP\UsuarioEmpresa.cshtml" />
-    <Content Include="Views\UTP\LocacionEmpresa.cshtml" />
-    <Content Include="Views\UTP\OfertaEmpresa.cshtml" />
+    <Content Include="Views\UTP\EmpresaUsuario.cshtml" />
+    <Content Include="Views\UTP\EmpresaLocacion.cshtml" />
     <Content Include="Views\UTP\verimagen.cshtml" />
     <Content Include="Views\Empresa\_EditarEmpresa.cshtml" />
     <Content Include="Views\Empresa\_AdministrarDatosGenerales.cshtml" />
