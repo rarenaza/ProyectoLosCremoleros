@@ -16,7 +16,7 @@ namespace UTP.PortalEmpleabilidad.Logica
         ADOferta adOferta = new ADOferta();
 
 
-        public List<Oferta> MostrarUltimasOfertas(int IdAlumno)
+        public List<Oferta> MostrarUltimasOfertas(int IdAlumno, string DescrpcionOferta)
         {
             List<Oferta> listaOferta = new List<Oferta>();
 
@@ -28,11 +28,14 @@ namespace UTP.PortalEmpleabilidad.Logica
 
                 oferta.IdOferta = Funciones.ToInt(dtResultado.Rows[i]["IdOferta"]);
                 oferta.Compatible =Funciones.ToDecimal( dtResultado.Rows[i]["Compatible"]);
-
                 oferta.FechaPublicacion =Funciones.ToDateTime( dtResultado.Rows[i]["FechaPublicacion"]);
                 oferta.NombreComercial = Funciones.ToString(dtResultado.Rows[i]["NombreComercial"]);
-
                 oferta.CargoOfrecido = Funciones.ToString(dtResultado.Rows[i]["CargoOfrecido"]);
+                oferta.RemuneracionOfrecida = Funciones.ToInt(dtResultado.Rows[i]["RemuneracionOfrecida"]);
+                oferta.Horario = Funciones.ToString(dtResultado.Rows[i]["Horario"]);
+                oferta.Mensaje = Funciones.ToInt(dtResultado.Rows[i]["Mensaje"]);
+                oferta.DesTipoTrabajo = Funciones.ToString(dtResultado.Rows[i]["DesTipoTrabajo"]);
+
 
                 listaOferta.Add(oferta);
             }
@@ -41,6 +44,7 @@ namespace UTP.PortalEmpleabilidad.Logica
         public List<VistaOfertaAlumno> Oferta_Mostrar()
         {
             List<VistaOfertaAlumno> listaOferta = new List<VistaOfertaAlumno>();
+           
 
             DataTable dtResultado = adOferta.Obtener();
 

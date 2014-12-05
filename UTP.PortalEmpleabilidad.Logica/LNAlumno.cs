@@ -49,7 +49,7 @@ namespace UTP.PortalEmpleabilidad.Logica
             //Se llenan los datos del alumno.
             panel.Alumno = ObtenerAlumnoPorCodigo(codigoAlumno);
             panel.ListaEventos = eventos.Evento_MostrarUltimos();
-            panel.ListaOfertas = ofertas.MostrarUltimasOfertas(panel.Alumno.IdAlumno);
+            panel.ListaOfertas = ofertas.MostrarUltimasOfertas(panel.Alumno.IdAlumno,"");
             return panel;
         } 
 

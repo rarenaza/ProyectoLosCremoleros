@@ -9,5 +9,8 @@ namespace UTP.PortalEmpleabilidad.Modelo
     public partial class Oferta
     {
         public decimal Compatible { get; set; }
+        public int Mensaje { get; set; }
+
+        public string DesTipoTrabajo { get; set; }
     }
 }
