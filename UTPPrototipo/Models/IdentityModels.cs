@@ -15,5 +15,9 @@ namespace UTPPrototipo.Models
         }
 
         public System.Data.Entity.DbSet<UTP.PortalEmpleabilidad.Modelo.Contenido> Contenidoes { get; set; }
+
+        public System.Data.Entity.DbSet<UTP.PortalEmpleabilidad.Modelo.Usuario> Usuarios { get; set; }
+
+        public System.Data.Entity.DbSet<UTP.PortalEmpleabilidad.Modelo.ListaValor> ListaValors { get; set; }
     }
 }

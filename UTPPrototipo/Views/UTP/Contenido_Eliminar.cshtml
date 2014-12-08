@@ -1,0 +1,138 @@
+﻿@model UTP.PortalEmpleabilidad.Modelo.Contenido
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Contenido</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IdContenido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdContenido)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Titulo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Titulo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SubTitulo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SubTitulo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Imagen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Imagen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Menu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Menu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreadoPor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreadoPor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaCreacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaCreacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ModificadoPor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ModificadoPor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaModificacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaModificacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EnPantallaPrincipal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EnPantallaPrincipal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Activo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Activo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ArchivoNombreOriginal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ArchivoNombreOriginal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ArchivoMimeType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ArchivoMimeType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TituloMenu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TituloMenu)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

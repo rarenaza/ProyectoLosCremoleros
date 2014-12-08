@@ -8,6 +8,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
 {
    public  class ListaValor
     {
+       public int Id { get; set; }       
        public string IdListaValor { get; set; }
        public int IdLista { get; set; }       
        public string IdListaValorPadre { get; set; }

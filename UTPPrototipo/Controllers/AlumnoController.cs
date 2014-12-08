@@ -60,122 +60,13 @@ namespace UTPPrototipo.Controllers
         }
         public ActionResult BusquedaOferta()
         {
-            VistaOfertaAlumno oferta = new VistaOfertaAlumno();
-            LNGeneral lngeneral = new LNGeneral();
-            LNOferta lnoferta = new LNOferta();
-            Dictionary<int, string> listaperiodopublicacion = new Dictionary<int, string>();
-            listaperiodopublicacion.Add(0, "Hoy");
-            listaperiodopublicacion.Add(1, "Ayer");
-            listaperiodopublicacion.Add(7, "Hace uan semana");
-            listaperiodopublicacion.Add(15, "Hace 15 dias");
-            listaperiodopublicacion.Add(30, "Hace un mes");
-            listaperiodopublicacion.Add(31, "Hace mas de un mes");
+            List<VistaOfertaAlumno> listaOferta = new List<VistaOfertaAlumno>();
 
-
-           // oferta.ListaOfertas = lnoferta.Oferta_Mostrar();
-            oferta.ListaEstudios = lngeneral.ObtenerListaValor(5);
-            oferta.ListaEstadoEstudio = lngeneral.ObtenerListaValor(43);
-            oferta.ListaSectorEmpresarial = lngeneral.ObtenerListaValor(8);
-            oferta.ListaTipoTrabajo = lngeneral.ObtenerListaValor(29);
-            oferta.ListaContrato = lngeneral.ObtenerListaValor(30);
-            oferta.ListaTipoCargo = lngeneral.ObtenerListaValor(9);
-            oferta.PeriodoPublicacion = listaperiodopublicacion;
-
-
-            //Declara Lista
-            //Periodo Publicacion
-            List<SelectListItem> listItemsPublicacion = new List<SelectListItem>();
-            foreach (KeyValuePair<int, string> entidad in oferta.PeriodoPublicacion)
-            {
-                SelectListItem item = new SelectListItem();
-                item.Text = entidad.Value.ToString();
-                item.Value = entidad.Key.ToString();
-                listItemsPublicacion.Add(item);
-            }
-
-
-            //Carreras y Estudios
-            List<SelectListItem> listItemsCarrera = new List<SelectListItem>();
-            foreach (ListaValor entidad in oferta.ListaEstudios)
-            {
-                SelectListItem item = new SelectListItem();
-                item.Text = entidad.Valor.ToUpper();
-                item.Value = entidad.IdListaValor.ToString();
-                listItemsCarrera.Add(item);
-            }
-
-            //Estado Estudio
-            List<SelectListItem> listItemsEstadoEstudio = new List<SelectListItem>();
-            foreach (ListaValor entidad in oferta.ListaEstadoEstudio)
-            {
-                SelectListItem item = new SelectListItem();
-                item.Text = entidad.Valor.ToUpper();
-                item.Value = entidad.IdListaValor.ToString();
-                listItemsEstadoEstudio.Add(item);
-            }
-            //Sector Empresarial
-            List<SelectListItem> listItemsSectorEmpresarial = new List<SelectListItem>();
-            foreach (ListaValor entidad in oferta.ListaSectorEmpresarial)
-            {
-                SelectListItem item = new SelectListItem();
-                item.Text = entidad.Valor.ToUpper();
-                item.Value = entidad.IdListaValor.ToString();
-                listItemsSectorEmpresarial.Add(item);
-            }
-            //Tipo Trabajo
-            List<SelectListItem> listItemsTipoTrabajo = new List<SelectListItem>();
-            foreach (ListaValor entidad in oferta.ListaTipoTrabajo)
-            {
-                SelectListItem item = new SelectListItem();
-                item.Text = entidad.Valor.ToUpper();
-                item.Value = entidad.IdListaValor.ToString();
-                listItemsTipoTrabajo.Add(item);
-            }
-            //Contrato
-            List<SelectListItem> listItemsContrato = new List<SelectListItem>();
-            foreach (ListaValor entidad in oferta.ListaContrato)
-            {
-                SelectListItem item = new SelectListItem();
-                item.Text = entidad.Valor.ToUpper();
-                item.Value = entidad.IdListaValor.ToString();
-                listItemsContrato.Add(item);
-            }
-            //Tipo Cargo
-            List<SelectListItem> listItemsTipoCargo = new List<SelectListItem>();
-            foreach (ListaValor entidad in oferta.ListaTipoCargo)
-            {
-                SelectListItem item = new SelectListItem();
-                item.Text = entidad.Valor.ToUpper();
-                item.Value = entidad.IdListaValor.ToString();
-                listItemsTipoCargo.Add(item);
-            }
-
-
-            //Lista de Combos
-            ViewBag.PeriodoPublicacion = listItemsPublicacion;
-            ViewBag.ListaEstudios = listItemsCarrera;
-            ViewBag.ListaEstadoEstudio = listItemsEstadoEstudio;
-            ViewBag.ListaSectorEmpresarial = listItemsSectorEmpresarial;
-            ViewBag.ListaTipoTrabajo = listItemsTipoTrabajo;
-            ViewBag.ListaContrato = listItemsContrato;
-            ViewBag.ListaTipoCargo = listItemsTipoCargo;
-
-            return View(oferta);
+            listaOferta = lnoferta.Oferta_Mostrar();
+            
+            return View(listaOferta);
                     
             
-        }
-        [HttpPost]
-        public ActionResult BusquedaAvanzadaOferta(VistaOfertaAlumno entidad)
-        {
-
-            //entidad.ListaOfertas = lnoferta.Oferta_Mostrar();
-            return PartialView("_ResultadoBusquedaOfertas", entidad.ListaOfertas);
-        }
-        [HttpPost]
-        public ActionResult BusquedaOferta(VistaOfertaAlumno entidad)
-        {
-            entidad.ListaOfertas = lnoferta.MostrarUltimasOfertas(entidad.IdAlumno,string.IsNullOrEmpty(entidad.DescripcionOferta) ? "": entidad.DescripcionOferta );
-            return PartialView("_ResultadoBusquedaOfertas", entidad.ListaOfertas);
         }
 
         private VistaPanelAlumnoMiCV VistaMICV(int? IdCV)

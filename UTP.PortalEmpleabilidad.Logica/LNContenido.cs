@@ -72,6 +72,11 @@ namespace UTP.PortalEmpleabilidad.Logica
             }
 
         }
+
+        public bool Contenido_Eliminar(int Cod)
+        {
+            return ad.Contenido_Eliminar(Cod);
+        }
       
 
         //muestra datos en el index solo lo que me instereza mostrar

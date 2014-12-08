@@ -44,6 +44,7 @@
     <Compile Include="ADAlumnoCV.cs" />
     <Compile Include="ADAlumnoCVEstudio.cs" />
     <Compile Include="ADAlumnoEstudio.cs" />
+    <Compile Include="ADAutenticar.cs" />
     <Compile Include="ADBase.cs" />
     <Compile Include="ADConexion.cs" />
     <Compile Include="ADContenido.cs" />
