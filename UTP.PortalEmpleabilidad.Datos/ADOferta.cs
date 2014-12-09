@@ -95,7 +95,6 @@ namespace UTP.PortalEmpleabilidad.Datos
 
             return dtResultado;
         }
-
         public DataTable Obtener()
         {
             DataTable dtResultado = new DataTable();

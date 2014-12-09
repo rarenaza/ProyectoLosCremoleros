@@ -20,10 +20,13 @@
             @Html.Action("_AdministrarUbicaciones", "Empresa", new { IdEmpresa = @ViewBag.IdEmpresa })
         </div>
 
-            <!--Columna de Usuarios - Ancho 6-->
+        <!--Columna de Usuarios - Ancho 6-->
+        <div id="divListaUsuarios" class="col-sm-6">
             @Html.Action("_AdministrarUsuarios", "Empresa", new { IdEmpresa = @ViewBag.IdEmpresa })
-
         </div>
+
+     </div>
+
 </div>
 
 
@@ -61,7 +64,7 @@
 <!-- Modal Usuarios-->
 <div class="modal" id="divModalNuevoUsuario" tabindex="-1" role="dialog" aria-labelledby="NuevaUbicacion" aria-hidden="true">
 
-    @using (Ajax.BeginForm("AdministrarNuevoUsuario", "Empresa", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divListaUbicaciones", OnComplete = "cerrarModal" }))
+    @using (Ajax.BeginForm("_AdministrarNuevoUsuario", "Empresa", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divListaUsuarios", OnComplete = "cerrarModal" }))
     {
         @Html.AntiForgeryToken()
     
@@ -86,7 +89,7 @@
         });
 
         $('#btnNuevaUbicacion').click(function () {
-            debugger;
+            //debugger;
             var url = "/Empresa/_AdministrarNuevaUbicacion"; // el url del controlador            
             $.get(url, function (data) {
                 $('#divNuevaUbicacionContenedor').html(data);
@@ -96,7 +99,7 @@
 
         $('#btnNuevoUsuario').click(function () {
 
-            var url = "/Empresa/AdministrarNuevoUsuario"; // el url del controlador           
+            var url = "/Empresa/_AdministrarNuevoUsuario"; // el url del controlador           
             $.get(url, function (data) {
                 $('#divNuevoUsuarioContenedor').html(data);
                 $('#divModalNuevoUsuario').modal('show');

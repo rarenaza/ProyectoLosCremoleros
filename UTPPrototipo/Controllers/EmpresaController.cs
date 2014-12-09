@@ -396,13 +396,26 @@ namespace UTPPrototipo.Controllers
             {
                 Ticket ticket = (Ticket)Session["Ticket"];
                 string usuarioCreacion = ticket.UsuarioNombre;
-              
+
+                empresaUsuario.Empresa.IdEmpresa = ticket.IdEmpresa;
+                empresaUsuario.Usuario.NombreUsuario = "nombreusuario";
+                empresaUsuario.Nombres = "Aldo";
+                empresaUsuario.Apellidos = "Chocos";
+                empresaUsuario.TipoDocumento.IdListaValor = "123";
+                empresaUsuario.NumeroDocumento = "";
+                empresaUsuario.Sexo.IdListaValor = "M";
+                empresaUsuario.EmpresaLocacion.IdEmpresaLocacion = 1;
+                empresaUsuario.CorreoElectronico = "";
+                empresaUsuario.TelefonoFijo = "";
+                empresaUsuario.TelefonoCelular = "";
+                empresaUsuario.TelefonoAnexo = "";
+
                 LNEmpresaUsuario lnEmpresaUsuario = new LNEmpresaUsuario();
                 lnEmpresaUsuario.Insertar(empresaUsuario, usuarioCreacion);
 
                 var empresa = lnEmpresa.ObtenerDatosEmpresaPorId(ticket.IdEmpresa);
 
-                return PartialView("_AdministrarUsuario", empresa.Usuarios);
+                return PartialView("_AdministrarUsuarios", empresa.Usuarios);
             }
 
             return PartialView("_AdministrarNuevoUsuario", empresaUsuario);

@@ -10,8 +10,6 @@ namespace UTP.PortalEmpleabilidad.Modelo
     {
         public Alumno Alumno { get; set; }
         public List<Evento> ListaEventos { get; set; }
-        public List<Oferta> ListaOfertas{ get; set; }
-
 
         //Otras propiedades.
     }

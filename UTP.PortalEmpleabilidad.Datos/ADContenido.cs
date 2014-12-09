@@ -137,6 +137,30 @@ namespace UTP.PortalEmpleabilidad.Datos
 
         }
 
+        public bool Contenido_Eliminar(int Cod)
+        {
+            ADConexion cnn = new ADConexion();
+            SqlCommand cmd = new SqlCommand();
+            try
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Contenido_Eliminar";
+                cmd.Connection = cnn.cn;
+                cmd.Parameters.Add(new SqlParameter("@IdContenido", SqlDbType.VarChar, 50)).Value = Cod;
+                cnn.Conectar();
+                cmd.ExecuteNonQuery();
+                cmd.Parameters.Clear();
+                cnn.Desconectar();
+                return true;
+            }
+            catch (SqlException)
+            {
+                return false;
+            }
+
+
+        }
+
       //muestra datos en el index solo lo que me instereza mostrar
         public DataTable Contenido_BuscarIndex(string Id)
         {
@@ -214,7 +238,8 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.Connection = cnn.cn;
 
                 cmd.Parameters.Add(new SqlParameter("@Titulo", SqlDbType.VarChar, 500)).Value = contenido.Titulo;
-                cmd.Parameters.Add(new SqlParameter("@SubTitulo", SqlDbType.VarChar, 500)).Value = contenido.SubTitulo;
+                cmd.Parameters.Add(new SqlParameter("@SubTitulo", SqlDbType.VarChar, 500)).Value = (contenido.SubTitulo == null ? "" : contenido.SubTitulo);
+                
                 //cmd.Parameters.Add(new SqlParameter("@Descripcion", SqlDbType.VarChar, -1)).Value = contenido.Descripcion;
                 cmd.Parameters.Add(new SqlParameter("@Descripcion", SqlDbType.VarChar, -1)).Value = (contenido.Descripcion == null ? "" : contenido.Descripcion);
                 cmd.Parameters.Add(new SqlParameter("@Imagen", SqlDbType.Image)).Value = (contenido.Imagen == null ? new byte[] { } : contenido.Imagen);

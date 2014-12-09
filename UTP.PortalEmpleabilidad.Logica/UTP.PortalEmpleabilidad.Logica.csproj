@@ -44,6 +44,7 @@
     <Compile Include="LNAlumnoCV.cs" />
     <Compile Include="LNAlumnoCVEstudio.cs" />
     <Compile Include="LNAlumnoEstudio.cs" />
+    <Compile Include="LNAutenticarUsuario.cs" />
     <Compile Include="LNContenido.cs" />
     <Compile Include="LNEmpresaLocacion.cs" />
     <Compile Include="LNEmpresaUsuario.cs" />

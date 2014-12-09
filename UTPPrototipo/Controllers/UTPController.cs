@@ -63,60 +63,69 @@ namespace UTPPrototipo.Controllers
                       
 
             //return View(contenido);
-
             List<Contenido> lista = new List<Contenido>();
-
-
-            int codMenu = Convert.ToInt32(Menu);
-
-            if (Menu == null)
+            try
             {
-                
-                DataTable dtResultado = ln.Contenido_ObtenerPorCodMenu(0);
+           
 
 
-                for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
+                int codMenu = Convert.ToInt32(Menu);
+
+                if (Menu == null)
                 {
-                    Contenido contenido = new Contenido();
-                    contenido.IdContenido = Convert.ToInt32(dtResultado.Rows[i]["IdContenido"]);
-                    contenido.Menu = dtResultado.Rows[i]["CodMenu"].ToString();
-                    contenido.Titulo = dtResultado.Rows[i]["Titulo"].ToString();
-                    contenido.SubTitulo = dtResultado.Rows[i]["SubTitulo"].ToString();
-                    contenido.Descripcion = dtResultado.Rows[i]["Descripcion"].ToString();
 
-                    contenido.Imagen = (byte[])dtResultado.Rows[i]["Imagen"];
-
-                    contenido.TituloMenu = dtResultado.Rows[i]["Menu"].ToString();
+                    DataTable dtResultado = ln.Contenido_ObtenerPorCodMenu(0);
 
 
-                    lista.Add(contenido);
+                    for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
+                    {
+                        Contenido contenido = new Contenido();
+                        contenido.IdContenido = Convert.ToInt32(dtResultado.Rows[i]["IdContenido"]);
+                        contenido.Menu = dtResultado.Rows[i]["CodMenu"].ToString();
+                        contenido.Titulo = dtResultado.Rows[i]["Titulo"].ToString();
+                        contenido.SubTitulo = dtResultado.Rows[i]["SubTitulo"].ToString();
+                        contenido.Descripcion = dtResultado.Rows[i]["Descripcion"].ToString();
+
+                        contenido.Imagen = (byte[])dtResultado.Rows[i]["Imagen"];
+
+                        contenido.TituloMenu = dtResultado.Rows[i]["Menu"].ToString();
+
+
+                        lista.Add(contenido);
+                    }
+
+
                 }
-                
+                else
+                {
 
+                    DataTable dtResultado = ln.Contenido_ObtenerPorCodMenu(codMenu);
+
+
+                    for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
+                    {
+                        Contenido contenido = new Contenido();
+                        contenido.IdContenido = Convert.ToInt32(dtResultado.Rows[i]["IdContenido"]);
+                        contenido.Menu = dtResultado.Rows[i]["CodMenu"].ToString();
+                        contenido.Titulo = dtResultado.Rows[i]["Titulo"].ToString();
+                        contenido.SubTitulo = dtResultado.Rows[i]["SubTitulo"].ToString();
+                        contenido.Descripcion = dtResultado.Rows[i]["Descripcion"].ToString();
+
+                        contenido.Imagen = (byte[])dtResultado.Rows[i]["Imagen"];
+
+                        contenido.TituloMenu = dtResultado.Rows[i]["Menu"].ToString();
+
+
+                        lista.Add(contenido);
+                    }
+                }
             }
-            else
+            catch (Exception )
             {
+        
                 
-                DataTable dtResultado = ln.Contenido_ObtenerPorCodMenu(codMenu);
-
-
-                for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
-                {
-                    Contenido contenido = new Contenido();
-                    contenido.IdContenido = Convert.ToInt32(dtResultado.Rows[i]["IdContenido"]);
-                    contenido.Menu = dtResultado.Rows[i]["CodMenu"].ToString();
-                    contenido.Titulo = dtResultado.Rows[i]["Titulo"].ToString();
-                    contenido.SubTitulo = dtResultado.Rows[i]["SubTitulo"].ToString();
-                    contenido.Descripcion = dtResultado.Rows[i]["Descripcion"].ToString();
-
-                    contenido.Imagen = (byte[])dtResultado.Rows[i]["Imagen"];
-
-                    contenido.TituloMenu = dtResultado.Rows[i]["Menu"].ToString();
-
-
-                    lista.Add(contenido);
-                }
             }
+           
 
 
             
@@ -316,6 +325,18 @@ namespace UTPPrototipo.Controllers
             }
 
         }
+
+        public ActionResult Contenido_Eliminar(int id)
+        {
+
+            ln.Contenido_Eliminar(Convert.ToInt32(id));
+
+            return RedirectToAction("Portal");
+
+            
+        }
+
+
           [ValidateInput(false)]
         public ActionResult Portal_Editar_Buscar(int id)
         {

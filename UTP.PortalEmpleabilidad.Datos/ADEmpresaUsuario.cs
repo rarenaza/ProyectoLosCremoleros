@@ -28,7 +28,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.Parameters.Add(new SqlParameter("@Nombres", empresaUsuario.Nombres));
                 cmd.Parameters.Add(new SqlParameter("@Apellidos", empresaUsuario.Apellidos));
                 cmd.Parameters.Add(new SqlParameter("@Sexo", empresaUsuario.Sexo.IdListaValor));
-                cmd.Parameters.Add(new SqlParameter("@IdEmpresLocacion", empresaUsuario.EmpresaLocacion.IdEmpresaLocacion));
+                cmd.Parameters.Add(new SqlParameter("@IdEmpresaLocacion", empresaUsuario.EmpresaLocacion.IdEmpresaLocacion));
                 cmd.Parameters.Add(new SqlParameter("@CorreoElectronico", empresaUsuario.CorreoElectronico));
                 cmd.Parameters.Add(new SqlParameter("@TelefonoFijo", empresaUsuario.TelefonoFijo));
                 cmd.Parameters.Add(new SqlParameter("@TelefonoAnexo", empresaUsuario.TelefonoAnexo));

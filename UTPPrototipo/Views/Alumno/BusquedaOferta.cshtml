@@ -1,13 +1,13 @@
 ﻿@model UTP.PortalEmpleabilidad.Modelo.Vistas.Ofertas.VistaOfertaAlumno
 
-    @{
-        Layout = "~/Views/Alumno/_LayoutAlumno.cshtml";
-        ViewBag.Title = "Búsqueda de Oferta";
-    }
-  
+@{
+    Layout = "~/Views/Alumno/_LayoutAlumno.cshtml";
+    ViewBag.Title = "Búsqueda de Oferta";
+}
+
 @using (Html.BeginForm())
 {
-   @Html.AntiForgeryToken()
+    @Html.AntiForgeryToken()
     <div class="container" style="margin-top:2px;">
 
         @{Html.RenderAction("VistaCabecera", "Alumno");}
@@ -27,12 +27,14 @@
                                 <td>
                                     <div class="input-group fuente-pequeña">
                                         <span class="input-group-addon fuente-pequeña">Palabra Clave</span>
-                                        @Html.TextBoxFor(model => model.DescripcionOferta, new { @class = "form-control", @placeholder = "Palabra clave" })
+                                        @Html.TextBox("DescripcionOferta", new { @class = "form-control", @placeholder = "Palabra clave" })
+@*@Html.TextBoxFor(model => model.DescripcionOferta, new { @class = "form-control", @placeholder = "Palabra clave" })*@
+
                                     </div>
                                 </td>
                                 <td style="text-align:right;">
                                     <span class="col-md-6 btn-group">
-                                        <span class="fui" style="font-size:30px;cursor:pointer" id="buscar" >(</span>
+                                        <span class="fui" style="font-size:30px;cursor:pointer" id="buscar">(</span>
                                     </span>
                                 </td>
                             </tr>
@@ -68,7 +70,7 @@
                             <div class="col-sm-3">
                                 <div class="input-group fuente-pequeña">
                                     <span class="input-group-addon">Sector</span>
-                                   @Html.DropDownListFor(model => model.IdSectorEmpresarial, new SelectList(ViewBag.ListaSectorEmpresarial, "Value", "Text"), "- Seleccionar -", new { @class = "form-control" })
+                                    @Html.DropDownListFor(model => model.IdSectorEmpresarial, new SelectList(ViewBag.ListaSectorEmpresarial, "Value", "Text"), "- Seleccionar -", new { @class = "form-control" })
                                 </div>
                                 <div class="input-group fuente-pequeña">
                                     <span class="input-group-addon">Área</span>
@@ -89,7 +91,7 @@
                                 </div>
                                 <div class="input-group fuente-pequeña">
                                     <span class="input-group-addon">Contrato</span>
-                                    @Html.DropDownListFor(model => model.IdContrato, new SelectList(ViewBag.ListaContrato, "Value", "Text"), "- Seleccionar -", new { @class = "form-control"})
+                                    @Html.DropDownListFor(model => model.IdContrato, new SelectList(ViewBag.ListaContrato, "Value", "Text"), "- Seleccionar -", new { @class = "form-control" })
                                 </div>
                                 <div class="input-group fuente-pequeña">
                                     <span class="input-group-addon">Cargo</span>
@@ -127,10 +129,10 @@
         <div id="resultadobusqueda">
 
         </div>
- 
+
     </div>
 }
-    <script src="~/Scripts/jquery-2.1.1.min.js"></script>
+<script src="~/Scripts/jquery-2.1.1.min.js"></script>
 
 <script>
 

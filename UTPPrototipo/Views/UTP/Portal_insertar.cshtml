@@ -6,135 +6,188 @@
     ViewBag.Title = "Mantenimiento de Portal";
 }
 
-<h2>Contenido_insertar</h2>
+@*<script src="~/ckeditor/ckeditor.js"></script>
+<script src="~/ckeditor/adapters/jquery.js"></script>*@
+
+<div class="container" style="margin-top:2px;">
+
+    <h2>Contenido_insertar</h2>
 
 
-@*@using (Html.BeginForm())*@ 
+    @*@using (Html.BeginForm())*@
     @using (Html.BeginForm("Portal_insertar", "UTP", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    @Html.AntiForgeryToken()
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Contenido</h4>
+            <hr />
+            @Html.ValidationSummary(true)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Menu, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @*@Html.EditorFor(model => model.Menu)*@
+
+                    @Html.DropDownList("Menu", ViewData["ContenidoMenu"] as List<SelectListItem>, "Seleccione...", new { @class = "form-control", style = "width: 200px;height:20px" })
+                    @Html.ValidationMessageFor(model => model.Menu)
+                </div>
+            </div>
+
+            <div class="form-group" style="display:none">
+                @Html.LabelFor(model => model.IdContenido, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.IdContenido)
+                    @Html.ValidationMessageFor(model => model.IdContenido)
+                </div>
+            </div>
+
+   
+            <div class="form-group">
+                @Html.LabelFor(model => model.Titulo, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">                  
+                    @*@Html.EditorFor(model => model.Titulo)*@    
+
+                    @Html.TextAreaFor(model => model.Titulo, new { @class = "form-control", placeholder = "Contenido Titulo", style = "width: 500px;height:50px" })
+                   
+                  @*  @Html.TextBoxFor(model => model.Titulo, new { @class = "form-control", placeholder = "Contenido Titulo", style = "width: 500px;height:50px" })*@
+
+                    @Html.ValidationMessageFor(model => model.Titulo)
+                </div>
+            </div>
+                     
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.SubTitulo, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @*@Html.EditorFor(model => model.SubTitulo)*@
+                    @Html.TextAreaFor(model => model.SubTitulo, new { @class = "form-control", placeholder = "Contenido SubTitulo", style = "width: 500px;height:50px" })
+                    @Html.ValidationMessageFor(model => model.SubTitulo)
+                </div>
+            </div>
+
     
-    <div class="form-horizontal">
-        <h4>Contenido</h4>
-        <hr />
-        @Html.ValidationSummary(true)
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Menu, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @*@Html.EditorFor(model => model.Menu)*@
-                @Html.DropDownList("Menu", ViewData["ContenidoMenu"] as List<SelectListItem>, "Seleccione...")
-                @Html.ValidationMessageFor(model => model.Menu)
-            </div>
-        </div>
-
-        <div class="form-group" style="display:none">
-            @Html.LabelFor(model => model.IdContenido, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.IdContenido)
-                @Html.ValidationMessageFor(model => model.IdContenido)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Titulo, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Titulo)
-                @Html.ValidationMessageFor(model => model.Titulo)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.SubTitulo, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.SubTitulo)
-                @Html.ValidationMessageFor(model => model.SubTitulo)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Descripcion)
-                @Html.ValidationMessageFor(model => model.Descripcion)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ImagenHtml, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.ImagenHtml, new { type = "file" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Descripcion, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                   @* @Html.EditorFor(model => model.Descripcion)*@
                 
-                @*@Html.EditorFor(model => model.Imagen)*@
-                @Html.ValidationMessageFor(model => model.ImagenHtml)
+                    @Html.TextAreaFor(model => model.Descripcion, new { @class = "form-control", placeholder = "Contenido Descripción", style = "width: 500px;height:100px" })
+                    
+                    @Html.ValidationMessageFor(model => model.Descripcion)
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Activo, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
 
-                @Html.EditorFor(model => model.Activo)
-                @Html.ValidationMessageFor(model => model.Activo)
-            </div>
-        </div>
-        <div class="form-group">
-        @Html.LabelFor(model => model.EnPantallaPrincipal, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-      
-                @Html.EditorFor(model => model.EnPantallaPrincipal)
-                @Html.ValidationMessageFor(model => model.EnPantallaPrincipal)
-            </div>
-        </div>
-       
+            @*<div class="form-group">
+                @Html.LabelFor(model => model.Descripcion, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.Descripcion, new { @class = "ckeditor", placeholder = "Contenido Descripción" })
+                    @Html.ValidationMessageFor(model => model.Descripcion)
+                </div>
+            </div>*@
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.CreadoPor, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CreadoPor)
-                @Html.ValidationMessageFor(model => model.CreadoPor)
-            </div>
-        </div>
+   
 
-        <div class="form-group" style="display:none">
-            @Html.LabelFor(model => model.FechaCreacion, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.FechaCreacion)
-                @Html.ValidationMessageFor(model => model.FechaCreacion)
-            </div>
-        </div>
 
-        <div class="form-group" style="display:none">
-            @Html.LabelFor(model => model.ModificadoPor, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ModificadoPor)
-                @Html.ValidationMessageFor(model => model.ModificadoPor)
-            </div>
-        </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.ImagenHtml, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.ImagenHtml, new { type = "file" })
 
-        <div class="form-group" style="display:none">
-            @Html.LabelFor(model => model.FechaModificacion, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.FechaModificacion)
-                @Html.ValidationMessageFor(model => model.FechaModificacion)
+                    @*@Html.EditorFor(model => model.Imagen)*@
+                    @Html.ValidationMessageFor(model => model.ImagenHtml)
+                </div>
             </div>
-        </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Activo, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                    @Html.EditorFor(model => model.Activo)
+                    @Html.ValidationMessageFor(model => model.Activo)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.EnPantallaPrincipal, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+
+                    @Html.EditorFor(model => model.EnPantallaPrincipal)
+                    @Html.ValidationMessageFor(model => model.EnPantallaPrincipal)
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.CreadoPor, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.CreadoPor)
+                    @Html.ValidationMessageFor(model => model.CreadoPor)
+                </div>
+            </div>
+
+            <div class="form-group" style="display:none">
+                @Html.LabelFor(model => model.FechaCreacion, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.FechaCreacion)
+                    @Html.ValidationMessageFor(model => model.FechaCreacion)
+                </div>
+            </div>
+
+            <div class="form-group" style="display:none">
+                @Html.LabelFor(model => model.ModificadoPor, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ModificadoPor)
+                    @Html.ValidationMessageFor(model => model.ModificadoPor)
+                </div>
+            </div>
+
+            <div class="form-group" style="display:none">
+                @Html.LabelFor(model => model.FechaModificacion, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.FechaModificacion)
+                    @Html.ValidationMessageFor(model => model.FechaModificacion)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Guardar" class="btn btn-default" />
+                </div>
             </div>
         </div>
+    }
+
+    <div>
     </div>
-}
+        @Html.ActionLink("<- Atrás", "Portal")
+    </div>
+  
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+        @section Scripts {
 <script>
-
     $(document).ready(function () {
         $("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta4 color-paleta5").addClass("color-paleta3");
     });
+    </script>
+<script>
+    $('#Id').attr("disabled", true);
+    </script>
+
+    }
 
 
-</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

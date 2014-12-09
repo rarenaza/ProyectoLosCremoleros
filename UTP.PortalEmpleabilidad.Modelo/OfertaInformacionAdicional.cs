@@ -10,9 +10,11 @@ namespace UTP.PortalEmpleabilidad.Modelo
     {
         public int IdOfertaInformacionAdicional { get; set; }
         public int IdOferta { get; set; }
-        public ListaValor TipoConocimiento { get; set; }
+        public string TipoConocimientoIdListaValor { get; set; }
+        public virtual ListaValor TipoConocimiento { get; set; }
         public string Conocimiento { get; set; }
-        public ListaValor NivelConocimiento { get; set; }
+        public string NivelConocimientoIdListaValor { get; set; }
+        public virtual ListaValor NivelConocimiento { get; set; }
         public int AniosExperiencia { get; set; }
         public ListaValor EstadoOfertaInformacionAdicional { get; set; }
         public string CreadoPor { get; set; }

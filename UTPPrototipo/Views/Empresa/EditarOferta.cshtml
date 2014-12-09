@@ -78,7 +78,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <script>
 
                 CKEDITOR.replace('Funciones');
@@ -208,7 +208,7 @@
         foreach (var locacion in locaciones)
         {
             <option value="@locacion.IdEmpresaLocacion">
-                @locacion.NombreLocacion, @locacion.DireccionLinea1, @locacion.DireccionDistrito
+                @locacion.NombreLocacion, @locacion.Direccion, @locacion.DireccionDistrito
             </option>
         }
                                                 }
@@ -231,83 +231,278 @@
             </div>
         </div>
     }
-        <div class="row">
+    <div class="row">
 
-            <div id="ofertaRequisitos" class="col-sm-6">                
-                <div class="panel-group" id="oferta-requisito" role="tablist" aria-multiselectable="true">
-                    <div class="panel panel-default">
-                        <div class="panel-heading" role="tab" id="headingRequisito" style="padding: 2px 2px 2px 6px;">
-                            <h5 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#oferta-requisito" href="#collapseRequisito" aria-expanded="true" aria-controls="collapseRequisito" class="fuente-seccion">
-                                    Requisitos de la Oferta
-                                </a>
-                            </h5>
-                        </div>
-                        <div id="collapseRequisito" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingRequisito">
-                            <div class="panel-body fuente-pequeña">
+        <div id="ofertaRequisitos" class="col-sm-6">
+            <div class="panel-group" id="oferta-requisito" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingRequisito" style="padding: 2px 2px 2px 6px;">
+                        <h5 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#oferta-requisito" href="#collapseRequisito" aria-expanded="true" aria-controls="collapseRequisito" class="fuente-seccion">
+                                Requisitos de la Oferta
+                            </a>
+                        </h5>
+                    </div>
+                    <div id="collapseRequisito" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingRequisito">
+                        <div class="panel-body fuente-pequeña">
 
-                                @{Html.RenderAction("ObtenerEstudios", "OfertaEstudio", new { idOferta = Model.IdOferta }); }
+                            <div id="divListaEstudios">
+                                @Html.Action("ObtenerEstudios", "OfertaEstudio", new { idOferta = Model.IdOferta })
+                            </div>
+                            <hr />
 
-                                <hr />
+                            <div id="divListaSectores">
+                                @Html.Action("ObtenerSectoresEmpresariales", "OfertaSectorEmpresarial", new { idOferta = Model.IdOferta })
+                            </div>
+                            <hr />
 
-                                @{Html.RenderAction("ObtenerSectoresEmpresariales", "OfertaSectorEmpresarial", new { idOferta = Model.IdOferta }); }
-
-                                <hr />
-                                
+                            <div id="divListaInfoAdicional">
                                 @Html.Action("ObtenerInformacionAdicional", "OfertaInformacionAdicional", new { idOferta = Model.IdOferta })
-                                <br />
                             </div>
+                            <br />
                         </div>
                     </div>
                 </div>
             </div>
-
-            <div id="ofertaFases" class="col-sm-6">
-
-                <div class="panel-group" id="oferta-fases" role="tablist" aria-multiselectable="true">
-                    <div class="panel panel-default">
-                        <div class="panel-heading" role="tab" id="headingFases" style="padding: 2px 2px 2px 6px;">
-                            <h5 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#oferta-fases" href="#collapseFases" aria-expanded="true" aria-controls="collapseFases" class="fuente-seccion">
-                                    Fases de la Oferta
-                                </a>
-                            </h5>
-                        </div>
-                        <div id="collapseFases" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFases">
-                            <div class="panel-body fuente-pequeña">
-                                <p>Seleccionar Fases para esta Oferta</p>
-                                <p><span><input type="checkbox" checked disabled /></span> CVs Pendientes de Revisión</p>
-                                <p>
-                                    <span><input type="checkbox" checked disabled /></span> CVs en Revisión
-                                </p>
-                                <p>
-                                    <span><input type="checkbox" /></span> Dinámica Grupal
-                                </p>
-                                <p>
-                                    <span><input type="checkbox" /></span> Primera Entrevista
-                                </p>
-                                <p>
-                                    <span><input type="checkbox" /></span> Examen de Conocimientos
-                                </p>
-                                <p><span><input type="checkbox" /></span> Evaluaciones Psicológicas/Psicotécnicas</p>
-                                <p><span><input type="checkbox" /></span> Examen Médico</p>
-                                <p><span><input type="checkbox" /></span> Entrevista Final</p>
-                                <p><span><input type="checkbox" /></span> Contratación</p>
-                                <p><span><input type="checkbox" checked disabled /></span> Proceso Finalizado</p>
-
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
         </div>
 
-   
+        <div id="ofertaFases" class="col-sm-6">
+
+            <div class="panel-group" id="oferta-fases" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingFases" style="padding: 2px 2px 2px 6px;">
+                        <h5 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#oferta-fases" href="#collapseFases" aria-expanded="true" aria-controls="collapseFases" class="fuente-seccion">
+                                Fases de la Oferta
+                            </a>
+                        </h5>
+                    </div>
+                    <div id="collapseFases" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFases">
+                        <div class="panel-body fuente-pequeña">
+                            <p>Seleccionar Fases para esta Oferta</p>
+                            <p><span><input type="checkbox" checked disabled /></span> CVs Pendientes de Revisión</p>
+                            <p>
+                                <span><input type="checkbox" checked disabled /></span> CVs en Revisión
+                            </p>
+                            <p>
+                                <span><input type="checkbox" /></span> Dinámica Grupal
+                            </p>
+                            <p>
+                                <span><input type="checkbox" /></span> Primera Entrevista
+                            </p>
+                            <p>
+                                <span><input type="checkbox" /></span> Examen de Conocimientos
+                            </p>
+                            <p><span><input type="checkbox" /></span> Evaluaciones Psicológicas/Psicotécnicas</p>
+                            <p><span><input type="checkbox" /></span> Examen Médico</p>
+                            <p><span><input type="checkbox" /></span> Entrevista Final</p>
+                            <p><span><input type="checkbox" /></span> Contratación</p>
+                            <p><span><input type="checkbox" checked disabled /></span> Proceso Finalizado</p>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
 </div>
+
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+           
+
+<!--Bloque de modales-->
+
+<!--Modal de estudio Crear-->
+<div class="modal" id="divModalEstudio" tabindex="-1" role="dialog" aria-labelledby="Estudio" aria-hidden="true">
+
+    @using (Ajax.BeginForm("_OfertaEstudioCrear", "OfertaEstudio", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divListaEstudios", OnComplete = "cerrarModal" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div id="divCrearEstudioContenedor" class="modal-dialog">
+
+        </div>
+    }
+</div>
+
+<!--Modal de sector empresarial-->
+<div class="modal" id="divModalSectorEmpresarial" tabindex="-1" role="dialog" aria-labelledby="ExperienciaLaboral" aria-hidden="true">
+
+    @using (Ajax.BeginForm("_OfertaSectorEmpresarialCrear", "OfertaSectorEmpresarial", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divListaSectores", OnComplete = "cerrarModal" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div id="divCrearSectorEmpresarialContenedor" class="modal-dialog">
+
+        </div>
+    }
+
+</div>
+
+<!--Modal de infomación adicional-->
+<div class="modal" id="divModalInfoAdicional" tabindex="-1" role="dialog" aria-labelledby="Estudio" aria-hidden="true">
+
+    @using (Ajax.BeginForm("_OfertaInformacionAdicionalCrear", "OfertaInformacionAdicional", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divListaInfoAdicional", OnComplete = "cerrarModal" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div id="divCrearInfoAdicionalContenedor" class="modal-dialog">
+
+        </div>
+    }
+
+</div>
+
+<!--Modal de estudio Editar-->
+<div class="modal" id="divEditarModalEstudio" tabindex="-1" role="dialog" aria-labelledby="Estudio" aria-hidden="true">
+
+    @using (Ajax.BeginForm("_OfertaEstudioEditar", "OfertaEstudio", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divListaEstudios", OnComplete = "cerrarModal" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div id="divEditarEstudioContenedor" class="modal-dialog">
+
+        </div>
+    }
+</div>
+
+<!--Modal edición de sector empresarial-->
+<div class="modal" id="divEditarModalSectorEmpresarial" tabindex="-1" role="dialog" aria-labelledby="ExperienciaLaboral" aria-hidden="true">
+
+    @using (Ajax.BeginForm("_OfertaSectorEmpresarialEditar", "OfertaSectorEmpresarial", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divListaSectores", OnComplete = "cerrarModal" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div id="divEditarSectorEmpresarialContenedor" class="modal-dialog">
+
+        </div>
+    }
+
+</div>
+
+<!--Modal de edición de infomación adicional-->
+<div class="modal" id="divEditarModalInfoAdicional" tabindex="-1" role="dialog" aria-labelledby="Estudio" aria-hidden="true">
+
+    @using (Ajax.BeginForm("_OfertaInformacionAdicionalEditar", "OfertaInformacionAdicional", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divListaInfoAdicional", OnComplete = "cerrarModal" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div id="divEditarInfoAdicionalContenedor" class="modal-dialog">
+
+        </div>
+    }
+
+</div>
+
+<!--Bloque de javascript-->
 <script>
     $(document).ready(function () {
         $("#divFinalCabeceraEmpresa").removeClass("color-paleta1 color-paleta3 color-paleta4 color-paleta5").addClass("color-paleta2");
     });
+
+    //Scripts de creación.
+    //$('#btnNuevoEstudiossss').click(function () {
+
+    //    var url = "../OfertaEstudio/_OfertaEstudioCrear"; // el url del controlador
+    //    $.get(url, function (data) {
+    //        $('#divCrearEstudioContenedor').html(data);
+    //        $('#divModalEstudio').modal('show');
+    //    });
+    //});
+
+    function crearEstudio() {
+
+        var url = "../OfertaEstudio/_OfertaEstudioCrear"; // el url del controlador
+        $.get(url, function (data) {
+            $('#divCrearEstudioContenedor').html(data);
+            $('#divModalEstudio').modal('show');
+        });
+    };
+
+
+    function crearSector()
+    {
+        var url = "../OfertaSectorEmpresarial/_OfertaSectorEmpresarialCrear"; // el url del controlador
+        $.get(url, function (data) {
+            $('#divCrearSectorEmpresarialContenedor').html(data);
+            $('#divModalSectorEmpresarial').modal('show');
+        });
+    }
+
+    //$('#btnNuevoSectorEmpresarial').click(function () {
+
+    //    var url = "../OfertaSectorEmpresarial/_OfertaSectorEmpresarialCrear"; // el url del controlador
+    //    $.get(url, function (data) {
+    //        $('#divCrearSectorEmpresarialContenedor').html(data);
+    //        $('#divModalSectorEmpresarial').modal('show');
+    //    });
+    //});
+
+    function crearInfoAdicional()
+    {
+        var url = "../OfertaInformacionAdicional/_OfertaInformacionAdicionalCrear"; // el url del controlador
+        $.get(url, function (data) {
+            $('#divCrearInfoAdicionalContenedor').html(data);
+            $('#divModalInfoAdicional').modal('show');
+        });
+    }
+
+    //$('#btnNuevaInfoAdicional').click(function () {
+        
+    //    var url = "../OfertaInformacionAdicional/_OfertaInformacionAdicionalCrear"; // el url del controlador
+    //    $.get(url, function (data) {
+    //        $('#divCrearInfoAdicionalContenedor').html(data);
+    //        $('#divModalInfoAdicional').modal('show');
+    //    });
+    //});
+     
+    //Scripts para actualizar.
+    //$('.btnEditarEstudio22').click(function () {
+    //    debugger;
+    //    var url = "../OfertaEstudio/_OfertaEstudioEditar"; // el url del controlador
+    //    var id = $(this).attr('data-id'); // el id del botón.
+    //    $.get(url + '/' + id, function (data) {        
+    //        $('#divEditarEstudioContenedor').html(data);
+    //        $('#divEditarModalEstudio').modal('show');
+    //    });
+    //});
+
+    function editarEstudio(id) {
+
+        var url = "../OfertaEstudio/_OfertaEstudioEditar"; // el url del controlador     
+        $.get(url + '/' + id, function (data) {
+            $('#divEditarEstudioContenedor').html(data);
+            $('#divEditarModalEstudio').modal('show');
+        });
+    };
+
+    function editarSector(id) {
+
+        var url = "../OfertaSectorEmpresarial/_OfertaSectorEmpresarialEditar"; // el url del controlador     
+        $.get(url + '/' + id, function (data) {
+            $('#divEditarSectorEmpresarialContenedor').html(data);
+            $('#divEditarModalSectorEmpresarial').modal('show');
+        });
+    };
+
+    function editarInfoAdicional(id) {
+
+        var url = "../OfertaInformacionAdicional/_OfertaInformacionAdicionalEditar"; // el url del controlador     
+        $.get(url + '/' + id, function (data) {
+            $('#divEditarInfoAdicionalContenedor').html(data);
+            $('#divEditarModalInfoAdicional').modal('show');
+        });
+    };
+
+    //Script para cerrar el modal cuando la actualización por ajax termina.
+    function cerrarModal() {
+        $('.modal.in').modal('hide');
+    }
+
 </script>

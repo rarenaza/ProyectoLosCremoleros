@@ -28,6 +28,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
             Usuario = new Usuario();
             TipoDocumento = new ListaValor();
             Sexo = new ListaValor();
+            EmpresaLocacion = new EmpresaLocacion();
         }
 
     }

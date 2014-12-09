@@ -8,7 +8,7 @@ using System.Web;
 
 namespace UTP.PortalEmpleabilidad.Modelo
 {
-   public partial class Oferta
+    public partial class Oferta
     {       
         public int IdOferta { get; set; }
         public int IdEmpresa { get; set; }
@@ -57,7 +57,12 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public ListaValor TipoCargo { get; set; }
         public ListaValor TipoTrabajo { get; set; }
         public ListaValor TipoContrato { get; set; }
+
+        public decimal Compatible { get; set; }
         public string NombreComercial { get; set; }
+        public int Mensaje { get; set; }
+        public string DesTipoTrabajo { get; set; }
+
        public Oferta() {
 
            TipoCargo = new ListaValor();

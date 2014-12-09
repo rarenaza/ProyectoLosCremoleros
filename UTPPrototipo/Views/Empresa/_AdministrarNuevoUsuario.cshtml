@@ -1,4 +1,6 @@
-﻿<div class="modal-content">
+﻿@model UTP.PortalEmpleabilidad.Modelo.EmpresaUsuario
+
+<div class="modal-content">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <h4 class="modal-title" id="NuevoUsuario">Nuevo Usuario</h4>
@@ -116,7 +118,9 @@
         </div>
         <div class="row">
             <div class="col-sm-12" style="text-align:right;">
-                <button type="button" class="btn btn-default color-paleta4 fuente-pequeña" style="color: white; margin-bottom: 10px;">Guardar</button>
+                @*<button type="button" class="btn btn-default color-paleta4 fuente-pequeña" style="color: white; margin-bottom: 10px;">Guardar</button>*@
+
+                <button type="submit" class="btn btn-default color-paleta4 fuente-pequeña">Guardar</button>
             </div>
         </div>
 

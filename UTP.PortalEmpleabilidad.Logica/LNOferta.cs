@@ -14,9 +14,7 @@ namespace UTP.PortalEmpleabilidad.Logica
     {
 
         ADOferta adOferta = new ADOferta();
-
-
-        public List<Oferta> MostrarUltimasOfertas(int IdAlumno, string DescrpcionOferta)
+        public List<Oferta> MostrarUltimasOfertas(int IdAlumno)
         {
             List<Oferta> listaOferta = new List<Oferta>();
 
@@ -27,8 +25,8 @@ namespace UTP.PortalEmpleabilidad.Logica
                 Oferta oferta = new Oferta();
 
                 oferta.IdOferta = Funciones.ToInt(dtResultado.Rows[i]["IdOferta"]);
-                oferta.Compatible =Funciones.ToDecimal( dtResultado.Rows[i]["Compatible"]);
-                oferta.FechaPublicacion =Funciones.ToDateTime( dtResultado.Rows[i]["FechaPublicacion"]);
+                oferta.Compatible = Funciones.ToDecimal(dtResultado.Rows[i]["Compatible"]);
+                oferta.FechaPublicacion = Funciones.ToDateTime(dtResultado.Rows[i]["FechaPublicacion"]);
                 oferta.NombreComercial = Funciones.ToString(dtResultado.Rows[i]["NombreComercial"]);
                 oferta.CargoOfrecido = Funciones.ToString(dtResultado.Rows[i]["CargoOfrecido"]);
                 oferta.RemuneracionOfrecida = Funciones.ToInt(dtResultado.Rows[i]["RemuneracionOfrecida"]);
@@ -41,10 +39,10 @@ namespace UTP.PortalEmpleabilidad.Logica
             }
             return listaOferta;
         }
+          
         public List<VistaOfertaAlumno> Oferta_Mostrar()
         {
             List<VistaOfertaAlumno> listaOferta = new List<VistaOfertaAlumno>();
-           
 
             DataTable dtResultado = adOferta.Obtener();
 
@@ -56,7 +54,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 oferta.Empresa = dtResultado.Rows[i]["Empresa"].ToString();
 
                 oferta.CargoOfrecido = dtResultado.Rows[i]["CargoOfrecido"].ToString();
-                oferta.Horario = dtResultado.Rows[i]["Horario"].ToString();
+                oferta.Horario = dtResultado.Rows[i]["Horario"].ToString ();
 
                 oferta.RemuneracionOfrecida = Convert.ToDecimal(dtResultado.Rows[i]["RemuneracionOfrecida"]);
 
