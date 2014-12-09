@@ -7,6 +7,7 @@ namespace UTPPrototipo.Models.ViewModels.Cuenta
 {
     public class TicketEmpresa
     {
+        public string Idempresa { get; set; }
         public string Usuario { get; set; }
         public string Nombre { get; set; }
         public string DNI { get; set; }

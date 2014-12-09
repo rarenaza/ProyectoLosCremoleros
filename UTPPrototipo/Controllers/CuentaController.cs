@@ -35,7 +35,7 @@ namespace UTPPrototipo.Controllers
             DataSet dsResulatdo = ln.Autenticar_Usuario(usuario.NombreUsuario, usuario.Contrasena);
 
             //DataSet dsResulatdo = ln.Autenticar_Usuario(usuario.NombreUsuario, usuario.Contrasena);
-
+             
 
             if (dsResulatdo.Tables.Count > 0)
             {
@@ -73,6 +73,8 @@ namespace UTPPrototipo.Controllers
                         ticketEmpresa.CorreoElectronico = Convert.ToString(dsResulatdo.Tables[2].Rows[0]["CorreoElectronico"]);
                         ticketEmpresa.TelefonoCelular = Convert.ToString(dsResulatdo.Tables[2].Rows[0]["TelefonoCelular"]);
                         ticketEmpresa.TipoUsuario = Convert.ToString(dsResulatdo.Tables[2].Rows[0]["TipoUsuario"]);
+                        ticketEmpresa.Idempresa = Convert.ToString(dsResulatdo.Tables[2].Rows[0]["IdEmpresa"]);
+                   
                         Session["TicketEmpresa"] = ticketEmpresa;
 
 

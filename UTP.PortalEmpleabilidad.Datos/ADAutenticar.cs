@@ -37,9 +37,9 @@ namespace UTP.PortalEmpleabilidad.Datos
 
                     conexion.Close();
                 }
-                catch (SqlException)
-                { 
-
+                catch (Exception ex)
+                {
+                    throw ex;
                 }
             }
 
