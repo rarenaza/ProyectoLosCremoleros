@@ -14,11 +14,11 @@ namespace UTP.PortalEmpleabilidad.Logica
     {
         ADOfertaEstudio adOfertaEstudio = new ADOfertaEstudio();
 
-        public List<OfertaEstudio> ObtenerEstudios(int idOferta)
+        public List<OfertaEstudio> ObtenerEstudios(int idOferta, int idOfertaEstudio)
         {
             List<OfertaEstudio> lista = new List<OfertaEstudio>();
 
-            DataTable dtResultado = adOfertaEstudio.ObtenerEstudios(idOferta);
+            DataTable dtResultado = adOfertaEstudio.ObtenerEstudios(idOferta, idOfertaEstudio);
 
             foreach (DataRow fila in dtResultado.Rows)
             {
@@ -32,11 +32,20 @@ namespace UTP.PortalEmpleabilidad.Logica
                 estudio.EstadoOfertaEstudio.Valor = Convert.ToString(fila["EstadoOfertaEstudioDescripcion"]);
                 estudio.CreadoPor = Convert.ToString(fila["CreadoPor"]);
 
+                lista.Add(estudio);
             }
 
             return lista;
         }
 
-     
+        public void Insertar(OfertaEstudio ofertaEstudio)
+        {
+            adOfertaEstudio.Insertar(ofertaEstudio);
+        }
+
+        public void Actualizar(OfertaEstudio ofertaEstudio)
+        {
+            adOfertaEstudio.Actualizar(ofertaEstudio);
+        }
     }
 }

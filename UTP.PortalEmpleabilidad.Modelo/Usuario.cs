@@ -15,5 +15,12 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public ListaValor Rol { get; set; }        
         public string Contrasena { get; set; }
 
+        public Usuario()
+        {
+            TipoUsuario = new ListaValor();
+            EstadoUsuario = new ListaValor();
+            Rol = new ListaValor();
+        }
+
     }
 }

@@ -26,6 +26,7 @@
             <td class="celda-nombre"></td>
             <td class="celda-datos">
                 <p class="fui fa-2x" style="color:gray;">
+                    <button class="btn btn-primary" onclick="editarSector(@item.IdOfertaSectorEmpresarial);" >1</button>
                     1 l
                 </p>
             </td>
@@ -34,84 +35,12 @@
     <br />
 }
 
-@*<table class="fuente-pequeña">
-    <tr>
-        <td class="celda-nombre">Sector</td>
-        <td class="celda-datos">Servicios</td>
-    </tr>
-    <tr>
-        <td class="celda-nombre">Años de experiencia</td>
-        <td class="celda-datos"></td>
-    </tr>
-    <tr>
-        <td class="celda-nombre">Excluyente</td>
-        <td class="celda-datos">No</td>
-    </tr>
-    <tr>
-        <td class="celda-nombre"></td>
-        <td class="celda-datos">
-            <p class="fui fa-2x" style="color:gray;">
-                1 l
-            </p>
-        </td>
-    </tr>
-</table>*@
 <div class="row">
     <div class="col-sm-12" style="text-align:right;">
-        <button data-toggle="modal" data-target="#Modal-experiencia-sector" class="btn btn-default color-paleta2">Agregar Experiencia por Sector</button>
+        <button id="btnNuevoSectorEmpresarial" data-toggle="modal" data-target="#divModalSectorEmpresarial" onclick="crearSector()"  class="btn btn-default color-paleta2">
+            Agregar Experiencia por Sector
+        </button>
     </div>
 </div>
 
-<div class="modal" id="Modal-experiencia-sector" tabindex="-1" role="dialog" aria-labelledby="ExperienciaLaboral" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="ExperienciaLaboral">Experiencia Por Sector</h4>
-            </div>
-            <div class="modal-body">
 
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="input-group fuente-pequeña">
-                            <span class="input-group-addon">Sector</span>
-                            <select id="Lista" class="form-control">
-                                <option value="" selected>- - -</option>
-                                <option value="1">Auditoría y Consultoría</option>
-                                <option value="1">Banca y Seguros</option>
-                                <option value="1">Construcción e Inmobiliaria</option>
-                                <option value="1">Energía</option>
-                                <option value="1">Industria</option>
-                                <option value="1">Servicios</option>
-                                <option value="1">Tecnología y Software</option>
-                                <option value="1">Telecomunicaciones</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="input-group fuente-pequeña">
-                            <span class="input-group-addon">Años de<br />Experiencia</span>
-                            <input type="text" class="form-control" placeholder="Años de experiencia mínimos">
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6">
-                        <div class="input-group fuente-pequeña">
-                            <span class="input-group-addon"><input type="checkbox"></span>
-
-                            <span class="form-control">Excluyente</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-12 text-right"><button type="button" class="btn btn-default color-paleta2 fuente-pequeña" style="color: white; margin-bottom: 10px;">Grabar Experiencia x Sector</button></div>
-                </div>
-            </div>
-            <div class="modal-footer">
-            </div>
-        </div>
-    </div>
-</div>

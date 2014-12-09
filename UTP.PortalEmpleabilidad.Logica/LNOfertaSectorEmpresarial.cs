@@ -14,11 +14,11 @@ namespace UTP.PortalEmpleabilidad.Logica
     {
         ADOfertaSectorEmpresarial adOfertaSectorEmpresarial = new ADOfertaSectorEmpresarial();
 
-        public List<OfertaSectorEmpresarial> ObtenerSectoresEmpresariales(int idOferta)
+        public List<OfertaSectorEmpresarial> ObtenerSectoresEmpresariales(int idOferta, int idOfertaSectorEmpresarial)
         {
             List<OfertaSectorEmpresarial> lista = new List<OfertaSectorEmpresarial>();
 
-            DataTable dtResultado = adOfertaSectorEmpresarial.ObtenerSectoresEmpresariales(idOferta);
+            DataTable dtResultado = adOfertaSectorEmpresarial.ObtenerSectoresEmpresariales(idOferta, idOfertaSectorEmpresarial);
 
             foreach (DataRow fila in dtResultado.Rows)
             {
@@ -29,10 +29,22 @@ namespace UTP.PortalEmpleabilidad.Logica
                 sector.ExperienciaExcluyente = Convert.ToBoolean(fila["ExperienciaExcluyente"]);
                 sector.AniosTrabajados = Convert.ToInt32(fila["AniosTrabajados"]);
                 sector.EstadoOfertaSectorEmpresarial.Valor = Convert.ToString(fila["EstadoOfertaSectorEmpresarialDescripcion"]);
-                sector.CreadorPor = Convert.ToString(fila["CreadorPor"]);
+                sector.CreadoPor = Convert.ToString(fila["CreadoPor"]);
+
+                lista.Add(sector);
             }
 
             return lista;
+        }
+
+        public void Insertar(OfertaSectorEmpresarial ofertaSector)
+        {
+            adOfertaSectorEmpresarial.Insertar(ofertaSector);
+        }
+
+        public void Actualizar(OfertaSectorEmpresarial ofertaSector)
+        {
+            adOfertaSectorEmpresarial.Actualizar(ofertaSector);
         }
     }
 }

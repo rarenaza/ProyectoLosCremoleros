@@ -24,6 +24,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
 
         public static int IDLISTA_TIPO_CARGO = 9;
         public static int IDLISTA_TIPO_OTRO_CONOCIMIENTO = 10;
+        public static int IDLISTA_NIVEL_CONOCIMIENTOS = 16;
         public static int IDLISTA_TIPO_TRABAJO = 29;
         public static int IDLISTA_TIPO_CONTRATO = 30;
         public static int IDLISTA_FASE_OFERTA = 32;

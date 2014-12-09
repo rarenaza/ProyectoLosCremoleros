@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<UTP.PortalEmpleabilidad.Modelo.EmpresaUsuario>
 
-<div id="divListaUsuarios" class="col-sm-6">
+
     <h5>Usuarios</h5>
 
     <div class="row grilla1-cabecera color-paleta4">
@@ -44,14 +44,14 @@
     <br />
     <div class="row">
         <div class="col-sm-12" style="text-align:right;">
-            <button class="btn btn-default color-paleta4">Nuevo Usuario</button>
+            @*<button class="btn btn-default color-paleta4">Nuevo Usuario</button>*@
 
-            <button data-toggle="modal" id="btnAgregarUsuario" data-target="#Modal-nuevo-usuario" class="btn btn-default color-paleta4" data-id="@ViewBag.IdEmpresa">
+            <button data-toggle="modal" id="btnNuevoUsuario" data-target="#divModalNuevoUsuario" class="btn btn-default color-paleta4" data-id="@ViewBag.IdEmpresa">
                 Nuevo Usuario
             </button>     
 
         </div>
     </div>
     <hr />
-</div>
+
 

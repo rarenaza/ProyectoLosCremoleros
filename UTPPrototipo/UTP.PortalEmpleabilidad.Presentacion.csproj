@@ -716,7 +716,6 @@
     <Content Include="Views\Empresa\_VistaOfertaCondiciones.cshtml" />
     <Content Include="Views\Empresa\_VistaOfertaRequisitos.cshtml" />
     <Content Include="Views\Empresa\_VistaOfertaMensajes.cshtml" />
-    <Content Include="Views\OfertaEstudio\_OfertaEstudioListado.cshtml" />
     <Content Include="Views\Contenido\ContenidoEDitar_Buscar.cshtml" />
     <Content Include="Views\UTP\Index.cshtml" />
     <Content Include="Views\UTP\Portal.cshtml" />
@@ -747,6 +746,12 @@
     <Content Include="Views\Empresa\_AdministrarNuevaUbicacion.cshtml" />
     <Content Include="Views\Empresa\_AdministrarNuevoUsuario.cshtml" />
     <Content Include="Views\UTP\Contenido_Eliminar.cshtml" />
+    <Content Include="Views\OfertaInformacionAdicional\_OfertaInformacionAdicionalCrear.cshtml" />
+    <Content Include="Views\OfertaSectorEmpresarial\_OfertaSectorEmpresarialCrear.cshtml" />
+    <Content Include="Views\OfertaEstudio\_OfertaEstudioCrear.cshtml" />
+    <Content Include="Views\OfertaEstudio\_OfertaEstudioEditar.cshtml" />
+    <Content Include="Views\OfertaInformacionAdicional\_OfertaInformacionAdicionalEditar.cshtml" />
+    <Content Include="Views\OfertaSectorEmpresarial\_OfertaSectorEmpresarialEditar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

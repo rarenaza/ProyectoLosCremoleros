@@ -1,0 +1,312 @@
+﻿@model UTP.PortalEmpleabilidad.Modelo.OfertaEstudio
+
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="Estudio">Estudio específico</h4>
+    </div>
+    <div class="modal-body">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="input-group fuente-pequeña">
+                    <span class="input-group-addon">Tipo</span>
+                    <select id="Lista" class="form-control">
+                        <option value="" selected>-- Elegir Tipo de Estudio requerido --</option>
+                        <option value="1">Técnico</option>
+                        <option value="1">Universitario</option>
+                        <option value="1">Post-Grado</option>
+                        <option value="1">Doctorado</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="input-group fuente-pequeña">
+                    <span class="input-group-addon">Estudio</span>
+                    <select id="Lista" class="form-control">
+                        <option value="" selected>- - -</option>
+                        <option>ING. SISTEMAS E INFORMATICA   </option>
+                        <option>INGENIERIA INDUSTRIAL         </option>
+                        <option>INGENIERIA DE SISTEMAS(PROCOU)</option>
+                        <option>ADMINISTRACION DE EMPRESAS    </option>
+                        <option>ADM. DE EMPRESAS (PROCOU)     </option>
+                        <option>CONTABILIDAD                  </option>
+                        <option>CONTABILIDAD (PROCOU)         </option>
+                        <option>SISTEMAS E INFORMATICA        </option>
+                        <option>SEMINARIO ING. SISTEMAS       </option>
+                        <option>SEMINARIO ING. ELECTRONICA    </option>
+                        <option>SEMINARIO ING. INDUSTRIAL     </option>
+                        <option>SEMINARIO ING. SISTEMAS(PROCOU</option>
+                        <option>SEMINARIO ING. ELECTRONICA(PRO</option>
+                        <option>SEMINARIO ADMINISTRACION      </option>
+                        <option>SEMINARIO ADMINISTRACION(PROCO</option>
+                        <option>SEMINARIO CONTABILIDAD        </option>
+                        <option>SEMINARIO CONTABILIDAD (PROCOU</option>
+                        <option>DERECHO                       </option>
+                        <option>INGENIERIA ELECTRONICA        </option>
+                        <option>INGENIERIA ELECTRONICA(PROCOU)</option>
+                        <option>DIPLOMADO EN REDES NETWORKING </option>
+                        <option>ESCUELA DE INGLES             </option>
+                        <option>PET  ADMINISTRACION           </option>
+                        <option>PETP CONTABILIDAD             </option>
+                        <option>PETP INGENIERIA DE SISTEMAS   </option>
+                        <option>ESCUELA DE ITALIANO           </option>
+                        <option>SECRETARIADO UNIVERSITARIO    </option>
+                        <option>DIPLOMADO EN TECNOLOGIAS .NET </option>
+                        <option>ESCUELA DE FRANCES            </option>
+                        <option>ESPECIALISTA .NET MCAD        </option>
+                        <option>ESPECIALISTA .NET MCSD        </option>
+                        <option>PETP INGENIERIA ELECTRONICA   </option>
+                        <option>CURSOS LIBRES                 </option>
+                        <option>ADMINISTRADOR DE BD ORACLE DBA</option>
+                        <option>ESCUELA DE PORTUGUES          </option>
+                        <option>ADM. NEGOCIOS INTERNACIONALES </option>
+                        <option>ADMINISTRACION Y MARKETING    </option>
+                        <option>INGENIERIA MECATRONICA        </option>
+                        <option>INGENIERIA TELECOMUNICACIONES </option>
+                        <option>ADM.NEG.INTERNACIONALES(PROCOU</option>
+                        <option>ADM. Y MARKETING (PROCOU)     </option>
+                        <option>CIENCIAS DE LA COMUNICACION   </option>
+                        <option>DIPLOMADOS DE CONTABILIDAD    </option>
+                        <option>PETP INGENIERIA INDUSTRIAL    </option>
+                        <option>DESARROLLADOR APLICACION .NET </option>
+                        <option>ESPECIALISTA EN OFFICE        </option>
+                        <option>SOLUCIONES EMPRESARIALES      </option>
+                        <option>DIPLOMADOS DE ING. ELECTRONICA</option>
+                        <option>ING. TEXTIL Y CONFECCIONES    </option>
+                        <option>INGENIERIA MARITIMA           </option>
+                        <option>INGENIERIA NAVAL              </option>
+                        <option>INGENIERIA AERONAUTICA        </option>
+                        <option>INGENIERIA AUTOMOTRIZ         </option>
+                        <option>INGENIERIA DE SOFTWARE        </option>
+                        <option>PETP DERECHO                  </option>
+                        <option>CERTIFICACION REDES WIRELESS  </option>
+                        <option>HELP DESK                     </option>
+                        <option>EVENTOS - SEMINARIOS CETIS    </option>
+                        <option>POST. AUTOMATIZ. INDUSTRIAL   </option>
+                        <option>POST. SEGURIDAD Y DEFEN.CIVIL </option>
+                        <option>LICENCIATURA EN EDUCACION     </option>
+                        <option>PROGRAMACION JAVA             </option>
+                        <option>IT ESSENCIALT`S               </option>
+                        <option>INGENIERIA ECONOMICA          </option>
+                        <option>INGENIERIA MECANICA           </option>
+                        <option>ADMINISTRACION Y FINANZAS     </option>
+                        <option>INGENIERIA DE TRANSPORTE      </option>
+                        <option>ADM. Y FINANZAS(PROCOU)       </option>
+                        <option>POST. CODIGO PROCESAL PENAL   </option>
+                        <option>POST. TEC. DE LITIGACION ORAL </option>
+                        <option>RANGERS                       </option>
+                        <option>CERTIFICACION DE TRAGAMONEDAS </option>
+                        <option>AGENTE INMOBILIARIO           </option>
+                        <option>POST. INV.EN LA ESC.DEL CRIMEN</option>
+                        <option>POST. DER. DE FAM.Y VIOL.FAM. </option>
+                        <option>ING. REDES Y COMUNICACIONES   </option>
+                        <option>ING.SEGUR.Y AUDITOR.INFORMATIC</option>
+                        <option>Tecnico en Redes CCENT -CISCO </option>
+                        <option>RELACIONES INTERNACIONALES    </option>
+                        <option>MARKETING Y VENTAS            </option>
+                        <option>ADMINIST. Y ALTA DIRECCION    </option>
+                        <option>DIPLOMADOS DE ESC.DE POSTGRADO</option>
+                        <option>SEMINARIOS DE ESC.DE POSTGRADO</option>
+                        <option>SEMINARIOS TELECOMUNICACIONES </option>
+                        <option>Profes. en redes CISCO CCNP   </option>
+                        <option>Centro de Certificaciones     </option>
+                        <option>ADM. HOTELERA Y DE TURISMO    </option>
+                        <option>ING. DE DISEÑO GRAFICO        </option>
+                        <option>ING. ELECTROMECANICA          </option>
+                        <option>ING. DE DISEÑO COMPUTACIONAL  </option>
+                        <option>ING. ELECTRICA Y DE POTENCIA  </option>
+                        <option>INGENIERIA BIOMEDICA          </option>
+                        <option>PET INGENIERIA DE SISTEMAS    </option>
+                        <option>Fast Track Oracle             </option>
+                        <option>Fast Track CCENT              </option>
+                        <option>Espec. en Redes CCNA Security </option>
+                        <option>ING.REDES Y COMUNICAC.(PROCOU)</option>
+                        <option>Administrador Linux           </option>
+                        <option>Cableado Estructurado         </option>
+                        <option>Edumatica y Docencia Univers. </option>
+                        <option>Docencia y Gestion Educativa  </option>
+                        <option>Taller de Linux               </option>
+                        <option>Windows 7                     </option>
+                        <option>Redes Inalambricas            </option>
+                        <option>MAEST. EN ING.TEL.Y NETWORK.  </option>
+                        <option>MAEST.EN ING. SEG. INFORMATICA</option>
+                        <option>MAEST.EN ING.TEL.Y NETWORK.-FT</option>
+                        <option>MAEST.EN ING.SEG. INFORM.- FT.</option>
+                        <option>Linux Basico                  </option>
+                        <option>CECINAVAL                     </option>
+                        <option>Capacitacion Office (Empresas)</option>
+                        <option>PETP CIENCIAS DE LA COMUNICAC.</option>
+                        <option>DIP.DER.GEST.PUB.MUNIC.Y REG. </option>
+                        <option>DIPLOM. EN MATEMATICA APLICADA</option>
+                        <option>ORACLE FUSION MIDDLEWARE      </option>
+                        <option>Esc.de Inteligencia de Neg.   </option>
+                        <option>PET INGENIERIA INDUSTRIAL     </option>
+                        <option>ING.DE DISEÑO GRAFICO (PROCOU)</option>
+                        <option>PROG. ACTUALIZACION CONTINUA  </option>
+                        <option>Business Administration       </option>
+                        <option>Systems Engineering           </option>
+                        <option>Information Technology Eng.   </option>
+                        <option>Telecommunication & Net. Eng. </option>
+                        <option>DISEÑO DIGITAL PUBLICITARIO   </option>
+                        <option>DIP.EN INV.Y DOC.UNIVERSITARIA</option>
+                        <option>DIP. EN DERECHO PROCESAL CIVIL</option>
+                        <option>DIPLOM. EN DERECHO LABORAL    </option>
+                        <option>AGENTE INMOBILIARIO           </option>
+                        <option>ADMINISTRACION DE NEGOCIOS    </option>
+                        <option>NEGOCIOS INTERNACIONALES      </option>
+                        <option>ADMIN. DE NEGOCIOS Y MARKETING</option>
+                        <option>ADMIN. DE NEGOCIOS Y FINANZAS </option>
+                        <option>Ciencias Penales              </option>
+                        <option>Derecho Const. y Der.Humanos  </option>
+                        <option>Gobierno y Gest. de Politicas </option>
+                        <option>DISEÑO DIGITAL PUBLIC.(PROCOU)</option>
+                        <option>PSICOLOGIA CRIMINAL           </option>
+                        <option>DIDACTICA PARA ELAB. DE TESIS </option>
+                        <option>EXEG.DEL CODIGO PROCESAL PENAL</option>
+                        <option>TEC.INT.Y LIT.ORAL EN PR.PENAL</option>
+                        <option>MAESTRIA EN ADM. EMPRESAS     </option>
+                        <option>MAESTRIA EN ADM.NEG. INTERNAC.</option>
+                        <option>PET  NEGOCIOS INTERNACIONALES </option>
+                        <option>Telefonia IP con Asterisk     </option>
+                        <option>DOCTORADO EN ADM. DE EMPRESAS </option>
+                        <option>DELITOS SEXUALES              </option>
+                        <option>MTA Fundamentos de Security   </option>
+                        <option>CONTRATACIONES DE ESTADO      </option>
+                        <option>MARKETING PARA LOS NEGOCIOS   </option>
+                        <option>COMERCIO EXTERIOR             </option>
+                        <option>GESTION PUBLICA               </option>
+                        <option>INV.CRIMINAL Y SEG. CIUDADANA </option>
+                        <option>EST.PED.PARA EJERCER DOC.UNIV.</option>
+                        <option>ESTADISTICA APLICADA          </option>
+                        <option>PETP INGENIERIA MECATRONICA   </option>
+                        <option>DLINK Modulo Conectividad     </option>
+                        <option>Mineria de datos (Data Mining)</option>
+                        <option>INGENIERIA MECATRONICA(PROCOU)</option>
+                        <option>DIPLOMADOS DE ADMINISTRACIOES </option>
+                        <option>GESTION DE PROY.DE INVERSIO.  </option>
+                        <option>INGLES EN EDUMATICA           </option>
+                        <option>IMP.SEG. EN ROUTERS Y SWITCHES</option>
+                        <option>MARKETING OFFLINE Y ONLINE    </option>
+                        <option>SEL.Y EVAL.DEL TALENTO HUMANO </option>
+                        <option>PLANEAMIENTO ESTRATEGICO      </option>
+                        <option>GEST. DE TEC. DE LA INFORM.   </option>
+                        <option>DIPLOMADOS DE NIAS            </option>
+                        <option>DIPLOMADO DE NIIF             </option>
+                        <option>TUA - Branch Lima             </option>
+                        <option>INGLES POSTGRADO              </option>
+                        <option>CONTABILIDAD FINACIERA        </option>
+                        <option>DERECHO EMPRESARIAL           </option>
+                        <option>ELACIONES INTERNACIONALES     </option>
+                        <option>ING.DE PRODUCCION INDUSTRIAL  </option>
+                        <option>ING.DE SISTEMAS EMPRESARIALES </option>
+                        <option>ING.DE SOFTWARE (PROCOU)      </option>
+                        <option>PETP INGENIERIA AERONAUTICA   </option>
+                        <option>MAEST.EN ING.SEG. INFORM.-    </option>
+                        <option>MAEST.EN ING.TEL.Y NETWORK.   </option>
+                        <option>Mark.Digital y Comun.Empres   </option>
+                        <option>ING. SISTEMAS E INF.- CHICLAYO</option>
+                        <option>ING. INDUSTRIAL     - CHICLAYO</option>
+                        <option>SEG.INDUST.Y MINERA - CHICLAYO</option>
+                        <option>ADMIN. DE EMPRESAS  - CHICLAYO</option>
+                        <option>ADMIN. Y MARKETING  - CHICLAYO</option>
+                        <option>ADM.DE NEG.INTERNAC.- CHICLAYO</option>
+                        <option>ADM. NEG. INTERNACIONALES -PAU</option>
+                        <option>ADMINISTRACION Y MARKETING-PAU</option>
+                        <option>ADMINISTRACION Y FINANZAS-PAU </option>
+                        <option>ADM. HOTELERA Y DE TURISMO-PAU</option>
+                        <option>CONTABILIDAD - PAU            </option>
+                        <option>CIENCIAS DE LA COMUNIC. -PAU  </option>
+                        <option>DISEÑO DIG. PUBLICITARIO - PAU</option>
+                        <option>DERECHO -PAU                  </option>
+                        <option>RELACIONES INTERNACIONALES-PAU</option>
+                        <option>INGENIERIA ELECTRONICA -PAU   </option>
+                        <option>INGENIERIA MECATRONICA -PAU   </option>
+                        <option>ING. TEXTIL Y CONFECCIONES-PAU</option>
+                        <option>ING. ELECTR. Y DE POTENCIA-PAU</option>
+                        <option>INGENIERIA BIOMEDICA -PAU     </option>
+                        <option>INGENIERIA MARITIMA -PAU      </option>
+                        <option>INGENIERIA NAVAL -PAU         </option>
+                        <option>ING. SISTEMAS E INFORMAT. -PAU</option>
+                        <option>INGENIERIA INDUSTRIAL -PAU    </option>
+                        <option>INGENIERIA ECONOMICA -PAU     </option>
+                        <option>INGENIERIA AERONAUTICA -PAU   </option>
+                        <option>INGENIERIA AUTOMOTRIZ -PAU    </option>
+                        <option>INGENIERIA DE SOFTWARE -PAU   </option>
+                        <option>INGENIERIA MECANICA -PAU      </option>
+                        <option>ING. DE DISEÑO GRAFICO -PAU   </option>
+                        <option>ING. ELECTROMECANICA -PAU     </option>
+                        <option>ING. DISEÑO COMPUTACIONAL -PAU</option>
+                        <option>ING.DE TELECOMUNICACIONES -PAU</option>
+                        <option>ING.REDES Y COMUNICACIONES-PAU</option>
+                        <option>ING.SEG.Y AUD.INFORMATICA -PAU</option>
+                        <option>ING. SISTEMAS E INF.-PAU-CHIC.</option>
+                        <option>ING. INDUSTRIAL -PAU-CHIC.    </option>
+                        <option>SEG.INDUST.Y MINERA -PAU-CHIC.</option>
+                        <option>ADMIN. DE EMPRESAS  -PAU-CHIC.</option>
+                        <option>ADMIN. Y MARKETING  -PAU-CHIC.</option>
+                        <option>ADM.DE NEG.INTERNAC.-PAU-CHIC.</option>
+                        <option>ADMINISTRACION DE EMPRESAS-PAU</option>
+                        <option>DIP.MERC.VALORES.OPER.BURSAT  </option>
+                        <option>CERTIFICACION INSTRUCTOR CISCO</option>
+                        <option>DIP.GEREN. PROY. PMBOK        </option>
+                        <option>DIP.COM.INT.GEST.ADUANERA     </option>
+                        <option>DIP.GEST.SEG.SALUD OCUPACIONAL</option>
+                        <option>PET INGENERIA DE SOFTWARE     </option>
+                        <option>PET INGENIERIA TELECOMUNICACIO</option>
+                        <option>PET ING.REDES Y COMUNICACIONES</option>
+                        <option>PET ING.SEGUR.Y AUDIT.INFORMAT</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="input-group fuente-pequeña">
+                    <span class="input-group-addon">Estado</span>
+                    <select id="Lista" class="form-control">
+                        <option value="" selected>- - -</option>
+                        <option>Estudiante</option>
+                        <option>
+                            Egresado
+                        </option>
+                        <option>
+                            Bachiller
+                        </option>
+                        <option>
+                            Titulado
+                        </option>
+                        <option>
+                            Magister
+                        </option>
+                        <option>
+                            Doctor
+                        </option>
+                        <option>
+                            Inconcluso
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="input-group fuente-pequeña">
+                    <span class="input-group-addon">Ciclo</span>
+                    <input type="text" class="form-control" placeholder="Ciclo míninmo del Estudio">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-right">
+                <button type="submit" class="btn btn-default color-paleta2 fuente-pequeña" style="color: white; margin-bottom: 10px;">
+                    Grabar Estudio específico
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+    </div>
+</div>

@@ -14,11 +14,11 @@ namespace UTP.PortalEmpleabilidad.Logica
     {
         ADOfertaInformacionAdicional adOfertaInfoAdicional = new ADOfertaInformacionAdicional();
 
-        public List<OfertaInformacionAdicional> ObtenerInformacionAdicional(int idOferta)
+        public List<OfertaInformacionAdicional> ObtenerInformacionAdicional(int idOferta, int idOfertaInformacionAdicional)
         {
             List<OfertaInformacionAdicional> lista = new List<OfertaInformacionAdicional>();
 
-            DataTable dtResultado = adOfertaInfoAdicional.ObtenerInformacionAdicional(idOferta);
+            DataTable dtResultado = adOfertaInfoAdicional.ObtenerInformacionAdicional(idOferta, idOfertaInformacionAdicional);
 
             foreach (DataRow fila in dtResultado.Rows)
             {
@@ -26,20 +26,29 @@ namespace UTP.PortalEmpleabilidad.Logica
                 infoAdicional.IdOfertaInformacionAdicional = Convert.ToInt32(fila["IdOfertaInformacionAdicional"]);
                 infoAdicional.IdOferta = Convert.ToInt32(fila["IdOferta"]);
                 infoAdicional.Conocimiento = Convert.ToString(fila["Conocimiento"]);
+                infoAdicional.TipoConocimiento.IdListaValor = Convert.ToString(fila["TipoConocimiento"]);
                 infoAdicional.TipoConocimiento.Valor = Convert.ToString(fila["TipoConocimientoDescripcion"]);
+                infoAdicional.NivelConocimiento.IdListaValor = Convert.ToString(fila["NivelConocimiento"]);
                 infoAdicional.NivelConocimiento.Valor = Convert.ToString(fila["NivelConocimientoDescripcion"]);
                 infoAdicional.AniosExperiencia = Convert.ToInt32(fila["AniosExperiencia"]);
+                infoAdicional.EstadoOfertaInformacionAdicional.IdListaValor = Convert.ToString(fila["EstadoOfertaInformacionAdicional"]);
                 infoAdicional.EstadoOfertaInformacionAdicional.Valor = Convert.ToString(fila["EstadoOfertaInformacionAdicionalDescripcion"]);
                 infoAdicional.CreadoPor = Convert.ToString(fila["CreadoPor"]);
 
+                lista.Add(infoAdicional);
             }
 
             return lista;
         }
 
-        public void InsertarInformacionAdicional(OfertaInformacionAdicional ofertaInformacionAdicional)
+        public void Insertar(OfertaInformacionAdicional ofertaInformacionAdicional)
         {
             adOfertaInfoAdicional.InsertarInformacionAdicional(ofertaInformacionAdicional);
+        }
+
+        public void Actualizar(OfertaInformacionAdicional ofertaInformacionAdicional)
+        {
+            adOfertaInfoAdicional.Actualizar(ofertaInformacionAdicional);
         }
     }
 }
