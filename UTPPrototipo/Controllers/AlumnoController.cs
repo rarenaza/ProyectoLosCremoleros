@@ -168,8 +168,8 @@ namespace UTPPrototipo.Controllers
         public ActionResult BusquedaAvanzadaOferta(VistaOfertaAlumno entidad)
         {
 
-            //entidad.ListaOfertas = lnoferta.Oferta_Mostrar();
-            return PartialView("_ResultadoBusquedaOfertas", entidad.ListaOfertas);
+            entidad.ListaOfertas = lnoferta.MostrarUltimasOfertas(entidad.IdAlumno, string.IsNullOrEmpty(entidad.DescripcionOferta) ? "" : entidad.DescripcionOferta);
+             return PartialView("_ResultadoBusquedaOfertas", entidad.ListaOfertas);
         }
         [HttpPost]
         public ActionResult BusquedaOferta(VistaOfertaAlumno entidad)
