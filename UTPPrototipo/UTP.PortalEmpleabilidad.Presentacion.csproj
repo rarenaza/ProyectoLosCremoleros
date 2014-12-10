@@ -169,6 +169,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Common\Util.cs" />
+    <Compile Include="Common\FormatHelper.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AlumnoController.cs" />
     <Compile Include="Controllers\ContenidoController.cs" />
@@ -752,6 +753,8 @@
     <Content Include="Views\OfertaEstudio\_OfertaEstudioEditar.cshtml" />
     <Content Include="Views\OfertaInformacionAdicional\_OfertaInformacionAdicionalEditar.cshtml" />
     <Content Include="Views\OfertaSectorEmpresarial\_OfertaSectorEmpresarialEditar.cshtml" />
+    <Content Include="Views\Alumno\_ResultadoBusquedaOfertas.cshtml" />
+    <Content Include="Views\Alumno\_AlumnoUltimasOfertas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

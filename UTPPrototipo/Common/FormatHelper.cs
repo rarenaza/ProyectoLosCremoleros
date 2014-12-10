@@ -55,6 +55,14 @@ namespace UTPPrototipo.Common
             return fechatexto;
         }
 
+        public static string Cumple(this HtmlHelper helper,bool estado){
+            string cumple=string.Empty;
+            if (estado)
+                cumple = "Si Cumple";
+            else
+                cumple = "No Cumple";
+            return cumple;
+        }
         public static string CompatibilidaOferta(this HtmlHelper helper, int compatiblidad)
         {
             string fechatexto = "01/01/2014";
