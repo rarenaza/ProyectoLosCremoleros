@@ -9,25 +9,31 @@ using System.Web;
 using System.Web.Mvc;
 using UTP.PortalEmpleabilidad.Logica;
 using UTP.PortalEmpleabilidad.Modelo;
+using UTP.PortalEmpleabilidad.Modelo.UTP;
 using UTPPrototipo.Models;
 using UTPPrototipo.Models.ViewModels.Contenido;
+using UTPPrototipo.Models.ViewModels.Cuenta;
+using UTPPrototipo.Models.ViewModels.UTP;
 
 namespace UTPPrototipo.Controllers
 {
     public class UTPController : Controller
     {
         LNContenido ln = new LNContenido();
+        LNAutenticarUsuario lnAutenticar = new LNAutenticarUsuario();
+        LNUTP lnUtp = new LNUTP();
         // GET: UTP
         public ActionResult Index()
         {
+
             return View();
+                       
+     
         }
        
         public ActionResult Portal(string id, string Menu)
         {
             LNContenido ln = new LNContenido();
-
-
 
             DataTable dtresultado = ln.ContenidoMenu_Mostrar();
                        
@@ -587,9 +593,42 @@ namespace UTPPrototipo.Controllers
             }
 
             return new FileStreamResult(stream, "image/jpeg");
-        } 
-         
+        }
 
+        public ActionResult VistaCabeceraUtp()
+        {
+      
+            TicketUTP ticketUtp = (TicketUTP)Session["TicketUtp"];
+         
+            VistaPanelCabeceraUTP panel = new VistaPanelCabeceraUTP();
+
+            panel = lnAutenticar.ObtenerPanelCabeceraUTP(ticketUtp.Usuario);
+
+            return PartialView("_DatosUtp", panel);
+        }
+
+
+        public ActionResult VistaOfertasPendientes()
+        {
+            List<VistasOfertasPendientes> listaOfertasPendientes = new List<VistasOfertasPendientes>();
+
+            DataTable dtResultado = lnUtp.OfertasObtenerPendientes();
+
+            foreach (DataRow fila in dtResultado.Rows)
+            {
+                VistasOfertasPendientes vistaNueva = new VistasOfertasPendientes();
+
+                vistaNueva.FechaPublicacion = Convert.ToDateTime(fila["FechaPublicacion"]);
+                vistaNueva.NombreComercial = Convert.ToString(fila["NombreComercial"]);
+                vistaNueva.CargoOfrecido = Convert.ToString(fila["CargoOfrecido"]);
+                vistaNueva.IdOferta = Convert.ToInt32(fila["IdOferta"]);
+
+                listaOfertasPendientes.Add(vistaNueva);
+            }
+
+            return PartialView("_OfertasPendientes", listaOfertasPendientes);
+
+        }
 
 
     }

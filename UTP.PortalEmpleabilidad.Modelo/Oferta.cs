@@ -28,7 +28,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}",  ApplyFormatInEditMode = true)]
         public DateTime FechaFinRecepcionCV { get; set; }
-        
+        public DateTime FechaFinProceso { get; set; }
         public int IdEmpresaLocacion { get; set; }
         public string  DescripcionOferta { get; set; }
         //public string TipoTrabajo { get; set; }
@@ -67,7 +67,14 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string TipoTrabajoIdListaValor { get; set; }
         public string TipoContratoIdListaValor { get; set; }
 
-        public Oferta() {
+        public string DesTipoCargo { get; set; }
+        public string DesTipoContrato { get; set; }
+        public string SitioWeb { get; set; }
+        public string DescripcionEmpresa { get; set; }
+        public string DesNumeroEmpleados { get; set; }
+        public string NombreLocacion { get; set; }
+        public string IdentificadorTributario { get; set; }
+       public Oferta() {
 
            TipoCargo = new ListaValor();
            TipoTrabajo = new ListaValor();

@@ -19,6 +19,31 @@ namespace UTP.PortalEmpleabilidad.Datos
         /// </summary>
         /// <returns></returns>
         ///
+        public DataTable ObtenerOfertasAlumnoPorID(int idOferta)
+        {
+            DataTable dtResultado = new DataTable();
+
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "OfertaAlumno_ObtenerPorId";
+                cmd.Parameters.Add(new SqlParameter("@idOferta", SqlDbType.VarChar, 100)).Value = idOferta;
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                dtResultado = new DataTable();
+
+                da.Fill(dtResultado);
+
+                conexion.Close();
+            }
+
+            return dtResultado;
+        }
         public DataTable BuscarOfertasAlumno(int DescripcionOferta)
         {
             DataTable dtResultado = new DataTable();
@@ -44,6 +69,7 @@ namespace UTP.PortalEmpleabilidad.Datos
 
             return dtResultado;
         }
+
         public DataTable BuscarAvanzadoOfertasAlumno(VistaOfertaAlumno entidad)
         {
             DataTable dtResultado = new DataTable();

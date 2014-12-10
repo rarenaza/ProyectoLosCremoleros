@@ -38,17 +38,20 @@ namespace UTP.PortalEmpleabilidad.Logica
             return alumno;
         }
 
-     
+
 
         public VistaPanelAlumno ObtenerPanel(string codigoAlumno)
         {
             VistaPanelAlumno panel = new VistaPanelAlumno();
-            LNEvento eventos=new LNEvento();
+            LNEvento eventos = new LNEvento();
+            LNOferta ofertas = new LNOferta();
+
             //Se llenan los datos del alumno.
             panel.Alumno = ObtenerAlumnoPorCodigo(codigoAlumno);
             panel.ListaEventos = eventos.Evento_MostrarUltimos();
+            panel.ListaOfertas = ofertas.MostrarUltimasOfertas(panel.Alumno.IdAlumno);
             return panel;
-        } 
+        }  
 
         public VistaPanelAlumnoPostulaciones ObtenerPanelPostulaciones(string codigoAlumno)
         {

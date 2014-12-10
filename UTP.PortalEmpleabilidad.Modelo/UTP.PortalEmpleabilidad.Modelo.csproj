@@ -64,6 +64,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Ticket.cs" />
     <Compile Include="Usuario.cs" />
+    <Compile Include="UTP\VistaPanelCabeceraUTP.cs" />
     <Compile Include="VistaPanelAlumno.cs" />
     <Compile Include="VistaPanelAlumnoOfertas.cs" />
     <Compile Include="VistaPanelAlumnoPostulaciones.cs" />

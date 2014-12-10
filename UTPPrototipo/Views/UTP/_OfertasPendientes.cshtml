@@ -1,0 +1,35 @@
+﻿@model IEnumerable<UTPPrototipo.Models.ViewModels.UTP.VistasOfertasPendientes>
+
+
+        <h5>Ofertas por Activar</h5>
+        <div class="row grilla1-cabecera color-paleta1">
+            <div class="col-sm-3">
+                Fecha Publicación
+            </div>
+            <div class="col-sm-4">
+                Empresa
+            </div>
+            <div class="col-sm-5">
+                Oferta
+            </div>
+        </div>
+
+
+@foreach (var item in @Model)
+{
+    <div class="row grilla1-linea">
+        <div class="col-sm-3">
+            @item.FechaPublicacion
+        </div>
+        <div class="col-sm-4">
+            @item.NombreComercial
+        </div>
+        <div class="col-sm-5">
+            <a href="../UTP/RegistroOferta">@item.CargoOfrecido</a>
+        </div>
+    </div>
+
+  
+}
+        
+<hr />
