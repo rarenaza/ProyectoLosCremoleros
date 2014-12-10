@@ -47,49 +47,27 @@ namespace UTP.PortalEmpleabilidad.Datos
         }
 
 
-        //public DataTable Autenticar_Usuario(string Usuario, string Contraseña)
-        //{
-        //    ADConexion cnn = new ADConexion();
-        //    SqlCommand cmd = new SqlCommand();
+        public DataTable ObtenerCabeceraPorCodigoUTP(string usuarioUtp)
+        {
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "UTP_ObtenerCabeceraPorCodigoUsuario";
+            cmd.Connection = cnn.cn;
+            cnn.Conectar();
+            cmd.Parameters.Add(new SqlParameter("@UsuarioUTP", SqlDbType.VarChar, 50)).Value = usuarioUtp;
 
-        //    cmd.CommandType = CommandType.StoredProcedure;
-        //    cmd.CommandText = "Autenticar_Usuario";
-        //    cmd.Parameters.Add(new SqlParameter("@Usuario", SqlDbType.VarChar, 100)).Value = Usuario;
-        //    cmd.Parameters.Add(new SqlParameter("@Pass", SqlDbType.VarChar, 100)).Value = Contraseña;
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
 
-        //    cmd.Connection = cnn.cn;
-        //    cnn.Conectar();
+            da.Fill(dt);
 
+            cnn.Desconectar();
 
-        //    SqlDataAdapter da = new SqlDataAdapter(cmd);
-        //    DataTable dt = new DataTable();
-
-        //    da.Fill(dt);
-
-        //    cnn.Desconectar();
-
-        //    return dt;
-        //}
+            return dt;
+        }
 
 
+      
 
-        //public DataTable listar(string parametro)
-        //{
-        //    DataSet ds = new DataSet();
-        //    using (SqlConnection conexion = new SqlConnection(cnn.Conexion()))
-        //    {
-        //            SqlCommand cmd = new SqlCommand();
-        //            cmd.CommandType = CommandType.StoredProcedure;
-        //            cmd.CommandText = "proc_listar";
-        //            cmd.Connection = conexion;
-        //            cmd.Parameters.Add(new SqlParameter("@apellidos", parametro));
-        //            SqlDataAdapter da = new SqlDataAdapter(cmd);
-
-        //            da.Fill(ds, "clientes");
-        //        }
-          
-        //        return ds.Tables["clientes"];
-        //    }
         }
 
     }

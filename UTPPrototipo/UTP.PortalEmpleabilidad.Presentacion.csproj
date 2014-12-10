@@ -195,6 +195,8 @@
     <Compile Include="Models\ViewModels\Cuenta\TicketEmpresa.cs" />
     <Compile Include="Models\ViewModels\Cuenta\TicketUTP.cs" />
     <Compile Include="Models\ViewModels\Empresa\VistaNuevasPostulaciones.cs" />
+    <Compile Include="Models\ViewModels\UTP\VistasEmpresasPendientes.cs" />
+    <Compile Include="Models\ViewModels\UTP\VistasOfertasPendientes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Utiles\Helper.cs" />
@@ -755,6 +757,8 @@
     <Content Include="Views\OfertaSectorEmpresarial\_OfertaSectorEmpresarialEditar.cshtml" />
     <Content Include="Views\Alumno\_ResultadoBusquedaOfertas.cshtml" />
     <Content Include="Views\Alumno\_AlumnoUltimasOfertas.cshtml" />
+    <Content Include="Views\UTP\_DatosUtp.cshtml" />
+    <Content Include="Views\UTP\_OfertasPendientes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

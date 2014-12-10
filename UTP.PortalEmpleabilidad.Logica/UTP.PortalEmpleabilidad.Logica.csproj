@@ -49,6 +49,7 @@
     <Compile Include="LNEmpresaLocacion.cs" />
     <Compile Include="LNEmpresaUsuario.cs" />
     <Compile Include="LNEvento.cs" />
+    <Compile Include="LNUTP.cs" />
     <Compile Include="LNGeneral.cs" />
     <Compile Include="LNLista.cs" />
     <Compile Include="LNEmpresa.cs" />
