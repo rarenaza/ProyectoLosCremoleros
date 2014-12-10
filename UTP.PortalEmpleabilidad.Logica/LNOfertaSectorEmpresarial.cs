@@ -26,6 +26,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 sector.IdOfertaSectorEmpresarial = Convert.ToInt32(fila["IdOfertaSectorEmpresarial"]);
                 sector.IdOferta = Convert.ToInt32(fila["IdOferta"]);
                 sector.SectorEmpresarial.Valor = Convert.ToString(fila["SectorEmpresarialDescripcion"]);
+                sector.SectorEmpresarialIdListaValor = Convert.ToString(fila["SectorEmpresarial"]);
                 sector.ExperienciaExcluyente = Convert.ToBoolean(fila["ExperienciaExcluyente"]);
                 sector.AniosTrabajados = Convert.ToInt32(fila["AniosTrabajados"]);
                 sector.EstadoOfertaSectorEmpresarial.Valor = Convert.ToString(fila["EstadoOfertaSectorEmpresarialDescripcion"]);

@@ -12,7 +12,7 @@
     <table class="fuente-pequeña">
         <tr>
             <td class="celda-nombre">Sector</td>
-            <td class="celda-datos">@item.SectorEmpresarial</td>
+            <td class="celda-datos">@item.SectorEmpresarial.Valor</td>
         </tr>
         <tr>
             <td class="celda-nombre">Años de experiencia</td>
@@ -20,7 +20,7 @@
         </tr>
         <tr>
             <td class="celda-nombre">Excluyente</td>
-            <td class="celda-datos">@item.ExperienciaExcluyente</td>
+            <td class="celda-datos"><input type="checkbox" checked=@item.ExperienciaExcluyente  disabled/></td>
         </tr>
         <tr>
             <td class="celda-nombre"></td>
@@ -37,7 +37,7 @@
 
 <div class="row">
     <div class="col-sm-12" style="text-align:right;">
-        <button id="btnNuevoSectorEmpresarial" data-toggle="modal" data-target="#divModalSectorEmpresarial" onclick="crearSector()"  class="btn btn-default color-paleta2">
+        <button id="btnNuevoSectorEmpresarial" data-toggle="modal" data-target="#divModalSectorEmpresarial" onclick="crearSector(@ViewBag.IdOferta)"  class="btn btn-default color-paleta2">
             Agregar Experiencia por Sector
         </button>
     </div>

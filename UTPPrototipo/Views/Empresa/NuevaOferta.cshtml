@@ -26,13 +26,15 @@
                 Estado: Pendiente de Activación
             </div>
             <div class="col-sm-3 fuente-seccion">
-                <input type="checkbox" /><span> Recibir correos&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                @*<input type="checkbox" /><span> Recibir correos&nbsp;&nbsp;&nbsp;&nbsp;</span>*@
+                Alertas: @Html.DropDownList("RecibeCorreosIdListaValor", null, htmlAttributes: new { @class = "form-control" })
             </div>
             <div class="col-sm-3 fuente-seccion" style="text-align:right;">
                 <button class="btn btn-default color-paleta2" style="margin-bottom:5px;">Grabar Cambios</button>
             </div>
         </div>
 
+        <br />
         <script src="~/Scripts/ckeditor/ckeditor.js"></script>
 
     <div id="divDescripcionOferta" class="row">
@@ -105,7 +107,8 @@
                             </div>
                             <div class="input-group">
                                 <span class="input-group-addon">Tipo de<br />Cargo</span>
-                                <select id="TipoCargo" name="TipoCargo" class="form-control">
+                                @Html.DropDownList("TipoCargoIdListaValor", null, htmlAttributes: new { @class = "form-control" })
+                                @*<select id="TipoCargo" name="TipoCargo" class="form-control">
                                     <option value="">
                                         -- Seleccione un Tipo de Cargo --
                                     </option>
@@ -119,12 +122,13 @@
                                             }
                                     }
 
-                                </select>
+                                </select>*@
                                 @Html.ValidationMessageFor(m => m.TipoCargo)
                             </div>
                             <div class="input-group">
                                 <span class="input-group-addon">Tipo de<br />Trabajo</span>
-                                <select id="TipoTrabajo" name="TipoTrabajo" class="form-control">
+                                @Html.DropDownList("TipoTrabajoIdListaValor", null, htmlAttributes: new { @class = "form-control" })
+                                @*<select id="TipoTrabajo" name="TipoTrabajo" class="form-control">
                                     <option value="0">
                                         -- Seleccione un Tipo de Trabajo --
                                     </option>
@@ -137,12 +141,13 @@
                                     </option>
         }
                                     }
-                                </select>
+                                </select>*@
                                 @Html.ValidationMessageFor(m => m.TipoTrabajo)
                             </div>
                             <div class="input-group">
                                 <span class="input-group-addon">Tipo de<br />Contrato</span>
-                                <select id="TipoContrato" name="TipoContrato" class="form-control">
+                                @Html.DropDownList("TipoContratoIdListaValor", null, htmlAttributes: new { @class = "form-control" })
+                                @*<select id="TipoContrato" name="TipoContrato" class="form-control">
                                     <option value="">
                                         -- Seleccione un Tipo de Contrato --
                                     </option>
@@ -155,7 +160,7 @@
                                     </option>
         }
                                     }
-                                </select>
+                                </select>*@
                                 @Html.ValidationMessageFor(m => m.TipoContrato)
                             </div>
                             <div class="input-group">
@@ -183,7 +188,8 @@
                                 <div class="col-sm-7">
                                     <div class="input-group">
                                         <span class="input-group-addon">Ubicación</span>
-                                        <select id="IdEmpresaLocacion" name="IdEmpresaLocacion" class="form-control">
+                                        @Html.DropDownList("IdEmpresaLocacion", null, htmlAttributes: new { @class = "form-control" })
+                                        @*<select id="IdEmpresaLocacion" name="IdEmpresaLocacion" class="form-control">
                                             <option value="">
                                                 -- Seleccione Ubicación del Trabajo --
                                             </option>
@@ -192,12 +198,12 @@
         foreach (var locacion in locaciones)
         {
                                             <option value="@locacion.IdEmpresaLocacion">
-                                                @locacion.NombreLocacion, @locacion.DireccionLinea1, @locacion.DireccionDistrito
+                                                @locacion.NombreLocacion, @locacion.Direccion, @locacion.DireccionDistrito
                                             </option>
         }
                                             }
 
-                                        </select>
+                                        </select>*@
 
                                     </div>
                                 </div>

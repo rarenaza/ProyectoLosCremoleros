@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using UTP.PortalEmpleabilidad.Modelo;
 using UTP.PortalEmpleabilidad.Logica;
+using UTPPrototipo.Models.ViewModels.Cuenta;
 
 
 namespace UTPPrototipo.Controllers
@@ -12,9 +13,13 @@ namespace UTPPrototipo.Controllers
     public class OfertaSectorEmpresarialController : Controller
     {
         LNOfertaSectorEmpresarial lnSector = new LNOfertaSectorEmpresarial();
+        LNGeneral lnGeneral = new LNGeneral();
 
         public ActionResult ObtenerSectoresEmpresariales(int idOferta)
         {
+            //Se guarda el Id de la oferta para que sea pasado como parámetro al evento de crear sector.
+            ViewBag.IdOferta = idOferta;
+
             List<OfertaSectorEmpresarial> lista = lnSector.ObtenerSectoresEmpresariales(idOferta, 0);
 
             return PartialView("_OfertaSectorEmpresarial", lista);
@@ -28,9 +33,14 @@ namespace UTPPrototipo.Controllers
 
 
         [HttpGet] // esta acción devuelve la vista parcial con los datos para cargar el modal.
-        public PartialViewResult _OfertaSectorEmpresarialCrear()
+        public PartialViewResult _OfertaSectorEmpresarialCrear(int id)
         {
-            return PartialView("_OfertaSectorEmpresarialCrear");
+            ViewBag.SectorEmpresarialIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_SECTOR_EMPRESARIAL), "IdListaValor", "Valor");
+            
+            OfertaSectorEmpresarial ofertaSector = new OfertaSectorEmpresarial();
+            ofertaSector.IdOferta = id;
+
+            return PartialView("_OfertaSectorEmpresarialCrear", ofertaSector);
         }
 
 
@@ -39,33 +49,45 @@ namespace UTPPrototipo.Controllers
         {
             if (ModelState.IsValid)
             {
-                Ticket ticket = (Ticket)Session["Ticket"];
-                string usuarioCreacion = ticket.UsuarioNombre;
+                TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];                
 
-                ofertaSector.IdOferta = 13;
-                ofertaSector.SectorEmpresarial.IdListaValor = "ABE";
-                ofertaSector.ExperienciaExcluyente = false;
-                ofertaSector.AniosTrabajados = 3;
+                //ofertaSector.IdOferta = 13;
+                //ofertaSector.SectorEmpresarial.IdListaValor = "ABE";
+                //ofertaSector.ExperienciaExcluyente = false;
+                //ofertaSector.AniosTrabajados = 3;
                 ofertaSector.EstadoOfertaSectorEmpresarial.IdListaValor = "AWE";
-                ofertaSector.CreadoPor = "admin";
+                ofertaSector.CreadoPor = ticket.Usuario;
 
                 LNOfertaSectorEmpresarial lnOfertaSector = new LNOfertaSectorEmpresarial();
                 lnOfertaSector.Insertar(ofertaSector);
 
-                List<OfertaSectorEmpresarial> lista = lnSector.ObtenerSectoresEmpresariales(13, 0);
+                List<OfertaSectorEmpresarial> lista = lnSector.ObtenerSectoresEmpresariales(ofertaSector.IdOferta, 0);
 
+                ViewBag.IdOferta = ofertaSector.IdOferta;
                 return PartialView("_OfertaSectorEmpresarial", lista);
             }
+            else
+            {
+                //Código para ubicar los errores en el ModelState.
+                var errors = ModelState.Select(x => x.Value.Errors)
+                            .Where(y => y.Count > 0)
+                            .ToList();
 
+                int a = 0;
+            }
             return PartialView("_OfertaSectorEmpresarialCrear", ofertaSector);
         }
 
         [HttpGet] // esta acción devuelve la vista parcial con los datos para cargar el modal.
         public PartialViewResult _OfertaSectorEmpresarialEditar(int id)
-        {
+        {           
             List<OfertaSectorEmpresarial> lista = lnSector.ObtenerSectoresEmpresariales(0, id);
 
-            return PartialView("_OfertaSectorEmpresarialEditar", lista[0]);
+            OfertaSectorEmpresarial ofertaSector = lista[0];
+
+            ViewBag.SectorEmpresarialIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_SECTOR_EMPRESARIAL), "IdListaValor", "Valor", ofertaSector.SectorEmpresarialIdListaValor);
+
+            return PartialView("_OfertaSectorEmpresarialEditar", ofertaSector);
         }
 
 
@@ -74,24 +96,25 @@ namespace UTPPrototipo.Controllers
         {
             if (ModelState.IsValid)
             {
-                Ticket ticket = (Ticket)Session["Ticket"];
-                string usuarioCreacion = ticket.UsuarioNombre;
-
-                ofertaSector.IdOferta = 13;
-                ofertaSector.SectorEmpresarial.IdListaValor = "ABE222";
-                ofertaSector.ExperienciaExcluyente = false;
-                ofertaSector.AniosTrabajados = 7;
-                ofertaSector.EstadoOfertaSectorEmpresarial.IdListaValor = "AWE222";
-                ofertaSector.ModificadoPor = "admin22";
+                TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];
+                
+                //ofertaSector.IdOferta = 13;
+                //ofertaSector.SectorEmpresarial.IdListaValor = "ABE222";
+                //ofertaSector.ExperienciaExcluyente = false;
+                //ofertaSector.AniosTrabajados = 7;
+                //ofertaSector.EstadoOfertaSectorEmpresarial.IdListaValor = "AWE222";
+                ofertaSector.ModificadoPor = ticket.Usuario;
 
                 LNOfertaSectorEmpresarial lnOfertaSector = new LNOfertaSectorEmpresarial();
                 lnOfertaSector.Actualizar(ofertaSector);
 
-                List<OfertaSectorEmpresarial> lista = lnSector.ObtenerSectoresEmpresariales(13, 0);
+                List<OfertaSectorEmpresarial> lista = lnSector.ObtenerSectoresEmpresariales(ofertaSector.IdOferta, 0);
 
+                ViewBag.IdOferta = ofertaSector.IdOferta;
                 return PartialView("_OfertaSectorEmpresarial", lista);
             }
 
+            //TODO: Validar cuando existe error al grabar.
             return PartialView("_OfertaSectorEmpresarialEditar", ofertaSector);
         }
     }

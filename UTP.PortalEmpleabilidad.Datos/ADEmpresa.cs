@@ -54,17 +54,17 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.Parameters.Add(new SqlParameter("@IdEmpresa", empresa.IdEmpresa));
                 cmd.Parameters.Add(new SqlParameter("@NombreComercial", empresa.NombreComercial));
                 cmd.Parameters.Add(new SqlParameter("@RazonSocial", empresa.RazonSocial));
-                //cmd.Parameters.Add(new SqlParameter("@Pais", SqlDbType.VarChar, 6)).Value = empresa.Pais;
-                //cmd.Parameters.Add(new SqlParameter("@IdentificadorTributario", SqlDbType.VarChar, 20)).Value = empresa.IdentificadorTributario;
-                //cmd.Parameters.Add(new SqlParameter("@DescripcionEmpresa", SqlDbType.VarChar, 500)).Value = empresa.DescripcionEmpresa;
-                //cmd.Parameters.Add(new SqlParameter("@LinkVideo", SqlDbType.VarChar, -1)).Value = empresa.LinkVideo;
-                //cmd.Parameters.Add(new SqlParameter("@AnoCreacion", SqlDbType.Int)).Value = empresa.AnoCreacion;
-                //cmd.Parameters.Add(new SqlParameter("@NumeroEmpleados", SqlDbType.VarChar, 6)).Value = empresa.NumeroEmpleados;
-                //cmd.Parameters.Add(new SqlParameter("@EstadoEmpresa", SqlDbType.VarChar, 6)).Value = empresa.EstadoEmpresa;
-                //cmd.Parameters.Add(new SqlParameter("@SectorEmpresarial", SqlDbType.VarChar, 6)).Value = empresa.SectorEmpresarial;
-                //cmd.Parameters.Add(new SqlParameter("@SectorEmpresarial2", SqlDbType.VarChar, 6)).Value = empresa.SectorEmpresarial2;
-                //cmd.Parameters.Add(new SqlParameter("@SectorEmpresarial3", SqlDbType.VarChar, 6)).Value = empresa.SectorEmpresarial3;
-                //cmd.Parameters.Add(new SqlParameter("@ModificadorPor", SqlDbType.VarChar, 50)).Value = empresa.CreadoPor;
+                cmd.Parameters.Add(new SqlParameter("@Pais", empresa.PaisIdListaValor));
+                cmd.Parameters.Add(new SqlParameter("@IdentificadorTributario", empresa.IdentificadorTributario));
+                cmd.Parameters.Add(new SqlParameter("@DescripcionEmpresa", empresa.DescripcionEmpresa));
+                cmd.Parameters.Add(new SqlParameter("@LinkVideo", empresa.LinkVideo));
+                cmd.Parameters.Add(new SqlParameter("@AnoCreacion", empresa.AnoCreacion));
+                cmd.Parameters.Add(new SqlParameter("@NumeroEmpleados", empresa.NumeroEmpleadosIdListaValor));
+                //cmd.Parameters.Add(new SqlParameter("@EstadoEmpresa", empresa.EstadoEmpresaIdListaValor)).Value = empresa.EstadoEmpresa;
+                cmd.Parameters.Add(new SqlParameter("@SectorEmpresarial1", empresa.SectorEmpresarial1IdListaValor));
+                cmd.Parameters.Add(new SqlParameter("@SectorEmpresarial2", empresa.SectorEmpresarial2IdListaValor));
+                cmd.Parameters.Add(new SqlParameter("@SectorEmpresarial3", empresa.SectorEmpresarial3IdListaValor));
+                cmd.Parameters.Add(new SqlParameter("@ModificadoPor", empresa.ModificadoPor));
                 cmd.ExecuteNonQuery();
 
                 conexion.Close();

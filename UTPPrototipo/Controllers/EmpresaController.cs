@@ -8,6 +8,7 @@ using UTP.PortalEmpleabilidad.Logica;
 using UTP.PortalEmpleabilidad.Modelo;
 using UTP.PortalEmpleabilidad.Modelo.Vistas.Empresa;
 using UTP.PortalEmpleabilidad.Modelo.Vistas.Ofertas;
+using UTPPrototipo.Models.ViewModels.Cuenta;
 using UTPPrototipo.Models.ViewModels.Empresa;
 
 namespace UTPPrototipo.Controllers
@@ -17,6 +18,7 @@ namespace UTPPrototipo.Controllers
         LNEmpresa lnEmpresa = new LNEmpresa();
         LNOferta lnOferta = new LNOferta();
         LNOfertaEmpresa lnOfertaEmpresa = new LNOfertaEmpresa();
+        LNGeneral lnGeneral = new LNGeneral();
         public string usuarioEmpresa = "82727128";
 
         //
@@ -47,17 +49,23 @@ namespace UTPPrototipo.Controllers
         
         public ActionResult EditarOferta(int idOferta)
         {
-            Ticket ticket = (Ticket)Session["Ticket"];
+            TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];
 
             Oferta oferta = lnOferta.ObtenerPorId(idOferta);
 
             LNGeneral lnGeneral = new LNGeneral();
             LNEmpresaLocacion lnEmpresaLocacion = new LNEmpresaLocacion();
 
-            ViewBag.ListaTipoCargo = lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_CARGO);
-            ViewBag.ListaTipoTrabajo = lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_TRABAJO);
-            ViewBag.ListaTipoContrato = lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_CONTRATO);
-            ViewBag.ListaLocaciones = lnEmpresaLocacion.ObtenerLocaciones(ticket.IdEmpresa);
+            ViewBag.TipoCargoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_CARGO), "IdListaValor", "Valor", oferta.TipoCargoIdListaValor);
+            ViewBag.TipoTrabajoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_TRABAJO), "IdListaValor", "Valor", oferta.TipoTrabajoIdListaValor);
+            ViewBag.TipoContratoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_CONTRATO), "IdListaValor", "Valor", oferta.TipoContratoIdListaValor);
+            ViewBag.IdEmpresaLocacion = new SelectList(lnEmpresaLocacion.ObtenerLocaciones(ticket.IdEmpresa), "IdEmpresaLocacion", "NombreLocacion", oferta.IdEmpresaLocacion);
+            ViewBag.RecibeCorreosIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_OFERTA_RECIBECORREOS), "IdListaValor", "Valor", oferta.RecibeCorreosIdListaValor);
+
+            //ViewBag.ListaTipoCargo = lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_CARGO);
+            //ViewBag.ListaTipoTrabajo = lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_TRABAJO);
+            //ViewBag.ListaTipoContrato = lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_CONTRATO);
+            //ViewBag.ListaLocaciones = lnEmpresaLocacion.ObtenerLocaciones(ticket.IdEmpresa);
 
             return View(oferta);
         }
@@ -101,22 +109,25 @@ namespace UTPPrototipo.Controllers
 
         public ActionResult NuevaOferta()
         {
-            Ticket ticket = (Ticket)Session["Ticket"];
+            TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];
 
             //Se envían datos de prueba.
             Oferta oferta = new Oferta();
             oferta.IdEmpresa = ticket.IdEmpresa;
             oferta.UsuarioPropietarioEmpresa = "";            
             oferta.FechaPublicacion = DateTime.Now;                        
-            oferta.CreadoPor = ticket.UsuarioNombre;
+            oferta.CreadoPor = ticket.Usuario;
 
             LNGeneral lnGeneral = new LNGeneral();
             LNEmpresaLocacion lnEmpresaLocacion = new LNEmpresaLocacion ();
 
-            ViewBag.ListaTipoCargo = lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_CARGO); 
-            ViewBag.ListaTipoTrabajo = lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_TRABAJO); 
-            ViewBag.ListaTipoContrato = lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_CONTRATO);
-            ViewBag.ListaLocaciones = lnEmpresaLocacion.ObtenerLocaciones(ticket.IdEmpresa);
+            //Se completan las listas:
+
+            ViewBag.TipoCargoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_CARGO), "IdListaValor", "Valor");
+            ViewBag.TipoTrabajoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_TRABAJO), "IdListaValor", "Valor");
+            ViewBag.TipoContratoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_CONTRATO), "IdListaValor", "Valor");
+            ViewBag.IdEmpresaLocacion = new SelectList(lnEmpresaLocacion.ObtenerLocaciones(ticket.IdEmpresa), "IdEmpresaLocacion", "NombreLocacion"); 
+            ViewBag.RecibeCorreosIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_OFERTA_RECIBECORREOS), "IdListaValor", "Valor");
 
             return View(oferta);
         }
@@ -125,24 +136,26 @@ namespace UTPPrototipo.Controllers
         //public ActionResult NuevaOferta([Bind(Include = "CreadorPor")] Oferta oferta)
         public ActionResult NuevaOferta(Oferta oferta)
         {
-            Ticket ticket = (Ticket)Session["Ticket"];
+            TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];
 
             if (ModelState.IsValid)
             {
-                oferta.UsuarioPropietarioEmpresa = "usuarioEmpresa";
+                oferta.UsuarioPropietarioEmpresa = ticket.Usuario;
                 oferta.EstadoOferta = "OFERPR"; //Estado pendiente de activación.
-                oferta.FechaPublicacion = DateTime.Now;
+                //oferta.FechaPublicacion = DateTime.Now;
                 //oferta.FechaFinProceso = DateTime.Now.AddDays(10);
                 //oferta.IdEmpresaLocacion = 1; //TODO: Reemplazar por combo.
-                oferta.DescripcionOferta = "descripcion de la oferta";
+                //oferta.DescripcionOferta = "descripcion de la oferta";
                 //oferta.TipoTrabajo = "OFTTTC"; //Tipo de trabajo: Tiempo completo.    
                 //oferta.TipoContrato = "";
                 //oferta.TipoCargo = "";
                 //oferta.Horario = "";
                 //oferta.AreaEmpresa = "";
-                oferta.CreadoPor = "admin";
+                oferta.CreadoPor = ticket.Usuario;
 
                 lnOfertaEmpresa.Insertar(oferta);
+
+                //Mostrar alerta de éxito.
 
                 return RedirectToAction("Publicacion");
             }
@@ -213,7 +226,7 @@ namespace UTPPrototipo.Controllers
 
         public ActionResult Administrar()
         {
-            Ticket ticket = (Ticket)Session["Ticket"];
+            TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];
 
             //LNEmpresa lnEmpresa = new LNEmpresa();
             //var empresa = lnEmpresa.ObtenerDatosEmpresaPorId(ticket.IdEmpresa);
@@ -304,6 +317,13 @@ namespace UTPPrototipo.Controllers
         {
             //Se obtiene la información de la BD
             var empresa = lnEmpresa.ObtenerDatosEmpresaPorId(id);
+
+            //Se envían los valores al HTML.
+            ViewBag.PaisIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_PAIS), "IdListaValor", "Valor", empresa.PaisIdListaValor);
+            ViewBag.NumeroEmpleadosIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_NRO_EMPLEADOS), "IdListaValor", "Valor", empresa.NumeroEmpleadosIdListaValor);
+            ViewBag.SectorEmpresarial1IdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_SECTOR_EMPRESARIAL), "IdListaValor", "Valor", empresa.SectorEmpresarial1IdListaValor);
+            ViewBag.SectorEmpresarial2IdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_SECTOR_EMPRESARIAL), "IdListaValor", "Valor", empresa.SectorEmpresarial2IdListaValor);
+            ViewBag.SectorEmpresarial3IdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_SECTOR_EMPRESARIAL), "IdListaValor", "Valor", empresa.SectorEmpresarial3IdListaValor);
             
             return PartialView("_EditarEmpresa", empresa);
         }
@@ -313,6 +333,9 @@ namespace UTPPrototipo.Controllers
         {  
             if (ModelState.IsValid)
             {
+                TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];
+
+                empresa.ModificadoPor = ticket.Usuario;
                 lnEmpresa.Actualizar(empresa);
 
                 empresa = lnEmpresa.ObtenerDatosEmpresaPorId(empresa.IdEmpresa);

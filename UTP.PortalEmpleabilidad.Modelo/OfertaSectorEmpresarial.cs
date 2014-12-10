@@ -10,6 +10,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
     {
         public int IdOfertaSectorEmpresarial { get; set; }
         public int IdOferta { get; set; }
+        public string SectorEmpresarialIdListaValor { get; set; }
         public ListaValor SectorEmpresarial { get; set; }
         public bool ExperienciaExcluyente { get; set; }
         public int AniosTrabajados { get; set; }

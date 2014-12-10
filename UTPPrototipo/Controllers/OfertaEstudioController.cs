@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using UTP.PortalEmpleabilidad.Modelo;
 using UTP.PortalEmpleabilidad.Logica;
+using UTPPrototipo.Models.ViewModels.Cuenta;
 
 namespace UTPPrototipo.Controllers
 {
@@ -12,10 +13,13 @@ namespace UTPPrototipo.Controllers
     {
         LNOfertaEstudio lnOfertaEstudio = new LNOfertaEstudio();
         private int idOfertaEstudiosTodos = 0; //Al enviar 0 se obtiene todas los estudios de la oferta.
+        LNGeneral lnGeneral = new LNGeneral();
 
         public ActionResult ObtenerEstudios(int idOferta)
         {
-            
+            //Se guarda el Id de la oferta
+            ViewBag.IdOferta = idOferta;
+
             List<OfertaEstudio> lista = lnOfertaEstudio.ObtenerEstudios(idOferta, idOfertaEstudiosTodos);
 
             return PartialView("_OfertaEstudio", lista);
@@ -29,9 +33,15 @@ namespace UTPPrototipo.Controllers
 
 
         [HttpGet] // esta acción devuelve la vista parcial con los datos para cargar el modal.
-        public PartialViewResult _OfertaEstudioCrear()
+        public PartialViewResult _OfertaEstudioCrear(int id)
         {
-            return PartialView("_OfertaEstudioCrear");
+            OfertaEstudio ofertaEstudio = new OfertaEstudio();
+            ofertaEstudio.IdOferta = id;
+
+            ViewBag.TipoDeEstudioIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_DE_ESTUDIO), "IdListaValor", "Valor");
+            ViewBag.EstadoDelEstudioIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_DEL_ESTUDIO), "IdListaValor", "Valor");
+            
+            return PartialView("_OfertaEstudioCrear", ofertaEstudio);
         }
 
 
@@ -40,21 +50,23 @@ namespace UTPPrototipo.Controllers
         {
             if (ModelState.IsValid)
             {
-                Ticket ticket = (Ticket)Session["Ticket"];
-                string usuarioCreacion = ticket.UsuarioNombre;
+                TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];
+                //string usuarioCreacion = ticket.UsuarioNombre;
 
-                ofertaEstudio.IdOferta = 13;
-                ofertaEstudio.CicloEstudio = "AWE";
-                ofertaEstudio.Estudio = "Estudios";
-                ofertaEstudio.TipoDeEstudio.IdListaValor = "ABC";
-                ofertaEstudio.EstadoDelEstudio.IdListaValor = "AWE";
+                //ofertaEstudio.IdOferta = 13;
+                //ofertaEstudio.CicloEstudio = "AWE";
+                //ofertaEstudio.Estudio = "Estudios";
+                //ofertaEstudio.TipoDeEstudio.IdListaValor = "ABC";
+                //ofertaEstudio.EstadoDelEstudio.IdListaValor = "AWE";
                 ofertaEstudio.EstadoOfertaEstudio.IdListaValor = "ABC";
-                ofertaEstudio.CreadoPor = "admin";
+                ofertaEstudio.CreadoPor = ticket.Usuario;
 
                 LNOfertaEstudio lnOfertaEstudio = new LNOfertaEstudio();
                 lnOfertaEstudio.Insertar(ofertaEstudio);
 
-                List<OfertaEstudio> lista = lnOfertaEstudio.ObtenerEstudios(13, idOfertaEstudiosTodos);
+                List<OfertaEstudio> lista = lnOfertaEstudio.ObtenerEstudios(ofertaEstudio.IdOferta, idOfertaEstudiosTodos);
+
+                ViewBag.IdOferta = ofertaEstudio.IdOferta;
 
                 return PartialView("_OfertaEstudio", lista);
             }
@@ -68,7 +80,12 @@ namespace UTPPrototipo.Controllers
             //Obtener los datos del modelo de editar y pasarlo como parámetro.
             List<OfertaEstudio> lista = lnOfertaEstudio.ObtenerEstudios(0, id);
 
-            return PartialView("_OfertaEstudioEditar", lista[0]);
+            OfertaEstudio ofertaEstudio = lista[0];
+
+            ViewBag.TipoDeEstudioIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_DE_ESTUDIO), "IdListaValor", "Valor", ofertaEstudio.TipoDeEstudioIdListaValor);
+            ViewBag.EstadoDelEstudioIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_DEL_ESTUDIO), "IdListaValor", "Valor", ofertaEstudio.EstadoDelEstudioIdListaValor);
+            
+            return PartialView("_OfertaEstudioEditar", ofertaEstudio);
         }
 
         [ValidateAntiForgeryToken] // this action takes the viewModel from the modal
@@ -76,21 +93,23 @@ namespace UTPPrototipo.Controllers
         {
             if (ModelState.IsValid)
             {
+                TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];                
+
                 //Datos DEMO
-                ofertaEstudio.IdOferta = 13;
-                ofertaEstudio.CicloEstudio = "AWE2";
-                ofertaEstudio.Estudio = "Estudios2";
-                ofertaEstudio.TipoDeEstudio.IdListaValor = "ABC2";
-                ofertaEstudio.EstadoDelEstudio.IdListaValor = "AWE2";
-                ofertaEstudio.EstadoOfertaEstudio.IdListaValor = "ABC2";
-                ofertaEstudio.ModificadoPor = "admin2";
+                //ofertaEstudio.IdOferta = 13;
+                //ofertaEstudio.CicloEstudio = "AWE2";
+                //ofertaEstudio.Estudio = "Estudios2";
+                //ofertaEstudio.TipoDeEstudio.IdListaValor = "ABC2";
+                //ofertaEstudio.EstadoDelEstudio.IdListaValor = "AWE2";
+                //ofertaEstudio.EstadoOfertaEstudio.IdListaValor = "ABC2";
+                ofertaEstudio.ModificadoPor = ticket.Usuario;
 
                 lnOfertaEstudio.Actualizar(ofertaEstudio);
 
-                List<OfertaEstudio> lista = lnOfertaEstudio.ObtenerEstudios(13, idOfertaEstudiosTodos);  //TODO: Obtener el Id de la oferta.
+                List<OfertaEstudio> lista = lnOfertaEstudio.ObtenerEstudios(ofertaEstudio.IdOferta, idOfertaEstudiosTodos);  //TODO: Obtener el Id de la oferta.
 
-                return PartialView("_OfertaEstudio", lista);
-              
+                ViewBag.IdOferta = ofertaEstudio.IdOferta;
+                return PartialView("_OfertaEstudio", lista);              
             }
 
             return PartialView("_OfertaEstudioEditar", ofertaEstudio);

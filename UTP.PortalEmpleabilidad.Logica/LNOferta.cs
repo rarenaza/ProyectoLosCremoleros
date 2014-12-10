@@ -138,11 +138,11 @@ namespace UTP.PortalEmpleabilidad.Logica
                 oferta.Funciones = Convert.ToString(dsResultado.Tables[0].Rows[0]["Funciones"]);
                 oferta.Competencias = Convert.ToString(dsResultado.Tables[0].Rows[0]["Competencias"]);
 
-                oferta.TipoTrabajo.IdListaValor = Convert.ToString(dsResultado.Tables[0].Rows[0]["TipoTrabajo"]);
+                oferta.TipoTrabajoIdListaValor = Convert.ToString(dsResultado.Tables[0].Rows[0]["TipoTrabajo"]);
                 oferta.TipoTrabajo.Valor = Convert.ToString(dsResultado.Tables[0].Rows[0]["TipoTrabajoDescripcion"]);
-                oferta.TipoCargo.IdListaValor = Convert.ToString(dsResultado.Tables[0].Rows[0]["TipoCargo"]);
+                oferta.TipoCargoIdListaValor = Convert.ToString(dsResultado.Tables[0].Rows[0]["TipoCargo"]);
                 oferta.TipoCargo.Valor = Convert.ToString(dsResultado.Tables[0].Rows[0]["TipoCargoDescripcion"]);
-                oferta.TipoContrato.IdListaValor = Convert.ToString(dsResultado.Tables[0].Rows[0]["TipoContrato"]);
+                oferta.TipoContratoIdListaValor = Convert.ToString(dsResultado.Tables[0].Rows[0]["TipoContrato"]);
                 oferta.TipoContrato.Valor = Convert.ToString(dsResultado.Tables[0].Rows[0]["TipoContratoDescripcion"]);
 
                 oferta.RemuneracionOfrecida = Convert.ToDecimal(dsResultado.Tables[0].Rows[0]["RemuneracionOfrecida"]);
@@ -150,6 +150,11 @@ namespace UTP.PortalEmpleabilidad.Logica
                 oferta.AreaEmpresa = Convert.ToString(dsResultado.Tables[0].Rows[0]["AreaEmpresa"]);
                 oferta.NumeroVacantes = Convert.ToInt32(dsResultado.Tables[0].Rows[0]["NumeroVacantes"]);
 
+                oferta.IdEmpresaLocacion = Convert.ToInt32(dsResultado.Tables[0].Rows[0]["IdEmpresaLocacion"]);
+                oferta.RecibeCorreosIdListaValor = Convert.ToString(dsResultado.Tables[0].Rows[0]["RecibeCorreos"]);
+                oferta.FechaFinRecepcionCV = Convert.ToDateTime(dsResultado.Tables[0].Rows[0]["FechaFinRecepcionCV"]);
+                oferta.AreaEmpresa = Convert.ToString(dsResultado.Tables[0].Rows[0]["AreaEmpresa"]);
+                oferta.DuracionContrato = Convert.ToInt32(dsResultado.Tables[0].Rows[0]["DuracionContrato"]);
             }
 
             //Tabla Index 1: Lista de estudios.

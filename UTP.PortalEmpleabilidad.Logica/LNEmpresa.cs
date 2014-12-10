@@ -59,6 +59,9 @@ namespace UTP.PortalEmpleabilidad.Logica
 
         public void Actualizar(Empresa empresa)
         {
+            //Se formatea los valores nulos.
+            if (empresa.LinkVideo == null) empresa.LinkVideo = string.Empty;
+
             adEmpresa.Actualizar(empresa);
         }
 
@@ -86,6 +89,12 @@ namespace UTP.PortalEmpleabilidad.Logica
                     empresa.SectorEmpresarial.Valor = Convert.ToString(dsResultado.Tables[0].Rows[0]["SectorEmpresarialDescripcion"]);
                     empresa.SectorEmpresarial2.Valor = Convert.ToString(dsResultado.Tables[0].Rows[0]["SectorEmpresarial2Descripcion"]);
                     empresa.SectorEmpresarial3.Valor = Convert.ToString(dsResultado.Tables[0].Rows[0]["SectorEmpresarial3Descripcion"]);
+
+                    empresa.PaisIdListaValor = Convert.ToString(dsResultado.Tables[0].Rows[0]["Pais"]);
+                    empresa.NumeroEmpleadosIdListaValor = Convert.ToString(dsResultado.Tables[0].Rows[0]["NumeroEmpleados"]);
+                    empresa.SectorEmpresarial1IdListaValor = Convert.ToString(dsResultado.Tables[0].Rows[0]["SectorEmpresarial"]);
+                    empresa.SectorEmpresarial2IdListaValor = Convert.ToString(dsResultado.Tables[0].Rows[0]["SectorEmpresarial2"]);
+                    empresa.SectorEmpresarial3IdListaValor = Convert.ToString(dsResultado.Tables[0].Rows[0]["SectorEmpresarial3"]);
                 }
             }
 

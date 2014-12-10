@@ -52,7 +52,7 @@ namespace UTP.PortalEmpleabilidad.Datos
 
                 //Parámetros:            
                 cmd.Parameters.Add(new SqlParameter("@IdOferta", ofertaSectorEmpresarial.IdOferta));
-                cmd.Parameters.Add(new SqlParameter("@SectorEmpresarial", ofertaSectorEmpresarial.SectorEmpresarial.IdListaValor));
+                cmd.Parameters.Add(new SqlParameter("@SectorEmpresarial", ofertaSectorEmpresarial.SectorEmpresarialIdListaValor));
                 cmd.Parameters.Add(new SqlParameter("@ExperienciaExcluyente", ofertaSectorEmpresarial.ExperienciaExcluyente));
                 cmd.Parameters.Add(new SqlParameter("@AniosTrabajados", ofertaSectorEmpresarial.AniosTrabajados));
                 cmd.Parameters.Add(new SqlParameter("@EstadoOfertaSectorEmpresarial", ofertaSectorEmpresarial.EstadoOfertaSectorEmpresarial.IdListaValor));
@@ -80,10 +80,10 @@ namespace UTP.PortalEmpleabilidad.Datos
                 //Parámetros:
                 cmd.Parameters.Add(new SqlParameter("@IdOfertaSectorEmpresarial", ofertaSectorEmpresarial.IdOfertaSectorEmpresarial));
                 cmd.Parameters.Add(new SqlParameter("@IdOferta", ofertaSectorEmpresarial.IdOferta));
-                cmd.Parameters.Add(new SqlParameter("@SectorEmpresarial", ofertaSectorEmpresarial.SectorEmpresarial.IdListaValor));
+                cmd.Parameters.Add(new SqlParameter("@SectorEmpresarial", ofertaSectorEmpresarial.SectorEmpresarialIdListaValor));
                 cmd.Parameters.Add(new SqlParameter("@ExperienciaExcluyente", ofertaSectorEmpresarial.ExperienciaExcluyente));
                 cmd.Parameters.Add(new SqlParameter("@AniosTrabajados", ofertaSectorEmpresarial.AniosTrabajados));
-                cmd.Parameters.Add(new SqlParameter("@EstadoOfertaSectorEmpresarial", ofertaSectorEmpresarial.EstadoOfertaSectorEmpresarial.IdListaValor));
+                //cmd.Parameters.Add(new SqlParameter("@EstadoOfertaSectorEmpresarial", ofertaSectorEmpresarial.EstadoOfertaSectorEmpresarial.IdListaValor));
                 cmd.Parameters.Add(new SqlParameter("@ModificadoPor", ofertaSectorEmpresarial.ModificadoPor));
 
                 cmd.Connection = conexion;

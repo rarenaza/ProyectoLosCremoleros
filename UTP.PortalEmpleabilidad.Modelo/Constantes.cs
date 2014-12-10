@@ -22,13 +22,19 @@ namespace UTP.PortalEmpleabilidad.Modelo
 
         #region ID Lista
 
+        public static int IDLISTA_TIPO_DE_ESTUDIO = 7;
+        public static int IDLISTA_SECTOR_EMPRESARIAL = 8;
         public static int IDLISTA_TIPO_CARGO = 9;
         public static int IDLISTA_TIPO_OTRO_CONOCIMIENTO = 10;
         public static int IDLISTA_NIVEL_CONOCIMIENTOS = 16;
+        public static int IDLISTA_PAIS = 17;
+        public static int IDLISTA_NRO_EMPLEADOS = 19;
         public static int IDLISTA_TIPO_TRABAJO = 29;
         public static int IDLISTA_TIPO_CONTRATO = 30;
         public static int IDLISTA_FASE_OFERTA = 32;
 
+        public static int IDLISTA_ESTADO_DEL_ESTUDIO = 43;
+        public static int IDLISTA_OFERTA_RECIBECORREOS = 45;
 
         #endregion
 

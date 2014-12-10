@@ -14,7 +14,15 @@ namespace UTP.PortalEmpleabilidad.Logica
                 
         public void Insertar(Oferta oferta)
         {
-            adOferta.Insertar(oferta);
+            try
+            {
+                adOferta.Insertar(oferta);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            
         }
 
 

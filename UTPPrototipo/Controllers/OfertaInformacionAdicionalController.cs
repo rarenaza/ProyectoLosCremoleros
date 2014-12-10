@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using UTP.PortalEmpleabilidad.Modelo;
 using UTP.PortalEmpleabilidad.Logica;
+using UTPPrototipo.Models.ViewModels.Cuenta;
 
 namespace UTPPrototipo.Controllers
 {
@@ -15,6 +16,9 @@ namespace UTPPrototipo.Controllers
 
         public ActionResult ObtenerInformacionAdicional(int idOferta)
         {
+            //Se guarda el Id de la oferta
+            ViewBag.IdOferta = idOferta;
+
             List<OfertaInformacionAdicional> lista = lnInfoAdicional.ObtenerInformacionAdicional(idOferta, 0);
             
             ViewBag.ListaTipoConocimiento = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_OTRO_CONOCIMIENTO), "IdListaValor", "Valor");
@@ -31,41 +35,44 @@ namespace UTPPrototipo.Controllers
 
 
         [HttpGet] // esta acción devuelve la vista parcial con los datos para cargar el modal.
-        public PartialViewResult _OfertaInformacionAdicionalCrear()
+        public PartialViewResult _OfertaInformacionAdicionalCrear(int id)
         {
             //Se cargan los combos del tipo.
             ViewBag.TipoConocimientoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_OTRO_CONOCIMIENTO), "IdListaValor", "Valor");
             ViewBag.NivelConocimientoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_NIVEL_CONOCIMIENTOS).OrderBy(m => m.Peso), "IdListaValor", "Valor");
 
-            return PartialView("_OfertaInformacionAdicionalCrear");
+            OfertaInformacionAdicional ofertaInfoAdicional = new OfertaInformacionAdicional();
+            ofertaInfoAdicional.IdOferta = id;
+
+            return PartialView("_OfertaInformacionAdicionalCrear", ofertaInfoAdicional);
         }
 
 
         [ValidateAntiForgeryToken]
-        public PartialViewResult _OfertaInformacionAdicionalCrear(OfertaInformacionAdicional ofertaInfo)
+        public PartialViewResult _OfertaInformacionAdicionalCrear(OfertaInformacionAdicional ofertaInfoAdicional)
         {
             if (ModelState.IsValid)
             {
-                Ticket ticket = (Ticket)Session["Ticket"];
-                string usuarioCreacion = ticket.UsuarioNombre;
-
-                ofertaInfo.IdOferta = 13;
+                TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];
+                
+                //ofertaInfo.IdOferta = ofertaInfo.IdOferta;
                 //ofertaInfo.TipoConocimiento.IdListaValor = "ABE";  //Datos de prueba
                 //ofertaInfo.Conocimiento = "conocimiento"; //Datos de prueba
                 //ofertaInfo.NivelConocimiento.IdListaValor = "ABC"; //Datos de prueba
                 //ofertaInfo.AniosExperiencia = 5; //Datos de prueba
-                ofertaInfo.EstadoOfertaInformacionAdicional.IdListaValor = "OFOCAC"; //Estado Activo
-                ofertaInfo.CreadoPor = usuarioCreacion;
+                ofertaInfoAdicional.EstadoOfertaInformacionAdicional.IdListaValor = "OFOCAC"; //Estado Activo
+                ofertaInfoAdicional.CreadoPor = ticket.Usuario;
 
                 LNOfertaInformacionAdicional lnOfertaInfo = new LNOfertaInformacionAdicional();
-                lnOfertaInfo.Insertar(ofertaInfo);
+                lnOfertaInfo.Insertar(ofertaInfoAdicional);
 
-                List<OfertaInformacionAdicional> lista = lnInfoAdicional.ObtenerInformacionAdicional(13, 0);
+                List<OfertaInformacionAdicional> lista = lnInfoAdicional.ObtenerInformacionAdicional(ofertaInfoAdicional.IdOferta, 0);
 
+                ViewBag.IdOferta = ofertaInfoAdicional.IdOferta;
                 return PartialView("_OfertaInformacionAdicional", lista);
             }
 
-            return PartialView("_OfertaInformacionAdicionalCrear", ofertaInfo);
+            return PartialView("_OfertaInformacionAdicionalCrear", ofertaInfoAdicional);
         }
 
         [HttpGet] // esta acción devuelve la vista parcial con los datos para cargar el modal.
@@ -84,39 +91,39 @@ namespace UTPPrototipo.Controllers
         }
 
         [ValidateAntiForgeryToken]
-        public PartialViewResult _OfertaInformacionAdicionalEditar(OfertaInformacionAdicional ofertaInfo)
+        public PartialViewResult _OfertaInformacionAdicionalEditar(OfertaInformacionAdicional ofertaInfoAdicional)
         {
             if (ModelState.IsValid)
             {
-                Ticket ticket = (Ticket)Session["Ticket"];
-                string usuarioCreacion = ticket.UsuarioNombre;
+                TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];                
 
-                ofertaInfo.IdOferta = 13;
+                //ofertaInfo.IdOferta = 13;
                 //ofertaInfo.TipoConocimiento.IdListaValor = "ABE22";
                 //ofertaInfo.Conocimiento = "conocimiento22";
                 //ofertaInfo.NivelConocimiento.IdListaValor = "ABC22";
                 //ofertaInfo.AniosExperiencia = 5;
                 //ofertaInfo.EstadoOfertaInformacionAdicional.IdListaValor = "as22";
-                ofertaInfo.ModificadoPor = ticket.UsuarioNombre;
+                ofertaInfoAdicional.ModificadoPor = ticket.Usuario;
 
                 LNOfertaInformacionAdicional lnOfertaInfo = new LNOfertaInformacionAdicional();
-                lnOfertaInfo.Actualizar(ofertaInfo);
+                lnOfertaInfo.Actualizar(ofertaInfoAdicional);
 
-                List<OfertaInformacionAdicional> lista = lnInfoAdicional.ObtenerInformacionAdicional(13, 0);
+                List<OfertaInformacionAdicional> lista = lnInfoAdicional.ObtenerInformacionAdicional(ofertaInfoAdicional.IdOferta, 0);
 
+                ViewBag.IdOferta = ofertaInfoAdicional.IdOferta;
                 return PartialView("_OfertaInformacionAdicional", lista);
             }
             else
             {
+                //Código para ubicar los errores en el ModelState.
                 var errors = ModelState.Select(x => x.Value.Errors)
                             .Where(y => y.Count > 0)
                             .ToList();
-
-                int a = 0;
-            
+                
+                int a = 0;            
             }
 
-            return PartialView("_OfertaInformacionAdicionalEditar", ofertaInfo);
+            return PartialView("_OfertaInformacionAdicionalEditar", ofertaInfoAdicional);
         }
     }
 }

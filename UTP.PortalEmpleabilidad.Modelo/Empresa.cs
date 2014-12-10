@@ -28,6 +28,13 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public List<EmpresaLocacion> Locaciones { get; set; }
         public List<EmpresaUsuario> Usuarios { get; set; }
 
+        public string PaisIdListaValor { get; set; }
+        public string NumeroEmpleadosIdListaValor { get; set; }
+        public string SectorEmpresarial1IdListaValor { get; set; }
+        public string SectorEmpresarial2IdListaValor { get; set; }
+        public string SectorEmpresarial3IdListaValor { get; set; }
+        public string ModificadoPor { get; set; }
+
         public Empresa()
         {
             Pais = new ListaValor();

@@ -28,7 +28,8 @@
                 Estado: Pendiente de Activación
             </div>
             <div class="col-sm-3 fuente-seccion">
-                <input type="checkbox" /><span> Recibir correos&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                @*<input type="checkbox" /><span> Recibir correos&nbsp;&nbsp;&nbsp;&nbsp;</span>*@
+                Alertas: @Html.DropDownList("RecibeCorreosIdListaValor", null, htmlAttributes: new { @class = "form-control" })
             </div>
             <div class="col-sm-3 fuente-seccion" style="text-align:right;">
                 <button class="btn btn-default color-paleta2" style="margin-bottom:5px;">Grabar Cambios</button>
@@ -100,77 +101,80 @@
                             <div class="panel-body fuente-pequeña">
                                 <div class="input-group">
                                     <span class="input-group-addon">Recibir<br />CVs hasta</span>
-                                    <input type="date" id="FechaFinRecepcionCV" name="FechaFinRecepcionCV" class="form-control" placeholder="Fecha de fin de publicación">
+                                    <input type="date" id="FechaFinRecepcionCV" name="FechaFinRecepcionCV" class="form-control" placeholder="Fecha de fin de publicación" value="@Model.FechaFinRecepcionCV">                         
                                     @Html.ValidationMessageFor(m => m.FechaFinRecepcionCV)
                                 </div>
                                 <div class="input-group">
                                     <span class="input-group-addon">Área</span>
-                                    <input id="AreaEmpresa" name="AreaEmpresa" type="text" class="form-control" placeholder="Área o división de la empresa">
+                                    <input id="AreaEmpresa" name="AreaEmpresa" type="text" class="form-control" placeholder="Área o división de la empresa" value="@Model.AreaEmpresa">
                                     @Html.ValidationMessageFor(m => m.AreaEmpresa)
                                 </div>
                                 <div class="input-group">
                                     <span class="input-group-addon">Tipo de<br />Cargo</span>
-                                    <select id="TipoCargo" name="TipoCargo" class="form-control">
+                                    @Html.DropDownList("TipoCargoIdListaValor", null, htmlAttributes: new { @class = "form-control" })
+                                    @*<select id="TipoCargo" name="TipoCargo" class="form-control">
                                         <option value="">
                                             -- Seleccione un Tipo de Cargo --
                                         </option>
                                         @{
-        var itemsTipoCargo = ((List<ListaValor>)(ViewBag.ListaTipoCargo));
-        foreach (var item in itemsTipoCargo)
-        {
-            <option value="@item.IdListaValor">
-                @item.Valor
-            </option>
-        }
+                                            var itemsTipoCargo = ((List<ListaValor>)(ViewBag.ListaTipoCargo));
+                                            foreach (var item in itemsTipoCargo)
+                                            {
+                                                <option value="@item.IdListaValor">
+                                                    @item.Valor
+                                                </option>
+                                            }
                                         }
 
-                                    </select>
+                                    </select>*@
                                     @Html.ValidationMessageFor(m => m.TipoCargo)
                                 </div>
                                 <div class="input-group">
                                     <span class="input-group-addon">Tipo de<br />Trabajo</span>
-                                    <select id="TipoTrabajo" name="TipoTrabajo" class="form-control">
+                                    @Html.DropDownList("TipoTrabajoIdListaValor", null, htmlAttributes: new { @class = "form-control" })
+                                    @*<select id="TipoTrabajo" name="TipoTrabajo" class="form-control">
                                         <option value="0">
                                             -- Seleccione un Tipo de Trabajo --
                                         </option>
                                         @{
-        var itemsTipoTrabajo = ((List<ListaValor>)(ViewBag.ListaTipoTrabajo));
-        foreach (var item in itemsTipoTrabajo)
-        {
-            <option value="@item.IdListaValor">
-                @item.Valor
-            </option>
-        }
+                                            var itemsTipoTrabajo = ((List<ListaValor>)(ViewBag.ListaTipoTrabajo));
+                                            foreach (var item in itemsTipoTrabajo)
+                                            {
+                                                <option value="@item.IdListaValor">
+                                                    @item.Valor
+                                                </option>
+                                            }
                                         }
-                                    </select>
+                                    </select>*@
                                     @Html.ValidationMessageFor(m => m.TipoTrabajo)
                                 </div>
                                 <div class="input-group">
                                     <span class="input-group-addon">Tipo de<br />Contrato</span>
-                                    <select id="TipoContrato" name="TipoContrato" class="form-control">
+                                    @Html.DropDownList("TipoContratoIdListaValor", null, htmlAttributes: new { @class = "form-control" })
+                                    @*<select id="TipoContrato" name="TipoContrato" class="form-control">
                                         <option value="">
                                             -- Seleccione un Tipo de Contrato --
                                         </option>
                                         @{
-        var itemsTipoContrato = ((List<ListaValor>)(ViewBag.ListaTipoContrato));
-        foreach (var item in itemsTipoContrato)
-        {
-            if (item.IdListaValor == Model.TipoContrato.IdListaValor)
-            {
-                <option value="@item.IdListaValor" selected="selected">
-                    @item.Valor
-                </option>
-            }
-            else
-            {
+                                            var itemsTipoContrato = ((List<ListaValor>)(ViewBag.ListaTipoContrato));
+                                            foreach (var item in itemsTipoContrato)
+                                            {
+                                                if (item.IdListaValor == Model.TipoContrato.IdListaValor)
+                                                {
+                                                    <option value="@item.IdListaValor" selected="selected">
+                                                        @item.Valor
+                                                    </option>
+                                                }
+                                                else
+                                                {
 
-                <option value="@item.IdListaValor">
-                    @item.Valor
-                </option>
-            }
-        }
+                                                    <option value="@item.IdListaValor">
+                                                        @item.Valor
+                                                    </option>
+                                                }
+                                            }
                                         }
-                                    </select>
+                                    </select>*@
 
                                     @Html.ValidationMessageFor(m => m.TipoContrato)
                                 </div>
@@ -199,21 +203,22 @@
                                     <div class="col-sm-7">
                                         <div class="input-group">
                                             <span class="input-group-addon">Ubicación</span>
-                                            <select id="IdEmpresaLocacion" name="IdEmpresaLocacion" class="form-control">
+                                            @Html.DropDownList("IdEmpresaLocacion", null, htmlAttributes: new { @class = "form-control" })
+                                            @*<select id="IdEmpresaLocacion" name="IdEmpresaLocacion" class="form-control">
                                                 <option value="">
                                                     -- Seleccione Ubicación del Trabajo --
                                                 </option>
                                                 @{
-        var locaciones = ((List<EmpresaLocacion>)(ViewBag.ListaLocaciones));
-        foreach (var locacion in locaciones)
-        {
-            <option value="@locacion.IdEmpresaLocacion">
-                @locacion.NombreLocacion, @locacion.Direccion, @locacion.DireccionDistrito
-            </option>
-        }
+                                                    var locaciones = ((List<EmpresaLocacion>)(ViewBag.ListaLocaciones));
+                                                    foreach (var locacion in locaciones)
+                                                    {
+                                                        <option value="@locacion.IdEmpresaLocacion">
+                                                            @locacion.NombreLocacion, @locacion.Direccion, @locacion.DireccionDistrito
+                                                        </option>
+                                                    }
                                                 }
 
-                                            </select>
+                                            </select>*@
 
                                         </div>
                                     </div>
@@ -416,9 +421,9 @@
     //    });
     //});
 
-    function crearEstudio() {
+    function crearEstudio(idOferta) {
 
-        var url = "../OfertaEstudio/_OfertaEstudioCrear"; // el url del controlador
+        var url = "../OfertaEstudio/_OfertaEstudioCrear/" + idOferta; // el url del controlador
         $.get(url, function (data) {
             $('#divCrearEstudioContenedor').html(data);
             $('#divModalEstudio').modal('show');
@@ -426,9 +431,9 @@
     };
 
 
-    function crearSector()
+    function crearSector(idOferta)
     {
-        var url = "../OfertaSectorEmpresarial/_OfertaSectorEmpresarialCrear"; // el url del controlador
+        var url = "../OfertaSectorEmpresarial/_OfertaSectorEmpresarialCrear/" + idOferta; // el url del controlador
         $.get(url, function (data) {
             $('#divCrearSectorEmpresarialContenedor').html(data);
             $('#divModalSectorEmpresarial').modal('show');
@@ -444,9 +449,10 @@
     //    });
     //});
 
-    function crearInfoAdicional()
+    function crearInfoAdicional(idOferta)
     {
-        var url = "../OfertaInformacionAdicional/_OfertaInformacionAdicionalCrear"; // el url del controlador
+        //debugger;
+        var url = "../OfertaInformacionAdicional/_OfertaInformacionAdicionalCrear/" + idOferta; // el url del controlador
         $.get(url, function (data) {
             $('#divCrearInfoAdicionalContenedor').html(data);
             $('#divModalInfoAdicional').modal('show');

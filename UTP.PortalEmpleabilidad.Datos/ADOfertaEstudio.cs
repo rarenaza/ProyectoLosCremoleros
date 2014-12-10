@@ -54,8 +54,8 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.Parameters.Add(new SqlParameter("@IdOferta", ofertaEstudio.IdOferta));
                 cmd.Parameters.Add(new SqlParameter("@CicloEstudio", ofertaEstudio.CicloEstudio));
                 cmd.Parameters.Add(new SqlParameter("@Estudio", ofertaEstudio.Estudio));
-                cmd.Parameters.Add(new SqlParameter("@TipoDeEstudio", ofertaEstudio.TipoDeEstudio.IdListaValor));
-                cmd.Parameters.Add(new SqlParameter("@EstadoDelEstudio", ofertaEstudio.EstadoDelEstudio.IdListaValor));
+                cmd.Parameters.Add(new SqlParameter("@TipoDeEstudio", ofertaEstudio.TipoDeEstudioIdListaValor));
+                cmd.Parameters.Add(new SqlParameter("@EstadoDelEstudio", ofertaEstudio.EstadoDelEstudioIdListaValor));
                 cmd.Parameters.Add(new SqlParameter("@EstadoOfertaEstudio", ofertaEstudio.EstadoOfertaEstudio.IdListaValor));
                 cmd.Parameters.Add(new SqlParameter("@CreadoPor", ofertaEstudio.CreadoPor));
 
@@ -83,9 +83,9 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.Parameters.Add(new SqlParameter("@IdOferta", ofertaEstudio.IdOferta));
                 cmd.Parameters.Add(new SqlParameter("@CicloEstudio", ofertaEstudio.CicloEstudio));
                 cmd.Parameters.Add(new SqlParameter("@Estudio", ofertaEstudio.Estudio));
-                cmd.Parameters.Add(new SqlParameter("@TipoDeEstudio", ofertaEstudio.TipoDeEstudio.IdListaValor));
-                cmd.Parameters.Add(new SqlParameter("@EstadoDelEstudio", ofertaEstudio.EstadoDelEstudio.IdListaValor));
-                cmd.Parameters.Add(new SqlParameter("@EstadoOfertaEstudio", ofertaEstudio.EstadoOfertaEstudio.IdListaValor));
+                cmd.Parameters.Add(new SqlParameter("@TipoDeEstudio", ofertaEstudio.TipoDeEstudioIdListaValor));
+                cmd.Parameters.Add(new SqlParameter("@EstadoDelEstudio", ofertaEstudio.EstadoDelEstudioIdListaValor));
+                //cmd.Parameters.Add(new SqlParameter("@EstadoOfertaEstudio", ofertaEstudio.EstadoOfertaEstudio.IdListaValor));
                 cmd.Parameters.Add(new SqlParameter("@ModificadoPor", ofertaEstudio.ModificadoPor));
 
                 cmd.Connection = conexion;

@@ -13,7 +13,7 @@
     <table class="fuente-pequeña">
         <tr>
             <td class="celda-nombre">Tipo</td>
-            <td class="celda-datos">@item.TipoDeEstudio</td>
+            <td class="celda-datos">@item.TipoDeEstudio.Valor</td>
         </tr>
         <tr>
             <td class="celda-nombre">Estudio</td>
@@ -22,7 +22,7 @@
 
         <tr>
             <td class="celda-nombre">Estado</td>
-            <td class="celda-datos">@item.EstadoDelEstudio</td>
+            <td class="celda-datos">@item.EstadoDelEstudio.Valor</td>
         </tr>
         <tr>
             <td class="celda-nombre">Ciclo mínimo</td>
@@ -43,7 +43,7 @@
 
 <div class="row">
     <div class="col-sm-12" style="text-align:right;">
-        <button id="btnNuevoEstudio" data-toggle="modal" data-target="#divModalEstudio" onclick="crearEstudio()" class=" btn btn-default color-paleta2">
+        <button id="btnNuevoEstudio" data-toggle="modal" data-target="#divModalEstudio" onclick="crearEstudio(@ViewBag.IdOferta)" class=" btn btn-default color-paleta2">
             Agregar un Estudio específico
         </button>
     </div>

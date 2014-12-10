@@ -11,9 +11,12 @@ CKEDITOR.editorConfig = function( config )
 };
 
 
-CKEDITOR.config.toolbar = [
-    { name: 'document', items: ['Source', '-', 'Templates'] },
-    { name: 'clipboard', items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'] },
-    { name: 'basicstyles', items: ['Bold', 'Italic'] }
+//CKEDITOR.config.toolbar = [
+//    //{ name: 'document', items: ['Source', '-', 'Templates'] },
+//    //{ name: 'clipboard', items: ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo'] },
+//    { name: 'basicstyles', items: ['Bold', 'Italic'] },
+//    { name: 'paragraph',   items: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
     
-];
+//];
+
+CKEDITOR.config.toolbar = 'Basic';

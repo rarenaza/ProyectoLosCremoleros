@@ -25,7 +25,8 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public DateTime FechaPublicacion { get; set; }
 
         [Required(ErrorMessage = "No se ha ingresado la fecha de fin de recepción de CV's")]
-        [DataType(DataType.Date)]    
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}",  ApplyFormatInEditMode = true)]
         public DateTime FechaFinRecepcionCV { get; set; }
         
         public int IdEmpresaLocacion { get; set; }
@@ -57,13 +58,16 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public ListaValor TipoCargo { get; set; }
         public ListaValor TipoTrabajo { get; set; }
         public ListaValor TipoContrato { get; set; }
-
         public decimal Compatible { get; set; }
         public string NombreComercial { get; set; }
         public int Mensaje { get; set; }
         public string DesTipoTrabajo { get; set; }
+        public string RecibeCorreosIdListaValor { get; set; }
+        public string TipoCargoIdListaValor { get; set; }
+        public string TipoTrabajoIdListaValor { get; set; }
+        public string TipoContratoIdListaValor { get; set; }
 
-       public Oferta() {
+        public Oferta() {
 
            TipoCargo = new ListaValor();
            TipoTrabajo = new ListaValor();
