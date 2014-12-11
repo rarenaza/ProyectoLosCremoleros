@@ -16,6 +16,13 @@ namespace UTP.PortalEmpleabilidad.Logica
         {
             try
             {
+                if (oferta.Funciones == null) oferta.Funciones = string.Empty;
+                if (oferta.Competencias == null) oferta.Competencias = string.Empty;
+                if (oferta.AreaEmpresa == null) oferta.AreaEmpresa = string.Empty;
+                if (oferta.TipoCargoIdListaValor == null) oferta.TipoCargoIdListaValor = string.Empty;
+                if (oferta.TipoContratoIdListaValor == null) oferta.TipoContratoIdListaValor = string.Empty;
+                if (oferta.Horario == null) oferta.Horario = string.Empty;
+
                 adOferta.Insertar(oferta);
             }
             catch (Exception ex)

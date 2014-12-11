@@ -13,7 +13,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public int IdOferta { get; set; }
         public int IdEmpresa { get; set; }
 
-        [Required(ErrorMessage="No ha ingresado el cargo")]
+        [Required(ErrorMessage = Constantes.MSJ_CAMPO_OBLIGATORIO)]
         public string CargoOfrecido { get; set; }
         public string UsuarioPropietarioEmpresa { get; set; }
         
@@ -24,11 +24,12 @@ namespace UTP.PortalEmpleabilidad.Modelo
         [DataType(DataType.Date)]
         public DateTime FechaPublicacion { get; set; }
 
-        [Required(ErrorMessage = "No se ha ingresado la fecha de fin de recepción de CV's")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}",  ApplyFormatInEditMode = true)]
+        [Required(ErrorMessage = Constantes.MSJ_CAMPO_OBLIGATORIO)]
+        [DataType(DataType.Date)]    
         public DateTime FechaFinRecepcionCV { get; set; }
         public DateTime FechaFinProceso { get; set; }
+
+        [Required(ErrorMessage = Constantes.MSJ_CAMPO_OBLIGATORIO)]
         public int IdEmpresaLocacion { get; set; }
         public string  DescripcionOferta { get; set; }
         //public string TipoTrabajo { get; set; }
@@ -62,8 +63,12 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string NombreComercial { get; set; }
         public int Mensaje { get; set; }
         public string DesTipoTrabajo { get; set; }
+        
+        [Required(ErrorMessage=Constantes.MSJ_CAMPO_OBLIGATORIO)]
         public string RecibeCorreosIdListaValor { get; set; }
         public string TipoCargoIdListaValor { get; set; }
+
+         [Required(ErrorMessage = Constantes.MSJ_CAMPO_OBLIGATORIO)]
         public string TipoTrabajoIdListaValor { get; set; }
         public string TipoContratoIdListaValor { get; set; }
 

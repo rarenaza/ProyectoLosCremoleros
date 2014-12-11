@@ -73,16 +73,16 @@ namespace UTPPrototipo.Controllers
         [HttpPost, ValidateInput(false), ValidateAntiForgeryToken]        
         public ActionResult EditarOferta(Oferta oferta)
         {
-            Ticket ticket = (Ticket)Session["Ticket"];
+            TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];
 
             if (ModelState.IsValid)
             {
                 oferta.UsuarioPropietarioEmpresa = "";
-                oferta.ModificadoPor = "adminEmpresa";
+                oferta.ModificadoPor = ticket.Usuario;
 
                 lnOferta.Actualizar(oferta);
 
-                //1. Mostrar mensaje de exito.
+                //1. Mostrar mensaje de éxito.
 
                 //2. Redireccionar a la lista.
                 return RedirectToAction("Publicacion");
@@ -95,6 +95,7 @@ namespace UTPPrototipo.Controllers
 
                 int a = 0;
             }
+
             LNGeneral lnGeneral = new LNGeneral();
             LNEmpresaLocacion lnEmpresaLocacion = new LNEmpresaLocacion();
 
@@ -330,7 +331,7 @@ namespace UTPPrototipo.Controllers
 
         [ValidateAntiForgeryToken] // this action takes the viewModel from the modal
         public PartialViewResult EditarEmpresa(Empresa empresa) //Este es como el submit
-        {  
+        {          
             if (ModelState.IsValid)
             {
                 TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];
@@ -345,6 +346,12 @@ namespace UTPPrototipo.Controllers
                 //return RedirectToAction("Administrar");
             }
 
+            ViewBag.PaisIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_PAIS), "IdListaValor", "Valor", empresa.PaisIdListaValor);
+            ViewBag.NumeroEmpleadosIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_NRO_EMPLEADOS), "IdListaValor", "Valor", empresa.NumeroEmpleadosIdListaValor);
+            ViewBag.SectorEmpresarial1IdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_SECTOR_EMPRESARIAL), "IdListaValor", "Valor", empresa.SectorEmpresarial1IdListaValor);
+            ViewBag.SectorEmpresarial2IdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_SECTOR_EMPRESARIAL), "IdListaValor", "Valor", empresa.SectorEmpresarial2IdListaValor);
+            ViewBag.SectorEmpresarial3IdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_SECTOR_EMPRESARIAL), "IdListaValor", "Valor", empresa.SectorEmpresarial3IdListaValor);
+            
             return PartialView("_EditarEmpresa", empresa);
         }
 
