@@ -70,6 +70,34 @@ namespace UTP.PortalEmpleabilidad.Datos
             return dtResultado;
         }
 
+        public DataTable BuscarFiltroOfertasAlumno(int IdAlumno,string PalabraClave)
+        {
+            DataTable dtResultado = new DataTable();
+
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Oferta_BusquedaFiltroAlumno";
+                cmd.Parameters.Add(new SqlParameter("@IdAlumno", SqlDbType.Int)).Value = IdAlumno;
+                cmd.Parameters.Add(new SqlParameter("@PalabraClave", SqlDbType.VarChar, 200)).Value = PalabraClave;
+
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                dtResultado = new DataTable();
+
+                da.Fill(dtResultado);
+
+                conexion.Close();
+            }
+
+            return dtResultado;
+        }
+
         public DataTable BuscarAvanzadoOfertasAlumno(VistaOfertaAlumno entidad)
         {
             DataTable dtResultado = new DataTable();
