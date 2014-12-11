@@ -152,15 +152,7 @@
                         @Html.ValidationMessageFor(model => model.EnPantallaPrincipal)
                     </div>
                 </div>
-
-                <div class="form-group">
-                    @Html.Label("Modificado Por", new { @class = "control-label col-md-2" })
-                    @*@Html.LabelFor(model => model.ModificadoPor, htmlAttributes: new { @class = "control-label col-md-2" })*@
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.ModificadoPor)
-                        @Html.ValidationMessageFor(model => model.ModificadoPor)
-                    </div>
-                </div>
+                            
 
                 <div class="form-group" style="display:none">
                     @Html.LabelFor(model => model.FechaModificacion, htmlAttributes: new { @class = "control-label col-md-2" })

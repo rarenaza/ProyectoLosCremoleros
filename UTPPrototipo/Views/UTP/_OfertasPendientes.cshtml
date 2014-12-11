@@ -1,4 +1,5 @@
-﻿@model IEnumerable<UTPPrototipo.Models.ViewModels.UTP.VistasOfertasPendientes>
+﻿@using UTPPrototipo.Common
+@model IEnumerable<UTPPrototipo.Models.ViewModels.UTP.VistaOfertasPendientes>
 
 
         <h5>Ofertas por Activar</h5>
@@ -19,7 +20,7 @@
 {
     <div class="row grilla1-linea">
         <div class="col-sm-3">
-            @item.FechaPublicacion
+            @Html.FormatoFrecuencia(@item.FechaPublicacion)
         </div>
         <div class="col-sm-4">
             @item.NombreComercial

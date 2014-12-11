@@ -291,7 +291,13 @@ namespace UTPPrototipo.Controllers
             contenido.EnPantallaPrincipal = contenidoHTML.EnPantallaPrincipal;
             contenido.Activo = contenidoHTML.Activo;
             contenido.Menu = contenidoHTML.Menu;
-            contenido.CreadoPor = contenidoHTML.CreadoPor;
+
+
+            TicketUTP ticketUtp = (TicketUTP)Session["TicketUtp"];
+               
+
+            contenido.CreadoPor = ticketUtp.Usuario;
+            //contenido.CreadoPor = contenidoHTML.CreadoPor;
 
 
             if (ln.Contenido_insertar(contenido) == true)
@@ -424,7 +430,12 @@ namespace UTPPrototipo.Controllers
             contenido.Activo = contenidoHTML.Activo;
 
             contenido.Menu= contenidoHTML.Menu;
-            contenido.ModificadoPor = contenidoHTML.ModificadoPor;
+
+
+            TicketUTP ticketUtp = (TicketUTP)Session["TicketUtp"];
+
+            contenido.ModificadoPor = ticketUtp.Usuario;
+            //contenido.ModificadoPor = contenidoHTML.ModificadoPor;
             contenido.IdContenido = contenidoHTML.IdContenido;
             
             //if (ModelState.IsValid)
@@ -610,13 +621,13 @@ namespace UTPPrototipo.Controllers
 
         public ActionResult VistaOfertasPendientes()
         {
-            List<VistasOfertasPendientes> listaOfertasPendientes = new List<VistasOfertasPendientes>();
+            List<VistaOfertasPendientes> listaOfertasPendientes = new List<VistaOfertasPendientes>();
 
             DataTable dtResultado = lnUtp.OfertasObtenerPendientes();
 
             foreach (DataRow fila in dtResultado.Rows)
             {
-                VistasOfertasPendientes vistaNueva = new VistasOfertasPendientes();
+                VistaOfertasPendientes vistaNueva = new VistaOfertasPendientes();
 
                 vistaNueva.FechaPublicacion = Convert.ToDateTime(fila["FechaPublicacion"]);
                 vistaNueva.NombreComercial = Convert.ToString(fila["NombreComercial"]);
@@ -627,6 +638,28 @@ namespace UTPPrototipo.Controllers
             }
 
             return PartialView("_OfertasPendientes", listaOfertasPendientes);
+
+        }
+
+        public ActionResult Vista_EmpresasPendientes()
+        {
+            List<VistaEmpresasPendientes> listaEmpresasPendientes = new List<VistaEmpresasPendientes>();
+
+            DataTable dtResultado = lnUtp.EmpresaObtenerPendientes();
+
+            foreach (DataRow fila in dtResultado.Rows)
+            {
+                VistaEmpresasPendientes vistaNueva = new VistaEmpresasPendientes();
+
+                vistaNueva.FechaCreacion = Convert.ToDateTime(fila["FechaCreacion"]);
+                vistaNueva.NombreComercial = Convert.ToString(fila["NombreComercial"]);
+
+                vistaNueva.IdEmpresa = Convert.ToInt32(fila["IdEmpresa"]);
+
+                listaEmpresasPendientes.Add(vistaNueva);
+            }
+
+            return PartialView("_EmpresasPendientes", listaEmpresasPendientes);
 
         }
 

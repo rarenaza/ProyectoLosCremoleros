@@ -18,5 +18,10 @@ namespace UTP.PortalEmpleabilidad.Logica
             
             return adUtp.OfertasObtenerPendientes();
         }
+        public DataTable EmpresaObtenerPendientes()
+        {
+
+            return adUtp.EmpresaObtenerPendientes();
+        }
     }
 }

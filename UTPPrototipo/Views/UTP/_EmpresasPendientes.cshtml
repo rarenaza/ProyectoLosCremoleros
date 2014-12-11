@@ -1,0 +1,30 @@
+﻿@using UTPPrototipo.Common
+@model IEnumerable<UTPPrototipo.Models.ViewModels.UTP.VistaEmpresasPendientes>
+
+
+    <h5>Empresas por Activar</h5>
+
+    <div class="row grilla1-cabecera color-paleta1">
+        <div class="col-sm-4">
+            Fecha Registro
+        </div>
+        <div class="col-sm-8">
+            Empresa
+        </div>
+    </div>
+
+@foreach (var item in @Model)
+{
+    <div class="row grilla1-linea">
+        <div class="col-sm-4">
+            @Html.FormatoFrecuencia(@item.FechaCreacion)
+        </div>
+        <div class="col-sm-8">
+            <a href="../UTP/RegistroEmpresa">@item.NombreComercial</a>
+        </div>
+    </div>
+}
+   
+
+<hr />
+

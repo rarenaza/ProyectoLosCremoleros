@@ -122,16 +122,8 @@
                     @Html.ValidationMessageFor(model => model.EnPantallaPrincipal)
                 </div>
             </div>
-
-
-            <div class="form-group">
-                @Html.Label("Creado por", new { @class = "control-label col-md-2" })
-                @*@Html.LabelFor(model => model.CreadoPor, htmlAttributes: new { @class = "control-label col-md-2" })*@
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.CreadoPor)
-                    @Html.ValidationMessageFor(model => model.CreadoPor)
-                </div>
-            </div>
+            
+    
 
             <div class="form-group" style="display:none">
                 @Html.LabelFor(model => model.FechaCreacion, htmlAttributes: new { @class = "control-label col-md-2" })
