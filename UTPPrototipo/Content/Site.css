@@ -604,6 +604,7 @@ label-sistema {
     font-size:11px;
     margin: 0px 0px 0px 0px;
     padding: 0px 4px 0px 4px;
+    color: black;   
     }
 
 input, select, option, textarea {
@@ -645,3 +646,11 @@ input, select, option, textarea {
     margin-bottom:5px;
     }
 
+
+.demo {
+    background-color: yellow;
+}
+
+.text-danger {
+    padding-left: 8px;
+}

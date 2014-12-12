@@ -19,7 +19,7 @@ namespace UTP.PortalEmpleabilidad.Datos
         /// </summary>
         /// <returns></returns>
         ///
-        public DataTable ObtenerOfertasAlumnoPorID(int idOferta)
+        public DataTable ObtenerOfertasAlumnoPorID(int idOferta, int idAlumno)
         {
             DataTable dtResultado = new DataTable();
 
@@ -29,7 +29,9 @@ namespace UTP.PortalEmpleabilidad.Datos
 
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "OfertaAlumno_ObtenerPorId";
-                cmd.Parameters.Add(new SqlParameter("@idOferta", SqlDbType.VarChar, 100)).Value = idOferta;
+                cmd.Parameters.Add(new SqlParameter("@idOferta", SqlDbType.Int)).Value = idOferta;
+                cmd.Parameters.Add(new SqlParameter("@idAlumno", SqlDbType.Int)).Value = idAlumno;
+
                 cmd.Connection = conexion;
 
                 conexion.Open();
@@ -70,6 +72,63 @@ namespace UTP.PortalEmpleabilidad.Datos
             return dtResultado;
         }
 
+
+
+        public DataTable BuscarFiltroOfertasAlumno(int IdAlumno,string PalabraClave)
+        {
+            DataTable dtResultado = new DataTable();
+
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Oferta_BusquedaFiltroAlumno";
+                cmd.Parameters.Add(new SqlParameter("@IdAlumno", SqlDbType.Int)).Value = IdAlumno;
+                cmd.Parameters.Add(new SqlParameter("@PalabraClave", SqlDbType.VarChar, 200)).Value = PalabraClave;
+
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                dtResultado = new DataTable();
+
+                da.Fill(dtResultado);
+
+                conexion.Close();
+            }
+
+            return dtResultado;
+        }
+
+        public DataTable BuscarSimilaresOfertasAlumno(int IdOferta)
+        {
+            DataTable dtResultado = new DataTable();
+
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Oferta_SimiliaresOfertas";
+                cmd.Parameters.Add(new SqlParameter("@Id_Oferta", SqlDbType.Int)).Value = IdOferta;
+
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                dtResultado = new DataTable();
+
+                da.Fill(dtResultado);
+
+                conexion.Close();
+            }
+
+            return dtResultado;
+        }
+
         public DataTable BuscarAvanzadoOfertasAlumno(VistaOfertaAlumno entidad)
         {
             DataTable dtResultado = new DataTable();
@@ -79,8 +138,20 @@ namespace UTP.PortalEmpleabilidad.Datos
                 SqlCommand cmd = new SqlCommand();
 
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "Oferta_ListarUltimosAlumno";
-                //cmd.Parameters.Add(new SqlParameter("@DescripcionOferta", SqlDbType.VarChar, 100)).Value = entidad.;
+                cmd.CommandText = "Oferta_BusquedaAvazandaAlumno";
+                cmd.Parameters.Add(new SqlParameter("@Publicacion", SqlDbType.Int)).Value = entidad.IdPeriodoPublicacion == null ? 31 :(int) entidad.IdPeriodoPublicacion;
+                cmd.Parameters.Add(new SqlParameter("@Carrera", SqlDbType.VarChar, 200)).Value = entidad.IdEstudio == null ? "" : entidad.IdEstudio;
+                cmd.Parameters.Add(new SqlParameter("@EstadoEstudio", SqlDbType.VarChar, 6)).Value = entidad.IdEstadoEstudio == null ? "" : entidad.IdEstadoEstudio;
+                cmd.Parameters.Add(new SqlParameter("@SectorEmpresa", SqlDbType.VarChar, 6)).Value = entidad.IdSectorEmpresarial == null ? "" : entidad.IdSectorEmpresarial;
+                cmd.Parameters.Add(new SqlParameter("@AreaEmpresa", SqlDbType.VarChar, 100)).Value = entidad.AreaEmpresa == null ? "" : entidad.AreaEmpresa;
+                cmd.Parameters.Add(new SqlParameter("@Experiencia", SqlDbType.Int)).Value = entidad.AniosExperiencia == null ? 0 : entidad.AniosExperiencia;
+                cmd.Parameters.Add(new SqlParameter("@TipoTrabajo", SqlDbType.VarChar, 6)).Value = entidad.IdTipoTrabajo == null ? "" : entidad.IdTipoTrabajo;
+                cmd.Parameters.Add(new SqlParameter("@TipoContrato", SqlDbType.VarChar, 6)).Value = entidad.IdContrato == null ? "" : entidad.IdContrato;
+                cmd.Parameters.Add(new SqlParameter("@TipoCargo", SqlDbType.VarChar, 6)).Value = entidad.IdTipoCargo == null ? "" : entidad.IdTipoCargo;
+                cmd.Parameters.Add(new SqlParameter("@Sueldo", SqlDbType.Int)).Value = entidad.Sueldo == null ? 0 : entidad.Sueldo;
+                cmd.Parameters.Add(new SqlParameter("@Ubicacion", SqlDbType.VarChar, 100)).Value = entidad.Ubicacion == null ? "" : entidad.Ubicacion;
+                cmd.Parameters.Add(new SqlParameter("@Mensaje", SqlDbType.Int)).Value = entidad.IncluirMensaje ? 1 : 0;
+                cmd.Parameters.Add(new SqlParameter("@IdAlumno", SqlDbType.Int)).Value = entidad.IdAlumno;
                 cmd.Connection = conexion;
 
                 conexion.Open();

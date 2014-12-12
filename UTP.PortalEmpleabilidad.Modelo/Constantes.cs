@@ -38,5 +38,6 @@ namespace UTP.PortalEmpleabilidad.Modelo
 
         #endregion
 
+        public const string MSJ_CAMPO_OBLIGATORIO = "Este campo es obligatorio";
     }
 }

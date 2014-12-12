@@ -45,12 +45,13 @@ namespace UTP.PortalEmpleabilidad.Modelo.Vistas.Ofertas
         public int? Sueldo { get; set; }
         public string Ubicacion { get; set; }
         public bool IncluirMensaje { get; set; }
-        public bool IdPeriodoPublicacion { get; set; }
+        public int? IdPeriodoPublicacion { get; set; }
         public string PalabraClave { get; set; }
-        public List<Oferta> ListaOfertas { get; set; }
-        public List<AlumnoCV> ListaAlumnoCV { get; set; }
+        public List<Oferta> ListaOfertas { get; set; }   
 
+        public List<AlumnoCV> ListaAlumnoCV { get; set; }
         public Oferta Oferta { get; set; }
+        public decimal Compatible { get; set; }
 
     }
 }

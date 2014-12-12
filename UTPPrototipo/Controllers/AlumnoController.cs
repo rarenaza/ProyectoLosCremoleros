@@ -61,18 +61,26 @@ namespace UTPPrototipo.Controllers
                 VistaOfertaAlumno vistaofertalumno = new VistaOfertaAlumno();
                 Alumno alumno = new Alumno();
                 alumno = lnAlumno.ObtenerAlumnoPorCodigo(codigoAlumno);
-                vistaofertalumno = lnoferta.OfertaAlumnoPostulacion((int)id,alumno.IdAlumno);
-                //Periodo Publicacion
-                List<SelectListItem> listItemsAlumnoCV = new List<SelectListItem>();
-                foreach (AlumnoCV entidad in vistaofertalumno.ListaAlumnoCV)
+                vistaofertalumno = lnoferta.OfertaAlumnoPostulacion((int)id, alumno.IdAlumno);
+                if (vistaofertalumno.Oferta != null && vistaofertalumno.Oferta.IdEmpresa > 0)
                 {
-                    SelectListItem item = new SelectListItem();
-                    item.Text = entidad.NombreCV.ToString();
-                    item.Value = entidad.IdCV.ToString();
-                    listItemsAlumnoCV.Add(item);
+                    //Periodo Publicacion
+                    List<SelectListItem> listItemsAlumnoCV = new List<SelectListItem>();
+                    foreach (AlumnoCV entidad in vistaofertalumno.ListaAlumnoCV)
+                    {
+                        SelectListItem item = new SelectListItem();
+                        item.Text = entidad.NombreCV.ToString();
+                        item.Value = entidad.IdCV.ToString();
+                        listItemsAlumnoCV.Add(item);
+                    }
+                    ViewBag.ListaAlumnoCV = listItemsAlumnoCV;
+                    return View(vistaofertalumno);
                 }
-                ViewBag.ListaAlumnoCV = listItemsAlumnoCV;
-                return View(vistaofertalumno);
+                else
+                {
+                    return RedirectToAction("BusquedaOferta");
+                }
+
             }
             else
             {
@@ -192,13 +200,13 @@ namespace UTPPrototipo.Controllers
         public ActionResult BusquedaAvanzadaOferta(VistaOfertaAlumno entidad)
         {
 
-            entidad.ListaOfertas = lnoferta.MostrarUltimasOfertas(entidad.IdAlumno);
+            entidad.ListaOfertas = lnoferta.BuscarAvanzadoOfertasAlumno(entidad);
              return PartialView("_ResultadoBusquedaOfertas", entidad.ListaOfertas);
         }
 
         public ActionResult BusquedaSimpleOferta(VistaOfertaAlumno entidad)
         {
-            entidad.ListaOfertas = lnoferta.MostrarUltimasOfertas(entidad.IdAlumno);
+            entidad.ListaOfertas = lnoferta.BuscarFiltroOfertasAlumno(entidad.IdAlumno, entidad.PalabraClave == null ? "" : entidad.PalabraClave);
             return PartialView("_ResultadoBusquedaOfertas", entidad.ListaOfertas);
         }
 

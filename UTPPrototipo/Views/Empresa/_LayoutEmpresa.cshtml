@@ -30,16 +30,19 @@
             <div class="navbar-collapse collapse" style="border:0px;background-color:transparent;">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a class="btn btn-default navbar-btn Boton_pestana color-paleta1" href="..\Empresa\Index" style="padding: 2px 0px 2px 0px;color:white;">Mi Cuenta</a>
+                        @Html.ActionLink("Mi Cuenta", "Index", null, new { @class = "btn btn-default navbar-btn Boton_pestana color-paleta1", @style = "padding: 2px 0px 2px 0px; color: white;" })
+                        @*<a class="btn btn-default navbar-btn Boton_pestana color-paleta1" href="..\Empresa\Index" style="padding: 2px 0px 2px 0px;color:white;">Mi Cuenta</a>*@
                     </li>
                     <li>
-                        <a class="btn btn-default navbar-btn Boton_pestana color-paleta2" href="..\Empresa\Publicacion" style="padding: 2px 0px 2px 0px;color:white;">Ofertas</a>
+                        @Html.ActionLink("Ofertas", "Publicacion", null, new { @class = "btn btn-default navbar-btn Boton_pestana color-paleta2", @style = "padding: 2px 0px 2px 0px; color: white;" })
+                        @*<a class="btn btn-default navbar-btn Boton_pestana color-paleta2" href="..\Empresa\Publicacion" style="padding: 2px 0px 2px 0px;color:white;">Ofertas</a>*@
                     </li>
                     <!--<li>
                         <a class="btn btn-default navbar-btn Boton_pestana color-paleta3" href="..\Empresa\Reclutar" style="padding: 2px 0px 2px 0px; color: white;">Reclutar</a>
                     </li>-->
                     <li>
-                        <a class="btn btn-default navbar-btn Boton_pestana color-paleta4" href="..\Empresa\Administrar" style="padding: 2px 0px 2px 0px; color: white;">Mi Empresa</a>
+                        @Html.ActionLink("Mi Empresa", "Administrar", null, new { @class = "btn btn-default navbar-btn Boton_pestana color-paleta4", @style = "padding: 2px 0px 2px 0px; color: white;" })
+                        @*<a class="btn btn-default navbar-btn Boton_pestana color-paleta4" href="..\Empresa\Administrar" style="padding: 2px 0px 2px 0px; color: white;">Mi Empresa</a>*@
                     </li>
                     <!--<li>
                         <a class="btn btn-default navbar-btn Boton_pestana color-paleta5" href="..\Empresa\Evento" style="padding: 2px 0px 2px 0px; color: white;">Eventos</a>
@@ -91,7 +94,8 @@
     @Scripts.Render("~/bundles/jqueryval")
     @*@Scripts.Render("~/bundles/bootstrap")*@
     @*@RenderSection("scripts", required: false)*@
-    
+
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     <script src="~/Scripts/carga.asincrona.js"></script>
     <script>site.baseUrl = "@Url.Content("~/").TrimEnd('/')";</script>
 </body>

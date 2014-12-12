@@ -16,7 +16,7 @@
         @Html.ValidationSummary(true)
 
         @Html.HiddenFor(model => model.IdEmpresa)
-        @Html.HiddenFor(model => model.CreadoPor)
+        @*@Html.HiddenFor(model => model.CreadoPor)*@
 
         <div class="row">
             <div class="col-sm-3 fuente-seccion">
@@ -27,7 +27,8 @@
             </div>
             <div class="col-sm-3 fuente-seccion">
                 @*<input type="checkbox" /><span> Recibir correos&nbsp;&nbsp;&nbsp;&nbsp;</span>*@
-                Alertas: @Html.DropDownList("RecibeCorreosIdListaValor", null, htmlAttributes: new { @class = "form-control" })
+                Alertas *: @Html.DropDownListFor(m => m.RecibeCorreosIdListaValor, null, "Seleccione", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.RecibeCorreosIdListaValor, "", new { @class = "text-danger" })
             </div>
             <div class="col-sm-3 fuente-seccion" style="text-align:right;">
                 <button class="btn btn-default color-paleta2" style="margin-bottom:5px;">Grabar Cambios</button>
@@ -37,215 +38,132 @@
         <br />
         <script src="~/Scripts/ckeditor/ckeditor.js"></script>
 
-    <div id="divDescripcionOferta" class="row">
+        <div id="divDescripcionOferta" class="row">
 
-        <div class="col-sm-6">
-            <div class="panel-group" id="oferta-anuncio" role="tablist" aria-multiselectable="true">
-                <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingOferta" style="padding: 2px 2px 2px 6px;">
-                        <h5 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOferta" aria-expanded="true" aria-controls="collapseOferta" class="fuente-seccion">
-                                Descripción de la Oferta
-                            </a>
-                        </h5>
-                    </div>
-                    <div id="collapseOferta" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOferta">
-                        <div class="panel-body fuente-pequeña">
-                            <div class="input-group">
-                                <span class="input-group-addon">Cargo</span>
-                                <input id="CargoOfrecido" name="CargoOfrecido" type="text" class="form-control" placeholder="Nombre del cargo a publicar">
-                                @Html.ValidationMessageFor(m => m.CargoOfrecido)
-                                @*<input class="text-box single-line" id="CargoOfrecido" name="CargoOfrecido" type="text" value="">*@
-                                @*@Html.EditorFor(model => model.CargoOfrecido, new { @class = "form-control" })*@
-                            </div>
-                            <div class="input-group">
-                                <span class="input-group-addon">Funciones</span>
-                                @*<textarea class="form-control" rows="6"></textarea>*@
-                                <textarea name="Funciones" id="Funciones" rows="6" cols="80"></textarea>
-                                @Html.ValidationMessageFor(m => m.Funciones)
-                            </div>
-                            <div class="input-group">
-                                <span class="input-group-addon">Compe-<br />tencias</span>
-                                @*<textarea class="form-control" rows="4"></textarea>*@
-                                <textarea name="Competencias" id="Competencias" rows="6" cols="80"></textarea>
-                                @Html.ValidationMessageFor(m => m.Competencias)
-                            </div>
-                            <br />
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <script>
-            CKEDITOR.replace('Funciones');
-            CKEDITOR.replace('Competencias');
-        </script>
-
-        <div class="col-sm-6">
-            <div class="panel-group" id="oferta-condiciones" role="tablist" aria-multiselectable="true">
-                <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingDetalle" style="padding: 2px 2px 2px 6px;">
-                        <h5 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseDetalle" aria-expanded="true" aria-controls="collapseDetalle" class="fuente-seccion">
-                                Condiciones de la Oferta
-                            </a>
-                        </h5>
-                    </div>
-                    <div id="collapseDetalle" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingDetalle">
-                        <div class="panel-body fuente-pequeña">
-                            <div class="input-group">
-                                <span class="input-group-addon">Recibir<br />CVs hasta</span>
-                                <input type="date" id="FechaFinRecepcionCV" name="FechaFinRecepcionCV" class="form-control" placeholder="Fecha de fin de publicación">
-                                @Html.ValidationMessageFor(m => m.FechaFinRecepcionCV)
-                            </div>
-                            <div class="input-group">
-                                <span class="input-group-addon">Área</span>
-                                <input id="AreaEmpresa" name="AreaEmpresa" type="text" class="form-control" placeholder="Área o división de la empresa">
-                                @Html.ValidationMessageFor(m => m.AreaEmpresa)
-                            </div>
-                            <div class="input-group">
-                                <span class="input-group-addon">Tipo de<br />Cargo</span>
-                                @Html.DropDownList("TipoCargoIdListaValor", null, htmlAttributes: new { @class = "form-control" })
-                                @*<select id="TipoCargo" name="TipoCargo" class="form-control">
-                                    <option value="">
-                                        -- Seleccione un Tipo de Cargo --
-                                    </option>
-                                    @{
-                                            var itemsTipoCargo = ((List<ListaValor>)(ViewBag.ListaTipoCargo));
-                                            foreach (var item in itemsTipoCargo)
-                                            {
-                                    <option value="@item.IdListaValor">
-                                        @item.Valor
-                                    </option>
-                                            }
-                                    }
-
-                                </select>*@
-                                @Html.ValidationMessageFor(m => m.TipoCargo)
-                            </div>
-                            <div class="input-group">
-                                <span class="input-group-addon">Tipo de<br />Trabajo</span>
-                                @Html.DropDownList("TipoTrabajoIdListaValor", null, htmlAttributes: new { @class = "form-control" })
-                                @*<select id="TipoTrabajo" name="TipoTrabajo" class="form-control">
-                                    <option value="0">
-                                        -- Seleccione un Tipo de Trabajo --
-                                    </option>
-                                    @{
-        var itemsTipoTrabajo = ((List<ListaValor>)(ViewBag.ListaTipoTrabajo));
-        foreach (var item in itemsTipoTrabajo)
-        {
-                                    <option value="@item.IdListaValor">
-                                        @item.Valor
-                                    </option>
-        }
-                                    }
-                                </select>*@
-                                @Html.ValidationMessageFor(m => m.TipoTrabajo)
-                            </div>
-                            <div class="input-group">
-                                <span class="input-group-addon">Tipo de<br />Contrato</span>
-                                @Html.DropDownList("TipoContratoIdListaValor", null, htmlAttributes: new { @class = "form-control" })
-                                @*<select id="TipoContrato" name="TipoContrato" class="form-control">
-                                    <option value="">
-                                        -- Seleccione un Tipo de Contrato --
-                                    </option>
-                                    @{
-        var itemsTipoContrato = ((List<ListaValor>)(ViewBag.ListaTipoContrato));
-        foreach (var item in itemsTipoContrato)
-        {
-                                    <option value="@item.IdListaValor">
-                                        @item.Valor
-                                    </option>
-        }
-                                    }
-                                </select>*@
-                                @Html.ValidationMessageFor(m => m.TipoContrato)
-                            </div>
-                            <div class="input-group">
-                                <span class="input-group-addon">Duración<br />en meses</span>
-                                <input id="DuracionContrato" name="DuracionContrato" type="text" class="form-control" placeholder="Vacio si es indeterminada">
-                                @Html.ValidationMessageFor(m => m.DuracionContrato)
-                            </div>
-                            <div class="input-group">
-                                <span class="input-group-addon">Horario</span>
-                                <input id="Horario" name="Horario" type="text" class="form-control" placeholder="Ej: De Lunes a Viernes de 9:00am a 6:00pm">
-                                @Html.ValidationMessageFor(m => m.Horario)
-                            </div>
-                            <div class="input-group">
-                                <span class="input-group-addon">Sueldo S/.</span>
-                                <input id="RemuneracionOfrecida" name="RemuneracionOfrecida" type="text" class="form-control" placeholder="Sueldo a pagar en Nuevos Soles">
-                                @Html.ValidationMessageFor(m => m.RemuneracionOfrecida)
-                            </div>
-
-
-                            <div class="input-group">
-                                <span class="input-group-addon">Vacantes</span>
-                                <input id="NumeroVacantes" name="NumeroVacantes" type="text" class="form-control" placeholder="Número de vacantes para el puesto">
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-7">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">Ubicación</span>
-                                        @Html.DropDownList("IdEmpresaLocacion", null, htmlAttributes: new { @class = "form-control" })
-                                        @*<select id="IdEmpresaLocacion" name="IdEmpresaLocacion" class="form-control">
-                                            <option value="">
-                                                -- Seleccione Ubicación del Trabajo --
-                                            </option>
-                                            @{
-        var locaciones = ((List<EmpresaLocacion>)(ViewBag.ListaLocaciones));
-        foreach (var locacion in locaciones)
-        {
-                                            <option value="@locacion.IdEmpresaLocacion">
-                                                @locacion.NombreLocacion, @locacion.Direccion, @locacion.DireccionDistrito
-                                            </option>
-        }
-                                            }
-
-                                        </select>*@
-
-                                    </div>
-                                </div>
-                                <div class="col-sm-5 fuente-pequeña" style="text-align:right;">
-                                    <button class="btn btn-default color-paleta2">Nueva Ubicación</button>
-                                </div>
-                            </div>
-
-                            <br />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        
-    </div>
-    }
-        <div id="fila2" class="row">
-            <div id="filaRequisitos" class="col-sm-6">
-                <div class="panel-group" id="oferta-requisito" role="tablist" aria-multiselectable="true">
+            <div class="col-sm-6">
+                <div class="panel-group" id="oferta-anuncio" role="tablist" aria-multiselectable="true">
                     <div class="panel panel-default">
-                        <div class="panel-heading" role="tab" id="headingRequisito" style="padding: 2px 2px 2px 6px;">
+                        <div class="panel-heading" role="tab" id="headingOferta" style="padding: 2px 2px 2px 6px;">
                             <h5 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#oferta-requisito" href="#collapseRequisito" aria-expanded="true" aria-controls="collapseRequisito" class="fuente-seccion">
-                                    Requisitos de la Oferta
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOferta" aria-expanded="true" aria-controls="collapseOferta" class="fuente-seccion">
+                                    Descripción de la Oferta
                                 </a>
                             </h5>
                         </div>
-                        <div id="collapseRequisito" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingRequisito">
+                        <div id="collapseOferta" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOferta">
                             <div class="panel-body fuente-pequeña">
+                                <div class="input-group">
+                                    <span class="input-group-addon">Cargo *</span>
+                                    @*<input id="CargoOfrecido" name="CargoOfrecido" type="text" class="form-control" placeholder="Nombre del cargo a publicar">*@
+                                    @*@Html.Raw(@Html.EditorFor(m => m.CargoOfrecido, new { htmlAttributes = new { @placeholder = "Nombre del cargo a publicar 2" } }).ToString().Replace("text-box single-line", "form-control"))*@
+                                    @Html.TextBoxFor(m => m.CargoOfrecido, new { @class = "form-control", @placeholder = "Nombre del cargo a publicar" })
+                                    @Html.ValidationMessageFor(m => m.CargoOfrecido, "", new { @class = "text-danger" })
+                                    @*<input class="text-box single-line" id="CargoOfrecido" name="CargoOfrecido" type="text" value="">*@
+                                    @*@Html.EditorFor(model => model.CargoOfrecido, new { @class = "form-control" })*@
 
-                                <!--{Html.RenderAction("ObtenerEstudios", "OfertaEstudio", new { idOferta = Model.IdOferta }); }-->
-                                @Html.Action("ObtenerEstudios", "OfertaEstudio", new { idOferta = Model.IdOferta })
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-addon">Funciones</span>
+                                    @*<textarea class="form-control" rows="6"></textarea>*@
+                                    <textarea name="Funciones" id="Funciones" rows="6" cols="80"></textarea>
+                                    @Html.ValidationMessageFor(m => m.Funciones, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-addon">Compe-<br />tencias</span>
+                                    @*<textarea class="form-control" rows="4"></textarea>*@
+                                    <textarea name="Competencias" id="Competencias" rows="6" cols="80"></textarea>
+                                    @Html.ValidationMessageFor(m => m.Competencias, "", new { @class = "text-danger" })
+                                </div>
+                                <br />
 
-                                <hr />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-                                @{Html.RenderAction("ObtenerSectoresEmpresariales", "OfertaSectorEmpresarial", new { idOferta = Model.IdOferta }); }
+            <script>
+                CKEDITOR.replace('Funciones');
+                CKEDITOR.replace('Competencias');
+            </script>
 
-                                <hr />
+            <div class="col-sm-6">
+                <div class="panel-group" id="oferta-condiciones" role="tablist" aria-multiselectable="true">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingDetalle" style="padding: 2px 2px 2px 6px;">
+                            <h5 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseDetalle" aria-expanded="true" aria-controls="collapseDetalle" class="fuente-seccion">
+                                    Condiciones de la Oferta
+                                </a>
+                            </h5>
+                        </div>
+                        <div id="collapseDetalle" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingDetalle">
+                            <div class="panel-body fuente-pequeña">
+                                <div class="input-group">
+                                    <span class="input-group-addon">Recibir<br />CVs hasta</span>
+                                    @*<input type="date" id="FechaFinRecepcionCV" name="FechaFinRecepcionCV" class="form-control" placeholder="Fecha de fin de publicación">*@
+                                    @Html.Raw(@Html.EditorFor(m => m.FechaFinRecepcionCV).ToString().Replace("text-box single-line", "form-control"))
+                                    @*@Html.TextBoxFor(m => m.FechaFinRecepcionCV, new { @class = "form-control", @placeholder = "Fecha de fin de publicación" })*@
+                                    @Html.ValidationMessageFor(m => m.FechaFinRecepcionCV, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-addon">Área</span>
+                                    @*<input id="AreaEmpresa" name="AreaEmpresa" type="text" class="form-control" placeholder="Área o división de la empresa">*@
+                                    @Html.TextBoxFor(m => m.AreaEmpresa, new { @class = "form-control", @placeholder = "Área o división de la empresa" })
+                                    @Html.ValidationMessageFor(m => m.AreaEmpresa, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-addon">Tipo de<br />Cargo</span>
+                                    @Html.DropDownListFor(m => m.TipoCargoIdListaValor, null, "Seleccione", htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.TipoCargoIdListaValor, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-addon">Tipo de<br />Trabajo *</span>
+                                    @Html.DropDownListFor(m => m.TipoTrabajoIdListaValor, null, "Seleccione", htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.TipoTrabajoIdListaValor, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-addon">Tipo de<br />Contrato</span>
+                                    @Html.DropDownListFor(m => m.TipoContratoIdListaValor, null, "Seleccione", htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.TipoContratoIdListaValor, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-addon">Duración<br />en meses</span>
+                                    @*<input id="DuracionContrato" name="DuracionContrato" type="text" class="form-control" placeholder="Vacio si es indeterminada">*@
+                                    @Html.TextBoxFor(m => m.DuracionContrato, new { @class = "form-control", @placeholder = "Vacío si es indeterminada" })
+                                    @Html.ValidationMessageFor(m => m.DuracionContrato, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-addon">Horario</span>
+                                    @*<input id="Horario" name="Horario" type="text" class="form-control" placeholder="Ej: De Lunes a Viernes de 9:00am a 6:00pm">*@
+                                    @Html.TextBoxFor(m => m.Horario, new { @class = "form-control", @placeholder = "Ej: De Lunes a Viernes de 9:00am a 6:00pm" })
+                                    @Html.ValidationMessageFor(m => m.Horario, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-addon">Sueldo S/.</span>
+                                    @*<input id="RemuneracionOfrecida" name="RemuneracionOfrecida" type="text" class="form-control" placeholder="Sueldo a pagar en Nuevos Soles">*@
+                                    @Html.TextBoxFor(m => m.RemuneracionOfrecida, new { @class = "form-control", @placeholder = "Sueldo a pagar en Nuevos Soles" })
+                                    @Html.ValidationMessageFor(m => m.RemuneracionOfrecida, "", new { @class = "text-danger" })
+                                </div>
 
-                                @{Html.RenderAction("ObtenerInformacionAdicional", "OfertaInformacionAdicional", new { idOferta = @Model.IdOferta });}
+                                <div class="input-group">
+                                    <span class="input-group-addon">Vacantes</span>
+                                    @*<input id="NumeroVacantes" name="NumeroVacantes" type="text" class="form-control" placeholder="Número de vacantes para el puesto">*@
+                                    @Html.TextBoxFor(m => m.NumeroVacantes, new { @class = "form-control", @placeholder = "Número de vacantes para el puesto" })
+                                    @Html.ValidationMessageFor(m => m.NumeroVacantes, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-7">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">Ubicación *</span>
+                                            @Html.DropDownListFor(m => m.IdEmpresaLocacion, null, "Seleccione", htmlAttributes: new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(m => m.IdEmpresaLocacion, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-5 fuente-pequeña" style="text-align:right;">
+                                        <button class="btn btn-default color-paleta2">Nueva Ubicación</button>
+                                    </div>
+                                </div>
 
                                 <br />
                             </div>
@@ -254,51 +172,138 @@
                 </div>
             </div>
 
-            <div id="filaFases" class="col-sm-6">
-                <div class="panel-group" id="oferta-fases" role="tablist" aria-multiselectable="true">
-                    <div class="panel panel-default">
-                        <div class="panel-heading" role="tab" id="headingFases" style="padding: 2px 2px 2px 6px;">
-                            <h5 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#oferta-fases" href="#collapseFases" aria-expanded="true" aria-controls="collapseFases" class="fuente-seccion">
-                                    Fases de la Oferta
-                                </a>
-                            </h5>
-                        </div>
-                        <div id="collapseFases" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFases">
-                            <div class="panel-body fuente-pequeña">
-                                <p>Seleccionar Fases para esta Oferta</p>
-                                <p><span><input type="checkbox" checked disabled /></span> CVs Pendientes de Revisión</p>
-                                <p>
-                                    <span><input type="checkbox" checked disabled /></span> CVs en Revisión
-                                </p>
-                                <p>
-                                    <span><input type="checkbox" /></span> Dinámica Grupal
-                                </p>
-                                <p>
-                                    <span><input type="checkbox" /></span> Primera Entrevista
-                                </p>
-                                <p>
-                                    <span><input type="checkbox" /></span> Examen de Conocimientos
-                                </p>
-                                <p><span><input type="checkbox" /></span> Evaluaciones Psicológicas/Psicotécnicas</p>
-                                <p><span><input type="checkbox" /></span> Examen Médico</p>
-                                <p><span><input type="checkbox" /></span> Entrevista Final</p>
-                                <p><span><input type="checkbox" /></span> Contratación</p>
-                                <p><span><input type="checkbox" checked disabled /></span> Proceso Finalizado</p>
 
+        </div>
+    }
+    <div id="fila2" class="row">
+        <div id="filaRequisitos" class="col-sm-6">
+            <div class="panel-group disabled" id="oferta-requisito" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingRequisito" style="padding: 2px 2px 2px 6px;">
+                        <h5 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#oferta-requisito" href="#collapseRequisito" aria-expanded="true" aria-controls="collapseRequisito" class="fuente-seccion">
+                                Requisitos de la Oferta
+                            </a>
+                        </h5>
+                    </div>
+                    <div id="collapseRequisito" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingRequisito">
+                        <div class="panel-body fuente-pequeña">
+                           
+                            @*@Html.Action("ObtenerEstudios", "OfertaEstudio", new { idOferta = -1 })*@
 
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <strong class="sub-titulo-seccion">Estudios</strong>
+                                </div>
                             </div>
+                            <br />
+
+                            <div class="row">
+                                <div class="col-sm-12" style="text-align:right;">
+                                    <button class=" btn btn-default" disabled>
+                                        Agregar un Estudio específico
+                                    </button>
+                                </div>
+                            </div>
+
+                            <hr />
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <strong class="sub-titulo-seccion">Expericencia por Sector Empresarial</strong>
+                                </div>
+                            </div>
+                            <br />
+
+                            <div class="row">
+                                <div class="col-sm-12" style="text-align:right;">
+                                    <button class="btn btn-default" disabled>
+                                        Agregar Experiencia por Sector
+                                    </button>
+                                </div>
+                            </div>
+
+                            <hr />
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <strong class="sub-titulo-seccion">Información Adicional</strong>
+                                </div>
+                            </div>
+                            <br />
+
+                            <div class="row">
+                                <div class="col-sm-12" style="text-align:right;">
+                                    <button class="btn btn-default" disabled>
+                                        Agregar Información Adicional
+                                    </button>
+                                  
+                                </div>
+                            </div>
+
+                            <br />
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
 
+        <div id="filaFases" class="col-sm-6">
+            <div class="panel-group" id="oferta-fases" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingFases" style="padding: 2px 2px 2px 6px;">
+                        <h5 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#oferta-fases" href="#collapseFases" aria-expanded="true" aria-controls="collapseFases" class="fuente-seccion">
+                                Fases de la Oferta
+                            </a>
+                        </h5>
+                    </div>
+                    <div id="collapseFases" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFases">
+                        <div class="panel-body fuente-pequeña" disabled>
+                            <p>Seleccionar Fases para esta Oferta</p>
+                            <p><span><input type="checkbox" checked disabled /></span> CVs Pendientes de Revisión</p>
+                            <p>
+                                <span><input type="checkbox" checked disabled /></span> CVs en Revisión
+                            </p>
+                            <p>
+                                <span><input type="checkbox" disabled /></span> Dinámica Grupal
+                            </p>
+                            <p>
+                                <span><input type="checkbox" disabled /></span> Primera Entrevista
+                            </p>
+                            <p>
+                                <span><input type="checkbox" disabled /></span> Examen de Conocimientos
+                            </p>
+                            <p><span><input type="checkbox" disabled /></span> Evaluaciones Psicológicas/Psicotécnicas</p>
+                            <p><span><input type="checkbox" disabled /></span> Examen Médico</p>
+                            <p><span><input type="checkbox" disabled /></span> Entrevista Final</p>
+                            <p><span><input type="checkbox" disabled /></span> Contratación</p>
+                            <p><span><input type="checkbox" checked disabled /></span> Proceso Finalizado</p>
+
+
+                        </div>
+                    </div>
+                </div>
             </div>
 
         </div>
 
+    </div>
+
 </div>
-        <script>
-            $(document).ready(function () {
-                $("#divFinalCabeceraEmpresa").removeClass("color-paleta1 color-paleta3 color-paleta4 color-paleta5").addClass("color-paleta2");
-            });
-        </script>
+<script>
+    $(document).ready(function () {
+        $("#divFinalCabeceraEmpresa").removeClass("color-paleta1 color-paleta3 color-paleta4 color-paleta5").addClass("color-paleta2");
+
+        //$('#FechaFinRecepcionCV').datepicker({
+        //    dateFormat: "dd/mm/yy",
+        //    showStatus: true,
+        //    showWeeks: true,
+        //    currentText: 'Now',
+        //    autoSize: true,
+        //    gotoCurrent: true,
+        //    showAnim: 'blind',
+        //    highlightWeek: true
+        //});
+    });
+</script>

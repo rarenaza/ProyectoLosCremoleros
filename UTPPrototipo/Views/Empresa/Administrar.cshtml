@@ -5,6 +5,8 @@
     ViewBag.Title = "Admnistrar el registro de la Empresa";
 }
 
+
+
 <div class="container" style="margin-top:2px;">
 
     <!--Panel superior donde se muestra los datos del usuario autenticado. - Ancho 12-->
@@ -29,14 +31,15 @@
 
 </div>
 
+<div id="divCargando">
+    <img id="imgCargando" src="../../img/cargando.gif" alt="" />
+</div>
 
-<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
 <!-- Modal Datos Generales -->
 <div div="divEditarModal" class="modal" id="Modal-modifica-datos-empresa" tabindex="-1" role="dialog" aria-labelledby="ModificaDatosEmpresa" aria-hidden="true">
 
-    @using (Ajax.BeginForm("EditarEmpresa", "Empresa", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "datos-empresa", OnComplete = "cerrarModal" }))
+    @using (Ajax.BeginForm("EditarEmpresa", "Empresa", new AjaxOptions() {  LoadingElementId = "divCargando", InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "datos-empresa", OnComplete = "cerrarModal" }))
     {
         @Html.AntiForgeryToken()
 
@@ -64,15 +67,19 @@
 <!-- Modal Usuarios-->
 <div class="modal" id="divModalNuevoUsuario" tabindex="-1" role="dialog" aria-labelledby="NuevaUbicacion" aria-hidden="true">
 
-    @using (Ajax.BeginForm("_AdministrarNuevoUsuario", "Empresa", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divListaUsuarios", OnComplete = "cerrarModal" }))
+    @using (Ajax.BeginForm("_AdministrarNuevoUsuario", "Empresa", new AjaxOptions() {  InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divListaUsuarios", OnComplete = "cerrarModal" }))
     {
         @Html.AntiForgeryToken()
-    
+       
         <div id="divNuevoUsuarioContenedor" class="modal-dialog">
 
         </div>    
     }
 </div>
+
+@*<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>*@
 
 <script>
     $(document).ready(function () {
@@ -84,6 +91,15 @@
             var id = $(this).attr('data-id'); // el id del botón.
             $.get(url + '/' + id, function (data) {
                 $('#divEditarContenedor').html(data);
+
+                var formSelector = $('#divEditarModal').find('form');
+                var form = $(formSelector)
+                                .removeData("validator") /* added by the raw jquery.validate plugin */
+                                .removeData("unobtrusiveValidation");
+
+                $.validator.unobtrusive.parse('#divEditarContenedor');
+                //$.validator.unobtrusive.parse('#divEditarModal');
+
                 $('#divEditarModal').modal('show');
             });
         });
@@ -107,17 +123,26 @@
         });
     });
 
-    function cerrarModal() {
-
-        //debugger;
-        //$('#divEditarModal').modal('hide'); Prueba 1
-
-        //$("#divEditarModal").modal('hide').on('hidden.bs.modal', functionThatEndsUpDestroyingTheDOM); //Prueba 2
-
-        //$('#divEditarModal').removeClass('fade');
-        //$('#divEditarModal').modal('hide');
-
+    function cerrarModal() {      
         $('.modal.in').modal('hide');
+    }
+
+    function validar() {
+        debugger;
+        //var form = $('#divEditarModal').find('form');
+
+        //var validacion = $(form).validate();
+        var esValido = $('#form0').valid();
+        
+        if (esValido)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
     }
 
 </script>
