@@ -232,9 +232,6 @@ namespace UTPPrototipo.Controllers
 
             if (!String.IsNullOrEmpty(searchString))
             {
-              
-                           
-               
 
                 DataTable dtResultado = lnUtp.Empresa_ObtenerPorNombre(searchString);
 
@@ -250,10 +247,6 @@ namespace UTPPrototipo.Controllers
                     listaEjemplo.Add(vista);
                 }
 
-
-               
-
-
             }
             else
             {
@@ -264,13 +257,8 @@ namespace UTPPrototipo.Controllers
                 return View(lista);
             }
         
-
             return View(listaEjemplo); 
-
-
-
-           
-                    
+ 
 
         }
 

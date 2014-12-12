@@ -62,28 +62,35 @@
                 <div class="panel-body">
                     <table style="width:100%;">
                         <tr>
-                            <td>
-                                <div class="input-group fuente-pequeña">
-                                    <span class="input-group-addon fuente-pequeña">Palabra Clave</span>
-                                    <input type="text" class="form-control fuente-pequeña" placeholder="Palabra clave">
-                                </div>
-                            </td>
-                            <td style="text-align:right;">
-                                <span class="col-md-6 btn-group">
+                            @using (Html.BeginForm("Empresas", "UTP", FormMethod.Get))
+                            {
 
-                                    <span class="fui" style="font-size:30px;">(</span>
-                                </span>
-                            </td>
+                                <td>
+                                    <div class="input-group fuente-pequeña">
+                                        <span class="input-group-addon fuente-pequeña">Palabra Clave</span>
+                                        @Html.TextBox("SearchString", null, new { @class = "form-control", @placeholder = "Palabra Clave" })
 
-                        </tr>
-                    </table>
-                    @using (Html.BeginForm("Empresas", "UTP", FormMethod.Get))
+                                    </div>
+
+
+                                </td>
+                                <td style="text-align:right;">
+                                    <span class="col-md-6 btn-group">
+
+                                        <input type="submit" class="fui" style="font-size:30px;border-width:0px;background-color:none;" value="("/>
+                                    </span>
+                                </td>
+                            }
+
+                    </tr>
+                </table>
+                    @*@using (Html.BeginForm("Empresas", "UTP", FormMethod.Get))
                     {
                         <p>
-                            Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+                            Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string) 
                             <input type="submit" value="Search" />
                         </p>
-                    }
+                    }*@
                 </div>
             </div>
         </div>
