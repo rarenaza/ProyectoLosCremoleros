@@ -23,7 +23,17 @@
             <div class="col-sm-2 linea-destacada">@Html.ActionLink(item.CargoOfrecido, "postulacionOferta2", "Alumno", new { id = item.IdOferta }, null)</div>
             <div class="col-sm-1"><span class="valor-palabra">@item.DesTipoTrabajo</span><span class="valor-icono2">I</span></div>
             <div class="col-sm-1"><span>@item.Horario</span></div>
-            <div class="col-sm-1"><span>@item.RemuneracionOfrecida</span></div>
+            <div class="col-sm-1">                
+                @if (item.RemuneracionOfrecida > 0)
+                {
+
+                    <span>@String.Format("{0:###,###,###.#0}", item.RemuneracionOfrecida)</span>
+                }
+                else
+                {
+                    <span></span>
+                }
+            </div>
             <div class="col-sm-1"><span class="fui fa-2x valor-icono">h</span>&nbsp;&nbsp;<span>1</span></div>
             <div class="col-sm-2">
                 <div class="progress" style="background-color:white;margin:5px 10px 5px 10px;">
@@ -32,7 +42,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-1"><a href="..\Alumno\postulacionOferta2">Ver más</a></div>
+            <div class="col-sm-1">@*<a href="..\Alumno\postulacionOferta2">Ver más</a>*@@Html.ActionLink("Ver más", "postulacionOferta2", "Alumno", new { id = item.IdOferta }, null)</div>
         </div>
     }
 

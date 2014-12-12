@@ -61,7 +61,7 @@ namespace UTPPrototipo.Controllers
                 VistaOfertaAlumno vistaofertalumno = new VistaOfertaAlumno();
                 Alumno alumno = new Alumno();
                 alumno = lnAlumno.ObtenerAlumnoPorCodigo(codigoAlumno);
-                vistaofertalumno = lnoferta.OfertaAlumnoPostulacion((int)id,alumno.IdAlumno);
+                vistaofertalumno = lnoferta.OfertaAlumnoPostulacion((int)id, alumno.IdAlumno);
                 if (vistaofertalumno.Oferta != null && vistaofertalumno.Oferta.IdEmpresa > 0)
                 {
                     //Periodo Publicacion
@@ -200,7 +200,7 @@ namespace UTPPrototipo.Controllers
         public ActionResult BusquedaAvanzadaOferta(VistaOfertaAlumno entidad)
         {
 
-            entidad.ListaOfertas = lnoferta.MostrarUltimasOfertas(entidad.IdAlumno);
+            entidad.ListaOfertas = lnoferta.BuscarAvanzadoOfertasAlumno(entidad);
              return PartialView("_ResultadoBusquedaOfertas", entidad.ListaOfertas);
         }
 

@@ -16,11 +16,11 @@ namespace UTP.PortalEmpleabilidad.Logica
         ADOferta adOferta = new ADOferta();
         LNAlumnoCV lnalumnocv = new LNAlumnoCV();
 
-        private Oferta ObtenerOfertasAlumnoPorID(int IdOferta)
+        private Oferta ObtenerOfertasAlumnoPorID(int idOferta, int idAlumno)
         {
             
             Oferta oferta = new Oferta();
-            DataTable dtResultado = adOferta.ObtenerOfertasAlumnoPorID(IdOferta);
+            DataTable dtResultado = adOferta.ObtenerOfertasAlumnoPorID(idOferta, idAlumno);
             if (dtResultado.Rows.Count > 0)
             {
                 oferta.NombreComercial = Funciones.ToString(dtResultado.Rows[0]["NombreComercial"]);
@@ -44,6 +44,8 @@ namespace UTP.PortalEmpleabilidad.Logica
                 oferta.NombreLocacion = Funciones.ToString(dtResultado.Rows[0]["NombreLocacion"]);
                 oferta.IdEmpresa = Funciones.ToInt(dtResultado.Rows[0]["IdEmpresa"]);
                 oferta.IdentificadorTributario = Funciones.ToString(dtResultado.Rows[0]["IdentificadorTributario"]);
+                oferta.Compatible = Funciones.ToDecimal(dtResultado.Rows[0]["Compatible"]);
+
             }
 
             return oferta;
@@ -53,12 +55,15 @@ namespace UTP.PortalEmpleabilidad.Logica
         {
             VistaOfertaAlumno vistaofertalumno = new VistaOfertaAlumno();
             Alumno alumno=new Alumno();
-            vistaofertalumno.Oferta = ObtenerOfertasAlumnoPorID(IdOferta);
+            vistaofertalumno.Oferta = ObtenerOfertasAlumnoPorID(IdOferta, IdAlumno);
             vistaofertalumno.ListaAlumnoCV = lnalumnocv.ObtenerAlumnoCVPorIdAlumno(IdAlumno);
+            vistaofertalumno.ListaOfertas = BuscarSimilaresOfertasAlumno(IdOferta);
+
+
            
             return vistaofertalumno;
         }
-        public List<Oferta> BuscarFiltroOfertasAlumno(int IdAlumno,string PalabraClave)
+        public List<Oferta> BuscarFiltroOfertasAlumno(int IdAlumno, string PalabraClave)
         {
             List<Oferta> listaOferta = new List<Oferta>();
 
@@ -81,6 +86,49 @@ namespace UTP.PortalEmpleabilidad.Logica
             }
             return listaOferta;
         }
+
+        public List<Oferta> BuscarSimilaresOfertasAlumno(int IdOferta)
+        {
+            List<Oferta> listaOferta = new List<Oferta>();
+
+            DataTable dtResultado = adOferta.BuscarSimilaresOfertasAlumno(IdOferta);
+
+            for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
+            {
+                Oferta oferta = new Oferta();
+                oferta.IdOferta = Funciones.ToInt(dtResultado.Rows[i]["IdOferta"]);
+                oferta.FechaPublicacion = Funciones.ToDateTime(dtResultado.Rows[i]["FechaPublicacion"]);
+                oferta.CargoOfrecido = Funciones.ToString(dtResultado.Rows[i]["CargoOfrecido"]);
+                oferta.IdEmpresa = Funciones.ToInt(dtResultado.Rows[i]["IdEmpresa"]);
+                listaOferta.Add(oferta);
+            }
+            return listaOferta;
+        }
+
+        public List<Oferta> BuscarAvanzadoOfertasAlumno(VistaOfertaAlumno entidad)
+        {
+            List<Oferta> listaOferta = new List<Oferta>();
+
+            DataTable dtResultado = adOferta.BuscarAvanzadoOfertasAlumno(entidad);
+
+            for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
+            {
+                Oferta oferta = new Oferta();
+                oferta.IdOferta = Funciones.ToInt(dtResultado.Rows[i]["IdOferta"]);
+                oferta.Compatible = Funciones.ToDecimal(dtResultado.Rows[i]["Compatible"]);
+                oferta.FechaPublicacion = Funciones.ToDateTime(dtResultado.Rows[i]["FechaPublicacion"]);
+                oferta.NombreComercial = Funciones.ToString(dtResultado.Rows[i]["NombreComercial"]);
+                oferta.CargoOfrecido = Funciones.ToString(dtResultado.Rows[i]["CargoOfrecido"]);
+                oferta.DesTipoTrabajo = Funciones.ToString(dtResultado.Rows[i]["DesTipoTrabajo"]);
+                oferta.Horario = Funciones.ToString(dtResultado.Rows[i]["Horario"]);
+                oferta.RemuneracionOfrecida = Funciones.ToDecimal(dtResultado.Rows[i]["RemuneracionOfrecida"]);
+                oferta.Mensaje = Funciones.ToInt(dtResultado.Rows[i]["Mensajes"]);
+                oferta.IdEmpresa = Funciones.ToInt(dtResultado.Rows[i]["IdEmpresa"]);
+                listaOferta.Add(oferta);
+            }
+            return listaOferta;
+        }
+
         public List<Oferta> MostrarUltimasOfertas(int IdAlumno)
         {
             List<Oferta> listaOferta = new List<Oferta>();
