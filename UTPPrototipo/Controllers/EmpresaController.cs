@@ -80,7 +80,7 @@ namespace UTPPrototipo.Controllers
                 oferta.UsuarioPropietarioEmpresa = "";
                 oferta.ModificadoPor = ticket.Usuario;
 
-                lnOferta.Actualizar(oferta);
+                lnOfertaEmpresa.Actualizar(oferta);
 
                 //1. Mostrar mensaje de éxito.
 
@@ -449,6 +449,27 @@ namespace UTPPrototipo.Controllers
             }
 
             return PartialView("_AdministrarNuevoUsuario", empresaUsuario);
+        }
+
+        public PartialViewResult ObtenerOfertaFase(int idOferta)
+        {
+            //Se guarda el Id de la oferta
+            ViewBag.IdOferta = idOferta;
+
+            List<OfertaFase> lista = lnOferta.Obtener_OfertaFase(idOferta);
+
+            return PartialView("_OfertaFase", lista);
+        }
+
+        [ValidateAntiForgeryToken] // this action takes the viewModel from the modal
+        public PartialViewResult _OfertaFaseEditar(ICollection<OfertaFase> listaOfertaFase) //Este es como el submit
+        {
+            List<OfertaFase> lista = (List<OfertaFase>)listaOfertaFase;
+
+            lnOferta.ActualizarOfertaFase(lista);
+
+
+            return PartialView("_OfertaFase", lista);
         }
     }
 }

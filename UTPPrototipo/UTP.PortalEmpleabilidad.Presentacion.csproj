@@ -761,6 +761,7 @@
     <Content Include="Views\UTP\_OfertasPendientes.cshtml" />
     <Content Include="Views\UTP\_EmpresasPendientes.cshtml" />
     <Content Include="Views\UTP\prueba.cshtml" />
+    <Content Include="Views\Empresa\_OfertaFase.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

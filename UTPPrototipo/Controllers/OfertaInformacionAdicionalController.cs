@@ -60,7 +60,7 @@ namespace UTPPrototipo.Controllers
                 //ofertaInfo.Conocimiento = "conocimiento"; //Datos de prueba
                 //ofertaInfo.NivelConocimiento.IdListaValor = "ABC"; //Datos de prueba
                 //ofertaInfo.AniosExperiencia = 5; //Datos de prueba
-                ofertaInfoAdicional.EstadoOfertaInformacionAdicional.IdListaValor = "OFOCAC"; //Estado Activo
+                ofertaInfoAdicional.EstadoOfertaInformacionAdicional.IdListaValor = "OFOCAC"; //Estado oferta Informaciónn adicional Activo
                 ofertaInfoAdicional.CreadoPor = ticket.Usuario;
 
                 LNOfertaInformacionAdicional lnOfertaInfo = new LNOfertaInformacionAdicional();
@@ -124,6 +124,22 @@ namespace UTPPrototipo.Controllers
             }
 
             return PartialView("_OfertaInformacionAdicionalEditar", ofertaInfoAdicional);
+        }
+
+        [HttpGet]
+        public PartialViewResult _OfertaInformacionAdicionalEliminar(int id)
+        {
+            List<OfertaInformacionAdicional> listaInfoAdicional = this.lnInfoAdicional.ObtenerInformacionAdicional(0, id);
+
+            OfertaInformacionAdicional ofertaInfoAdicional = listaInfoAdicional[0];
+
+            this.lnInfoAdicional.Eliminar(id);
+
+            List<OfertaInformacionAdicional> lista = lnInfoAdicional.ObtenerInformacionAdicional(ofertaInfoAdicional.IdOferta, 0);
+
+            ViewBag.IdOferta = ofertaInfoAdicional.IdOferta;
+
+            return PartialView("_OfertaInformacionAdicional", lista);
         }
     }
 }

@@ -1,0 +1,79 @@
+﻿@model IList<UTP.PortalEmpleabilidad.Modelo.OfertaFase>
+
+<div class="panel-heading" role="tab" id="headingFases" style="padding: 2px 2px 2px 6px;">
+    <h5 class="panel-title">
+        <a data-toggle="collapse" data-parent="#oferta-fases" href="#collapseFases" aria-expanded="true" aria-controls="collapseFases" class="fuente-seccion">
+            Fases de la Oferta
+        </a>
+    </h5>
+</div>
+
+<div id="collapseFases" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFases">
+    <div class="panel-body fuente-pequeña">
+        <p>Seleccionar Fases para esta Oferta</p>
+
+        @foreach (var item in Model)
+        {
+            if (item.IdListaValor == "OFFAPR" || item.IdListaValor == "OFFACV" || item.IdListaValor == "OFFAFI")
+            {
+                <p><span><input type="checkbox" checked="@item.Incluir" disabled /></span>@item.FaseOferta</p>
+            }
+            else
+            {
+                <p><span><input type="checkbox" checked="@item.Incluir" /></span>@item.FaseOferta</p>
+            }
+
+            @*<p>
+                    <span><input type="checkbox" checked disabled /></span> CVs en Revisión
+                </p>
+                <p>
+                    <span><input type="checkbox" /></span> Dinámica Grupal
+                </p>
+                <p>
+                    <span><input type="checkbox" /></span> Primera Entrevista
+                </p>
+                <p>
+                    <span><input type="checkbox" /></span> Examen de Conocimientos
+                </p>
+                <p><span><input type="checkbox" /></span> Evaluaciones Psicológicas/Psicotécnicas</p>
+                <p><span><input type="checkbox" /></span> Examen Médico</p>
+                <p><span><input type="checkbox" /></span> Entrevista Final</p>
+                <p><span><input type="checkbox" /></span> Contratación</p>
+                <p><span><input type="checkbox" checked disabled /></span> Proceso Finalizado</p>*@
+        }
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12 fuente-seccion" style="text-align:right;">
+        <button class="btn btn-default color-paleta2" style="margin-bottom:5px;">
+            Grabar
+        </button>
+    </div>
+</div>
+
+@*<div id="collapseFases" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFases">
+        <div class="panel-body fuente-pequeña">
+            <p>Seleccionar Fases para esta Oferta</p>
+
+            <p><span><input type="checkbox" checked disabled /></span> CVs Pendientes de Revisión</p>
+            <p>
+                <span><input type="checkbox" checked disabled /></span> CVs en Revisión
+            </p>
+            <p>
+                <span><input type="checkbox" /></span> Dinámica Grupal
+            </p>
+            <p>
+                <span><input type="checkbox" /></span> Primera Entrevista
+            </p>
+            <p>
+                <span><input type="checkbox" /></span> Examen de Conocimientos
+            </p>
+            <p><span><input type="checkbox" /></span> Evaluaciones Psicológicas/Psicotécnicas</p>
+            <p><span><input type="checkbox" /></span> Examen Médico</p>
+            <p><span><input type="checkbox" /></span> Entrevista Final</p>
+            <p><span><input type="checkbox" /></span> Contratación</p>
+            <p><span><input type="checkbox" checked disabled /></span> Proceso Finalizado</p>
+        </div>
+    </div>*@

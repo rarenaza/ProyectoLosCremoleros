@@ -29,7 +29,9 @@
             </div>
             <div class="col-sm-3 fuente-seccion">
                 @*<input type="checkbox" /><span> Recibir correos&nbsp;&nbsp;&nbsp;&nbsp;</span>*@
-                Alertas: @Html.DropDownList("RecibeCorreosIdListaValor", null, htmlAttributes: new { @class = "form-control" })
+                @*Alertas: @Html.DropDownList("RecibeCorreosIdListaValor", null, htmlAttributes: new { @class = "form-control" })*@
+                Alertas *: @Html.DropDownListFor(m => m.RecibeCorreosIdListaValor, null, "Seleccione", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.RecibeCorreosIdListaValor, "", new { @class = "text-danger" })
             </div>
             <div class="col-sm-3 fuente-seccion" style="text-align:right;">
                 <button class="btn btn-default color-paleta2" style="margin-bottom:5px;">Grabar Cambios</button>
@@ -55,8 +57,9 @@
                             <div class="panel-body fuente-pequeña">
                                 <div class="input-group">
                                     <span class="input-group-addon">Cargo</span>
-                                    <input id="CargoOfrecido" data-val="true" data-val-required="No ha ingresado el campo" name="CargoOfrecido" type="text" class="form-control" placeholder="Nombre del cargo a publicar" value="@Model.CargoOfrecido">
-                                    @Html.ValidationMessageFor(m => m.CargoOfrecido)
+                                    @*<input id="CargoOfrecido" data-val="true" data-val-required="No ha ingresado el campo" name="CargoOfrecido" type="text" class="form-control" placeholder="Nombre del cargo a publicar" value="@Model.CargoOfrecido">*@
+                                    @Html.TextBoxFor(m => m.CargoOfrecido, new { @class = "form-control", @placeholder = "Nombre del cargo a publicar" })
+                                    @Html.ValidationMessageFor(m => m.CargoOfrecido, "", new { @class = "text-danger" })
                                     @*<input class="text-box single-line" id="CargoOfrecido" name="CargoOfrecido" type="text" value="">*@
                                     @*@Html.EditorFor(model => model.CargoOfrecido, new { @class = "form-control" })*@
                                 </div>
@@ -64,13 +67,13 @@
                                     <span class="input-group-addon">Funciones</span>
                                     @*<textarea class="form-control" rows="6"></textarea>*@
                                     <textarea name="Funciones" id="Funciones" rows="6" cols="80">@Html.Raw(@Model.Funciones)</textarea>
-                                    @Html.ValidationMessageFor(m => m.Funciones)
+                                    @Html.ValidationMessageFor(m => m.Funciones, "", new { @class = "text-danger" })
                                 </div>
                                 <div class="input-group">
                                     <span class="input-group-addon">Compe-<br />tencias</span>
                                     @*<textarea class="form-control" rows="4"></textarea>*@
                                     <textarea name="Competencias" id="Competencias" rows="6" cols="80">@Html.Raw(@Model.Competencias)</textarea>
-                                    @Html.ValidationMessageFor(m => m.Competencias)
+                                    @Html.ValidationMessageFor(m => m.Competencias, "", new { @class = "text-danger" })
                                 </div>
                                 <br />
 
@@ -100,126 +103,64 @@
                         <div id="collapseDetalle" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingDetalle">
                             <div class="panel-body fuente-pequeña">
                                 <div class="input-group">
-                                    <span class="input-group-addon">Recibir<br />CVs hasta</span>
-                                    <input type="date" id="FechaFinRecepcionCV" name="FechaFinRecepcionCV" class="form-control" placeholder="Fecha de fin de publicación" value="@Model.FechaFinRecepcionCV">                         
-                                    @Html.ValidationMessageFor(m => m.FechaFinRecepcionCV)
+                                    <span class="input-group-addon">Recibir<br />CVs hasta</span>                                    
+                                    @Html.Raw(@Html.EditorFor(m => m.FechaFinRecepcionCV).ToString().Replace("text-box single-line", "form-control"))
+                                    @Html.ValidationMessageFor(m => m.FechaFinRecepcionCV, "", new { @class = "text-danger" })
                                 </div>
                                 <div class="input-group">
                                     <span class="input-group-addon">Área</span>
-                                    <input id="AreaEmpresa" name="AreaEmpresa" type="text" class="form-control" placeholder="Área o división de la empresa" value="@Model.AreaEmpresa">
-                                    @Html.ValidationMessageFor(m => m.AreaEmpresa)
+                                    @*<input id="AreaEmpresa" name="AreaEmpresa" type="text" class="form-control" placeholder="Área o división de la empresa" value="@Model.AreaEmpresa">*@
+                                    @Html.TextBoxFor(m => m.AreaEmpresa, new { @class = "form-control", @placeholder = "Área o división de la empresa" })
+                                    @Html.ValidationMessageFor(m => m.AreaEmpresa, "", new { @class = "text-danger" })
                                 </div>
                                 <div class="input-group">
-                                    <span class="input-group-addon">Tipo de<br />Cargo</span>
-                                    @Html.DropDownList("TipoCargoIdListaValor", null, htmlAttributes: new { @class = "form-control" })
-                                    @*<select id="TipoCargo" name="TipoCargo" class="form-control">
-                                        <option value="">
-                                            -- Seleccione un Tipo de Cargo --
-                                        </option>
-                                        @{
-                                            var itemsTipoCargo = ((List<ListaValor>)(ViewBag.ListaTipoCargo));
-                                            foreach (var item in itemsTipoCargo)
-                                            {
-                                                <option value="@item.IdListaValor">
-                                                    @item.Valor
-                                                </option>
-                                            }
-                                        }
+                                    <span class="input-group-addon">Tipo de<br />Cargo</span>                                    
+                                    @Html.DropDownListFor(m => m.TipoCargoIdListaValor, null, "Seleccione", htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.TipoCargoIdListaValor, "", new { @class = "text-danger" })
 
-                                    </select>*@
-                                    @Html.ValidationMessageFor(m => m.TipoCargo)
                                 </div>
                                 <div class="input-group">
                                     <span class="input-group-addon">Tipo de<br />Trabajo</span>
-                                    @Html.DropDownList("TipoTrabajoIdListaValor", null, htmlAttributes: new { @class = "form-control" })
-                                    @*<select id="TipoTrabajo" name="TipoTrabajo" class="form-control">
-                                        <option value="0">
-                                            -- Seleccione un Tipo de Trabajo --
-                                        </option>
-                                        @{
-                                            var itemsTipoTrabajo = ((List<ListaValor>)(ViewBag.ListaTipoTrabajo));
-                                            foreach (var item in itemsTipoTrabajo)
-                                            {
-                                                <option value="@item.IdListaValor">
-                                                    @item.Valor
-                                                </option>
-                                            }
-                                        }
-                                    </select>*@
-                                    @Html.ValidationMessageFor(m => m.TipoTrabajo)
+                                    @Html.DropDownListFor(m => m.TipoTrabajoIdListaValor, null, "Seleccione", htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.TipoTrabajoIdListaValor, "", new { @class = "text-danger" })
                                 </div>
                                 <div class="input-group">
                                     <span class="input-group-addon">Tipo de<br />Contrato</span>
-                                    @Html.DropDownList("TipoContratoIdListaValor", null, htmlAttributes: new { @class = "form-control" })
-                                    @*<select id="TipoContrato" name="TipoContrato" class="form-control">
-                                        <option value="">
-                                            -- Seleccione un Tipo de Contrato --
-                                        </option>
-                                        @{
-                                            var itemsTipoContrato = ((List<ListaValor>)(ViewBag.ListaTipoContrato));
-                                            foreach (var item in itemsTipoContrato)
-                                            {
-                                                if (item.IdListaValor == Model.TipoContrato.IdListaValor)
-                                                {
-                                                    <option value="@item.IdListaValor" selected="selected">
-                                                        @item.Valor
-                                                    </option>
-                                                }
-                                                else
-                                                {
-
-                                                    <option value="@item.IdListaValor">
-                                                        @item.Valor
-                                                    </option>
-                                                }
-                                            }
-                                        }
-                                    </select>*@
-
-                                    @Html.ValidationMessageFor(m => m.TipoContrato)
+                                    @Html.DropDownListFor(m => m.TipoContratoIdListaValor, null, "Seleccione", htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.TipoContratoIdListaValor, "", new { @class = "text-danger" })
                                 </div>
                                 <div class="input-group">
                                     <span class="input-group-addon">Duración<br />en meses</span>
-                                    <input id="DuracionContrato" name="DuracionContrato" type="text" class="form-control" placeholder="Vacio si es indeterminada" value="@Model.DuracionContrato">
-                                    @Html.ValidationMessageFor(m => m.DuracionContrato)
+                                    @*<input id="DuracionContrato" name="DuracionContrato" type="text" class="form-control" placeholder="Vacio si es indeterminada" value="@Model.DuracionContrato">*@
+                                    @Html.TextBoxFor(m => m.DuracionContrato, new { @class = "form-control", @placeholder = "Vacío si es indeterminada" })
+                                    @Html.ValidationMessageFor(m => m.DuracionContrato, "", new { @class = "text-danger" })
                                 </div>
                                 <div class="input-group">
                                     <span class="input-group-addon">Horario</span>
-                                    <input id="Horario" name="Horario" type="text" class="form-control" placeholder="Ej: De Lunes a Viernes de 9:00am a 6:00pm" value="@Model.Horario">
-                                    @Html.ValidationMessageFor(m => m.Horario)
+                                    @*<input id="Horario" name="Horario" type="text" class="form-control" placeholder="Ej: De Lunes a Viernes de 9:00am a 6:00pm" value="@Model.Horario">*@
+                                    @Html.TextBoxFor(m => m.Horario, new { @class = "form-control", @placeholder = "Ej: De Lunes a Viernes de 9:00am a 6:00pm" })
+                                    @Html.ValidationMessageFor(m => m.Horario, "", new { @class = "text-danger" })
                                 </div>
                                 <div class="input-group">
                                     <span class="input-group-addon">Sueldo S/.</span>
-                                    <input id="RemuneracionOfrecida" name="RemuneracionOfrecida" type="text" class="form-control" placeholder="Sueldo a pagar en Nuevos Soles" value="@Model.RemuneracionOfrecida">
-                                    @Html.ValidationMessageFor(m => m.RemuneracionOfrecida)
+                                    @*<input id="RemuneracionOfrecida" name="RemuneracionOfrecida" type="text" class="form-control" placeholder="Sueldo a pagar en Nuevos Soles" value="@Model.RemuneracionOfrecida">*@
+                                    @Html.TextBoxFor(m => m.RemuneracionOfrecida, new { @class = "form-control", @placeholder = "Sueldo a pagar en Nuevos Soles" })
+                                    @Html.ValidationMessageFor(m => m.RemuneracionOfrecida, "", new { @class = "text-danger" })
                                 </div>
 
 
                                 <div class="input-group">
                                     <span class="input-group-addon">Vacantes</span>
-                                    <input id="NumeroVacantes" name="NumeroVacantes" type="text" class="form-control" placeholder="Número de vacantes para el puesto" value="@Model.NumeroVacantes">
+                                    @*<input id="NumeroVacantes" name="NumeroVacantes" type="text" class="form-control" placeholder="Número de vacantes para el puesto" value="@Model.NumeroVacantes">*@
+                                    @Html.TextBoxFor(m => m.NumeroVacantes, new { @class = "form-control", @placeholder = "Número de vacantes para el puesto" })
+                                    @Html.ValidationMessageFor(m => m.NumeroVacantes, "", new { @class = "text-danger" })
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-7">
                                         <div class="input-group">
                                             <span class="input-group-addon">Ubicación</span>
-                                            @Html.DropDownList("IdEmpresaLocacion", null, htmlAttributes: new { @class = "form-control" })
-                                            @*<select id="IdEmpresaLocacion" name="IdEmpresaLocacion" class="form-control">
-                                                <option value="">
-                                                    -- Seleccione Ubicación del Trabajo --
-                                                </option>
-                                                @{
-                                                    var locaciones = ((List<EmpresaLocacion>)(ViewBag.ListaLocaciones));
-                                                    foreach (var locacion in locaciones)
-                                                    {
-                                                        <option value="@locacion.IdEmpresaLocacion">
-                                                            @locacion.NombreLocacion, @locacion.Direccion, @locacion.DireccionDistrito
-                                                        </option>
-                                                    }
-                                                }
-
-                                            </select>*@
-
+                                            @Html.DropDownListFor(m => m.IdEmpresaLocacion, null, "Seleccione", htmlAttributes: new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(m => m.IdEmpresaLocacion, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
                                     <div class="col-sm-5 fuente-pequeña" style="text-align:right;">
@@ -250,7 +191,6 @@
                     </div>
                     <div id="collapseRequisito" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingRequisito">
                         <div class="panel-body fuente-pequeña">
-
                             <div id="divListaEstudios">
                                 @Html.Action("ObtenerEstudios", "OfertaEstudio", new { idOferta = Model.IdOferta })
                             </div>
@@ -275,38 +215,13 @@
 
             <div class="panel-group" id="oferta-fases" role="tablist" aria-multiselectable="true">
                 <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingFases" style="padding: 2px 2px 2px 6px;">
-                        <h5 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#oferta-fases" href="#collapseFases" aria-expanded="true" aria-controls="collapseFases" class="fuente-seccion">
-                                Fases de la Oferta
-                            </a>
-                        </h5>
-                    </div>
-                    <div id="collapseFases" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFases">
-                        <div class="panel-body fuente-pequeña">
-                            <p>Seleccionar Fases para esta Oferta</p>
-                            <p><span><input type="checkbox" checked disabled /></span> CVs Pendientes de Revisión</p>
-                            <p>
-                                <span><input type="checkbox" checked disabled /></span> CVs en Revisión
-                            </p>
-                            <p>
-                                <span><input type="checkbox" /></span> Dinámica Grupal
-                            </p>
-                            <p>
-                                <span><input type="checkbox" /></span> Primera Entrevista
-                            </p>
-                            <p>
-                                <span><input type="checkbox" /></span> Examen de Conocimientos
-                            </p>
-                            <p><span><input type="checkbox" /></span> Evaluaciones Psicológicas/Psicotécnicas</p>
-                            <p><span><input type="checkbox" /></span> Examen Médico</p>
-                            <p><span><input type="checkbox" /></span> Entrevista Final</p>
-                            <p><span><input type="checkbox" /></span> Contratación</p>
-                            <p><span><input type="checkbox" checked disabled /></span> Proceso Finalizado</p>
-
-
-                        </div>
-                    </div>
+                    @using (Ajax.BeginForm("_OfertaFaseEditar", "Empresa", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "oferta-fases" }))
+                    {
+                        @Html.AntiForgeryToken()
+    
+                        @Html.Action("ObtenerOfertaFase", "Empresa", new { idOferta = Model.IdOferta })
+                        
+                    }
                 </div>
             </div>
         </div>
@@ -316,13 +231,12 @@
 
 </div>
 
-<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+@*<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>*@
 
-           
+
 
 <!--Bloque de modales-->
-
 <!--Modal de estudio Crear-->
 <div class="modal" id="divModalEstudio" tabindex="-1" role="dialog" aria-labelledby="Estudio" aria-hidden="true">
 
@@ -426,16 +340,17 @@
         var url = "../OfertaEstudio/_OfertaEstudioCrear/" + idOferta; // el url del controlador
         $.get(url, function (data) {
             $('#divCrearEstudioContenedor').html(data);
+           
+            $.validator.unobtrusive.parse('#divCrearEstudioContenedor');
             $('#divModalEstudio').modal('show');
         });
     };
 
-
-    function crearSector(idOferta)
-    {
+    function crearSector(idOferta) {
         var url = "../OfertaSectorEmpresarial/_OfertaSectorEmpresarialCrear/" + idOferta; // el url del controlador
         $.get(url, function (data) {
             $('#divCrearSectorEmpresarialContenedor').html(data);
+            $.validator.unobtrusive.parse('#divCrearSectorEmpresarialContenedor');
             $('#divModalSectorEmpresarial').modal('show');
         });
     }
@@ -449,31 +364,31 @@
     //    });
     //});
 
-    function crearInfoAdicional(idOferta)
-    {
+    function crearInfoAdicional(idOferta) {
         //debugger;
         var url = "../OfertaInformacionAdicional/_OfertaInformacionAdicionalCrear/" + idOferta; // el url del controlador
         $.get(url, function (data) {
             $('#divCrearInfoAdicionalContenedor').html(data);
+            $.validator.unobtrusive.parse('#divCrearInfoAdicionalContenedor');
             $('#divModalInfoAdicional').modal('show');
         });
     }
 
     //$('#btnNuevaInfoAdicional').click(function () {
-        
+
     //    var url = "../OfertaInformacionAdicional/_OfertaInformacionAdicionalCrear"; // el url del controlador
     //    $.get(url, function (data) {
     //        $('#divCrearInfoAdicionalContenedor').html(data);
     //        $('#divModalInfoAdicional').modal('show');
     //    });
     //});
-     
+
     //Scripts para actualizar.
     //$('.btnEditarEstudio22').click(function () {
     //    debugger;
     //    var url = "../OfertaEstudio/_OfertaEstudioEditar"; // el url del controlador
     //    var id = $(this).attr('data-id'); // el id del botón.
-    //    $.get(url + '/' + id, function (data) {        
+    //    $.get(url + '/' + id, function (data) {
     //        $('#divEditarEstudioContenedor').html(data);
     //        $('#divEditarModalEstudio').modal('show');
     //    });
@@ -481,29 +396,66 @@
 
     function editarEstudio(id) {
 
-        var url = "../OfertaEstudio/_OfertaEstudioEditar"; // el url del controlador     
+        var url = "../OfertaEstudio/_OfertaEstudioEditar"; // el url del controlador
         $.get(url + '/' + id, function (data) {
             $('#divEditarEstudioContenedor').html(data);
+            $.validator.unobtrusive.parse('#divEditarEstudioContenedor');
             $('#divEditarModalEstudio').modal('show');
         });
     };
 
     function editarSector(id) {
 
-        var url = "../OfertaSectorEmpresarial/_OfertaSectorEmpresarialEditar"; // el url del controlador     
+        var url = "../OfertaSectorEmpresarial/_OfertaSectorEmpresarialEditar"; // el url del controlador
         $.get(url + '/' + id, function (data) {
             $('#divEditarSectorEmpresarialContenedor').html(data);
+            $.validator.unobtrusive.parse('#divEditarSectorEmpresarialContenedor');
             $('#divEditarModalSectorEmpresarial').modal('show');
         });
     };
 
     function editarInfoAdicional(id) {
 
-        var url = "../OfertaInformacionAdicional/_OfertaInformacionAdicionalEditar"; // el url del controlador     
+        var url = "../OfertaInformacionAdicional/_OfertaInformacionAdicionalEditar"; // el url del controlador
         $.get(url + '/' + id, function (data) {
             $('#divEditarInfoAdicionalContenedor').html(data);
+            $.validator.unobtrusive.parse('#divEditarInfoAdicionalContenedor');
             $('#divEditarModalInfoAdicional').modal('show');
         });
+    };
+
+    //Eliminaciones
+    function eliminarEstudio(idOfertaEstudio) {
+
+        if (confirm('Está seguro de eliminar el registro?')) {           
+            //debugger;
+            var url = "../OfertaEstudio/_OfertaEstudioEliminar/" + idOfertaEstudio; // el url del controlador
+            $.get(url, function (data)
+                {                   
+                    $('#divListaEstudios').html(data);                    
+                });
+        }             
+    };
+
+    function eliminarSector(idOfertaSector) {
+
+        if (confirm('Está seguro de eliminar el registro?'))
+        {            
+            var url = "../OfertaSectorEmpresarial/_OfertaSectorEmpresarialEliminar/" + idOfertaSector;
+            $.get(url, function (data) {
+                $('#divListaSectores').html(data);
+            });
+        }       
+    };
+
+    function eliminarInfoAdicional(idOfertaInfoAdicional) {
+
+        if (confirm('Está seguro de eliminar el registro?')) {
+            var url = "../OfertaInformacionAdicional/_OfertaInformacionAdicionalEliminar/" + idOfertaInfoAdicional;
+            $.get(url, function (data) {
+                $('#divListaInfoAdicional').html(data);
+            });
+        }
     };
 
     //Script para cerrar el modal cuando la actualización por ajax termina.

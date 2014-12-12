@@ -55,7 +55,7 @@ namespace UTPPrototipo.Controllers
                 //ofertaSector.SectorEmpresarial.IdListaValor = "ABE";
                 //ofertaSector.ExperienciaExcluyente = false;
                 //ofertaSector.AniosTrabajados = 3;
-                ofertaSector.EstadoOfertaSectorEmpresarial.IdListaValor = "AWE";
+                ofertaSector.EstadoOfertaSectorEmpresarial.IdListaValor = "OFSEAC"; //Oferrta sector empresarial activa.
                 ofertaSector.CreadoPor = ticket.Usuario;
 
                 LNOfertaSectorEmpresarial lnOfertaSector = new LNOfertaSectorEmpresarial();
@@ -116,6 +116,22 @@ namespace UTPPrototipo.Controllers
 
             //TODO: Validar cuando existe error al grabar.
             return PartialView("_OfertaSectorEmpresarialEditar", ofertaSector);
+        }
+
+        [HttpGet]
+        public PartialViewResult _OfertaSectorEmpresarialEliminar(int id)
+        {
+            List<OfertaSectorEmpresarial> listaSectores = lnSector.ObtenerSectoresEmpresariales(0, id);
+
+            OfertaSectorEmpresarial ofertaSector = listaSectores[0];
+
+            this.lnSector.Eliminar(id);
+
+            List<OfertaSectorEmpresarial> lista = lnSector.ObtenerSectoresEmpresariales(ofertaSector.IdOferta, 0); 
+
+            ViewBag.IdOferta = ofertaSector.IdOferta;
+
+            return PartialView("_OfertaSectorEmpresarial", lista);
         }
     }
 }

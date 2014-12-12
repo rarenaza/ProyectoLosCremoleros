@@ -43,12 +43,22 @@ namespace UTP.PortalEmpleabilidad.Logica
 
         public void Insertar(OfertaInformacionAdicional ofertaInformacionAdicional)
         {
+            if (ofertaInformacionAdicional.NivelConocimientoIdListaValor == null) ofertaInformacionAdicional.NivelConocimientoIdListaValor = "";
+
             adOfertaInfoAdicional.InsertarInformacionAdicional(ofertaInformacionAdicional);
         }
 
         public void Actualizar(OfertaInformacionAdicional ofertaInformacionAdicional)
         {
+            if (ofertaInformacionAdicional.NivelConocimientoIdListaValor == null) ofertaInformacionAdicional.NivelConocimientoIdListaValor = "";
+
+
             adOfertaInfoAdicional.Actualizar(ofertaInformacionAdicional);
+        }
+
+        public void Eliminar(int idOfertaInfoAdicional)
+        {
+            adOfertaInfoAdicional.Eliminar(idOfertaInfoAdicional);
         }
     }
 }

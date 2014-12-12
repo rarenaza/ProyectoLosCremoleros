@@ -58,7 +58,7 @@ namespace UTPPrototipo.Controllers
                 //ofertaEstudio.Estudio = "Estudios";
                 //ofertaEstudio.TipoDeEstudio.IdListaValor = "ABC";
                 //ofertaEstudio.EstadoDelEstudio.IdListaValor = "AWE";
-                ofertaEstudio.EstadoOfertaEstudio.IdListaValor = "ABC";
+                ofertaEstudio.EstadoOfertaEstudio.IdListaValor = "OFESAC"; //Estado oferta estudio activa.
                 ofertaEstudio.CreadoPor = ticket.Usuario;
 
                 LNOfertaEstudio lnOfertaEstudio = new LNOfertaEstudio();
@@ -113,6 +113,23 @@ namespace UTPPrototipo.Controllers
             }
 
             return PartialView("_OfertaEstudioEditar", ofertaEstudio);
+        }
+
+
+        [HttpGet] 
+        public PartialViewResult _OfertaEstudioEliminar(int id)
+        {
+            List<OfertaEstudio> listaEstudios = lnOfertaEstudio.ObtenerEstudios(0, id);
+            
+            OfertaEstudio ofertaEstudio = listaEstudios[0];
+
+            lnOfertaEstudio.Eliminar(id);
+
+            List<OfertaEstudio> lista = lnOfertaEstudio.ObtenerEstudios(ofertaEstudio.IdOferta, idOfertaEstudiosTodos);  //TODO: Obtener el Id de la oferta.
+
+            ViewBag.IdOferta = ofertaEstudio.IdOferta;
+
+            return PartialView("_OfertaEstudio", lista);                     
         }
     }
 }
