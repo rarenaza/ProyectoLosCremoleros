@@ -23,5 +23,17 @@ namespace UTP.PortalEmpleabilidad.Logica
 
             return adUtp.EmpresaObtenerPendientes();
         }
+
+        //public DataTable Empresa_ObtenerPorNombre(string nombre)
+        //{
+
+        //    return adUtp.Empresa_ObtenerPorNombre(nombre);
+        //}
+
+        public DataTable Empresa_ObtenerPorNombre(string nombre)
+        {
+
+            return adUtp.Empresa_ObtenerPorNombre(nombre);
+        }
     }
 }

@@ -760,6 +760,7 @@
     <Content Include="Views\UTP\_DatosUtp.cshtml" />
     <Content Include="Views\UTP\_OfertasPendientes.cshtml" />
     <Content Include="Views\UTP\_EmpresasPendientes.cshtml" />
+    <Content Include="Views\UTP\prueba.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

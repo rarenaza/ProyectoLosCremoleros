@@ -1,4 +1,7 @@
-﻿@{
+﻿@model IEnumerable<UTP.PortalEmpleabilidad.Modelo.Vistas.Ofertas.VistaEmpresListarOfertas>
+
+
+@{
     Layout = "~/Views/UTP/_LayoutUTP.cshtml";
     ViewBag.Title = "Empresas";
 }
@@ -6,11 +9,14 @@
 <link href="~/Content/font-awesome.css" rel="stylesheet" />
 <div class="container" style="margin-top:2px;">
     <div class="panel-group" id="datos-cuenta" role="tablist" aria-multiselectable="true">
-        <div class="panel panel-default">
+
+        @{Html.RenderAction("VistaCabeceraUtp", "UTP");}
+
+        @*<div class="panel panel-default">
             <div class="panel-heading" role="tab" id="headingOne" style="padding: 2px 2px 2px 6px;">
                 <h5 class="panel-title">
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="fuente-seccion">
-                        Cuenta - Mario Valentin Perez Garcia
+                        Cuenta - Mario Valentin Perez Garciafdfdfdfd
                     </a>
                 </h5>
             </div>
@@ -35,7 +41,12 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>*@
+
+
+
+
+
 
     </div>
     <div class="panel-group" id="CriterioBusquedaPostulacion" role="tablist" aria-multiselectable="true">
@@ -59,11 +70,20 @@
                             </td>
                             <td style="text-align:right;">
                                 <span class="col-md-6 btn-group">
+
                                     <span class="fui" style="font-size:30px;">(</span>
                                 </span>
                             </td>
+
                         </tr>
                     </table>
+                    @using (Html.BeginForm("Empresas", "UTP", FormMethod.Get))
+                    {
+                        <p>
+                            Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+                            <input type="submit" value="Search" />
+                        </p>
+                    }
                 </div>
             </div>
         </div>
@@ -169,73 +189,40 @@
         </div>
         
     </div>
-    <div class="row grilla1-linea">
 
-        <div class="col-sm-2">
-            <a href="../UTP/Empresa">IBM del Perú</a>
-        </div>
-        <div class="col-sm-2">
-            IBM PERU S.A.
-        </div>
-        <div class="col-sm-1">
-            20555678121
-        </div>
-        <div class="col-sm-2">
-            Activa
-        </div>
-        <div class="col-sm-3">
-            Tecnología y Software
-        </div>
-        <div class="col-sm-2">
-            Tot: 10, Act: 2, Pend: 1
-        </div>
 
-    </div>
-    <div class="row grilla1-linea">
 
-        <div class="col-sm-2">
-            <a href="../UTP/Empresa">Criteria IT</a>
-        </div>
-        <div class="col-sm-2">
-            Criteria IT SAC
-        </div>
-        <div class="col-sm-1">
-            20555167581
-        </div>
-        <div class="col-sm-2">
-            Activa
-        </div>
-        <div class="col-sm-3">
-            Tecnología y Software, Servicios
-        </div>
-        <div class="col-sm-2">
-            Tot: 10, Act: 2, Pend: 1
-        </div>
+    @foreach (var item in Model)
+    {
+        <div class="row grilla1-linea">
 
-    </div>
-    <div class="row grilla1-linea">
+            <div class="col-sm-2">
+                <a href="../UTP/Empresa">@item.NombreComercial</a>
+            </div>
+            <div class="col-sm-2">
+                @item.RazonSocial 
+            </div>
+            <div class="col-sm-1">
+                @item.RUC 
+            </div>
+            <div class="col-sm-2">
+                @item.Estado
+            </div>
+            <div class="col-sm-3">
+                @item.SectorEmpresarial
+            </div>
+            <div class="col-sm-2">
+               @item.Ofertas
+            </div>
 
-        <div class="col-sm-2">
-            <a href="../UTP/Empresa">IBM del Perú</a>
         </div>
-        <div class="col-sm-2">
-            IBM PERU S.A.
-        </div>
-        <div class="col-sm-1">
-            20555678121
-        </div>
-        <div class="col-sm-2">
-            Activa
-        </div>
-        <div class="col-sm-3">
-            Tecnología y Software
-        </div>
-        <div class="col-sm-2">
-            Tot: 10, Act: 2, Pend: 1
-        </div>
+    }
 
-    </div>
-    <div class="row grilla1-linea">
+
+
+
+
+    @*<div class="row grilla1-linea">
 
         <div class="col-sm-2">
             <a href="../UTP/Empresa">Criteria IT</a>
@@ -301,6 +288,50 @@
         </div>
 
     </div>
+    <div class="row grilla1-linea">
+
+        <div class="col-sm-2">
+            <a href="../UTP/Empresa">IBM del Perú</a>
+        </div>
+        <div class="col-sm-2">
+            IBM PERU S.A.
+        </div>
+        <div class="col-sm-1">
+            20555678121
+        </div>
+        <div class="col-sm-2">
+            Activa
+        </div>
+        <div class="col-sm-3">
+            Tecnología y Software
+        </div>
+        <div class="col-sm-2">
+            Tot: 10, Act: 2, Pend: 1
+        </div>
+
+    </div>
+    <div class="row grilla1-linea">
+
+        <div class="col-sm-2">
+            <a href="../UTP/Empresa">Criteria IT</a>
+        </div>
+        <div class="col-sm-2">
+            Criteria IT SAC
+        </div>
+        <div class="col-sm-1">
+            20555167581
+        </div>
+        <div class="col-sm-2">
+            Activa
+        </div>
+        <div class="col-sm-3">
+            Tecnología y Software, Servicios
+        </div>
+        <div class="col-sm-2">
+            Tot: 10, Act: 2, Pend: 1
+        </div>
+
+    </div>*@
     <div class="row">
         <div class="col-sm-12" style="text-align:right;">
             <nav>
