@@ -113,7 +113,7 @@ namespace UTPPrototipo.Controllers
             return new FileStreamResult(stream, "image/jpeg");
         } 
 
-        public ActionResult Contact()
+        public ActionResult Contacto()
         {
             return View();
         }
