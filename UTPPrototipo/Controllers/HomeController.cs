@@ -361,5 +361,9 @@ namespace UTPPrototipo.Controllers
         {
             return View();
         }
+        public ActionResult Registro()
+        {
+            return View();
+        }
     }
 }

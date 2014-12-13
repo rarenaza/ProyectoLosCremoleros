@@ -765,6 +765,7 @@
     <Content Include="Views\Empresa\_OfertaFase.cshtml" />
     <Content Include="Views\Mensaje\_ObtenerMensajes.cshtml" />
     <Content Include="Views\Mensaje\_MensajeFormulario.cshtml" />
+    <Content Include="Views\Home\Registro.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
