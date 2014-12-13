@@ -214,13 +214,13 @@
         <div id="ofertaFases" class="col-sm-6">
 
             <div class="panel-group" id="oferta-fases" role="tablist" aria-multiselectable="true">
-                <div class="panel panel-default">
-                    @using (Ajax.BeginForm("_OfertaFaseEditar", "Empresa", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "oferta-fases" }))
+                <div id="divContenedorFases" class="panel panel-default">
+                    @using (Ajax.BeginForm("_OfertaFaseEditar", "Empresa", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divContenedorFases", OnComplete = "alertTemporal" }))
                     {
                         @Html.AntiForgeryToken()
     
                         @Html.Action("ObtenerOfertaFase", "Empresa", new { idOferta = Model.IdOferta })
-                        
+                       
                     }
                 </div>
             </div>
@@ -461,6 +461,11 @@
     //Script para cerrar el modal cuando la actualización por ajax termina.
     function cerrarModal() {
         $('.modal.in').modal('hide');
+    }
+
+    function alertTemporal()
+    {
+        alert('Las fase se grabaron con éxito');
     }
 
 </script>

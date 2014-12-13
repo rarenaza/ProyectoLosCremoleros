@@ -23,5 +23,12 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string EstadoMensaje { get; set; }
         public DateTime FechaLectura { get; set; }
         public int IdMensajePadre { get; set; }
+        public string CreadoPor { get; set; }
+        public string ModificadoPor { get; set; }
+
+        public Mensaje()
+        {
+            Oferta = new Oferta();
+        }
     }
 }

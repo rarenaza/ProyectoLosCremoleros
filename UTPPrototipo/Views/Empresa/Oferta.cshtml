@@ -15,11 +15,16 @@
                 @Html.Action("VistaOfertaAnuncio", "Empresa", new { oferta = @Model})
              </div>
 
-             <div class="panel-group" id="oferta-postulante" role="tablist" aria-multiselectable="true">
-                @Html.Action("VistaOfertaPostulantes", "Empresa", new { oferta = @Model })
+             <div class="panel-group" id="divContenedorPostulantes" role="tablist" aria-multiselectable="true">
+                @using (Ajax.BeginForm("_OfertaPostulanteMoverDeFase", "Empresa", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divContenedorPostulantes", OnComplete = "alertaExito" }))
+                {
+                    @Html.AntiForgeryToken()
+                    
+                    @Html.Action("VistaOfertaPostulantes", "Empresa", new { id = @Model.IdOferta })
+            
+                }
+
              </div>
-
-
           </div>
 
         <div class="col-md-5">
@@ -30,8 +35,10 @@
             <div class="panel-group" id="oferta-requisito" role="tablist" aria-multiselectable="true">
                 @Html.Action("VistaOfertaRequisitos", "Empresa", new { oferta = @Model })
             </div>
-            <div class="panel-group" id="oferta-mensaje" role="tablist" aria-multiselectable="true">
-                @Html.Action("VistaOfertaMensajes", "Empresa", new { oferta = @Model })
+            <div class="panel-group" id="divOfertaMensajes" role="tablist" aria-multiselectable="true">
+
+                @Html.Action("_ObtenerMensajes", "Mensaje", new { id = @Model.IdOferta })
+
             </div>
 
         </div>
@@ -41,4 +48,8 @@
     $(document).ready(function () {
         $("#divFinalCabeceraEmpresa").removeClass("color-paleta1 color-paleta3 color-paleta4 color-paleta5").addClass("color-paleta2");
     });
+
+    function alertaExito() {
+        alert('Los postulantes cambiaron de fase con éxito');
+    }
 </script>

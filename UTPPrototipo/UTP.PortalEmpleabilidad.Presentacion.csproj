@@ -178,6 +178,7 @@
     <Compile Include="Controllers\Evento_Controller.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ListaController.cs" />
+    <Compile Include="Controllers\MensajeController.cs" />
     <Compile Include="Controllers\OfertaController.cs" />
     <Compile Include="Controllers\OfertaEstudioController.cs" />
     <Compile Include="Controllers\OfertaInformacionAdicionalController.cs" />
@@ -762,11 +763,12 @@
     <Content Include="Views\UTP\_EmpresasPendientes.cshtml" />
     <Content Include="Views\UTP\prueba.cshtml" />
     <Content Include="Views\Empresa\_OfertaFase.cshtml" />
+    <Content Include="Views\Mensaje\_ObtenerMensajes.cshtml" />
+    <Content Include="Views\Mensaje\_MensajeFormulario.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Autenticar_Usuario\" />
-    <Folder Include="Views\Mensaje\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

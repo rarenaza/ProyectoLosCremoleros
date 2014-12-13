@@ -281,11 +281,16 @@ namespace UTPPrototipo.Controllers
             return PartialView("_VistaOfertaAnuncio", oferta);
         }
 
-        public ActionResult VistaOfertaPostulantes(Oferta oferta)
+        public ActionResult VistaOfertaPostulantes(int id)
         {
             LNOferta lnOferta = new LNOferta ();
-            List<OfertaPostulante> postulantes = lnOferta.ObtenerPostulantesPorIdOferta(oferta.IdOferta);
-            
+            List<OfertaPostulante> postulantes = lnOferta.ObtenerPostulantesPorIdOferta(id);
+
+            //Llenar el combo de Fases:
+            List<OfertaFase> listaFasesActivas = lnOferta.Obtener_OfertaFaseActivas(id);
+
+            ViewBag.IdOfertaFase = new SelectList(listaFasesActivas, "IdListaValor", "FaseOferta");
+
             return PartialView("_VistaOfertaPostulantes", postulantes);
         }
 
@@ -461,15 +466,60 @@ namespace UTPPrototipo.Controllers
             return PartialView("_OfertaFase", lista);
         }
 
+        [AcceptVerbs(HttpVerbs.Post)]
         [ValidateAntiForgeryToken] // this action takes the viewModel from the modal
-        public PartialViewResult _OfertaFaseEditar(ICollection<OfertaFase> listaOfertaFase) //Este es como el submit
+        public PartialViewResult _OfertaFaseEditar(List<OfertaFase> listaOfertaFase) //Este es como el submit
         {
-            List<OfertaFase> lista = (List<OfertaFase>)listaOfertaFase;
+            //OfertaFase nuevo = new OfertaFase();
+            //listaOfertaFase.ListaFasesDeLaOferta.Add(nuevo);
+            //List<OfertaFase> lista = (List<OfertaFase>)listaOfertaFase;
 
-            lnOferta.ActualizarOfertaFase(lista);
+            TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];
 
+            foreach (var item in listaOfertaFase)
+            {
+                //Estos 3 registros siempre están activos.
+                if (item.IdListaValor == "OFFAPR" || item.IdListaValor == "OFFACV" || item.IdListaValor == "OFFAFI")
+                {
+                    item.Incluir = true;
+                }
 
-            return PartialView("_OfertaFase", lista);
+                item.ModificadoPor = ticket.Usuario;
+            }
+
+            lnOferta.ActualizarOfertaFase(listaOfertaFase);
+
+            //return PartialView("_OfertaFase", lista);
+            return PartialView("_OfertaFase", listaOfertaFase);
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        [ValidateAntiForgeryToken] // this action takes the viewModel from the modal
+        public PartialViewResult _OfertaPostulanteMoverDeFase(List<OfertaPostulante> listaOfertaPostulante, string IdOfertaFase) //Este es como el submit
+        {
+            //Se establece el campo ModificadoPor
+            TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];
+
+            foreach (var item in listaOfertaPostulante)
+            {
+                item.ModificadoPor = ticket.Usuario;
+            }
+
+            //Se actualiza los datos del postulante.
+            lnOferta.ActualizarFaseDePostulantes(listaOfertaPostulante, IdOfertaFase);
+
+            //Se cargan los datos de la BD:
+            int idOferta = listaOfertaPostulante[0].IdOferta; //Se obtiene el idOferta del primero de la lista
+
+            List<OfertaPostulante> postulantes = lnOferta.ObtenerPostulantesPorIdOferta(idOferta);
+
+            //Llenar el combo de Fases:
+            List<OfertaFase> listaFasesActivas = lnOferta.Obtener_OfertaFaseActivas(idOferta);
+
+            ViewBag.IdOfertaFase = new SelectList(listaFasesActivas, "IdListaValor", "FaseOferta");
+
+            //return PartialView("_OfertaFase", lista);
+            return PartialView("_VistaOfertaPostulantes", postulantes);
         }
     }
 }

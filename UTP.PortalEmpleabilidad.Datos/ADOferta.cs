@@ -536,6 +536,8 @@ namespace UTP.PortalEmpleabilidad.Datos
                 {
                     SqlCommand cmd = new SqlCommand();
 
+                    conexion.Open();
+
                     foreach (var item in listaOfertaFase)
                     {
                         cmd = new SqlCommand();
@@ -545,12 +547,50 @@ namespace UTP.PortalEmpleabilidad.Datos
 
                         cmd.Parameters.Add(new SqlParameter("@IdOfertaFase", item.IdOfertaFase));                        
                         cmd.Parameters.Add(new SqlParameter("@Incluir", item.Incluir));
-                        cmd.Parameters.Add(new SqlParameter("@ModificadoPor", item.CreadoPor));
-
-                        conexion.Open();
+                        cmd.Parameters.Add(new SqlParameter("@ModificadoPor", item.ModificadoPor));
+                      
                         cmd.Connection = conexion;
                         cmd.ExecuteNonQuery();
-                    }                    
+                    }
+
+                    conexion.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void ActualizarFaseDePostulantes(List<OfertaPostulante> postulantes, string faseOferta)
+        {
+            try
+            {
+                using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+                {
+                    SqlCommand cmd = new SqlCommand();
+
+                    conexion.Open();
+
+                    foreach (var item in postulantes)
+                    {
+                        if (item.Seleccionado)
+                        {                         
+                            cmd = new SqlCommand();
+                            cmd.CommandType = CommandType.StoredProcedure;
+
+                            cmd.CommandText = "OfertaPostulante_ActualizarFase";
+
+                            cmd.Parameters.Add(new SqlParameter("@IdOfertaPostulante", item.IdOfertaPostulante));
+                            cmd.Parameters.Add(new SqlParameter("@FaseOferta", faseOferta));
+                            cmd.Parameters.Add(new SqlParameter("@ModificadoPor", item.ModificadoPor));
+
+                            cmd.Connection = conexion;
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+
+                    conexion.Close();
                 }
             }
             catch (Exception ex)
