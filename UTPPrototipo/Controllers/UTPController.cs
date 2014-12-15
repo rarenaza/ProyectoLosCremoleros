@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using UTP.PortalEmpleabilidad.Logica;
 using UTP.PortalEmpleabilidad.Modelo;
 using UTP.PortalEmpleabilidad.Modelo.UTP;
+using UTP.PortalEmpleabilidad.Modelo.Vistas.Empresa;
 using UTP.PortalEmpleabilidad.Modelo.Vistas.Ofertas;
 using UTPPrototipo.Models;
 using UTPPrototipo.Models.ViewModels.Contenido;
@@ -24,6 +25,7 @@ namespace UTPPrototipo.Controllers
         LNAutenticarUsuario lnAutenticar = new LNAutenticarUsuario();
         LNUTP lnUtp = new LNUTP();
         LNEmpresaListaOferta lnEmpresa = new LNEmpresaListaOferta();
+        LNOferta lnoferta = new LNOferta();
         // GET: UTP
         public ActionResult Index()
         {
@@ -154,117 +156,112 @@ namespace UTPPrototipo.Controllers
           
         }
 
-        public ActionResult Empresas(string sortOrder, string currentFilter, string searchString, int? page)
+        public ActionResult Empresas()
         {
 
-            if (searchString != null)
+            //VistaEmpresaListaOpciones utp = new VistaEmpresaListaOpciones();
+            VistaEmpresListarOfertas utp = new VistaEmpresListarOfertas();
+
+
+            LNGeneral lngeneral = new LNGeneral();
+
+            utp.ListaEstado = lngeneral.ObtenerListaValor(5);
+            utp.Listasector = lngeneral.ObtenerListaValor(8);
+
+            //Estado de la empresa
+            List<SelectListItem> listItemsEstado = new List<SelectListItem>();
+            foreach (ListaValor entidad in utp.ListaEstado)
             {
-                page = 1;
-            }
-            else
-            {
-                searchString = currentFilter;
-            }
-
-            ViewBag.CurrentFilter = searchString;
-
-
-            List<VistaEmpresListarOfertas> listaEjemplo = new List<VistaEmpresListarOfertas>();
-
-            if (!String.IsNullOrEmpty(searchString))
-            {
-
-                DataTable dtResultado = lnUtp.Empresa_ObtenerPorNombre(searchString);
-
-                for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
-                {
-                    VistaEmpresListarOfertas vista = new VistaEmpresListarOfertas();
-                    vista.NombreComercial = dtResultado.Rows[i]["Nombre"].ToString();
-                    vista.RazonSocial = dtResultado.Rows[i]["Razon"].ToString();
-                    vista.RUC = dtResultado.Rows[i]["RUC"].ToString();
-                    vista.Estado = dtResultado.Rows[i]["Estado"].ToString();
-                    vista.SectorEmpresarial = dtResultado.Rows[i]["SectorEmpresarial"].ToString();
-
-                    listaEjemplo.Add(vista);
-                }
-
-
-            }
-            else
-            {
-                List<VistaEmpresListarOfertas> lista = new List<VistaEmpresListarOfertas>();
-
-                lista = lnEmpresa.ObtenerEmpresaListaOfertas();
-
-                return View(lista);
+                SelectListItem item = new SelectListItem();
+                item.Text = entidad.Valor.ToUpper();
+                item.Value = entidad.IdListaValor.ToString();
+                listItemsEstado.Add(item);
             }
 
+            //Sector empresarial
+            List<SelectListItem> listItemSector = new List<SelectListItem>();
+            foreach (ListaValor entidad in utp.Listasector)
+            {
+                SelectListItem item = new SelectListItem();
+                item.Text = entidad.Valor.ToUpper();
+                item.Value = entidad.IdListaValor.ToString();
+                listItemSector.Add(item);
+            }
 
-            return View(listaEjemplo);
+            //Lista de Combos
 
-            //List<VistaEmpresListarOfertas> lista = new List<VistaEmpresListarOfertas>();
+            ViewBag.ListaEstado = listItemsEstado;
+            ViewBag.ListaEstadoEstudio = listItemSector;
 
-            //lista = lnEmpresa.ObtenerEmpresaListaOfertas();
+            return View(utp);                 
 
-            //return View(lista);
         }
 
-        public ActionResult prueba(string sortOrder, string currentFilter, string searchString, int? page)
+
+
+        public ActionResult BusquedaSimpleEmpresasActivas(VistaEmpresListarOfertas entidad)
         {
+            entidad.ListaBusqueda = lnUtp.Empresa_ObtenerPorNombre(entidad.PalabraClave==null ? "" :entidad.PalabraClave);
+
+
+            return PartialView("_ResultadoBusquedaEmpresas", entidad.ListaBusqueda);
+    
+        }
 
 
 
-            if (searchString != null)
-            {
-                page = 1;
-            }
-            else
-            {
-                searchString = currentFilter;
-            }
+        //public ActionResult prueba(string sortOrder, string currentFilter, string searchString, int? page)
+        //{
 
-            ViewBag.CurrentFilter = searchString;
+
+
+        //    if (searchString != null)
+        //    {
+        //        page = 1;
+        //    }
+        //    else
+        //    {
+        //        searchString = currentFilter;
+        //    }
+
+        //    ViewBag.CurrentFilter = searchString;
 
             
 
-            List<VistaEmpresListarOfertas> listaEjemplo = new List<VistaEmpresListarOfertas>();
+        //    List<VistaEmpresListarOfertas> listaEjemplo = new List<VistaEmpresListarOfertas>();
         
 
-            if (!String.IsNullOrEmpty(searchString))
-            {
+        //    if (!String.IsNullOrEmpty(searchString))
+        //    {
 
-                DataTable dtResultado = lnUtp.Empresa_ObtenerPorNombre(searchString);
+        //        DataTable dtResultado = lnUtp.Empresa_ObtenerPorNombre(searchString);
 
-                for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
-                {
-                    VistaEmpresListarOfertas vista = new VistaEmpresListarOfertas();
-                    vista.NombreComercial = dtResultado.Rows[i]["Nombre"].ToString();
-                    vista.RazonSocial = dtResultado.Rows[i]["Razon"].ToString();
-                    vista.RUC = dtResultado.Rows[i]["RUC"].ToString();
-                    vista.Estado = dtResultado.Rows[i]["Estado"].ToString();
-                    vista.SectorEmpresarial = dtResultado.Rows[i]["SectorEmpresarial"].ToString();
+        //        for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
+        //        {
+        //            VistaEmpresListarOfertas vista = new VistaEmpresListarOfertas();
+        //            vista.NombreComercial = dtResultado.Rows[i]["Nombre"].ToString();
+        //            vista.RazonSocial = dtResultado.Rows[i]["Razon"].ToString();
+        //            vista.RUC = dtResultado.Rows[i]["RUC"].ToString();
+        //            vista.Estado = dtResultado.Rows[i]["Estado"].ToString();
+        //            vista.SectorEmpresarial = dtResultado.Rows[i]["SectorEmpresarial"].ToString();
 
-                    listaEjemplo.Add(vista);
-                }
+        //            listaEjemplo.Add(vista);
+        //        }
 
-            }
-            else
-            {
-                List<VistaEmpresListarOfertas> lista = new List<VistaEmpresListarOfertas>();
+        //    }
+        //    else
+        //    {
+        //        List<VistaEmpresListarOfertas> lista = new List<VistaEmpresListarOfertas>();
 
-                lista = lnEmpresa.ObtenerEmpresaListaOfertas();
+        //        lista = lnEmpresa.ObtenerEmpresaListaOfertas();
 
-                return View(lista);
-            }
+        //        return View(lista);
+        //    }
         
-            return View(listaEjemplo); 
+        //    return View(listaEjemplo); 
  
 
-        }
-
-
-     
-
+        //}
 
         public FileResult Imagen2(int id, string Menu)
         {
