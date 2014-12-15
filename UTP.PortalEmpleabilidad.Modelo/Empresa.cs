@@ -52,6 +52,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string SectorEmpresarial2IdListaValor { get; set; }
         public string SectorEmpresarial3IdListaValor { get; set; }
         public string ModificadoPor { get; set; }
+        public string EstadoIdListaValor { get; set; }
 
         public Empresa()
         {

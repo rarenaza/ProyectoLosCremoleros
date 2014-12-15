@@ -178,6 +178,7 @@
     <Compile Include="Controllers\Evento_Controller.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ListaController.cs" />
+    <Compile Include="Controllers\MensajeController.cs" />
     <Compile Include="Controllers\OfertaController.cs" />
     <Compile Include="Controllers\OfertaEstudioController.cs" />
     <Compile Include="Controllers\OfertaInformacionAdicionalController.cs" />
@@ -236,6 +237,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="img\Alumna.png" />
     <Content Include="img\cargando.gif" />
+    <Content Include="img\empleabilidad\PlanoDirEmpleabilidad.jpg" />
     <Content Include="img\logos\aptitus.jpg" />
     <Content Include="img\logos\bumeran.jpg" />
     <Content Include="img\logos\computrabajo.jpg" />
@@ -648,7 +650,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -660,7 +664,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\ParaEmpleadores.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Contacto.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
@@ -764,11 +768,15 @@
     <Content Include="Views\UTP\prueba.cshtml" />
     <Content Include="Views\Empresa\_OfertaFase.cshtml" />
     <Content Include="Views\UTP\_ResultadoBusquedaEmpresas.cshtml" />
+    <Content Include="Views\Mensaje\_ObtenerMensajes.cshtml" />
+    <Content Include="Views\Mensaje\_MensajeFormulario.cshtml" />
+    <Content Include="Views\Home\Registro.cshtml" />
+    <Content Include="Views\Empresa\_AdministrarUbicacionEditar.cshtml" />
+    <Content Include="Views\Empresa\_AdministrarUsuarioEditar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Autenticar_Usuario\" />
-    <Folder Include="Views\Mensaje\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

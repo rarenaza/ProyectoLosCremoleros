@@ -113,7 +113,7 @@ namespace UTPPrototipo.Controllers
             return new FileStreamResult(stream, "image/jpeg");
         } 
 
-        public ActionResult Contact()
+        public ActionResult Contacto()
         {
             return View();
         }
@@ -360,6 +360,32 @@ namespace UTPPrototipo.Controllers
         public ActionResult FAQ()
         {
             return View();
+        }
+        public ActionResult Registro()
+        {
+            LNGeneral lnGeneral = new LNGeneral();
+
+            ViewBag.PaisIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_PAIS), "IdListaValor", "Valor");
+            ViewBag.NumeroEmpleadosIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_NRO_EMPLEADOS), "IdListaValor", "Valor");
+            ViewBag.SectorEmpresarial1IdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_SECTOR_EMPRESARIAL), "IdListaValor", "Valor");
+            ViewBag.SectorEmpresarial2IdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_SECTOR_EMPRESARIAL), "IdListaValor", "Valor");
+            ViewBag.SectorEmpresarial3IdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_SECTOR_EMPRESARIAL), "IdListaValor", "Valor");
+            
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Registro(Empresa empresa)
+        {
+            LNEmpresa lnEmpresa = new LNEmpresa();
+
+            empresa.CreadoPor = "anonimo";
+            empresa.EstadoIdListaValor = "EMPRRV";  //Estado de la empresa pendiente de aprobación.
+
+            lnEmpresa.Insertar(empresa);
+
+            //Si el registro fue exitoso redireccionar a página de resultado.
+            return RedirectToAction("Index");
         }
     }
 }

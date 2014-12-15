@@ -1,4 +1,4 @@
-﻿@model IList<UTP.PortalEmpleabilidad.Modelo.OfertaFase>
+﻿@model List<UTP.PortalEmpleabilidad.Modelo.OfertaFase>
 
 <div class="panel-heading" role="tab" id="headingFases" style="padding: 2px 2px 2px 6px;">
     <h5 class="panel-title">
@@ -10,70 +10,40 @@
 
 <div id="collapseFases" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFases">
     <div class="panel-body fuente-pequeña">
-        <p>Seleccionar Fases para esta Oferta</p>
+        <p>Seleccionar Fases para esta Oferta</p>   
 
-        @foreach (var item in Model)
+        @for (int i = 0; i < Model.Count(); i++)
         {
-            if (item.IdListaValor == "OFFAPR" || item.IdListaValor == "OFFACV" || item.IdListaValor == "OFFAFI")
+            <!--Se realiza la distinción de los Id que no se deben modificar.-->
+            if (Model[i].IdListaValor == "OFFAPR" || Model[i].IdListaValor == "OFFACV" || Model[i].IdListaValor == "OFFAFI")
             {
-                <p><span><input type="checkbox" checked="@item.Incluir" disabled /></span>@item.FaseOferta</p>
+                <p>
+                    <span>                        
+                        @Html.CheckBoxFor(m => m[i].Incluir, new { @disabled = "disabled" })
+                    </span>@Model[i].FaseOferta
+                </p>
             }
             else
             {
-                <p><span><input type="checkbox" checked="@item.Incluir" /></span>@item.FaseOferta</p>
+                <p>
+                    <span>                      
+                        @Html.CheckBoxFor(m => m[i].Incluir)
+                    </span>@Model[i].FaseOferta
+                </p>                        
             }
-
-            @*<p>
-                    <span><input type="checkbox" checked disabled /></span> CVs en Revisión
-                </p>
-                <p>
-                    <span><input type="checkbox" /></span> Dinámica Grupal
-                </p>
-                <p>
-                    <span><input type="checkbox" /></span> Primera Entrevista
-                </p>
-                <p>
-                    <span><input type="checkbox" /></span> Examen de Conocimientos
-                </p>
-                <p><span><input type="checkbox" /></span> Evaluaciones Psicológicas/Psicotécnicas</p>
-                <p><span><input type="checkbox" /></span> Examen Médico</p>
-                <p><span><input type="checkbox" /></span> Entrevista Final</p>
-                <p><span><input type="checkbox" /></span> Contratación</p>
-                <p><span><input type="checkbox" checked disabled /></span> Proceso Finalizado</p>*@
-        }
-
+            <!--Se guardan en Hidden los valores que se van a necesitar al devolver la lista.-->
+            @Html.HiddenFor(m => m[i].IdOfertaFase)
+            @Html.HiddenFor(m => m[i].FaseOferta)
+            @Html.HiddenFor(m => m[i].IdListaValor)
+        }     
     </div>
 </div>
 
 <div class="row">
     <div class="col-sm-12 fuente-seccion" style="text-align:right;">
-        <button class="btn btn-default color-paleta2" style="margin-bottom:5px;">
+        <button class="btn btn-default color-paleta2" style="margin-bottom:5px;" >
             Grabar
         </button>
     </div>
 </div>
 
-@*<div id="collapseFases" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFases">
-        <div class="panel-body fuente-pequeña">
-            <p>Seleccionar Fases para esta Oferta</p>
-
-            <p><span><input type="checkbox" checked disabled /></span> CVs Pendientes de Revisión</p>
-            <p>
-                <span><input type="checkbox" checked disabled /></span> CVs en Revisión
-            </p>
-            <p>
-                <span><input type="checkbox" /></span> Dinámica Grupal
-            </p>
-            <p>
-                <span><input type="checkbox" /></span> Primera Entrevista
-            </p>
-            <p>
-                <span><input type="checkbox" /></span> Examen de Conocimientos
-            </p>
-            <p><span><input type="checkbox" /></span> Evaluaciones Psicológicas/Psicotécnicas</p>
-            <p><span><input type="checkbox" /></span> Examen Médico</p>
-            <p><span><input type="checkbox" /></span> Entrevista Final</p>
-            <p><span><input type="checkbox" /></span> Contratación</p>
-            <p><span><input type="checkbox" checked disabled /></span> Proceso Finalizado</p>
-        </div>
-    </div>*@

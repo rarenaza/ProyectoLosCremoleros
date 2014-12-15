@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data;
 using UTP.PortalEmpleabilidad.Datos;
 using UTP.PortalEmpleabilidad.Modelo;
+using UTP.PortalEmpleabilidad.Modelo.Vistas.Mensaje;
 
 namespace UTP.PortalEmpleabilidad.Logica
 {
@@ -35,6 +36,30 @@ namespace UTP.PortalEmpleabilidad.Logica
             }
 
             return lista;
+        }
+
+        public List<VistaPostulantePorMensaje> ObtenePostulantesPorIdOferta(int idOferta)
+        {
+            List<VistaPostulantePorMensaje> lista = new List<VistaPostulantePorMensaje>();
+
+            DataTable dtResultado = adMensaje.ObtenePostulantesPorIdOferta(idOferta);
+
+            foreach (DataRow fila in dtResultado.Rows)
+            {
+                VistaPostulantePorMensaje nuevoPostulante = new VistaPostulantePorMensaje();
+                nuevoPostulante.IdOfertaPostulante = Convert.ToInt32(fila["IdOfertaPostulante"]);
+                nuevoPostulante.AlumnoNombreCompleto = Convert.ToString(fila["AlumnoNombreCompleto"]);
+                nuevoPostulante.AlumnoNombreUsuario = Convert.ToString(fila["AlumnoNombreUsuario"]);
+
+                lista.Add(nuevoPostulante);
+            }
+
+            return lista;
+        }
+
+        public void Insertar(Mensaje mensaje)
+        {
+            adMensaje.Insertar(mensaje);
         }
     }
 }

@@ -1,0 +1,332 @@
+﻿@model UTP.PortalEmpleabilidad.Modelo.Empresa
+
+@{
+    ViewBag.Title = "Registro";
+   
+}
+
+@using (Html.BeginForm())
+{ 
+
+<div class="container fuente-pequeña">
+    <h5 style="text-align:center;"><strong>Registro</strong></h5>
+    <hr />
+    <h5><strong>Alumnos o Exalumnos UTP</strong></h5>
+    <p>Para acceder al portal de Empleabilidad de la UTP, solo necesitas tu Usuario y Contraseña de la Intranet. En caso no tengas una, o no puedas ingresar, por favor llamar a nuestra Mesa de Ayuda, al 999-9999.</p>
+    <hr />
+    <h5><strong>Empresas</strong></h5>
+    <p>Si desea incribir una empresa en nuestro Portal, por favor complete los datos a continuación. Los datos con (*) son obligatorios</p>
+    <br />
+    <div class="alert alert-danger" role="alert">Faltan Datos</div>
+    <h5>Datos de la Empresa</h5>
+    <hr />
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="input-group fuente-pequeña">
+                <span class="input-group-addon fuente-pequeña">(*) Nombre<br />Comercial</span>
+                @*<input type="text" class="form-control fuente-pequeña" placeholder="Nombre Comercial de la Empresa">*@
+                @Html.Raw(@Html.EditorFor(model => model.NombreComercial).ToString().Replace("text-box single-line", "form-control"))
+                @Html.ValidationMessageFor(model => model.NombreComercial, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="input-group fuente-pequeña">
+                <span class="input-group-addon fuente-pequeña">(*) Razón<br />Social</span>
+                @*<input type="text" class="form-control fuente-pequeña" placeholder="Razón Social de la Empresa">*@
+                @Html.Raw(@Html.EditorFor(model => model.RazonSocial).ToString().Replace("text-box single-line", "form-control"))
+                @Html.ValidationMessageFor(model => model.RazonSocial, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="input-group fuente-pequeña">
+                <span class="input-group-addon fuente-pequeña">(*) RUC</span>
+                @*<input type="text" class="form-control fuente-pequeña" placeholder="Identificador Tributario">*@
+                @Html.Raw(@Html.EditorFor(model => model.IdentificadorTributario).ToString().Replace("text-box single-line", "form-control"))
+                @Html.ValidationMessageFor(model => model.IdentificadorTributario, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="input-group fuente-pequeña">
+                <span class="input-group-addon fuente-pequeña">(*) País</span>
+                @Html.DropDownListFor(m => m.PaisIdListaValor, null, "Seleccione", htmlAttributes: new { @class = "form-control" })
+                @*<select class="form-control fuente-pequeña">
+                    <option value="">-- Seleccione País donde se ubica la Empresa --</option>
+                    <option>Perú</option>
+                    <option>Chile</option>
+                </select>*@
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="input-group fuente-pequeña">
+                <span class="input-group-addon fuente-pequeña">Descrip-<br />ción</span>
+                @*<textarea class="form-control fuente-pequeña" rows="3" placeholder="Describa la empresa en pocas palabras"></textarea>*@
+                @Html.Raw(@Html.EditorFor(model => model.DescripcionEmpresa).ToString().Replace("text-box multi-line", "form-control"))
+                @Html.ValidationMessageFor(model => model.DescripcionEmpresa, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="input-group fuente-pequeña">
+                <span class="input-group-addon fuente-pequeña">Link <br /> Video</span>
+                @*<input type="text" class="form-control fuente-pequeña" placeholder="Link a video institucional">*@
+                @Html.Raw(@Html.EditorFor(model => model.LinkVideo).ToString().Replace("text-box single-line", "form-control"))
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="input-group fuente-pequeña">
+                <span class="input-group-addon fuente-pequeña">Año de<br />Creación</span>
+                @*<input type="text" class="form-control fuente-pequeña" placeholder="Año de creación de la empresa">*@
+                @Html.Raw(@Html.EditorFor(model => model.AnoCreacion).ToString().Replace("text-box single-line", "form-control"))
+                @Html.ValidationMessageFor(model => model.AnoCreacion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+            <div class="input-group fuente-pequeña">
+                <span class="input-group-addon fuente-pequeña">Nro de<br />Empleados</span>
+                @Html.DropDownListFor(m => m.NumeroEmpleadosIdListaValor, null, "Seleccione", htmlAttributes: new { @class = "form-control" })
+                @*<select class="form-control fuente-pequeña">
+                    <option value="">-- Seleccione # de Empleados --</option>
+                    <option>De 1 a 10</option>
+                    <option>De 11 a 20</option>
+                </select>*@
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="input-group fuente-pequeña">
+                <span class="input-group-addon fuente-pequeña">(*) Sector</span>
+                @Html.DropDownListFor(m => m.SectorEmpresarial1IdListaValor, null, "Seleccione", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.SectorEmpresarial1IdListaValor, "", new { @class = "text-danger" })
+                @*<select class="form-control fuente-pequeña">
+                    <option value="">-- Sector empresarial principal --</option>
+                    <option>Servicios</option>
+                    <option>Metalurgia</option>
+                </select>*@
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="input-group fuente-pequeña">
+                <span class="input-group-addon fuente-pequeña">Sector 2</span>
+                @Html.DropDownListFor(m => m.SectorEmpresarial2IdListaValor, null, "Seleccione", htmlAttributes: new { @class = "form-control" })
+                @*<select class="form-control fuente-pequeña">
+                    <option value="" >-- Sector empresarial 2 --</option>
+                    <option>Servicios</option>
+                    <option>Metalurgia</option>
+                </select>*@
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="input-group fuente-pequeña">
+                <span class="input-group-addon fuente-pequeña">Sector 3</span>
+                @Html.DropDownListFor(m => m.SectorEmpresarial3IdListaValor, null, "Seleccione", htmlAttributes: new { @class = "form-control" })
+                @*<select class="form-control fuente-pequeña">
+                    <option value="">-- Sector empresarial 3 --</option>
+                    <option>Servicios</option>
+                    <option>Metalurgia</option>
+                </select>*@
+            </div>
+        </div>
+    </div>
+    <br />
+    <h5>Datos de su ubicación</h5>
+    <hr />
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="input-group fuente-pequeña">
+                <span class="input-group-addon fuente-pequeña">(*) Tipo<br />Ubicación</span>
+                <select class="form-control fuente-pequeña">
+                    <option value="">-- Tipo de Ubicación --</option>
+                    <option>Sede Central</option>
+                    <option>Metalurgia</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="input-group fuente-pequeña">
+                <span class="input-group-addon fuente-pequeña">(*) Nombre</span>
+                <input type="text" class="form-control fuente-pequeña" placeholder="Nombre de la Locación">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="input-group fuente-pequeña">
+                <span class="input-group-addon fuente-pequeña">e-Mail</span>
+                <input type="text" class="form-control fuente-pequeña" placeholder="e-Mail de contacto de la Locación">
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="input-group fuente-pequeña">
+                <span class="input-group-addon fuente-pequeña">Teléfono</span>
+                <input type="text" class="form-control fuente-pequeña" placeholder="Teléfono de contacto de la Locación (central)">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="input-group fuente-pequeña">
+                <span class="input-group-addon fuente-pequeña">(*)<br />Departam.</span>
+                <input type="text" class="form-control fuente-pequeña" placeholder="Ingrese Departamente/Región/Estado">
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="input-group fuente-pequeña">
+                <span class="input-group-addon fuente-pequeña">(*) Ciudad</span>
+                <input type="text" class="form-control fuente-pequeña" placeholder="Ingrese Ciudad">
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="input-group fuente-pequeña">
+                <span class="input-group-addon fuente-pequeña">(*) Distrito</span>
+                <input type="text" class="form-control fuente-pequeña" placeholder="Ingrese Distrito/Comuna">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="input-group fuente-pequeña">
+                <span class="input-group-addon fuente-pequeña">(*)<br />Dirección</span>
+                <input type="text" class="form-control fuente-pequeña" placeholder="Ingrese Dirección. Ej: Avenida Las Palmeras 123, Urbanización El Palmeral">
+            </div>
+        </div>
+    </div>
+    <br />
+    <h5>Datos de Usuario</h5>
+    <hr />
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="input-group fuente-pequeña">
+                <span class="input-group-addon fuente-pequeña">(*)<br />Nombres</span>
+                <input type="text" class="form-control fuente-pequeña" placeholder="Ingrese sus nombres">
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="input-group fuente-pequeña">
+                <span class="input-group-addon fuente-pequeña">(*)<br />Apellidos</span>
+                <input type="text" class="form-control fuente-pequeña" placeholder="Ingrese sus apellidos">
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="input-group fuente-pequeña">
+                <span class="input-group-addon fuente-pequeña">(*)<br />Usuario</span>
+                <input type="text" class="form-control fuente-pequeña" placeholder="Ingrese un nombre de Usuario, con no menos de 8, y máximo 40 caracteres">
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="input-group fuente-pequeña">
+                <span class="input-group-addon fuente-pequeña">(*)<br />Contraseña</span>
+                <input type="password" class="form-control fuente-pequeña">
+            </div>
+        </div>
+        <div class="col-sm-4">
+    <p>Ingrese una contraseña con al menos 8 caracteres utilizando al menos una letra Mayúscula, una Miníscula y un Dígito.</p>
+</div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="input-group fuente-pequeña">
+                <span class="input-group-addon fuente-pequeña">(*) Repita<br />Contraseña</span>
+                <input type="password" class="form-control fuente-pequeña">
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="input-group fuente-pequeña">
+                <span class="input-group-addon fuente-pequeña">(*) Tipo <br />Documento</span>
+                <select class="form-control fuente-pequeña">
+                    <option value="">-- Elija Tipo Documento de Identificación--</option>
+                    <option>DNI</option>
+                    <option>Pasaporte</option>
+                    <option>Carnet Extrangería</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="input-group fuente-pequeña">
+                <span class="input-group-addon fuente-pequeña">(*) Número<br />Documento</span>
+                <input type="text" class="form-control fuente-pequeña" placeholder="Ingrese su Número de Documento">
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="input-group">
+                <span class="input-group-addon">Sexo</span>
+                <select class="form-control">
+                    <option value="">
+                        -- Especifique Sexo --
+                    </option>
+                    <option>
+                        Masculino
+                    </option>
+                    <option>
+                        Femenino
+                    </option>
+                    <option>
+                        No especificado
+                    </option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="input-group">
+                <span class="input-group-addon">Teléfono<br />fijo</span>
+                <input type="text" class="form-control" placeholder="Cod.Ciudad + Nro.Teléfono">
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+            <div class="input-group">
+                <span class="input-group-addon">Anexo</span>
+                <input type="text" class="form-control" placeholder="Número de Anexo">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="input-group">
+                <span class="input-group-addon">Celular</span>
+                <input type="text" class="form-control" placeholder="Número de Celular">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="input-group">
+                <span class="input-group-addon">(*) e-Mail</span>
+                <input type="text" class="form-control" placeholder="e-Mail del Usuario">
+            </div>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-sm-12" style="text-align:right;">
+            <button class="btn btn-default color-paleta1">Enviar Datos</button>
+        </div>
+    </div>
+    <br />
+</div>
+    
+}
+

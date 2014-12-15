@@ -118,7 +118,7 @@ namespace UTPPrototipo.Controllers
                 {
                     ViewBag.Message = "Registrese";
                     //return RedirectToAction("Autenticar", "Cuenta");
-
+                    return JavaScript("OnFailure();");
                 }
             }
 
