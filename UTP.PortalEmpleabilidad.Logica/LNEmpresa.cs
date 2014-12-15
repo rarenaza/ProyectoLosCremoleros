@@ -166,6 +166,14 @@ namespace UTP.PortalEmpleabilidad.Logica
             }
 
             return empresa;
-        }        
+        }
+
+        public bool ValidarNombreDeUsuario(string nombreUsuario)
+        {
+            bool existe = false;
+
+
+            return existe;
+        }
     }
 }
