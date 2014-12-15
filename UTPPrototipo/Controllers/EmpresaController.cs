@@ -219,7 +219,7 @@ namespace UTPPrototipo.Controllers
 
                 empresa.CreadoPor = "admin";
 
-                lnEmpresa.Insertar(empresa);
+                //lnEmpresa.Insertar(empresa);
             }
 
             return RedirectToAction("Index", "Home");

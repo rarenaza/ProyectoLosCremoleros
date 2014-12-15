@@ -1,4 +1,4 @@
-﻿@model UTP.PortalEmpleabilidad.Modelo.Empresa
+﻿@model UTP.PortalEmpleabilidad.Modelo.Vistas.Empresa.VistaRegistroEmpresa
 
 @{
     ViewBag.Title = "Registro";
@@ -17,7 +17,7 @@
     <h5><strong>Empresas</strong></h5>
     <p>Si desea incribir una empresa en nuestro Portal, por favor complete los datos a continuación. Los datos con (*) son obligatorios</p>
     <br />
-    <div class="alert alert-danger" role="alert">Faltan Datos</div>
+    @*<div class="alert alert-danger" role="alert">Faltan Datos</div>*@
     <h5>Datos de la Empresa</h5>
     <hr />
     <div class="row">
@@ -53,6 +53,7 @@
             <div class="input-group fuente-pequeña">
                 <span class="input-group-addon fuente-pequeña">(*) País</span>
                 @Html.DropDownListFor(m => m.PaisIdListaValor, null, "Seleccione", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PaisIdListaValor, "", new { @class = "text-danger" })
                 @*<select class="form-control fuente-pequeña">
                     <option value="">-- Seleccione País donde se ubica la Empresa --</option>
                     <option>Perú</option>
@@ -145,11 +146,13 @@
         <div class="col-sm-4">
             <div class="input-group fuente-pequeña">
                 <span class="input-group-addon fuente-pequeña">(*) Tipo<br />Ubicación</span>
-                <select class="form-control fuente-pequeña">
+                @Html.DropDownListFor(m => m.TipoLocacionIdListaValor, null, "Seleccione", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TipoLocacionIdListaValor, "", new { @class = "text-danger" })
+                @*<select class="form-control fuente-pequeña">
                     <option value="">-- Tipo de Ubicación --</option>
                     <option>Sede Central</option>
                     <option>Metalurgia</option>
-                </select>
+                </select>*@
             </div>
         </div>
     </div>
@@ -157,7 +160,9 @@
         <div class="col-sm-6">
             <div class="input-group fuente-pequeña">
                 <span class="input-group-addon fuente-pequeña">(*) Nombre</span>
-                <input type="text" class="form-control fuente-pequeña" placeholder="Nombre de la Locación">
+                @*<input type="text" class="form-control fuente-pequeña" placeholder="Nombre de la Locación">*@
+                @Html.Raw(@Html.EditorFor(model => model.NombreLocacion).ToString().Replace("text-box single-line", "form-control"))
+                @Html.ValidationMessageFor(model => model.NombreLocacion, "", new { @class = "text-danger" })
             </div>
         </div>
     </div>
@@ -165,13 +170,15 @@
         <div class="col-sm-8">
             <div class="input-group fuente-pequeña">
                 <span class="input-group-addon fuente-pequeña">e-Mail</span>
-                <input type="text" class="form-control fuente-pequeña" placeholder="e-Mail de contacto de la Locación">
+                @*<input type="text" class="form-control fuente-pequeña" placeholder="e-Mail de contacto de la Locación">*@
+                @Html.Raw(@Html.EditorFor(model => model.EmailLocacion).ToString().Replace("text-box single-line", "form-control"))
             </div>
         </div>
         <div class="col-sm-4">
             <div class="input-group fuente-pequeña">
                 <span class="input-group-addon fuente-pequeña">Teléfono</span>
-                <input type="text" class="form-control fuente-pequeña" placeholder="Teléfono de contacto de la Locación (central)">
+                @*<input type="text" class="form-control fuente-pequeña" placeholder="Teléfono de contacto de la Locación (central)">*@
+                @Html.Raw(@Html.EditorFor(model => model.TelefonoLocacion).ToString().Replace("text-box single-line", "form-control"))
             </div>
         </div>
     </div>
@@ -179,19 +186,22 @@
         <div class="col-sm-4">
             <div class="input-group fuente-pequeña">
                 <span class="input-group-addon fuente-pequeña">(*)<br />Departam.</span>
-                <input type="text" class="form-control fuente-pequeña" placeholder="Ingrese Departamente/Región/Estado">
+                @*<input type="text" class="form-control fuente-pequeña" placeholder="Ingrese Departamente/Región/Estado">*@
+                @Html.Raw(@Html.EditorFor(model => model.DireccionDepartamentoLocacion).ToString().Replace("text-box single-line", "form-control"))
             </div>
         </div>
         <div class="col-sm-4">
             <div class="input-group fuente-pequeña">
                 <span class="input-group-addon fuente-pequeña">(*) Ciudad</span>
-                <input type="text" class="form-control fuente-pequeña" placeholder="Ingrese Ciudad">
+                @*<input type="text" class="form-control fuente-pequeña" placeholder="Ingrese Ciudad">*@
+                @Html.Raw(@Html.EditorFor(model => model.DireccionCiudadLocacion).ToString().Replace("text-box single-line", "form-control"))
             </div>
         </div>
         <div class="col-sm-4">
             <div class="input-group fuente-pequeña">
                 <span class="input-group-addon fuente-pequeña">(*) Distrito</span>
-                <input type="text" class="form-control fuente-pequeña" placeholder="Ingrese Distrito/Comuna">
+                @*<input type="text" class="form-control fuente-pequeña" placeholder="Ingrese Distrito/Comuna">*@
+                @Html.Raw(@Html.EditorFor(model => model.DireccionDistritoLocacion).ToString().Replace("text-box single-line", "form-control"))
             </div>
         </div>
     </div>
@@ -199,7 +209,8 @@
         <div class="col-sm-12">
             <div class="input-group fuente-pequeña">
                 <span class="input-group-addon fuente-pequeña">(*)<br />Dirección</span>
-                <input type="text" class="form-control fuente-pequeña" placeholder="Ingrese Dirección. Ej: Avenida Las Palmeras 123, Urbanización El Palmeral">
+                @*<input type="text" class="form-control fuente-pequeña" placeholder="Ingrese Dirección. Ej: Avenida Las Palmeras 123, Urbanización El Palmeral">*@
+                @Html.Raw(@Html.EditorFor(model => model.DireccionLocacion).ToString().Replace("text-box single-line", "form-control"))
             </div>
         </div>
     </div>
@@ -210,13 +221,15 @@
         <div class="col-sm-6">
             <div class="input-group fuente-pequeña">
                 <span class="input-group-addon fuente-pequeña">(*)<br />Nombres</span>
-                <input type="text" class="form-control fuente-pequeña" placeholder="Ingrese sus nombres">
+                @*<input type="text" class="form-control fuente-pequeña" placeholder="Ingrese sus nombres">*@
+                @Html.Raw(@Html.EditorFor(model => model.NombresUsuario).ToString().Replace("text-box single-line", "form-control"))
             </div>
         </div>
         <div class="col-sm-6">
             <div class="input-group fuente-pequeña">
                 <span class="input-group-addon fuente-pequeña">(*)<br />Apellidos</span>
-                <input type="text" class="form-control fuente-pequeña" placeholder="Ingrese sus apellidos">
+                @*<input type="text" class="form-control fuente-pequeña" placeholder="Ingrese sus apellidos">*@
+                @Html.Raw(@Html.EditorFor(model => model.ApellidosUsuario).ToString().Replace("text-box single-line", "form-control"))
             </div>
         </div>
     </div>
@@ -225,7 +238,8 @@
         <div class="col-sm-6">
             <div class="input-group fuente-pequeña">
                 <span class="input-group-addon fuente-pequeña">(*)<br />Usuario</span>
-                <input type="text" class="form-control fuente-pequeña" placeholder="Ingrese un nombre de Usuario, con no menos de 8, y máximo 40 caracteres">
+                @*<input type="text" class="form-control fuente-pequeña" placeholder="Ingrese un nombre de Usuario, con no menos de 8, y máximo 40 caracteres">*@
+                @Html.Raw(@Html.EditorFor(model => model.CuentaUsuario).ToString().Replace("text-box single-line", "form-control"))
             </div>
         </div>
     </div>
@@ -234,11 +248,14 @@
         <div class="col-sm-4">
             <div class="input-group fuente-pequeña">
                 <span class="input-group-addon fuente-pequeña">(*)<br />Contraseña</span>
-                <input type="password" class="form-control fuente-pequeña">
+                @*<input type="password" class="form-control fuente-pequeña">*@
+                @Html.PasswordFor(m => m.Contrasena)
+                @*@Html.Raw(@Html.PasswordFor(model => model.Contrasena).ToString().Replace("text-box single-line", "form-control"))*@
+                @Html.ValidationMessageFor(model => model.Contrasena, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="col-sm-4">
-    <p>Ingrese una contraseña con al menos 8 caracteres utilizando al menos una letra Mayúscula, una Miníscula y un Dígito.</p>
+    <p>Ingrese una contraseña con al menos 8 caracteres utilizando al menos una letra mayúscula, una minúscula y un dígito.</p>
 </div>
     </div>
     <div class="row">
@@ -254,24 +271,28 @@
         <div class="col-sm-4">
             <div class="input-group fuente-pequeña">
                 <span class="input-group-addon fuente-pequeña">(*) Tipo <br />Documento</span>
-                <select class="form-control fuente-pequeña">
+                @Html.DropDownListFor(m => m.TipoDocumentoIdListaValor, null, "Seleccione", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TipoDocumentoIdListaValor, "", new { @class = "text-danger" })
+                @*<select class="form-control fuente-pequeña">
                     <option value="">-- Elija Tipo Documento de Identificación--</option>
                     <option>DNI</option>
                     <option>Pasaporte</option>
                     <option>Carnet Extrangería</option>
-                </select>
+                </select>*@
             </div>
         </div>
         <div class="col-sm-4">
             <div class="input-group fuente-pequeña">
                 <span class="input-group-addon fuente-pequeña">(*) Número<br />Documento</span>
-                <input type="text" class="form-control fuente-pequeña" placeholder="Ingrese su Número de Documento">
+                @*<input type="text" class="form-control fuente-pequeña" placeholder="Ingrese su Número de Documento">*@
+                @Html.Raw(@Html.EditorFor(model => model.NumeroDocumento).ToString().Replace("text-box single-line", "form-control"))
             </div>
         </div>
         <div class="col-sm-4">
             <div class="input-group">
                 <span class="input-group-addon">Sexo</span>
-                <select class="form-control">
+                @Html.DropDownListFor(m => m.SexoIdListaValor, null, "Seleccione", htmlAttributes: new { @class = "form-control" })
+                @*<select class="form-control">
                     <option value="">
                         -- Especifique Sexo --
                     </option>
@@ -284,7 +305,7 @@
                     <option>
                         No especificado
                     </option>
-                </select>
+                </select>*@
             </div>
         </div>
     </div>
@@ -292,14 +313,16 @@
         <div class="col-sm-4">
             <div class="input-group">
                 <span class="input-group-addon">Teléfono<br />fijo</span>
-                <input type="text" class="form-control" placeholder="Cod.Ciudad + Nro.Teléfono">
+                @*<input type="text" class="form-control" placeholder="Cod.Ciudad + Nro.Teléfono">*@
+                @Html.Raw(@Html.EditorFor(model => model.TelefonoFijoUsuario).ToString().Replace("text-box single-line", "form-control"))
             </div>
         </div>
 
         <div class="col-sm-4">
             <div class="input-group">
                 <span class="input-group-addon">Anexo</span>
-                <input type="text" class="form-control" placeholder="Número de Anexo">
+                @*<input type="text" class="form-control" placeholder="Número de Anexo">*@
+                @Html.Raw(@Html.EditorFor(model => model.AnexoUsuario).ToString().Replace("text-box single-line", "form-control"))
             </div>
         </div>
     </div>
@@ -307,7 +330,8 @@
         <div class="col-sm-4">
             <div class="input-group">
                 <span class="input-group-addon">Celular</span>
-                <input type="text" class="form-control" placeholder="Número de Celular">
+                @*<input type="text" class="form-control" placeholder="Número de Celular">*@
+                @Html.Raw(@Html.EditorFor(model => model.CelularUsuario).ToString().Replace("text-box single-line", "form-control"))
             </div>
         </div>
     </div>
@@ -315,7 +339,8 @@
         <div class="col-sm-8">
             <div class="input-group">
                 <span class="input-group-addon">(*) e-Mail</span>
-                <input type="text" class="form-control" placeholder="e-Mail del Usuario">
+                @*<input type="text" class="form-control" placeholder="e-Mail del Usuario">*@
+                @Html.Raw(@Html.EditorFor(model => model.EmailUsuario).ToString().Replace("text-box single-line", "form-control"))
             </div>
         </div>
     </div>

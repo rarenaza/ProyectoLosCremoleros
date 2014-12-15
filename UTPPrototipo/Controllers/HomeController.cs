@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using UTP.PortalEmpleabilidad.Logica;
 using UTP.PortalEmpleabilidad.Modelo;
+using UTP.PortalEmpleabilidad.Modelo.Vistas.Empresa;
 using UTPPrototipo.Models.ViewModels.Contenido;
 
 namespace UTPPrototipo.Controllers
@@ -370,17 +371,32 @@ namespace UTPPrototipo.Controllers
             ViewBag.SectorEmpresarial1IdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_SECTOR_EMPRESARIAL), "IdListaValor", "Valor");
             ViewBag.SectorEmpresarial2IdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_SECTOR_EMPRESARIAL), "IdListaValor", "Valor");
             ViewBag.SectorEmpresarial3IdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_SECTOR_EMPRESARIAL), "IdListaValor", "Valor");
-            
+
+            ViewBag.TipoLocacionIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_LOCACION), "IdListaValor", "Valor");
+            ViewBag.SexoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_SEXO), "IdListaValor", "Valor");
+            ViewBag.TipoDocumentoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_DOCUMENTO), "IdListaValor", "Valor");
+            ViewBag.RolIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ROL_USUARIO), "IdListaValor", "Valor");
+            ViewBag.EstadoUsuarioIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_USUARIO), "IdListaValor", "Valor");
+
+
             return View();
         }
 
         [HttpPost]
-        public ActionResult Registro(Empresa empresa)
+        public ActionResult Registro(VistaRegistroEmpresa empresa)
         {
             LNEmpresa lnEmpresa = new LNEmpresa();
 
-            empresa.CreadoPor = "anonimo";
+            //Empresa
+            empresa.CreadoPor = "anonimo";  //Usuario anónimo.
             empresa.EstadoIdListaValor = "EMPRRV";  //Estado de la empresa pendiente de aprobación.
+
+            //Locación
+            empresa.EstadoLocacionIdListaValor = "LOSTNO";  //Estado NO ACTIVA. Se debe activar al momento que UTP active la cuenta.          
+
+            //Usuario
+            empresa.RolIdListaValor = "ROLADE";  //La cuenta es creada como Rol: "Administrador de Empresa"
+            empresa.EstadoUsuarioIdListaValor = "USEMPE";  //El usuario también se encuenta pendiente de activación. Se debe activar al momento que UTP active la cuenta.
 
             lnEmpresa.Insertar(empresa);
 
