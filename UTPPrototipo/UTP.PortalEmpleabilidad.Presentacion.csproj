@@ -649,7 +649,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -767,6 +769,8 @@
     <Content Include="Views\Mensaje\_ObtenerMensajes.cshtml" />
     <Content Include="Views\Mensaje\_MensajeFormulario.cshtml" />
     <Content Include="Views\Home\Registro.cshtml" />
+    <Content Include="Views\Empresa\_AdministrarUbicacionEditar.cshtml" />
+    <Content Include="Views\Empresa\_AdministrarUsuarioEditar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

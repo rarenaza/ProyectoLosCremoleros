@@ -46,6 +46,7 @@
     <Compile Include="AlumnoCVEstudio.cs" />
     <Compile Include="AlumnoEstudio.cs" />
     <Compile Include="AlumnoExpericiencia.cs" />
+    <Compile Include="Auditoria.cs" />
     <Compile Include="EmpresaLocacion.cs" />
     <Compile Include="EmpresaUsuario.cs" />
     <Compile Include="Evento.cs" />

@@ -116,7 +116,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 empresaLocacion.Direccion = Convert.ToString(locacionBD["Direccion"]);                
                 empresaLocacion.DireccionDistrito = Convert.ToString(locacionBD["DireccionDistrito"]);
                 empresaLocacion.DireccionCiudad = Convert.ToString(locacionBD["DireccionCiudad"]);
-                empresaLocacion.DireccionRegion = Convert.ToString(locacionBD["DireccionRegion"]);
+                empresaLocacion.DireccionDepartamento = Convert.ToString(locacionBD["DireccionDepartamento"]);
                 empresaLocacion.EstadoLocacion.Valor = Convert.ToString(locacionBD["EstadoLocacionDescripcion"]);
 
                 empresa.Locaciones.Add(empresaLocacion);
@@ -143,6 +143,7 @@ namespace UTP.PortalEmpleabilidad.Logica
 
                 empresa.Usuarios.Add(empresaUsuario);
             }
+
             return empresa;
         }        
     }

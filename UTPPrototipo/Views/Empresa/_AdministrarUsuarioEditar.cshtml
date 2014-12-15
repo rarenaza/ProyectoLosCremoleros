@@ -3,10 +3,10 @@
 <div class="modal-content">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="NuevoUsuario">Nuevo Usuario</h4>
+        <h4 class="modal-title" id="NuevoUsuario">Editar Usuario</h4>
     </div>
     <div class="modal-body">
-
+       
         @Html.HiddenFor(m => m.IdEmpresaUsuario)
 
         <!--Si se desea mostrar los errores en un resumen se utiliza este helper-->
@@ -67,7 +67,7 @@
                 <div class="input-group">
                     <span class="input-group-addon">Locación *</span>
                     @Html.DropDownListFor(m => m.IdEmpresaLocacion, null, "-- Especifique Locación de trabajo --", htmlAttributes: new { @class = "form-control" })                                        
-                    @Html.ValidationMessageFor(model => model.NombreUsuario, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.IdEmpresaLocacion, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
