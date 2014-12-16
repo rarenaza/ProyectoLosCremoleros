@@ -20,6 +20,8 @@ namespace UTP.PortalEmpleabilidad.Modelo
         [Required(ErrorMessage=Constantes.MSJ_CAMPO_OBLIGATORIO)]
         public string Contrasena { get; set; }
 
+        public string NombreCompleto { get; set; }
+
         public Usuario()
         {
             TipoUsuario = new ListaValor();

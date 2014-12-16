@@ -61,10 +61,11 @@ namespace UTP.PortalEmpleabilidad.Logica
             return listaEjemplo;
         }
 
+        public void ActualizarEstadoYUsuarioEC(Empresa empresa)
+        {
+            if (empresa.UsuarioEC == null) empresa.UsuarioEC = "";
 
-
-
-
-
+            adUtp.ActualizarEstadoYUsuarioEC(empresa);
+        }
     }
 }

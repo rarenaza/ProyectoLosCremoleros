@@ -780,6 +780,11 @@
     <Content Include="Views\Empresa\_AdministrarUsuarioEditar.cshtml" />
     <Content Include="Views\Empresa\_AdministrarImagen.cshtml" />
     <Content Include="Views\UTP\_VerDetalleEmpresaDatosGenerales.cshtml" />
+    <Content Include="Views\UTP\VerDetalleOferta.cshtml" />
+    <Content Include="Views\UTP\_VerDetalleEmpresaUsuarios.cshtml" />
+    <Content Include="Views\UTP\_VerDetalleEmpresaUbicaciones.cshtml" />
+    <Content Include="Views\UTP\_VerDetalleEmpresaOfertas.cshtml" />
+    <Content Include="Views\UTP\_VerDetalleEmpresaMensajes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -26,10 +26,12 @@
             <div class="navbar-collapse collapse" style="border:0px;background-color:transparent;">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a class="btn btn-default navbar-btn Boton_pestana color-paleta1" href="..\UTP\Index" style="padding: 2px 0px 2px 0px;color:white;">Mi Portal</a>
+                        @*<a class="btn btn-default navbar-btn Boton_pestana color-paleta1" href="..\UTP\Index" style="padding: 2px 0px 2px 0px;color:white;">Mi Portal</a>*@
+                        @Html.ActionLink("Mi Portal", "Index", null, new { @class = "btn btn-default navbar-btn Boton_pestana color-paleta1", @style = "padding: 2px 0px 2px 0px; color: white;" })
                     </li>
                     <li>
-                        <a class="btn btn-default navbar-btn Boton_pestana color-paleta2" href="..\UTP\Empresas" style="padding: 2px 0px 2px 0px;color:white;">Empresas</a>
+                        @*<a class="btn btn-default navbar-btn Boton_pestana color-paleta2" href="..\UTP\Empresas" style="padding: 2px 0px 2px 0px;color:white;">Empresas</a>*@
+                        @Html.ActionLink("Empresas", "Empresas", null, new { @class = "btn btn-default navbar-btn Boton_pestana color-paleta2", @style = "padding: 2px 0px 2px 0px; color: white;" })
                     </li>
                     <li>
                         <a class="btn btn-default navbar-btn Boton_pestana color-paleta3" href="..\UTP\Alumnos" style="padding: 2px 0px 2px 0px;color:white;">Alumnos</a>
@@ -43,13 +45,14 @@
                     <li>
                         <a class="btn btn-default navbar-btn Boton_pestana color-paleta6" href="..\UTP\Reportes" style="padding: 2px 0px 2px 0px; color: white;">Reportes</a>
                     </li>
-                    <li>  
-                        <a class="btn btn-default navbar-btn Boton_pestana color-paleta7" href="..\UTP\Portal" style="padding: 2px 0px 2px 0px; color: white;">Contenido</a>
+                    <li>
+                        @*<a class="btn btn-default navbar-btn Boton_pestana color-paleta7" href="..\UTP\Portal" style="padding: 2px 0px 2px 0px; color: white;">Contenido</a>*@
+                        @Html.ActionLink("Contenido", "Portal;", null, new { @class = "btn btn-default navbar-btn Boton_pestana color-paleta1", @style = "padding: 2px 0px 2px 0px; color: white;" })
                     </li>
                     <li>
                         <a class="btn btn-default navbar-btn Boton_pestana color-paleta8" href="..\UTP\Sistema" style="padding: 2px 0px 2px 0px; color: white;">Sistema</a>
                     </li>
-                    
+
 
                 </ul>
                 <ul class="nav navbar-nav navbar-right" style="padding-right: 15px; ">
@@ -91,8 +94,12 @@
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+    @*@Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")*@
+
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
     @RenderSection("scripts", required: false)
 </body>
 </html>

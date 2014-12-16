@@ -86,6 +86,9 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string NombreCV { get; set; }
         public int IdCV { get; set; }
 
+        public Empresa Empresa { get; set; }
+        public List<OfertaPostulante> Postulantes { get; set; }
+
        public Oferta() {
 
            TipoCargo = new ListaValor();
@@ -94,6 +97,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
            ListaEstudios = new List<OfertaEstudio>();
            ListaSectores = new List<OfertaSectorEmpresarial>();
            ListaInformacionAdicional = new List<OfertaInformacionAdicional>();
+           Empresa = new Empresa();
         }
     }
 }

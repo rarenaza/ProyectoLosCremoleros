@@ -110,5 +110,38 @@ namespace UTP.PortalEmpleabilidad.Datos
                 conexion.Close();
             }
         }
+
+        /// <summary>
+        /// Obtiene los usuarios de una empresa en particular.
+        /// </summary>
+        /// <param name="idEmpresa"></param>
+        /// <returns></returns>
+        public DataTable ObtenerUsuariosPorIdEmpresa(int idEmpresa)
+        {
+            DataTable dtResultado = new DataTable();
+
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "EmpresaUsuario_ObtenerPorIdEmpresa";
+                cmd.Parameters.Add(new SqlParameter("@IdEmpresa", idEmpresa));           
+
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                dtResultado = new DataTable();
+
+                da.Fill(dtResultado);
+
+                conexion.Close();
+
+            }
+
+            return dtResultado;
+        }
     }
 }

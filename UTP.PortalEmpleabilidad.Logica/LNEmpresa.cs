@@ -128,6 +128,8 @@ namespace UTP.PortalEmpleabilidad.Logica
 
                     empresa.CreadoPor = Convert.ToString(dsResultado.Tables[0].Rows[0]["CreadoPor"]);
                     empresa.ModificadoPor = Convert.ToString(dsResultado.Tables[0].Rows[0]["ModificadoPor"]);
+                    empresa.EstadoIdListaValor = Convert.ToString(dsResultado.Tables[0].Rows[0]["EstadoEmpresa"]);
+                    empresa.UsuarioEC = Convert.ToString(dsResultado.Tables[0].Rows[0]["UsuarioEC"]);
                 }
             }
 

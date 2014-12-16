@@ -65,7 +65,8 @@ namespace UTP.PortalEmpleabilidad.Modelo
 
         public string SitioWeb { get; set; }
         public DateTime FechaCreacion { get; set; }        
-        public DateTime FechaModificacion { get; set; }
+        public DateTime FechaModificacion { get; set; }        
+
         public Empresa()
         {
             Pais = new ListaValor();

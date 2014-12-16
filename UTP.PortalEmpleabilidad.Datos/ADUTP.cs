@@ -94,8 +94,32 @@ namespace UTP.PortalEmpleabilidad.Datos
         }
 
 
+        public void ActualizarEstadoYUsuarioEC(Empresa empresa)
+        {
+            try
+            {
+                using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+                {
+                    SqlCommand cmd = new SqlCommand();
 
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "Empresa_ActualizarEstadoYUsuarioEC";
 
+                    //Parámetros:
+                    cmd.Parameters.Add(new SqlParameter("@IdEmpresa", empresa.IdEmpresa));
+                    cmd.Parameters.Add(new SqlParameter("@Estado", empresa.EstadoIdListaValor));
+                    cmd.Parameters.Add(new SqlParameter("@UsuarioEC", empresa.UsuarioEC));                    
 
+                    cmd.Connection = conexion;
+                    conexion.Open();
+                    cmd.ExecuteNonQuery();
+                    conexion.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

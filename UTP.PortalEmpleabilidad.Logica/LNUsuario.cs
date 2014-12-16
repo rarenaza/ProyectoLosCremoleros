@@ -33,5 +33,25 @@ namespace UTP.PortalEmpleabilidad.Logica
         {
             return adUsuario.ValidarNombreDeUsuario(nombreUsuario);
         }
+
+        public List<Usuario> ObtenerUsuariosPorTipo(string tipoUsuario)
+        {
+            List<Usuario> usuarios = new List<Usuario>();
+
+
+            foreach (DataRow item in adUsuario.ObtenerUsuariosPorTipo(tipoUsuario).Rows)
+            {
+                Usuario usuario = new Usuario();
+
+                usuario.NombreUsuario = Convert.ToString(item["Usuario"]);
+                usuario.TipoUsuario.Valor = Convert.ToString(item["TipoUsuario"]);
+                usuario.NombreCompleto = Convert.ToString(item["UsuarioNombreCompleto"]);
+
+                usuarios.Add(usuario);
+            }
+
+
+            return usuarios;
+        }
     }
 }

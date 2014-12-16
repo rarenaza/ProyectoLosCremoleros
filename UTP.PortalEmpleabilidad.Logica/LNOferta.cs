@@ -270,9 +270,18 @@ namespace UTP.PortalEmpleabilidad.Logica
                 oferta.FechaFinRecepcionCV = Convert.ToDateTime(dsResultado.Tables[0].Rows[0]["FechaFinRecepcionCV"]);
                 oferta.AreaEmpresa = Convert.ToString(dsResultado.Tables[0].Rows[0]["AreaEmpresa"]);
                 oferta.DuracionContrato = Convert.ToInt32(dsResultado.Tables[0].Rows[0]["DuracionContrato"]);
+
+                oferta.Empresa.NombreComercial = Convert.ToString(dsResultado.Tables[0].Rows[0]["EmpresaNombreComercial"]);
+                oferta.NombreLocacion = Convert.ToString(dsResultado.Tables[0].Rows[0]["NombreLocacion"]);
+
+                oferta.CreadoPor = Convert.ToString(dsResultado.Tables[0].Rows[0]["CreadoPor"]);
+                oferta.ModificadoPor = Convert.ToString(dsResultado.Tables[0].Rows[0]["ModificadoPor"]);
+                oferta.FechaCreacion = Convert.ToDateTime(dsResultado.Tables[0].Rows[0]["FechaCreacion"]);
+                oferta.FechaModificacion = Convert.ToDateTime(dsResultado.Tables[0].Rows[0]["FechaModificacion"]);
             }
 
             //Tabla Index 1: Lista de estudios.
+            oferta.ListaEstudios = new List<OfertaEstudio>();
             foreach (DataRow filaEstudio in dsResultado.Tables[1].Rows)
             {
                 OfertaEstudio estudio                   = new OfertaEstudio();
@@ -283,11 +292,16 @@ namespace UTP.PortalEmpleabilidad.Logica
                 estudio.TipoDeEstudio.Valor             = Convert.ToString(filaEstudio["TipoDeEstudioDescripcion"]);
                 estudio.EstadoDelEstudio.Valor          = Convert.ToString(filaEstudio["EstadoDelEstudioDescripcion"]);
                 estudio.EstadoOfertaEstudio.Valor       = Convert.ToString(filaEstudio["EstadoOfertaEstudioDescripcion"]);
+                estudio.CreadoPor                       = Convert.ToString(filaEstudio["CreadoPor"]);
+                estudio.ModificadoPor                   = Convert.ToString(filaEstudio["ModificadoPor"]);
+                estudio.FechaCreacion                   = Convert.ToDateTime(filaEstudio["FechaCreacion"]);
+                estudio.FechaModificacion               = Convert.ToDateTime(filaEstudio["FechaModificacion"]);
 
                 oferta.ListaEstudios.Add(estudio);
             }
 
             //Tabla Index 2: Lista de experiencia por sector
+            oferta.ListaSectores = new List<OfertaSectorEmpresarial>();
             foreach (DataRow filaSector in dsResultado.Tables[2].Rows)
             {
                 OfertaSectorEmpresarial sector = new OfertaSectorEmpresarial();
@@ -295,12 +309,17 @@ namespace UTP.PortalEmpleabilidad.Logica
                 sector.IdOferta                     = Convert.ToInt32(filaSector["IdOferta"]);
                 sector.SectorEmpresarial.Valor      = Convert.ToString(filaSector["SectorEmpresarialDescripcion"]);
                 sector.AniosTrabajados              = Convert.ToInt32(filaSector["AniosTrabajados"]);
+                sector.CreadoPor                    = Convert.ToString(filaSector["CreadoPor"]);
+                sector.ModificadoPor                = Convert.ToString(filaSector["ModificadoPor"]);
+                sector.FechaCreacion                = Convert.ToDateTime(filaSector["FechaCreacion"]);
+                sector.FechaModificacion            = Convert.ToDateTime(filaSector["FechaModificacion"]);
 
                 oferta.ListaSectores.Add(sector);
 
             }
 
             //Tabla Index 3: Lista de información adicional
+            oferta.ListaInformacionAdicional = new List<OfertaInformacionAdicional>();            
             foreach (DataRow filaInfoAdicional in dsResultado.Tables[3].Rows)
             {
                 OfertaInformacionAdicional infoAdicional = new OfertaInformacionAdicional();
@@ -310,9 +329,35 @@ namespace UTP.PortalEmpleabilidad.Logica
                 infoAdicional.Conocimiento                  = Convert.ToString(filaInfoAdicional["Conocimiento"]);
                 infoAdicional.NivelConocimiento.Valor       = Convert.ToString(filaInfoAdicional["NivelConocimientoDescripcion"]);
                 infoAdicional.AniosExperiencia              = Convert.ToInt32(filaInfoAdicional["AniosExperiencia"]);
+                infoAdicional.CreadoPor                     = Convert.ToString(filaInfoAdicional["CreadoPor"]);
+                infoAdicional.ModificadoPor                 = Convert.ToString(filaInfoAdicional["ModificadoPor"]);
+                infoAdicional.FechaCreacion                 = Convert.ToDateTime(filaInfoAdicional["FechaCreacion"]);
+                infoAdicional.FechaModificacion             = Convert.ToDateTime(filaInfoAdicional["FechaModificacion"]);
 
                 oferta.ListaInformacionAdicional.Add(infoAdicional);
             }
+
+            
+            //Tabla Index 4: Lista de Postulantes
+            oferta.Postulantes = new List<OfertaPostulante>();
+            foreach (DataRow filaPostulante in dsResultado.Tables[4].Rows)
+            {
+                OfertaPostulante postulante = new OfertaPostulante();
+                postulante.Alumno.Nombres = Convert.ToString(filaPostulante["AlumnoNombres"]);
+                postulante.Alumno.Apellidos = Convert.ToString(filaPostulante["AlumnoApellidos"]);
+                postulante.FechaPostulacion = Convert.ToDateTime(filaPostulante["FechaPostulacion"]);
+                postulante.FaseOferta.Valor = Convert.ToString(filaPostulante["FaseOferta"]);
+                postulante.NombreCV = Convert.ToString(filaPostulante["NombreCV"]);
+                postulante.NivelDeMatch = Convert.ToInt32(filaPostulante["NivelDeMatch"]);
+                postulante.CreadoPor = Convert.ToString(filaPostulante["CreadoPor"]);
+                postulante.ModificadoPor = Convert.ToString(filaPostulante["ModificadoPor"]);
+                postulante.FechaCreacion = Convert.ToDateTime(filaPostulante["FechaCreacion"]);
+                postulante.FechaModificacion = Convert.ToDateTime(filaPostulante["FechaModificacion"]);
+
+                oferta.Postulantes.Add(postulante);
+            }
+
+
             return oferta;
         }
        
