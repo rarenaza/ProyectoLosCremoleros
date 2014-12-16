@@ -115,12 +115,19 @@ namespace UTP.PortalEmpleabilidad.Logica
                     empresa.SectorEmpresarial.Valor = Convert.ToString(dsResultado.Tables[0].Rows[0]["SectorEmpresarialDescripcion"]);
                     empresa.SectorEmpresarial2.Valor = Convert.ToString(dsResultado.Tables[0].Rows[0]["SectorEmpresarial2Descripcion"]);
                     empresa.SectorEmpresarial3.Valor = Convert.ToString(dsResultado.Tables[0].Rows[0]["SectorEmpresarial3Descripcion"]);
-
                     empresa.PaisIdListaValor = Convert.ToString(dsResultado.Tables[0].Rows[0]["Pais"]);
                     empresa.NumeroEmpleadosIdListaValor = Convert.ToString(dsResultado.Tables[0].Rows[0]["NumeroEmpleados"]);
                     empresa.SectorEmpresarial1IdListaValor = Convert.ToString(dsResultado.Tables[0].Rows[0]["SectorEmpresarial"]);
                     empresa.SectorEmpresarial2IdListaValor = Convert.ToString(dsResultado.Tables[0].Rows[0]["SectorEmpresarial2"]);
                     empresa.SectorEmpresarial3IdListaValor = Convert.ToString(dsResultado.Tables[0].Rows[0]["SectorEmpresarial3"]);
+                    empresa.SitioWeb = Convert.ToString(dsResultado.Tables[0].Rows[0]["SitioWeb"]);
+                    empresa.FechaCreacion = Convert.ToDateTime(dsResultado.Tables[0].Rows[0]["FechaCreacion"]);
+
+                    if (dsResultado.Tables[0].Rows[0]["FechaModificacion"] != DBNull.Value)
+                        empresa.FechaModificacion = Convert.ToDateTime(dsResultado.Tables[0].Rows[0]["FechaModificacion"]);
+
+                    empresa.CreadoPor = Convert.ToString(dsResultado.Tables[0].Rows[0]["CreadoPor"]);
+                    empresa.ModificadoPor = Convert.ToString(dsResultado.Tables[0].Rows[0]["ModificadoPor"]);
                 }
             }
 

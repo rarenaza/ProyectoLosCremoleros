@@ -738,7 +738,7 @@
     <Content Include="Views\UTP\Portal_Editar_Buscar.cshtml" />
     <Content Include="Views\UTP\BuscarGrilla.cshtml" />
     <Content Include="Views\Empresa\Administrar.cshtml" />
-    <Content Include="Views\UTP\Empresa.cshtml" />
+    <Content Include="Views\UTP\VerDetalleEmpresa.cshtml" />
     <Content Include="Views\UTP\Oferta.cshtml" />
     <Content Include="Views\UTP\EmpresaUsuario.cshtml" />
     <Content Include="Views\UTP\EmpresaLocacion.cshtml" />
@@ -773,6 +773,7 @@
     <Content Include="Views\Home\Registro.cshtml" />
     <Content Include="Views\Empresa\_AdministrarUbicacionEditar.cshtml" />
     <Content Include="Views\Empresa\_AdministrarUsuarioEditar.cshtml" />
+    <Content Include="Views\UTP\_VerDetalleEmpresaDatosGenerales.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

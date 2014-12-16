@@ -607,10 +607,23 @@ namespace UTPPrototipo.Controllers
             return View();
         }
       
-        public ActionResult Empresa()
+        public ActionResult VerDetalleEmpresa(int id)
         {
+            ViewBag.IdEmpresa = id;
+
             return View();
         }
+
+        public PartialViewResult _VerDetalleEmpresaDatosGenerales(int id)
+        {
+            int idEmpresa = id;
+            LNEmpresa lnEmpresa = new LNEmpresa();
+
+            Empresa empresa = lnEmpresa.ObtenerDatosEmpresaPorId(idEmpresa);
+
+            return PartialView("_VerDetalleEmpresaDatosGenerales", empresa);
+        }
+
         public ActionResult EmpresaUsuario()
         {
             return View();
