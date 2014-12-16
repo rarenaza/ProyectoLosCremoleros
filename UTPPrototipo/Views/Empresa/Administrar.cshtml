@@ -12,8 +12,22 @@
     <!--Panel superior donde se muestra los datos del usuario autenticado. - Ancho 12-->
     @{Html.RenderAction("VistaCabecera", "Empresa");}
 
-    <!--Panel de datos generales de la emrpesa - Ancho 12-->
-    @Html.Action("_AdministrarDatosGenerales", "Empresa", new { IdEmpresa = @ViewBag.IdEmpresa })
+
+
+    <div class ="row">
+        <div id="divAdministrarImagen" class ="col-sm-2">
+            @Html.Action("_AdministrarImagen", "Empresa", new { IdEmpresa = @ViewBag.IdEmpresa })
+        </div>
+        <div class="col-sm-10">
+            <!--Panel de datos generales de la emrpesa - Ancho 12-->
+            @Html.Action("_AdministrarDatosGenerales", "Empresa", new { IdEmpresa = @ViewBag.IdEmpresa })
+        </div>
+    </div>
+
+
+
+
+   
 
     <div class="row fuente-pequeña">
 

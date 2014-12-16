@@ -2,16 +2,14 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web;
+using UTP.PortalEmpleabilidad.Modelo;
 
-namespace UTP.PortalEmpleabilidad.Modelo
+namespace UTPPrototipo.Models.ViewModels.Empresa
 {
-    public class Empresa
+    public class EmpresaVista
     {
- 
-        
-        public int IdEmpresa { get; set; }
+          public int IdEmpresa { get; set; }
         
         [Required(ErrorMessage="Este campo es obligatorio.")]
         [StringLength(100)]
@@ -56,7 +54,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string ModificadoPor { get; set; }
         public string EstadoIdListaValor { get; set; }
 
-        public Empresa()
+        public EmpresaVista()
         {
             Pais = new ListaValor();
             SectorEmpresarial = new ListaValor();
@@ -73,10 +71,11 @@ namespace UTP.PortalEmpleabilidad.Modelo
         }
 
             public byte[] LogoEmpresa { get; set; }
+            public HttpPostedFileBase LogoEmpresaHtml { get; set; }
             public string ArchivoNombreOriginal { get; set; }
             public string ArchivoMimeType { get; set; }
 
-      
-           
+          
+          
     }
 }

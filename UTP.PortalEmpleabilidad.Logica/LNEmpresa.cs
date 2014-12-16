@@ -145,6 +145,41 @@ namespace UTP.PortalEmpleabilidad.Logica
             }
 
             return empresa;
-        }        
+        }
+
+        //public bool Empresa_Insertar_Imagen(Empresa empresa)
+        //{
+
+
+        //    if (adEmpresa.Empresa_Insertar_Imagen(empresa) == true)
+        //    {
+        //        return true;
+        //    }
+        //    else
+        //    {
+        //        return false;
+        //    }
+
+        //}
+
+        public bool Empresa_Actualizar_imagen(Empresa empresa)
+        {
+
+
+            if (adEmpresa.Empresa_Actualizar_Imagen(empresa) == true)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+        public DataTable Empresa_Elegir_Imagen(int Cod)
+        {
+            return adEmpresa.Empresa_Elegir_Imagen(Cod);
+        }
+
     }
 }

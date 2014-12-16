@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -367,6 +368,138 @@ namespace UTPPrototipo.Controllers
             return PartialView("_AdministrarDatosGenerales", empresa);
         }
 
+
+        public ActionResult _AdministrarImagen()
+        {
+
+            TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];
+            EmpresaVista  empresa = new EmpresaVista();
+            
+
+            //DataTable dtResultado = lnEmpresa.Empresa_Elejir_Imagen(1);
+
+
+            DataTable dtResultado = lnEmpresa.Empresa_Elegir_Imagen(ticket.IdEmpresa);
+
+            if (dtResultado.Rows.Count > 0)
+            {
+                empresa.IdEmpresa               = Convert.ToInt32(dtResultado.Rows[0]["IdEmpresa"]);
+                empresa.NombreComercial         = Convert.ToString(dtResultado.Rows[0]["NombreComercial"]);
+                empresa.RazonSocial             = Convert.ToString(dtResultado.Rows[0]["RazonSocial"]);
+                empresa.Pais.Valor              = Convert.ToString(dtResultado.Rows[0]["Pais"]);
+                empresa.IdentificadorTributario = Convert.ToString(dtResultado.Rows[0]["IdentificadorTributario"]);
+                empresa.DescripcionEmpresa      = Convert.ToString(dtResultado.Rows[0]["DescripcionEmpresa"]);
+                empresa.AnoCreacion             = Convert.ToInt32(dtResultado.Rows[0]["AnoCreacion"]);
+                empresa.NumeroEmpleados.Valor   = Convert.ToString(dtResultado.Rows[0]["NumeroEmpleados"]);
+                empresa.SectorEmpresarial.Valor = Convert.ToString(dtResultado.Rows[0]["SectorEmpresarial"]);
+                empresa.ArchivoNombreOriginal   = Convert.ToString(dtResultado.Rows[0]["ArchivoNombreOriginal"]);
+                
+            }
+
+            return View(empresa);           
+        
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        //[ValidateInput(false)]
+        public ActionResult _AdministrarActualizarImagen(EmpresaVista empresaHTML)
+        {
+
+            Empresa empresa = new Empresa();
+
+            if (empresaHTML.LogoEmpresaHtml != null)
+            {
+
+                byte[] uploadedFile = new byte[empresaHTML.LogoEmpresaHtml.InputStream.Length];
+                empresaHTML.LogoEmpresaHtml.InputStream.Read(uploadedFile, 0, Convert.ToInt32(empresaHTML.LogoEmpresaHtml.InputStream.Length));
+                empresaHTML.ArchivoNombreOriginal = empresaHTML.LogoEmpresaHtml.FileName;
+                empresaHTML.ArchivoMimeType = empresaHTML.LogoEmpresaHtml.ContentType;
+                empresaHTML.LogoEmpresa = uploadedFile;
+
+                empresa.ArchivoNombreOriginal = empresaHTML.ArchivoNombreOriginal;
+
+            }
+
+            empresa.LogoEmpresa = empresaHTML.LogoEmpresa;
+            empresa.ArchivoMimeType = empresaHTML.ArchivoMimeType;
+            empresa.ArchivoNombreOriginal = empresaHTML.ArchivoNombreOriginal;
+
+            //TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];
+
+            //empresa.IdEmpresa = ticket.IdEmpresa;
+
+            empresa.IdEmpresa = empresaHTML.IdEmpresa;
+
+            //if (ModelState.IsValid)
+            //{
+
+            if (lnEmpresa.Empresa_Actualizar_imagen(empresa) == true)
+            {
+                ViewBag.Message = "Datos Actualizado";
+                //return RedirectToAction("Administrar");
+
+                return PartialView("_AdministrarImagen", empresaHTML);
+               
+            }
+            else
+            {
+
+                ViewBag.Message = "Error al Actualizar";
+                return View(empresaHTML);
+            }
+
+        }
+
+
+
+
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //[ValidateInput(false)]
+        //public ActionResult _AdministrarDatosGenerales([Bind(Include = "")] EmpresaVista empresaHTML)
+        //{
+           
+        //    Empresa empresa = new Empresa();
+
+        //    if (empresaHTML.LogoEmpresaHtml != null)
+        //    {
+
+        //        byte[] uploadedFile = new byte[empresaHTML.LogoEmpresaHtml.InputStream.Length];
+        //        empresaHTML.LogoEmpresaHtml.InputStream.Read(uploadedFile, 0, Convert.ToInt32(empresaHTML.LogoEmpresaHtml.InputStream.Length));
+        //        empresaHTML.ArchivoNombreOriginal = empresaHTML.LogoEmpresaHtml.FileName;
+        //        empresaHTML.ArchivoMimeType = empresaHTML.LogoEmpresaHtml.ContentType;
+        //        empresaHTML.LogoEmpresa = uploadedFile;
+
+
+        //    }
+            
+           
+        //    empresa.LogoEmpresa = empresaHTML.LogoEmpresa;
+
+        //    empresa.ArchivoMimeType = empresaHTML.ArchivoMimeType;
+        //    empresa.ArchivoNombreOriginal = empresaHTML.ArchivoNombreOriginal;
+                     
+
+
+        //    if (lnEmpresa.Empresa_Insertar_Imagen(empresa) == true)
+        //    {
+        //        ViewBag.Message = "Registro Insertado Correctamente";
+        //        return RedirectToAction("Portal");
+        //    }
+        //    else
+        //    {
+                               
+
+        //        ViewBag.Message = "Error al Guardar la informacion";
+        //        return View(empresaHTML);
+
+        //    }
+
+        //}
+
         public PartialViewResult _AdministrarUbicaciones(int idEmpresa)
         {
             var empresa = lnEmpresa.ObtenerDatosEmpresaPorId(idEmpresa);
@@ -593,6 +726,51 @@ namespace UTPPrototipo.Controllers
 
             //return PartialView("_OfertaFase", lista);
             return PartialView("_VistaOfertaPostulantes", postulantes);
+        }
+
+
+        public FileResult ObtenerImagenEmpresa(int id)
+        {
+            const string alternativePicturePath = @"/Content/Images/question_mark.jpg";
+               
+
+            TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];
+            EmpresaVista empresa = new EmpresaVista();
+
+
+            //DataTable dtResultado = lnEmpresa.Empresa_Elejir_Imagen(1);
+
+
+            DataTable dtResultado = lnEmpresa.Empresa_Elegir_Imagen(ticket.IdEmpresa);
+
+            if (dtResultado.Rows.Count > 0)
+            {
+                empresa.LogoEmpresa = (byte[])dtResultado.Rows[0]["LogoEmpresa"];
+              
+
+            }
+
+
+            //Contenido producto = lista.Where(k => k.IdContenido == id).FirstOrDefault();
+
+            MemoryStream stream;
+
+            if (empresa  != null && empresa.LogoEmpresa != null)
+            {
+                stream = new MemoryStream(empresa.LogoEmpresa);
+            }
+            else
+            {
+                stream = new MemoryStream();
+
+                var path = Server.MapPath(alternativePicturePath);
+                var image = new System.Drawing.Bitmap(path);
+
+                image.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
+                stream.Seek(0, SeekOrigin.Begin);
+            }
+
+            return new FileStreamResult(stream, "image/jpeg");
         }
     }
 }

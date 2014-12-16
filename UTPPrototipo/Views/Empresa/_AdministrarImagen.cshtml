@@ -1,0 +1,37 @@
+﻿
+@model UTPPrototipo.Models.ViewModels.Empresa.EmpresaVista 
+
+
+@*@using (Ajax.BeginForm("", "", new AjaxOptions() { HttpMethod = "POST", UpdateTargetId = "divAdministrarImagen", InsertionMode = InsertionMode.Replace }, new { enctype = "multipart/form-data", action = "/Empresa/_AdministrarActualizarImagen" }))*@
+@using (Html.BeginForm("_AdministrarActualizarImagen", "Empresa", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+<div class="col-sm-12" style="text-align:center;">
+    @*<img src="~/img/logos/LogoCriteria.jpg" style="width:100%;" /><hr />*@
+    <img alt="" height=100 width=100 src='@Url.Action("ObtenerImagenEmpresa", "Empresa", new { id = Model.IdEmpresa })' /><hr/>
+
+        @Html.HiddenFor(m => m.IdEmpresa)
+   
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.LogoEmpresaHtml, new { type = "file" })
+            @*@Html.EditorFor(model => model.Imagen)*@
+            @Html.ValidationMessageFor(model => model.LogoEmpresaHtml)
+        </div>
+
+  
+
+    <br />
+
+   
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Guardar" class="btn btn-default"  />
+
+           
+        </div>
+    </div>
+
+</div>
+
+}
