@@ -10,59 +10,134 @@
 <link href="~/Content/font-awesome.css" rel="stylesheet" />
 <div class="container" style="margin-top:2px;">
 
-
+    <!---Cabecera de la página.-->
     @{Html.RenderAction("VistaCabeceraUtp", "UTP");}
-    @*@{Html.RenderAction("VistaCabecera", "Empresa", new { panel_abierto = " in" });}*@
-
-    @*<div class="panel-group" id="datos-cuenta" role="tablist" aria-multiselectable="true">
-            <div class="panel panel-default">
-                <div class="panel-heading" role="tab" id="headingOne" style="padding: 2px 2px 2px 6px;">
-                    <h5 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="fuente-seccion">
-                            Cuenta - Mario Valentin Perez Garcia
-                        </a>
-                    </h5>
-                </div>
-                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                    <div class="panel-body">
-
-                        <div class="col-md-6 fuente-pequeña">
-                            <table>
-                                <tr>
-                                    <td class="celda-nombre">Usuario:</td>
-                                    <td class="celda-datos">MarioValentin</td>
-                                </tr>
-                                <tr>
-                                    <td class="celda-nombre">Nombre:</td>
-                                    <td class="celda-datos">Mario Valentin Perez Garcia</td>
-                                </tr>
-                            </table>
-                        </div>
-
-                        <div class="col-md-6 fuente-pequeña">
-                            DNI <strong>89226681</strong><br />
-                            <strong>mperez@grupoutp.edu.pe</strong><br />
-                            <strong>954123876</strong>
-                        </div>
-
-
-                    </div>
-                </div>
-            </div>
-
-        </div>*@
-
-
-
-
-
-
-
+    
+    <!--  Contenedores de alertas.
     <div class="alert alert-danger" role="alert">¡Alerta!</div>
     <div class="alert alert-warning" role="alert">Advertencia</div>
+        -->
 
     <div class="row">
         <div class="col-sm-7 fuente-pequeña">
+            <div class="row">
+                <div class="col-md-8 fuente-pequeña" style="border-right:solid;border-color:rgb(220, 220, 220);border-width:1px;">
+                    @Html.Action("VistaOfertasPendientes", "UTP")
+                </div>
+
+
+                @*<div class="row">
+                <div class="col-md-8 fuente-pequeña" style="border-right:solid;border-color:rgb(220, 220, 220);border-width:1px;">
+                    <h5>Ofertas por Activar</h5>
+                    <div class="row grilla1-cabecera color-paleta1">
+                        <div class="col-sm-3">
+                            Fecha Publicación
+                        </div>
+                        <div class="col-sm-4">
+                            Empresa
+                        </div>
+                        <div class="col-sm-5">
+                            Oferta
+                        </div>
+                    </div>
+
+
+
+                    <div class="row grilla1-linea">
+                        <div class="col-sm-3">
+                            Hace un Momento
+                        </div>
+                        <div class="col-sm-4">
+                            IBM del Perú
+                        </div>
+                        <div class="col-sm-5">
+                            <a href="../UTP/RegistroOferta">Gerente de Proyectos</a>
+                        </div>
+                    </div>
+                    <div class="row grilla1-linea">
+                        <div class="col-sm-3">
+                            Hace media Hora
+                        </div>
+                        <div class="col-sm-4">
+                            Everis S.A.
+                        </div>
+                        <div class="col-sm-5">
+                            <a href="../UTP/RegistroOferta">Gerente de Servicio</a>
+                        </div>
+                    </div>
+                    <div class="row grilla1-linea">
+                        <div class="col-sm-3">
+                            Hace una Hora
+                        </div>
+                        <div class="col-sm-4">
+                            Criteria IT
+                        </div>
+                        <div class="col-sm-5">
+                            <a href="../UTP/RegistroOferta">Gerente Comercial TI</a>
+                        </div>
+                    </div>
+                    <div class="row grilla1-linea">
+                        <div class="col-sm-3">
+                            Hace una Hora
+                        </div>
+                        <div class="col-sm-4">
+                            IBM del Perú
+                        </div>
+                        <div class="col-sm-5">
+                            <a href="../UTP/RegistroOferta">Jefe de Proyectos</a>
+                        </div>
+                    </div>
+                    
+                </div>*@
+
+                
+                <div class="row">
+
+                    <div class="col-sm-4 fuente-pequeña" style="border-right:solid;border-color:rgb(220, 220, 220);border-width:1px;">
+                        @Html.Action("Vista_EmpresasPendientes", "UTP")
+                    </div>
+
+                </div>
+
+                @*<div class="col-sm-4 fuente-pequeña" style="border-right:solid;border-color:rgb(220, 220, 220);border-width:1px;">
+                    <h5>Empresas por Activar</h5>
+                    <div class="row grilla1-cabecera color-paleta1">
+                        <div class="col-sm-4">
+                            Fecha Registro
+                        </div>
+                        <div class="col-sm-8">
+                            Empresa
+                        </div>
+                    </div>
+                    <div class="row grilla1-linea">
+                        <div class="col-sm-4">
+                            Hace dos Horas
+                        </div>
+                        <div class="col-sm-8">
+                            <a href="../UTP/RegistroEmpresa">Tata del Perú</a>
+                        </div>
+                    </div>
+                    <div class="row grilla1-linea">
+                        <div class="col-sm-4">
+                            Ayer
+                        </div>
+                        <div class="col-sm-8">
+                            <a href="../UTP/RegistroEmpresa">Metalurgia Orquidea SAC</a>
+                        </div>
+                    </div>
+                    <div class="row grilla1-linea">
+                        <div class="col-sm-4">
+                            Antes de Ayer
+                        </div>
+                        <div class="col-sm-8">
+                            <a href="../UTP/RegistroEmpresa">Empresas del Vidrio SA</a>
+                        </div>
+                    </div>
+                    <hr />
+                </div>*@
+
+            </div>
+            <hr />
             <div class="row">
                 <div class="col-sm-6">
                     <div class="input-group">
@@ -139,129 +214,13 @@
             </div>
             <hr />
 
-          
-
-            <div class="row">
-                <div class="col-md-8 fuente-pequeña" style="border-right:solid;border-color:rgb(220, 220, 220);border-width:1px;">
-                    @Html.Action("VistaOfertasPendientes", "UTP")
-                </div> 
-            
-
-                    @*<div class="row">
-                    <div class="col-md-8 fuente-pequeña" style="border-right:solid;border-color:rgb(220, 220, 220);border-width:1px;">
-                        <h5>Ofertas por Activar</h5>
-                        <div class="row grilla1-cabecera color-paleta1">
-                            <div class="col-sm-3">
-                                Fecha Publicación
-                            </div>
-                            <div class="col-sm-4">
-                                Empresa
-                            </div>
-                            <div class="col-sm-5">
-                                Oferta
-                            </div>
-                        </div>
 
 
 
-                        <div class="row grilla1-linea">
-                            <div class="col-sm-3">
-                                Hace un Momento
-                            </div>
-                            <div class="col-sm-4">
-                                IBM del Perú
-                            </div>
-                            <div class="col-sm-5">
-                                <a href="../UTP/RegistroOferta">Gerente de Proyectos</a>
-                            </div>
-                        </div>
-                        <div class="row grilla1-linea">
-                            <div class="col-sm-3">
-                                Hace media Hora
-                            </div>
-                            <div class="col-sm-4">
-                                Everis S.A.
-                            </div>
-                            <div class="col-sm-5">
-                                <a href="../UTP/RegistroOferta">Gerente de Servicio</a>
-                            </div>
-                        </div>
-                        <div class="row grilla1-linea">
-                            <div class="col-sm-3">
-                                Hace una Hora
-                            </div>
-                            <div class="col-sm-4">
-                                Criteria IT
-                            </div>
-                            <div class="col-sm-5">
-                                <a href="../UTP/RegistroOferta">Gerente Comercial TI</a>
-                            </div>
-                        </div>
-                        <div class="row grilla1-linea">
-                            <div class="col-sm-3">
-                                Hace una Hora
-                            </div>
-                            <div class="col-sm-4">
-                                IBM del Perú
-                            </div>
-                            <div class="col-sm-5">
-                                <a href="../UTP/RegistroOferta">Jefe de Proyectos</a>
-                            </div>
-                        </div>
-                        <hr />
-                    </div>*@
-
-
-                <div class="row">
-
-                    <div class="col-sm-4 fuente-pequeña" style="border-right:solid;border-color:rgb(220, 220, 220);border-width:1px;">
-                        @Html.Action("Vista_EmpresasPendientes", "UTP")
-                    </div>
-
-                </div>
-
-                    @*<div class="col-sm-4 fuente-pequeña" style="border-right:solid;border-color:rgb(220, 220, 220);border-width:1px;">
-                <h5>Empresas por Activar</h5>
-                <div class="row grilla1-cabecera color-paleta1">
-                    <div class="col-sm-4">
-                        Fecha Registro
-                    </div>
-                    <div class="col-sm-8">
-                        Empresa
-                    </div>
-                </div>
-                <div class="row grilla1-linea">
-                    <div class="col-sm-4">
-                        Hace dos Horas
-                    </div>
-                    <div class="col-sm-8">
-                        <a href="../UTP/RegistroEmpresa">Tata del Perú</a>
-                    </div>
-                </div>
-                <div class="row grilla1-linea">
-                    <div class="col-sm-4">
-                        Ayer
-                    </div>
-                    <div class="col-sm-8">
-                        <a href="../UTP/RegistroEmpresa">Metalurgia Orquidea SAC</a>
-                    </div>
-                </div>
-                <div class="row grilla1-linea">
-                    <div class="col-sm-4">
-                        Antes de Ayer
-                    </div>
-                    <div class="col-sm-8">
-                        <a href="../UTP/RegistroEmpresa">Empresas del Vidrio SA</a>
-                    </div>
-                </div>
-                <hr />
-            </div>*@
-
-                </div>
-            </div>
+        </div>
             <div class="col-md-5 fuente-pequeña">
                 <h5>Mensajes</h5>
-                <hr />
+                
                 <div class="row grilla1-cabecera color-paleta1">
                     <div class="col-sm-1">
 

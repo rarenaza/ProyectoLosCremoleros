@@ -31,7 +31,8 @@
         <div class="row grilla1-linea">
 
             <div class="col-sm-2">
-                <a href="../UTP/Empresa">@item.NombreComercial</a>
+                @*<a href="../UTP/Empresa">@item.NombreComercial</a>*@
+                @Html.ActionLink(@item.NombreComercial, "VerDetalleEmpresa", new { id = item.IdEmpresa })
             </div>
             <div class="col-sm-2">
                 @item.RazonSocial

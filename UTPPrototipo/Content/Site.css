@@ -228,6 +228,11 @@ input[type="checkbox"].input-validation-error {
     background-color:rgb(43, 86, 177);
 	color:white;
     }
+.color-paleta8 {
+    background-color:rgb(0, 0, 0);
+	color:white;
+    }
+
 .color-icono-paleta1 {
     color: rgb(180, 30, 34);
     }
@@ -649,8 +654,14 @@ input, select, option, textarea {
 
 .demo {
     background-color: yellow;
-}
+    }
 
 .text-danger {
     padding-left: 8px;
-}
+    }
+
+.linea_raya {
+    border-bottom:solid;
+    border-bottom-width:thin;
+    border-bottom-color:rgb(240, 240, 240);
+    }

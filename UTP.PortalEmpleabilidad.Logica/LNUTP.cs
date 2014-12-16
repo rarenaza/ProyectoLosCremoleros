@@ -47,6 +47,8 @@ namespace UTP.PortalEmpleabilidad.Logica
             for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
             {
                 EmpresaListaEmpresa vista = new EmpresaListaEmpresa();
+
+                vista.IdEmpresa = Convert.ToInt32(dtResultado.Rows[i]["IdEmpresa"]);
                 vista.NombreComercial = dtResultado.Rows[i]["Nombre"].ToString();
                 vista.RazonSocial = dtResultado.Rows[i]["Razon"].ToString();
                 vista.RUC = dtResultado.Rows[i]["RUC"].ToString();

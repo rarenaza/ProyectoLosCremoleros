@@ -1,0 +1,182 @@
+﻿@model  UTP.PortalEmpleabilidad.Modelo.Empresa
+
+<h5>Nombre: @Html.DisplayFor(m => m.NombreComercial)</h5>
+
+<br />
+<div class="row">
+
+    <div class="col-sm-8">
+        <table>
+            <tr class="linea_raya">
+                <td class="celda-nombre" style="width:40%;">                    
+                    Razón Social
+                </td>
+                <td class="celda-datos">
+                    @Html.DisplayFor(m => m.RazonSocial)
+                </td>
+            </tr>
+            <tr class="linea_raya">
+                <td class="celda-nombre">
+                    País
+                </td>
+                <td class="celda-datos">
+                    @Html.DisplayFor(m => m.Pais.Valor)
+                </td>
+            </tr>
+            <tr class="linea_raya">
+                <td class="celda-nombre">
+                    RUC
+                </td>
+                <td class="celda-datos">
+                    @Html.DisplayFor(m => m.IdentificadorTributario)
+                </td>
+            </tr>
+            <tr class="linea_raya">
+                <td class="celda-nombre">
+                    Descripción
+                </td>
+                <td class="celda-datos">
+                    @Html.DisplayFor(m => m.DescripcionEmpresa)
+                </td>
+            </tr>
+            <tr class="linea_raya">
+                <td class="celda-nombre">
+                    Sitio Web
+                </td>
+                <td class="celda-datos">
+                    @Html.DisplayFor(m => m.SitioWeb)                    
+                </td>
+            </tr>
+            <tr class="linea_raya">
+                <td class="celda-nombre">
+                    Link Video
+                </td>
+                <td class="celda-datos">
+                    @Html.DisplayFor(m => m.LinkVideo)                    
+                </td>
+            </tr>
+            <tr class="linea_raya">
+                <td class="celda-nombre">
+                    Año de Creación
+                </td>
+                <td class="celda-datos">
+                    @Html.DisplayFor(m => m.AnoCreacion)                    
+                </td>
+            </tr>
+            <tr class="linea_raya">
+                <td class="celda-nombre">
+                    Número de Empleados
+                </td>
+                <td class="celda-datos">
+                    @Html.DisplayFor(m => m.NumeroEmpleados.Valor)                    
+                </td>
+            </tr>
+            <tr class="linea_raya">
+                <td class="celda-nombre">
+                    Estado de la Empresa
+                </td>
+                <td class="celda-datos">
+                    <select>
+                        <option>Activa</option>
+                        <option>Pendiente de aprobación de registro</option>
+                        <option>No Activa</option>
+                        <option>
+                            Suspendida
+                        </option>
+                    </select>
+
+                </td>
+            </tr>
+            <tr class="linea_raya">
+                <td class="celda-nombre">
+                    Sector 1
+                </td>
+                <td class="celda-datos">
+                    @Html.DisplayFor(m => m.SectorEmpresarial.Valor)                                        
+                </td>
+            </tr>
+            <tr class="linea_raya">
+                <td class="celda-nombre">
+                    Sector 2
+                </td>
+                <td class="celda-datos">
+                    @Html.DisplayFor( m => m.SectorEmpresarial2.Valor)
+                </td>
+            </tr>
+            <tr class="linea_raya">
+                <td class="celda-nombre">
+                    Sector 3
+                </td>
+                <td class="celda-datos">
+                    @Html.DisplayFor(m => m.SectorEmpresarial3.Valor)
+                </td>
+            </tr>
+            <tr class="linea_raya">
+                <td class="celda-nombre">
+                    Usuario Ejecutivo de Cuenta
+                </td>
+                <td class="celda-datos">
+                    <select>
+                        <option>Mario Valentin</option>
+                        <option>José Alvarado</option>
+                        <option>Mario Kalimba</option>
+                        <option>Rosa Benavides</option>
+                    </select>
+
+                </td>
+            </tr>
+            <tr class="linea_raya">
+                <td class="celda-nombre">
+                    Creado Por
+                </td>
+                <td class="celda-datos">                    
+                    @Html.DisplayFor(m => m.CreadoPor)
+                </td>
+            </tr>
+            <tr class="linea_raya">
+                <td class="celda-nombre">
+                    Creado el
+                </td>
+                <td class="celda-datos">
+                    @Html.DisplayFor(m => m.FechaCreacion)
+                </td>
+            </tr>
+            <tr class="linea_raya">
+                <td class="celda-nombre">
+                    Modificado Por
+                </td>
+                <td class="celda-datos">
+                    @Html.DisplayFor(m => m.ModificadoPor)
+                </td>
+            </tr>
+            <tr class="linea_raya">
+                <td class="celda-nombre">
+                    Modificado el
+                </td>
+                <td class="celda-datos">
+                    @Html.DisplayFor(m => m.FechaModificacion)
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="col-sm-4">
+        <table>
+            <tr class="linea_raya">
+                <td class="celda-nombre">
+                    Logo
+                </td>
+                <td class="celda-datos">
+                    <img src="~/img/logos/logoibm.jpg" />
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<br />
+<div class="row">
+    <div class="col-sm-12" style="text-align:right;">
+        <button class="btn btn-default">Guardar</button>
+    </div>
+</div>
