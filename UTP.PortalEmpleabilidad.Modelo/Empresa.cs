@@ -42,7 +42,9 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public ListaValor SectorEmpresarial3 { get; set; }
         public string CreadoPor { get; set; }
         public string UsuarioEC { get; set; }
+        public byte[] LogoEmpresa { get; set; }
 
+        public string PaisDescripcion { get; set; }
         public List<EmpresaLocacion> Locaciones { get; set; }
         public List<EmpresaUsuario> Usuarios { get; set; }
 
@@ -54,7 +56,12 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string SectorEmpresarial2IdListaValor { get; set; }
         public string SectorEmpresarial3IdListaValor { get; set; }
         public string ModificadoPor { get; set; }
+
+        public string OficinaPrincipal { get; set; }
+        
+
         public string EstadoIdListaValor { get; set; }
+
 
         public string SitioWeb { get; set; }
         public DateTime FechaCreacion { get; set; }        
@@ -75,7 +82,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
             SectorEmpresarial3IdListaValor = string.Empty;
         }
 
-            public byte[] LogoEmpresa { get; set; }
+         
             public string ArchivoNombreOriginal { get; set; }
             public string ArchivoMimeType { get; set; }
 

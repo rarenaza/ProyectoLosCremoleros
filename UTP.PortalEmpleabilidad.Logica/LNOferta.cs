@@ -45,6 +45,11 @@ namespace UTP.PortalEmpleabilidad.Logica
                 oferta.IdEmpresa = Funciones.ToInt(dtResultado.Rows[0]["IdEmpresa"]);
                 oferta.IdentificadorTributario = Funciones.ToString(dtResultado.Rows[0]["IdentificadorTributario"]);
                 oferta.Compatible = Funciones.ToDecimal(dtResultado.Rows[0]["Compatible"]);
+                oferta.IdOferta = idOferta;
+                oferta.Postulacion = Funciones.ToInt(dtResultado.Rows[0]["Postulacion"]);
+                oferta.FechaPostulacion = Funciones.ToDateTime(dtResultado.Rows[0]["FechaPostulacion"]);
+                oferta.NombreCV = Funciones.ToString(dtResultado.Rows[0]["NombreCV"]);
+                oferta.IdCV = Funciones.ToInt(dtResultado.Rows[0]["IdCV"]);
 
             }
 
@@ -185,14 +190,14 @@ namespace UTP.PortalEmpleabilidad.Logica
             {
                 VistaPostulacionAlumno postulacion = new VistaPostulacionAlumno();
 
-                postulacion.FechaPublicacion = Convert.ToDateTime(dtResultado.Rows[i]["FechaPublicacion"]);
-                postulacion.FechaPostulacion = Convert.ToDateTime(dtResultado.Rows[i]["FechaPostulacion"]);
-                postulacion.Empresa = dtResultado.Rows[i]["Empresa"].ToString();
-                postulacion.CargoOfrecido = dtResultado.Rows[i]["CargoOfrecido"].ToString();
-                postulacion.TipoTrabajo = dtResultado.Rows[i]["TipoTrabajo"].ToString();
-                postulacion.Horario = Convert.ToDateTime(dtResultado.Rows[i]["Horario"]);
-                postulacion.RemuneracionOfrecida = Convert.ToDecimal(dtResultado.Rows[i]["RangoRemuneracionDesde"]);
-                postulacion.EstadoOferta = dtResultado.Rows[i]["EstadoOferta"].ToString();
+                postulacion.FechaPublicacion = Funciones.ToDateTime(dtResultado.Rows[i]["FechaPublicacion"]);
+                postulacion.FechaPostulacion = Funciones.ToDateTime(dtResultado.Rows[i]["FechaPostulacion"]);
+                postulacion.Empresa = Funciones.ToString(dtResultado.Rows[i]["Empresa"]);
+                postulacion.CargoOfrecido = Funciones.ToString(dtResultado.Rows[i]["CargoOfrecido"]);
+                postulacion.TipoTrabajo = Funciones.ToString(dtResultado.Rows[i]["TipoTrabajo"]);
+                postulacion.Horario = Funciones.ToString(dtResultado.Rows[i]["Horario"]);
+                postulacion.RemuneracionOfrecida = Funciones.ToDecimal(dtResultado.Rows[i]["RemuneracionOfrecida"]);
+                postulacion.EstadoOferta = Funciones.ToString(dtResultado.Rows[i]["EstadoOferta"]);
 
                 listapostulacion.Add(postulacion);
             }

@@ -168,6 +168,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Common\DescargaResult.cs" />
     <Compile Include="Common\Util.cs" />
     <Compile Include="Common\FormatHelper.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -766,6 +767,9 @@
     <Content Include="Views\UTP\_DatosUtp.cshtml" />
     <Content Include="Views\UTP\_OfertasPendientes.cshtml" />
     <Content Include="Views\UTP\_EmpresasPendientes.cshtml" />
+    <Content Include="Views\Alumno\_EstadoPostulacion.cshtml" />
+    <Content Include="Views\Alumno\_ResultadoBusquedaPostulaciones.cshtml" />
+    <Content Include="Views\Alumno\_ModalDetalleEmpresa.cshtml" />
     <Content Include="Views\UTP\prueba.cshtml" />
     <Content Include="Views\Empresa\_OfertaFase.cshtml" />
     <Content Include="Views\UTP\_ResultadoBusquedaEmpresas.cshtml" />

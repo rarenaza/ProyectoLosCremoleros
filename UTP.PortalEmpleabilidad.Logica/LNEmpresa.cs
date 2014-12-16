@@ -176,6 +176,7 @@ namespace UTP.PortalEmpleabilidad.Logica
         }
 
 
+
         //public bool Empresa_Insertar_Imagen(Empresa empresa)
         //{
 
@@ -209,6 +210,34 @@ namespace UTP.PortalEmpleabilidad.Logica
         {
             return adEmpresa.Empresa_Elegir_Imagen(Cod);
         }
+
+
+        public Empresa ObtenerDetalleEmpresaPorId(int idEmpresa)
+        {
+            Empresa empresa = new Empresa();
+
+            DataSet dsResultado = adEmpresa.ObtenerDetalleEmpresaPorId(idEmpresa);
+
+            //Datos generales de la empresa.
+            if (dsResultado.Tables.Count > 0)
+            {
+                if (dsResultado.Tables[0].Rows.Count > 0)
+                {
+
+                    empresa.NombreComercial = Funciones.ToString(dsResultado.Tables[0].Rows[0]["NombreComercial"]);
+                    //empresa.LogoEmpresa = Funciones.ToBytes(dsResultado.Tables[0].Rows[0]["LogoEmpresa"]);
+                    empresa.PaisIdListaValor = Funciones.ToString(dsResultado.Tables[0].Rows[0]["Pais"]);
+                    empresa.NumeroEmpleadosIdListaValor = Funciones.ToString(dsResultado.Tables[0].Rows[0]["NumeroEmpleados"]);
+                    empresa.DescripcionEmpresa = Funciones.ToString(dsResultado.Tables[0].Rows[0]["DescripcionEmpresa"]);
+                    empresa.AnoCreacion = Funciones.ToInt(dsResultado.Tables[0].Rows[0]["AnoCreacion"]);
+                    empresa.SectorEmpresarial1IdListaValor = Funciones.ToString(dsResultado.Tables[0].Rows[0]["SectorEmpresarial"]);
+                    empresa.OficinaPrincipal = Funciones.ToString(dsResultado.Tables[0].Rows[0]["OficinaPrincipal"]);
+                }
+            }
+
+
+            return empresa;
+        }        
 
 
         public bool ValidarNombreDeUsuario(string nombreUsuario)

@@ -13,8 +13,13 @@ namespace UTP.PortalEmpleabilidad.Modelo.Vistas.Ofertas
         public string Empresa { get; set; }
         public string CargoOfrecido { get; set; }
         public string TipoTrabajo { get; set; }
-        public DateTime  Horario { get; set; }
+        public string Horario { get; set; }
         public decimal  RemuneracionOfrecida { get; set; }
         public string  EstadoOferta { get; set; }
+        public int IdAlumno { get; set; }
+        public string PalabraClave { get; set; }
+        public int IdOferta { get; set; }
+        public int Mensajes { get; set; }
+        public int IdEmpresa { get; set; }
     }
 }
