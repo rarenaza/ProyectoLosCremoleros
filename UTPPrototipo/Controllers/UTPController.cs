@@ -191,7 +191,7 @@ namespace UTPPrototipo.Controllers
             //Lista de Combos
 
             ViewBag.ListaEstado = listItemsEstado;
-            ViewBag.ListaEstadoEstudio = listItemSector;
+            ViewBag.ListaSector = listItemSector;
 
             return View(utp);                 
 

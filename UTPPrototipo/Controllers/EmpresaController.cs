@@ -342,7 +342,7 @@ namespace UTPPrototipo.Controllers
             {
                 TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];
 
-                empresa.ModificadoPor = ticket.Usuario;
+                empresa.ModificadoPor = ticket.Usuario; 
                 lnEmpresa.Actualizar(empresa);
 
                 empresa = lnEmpresa.ObtenerDatosEmpresaPorId(empresa.IdEmpresa);
@@ -369,9 +369,8 @@ namespace UTPPrototipo.Controllers
         }
 
 
-        public ActionResult _AdministrarImagen()
+        public PartialViewResult _AdministrarImagen()
         {
-
             TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];
             EmpresaVista  empresa = new EmpresaVista();
             
@@ -396,7 +395,7 @@ namespace UTPPrototipo.Controllers
                 
             }
 
-            return View(empresa);           
+            return PartialView(empresa);           
         
         }
 
@@ -441,6 +440,7 @@ namespace UTPPrototipo.Controllers
                 //return RedirectToAction("Administrar");
 
                 return PartialView("_AdministrarImagen", empresaHTML);
+
                
             }
             else
@@ -452,53 +452,7 @@ namespace UTPPrototipo.Controllers
 
         }
 
-
-
-
-
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //[ValidateInput(false)]
-        //public ActionResult _AdministrarDatosGenerales([Bind(Include = "")] EmpresaVista empresaHTML)
-        //{
-           
-        //    Empresa empresa = new Empresa();
-
-        //    if (empresaHTML.LogoEmpresaHtml != null)
-        //    {
-
-        //        byte[] uploadedFile = new byte[empresaHTML.LogoEmpresaHtml.InputStream.Length];
-        //        empresaHTML.LogoEmpresaHtml.InputStream.Read(uploadedFile, 0, Convert.ToInt32(empresaHTML.LogoEmpresaHtml.InputStream.Length));
-        //        empresaHTML.ArchivoNombreOriginal = empresaHTML.LogoEmpresaHtml.FileName;
-        //        empresaHTML.ArchivoMimeType = empresaHTML.LogoEmpresaHtml.ContentType;
-        //        empresaHTML.LogoEmpresa = uploadedFile;
-
-
-        //    }
-            
-           
-        //    empresa.LogoEmpresa = empresaHTML.LogoEmpresa;
-
-        //    empresa.ArchivoMimeType = empresaHTML.ArchivoMimeType;
-        //    empresa.ArchivoNombreOriginal = empresaHTML.ArchivoNombreOriginal;
-                     
-
-
-        //    if (lnEmpresa.Empresa_Insertar_Imagen(empresa) == true)
-        //    {
-        //        ViewBag.Message = "Registro Insertado Correctamente";
-        //        return RedirectToAction("Portal");
-        //    }
-        //    else
-        //    {
-                               
-
-        //        ViewBag.Message = "Error al Guardar la informacion";
-        //        return View(empresaHTML);
-
-        //    }
-
-        //}
+              
 
         public PartialViewResult _AdministrarUbicaciones(int idEmpresa)
         {

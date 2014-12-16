@@ -54,7 +54,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 vista.RUC = dtResultado.Rows[i]["RUC"].ToString();
                 vista.Estado = dtResultado.Rows[i]["Estado"].ToString();
                 vista.SectorEmpresarial = dtResultado.Rows[i]["SectorEmpresarial"].ToString();
-
+                vista.Ofertas = dtResultado.Rows[i]["Ofertas"].ToString();
                 listaEjemplo.Add(vista);
             }
 
