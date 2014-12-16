@@ -1,36 +1,36 @@
 ﻿@model  IEnumerable<UTPPrototipo.Models.ViewModels.Empresa.VistaNuevasPostulaciones>
 
 <div class="col-md-7 fuente-pequeña" style="border-right:solid;border-color:rgb(220, 220, 220);border-width:1px;">
-    <h5>Nuevas Postulaciones</h5>
-    <div class="row">
-        <div class="col-sm-3"><strong>Oferta</strong></div>
+    <h5>Pendientes de Revisión</h5>
+    
+    <div class="row grilla1-cabecera color-paleta1">
         <div class="col-sm-3"><strong>Fecha de <br />Postulación</strong></div>
-        <div class="col-sm-4"><strong>Nombre</strong></div>
-        <div class="col-sm-2"><strong>Cumplimiento</strong></div>
+        <div class="col-sm-3"><strong>Oferta</strong></div>
+        <div class="col-sm-4"><strong>Postulante</strong></div>
+        <div class="col-sm-2"><strong>Cumplimiento de Requisitos</strong></div>
     </div>
-    <hr />
-
     @foreach (var item in Model)
     {
-        <div class="row">
-            <div class="col-sm-3">
-                @item.CargaOfrecido
-            </div>
+        <div class="row grilla1-linea">
             <div class="col-sm-3">
                 @item.FechaPostulacion
+            </div>
+            <div class="col-sm-3">
+                <a href="../Empresa/Oferta">@item.CargaOfrecido</a>
             </div>
             <div class="col-sm-4">
                 <a href="../Empresa/Postulante"><strong>@item.AlumnoNombres @item.AlumnoApellidos</strong></a>
             </div>
-            <div class="col-sm-2" style="height:20px;">
+            <div class="col-sm-2">
                 <div class="progress">
-                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="@item.Cumplimiento" aria-valuemin="0" aria-valuemax="100" style="width:90%;">
+                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="@item.Cumplimiento" aria-valuemin="0" aria-valuemax="100" style="width:@item.Cumplimiento%;">
                         @item.Cumplimiento
                     </div>
                 </div>
             </div>
         </div>
     }
-
+    <br />
 </div>
+
 

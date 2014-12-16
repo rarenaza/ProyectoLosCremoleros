@@ -12,6 +12,7 @@ namespace UTP.PortalEmpleabilidad.Logica
     public class LNUsuario
     {
         ADAlumno ad = new ADAlumno();
+        ADUsuario adUsuario = new ADUsuario();
 
         public Usuario ObtenerUsuarioPorId(string nombreUsuario)
         {
@@ -26,6 +27,11 @@ namespace UTP.PortalEmpleabilidad.Logica
             }
 
             return usuario;
+        }
+
+        public bool ValidarNombreDeUsuario(string nombreUsuario)
+        {
+            return adUsuario.ValidarNombreDeUsuario(nombreUsuario);
         }
     }
 }

@@ -46,6 +46,8 @@
     <Compile Include="AlumnoCVEstudio.cs" />
     <Compile Include="AlumnoEstudio.cs" />
     <Compile Include="AlumnoExpericiencia.cs" />
+    <Compile Include="EmpresaListaEmpresa.cs" />
+    <Compile Include="Auditoria.cs" />
     <Compile Include="EmpresaLocacion.cs" />
     <Compile Include="EmpresaUsuario.cs" />
     <Compile Include="Evento.cs" />
@@ -56,6 +58,7 @@
     <Compile Include="Mensaje.cs" />
     <Compile Include="Oferta.cs" />
     <Compile Include="OfertaEstudio.cs" />
+    <Compile Include="OfertaFase.cs" />
     <Compile Include="OfertaInformacionAdicional.cs" />
     <Compile Include="OfertaPostulante.cs" />
     <Compile Include="OfertaSectorEmpresarial.cs" />
@@ -72,7 +75,11 @@
     <Compile Include="Vistas\AlumnoEstudio.cs" />
     <Compile Include="Vistas\ContenidoCombo\ContenidoVistaCombo.cs" />
     <Compile Include="Vistas\Empresa\VistaPanelCabecera.cs" />
+    <Compile Include="Vistas\Empresa\VistaRegistroEmpresa.cs" />
+    <Compile Include="Vistas\Mensaje\VistaPostulantePorMensaje.cs" />
+    <Compile Include="Vistas\Ofertas\ListaOfertaFase.cs" />
     <Compile Include="Vistas\Ofertas\VistaComboAlumno.cs" />
+    <Compile Include="Vistas\Ofertas\VistaEmpresListarOfertas.cs" />
     <Compile Include="Vistas\Ofertas\VistaOfertaAlumno.cs" />
     <Compile Include="Vistas\Ofertas\VistaOfertaEmpresa.cs" />
     <Compile Include="Vistas\Ofertas\VistaPostulacionAlumno.cs" />

@@ -1,0 +1,32 @@
+﻿@model UTP.PortalEmpleabilidad.Modelo.Mensaje
+
+
+@Html.HiddenFor(m => m.IdOferta)
+
+<div class="input-group">
+    <span class=" input-group-addon">
+        Para
+    </span>
+    @Html.DropDownListFor(m => m.ParaUsuario, null, "Seleccione un postulante", htmlAttributes: new { @class = "form-control" })
+    @*<select id="Lista" class="form-control">
+        <option value="" selected>--- Elija una oferta ---</option>
+        <option value="1">Gerente de Proyecto</option>
+        <option value="1">Jefe de Proyectos</option>
+        <option value="1">Analista Funcional</option>
+    </select>*@
+</div>
+<div class="input-group">
+    <span class=" input-group-addon">
+        Asunto
+    </span>
+    @*<input type="text" class="form-control" placeholder="Asunto ...">*@
+    @Html.EditorFor(model => model.Asunto, new { htmlAttributes = new { @class = "form-control", @placesholder = "Asunto..." } })
+</div>
+<div class="input-group">
+    <span class="input-group-addon">Msg</span>
+    @*<textarea class="form-control" placeholder="Escriba su mensaje aqui ..." rows="5"></textarea>*@
+    @Html.EditorFor(model => model.MensajeTexto, new { htmlAttributes = new { @class = "form-control", @placesholder = "Escriba su mensaje aquí ..." } })
+</div>
+<div style="text-align:right;">
+    <button type="submit">Enviar Mensaje</button>
+</div>

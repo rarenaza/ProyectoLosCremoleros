@@ -10,18 +10,8 @@
             <div class="col-sm-6">
                 <div class="input-group fuente-pequeña">
                     <span class="input-group-addon">Tipo</span>
-                    <select id="Lista" class="form-control">
-                        <option value="" selected>Tipo de Ubicación</option>
-                        <option>
-                            Oficina Principal
-                        </option>
-                        <option>
-                            Sucursal
-                        </option>
-                        <option>
-                            Planta
-                        </option>
-                    </select>
+                    @Html.DropDownListFor(m => m.TipoLocacionIdListaValor, null, "-- Especifique tipo locación --", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.TipoLocacionIdListaValor, "", new { @class = "text-danger" })
                 </div>
             </div>
 
@@ -30,7 +20,9 @@
             <div class="col-sm-12">
                 <div class="input-group">
                     <span class="input-group-addon">Nombre</span>
-                    <input type="text" class="form-control" placeholder="Nombre de la Ubicación">
+                    @*<input type="text" class="form-control" placeholder="Nombre de la Ubicación">*@
+                    @Html.Raw(@Html.EditorFor(model => model.NombreLocacion).ToString().Replace("text-box single-line", "form-control"))
+                    @Html.ValidationMessageFor(model => model.NombreLocacion, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
@@ -38,7 +30,9 @@
             <div class="col-sm-12">
                 <div class="input-group">
                     <span class="input-group-addon">E-Mail</span>
-                    <input type="text" class="form-control" placeholder="Dirección electrónica para la Ubicación">
+                    @*<input type="text" class="form-control" placeholder="Dirección electrónica para la Ubicación">*@
+                    @Html.Raw(@Html.EditorFor(model => model.CorreoElectronico).ToString().Replace("text-box single-line", "form-control"))
+                    @Html.ValidationMessageFor(model => model.CorreoElectronico, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
@@ -46,7 +40,9 @@
             <div class="col-sm-12">
                 <div class="input-group">
                     <span class="input-group-addon">Teléfono</span>
-                    <input type="text" class="form-control" placeholder="Teléfono de la Ubicación">
+                    @*<input type="text" class="form-control" placeholder="Teléfono de la Ubicación">*@
+                    @Html.Raw(@Html.EditorFor(model => model.TelefonoFijo).ToString().Replace("text-box single-line", "form-control"))
+                    @Html.ValidationMessageFor(model => model.TelefonoFijo, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
@@ -54,7 +50,9 @@
             <div class="col-sm-12">
                 <div class="input-group">
                     <span class="input-group-addon">Dirección</span>
-                    <textarea class="form-control" placeholder="Calle y Número de la Ubicación, interior, depto, oficina, urbanización" rows="2"></textarea>
+                    @*<textarea class="form-control" placeholder="Calle y Número de la Ubicación, interior, depto, oficina, urbanización" rows="2"></textarea>*@
+                    @Html.Raw(@Html.EditorFor(model => model.Direccion).ToString().Replace("text-box multi-line", "form-control"))
+                    @Html.ValidationMessageFor(model => model.Direccion, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
@@ -63,29 +61,15 @@
             <div class="col-sm-6">
                 <div class="input-group fuente-pequeña">
                     <span class="input-group-addon">Departa-<br />mento</span>
-                    <select id="Lista" class="form-control">
-                        <option value="" selected>Departamento, Región o Estado</option>
-                        <option>Lima</option>
-                        <option>Cajamarca</option>
-                        <option>Loreto</option>
-                        <option>La Libertad</option>
-                        <option>Ancash</option>
-                        <option>Ica</option>
-                    </select>
+                    @Html.Raw(@Html.EditorFor(model => model.DireccionDepartamento).ToString().Replace("text-box single-line", "form-control"))
+                    @Html.ValidationMessageFor(model => model.DireccionDepartamento, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="col-sm-6">
                 <div class="input-group fuente-pequeña">
                     <span class="input-group-addon">Ciudad</span>
-                    <select id="Lista" class="form-control">
-                        <option value="" selected>Seleccione Ciudad</option>
-                        <option>Lima</option>
-                        <option>Cajamarca</option>
-                        <option>Chincha</option>
-                        <option>Pisco</option>
-                        <option>Tacna</option>
-
-                    </select>
+                    @Html.Raw(@Html.EditorFor(model => model.DireccionCiudad).ToString().Replace("text-box single-line", "form-control"))
+                    @Html.ValidationMessageFor(model => model.DireccionCiudad, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
@@ -93,14 +77,8 @@
             <div class="col-sm-6">
                 <div class="input-group fuente-pequeña">
                     <span class="input-group-addon">Distrito</span>
-                    <select id="Lista" class="form-control">
-                        <option value="" selected>Seleccione Distrito</option>
-                        <option>Cercado de Lima</option>
-                        <option>Barranco</option>
-                        <option>Miraflores</option>
-                        <option>San Isidro</option>
-                        <option>Pueblo Libre</option>
-                    </select>
+                    @Html.Raw(@Html.EditorFor(model => model.DireccionDistrito).ToString().Replace("text-box single-line", "form-control"))
+                    @Html.ValidationMessageFor(model => model.DireccionDistrito, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
@@ -108,11 +86,8 @@
             <div class="col-sm-6">
                 <div class="input-group fuente-pequeña">
                     <span class="input-group-addon">Estado</span>
-                    <select id="Lista" class="form-control">
-                        <option value="" selected>Seleccione Estado</option>
-                        <option>Activa</option>
-                        <option>No Activa</option>
-                    </select>
+                    @Html.DropDownListFor(m => m.EstadoLocacionIdListaValor, null, "-- Especifique estado --", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.EstadoLocacionIdListaValor, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>

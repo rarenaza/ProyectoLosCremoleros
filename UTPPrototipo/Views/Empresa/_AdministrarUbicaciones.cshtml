@@ -1,52 +1,58 @@
 ﻿@model IEnumerable<UTP.PortalEmpleabilidad.Modelo.EmpresaLocacion>
 
 
-    <h5>Ubicaciones</h5>
+<h5>Ubicaciones</h5>
 
-    <div class="row grilla1-cabecera color-paleta4">
+<div class="row grilla1-cabecera color-paleta4">
+    <div class="col-sm-2">
+        Ubicación
+    </div>
+    <div class="col-sm-2">
+        Tipo
+    </div>
+    <div class="col-sm-4">
+        Dirección
+    </div>
+    <div class="col-sm-2">
+        Estado
+    </div>
+</div>
+
+@foreach (var locacion in Model)
+{
+    <div class="row grilla1-linea">
         <div class="col-sm-2">
-            Ubicación
+            <a href="../Empresa/VerUbicacion">@locacion.NombreLocacion</a>
         </div>
         <div class="col-sm-2">
-            Tipo
+            @locacion.TipoLocacion.Valor
         </div>
         <div class="col-sm-4">
-            Dirección
+            @locacion.Direccion
         </div>
         <div class="col-sm-2">
-            Estado
+            @locacion.EstadoLocacion.Valor
         </div>
-    </div>
-
-    @foreach (var locacion in Model)
-    {
-        <div class="row grilla1-linea">
-            <div class="col-sm-2">
-                <a href="../Empresa/VerUbicacion">@locacion.NombreLocacion</a>
-            </div>
-            <div class="col-sm-2">
-                @locacion.TipoLocacion.Valor
-            </div>
-            <div class="col-sm-4">
-                @locacion.Direccion
-            </div>
-            <div class="col-sm-2">
-                @locacion.EstadoLocacion.Valor
-            </div>
-            <div class="col-sm-2 fui fa-2x" style="color:gray;">
-                <a href="ModificaUbicacion">1</a> <a href="EliminaUbicacion">l</a>
-            </div>
+        <div class="col-sm-2">
+            <button class="btn btn-default btn-sm" onclick="editarLocacion(@locacion.IdEmpresaLocacion);">Editar</button>            
         </div>
-    }
+        <!--
+        <div class="col-sm-2 fui fa-2x" style="color:gray;">            
+            <a href="ModificaUbicacion">1</a>
+            <a href="EliminaUbicacion">l</a>
+        </div>
+        -->
+    </div>
+}
 
-    <br />
-    <div class="row">
-        <div class="col-sm-12" style="text-align:right;">
-            <button data-toggle="modal" id="btnNuevaUbicacion" data-target="#divModalNuevaUbicacion" class="btn btn-default color-paleta4" data-id="@ViewBag.IdEmpresa">
-                Nueva Ubicación
-            </button>          
+<br />
+<div class="row">
+    <div class="col-sm-12" style="text-align:right;">
+        <button id="btnNuevaUbicacion" class="btn btn-default color-paleta4" onclick="crearLocacion();" data-id="@ViewBag.IdEmpresa">
+            Nueva Ubicación
+        </button>
     </div>
-    </div>
-    <hr />
+</div>
+<hr />
 
 

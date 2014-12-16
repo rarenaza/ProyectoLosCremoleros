@@ -31,7 +31,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 locacion.Direccion = Convert.ToString(fila["Direccion"]);                
                 locacion.DireccionDistrito = Convert.ToString(fila["DireccionDistrito"]);
                 locacion.DireccionCiudad = Convert.ToString(fila["DireccionCiudad"]);
-                locacion.DireccionRegion = Convert.ToString(fila["DireccionRegion"]);
+                locacion.DireccionDepartamento = Convert.ToString(fila["DireccionDepartamento"]);
                 locacion.EstadoLocacion.Valor = Convert.ToString(fila["EstadoLocacion"]);
 
                 locaciones.Add(locacion);
@@ -40,10 +40,46 @@ namespace UTP.PortalEmpleabilidad.Logica
             return locaciones;
         }
 
-        public void Insertar(EmpresaLocacion empresaLocacion, string usuarioCreacion)
-        {
-            adEmpresaLocacion.Insertar(empresaLocacion, usuarioCreacion);
+        public EmpresaLocacion ObtenerLocacionPorId(int idEmpresaLocacion)
+        {            
+            DataTable dtResultado = adEmpresaLocacion.ObtenerLocacionPorId(idEmpresaLocacion);
+
+            EmpresaLocacion locacion = new EmpresaLocacion();
+
+            foreach (DataRow fila in dtResultado.Rows)
+            {                
+                locacion.IdEmpresaLocacion = Convert.ToInt32(fila["IdEmpresaLocacion"]);
+                locacion.IdEmpresa = Convert.ToInt32(fila["IdEmpresa"]);
+                locacion.TipoLocacionIdListaValor = Convert.ToString(fila["TipoLocacion"]);
+                locacion.NombreLocacion = Convert.ToString(fila["NombreLocacion"]);
+                locacion.CorreoElectronico = Convert.ToString(fila["CorreoElectronico"]);
+                locacion.TelefonoFijo = Convert.ToString(fila["TelefonoFijo"]);
+                locacion.Direccion = Convert.ToString(fila["Direccion"]);
+                locacion.DireccionDistrito = Convert.ToString(fila["DireccionDistrito"]);
+                locacion.DireccionCiudad = Convert.ToString(fila["DireccionCiudad"]);
+                locacion.DireccionDepartamento = Convert.ToString(fila["DireccionDepartamento"]);
+                locacion.EstadoLocacionIdListaValor = Convert.ToString(fila["EstadoLocacion"]);
+
+                break; //Sólo existe un registro.
+            }
+
+            return locacion;
         }
-        
+
+        public void Insertar(EmpresaLocacion empresaLocacion)
+        {
+            if (empresaLocacion.CorreoElectronico == null) empresaLocacion.CorreoElectronico = "";
+            if (empresaLocacion.TelefonoFijo == null) empresaLocacion.TelefonoFijo = "";
+
+            adEmpresaLocacion.Insertar(empresaLocacion);
+        }
+
+        public void Actualizar(EmpresaLocacion empresaLocacion)
+        {
+            if (empresaLocacion.CorreoElectronico == null) empresaLocacion.CorreoElectronico = "";
+            if (empresaLocacion.TelefonoFijo == null) empresaLocacion.TelefonoFijo = "";
+
+            adEmpresaLocacion.Actualizar(empresaLocacion);
+        }
     }
 }

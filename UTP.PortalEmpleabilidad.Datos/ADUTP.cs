@@ -67,5 +67,35 @@ namespace UTP.PortalEmpleabilidad.Datos
 
             return dtResultado;
         }
+
+
+        public DataTable Empresa_ObtenerPorNombre(string nombre)
+        {
+  
+            ADConexion cnn = new ADConexion();
+            SqlCommand cmd = new SqlCommand();
+            
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "Empresas_ObtenerNombre";
+            cmd.Parameters.Add(new SqlParameter("@Nombre", nombre));
+
+            cmd.Connection = cnn.cn;
+            cnn.Conectar();
+
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+
+            da.Fill(dt);
+
+            cnn.Desconectar();
+
+            return dt;
+        }
+
+
+
+
+
     }
 }

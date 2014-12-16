@@ -96,6 +96,28 @@ namespace UTP.PortalEmpleabilidad.Datos
 
                 conexion.Close();
             }
+        }
+
+        public void Eliminar(int idOfertaEstudio)
+        {
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "OfertaEstudio_Eliminar";
+
+                //Parámetros:
+                cmd.Parameters.Add(new SqlParameter("@IdOfertaEstudio", idOfertaEstudio));
+               
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                cmd.ExecuteNonQuery();
+
+                conexion.Close();
+            }
         }        
     }
 }

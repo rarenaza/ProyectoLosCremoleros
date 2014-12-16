@@ -47,5 +47,10 @@ namespace UTP.PortalEmpleabilidad.Logica
         {
             adOfertaSectorEmpresarial.Actualizar(ofertaSector);
         }
+
+        public void Eliminar(int idOfertaSector)
+        {
+            adOfertaSectorEmpresarial.Eliminar(idOfertaSector);
+        }
     }
 }

@@ -278,7 +278,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 OfertaEstudio estudio                   = new OfertaEstudio();
                 estudio.IdOfertaEstudio                 = Convert.ToInt32(filaEstudio["IdOfertaEstudio"]);
                 estudio.IdOferta                        = Convert.ToInt32(filaEstudio["IdOfertaEstudio"]);
-                estudio.CicloEstudio                    = Convert.ToString(filaEstudio["CicloEstudio"]);
+                estudio.CicloEstudio                    = Convert.ToInt32(filaEstudio["CicloEstudio"]);
                 estudio.Estudio                         = Convert.ToString(filaEstudio["Estudio"]);
                 estudio.TipoDeEstudio.Valor             = Convert.ToString(filaEstudio["TipoDeEstudioDescripcion"]);
                 estudio.EstadoDelEstudio.Valor          = Convert.ToString(filaEstudio["EstadoDelEstudioDescripcion"]);
@@ -288,7 +288,7 @@ namespace UTP.PortalEmpleabilidad.Logica
             }
 
             //Tabla Index 2: Lista de experiencia por sector
-            foreach (DataRow filaSector in dsResultado.Tables[1].Rows)
+            foreach (DataRow filaSector in dsResultado.Tables[2].Rows)
             {
                 OfertaSectorEmpresarial sector = new OfertaSectorEmpresarial();
                 sector.IdOfertaSectorEmpresarial    = Convert.ToInt32(filaSector["IdOfertaSectorEmpresarial"]);
@@ -300,34 +300,22 @@ namespace UTP.PortalEmpleabilidad.Logica
 
             }
 
-            //Tabla Index 1: Lista de información adicional
-            foreach (DataRow filaInfoAdicional in dsResultado.Tables[1].Rows)
+            //Tabla Index 3: Lista de información adicional
+            foreach (DataRow filaInfoAdicional in dsResultado.Tables[3].Rows)
             {
                 OfertaInformacionAdicional infoAdicional = new OfertaInformacionAdicional();
                 infoAdicional.IdOfertaInformacionAdicional  = Convert.ToInt32(filaInfoAdicional["IdOfertaInformacionAdicional"]);
                 infoAdicional.IdOferta                      = Convert.ToInt32(filaInfoAdicional["IdOferta"]);
                 infoAdicional.TipoConocimiento.Valor        = Convert.ToString(filaInfoAdicional["TipoConocimientoDescripcion"]);
                 infoAdicional.Conocimiento                  = Convert.ToString(filaInfoAdicional["Conocimiento"]);
-                infoAdicional.NivelConocimiento.Valor       = Convert.ToString(filaInfoAdicional["SNivelConocimientoDescripcion"]);
+                infoAdicional.NivelConocimiento.Valor       = Convert.ToString(filaInfoAdicional["NivelConocimientoDescripcion"]);
                 infoAdicional.AniosExperiencia              = Convert.ToInt32(filaInfoAdicional["AniosExperiencia"]);
 
                 oferta.ListaInformacionAdicional.Add(infoAdicional);
             }
             return oferta;
         }
-
-        public bool Actualizar(Oferta oferta)
-        {
-            try
-            {
-                return adOferta.Actualizar(oferta);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
+       
         public DataTable ObtenerPostulacionesPorEmpresa(int idEmpresa)
         {
             return adOferta.ObtenerPostulacionesPorEmpresa(idEmpresa);
@@ -342,6 +330,7 @@ namespace UTP.PortalEmpleabilidad.Logica
             foreach (DataRow fila in dtResultado.Rows)
             {
                 OfertaPostulante postulante = new OfertaPostulante();
+                postulante.IdOferta = Convert.ToInt32(fila["IdOferta"]);
                 postulante.IdOfertaPostulante = Convert.ToInt32(fila["IdOfertaPostulante"]);
                 postulante.FaseOferta.Valor = Convert.ToString(fila["FaseOfertaDescripcion"]);
                 postulante.FechaPostulacion = Convert.ToDateTime(fila["FechaPostulacion"]);
@@ -352,6 +341,64 @@ namespace UTP.PortalEmpleabilidad.Logica
             }
 
             return postulantes;
+        }
+
+        public List<OfertaFase> Obtener_OfertaFase(int idOferta)
+        {
+            List<OfertaFase> listaOfertaFase = new List<OfertaFase>();
+
+            DataTable dtResultado = adOferta.Obtener_OfertaFase(idOferta);
+
+            foreach (DataRow fila in dtResultado.Rows)
+            {
+                OfertaFase oFase = new OfertaFase();
+                oFase.IdOfertaFase = Convert.ToInt32(fila["IdOfertaFase"]);
+                oFase.IdOferta = Convert.ToInt32(fila["IdOfertaFase"]);
+                oFase.Incluir = Convert.ToBoolean(fila["Incluir"]);
+                oFase.IdListaValor = Convert.ToString(fila["IdListaValor"]);
+                oFase.FaseOferta = Convert.ToString(fila["FaseOferta"]);
+
+                listaOfertaFase.Add(oFase);                
+            }
+
+            //ListaOfertaFase listaRetorno = new ListaOfertaFase();
+            //listaRetorno.ListaFasesDeLaOferta = listaOfertaFase;
+
+            return listaOfertaFase; 
+        }
+
+        public void ActualizarOfertaFase(List<OfertaFase> listaOfertaFase)
+        {
+            adOferta.ActualizarOfertaFase(listaOfertaFase);
+        }
+
+        public List<OfertaFase> Obtener_OfertaFaseActivas(int idOferta)
+        {
+            List<OfertaFase> listaOfertaFase = new List<OfertaFase>();
+
+            DataTable dtResultado = adOferta.Obtener_OfertaFase(idOferta);
+
+            foreach (DataRow fila in dtResultado.Rows)
+            {
+                if (Convert.ToBoolean(fila["Incluir"]))
+                {                                 
+                    OfertaFase oFase = new OfertaFase();
+                    oFase.IdOfertaFase = Convert.ToInt32(fila["IdOfertaFase"]);
+                    oFase.IdOferta = Convert.ToInt32(fila["IdOfertaFase"]);
+                    oFase.Incluir = Convert.ToBoolean(fila["Incluir"]);
+                    oFase.IdListaValor = Convert.ToString(fila["IdListaValor"]);
+                    oFase.FaseOferta = Convert.ToString(fila["FaseOferta"]);
+
+                    listaOfertaFase.Add(oFase);
+                }
+            }
+          
+            return listaOfertaFase;
+        }
+
+        public void ActualizarFaseDePostulantes(List<OfertaPostulante> postulantes, string faseOferta)
+        {
+            adOferta.ActualizarFaseDePostulantes(postulantes, faseOferta);
         }
     }
 

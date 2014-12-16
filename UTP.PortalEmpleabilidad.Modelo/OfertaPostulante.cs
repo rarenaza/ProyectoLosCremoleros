@@ -8,8 +8,8 @@ namespace UTP.PortalEmpleabilidad.Modelo
 {
     public class OfertaPostulante
     {
-        public int IdOfertaPostulante { get; set; }
         public int IdOferta { get; set; }
+        public int IdOfertaPostulante { get; set; }
         public int IdAlumno { get; set; }
 
         public Oferta Oferta { get; set; }
@@ -22,7 +22,15 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public byte[] DocumentoCV { get; set; }
         public int NivelDeMatch { get; set; }
 
+
         public string CreadoPor { get; set; }
+
+
+        /// <summary>
+        /// Columna de ayuda para mover a los postulantes entre fases. No es una columna en la tabla.
+        /// </summary>
+        public bool Seleccionado { get; set; }
+        public string ModificadoPor { get; set; }
 
         public OfertaPostulante()
         {

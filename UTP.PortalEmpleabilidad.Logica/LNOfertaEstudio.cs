@@ -25,7 +25,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 OfertaEstudio estudio = new OfertaEstudio();
                 estudio.IdOfertaEstudio = Convert.ToInt32(fila["IdOfertaEstudio"]);
                 estudio.IdOferta = Convert.ToInt32(fila["IdOferta"]);
-                estudio.CicloEstudio = Convert.ToString(fila["CicloEstudio"]);
+                estudio.CicloEstudio = Convert.ToInt32(fila["CicloEstudio"]);
                 estudio.Estudio = Convert.ToString(fila["Estudio"]);
                 estudio.TipoDeEstudio.Valor = Convert.ToString(fila["TipoDeEstudioDescripcion"]);
                 estudio.TipoDeEstudioIdListaValor = Convert.ToString(fila["TipoDeEstudio"]);
@@ -42,12 +42,18 @@ namespace UTP.PortalEmpleabilidad.Logica
 
         public void Insertar(OfertaEstudio ofertaEstudio)
         {
+
             adOfertaEstudio.Insertar(ofertaEstudio);
         }
 
         public void Actualizar(OfertaEstudio ofertaEstudio)
         {
             adOfertaEstudio.Actualizar(ofertaEstudio);
+        }
+
+        public void Eliminar(int idOfertaEstudio)
+        {
+            adOfertaEstudio.Eliminar(idOfertaEstudio);
         }
     }
 }

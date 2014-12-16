@@ -31,9 +31,9 @@
 
 </div>
 
-<div id="divCargando">
+@*<div id="divCargando">
     <img id="imgCargando" src="../../img/cargando.gif" alt="" />
-</div>
+</div>*@
 
 
 <!-- Modal Datos Generales -->
@@ -64,7 +64,21 @@
     }
 </div>
 
+<div id="divModalUbicacionEditar" class="modal" tabindex="-1" role="dialog" aria-labelledby="EditarUbicacion" aria-hidden="true">
+
+    @using (Ajax.BeginForm("_AdministrarUbicacionEditar", "Empresa", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divListaUbicaciones", OnComplete = "cerrarModal" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div id="divUbicacionContenedorEditar" class="modal-dialog">
+
+        </div>
+
+    }
+</div>
+
 <!-- Modal Usuarios-->
+<!--Crear usuario-->
 <div class="modal" id="divModalNuevoUsuario" tabindex="-1" role="dialog" aria-labelledby="NuevaUbicacion" aria-hidden="true">
 
     @using (Ajax.BeginForm("_AdministrarNuevoUsuario", "Empresa", new AjaxOptions() {  InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divListaUsuarios", OnComplete = "cerrarModal" }))
@@ -76,6 +90,20 @@
         </div>    
     }
 </div>
+
+<!--Editar usuario-->
+<div class="modal" id="divModalUsuarioEditar" tabindex="-1" role="dialog" aria-labelledby="EditarUbicacion" aria-hidden="true">
+
+    @using (Ajax.BeginForm("_AdministrarUsuarioEditar", "Empresa", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divListaUsuarios", OnComplete = "cerrarModal" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div id="divUsuarioContenedorEditar" class="modal-dialog">
+
+        </div>
+    }
+</div>
+
 
 @*<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
@@ -103,47 +131,69 @@
                 $('#divEditarModal').modal('show');
             });
         });
-
-        $('#btnNuevaUbicacion').click(function () {
-            //debugger;
-            var url = "/Empresa/_AdministrarNuevaUbicacion"; // el url del controlador            
-            $.get(url, function (data) {
-                $('#divNuevaUbicacionContenedor').html(data);
-                $('#divModalNuevaUbicacion').modal('show');
-            });
-        });
-
-        $('#btnNuevoUsuario').click(function () {
-
-            var url = "/Empresa/_AdministrarNuevoUsuario"; // el url del controlador           
-            $.get(url, function (data) {
-                $('#divNuevoUsuarioContenedor').html(data);
-                $('#divModalNuevoUsuario').modal('show');
-            });
-        });
+       
     });
+
+    function crearUsuario() {
+        var url = "/Empresa/_AdministrarNuevoUsuario"; // el url del controlador           
+        $.get(url, function (data) {
+            $('#divNuevoUsuarioContenedor').html(data);
+            $.validator.unobtrusive.parse('#divNuevoUsuarioContenedor');
+
+            $('#divModalNuevoUsuario').modal('show');
+        });
+    }
+
+    function editarUsuario(id) {
+        var url = "/Empresa/_AdministrarUsuarioEditar/" + id;
+        $.get(url, function (data) {
+            $('#divUsuarioContenedorEditar').html(data);
+            $.validator.unobtrusive.parse('#divUsuarioContenedorEditar');
+            $('#divModalUsuarioEditar').modal('show');
+        });
+    }
+
+    function crearLocacion()
+    {
+        var url = "/Empresa/_AdministrarNuevaUbicacion"; // el url del controlador            
+        $.get(url, function (data) {
+            //alert(data);
+            $('#divNuevaUbicacionContenedor').html(data);
+            $.validator.unobtrusive.parse('#divNuevaUbicacionContenedor');
+            $('#divModalNuevaUbicacion').modal('show');
+        }).error(function (err) { console.log(err); });
+    }
+
+    function editarLocacion(id) {
+        var url = "/Empresa/_AdministrarUbicacionEditar/" + id; // el url del controlador            
+        $.get(url, function (data) {            
+            $('#divUbicacionContenedorEditar').html(data);
+            $.validator.unobtrusive.parse('#divUbicacionContenedorEditar');
+            $('#divModalUbicacionEditar').modal('show');
+        }).error(function (err) { console.log(err); });
+    }
 
     function cerrarModal() {      
         $('.modal.in').modal('hide');
     }
 
-    function validar() {
-        debugger;
-        //var form = $('#divEditarModal').find('form');
+    //function validar() {
+    //    debugger;
+    //    //var form = $('#divEditarModal').find('form');
 
-        //var validacion = $(form).validate();
-        var esValido = $('#form0').valid();
+    //    //var validacion = $(form).validate();
+    //    var esValido = $('#form0').valid();
         
-        if (esValido)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+    //    if (esValido)
+    //    {
+    //        return true;
+    //    }
+    //    else
+    //    {
+    //        return false;
+    //    }
 
-    }
+    //}
 
 </script>
 

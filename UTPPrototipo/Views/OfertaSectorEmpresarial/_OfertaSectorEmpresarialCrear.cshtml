@@ -12,23 +12,23 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="input-group fuente-pequeña">
-                        <span class="input-group-addon">Sector</span>
-                        @Html.DropDownList("SectorEmpresarialIdListaValor", null, htmlAttributes: new { @class = "form-control" })
+                        <span class="input-group-addon">Sector</span>                        
+                        @Html.DropDownListFor(m => m.SectorEmpresarialIdListaValor, null, "Seleccione", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.SectorEmpresarialIdListaValor, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-6">
                     <div class="input-group fuente-pequeña">
-                        <span class="input-group-addon">Años de<br />Experiencia</span>
-                        <input type="text" class="form-control" placeholder="Años de experiencia mínimos" name="AniosTrabajados">
+                        <span class="input-group-addon">Años de<br />Experiencia</span>                        
+                        @Html.TextBoxFor(m => m.AniosTrabajados, new { @class = "form-control", @placeholder = "Años de experiencia mínimos" })
                     </div>
                 </div>
 
                 <div class="col-sm-6">
                     <div class="input-group fuente-pequeña">
                         <span class="input-group-addon">Excluyente</span>
-
                         @*<span class="form-control">Excluyente</span>*@
                         @Html.CheckBoxFor(m => m.ExperienciaExcluyente)
                         @*<input type="checkbox" name="ExperienciaExcluyente" />*@

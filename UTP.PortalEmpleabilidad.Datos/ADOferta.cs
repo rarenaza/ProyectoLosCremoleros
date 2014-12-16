@@ -300,7 +300,7 @@ namespace UTP.PortalEmpleabilidad.Datos
             return dtResultado;
         }
 
-        public void Insertar(Oferta oferta)
+        public void Insertar(Oferta oferta, List<OfertaFase> listaOfertaFase)
         {
             try
             {
@@ -334,10 +334,28 @@ namespace UTP.PortalEmpleabilidad.Datos
                     cmd.Parameters.Add(new SqlParameter("@CreadoPor", oferta.CreadoPor));
 
                     cmd.Connection = conexion;
-
                     conexion.Open();
+                    object resultado = cmd.ExecuteScalar();
+                    
+                    if (resultado != null)
+                    {
+                        int idOfertaGenerado = Convert.ToInt32(resultado);
 
-                    cmd.ExecuteNonQuery();
+                        //Se insertan las fases de la oferta.
+                        foreach (var item in listaOfertaFase)
+                        {
+                            cmd = new SqlCommand();
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.CommandText = "OfertaFase_Insertar";
+                            cmd.Parameters.Add(new SqlParameter("@IdOferta", idOfertaGenerado));
+                            cmd.Parameters.Add(new SqlParameter("@IdListaValor", item.IdListaValor));
+                            cmd.Parameters.Add(new SqlParameter("@Incluir", item.Incluir));
+                            cmd.Parameters.Add(new SqlParameter("@CreadoPor", item.CreadoPor));
+                            
+                            cmd.Connection = conexion;                            
+                            cmd.ExecuteNonQuery();                          
+                        }                        
+                    }
 
                     conexion.Close();
                 }
@@ -384,7 +402,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                     cmd.Parameters.Add(new SqlParameter("@AreaEmpresa", oferta.AreaEmpresa));
                     cmd.Parameters.Add(new SqlParameter("@NumeroVacantes", oferta.NumeroVacantes));
                     cmd.Parameters.Add(new SqlParameter("@RequiereExperienciaLaboral", oferta.RequiereExperienciaLaboral));
-                    cmd.Parameters.Add(new SqlParameter("@AreaEmpresa", oferta.RecibeCorreosIdListaValor));
+                    cmd.Parameters.Add(new SqlParameter("@RecibeCorreos", oferta.RecibeCorreosIdListaValor));
                     cmd.Parameters.Add(new SqlParameter("@ModificadoPor", oferta.ModificadoPor));
 
                     cmd.Connection = conexion;
@@ -484,6 +502,101 @@ namespace UTP.PortalEmpleabilidad.Datos
             }
 
             return dtResultado;
+        }
+
+        public DataTable Obtener_OfertaFase(int idOferta)
+        {
+            DataTable dtResultado = new DataTable();
+
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "OfertaFase_Obtener";
+                cmd.Parameters.Add(new SqlParameter("@IdOferta", idOferta));                
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dtResultado);
+
+                conexion.Close();
+            }
+
+            return dtResultado;
+        }
+
+        public void ActualizarOfertaFase(List<OfertaFase> listaOfertaFase)
+        {
+            try
+            {
+                using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+                {
+                    SqlCommand cmd = new SqlCommand();
+
+                    conexion.Open();
+
+                    foreach (var item in listaOfertaFase)
+                    {
+                        cmd = new SqlCommand();
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        cmd.CommandText = "OfertaFase_Actualizar";
+
+                        cmd.Parameters.Add(new SqlParameter("@IdOfertaFase", item.IdOfertaFase));                        
+                        cmd.Parameters.Add(new SqlParameter("@Incluir", item.Incluir));
+                        cmd.Parameters.Add(new SqlParameter("@ModificadoPor", item.ModificadoPor));
+                      
+                        cmd.Connection = conexion;
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    conexion.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void ActualizarFaseDePostulantes(List<OfertaPostulante> postulantes, string faseOferta)
+        {
+            try
+            {
+                using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+                {
+                    SqlCommand cmd = new SqlCommand();
+
+                    conexion.Open();
+
+                    foreach (var item in postulantes)
+                    {
+                        if (item.Seleccionado)
+                        {                         
+                            cmd = new SqlCommand();
+                            cmd.CommandType = CommandType.StoredProcedure;
+
+                            cmd.CommandText = "OfertaPostulante_ActualizarFase";
+
+                            cmd.Parameters.Add(new SqlParameter("@IdOfertaPostulante", item.IdOfertaPostulante));
+                            cmd.Parameters.Add(new SqlParameter("@FaseOferta", faseOferta));
+                            cmd.Parameters.Add(new SqlParameter("@ModificadoPor", item.ModificadoPor));
+
+                            cmd.Connection = conexion;
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+
+                    conexion.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

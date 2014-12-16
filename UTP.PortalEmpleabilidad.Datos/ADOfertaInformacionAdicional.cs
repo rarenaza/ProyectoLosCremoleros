@@ -96,6 +96,24 @@ namespace UTP.PortalEmpleabilidad.Datos
 
                 conexion.Close();
             }
+        }
+
+        public void Eliminar(int idOfertaInfoAdicional)
+        {
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "OfertaInformacionAdicional_Eliminar";
+                cmd.Connection = conexion;
+                //Parámetros:
+                cmd.Parameters.Add(new SqlParameter("@IdOfertaInformacionAdicional", idOfertaInfoAdicional));
+
+                conexion.Open();
+                cmd.ExecuteNonQuery();
+                conexion.Close();
+            }
         }        
     }
 }

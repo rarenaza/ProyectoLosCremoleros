@@ -52,8 +52,29 @@ namespace UTP.PortalEmpleabilidad.Logica
             return panel;
         }
 
-        public void Insertar(Empresa empresa)
+        public void Insertar(VistaRegistroEmpresa empresa)
         {
+            //Se formatea los valores nulos.
+
+            //Empresa
+            if (empresa.LinkVideo == null) empresa.LinkVideo = string.Empty;
+            if (empresa.DescripcionEmpresa == null) empresa.DescripcionEmpresa = string.Empty;
+            if (empresa.PaisIdListaValor == null) empresa.PaisIdListaValor = string.Empty;
+            if (empresa.NumeroEmpleadosIdListaValor == null) empresa.NumeroEmpleadosIdListaValor = string.Empty;
+            if (empresa.SectorEmpresarial2IdListaValor == null) empresa.SectorEmpresarial2IdListaValor = string.Empty;
+            if (empresa.SectorEmpresarial3IdListaValor == null) empresa.SectorEmpresarial3IdListaValor = string.Empty;   
+
+            //Locación
+            if (empresa.EmailLocacion == null) empresa.EmailLocacion = string.Empty;
+            if (empresa.TelefonoLocacion == null) empresa.TelefonoLocacion = string.Empty;
+
+            //Usuario
+            if (empresa.SexoIdListaValor == null) empresa.SexoIdListaValor = string.Empty;
+            if (empresa.TelefonoFijoUsuario == null) empresa.TelefonoFijoUsuario = string.Empty;
+            if (empresa.AnexoUsuario == null) empresa.AnexoUsuario = string.Empty;
+            if (empresa.CelularUsuario == null) empresa.CelularUsuario = string.Empty;
+
+
             adEmpresa.Insertar(empresa);
         }
 
@@ -94,12 +115,19 @@ namespace UTP.PortalEmpleabilidad.Logica
                     empresa.SectorEmpresarial.Valor = Convert.ToString(dsResultado.Tables[0].Rows[0]["SectorEmpresarialDescripcion"]);
                     empresa.SectorEmpresarial2.Valor = Convert.ToString(dsResultado.Tables[0].Rows[0]["SectorEmpresarial2Descripcion"]);
                     empresa.SectorEmpresarial3.Valor = Convert.ToString(dsResultado.Tables[0].Rows[0]["SectorEmpresarial3Descripcion"]);
-
                     empresa.PaisIdListaValor = Convert.ToString(dsResultado.Tables[0].Rows[0]["Pais"]);
                     empresa.NumeroEmpleadosIdListaValor = Convert.ToString(dsResultado.Tables[0].Rows[0]["NumeroEmpleados"]);
                     empresa.SectorEmpresarial1IdListaValor = Convert.ToString(dsResultado.Tables[0].Rows[0]["SectorEmpresarial"]);
                     empresa.SectorEmpresarial2IdListaValor = Convert.ToString(dsResultado.Tables[0].Rows[0]["SectorEmpresarial2"]);
                     empresa.SectorEmpresarial3IdListaValor = Convert.ToString(dsResultado.Tables[0].Rows[0]["SectorEmpresarial3"]);
+                    empresa.SitioWeb = Convert.ToString(dsResultado.Tables[0].Rows[0]["SitioWeb"]);
+                    empresa.FechaCreacion = Convert.ToDateTime(dsResultado.Tables[0].Rows[0]["FechaCreacion"]);
+
+                    if (dsResultado.Tables[0].Rows[0]["FechaModificacion"] != DBNull.Value)
+                        empresa.FechaModificacion = Convert.ToDateTime(dsResultado.Tables[0].Rows[0]["FechaModificacion"]);
+
+                    empresa.CreadoPor = Convert.ToString(dsResultado.Tables[0].Rows[0]["CreadoPor"]);
+                    empresa.ModificadoPor = Convert.ToString(dsResultado.Tables[0].Rows[0]["ModificadoPor"]);
                 }
             }
 
@@ -116,7 +144,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 empresaLocacion.Direccion = Convert.ToString(locacionBD["Direccion"]);                
                 empresaLocacion.DireccionDistrito = Convert.ToString(locacionBD["DireccionDistrito"]);
                 empresaLocacion.DireccionCiudad = Convert.ToString(locacionBD["DireccionCiudad"]);
-                empresaLocacion.DireccionRegion = Convert.ToString(locacionBD["DireccionRegion"]);
+                empresaLocacion.DireccionDepartamento = Convert.ToString(locacionBD["DireccionDepartamento"]);
                 empresaLocacion.EstadoLocacion.Valor = Convert.ToString(locacionBD["EstadoLocacionDescripcion"]);
 
                 empresa.Locaciones.Add(empresaLocacion);
@@ -143,8 +171,10 @@ namespace UTP.PortalEmpleabilidad.Logica
 
                 empresa.Usuarios.Add(empresaUsuario);
             }
+
             return empresa;
         }
+
 
         public Empresa ObtenerDetalleEmpresaPorId(int idEmpresa)
         {
@@ -172,5 +202,14 @@ namespace UTP.PortalEmpleabilidad.Logica
 
             return empresa;
         }        
+
+        public bool ValidarNombreDeUsuario(string nombreUsuario)
+        {
+            bool existe = false;
+
+
+            return existe;
+        }
+
     }
 }
