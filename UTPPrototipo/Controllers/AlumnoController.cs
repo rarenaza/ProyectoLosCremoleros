@@ -9,6 +9,8 @@ using UTP.PortalEmpleabilidad.Logica;
 using UTP.PortalEmpleabilidad.Modelo;
 using UTP.PortalEmpleabilidad.Modelo.Vistas.Ofertas;
 using UTPPrototipo.Models.ViewModels;
+using UTPPrototipo.Common;
+using System.IO;
 
 namespace UTPPrototipo.Controllers
 {
@@ -18,10 +20,10 @@ namespace UTPPrototipo.Controllers
         LNAlumnoEstudio lnAlumnoEstudio = new LNAlumnoEstudio();
         LNAlumnoCV lnAlumnoCV = new LNAlumnoCV();
         LNAlumnoCVEstudio lnAlumnoCVEstudio = new LNAlumnoCVEstudio();
-
         LNPlantillaCV lnPlantillaCV = new LNPlantillaCV();
-
         LNOferta lnoferta = new LNOferta();
+        LNOfertaPostulante lnofertapostulante = new LNOfertaPostulante();
+        LNEmpresa lnempresa = new LNEmpresa();
 
        
 
@@ -43,15 +45,35 @@ namespace UTPPrototipo.Controllers
 
         public ActionResult Postulacion()
         {
-            List<VistaPostulacionAlumno> lista = new List<VistaPostulacionAlumno>();
+            //List<VistaPostulacionAlumno> lista = new List<VistaPostulacionAlumno>();
 
-            lista = lnoferta.ObtenerPostulantes();
+            //lista = lnoferta.ObtenerPostulantes();
 
-            return View(lista);
+            //return View(lista);
+            return View();
         }
 
         public ActionResult PostulacionOferta()
         {
+            
+            return View();
+        }
+        public ActionResult BusquedaSimplePostulacionOferta(VistaPostulacionAlumno entidad)
+        {
+            List<VistaPostulacionAlumno> listapostulacionesoferta = new List<VistaPostulacionAlumno>();
+            listapostulacionesoferta = lnofertapostulante.ObtenerPostulantesPorIDAlumno(entidad.IdAlumno, entidad.PalabraClave == null ? "" : entidad.PalabraClave);
+            return PartialView("_ResultadoBusquedaPostulaciones", listapostulacionesoferta);
+        }
+        public ActionResult DetalleEmpresa(int IdEmpresa)
+        {
+            Empresa empresa = new Empresa();
+            empresa = lnempresa.ObtenerDetalleEmpresaPorId(IdEmpresa);
+            return PartialView("_ModalDetalleEmpresa", empresa);
+        }
+
+        public ActionResult PostularOferta(OfertaPostulante entidad) {
+            entidad.CreadoPor="admin";
+            lnofertapostulante.Insertar(entidad);
             return View();
         }
         public ActionResult PostulacionOferta2(int? id)
@@ -65,15 +87,20 @@ namespace UTPPrototipo.Controllers
                 if (vistaofertalumno.Oferta != null && vistaofertalumno.Oferta.IdEmpresa > 0)
                 {
                     //Periodo Publicacion
-                    List<SelectListItem> listItemsAlumnoCV = new List<SelectListItem>();
-                    foreach (AlumnoCV entidad in vistaofertalumno.ListaAlumnoCV)
+                    if (vistaofertalumno.Oferta.Postulacion == 0)
                     {
-                        SelectListItem item = new SelectListItem();
-                        item.Text = entidad.NombreCV.ToString();
-                        item.Value = entidad.IdCV.ToString();
-                        listItemsAlumnoCV.Add(item);
+                        List<SelectListItem> listItemsAlumnoCV = new List<SelectListItem>();
+                        foreach (AlumnoCV entidad in vistaofertalumno.ListaAlumnoCV)
+                        {
+                            SelectListItem item = new SelectListItem();
+                            item.Text = entidad.NombreCV.ToString();
+                            item.Value = entidad.IdCV.ToString();
+                            listItemsAlumnoCV.Add(item);
+                        }
+                        ViewBag.ListaAlumnoCV = listItemsAlumnoCV;
+
                     }
-                    ViewBag.ListaAlumnoCV = listItemsAlumnoCV;
+
                     return View(vistaofertalumno);
                 }
                 else
@@ -86,9 +113,67 @@ namespace UTPPrototipo.Controllers
             {
                 return RedirectToAction("BusquedaOferta");
             }
-            return View();
-            
+
         }
+        public ActionResult EstadoPostulacionOferta(int? id)
+        {
+            if (id != null)
+            {
+                VistaOfertaAlumno vistaofertalumno = new VistaOfertaAlumno();
+                Alumno alumno = new Alumno();
+                alumno = lnAlumno.ObtenerAlumnoPorCodigo(codigoAlumno);
+                vistaofertalumno = lnoferta.OfertaAlumnoPostulacion((int)id, alumno.IdAlumno);
+                if (vistaofertalumno.Oferta != null && vistaofertalumno.Oferta.IdEmpresa > 0)
+                {
+                    //Periodo Publicacion
+                    if (vistaofertalumno.Oferta.Postulacion == 0)
+                    {
+                        List<SelectListItem> listItemsAlumnoCV = new List<SelectListItem>();
+                        foreach (AlumnoCV entidad in vistaofertalumno.ListaAlumnoCV)
+                        {
+                            SelectListItem item = new SelectListItem();
+                            item.Text = entidad.NombreCV.ToString();
+                            item.Value = entidad.IdCV.ToString();
+                            listItemsAlumnoCV.Add(item);
+                        }
+                        ViewBag.ListaAlumnoCV = listItemsAlumnoCV;
+
+                    }
+
+                    return PartialView("_EstadoPostulacion",vistaofertalumno.Oferta);
+                }
+                else
+                {
+                    return RedirectToAction("BusquedaOferta");
+                }
+
+            }
+            else
+            {
+                return RedirectToAction("BusquedaOferta");
+            }
+
+        }
+        [HttpPost]
+        public ActionResult DescargarCV(OfertaPostulante entidad)
+        {
+
+            byte[] cv = lnofertapostulante.OfertaPostulante_DescaragarCV(entidad.IdAlumno, entidad.IdOferta);
+            using (System.IO.MemoryStream stream = new System.IO.MemoryStream())
+            {
+                stream.Write(cv, 0, cv.Length);
+                Response.Buffer = false;
+                Response.AppendHeader("Content-Type", "image/bmp");
+                Response.AppendHeader("Content-Transfer-Encoding", "binary");
+                Response.AppendHeader("Content-Disposition", "attachment; filename=imagen.bmp");
+                Response.BinaryWrite(cv);
+            }
+            Response.End();
+            //return new DescargaResult("Descarga", cv);
+
+            return View();
+        }
+        
         public ActionResult BusquedaOferta()
         {
             VistaOfertaAlumno oferta = new VistaOfertaAlumno();
@@ -199,7 +284,6 @@ namespace UTPPrototipo.Controllers
 
         public ActionResult BusquedaAvanzadaOferta(VistaOfertaAlumno entidad)
         {
-
             entidad.ListaOfertas = lnoferta.BuscarAvanzadoOfertasAlumno(entidad);
              return PartialView("_ResultadoBusquedaOfertas", entidad.ListaOfertas);
         }

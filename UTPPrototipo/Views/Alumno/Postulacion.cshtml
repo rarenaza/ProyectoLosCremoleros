@@ -1,6 +1,4 @@
-﻿
-@*@model UTP.PortalEmpleabilidad.Modelo.VistaPanelAlumnoPostulaciones*@
-
+﻿@using UTPPrototipo.Common
 @model IEnumerable<UTP.PortalEmpleabilidad.Modelo.Vistas.Ofertas.VistaPostulacionAlumno>
 
 @{
@@ -11,60 +9,49 @@
 <script>
     $(document).ready(function () {
         $("#divFinalCabecera").removeClass("color-paleta1 color-paleta3 color-paleta4 color-paleta5").addClass("color-paleta2");
+        var ofertapostulacion = {
+            IdAlumno: $('#IdAlumno').val(),
+            PalabraClave: $('#IdPalabraClave').val()
+        };
+
+        CargarPOST("idResulBusPostulaciones", "/Alumno/BusquedaSimplePostulacionOferta", ofertapostulacion);
+
+        $('#idBuscar').click(function () {
+            var ofertapostulacion = {
+                IdAlumno: $('#IdAlumno').val(),
+                PalabraClave: $('#IdPalabraClave').val()
+            };
+            CargarPOST("idResulBusPostulaciones", "/Alumno/BusquedaSimplePostulacionOferta", ofertapostulacion);
+        });
+
     });
+
+
+    function CargarPOST(id, link, entidad) {
+        $.ajax({
+            url: link,
+            contentType: 'application/json; charset=utf-8',
+            type: 'POST',
+            data: JSON.stringify(entidad),
+            dataType: 'html'
+        })
+        .success(function (result) {
+            if (id != null) {
+                $("#" + id).html(result);
+            }
+        })
+        .error(function (xhr, status) {
+            console.log(xhr);
+            console.log(status);
+
+        })
+    }
 </script>
 <div class="container" style="margin-top:2px;">
    
 
     @{Html.RenderAction("VistaCabecera", "Alumno");}
-    @*@Html.Partial("_DatosPersonales", Model.Alumno)*@
 
-    @*<div class="panel-group" id="datos-cuenta" role="tablist" aria-multiselectable="true">
-        <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingOne" style="padding: 2px 2px 2px 6px;">
-                <h5 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="fuente-seccion">
-                        Tu Cuenta - Karina María Barrionuevo Chang
-                    </a>
-                </h5>
-            </div>
-            <div id="collapseOne" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingOne">
-                <div class="panel-body">
-                    <div class="col-md-4 fuente-seccion">
-                        <table>
-                            <tr>
-                                <td>
-                                    <img class="foto-usuario" src="~/img/Alumna.png" />
-                                </td>
-                                <td style="vertical-align:top;">
-                                    <strong>
-                                        Karina María
-                                        <br />Barrionuevo Chang
-                                    </strong>
-                                    <br />Ingeniería Industrial
-                                    <br /><a href="#" class="fuente-pequeña">Modificar Datos ...</a>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="col-md-4 fuente-pequeña">
-                        Código <strong>82727128</strong><br />
-                        DNI <strong>89226681</strong><br />
-                        <strong>karina_barrionuevo@hotmail.com</strong><br />
-                        <strong>kabarrionuevo@elportaldelvago.com</strong>
-
-                    </div>
-                    <div class="col-md-4 fuente-pequeña">
-                        Dirección <strong>Av del Pozo 3453, San Martín de Porres Lima Perú</strong><br />
-                        Teléfono <strong>456-1234</strong><br />
-                        Celular <strong>954123876</strong>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-    </div>*@
 
     <div class="panel-group" id="CriterioBusquedaPostulacion" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default">
@@ -80,12 +67,12 @@
                     <div class="col-md-6">
                         <div class="input-group fuente-pequeña">
                             <span class="input-group-addon">Palabra Clave</span>
-                            <input type="text" class="form-control" placeholder="Palabra clave">
+                            <input type="text" class="form-control" id="IdPalabraClave" placeholder="Palabra clave">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <span>
-                            <a href="#" class="fui " style="font-size:30px;">(</a>
+                            <a href="#" class="fui " style="font-size:30px;cursor:pointer;" id="idBuscar" >(</a>
                         </span>
                     </div>
 
@@ -95,60 +82,67 @@
 
     </div>
 
-    <div class="row" style="margin:0px 0px 0px 0px;">
-        <div class="row grilla1-cabecera color-paleta2">
-            <div class="col-sm-1">Fecha Publicación</div>
-            <div class="col-sm-1">Fecha Postulación</div>
-            <div class="col-sm-2">Empresa</div>
-            <div class="col-sm-2">Cargo</div>
-            <div class="col-sm-1">Tipo Trabajo</div>
-            <div class="col-sm-1">Horario</div>
-            <div class="col-sm-1">Remuneración</div>
-            <div class="col-sm-1">Msj</div>
-            <div class="col-sm-1">Estado</div>
-            <div class="col-sm-1"></div>
-        </div>
+    <div class="row" style="margin:0px 0px 0px 0px;" id="idResulBusPostulaciones">
 
-        @foreach (var item in Model)
-        {
-            <div class="row grilla1-linea">
-                <div class="col-sm-1 linea-destacada"><span>@item.FechaPublicacion</span></div>
-                <div class="col-sm-1 linea-destacada"><span>@item.FechaPostulacion</span></div>
-                <div class="col-sm-2 linea-destacada"><a href="#">@item.Empresa</a></div>
-                <div class="col-sm-2 linea-destacada"><a href="..\Alumno\postulacionOferta">@item.CargoOfrecido</a></div>
-                <div class="col-sm-1"><span class="valor-palabra">@item.TipoTrabajo</span><span class="valor-icono2">I</span></div>
-                <div class="col-sm-1"><span>@item.Horario</span></div>
-                <div class="col-sm-1"><span>@item.RemuneracionOfrecida</span></div>
-                <div class="col-sm-1"><span class="fui fa-2x valor-icono">h</span>&nbsp;&nbsp;<span>2</span></div>
-                <div class="col-sm-1"><span class="valor-palabra">@item.EstadoOferta</span><span class="valor-icono2">D</span></div>
-                <div class="col-sm-1"><a href="..\Alumno\postulacionOferta">Ver más</a></div>
-            </div>
-        }
-
-        @*<div class="row grilla1-linea">
-            <div class="col-sm-1 linea-destacada"><span>Ayer</span></div>
-            <div class="col-sm-1 linea-destacada"><span>Hoy</span></div>
-            <div class="col-sm-2 linea-destacada"><a href="#">Naviera Alcalá S.A.</a></div>
-            <div class="col-sm-2 linea-destacada"><a href="..\Alumno\postulacionOferta">Gerente de Servicios</a></div>
-            <div class="col-sm-1"><span class="valor-palabra">Tiempo completo</span><span class="valor-icono2">I</span></div>
-            <div class="col-sm-1"><span>09:00 a 18:00</span></div>
-            <div class="col-sm-1"><span>S/.7,000 a S/.9,000</span></div>
-            <div class="col-sm-1"><span class="fui fa-2x valor-icono">h</span>&nbsp;&nbsp;<span>2</span></div>
-            <div class="col-sm-1"><span class="valor-palabra">Activa</span><span class="valor-icono2">D</span></div>
-            <div class="col-sm-1"><a href="..\Alumno\postulacionOferta">Ver más</a></div>
-        </div>*@
-      
-        <br />
-        <nav class="navbar-right">
-            <ul class="pagination">
-                <li><a href="#">&laquo;</a></li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#">&raquo;</a></li>
-            </ul>
-        </nav>
     </div>
+</div>
+
+
+<div class="modal" id="Modal-datos-empresa" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    @*<div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Datos de la Empresa</h4>
+            </div>
+            <div class="modal-body">
+                <table style="width:100%">
+                    <tr>
+                        <td style="width:50%;text-align:center;"><img src="~/img/logos/logoibm.jpg" style="text-align:center;" /></td>
+                        <td style="width:50%;"><h4>IBM del Perú</h4><br />Perú</td>
+                    </tr>
+                </table>
+                <br />
+                <h5>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</h5>
+                <br />
+                <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec id sagittis leo. Morbi in sagittis diam. Ut imperdiet pulvinar ligula, ac rhoncus eros pretium quis. Aenean sapien est, posuere ut neque sollicitudin, volutpat tristique erat. Vestibulum lobortis augue metus, ut tincidunt lacus scelerisque tristique. Pellentesque dui nisi, sagittis in neque a, molestie laoreet erat. Donec ultricies sapien ac lectus pharetra, non vestibulum lectus blandit. Morbi ultrices augue vitae tellus iaculis, varius varius tortor iaculis. Duis libero velit, accumsan sit amet ipsum non, viverra consectetur nisi. Phasellus bibendum ut ipsum aliquet vestibulum.</h6>
+                <table>
+                    <tr>
+                        <td class="celda-nombre">
+                            Año de Creación
+                        </td>
+                        <td class="celda-datos">
+                            2013
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="celda-nombre">
+                            Empleados
+                        </td>
+                        <td class="celda-datos">
+                            10 a 50
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="celda-nombre">
+                            Sector Empresarial
+                        </td>
+                        <td class="celda-datos">
+                            Tecnología y Software
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="celda-nombre">
+                            Oficina Principal
+                        </td>
+                        <td class="celda-datos">
+                            Avenida Del Sur 310, oficina 102, Santiago de Surco, Lima
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>*@
 </div>

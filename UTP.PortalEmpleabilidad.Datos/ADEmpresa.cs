@@ -99,7 +99,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "Empresa_ObtenerPorId";
                 cmd.Connection = conexion;
-                
+
                 conexion.Open();
 
                 cmd.Parameters.Add(new SqlParameter("@IdEmpresa", idEmpresa));
@@ -111,8 +111,34 @@ namespace UTP.PortalEmpleabilidad.Datos
 
                 conexion.Close();
             }
-         
+
             return dsResultado;
         }
+
+        public DataSet ObtenerDetalleEmpresaPorId(int idEmpresa)
+        {
+            DataSet dsResultado = new DataSet();
+
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Empresa_DetalleporIdEmpresa";
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                cmd.Parameters.Add(new SqlParameter("@IdEmpresa", idEmpresa));
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+
+                da.Fill(dsResultado);
+
+                conexion.Close();
+            }
+
+            return dsResultado;
+        }
+
     }
 }

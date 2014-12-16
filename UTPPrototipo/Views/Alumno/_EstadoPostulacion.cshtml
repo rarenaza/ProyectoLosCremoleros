@@ -1,0 +1,62 @@
+﻿@using UTPPrototipo.Common
+@model UTP.PortalEmpleabilidad.Modelo.Oferta
+<div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingPostulacion" style="padding: 2px 2px 2px 6px;">
+        <h5 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapsePostulacion" aria-expanded="true" aria-controls="collapsePostulacion" class="fuente-seccion">
+                Postulación
+            </a>
+        </h5>
+    </div>
+    <div id="collapsePostulacion" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingPostulacion">
+        <div class="panel-body fuente-pequeña">
+            <br />
+
+            @if (Model.Postulacion > 0)
+            {
+                <div class="row">
+                    <div class="col-md-5">
+                        <button type="button" id="BotonHazPostulado" class="btn btn-default" style="background-color:rgb(60, 172, 201);color:white;">Haz Postulado</button>
+                    </div>
+                    <div class="col-md-7">
+                        <table class="fuente-pequeña" id="DatosDePostulacion">
+                            <tr>
+                                <td class="celda-nombre">
+                                    <span>Fecha Postulción</span>
+                                </td>
+                                <td class="celda-datos">
+                                    <strong>@Html.FormatoFrecuencia(Model.FechaPostulacion) </strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="celda-nombre">
+                                    CV de Postulación
+                                </td>
+                                <td class="celda-datos">
+                                    <strong>@Model.NombreCV </strong>&nbsp;&nbsp;<a href="#" id="idDescargaCV" >descargar</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="button" id="BotonPostularAhora" class="btn btn-default color-paleta3" style="color:white">¡Postular ahora!</button>
+
+                    </div>
+                </div>
+                <br />
+                <div class="input-group input-group" id="CVParaPostulacion">
+                    <span class="input-group-addon">Elija el CV</span>
+                    @Html.DropDownList("IdCV", new SelectList(ViewBag.ListaAlumnoCV, "Value", "Text"), "- Seleccionar -", new { @class = "form-control" })
+                </div>
+                <br />
+            }
+
+        </div>
+    </div>
+</div>
+

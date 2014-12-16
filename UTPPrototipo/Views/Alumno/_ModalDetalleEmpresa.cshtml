@@ -1,0 +1,56 @@
+﻿@model UTP.PortalEmpleabilidad.Modelo.Empresa
+<div class="modal-dialog" id="IdModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title" id="myModalLabel">Datos de la Empresa</h4>
+        </div>
+        <div class="modal-body">
+            <table style="width:100%">
+                <tr>
+                    <td style="width:50%;text-align:center;"><img src="~/img/logos/logoibm.jpg" style="text-align:center;" /></td>
+                    <td style="width:50%;"><h4>@Model.NombreComercial</h4><br />@Model.PaisIdListaValor</td>
+                </tr>
+            </table>
+          
+            <br />
+            <h6>@Model.DescripcionEmpresa</h6>
+            <table>
+                <tr>
+                    <td class="celda-nombre">
+                        Año de Creación
+                    </td>
+                    <td class="celda-datos">
+                        @Model.AnoCreacion
+                    </td>
+                </tr>
+                <tr>
+                    <td class="celda-nombre">
+                        Empleados
+                    </td>
+                    <td class="celda-datos">
+                        @Model.NumeroEmpleadosIdListaValor
+                    </td>
+                </tr>
+                <tr>
+                    <td class="celda-nombre">
+                        Sector Empresarial
+                    </td>
+                    <td class="celda-datos">
+                        @Model.SectorEmpresarial1IdListaValor
+                    </td>
+                </tr>
+                <tr>
+                    <td class="celda-nombre">
+                        Oficina Principal
+                    </td>
+                    <td class="celda-datos">
+                        @Model.OficinaPrincipal
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="modal-footer">
+        </div>
+    </div>
+</div>

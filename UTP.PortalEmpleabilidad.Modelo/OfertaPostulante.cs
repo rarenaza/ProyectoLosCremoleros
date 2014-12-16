@@ -9,13 +9,20 @@ namespace UTP.PortalEmpleabilidad.Modelo
     public class OfertaPostulante
     {
         public int IdOfertaPostulante { get; set; }
+        public int IdOferta { get; set; }
+        public int IdAlumno { get; set; }
+
         public Oferta Oferta { get; set; }
         public Alumno Alumno { get; set; }
         public DateTime FechaPostulacion { get; set; }
         public ListaValor FaseOferta { get; set; }
+        public string FaseOfertaPostulacion { get; set; }
+
         public int IdCV { get; set; }
         public byte[] DocumentoCV { get; set; }
         public int NivelDeMatch { get; set; }
+
+        public string CreadoPor { get; set; }
 
         public OfertaPostulante()
         {

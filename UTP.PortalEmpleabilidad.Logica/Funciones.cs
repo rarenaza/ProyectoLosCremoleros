@@ -55,5 +55,17 @@ namespace UTP.PortalEmpleabilidad.Logica
             DateTime.TryParse(ToString(obj), out dtime);
             return dtime;
         }
+
+        public static byte[] ToBytes(object obj)
+        {
+            byte[] binary = new byte[1];
+            if ( obj != null)
+            {
+               binary=(byte[])obj;
+            }
+            return binary;
+        }
+
+
     }
 }

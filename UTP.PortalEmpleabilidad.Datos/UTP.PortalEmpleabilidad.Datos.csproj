@@ -51,6 +51,7 @@
     <Compile Include="ADEmpresaLocacion.cs" />
     <Compile Include="ADEmpresaUsuario.cs" />
     <Compile Include="ADEvento.cs" />
+    <Compile Include="ADOfertaPostulante.cs" />
     <Compile Include="ADUTP.cs" />
     <Compile Include="ADGeneral.cs" />
     <Compile Include="ADLista.cs" />

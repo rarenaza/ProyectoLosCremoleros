@@ -23,6 +23,8 @@ namespace UTP.PortalEmpleabilidad.Modelo
         
         [DataType(DataType.Date)]
         public DateTime FechaPublicacion { get; set; }
+        public DateTime FechaPostulacion { get; set; }
+
 
         [Required(ErrorMessage = Constantes.MSJ_CAMPO_OBLIGATORIO)]
         [DataType(DataType.Date)]    
@@ -79,6 +81,11 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string DesNumeroEmpleados { get; set; }
         public string NombreLocacion { get; set; }
         public string IdentificadorTributario { get; set; }
+        public int Postulacion { get; set; }
+
+        public string NombreCV { get; set; }
+        public int IdCV { get; set; }
+
        public Oferta() {
 
            TipoCargo = new ListaValor();
