@@ -1,4 +1,7 @@
-﻿<h5>Ofertas</h5>
+﻿@model IEnumerable<UTP.PortalEmpleabilidad.Modelo.Vistas.Empresa.VistaEmpresaOferta>
+
+
+<h5>Ofertas</h5>
 <hr />
 <div class="row grilla1-cabecera color-paleta2">
     <div class="col-sm-3">
@@ -14,21 +17,26 @@
         Estado
     </div>
 </div>
+@foreach (var item in Model)
+{
 <div class="row grilla1-linea">
     <div class="col-sm-3">
-        Hace 1 hora
+       @* Hace 1 hora*@
+        @item.FechaPublicacion
     </div>
     <div class="col-sm-6">
-        <a href="../UTP/Oferta">Gerente de Proyecto</a>
+       @* <a href="../UTP/Oferta">Gerente de Proyecto</a>*@
+       @item.CargoOfrecido
     </div>
     <div class="col-sm-1">
-        0
+       @item.CantidadPostulantes
     </div>
     <div class="col-sm-2">
-        Pendiente de activación
+        @*Pendiente de activación*@
+        @item.NombreEstado
     </div>
 </div>
-<div class="row grilla1-linea">
+@*<div class="row grilla1-linea">
     <div class="col-sm-3">
         Hace 2 días
     </div>
@@ -69,7 +77,8 @@
     <div class="col-sm-2">
         Finlizada
     </div>
-</div>
+</div>*@
+}
 <div class="row">
     <div class="col-sm-12" style="text-align:right;">
         <nav>

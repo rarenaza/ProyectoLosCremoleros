@@ -1,4 +1,7 @@
-﻿<h5>Ubicaciones</h5>
+﻿
+@model IEnumerable<UTP.PortalEmpleabilidad.Modelo.Vistas.Empresa.VistaEmpresaLocacion>
+
+<h5>Ubicaciones</h5>
 <hr />
 <div class="row grilla1-cabecera color-paleta2">
     <div class="col-sm-4">
@@ -14,6 +17,38 @@
         Estado
     </div>
 </div>
+@foreach (var item in Model)
+{
+<div class="row grilla1-linea">
+    <div class="col-sm-4">
+        @*<a href="../UTP/EmpresaLocacion">IBM La Molina</a>*@
+        @item.NombreLocacion
+    </div>
+    <div class="col-sm-3">
+        @item.NombreTipoLocacion
+    </div>
+    <div class="col-sm-3">
+        @item.NombreDistrito
+    </div>
+    <div class="col-sm-2">
+        @item.NombreEstado
+    </div>
+</div>
+@*<div class="row grilla1-linea">
+    <div class="col-sm-4">
+        <a href="../UTP/EmpresaLocacion">IBM Miraflores</a>
+    </div>
+    <div class="col-sm-3">
+        Sucursal
+    </div>
+    <div class="col-sm-3">
+        Miraflores
+    </div>
+    <div class="col-sm-2">
+        Activa
+    </div>
+</div>
+
 <div class="row grilla1-linea">
     <div class="col-sm-4">
         <a href="../UTP/EmpresaLocacion">IBM La Molina</a>
@@ -41,37 +76,8 @@
     <div class="col-sm-2">
         Activa
     </div>
-</div>
-
-<div class="row grilla1-linea">
-    <div class="col-sm-4">
-        <a href="../UTP/EmpresaLocacion">IBM La Molina</a>
-    </div>
-    <div class="col-sm-3">
-        Oficina Principal
-    </div>
-    <div class="col-sm-3">
-        La Molina
-    </div>
-    <div class="col-sm-2">
-        Activa
-    </div>
-</div>
-<div class="row grilla1-linea">
-    <div class="col-sm-4">
-        <a href="../UTP/EmpresaLocacion">IBM Miraflores</a>
-    </div>
-    <div class="col-sm-3">
-        Sucursal
-    </div>
-    <div class="col-sm-3">
-        Miraflores
-    </div>
-    <div class="col-sm-2">
-        Activa
-    </div>
-</div>
-
+</div>*@
+}
 <div class="row">
     <div class="col-sm-12" style="text-align:right;">
         <nav>

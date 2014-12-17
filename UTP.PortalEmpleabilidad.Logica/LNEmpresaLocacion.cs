@@ -6,6 +6,7 @@ using System.Data;
 using System.Threading.Tasks;
 using UTP.PortalEmpleabilidad.Datos;
 using UTP.PortalEmpleabilidad.Modelo;
+using UTP.PortalEmpleabilidad.Modelo.Vistas.Empresa;
 
 namespace UTP.PortalEmpleabilidad.Logica
 {
@@ -81,5 +82,34 @@ namespace UTP.PortalEmpleabilidad.Logica
 
             adEmpresaLocacion.Actualizar(empresaLocacion);
         }
+
+        public List<VistaEmpresaLocacion> ObtenerLocacionesPorIdEmpresa(int idEmpresa)
+        {
+            List<VistaEmpresaLocacion> lista = new List<VistaEmpresaLocacion>();
+
+            DataTable dtResultado = new DataTable();
+
+            dtResultado = adEmpresaLocacion.ObtenerLocacionesPorIdEmpresa(idEmpresa);
+
+            foreach (DataRow fila in dtResultado.Rows)
+            {
+                VistaEmpresaLocacion vista = new VistaEmpresaLocacion();
+
+                vista.IdEmpresaLocacion = Convert.ToInt32(fila["IdEmpresaLocacion"]);
+                vista.Idempresa = Convert.ToInt32(fila["IdEmpresa"]);
+                vista.NombreLocacion = Convert.ToString(fila["NombreLocacion"]);
+                vista.NombreTipoLocacion = Convert.ToString(fila["TipoLocacion"]);
+                vista.NombreDistrito = Convert.ToString(fila["DireccionDistrito"]);
+                vista.NombreTipoLocacion = Convert.ToString(fila["TipoLocacionDescripcion"]);
+                vista.NombreEstado = Convert.ToString(fila["EstadoLocacion"]);
+                vista.NombreEstadoLocacionDescripcion = Convert.ToString(fila["EstadoLocacionDescripcion"]);
+
+                lista.Add(vista);
+            }
+
+            return lista;
+        }
+
+
     }
 }

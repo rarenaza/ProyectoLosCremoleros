@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UTP.PortalEmpleabilidad.Datos;
 using UTP.PortalEmpleabilidad.Modelo;
+using UTP.PortalEmpleabilidad.Modelo.Vistas.Empresa;
 using UTP.PortalEmpleabilidad.Modelo.Vistas.Ofertas;
 
 namespace UTP.PortalEmpleabilidad.Logica
@@ -494,6 +495,36 @@ namespace UTP.PortalEmpleabilidad.Logica
         {
             adOferta.ActualizarFaseDePostulantes(postulantes, faseOferta);
         }
+
+        public List<VistaEmpresaOferta> ObtenerOfertasPorIdEmpresa(int idEmpresa)
+        {
+            List<VistaEmpresaOferta> lista = new List<VistaEmpresaOferta>();
+
+            DataTable dtResultado = new DataTable();
+
+            dtResultado = adOferta.ObtenerOfertasPorIdEmpresa(idEmpresa);
+
+            foreach (DataRow fila in dtResultado.Rows)
+            {
+                VistaEmpresaOferta vista = new VistaEmpresaOferta();
+
+                vista.IdOferta = Convert.ToInt32(fila["IdOferta"]);
+                vista.IdEmpresa = Convert.ToInt32(fila["IdEmpresa"]);
+                vista.FechaPublicacion = Convert.ToString(fila["FechaPublicacion"]);
+                vista.CargoOfrecido = Convert.ToString(fila["CargoOfrecido"]);
+                vista.CantidadPostulantes = Convert.ToInt32(fila["Postulantes"]);
+                vista.NombreEstado = Convert.ToString(fila["EstadoOferta"]);
+                vista.NombreEstadoOfertaDescripcion = Convert.ToString(fila["EstadoOfertaDescripcion"]);
+               
+                lista.Add(vista);
+            }
+
+            return lista;
+        }
+
+
+
+
     }
 
 }

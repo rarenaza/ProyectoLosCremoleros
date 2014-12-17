@@ -635,7 +635,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                 SqlCommand cmd = new SqlCommand();
 
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "EmpresaLocacion_ObtenerPorIdEmpresa";
+                cmd.CommandText = "Oferta_ObtenerPorIdEmpresa";
                 cmd.Parameters.Add(new SqlParameter("@IdEmpresa", idEmpresa));
 
                 cmd.Connection = conexion;
