@@ -445,6 +445,11 @@ namespace UTP.PortalEmpleabilidad.Logica
         {
             adOferta.ActualizarFaseDePostulantes(postulantes, faseOferta);
         }
+
+        public void CambiarEstado(int idOferta, string estadoOferta)
+        {
+            adOferta.CambiarEstado(idOferta, estadoOferta);
+        }
     }
 
 }

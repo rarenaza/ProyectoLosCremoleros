@@ -625,5 +625,32 @@ namespace UTP.PortalEmpleabilidad.Datos
 
             return dtResultado;
         }
+
+        public void CambiarEstado(int idOferta, string estadoOferta)
+        {            
+            try
+            {
+                using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+                {
+                    SqlCommand cmd = new SqlCommand();
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "Oferta_CambiarEstado";
+
+                    //Parámetros:
+                    cmd.Parameters.Add(new SqlParameter("@IdOferta", idOferta));
+                    cmd.Parameters.Add(new SqlParameter("@EstadoOferta", estadoOferta));
+                   
+                    cmd.Connection = conexion;
+                    conexion.Open();
+                    cmd.ExecuteNonQuery();
+                    conexion.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }            
+        }
     }
 }

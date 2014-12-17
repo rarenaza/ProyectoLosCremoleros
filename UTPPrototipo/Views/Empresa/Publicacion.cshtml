@@ -26,14 +26,14 @@
                             <div class="input-group fuente-pequeña">
                                 <span class="input-group-addon">Palabra Clave</span>
                                 @*<input type="text" id="filtroBusqueda" name="filtroBusqueda" class="form-control" placeholder="Palabra clave" />*@
-                                @Html.TextBox("filtroBusqueda", "", new { @class = "form-control", @placeholder = "Palabra clave"})
+                                @Html.TextBox("filtroBusqueda", "", new { @class = "form-control", @placeholder = "Palabra clave" })
                             </div>
                         </div>
                         <div class="col-md-6">
                             @*<span class="col-md-6 btn-group">
-                                <span class="fui" style="font-size:30px;">(</span>
-                            </span>*@
-                            <input type="submit" value="(" class="fui" style="font-size:30px;">                            
+                                    <span class="fui" style="font-size:30px;">(</span>
+                                </span>*@
+                            <input type="submit" value="(" class="fui" style="font-size:30px;">
                         </div>
 
                     </div>
@@ -64,19 +64,20 @@
             {
                 <div class="row grilla1-linea">
                     <div class="col-xs-3 col-sm-2"><span>@item.FechaPublicacion</span></div>
-                    <div class="col-xs-9 col-sm-3 linea-destacada"><a href="..\Empresa\Oferta?Idoferta=@item.IdOferta"><strong>@item.Cargo</strong></a></div>
+                    <div class="col-xs-9 col-sm-3 linea-destacada">
+                        @*<a href="..\Empresa\Oferta?Idoferta=@item.IdOferta"><strong>@item.Cargo</strong></a>*@
+                        <strong>@Html.ActionLink(item.Cargo, "Oferta", new { id = item.IdOferta })</strong>
+                    </div>
                     <div class="clearfix visible-xs-block"></div>
                     <div class="col-xs-3 col-sm-1"><span class="valor-icono2">r</span>&nbsp;@item.CVPendientesRevision / @item.CVTotales</div>
                     <div class="col-xs-2 col-sm-2"><span class="valor-palabra">@item.FaseActual</span><span class="valor-icono2">P</span></div>
                     <div class="col-xs-2 col-sm-2"><span class="valor-palabra">@item.EstadoOferta</span><span class="valor-icono2">D</span></div>
                     <div class="col-xs-2 col-sm-1"><span class="valor-icono2">h</span>&nbsp;@item.MensajesNoLeidos / @item.MensajesTotales</div>
-                    <div class="col-xs-2 col-sm-1">@Html.ActionLink("Editar", "EditarOferta", new { idOferta = item.IdOferta })</div>
+                    <div class="col-xs-2 col-sm-1">@Html.ActionLink("Editar", "EditarOferta", new { id = item.IdOferta })</div>
                 </div>
             }
-            
-
             @*<a href="~/Views/Empresa/NuevaOferta"></a><button class="btn btn-default" style="margin:10px 10px 10px 10px;color:white;background-color:rgb(60, 172, 201);">Crear Oferta </button>*@
-            @Html.ActionLink("Nueva oferta", "NuevaOferta")
+            @Html.ActionLink("Crear oferta", "NuevaOferta", null, new { @class = "btn btn-default", @style = "margin:10px 10px 10px 10px;color:white;background-color:rgb(60, 172, 201);" })
 
         </div>
         <!--Paginación-->

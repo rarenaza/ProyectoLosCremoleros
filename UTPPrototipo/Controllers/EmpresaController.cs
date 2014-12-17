@@ -9,11 +9,13 @@ using UTP.PortalEmpleabilidad.Logica;
 using UTP.PortalEmpleabilidad.Modelo;
 using UTP.PortalEmpleabilidad.Modelo.Vistas.Empresa;
 using UTP.PortalEmpleabilidad.Modelo.Vistas.Ofertas;
+using UTPPrototipo.Common;
 using UTPPrototipo.Models.ViewModels.Cuenta;
 using UTPPrototipo.Models.ViewModels.Empresa;
 
 namespace UTPPrototipo.Controllers
 {
+    [VerificarSesion]
     public class EmpresaController : Controller
     {
         LNEmpresa lnEmpresa = new LNEmpresa();
@@ -28,6 +30,8 @@ namespace UTPPrototipo.Controllers
         {
             return View();
         }
+
+        [VerificarSesion]
         public ActionResult Publicacion(string filtroBusqueda)
         {
             //Se obtiene los datos de la sesion.
@@ -40,16 +44,22 @@ namespace UTPPrototipo.Controllers
 
             return View(lista);
         }
-        public ActionResult Oferta(int idOferta)
+        public ActionResult Oferta(int id)
         {
+            int idOferta = id;
+
+            Session["asdsad"] = 0;
+
             Oferta oferta = lnOferta.ObtenerPorId(idOferta);
 
             return View(oferta);
         }
 
         
-        public ActionResult EditarOferta(int idOferta)
+        public ActionResult EditarOferta(int id)
         {
+            int idOferta = id;
+
             TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];
 
             Oferta oferta = lnOferta.ObtenerPorId(idOferta);
@@ -181,12 +191,12 @@ namespace UTPPrototipo.Controllers
         }
 
         public ActionResult VistaCabecera()
-        {
-            ////System.Threading.Thread.Sleep(4000);
-
+        {            
             VistaPanelCabecera panel = new VistaPanelCabecera();
+            TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];
 
-            panel = lnEmpresa.ObtenerPanelCabecera(usuarioEmpresa);
+            //Se cargan los datos del empresaUsuario autenticado:
+            panel = lnEmpresa.ObtenerPanelCabecera(ticket.Usuario);
 
             return PartialView("_DatosUsuario", panel);
         }
@@ -297,13 +307,11 @@ namespace UTPPrototipo.Controllers
 
         public ActionResult VistaOfertaCondiciones(Oferta oferta)
         {
-
             return PartialView("_VistaOfertaCondiciones", oferta);
         }
 
         public ActionResult VistaOfertaRequisitos(Oferta oferta)
         {
-
             return PartialView("_VistaOfertaRequisitos", oferta);
         }
 

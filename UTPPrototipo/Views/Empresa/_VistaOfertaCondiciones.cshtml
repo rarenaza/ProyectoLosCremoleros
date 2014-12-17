@@ -33,7 +33,11 @@
                         Recibir CVs hasta el
                     </td>
                     <td class="celda-datos">
-                        <strong>@Model.FechaFinRecepcionCV</strong><span>&nbsp;&nbsp;&nbsp;<button class="btn btn-default color-paleta2">Finalizar ahora</button></span>
+                        <strong>@Model.FechaFinRecepcionCV</strong>
+                        <span>
+                            &nbsp;&nbsp;&nbsp;  <!--espacios en blanco-->
+                            <button id="btnFinalizarOferta" class="btn btn-default color-paleta2" onclick="finalizarOferta(@Model.IdOferta)">Finalizar ahora</button>
+                        </span>
                     </td>
                 </tr>
                 <tr>
@@ -113,3 +117,23 @@
         </div>
     </div>
 </div>
+
+<script>
+
+    function finalizarOferta(idOferta)
+    {
+        alert("IdOferta: " + idOferta);
+
+        var url = "../../Oferta/FinalizarOferta/" + idOferta;
+
+        $.get(url, function (data) {
+            alert("La oferta ha sido finalizada");
+            $('#btnFinalizarOferta').html("Oferta finalizada")
+        }).error(function (err)
+        {
+            console.log(err);
+            alert(err);
+        });
+    }
+
+</script>
