@@ -25,18 +25,22 @@
             <div class="navbar-collapse collapse" style="border:0px;background-color:transparent;">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a class="btn btn-default navbar-btn Boton_pestana color-paleta1" href="Alumno\Index" style="padding: 2px 0px 2px 0px;color:white;">Mi Portal</a>
+                        @*<a class="btn btn-default navbar-btn Boton_pestana color-paleta1" href="Alumno\Index" style="padding: 2px 0px 2px 0px;color:white;">Mi Portal</a>*@
+                        @Html.ActionLink("Mi Portal", "Index", null, new { @class = "btn btn-default navbar-btn Boton_pestana color-paleta1", @style = "padding: 2px 0px 2px 0px; color: white;" })
                     </li>
                     <li>
-                        <a class="btn btn-default navbar-btn Boton_pestana color-paleta2" href="Alumno\Postulacion" style="padding: 2px 0px 2px 0px;color:white;">Postulaciones</a>
+                        @*<a class="btn btn-default navbar-btn Boton_pestana color-paleta2" href="Alumno\Postulacion" style="padding: 2px 0px 2px 0px;color:white;">Postulaciones</a>*@
+                        @Html.ActionLink("Postulaciones", "Postulacion", null, new { @class = "btn btn-default navbar-btn Boton_pestana color-paleta2", @style = "padding: 2px 0px 2px 0px; color: white;" })
                     </li>
                     <li>
-                        <a class="btn btn-default navbar-btn Boton_pestana color-paleta3" href="Alumno\BusquedaOferta" style="padding: 2px 0px 2px 0px; color: white;">Ofertas</a>
+                        @*<a class="btn btn-default navbar-btn Boton_pestana color-paleta3" href="Alumno\BusquedaOferta" style="padding: 2px 0px 2px 0px; color: white;">Ofertas</a>*@
+                        @Html.ActionLink("Ofertas", "BusquedaOferta", null, new { @class = "btn btn-default navbar-btn Boton_pestana color-paleta3", @style = "padding: 2px 0px 2px 0px; color: white;" })
                     </li>
 
 
                     <li>
-                        <a class="btn btn-default navbar-btn Boton_pestana color-paleta4" href="Alumno\MiCV" style="padding: 2px 0px 2px 0px; color: white;">Mi CV</a>
+                        @*<a class="btn btn-default navbar-btn Boton_pestana color-paleta4" href="Alumno\MiCV" style="padding: 2px 0px 2px 0px; color: white;">Mi CV</a>*@
+                        @Html.ActionLink("Mi CV", "MiCV", null, new { @class = "btn btn-default navbar-btn Boton_pestana color-paleta4", @style = "padding: 2px 0px 2px 0px; color: white;" })
                     </li>
                     <!--<li>
                         <a class="btn btn-default navbar-btn Boton_pestana color-paleta5" href="..\Alumno\Index" style="padding: 2px 0px 2px 0px; color: white;">Eventos</a>

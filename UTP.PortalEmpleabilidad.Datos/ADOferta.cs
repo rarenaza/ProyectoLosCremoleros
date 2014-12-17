@@ -101,6 +101,33 @@ namespace UTP.PortalEmpleabilidad.Datos
 
             return dtResultado;
         }
+        public DataSet BuscarCumplimientoOfertasAlumno(int IdAlumno, int idOferta)
+        {
+            DataSet dsResultado = new DataSet();
+
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Oferta_CumplimientoAlumno";
+                cmd.Parameters.Add(new SqlParameter("@IdAlumno", SqlDbType.Int)).Value = IdAlumno;
+                cmd.Parameters.Add(new SqlParameter("@idOferta", SqlDbType.Int)).Value = idOferta;
+
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+
+                da.Fill(dsResultado);
+
+                conexion.Close();
+            }
+
+            return dsResultado;
+        }
 
         public DataTable BuscarSimilaresOfertasAlumno(int IdOferta)
         {

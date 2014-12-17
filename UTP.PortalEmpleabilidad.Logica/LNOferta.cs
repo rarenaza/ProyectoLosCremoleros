@@ -15,7 +15,45 @@ namespace UTP.PortalEmpleabilidad.Logica
 
         ADOferta adOferta = new ADOferta();
         LNAlumnoCV lnalumnocv = new LNAlumnoCV();
+        public void BuscarCumplimientoOfertasAlumno(ref VistaOfertaAlumno vistaofertaalumno)
+        {
 
+            DataSet dsResultado = adOferta.BuscarCumplimientoOfertasAlumno(vistaofertaalumno.Oferta.IdAlumno, vistaofertaalumno.Oferta.IdOferta);
+
+            //Datos generales de la empresa.
+            if (dsResultado.Tables.Count > 0)
+            {
+                List<Oferta> ListaEstudios = new List<Oferta>();
+                List<Oferta> ListaSectorEmpresarial = new List<Oferta>();
+
+                if (dsResultado.Tables[0].Rows.Count > 0)
+                {
+                    foreach (DataRow row in dsResultado.Tables[0].Rows)
+                    {
+                        Oferta of = new Oferta();
+                        of.Requisito = Funciones.ToString(row["Caracteristica"]);
+                        of.Cumplimiento = Funciones.ToInt(row["Estado"]);
+                        of.Tipo = Funciones.ToInt(row["Tipo2"]);
+                        of.Line = Funciones.ToInt(row["Line"]);
+                        ListaEstudios.Add(of);
+                    }
+                    vistaofertaalumno.ListadoEstudios = ListaEstudios;
+                }
+                if (dsResultado.Tables[1].Rows.Count > 0)
+                {
+                    foreach (DataRow row in dsResultado.Tables[1].Rows)
+                    {
+                        Oferta of = new Oferta();
+                        of.Requisito = Funciones.ToString(row["Caracteristica"]);
+                        of.Cumplimiento = Funciones.ToInt(row["Estado"]);
+                        of.Tipo = Funciones.ToInt(row["Tipo2"]);
+                        of.Line = Funciones.ToInt(row["Line"]);
+                        ListaSectorEmpresarial.Add(of);
+                    }
+                    vistaofertaalumno.ListadoSectorEmpresarial = ListaSectorEmpresarial;
+                }
+            }
+        }
         private Oferta ObtenerOfertasAlumnoPorID(int idOferta, int idAlumno)
         {
             
@@ -50,6 +88,10 @@ namespace UTP.PortalEmpleabilidad.Logica
                 oferta.FechaPostulacion = Funciones.ToDateTime(dtResultado.Rows[0]["FechaPostulacion"]);
                 oferta.NombreCV = Funciones.ToString(dtResultado.Rows[0]["NombreCV"]);
                 oferta.IdCV = Funciones.ToInt(dtResultado.Rows[0]["IdCV"]);
+                oferta.IdAlumno = idAlumno;
+                oferta.LogoEmpresa = Funciones.ToBytes(dtResultado.Rows[0]["LogoEmpresa"]); ;
+                oferta.ArchivoMimeType = Funciones.ToString(dtResultado.Rows[0]["ArchivoMimeType"]); ;
+
 
             }
 
@@ -63,7 +105,7 @@ namespace UTP.PortalEmpleabilidad.Logica
             vistaofertalumno.Oferta = ObtenerOfertasAlumnoPorID(IdOferta, IdAlumno);
             vistaofertalumno.ListaAlumnoCV = lnalumnocv.ObtenerAlumnoCVPorIdAlumno(IdAlumno);
             vistaofertalumno.ListaOfertas = BuscarSimilaresOfertasAlumno(IdOferta);
-
+            BuscarCumplimientoOfertasAlumno(ref vistaofertalumno);
 
            
             return vistaofertalumno;
@@ -82,6 +124,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 oferta.FechaPublicacion = Funciones.ToDateTime(dtResultado.Rows[i]["FechaPublicacion"]);
                 oferta.NombreComercial = Funciones.ToString(dtResultado.Rows[i]["NombreComercial"]);
                 oferta.CargoOfrecido = Funciones.ToString(dtResultado.Rows[i]["CargoOfrecido"]);
+                
                 oferta.DesTipoTrabajo = Funciones.ToString(dtResultado.Rows[i]["DesTipoTrabajo"]);
                 oferta.Horario = Funciones.ToString(dtResultado.Rows[i]["Horario"]);
                 oferta.RemuneracionOfrecida = Funciones.ToDecimal(dtResultado.Rows[i]["RemuneracionOfrecida"]);
@@ -105,6 +148,9 @@ namespace UTP.PortalEmpleabilidad.Logica
                 oferta.FechaPublicacion = Funciones.ToDateTime(dtResultado.Rows[i]["FechaPublicacion"]);
                 oferta.CargoOfrecido = Funciones.ToString(dtResultado.Rows[i]["CargoOfrecido"]);
                 oferta.IdEmpresa = Funciones.ToInt(dtResultado.Rows[i]["IdEmpresa"]);
+                oferta.LogoEmpresa = Funciones.ToBytes(dtResultado.Rows[i]["LogoEmpresa"]);
+                oferta.ArchivoMimeType = Funciones.ToString(dtResultado.Rows[i]["ArchivoMimeType"]);
+
                 listaOferta.Add(oferta);
             }
             return listaOferta;
@@ -149,6 +195,9 @@ namespace UTP.PortalEmpleabilidad.Logica
                 oferta.NombreComercial = Funciones.ToString(dtResultado.Rows[i]["NombreComercial"]);
                 oferta.CargoOfrecido = Funciones.ToString(dtResultado.Rows[i]["CargoOfrecido"]);
                 oferta.IdEmpresa = Funciones.ToInt(dtResultado.Rows[i]["IdEmpresa"]);
+                oferta.LogoEmpresa = Funciones.ToBytes(dtResultado.Rows[i]["LogoEmpresa"]);
+                oferta.ArchivoMimeType = Funciones.ToString(dtResultado.Rows[i]["ArchivoMimeType"]);
+
                 listaOferta.Add(oferta);
             }
             return listaOferta;

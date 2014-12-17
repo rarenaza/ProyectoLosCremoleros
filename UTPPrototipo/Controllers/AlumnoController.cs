@@ -53,6 +53,15 @@ namespace UTPPrototipo.Controllers
             return View();
         }
 
+        public FileContentResult GetImageEmpresa(int IdEmpresa)
+        {
+            Empresa empresa = lnempresa.ObtenerDetalleEmpresaPorId(IdEmpresa);
+            if (empresa.LogoEmpresa != null && string.IsNullOrEmpty(empresa.ArchivoMimeType) == false) return File(empresa.LogoEmpresa, empresa.ArchivoMimeType);
+            //if (empresa.LogoEmpresa != null) return File(empresa.LogoEmpresa, empresa.ArchivoMimeType);
+
+            else return null;
+        }
+
         public ActionResult PostulacionOferta()
         {
             

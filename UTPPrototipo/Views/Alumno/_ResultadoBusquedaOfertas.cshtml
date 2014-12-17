@@ -37,9 +37,12 @@
             <div class="col-sm-1"><span class="fui fa-2x valor-icono">h</span>&nbsp;&nbsp;<span>@item.Mensaje</span></div>
             <div class="col-sm-2">
                 <div class="progress" style="background-color:white;margin:5px 10px 5px 10px;">
-                    <div class="progress-bar progress-bar-success progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width:90%;">
+                    @*<div class="progress-bar progress-bar-success progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width:90%;">
                         @item.Compatible %
-                    </div>
+                    </div>*@
+                    @Html.Raw(Html.CompatibilidaOferta((int)item.Compatible))
+
+
                 </div>
             </div>
             <div class="col-sm-1">@Html.ActionLink("Ver más", "postulacionOferta2", "Alumno", new { id = item.IdOferta }, null)</div>

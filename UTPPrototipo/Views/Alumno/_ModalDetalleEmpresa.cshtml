@@ -8,11 +8,25 @@
         <div class="modal-body">
             <table style="width:100%">
                 <tr>
-                    <td style="width:50%;text-align:center;"><img src="~/img/logos/logoibm.jpg" style="text-align:center;" /></td>
+                    <td style="width:50%;text-align:center;">
+
+                        @if (Model.LogoEmpresa != null && string.IsNullOrEmpty(Model.ArchivoMimeType) == false)
+                        {
+                            @*<img src="@Html.GetImageEmpresa(item.LogoEmpresa, "image/jpeg")" class="logo-empresa2" />*@
+                            <img src="@Url.Action("GetImageEmpresa", "Alumno", new { Model.IdEmpresa })" style="text-align:center;width:150px;" />
+
+                        }
+                        else
+                        {
+                            <img src="~/img/logos/logoibm.jpg" style="text-align:center;" />
+                        }
+                    </td>
+                    @*<td style="width:50%;text-align:center;"><img src="~/img/logos/logoibm.jpg" style="text-align:center;" /></td>*@
+
                     <td style="width:50%;"><h4>@Model.NombreComercial</h4><br />@Model.PaisIdListaValor</td>
                 </tr>
             </table>
-          
+
             <br />
             <h6>@Model.DescripcionEmpresa</h6>
             <table>
