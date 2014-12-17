@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -52,6 +53,11 @@ namespace UTP.PortalEmpleabilidad.Modelo.Vistas.Ofertas
         public List<AlumnoCV> ListaAlumnoCV { get; set; }
         public Oferta Oferta { get; set; }
         public decimal Compatible { get; set; }
+
+        public List<Oferta> ListadoEstudios { get; set; }
+        public List<Oferta> ListadoSectorEmpresarial { get; set; }
+        public List<Oferta> ListadoInformacionAdicional { get; set; }
+
 
     }
 }

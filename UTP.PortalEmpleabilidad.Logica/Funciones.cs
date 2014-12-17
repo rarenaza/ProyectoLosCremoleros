@@ -56,12 +56,21 @@ namespace UTP.PortalEmpleabilidad.Logica
             return dtime;
         }
 
+        //public static byte[] ToBytes(object obj)
+        //{
+        //    byte[] binary = null;
+        //    if (obj != null)
+        //    {
+        //        binary = (byte[])obj;
+        //    }
+        //    return binary;
+        //}
         public static byte[] ToBytes(object obj)
         {
-            byte[] binary = new byte[1];
-            if ( obj != null)
+            byte[] binary = null;
+            if (!DBNull.Value.Equals(obj))
             {
-               binary=(byte[])obj;
+                binary = (byte[])obj;
             }
             return binary;
         }

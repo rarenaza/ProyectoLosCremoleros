@@ -13,5 +13,8 @@ namespace UTP.PortalEmpleabilidad.Modelo.Vistas.Empresa
         public string NombreTipoLocacion { get; set; }
         public string NombreDistrito { get; set; }
         public string NombreEstado { get; set; }
+
+        public int Idempresa { get; set; }
+        public string NombreEstadoLocacionDescripcion { get; set; }
     }
 }

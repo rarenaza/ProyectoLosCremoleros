@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 namespace UTPPrototipo.Common
@@ -55,6 +56,12 @@ namespace UTPPrototipo.Common
             return fechatexto;
         }
 
+        public static FileContentResult GetImageEmpresa(this HtmlHelper helper, byte[] imagen, string MimeType)
+        {
+            if (imagen != null) return new FileContentResult(imagen, MimeType);
+            else return null;
+        }
+
         public static string Cumple(this HtmlHelper helper,bool estado){
             string cumple=string.Empty;
             if (estado)
@@ -65,9 +72,25 @@ namespace UTPPrototipo.Common
         }
         public static string CompatibilidaOferta(this HtmlHelper helper, int compatiblidad)
         {
-            string fechatexto = "01/01/2014";
+            
+            string estilo = string.Empty;
+            StringBuilder sbhtml = new StringBuilder();
+            if(compatiblidad>=80){
+                estilo = "progress-bar-success";
+            }
+            else if (compatiblidad < 80 && compatiblidad >= 60)
+            {
+                estilo = "progress-bar-warning";
+            }
+            else if (compatiblidad < 60)
+            {
+                estilo = "progress-bar-danger";
+            }
 
-            return fechatexto;
+            sbhtml.AppendLine("<div class='progress-bar " +estilo+ " progress-bar' role='progressbar' aria-valuenow='"+compatiblidad.ToString()+"' aria-valuemin='0' aria-valuemax='100' style='width:"+compatiblidad.ToString()+"%;'>");
+            sbhtml.AppendLine(compatiblidad.ToString()+ " %");
+            sbhtml.AppendLine("</div>");
+            return sbhtml.ToString();
         }
 
 

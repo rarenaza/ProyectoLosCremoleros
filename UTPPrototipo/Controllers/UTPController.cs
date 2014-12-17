@@ -831,17 +831,41 @@ namespace UTPPrototipo.Controllers
         [HttpGet] //Se indica explícitamente que es un Get
         public PartialViewResult _VerDetalleEmpresaUbicaciones(int id)
         {
+
+            int idEmpresa = id;
+
+            //Se obtiene la información de la BD
+            LNEmpresaLocacion lnEmpresaLocacion = new LNEmpresaLocacion();
+            List<VistaEmpresaLocacion> lista = lnEmpresaLocacion.ObtenerLocacionesPorIdEmpresa(id);
+
+            return PartialView("_VerDetalleEmpresaUbicaciones", lista);
+
+
+
             //Se obtiene la información de la BD
 
-            return PartialView("_VerDetalleEmpresaUbicaciones");
+            //return PartialView("_VerDetalleEmpresaUbicaciones");
         }
 
         [HttpGet] //Se indica explícitamente que es un Get
         public PartialViewResult _VerDetalleEmpresaOfertas(int id)
         {
+
             //Se obtiene la información de la BD
 
-            return PartialView("_VerDetalleEmpresaOfertas");
+            int idEmpresa = id;
+
+            //Se obtiene la información de la BD
+            LNOferta lnempresaoferta = new LNOferta();
+            List<VistaEmpresaOferta> lista = lnempresaoferta.ObtenerOfertasPorIdEmpresa(id);
+
+            return PartialView("_VerDetalleEmpresaOfertas", lista);
+
+
+
+
+
+            //return PartialView("_VerDetalleEmpresaOfertas");
         }
 
         [HttpGet] //Se indica explícitamente que es un Get
@@ -851,6 +875,30 @@ namespace UTPPrototipo.Controllers
 
             return PartialView("_VerDetalleEmpresaMensajes");
         }
+
+        //public PartialViewResult _VerDetalleEmpresaUbicaciones(int id)
+        //{
+        //    int idEmpresa = id;
+
+        //    //Se obtiene la información de la BD
+        //    LNEmpresaLocacion lnEmpresaLocacion = new LNEmpresaLocacion();
+        //    List<VistaEmpresaLocacion> lista = lnEmpresaLocacion.ObtenerLocacionesPorIdEmpresa(id);
+
+        //    return PartialView("_VerDetalleEmpresaUbicaciones", lista);
+        //}
+
+
+        //public PartialViewResult _VerDetalleEmpresaOfertas(int id)
+        //{
+        //    int idEmpresa = id;
+
+        //    //Se obtiene la información de la BD
+        //    LNOferta lnempresaoferta = new LNOferta();
+        //    List<VistaEmpresaOferta> lista = lnempresaoferta.ObtenerOfertasPorIdEmpresa(id);
+
+        //    return PartialView("_VerDetalleEmpresaOfertas", lista);
+        //}
+
 
         #endregion
     }

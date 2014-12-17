@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,10 +10,13 @@ using System.Web;
 namespace UTP.PortalEmpleabilidad.Modelo
 {
     public partial class Oferta
-    {       
+    {
         public int IdOferta { get; set; }
-        public int IdEmpresa { get; set; }
+        public int IdAlumno { get; set; }
 
+        public int IdEmpresa { get; set; }
+        public byte[] LogoEmpresa { get; set; }
+        public string ArchivoMimeType { get; set; }
         [Required(ErrorMessage = Constantes.MSJ_CAMPO_OBLIGATORIO)]
         public string CargoOfrecido { get; set; }
         public string UsuarioPropietarioEmpresa { get; set; }
@@ -86,8 +90,16 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string NombreCV { get; set; }
         public int IdCV { get; set; }
 
+
+        public string Requisito { get; set; }
+        public int Cumplimiento { get; set; }
+        public int Tipo { get; set; }
+        public int Line { get; set; }
+
+
         public Empresa Empresa { get; set; }
         public List<OfertaPostulante> Postulantes { get; set; }
+
 
        public Oferta() {
 

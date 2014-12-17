@@ -43,7 +43,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string CreadoPor { get; set; }
         public string UsuarioEC { get; set; }
         public byte[] LogoEmpresa { get; set; }
-
+        public string ArchivoMimeType { get; set; }
         public string PaisDescripcion { get; set; }
         public List<EmpresaLocacion> Locaciones { get; set; }
         public List<EmpresaUsuario> Usuarios { get; set; }
@@ -85,7 +85,6 @@ namespace UTP.PortalEmpleabilidad.Modelo
 
          
             public string ArchivoNombreOriginal { get; set; }
-            public string ArchivoMimeType { get; set; }
 
       
            
