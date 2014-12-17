@@ -213,5 +213,81 @@ namespace UTP.PortalEmpleabilidad.Datos
             return dsResultado;
         }
 
+        //public bool Empresa_Insertar_Imagen(Empresa empresa)
+        //{
+        //    ADConexion cnn = new ADConexion();
+        //    SqlCommand cmd = new SqlCommand();
+
+        //    try
+        //    {
+        //        cmd.CommandType = CommandType.StoredProcedure;
+        //        cmd.CommandText = "Empresa_Insertar_Imagen";
+        //        cmd.Connection = cnn.cn;
+
+        //        cmd.Parameters.Add(new SqlParameter("@LogoEmpresa", SqlDbType.Binary)).Value = (empresa.LogoEmpresa == null ? new byte[] { } : empresa.LogoEmpresa);
+
+        //        cmd.Parameters.Add(new SqlParameter("@ArchivoNombreOriginal", SqlDbType.VarChar, 100)).Value = (empresa.ArchivoNombreOriginal == null ? "" : empresa.ArchivoNombreOriginal);
+        //        cmd.Parameters.Add(new SqlParameter("@ArchivoMimeType", SqlDbType.VarChar, 100)).Value = (empresa.ArchivoMimeType == null ? "" : empresa.ArchivoMimeType);
+                              
+
+        //        cnn.Conectar();
+        //        cmd.ExecuteNonQuery();
+        //        cmd.Parameters.Clear();
+        //        cnn.Desconectar();
+        //        return true;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return false;
+        //    }
+
+
+        public bool Empresa_Actualizar_Imagen(Empresa empresa)
+        {
+            ADConexion cnn = new ADConexion();
+            SqlCommand cmd = new SqlCommand();
+
+            try
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Empresa_Actualizar_imagen";
+                cmd.Connection = cnn.cn;
+
+                cmd.Parameters.Add(new SqlParameter("@LogoEmpresa", SqlDbType.Binary)).Value = (empresa.LogoEmpresa == null ? new byte[] { } : empresa.LogoEmpresa);
+
+                cmd.Parameters.Add(new SqlParameter("@ArchivoNombreOriginal", SqlDbType.VarChar, 100)).Value = (empresa.ArchivoNombreOriginal == null ? "" : empresa.ArchivoNombreOriginal);
+                cmd.Parameters.Add(new SqlParameter("@ArchivoMimeType", SqlDbType.VarChar, 100)).Value = (empresa.ArchivoMimeType == null ? "" : empresa.ArchivoMimeType);
+                //cmd.Parameters.Add(new SqlParameter("@ImagenCambiada", SqlDbType.VarChar, 2)).Value = (empresa.LogoEmpresa == null ? "NO" : "SI");
+                cmd.Parameters.Add(new SqlParameter("@IdEmpresa", SqlDbType.VarChar, 50)).Value = empresa.IdEmpresa;
+                cnn.Conectar();
+                cmd.ExecuteNonQuery();
+                cmd.Parameters.Clear();
+                cnn.Desconectar();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
+        }
+        public DataTable Empresa_Elegir_Imagen(int Cod)
+        {
+            ADConexion cnn = new ADConexion();
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "Empresa_Elegir_Imagen";
+            cmd.Connection = cnn.cn;
+            cnn.Conectar();
+            cmd.Parameters.Add(new SqlParameter("@IdEmpresa", SqlDbType.Int)).Value = Cod;
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+
+            da.Fill(dt);
+
+            cnn.Desconectar();
+            return dt;
+        }
+       
     }
 }

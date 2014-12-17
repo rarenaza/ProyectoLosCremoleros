@@ -31,6 +31,9 @@ namespace UTP.PortalEmpleabilidad.Modelo
         /// </summary>
         public bool Seleccionado { get; set; }
         public string ModificadoPor { get; set; }
+        public DateTime FechaCreacion { get; set; }
+        public DateTime FechaModificacion { get; set; }
+        public string NombreCV { get; set; }
 
         public OfertaPostulante()
         {

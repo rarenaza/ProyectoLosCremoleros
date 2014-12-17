@@ -20,7 +20,8 @@
             @Html.FormatoFrecuencia(@item.FechaCreacion)
         </div>
         <div class="col-sm-8">
-            <a href="../UTP/RegistroEmpresa">@item.NombreComercial</a>
+            @*<a href="../UTP/RegistroEmpresa">@item.NombreComercial</a>*@            
+            @Html.ActionLink(@item.NombreComercial, "VerDetalleEmpresa", new { id = item.IdEmpresa })
         </div>
     </div>
 }

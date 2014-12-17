@@ -12,13 +12,19 @@
         <div id="collapseDatosEmpresa" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingDatosEmpresa">
             <div class="panel-body">
                 <div class="row">
-                    <div class="col-sm-2" style="text-align:center;">
+           
+
+                    @*<div class="col-sm-2" style="text-align:center;">
                         <img src="~/img/logos/LogoCriteria.jpg" style="width:100%;" /><hr />
                         <a href="~/Views/Empresa/CambiarImagen">Cambiar Imagen</a>
+            
                         <br />
 
 
-                    </div>
+                    </div>*@
+
+
+
                     <div class="col-sm-10">
                         <table class="fuente-pequeña">
                             <tr>
@@ -57,7 +63,11 @@
 
                         <div class="row" style="text-align:right;">
                             <div class="col-sm-12">
-                                <button data-toggle="modal" id="btnModificarEmpresa" data-target="#Modal-modifica-datos-empresa"
+                                @*<button data-toggle="modal" id="btnModificarEmpresa" data-target="#divEditarModal"
+                                    class="btn btn-default color-paleta4" data-id="@Model.IdEmpresa">
+                                    Cambiar Datos
+                                </button>*@
+                                <button id="btnModificarEmpresa" onclick="modificarEmpresa(@Model.IdEmpresa);"
                                         class="btn btn-default color-paleta4" data-id="@Model.IdEmpresa">
                                     Cambiar Datos
                                 </button>

@@ -34,7 +34,6 @@
                                     <span class="input-group-addon fuente-pequeña">Palabra Clave</span>
                                     @Html.TextBoxFor(model => model.PalabraClave, new { @class = "form-control", @placeholder = "Palabra clave" })
 
-@*<<<<<<< HEAD*@
                                 </div>
                             </td>
                             <td style="text-align:right;">
@@ -78,10 +77,8 @@
                             <div class="input-group fuente-pequeña">
 
                             <span class="input-group-addon">Estado</span>
-                            @*@Html.DropDownListFor(model => model.IdPeriodoPublicacion, new SelectList(ViewBag.PeriodoPublicacion, "Value", "Text"), "- Seleccionar -", new { @class = "form-control", @Id = "IdPeriodoPublicacion" })*@
-                      @*      @Html.DropDownList("xvxvx", ViewData["ContenidoListaEstado"] as List<SelectListItem>, "- Seleccionar -", new { @class = "form-control" })*@
-
-                            
+                                @Html.DropDownListFor(model => model.IdEstadoEmpresa, new SelectList(ViewBag.ListaEstado, "Value", "Text"), "- Seleccionar -", new { @class = "form-control"})
+                                                            
                               </div>
               
                             <div class="input-group fuente-pequeña">
@@ -101,8 +98,9 @@
                             <div class="input-group fuente-pequeña">
 
                                 <span class="input-group-addon">Sector</span>
-                                @*@Html.DropDownListFor(model => model.IdPeriodoPublicacion, new SelectList(ViewBag.PeriodoPublicacion, "Value", "Text"), "- Seleccionar -", new { @class = "form-control", @Id = "IdPeriodoPublicacion" })*@
-                              @*  @Html.DropDownList("xvxvx", ViewData["ContenidoListaSector"] as List<SelectListItem>, "- Seleccionar -", new { @class = "form-control" })*@
+
+                                @Html.DropDownListFor(model => model.IdSector, new SelectList(ViewBag.ListaSector, "Value", "Text"), "- Seleccionar -", new { @class = "form-control" })
+                               
                             </div>
 
                                 @*<span class="input-group-addon">Sector</span>
@@ -133,7 +131,8 @@
                             <br />
 
                             <div>
-                                <span class="fui" style="font-size:30px;">(</span>
+                                @*<span class="fui" style="font-size:30px;">(</span>*@
+                                <span class="fui" style="font-size:30px;cursor:pointer" id="buscaravanzada">(</span>
                             </div>
                         </div>
                     </div>
@@ -161,6 +160,26 @@
         Cargar("resultadobusqueda", "/UTP/BusquedaSimpleEmpresasActivas", empresa);
     });
    
+    //$('#buscaravanzada').click(function () {
+    //    var oferta = {
+    //        IdPeriodoPublicacion: $('#IdPeriodoPublicacion').val(),
+    //        IdEstudio: $('#IdEstudio').val(),
+    //        IdEstadoEstudio: $('#IdEstadoEstudio').val(),
+    //        IdSectorEmpresarial: $('#IdSectorEmpresarial').val(),
+    //        AreaEmpresa: $('#AreaEmpresa').val(),
+    //        AniosExperiencia: $('#AniosExperiencia').val(),
+    //        IdTipoTrabajo: $('#IdTipoTrabajo').val(),
+    //        IdContrato: $('#IdContrato').val(),
+    //        IdTipoCargo: $('#IdTipoCargo').val(),
+    //        Sueldo: $('#Sueldo').val(),
+    //        Ubicacion: $('#Ubicacion').val(),
+    //        IncluirMensaje: $('#IncluirMensaje:checked').val(),
+    //        IdAlumno: $('#IdAlumno').val()
+
+    //    };
+    //    Cargar("resultadobusqueda", "/Alumno/BusquedaAvanzadaOferta", oferta);
+    //});
+
 
     function Cargar(id, link, entidad) {
         //debugger;

@@ -74,6 +74,9 @@
     <Compile Include="Vistas\Alumno.cs" />
     <Compile Include="Vistas\AlumnoEstudio.cs" />
     <Compile Include="Vistas\ContenidoCombo\ContenidoVistaCombo.cs" />
+    <Compile Include="Vistas\Empresa\VistaEmpresaLocacion.cs" />
+    <Compile Include="Vistas\Empresa\VistaEmpresaOferta.cs" />
+    <Compile Include="Vistas\Empresa\VistaEmpresaUsuario.cs" />
     <Compile Include="Vistas\Empresa\VistaPanelCabecera.cs" />
     <Compile Include="Vistas\Empresa\VistaRegistroEmpresa.cs" />
     <Compile Include="Vistas\Mensaje\VistaPostulantePorMensaje.cs" />

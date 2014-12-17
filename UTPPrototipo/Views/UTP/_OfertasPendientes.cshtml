@@ -26,7 +26,8 @@
             @item.NombreComercial
         </div>
         <div class="col-sm-5">
-            <a href="../UTP/RegistroOferta">@item.CargoOfrecido</a>
+            @*<a href="../UTP/RegistroOferta">@item.CargoOfrecido</a>*@
+            @Html.ActionLink(@item.CargoOfrecido, "VerDetalleOferta", new { id = item.IdOferta })
         </div>
     </div>
 

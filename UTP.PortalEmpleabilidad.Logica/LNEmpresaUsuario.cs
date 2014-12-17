@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UTP.PortalEmpleabilidad.Datos;
 using UTP.PortalEmpleabilidad.Modelo;
+using UTP.PortalEmpleabilidad.Modelo.Vistas.Empresa;
 
 namespace UTP.PortalEmpleabilidad.Logica
 {
@@ -73,6 +74,31 @@ namespace UTP.PortalEmpleabilidad.Logica
             }
 
             return empresaUsuario;
-        }        
+        }
+
+        public List<VistaEmpresaUsuario> ObtenerUsuariosPorIdEmpresa(int idEmpresa)
+        {
+            List<VistaEmpresaUsuario> lista = new List<VistaEmpresaUsuario>();
+
+            DataTable dtResultado = new DataTable();
+
+            dtResultado = adEmpresaUsuario.ObtenerUsuariosPorIdEmpresa(idEmpresa);
+
+            foreach (DataRow fila in dtResultado.Rows)
+            {
+                VistaEmpresaUsuario vista = new VistaEmpresaUsuario();
+
+                vista.IdEmpresaUsuario = Convert.ToInt32(fila["IdEmpresaUsuario"]);
+                vista.NombreUsuario = Convert.ToString(fila["Usuario"]);
+                vista.NombresUsuario = Convert.ToString(fila["Nombres"]);
+                vista.ApellidosUsuario = Convert.ToString(fila["Apellidos"]);
+                vista.NombreRol = Convert.ToString(fila["UsuarioRolDescripcion"]);
+                vista.NombreEstado = Convert.ToString(fila["UsuarioEstadoDescripcion"]);
+
+                lista.Add(vista);
+            }
+
+            return lista;
+        }
     }
 }

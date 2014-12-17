@@ -125,5 +125,32 @@ namespace UTP.PortalEmpleabilidad.Datos
                 conexion.Close();
             }
         }
+
+        public DataTable ObtenerLocacionesPorIdEmpresa(int idEmpresa)
+        {
+            DataTable dtResultado = new DataTable();
+
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "EmpresaLocacion_ObtenerPorIdEmpresa";
+                cmd.Parameters.Add(new SqlParameter("@IdEmpresa", idEmpresa));
+
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                dtResultado = new DataTable();
+
+                da.Fill(dtResultado);
+
+                conexion.Close();
+            }
+
+            return dtResultado;
+        }
     }
 }

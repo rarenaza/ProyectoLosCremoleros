@@ -9,6 +9,8 @@ namespace UTP.PortalEmpleabilidad.Modelo
 {
     public class Empresa
     {
+ 
+        
         public int IdEmpresa { get; set; }
         
         [Required(ErrorMessage="Este campo es obligatorio.")]
@@ -63,7 +65,8 @@ namespace UTP.PortalEmpleabilidad.Modelo
 
         public string SitioWeb { get; set; }
         public DateTime FechaCreacion { get; set; }        
-        public DateTime FechaModificacion { get; set; }
+        public DateTime FechaModificacion { get; set; }        
+
         public Empresa()
         {
             Pais = new ListaValor();
@@ -80,5 +83,11 @@ namespace UTP.PortalEmpleabilidad.Modelo
             SectorEmpresarial3IdListaValor = string.Empty;
         }
 
+         
+            public string ArchivoNombreOriginal { get; set; }
+            public string ArchivoMimeType { get; set; }
+
+      
+           
     }
 }

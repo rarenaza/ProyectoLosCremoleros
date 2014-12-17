@@ -196,6 +196,7 @@
     <Compile Include="Models\ViewModels\Cuenta\TicketAlumno.cs" />
     <Compile Include="Models\ViewModels\Cuenta\TicketEmpresa.cs" />
     <Compile Include="Models\ViewModels\Cuenta\TicketUTP.cs" />
+    <Compile Include="Models\ViewModels\Empresa\EmpresaVista.cs" />
     <Compile Include="Models\ViewModels\Empresa\VistaNuevasPostulaciones.cs" />
     <Compile Include="Models\ViewModels\UTP\VistaEmpresaListaOpciones.cs" />
     <Compile Include="Models\ViewModels\UTP\VistaEmpresasPendientes.cs" />
@@ -777,7 +778,13 @@
     <Content Include="Views\Home\Registro.cshtml" />
     <Content Include="Views\Empresa\_AdministrarUbicacionEditar.cshtml" />
     <Content Include="Views\Empresa\_AdministrarUsuarioEditar.cshtml" />
+    <Content Include="Views\Empresa\_AdministrarImagen.cshtml" />
     <Content Include="Views\UTP\_VerDetalleEmpresaDatosGenerales.cshtml" />
+    <Content Include="Views\UTP\VerDetalleOferta.cshtml" />
+    <Content Include="Views\UTP\_VerDetalleEmpresaUsuarios.cshtml" />
+    <Content Include="Views\UTP\_VerDetalleEmpresaUbicaciones.cshtml" />
+    <Content Include="Views\UTP\_VerDetalleEmpresaOfertas.cshtml" />
+    <Content Include="Views\UTP\_VerDetalleEmpresaMensajes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

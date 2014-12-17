@@ -5,15 +5,20 @@
     ViewBag.Title = "Admnistrar el registro de la Empresa";
 }
 
-
-
 <div class="container" style="margin-top:2px;">
 
     <!--Panel superior donde se muestra los datos del usuario autenticado. - Ancho 12-->
     @{Html.RenderAction("VistaCabecera", "Empresa");}
 
-    <!--Panel de datos generales de la emrpesa - Ancho 12-->
-    @Html.Action("_AdministrarDatosGenerales", "Empresa", new { IdEmpresa = @ViewBag.IdEmpresa })
+    <div class ="row">
+        <div id="divAdministrarImagen" class ="col-sm-4">
+            @Html.Action("_AdministrarImagen", "Empresa", new { IdEmpresa = @ViewBag.IdEmpresa })
+        </div>
+        <div class="col-sm-8">
+            <!--Panel de datos generales de la emrpesa - Ancho 12-->
+            @Html.Action("_AdministrarDatosGenerales", "Empresa", new { IdEmpresa = @ViewBag.IdEmpresa })
+        </div>
+    </div>
 
     <div class="row fuente-pequeña">
 
@@ -35,9 +40,12 @@
     <img id="imgCargando" src="../../img/cargando.gif" alt="" />
 </div>*@
 
+<!--
+    id="Modal-modifica-datos-empresa"
+-->
 
 <!-- Modal Datos Generales -->
-<div div="divEditarModal" class="modal" id="Modal-modifica-datos-empresa" tabindex="-1" role="dialog" aria-labelledby="ModificaDatosEmpresa" aria-hidden="true">
+<div id="divEditarModal" class="modal"  tabindex="-1" role="dialog" aria-labelledby="ModificaDatosEmpresa" aria-hidden="true">
 
     @using (Ajax.BeginForm("EditarEmpresa", "Empresa", new AjaxOptions() {  LoadingElementId = "divCargando", InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "datos-empresa", OnComplete = "cerrarModal" }))
     {
@@ -113,26 +121,47 @@
     $(document).ready(function () {
         $("#divFinalCabeceraEmpresa").removeClass("color-paleta1 color-paleta2 color-paleta3 color-paleta5").addClass("color-paleta4");
 
-        $('#btnModificarEmpresa').click(function () {
-            //debugger;
-            var url = "/Empresa/EditarEmpresa"; // el url del controlador
-            var id = $(this).attr('data-id'); // el id del botón.
-            $.get(url + '/' + id, function (data) {
-                $('#divEditarContenedor').html(data);
+        //$('#btnModificarEmpresa').on("click", function () {
+        //    //debugger;
+        //    var url = "/Empresa/EditarEmpresa"; // el url del controlador
+        //    var id = $(this).attr('data-id'); // el id del botón.
+        //    $.get(url + '/' + id, function (data) {
+        //        $('#divEditarContenedor').html(data);
 
-                var formSelector = $('#divEditarModal').find('form');
-                var form = $(formSelector)
-                                .removeData("validator") /* added by the raw jquery.validate plugin */
-                                .removeData("unobtrusiveValidation");
+        //        //var formSelector = $('#divEditarModal').find('form');
+        //        //var form = $(formSelector)
+        //        //                .removeData("validator") /* added by the raw jquery.validate plugin */
+        //        //                .removeData("unobtrusiveValidation");
 
-                $.validator.unobtrusive.parse('#divEditarContenedor');
-                //$.validator.unobtrusive.parse('#divEditarModal');
+        //        $.validator.unobtrusive.parse('#divEditarContenedor');
+        //        //$.validator.unobtrusive.parse('#divEditarModal');
 
-                $('#divEditarModal').modal('show');
-            });
-        });
+        //        $('#divEditarModal').modal('show');
+
+        //    });
+        //});
        
     });
+
+    function modificarEmpresa(id) {
+        var url = "/Empresa/EditarEmpresa"; // el url del controlador
+        //alert(id);
+        //var id = $(this).attr('data-id'); // el id del botón.
+        $.get(url + '/' + id, function (data) {
+            $('#divEditarContenedor').html(data);
+
+            //var formSelector = $('#divEditarModal').find('form');
+            //var form = $(formSelector)
+            //                .removeData("validator") /* added by the raw jquery.validate plugin */
+            //                .removeData("unobtrusiveValidation");
+
+            $.validator.unobtrusive.parse('#divEditarContenedor');
+            //$.validator.unobtrusive.parse('#divEditarModal');
+
+            $('#divEditarModal').modal('show');
+
+        });
+    }
 
     function crearUsuario() {
         var url = "/Empresa/_AdministrarNuevoUsuario"; // el url del controlador           

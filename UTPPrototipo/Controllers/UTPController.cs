@@ -191,7 +191,7 @@ namespace UTPPrototipo.Controllers
             //Lista de Combos
 
             ViewBag.ListaEstado = listItemsEstado;
-            ViewBag.ListaEstadoEstudio = listItemSector;
+            ViewBag.ListaSector = listItemSector;
 
             return View(utp);                 
 
@@ -618,8 +618,29 @@ namespace UTPPrototipo.Controllers
         {
             int idEmpresa = id;
             LNEmpresa lnEmpresa = new LNEmpresa();
+            LNGeneral lnGeneral = new LNGeneral();
+            LNUsuario lnUsuario = new LNUsuario();
 
             Empresa empresa = lnEmpresa.ObtenerDatosEmpresaPorId(idEmpresa);
+
+            ViewBag.EstadoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_EMPRESA), "IdListaValor", "Valor", empresa.EstadoIdListaValor);                        
+            ViewBag.UsuarioEC = new SelectList(lnUsuario.ObtenerUsuariosPorTipo("USERUT"), "NombreUsuario", "NombreCompleto", empresa.UsuarioEC);
+
+            return PartialView("_VerDetalleEmpresaDatosGenerales", empresa);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public PartialViewResult _VerDetalleEmpresaDatosGeneralesEditar(Empresa empresa)
+        {             
+            LNUTP lnUTP = new LNUTP ();
+            lnUtp.ActualizarEstadoYUsuarioEC(empresa);
+
+            LNGeneral lnGeneral = new LNGeneral();
+            LNUsuario lnUsuario = new LNUsuario();
+
+            ViewBag.EstadoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_EMPRESA), "IdListaValor", "Valor", empresa.EstadoIdListaValor);
+            ViewBag.UsuarioEC = new SelectList(lnUsuario.ObtenerUsuariosPorTipo("USERUT"), "NombreUsuario", "NombreCompleto", empresa.UsuarioEC);
 
             return PartialView("_VerDetalleEmpresaDatosGenerales", empresa);
         }
@@ -783,6 +804,54 @@ namespace UTPPrototipo.Controllers
 
         }
 
-       
+        public ActionResult VerDetalleOferta(int id)
+        {
+            ViewBag.IdOferta = id;
+
+            Oferta oferta = lnoferta.ObtenerPorId(id);
+            //Se obtiene los datos de la empresa.
+
+            return View(oferta);
+        }
+
+        #region Vistas parciales de la Empresa
+
+        [HttpGet] //Se indica explícitamente que es un Get
+        public PartialViewResult _VerDetalleEmpresaUsuarios(int id)
+        {
+            int idEmpresa = id;
+
+            //Se obtiene la información de la BD
+            LNEmpresaUsuario lnEmpresaUsuario = new LNEmpresaUsuario ();
+            List<VistaEmpresaUsuario> lista = lnEmpresaUsuario.ObtenerUsuariosPorIdEmpresa(id);
+
+            return PartialView("_VerDetalleEmpresaUsuarios", lista);
+        }
+
+        [HttpGet] //Se indica explícitamente que es un Get
+        public PartialViewResult _VerDetalleEmpresaUbicaciones(int id)
+        {
+            //Se obtiene la información de la BD
+
+            return PartialView("_VerDetalleEmpresaUbicaciones");
+        }
+
+        [HttpGet] //Se indica explícitamente que es un Get
+        public PartialViewResult _VerDetalleEmpresaOfertas(int id)
+        {
+            //Se obtiene la información de la BD
+
+            return PartialView("_VerDetalleEmpresaOfertas");
+        }
+
+        [HttpGet] //Se indica explícitamente que es un Get
+        public PartialViewResult _VerDetalleEmpresaMensajes(int id)
+        {
+            //Se obtiene la información de la BD
+
+            return PartialView("_VerDetalleEmpresaMensajes");
+        }
+
+        #endregion
     }
 }

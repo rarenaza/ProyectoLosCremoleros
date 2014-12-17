@@ -33,17 +33,32 @@
             <tr>
                 <td class="celda-nombre"></td>
                 <td class="celda-datos">
-                    
+  
                 </td>
             </tr>
         </table>
     </div>
-    <div class="col-sm-5">
+    @*<div class="col-sm-5">
         <br />
         <button class="btn btn-primary btn-sm" onclick="editarEstudio(@item.IdOfertaEstudio);" data-id="@item.IdOfertaEstudio">Editar</button>
         <button class="btn btn-danger btn-sm"  onclick="eliminarEstudio(@item.IdOfertaEstudio);" data-id="@item.IdOfertaEstudio">Eliminar</button>       
-    </div>
-   
+    </div>*@
+        
+
+        <div class="col-sm-5">
+        
+            <a class="fui fa-2x" style="color:gray;cursor:pointer" onclick="editarEstudio(@item.IdOfertaEstudio);" data-id="@item.IdOfertaEstudio">
+                1
+
+            </a>
+            
+            <a class="fui fa-2x" style="color:gray;cursor:pointer" onclick="eliminarEstudio(@item.IdOfertaEstudio);" data-id="@item.IdOfertaEstudio">
+                l
+
+            </a>
+
+        </div>
+    
 </div>
     <br />
 }

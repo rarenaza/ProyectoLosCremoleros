@@ -128,6 +128,8 @@ namespace UTP.PortalEmpleabilidad.Logica
 
                     empresa.CreadoPor = Convert.ToString(dsResultado.Tables[0].Rows[0]["CreadoPor"]);
                     empresa.ModificadoPor = Convert.ToString(dsResultado.Tables[0].Rows[0]["ModificadoPor"]);
+                    empresa.EstadoIdListaValor = Convert.ToString(dsResultado.Tables[0].Rows[0]["EstadoEmpresa"]);
+                    empresa.UsuarioEC = Convert.ToString(dsResultado.Tables[0].Rows[0]["UsuarioEC"]);
                 }
             }
 
@@ -176,6 +178,42 @@ namespace UTP.PortalEmpleabilidad.Logica
         }
 
 
+
+        //public bool Empresa_Insertar_Imagen(Empresa empresa)
+        //{
+
+
+        //    if (adEmpresa.Empresa_Insertar_Imagen(empresa) == true)
+        //    {
+        //        return true;
+        //    }
+        //    else
+        //    {
+        //        return false;
+        //    }
+
+        //}
+
+        public bool Empresa_Actualizar_imagen(Empresa empresa)
+        {
+
+
+            if (adEmpresa.Empresa_Actualizar_Imagen(empresa) == true)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+        public DataTable Empresa_Elegir_Imagen(int Cod)
+        {
+            return adEmpresa.Empresa_Elegir_Imagen(Cod);
+        }
+
+
         public Empresa ObtenerDetalleEmpresaPorId(int idEmpresa)
         {
             Empresa empresa = new Empresa();
@@ -204,6 +242,7 @@ namespace UTP.PortalEmpleabilidad.Logica
 
             return empresa;
         }        
+
 
         public bool ValidarNombreDeUsuario(string nombreUsuario)
         {

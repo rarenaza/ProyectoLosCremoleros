@@ -32,6 +32,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public static int IDLISTA_NIVEL_CONOCIMIENTOS = 16;
         public static int IDLISTA_PAIS = 17;
         public static int IDLISTA_NRO_EMPLEADOS = 19;
+        public static int IDLISTA_ESTADO_EMPRESA = 20;
         public static int IDLISTA_TIPO_LOCACION = 21;
         public static int IDLISTA_ESTADO_LOCACION = 22;
         public static int IDLISTA_TIPO_TRABAJO = 29;
