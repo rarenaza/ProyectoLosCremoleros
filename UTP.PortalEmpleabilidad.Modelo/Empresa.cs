@@ -85,7 +85,6 @@ namespace UTP.PortalEmpleabilidad.Modelo
 
          
             public string ArchivoNombreOriginal { get; set; }
-            public string ArchivoMimeType { get; set; }
 
       
            
