@@ -10,26 +10,26 @@
     <div id="collapseMiCVOpciones" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingMiCVOpciones">
         <div class="panel-body">
             <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                     <div class="input-group fuente-pequeña">
                         <span class="input-group-addon">CV</span>
                         @Html.DropDownListFor(m => m.IdCV, new SelectList(ViewBag.ListaAlumnoCV, "Value", "Text"), new { @class = "form-control" })
 
                     </div>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                     <div class="input-group fuente-pequeña">
                         <span class="input-group-addon">Plantilla</span>
                         @Html.DropDownListFor(m => m.IdPlantillaCV, new SelectList(ViewBag.ListaPlantillaCV, "Value", "Text"), new { @class = "form-control" })
                     </div>
                 </div>
+                
                 <div class="col-sm-2">
                     <span>
-                        <button type="button" class="btn btn-default fuente-pequeña color-paleta4" style="color:white;">Crear Nuevo</button>
+                        <button type="button" class="btn btn-default fuente-pequeña color-paleta4" style="color:white;">Guardar cambios</button>
                     </span>
                 </div>
-
-
+                
                 <div class="col-sm-1">
                     <span class="fuente-pequeña">
                         <a href="#">Ver CV</a>
@@ -39,6 +39,11 @@
                     <span class="fuente-pequeña">
                         <a href="#">Descargar</a>
                     </span>
+                </div>
+                <div class="col-sm-2" style="text-align:center;border-left:solid;border-left-width:thin;border-left-color:rgb(210, 210, 210)">
+                    
+                    <button type="button" data-toggle="modal" data-target="#Modal-nuevo-cv" class="btn btn-default fuente-pequeña color-paleta4" style="color:white;">Crear Nuevo</button>
+                    
                 </div>
             </div>
         </div>
