@@ -1,6 +1,9 @@
 ﻿@using UTPPrototipo.Common
-@model IEnumerable<UTP.PortalEmpleabilidad.Modelo.Oferta>
+@model UTP.PortalEmpleabilidad.Modelo.Vistas.Ofertas.VistaOfertaAlumno
 <div class="row" style="margin:0px 0px 0px 0px;">
+    @Html.Hidden("PaginaActual", Model.PaginaActual)
+    @Html.Hidden("MaxPagina", Model.MaxPagina)
+
     <div class="row grilla1-cabecera color-paleta3">
         <div class="col-sm-1">Fecha Publicación</div>
         <div class="col-sm-2">Empresa</div>
@@ -12,8 +15,8 @@
         <div class="col-sm-2">Cumplimiento</div>
         <div class="col-sm-1"></div>
     </div>
-    
-    @foreach (var item in Model)
+
+    @foreach (var item in Model.ListaOfertas)
     {
         <div class="row grilla1-linea">
             @*<div class="col-sm-1 linea-destacada"><span>@item.FechaPublicacion </span></div>*@
@@ -23,7 +26,7 @@
             <div class="col-sm-2 linea-destacada">@Html.ActionLink(item.CargoOfrecido, "postulacionOferta2", "Alumno", new { id = item.IdOferta }, null)</div>
             <div class="col-sm-1"><span class="valor-palabra">@item.DesTipoTrabajo</span><span class="valor-icono2">I</span></div>
             <div class="col-sm-1"><span>@item.Horario</span></div>
-            <div class="col-sm-1">                
+            <div class="col-sm-1">
                 @if (item.RemuneracionOfrecida > 0)
                 {
 
@@ -38,8 +41,8 @@
             <div class="col-sm-2">
                 <div class="progress" style="background-color:white;margin:5px 10px 5px 10px;">
                     @*<div class="progress-bar progress-bar-success progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width:90%;">
-                        @item.Compatible %
-                    </div>*@
+                            @item.Compatible %
+                        </div>*@
                     @Html.Raw(Html.CompatibilidaOferta((int)item.Compatible))
 
 
@@ -52,13 +55,20 @@
     <br />
     <nav class="navbar-right">
         <ul class="pagination">
-            <li><a href="#">&laquo;</a></li>
-            <li><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#" id="pag">5</a></li>
-            <li><a href="#">&raquo;</a></li>
+            <li><a href="#" class="before">&laquo;</a></li>
+            @for (int i = 1; i <= Model.MaxPagina; i++)
+            {
+
+                if (i == Model.PaginaActual)
+                {
+                    <li class="active"><a href="#" class="gridindex" >@Html.DisplayName(i.ToString())</a></li>
+                }
+                else
+                {
+                    <li><a href="#" class="gridindex">@Html.DisplayName(i.ToString())</a></li>
+                }
+            }
+            <li><a href="#" class="after">&raquo;</a></li>
         </ul>
     </nav>
 </div>
@@ -70,6 +80,111 @@
         $('#Modal-datos-empresa').modal('show');
         return false;
     });
+    $('.gridindex').click(function () {       
+        if ($("#TipoBusqueda").val() == 1) {
+            var oferta = {
+                PalabraClave: $('#PalabraClave').val(),
+                IdAlumno: $('#IdAlumno').val(),
+                PaginaActual: $(this).html(),
+                NumeroRegistros: parseInt($("#PagOfertas").val())
+
+            };
+            Cargar("resultadobusqueda", "/Alumno/BusquedaSimpleOferta", oferta);
+        } else if ($("#TipoBusqueda").val() == 2) {
+            var oferta = {
+                IdPeriodoPublicacion: $('#IdPeriodoPublicacion').val(),
+                IdEstudio: $('#IdEstudio').val(),
+                IdEstadoEstudio: $('#IdEstadoEstudio').val(),
+                IdSectorEmpresarial: $('#IdSectorEmpresarial').val(),
+                AreaEmpresa: $('#AreaEmpresa').val(),
+                AniosExperiencia: $('#AniosExperiencia').val(),
+                IdTipoTrabajo: $('#IdTipoTrabajo').val(),
+                IdContrato: $('#IdContrato').val(),
+                IdTipoCargo: $('#IdTipoCargo').val(),
+                Sueldo: $('#Sueldo').val(),
+                Ubicacion: $('#Ubicacion').val(),
+                IncluirMensaje: $('#IncluirMensaje:checked').val(),
+                IdAlumno: $('#IdAlumno').val(),
+                PaginaActual: $(this).html(),
+                NumeroRegistros: parseInt($("#PagOfertas").val())
+
+            };
+            Cargar("resultadobusqueda", "/Alumno/BusquedaAvanzadaOferta", oferta);
+        }
+    });
+    $('.before').click(function () {
+        var paginaactual = 0;
+        if ($("#PaginaActual").val() > 1) {
+            paginaactual = parseInt($("#PaginaActual").val()) - 1;
+            if ($("#TipoBusqueda").val() == 1) {
+                var oferta = {
+                    PalabraClave: $('#PalabraClave').val(),
+                    IdAlumno: $('#IdAlumno').val(),
+                    PaginaActual: paginaactual,
+                    NumeroRegistros: parseInt($("#PagOfertas").val())
+                };
+                Cargar("resultadobusqueda", "/Alumno/BusquedaSimpleOferta", oferta);
+            } else if ($("#TipoBusqueda").val() == 2) {
+                var oferta = {
+                    IdPeriodoPublicacion: $('#IdPeriodoPublicacion').val(),
+                    IdEstudio: $('#IdEstudio').val(),
+                    IdEstadoEstudio: $('#IdEstadoEstudio').val(),
+                    IdSectorEmpresarial: $('#IdSectorEmpresarial').val(),
+                    AreaEmpresa: $('#AreaEmpresa').val(),
+                    AniosExperiencia: $('#AniosExperiencia').val(),
+                    IdTipoTrabajo: $('#IdTipoTrabajo').val(),
+                    IdContrato: $('#IdContrato').val(),
+                    IdTipoCargo: $('#IdTipoCargo').val(),
+                    Sueldo: $('#Sueldo').val(),
+                    Ubicacion: $('#Ubicacion').val(),
+                    IncluirMensaje: $('#IncluirMensaje:checked').val(),
+                    IdAlumno: $('#IdAlumno').val(),
+                    PaginaActual: paginaactual,
+                    NumeroRegistros: parseInt($("#PagOfertas").val())
+
+                };
+                Cargar("resultadobusqueda", "/Alumno/BusquedaAvanzadaOferta", oferta);
+            }
+        }
+    });
+    $('.after').click(function () {
+        var paginaactual = 0;
+        if ($("#PaginaActual").val() < $("#MaxPagina").val()) {
+            paginaactual = parseInt($("#PaginaActual").val()) + 1;
+            if ($("#TipoBusqueda").val() == 1) {
+                var oferta = {
+                    PalabraClave: $('#PalabraClave').val(),
+                    IdAlumno: $('#IdAlumno').val(),
+                    PaginaActual: paginaactual,
+                    NumeroRegistros: parseInt($("#PagOfertas").val())
+                };
+                Cargar("resultadobusqueda", "/Alumno/BusquedaSimpleOferta", oferta);
+            } else if ($("#TipoBusqueda").val() == 2) {
+                var oferta = {
+                    IdPeriodoPublicacion: $('#IdPeriodoPublicacion').val(),
+                    IdEstudio: $('#IdEstudio').val(),
+                    IdEstadoEstudio: $('#IdEstadoEstudio').val(),
+                    IdSectorEmpresarial: $('#IdSectorEmpresarial').val(),
+                    AreaEmpresa: $('#AreaEmpresa').val(),
+                    AniosExperiencia: $('#AniosExperiencia').val(),
+                    IdTipoTrabajo: $('#IdTipoTrabajo').val(),
+                    IdContrato: $('#IdContrato').val(),
+                    IdTipoCargo: $('#IdTipoCargo').val(),
+                    Sueldo: $('#Sueldo').val(),
+                    Ubicacion: $('#Ubicacion').val(),
+                    IncluirMensaje: $('#IncluirMensaje:checked').val(),
+                    IdAlumno: $('#IdAlumno').val(),
+                    PaginaActual: paginaactual,
+                    NumeroRegistros: parseInt($("#PagOfertas").val())
+
+                };
+                Cargar("resultadobusqueda", "/Alumno/BusquedaAvanzadaOferta", oferta);
+            }
+
+        }
+
+    });
+
     function CargarGET(id, link) {
         $.ajax({
             url: link,

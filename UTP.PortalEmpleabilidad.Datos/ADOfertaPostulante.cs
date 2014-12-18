@@ -50,7 +50,7 @@ namespace UTP.PortalEmpleabilidad.Datos
             return dt;
         }
 
-        public DataTable ObtenerPostulantesPorIDAlumno(int IdAlumno, string PalabraClave)
+        public DataTable ObtenerPostulantesPorIDAlumno(int IdAlumno, string PalabraClave, int PaginaActual, int NumeroRegistros)
         {
             DataTable dtResultado = new DataTable();
 
@@ -62,7 +62,8 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.CommandText = "OfertaPostulante_ObtenerPorIDAlumno";
                 cmd.Parameters.Add(new SqlParameter("@IdAlumno", SqlDbType.Int)).Value = IdAlumno;
                 cmd.Parameters.Add(new SqlParameter("@PalabraClave", SqlDbType.VarChar, 100)).Value = PalabraClave;
-
+                cmd.Parameters.Add(new SqlParameter("@PagActual", SqlDbType.Int)).Value = PaginaActual;
+                cmd.Parameters.Add(new SqlParameter("@NumRegistros", SqlDbType.Int)).Value = NumeroRegistros;
                 cmd.Connection = cnn.cn;
                 cnn.Conectar();
                 SqlDataAdapter da = new SqlDataAdapter(cmd);

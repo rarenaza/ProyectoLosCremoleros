@@ -111,11 +111,11 @@ namespace UTP.PortalEmpleabilidad.Logica
            
             return vistaofertalumno;
         }
-        public List<Oferta> BuscarFiltroOfertasAlumno(int IdAlumno, string PalabraClave)
+        public List<Oferta> BuscarFiltroOfertasAlumno(int IdAlumno, string PalabraClave, int PagActual, int NumRegistros)
         {
             List<Oferta> listaOferta = new List<Oferta>();
 
-            DataTable dtResultado = adOferta.BuscarFiltroOfertasAlumno(IdAlumno, PalabraClave);
+            DataTable dtResultado = adOferta.BuscarFiltroOfertasAlumno(IdAlumno, PalabraClave, PagActual, NumRegistros);
 
             for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
             {
@@ -131,6 +131,8 @@ namespace UTP.PortalEmpleabilidad.Logica
                 oferta.RemuneracionOfrecida = Funciones.ToDecimal(dtResultado.Rows[i]["RemuneracionOfrecida"]);
                 oferta.Mensaje = Funciones.ToInt(dtResultado.Rows[i]["Mensajes"]);
                 oferta.IdEmpresa = Funciones.ToInt(dtResultado.Rows[i]["IdEmpresa"]);
+                oferta.MaxPagina = Funciones.ToInt(dtResultado.Rows[i]["MaxPagina"]);
+
                 listaOferta.Add(oferta);
             }
             return listaOferta;
@@ -176,6 +178,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 oferta.RemuneracionOfrecida = Funciones.ToDecimal(dtResultado.Rows[i]["RemuneracionOfrecida"]);
                 oferta.Mensaje = Funciones.ToInt(dtResultado.Rows[i]["Mensajes"]);
                 oferta.IdEmpresa = Funciones.ToInt(dtResultado.Rows[i]["IdEmpresa"]);
+                oferta.MaxPagina = Funciones.ToInt(dtResultado.Rows[i]["MaxPagina"]);
                 listaOferta.Add(oferta);
             }
             return listaOferta;

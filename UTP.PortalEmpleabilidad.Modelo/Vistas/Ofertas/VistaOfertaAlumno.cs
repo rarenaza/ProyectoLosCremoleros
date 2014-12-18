@@ -54,6 +54,10 @@ namespace UTP.PortalEmpleabilidad.Modelo.Vistas.Ofertas
         public Oferta Oferta { get; set; }
         public decimal Compatible { get; set; }
 
+        public int PaginaActual { get; set; }
+        public int NumeroRegistros { get; set; }
+        public int MaxPagina { get; set; }
+
         public List<Oferta> ListadoEstudios { get; set; }
         public List<Oferta> ListadoSectorEmpresarial { get; set; }
         public List<Oferta> ListadoInformacionAdicional { get; set; }

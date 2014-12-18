@@ -13,7 +13,7 @@
                 <div class="col-sm-4">
                     <div class="input-group fuente-pequeña">
                         <span class="input-group-addon">CV</span>
-                        @Html.DropDownList("ListaCVs", new SelectList(ViewBag.ListaAlumnoCV, "Value", "Text"), new { @class = "form-control" })
+                        @Html.DropDownListFor(m => m.IdCV, new SelectList(ViewBag.ListaAlumnoCV, "Value", "Text"), new { @class = "form-control" })
 
                     </div>
                 </div>
@@ -44,3 +44,29 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        var vistacv = {
+            IdAlumno: $('#IdAlumno').val(),
+            IdCV: $('#IdCV').val()
+        };
+        $("#HIIdCV").attr("value", $('#IdCV').val());
+        CargarPOST("alumno-datos-generales", "/Alumno/AlumnoDatosGenerales", vistacv);
+        CargarPOST("mi-cv-educacion", "/Alumno/AlumnoEstudiosCV", vistacv);
+
+    });
+
+    $("#IdCV").change(function () {
+        var Id = $(this).val();
+        $("#HIIdCV").attr("value",$('#IdCV').val());
+        var vistacv = {
+            IdAlumno: $('#IdAlumno').val(),
+            IdCV: Id
+        };
+        CargarPOST("mi-cv-opciones", "/Alumno/OpcionesCV", vistacv);
+        CargarPOST("alumno-datos-generales", "/Alumno/AlumnoDatosGenerales", vistacv);
+        CargarPOST("mi-cv-educacion", "/Alumno/AlumnoEstudiosCV", vistacv);
+    });
+
+
+</script>

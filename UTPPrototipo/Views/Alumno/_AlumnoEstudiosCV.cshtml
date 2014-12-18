@@ -11,7 +11,7 @@
             <div id="collapseMiCVEducacion" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingMiCVEducacion">
                 <div class="panel-body fuente-pequeña">
                     <div class="row">
-                        <div class="col-sm-12 text-right"><button type="button" data-toggle="modal" data-target="#Modal-estudio" class="btn btn-default color-paleta4 fuente-pequeña" style="color: white; margin-bottom: 10px;">Agregar Estudio</button></div>
+                        <div class="col-sm-12 text-right"><button type="button" id="IdGrabarEstudio" data-toggle="modal" data-target="#Modal-estudio" class="btn btn-default color-paleta4 fuente-pequeña" style="color: white; margin-bottom: 10px;">Agregar Estudio</button></div>
                     </div>
                     @foreach (var item in Model)
                     {
@@ -74,3 +74,11 @@
             </div>
         </div>
 
+<script>
+    $("#IdGrabarEstudio").click(function () {
+        CargarPOST("Modal-estudio", "ModalRegistroEstudio", null);
+        $('#Modal-estudio').modal("show");
+        return false;
+    });
+
+</script>

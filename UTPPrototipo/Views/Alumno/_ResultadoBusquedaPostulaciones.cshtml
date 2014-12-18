@@ -1,6 +1,7 @@
 ﻿@using UTPPrototipo.Common
-@model IEnumerable<UTP.PortalEmpleabilidad.Modelo.Vistas.Ofertas.VistaPostulacionAlumno>
-
+@model UTP.PortalEmpleabilidad.Modelo.Vistas.Ofertas.VistaPostulacionAlumno
+@Html.Hidden("PaginaActual", Model.PaginaActual)
+@Html.Hidden("MaxPagina", Model.MaxPagina)
 <div class="row grilla1-cabecera color-paleta2">
     <div class="col-sm-1">Fecha Publicación</div>
     <div class="col-sm-1">Fecha Postulación</div>
@@ -14,7 +15,7 @@
     <div class="col-sm-1"></div>
 </div>
 
-@foreach (var item in Model)
+@foreach (var item in Model.ListaPostulacionesOfertas)
 {
     <div class="row grilla1-linea">
         <div class="col-sm-1 linea-destacada"><span>@Html.FormatoFrecuencia(item.FechaPublicacion)</span></div>
@@ -25,15 +26,17 @@
         <div class="col-sm-2 linea-destacada">@Html.ActionLink(item.CargoOfrecido, "postulacionOferta2", "Alumno", new { id = item.IdOferta }, null)</div>
         <div class="col-sm-1"><span class="valor-palabra">@item.TipoTrabajo</span><span class="valor-icono2">I</span></div>
         <div class="col-sm-1"><span>@item.Horario</span></div>
-        <div class="col-sm-1">@if (item.RemuneracionOfrecida > 0)
-        {
+        <div class="col-sm-1">
+            @if (item.RemuneracionOfrecida > 0)
+            {
 
-            <span>@String.Format("{0:###,###,###.#0}", item.RemuneracionOfrecida)</span>
-        }
-        else
-        {
-            <span></span>
-        }</div>
+                <span>@String.Format("{0:###,###,###.#0}", item.RemuneracionOfrecida)</span>
+            }
+            else
+            {
+                <span></span>
+            }
+        </div>
         <div class="col-sm-1"><span class="fui fa-2x valor-icono">h</span>&nbsp;&nbsp;<span>@item.Mensajes</span></div>
         <div class="col-sm-1"><span class="valor-palabra">@item.EstadoOferta</span><span class="valor-icono2">D</span></div>
         <div class="col-sm-1">@Html.ActionLink("Ver más", "postulacionOferta2", "Alumno", new { id = item.IdOferta }, null)</div>
@@ -42,13 +45,20 @@
 <br />
 <nav class="navbar-right">
     <ul class="pagination">
-        <li><a href="#">&laquo;</a></li>
-        <li><a href="#">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">4</a></li>
-        <li><a href="#">5</a></li>
-        <li><a href="#">&raquo;</a></li>
+        <li><a href="#" class="before">&laquo;</a></li>
+        @for (int i = 1; i <= Model.MaxPagina; i++)
+        {
+
+            if (i == Model.PaginaActual)
+            {
+                <li class="active" ><a href="#" class="gridindex">@Html.DisplayName(i.ToString())</a></li>
+            }
+            else
+            {
+                <li><a href="#" class="gridindex">@Html.DisplayName(i.ToString())</a></li>
+            }
+        }
+        <li><a href="#" class="after">&raquo;</a></li>
     </ul>
 </nav>
 <script>
@@ -58,6 +68,44 @@
         CargarGET("Modal-datos-empresa", url);
         $('#Modal-datos-empresa').modal('show');
         return false;
+    });
+    $('.gridindex').click(function () {
+        var ofertapostulacion = {
+            IdAlumno: $('#IdAlumno').val(),
+            PalabraClave: $('#IdPalabraClave').val(),
+            PaginaActual: $(this).html(),
+            NumeroRegistros: parseInt($("#PagOfertasPostulacion").val())
+        };
+        CargarPOST("idResulBusPostulaciones", "/Alumno/BusquedaSimplePostulacionOferta", ofertapostulacion);
+
+    });
+    $('.before').click(function () {
+        var paginaactual = 0;
+        if ($("#PaginaActual").val() > 1) {
+            paginaactual = parseInt($("#PaginaActual").val()) - 1;
+            var ofertapostulacion = {
+                IdAlumno: $('#IdAlumno').val(),
+                PalabraClave: $('#IdPalabraClave').val(),
+                PaginaActual: paginaactual,
+                NumeroRegistros: parseInt($("#PagOfertasPostulacion").val())
+            };
+            CargarPOST("idResulBusPostulaciones", "/Alumno/BusquedaSimplePostulacionOferta", ofertapostulacion);
+        }
+    });
+    $('.after').click(function () {
+        var paginaactual = 0;
+        if ($("#PaginaActual").val() < $("#MaxPagina").val()) {
+            paginaactual = parseInt($("#PaginaActual").val()) + 1;
+            var ofertapostulacion = {
+                IdAlumno: $('#IdAlumno').val(),
+                PalabraClave: $('#IdPalabraClave').val(),
+                PaginaActual: paginaactual,
+                NumeroRegistros: parseInt($("#PagOfertasPostulacion").val())
+            };
+            CargarPOST("idResulBusPostulaciones", "/Alumno/BusquedaSimplePostulacionOferta", ofertapostulacion);
+
+        }
+
     });
     function CargarGET(id, link) {
         $.ajax({

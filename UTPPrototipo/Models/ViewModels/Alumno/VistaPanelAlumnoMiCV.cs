@@ -14,6 +14,8 @@ namespace UTPPrototipo.Models.ViewModels
         public int IdCV { get; set; }
         public List<PlantillaCV> ListaPlantillaCV { get; set; }
         public int IdPlantillaCV { get; set; }
+        public int IdAlumno { get; set; }
+
         public List<AlumnoEstudio> ListaAlumnoEstudio { get; set; }
         public List<AlumnoExpericiencia> ListaAlumnoExperiencia { get; set; }
         //public List<AlumnoExpericiencia> ListaAlumnoExperiencia { get; set; }

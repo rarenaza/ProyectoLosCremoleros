@@ -35,5 +35,44 @@ namespace UTP.PortalEmpleabilidad.Datos
             return dtResultado;
         }
 
+        public void Insertar(AlumnoEstudio alumnoestudio)
+        {
+            using (SqlConnection conexion = new SqlConnection(cnn.Conexion()))
+            {
+                conexion.Open();
+
+                SqlTransaction transaccion;
+                transaccion = conexion.BeginTransaction();
+                cmd.Connection = conexion;
+                cmd.Transaction = transaccion;
+
+                try
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "AlumnoEstudio_Insertar";
+                    cmd.Parameters.Add(new SqlParameter("@IdAlumno", SqlDbType.Int)).Value = alumnoestudio.IdAlumno;
+                    cmd.Parameters.Add(new SqlParameter("@Institucion", SqlDbType.VarChar, 100)).Value = alumnoestudio.Institucion;
+                    cmd.Parameters.Add(new SqlParameter("@Estudio", SqlDbType.VarChar, 100)).Value = alumnoestudio.Estudio;
+                    cmd.Parameters.Add(new SqlParameter("@TipoDeEstudio", SqlDbType.VarChar, 6)).Value = alumnoestudio.TipoDeEstudio;
+                    cmd.Parameters.Add(new SqlParameter("@EstadoDelEstudio", SqlDbType.VarChar, 6)).Value = alumnoestudio.EstadoDelEstudio;
+                    cmd.Parameters.Add(new SqlParameter("@Observacion", SqlDbType.VarChar, 6)).Value = alumnoestudio.Observacion;
+                    cmd.Parameters.Add(new SqlParameter("@FechInicio", SqlDbType.Date)).Value = alumnoestudio.FechInicio;
+                    cmd.Parameters.Add(new SqlParameter("@FechFin", SqlDbType.Date)).Value = alumnoestudio.FechFin;
+                    cmd.Parameters.Add(new SqlParameter("@CicloEquivalente", SqlDbType.Int)).Value = alumnoestudio.CicloEquivalente;
+                    cmd.Parameters.Add(new SqlParameter("@DatoUTP", SqlDbType.Bit)).Value = alumnoestudio.DatoUTP;
+                    cmd.Parameters.Add(new SqlParameter("@CreadoPor", SqlDbType.VarChar, 50)).Value = alumnoestudio.CreadoPor;
+                    cmd.ExecuteNonQuery();
+                    transaccion.Commit();
+                    conexion.Close();
+                }
+                catch (Exception ex)
+                {
+                    transaccion.Rollback();
+                    throw ex;
+                }
+            }
+
+        }
+
     }
 }

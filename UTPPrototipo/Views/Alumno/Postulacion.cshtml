@@ -11,7 +11,9 @@
         $("#divFinalCabecera").removeClass("color-paleta1 color-paleta3 color-paleta4 color-paleta5").addClass("color-paleta2");
         var ofertapostulacion = {
             IdAlumno: $('#IdAlumno').val(),
-            PalabraClave: $('#IdPalabraClave').val()
+            PalabraClave: $('#IdPalabraClave').val(),
+            PaginaActual: 1,
+            NumeroRegistros: parseInt($("#PagOfertasPostulacion").val())
         };
 
         CargarPOST("idResulBusPostulaciones", "/Alumno/BusquedaSimplePostulacionOferta", ofertapostulacion);
@@ -19,7 +21,9 @@
         $('#idBuscar').click(function () {
             var ofertapostulacion = {
                 IdAlumno: $('#IdAlumno').val(),
-                PalabraClave: $('#IdPalabraClave').val()
+                PalabraClave: $('#IdPalabraClave').val(),
+                PaginaActual: 1,
+                NumeroRegistros: parseInt($("#PagOfertasPostulacion").val())
             };
             CargarPOST("idResulBusPostulaciones", "/Alumno/BusquedaSimplePostulacionOferta", ofertapostulacion);
         });

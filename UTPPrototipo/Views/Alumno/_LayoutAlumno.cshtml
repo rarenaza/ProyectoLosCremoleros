@@ -92,5 +92,47 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script>
+
+
+    function CargarPOST(id, link, entidad) {
+        $.ajax({
+            url: link,
+            contentType: 'application/json; charset=utf-8',
+            type: 'POST',
+            data: JSON.stringify(entidad),
+            dataType: 'html'
+        })
+        .success(function (result) {
+            if (id != null) {
+                $("#" + id).html(result);
+            }
+        })
+        .error(function (xhr, status) {
+            console.log(xhr);
+            console.log(status);
+
+        })
+    }
+
+    function CargarGET(id, link) {
+        $.ajax({
+            url: link,
+            contentType: 'application/html; charset=utf-8',
+            type: 'GET',
+            dataType: 'html'
+
+        })
+        .success(function (result) {
+            if (id != null) {
+                $("#" + id).html(result);
+            }
+        })
+        .error(function (xhr, status) {
+            alert(status);
+        })
+    }
+    </script>
 </body>
+
 </html>

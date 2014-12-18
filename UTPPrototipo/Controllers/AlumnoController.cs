@@ -69,9 +69,12 @@ namespace UTPPrototipo.Controllers
         }
         public ActionResult BusquedaSimplePostulacionOferta(VistaPostulacionAlumno entidad)
         {
-            List<VistaPostulacionAlumno> listapostulacionesoferta = new List<VistaPostulacionAlumno>();
-            listapostulacionesoferta = lnofertapostulante.ObtenerPostulantesPorIDAlumno(entidad.IdAlumno, entidad.PalabraClave == null ? "" : entidad.PalabraClave);
-            return PartialView("_ResultadoBusquedaPostulaciones", listapostulacionesoferta);
+            entidad.ListaPostulacionesOfertas = lnofertapostulante.ObtenerPostulantesPorIDAlumno(entidad.IdAlumno, entidad.PalabraClave == null ? "" : entidad.PalabraClave, entidad.PaginaActual, entidad.NumeroRegistros);
+            if (entidad.ListaPostulacionesOfertas.Count > 0)
+            {
+                entidad.MaxPagina = entidad.ListaPostulacionesOfertas[0].MaxPagina;
+            }
+            return PartialView("_ResultadoBusquedaPostulaciones", entidad);
         }
         public ActionResult DetalleEmpresa(int IdEmpresa)
         {
@@ -294,26 +297,31 @@ namespace UTPPrototipo.Controllers
         public ActionResult BusquedaAvanzadaOferta(VistaOfertaAlumno entidad)
         {
             entidad.ListaOfertas = lnoferta.BuscarAvanzadoOfertasAlumno(entidad);
-             return PartialView("_ResultadoBusquedaOfertas", entidad.ListaOfertas);
+            if (entidad.ListaOfertas.Count > 0)
+            {
+                entidad.MaxPagina = entidad.ListaOfertas[0].MaxPagina;
+            }
+             return PartialView("_ResultadoBusquedaOfertas", entidad);
         }
 
         public ActionResult BusquedaSimpleOferta(VistaOfertaAlumno entidad)
         {
-            entidad.ListaOfertas = lnoferta.BuscarFiltroOfertasAlumno(entidad.IdAlumno, entidad.PalabraClave == null ? "" : entidad.PalabraClave);
-            return PartialView("_ResultadoBusquedaOfertas", entidad.ListaOfertas);
+            entidad.ListaOfertas = lnoferta.BuscarFiltroOfertasAlumno(entidad.IdAlumno, entidad.PalabraClave == null ? "" : entidad.PalabraClave,entidad.PaginaActual,entidad.NumeroRegistros);
+            if (entidad.ListaOfertas.Count > 0)
+            {
+                entidad.MaxPagina = entidad.ListaOfertas[0].MaxPagina;
+            }
+            return PartialView("_ResultadoBusquedaOfertas", entidad);
         }
 
 
-        private VistaPanelAlumnoMiCV VistaMICV(int? IdCV)
+        private VistaPanelAlumnoMiCV VistaMICV(int IdAlumno,int IdCV)
         {
             //Declaracion de objetos
             VistaPanelAlumnoMiCV panel = new VistaPanelAlumnoMiCV();
             AlumnoCV alumnocv = new AlumnoCV();
-            //Datos del Alumno
-            panel.alumno = lnAlumno.ObtenerAlumnoPorCodigo(codigoAlumno);
-
             //Lista de Curriculos del Alumno
-            alumnocv.IdAlumno = panel.alumno.IdAlumno;
+            alumnocv.IdAlumno = IdAlumno;
             alumnocv.IdPlantillaCV = int.Parse(Common.Util.ObtenerSettings("IdPlantillaCV"));
             alumnocv.NombreCV = Common.Util.ObtenerSettings("NameAlumnoCV");
             alumnocv.IncluirTelefonoFijo = false;
@@ -326,9 +334,9 @@ namespace UTPPrototipo.Controllers
             panel.ListaAlumnoCV = lnAlumnoCV.ObtenerAlumnoCVPorIdAlumno(alumnocv);
 
             //Hallar el ID del Curriculo del alumno
-            if (IdCV != null)
+            if (IdCV != 0)
             {
-                panel.IdCV = (int)IdCV;
+                panel.IdCV = IdCV;
                 for (int i = 0; i <= panel.ListaAlumnoCV.Count - 1; i++) {
                     if (panel.ListaAlumnoCV[i].IdCV == IdCV)
                     {
@@ -354,80 +362,51 @@ namespace UTPPrototipo.Controllers
         {
             
             VistaPanelAlumnoMiCV panel = new VistaPanelAlumnoMiCV();
-            panel = VistaMICV(null);
+            panel.alumno = lnAlumno.ObtenerAlumnoPorCodigo(codigoAlumno);
 
             return View(panel);
         }
-        public ActionResult OpcionesCV(int? Id)
+
+
+        #region "Mi Portal"
+
+        #endregion
+        #region "Postulaciones"
+
+        #endregion
+        #region "Ofertas"
+
+        #endregion
+        #region "Mi CV"
+        public ActionResult OpcionesCV(VistaPanelAlumnoMiCV entidad)
         {
             VistaPanelAlumnoMiCV panel = new VistaPanelAlumnoMiCV();
-            panel = VistaMICV(Id);
+            panel = VistaMICV(entidad.IdAlumno, entidad.IdCV);
  
 
             List<SelectListItem> listItems = new List<SelectListItem>();
-            foreach (AlumnoCV entidad in panel.ListaAlumnoCV)
+            foreach (AlumnoCV modelo in panel.ListaAlumnoCV)
             {
                 SelectListItem item = new SelectListItem();
-                item.Text = entidad.NombreCV;
-                item.Value = entidad.IdCV.ToString();
+                item.Text = modelo.NombreCV;
+                item.Value = modelo.IdCV.ToString();
                 listItems.Add(item);
             }
             List<SelectListItem> listItemsPlantillaCV = new List<SelectListItem>();
-            foreach (PlantillaCV entidad in panel.ListaPlantillaCV)
+            foreach (PlantillaCV modelo in panel.ListaPlantillaCV)
             {
                 SelectListItem item = new SelectListItem();
-                item.Text = entidad.Plantilla;
-                item.Value = entidad.IdPlantillaCV.ToString();
+                item.Text = modelo.Plantilla;
+                item.Value = modelo.IdPlantillaCV.ToString();
                 listItemsPlantillaCV.Add(item);
             }
             ViewBag.ListaAlumnoCV = listItems;
             ViewBag.ListaPlantillaCV = listItemsPlantillaCV;
 
-            return PartialView("_OpcionesAlumnoCV");
+            return PartialView("_OpcionesAlumnoCV", panel);
         }
-        //public ActionResult OpcionesCV()
-        //{
-        //    VistaPanelAlumnoMiCV panel = new VistaPanelAlumnoMiCV();
-        //    Alumno alumno = new Alumno();
-        //    AlumnoCV alumnocv = new AlumnoCV();
 
-        //    alumno = lnAlumno.ObtenerAlumnoPorCodigo(codigoAlumno);
-        //    alumnocv.IdAlumno = alumno.IdAlumno;
-        //    alumnocv.IdPlantillaCV = int.Parse(Common.Util.ObtenerSettings("IdPlantillaCV"));
-        //    alumnocv.NombreCV = Common.Util.ObtenerSettings("NameAlumnoCV");
-        //    alumnocv.IncluirTelefonoFijo = false;
-        //    alumnocv.IncluirCorreoElectronico2 = false;
-        //    alumnocv.IncluirFoto = false;
-        //    alumnocv.Perfil = string.Empty;
-        //    alumnocv.EstadoCV = "CVACT";
-
-        //    alumnocv.CreadoPor = "administrador";
-        //    var listaalumnocv = lnAlumnoCV.ObtenerAlumnoCVPorIdAlumno(alumnocv);
-        //    var listaplantillacv = lnPlantillaCV.MostrarPlantillaCV();
-
-        //    List<SelectListItem> listItems = new List<SelectListItem>();
-        //    foreach (AlumnoCV entidad in listaalumnocv)
-        //    {
-        //        SelectListItem item = new SelectListItem();
-        //        item.Text = entidad.NombreCV;
-        //        item.Value = entidad.IdCV.ToString();
-        //        listItems.Add(item);
-        //    }
-        //    List<SelectListItem> listItemsPlantillaCV = new List<SelectListItem>();
-        //    foreach (PlantillaCV entidad in listaplantillacv)
-        //    {
-        //        SelectListItem item = new SelectListItem();
-        //        item.Text = entidad.Plantilla;
-        //        item.Value = entidad.IdPlantillaCV.ToString();
-        //        listItemsPlantillaCV.Add(item);
-        //    }
-        //    panel.IdPlantillaCV = listaalumnocv[0].IdPlantillaCV;
-        //    ViewBag.ListaAlumnoCV = listItems;
-        //    ViewBag.ListaPlantillaCV = listItemsPlantillaCV;
-
-        //    return PartialView("_OpcionesAlumnoCV", panel);
-        //}
-        public ActionResult AlumnoDatosGenerales(int Id)
+        public ActionResult AlumnoDatosGenerales(VistaPanelAlumnoMiCV entidad)
         {
 
             Alumno alumno = new Alumno();
@@ -436,7 +415,7 @@ namespace UTPPrototipo.Controllers
             alumno = lnAlumno.ObtenerAlumnoPorCodigo(codigoAlumno);
             if (alumno != null)
             {
-                alumnocv = lnAlumnoCV.ObtenerAlumnoCVPorIdAlumnoYIdCV(alumno.IdAlumno, Id);
+                alumnocv = lnAlumnoCV.ObtenerAlumnoCVPorIdAlumnoYIdCV(alumno.IdAlumno, entidad.IdCV);
                 alumno.IncluirCorreoElectronico1 = alumnocv.IncluirCorreoElectronico2;
                 alumno.IncluirFoto = alumnocv.IncluirFoto;
                 alumno.IncluirTelefonoFijo = alumnocv.IncluirTelefonoFijo;
@@ -446,20 +425,95 @@ namespace UTPPrototipo.Controllers
             return PartialView("_AlumnoDatosGenerales", alumno);
         }
 
-        public ActionResult AlumnoEstudiosCV(int Id)
+        public ActionResult AlumnoEstudiosCV(VistaPanelAlumnoMiCV entidad)
         {
 
             Alumno alumno = new Alumno();
             List<AlumnoEstudio> listaalumnoestudio = new List<AlumnoEstudio>();
 
-            alumno = lnAlumno.ObtenerAlumnoPorCodigo(codigoAlumno);
-            listaalumnoestudio = lnAlumnoEstudio.ObtenerAlumnoEstudioPorIdAlumno(alumno.IdAlumno);
-            if (alumno != null && listaalumnoestudio.Count>0)
+
+            listaalumnoestudio = lnAlumnoEstudio.ObtenerAlumnoEstudioPorIdAlumno(entidad.IdAlumno);
+            if (alumno != null && listaalumnoestudio.Count > 0)
             {
-                listaalumnoestudio = lnAlumnoCVEstudio.ObtenerAlumnoCVEstudioPorIdCVYIdEstudio(Id, listaalumnoestudio);
+                listaalumnoestudio = lnAlumnoCVEstudio.ObtenerAlumnoCVEstudioPorIdCVYIdEstudio(entidad.IdCV, listaalumnoestudio);
             }
             return PartialView("_AlumnoEstudiosCV", listaalumnoestudio);
         }
+
+        public ActionResult ModalRegistroEstudio()
+        {
+
+            AlumnoEstudio alumnoestudio = new AlumnoEstudio();
+            LNGeneral lngeneral = new LNGeneral();
+
+            alumnoestudio.ListaEstudios = lngeneral.ObtenerListaValor(5);
+            alumnoestudio.ListaTipoEstudios = lngeneral.ObtenerListaValor(7);
+            alumnoestudio.ListaEstadoEstudio = lngeneral.ObtenerListaValor(43);
+            alumnoestudio.ListaObservacionEstudios = lngeneral.ObtenerListaValor(44);
+            //Declara Lista
+            //Carreras y Estudios
+            List<SelectListItem> listItemsCarrera = new List<SelectListItem>();
+            foreach (ListaValor entidad in alumnoestudio.ListaEstudios)
+            {
+                SelectListItem item = new SelectListItem();
+                item.Text = entidad.Valor.ToUpper();
+                item.Value = entidad.IdListaValor.ToString();
+                listItemsCarrera.Add(item);
+            }
+
+            //Tipo Estudios
+            List<SelectListItem> listItemsTipoEstudios = new List<SelectListItem>();
+            foreach (ListaValor entidad in alumnoestudio.ListaTipoEstudios)
+            {
+                SelectListItem item = new SelectListItem();
+                item.Text = entidad.Valor.ToUpper();
+                item.Value = entidad.IdListaValor.ToString();
+                listItemsTipoEstudios.Add(item);
+            }
+
+            //Estado Estudio
+            List<SelectListItem> listItemsEstadoEstudio = new List<SelectListItem>();
+            foreach (ListaValor entidad in alumnoestudio.ListaEstadoEstudio)
+            {
+                SelectListItem item = new SelectListItem();
+                item.Text = entidad.Valor.ToUpper();
+                item.Value = entidad.IdListaValor.ToString();
+                listItemsEstadoEstudio.Add(item);
+            }
+
+            //Observaciones
+            List<SelectListItem> listItemsObservaciones = new List<SelectListItem>();
+            foreach (ListaValor entidad in alumnoestudio.ListaObservacionEstudios)
+            {
+                SelectListItem item = new SelectListItem();
+                item.Text = entidad.Valor.ToUpper();
+                item.Value = entidad.IdListaValor.ToString();
+                listItemsObservaciones.Add(item);
+            }
+
+
+
+            //Lista de Combos
+            ViewBag.ListaEstudios = listItemsCarrera;
+            ViewBag.ListaTipoEstudios = listItemsTipoEstudios;
+            ViewBag.ListaEstadoEstudio = listItemsEstadoEstudio;
+            ViewBag.ListaObservacionEstudios = listItemsObservaciones;
+
+            return PartialView("_ModalRegistroEstudio");
+        }
+
+        public ActionResult RegistrarAlumnoEstudio(AlumnoEstudio alumnoestudio)
+        {
+            lnAlumnoEstudio.Insertar(alumnoestudio);
+            return View();
+        }      
+        #endregion
+
+
+
+
+
+
 
 
 

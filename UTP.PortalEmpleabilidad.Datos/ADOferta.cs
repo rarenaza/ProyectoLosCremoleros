@@ -74,7 +74,7 @@ namespace UTP.PortalEmpleabilidad.Datos
 
 
 
-        public DataTable BuscarFiltroOfertasAlumno(int IdAlumno,string PalabraClave)
+        public DataTable BuscarFiltroOfertasAlumno(int IdAlumno, string PalabraClave, int PagActual, int NumRegistros)
         {
             DataTable dtResultado = new DataTable();
 
@@ -86,6 +86,8 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.CommandText = "Oferta_BusquedaFiltroAlumno";
                 cmd.Parameters.Add(new SqlParameter("@IdAlumno", SqlDbType.Int)).Value = IdAlumno;
                 cmd.Parameters.Add(new SqlParameter("@PalabraClave", SqlDbType.VarChar, 200)).Value = PalabraClave;
+                cmd.Parameters.Add(new SqlParameter("@PagActual", SqlDbType.Int)).Value = PagActual;
+                cmd.Parameters.Add(new SqlParameter("@NumRegistros", SqlDbType.Int)).Value = NumRegistros;
 
                 cmd.Connection = conexion;
 
@@ -179,6 +181,9 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.Parameters.Add(new SqlParameter("@Ubicacion", SqlDbType.VarChar, 100)).Value = entidad.Ubicacion == null ? "" : entidad.Ubicacion;
                 cmd.Parameters.Add(new SqlParameter("@Mensaje", SqlDbType.Int)).Value = entidad.IncluirMensaje ? 1 : 0;
                 cmd.Parameters.Add(new SqlParameter("@IdAlumno", SqlDbType.Int)).Value = entidad.IdAlumno;
+                cmd.Parameters.Add(new SqlParameter("@PagActual", SqlDbType.Int)).Value = entidad.PaginaActual;
+                cmd.Parameters.Add(new SqlParameter("@NumRegistros", SqlDbType.Int)).Value = entidad.NumeroRegistros;
+
                 cmd.Connection = conexion;
 
                 conexion.Open();

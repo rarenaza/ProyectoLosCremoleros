@@ -18,6 +18,12 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public DateTime FechFin { get; set; }
         public int CicloEquivalente { get; set; }
         public string Observacion { get; set; }
+        public bool DatoUTP { get; set; }
+        public string CreadoPor { get; set; }
+        public List<ListaValor> ListaEstudios { get; set; }
+        public List<ListaValor> ListaTipoEstudios { get; set; }
+        public List<ListaValor> ListaEstadoEstudio { get; set; }
+        public List<ListaValor> ListaObservacionEstudios { get; set; }
 
 
 

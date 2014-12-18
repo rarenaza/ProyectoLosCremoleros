@@ -785,6 +785,7 @@
     <Content Include="Views\UTP\_VerDetalleEmpresaUbicaciones.cshtml" />
     <Content Include="Views\UTP\_VerDetalleEmpresaOfertas.cshtml" />
     <Content Include="Views\UTP\_VerDetalleEmpresaMensajes.cshtml" />
+    <Content Include="Views\Alumno\_ModalRegistroEstudio.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

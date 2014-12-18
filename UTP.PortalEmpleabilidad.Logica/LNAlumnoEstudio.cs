@@ -41,5 +41,10 @@ namespace UTP.PortalEmpleabilidad.Logica
 
             return listaAlumno;
         }
+        public void Insertar(AlumnoEstudio alumnoestudio)
+        {
+            aed.Insertar(alumnoestudio);
+        }
+
     }
 }

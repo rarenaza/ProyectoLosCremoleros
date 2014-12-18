@@ -33,11 +33,11 @@ namespace UTP.PortalEmpleabilidad.Logica
             return file;
         }
 
-        public List<VistaPostulacionAlumno> ObtenerPostulantesPorIDAlumno(int IdAlumno,string PalabraClave)
+        public List<VistaPostulacionAlumno> ObtenerPostulantesPorIDAlumno(int IdAlumno, string PalabraClave, int PaginaActual, int NumeroRegistros)
         {
             List<VistaPostulacionAlumno> listapostulacion = new List<VistaPostulacionAlumno>();
 
-            DataTable dtResultado = adOfertaPostulante.ObtenerPostulantesPorIDAlumno(IdAlumno, PalabraClave);
+            DataTable dtResultado = adOfertaPostulante.ObtenerPostulantesPorIDAlumno(IdAlumno, PalabraClave, PaginaActual, NumeroRegistros);
 
             for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
             {
@@ -54,6 +54,8 @@ namespace UTP.PortalEmpleabilidad.Logica
                 postulacion.IdOferta = Funciones.ToInt(dtResultado.Rows[i]["IdOferta"]);
                 postulacion.Mensajes = Funciones.ToInt(dtResultado.Rows[i]["Mensajes"]);
                 postulacion.IdEmpresa = Funciones.ToInt(dtResultado.Rows[i]["IdEmpresa"]);
+                postulacion.MaxPagina = Funciones.ToInt(dtResultado.Rows[i]["MaxPagina"]);
+
                 listapostulacion.Add(postulacion);
             }
             return listapostulacion;
