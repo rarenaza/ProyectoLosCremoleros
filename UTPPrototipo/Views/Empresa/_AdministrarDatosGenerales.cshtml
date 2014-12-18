@@ -28,7 +28,7 @@
                     <div class="col-sm-10">
                         <table class="fuente-pequeña">
                             <tr>
-                                <td class="celda-nombre">Nombre</td>
+                                <td class="celda-nombre" style="width:150px;">Nombre</td>
                                 <td class="celda-datos">@Model.NombreComercial</td>
                             </tr>
                             <tr>
@@ -45,7 +45,7 @@
                             </tr>
                             <tr>
                                 <td class="celda-nombre">Descripción de la Empresa</td>
-                                <td class="celda-datos">@Model.DescripcionEmpresa</td>
+                                <td class="celda-datos" style="text-align:justify;">@Model.DescripcionEmpresa</td>
                             </tr>
                             <tr>
                                 <td class="celda-nombre">Año de Creación</td>
@@ -57,7 +57,7 @@
                             </tr>
                             <tr>
                                 <td class="celda-nombre">Sector Empresarial</td>
-                                <td class="celda-datos">@Model.SectorEmpresarial.Valor, @Model.SectorEmpresarial2.Valor, @Model.SectorEmpresarial3.Valor</td>
+                                <td class="celda-datos">@Model.SectorEmpresarial.Valor @Model.SectorEmpresarial2.Valor @Model.SectorEmpresarial3.Valor</td>
                             </tr>
                         </table>
 

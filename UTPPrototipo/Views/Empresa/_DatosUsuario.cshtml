@@ -11,11 +11,14 @@
         </div>
         <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
             <div class="panel-body">
-                <div class="col-md-4">
+                <div class="col-md-2">
+                    <img alt="" style="max-height:150px; max-width:150px; height: auto; width:auto;" src='@Url.Action("ObtenerImagenEmpresa", "Empresa", new { id = ViewBag.IdEmpresa })' />
+                    <!--
                     <table>
                         <tr>
                             <td>
-                                <img class="foto-empresa" src="~/img/logos/LogoCriteria.jpg" />
+                                @*<img class="foto-empresa" src="~/img/logos/LogoCriteria.jpg" />*@
+                                <img alt="" style="max-height:150px; max-width:150px; height: auto; width:auto;" src='@Url.Action("ObtenerImagenEmpresa", "Empresa", new { id = ViewBag.IdEmpresa })' /><hr />
                             </td>
                             <td style="vertical-align:top;">
                                 <strong>@Model.EmpresaRazonSocial<br />@Model.EmpresaIdentificadorTributario</strong><br />
@@ -23,8 +26,13 @@
                             </td>
                         </tr>
                     </table>
+                        -->
                 </div>
-                <div class="col-md-4 fuente-pequeña">
+                <div class="col-md-3">
+                    <strong>@Model.EmpresaRazonSocial<br />@Model.EmpresaIdentificadorTributario</strong><br />
+                    <a href="#" class="fuente-pequeña">Modificar Datos ...</a>
+                </div>
+                <div class="col-md-3 fuente-pequeña">
                     <strong>@Model.UsuarioNombre @Model.UsuarioApellido</strong><br />
                     <strong>@Model.UsuarioNumeroDocumento</strong><br />
                     <strong>@Model.UsuarioCorreoElectronico</strong><br />

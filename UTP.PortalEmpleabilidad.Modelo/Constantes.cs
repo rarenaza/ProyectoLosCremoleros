@@ -35,6 +35,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public static int IDLISTA_ESTADO_EMPRESA = 20;
         public static int IDLISTA_TIPO_LOCACION = 21;
         public static int IDLISTA_ESTADO_LOCACION = 22;
+        public static int IDLISTA_ESTADO_OFERTA = 28;
         public static int IDLISTA_TIPO_TRABAJO = 29;
         public static int IDLISTA_TIPO_CONTRATO = 30;
         public static int IDLISTA_FASE_OFERTA = 32;

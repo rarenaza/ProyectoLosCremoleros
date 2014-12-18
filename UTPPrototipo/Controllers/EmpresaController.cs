@@ -195,6 +195,7 @@ namespace UTPPrototipo.Controllers
             VistaPanelCabecera panel = new VistaPanelCabecera();
             TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];
 
+            ViewBag.IdEmpresa = ticket.IdEmpresa;
             //Se cargan los datos del empresaUsuario autenticado:
             panel = lnEmpresa.ObtenerPanelCabecera(ticket.Usuario);
 
@@ -250,7 +251,7 @@ namespace UTPPrototipo.Controllers
 
         public ActionResult ObtenerNuevasPostulaciones()
         {
-            Ticket ticket = (Ticket)Session["Ticket"];
+            TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];
 
             LNOferta lnOferta = new LNOferta();
             List<VistaNuevasPostulaciones> lista = new List<VistaNuevasPostulaciones>();

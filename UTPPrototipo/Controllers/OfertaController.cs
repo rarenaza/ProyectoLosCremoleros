@@ -13,11 +13,12 @@ namespace UTPPrototipo.Controllers
     {
 
         [HttpGet]
-        public ActionResult FinalizarOferta(int id)
+        public ActionResult FinalizarOferta(string idOferta, string estado)
         {
             LNOferta lnOferta = new LNOferta();
 
-            lnOferta.CambiarEstado(id, "OFERFI");  //Estado oferta finalizado.
+            //lnOferta.CambiarEstado(id, "OFERFI");  //Estado oferta finalizado.
+            lnOferta.CambiarEstado(Convert.ToInt32(idOferta), estado);  //Estado oferta finalizado.
 
             return Content("");
         }

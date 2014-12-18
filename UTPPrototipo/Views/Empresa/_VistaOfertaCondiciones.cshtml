@@ -124,7 +124,7 @@
     {
         alert("IdOferta: " + idOferta);
 
-        var url = "../../Oferta/FinalizarOferta/" + idOferta;
+        var url = "../../Oferta/FinalizarOferta/" + idOferta + '&estado=OFERFI';
 
         $.get(url, function (data) {
             alert("La oferta ha sido finalizada");

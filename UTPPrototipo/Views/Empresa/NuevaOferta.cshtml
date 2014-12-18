@@ -20,15 +20,22 @@
 
         <div class="row">
             <div class="col-sm-3 fuente-seccion">
-                Nueva Oferta Laboral
+                <h4><strong>Nueva Oferta Laboral</strong></h4>
             </div>
             <div class="col-sm-3 fuente-seccion">
-                Estado: Pendiente de Activación
+                <!--Estado: Pendiente de Activación-->
             </div>
             <div class="col-sm-3 fuente-seccion">
                 @*<input type="checkbox" /><span> Recibir correos&nbsp;&nbsp;&nbsp;&nbsp;</span>*@
-                Alertas *: @Html.DropDownListFor(m => m.RecibeCorreosIdListaValor, null, "Seleccione", htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.RecibeCorreosIdListaValor, "", new { @class = "text-danger" })
+                <table>
+                    <tr>
+                        <td>Alertas* &nbsp;&nbsp;</td>
+                        <td>
+                            @Html.DropDownListFor(m => m.RecibeCorreosIdListaValor, null, "Seleccione", htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.RecibeCorreosIdListaValor, "", new { @class = "text-danger" })
+                        </td>
+                    </tr>
+                </table>                
             </div>
             <div class="col-sm-3 fuente-seccion" style="text-align:right;">
                 <button class="btn btn-default color-paleta2" style="margin-bottom:5px;">Grabar Cambios</button>
@@ -162,6 +169,7 @@
                                     </div>
                                     <div class="col-sm-5 fuente-pequeña" style="text-align:right;">
                                         <button class="btn btn-default color-paleta2">Nueva Ubicación</button>
+                                        <span class="btn btn-default color-paleta2">Nueva ubicación</span>
                                     </div>
                                 </div>
 

@@ -10,142 +10,171 @@
     <!---Cabecera de la página.-->
     @{Html.RenderAction("VistaCabeceraUtp", "UTP");}
 
+    <!-- Input demo:
     <input type="text" value="@ViewBag.IdOferta" />
+    -->
 
     <h5>Empresa: @Model.Empresa.NombreComercial  - Oferta: @Model.CargoOfrecido</h5>
     <br />
-    <table>
-        <tr>
-            <td class="celda-nombre">
-                <span>Cargo</span>
-            </td>
-            <td class="celda-datos">
-                @Model.CargoOfrecido
-            </td>
-        </tr>
-        <tr>
-            <td class="celda-nombre">
-                Publicado el
-            </td>
-            <td class="celda-datos">
-                @Model.FechaPublicacion
-            </td>
-        </tr>
 
-        <tr>
-            <td class="celda-nombre">
-                Recibir CVs hasta el
-            </td>
-            <td class="celda-datos">
-                @Model.FechaFinRecepcionCV
-            </td>
-        </tr>
-        <tr>
-            <td class="celda-nombre">
-                Tipo Cargo
-            </td>
-            <td class="celda-datos">
-                @Model.TipoCargo.Valor
-            </td>
-        </tr>
-        <tr>
-            <td class="celda-nombre">
-                Tipo Trabajo
-            </td>
-            <td class="celda-datos">
-                @Model.TipoTrabajo.Valor
-            </td>
-        </tr>
-        <tr>
-            <td class="celda-nombre">
-                Tipo Contrato
-            </td>
-            <td class="celda-datos">
-                @Model.TipoContrato.Valor
-            </td>
-        </tr>
-        <tr>
-            <td class="celda-nombre">
-                Duración
-            </td>
-            <td class="celda-datos">
-                @Model.DuracionContrato
-            </td>
-        </tr>
-        <tr>
-            <td class="celda-nombre">
-                Horario
-            </td>
-            <td class="celda-datos">
-                @Model.Horario
-            </td>
-        </tr>
-        <tr>
-            <td class="celda-nombre">
-                Remuneración
-            </td>
-            <td class="celda-datos">
-                @Model.RemuneracionOfrecida
-            </td>
-        </tr>
-        <tr>
-            <td class="celda-nombre">
-                Área
-            </td>
-            <td class="celda-datos">
-                @Model.AreaEmpresa
-            </td>
-        </tr>
-        <tr>
-            <td class="celda-nombre">
-                Vacantes
-            </td>
-            <td class="celda-datos">
-                @Model.NumeroVacantes
-            </td>
-        </tr>
-        <tr>
-            <td class="celda-nombre">
-                Ubicación
-            </td>
-            <td class="celda-datos">
-                @Model.NombreLocacion
-            </td>
-        </tr>
+    <div class="row">
+        <div class="col-sm-6">
+            <table>
+                <tr>
+                    <td class="celda-nombre">
+                        <span>Estado</span>
+                    </td>
+                    <td class="celda-datos">
+                        <table>
+                            <tr>
+                                <td>@Html.DropDownListFor(m => m.EstadoOferta, null, "Seleccione", htmlAttributes: new { @class = "form-control" })</td>
+                                <td>&nbsp;&nbsp;</td>
+                                <td><button id="btnCambiarEstadoOferta" class="btn btn-default color-paleta2" onclick="cambiarEstado(@Model.IdOferta)">Cambiar estado</button></td>
+                            </tr>
+                        </table>                            
+                    </td>
+                </tr>
+                <tr>
+                    <td class="celda-nombre">
+                        <span>Cargo</span>
+                    </td>
+                    <td class="celda-datos">
+                        @Model.CargoOfrecido
+                    </td>
+                </tr>
+                <tr>
+                    <td class="celda-nombre">
+                        Publicado el
+                    </td>
+                    <td class="celda-datos">
+                        @Model.FechaPublicacion
+                    </td>
+                </tr>
 
-        <tr>
-            <td class="celda-nombre">
-                Creado Por
-            </td>
-            <td class="celda-datos">
-                @Model.CreadoPor
-            </td>
-        </tr>
-        <tr>
-            <td class="celda-nombre">
-                Creado el
-            </td>
-            <td class="celda-datos">
-                @Model.FechaCreacion
-            </td>
-        </tr>
-        <tr>
-            <td class="celda-nombre">
-                Modificado Por
-            </td>
-            <td class="celda-datos">
-                @Model.ModificadoPor
-            </td>
-        </tr>
-        <tr>
-            <td class="celda-nombre">
-                Modificado el
-            </td>
-            <td class="celda-datos">
-                @Model.FechaModificacion
-            </td>
-        </tr>
-    </table>
+                <tr>
+                    <td class="celda-nombre">
+                        Recibir CVs hasta el
+                    </td>
+                    <td class="celda-datos">
+                        @Model.FechaFinRecepcionCV
+                    </td>
+                </tr>
+                <tr>
+                    <td class="celda-nombre">
+                        Tipo Cargo
+                    </td>
+                    <td class="celda-datos">
+                        @Model.TipoCargo.Valor
+                    </td>
+                </tr>
+                <tr>
+                    <td class="celda-nombre">
+                        Tipo Trabajo
+                    </td>
+                    <td class="celda-datos">
+                        @Model.TipoTrabajo.Valor
+                    </td>
+                </tr>
+                <tr>
+                    <td class="celda-nombre">
+                        Tipo Contrato
+                    </td>
+                    <td class="celda-datos">
+                        @Model.TipoContrato.Valor
+                    </td>
+                </tr>
+                <tr>
+                    <td class="celda-nombre">
+                        Duración
+                    </td>
+                    <td class="celda-datos">
+                        @Model.DuracionContrato
+                    </td>
+                </tr>
+                <tr>
+                    <td class="celda-nombre">
+                        Horario
+                    </td>
+                    <td class="celda-datos">
+                        @Model.Horario
+                    </td>
+                </tr>
+                <tr>
+                    <td class="celda-nombre">
+                        Remuneración
+                    </td>
+                    <td class="celda-datos">
+                        @Model.RemuneracionOfrecida
+                    </td>
+                </tr>
+                <tr>
+                    <td class="celda-nombre">
+                        Área
+                    </td>
+                    <td class="celda-datos">
+                        @Model.AreaEmpresa
+                    </td>
+                </tr>
+                <tr>
+                    <td class="celda-nombre">
+                        Vacantes
+                    </td>
+                    <td class="celda-datos">
+                        @Model.NumeroVacantes
+                    </td>
+                </tr>
+                <tr>
+                    <td class="celda-nombre">
+                        Ubicación
+                    </td>
+                    <td class="celda-datos">
+                        @Model.NombreLocacion
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="celda-nombre">
+                        Creado Por
+                    </td>
+                    <td class="celda-datos">
+                        @Model.CreadoPor
+                    </td>
+                </tr>
+                <tr>
+                    <td class="celda-nombre">
+                        Creado el
+                    </td>
+                    <td class="celda-datos">
+                        @Model.FechaCreacion
+                    </td>
+                </tr>
+                <tr>
+                    <td class="celda-nombre">
+                        Modificado Por
+                    </td>
+                    <td class="celda-datos">
+                        @Model.ModificadoPor
+                    </td>
+                </tr>
+                <tr>
+                    <td class="celda-nombre">
+                        Modificado el
+                    </td>
+                    <td class="celda-datos">
+                        @Model.FechaModificacion
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="col-sm-6">
+
+        </div>
+
+        
+    </div>
+
+    
     <hr />
     <div class="row">
         <div class="col-sm-12">
@@ -575,5 +604,21 @@
         $("#divFinalCabecera").removeClass("color-paleta1 color-paleta3 color-paleta4 color-paleta5 color-paleta6 color-paleta7").addClass("color-paleta2");
     });
 
+
+    function cambiarEstado(idOferta)
+    {
+        var itemSeleccionado = $('#EstadoOferta').val();
+        //alert('IdOferta: ' + idOferta + ' Estado Seleccionado: ' + itemSeleccionado);
+
+        var url = "../../Oferta/FinalizarOferta?idOferta=" + idOferta + '&estado=' + itemSeleccionado;
+        console.log(url);
+
+        $.get(url, function (data) {
+            alert("El estado de la oferta fue actualizado con éxito");            
+        }).error(function (err) {
+            console.log(err);
+            alert(err);
+        });
+    }
 
 </script>

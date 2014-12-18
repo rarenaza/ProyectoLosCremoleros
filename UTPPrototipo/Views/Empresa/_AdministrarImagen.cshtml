@@ -8,31 +8,23 @@
 {
     @Html.AntiForgeryToken()
 <div class="col-sm-12" style="text-align:center;">
-
+    <br /><br />
     @*<img src="~/img/logos/LogoCriteria.jpg" style="width:100%;" /><hr />*@
-    <img alt="" height=100 width=100 src='@Url.Action("ObtenerImagenEmpresa", "Empresa", new { id = Model.IdEmpresa })' /><hr/>
-
-        @Html.HiddenFor(m => m.IdEmpresa)
-   
+    <img alt="" style="max-height:250px; max-width:250px; height: auto; width:auto;" src='@Url.Action("ObtenerImagenEmpresa", "Empresa", new { id = Model.IdEmpresa })' />
+    <br />
+    <br />
+        @Html.HiddenFor(m => m.IdEmpresa)   
         <div class="col-md-10">
             @Html.TextBoxFor(model => model.LogoEmpresaHtml, new { type = "file" })
             @*@Html.EditorFor(model => model.Imagen)*@
             @Html.ValidationMessageFor(model => model.LogoEmpresaHtml)
-        </div>
-        
-
-    <br />
-   
+        </div>        
+    <br />       
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" value="Guardar" class="btn btn-default" />
-
-
         </div>
-    </div>
-
-    
-
+    </div>    
 </div>
    
 }

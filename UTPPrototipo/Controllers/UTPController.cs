@@ -818,8 +818,12 @@ namespace UTPPrototipo.Controllers
         {
             ViewBag.IdOferta = id;
 
-            Oferta oferta = lnoferta.ObtenerPorId(id);
             //Se obtiene los datos de la empresa.
+            Oferta oferta = lnoferta.ObtenerPorId(id);
+
+            LNGeneral lnGeneral = new LNGeneral();
+
+            ViewBag.EstadoOferta = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_OFERTA), "IdListaValor", "Valor", oferta.EstadoOferta);
 
             return View(oferta);
         }
