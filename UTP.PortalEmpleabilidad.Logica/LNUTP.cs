@@ -61,6 +61,33 @@ namespace UTP.PortalEmpleabilidad.Logica
             return listaEjemplo;
         }
 
+        public List<EmpresaListaEmpresa> EmpresaBusquedaAvanzada(VistaEmpresListarOfertas entidad)
+        {
+            List<EmpresaListaEmpresa> listaEjemplo = new List<EmpresaListaEmpresa>();
+
+
+            DataTable dtResultado = adUtp.Empresa_BusquedaAvanzada(entidad);
+
+            for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
+            {
+                EmpresaListaEmpresa vista = new EmpresaListaEmpresa();
+
+                vista.IdEmpresa = Convert.ToInt32(dtResultado.Rows[i]["IdEmpresa"]);
+                vista.NombreComercial = dtResultado.Rows[i]["Nombre"].ToString();
+                vista.RazonSocial = dtResultado.Rows[i]["Razon"].ToString();
+                vista.RUC = dtResultado.Rows[i]["RUC"].ToString();
+                vista.Estado = dtResultado.Rows[i]["Estado"].ToString();
+                vista.SectorEmpresarial = dtResultado.Rows[i]["SectorEmpresarial"].ToString();
+                vista.Ofertas = dtResultado.Rows[i]["Ofertas"].ToString();
+                vista.IdEstadoEmpresa = dtResultado.Rows[i]["Idestado"].ToString();
+                vista.IdSector = dtResultado.Rows[i]["Idsector"].ToString();
+           
+                listaEjemplo.Add(vista);
+            }
+
+            return listaEjemplo;
+        }
+
         public void ActualizarEstadoYUsuarioEC(Empresa empresa)
         {
             if (empresa.UsuarioEC == null) empresa.UsuarioEC = "";

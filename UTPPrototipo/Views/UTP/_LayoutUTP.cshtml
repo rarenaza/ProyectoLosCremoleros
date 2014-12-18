@@ -46,8 +46,8 @@
                         <a class="btn btn-default navbar-btn Boton_pestana color-paleta6" href="..\UTP\Reportes" style="padding: 2px 0px 2px 0px; color: white;">Reportes</a>
                     </li>
                     <li>
-                        @*<a class="btn btn-default navbar-btn Boton_pestana color-paleta7" href="..\UTP\Portal" style="padding: 2px 0px 2px 0px; color: white;">Contenido</a>*@
-                        @Html.ActionLink("Contenido", "Portal;", null, new { @class = "btn btn-default navbar-btn Boton_pestana color-paleta1", @style = "padding: 2px 0px 2px 0px; color: white;" })
+                        <a class="btn btn-default navbar-btn Boton_pestana color-paleta7" href="..\UTP\Portal" style="padding: 2px 0px 2px 0px; color: white;">Contenido</a>
+                     
                     </li>
                     <li>
                         <a class="btn btn-default navbar-btn Boton_pestana color-paleta8" href="..\UTP\Sistema" style="padding: 2px 0px 2px 0px; color: white;">Sistema</a>
@@ -56,6 +56,7 @@
 
                 </ul>
                 <ul class="nav navbar-nav navbar-right" style="padding-right: 15px; ">
+                   @* @Html.ActionLink("Log Out", "Logout", "UTP")*@
                     <li>
                         <a href="..\Home\Index" class="fui fa-2x" style="padding: 2px 3px 0px 8px"><span class="color-icono-paleta2">%</span></a>
                     </li>
@@ -64,7 +65,7 @@
                     </li>
                     <li>
                         @*<a href="#" class="fui fa-2x"  style=" padding:2px 10px 0px 10px;"><span class="color-icono-paleta2">*</span></a>*@
-                        <a href="..\cuenta\Ingresar" class="fui fa-2x" style=" padding:2px 10px 0px 10px;"><span class="color-icono-paleta2">*</span></a>
+                        <a href=@Url.Action("Logout", "UTP") class="fui fa-2x" style=" padding:2px 10px 0px 10px;"><span class="color-icono-paleta2">*</span></a>
                        
                     </li>
                 </ul>

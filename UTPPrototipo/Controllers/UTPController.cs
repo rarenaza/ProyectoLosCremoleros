@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using UTP.PortalEmpleabilidad.Logica;
 using UTP.PortalEmpleabilidad.Modelo;
 using UTP.PortalEmpleabilidad.Modelo.UTP;
@@ -165,7 +166,7 @@ namespace UTPPrototipo.Controllers
 
             LNGeneral lngeneral = new LNGeneral();
 
-            utp.ListaEstado = lngeneral.ObtenerListaValor(5);
+            utp.ListaEstado = lngeneral.ObtenerListaValor(20);
             utp.Listasector = lngeneral.ObtenerListaValor(8);
 
             //Estado de la empresa
@@ -201,11 +202,20 @@ namespace UTPPrototipo.Controllers
 
         public ActionResult BusquedaSimpleEmpresasActivas(VistaEmpresListarOfertas entidad)
         {
-            entidad.ListaBusqueda = lnUtp.Empresa_ObtenerPorNombre(entidad.PalabraClave==null ? "" :entidad.PalabraClave);
+            entidad.ListaBusqueda = lnUtp.Empresa_ObtenerPorNombre(entidad.PalabraClave == null ? "" : entidad.PalabraClave);
 
 
             return PartialView("_ResultadoBusquedaEmpresas", entidad.ListaBusqueda);
     
+        }
+
+        public ActionResult BusquedaAvanzadaEmpresas(VistaEmpresListarOfertas entidad)
+        {
+            entidad.ListaBusqueda = lnUtp.EmpresaBusquedaAvanzada(entidad);
+
+
+            return PartialView("_ResultadoBusquedaEmpresas", entidad.ListaBusqueda);
+
         }
 
 
@@ -901,5 +911,11 @@ namespace UTPPrototipo.Controllers
 
 
         #endregion
+
+        public ActionResult LogOut()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

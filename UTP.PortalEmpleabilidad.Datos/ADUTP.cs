@@ -7,6 +7,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using UTP.PortalEmpleabilidad.Modelo;
+using UTP.PortalEmpleabilidad.Modelo.Vistas.Ofertas;
 
 namespace UTP.PortalEmpleabilidad.Datos
 {
@@ -92,7 +93,39 @@ namespace UTP.PortalEmpleabilidad.Datos
 
             return dt;
         }
+   
 
+        public DataTable Empresa_BusquedaAvanzada(VistaEmpresListarOfertas entidad)
+        {
+
+            ADConexion cnn = new ADConexion();
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "Empresa_BusquedaAvanzada";
+            cmd.Parameters.Add(new SqlParameter("@Nombre", entidad.NombreComercial == null ? "" : entidad.NombreComercial));
+            cmd.Parameters.Add(new SqlParameter("@Valor", entidad.IdEstadoEmpresa == null ? "" : entidad.IdEstadoEmpresa));
+            cmd.Parameters.Add(new SqlParameter("@Sector", entidad.IdSector == null ? "" : entidad.IdSector));
+            cmd.Parameters.Add(new SqlParameter("@Razon", entidad.RazonSocial == null ? "" : entidad.RazonSocial));
+            cmd.Parameters.Add(new SqlParameter("@Ruc", entidad.RUC == null ? "" : entidad.RUC));
+            //cmd.Parameters.Add(new SqlParameter("@EstadoOferta", entidad.EstadoOferta));
+
+
+
+
+            cmd.Connection = cnn.cn;
+            cnn.Conectar();
+
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+
+            da.Fill(dt);
+
+            cnn.Desconectar();
+
+            return dt;
+        }
 
         public void ActualizarEstadoYUsuarioEC(Empresa empresa)
         {

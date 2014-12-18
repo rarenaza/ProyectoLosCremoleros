@@ -31,14 +31,14 @@
                         <tr>
                             <td>
                                 <div class="input-group fuente-pequeña">
-                                    <span class="input-group-addon fuente-pequeña">Palabra Clave</span>
+                                    @*<span class="input-group-addon fuente-pequeña">Palabra Clave</span>*@
                                     @Html.TextBoxFor(model => model.PalabraClave, new { @class = "form-control", @placeholder = "Palabra clave" })
 
                                 </div>
                             </td>
                             <td style="text-align:right;">
                                 <span class="col-md-6 btn-group">
-                                    <span class="fui" style="font-size:30px;cursor:pointer" id="buscar">(</span>
+                                    <span class="fui"  style=" font-size:30px;cursor:pointer" id="buscar">(</span>
                                 </span>
                             </td>
                         </tr>
@@ -83,17 +83,23 @@
               
                             <div class="input-group fuente-pequeña">
                                 <span class="input-group-addon">Nombre</span>
-                                <input type="text" class="form-control" placeholder="Nombre de la empresa">
+                                @*<input type="text" class="form-control" placeholder="Nombre de la empresa">*@
+                                                              
+                                @Html.TextBoxFor(model => model.NombreComercial, new { @class = "form-control", @placeholder = "Nombre Comercial"})
+
+
                             </div>
                             <div class="input-group fuente-pequeña">
                                 <span class="input-group-addon">Razón<br />Social</span>
-                                <input type="text" class="form-control" placeholder="Razón Social de la empresa">
+                                @*<input type="text" class="form-control" placeholder="Razón Social de la empresa">*@
+                                @Html.TextBoxFor(model => model.RazonSocial, new { @class = "form-control", @placeholder = "Razón Social de la empresa" })
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="input-group fuente-pequeña">
                                 <span class="input-group-addon">RUC</span>
-                                <input type="text" class="form-control" placeholder="Identificador Tributario de la empresa">
+                                @*<input type="text" class="form-control" placeholder="Identificador Tributario de la empresa">*@
+                                @Html.TextBoxFor(model => model.RUC, new { @class = "form-control", @placeholder = "RUC" })
                             </div>
                             <div class="input-group fuente-pequeña">
 
@@ -123,6 +129,9 @@
                             <div class="input-group fuente-pequeña">
                                 <span class="input-group-addon"><input type="checkbox" /></span>
                                 <span class="form-control">Tiene Ofertas activas</span>
+
+                                @*@Html.EditorFor(model => model.EstadoOferta)*@
+
                                 </div>
                             <div class="input-group fuente-pequeña">
                                 <span class="input-group-addon"><input type="checkbox" /></span> 
@@ -158,28 +167,29 @@
            
         };
         Cargar("resultadobusqueda", "/UTP/BusquedaSimpleEmpresasActivas", empresa);
+
+
+    });
+    $(document).ready(function () {
+        var empresa = {
+            PalabraClave: $('#PalabraClave').val(),
+
+        };
+        Cargar("resultadobusqueda", "/UTP/BusquedaSimpleEmpresasActivas", empresa);
     });
    
-    //$('#buscaravanzada').click(function () {
-    //    var oferta = {
-    //        IdPeriodoPublicacion: $('#IdPeriodoPublicacion').val(),
-    //        IdEstudio: $('#IdEstudio').val(),
-    //        IdEstadoEstudio: $('#IdEstadoEstudio').val(),
-    //        IdSectorEmpresarial: $('#IdSectorEmpresarial').val(),
-    //        AreaEmpresa: $('#AreaEmpresa').val(),
-    //        AniosExperiencia: $('#AniosExperiencia').val(),
-    //        IdTipoTrabajo: $('#IdTipoTrabajo').val(),
-    //        IdContrato: $('#IdContrato').val(),
-    //        IdTipoCargo: $('#IdTipoCargo').val(),
-    //        Sueldo: $('#Sueldo').val(),
-    //        Ubicacion: $('#Ubicacion').val(),
-    //        IncluirMensaje: $('#IncluirMensaje:checked').val(),
-    //        IdAlumno: $('#IdAlumno').val()
+    $('#buscaravanzada').click(function () {
+        var oferta = {
+            NombreComercial: $('#NombreComercial').val(),
+            IdEstadoEmpresa: $('#IdEstadoEmpresa').val(),
+            IdSector: $('#IdSector').val(),
+            RazonSocial: $('#RazonSocial').val(),
+            RUC: $('#RUC').val()
+            //,EstadoOferta: $('#OFERAC').val()
 
-    //    };
-    //    Cargar("resultadobusqueda", "/Alumno/BusquedaAvanzadaOferta", oferta);
-    //});
-
+        };
+        Cargar("resultadobusqueda", "/UTP/BusquedaAvanzadaEmpresas", oferta);
+    });
 
     function Cargar(id, link, entidad) {
         //debugger;
@@ -201,6 +211,9 @@
             alert('error');
         })
     }
+
+   
+
 
 
 </script>
