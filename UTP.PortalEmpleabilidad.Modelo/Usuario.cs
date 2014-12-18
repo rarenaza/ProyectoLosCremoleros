@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace UTP.PortalEmpleabilidad.Modelo
 {
-    public class Usuario
+    public class Usuario : Auditoria
     {
         public int id { get; set; }
         
@@ -21,6 +21,9 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string Contrasena { get; set; }
 
         public string NombreCompleto { get; set; }
+
+        public string TipoUsuarioIdListaValor { get; set; }
+        public string EstadoUsuarioIdListaValor { get; set; }
 
         public Usuario()
         {

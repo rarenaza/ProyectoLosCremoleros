@@ -11,6 +11,7 @@ using UTP.PortalEmpleabilidad.Modelo.Vistas.Ofertas;
 using UTPPrototipo.Models.ViewModels;
 using UTPPrototipo.Common;
 using System.IO;
+using UTPPrototipo.Models.ViewModels.Cuenta;
 
 namespace UTPPrototipo.Controllers
 {
@@ -35,7 +36,9 @@ namespace UTPPrototipo.Controllers
 
         public ActionResult Index()
         {
-            VistaPanelAlumno panel = lnAlumno.ObtenerPanel(codigoAlumno);
+            TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
+
+            VistaPanelAlumno panel = lnAlumno.ObtenerPanel(ticket.Usuario);
 
 
             return View(panel);

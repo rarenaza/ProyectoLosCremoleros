@@ -21,8 +21,6 @@ namespace UTP.PortalEmpleabilidad.Datos
             {
                 try
                 {
-
-
                     SqlCommand cmd = new SqlCommand();
 
                     cmd.CommandType = CommandType.StoredProcedure;

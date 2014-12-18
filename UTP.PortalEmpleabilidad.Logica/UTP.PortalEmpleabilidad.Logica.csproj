@@ -54,6 +54,7 @@
     <Compile Include="LNEmpresaLocacion.cs" />
     <Compile Include="LNEmpresaUsuario.cs" />
     <Compile Include="LNEvento.cs" />
+    <Compile Include="LNUTPAlumnos.cs" />
     <Compile Include="LNOfertaPostulante.cs" />
     <Compile Include="LNUTP.cs" />
     <Compile Include="LNGeneral.cs" />
