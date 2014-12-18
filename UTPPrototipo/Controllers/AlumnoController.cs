@@ -24,6 +24,8 @@ namespace UTPPrototipo.Controllers
         LNOferta lnoferta = new LNOferta();
         LNOfertaPostulante lnofertapostulante = new LNOfertaPostulante();
         LNEmpresa lnempresa = new LNEmpresa();
+        LNAlumnoExperienciaCargo lnalumnoexperienciacargo = new LNAlumnoExperienciaCargo();
+        LNAlumnoCVExperienciaCargo lnalumnocvexperienciacargo = new LNAlumnoCVExperienciaCargo();
 
        
 
@@ -377,6 +379,7 @@ namespace UTPPrototipo.Controllers
         #region "Ofertas"
 
         #endregion
+
         #region "Mi CV"
         public ActionResult OpcionesCV(VistaPanelAlumnoMiCV entidad)
         {
@@ -439,6 +442,23 @@ namespace UTPPrototipo.Controllers
             }
             return PartialView("_AlumnoEstudiosCV", listaalumnoestudio);
         }
+
+        public ActionResult AlumnoExperienciaCV(VistaPanelAlumnoMiCV entidad)
+        {
+
+            Alumno alumno = new Alumno();
+            List<AlumnoExperienciaCargo> listaalumnoexperienciacargo = new List<AlumnoExperienciaCargo>();
+
+
+            listaalumnoexperienciacargo = lnalumnoexperienciacargo.ObtenerAlumnoExperienciaCargoPorIdAlumno(entidad.IdAlumno);
+            if (alumno != null && listaalumnoexperienciacargo.Count > 0)
+            {
+                listaalumnoexperienciacargo = lnalumnocvexperienciacargo.ObtenerAlumnoCVExperienciaCargoPorIdAlumno(entidad.IdCV, listaalumnoexperienciacargo);
+            }
+            return PartialView("_AlumnoEstudiosCV", listaalumnoexperienciacargo);
+        }
+
+
 
         public ActionResult ModalRegistroEstudio()
         {
