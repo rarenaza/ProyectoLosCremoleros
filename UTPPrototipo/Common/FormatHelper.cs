@@ -56,6 +56,50 @@ namespace UTPPrototipo.Common
             return fechatexto;
         }
 
+        public static string FormatoFechaAnioMes(this HtmlHelper helper, int mes, int anio)
+        {
+            string fechatexto = string.Empty;
+            if (mes > 0 && anio > 0)
+            {
+                fechatexto = mes.ToString("0#") + "/" + anio.ToString();
+            }
+            else
+            {
+                fechatexto = "Actualidad";
+            }
+
+            return fechatexto;
+        }
+        public static string FormatoFechaAnio(this HtmlHelper helper, int anio)
+        {
+            string fechatexto = string.Empty;
+            if (anio == 1)
+            {
+                fechatexto = anio.ToString() + " año";
+            }
+            else if (anio > 1)
+            {
+                fechatexto = anio.ToString() + " años";
+            }
+
+            return fechatexto;
+        }
+        public static string FormatoFechaMes(this HtmlHelper helper, int mes)
+        {
+            string fechatexto = string.Empty;
+            if (mes == 1)
+            {
+                fechatexto = mes.ToString() + " mes";
+            }
+            else if (mes > 1)
+            {
+                fechatexto = mes.ToString() + " meses";
+            }
+
+            return fechatexto;
+        }
+
+
         public static FileContentResult GetImageEmpresa(this HtmlHelper helper, byte[] imagen, string MimeType)
         {
             if (imagen != null) return new FileContentResult(imagen, MimeType);

@@ -1,0 +1,166 @@
+﻿@using UTPPrototipo.Common
+@model   IEnumerable< UTP.PortalEmpleabilidad.Modelo.AlumnoExperienciaCargo>
+<div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingMiCVExperienciaLaboral" style="padding: 2px 2px 2px 6px;">
+        <h5 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseMiCVExperienciaLaboral" aria-expanded="true" aria-controls="collapseMiCVExperienciaLaboral" style="font-size:12px;">
+                Experiencia laboral
+            </a>
+        </h5>
+    </div>
+    <div id="collapseMiCVExperienciaLaboral" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingMiCVExperienciaLaboral">
+        <div class="panel-body fuente-pequeña">
+            <div class="row">
+                <div class="col-sm-12 text-right"><button type="button" data-toggle="modal" data-target="#Modal-experiencia-laboral" class="btn btn-default color-paleta4 fuente-pequeña" style="color:white;margin-bottom:10px;" id="IdGrabarExperiencia" >Agregar Experiencia</button></div>
+            </div>
+            @*<div class="row">
+                <div class="col-sm-1">
+                </div>
+                <div class="col-sm-10">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <span><strong>ABACO del Perú S.A.</strong></span>
+                        </div>
+                        <div class="col-sm-7">
+                            Tecnología y Software, Servicios
+                        </div>
+                        <div class="col-sm-2">
+                            Lima-Perú
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-1">
+
+                </div>
+            </div>*@
+            @foreach (var item in Model)
+            {
+                <div class="row">
+                    <div class="col-sm-1">
+
+                    </div>
+                    <div class="col-sm-10">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <span><strong>@item.NombreComercial</strong></span>
+                            </div>
+                            <div class="col-sm-7">
+                                @item.SectorEmpresarial
+                            </div>
+                            <div class="col-sm-2">
+                                @item.Ciudad-@item.NomPais
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-1">
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-1">
+                        <span>Incluir </span>
+                        @if (item.Incluir)
+                        {
+                            <input type="checkbox" checked>
+
+                        }
+                        else
+                        {
+                            <input type="checkbox">
+                        }
+                    </div>
+                    <div class="col-sm-10">
+
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <span class="valor-icono2">H&nbsp;</span><strong>@item.NombreCargo</strong><span class="valor-palabra">&nbsp;&nbsp;(@item.DesTipoCargo)</span>
+                                <br />
+                                @Html.FormatoFechaAnioMes(item.FechaInicioCargoMes,item.FechaInicioCargoAno) - @Html.FormatoFechaAnioMes(item.FechaFinCargoMes, item.FechaFinCargoAno) 
+                            </div>
+                            <div class="col-sm-9">
+                                @item.DescripcionCargo
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-sm-1 fui fa-2x" style="color:gray;">
+                        1 l
+                    </div>
+                </div>
+                <hr />
+
+            }
+
+            @*<div class="row">
+                <div class="col-sm-1">
+
+                </div>
+                <div class="col-sm-10">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <span><strong>Corporación Barlovento S.A.</strong></span>
+                        </div>
+                        <div class="col-sm-7">
+                            Industria
+                        </div>
+                        <div class="col-sm-2">
+                            Lima-Perú
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-1">
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-1">
+                    <span>Incluir </span><input type="checkbox" />
+                </div>
+                <div class="col-sm-10">
+
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <span class="valor-icono2">3&nbsp;</span><strong>Jefe de Proyectos</strong><span class="valor-palabra">&nbsp;&nbsp;(Ejecutivo)</span>
+                            <br />
+                            01/2011 - 11/2012
+                        </div>
+                        <div class="col-sm-8">
+                            Pellentesque purus ligula, tempor ac ultrices sed, facilisis ac odio. Ut condimentum tellus velit, eu sagittis tellus pulvinar vitae. Nunc vitae mi metus. Phasellus at nulla sapien. Cras rutrum venenatis eros scelerisque pulvinar. In quam felis, sodales a vehicula ultricies, elementum in tortor. Nulla facilisi. Mauris gravida velit porttitor consectetur vehicula. Nam commodo dui a gravida venenatis. Nunc sed pellentesque magna. Suspendisse potenti. Etiam eu placerat elit.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-1 fui fa-2x" style="color:gray;">
+                    1 l
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-1">
+                    <span>Incluir </span><input type="checkbox" />
+                </div>
+                <div class="col-sm-10">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <span class="valor-icono2">4&nbsp;</span><strong>Consultor Senior</strong><span class="valor-palabra">&nbsp;&nbsp;(Ejecutivo)</span>
+                            <br />
+                            06/2008 - 12/2010
+                        </div>
+                        <div class="col-sm-9">
+                            Suspendisse potenti. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque purus ligula, tempor ac ultrices sed, facilisis ac odio. Ut condimentum tellus velit, eu sagittis tellus pulvinar vitae. Nunc vitae mi metus. Phasellus at nulla sapien. Cras rutrum venenatis eros scelerisque pulvinar. In quam felis, sodales a vehicula ultricies, elementum in tortor. Nulla facilisi. Mauris gravida velit porttitor consectetur vehicula. Nam commodo dui a gravida venenatis. Etiam eu placerat elit.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-1 fui fa-2x" style="color:gray;">
+                    1 l
+                </div>
+            </div>*@
+        </div>
+    </div>
+</div>
+<script>
+    $("#IdGrabarExperiencia").click(function () {
+        CargarPOST("Modal-experiencia-laboral", "ModalRegistroExperiencia", null);
+        $('#Modal-experiencia-laboral').modal("show");
+        return false;
+    });
+
+</script>

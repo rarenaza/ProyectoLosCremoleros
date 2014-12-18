@@ -23,16 +23,21 @@ namespace UTP.PortalEmpleabilidad.Logica
                 for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
                 {
                     AlumnoEstudio alumnoestudio = new AlumnoEstudio();
-                    alumnoestudio.IdEstudio = int.Parse(dtResultado.Rows[i]["IdEstudio"].ToString());
-                    alumnoestudio.IdAlumno = int.Parse(dtResultado.Rows[i]["IdAlumno"].ToString());
-                    alumnoestudio.Institucion = dtResultado.Rows[i]["Institucion"].ToString();
-                    alumnoestudio.Estudio = dtResultado.Rows[i]["Estudio"].ToString();
-                    alumnoestudio.EstadoDelEstudio = dtResultado.Rows[i]["EstadoDelEstudio"].ToString();
-                    alumnoestudio.TipoDeEstudio = dtResultado.Rows[i]["TipoDeEstudio"].ToString();
-                    alumnoestudio.Observacion = dtResultado.Rows[i]["Observacion"].ToString();
-                    alumnoestudio.CicloEquivalente = int.Parse(dtResultado.Rows[i]["CicloEquivalente"].ToString());
-                    alumnoestudio.FechInicio = DateTime.Parse(dtResultado.Rows[i]["FechInicio"].ToString());
-                    alumnoestudio.FechFin = DateTime.Parse(dtResultado.Rows[i]["FechFin"].ToString());
+
+                    alumnoestudio.IdEstudio = Funciones.ToInt(dtResultado.Rows[i]["IdEstudio"]);
+                    alumnoestudio.IdAlumno = Funciones.ToInt(dtResultado.Rows[i]["IdAlumno"]);
+                    alumnoestudio.Institucion = Funciones.ToString(dtResultado.Rows[i]["Institucion"]);
+                    alumnoestudio.Estudio = Funciones.ToString(dtResultado.Rows[i]["Estudio"]);
+                    alumnoestudio.EstadoDelEstudio = Funciones.ToString(dtResultado.Rows[i]["EstadoDelEstudio"]);
+                    alumnoestudio.TipoDeEstudio =Funciones.ToString( dtResultado.Rows[i]["TipoDeEstudio"]);
+                    alumnoestudio.Observacion = Funciones.ToString(dtResultado.Rows[i]["Observacion"]);
+                    alumnoestudio.CicloEquivalente = Funciones.ToInt(dtResultado.Rows[i]["CicloEquivalente"]);
+                    alumnoestudio.FechaInicioMes = Funciones.ToInt(dtResultado.Rows[i]["FechaInicioMes"]);
+                    alumnoestudio.FechaInicioAno = Funciones.ToInt(dtResultado.Rows[i]["FechaInicioAno"]);
+                    alumnoestudio.FechaFinMes = Funciones.ToInt(dtResultado.Rows[i]["FechaFinMes"]);
+                    alumnoestudio.FechaFinAno = Funciones.ToInt(dtResultado.Rows[i]["FechaFinAno"]);
+
+                    alumnoestudio.DatoUTP =  Funciones.ToBoolean(dtResultado.Rows[i]["DatoUTP"]);
                     listaAlumno.Add(alumnoestudio);
                 }
 

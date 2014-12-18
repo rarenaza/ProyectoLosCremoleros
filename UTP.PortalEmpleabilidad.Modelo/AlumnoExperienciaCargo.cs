@@ -21,5 +21,8 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public int FechaFinCargoMes { get; set; }
         public int FechaFinCargoAno { get; set; }
         public bool Incluir { get; set; }
+        public List<ListaValor> ListaSectorEmpresarial { get; set; }
+        public List<ListaValor> ListaPais { get; set; }
+        public List<ListaValor> ListaTipoCargo { get; set; }
     }
 }

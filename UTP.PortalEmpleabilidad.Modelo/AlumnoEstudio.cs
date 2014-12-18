@@ -14,8 +14,11 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string Estudio { get; set; }
         public string TipoDeEstudio { get; set; }
         public string EstadoDelEstudio { get; set; }
-        public DateTime FechInicio { get; set; }
-        public DateTime FechFin { get; set; }
+        public int FechaInicioMes { get; set; }
+        public int FechaInicioAno { get; set; }
+        public int FechaFinMes { get; set; }
+        public int FechaFinAno { get; set; }
+
         public int CicloEquivalente { get; set; }
         public string Observacion { get; set; }
         public bool DatoUTP { get; set; }

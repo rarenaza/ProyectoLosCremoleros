@@ -29,7 +29,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 alumno.Apellidos = dtResultado.Rows[0]["Apellidos"].ToString();
                 alumno.CorreoElectronico1 = dtResultado.Rows[0]["CorreoElectronico"].ToString();
                 alumno.CorreoElectronico2 = dtResultado.Rows[0]["CorreoElectronico2"].ToString();
-                alumno.DireccionLinea1 = dtResultado.Rows[0]["DireccionLinea1"].ToString();
+                alumno.DireccionLinea1 = dtResultado.Rows[0]["Direccion"].ToString();
                 alumno.TelefonoFijoCasa = dtResultado.Rows[0]["TelefonoFijoCasa"].ToString();
                 alumno.TelefonoCelular = dtResultado.Rows[0]["TelefonoCelular"].ToString();
                 alumno.Carrera = dtResultado.Rows[0]["Carrera"].ToString();

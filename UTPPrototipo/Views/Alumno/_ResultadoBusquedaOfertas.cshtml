@@ -61,7 +61,7 @@
 
                 if (i == Model.PaginaActual)
                 {
-                    <li class="active"><a href="#" class="gridindex" >@Html.DisplayName(i.ToString())</a></li>
+                    <li class="active"><a href="#" class="gridindex">@Html.DisplayName(i.ToString())</a></li>
                 }
                 else
                 {
@@ -80,7 +80,7 @@
         $('#Modal-datos-empresa').modal('show');
         return false;
     });
-    $('.gridindex').click(function () {       
+    $('.gridindex').click(function () {
         if ($("#TipoBusqueda").val() == 1) {
             var oferta = {
                 PalabraClave: $('#PalabraClave').val(),

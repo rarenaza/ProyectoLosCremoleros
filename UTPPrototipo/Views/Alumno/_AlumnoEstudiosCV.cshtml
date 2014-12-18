@@ -1,4 +1,5 @@
-﻿@model List<UTP.PortalEmpleabilidad.Modelo.AlumnoEstudio>
+﻿@using UTPPrototipo.Common
+@model List<UTP.PortalEmpleabilidad.Modelo.AlumnoEstudio>
 
         <div class="panel panel-default">
             <div class="panel-heading" role="tab" id="headingMiCVEducacion" style="padding: 2px 2px 2px 6px;">
@@ -13,61 +14,70 @@
                     <div class="row">
                         <div class="col-sm-12 text-right"><button type="button" id="IdGrabarEstudio" data-toggle="modal" data-target="#Modal-estudio" class="btn btn-default color-paleta4 fuente-pequeña" style="color: white; margin-bottom: 10px;">Agregar Estudio</button></div>
                     </div>
-                    @foreach (var item in Model)
-                    {
-                        <div class="row">
-                            <div class="col-sm-1">
-                                <span>Incluir </span>
-                                @if (item.Incluir)
-                                {
-                                    <input type="checkbox" checked>
+@if (Model != null && Model.Count > 0)
+{
+    foreach (var item in Model)
+    {
+        <div class="row">
+            <div class="col-sm-1">
+                <span>Incluir </span>
+                @if (item.Incluir)
+                {
+                    <input type="checkbox" checked>
 
-                                }
-                                else
-                                {
-                                    <input type="checkbox">
-                                }
-                            </div>
-                            <div class="col-sm-10">
-                                <div class="row">
-                                    <div class="col-sm-2">
-                                        <strong>@String.Format("{0:MM/yyyy}", item.FechInicio) - @String.Format("{0:MM/yyyy}", item.FechFin)</strong>
+                }
+                else
+                {
+                    <input type="checkbox">
+                }
+            </div>
+            <div class="col-sm-10">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <strong>
+@Html.FormatoFechaAnioMes(item.FechaInicioMes, item.FechaInicioAno) -
+@Html.FormatoFechaAnioMes(item.FechaFinMes, item.FechaFinAno)
+                        </strong>
 
-                                    </div>
-                                    <div class="col-sm-5">
-                                        <span><strong>@Html.DisplayFor(modelItem => item.Institucion)</strong></span>
-                                    </div>
+                    </div>
+                    <div class="col-sm-5">
+                        <span><strong>@Html.DisplayFor(modelItem => item.Institucion)</strong></span>
+                    </div>
 
-                                    <div class="col-sm-5">
-                                        Estudio: <strong>@Html.DisplayFor(modelItem => item.Estudio)</strong>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-2">
+                    <div class="col-sm-5">
+                        Estudio: <strong>@Html.DisplayFor(modelItem => item.Estudio)</strong>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">
 
-                                    </div>
-                                    <div class="col-sm-2">
-                                        <span class="valor-icono2">B</span><span class="valor-palabra">@Html.DisplayFor(modelItem => item.TipoDeEstudio)</span>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        @Html.DisplayFor(modelItem => item.EstadoDelEstudio)
-                                    </div>
-                                    <div class="col-sm-3">
-                                        @Html.DisplayFor(modelItem => item.Observacion)
-                                    </div>
-                                    <div class="col-sm-2">
-                                        Ciclo: @Html.DisplayFor(modelItem => item.CicloEquivalente)
-                                    </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <span class="valor-icono2">B</span><span class="valor-palabra">@Html.DisplayFor(modelItem => item.TipoDeEstudio)</span>
+                    </div>
+                    <div class="col-sm-3">
+                        @Html.DisplayFor(modelItem => item.EstadoDelEstudio)
+                    </div>
+                    <div class="col-sm-3">
+                        @Html.DisplayFor(modelItem => item.Observacion)
+                    </div>
+                    <div class="col-sm-2">
+                        Ciclo: @Html.DisplayFor(modelItem => item.CicloEquivalente)
+                    </div>
 
-                                </div>
-                            </div>
-                            <div class="col-sm-1 fui fa-2x" style="color:gray;">
-                                1 l
-                            </div>
-                        </div>
-                        <hr />
+                </div>
+            </div>
+            <div class="col-sm-1 fui fa-2x" style="color:gray;cursor:pointer">
+                <a class="estudio-edit color-icono-paleta1">1</a>  <a id="delete" class="estudio-delete color-icono-paleta1">l</a>
+            </div>
 
-                    }
+
+        </div>
+        <hr />
+
+    }
+
+}
 
 
                 </div>

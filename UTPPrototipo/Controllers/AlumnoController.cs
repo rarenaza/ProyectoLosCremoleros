@@ -26,6 +26,8 @@ namespace UTPPrototipo.Controllers
         LNEmpresa lnempresa = new LNEmpresa();
         LNAlumnoExperienciaCargo lnalumnoexperienciacargo = new LNAlumnoExperienciaCargo();
         LNAlumnoCVExperienciaCargo lnalumnocvexperienciacargo = new LNAlumnoCVExperienciaCargo();
+        LNAlumnoInformacionAdicional lnalumnoinformacionadicional= new LNAlumnoInformacionAdicional();
+        LNAlumnoCVInformacionAdicional lnalumnocvinformacionadicional = new LNAlumnoCVInformacionAdicional();
 
        
 
@@ -360,14 +362,7 @@ namespace UTPPrototipo.Controllers
 
             return panel;
         }
-        public ActionResult MiCV()
-        {
-            
-            VistaPanelAlumnoMiCV panel = new VistaPanelAlumnoMiCV();
-            panel.alumno = lnAlumno.ObtenerAlumnoPorCodigo(codigoAlumno);
 
-            return View(panel);
-        }
 
 
         #region "Mi Portal"
@@ -381,6 +376,14 @@ namespace UTPPrototipo.Controllers
         #endregion
 
         #region "Mi CV"
+        public ActionResult MiCV()
+        {
+            
+            VistaPanelAlumnoMiCV panel = new VistaPanelAlumnoMiCV();
+            panel.alumno = lnAlumno.ObtenerAlumnoPorCodigo(codigoAlumno);
+
+            return View(panel);
+        }
         public ActionResult OpcionesCV(VistaPanelAlumnoMiCV entidad)
         {
             VistaPanelAlumnoMiCV panel = new VistaPanelAlumnoMiCV();
@@ -455,7 +458,22 @@ namespace UTPPrototipo.Controllers
             {
                 listaalumnoexperienciacargo = lnalumnocvexperienciacargo.ObtenerAlumnoCVExperienciaCargoPorIdAlumno(entidad.IdCV, listaalumnoexperienciacargo);
             }
-            return PartialView("_AlumnoEstudiosCV", listaalumnoexperienciacargo);
+            return PartialView("_AlumnoExperienciaCV", listaalumnoexperienciacargo);
+        }
+
+        public ActionResult AlumnoInformacionAdicionalCV(VistaPanelAlumnoMiCV entidad)
+        {
+
+
+            List<AlumnoInformacionAdicional> listaalumnoinformacionadicional = new List<AlumnoInformacionAdicional>();
+
+
+            listaalumnoinformacionadicional = lnalumnoinformacionadicional.ObtenerAlumnoInformacionAdicionalPorIdAlumno(entidad.IdAlumno);
+            if (listaalumnoinformacionadicional.Count > 0)
+            {
+                listaalumnoinformacionadicional = lnalumnocvinformacionadicional.ObtenerAlumnoCVInformacionAdicionalPorIdAlumno(entidad.IdCV, listaalumnoinformacionadicional);
+            }
+            return PartialView("_AlumnoInformacionAdicionalCV", listaalumnoinformacionadicional);
         }
 
 
@@ -521,6 +539,108 @@ namespace UTPPrototipo.Controllers
 
             return PartialView("_ModalRegistroEstudio");
         }
+
+        public ActionResult ModalRegistroExperiencia()
+        {
+
+            AlumnoExperienciaCargo alumnoexperienciacargo = new AlumnoExperienciaCargo();
+            LNGeneral lngeneral = new LNGeneral();
+
+            alumnoexperienciacargo.ListaSectorEmpresarial = lngeneral.ObtenerListaValor(8);
+            alumnoexperienciacargo.ListaPais = lngeneral.ObtenerListaValor(17);
+            alumnoexperienciacargo.ListaTipoCargo = lngeneral.ObtenerListaValor(9);
+            //Declara Lista
+            //Sector Empresarial
+            List<SelectListItem> listItemsSectorEmpresarial = new List<SelectListItem>();
+            foreach (ListaValor entidad in alumnoexperienciacargo.ListaSectorEmpresarial)
+            {
+                SelectListItem item = new SelectListItem();
+                item.Text = entidad.Valor.ToUpper();
+                item.Value = entidad.IdListaValor.ToString();
+                listItemsSectorEmpresarial.Add(item);
+            }
+
+
+            //Paises
+            List<SelectListItem> listItemsPaises = new List<SelectListItem>();
+            foreach (ListaValor entidad in alumnoexperienciacargo.ListaPais)
+            {
+                SelectListItem item = new SelectListItem();
+                item.Text = entidad.Valor.ToUpper();
+                item.Value = entidad.IdListaValor.ToString();
+                listItemsPaises.Add(item);
+            }
+
+            //Tipo Cargo
+            List<SelectListItem> listItemsTipoCargo = new List<SelectListItem>();
+            foreach (ListaValor entidad in alumnoexperienciacargo.ListaTipoCargo)
+            {
+                SelectListItem item = new SelectListItem();
+                item.Text = entidad.Valor.ToUpper();
+                item.Value = entidad.IdListaValor.ToString();
+                listItemsTipoCargo.Add(item);
+            }
+
+
+            //Lista de Combos
+            ViewBag.ListaSectorEmpresarial = listItemsSectorEmpresarial;
+            ViewBag.ListaPais = listItemsPaises;
+            ViewBag.ListaTipoCargo = listItemsTipoCargo;
+
+            return PartialView("_ModalRegistrarExperiencia");
+        }
+
+        public ActionResult ModalRegistroInformacionAdicional()
+        {
+
+            AlumnoInformacionAdicional alumnoinformacionadicional = new AlumnoInformacionAdicional();
+            LNGeneral lngeneral = new LNGeneral();
+
+            alumnoinformacionadicional.ListaTipoConocimiento = lngeneral.ObtenerListaValor(10);
+            alumnoinformacionadicional.ListaPais = lngeneral.ObtenerListaValor(17);
+            alumnoinformacionadicional.ListaNivelConocimiento = lngeneral.ObtenerListaValor(16);
+            //Declara Lista
+            //Tipo de Conocimiento
+            List<SelectListItem> listItemsTipoConocimiento = new List<SelectListItem>();
+            foreach (ListaValor entidad in alumnoinformacionadicional.ListaTipoConocimiento)
+            {
+                SelectListItem item = new SelectListItem();
+                item.Text = entidad.Valor.ToUpper();
+                item.Value = entidad.IdListaValor.ToString();
+                listItemsTipoConocimiento.Add(item);
+            }
+
+
+            //Paises
+            List<SelectListItem> listItemsPaises = new List<SelectListItem>();
+            foreach (ListaValor entidad in alumnoinformacionadicional.ListaPais)
+            {
+                SelectListItem item = new SelectListItem();
+                item.Text = entidad.Valor.ToUpper();
+                item.Value = entidad.IdListaValor.ToString();
+                listItemsPaises.Add(item);
+            }
+
+            //Nivel de Conocimiento
+            List<SelectListItem> listItemsNivelConocimiento = new List<SelectListItem>();
+            foreach (ListaValor entidad in alumnoinformacionadicional.ListaNivelConocimiento )
+            {
+                SelectListItem item = new SelectListItem();
+                item.Text = entidad.Valor.ToUpper();
+                item.Value = entidad.IdListaValor.ToString();
+                listItemsNivelConocimiento.Add(item);
+            }
+
+
+            //Lista de Combos
+            ViewBag.ListaTipoConocimiento = listItemsTipoConocimiento;
+            ViewBag.ListaPais = listItemsPaises;
+            ViewBag.ListaNivelConocimiento = listItemsNivelConocimiento;
+
+            return PartialView("_ModalRegistrarInformacionAdicional");
+        }
+
+
 
         public ActionResult RegistrarAlumnoEstudio(AlumnoEstudio alumnoestudio)
         {

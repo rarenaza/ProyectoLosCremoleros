@@ -56,8 +56,10 @@ namespace UTP.PortalEmpleabilidad.Datos
                     cmd.Parameters.Add(new SqlParameter("@TipoDeEstudio", SqlDbType.VarChar, 6)).Value = alumnoestudio.TipoDeEstudio;
                     cmd.Parameters.Add(new SqlParameter("@EstadoDelEstudio", SqlDbType.VarChar, 6)).Value = alumnoestudio.EstadoDelEstudio;
                     cmd.Parameters.Add(new SqlParameter("@Observacion", SqlDbType.VarChar, 6)).Value = alumnoestudio.Observacion;
-                    cmd.Parameters.Add(new SqlParameter("@FechInicio", SqlDbType.Date)).Value = alumnoestudio.FechInicio;
-                    cmd.Parameters.Add(new SqlParameter("@FechFin", SqlDbType.Date)).Value = alumnoestudio.FechFin;
+                    cmd.Parameters.Add(new SqlParameter("@FechaInicioMes", SqlDbType.Int)).Value = alumnoestudio.FechaInicioMes;
+                    cmd.Parameters.Add(new SqlParameter("@FechaInicioAno", SqlDbType.Int)).Value = alumnoestudio.FechaInicioAno;
+                    cmd.Parameters.Add(new SqlParameter("@FechaFinMes", SqlDbType.Int)).Value = alumnoestudio.FechaFinMes;
+                    cmd.Parameters.Add(new SqlParameter("@FechaFinAno", SqlDbType.Int)).Value = alumnoestudio.FechaFinAno;
                     cmd.Parameters.Add(new SqlParameter("@CicloEquivalente", SqlDbType.Int)).Value = alumnoestudio.CicloEquivalente;
                     cmd.Parameters.Add(new SqlParameter("@DatoUTP", SqlDbType.Bit)).Value = alumnoestudio.DatoUTP;
                     cmd.Parameters.Add(new SqlParameter("@CreadoPor", SqlDbType.VarChar, 50)).Value = alumnoestudio.CreadoPor;

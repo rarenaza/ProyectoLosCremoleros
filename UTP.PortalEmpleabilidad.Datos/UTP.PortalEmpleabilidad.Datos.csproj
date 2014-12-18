@@ -44,8 +44,10 @@
     <Compile Include="ADAlumnoCV.cs" />
     <Compile Include="ADAlumnoCVEstudio.cs" />
     <Compile Include="ADAlumnoCVExperienciaCargo.cs" />
+    <Compile Include="ADAlumnoCVInformacionAdicional.cs" />
     <Compile Include="ADAlumnoEstudio.cs" />
     <Compile Include="ADAlumnoExperienciaCargo.cs" />
+    <Compile Include="ADAlumnoInformacionAdicional.cs" />
     <Compile Include="ADAutenticar.cs" />
     <Compile Include="ADBase.cs" />
     <Compile Include="ADConexion.cs" />

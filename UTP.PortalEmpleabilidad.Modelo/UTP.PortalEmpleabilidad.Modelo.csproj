@@ -45,9 +45,11 @@
     <Compile Include="AlumnoCV.cs" />
     <Compile Include="AlumnoCVEstudio.cs" />
     <Compile Include="AlumnoCVExperienciaCargo.cs" />
+    <Compile Include="AlumnoCVInformacionAdicional.cs" />
     <Compile Include="AlumnoEstudio.cs" />
     <Compile Include="AlumnoExpericiencia.cs" />
     <Compile Include="AlumnoExperienciaCargo.cs" />
+    <Compile Include="AlumnoInformacionAdicional.cs" />
     <Compile Include="EmpresaListaEmpresa.cs" />
     <Compile Include="Auditoria.cs" />
     <Compile Include="EmpresaLocacion.cs" />
