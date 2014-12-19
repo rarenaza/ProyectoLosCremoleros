@@ -107,7 +107,8 @@ namespace UTP.PortalEmpleabilidad.Datos
             cmd.Parameters.Add(new SqlParameter("@Valor", entidad.IdEstadoEmpresa == null ? "" : entidad.IdEstadoEmpresa));
             cmd.Parameters.Add(new SqlParameter("@Sector", entidad.IdSector == null ? "" : entidad.IdSector));
             cmd.Parameters.Add(new SqlParameter("@Razon", entidad.RazonSocial == null ? "" : entidad.RazonSocial));
-            cmd.Parameters.Add(new SqlParameter("@Ruc", entidad.RUC == null ? "" : entidad.RUC));
+            //cmd.Parameters.Add(new SqlParameter("@Ruc", entidad.RUC == null ? "" : entidad.RUC));
+
             //cmd.Parameters.Add(new SqlParameter("@EstadoOferta", entidad.EstadoOferta));
 
 
@@ -125,6 +126,60 @@ namespace UTP.PortalEmpleabilidad.Datos
             cnn.Desconectar();
 
             return dt;
+        }
+
+        public DataTable UTP_ListarUltimosAlumnos()
+        {
+            DataTable dtResultado = new DataTable();
+
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "UTP_ListarUltimosAlumnos";
+
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+                dtResultado = new DataTable();
+
+                da.Fill(dtResultado);
+
+                conexion.Close();
+            }
+
+            return dtResultado;
+        }
+
+        public DataTable UTP_ObtenerUltimosAlumnos(string Dato)
+        {
+            DataTable dtResultado = new DataTable();
+
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "UTP_ObtenerUltimosAlumnos";
+                cmd.Parameters.Add(new SqlParameter("@Dato", Dato));
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+                dtResultado = new DataTable();
+
+                da.Fill(dtResultado);
+
+                conexion.Close();
+            }
+
+            return dtResultado;
         }
 
         public void ActualizarEstadoYUsuarioEC(Empresa empresa)

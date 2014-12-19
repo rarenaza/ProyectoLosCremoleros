@@ -794,6 +794,7 @@
     <Content Include="Views\Alumno\_AlumnoInformacionAdicionalCV.cshtml" />
     <Content Include="Views\Alumno\_ModalRegistrarExperiencia.cshtml" />
     <Content Include="Views\Alumno\_ModalRegistrarInformacionAdicional.cshtml" />
+    <Content Include="Views\UTP\_DatosUtpPortal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

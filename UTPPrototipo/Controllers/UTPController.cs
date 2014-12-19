@@ -11,6 +11,7 @@ using System.Web.Security;
 using UTP.PortalEmpleabilidad.Logica;
 using UTP.PortalEmpleabilidad.Modelo;
 using UTP.PortalEmpleabilidad.Modelo.UTP;
+using UTP.PortalEmpleabilidad.Modelo.Vistas.Alumno;
 using UTP.PortalEmpleabilidad.Modelo.Vistas.Empresa;
 using UTP.PortalEmpleabilidad.Modelo.Vistas.Ofertas;
 using UTPPrototipo.Models;
@@ -217,61 +218,8 @@ namespace UTPPrototipo.Controllers
             return PartialView("_ResultadoBusquedaEmpresas", entidad.ListaBusqueda);
 
         }
+             
 
-
-
-        //public ActionResult prueba(string sortOrder, string currentFilter, string searchString, int? page)
-        //{
-
-
-
-        //    if (searchString != null)
-        //    {
-        //        page = 1;
-        //    }
-        //    else
-        //    {
-        //        searchString = currentFilter;
-        //    }
-
-        //    ViewBag.CurrentFilter = searchString;
-
-            
-
-        //    List<VistaEmpresListarOfertas> listaEjemplo = new List<VistaEmpresListarOfertas>();
-        
-
-        //    if (!String.IsNullOrEmpty(searchString))
-        //    {
-
-        //        DataTable dtResultado = lnUtp.Empresa_ObtenerPorNombre(searchString);
-
-        //        for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
-        //        {
-        //            VistaEmpresListarOfertas vista = new VistaEmpresListarOfertas();
-        //            vista.NombreComercial = dtResultado.Rows[i]["Nombre"].ToString();
-        //            vista.RazonSocial = dtResultado.Rows[i]["Razon"].ToString();
-        //            vista.RUC = dtResultado.Rows[i]["RUC"].ToString();
-        //            vista.Estado = dtResultado.Rows[i]["Estado"].ToString();
-        //            vista.SectorEmpresarial = dtResultado.Rows[i]["SectorEmpresarial"].ToString();
-
-        //            listaEjemplo.Add(vista);
-        //        }
-
-        //    }
-        //    else
-        //    {
-        //        List<VistaEmpresListarOfertas> lista = new List<VistaEmpresListarOfertas>();
-
-        //        lista = lnEmpresa.ObtenerEmpresaListaOfertas();
-
-        //        return View(lista);
-        //    }
-        
-        //    return View(listaEjemplo); 
- 
-
-        //}
 
         public FileResult Imagen2(int id, string Menu)
         {
@@ -612,11 +560,61 @@ namespace UTPPrototipo.Controllers
 
         }
 
-        public ActionResult Alumnos()
+        public ActionResult Alumnos(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            return View();
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+
+            List<VistaUTPListaAlumno> listaEjemplo = new List<VistaUTPListaAlumno>();
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+
+                DataTable dtResultado = lnUtp.UTP_ObtenerUltimosAlumnos(searchString);
+
+                for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
+                {
+                    VistaUTPListaAlumno vista = new VistaUTPListaAlumno();
+                  
+                    vista.FechaRegistro = dtResultado.Rows[i]["FechaRegistro"].ToString();
+                    vista.Nombre = dtResultado.Rows[i]["Nombres"].ToString();
+                    vista.Apellidos = dtResultado.Rows[i]["Apellidos"].ToString();
+                    vista.Carrera = dtResultado.Rows[i]["Carrera"].ToString();
+                    vista.Ciclo = dtResultado.Rows[i]["CicloEquivalente"].ToString();
+                    
+                    listaEjemplo.Add(vista);
+                }
+
+
+            }
+            else
+            {
+                List<VistaUTPListaAlumno> lista = new List<VistaUTPListaAlumno>();
+
+                lista = lnUtp.ObternerUTPListaAlumno();
+
+                return View(lista);
+            }
+                   
+
+            //int pageSize = 3;
+            //int pageNumber = (page ?? 1);
+           return View(listaEjemplo);
+
+                        
         }
-      
+
+
         public ActionResult VerDetalleEmpresa(int id)
         {
             ViewBag.IdEmpresa = id;
@@ -768,7 +766,17 @@ namespace UTPPrototipo.Controllers
 
             return PartialView("_DatosUtp", panel);
         }
+        public ActionResult VistaCabeceraUtpMiPortal()
+        {
 
+            TicketUTP ticketUtp = (TicketUTP)Session["TicketUtp"];
+
+            VistaPanelCabeceraUTP panel = new VistaPanelCabeceraUTP();
+
+            panel = lnAutenticar.ObtenerPanelCabeceraUTP(ticketUtp.Usuario);
+
+            return PartialView("_DatosUtpPortal", panel);
+        }
 
         public ActionResult VistaOfertasPendientes()
         {
