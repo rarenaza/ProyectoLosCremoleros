@@ -46,6 +46,7 @@
     <Compile Include="LNAlumnoCVExperienciaCargo.cs" />
     <Compile Include="LNAlumnoCVInformacionAdicional.cs" />
     <Compile Include="LNAlumnoEstudio.cs" />
+    <Compile Include="LNAlumnoExperiencia.cs" />
     <Compile Include="LNAlumnoExperienciaCargo.cs" />
     <Compile Include="LNAlumnoInformacionAdicional.cs" />
     <Compile Include="LNAutenticarUsuario.cs" />

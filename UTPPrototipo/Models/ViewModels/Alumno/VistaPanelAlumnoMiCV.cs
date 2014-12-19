@@ -17,7 +17,7 @@ namespace UTPPrototipo.Models.ViewModels
         public int IdAlumno { get; set; }
 
         public List<AlumnoEstudio> ListaAlumnoEstudio { get; set; }
-        public List<AlumnoExpericiencia> ListaAlumnoExperiencia { get; set; }
+        public List<AlumnoExperiencia> ListaAlumnoExperiencia { get; set; }
         //public List<AlumnoExpericiencia> ListaAlumnoExperiencia { get; set; }
 
          

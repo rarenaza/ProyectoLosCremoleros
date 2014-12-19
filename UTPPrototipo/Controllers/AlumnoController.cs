@@ -15,6 +15,7 @@ using UTPPrototipo.Models.ViewModels.Cuenta;
 
 namespace UTPPrototipo.Controllers
 {
+    [VerificarSesion]
     public class AlumnoController : Controller
     {
         LNAlumno lnAlumno = new LNAlumno();
@@ -26,11 +27,13 @@ namespace UTPPrototipo.Controllers
         LNOfertaPostulante lnofertapostulante = new LNOfertaPostulante();
         LNEmpresa lnempresa = new LNEmpresa();
         LNAlumnoExperienciaCargo lnalumnoexperienciacargo = new LNAlumnoExperienciaCargo();
+        LNAlumnoExperiencia lnalumnoexperiencia = new LNAlumnoExperiencia();
+
         LNAlumnoCVExperienciaCargo lnalumnocvexperienciacargo = new LNAlumnoCVExperienciaCargo();
         LNAlumnoInformacionAdicional lnalumnoinformacionadicional= new LNAlumnoInformacionAdicional();
         LNAlumnoCVInformacionAdicional lnalumnocvinformacionadicional = new LNAlumnoCVInformacionAdicional();
 
-       
+        
 
         public string codigoAlumno = "82727128";
 
@@ -649,7 +652,14 @@ namespace UTPPrototipo.Controllers
         {
             lnAlumnoEstudio.Insertar(alumnoestudio);
             return View();
-        }      
+        }
+
+        public ActionResult RegistrarAlumnoExperiencia(AlumnoExperiencia alumnoexperiencia)
+        {
+            lnalumnoexperiencia.Registrar(alumnoexperiencia);
+            return View();
+        }   
+   
         #endregion
 
 
