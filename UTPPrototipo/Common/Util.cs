@@ -25,7 +25,7 @@ namespace UTPPrototipo.Common
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            if (filterContext.HttpContext.Session["TicketEmpresa"] == null && filterContext.HttpContext.Session["TicketUTP"] == null)
+            if (filterContext.HttpContext.Session["TicketEmpresa"] == null && filterContext.HttpContext.Session["TicketUTP"] == null && filterContext.HttpContext.Session["TicketAlumno"] == null)
             {
                 filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Home", action = "Index" }));
                 filterContext.Result.ExecuteResult(filterContext.Controller.ControllerContext);
