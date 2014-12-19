@@ -107,6 +107,8 @@ namespace UTPPrototipo.Controllers
                         ticketAlumno.CorreoElectronico = Convert.ToString(dsResultado.Tables[2].Rows[0]["CorreoElectronico"]);
                         ticketAlumno.TelefonoCelular = Convert.ToString(dsResultado.Tables[2].Rows[0]["TelefonoCelular"]);
                         ticketAlumno.TipoUsuario = Convert.ToString(dsResultado.Tables[2].Rows[0]["TipoUsuario"]);
+                        ticketAlumno.CodAlumnoUTP = Convert.ToString(dsResultado.Tables[2].Rows[0]["CodAlumnoUtp"]);
+
                         Session["TicketAlumno"] = ticketAlumno;
 
 

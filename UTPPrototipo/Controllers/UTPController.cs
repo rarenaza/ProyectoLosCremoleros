@@ -362,9 +362,10 @@ namespace UTPPrototipo.Controllers
 
 
             TicketUTP ticketUtp = (TicketUTP)Session["TicketUtp"];
-               
+
 
             contenido.CreadoPor = ticketUtp.Usuario;
+
             //contenido.CreadoPor = contenidoHTML.CreadoPor;
 
 
