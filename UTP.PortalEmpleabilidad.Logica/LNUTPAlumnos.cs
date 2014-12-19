@@ -61,8 +61,11 @@ namespace UTP.PortalEmpleabilidad.Logica
             alumnoEstudio.TipoDeEstudio = "TEUNIV"; //Realizar función de conversión.
             alumnoEstudio.EstadoDelEstudio = "EDETIT"; //Realizar función de conversión.
             alumnoEstudio.Observacion = "demo de observación";
-            alumnoEstudio.FechInicio = ConvertirFecha(Convert.ToString(dsDatosAlumno.Tables[1].Rows[0]["FechaInicio"]));
-            alumnoEstudio.FechFin = ConvertirFecha(Convert.ToString(dsDatosAlumno.Tables[1].Rows[0]["FechaFinal"]));
+            alumnoEstudio.FechaInicioAno = ConvertirFecha(Convert.ToString(dsDatosAlumno.Tables[1].Rows[0]["FechaInicio"])).Year;
+            alumnoEstudio.FechaInicioMes = ConvertirFecha(Convert.ToString(dsDatosAlumno.Tables[1].Rows[0]["FechaInicio"])).Month;
+            alumnoEstudio.FechaFinAno = ConvertirFecha(Convert.ToString(dsDatosAlumno.Tables[1].Rows[0]["FechaFinal"])).Year;
+            alumnoEstudio.FechaFinMes = ConvertirFecha(Convert.ToString(dsDatosAlumno.Tables[1].Rows[0]["FechaFinal"])).Month;
+
             alumnoEstudio.CicloEquivalente = 0; //falta traer este dato.
             alumnoEstudio.CreadoPor = "sistema"; //modificar campo
 

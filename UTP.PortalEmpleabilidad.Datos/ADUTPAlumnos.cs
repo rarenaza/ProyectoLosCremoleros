@@ -79,10 +79,10 @@ namespace UTP.PortalEmpleabilidad.Datos
                     cmd.Parameters.Add(new SqlParameter("@TipoDeEstudio", alumnoEstudio.TipoDeEstudio));
                     cmd.Parameters.Add(new SqlParameter("@EstadoDelEstudio", alumnoEstudio.EstadoDelEstudio));
                     cmd.Parameters.Add(new SqlParameter("@Observacion", alumnoEstudio.Observacion));
-                    cmd.Parameters.Add(new SqlParameter("@FechaInicioMes", alumnoEstudio.FechInicio.Month));
-                    cmd.Parameters.Add(new SqlParameter("@FechaInicioAno", alumnoEstudio.FechInicio.Year));
-                    cmd.Parameters.Add(new SqlParameter("@FechaFinMes", alumnoEstudio.FechFin.Month));
-                    cmd.Parameters.Add(new SqlParameter("@FechaFinAno", alumnoEstudio.FechFin.Year));
+                    cmd.Parameters.Add(new SqlParameter("@FechaInicioMes", alumnoEstudio.FechaInicioMes));
+                    cmd.Parameters.Add(new SqlParameter("@FechaInicioAno", alumnoEstudio.FechaInicioAno));
+                    cmd.Parameters.Add(new SqlParameter("@FechaFinMes", alumnoEstudio.FechaFinMes));
+                    cmd.Parameters.Add(new SqlParameter("@FechaFinAno", alumnoEstudio.FechaFinAno));
                     cmd.Parameters.Add(new SqlParameter("@CicloEquivalente", alumnoEstudio.CicloEquivalente));
                     cmd.Parameters.Add(new SqlParameter("@DatoUTP", alumnoEstudio.DatoUTP));
                     cmd.Parameters.Add(new SqlParameter("@CreadoPor", alumnoEstudio.CreadoPor));
