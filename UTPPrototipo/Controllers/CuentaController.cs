@@ -115,6 +115,7 @@ namespace UTPPrototipo.Controllers
                         //REdireccionas al indexl del alumno
                         return RedirectToAction("Index", "Alumno");
                     }
+                    //return JavaScript("OnSuccess();");
 
                     //Obtienes el tipo de usiuaor y la 3 teabla
                 }
@@ -157,16 +158,34 @@ namespace UTPPrototipo.Controllers
                             //Si tiene acceso se redirecciona al portal principal del alumno.
                             return RedirectToAction("Index", "Alumno");
                         }
+                      
                     }
-
+                   
                     //ViewBag.Message = "Registrese";
-                    ////return RedirectToAction("Autenticar", "Cuenta");
+                    //return RedirectToAction("Autenticar", "Cuenta");
                     //return JavaScript("OnFailure();");
+
+                    //if (usuario == null)
+                    //{
+                    //    //OnSuccess
+                    //    return JavaScript("OnSuccess();");
+
+                    //}
+                    //else
+                    //{
+                    //    //OnFailure
+
+                    //    return JavaScript("OnFailure();");
+                    //}
+                    
+
                 }
             }          
 
             //return PartialView("_Login", usuario);
             return PartialView("_Login", usuario);
+
+            
 
             //if (usuario.NombreUsuario == "alumno")
             //{

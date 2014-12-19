@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using UTP.PortalEmpleabilidad.Logica;
 using UTP.PortalEmpleabilidad.Modelo;
 using UTP.PortalEmpleabilidad.Modelo.Vistas.Empresa;
@@ -735,5 +736,14 @@ namespace UTPPrototipo.Controllers
 
             return new FileStreamResult(stream, "image/jpeg");
         }
+
+
+        public ActionResult LogOut()
+        {
+            //FormsAuthentication.SignOut();
+            Session["TicketEmpresa"] = null;
+            return RedirectToAction("Index", "Home");
+        }
+
     }
 }

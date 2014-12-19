@@ -12,6 +12,7 @@ using UTPPrototipo.Models.ViewModels;
 using UTPPrototipo.Common;
 using System.IO;
 using UTPPrototipo.Models.ViewModels.Cuenta;
+using System.Web.Security;
 
 namespace UTPPrototipo.Controllers
 {
@@ -899,7 +900,12 @@ namespace UTPPrototipo.Controllers
             return View();
         }
 
-      
+        public ActionResult LogOut()
+        {
+            //FormsAuthentication.SignOut();
+            Session["TicketAlumno"] = null;
+            return RedirectToAction("Index", "Home");
+        }
 
             
 	}

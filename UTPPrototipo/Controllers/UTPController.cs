@@ -14,6 +14,7 @@ using UTP.PortalEmpleabilidad.Modelo.UTP;
 using UTP.PortalEmpleabilidad.Modelo.Vistas.Alumno;
 using UTP.PortalEmpleabilidad.Modelo.Vistas.Empresa;
 using UTP.PortalEmpleabilidad.Modelo.Vistas.Ofertas;
+using UTPPrototipo.Common;
 using UTPPrototipo.Models;
 using UTPPrototipo.Models.ViewModels.Contenido;
 using UTPPrototipo.Models.ViewModels.Cuenta;
@@ -21,6 +22,7 @@ using UTPPrototipo.Models.ViewModels.UTP;
 
 namespace UTPPrototipo.Controllers
 {
+        [VerificarSesion]
     public class UTPController : Controller
     {
         LNContenido ln = new LNContenido();
@@ -927,7 +929,8 @@ namespace UTPPrototipo.Controllers
 
         public ActionResult LogOut()
         {
-            FormsAuthentication.SignOut();
+            //FormsAuthentication.SignOut();
+         Session["TicketUtp"]=null;
             return RedirectToAction("Index", "Home");
         }
     }
