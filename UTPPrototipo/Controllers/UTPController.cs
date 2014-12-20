@@ -666,6 +666,10 @@ namespace UTPPrototipo.Controllers
         {
             return View();
         }
+        public ActionResult Ofertas()
+        {
+            return View();
+        }
         public ActionResult Oferta()
         {
             return View();
