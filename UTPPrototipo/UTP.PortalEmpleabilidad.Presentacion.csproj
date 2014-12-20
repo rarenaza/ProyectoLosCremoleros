@@ -818,6 +818,7 @@
     <Content Include="Views\UTP\Usuario.cshtml" />
     <Content Include="Views\UTP\Lista.cshtml" />
     <Content Include="Views\UTP\Ofertas.cshtml" />
+    <Content Include="Views\UTP\ListaValor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
