@@ -30,6 +30,7 @@ namespace UTPPrototipo.Controllers
         LNUTP lnUtp = new LNUTP();
         LNEmpresaListaOferta lnEmpresa = new LNEmpresaListaOferta();
         LNOferta lnoferta = new LNOferta();
+        LNUTPAlumnos lnalumno = new LNUTPAlumnos();
         // GET: UTP
         public ActionResult Index()
         {
@@ -594,6 +595,7 @@ namespace UTPPrototipo.Controllers
                     vista.Apellidos = dtResultado.Rows[i]["Apellidos"].ToString();
                     vista.Carrera = dtResultado.Rows[i]["Carrera"].ToString();
                     vista.Ciclo = dtResultado.Rows[i]["CicloEquivalente"].ToString();
+                    vista.idAlumno = Convert.ToInt32(dtResultado.Rows[i]["IdAlumno"]);
                     
                     listaEjemplo.Add(vista);
                 }
@@ -926,6 +928,56 @@ namespace UTPPrototipo.Controllers
 
 
         #endregion
+
+        public ActionResult VerDetalleAlumno(int? Id)
+        {
+            UtpAlumnoDetalle alumno = new UtpAlumnoDetalle();
+
+
+            DataTable dtResultado = lnalumno.AlumnoUTP_ObtenerDatosPorCodigo(Convert.ToInt32(Id));
+
+            if (dtResultado.Rows.Count > 0)
+            {
+
+                alumno.IdAlumno = Convert.ToInt32(dtResultado.Rows[0]["IdAlumno"].ToString());
+                alumno.Nombres = dtResultado.Rows[0]["Nombres"].ToString();
+                alumno.Apellidos = dtResultado.Rows[0]["Apellidos"].ToString();
+                alumno.Carrera = dtResultado.Rows[0]["Carrera"].ToString();
+                alumno.CicloEquivalente = dtResultado.Rows[0]["CicloEquivalente"].ToString();
+                alumno.NumeroDocumento = dtResultado.Rows[0]["NumeroDocumento"].ToString();
+                alumno.TipoDocumento = dtResultado.Rows[0]["TipoDocumento"].ToString();
+                alumno.CorreoElectronico = dtResultado.Rows[0]["CorreoElectronico"].ToString();
+                alumno.FechaRegistro = dtResultado.Rows[0]["FechaRegistro"].ToString();
+               
+            }
+            return View(alumno);
+
+            //return View();
+        }
+
+        public ActionResult AlumnoUtp_obtenerEstudios(int? Id)
+        {
+            UtpAlumnoDetalle alumno = new UtpAlumnoDetalle();
+
+
+            DataTable dtResultado = lnalumno.AlumnoUtp_obtenerEstudios(Convert.ToInt32(Id));
+
+            if (dtResultado.Rows.Count > 0)
+            {
+
+                alumno.IdAlumno = Convert.ToInt32(dtResultado.Rows[0]["IdAlumno"].ToString());
+                alumno.Nombres = dtResultado.Rows[0]["Nombres"].ToString();
+                alumno.Apellidos = dtResultado.Rows[0]["Apellidos"].ToString();
+                alumno.Carrera = dtResultado.Rows[0]["Carrera"].ToString();
+                alumno.CicloEquivalente = dtResultado.Rows[0]["CicloEquivalente"].ToString();
+                alumno.FechaRegistro = dtResultado.Rows[0]["FechaRegistro"].ToString();
+            }
+            return View(alumno);
+
+            //return View();
+        }
+
+ 
 
         public ActionResult LogOut()
         {

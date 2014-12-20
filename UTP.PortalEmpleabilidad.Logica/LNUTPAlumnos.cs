@@ -12,7 +12,7 @@ namespace UTP.PortalEmpleabilidad.Logica
     public class LNUTPAlumnos
     {
         ADUTPAlumnos adUTPAlumnos = new ADUTPAlumnos();
-
+  
         public DataSet ObtenerDatosPorCodigo(string codigo)
         {                        
             return adUTPAlumnos.ObtenerDatosPorCodigo(codigo);
@@ -83,6 +83,15 @@ namespace UTP.PortalEmpleabilidad.Logica
             fecha = new DateTime(anio, mes, dia);
 
             return fecha;
+        }
+
+        public DataTable AlumnoUTP_ObtenerDatosPorCodigo(int id)
+        {
+            return adUTPAlumnos.AlumnoUTP_ObtenerDatosPorCodigo(id);
+        }
+        public DataTable AlumnoUtp_obtenerEstudios(int id)
+        {
+            return adUTPAlumnos.AlumnoUtp_obtenerEstudios(id);
         }
     }
 }

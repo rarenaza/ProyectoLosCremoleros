@@ -29,7 +29,7 @@
                         <table style="width:100%;">
                             <tr>
                                 @using (Html.BeginForm("Alumnos", "UTP", FormMethod.Get))
-                            {
+                                {
 
                                     <td>
                                         <div class="input-group fuente-pequeña">
@@ -47,71 +47,81 @@
 
                                         </span>
                                     </td>
-                            }
-                                
-                         @*aqui iva*@
+                                }
+
+                                @*aqui iva*@
                             </tr>
                         </table>
 
                     </div>
                 </div>
             </div>
+
             <br />
-            <div class="row grilla1-cabecera color-paleta2">
+      
+                <div class="row grilla1-cabecera color-paleta2">
 
-                <div class="col-sm-2">
-                    Fecha de Registro
-                </div>
-                <div class="col-sm-2">
-                    Nombres
-                </div>
-                <div class="col-sm-1">
-                    Apellidos
-                </div>
-                <div class="col-sm-2">
-                    Carrera
-                </div>
-                <div class="col-sm-3">
-                   Ciclo
-                </div>
-                <div class="col-sm-2">
-                    Completitud
-                </div>
-
-            </div>
-@foreach (var item in Model)
-    {
-            <div class="row grilla1-linea">
-
-                <div class="col-sm-2">
-                    @*<a href="../UTP/Empresa">@item.FechaRegistro</a>*@
-                 @item.FechaRegistro
-                </div>
-                <div class="col-sm-2">
-                    @item.Nombre
-                </div>
-                <div class="col-sm-1">
-                    @item.Apellidos
-                </div>
-                <div class="col-sm-2">
-                    @item.Carrera 
-                </div>
-                <div class="col-sm-3">
-                    @item.Ciclo 
-                    
-                </div>
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-                        60%
+                    <div class="col-sm-2">
+                        Fecha de Registro
                     </div>
-                </div>
+                    <div class="col-sm-2">
+                        Nombres
+                    </div>
+                    <div class="col-sm-1">
+                        Apellidos
+                    </div>
+                    <div class="col-sm-2">
+                        Carrera
+                    </div>
+                    <div class="col-sm-3">
+                        Ciclo
+                    </div>
+                    <div class="col-sm-2">
+                        Completitud
+                    </div>
 
-            </div>
-}
-           
+                </div>
+                @foreach (var item in Model)
+                {
+                    <div class="row grilla1-linea">
+
+                        <div class="col-sm-2">
+                            @*<a href="../UTP/Empresa">@item.FechaRegistro</a>*@
+                            @item.FechaRegistro
+                        </div>
+                        <div class="col-sm-2">
+
+                            @* <a href="../UTP/VerDetalleAlumno"> @item.Nombre</a>*@
+
+
+                            @Html.ActionLink(@item.Nombre, "VerDetalleAlumno", new { id = item.idAlumno })
+
+                            @*@item.Nombre*@
+                        </div>
+                        <div class="col-sm-1">
+                            @item.Apellidos
+                        </div>
+                        <div class="col-sm-2">
+                            @item.Carrera
+                        </div>
+                        <div class="col-sm-3">
+                            @item.Ciclo
+
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                                60%
+                            </div>
+                        </div>
+
+                    </div>
+                }
+                   
 
         </div>
     </div>
+<br />
+
 
 
 <script src="~/Scripts/jquery-2.1.1.min.js"></script>

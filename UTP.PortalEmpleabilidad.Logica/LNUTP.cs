@@ -107,7 +107,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 vista.Apellidos = dtResultado.Rows[i]["Apellidos"].ToString();
                 vista.Carrera = dtResultado.Rows[i]["Carrera"].ToString();
                 vista.Ciclo = dtResultado.Rows[i]["CicloEquivalente"].ToString();
-            
+                vista.idAlumno = Convert.ToInt32(dtResultado.Rows[i]["IdAlumno"]);
 
                 listaAlumno.Add(vista);
             }

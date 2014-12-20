@@ -165,50 +165,17 @@ namespace UTPPrototipo.Controllers
                     //return RedirectToAction("Autenticar", "Cuenta");
                     //return JavaScript("OnFailure();");
 
-                    //if (usuario == null)
-                    //{
-                    //    //OnSuccess
-                    //    return JavaScript("OnSuccess();");
-
-                    //}
-                    //else
-                    //{
-                    //    //OnFailure
-
-                    //    return JavaScript("OnFailure();");
-                    //}
+                    
+          
                     
 
                 }
             }          
 
-            //return PartialView("_Login", usuario);
+    
             return PartialView("_Login", usuario);
 
-            
-
-            //if (usuario.NombreUsuario == "alumno")
-            //{
-            //    return RedirectToAction("Index", "Alumno");
-            //}
-            //else
-            //    if (usuario.NombreUsuario == "empresa")  
-            //    {
-           
-            //        Ticket ticket = new Ticket();
-            //        ticket.UsuarioNombre = usuario.NombreUsuario;
-            //        ticket.IdEmpresa = 1;
-
-            //        Session["Ticket"] = ticket;
-
-            //        return RedirectToAction("Index", "Empresa");
-            //    }
-            //    else
-            //        if (usuario.NombreUsuario == "utp")
-            //        {
-
-            //        }    
-            //return PartialView("_Login", usuario);
+                     
         }        
 	}
 }
