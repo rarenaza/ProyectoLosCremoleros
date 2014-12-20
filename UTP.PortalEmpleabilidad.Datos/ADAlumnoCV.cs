@@ -77,5 +77,7 @@ namespace UTP.PortalEmpleabilidad.Datos
             cmd.ExecuteNonQuery();
             cnn.Desconectar();
         }
+
+        
     }
 }

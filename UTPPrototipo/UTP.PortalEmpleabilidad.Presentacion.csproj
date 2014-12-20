@@ -49,7 +49,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DocX">
+      <HintPath>..\..\..\..\Downloads\DocX.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="NetOffice">
+      <HintPath>..\packages\NetOffice.Core.Net45.1.7.2.0\lib\net45\NetOffice.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="OfficeApi">
+      <HintPath>..\packages\NetOffice.Core.Net45.1.7.2.0\lib\net45\OfficeApi.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -107,6 +118,10 @@
       <Private>True</Private>
       <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="VBIDEApi">
+      <HintPath>..\packages\NetOffice.Core.Net45.1.7.2.0\lib\net45\VBIDEApi.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
@@ -114,6 +129,10 @@
     <Reference Include="Antlr3.Runtime">
       <Private>True</Private>
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="WordApi">
+      <HintPath>..\packages\NetOffice.Word.Net45.1.7.2.0\lib\net45\WordApi.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -184,6 +203,7 @@
     <Compile Include="Controllers\OfertaEstudioController.cs" />
     <Compile Include="Controllers\OfertaInformacionAdicionalController.cs" />
     <Compile Include="Controllers\OfertaSectorEmpresarialController.cs" />
+    <Compile Include="Controllers\PlantillaController.cs" />
     <Compile Include="Controllers\UTPController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -289,6 +309,9 @@
     <Content Include="fonts\UTP FONT ICON.woff" />
     <Content Include="Scripts\carga.asincrona.js" />
     <Content Include="Plantillas\Plantilla1.docx" />
+    <Content Include="Plantillas\PlantillaCV01.dotx" />
+    <Content Include="Plantillas\Plantilla2.docx" />
+    <Content Include="Plantillas\PlantillaVER2.docx" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\ckeditor\adapters\jquery.js" />
     <Content Include="Scripts\ckeditor\ckeditor.js" />
@@ -798,6 +821,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Autenticar_Usuario\" />
+    <Folder Include="Views\Plantilla\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -812,6 +836,35 @@
       <Project>{ce5752b7-9b02-4dcb-9631-b0096e1a9703}</Project>
       <Name>UTP.PortalEmpleabilidad.Modelo</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>5</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Word">
+      <Guid>{00020905-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>8</VersionMajor>
+      <VersionMinor>5</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

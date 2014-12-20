@@ -34,5 +34,12 @@ namespace UTP.PortalEmpleabilidad.Logica
 
             return listaPlantillaCV;
         }
+
+        public DataSet ObtenerDatosParaPlantilla(int IdCV)
+        { 
+            ADPlantilla adPlantilla = new ADPlantilla ();
+
+            return adPlantilla.ObtenerDatosParaPlantilla(IdCV);
+        }
     }
 }
