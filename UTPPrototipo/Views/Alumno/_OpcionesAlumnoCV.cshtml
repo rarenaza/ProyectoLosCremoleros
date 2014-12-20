@@ -56,6 +56,7 @@
             IdCV: $('#IdCV').val()
         };
         $("#HIIdCV").attr("value", $('#IdCV').val());
+        alert($('#IdCV').val());
         CargarPOST("alumno-datos-generales", "/Alumno/AlumnoDatosGenerales", vistacv);
         CargarPOST("mi-cv-educacion", "/Alumno/AlumnoEstudiosCV", vistacv);
         CargarPOST("mi-cv-experiencia-laboral", "/Alumno/AlumnoExperienciaCV", vistacv);

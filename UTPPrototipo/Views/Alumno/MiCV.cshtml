@@ -1461,33 +1461,12 @@
             IdCV: 0
         };
         CargarPOST("mi-cv-opciones", "/Alumno/OpcionesCV", vistacv);
-        Cargar("mi-cv-educacion", "/Alumno/AlumnoEstudiosCV/" + Id);
+       // CargarPOST("mi-cv-educacion", "/Alumno/AlumnoEstudiosCV/" + Id);
 
 
     });
- 
 
-    function LoadPartialView(id, link) {
-        alert(id + url);
-        $("#"+id).load(url);
-    }
-    function Cargar(id, link) {
-        $.ajax({
-            url: link,
-            contentType: 'application/html; charset=utf-8',
-            type: 'GET',
-            dataType: 'html'
 
-        })
-        .success(function (result) {
-            //alert(result);
-            //$("#" + id).html(result);
-            document.getElementById(id).innerHTML = result;
-        })
-        .error(function (xhr, status) {
-            alert(status);
-        })
-    }
 </script>
 
 

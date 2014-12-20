@@ -8,6 +8,12 @@
     @Scripts.Render("~/bundles/modernizr")
     <link href="~/Content/animate.css" rel="stylesheet" />
     <link href="~/Content/font-awesome.css" rel="stylesheet" />
+    @Scripts.Render("~/bundles/jquery")
+    <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    
 </head>
 <body class="cuerpo-zona-alumno">
 
@@ -45,7 +51,7 @@
                     <!--<li>
                         <a class="btn btn-default navbar-btn Boton_pestana color-paleta5" href="..\Alumno\Index" style="padding: 2px 0px 2px 0px; color: white;">Eventos</a>
                     </li>-->
-             
+
                 </ul>
                 <ul class="nav navbar-nav navbar-right" style="padding-right: 15px; ">
                     <li>
@@ -71,7 +77,7 @@
     <!--<div class="container body-content">-->
     <div>
         @RenderBody()
-        
+
         <footer style="background-color:rgb(131, 131, 129);">
             <div class="container">
                 <br />
@@ -90,10 +96,8 @@
             </div>
         </footer>
     </div>
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     <script>
 
 
@@ -109,6 +113,26 @@
             if (id != null) {
                 $("#" + id).html(result);
             }
+        })
+        .error(function (xhr, status) {
+            console.log(xhr);
+            console.log(status);
+
+        })
+    }
+    function CargarPOSTNull(id, link) {
+        $.ajax({
+            url: link,
+            contentType: 'application/json; charset=utf-8',
+            type: 'POST',
+            dataType: 'html'
+        })
+        .success(function (result) {
+            if (id != null) {
+                $("#" + id).html(result);
+            }
+            //alert(VisualizarModal())
+            VisualizarModal("#" + id);
         })
         .error(function (xhr, status) {
             console.log(xhr);
@@ -134,7 +158,15 @@
             alert(status);
         })
     }
+    function VisualizarModal(id) {
+        //alert($(id).html());
+        console.log($(id));
+
+        $(id).modal("show");
+        return false;
+    }
     </script>
+
 </body>
 
 </html>

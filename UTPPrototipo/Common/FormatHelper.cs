@@ -131,7 +131,7 @@ namespace UTPPrototipo.Common
                 estilo = "progress-bar-danger";
             }
 
-            sbhtml.AppendLine("<div class='progress-bar " +estilo+ " progress-bar' role='progressbar' aria-valuenow='"+compatiblidad.ToString()+"' aria-valuemin='0' aria-valuemax='100' style='width:"+compatiblidad.ToString()+"%;'>");
+            sbhtml.AppendLine("<div class='progress-bar " +estilo+ " progress-bar' role='progressbar' aria-valuenow='"+(compatiblidad + 10 ).ToString()+"' aria-valuemin='0' aria-valuemax='100' style='width:"+(compatiblidad + 10).ToString()+"%;'>");
             sbhtml.AppendLine(compatiblidad.ToString()+ " %");
             sbhtml.AppendLine("</div>");
             return sbhtml.ToString();

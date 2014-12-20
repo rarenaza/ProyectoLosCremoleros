@@ -25,6 +25,14 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public List<ListaValor> ListaTipoConocimiento { get; set; }
         public List<ListaValor> ListaPais { get; set; }
         public List<ListaValor> ListaNivelConocimiento { get; set; }
+        public int IdAlumno { get; set; }
+        public string TipoConocimientoIdListaValor { get; set; }
+        public string NivelConocimientoIdListaValor { get; set; }
+        public string PaisIdListaValor { get; set; }
+
+        public string CreadoPor { get; set; }
+
+       
 
     }
 }

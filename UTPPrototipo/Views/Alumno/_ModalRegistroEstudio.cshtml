@@ -9,13 +9,13 @@
                 <div class="col-sm-3">
                     <div class="input-group fuente-pequeña">
                         <span class="input-group-addon">Año Inicio</span>
-                        <input type="text" class="form-control" placeholder="Año Inicio">
+                        <input type="text" class="form-control" placeholder="Año Inicio" id="IDAnioInicio">
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="input-group fuente-pequeña">
                         <span class="input-group-addon">Mes Inicio</span>
-                        <select id="Lista" class="form-control">
+                        <select id="IdMesInicio" class="form-control">
                             <option value="" selected>Mes de Inicio</option>
                             <option>1</option>
                             <option>2</option>
@@ -35,13 +35,13 @@
                 <div class="col-sm-3">
                     <div class="input-group fuente-pequeña">
                         <span class="input-group-addon">Año Fin</span>
-                        <input type="text" class="form-control" placeholder="Año Fin">
+                        <input type="text" class="form-control" placeholder="Año Fin" id="IdAnioFin">
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="input-group fuente-pequeña">
                         <span class="input-group-addon">Mes Fin</span>
-                        <select id="Lista" class="form-control">
+                        <select id="IdMesFin" class="form-control">
                             <option value="" selected>Mes de Fin</option>
                             <option>1</option>
                             <option>2</option>
@@ -408,20 +408,20 @@
         };
         var estudio = {
             IdAlumno: $('#IdAlumno').val(),
-            Institucion:$('#idInsitucion').val(),
-            Estudio:$('#IdEstudio option:selected').html(),
-            TipoDeEstudio:$('#IdTipoEstudio').val(),
-            EstadoDelEstudio:$('#IdEstadoEstudio').val(),
-            Observacion:$('#IdObservacion').val(),
-            FechInicio:$('#IdFechaInicio').val(),
-            FechFin:$('#IdFechaFin').val(),
-            CicloEquivalente:$('#IdCiclo').val(),
-            DatoUTP:0,
-            CreadoPor:"admin"
+            Institucion: $('#idInsitucion').val(),
+            Estudio: $('#IdEstudio option:selected').html(),
+            TipoDeEstudio: $('#IdTipoEstudio').val(),
+            EstadoDelEstudio: $('#IdEstadoEstudio').val(),
+            Observacion: $('#IdObservacion').val(),
+            FechaInicioMes: $('#IdMesInicio').val(),
+            FechaInicioAno: $('#IDAnioInicio').val(),
+            FechaFinMes: $('#IdMesFin').val(),
+            FechaFinAno: $('#IdAnioFin').val(),
+            CicloEquivalente: $('#IdCiclo').val(),
+            DatoUTP: 0
         };
 
         CargarPOST(null, "/Alumno/RegistrarAlumnoEstudio", estudio);
-        //CargarPOST("alumno-datos-generales", "/Alumno/AlumnoDatosGenerales", vistacv);
         CargarPOST("mi-cv-educacion", "/Alumno/AlumnoEstudiosCV", vistacv);
-    })
+    });
 </script>

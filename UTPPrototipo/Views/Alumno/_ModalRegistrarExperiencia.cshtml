@@ -460,24 +460,17 @@
             SectorEmpresarial3: $('#IdSectorEmpresarial3').val(),
             Pais: $('#IdPais').val(),
             Ciudad: $('#txtCiudad').val(),
-            CreadoPor: "admin",
             NombreComercial: $('#txtEmpresa').val(),
             NombreCargo: $('#txtCargo').val(),
             FechaInicioCargoMes: 1,
             FechaInicioCargoAno: 2013,
             FechaFinCargoMes: 5,
             FechaFinCargoAno: 2014,
-            //FechaInicioCargoMes: $('#IdAlumno').val(),
-            //FechaInicioCargoAno: $('#IdAlumno').val(),
-            //FechaFinCargoMes: $('#IdAlumno').val(),
-            //FechaFinCargoAno: $('#IdAlumno').val(),
-
             TipoCargo: $('#IdTipoCargo').val(),
             DescripcionCargo: $('#txtDescripcionCargo').val()
         };
 
         CargarPOST(null, "/Alumno/RegistrarAlumnoExperiencia", experiencia);
-        //CargarPOST("alumno-datos-generales", "/Alumno/AlumnoDatosGenerales", vistacv);
         CargarPOST("mi-cv-experiencia-laboral", "/Alumno/AlumnoExperienciaCV", vistacv);
-    })
+    });
 </script>

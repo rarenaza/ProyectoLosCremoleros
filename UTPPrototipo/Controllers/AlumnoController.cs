@@ -656,13 +656,25 @@ namespace UTPPrototipo.Controllers
 
         public ActionResult RegistrarAlumnoEstudio(AlumnoEstudio alumnoestudio)
         {
+            TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
+            alumnoestudio.CreadoPor = ticket.Usuario;
             lnAlumnoEstudio.Insertar(alumnoestudio);
             return View();
         }
 
         public ActionResult RegistrarAlumnoExperiencia(AlumnoExperiencia alumnoexperiencia)
         {
+            TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
+            alumnoexperiencia.CreadoPor = ticket.Usuario;
             lnalumnoexperiencia.Registrar(alumnoexperiencia);
+            return View();
+        }
+
+        public ActionResult RegistrarAlumnoInformacionAdicional(AlumnoInformacionAdicional alumnoinformacionadicional)
+        {
+            TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
+            alumnoinformacionadicional.CreadoPor = ticket.Usuario;
+            lnalumnoinformacionadicional.Registrar(alumnoinformacionadicional);
             return View();
         }   
    

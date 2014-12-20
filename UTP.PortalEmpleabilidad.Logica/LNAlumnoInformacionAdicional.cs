@@ -38,5 +38,12 @@ namespace UTP.PortalEmpleabilidad.Logica
             }
             return listaAlumnoInformacionAdicional;
         }
+
+        public void Registrar(AlumnoInformacionAdicional alumnoinformacionadicional)
+        {
+
+            aiad.Registrar(alumnoinformacionadicional);
+
+        }
     }
 }
