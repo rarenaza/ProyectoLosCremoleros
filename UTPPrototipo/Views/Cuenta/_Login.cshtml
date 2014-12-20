@@ -5,6 +5,7 @@
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
     
+
     <div class="modal-body">
 
         <form>
@@ -17,23 +18,27 @@
                 @Html.ValidationMessageFor(m => m.NombreUsuario, "", new { @class = "text-danger" })
 
             </div>
-            <div class="input-group grupo-ingreso">
-                <span class="input-group-addon nombre-campo">Clave</span>
-                @*<input type="password" class="form-control" placeholder="Clave">*@
-                @Html.TextBoxFor(m => m.Contrasena, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.Contrasena, "", new { @class = "text-danger" })
-            </div>
-            <br />
-            <div class="grupo-ingreso" style="text-align:center;">
-                <input type="checkbox">
-                <span class="label-sistema"> No Cerrar mi Sesión </span>
-            </div>
-            <br />
-            <div class="text-center" style="width: 100%;">
-                <input id="btnAutenticar" type="submit" value="Ingresar" class="btn btn-default" />
-            </div>
+      
+      
+                <div class="input-group grupo-ingreso">
+                    <span class="input-group-addon nombre-campo">Clave</span>
+                    @*<input type="password" class="form-control" placeholder="Clave">*@
+                    @*@Html.TextBoxFor(m => m.Contrasena, new { @class = "form-control" })*@
+                    @Html.PasswordFor(m => m.Contrasena, new { @class = "form-control" })
 
-        </form>
+                    @Html.ValidationMessageFor(m => m.Contrasena, "", new { @class = "text-danger" })
+                </div>
+                <br />
+                <div class="grupo-ingreso" style="text-align:center;">
+                    <input type="checkbox">
+                    <span class="label-sistema"> No Cerrar mi Sesión </span>
+                </div>
+                <br />
+                <div class="text-center" style="width: 100%;">
+                    <input id="btnAutenticar" type="submit" value="Ingresar" class="btn btn-default" />
+                </div>
+
+</form>
        <div id="divMsjRespuestaError">
 
        </div>
@@ -61,5 +66,19 @@
     //        $('#divMsjRespuestaError').html('<p>Hola <strong>mundo</strong> !!!</p>');
     //    });
     //});
+
+
+
+    //$('#btnAutenticar').click(function () {
+    //    $(this).after(
+    //        '<div class="alert alert-danger">' +
+    //            '<button type="button" class="close" ' +
+    //                    'data-dismiss="alert" aria-hidden="true">' +
+    //                '&times;' +
+    //            '</button>' +
+    //            'Password Changed' +
+    //         '</div>');
+    //});
+
 
 </script>

@@ -31,7 +31,7 @@
                         <tr>
                             <td>
                                 <div class="input-group fuente-pequeña">
-                                    @*<span class="input-group-addon fuente-pequeña">Palabra Clave</span>*@
+                                    <span class="input-group-addon fuente-pequeña">Palabra Clave</span>
                                     @Html.TextBoxFor(model => model.PalabraClave, new { @class = "form-control", @placeholder = "Palabra clave" })
 
                                 </div>
@@ -96,11 +96,11 @@
                             </div>
                         </div>
                         <div class="col-sm-4">
-                            <div class="input-group fuente-pequeña">
+                            @*<div class="input-group fuente-pequeña">
                                 <span class="input-group-addon">RUC</span>
-                                @*<input type="text" class="form-control" placeholder="Identificador Tributario de la empresa">*@
+                                <input type="text" class="form-control" placeholder="Identificador Tributario de la empresa">
                                 @Html.TextBoxFor(model => model.RUC, new { @class = "form-control", @placeholder = "RUC" })
-                            </div>
+                            </div>*@
                             <div class="input-group fuente-pequeña">
 
                                 <span class="input-group-addon">Sector</span>
@@ -126,17 +126,17 @@
                         </div>
 
                         <div class="col-sm-4">
-                            <div class="input-group fuente-pequeña">
+                            @*<div class="input-group fuente-pequeña">
                                 <span class="input-group-addon"><input type="checkbox" /></span>
                                 <span class="form-control">Tiene Ofertas activas</span>
 
-                                @*@Html.EditorFor(model => model.EstadoOferta)*@
+                                @Html.EditorFor(model => model.EstadoOferta)
 
-                                </div>
-                            <div class="input-group fuente-pequeña">
+                                </div>*@
+                            @*<div class="input-group fuente-pequeña">
                                 <span class="input-group-addon"><input type="checkbox" /></span> 
                                 <span class="form-control">Tiene Ofertas pendientes de activar</span>
-                            </div>
+                            </div>*@
                             <br />
 
                             <div>
@@ -184,7 +184,7 @@
             IdEstadoEmpresa: $('#IdEstadoEmpresa').val(),
             IdSector: $('#IdSector').val(),
             RazonSocial: $('#RazonSocial').val(),
-            RUC: $('#RUC').val()
+            //RUC: $('#RUC').val()
             //,EstadoOferta: $('#OFERAC').val()
 
         };

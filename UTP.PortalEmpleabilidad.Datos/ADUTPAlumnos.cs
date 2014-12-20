@@ -166,7 +166,59 @@ namespace UTP.PortalEmpleabilidad.Datos
 
             return dsResultado;
         }
+        public DataTable AlumnoUTP_ObtenerDatosPorCodigo(int id)
+        {
+            DataTable dtResultado = new DataTable();
 
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Alumnos_obtenerPorID";
+                cmd.Parameters.Add(new SqlParameter("@IdAlumno", id));
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+                dtResultado = new DataTable();
+
+                da.Fill(dtResultado);
+
+                conexion.Close();
+            }
+
+            return dtResultado;
+        }
+
+        public DataTable AlumnoUtp_obtenerEstudios(int id)
+        {
+            DataTable dtResultado = new DataTable();
+
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "AlumnoUtp_obtenerEstudios";
+                cmd.Parameters.Add(new SqlParameter("@IdAlumno", id));
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+                dtResultado = new DataTable();
+
+                da.Fill(dtResultado);
+
+                conexion.Close();
+            }
+
+            return dtResultado;
+        }
     
     }
 }

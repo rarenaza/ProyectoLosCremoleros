@@ -15,11 +15,13 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string NombreUsuario { get; set; }
         public ListaValor TipoUsuario { get; set; }
         public ListaValor EstadoUsuario { get; set; }
-        public ListaValor Rol { get; set; }        
-        
-        [Required(ErrorMessage=Constantes.MSJ_CAMPO_OBLIGATORIO)]
+        public ListaValor Rol { get; set; }
+
+        [Required(ErrorMessage = Constantes.MSJ_CAMPO_OBLIGATORIO)]
+        [DataType(DataType.Password)]
         public string Contrasena { get; set; }
 
+       
         public string NombreCompleto { get; set; }
 
         public string TipoUsuarioIdListaValor { get; set; }

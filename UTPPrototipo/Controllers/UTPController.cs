@@ -11,8 +11,10 @@ using System.Web.Security;
 using UTP.PortalEmpleabilidad.Logica;
 using UTP.PortalEmpleabilidad.Modelo;
 using UTP.PortalEmpleabilidad.Modelo.UTP;
+using UTP.PortalEmpleabilidad.Modelo.Vistas.Alumno;
 using UTP.PortalEmpleabilidad.Modelo.Vistas.Empresa;
 using UTP.PortalEmpleabilidad.Modelo.Vistas.Ofertas;
+using UTPPrototipo.Common;
 using UTPPrototipo.Models;
 using UTPPrototipo.Models.ViewModels.Contenido;
 using UTPPrototipo.Models.ViewModels.Cuenta;
@@ -20,6 +22,7 @@ using UTPPrototipo.Models.ViewModels.UTP;
 
 namespace UTPPrototipo.Controllers
 {
+        [VerificarSesion]
     public class UTPController : Controller
     {
         LNContenido ln = new LNContenido();
@@ -27,6 +30,7 @@ namespace UTPPrototipo.Controllers
         LNUTP lnUtp = new LNUTP();
         LNEmpresaListaOferta lnEmpresa = new LNEmpresaListaOferta();
         LNOferta lnoferta = new LNOferta();
+        LNUTPAlumnos lnalumno = new LNUTPAlumnos();
         // GET: UTP
         public ActionResult Index()
         {
@@ -217,61 +221,8 @@ namespace UTPPrototipo.Controllers
             return PartialView("_ResultadoBusquedaEmpresas", entidad.ListaBusqueda);
 
         }
+             
 
-
-
-        //public ActionResult prueba(string sortOrder, string currentFilter, string searchString, int? page)
-        //{
-
-
-
-        //    if (searchString != null)
-        //    {
-        //        page = 1;
-        //    }
-        //    else
-        //    {
-        //        searchString = currentFilter;
-        //    }
-
-        //    ViewBag.CurrentFilter = searchString;
-
-            
-
-        //    List<VistaEmpresListarOfertas> listaEjemplo = new List<VistaEmpresListarOfertas>();
-        
-
-        //    if (!String.IsNullOrEmpty(searchString))
-        //    {
-
-        //        DataTable dtResultado = lnUtp.Empresa_ObtenerPorNombre(searchString);
-
-        //        for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
-        //        {
-        //            VistaEmpresListarOfertas vista = new VistaEmpresListarOfertas();
-        //            vista.NombreComercial = dtResultado.Rows[i]["Nombre"].ToString();
-        //            vista.RazonSocial = dtResultado.Rows[i]["Razon"].ToString();
-        //            vista.RUC = dtResultado.Rows[i]["RUC"].ToString();
-        //            vista.Estado = dtResultado.Rows[i]["Estado"].ToString();
-        //            vista.SectorEmpresarial = dtResultado.Rows[i]["SectorEmpresarial"].ToString();
-
-        //            listaEjemplo.Add(vista);
-        //        }
-
-        //    }
-        //    else
-        //    {
-        //        List<VistaEmpresListarOfertas> lista = new List<VistaEmpresListarOfertas>();
-
-        //        lista = lnEmpresa.ObtenerEmpresaListaOfertas();
-
-        //        return View(lista);
-        //    }
-        
-        //    return View(listaEjemplo); 
- 
-
-        //}
 
         public FileResult Imagen2(int id, string Menu)
         {
@@ -414,9 +365,10 @@ namespace UTPPrototipo.Controllers
 
 
             TicketUTP ticketUtp = (TicketUTP)Session["TicketUtp"];
-               
+
 
             contenido.CreadoPor = ticketUtp.Usuario;
+
             //contenido.CreadoPor = contenidoHTML.CreadoPor;
 
 
@@ -612,11 +564,62 @@ namespace UTPPrototipo.Controllers
 
         }
 
-        public ActionResult Alumnos()
+        public ActionResult Alumnos(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            return View();
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+
+            List<VistaUTPListaAlumno> listaEjemplo = new List<VistaUTPListaAlumno>();
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+
+                DataTable dtResultado = lnUtp.UTP_ObtenerUltimosAlumnos(searchString);
+
+                for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
+                {
+                    VistaUTPListaAlumno vista = new VistaUTPListaAlumno();
+                  
+                    vista.FechaRegistro = dtResultado.Rows[i]["FechaRegistro"].ToString();
+                    vista.Nombre = dtResultado.Rows[i]["Nombres"].ToString();
+                    vista.Apellidos = dtResultado.Rows[i]["Apellidos"].ToString();
+                    vista.Carrera = dtResultado.Rows[i]["Carrera"].ToString();
+                    vista.Ciclo = dtResultado.Rows[i]["CicloEquivalente"].ToString();
+                    vista.idAlumno = Convert.ToInt32(dtResultado.Rows[i]["IdAlumno"]);
+                    
+                    listaEjemplo.Add(vista);
+                }
+
+
+            }
+            else
+            {
+                List<VistaUTPListaAlumno> lista = new List<VistaUTPListaAlumno>();
+
+                lista = lnUtp.ObternerUTPListaAlumno();
+
+                return View(lista);
+            }
+                   
+
+            //int pageSize = 3;
+            //int pageNumber = (page ?? 1);
+           return View(listaEjemplo);
+
+                        
         }
-      
+
+
         public ActionResult VerDetalleEmpresa(int id)
         {
             ViewBag.IdEmpresa = id;
@@ -768,7 +771,17 @@ namespace UTPPrototipo.Controllers
 
             return PartialView("_DatosUtp", panel);
         }
+        public ActionResult VistaCabeceraUtpMiPortal()
+        {
 
+            TicketUTP ticketUtp = (TicketUTP)Session["TicketUtp"];
+
+            VistaPanelCabeceraUTP panel = new VistaPanelCabeceraUTP();
+
+            panel = lnAutenticar.ObtenerPanelCabeceraUTP(ticketUtp.Usuario);
+
+            return PartialView("_DatosUtpPortal", panel);
+        }
 
         public ActionResult VistaOfertasPendientes()
         {
@@ -916,9 +929,60 @@ namespace UTPPrototipo.Controllers
 
         #endregion
 
+        public ActionResult VerDetalleAlumno(int? Id)
+        {
+            UtpAlumnoDetalle alumno = new UtpAlumnoDetalle();
+
+
+            DataTable dtResultado = lnalumno.AlumnoUTP_ObtenerDatosPorCodigo(Convert.ToInt32(Id));
+
+            if (dtResultado.Rows.Count > 0)
+            {
+
+                alumno.IdAlumno = Convert.ToInt32(dtResultado.Rows[0]["IdAlumno"].ToString());
+                alumno.Nombres = dtResultado.Rows[0]["Nombres"].ToString();
+                alumno.Apellidos = dtResultado.Rows[0]["Apellidos"].ToString();
+                alumno.Carrera = dtResultado.Rows[0]["Carrera"].ToString();
+                alumno.CicloEquivalente = dtResultado.Rows[0]["CicloEquivalente"].ToString();
+                alumno.NumeroDocumento = dtResultado.Rows[0]["NumeroDocumento"].ToString();
+                alumno.TipoDocumento = dtResultado.Rows[0]["TipoDocumento"].ToString();
+                alumno.CorreoElectronico = dtResultado.Rows[0]["CorreoElectronico"].ToString();
+                alumno.FechaRegistro = dtResultado.Rows[0]["FechaRegistro"].ToString();
+               
+            }
+            return View(alumno);
+
+            //return View();
+        }
+
+        public ActionResult AlumnoUtp_obtenerEstudios(int? Id)
+        {
+            UtpAlumnoDetalle alumno = new UtpAlumnoDetalle();
+
+
+            DataTable dtResultado = lnalumno.AlumnoUtp_obtenerEstudios(Convert.ToInt32(Id));
+
+            if (dtResultado.Rows.Count > 0)
+            {
+
+                alumno.IdAlumno = Convert.ToInt32(dtResultado.Rows[0]["IdAlumno"].ToString());
+                alumno.Nombres = dtResultado.Rows[0]["Nombres"].ToString();
+                alumno.Apellidos = dtResultado.Rows[0]["Apellidos"].ToString();
+                alumno.Carrera = dtResultado.Rows[0]["Carrera"].ToString();
+                alumno.CicloEquivalente = dtResultado.Rows[0]["CicloEquivalente"].ToString();
+                alumno.FechaRegistro = dtResultado.Rows[0]["FechaRegistro"].ToString();
+            }
+            return View(alumno);
+
+            //return View();
+        }
+
+ 
+
         public ActionResult LogOut()
         {
-            FormsAuthentication.SignOut();
+            //FormsAuthentication.SignOut();
+         Session["TicketUtp"]=null;
             return RedirectToAction("Index", "Home");
         }
     }

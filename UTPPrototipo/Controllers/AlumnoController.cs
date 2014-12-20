@@ -12,9 +12,11 @@ using UTPPrototipo.Models.ViewModels;
 using UTPPrototipo.Common;
 using System.IO;
 using UTPPrototipo.Models.ViewModels.Cuenta;
+using System.Web.Security;
 
 namespace UTPPrototipo.Controllers
 {
+    [VerificarSesion]
     public class AlumnoController : Controller
     {
         LNAlumno lnAlumno = new LNAlumno();
@@ -26,19 +28,21 @@ namespace UTPPrototipo.Controllers
         LNOfertaPostulante lnofertapostulante = new LNOfertaPostulante();
         LNEmpresa lnempresa = new LNEmpresa();
         LNAlumnoExperienciaCargo lnalumnoexperienciacargo = new LNAlumnoExperienciaCargo();
+        LNAlumnoExperiencia lnalumnoexperiencia = new LNAlumnoExperiencia();
+
         LNAlumnoCVExperienciaCargo lnalumnocvexperienciacargo = new LNAlumnoCVExperienciaCargo();
         LNAlumnoInformacionAdicional lnalumnoinformacionadicional= new LNAlumnoInformacionAdicional();
         LNAlumnoCVInformacionAdicional lnalumnocvinformacionadicional = new LNAlumnoCVInformacionAdicional();
 
-       
-
-        public string codigoAlumno = "82727128";
+        
 
         public ActionResult Index()
         {
-            TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
 
-            VistaPanelAlumno panel = lnAlumno.ObtenerPanel(ticket.Usuario);
+
+
+            TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
+            VistaPanelAlumno panel = lnAlumno.ObtenerPanel(ticket.CodAlumnoUTP);
 
 
             return View(panel);
@@ -91,7 +95,8 @@ namespace UTPPrototipo.Controllers
         }
 
         public ActionResult PostularOferta(OfertaPostulante entidad) {
-            entidad.CreadoPor="admin";
+            TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
+            entidad.CreadoPor=ticket.Usuario;
             lnofertapostulante.Insertar(entidad);
             return View();
         }
@@ -101,7 +106,8 @@ namespace UTPPrototipo.Controllers
             {
                 VistaOfertaAlumno vistaofertalumno = new VistaOfertaAlumno();
                 Alumno alumno = new Alumno();
-                alumno = lnAlumno.ObtenerAlumnoPorCodigo(codigoAlumno);
+                TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
+                alumno = lnAlumno.ObtenerAlumnoPorCodigo(ticket.CodAlumnoUTP);
                 vistaofertalumno = lnoferta.OfertaAlumnoPostulacion((int)id, alumno.IdAlumno);
                 if (vistaofertalumno.Oferta != null && vistaofertalumno.Oferta.IdEmpresa > 0)
                 {
@@ -140,7 +146,8 @@ namespace UTPPrototipo.Controllers
             {
                 VistaOfertaAlumno vistaofertalumno = new VistaOfertaAlumno();
                 Alumno alumno = new Alumno();
-                alumno = lnAlumno.ObtenerAlumnoPorCodigo(codigoAlumno);
+                TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
+                alumno = lnAlumno.ObtenerAlumnoPorCodigo(ticket.CodAlumnoUTP);
                 vistaofertalumno = lnoferta.OfertaAlumnoPostulacion((int)id, alumno.IdAlumno);
                 if (vistaofertalumno.Oferta != null && vistaofertalumno.Oferta.IdEmpresa > 0)
                 {
@@ -326,6 +333,7 @@ namespace UTPPrototipo.Controllers
         {
             //Declaracion de objetos
             VistaPanelAlumnoMiCV panel = new VistaPanelAlumnoMiCV();
+            TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
             AlumnoCV alumnocv = new AlumnoCV();
             //Lista de Curriculos del Alumno
             alumnocv.IdAlumno = IdAlumno;
@@ -337,7 +345,7 @@ namespace UTPPrototipo.Controllers
             alumnocv.IncluirDireccion = false;
             alumnocv.Perfil = string.Empty;
             alumnocv.EstadoCV = "CVACT";
-            alumnocv.CreadoPor = "administrador";
+            alumnocv.CreadoPor = ticket.Usuario;
             panel.ListaAlumnoCV = lnAlumnoCV.ObtenerAlumnoCVPorIdAlumno(alumnocv);
 
             //Hallar el ID del Curriculo del alumno
@@ -383,7 +391,8 @@ namespace UTPPrototipo.Controllers
         {
             
             VistaPanelAlumnoMiCV panel = new VistaPanelAlumnoMiCV();
-            panel.alumno = lnAlumno.ObtenerAlumnoPorCodigo(codigoAlumno);
+            TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
+            panel.alumno = lnAlumno.ObtenerAlumnoPorCodigo(ticket.CodAlumnoUTP);
 
             return View(panel);
         }
@@ -420,8 +429,8 @@ namespace UTPPrototipo.Controllers
 
             Alumno alumno = new Alumno();
             AlumnoCV alumnocv = new AlumnoCV();
-
-            alumno = lnAlumno.ObtenerAlumnoPorCodigo(codigoAlumno);
+            TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
+            alumno = lnAlumno.ObtenerAlumnoPorCodigo(ticket.CodAlumnoUTP);
             if (alumno != null)
             {
                 alumnocv = lnAlumnoCV.ObtenerAlumnoCVPorIdAlumnoYIdCV(alumno.IdAlumno, entidad.IdCV);
@@ -649,7 +658,14 @@ namespace UTPPrototipo.Controllers
         {
             lnAlumnoEstudio.Insertar(alumnoestudio);
             return View();
-        }      
+        }
+
+        public ActionResult RegistrarAlumnoExperiencia(AlumnoExperiencia alumnoexperiencia)
+        {
+            lnalumnoexperiencia.Registrar(alumnoexperiencia);
+            return View();
+        }   
+   
         #endregion
 
 
@@ -665,14 +681,15 @@ namespace UTPPrototipo.Controllers
         //vista cabeceraa Oferta
         public ActionResult VistaCabecera()
         {
-            //string codigoAlumno = "82727128";
-            VistaPanelAlumno panel = lnAlumno.ObtenerPanel(codigoAlumno);
+            TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
+            VistaPanelAlumno panel = lnAlumno.ObtenerPanel(ticket.CodAlumnoUTP);
             return PartialView("_DatosPersonales", panel.Alumno);
         }
         public ActionResult DatosAlumnoOferta()
         {
-            //string codigoAlumno = "82727128";
-            VistaPanelAlumno panel = lnAlumno.ObtenerPanel(codigoAlumno);
+
+            TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
+            VistaPanelAlumno panel = lnAlumno.ObtenerPanel(ticket.CodAlumnoUTP);
             return PartialView("_CabeceraOfertaAlumno", panel.Alumno);
         }
 
@@ -883,7 +900,12 @@ namespace UTPPrototipo.Controllers
             return View();
         }
 
-      
+        public ActionResult LogOut()
+        {
+            //FormsAuthentication.SignOut();
+            Session["TicketAlumno"] = null;
+            return RedirectToAction("Index", "Home");
+        }
 
             
 	}

@@ -111,6 +111,59 @@ namespace UTP.PortalEmpleabilidad.Datos
            
         }
 
+        public int Registrar(Empresa empresa)
+        {
+            int IdEmpresa = 0;
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Empresa_Registrar";
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                cmd.Parameters.Add(new SqlParameter("@NombreComercial", empresa.NombreComercial));
+                cmd.Parameters.Add(new SqlParameter("@Pais", empresa.PaisIdListaValor));
+                cmd.Parameters.Add(new SqlParameter("@DescripcionEmpresa", empresa.DescripcionEmpresa));
+                cmd.Parameters.Add(new SqlParameter("@SectorEmpresarial", empresa.SectorEmpresarial1IdListaValor));
+                cmd.Parameters.Add(new SqlParameter("@SectorEmpresarial2", empresa.SectorEmpresarial2IdListaValor));
+                cmd.Parameters.Add(new SqlParameter("@SectorEmpresarial3", empresa.SectorEmpresarial3IdListaValor));
+                cmd.Parameters.Add(new SqlParameter("@CreadoPor", empresa.CreadoPor));
+                cmd.Parameters.Add(new SqlParameter("@IdEmpresa",DbType.Int32)).Direction=ParameterDirection.Output;
+
+                cmd.ExecuteNonQuery();
+                IdEmpresa = (int)cmd.Parameters["@IdEmpresa"].Value;
+                conexion.Close();
+            }
+            return IdEmpresa;
+
+        }
+
+        public bool ValidarExistenciaPorNombreComercial(string nombrecomercial)
+        {
+            bool estado = false;
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+                SqlDataReader dr = null;
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Empresa_ValidarPorNombreComercial";
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                cmd.Parameters.Add(new SqlParameter("@NombreComercial", nombrecomercial));
+                dr = cmd.ExecuteReader();
+                estado=dr.HasRows;
+               
+                dr.Close();
+                conexion.Close();
+            }
+            return estado;
+
+        }
 
         public void Actualizar(Empresa empresa)
         {

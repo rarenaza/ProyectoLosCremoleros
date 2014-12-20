@@ -47,7 +47,7 @@
     <Compile Include="AlumnoCVExperienciaCargo.cs" />
     <Compile Include="AlumnoCVInformacionAdicional.cs" />
     <Compile Include="AlumnoEstudio.cs" />
-    <Compile Include="AlumnoExpericiencia.cs" />
+    <Compile Include="AlumnoExperiencia.cs" />
     <Compile Include="AlumnoExperienciaCargo.cs" />
     <Compile Include="AlumnoInformacionAdicional.cs" />
     <Compile Include="EmpresaListaEmpresa.cs" />
@@ -71,12 +71,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Ticket.cs" />
     <Compile Include="Usuario.cs" />
+    <Compile Include="UtpAlumnoDetalle.cs" />
     <Compile Include="UTP\VistaPanelCabeceraUTP.cs" />
     <Compile Include="VistaPanelAlumno.cs" />
     <Compile Include="VistaPanelAlumnoOfertas.cs" />
     <Compile Include="VistaPanelAlumnoPostulaciones.cs" />
     <Compile Include="Vistas\Alumno.cs" />
     <Compile Include="Vistas\AlumnoEstudio.cs" />
+    <Compile Include="Vistas\Alumno\VistaUTPListaAlumno.cs" />
     <Compile Include="Vistas\ContenidoCombo\ContenidoVistaCombo.cs" />
     <Compile Include="Vistas\Empresa\VistaEmpresaLocacion.cs" />
     <Compile Include="Vistas\Empresa\VistaEmpresaOferta.cs" />
