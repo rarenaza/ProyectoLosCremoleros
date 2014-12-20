@@ -674,6 +674,14 @@ namespace UTPPrototipo.Controllers
         {
             return View();
         }
+        public ActionResult Usuario()
+        {
+            return View();
+        }
+        public ActionResult Lista()
+        {
+            return View();
+        }
         public ActionResult Reportes()
         {
             return View();
