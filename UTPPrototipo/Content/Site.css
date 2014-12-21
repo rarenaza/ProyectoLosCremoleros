@@ -305,11 +305,11 @@ input[type="checkbox"].input-validation-error {
     }
 
 .foto-usuario {
-    height: 80px;
+    height: 120px;
     border:solid;
     border-width:1px;
     border-color:rgb(180,30,34);
-    margin-right:5px;
+    border-radius: 5px 5px 5px 5px;
     }
 
 .foto-empresa {
