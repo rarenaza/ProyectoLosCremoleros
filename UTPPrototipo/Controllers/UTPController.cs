@@ -692,7 +692,11 @@ namespace UTPPrototipo.Controllers
         {
             return View();
         }
-            public ActionResult Reportes()
+        public ActionResult Plantilla()
+        {
+            return View();
+        }
+        public ActionResult Reportes()
         {
             return View();
         }
