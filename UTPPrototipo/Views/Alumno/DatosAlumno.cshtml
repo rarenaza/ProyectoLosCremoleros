@@ -1,0 +1,115 @@
+﻿@{
+    Layout = "~/Views/Alumno/_LayoutAlumno.cshtml";
+    ViewBag.Title = "Datos Alumno";
+}
+
+<link href="~/Content/font-awesome.css" rel="stylesheet" />
+<div class="container" style="margin-top:2px;">
+    <h5>Datos Personales</h5>
+    <hr />
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="input-group">
+                <span class="input-group-addon">Usuario</span>
+                <input type="text" class="form-control" value="0971827" disabled>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="input-group">
+                <span class="input-group-addon">Nombres</span>
+                <input type="text" class="form-control" value="Victor Hugo" disabled>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="input-group">
+                <span class="input-group-addon">Apellidos</span>
+                <input type="text" class="form-control" value="Canal Aguirre" disabled>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="input-group">
+                <span class="input-group-addon">Tipo<br />Documento</span>
+                <select class="form-control" disabled>
+                    <option selected>DNI</option>
+                    <option>Carnét de Extrangería</option>
+                    <option>Libreta Militar</option>
+                    <option>Un papel con un dibujo</option>
+                </select>
+            </div>
+        </div>        
+        <div class="col-sm-3">
+            <div class="input-group">
+                <span class="input-group-addon">Número<br />Documento</span>
+                <input type="text" class="form-control" value="06163627" disabled>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="input-group">
+                <span class="input-group-addon">Fecha de<br />Nacimiento</span>
+                <input type="text" class="form-control" value="16/08/1985" disabled>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="input-group">
+                <span class="input-group-addon">Sexo</span>
+                <select class="form-control" disabled>
+                    <option selected>Masculino</option>
+                    <option>Femenino</option>
+                    <option>No especifica</option>
+                </select>
+            </div>
+        </div> 
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="input-group">
+                <span class="input-group-addon">Dirección</span>
+                <input type="text" class="form-control" value="Avenida Arica 2365, Urbanización Chacra Rios">
+            </div>
+        </div>
+        
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="input-group">
+                <span class="input-group-addon">Departa-<br />mento</span>
+                <select class="form-control" >
+                    <option selected>Lima</option>
+                    <option>Lambayeque</option>
+                    <option>La Libertad</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="input-group">
+                <span class="input-group-addon">Provincia</span>
+                <select class="form-control" >
+                    <option selected>Lima</option>
+                    <option>Cañete</option>
+                    <option>Chosica</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="input-group">
+                <span class="input-group-addon">Distrito</span>
+                <select class="form-control" >
+                    <option selected>Miraflores</option>
+                    <option>Los Olivos</option>
+                    <option>San Miguel</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $("#divFinalCabecera").removeClass("color-paleta2 color-paleta3 color-paleta4 color-paleta5 color-paleta6 color-paleta7 color-paleta8").addClass("color-paleta1");
+    });
+</script>

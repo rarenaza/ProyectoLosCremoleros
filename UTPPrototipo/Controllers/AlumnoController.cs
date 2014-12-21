@@ -918,6 +918,10 @@ namespace UTPPrototipo.Controllers
             Session["TicketAlumno"] = null;
             return RedirectToAction("Index", "Home");
         }
+        public ActionResult DatosAlumno()
+        {
+            return View();
+        }
 
             
 	}
