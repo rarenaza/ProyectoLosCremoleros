@@ -1,0 +1,13 @@
+﻿@model   IEnumerable<UTP.PortalEmpleabilidad.Modelo.Vistas.Alumno.AlertasCvAlumno>
+
+@foreach (var item in Model)
+{
+    if (item.Dia > 7)
+    {
+
+        <div class="alert alert-warning" role="alert"><strong>Sin Postulaciones hace @Html.DisplayFor(modelItem => item.Dia) días </strong></div>
+
+
+    }
+
+}

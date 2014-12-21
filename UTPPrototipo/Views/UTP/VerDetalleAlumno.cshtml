@@ -9,9 +9,8 @@
 <div class="container fuente-pequeña" style="margin-top:2px;">
     @*@using (Ajax.BeginForm("VerDetalleAlumno", "UTP", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", OnComplete = "mostrarMensaje" }))*@
 @using (Html.BeginForm())
-
-   
-    {
+{
+    @Html.HiddenFor(model => model.IdAlumno)
     @Html.AntiForgeryToken()
     
     <!---Cabecera de la página.-->
@@ -95,6 +94,7 @@
                     </td>
                     <td class="celda-datos">
                         @Html.DropDownList("CodEstadoAlumno", ViewData["UtpAlumnoMenuMostrar"] as List<SelectListItem>, "Seleccione...", new { @class = "form-control", style = "width: 200px;height:20px" })
+                        @Html.ValidationMessageFor(model => model.CodEstadoAlumno)
                     </td>
                 </tr>
                              

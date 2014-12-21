@@ -286,11 +286,11 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.Connection = cnn.cn;
 
                 cmd.Parameters.Add(new SqlParameter("@IdAlumno", SqlDbType.Int)).Value = alumno.IdAlumno;
-                cmd.Parameters.Add(new SqlParameter("@EstadoAlumno", SqlDbType.VarChar, 50)).Value = (alumno.EstadoAlumno == null ? "" : alumno.EstadoAlumno);
+                cmd.Parameters.Add(new SqlParameter("@EstadoAlumno", SqlDbType.VarChar, 50)).Value = alumno.CodEstadoAlumno;
 
               
 
-                cnn.Conectar();
+                        cnn.Conectar();
                 cmd.ExecuteNonQuery();
                 cmd.Parameters.Clear();
                 cnn.Desconectar();

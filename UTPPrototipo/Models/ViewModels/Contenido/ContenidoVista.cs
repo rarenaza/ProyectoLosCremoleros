@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using UTP.PortalEmpleabilidad.Modelo;
 
 namespace UTPPrototipo.Models.ViewModels.Contenido
 {
@@ -25,7 +26,7 @@ namespace UTPPrototipo.Models.ViewModels.Contenido
         public string ArchivoMimeType { get; set; }
         //[Required]
         public  byte[] Imagen { get; set; }
-
+            [Required(ErrorMessage = Constantes.MSJ_CAMPO_OBLIGATORIO)]
         public string Menu { get; set; }
              
 
