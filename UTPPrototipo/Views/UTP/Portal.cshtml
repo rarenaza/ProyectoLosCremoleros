@@ -24,33 +24,33 @@
         @*<b>Lista</b>
             @Html.DropDownList("Menu", ViewData["ContenidoMenu"] as List<SelectListItem>, new {style = "width: 200px;height:20px" })*@
 
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="input-group">
-                <span class="input-group-addon">Menú</span>
-                @Html.DropDownList("Menu", ViewData["ContenidoMenu"] as List<SelectListItem>, "- Seleccione una Sección-", new { @class = "form-control" })
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="input-group">
+                    <span class="input-group-addon">Menú</span>
+                    @Html.DropDownList("Menu", ViewData["ContenidoMenu"] as List<SelectListItem>, "- Seleccione una Sección-", new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="col-sm-3">
+                <button class="btn btn-default color-paleta7"><span class="fa fa-search"></span></button>
+            </div>
+            <div class="col-sm-3">
+                @Html.ActionLink("Crear", "Portal_insertar", null, new { @class = "btn btn-default color-paleta7" })
             </div>
         </div>
-
-        <div class="col-sm-3">
-            <button class="btn btn-default color-paleta7"><span class="fa fa-search"></span></button>
-        </div>
-        <div class="col-sm-3">
-            @Html.ActionLink("Crear", "Portal_insertar", null, new { @class = "btn btn-default color-paleta7" })
-        </div>
-    </div>
     }
 
 
     <h2></h2>
 
 
-    <div class="row grilla1-cabecera">
+    <div class="row grilla1-cabecera color-paleta7">
 
         <div class="col-sm-1">
             ID
         </div>
-        <div class="col-sm-2">
+        <div class="col-sm-1">
             Menú
         </div>
         <div class="col-sm-2">
@@ -70,67 +70,37 @@
         </div>
     </div>
 
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IdContenido)
-                </td>
+    @foreach (var item in Model)
+    {
+        <div class="row grilla1-linea">
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.TituloMenu)
-                </td>
+            <div class="col-sm-1">
+                @Html.DisplayFor(modelItem => item.IdContenido)
+            </div>
+            <div class="col-sm-1">
+                @Html.DisplayFor(modelItem => item.TituloMenu)
+            </div>
+            <div class="col-sm-2">
+                @Html.DisplayFor(modelItem => item.Titulo)
+            </div>
+            <div class="col-sm-2">
+                @Html.DisplayFor(modelItem => item.SubTitulo)
+            </div>
+            <div class="col-sm-2">
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </div>
+            <div class="col-sm-3">
+                <img alt="" style="width:100%" src='@Url.Action("Imagen", "UTP", new { id = @item.IdContenido })' />
+            </div>
+            <div class="col-sm-1">
+                @Html.ActionLink("1", "Portal_Editar_Buscar", new { id = item.IdContenido }, new { @class = "fui fa-2x color-icono-paleta1" })
+                @Html.ActionLink("l", "Contenido_Eliminar", new { id = item.IdContenido }, new { onclick = "return confirm('Está Seguro que desea Eliminar?');", @class = "fui fa-2x color-icono-paleta1" })
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.Titulo)
-                </td>
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.SubTitulo)
-                </td>
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.Descripcion)
-                </td>
-
-
-                <td>
-                    @*@Html.image(modelItem => item.Imagen)*@
-
-                    @*<img src="@item.Imagen" alt="" />*@
-
-
-                    @*<img src="/Content/imagen/@item.Imagen" height="100" width="100" />*@
-
-                    @*      <img src="/Contenido/RetrieveImage/@item.IdContenido" alt="" height=100 width=200 />*@
-                    <img alt="" height=100 width=200 src='@Url.Action("Imagen", "UTP", new { id = @item.IdContenido })' />
-                </td>
-
-
-                <td style="display:none">
-                    @Html.DisplayFor(modelItem => item.Menu)
-                </td>
-
-                <td>
-                    @Html.ActionLink("Editar", "Portal_Editar_Buscar", new { id = item.IdContenido })|
-
-                    @*  @Html.ActionLink("Eliminar", "Contenido_Eliminar", new { id = item.IdContenido })*@
-
-
-                    @Html.ActionLink("Eliminar", "Contenido_Eliminar", new { id = item.IdContenido }, new { onclick = "return confirm('Está Seguro que desea Eliminar?');" })
-
-
-
-                </td>
-            </tr>
-        }
-
-    </div>
-
-
+            </div>
+        </div>
+    }
+    <hr />
 </div>
-
-
 
 <script>
 
