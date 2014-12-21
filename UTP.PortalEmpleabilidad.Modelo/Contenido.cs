@@ -19,7 +19,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
 
         //public string  Imagen { get; set; }
 
-       
+         [Required(ErrorMessage = Constantes.MSJ_CAMPO_OBLIGATORIO)]
         public string Menu { get; set; }
    
         public string CreadoPor { get; set; }

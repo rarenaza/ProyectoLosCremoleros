@@ -81,6 +81,7 @@
     <Compile Include="VistaPanelAlumnoPostulaciones.cs" />
     <Compile Include="Vistas\Alumno.cs" />
     <Compile Include="Vistas\AlumnoEstudio.cs" />
+    <Compile Include="Vistas\Alumno\AlertasCvAlumno.cs" />
     <Compile Include="Vistas\Alumno\VistaUTPListaAlumno.cs" />
     <Compile Include="Vistas\ContenidoCombo\ContenidoVistaCombo.cs" />
     <Compile Include="Vistas\Empresa\VistaEmpresaLocacion.cs" />

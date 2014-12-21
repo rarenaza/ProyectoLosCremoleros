@@ -991,7 +991,7 @@ namespace UTPPrototipo.Controllers
                 alumno.TipoDocumento = dtResultado.Rows[0]["TipoDocumento"].ToString();
                 alumno.CorreoElectronico = dtResultado.Rows[0]["CorreoElectronico"].ToString();
                 alumno.FechaRegistro = dtResultado.Rows[0]["FechaRegistro"].ToString();
-                alumno.CodEstadoAlumno = Convert.ToString (dtResultado.Rows[0]["CodEstado"]);
+                alumno.CodEstadoAlumno = Convert.ToString(dtResultado.Rows[0]["CodEstado"]);
 
                
             }
@@ -1012,7 +1012,7 @@ namespace UTPPrototipo.Controllers
             {
 
                 ViewBag.Message = "Datos Actualizado";
-                return RedirectToAction("portal");  
+                return RedirectToAction("Alumnos");  
                
             }
 

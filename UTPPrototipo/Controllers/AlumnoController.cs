@@ -13,6 +13,7 @@ using UTPPrototipo.Common;
 using System.IO;
 using UTPPrototipo.Models.ViewModels.Cuenta;
 using System.Web.Security;
+using UTP.PortalEmpleabilidad.Modelo.Vistas.Alumno;
 
 namespace UTPPrototipo.Controllers
 {
@@ -935,6 +936,74 @@ namespace UTPPrototipo.Controllers
             return View();
         }
 
+        public ActionResult AlertaCvAlumno()
+        {
+
+            List<AlertasCvAlumno> lista = new List<AlertasCvAlumno>();
+            
+
+            TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
+
+            DataTable dtResultado = lnoferta.AlertaCvAlumno(ticket.Usuario);
+                       
+            
+            for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
+            {
+                AlertasCvAlumno alumno = new AlertasCvAlumno();
+                alumno.NombreCV = Convert.ToString(dtResultado.Rows[i]["NombreCV"]);
+                alumno.PorcentajeCV = Convert.ToInt32(dtResultado.Rows[i]["PorcentajeCV"]);
+                lista.Add(alumno );
+            }
+
+            //return PartialView(alumno);
+            return PartialView("AlertaCvAlumno", lista ); 
+        }
+
+        public ActionResult AlertaCvAlumnoDia()
+        {
+
+            List<AlertasCvAlumno> lista = new List<AlertasCvAlumno>();
+
+
+            TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
+
+            DataTable dtResultado = lnoferta.AlertaCvAlumnoDia(ticket.Usuario);
+
+
+            for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
+            {
+                AlertasCvAlumno alumno = new AlertasCvAlumno();
+                alumno.Dia = Convert.ToInt32(dtResultado.Rows[i]["Dia"]);
+          
+                lista.Add(alumno);
+            }
+
+            //return PartialView(alumno);
+            return PartialView("AlertaCvAlumnoDia", lista);
+        }
+
+        public ActionResult AlertaCvAlumnoMes()
+        {
+
+            List<AlertasCvAlumno> lista = new List<AlertasCvAlumno>();
+
+
+            TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
+
+            DataTable dtResultado = lnoferta.AlertaCvAlumnoMes(ticket.Usuario);
+
+
+            for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
+            {
+                AlertasCvAlumno alumno = new AlertasCvAlumno();
+                alumno.MesesSinTrabajo = Convert.ToInt32(dtResultado.Rows[i]["MesesSinTrabajo"]);
+
+                lista.Add(alumno);
+            }
+
+            //return PartialView(alumno);
+            return PartialView("AlertaCvAlumnoMes", lista);
+        }
 
     }
 }

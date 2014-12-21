@@ -684,5 +684,89 @@ namespace UTP.PortalEmpleabilidad.Datos
                 throw ex;
             }            
         }
+
+
+        public DataTable AlertaCvAlumno(string Usuario)
+        {
+            DataTable dtResultado = new DataTable();
+
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "AlertaCvAlumno";
+                cmd.Parameters.Add(new SqlParameter("@Usuario", SqlDbType.NVarChar)).Value = Usuario;
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                dtResultado = new DataTable();
+
+                da.Fill(dtResultado);
+
+                conexion.Close();
+
+            }
+
+            return dtResultado;
+        }
+
+        public DataTable AlertaCvAlumnoDia(string Usuario)
+        {
+            DataTable dtResultado = new DataTable();
+
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "AlertaCvAlumnoDia";
+                cmd.Parameters.Add(new SqlParameter("@Usuario", SqlDbType.NVarChar)).Value = Usuario;
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                dtResultado = new DataTable();
+
+                da.Fill(dtResultado);
+
+                conexion.Close();
+
+            }
+
+            return dtResultado;
+        }
+
+        public DataTable AlertaCvAlumnoMes(string Usuario)
+        {
+            DataTable dtResultado = new DataTable();
+
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "AlertaCvAlumnoMes";
+                cmd.Parameters.Add(new SqlParameter("@Usuario", SqlDbType.NVarChar)).Value = Usuario;
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                dtResultado = new DataTable();
+
+                da.Fill(dtResultado);
+
+                conexion.Close();
+
+            }
+
+            return dtResultado;
+        }
+
+
     }
 }

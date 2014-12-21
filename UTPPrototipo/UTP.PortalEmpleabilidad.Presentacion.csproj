@@ -822,6 +822,9 @@
     <Content Include="Views\UTP\ListaValor.cshtml" />
     <Content Include="Views\Alumno\DatosAlumno.cshtml" />
     <Content Include="Views\UTP\Plantilla.cshtml" />
+    <Content Include="Views\Alumno\AlertaCvAlumno.cshtml" />
+    <Content Include="Views\Alumno\AlertaCvAlumnoDia.cshtml" />
+    <Content Include="Views\Alumno\AlertaCvAlumnoMes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
