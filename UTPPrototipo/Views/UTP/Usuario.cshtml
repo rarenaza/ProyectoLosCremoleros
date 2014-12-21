@@ -1,0 +1,168 @@
+﻿@{
+    Layout = "~/Views/UTP/_LayoutUTP.cshtml";
+    ViewBag.Title = "Usuario UTP";
+}
+<link href="~/Content/font-awesome.css" rel="stylesheet" />
+
+<div class="container fuente-pequeña" style="margin-top:2px;">
+    <div class="row">
+        <div class="col-sm-12">
+            <h5>Usuario: <strong>utp</strong></h5>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="input-group">
+                <span class="input-group-addon">Rol</span>
+                <select class="form-control">
+                    <option>
+                        Usuario UTP
+                    </option>
+                    <option>
+                        Supervisor UTP
+                    </option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="input-group">
+                <span class="input-group-addon">Nombre</span>
+                <input type="text" class="form-control" placeholder="Nombres del Usuario">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="input-group">
+                <span class="input-group-addon">Apellidos</span>
+                <input type="text" class="form-control" placeholder="Apellidos del Usuario">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="input-group">
+                <span class="input-group-addon">Sexo</span>
+                <select class="form-control">
+                    <option value="">
+                        - Seleccionar -
+                    </option>
+                    <option>
+                        Masculino
+                    </option>
+                    <option>
+                        Femenino
+                    </option>
+                    <option>
+                        No especificado
+                    </option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="input-group">
+                <span class="input-group-addon">e-Mail</span>
+                <input type="text" class="form-control" placeholder="Correo electrónico">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="input-group">
+                <span class="input-group-addon">Teléfono</span>
+                <input type="text" class="form-control" placeholder="Teléfono Fijo">
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+            <div class="input-group">
+                <span class="input-group-addon">Anexo</span>
+                <input type="text" class="form-control" placeholder="Anexo">
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="input-group">
+                <span class="input-group-addon">Celular</span>
+                <input type="text" class="form-control" placeholder="Número Celular">
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="input-group">
+                <span class="input-group-addon">Estado</span>
+                <select class="form-control">
+                    <option value="">
+                        - Seleccionar -
+                    </option>
+                    <option>
+                        Activo
+                    </option>
+                    <option>
+                        No Activo
+                    </option>
+                    <option>
+                        ***
+                    </option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12" style="text-align:right;">
+            <button class="btn btn-default color-paleta8">Guardar</button>
+        </div>
+    </div>
+    <hr />
+    <table>
+
+        <tr class="linea_raya">
+            <td class="celda-nombre">
+                Creado Por
+            </td>
+            <td class="celda-datos">
+                Administrador
+            </td>
+        </tr>
+        <tr class="linea_raya">
+            <td class="celda-nombre">
+                Creado el
+            </td>
+            <td class="celda-datos">
+                2014.12.01 12:00:03
+            </td>
+        </tr>
+        <tr class="linea_raya">
+            <td class="celda-nombre">
+                Modificado Por
+            </td>
+            <td class="celda-datos">
+                Administrador
+            </td>
+        </tr>
+        <tr class="linea_raya">
+            <td class="celda-nombre">
+                Modificado el
+            </td>
+            <td class="celda-datos">
+                2014.12.15 17:30:03
+            </td>
+        </tr>
+    </table>
+    <hr />
+</div>
+
+<script src="~/Scripts/jquery-2.1.1.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta3 color-paleta4 color-paleta5 color-paleta6 color-paleta7").addClass("color-paleta8");
+    });
+</script>
+

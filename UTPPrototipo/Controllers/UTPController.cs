@@ -459,8 +459,9 @@ namespace UTPPrototipo.Controllers
                 contenido.EnPantallaPrincipal = Convert.ToBoolean(dtResultado.Rows[0]["EnPantallaPrincipal"].ToString());
                 contenido.Activo = Convert.ToBoolean(dtResultado.Rows[0]["Activo"] == DBNull.Value ? 0 : dtResultado.Rows[0]["Activo"]);
                 contenido.ArchivoNombreOriginal = dtResultado.Rows[0]["ArchivoNombreOriginal"].ToString();
-                            
-
+                contenido.FechaCreacion = Convert.ToDateTime(dtResultado.Rows[0]["FechaCreacion"] == DBNull.Value  ? null : dtResultado.Rows[0]["FechaCreacion"].ToString());
+                contenido.FechaModificacion = Convert.ToDateTime(dtResultado.Rows[0]["FechaModificacion"] == DBNull.Value ? null : dtResultado.Rows[0]["FechaModificacion"].ToString());
+                contenido.CreadoPor = dtResultado.Rows[0]["CreadoPor"] == null ? "" : dtResultado.Rows[0]["CreadoPor"].ToString();           
 
             }
 
@@ -502,7 +503,8 @@ namespace UTPPrototipo.Controllers
             contenido.Activo = contenidoHTML.Activo;
 
             contenido.Menu= contenidoHTML.Menu;
-
+            contenido.CreadoPor  = contenidoHTML.CreadoPor ;
+            contenido.FechaCreacion  = contenidoHTML.FechaCreacion ;
 
             TicketUTP ticketUtp = (TicketUTP)Session["TicketUtp"];
 
@@ -666,6 +668,10 @@ namespace UTPPrototipo.Controllers
         {
             return View();
         }
+        public ActionResult Ofertas()
+        {
+            return View();
+        }
         public ActionResult Oferta()
         {
             return View();
@@ -674,7 +680,19 @@ namespace UTPPrototipo.Controllers
         {
             return View();
         }
-        public ActionResult Reportes()
+        public ActionResult Usuario()
+        {
+            return View();
+        }
+        public ActionResult Lista()
+        {
+            return View();
+        }
+        public ActionResult ListaValor()
+        {
+            return View();
+        }
+            public ActionResult Reportes()
         {
             return View();
         }
