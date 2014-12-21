@@ -26,14 +26,16 @@
                         <div class="col-sm-4">
                             <div class="input-group fuente-pequeña">
                                 <span class="input-group-addon">
+                                    
+
                                     @if (Model.IncluirCorreoElectronico1)
                                     {
-                                    <input type="checkbox" checked>
+                                        <input type="checkbox" checked id="IncluirCorreoElectronico1">
 
                                     }
                                     else
                                     {
-                                    <input type="checkbox">
+                                        <input type="checkbox" id="IncluirCorreoElectronico1">
                                     }
                                 </span>
                                 <span class="form-control" style="padding-top:8px;">@Model.CorreoElectronico1</span>
@@ -45,12 +47,12 @@
 
                                     @if (Model.IncluirTelefonoFijo)
                                     {
-                                    <input type="checkbox" checked>
+                                        <input type="checkbox" checked id="IncluirTelefonoFijo">
 
                                     }
                                     else
                                     {
-                                    <input type="checkbox">
+                                        <input type="checkbox" id="IncluirTelefonoFijo">
                                     }
                                 </span>
                                 <span class="form-control" style="padding-top:8px;">@Model.TelefonoFijoCasa</span>
@@ -61,12 +63,12 @@
                                 <span class="input-group-addon">
                                     @if (Model.IncluirFoto)
                                     {
-                                    <input type="checkbox" checked>
+                                        <input type="checkbox" checked id="IncluirFoto">
 
                                     }
                                     else
                                     {
-                                    <input type="checkbox">
+                                        <input type="checkbox" id="IncluirFoto">
                                     }
                                 </span>
                                 <span class="form-control" style="padding-top:8px;">Foto</span>
@@ -79,12 +81,12 @@
                                 <span class="input-group-addon">
                                     @if (Model.IncluirDireccion)
                                     {
-                                    <input type="checkbox" checked>
+                                        <input type="checkbox" checked id="IncluirDireccion">
 
                                     }
                                     else
                                     {
-                                    <input type="checkbox">
+                                        <input type="checkbox" id="IncluirDireccion">
                                     }
                                 </span>
                                 <span class="form-control" style="padding-top:8px;">@Model.DireccionLinea1</span>
@@ -119,12 +121,12 @@
 
                                 @if (string.IsNullOrEmpty(@Model.Perfil) == false)
                                 {
-                                    <textarea class="form-control" rows="6" placeholder="Perfil profesional">@Model.Perfil</textarea>
+                                    <textarea class="form-control" rows="6" placeholder="Perfil profesional" id="Perfil">@Model.Perfil</textarea>
 
                                 }
                                 else
                                 {
-                                    <textarea class="form-control" rows="6" placeholder="Perfil profesional"></textarea>
+                                    <textarea class="form-control" rows="6" placeholder="Perfil profesional" id="Perfil"></textarea>
                                 }
 
 

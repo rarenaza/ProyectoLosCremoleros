@@ -20,5 +20,8 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string EstadoCV { get; set; }
         public string CreadoPor { get; set; }
         public string Plantilla { get; set; }
+
+
+
     }
 }

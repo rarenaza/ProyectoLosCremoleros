@@ -11,7 +11,7 @@
     <div id="collapseMiCVExperienciaLaboral" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingMiCVExperienciaLaboral">
         <div class="panel-body fuente-pequeña">
             <div class="row">
-                <div class="col-sm-12 text-right"><button type="button" data-toggle="modal" data-target="#Modal-experiencia-laboral" class="btn btn-default color-paleta4 fuente-pequeña" style="color:white;margin-bottom:10px;" id="IdGrabarExperiencia" >Agregar Experiencia</button></div>
+                <div class="col-sm-12 text-right"><button type="button" class="btn btn-default color-paleta4 fuente-pequeña" style="color:white;margin-bottom:10px;" id="IdGrabarExperiencia" >Agregar Experiencia</button></div>
             </div>
             @*<div class="row">
                 <div class="col-sm-1">
@@ -61,12 +61,12 @@
                         <span>Incluir </span>
                         @if (item.Incluir)
                         {
-                            <input type="checkbox" checked>
+                            <input type="checkbox" checked id='Incluir_@item.IdExperienciaCargo' class="class-experiencia">
 
                         }
                         else
                         {
-                            <input type="checkbox">
+                            <input type="checkbox" id='Incluir_@item.IdExperienciaCargo' class="class-experiencia">
                         }
                     </div>
                     <div class="col-sm-10">
@@ -158,9 +158,10 @@
 </div>
 <script>
     $("#IdGrabarExperiencia").click(function () {
-        CargarPOST("Modal-experiencia-laboral", "ModalRegistroExperiencia", null);
-        $('#Modal-experiencia-laboral').modal("show");
-        return false;
+        CargarPOSTNull("Modal-experiencia-laboral", "ModalRegistroExperiencia");
+        //CargarPOST("Modal-experiencia-laboral", "ModalRegistroExperiencia", null);
+        //$('#Modal-experiencia-laboral').modal("show");
+        //return false;
     });
 
 </script>
