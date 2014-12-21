@@ -8,12 +8,12 @@
     @Scripts.Render("~/bundles/modernizr")
     <link href="~/Content/animate.css" rel="stylesheet" />
     <link href="~/Content/font-awesome.css" rel="stylesheet" />
-    @Scripts.Render("~/bundles/jquery")
-    <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-
-    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jquery") 
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/carga.asincrona.js"></script>   
+    @Scripts.Render("~/bundles/bootstrap")    
     @RenderSection("scripts", required: false)
-    
 </head>
 <body class="cuerpo-zona-alumno">
 
@@ -71,7 +71,7 @@
                 </ul>
 
             </div>
-            <div id="divFinalCabecera" class="final-cabecera color-paleta1"></div>
+            <div id="divFinalCabecera" class="final-cabecera color-paleta1">1111</div>
         </div>
     </div>
     <!--<div class="container body-content">-->
@@ -96,77 +96,78 @@
             </div>
         </footer>
     </div>
-    @Scripts.Render("~/bundles/jqueryval")
-    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
+
     <script>
 
+        function CargarPOSTNull(id, link) {
+            $.ajax({
+                url: link,
+                contentType: 'application/json; charset=utf-8',
+                type: 'POST',
+                dataType: 'html'
+            })
+            .success(function (result) {
+                if (id != null) {
+                    $("#" + id).html(result);
+                }
+                ShowModal("#" + id);
+            })
+            .error(function (xhr, status) {
+                console.log(xhr);
+                console.log(status);
 
-    function CargarPOST(id, link, entidad) {
-        $.ajax({
-            url: link,
-            contentType: 'application/json; charset=utf-8',
-            type: 'POST',
-            data: JSON.stringify(entidad),
-            dataType: 'html'
-        })
-        .success(function (result) {
-            if (id != null) {
-                $("#" + id).html(result);
-            }
-        })
-        .error(function (xhr, status) {
-            console.log(xhr);
-            console.log(status);
+            })
+        }
+        function CargarPOST(id, link, entidad) {
+            $.ajax({
+                url: link,
+                contentType: 'application/json; charset=utf-8',
+                type: 'POST',
+                data: JSON.stringify(entidad),
+                dataType: 'html'
+            })
+            .success(function (result) {
+                if (id != null) {
+                    $("#" + id).html(result);
+                }
+            })
+            .error(function (xhr, status) {
+                console.log(xhr);
+                console.log(status);
 
-        })
-    }
-    function CargarPOSTNull(id, link) {
-        $.ajax({
-            url: link,
-            contentType: 'application/json; charset=utf-8',
-            type: 'POST',
-            dataType: 'html'
-        })
-        .success(function (result) {
-            if (id != null) {
-                $("#" + id).html(result);
-            }
-            //alert(VisualizarModal())
-            VisualizarModal("#" + id);
-        })
-        .error(function (xhr, status) {
-            console.log(xhr);
-            console.log(status);
+            })
+        }
 
-        })
-    }
 
-    function CargarGET(id, link) {
-        $.ajax({
-            url: link,
-            contentType: 'application/html; charset=utf-8',
-            type: 'GET',
-            dataType: 'html'
+        function CargarGET(id, link) {
+            $.ajax({
+                url: link,
+                contentType: 'application/html; charset=utf-8',
+                type: 'GET',
+                dataType: 'html'
 
-        })
-        .success(function (result) {
-            if (id != null) {
-                $("#" + id).html(result);
-            }
-        })
-        .error(function (xhr, status) {
-            alert(status);
-        })
-    }
-    function VisualizarModal(id) {
-        //alert($(id).html());
-        console.log($(id));
+            })
+            .success(function (result) {
+                if (id != null) {
+                    $("#" + id).html(result);
+                }
+            })
+            .error(function (xhr, status) {
+                alert(status);
+            })
+        }
+        function ShowModal(id) {
+            $(id).dialog();
+        }
+        function CloseModal(id) {
+            alert($("#divFinalCabecera").html());
+            $(id).dialog("close");
+        }
 
-        $(id).modal("show");
-        return false;
-    }
+        
+
     </script>
-
 </body>
 
 </html>

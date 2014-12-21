@@ -26,7 +26,7 @@
                 
                 <div class="col-sm-2">
                     <span>
-                        <button type="button" class="btn btn-default fuente-pequeña color-paleta4" style="color:white;">Guardar cambios</button>
+                        <button type="button" class="btn btn-default fuente-pequeña color-paleta4" style="color:white;" id="IdGuardarCV">Guardar cambios</button>
                     </span>
                 </div>
                 
@@ -56,7 +56,6 @@
             IdCV: $('#IdCV').val()
         };
         $("#HIIdCV").attr("value", $('#IdCV').val());
-        alert($('#IdCV').val());
         CargarPOST("alumno-datos-generales", "/Alumno/AlumnoDatosGenerales", vistacv);
         CargarPOST("mi-cv-educacion", "/Alumno/AlumnoEstudiosCV", vistacv);
         CargarPOST("mi-cv-experiencia-laboral", "/Alumno/AlumnoExperienciaCV", vistacv);
@@ -78,5 +77,45 @@
         CargarPOST("mi-cv-informacion-adicional", "/Alumno/AlumnoInformacionAdicionalCV", vistacv);
     });
 
+    $("#IdGuardarCV").click(function () {
+        var estudios = [];
+        var experiencias = [];
+        var conocimientos = [];
+        $('input.class-estudios:checkbox:checked').each(function () {
+            var Id = $(this).attr('Id').split("_")[1];
+            estudios.push({ IdEstudio: Id });
+        });
+        $('input.class-experiencia:checkbox:checked').each(function () {
+            var Id = $(this).attr('Id').split("_")[1];
+            experiencias.push({ IdExperienciaCargo: Id });
+        });
+        $('input.class-conocimiento:checkbox:checked').each(function () {
+            var Id = $(this).attr('Id').split("_")[1];
+            conocimientos.push({ IdInformacionAdicional: Id });
+        });
 
+        //console.log(est);
+        //var estudios = [{ IdEstudio: 1 }, { IdEstudio: 2 }, { IdEstudio: 3 }];
+        //var experiencias = [{ IdEstudio: 1 }, { IdEstudio: 2 }, { IdEstudio: 3 }];
+        //var conocimientos = [{ IdEstudio: 1 }, { IdEstudio: 2 }, { IdEstudio: 3 }];
+
+        var cv = {
+            IdCV: $("#IdCV").val(),
+            IdPlantillaCV: $("#IdPlantillaCV").val(),
+            IdAlumno: $("#IdAlumno").val(),
+            IncluirCorreoElectronico1: $("#IncluirCorreoElectronico1").val(),
+            IncluirTelefonoFijo: $("#IncluirTelefonoFijo").val(),
+            IncluirFoto: $("#IncluirFoto").val(),
+            IncluirDireccion: $("#IncluirDireccion").val(),
+            Incluirnombre1: 1,
+            Incluirnombre2: 0,
+            Incluirnombre3: 0,
+            Incluirnombre4: 0,
+            Perfil: $("#Perfil").val(),
+            Estudios: estudios,
+            Experiencias: experiencias,
+            Conocimientos: conocimientos
+        }
+        CargarPOST(null,'@Url.Action("RegistrarCV", "Alumno")', cv);
+    });
 </script>

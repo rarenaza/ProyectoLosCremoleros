@@ -1,7 +1,7 @@
 ﻿<div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true" id="idCloseConocimiento">&times;</span><span class="sr-only">Close</span></button>
             <h4 class="modal-title" id="Estudio">Información adicional</h4>
         </div>
         <div class="modal-body">
@@ -366,7 +366,12 @@
                                 <option>Zimbabue</option>
                             </select>*@
 
+                        @*@Html.DropDownListFor("IdPais", new SelectList(ViewBag.ListaPais, "Value", "Text"), "- Seleccionar -", new { @class = "form-control", @id="IdPais" })*@
+
+
                         @Html.DropDownList("IdPais", new SelectList(ViewBag.ListaPais, "Value", "Text"), "- Seleccionar -", new { @class = "form-control" })
+
+
 
 
                     </div>
@@ -424,5 +429,8 @@
 
         CargarPOST(null, "/Alumno/RegistrarAlumnoInformacionAdicional", conocimiento);
         CargarPOST("mi-cv-informacion-adicional", "/Alumno/AlumnoInformacionAdicionalCV", vistacv);
+    });
+    $("#idCloseConocimiento").click(function () {
+        $("#Modal-otro-conocimiento").dialog("close");
     });
 </script>

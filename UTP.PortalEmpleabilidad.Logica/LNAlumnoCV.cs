@@ -12,6 +12,7 @@ namespace UTP.PortalEmpleabilidad.Logica
     public class LNAlumnoCV
     {
         ADAlumnoCV acv = new ADAlumnoCV();
+
         public List<AlumnoCV> ObtenerAlumnoCVPorIdAlumno(int IdAlumno)
         {
             List<AlumnoCV> listaAlumnoCV = new List<AlumnoCV>();
@@ -69,6 +70,35 @@ namespace UTP.PortalEmpleabilidad.Logica
                 listaAlumnoCV = ObtenerAlumnoCVPorIdAlumno(alumnocv.IdAlumno);
             }
             return listaAlumnoCV;
+
+        }
+
+        public void UpdateInfo(VistaAlumnoCV vistaalumnocv)
+        {
+            ADAlumnoCVEstudio acve = new ADAlumnoCVEstudio();
+            ADAlumnoCVExperienciaCargo acvs = new ADAlumnoCVExperienciaCargo();
+            ADAlumnoCVInformacionAdicional acvc = new ADAlumnoCVInformacionAdicional();
+            acv.Update(vistaalumnocv);
+            acve.DesactivarPorCV(vistaalumnocv.IdCV);
+            acvs.DesactivarPorCV(vistaalumnocv.IdCV);
+            acvc.DesactivarPorCV(vistaalumnocv.IdCV);
+            foreach (AlumnoEstudio modelo in vistaalumnocv.Estudios)
+            {
+                acve.AgregarOrModificar(vistaalumnocv.IdCV, modelo.IdEstudio, vistaalumnocv.Usuario);
+            }
+
+            foreach (AlumnoExperienciaCargo modelo in vistaalumnocv.Experiencias)
+            {
+                acvs.AgregarOrModificar(vistaalumnocv.IdCV, modelo.IdExperienciaCargo, vistaalumnocv.Usuario);
+            }
+
+            foreach (AlumnoInformacionAdicional modelo in vistaalumnocv.Conocimientos)
+            {
+                acvc.AgregarOrModificar(vistaalumnocv.IdCV, modelo.IdInformacionAdicional, vistaalumnocv.Usuario);
+            }
+
+
+
 
         }
     }
