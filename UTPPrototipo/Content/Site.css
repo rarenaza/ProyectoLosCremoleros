@@ -665,3 +665,9 @@ input, select, option, textarea {
     border-bottom-width:thin;
     border-bottom-color:rgb(240, 240, 240);
     }
+.btn:disabled {
+    background-color: rgb(190, 190, 190);
+}
+a.Boton_pestana:hover {
+    background: rgb(190,190,190);
+}
