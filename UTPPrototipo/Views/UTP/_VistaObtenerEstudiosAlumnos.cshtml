@@ -1,0 +1,43 @@
+﻿@model IEnumerable<UTP.PortalEmpleabilidad.Modelo.UtpAlumnoDetalle>
+
+<h6>Estudios</h6>
+
+<div class="row grilla1-cabecera color-paleta2">
+    <div class="col-sm-3">
+        Estudio
+    </div>
+    <div class="col-sm-1">
+        Tipo
+    </div>
+    <div class="col-sm-2">
+        Estado
+    </div>
+    <div class="col-sm-1">
+        Ciclo
+    </div>
+
+
+</div>
+
+@foreach (var item in @Model)
+{
+
+<div class="row grilla1-linea">
+    <div class="col-sm-3">
+      
+        @item.Carrera
+    </div>
+    <div class="col-sm-1">
+       @item.Estudio
+    </div>
+    <div class="col-sm-2">
+        @item.EstadoEstudio    
+    </div>
+    <div class="col-sm-1">
+        @item.CicloEquivalente 
+    </div>
+  
+
+</div>
+}
+<hr />

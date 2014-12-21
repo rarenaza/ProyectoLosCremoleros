@@ -109,6 +109,8 @@ namespace UTP.PortalEmpleabilidad.Logica
                 vista.Ciclo = dtResultado.Rows[i]["CicloEquivalente"].ToString();
                 vista.idAlumno = Convert.ToInt32(dtResultado.Rows[i]["IdAlumno"]);
 
+                vista.EstadoAlumno = Convert.ToString(dtResultado.Rows[i]["EstadoAlumno"]);
+
                 listaAlumno.Add(vista);
             }
             return listaAlumno;

@@ -50,7 +50,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DocX">
-      <HintPath>..\..\..\..\Downloads\DocX.dll</HintPath>
+      <HintPath>..\packages\DocX.1.0.0.13\lib\net40\DocX.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="NetOffice">
@@ -819,6 +819,7 @@
     <Content Include="Views\Alumno\_ModalRegistrarInformacionAdicional.cshtml" />
     <Content Include="Views\UTP\_DatosUtpPortal.cshtml" />
     <Content Include="Views\UTP\VerDetalleAlumno.cshtml" />
+    <Content Include="Views\UTP\_VistaObtenerEstudiosAlumnos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

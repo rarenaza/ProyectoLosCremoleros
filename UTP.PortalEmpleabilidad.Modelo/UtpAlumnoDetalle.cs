@@ -20,6 +20,13 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string TipoDocumento { get; set; }
         public string NumeroDocumento { get; set; }
         public string CorreoElectronico { get; set; }
+
+        public string FechaInicio { get; set; }
+        public string Estudio { get; set; }
+        public string EstadoEstudio { get; set; }
+        public string FechaFin { get; set; }
+        public string EstadoAlumno { get; set; }
+        public string CodEstadoAlumno { get; set; }
        
     }
 }

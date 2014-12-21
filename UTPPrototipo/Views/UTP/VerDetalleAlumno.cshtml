@@ -7,8 +7,15 @@
 
 <link href="~/Content/font-awesome.css" rel="stylesheet" />
 <div class="container fuente-pequeña" style="margin-top:2px;">
+    @*@using (Ajax.BeginForm("VerDetalleAlumno", "UTP", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", OnComplete = "mostrarMensaje" }))*@
+@using (Html.BeginForm())
+
+   
+    {
+    @Html.AntiForgeryToken()
+    
     <!---Cabecera de la página.-->
-    @{Html.RenderAction("VistaCabeceraUtp", "UTP");}
+    {Html.RenderAction("VistaCabeceraUtp", "UTP");}
 
 
        <br />
@@ -79,20 +86,60 @@
                     <td class="celda-datos">
                         @Html.DisplayFor(m => m.CicloEquivalente)
                     </td>
+
                 </tr>
 
+                <tr class="linea_raya">
+                    <td class="celda-nombre">
+                        Estado
+                    </td>
+                    <td class="celda-datos">
+                        @Html.DropDownList("CodEstadoAlumno", ViewData["UtpAlumnoMenuMostrar"] as List<SelectListItem>, "Seleccione...", new { @class = "form-control", style = "width: 200px;height:20px" })
+                    </td>
+                </tr>
+                             
+
+
+                @*@Html.DropDownList("Menu", ViewData["ContenidoMenu"] as List<SelectListItem>, "Seleccione...", new { @class = "form-control", style = "width: 200px;height:20px" })*@
 
             </table>
         </div>
 
 
     </div>
+
+    @*<div class="row">
+        <div class="col-sm-12" style="text-align:right;">
+            <button class="btn btn-default">Guardar</button>
+        </div>
+    </div>*@
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Actualizar" class="btn btn-default" />
+        </div>
+    </div>
+
+
+
+
+
     <br />
     <br />
     <div class="row fuente-pequeña">
         <div class="col-sm-12">
 
-            <h6>Estudios</h6>
+            @*@{Html.RenderAction("VistaCabeceraUtp", "UTP");}*@
+
+     
+
+           @* @Html.RenderAction("_VistaObtenerEstudiosAlumnos", "UTP", new { id = ViewBag.IdEmpresa })*@
+
+            @{Html.RenderAction("AlumnoUtp_obtenerEstudios", "UTP", new { id = Model.IdAlumno });}
+
+          
+
+
+            @*<h6>Estudios</h6>
 
             <div class="row grilla1-cabecera color-paleta2">
                 <div class="col-sm-3">
@@ -107,21 +154,7 @@
                 <div class="col-sm-1">
                     Ciclo
                 </div>
-                <div class="col-sm-1">
-                    Estado
-                </div>
-                <div class="col-sm-1">
-                    Creado Por
-                </div>
-                <div class="col-sm-1">
-                    Fecha C
-                </div>
-                <div class="col-sm-1">
-                    Mod. Por
-                </div>
-                <div class="col-sm-1">
-                    Fecha M
-                </div>
+                
 
             </div>
             <div class="row grilla1-linea">
@@ -140,22 +173,19 @@
                 <div class="col-sm-1">
                     Activo
                 </div>
-                <div class="col-sm-1">
-                    Usuario
-                </div>
-                <div class="col-sm-1">
-                    10/10/2014 12:09
-                </div>
-                <div class="col-sm-1">
-                    Usuario
-                </div>
-                <div class="col-sm-1">
-                    10/10/2014 12:09
-                </div>
-            </div>
+               
+            </div>*@
         </div>
     </div>
+    
+}
  </div> 
+    
+    
+    
+    
+    
+    
 <br />
 <br />
 <br />
@@ -166,7 +196,9 @@
     $(document).ready(function () {
         $("#divFinalCabecera").removeClass("color-paleta1 color-paleta3 color-paleta4 color-paleta5 color-paleta6 color-paleta7").addClass("color-paleta2");
     });
-
+    //function mostrarMensaje() {
+    //    alert('Los datos fueron grabados con éxito.');
+    //}
 
 </script>
 

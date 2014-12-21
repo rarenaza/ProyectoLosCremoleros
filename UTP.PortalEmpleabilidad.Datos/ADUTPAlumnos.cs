@@ -219,6 +219,89 @@ namespace UTP.PortalEmpleabilidad.Datos
 
             return dtResultado;
         }
+
+        public DataTable AlumnoUtp_EStado(int id)
+        {
+            DataTable dtResultado = new DataTable();
+
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "AlumnoUtp_obtenerEstudios";
+                cmd.Parameters.Add(new SqlParameter("@IdAlumno", id));
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+                dtResultado = new DataTable();
+
+                da.Fill(dtResultado);
+
+                conexion.Close();
+            }
+
+            return dtResultado;
+        }
+
+        public DataTable UtpAlumnoMenuMostrar()
+        {
+            DataTable dtResultado = new DataTable();
+
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "UtpAlumnoMenuMostrar";
+      
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+                dtResultado = new DataTable();
+
+                da.Fill(dtResultado);
+
+                conexion.Close();
+            }
+
+            return dtResultado;
+        }
+
+        public bool UTPAlumnos_ActualizarEstadoAlumno(UtpAlumnoDetalle alumno)
+        {
+            ADConexion cnn = new ADConexion();
+            SqlCommand cmd = new SqlCommand();
+
+            try
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "UTPAlumnos_ActualizarEstadoAlumno";
+                cmd.Connection = cnn.cn;
+
+                cmd.Parameters.Add(new SqlParameter("@IdAlumno", SqlDbType.Int)).Value = alumno.IdAlumno;
+                cmd.Parameters.Add(new SqlParameter("@EstadoAlumno", SqlDbType.VarChar, 50)).Value = (alumno.EstadoAlumno == null ? "" : alumno.EstadoAlumno);
+
+              
+
+                cnn.Conectar();
+                cmd.ExecuteNonQuery();
+                cmd.Parameters.Clear();
+                cnn.Desconectar();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
+        }
     
     }
 }
