@@ -22,7 +22,7 @@
 {
     <div class="row grilla1-linea">
         <div class="col-sm-3">
-            <a href="../Empresa/VerUsuarioEmpresa">@usuario.Usuario.NombreUsuario</a>
+            @usuario.Usuario.NombreUsuario
         </div>
         <div class="col-sm-3">
             @usuario.Nombres @usuario.Apellidos
@@ -43,12 +43,7 @@
             <a href="ModificaUsuarioEmpresa">1</a> <a href="EliminaUsuarioEmpresa">l</a>
         </*@
 
-        <div class="col-sm-2 fui fa-2x" style="color:gray;cursor:pointer" onclick="editarUsuario(@usuario.IdEmpresaUsuario);">
-            1
-        </div>
-
-
-
+        <button class="btn btn-xs fa fa-pencil color-paleta4" onclick="editarUsuario(@usuario.IdEmpresaUsuario);"></button>
     </div>
 }
 

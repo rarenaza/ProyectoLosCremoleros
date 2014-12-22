@@ -17,27 +17,27 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string CorreoElectronico { get; set; }
         public string TelefonoFijo { get; set; }
 
-        [Required(ErrorMessage = Constantes.MSJ_CAMPO_OBLIGATORIO)]
+        [Required(ErrorMessage = "Falta Dirección")]
         [DataType(DataType.MultilineText)]
         public string Direccion { get; set; }
 
-        [Required(ErrorMessage = Constantes.MSJ_CAMPO_OBLIGATORIO)]
+        [Required(ErrorMessage = "Falta Distrito")]
         public string DireccionDistrito { get; set; }
 
-        [Required(ErrorMessage = Constantes.MSJ_CAMPO_OBLIGATORIO)]
+        [Required(ErrorMessage = "Falta Ciudad")]
         public string DireccionCiudad { get; set; }
 
-        [Required(ErrorMessage = Constantes.MSJ_CAMPO_OBLIGATORIO)]
+        [Required(ErrorMessage = "Falta Departamento")]
         public string DireccionDepartamento { get; set; }
         public ListaValor EstadoLocacion { get; set; }
 
-        [Required(ErrorMessage = Constantes.MSJ_CAMPO_OBLIGATORIO)]
+        [Required(ErrorMessage = "Falta Tipo de Ubicación")]
         public string TipoLocacionIdListaValor { get; set; }
 
-        [Required(ErrorMessage = Constantes.MSJ_CAMPO_OBLIGATORIO)]
+        [Required(ErrorMessage = "Falta Nombre de Ubicación")]
         public string NombreLocacion { get; set; }
 
-        [Required(ErrorMessage = Constantes.MSJ_CAMPO_OBLIGATORIO)]
+        [Required(ErrorMessage = "Falta Estado de Ubicación")]
         public string EstadoLocacionIdListaValor { get; set; }
 
         public EmpresaLocacion() {

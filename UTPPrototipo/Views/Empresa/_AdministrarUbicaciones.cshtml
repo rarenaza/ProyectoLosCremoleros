@@ -22,7 +22,7 @@
 {
     <div class="row grilla1-linea">
         <div class="col-sm-2">
-            <a href="../Empresa/VerUbicacion">@locacion.NombreLocacion</a>
+            @locacion.NombreLocacion
         </div>
         <div class="col-sm-2">
             @locacion.TipoLocacion.Valor
@@ -43,12 +43,7 @@
             <a href="EliminaUbicacion">l</a>
         </div>
         -->
-
-        
-    <div class="col-sm-2 fui fa-2x" style="color:gray;cursor:pointer" onclick="editarLocacion(@locacion.IdEmpresaLocacion);" >
-         1
-  </div>
-
+        <button class="btn btn-xs fa fa-pencil color-paleta4" onclick="editarLocacion(@locacion.IdEmpresaLocacion);"></button>
     </div>
 }
 
