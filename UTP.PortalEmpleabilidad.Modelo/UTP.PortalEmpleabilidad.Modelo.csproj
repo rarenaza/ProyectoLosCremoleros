@@ -74,6 +74,7 @@
     <Compile Include="Ticket.cs" />
     <Compile Include="Usuario.cs" />
     <Compile Include="UtpAlumnoDetalle.cs" />
+    <Compile Include="UTPUsuario.cs" />
     <Compile Include="UTP\VistaPanelCabeceraUTP.cs" />
     <Compile Include="VistaPanelAlumno.cs" />
     <Compile Include="VistaPanelAlumnoOfertas.cs" />

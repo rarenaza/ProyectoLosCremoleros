@@ -817,6 +817,9 @@
     <Content Include="Views\UTP\VerDetalleAlumno.cshtml" />
     <Content Include="Views\UTP\Usuario.cshtml" />
     <Content Include="Views\UTP\Lista.cshtml" />
+    <Content Include="Views\UTP\_UsuariosUTPLista.cshtml" />
+    <Content Include="Views\UTP\_UsuariosUTPCrear.cshtml" />
+    <Content Include="Views\UTP\_UsuariosUTPEditar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -6,49 +6,29 @@
 
 <div class="container" style="margin-top:2px;">
 
-    <h6>Usuarios UTP</h6>
-    <div class="row grilla1-cabecera color-paleta8">
-        <div class="col-sm-2">Usuario</div>
-        <div class="col-sm-3">Nombre</div>
-        <div class="col-sm-1">Sexo</div>
-        <div class="col-sm-2">e-Mail</div>
-        <div class="col-sm-2">Telfono</div>
-        <div class="col-sm-1">Celular</div>
-        <div class="col-sm-1">Estado</div>
-    </div>
-    <div class="row grilla1-linea">
-        <div class="col-sm-2">utp</div>
-        <div class="col-sm-3"><a href="../UTP/usuario">Victor Hugo Canal Aguirre</a></div>
-        <div class="col-sm-1">Masculino</div>
-        <div class="col-sm-2">vcanal@utpgroup.edu.pe</div>
-        <div class="col-sm-2">3156900 (1234)</div>
-        <div class="col-sm-1">999888777</div>
-        <div class="col-sm-1">Activo</div>
-    </div>
-    <br />
-    <div class="col-sm-12" style="text-align:right;">
-        <button class="btn btn-default color-paleta8" data-toggle="modal" data-target="#Nuevo-usuario">Nuevo Usuario</button>
+    <div id="divListaUsuariosUTP" class="col-sm-12">
+        @Html.Action("_UsuariosUTPLista", "UTP")
     </div>
 
     <hr />
 
 
-        <h6>Listas de Valores</h6>
+    <h6>Listas de Valores</h6>
 
-        <div class="row grilla1-cabecera color-paleta8">
-            <div class="col-sm-1">ID</div>
-            <div class="col-sm-3">Nombre</div>
-            <div class="col-sm-7">Descripción</div>
-            <div class="col-sm-1">Modificable</div>
+    <div class="row grilla1-cabecera color-paleta8">
+        <div class="col-sm-1">ID</div>
+        <div class="col-sm-3">Nombre</div>
+        <div class="col-sm-7">Descripción</div>
+        <div class="col-sm-1">Modificable</div>
 
-        </div>
-        <div class="row grilla1-linea">
-            <div class="col-sm-1">1</div>
-            <div class="col-sm-3"><a href="../UTP/Lista">Estado de Oferta</a></div>
-            <div class="col-sm-7">Estado de una Oferta publicada por una Empresa</div>
-            <div class="col-sm-1">0</div>
+    </div>
+    <div class="row grilla1-linea">
+        <div class="col-sm-1">1</div>
+        <div class="col-sm-3"><a href="../UTP/Lista">Estado de Oferta</a></div>
+        <div class="col-sm-7">Estado de una Oferta publicada por una Empresa</div>
+        <div class="col-sm-1">0</div>
 
-        </div>
+    </div>
 
 
     <br />
@@ -58,7 +38,7 @@
     <hr />
 </div>
 
-<script src="~/Scripts/jquery-2.1.1.min.js"></script>
+@*<script src="~/Scripts/jquery-2.1.1.min.js"></script>*@
 
 <script>
     $(document).ready(function () {
@@ -66,132 +46,35 @@
     });
 </script>
 
-<div class="modal fade" id="Nuevo-usuario" role="dialog" aria-labelledby="Nuevo Usuario" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="myModalLabel">Nuevo Usuario</h4>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="input-group">
-                            <span class="input-group-addon">Usuario</span>
-                            <input type="text" class="form-control" placeholder="Usuario">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="input-group">
-                            <span class="input-group-addon">Rol</span>
-                            <select class="form-control">
-                                <option>
-                                    Usuario UTP
-                                </option>
-                                <option>
-                                    Supervisor UTP
-                                </option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="input-group">
-                            <span class="input-group-addon">Nombre</span>
-                            <input type="text" class="form-control" placeholder="Nombres del Usuario">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="input-group">
-                            <span class="input-group-addon">Apellidos</span>
-                            <input type="text" class="form-control" placeholder="Apellidos del Usuario">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="input-group">
-                            <span class="input-group-addon">Sexo</span>
-                            <select class="form-control">
-                                <option value="">
-                                    - Seleccionar -
-                                </option>
-                                <option>
-                                    Masculino
-                                </option>
-                                <option>
-                                    Femenino
-                                </option>
-                                <option>
-                                    No especificado
-                                </option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="input-group">
-                            <span class="input-group-addon">e-Mail</span>
-                            <input type="text" class="form-control" placeholder="Correo electrónico">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-4">
-                        <div class="input-group">
-                            <span class="input-group-addon">Teléfono</span>
-                            <input type="text" class="form-control" placeholder="Teléfono Fijo">
-                        </div>
-                    </div>
+<!--Modal para crear usuario-->>
+<div class="modal" id="divModalUsuarioUTPCrear" role="dialog" aria-labelledby="Nuevo Usuario" aria-hidden="true">
 
-                    <div class="col-sm-4">
-                        <div class="input-group">
-                            <span class="input-group-addon">Anexo</span>
-                            <input type="text" class="form-control" placeholder="Anexo">
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="input-group">
-                            <span class="input-group-addon">Celular</span>
-                            <input type="text" class="form-control" placeholder="Número Celular">
-                        </div>
-                    </div>
-                </div>
+    @using (Ajax.BeginForm("_UsuariosUTPCrear", "UTP", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divListaUsuariosUTP", OnComplete = "cerrarModal" }))
+    {
+        @Html.AntiForgeryToken()
+        
+        <div class="modal-dialog" id="divContenedorUsuarioUTPCrear">
 
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="input-group">
-                            <span class="input-group-addon">Estado</span>
-                            <select class="form-control">
-                                <option value="">
-                                    - Seleccionar -
-                                </option>
-                                <option>
-                                    Activo
-                                </option>
-                                <option>
-                                    No Activo
-                                </option>
-                                <option>
-                                    ***
-                                </option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-default color-paleta8">Guardar</button>
-            </div>
         </div>
-    </div>
+    }
+
 </div>
+
+
+<!--Modal para editar usuario-->>
+<div class="modal fade" id="divModalUsuarioUTPEditar" role="dialog" aria-labelledby="Nuevo Usuario" aria-hidden="true">
+
+    @using (Ajax.BeginForm("_UsuariosUTPEditar", "UTP", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divListaUsuariosUTP", OnComplete = "cerrarModal" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="modal-dialog" id="divContenedorUsuarioUTPEditar">
+
+        </div>
+    }
+
+</div>
+
 
 <div class="modal fade" id="Nueva-lista" role="dialog" aria-labelledby="Nueva Lista" aria-hidden="true">
     <div class="modal-dialog">
@@ -232,3 +115,38 @@
         </div>
     </div>
 </div>
+
+<script>
+
+    function UsuarioUTPCrear() {
+        //debugger;
+        var url = "/UTP/_UsuariosUTPCrear"; //
+        $.get(url, function (data) {
+            //alert(data);
+            $('#divContenedorUsuarioUTPCrear').html(data);
+            $.validator.unobtrusive.parse('#divContenedorUsuarioUTPCrear');
+
+            $('#divModalUsuarioUTPCrear').modal('show');
+
+        }).error(function (err)
+        {
+            console.log(err);
+            alert(err);
+        });
+    }
+
+    function UsuarioUTPEditar(id) {
+        var url = "/UTP/_UsuariosUTPEditar/" + id;
+        $.get(url, function (data) {
+            $('#divContenedorUsuarioUTPEditar').html(data);
+            $.validator.unobtrusive.parse('#divContenedorUsuarioUTPEditar');
+
+            $('#divModalUsuarioUTPEditar').modal('show');
+        });
+    }
+
+    function cerrarModal() {
+        $('.modal.in').modal('hide');
+    }
+
+</script>

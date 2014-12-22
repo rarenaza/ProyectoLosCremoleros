@@ -1,0 +1,41 @@
+﻿@model IEnumerable<UTP.PortalEmpleabilidad.Modelo.UTPUsuario>
+
+<h6>Usuarios UTP</h6>
+<div class="row grilla1-cabecera color-paleta8">
+    <div class="col-sm-2">Usuario</div>
+    <div class="col-sm-3">Nombre</div>
+    <div class="col-sm-1">Sexo</div>
+    <div class="col-sm-2">e-Mail</div>
+    <div class="col-sm-2">Telfono</div>
+    <div class="col-sm-1">Celular</div>
+    <div class="col-sm-1">Estado</div>
+</div>
+
+@foreach (var item in Model)
+{
+    <div class="row grilla1-linea">
+        <div class="col-sm-2">@item.NombreUsuario</div>
+
+        <div class="col-sm-3" onclick="UsuarioUTPEditar(@item.IdUTPUsuario);">
+
+            @*<a href="../UTP/usuario">@item.Nombres @item.Apellidos</a>*@
+           @item.Nombres @item.Apellidos
+
+        </div>
+
+        <div class="col-sm-1">@item.SexoDescripcion</div>
+        <div class="col-sm-2">@item.Correo</div>
+        <div class="col-sm-2">@item.TelefonoFijo</div>
+        <div class="col-sm-1">@item.TelefonoCelular</div>
+        <div class="col-sm-1">@item.EstadoUsuarioDescripcion</div>
+    </div>
+}
+
+
+<br />
+<div class="col-sm-12" style="text-align:right;">
+    <button class="btn btn-default color-paleta8" onclick="UsuarioUTPCrear();">Nuevo Usuario</button>
+    <!--
+        data-toggle="modal" data-target="#Nuevo-usuario"
+    -->
+</div>
