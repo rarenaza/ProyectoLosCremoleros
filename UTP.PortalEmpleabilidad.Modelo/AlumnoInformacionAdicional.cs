@@ -31,6 +31,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string PaisIdListaValor { get; set; }
 
         public string CreadoPor { get; set; }
+        public string Usuario { get; set; }
 
        
 
