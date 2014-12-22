@@ -28,8 +28,5 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public List<ListaValor> ListaEstadoEstudio { get; set; }
         public List<ListaValor> ListaObservacionEstudios { get; set; }
 
-
-
-
     }
 }

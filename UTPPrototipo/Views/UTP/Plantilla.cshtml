@@ -1,97 +1,42 @@
 ﻿@{
     Layout = "~/Views/UTP/_LayoutUTP.cshtml";
-    ViewBag.Title = "Usuario UTP";
+    ViewBag.Title = "Plantilla de CV";
 }
 <link href="~/Content/font-awesome.css" rel="stylesheet" />
 
 <div class="container fuente-pequeña" style="margin-top:2px;">
     <div class="row">
         <div class="col-sm-12">
-            <h5>Usuario: <strong>utp</strong></h5>
+            <h5>Plantilla: <strong>1</strong></h5>
         </div>
     </div>
     <hr />
     <div class="row">
         <div class="col-sm-6">
             <div class="input-group">
-                <span class="input-group-addon">Rol</span>
-                <select class="form-control">
-                    <option>
-                        Usuario UTP
-                    </option>
-                    <option>
-                        Supervisor UTP
-                    </option>
-                </select>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="input-group">
                 <span class="input-group-addon">Nombre</span>
-                <input type="text" class="form-control" placeholder="Nombres del Usuario">
+                <input type="text" class="form-control" placeholder="Nombres de la Plantilla de CV">
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-sm-12">
             <div class="input-group">
-                <span class="input-group-addon">Apellidos</span>
-                <input type="text" class="form-control" placeholder="Apellidos del Usuario">
+                <span class="input-group-addon">Descrip-<br />ción</span>
+                <textarea class="form-control" placeholder="Descripción de la Plantilla" rows="3"></textarea>
             </div>
         </div>
     </div>
+    <br />
     <div class="row">
-        <div class="col-sm-6">
-            <div class="input-group">
-                <span class="input-group-addon">Sexo</span>
-                <select class="form-control">
-                    <option value="">
-                        - Seleccionar -
-                    </option>
-                    <option>
-                        Masculino
-                    </option>
-                    <option>
-                        Femenino
-                    </option>
-                    <option>
-                        No especificado
-                    </option>
-                </select>
-            </div>
+        <div class="col-sm-3">
+            <a href="#">Descargar Archivo de Plantilla</a>
+        </div>
+        <div class="col-sm-3">
+            <button class="btn btn-default color-paleta8">Cambiar Archivo</button>
         </div>
     </div>
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="input-group">
-                <span class="input-group-addon">e-Mail</span>
-                <input type="text" class="form-control" placeholder="Correo electrónico">
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-4">
-            <div class="input-group">
-                <span class="input-group-addon">Teléfono</span>
-                <input type="text" class="form-control" placeholder="Teléfono Fijo">
-            </div>
-        </div>
-
-        <div class="col-sm-4">
-            <div class="input-group">
-                <span class="input-group-addon">Anexo</span>
-                <input type="text" class="form-control" placeholder="Anexo">
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="input-group">
-                <span class="input-group-addon">Celular</span>
-                <input type="text" class="form-control" placeholder="Número Celular">
-            </div>
-        </div>
-    </div>
+    <br />
 
     <div class="row">
         <div class="col-sm-6">
@@ -165,4 +110,5 @@
         $("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta3 color-paleta4 color-paleta5 color-paleta6 color-paleta7").addClass("color-paleta8");
     });
 </script>
+
 

@@ -76,11 +76,13 @@
     <Compile Include="UtpAlumnoDetalle.cs" />
     <Compile Include="UTPUsuario.cs" />
     <Compile Include="UTP\VistaPanelCabeceraUTP.cs" />
+    <Compile Include="VistaAlumnoCV.cs" />
     <Compile Include="VistaPanelAlumno.cs" />
     <Compile Include="VistaPanelAlumnoOfertas.cs" />
     <Compile Include="VistaPanelAlumnoPostulaciones.cs" />
     <Compile Include="Vistas\Alumno.cs" />
     <Compile Include="Vistas\AlumnoEstudio.cs" />
+    <Compile Include="Vistas\Alumno\AlertasCvAlumno.cs" />
     <Compile Include="Vistas\Alumno\VistaUTPListaAlumno.cs" />
     <Compile Include="Vistas\ContenidoCombo\ContenidoVistaCombo.cs" />
     <Compile Include="Vistas\Empresa\VistaEmpresaLocacion.cs" />

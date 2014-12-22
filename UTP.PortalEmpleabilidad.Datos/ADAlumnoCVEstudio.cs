@@ -36,5 +36,32 @@ namespace UTP.PortalEmpleabilidad.Datos
 
             return dtResultado;
         }
+
+        public void DesactivarPorCV(int IdCV)
+        {
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "AlumnoCVEstudio_DesactivarPorCV";
+            cmd.Connection = cnn.cn;
+            cnn.Conectar();
+            cmd.Parameters.Add(new SqlParameter("@IdCV", SqlDbType.Int)).Value = IdCV;
+            cmd.ExecuteNonQuery();
+            cnn.Desconectar();
+        }
+
+        public void AgregarOrModificar(int IdCV, int IdEstudio,string Usuario)
+        {
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "AlumnoCVEstudio_AgregarPorCV";
+            cmd.Connection = cnn.cn;
+            cnn.Conectar();
+            cmd.Parameters.Add(new SqlParameter("@IdCV", SqlDbType.Int)).Value = IdCV;
+            cmd.Parameters.Add(new SqlParameter("@IdEstudio", SqlDbType.Int)).Value = IdEstudio;
+            cmd.Parameters.Add(new SqlParameter("@Usuario", SqlDbType.VarChar,50)).Value = Usuario;
+
+            cmd.ExecuteNonQuery();
+            cnn.Desconectar();
+        }
+
+
     }
 }

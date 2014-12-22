@@ -12,5 +12,8 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public List<Evento> ListaEventos { get; set; }
         public List<Oferta> ListaOfertas { get; set; }
 
+       
+       
+
     }
 }

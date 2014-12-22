@@ -532,6 +532,22 @@ namespace UTP.PortalEmpleabilidad.Logica
 
             return lista;
         }
+
+        public DataTable AlertaCvAlumno(string Usuario)
+        {
+            return adOferta.AlertaCvAlumno(Usuario);
+        }
+
+        public DataTable AlertaCvAlumnoDia(string Usuario)
+        {
+            return adOferta.AlertaCvAlumnoDia(Usuario);
+        }
+        public DataTable AlertaCvAlumnoMes(string Usuario)
+        {
+            return adOferta.AlertaCvAlumnoMes(Usuario);
+        }
+
+
     }
 
 }

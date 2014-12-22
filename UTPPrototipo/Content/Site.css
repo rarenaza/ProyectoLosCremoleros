@@ -305,11 +305,11 @@ input[type="checkbox"].input-validation-error {
     }
 
 .foto-usuario {
-    height: 80px;
+    height: 120px;
     border:solid;
     border-width:1px;
     border-color:rgb(180,30,34);
-    margin-right:5px;
+    border-radius: 5px 5px 5px 5px;
     }
 
 .foto-empresa {
@@ -593,7 +593,7 @@ label-sistema {
     font-size:11px;
     width:100%;
     padding: 0px 0px 0px 0px;
-    margin: 0px 0px 4px 0px;
+    margin: 4px 0px 0px 0px;
     }
 
 .input-group-addon {
@@ -665,3 +665,9 @@ input, select, option, textarea {
     border-bottom-width:thin;
     border-bottom-color:rgb(240, 240, 240);
     }
+.btn:disabled {
+    background-color: rgb(190, 190, 190);
+}
+a.Boton_pestana:hover {
+    background: rgb(190,190,190);
+}

@@ -1,0 +1,14 @@
+﻿@model   IEnumerable<UTP.PortalEmpleabilidad.Modelo.Vistas.Alumno.AlertasCvAlumno>
+
+@foreach (var item in Model)
+{
+    if (item.MesesSinTrabajo > 0)
+    {
+
+       
+    <div class="alert alert-warning" role="alert"><strong>Sin Trabajo hace @Html.DisplayFor(modelItem => item.MesesSinTrabajo) meses </strong></div>
+
+    }
+
+}
+

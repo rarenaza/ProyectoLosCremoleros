@@ -815,11 +815,19 @@
     <Content Include="Views\Alumno\_ModalRegistrarInformacionAdicional.cshtml" />
     <Content Include="Views\UTP\_DatosUtpPortal.cshtml" />
     <Content Include="Views\UTP\VerDetalleAlumno.cshtml" />
+    <Content Include="Views\UTP\_VistaObtenerEstudiosAlumnos.cshtml" />
     <Content Include="Views\UTP\Usuario.cshtml" />
     <Content Include="Views\UTP\Lista.cshtml" />
     <Content Include="Views\UTP\_UsuariosUTPLista.cshtml" />
     <Content Include="Views\UTP\_UsuariosUTPCrear.cshtml" />
     <Content Include="Views\UTP\_UsuariosUTPEditar.cshtml" />
+    <Content Include="Views\UTP\Ofertas.cshtml" />
+    <Content Include="Views\UTP\ListaValor.cshtml" />
+    <Content Include="Views\Alumno\DatosAlumno.cshtml" />
+    <Content Include="Views\UTP\Plantilla.cshtml" />
+    <Content Include="Views\Alumno\AlertaCvAlumno.cshtml" />
+    <Content Include="Views\Alumno\AlertaCvAlumnoDia.cshtml" />
+    <Content Include="Views\Alumno\AlertaCvAlumnoMes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

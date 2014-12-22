@@ -1,95 +1,94 @@
 ﻿@using UTPPrototipo.Common
 @model List<UTP.PortalEmpleabilidad.Modelo.AlumnoEstudio>
 
-        <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingMiCVEducacion" style="padding: 2px 2px 2px 6px;">
-                <h5 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseMiCVEducacion" aria-expanded="true" aria-controls="collapseMiCVEducacion" style="font-size:12px;">
-                        Estudios
-                    </a>
-                </h5>
+<div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingMiCVEducacion" style="padding: 2px 2px 2px 6px;">
+        <h5 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseMiCVEducacion" aria-expanded="true" aria-controls="collapseMiCVEducacion" style="font-size:12px;">
+                Estudios
+            </a>
+        </h5>
+    </div>
+    <div id="collapseMiCVEducacion" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingMiCVEducacion">
+        <div class="panel-body fuente-pequeña">
+            <div class="row">
+                <div class="col-sm-12 text-right"><button type="button" id="IdGrabarEstudio" class="btn btn-default color-paleta4 fuente-pequeña" style="color: white; margin-bottom: 10px;">Agregar Estudio</button></div>
             </div>
-            <div id="collapseMiCVEducacion" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingMiCVEducacion">
-                <div class="panel-body fuente-pequeña">
+            @if (Model != null && Model.Count > 0)
+            {
+                foreach (var item in Model)
+                {
                     <div class="row">
-                        <div class="col-sm-12 text-right"><button type="button" id="IdGrabarEstudio" class="btn btn-default color-paleta4 fuente-pequeña" style="color: white; margin-bottom: 10px;">Agregar Estudio</button></div>
+                        <div class="col-sm-1">
+                            <span>Incluir </span>
+                            @if (item.Incluir)
+                            {
+                                <input type="checkbox" checked id='Incluir_@item.IdEstudio' class="class-estudios">
+
+                            }
+                            else
+                            {
+                                <input type="checkbox" id='Incluir_@item.IdEstudio' class="class-estudios">
+                            }
+                        </div>
+                        <div class="col-sm-10">
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <strong>
+                                        @Html.FormatoFechaAnioMes(item.FechaInicioMes, item.FechaInicioAno) -
+                                        @Html.FormatoFechaAnioMes(item.FechaFinMes, item.FechaFinAno)
+                                    </strong>
+
+                                </div>
+                                <div class="col-sm-5">
+                                    <span><strong>@Html.DisplayFor(modelItem => item.Institucion)</strong></span>
+                                </div>
+
+                                <div class="col-sm-5">
+                                    Estudio: <strong>@Html.DisplayFor(modelItem => item.Estudio)</strong>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-2">
+
+                                </div>
+                                <div class="col-sm-2">
+                                    <span class="valor-icono2">B</span><span class="valor-palabra">@Html.DisplayFor(modelItem => item.TipoDeEstudio)</span>
+                                </div>
+                                <div class="col-sm-3">
+                                    @Html.DisplayFor(modelItem => item.EstadoDelEstudio)
+                                </div>
+                                <div class="col-sm-3">
+                                    @Html.DisplayFor(modelItem => item.Observacion)
+                                </div>
+                                <div class="col-sm-2">
+                                    Ciclo: @Html.DisplayFor(modelItem => item.CicloEquivalente)
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-sm-1 fuente-pequeña" >
+                            <button class="btn btn-xs fa fa-pencil color-paleta4"></button>&nbsp;&nbsp;<button class="btn btn-xs fa fa-remove color-paleta4"></button>
+                        </div>
+
+
                     </div>
-@if (Model != null && Model.Count > 0)
-{
-    foreach (var item in Model)
-    {
-        <div class="row">
-            <div class="col-sm-1">
-                <span>Incluir </span>
-                @if (item.Incluir)
-                {
-                    <input type="checkbox" checked>
+                    <hr />
 
                 }
-                else
-                {
-                    <input type="checkbox">
-                }
-            </div>
-            <div class="col-sm-10">
-                <div class="row">
-                    <div class="col-sm-2">
-                        <strong>
-@Html.FormatoFechaAnioMes(item.FechaInicioMes, item.FechaInicioAno) -
-@Html.FormatoFechaAnioMes(item.FechaFinMes, item.FechaFinAno)
-                        </strong>
 
-                    </div>
-                    <div class="col-sm-5">
-                        <span><strong>@Html.DisplayFor(modelItem => item.Institucion)</strong></span>
-                    </div>
-
-                    <div class="col-sm-5">
-                        Estudio: <strong>@Html.DisplayFor(modelItem => item.Estudio)</strong>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-2">
-
-                    </div>
-                    <div class="col-sm-2">
-                        <span class="valor-icono2">B</span><span class="valor-palabra">@Html.DisplayFor(modelItem => item.TipoDeEstudio)</span>
-                    </div>
-                    <div class="col-sm-3">
-                        @Html.DisplayFor(modelItem => item.EstadoDelEstudio)
-                    </div>
-                    <div class="col-sm-3">
-                        @Html.DisplayFor(modelItem => item.Observacion)
-                    </div>
-                    <div class="col-sm-2">
-                        Ciclo: @Html.DisplayFor(modelItem => item.CicloEquivalente)
-                    </div>
-
-                </div>
-            </div>
-            <div class="col-sm-1 fui fa-2x" style="color:gray;cursor:pointer">
-                <a class="estudio-edit color-icono-paleta1">1</a>  <a id="delete" class="estudio-delete color-icono-paleta1">l</a>
-            </div>
+            }
 
 
         </div>
-        <hr />
+    </div>
+</div>
 
-    }
-
-}
-
-
-                </div>
-            </div>
-        </div>
-
+ 
 <script>
+
     $("#IdGrabarEstudio").click(function () {
         CargarPOSTNull("Modal-estudio", "ModalRegistroEstudio");
-        //alert($('#Modal-estudio').html());
-        //$('#Modal-estudio').modal("show");
-        //return false;
     });
 
 </script>

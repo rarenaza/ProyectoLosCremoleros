@@ -5,13 +5,13 @@
         <h5 class="panel-title">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseMiCVInformacionAdicional" aria-expanded="true" aria-controls="collapseMiCVInformacionAdicional" style="font-size:12px;">
                 Información Adicional
-            </a>@*<span style="font-size:12px;">&nbsp;&nbsp; -&nbsp;&nbsp;Terminado <input type="checkbox"></span>*@
+            </a>
         </h5>
     </div>
     <div id="collapseMiCVInformacionAdicional" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingMiCVInformacionAdicional">
         <div class="panel-body fuente-pequeña">
             <div class="row">
-                <div class="col-sm-12 text-right"><button type="button" data-toggle="modal" data-target="#Modal-otro-conocimiento" class="btn btn-default color-paleta4 fuente-pequeña" style="color: white; margin-bottom: 10px;" id="IdGrabarInformacionAdicional">Agregar Información Adicional</button></div>
+                <div class="col-sm-12 text-right"><button type="button" class="btn btn-default color-paleta4 fuente-pequeña" style="color: white; margin-bottom: 10px;" id="IdGrabarInformacionAdicional">Agregar Información Adicional</button></div>
             </div>
             @if (Model != null && Model.Count > 0)
             {
@@ -22,12 +22,12 @@
                             <span>Incluir </span>
                             @if (item.Incluir)
                             {
-                                <input type="checkbox" checked>
+                                <input type="checkbox" checked id='Incluir_@item.IdInformacionAdicional' class="class-conocimiento">
 
                             }
                             else
                             {
-                                <input type="checkbox">
+                                <input type="checkbox" id='Incluir_@item.IdInformacionAdicional' class="class-conocimiento">
                             }
                         </div>
                         <div class="col-sm-10">
@@ -59,8 +59,8 @@
 
                             </div>
                         </div>
-                        <div class="col-sm-1 fui fa-2x" style="color:gray;">
-                            1 l
+                        <div class="col-sm-1 fuente-pequeña">
+                            <button class="btn btn-xs fa fa-pencil color-paleta4"></button>&nbsp;&nbsp;<button class="btn btn-xs fa fa-remove color-paleta4"></button>
                         </div>
                     </div>
                     <hr />
@@ -148,9 +148,10 @@
 </div>
 <script>
     $("#IdGrabarInformacionAdicional").click(function () {
-        CargarPOST("Modal-otro-conocimiento", "ModalRegistroInformacionAdicional", null);
-        $('#Modal-otro-conocimiento').modal("show");
-        return false;
+        CargarPOSTNull("Modal-otro-conocimiento", "ModalRegistroInformacionAdicional");
+        //CargarPOST("Modal-otro-conocimiento", "ModalRegistroInformacionAdicional", null);
+        //$('#Modal-otro-conocimiento').modal("show");
+        //return false;
     });
 
 </script>

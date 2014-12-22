@@ -1,0 +1,14 @@
+﻿
+@model   IEnumerable <UTP.PortalEmpleabilidad.Modelo.Vistas.Alumno.AlertasCvAlumno>
+
+@foreach (var item in Model)
+{ 
+if (item.PorcentajeCV < 100)
+{ 
+<div class="alert alert-danger" role="alert"><strong>¡Completa tu CV: '@Html.DisplayFor(modelItem => item.NombreCV)' está al @Html.DisplayFor(modelItem => item.PorcentajeCV)%! &nbsp;&nbsp;&nbsp;<a href="../Alumno/MiCV">Ingresa aquí</a></strong></div>
+
+
+
+}
+
+}

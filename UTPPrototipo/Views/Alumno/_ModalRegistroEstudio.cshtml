@@ -1,7 +1,7 @@
 ﻿<div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true" id="idCloseEstudio" >&times;</span><span class="sr-only">Close</span></button>
             <h4 class="modal-title" id="Estudio">Estudio</h4>
         </div>
         <div class="modal-body">
@@ -399,6 +399,7 @@
         </div>
     </div>
 </div>
+
 <script>
     $("#IdRegistrarEstudio").click(function () {
         var Id = $("#HIIdCV").val();
@@ -406,6 +407,7 @@
             IdAlumno: $('#IdAlumno').val(),
             IdCV: Id
         };
+        var est=[{IdEstudio:1},{IdEstudio:2},{IdEstudio:3}];
         var estudio = {
             IdAlumno: $('#IdAlumno').val(),
             Institucion: $('#idInsitucion').val(),
@@ -423,5 +425,8 @@
 
         CargarPOST(null, "/Alumno/RegistrarAlumnoEstudio", estudio);
         CargarPOST("mi-cv-educacion", "/Alumno/AlumnoEstudiosCV", vistacv);
+    });
+    $("#idCloseEstudio").click(function () {
+        $("#Modal-estudio").dialog("close");
     });
 </script>

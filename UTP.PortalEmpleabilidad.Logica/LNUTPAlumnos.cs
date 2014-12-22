@@ -93,5 +93,27 @@ namespace UTP.PortalEmpleabilidad.Logica
         {
             return adUTPAlumnos.AlumnoUtp_obtenerEstudios(id);
         }
+
+        public DataTable UtpAlumnoMenuMostrar()
+        {
+            return adUTPAlumnos.UtpAlumnoMenuMostrar();
+        }
+
+
+        public bool UTPAlumnos_ActualizarEstadoAlumno(UtpAlumnoDetalle alumno)
+        {
+
+
+            if (adUTPAlumnos.UTPAlumnos_ActualizarEstadoAlumno(alumno) == true)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
     }
 }

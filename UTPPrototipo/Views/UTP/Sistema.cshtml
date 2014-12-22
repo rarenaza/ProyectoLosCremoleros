@@ -52,7 +52,7 @@
     @using (Ajax.BeginForm("_UsuariosUTPCrear", "UTP", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divListaUsuariosUTP", OnComplete = "cerrarModal" }))
     {
         @Html.AntiForgeryToken()
-        
+
         <div class="modal-dialog" id="divContenedorUsuarioUTPCrear">
 
         </div>
@@ -128,8 +128,7 @@
 
             $('#divModalUsuarioUTPCrear').modal('show');
 
-        }).error(function (err)
-        {
+        }).error(function (err) {
             console.log(err);
             alert(err);
         });

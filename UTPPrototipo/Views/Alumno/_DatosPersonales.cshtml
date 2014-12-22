@@ -17,38 +17,45 @@
             </h5>
         </div>
         <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-            <div class="panel-body">
-                <div class="col-md-4 fuente-seccion">
-                    <table>
-                        <tr>
-                            <td>
-                                <img class="foto-usuario" src="~/img/Alumna.png" />
-                            </td>
-                            <td style="vertical-align:top;">
+            <div class="panel-body fuente-pequeña">
+                <div class="row">
+
+                    <div class="col-sm-2">
+                        <img class="foto-usuario" src="~/img/Alumna.png" />
+                    </div>
+                    <div class="col-sm-10">
+                        <div class="row">
+                            <div class="col-sm-4">
                                 <strong>
                                     @Model.Nombres
                                     <br />
                                     @Model.Apellidos
                                 </strong>
                                 <br />@Model.Carrera
-                                <br /><a href="#" class="fuente-pequeña">Modificar Datos ...</a>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="col-md-4 fuente-pequeña">
-                    Código <strong>@Model.CodAlumnoUTP</strong><br />
-                    DNI <strong>@Model.NumeroDocumento</strong><br />
-                    <strong>@Model.CorreoElectronico1</strong><br />
-                    <strong>@Model.CorreoElectronico2</strong>
 
-                </div>
-                <div class="col-md-4 fuente-pequeña">
-                    Dirección <strong>@Model.DireccionLinea1</strong><br />
-                    Teléfono <strong>@Model.TelefonoFijoCasa</strong><br />
-                    Celular <strong>@Model.TelefonoCelular</strong>
-                </div>
+                            </div>
 
+                            <div class="col-sm-4">
+                                Código <strong>@Model.CodAlumnoUTP</strong><br />
+                                DNI <strong>@Model.NumeroDocumento</strong><br />
+                                <strong>@Model.CorreoElectronico1</strong><br />
+                                <strong>@Model.CorreoElectronico2</strong>
+
+                            </div>
+                            <div class="col-sm-4">
+                                Dirección <strong>@Model.DireccionLinea1</strong><br />
+                                Teléfono <strong>@Model.TelefonoFijoCasa</strong><br />
+                                Celular <strong>@Model.TelefonoCelular</strong>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div class="col-sm-12" style="text-align:right;">
+                                <a href="../Alumno/DatosAlumno" class="btn btn-default color-paleta1">Modificar Datos ...</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

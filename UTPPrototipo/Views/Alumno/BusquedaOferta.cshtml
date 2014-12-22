@@ -21,23 +21,18 @@
                     </h5>
                 </div>
                 <div id="ColapsaBusqueda" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="CabeceraColapsaBusqueda">
-                    <div class="panel-body">
-                        <table style="width:100%;">
-                            <tr>
-                                <td>
-                                    <div class="input-group fuente-pequeña">
-                                        <span class="input-group-addon fuente-pequeña">Palabra Clave</span>
-@Html.TextBoxFor(model => model.PalabraClave, new { @class = "form-control", @placeholder = "Palabra clave" })
-
-                                    </div>
-                                </td>
-                                <td style="text-align:right;">
-                                    <span class="col-md-6 btn-group">
-                                        <span class="fui" style="font-size:30px;cursor:pointer" id="buscar">(</span>
-                                    </span>
-                                </td>
-                            </tr>
-                        </table>
+                    <div class="panel-body fuente-pequeña">
+                        <div class="row">
+                            <div class="col-sm-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon fuente-pequeña">Palabra Clave</span>
+                                    @Html.TextBoxFor(model => model.PalabraClave, new { @class = "form-control", @placeholder = "Palabra clave" })
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <button class="btn btn-default color-paleta3 fa fa-2x fa-search" id="buscar"></button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -50,33 +45,33 @@
                     </h5>
                 </div>
                 <div id="ColapsaBusquedaAvanzada" class="panel-collapse collapse" role="tabpanel" aria-labelledby="CabeceraColapsaBusquedaAvanzada">
-                    <div class="panel-body">
+                    <div class="panel-body fuente-pequeña">
                         <div class="row">
                             <div class="col-sm-3">
-                                <div class="input-group fuente-pequeña">
+                                <div class="input-group">
                                     <span class="input-group-addon">Publicado</span>
                                     @Html.DropDownListFor(model => model.IdPeriodoPublicacion, new SelectList(ViewBag.PeriodoPublicacion, "Value", "Text"), "- Seleccionar -", new { @class = "form-control", @Id = "IdPeriodoPublicacion" })
                                 </div>
-                                <div class="input-group fuente-pequeña">
+                                <div class="input-group">
                                     <span class="input-group-addon">Carrera</span>
                                     @Html.DropDownListFor(model => model.IdEstudio, new SelectList(ViewBag.ListaEstudios, "Value", "Text"), "- Seleccionar -", new { @class = "form-control" })
                                 </div>
-                                <div class="input-group fuente-pequeña">
+                                <div class="input-group">
                                     <span class="input-group-addon">Grado</span>
                                     @Html.DropDownListFor(model => model.IdEstadoEstudio, new SelectList(ViewBag.ListaEstadoEstudio, "Value", "Text"), "- Seleccionar -", new { @class = "form-control" })
                                 </div>
                             </div>
                             <div class="col-sm-3">
-                                <div class="input-group fuente-pequeña">
+                                <div class="input-group">
                                     <span class="input-group-addon">Sector</span>
                                     @Html.DropDownListFor(model => model.IdSectorEmpresarial, new SelectList(ViewBag.ListaSectorEmpresarial, "Value", "Text"), "- Seleccionar -", new { @class = "form-control" })
                                 </div>
-                                <div class="input-group fuente-pequeña">
+                                <div class="input-group">
                                     <span class="input-group-addon">Área</span>
                                     @*<input type="text" class="form-control" placeholder="Área en la empresa">*@
                                     @Html.TextBoxFor(model => model.AreaEmpresa, new { @class = "form-control", @placeholder = "Área en la empresa" })
                                 </div>
-                                <div class="input-group fuente-pequeña">
+                                <div class="input-group">
                                     <span class="input-group-addon">Experiencia</span>
                                     @*<input type="text" class="form-control" placeholder="Años de experiencia">*@
                                     @Html.TextBoxFor(model => model.AniosExperiencia, new { @class = "form-control", @placeholder = "Años de experiencia" })
@@ -84,15 +79,15 @@
 
                             </div>
                             <div class="col-sm-3">
-                                <div class="input-group fuente-pequeña">
+                                <div class="input-group">
                                     <span class="input-group-addon">Tipo</span>
                                     @Html.DropDownListFor(model => model.IdTipoTrabajo, new SelectList(ViewBag.ListaTipoTrabajo, "Value", "Text"), "- Seleccionar -", new { @class = "form-control" })
                                 </div>
-                                <div class="input-group fuente-pequeña">
+                                <div class="input-group">
                                     <span class="input-group-addon">Contrato</span>
                                     @Html.DropDownListFor(model => model.IdContrato, new SelectList(ViewBag.ListaContrato, "Value", "Text"), "- Seleccionar -", new { @class = "form-control" })
                                 </div>
-                                <div class="input-group fuente-pequeña">
+                                <div class="input-group">
                                     <span class="input-group-addon">Cargo</span>
                                     @Html.DropDownListFor(model => model.IdTipoCargo, new SelectList(ViewBag.ListaTipoCargo, "Value", "Text"), "- Seleccionar -", new { @class = "form-control" })
                                 </div>
@@ -101,24 +96,22 @@
 
                             <div class="col-sm-3">
 
-                                <div class="input-group fuente-pequeña">
+                                <div class="input-group">
                                     <span class="input-group-addon">Sueldo</span>
                                     @Html.TextBoxFor(model => model.Sueldo, new { @class = "form-control", @placeholder = "Sueldo ofrecido" })
                                 </div>
-                                <div class="input-group fuente-pequeña">
+                                <div class="input-group">
                                     <span class="input-group-addon">Ubicación</span>
                                     @Html.TextBoxFor(model => model.Ubicacion, new { @class = "form-control", @id = "Ubicacion", @placeholder = "Ubicación del trabajo" })
                                 </div>
-                                <div class="input-group fuente-pequeña">
+                                <div class="input-group">
                                     <span class="input-group-addon">
                                         @Html.CheckBoxFor(model => model.IncluirMensaje, new { @id = "IncluirMensaje" })
                                     </span>
                                     <span class="form-control" style="padding-top:8px;">Con mensajes para mi</span>
                                 </div>
                                 <br />
-                                <div>
-                                    <span class="fui" style="font-size:30px;cursor:pointer" id="buscaravanzada">(</span>
-                                </div>
+                                <button class="btn btn-default color-paleta3 fa fa-2x fa-search" id="buscaravanzada"></button>
                             </div>
                         </div>
                     </div>

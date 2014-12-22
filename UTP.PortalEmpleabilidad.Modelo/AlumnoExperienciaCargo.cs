@@ -28,5 +28,13 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public List<ListaValor> ListaTipoCargo { get; set; }
         public string TipoCargo { get; set; }
         public string CreadoPor { get; set; }
+        public string Usuario { get; set; }
+        public string Empresa { get; set; }
+        public string DescripcionEmpresa { get; set; }
+        public int IdEmpresa { get; set; }
+        public string SectorEmpresarial2 { get; set; }
+        public string SectorEmpresarial3 { get; set; }
+        public string Pais { get; set; }
+
     }
 }

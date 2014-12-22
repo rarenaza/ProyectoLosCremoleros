@@ -459,8 +459,9 @@ namespace UTPPrototipo.Controllers
                 contenido.EnPantallaPrincipal = Convert.ToBoolean(dtResultado.Rows[0]["EnPantallaPrincipal"].ToString());
                 contenido.Activo = Convert.ToBoolean(dtResultado.Rows[0]["Activo"] == DBNull.Value ? 0 : dtResultado.Rows[0]["Activo"]);
                 contenido.ArchivoNombreOriginal = dtResultado.Rows[0]["ArchivoNombreOriginal"].ToString();
-                            
-
+                contenido.FechaCreacion = Convert.ToDateTime(dtResultado.Rows[0]["FechaCreacion"] == DBNull.Value  ? null : dtResultado.Rows[0]["FechaCreacion"].ToString());
+                contenido.FechaModificacion = Convert.ToDateTime(dtResultado.Rows[0]["FechaModificacion"] == DBNull.Value ? null : dtResultado.Rows[0]["FechaModificacion"].ToString());
+                contenido.CreadoPor = dtResultado.Rows[0]["CreadoPor"] == null ? "" : dtResultado.Rows[0]["CreadoPor"].ToString();           
 
             }
 
@@ -502,7 +503,8 @@ namespace UTPPrototipo.Controllers
             contenido.Activo = contenidoHTML.Activo;
 
             contenido.Menu= contenidoHTML.Menu;
-
+            contenido.CreadoPor  = contenidoHTML.CreadoPor ;
+            contenido.FechaCreacion  = contenidoHTML.FechaCreacion ;
 
             TicketUTP ticketUtp = (TicketUTP)Session["TicketUtp"];
 
@@ -666,6 +668,10 @@ namespace UTPPrototipo.Controllers
         {
             return View();
         }
+        public ActionResult Ofertas()
+        {
+            return View();
+        }
         public ActionResult Oferta()
         {
             return View();
@@ -679,6 +685,14 @@ namespace UTPPrototipo.Controllers
             return View();
         }
         public ActionResult Lista()
+        {
+            return View();
+        }
+        public ActionResult ListaValor()
+        {
+            return View();
+        }
+        public ActionResult Plantilla()
         {
             return View();
         }
@@ -936,9 +950,30 @@ namespace UTPPrototipo.Controllers
 
 
         #endregion
-
+            //Busca Datos para actualizar   get
         public ActionResult VerDetalleAlumno(int? Id)
         {
+
+
+            DataTable dtresultado = lnalumno.UtpAlumnoMenuMostrar();
+
+            List<SelectListItem> li = new List<SelectListItem>();
+
+            for (int i = 0; i <= dtresultado.Rows.Count - 1; i++)
+            {
+                string nombre = dtresultado.Rows[i]["EstadoAlumno"].ToString();
+                string valor = dtresultado.Rows[i]["CodEstado"].ToString();
+
+
+
+                SelectListItem item = new SelectListItem() { Text = nombre, Value = valor };
+
+                li.Add(item);
+
+            }
+            ViewData["UtpAlumnoMenuMostrar"] = li;
+
+            
             UtpAlumnoDetalle alumno = new UtpAlumnoDetalle();
 
 
@@ -956,6 +991,8 @@ namespace UTPPrototipo.Controllers
                 alumno.TipoDocumento = dtResultado.Rows[0]["TipoDocumento"].ToString();
                 alumno.CorreoElectronico = dtResultado.Rows[0]["CorreoElectronico"].ToString();
                 alumno.FechaRegistro = dtResultado.Rows[0]["FechaRegistro"].ToString();
+                alumno.CodEstadoAlumno = Convert.ToString(dtResultado.Rows[0]["CodEstado"]);
+
                
             }
             return View(alumno);
@@ -963,26 +1000,73 @@ namespace UTPPrototipo.Controllers
             //return View();
         }
 
-        public ActionResult AlumnoUtp_obtenerEstudios(int? Id)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult VerDetalleAlumno([Bind(Include = "")] UtpAlumnoDetalle alumno)
         {
-            UtpAlumnoDetalle alumno = new UtpAlumnoDetalle();
+            //if (ModelState.IsValid)
+            //{
 
 
-            DataTable dtResultado = lnalumno.AlumnoUtp_obtenerEstudios(Convert.ToInt32(Id));
-
-            if (dtResultado.Rows.Count > 0)
+            if (lnalumno.UTPAlumnos_ActualizarEstadoAlumno(alumno))
             {
 
-                alumno.IdAlumno = Convert.ToInt32(dtResultado.Rows[0]["IdAlumno"].ToString());
-                alumno.Nombres = dtResultado.Rows[0]["Nombres"].ToString();
-                alumno.Apellidos = dtResultado.Rows[0]["Apellidos"].ToString();
-                alumno.Carrera = dtResultado.Rows[0]["Carrera"].ToString();
-                alumno.CicloEquivalente = dtResultado.Rows[0]["CicloEquivalente"].ToString();
-                alumno.FechaRegistro = dtResultado.Rows[0]["FechaRegistro"].ToString();
+                ViewBag.Message = "Datos Actualizado";
+                return RedirectToAction("Alumnos");  
+               
             }
-            return View(alumno);
 
-            //return View();
+          
+
+            else
+            {
+                DataTable dtresultado = lnalumno.UtpAlumnoMenuMostrar();
+
+                List<SelectListItem> li = new List<SelectListItem>();
+
+                for (int i = 0; i <= dtresultado.Rows.Count - 1; i++)
+                {
+                    string nombre = dtresultado.Rows[i]["EstadoAlumno"].ToString();
+                    string valor = dtresultado.Rows[i]["CodEstado"].ToString();
+
+
+
+                    SelectListItem item = new SelectListItem() { Text = nombre, Value = valor };
+
+                    li.Add(item);
+
+                }
+                ViewData["UtpAlumnoMenuMostrar"] = li;
+                ViewBag.Message = "Error al Actualizar";
+                return View(alumno);
+            }
+
+            //}
+
+
+        }
+
+        public ActionResult AlumnoUtp_obtenerEstudios(int? Id)
+        {
+            List<UtpAlumnoDetalle> lista = new List<UtpAlumnoDetalle>();
+            DataTable dtResultado = lnalumno.AlumnoUtp_obtenerEstudios(Convert.ToInt32(Id));
+                       
+            
+            for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
+            {
+                UtpAlumnoDetalle alumno = new UtpAlumnoDetalle();
+                alumno.IdAlumno = Convert.ToInt32(dtResultado.Rows[i]["IdAlumno"].ToString());
+                alumno.FechaInicio = dtResultado.Rows[i]["FechaInicio"].ToString();
+                alumno.Carrera = dtResultado.Rows[i]["Carrera"].ToString();
+                alumno.Estudio = dtResultado.Rows[i]["Estudio"].ToString();
+                alumno.CicloEquivalente = dtResultado.Rows[i]["CicloEquivalente"].ToString();
+                alumno.EstadoEstudio = dtResultado.Rows[i]["EstadoEstudio"].ToString();
+                alumno.FechaFin = dtResultado.Rows[i]["FechaFin"].ToString();
+                alumno.EstadoAlumno = dtResultado.Rows[i]["EstadoAlumno"].ToString();
+                lista.Add(alumno);
+            }
+
+            return PartialView("_VistaObtenerEstudiosAlumnos", lista);
         }
 
  
