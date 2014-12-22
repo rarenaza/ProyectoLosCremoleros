@@ -97,7 +97,38 @@
                         @Html.ValidationMessageFor(model => model.CodEstadoAlumno)
                     </td>
                 </tr>
-                             
+                <tr class="linea_raya">
+                    <td class="celda-nombre">
+                        Creado Por
+                    </td>
+                    <td class="celda-datos">
+                        XXXXX
+                    </td>
+                </tr>
+                <tr class="linea_raya">
+                    <td class="celda-nombre">
+                        Creado el
+                    </td>
+                    <td class="celda-datos">
+                        XXXXX
+                    </td>
+                </tr>
+                <tr class="linea_raya">
+                    <td class="celda-nombre">
+                        Modificado Por
+                    </td>
+                    <td class="celda-datos">
+                        XXXXX
+                    </td>
+                </tr>
+                <tr class="linea_raya">
+                    <td class="celda-nombre">
+                        Modificado el
+                    </td>
+                    <td class="celda-datos">
+                        XXXXX
+                    </td>
+                </tr>            
 
 
                 @*@Html.DropDownList("Menu", ViewData["ContenidoMenu"] as List<SelectListItem>, "Seleccione...", new { @class = "form-control", style = "width: 200px;height:20px" })*@
@@ -108,14 +139,10 @@
 
     </div>
 
-    @*<div class="row">
+    <br />
+    <div class="row">
         <div class="col-sm-12" style="text-align:right;">
             <button class="btn btn-default">Guardar</button>
-        </div>
-    </div>*@
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Actualizar" class="btn btn-default" />
         </div>
     </div>
 
@@ -123,8 +150,7 @@
 
 
 
-    <br />
-    <br />
+    <hr />
     <div class="row fuente-pequeña">
         <div class="col-sm-12">
 
@@ -133,52 +159,158 @@
      
 
            @* @Html.RenderAction("_VistaObtenerEstudiosAlumnos", "UTP", new { id = ViewBag.IdEmpresa })*@
-
+            <h6>Estudios</h6>
             @{Html.RenderAction("AlumnoUtp_obtenerEstudios", "UTP", new { id = Model.IdAlumno });}
 
           
 
 
-            @*<h6>Estudios</h6>
+            
+@*
+    <div class="row grilla1-cabecera color-paleta2">
+        <div class="col-sm-3">
+            Estudio
+        </div>
+        <div class="col-sm-1">
+            Tipo
+        </div>
+        <div class="col-sm-2">
+            Estado
+        </div>
+        <div class="col-sm-1">
+            Ciclo
+        </div>
 
-            <div class="row grilla1-cabecera color-paleta2">
-                <div class="col-sm-3">
-                    Estudio
-                </div>
-                <div class="col-sm-1">
-                    Tipo
-                </div>
-                <div class="col-sm-2">
-                    Estado
-                </div>
-                <div class="col-sm-1">
-                    Ciclo
-                </div>
-                
 
-            </div>
-            <div class="row grilla1-linea">
-                <div class="col-sm-3">
-                    Ingeniería de Sistemas
-                </div>
-                <div class="col-sm-1">
-                    Universitaria
-                </div>
-                <div class="col-sm-2">
-                    Bachiller
-                </div>
-                <div class="col-sm-1">
-                    No Especifica
-                </div>
-                <div class="col-sm-1">
-                    Activo
-                </div>
-               
-            </div>*@
+    </div>
+    <div class="row grilla1-linea">
+        <div class="col-sm-3">
+            Ingeniería de Sistemas
+        </div>
+        <div class="col-sm-1">
+            Universitaria
+        </div>
+        <div class="col-sm-2">
+            Bachiller
+        </div>
+        <div class="col-sm-1">
+            No Especifica
+        </div>
+        <div class="col-sm-1">
+            Activo
+        </div>
+
+    </div>*@
         </div>
     </div>
     
 }
+
+
+    <hr />
+    <div class="row fuente-pequeña">
+        <div class="col-sm-12">
+            <h6>Experiencia</h6>
+            <div class="row grilla1-cabecera color-paleta3">
+                <div class="col-sm-2">
+                    Empresa
+                </div>
+                <div class="col-sm-2">
+                    Sector
+                </div>
+                <div class="col-sm-2">
+                    Cargo
+                </div>
+                <div class="col-sm-1">
+                    Inicio
+                </div>
+                <div class="col-sm-1">
+                    Fin
+                </div>
+                <div class="col-sm-2">
+                    Tipo
+                </div>
+            </div>
+            <div class="row grilla1-linea">
+                <div class="col-sm-2">
+                    XXXXXXXXXXXXX
+                </div>
+                <div class="col-sm-2">
+                    XXXXXXXXXXXXX
+                </div>
+                <div class="col-sm-2">
+                    XXXXX
+                </div>
+                <div class="col-sm-1">
+                    99/9999
+                </div>
+                <div class="col-sm-1">
+                    99/9999
+                </div>
+                <div class="col-sm-2">
+                    XXXX
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+<div class="row">
+    <div class="col-sm-12" style="text-align:right;">
+        <button class="btn btn-default">Guardar</button>
+    </div>
+</div>
+    <hr />
+    <div class="row fuente-pequeña">
+        <div class="col-sm-12">
+            <h6>Información Adicional</h6>
+            <div class="row grilla1-cabecera color-paleta3">
+                <div class="col-sm-2">
+                    Tipo
+                </div>
+                <div class="col-sm-2">
+                    Conocimiento
+                </div>
+                <div class="col-sm-2">
+                    Nivel
+                </div>
+                <div class="col-sm-1">
+                    Inicio
+                </div>
+                <div class="col-sm-1">
+                    Fin
+                </div>
+                <div class="col-sm-2">
+                    Experiencia
+                </div>
+            </div>
+            <div class="row grilla1-linea">
+                <div class="col-sm-2">
+                    XXXXXXXXXXXXX
+                </div>
+                <div class="col-sm-2">
+                    XXXXXXXXXXXXX
+                </div>
+                <div class="col-sm-2">
+                    XXXXX
+                </div>
+                <div class="col-sm-1">
+                    99/9999
+                </div>
+                <div class="col-sm-1">
+                    99/9999
+                </div>
+                <div class="col-sm-2">
+                    XXXX
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-sm-12" style="text-align:right;">
+            <button class="btn btn-default">Guardar</button>
+        </div>
+    </div>
  </div> 
     
     
@@ -194,7 +326,7 @@
 <script>
 
     $(document).ready(function () {
-        $("#divFinalCabecera").removeClass("color-paleta1 color-paleta3 color-paleta4 color-paleta5 color-paleta6 color-paleta7").addClass("color-paleta2");
+        $("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta4 color-paleta5 color-paleta6 color-paleta7").addClass("color-paleta3");
     });
     //function mostrarMensaje() {
     //    alert('Los datos fueron grabados con éxito.');
