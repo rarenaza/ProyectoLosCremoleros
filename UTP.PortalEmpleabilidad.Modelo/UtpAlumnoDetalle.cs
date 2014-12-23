@@ -30,6 +30,11 @@ namespace UTP.PortalEmpleabilidad.Modelo
 
         [Required(ErrorMessage = Constantes.MSJ_CAMPO_OBLIGATORIO)]
         public string CodEstadoAlumno { get; set; }
+
+        public string CreadoPor { get; set; }
+        public DateTime  Creadoel { get; set; }
+        public string ModificadoPor { get; set; }
+        public DateTime FechaModificacion { get; set; }
        
     }
 }

@@ -210,6 +210,7 @@ namespace UTP.PortalEmpleabilidad.Datos
             }
         }
 
+
         #region Mantenimiento de Usuarios UTP
 
         public DataTable ObtenerUsuariosUTP()
@@ -326,6 +327,7 @@ namespace UTP.PortalEmpleabilidad.Datos
             }
         }
         #endregion
+    
 
     }
 }

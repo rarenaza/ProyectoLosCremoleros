@@ -1,0 +1,48 @@
+﻿@model IEnumerable<UTPPrototipo.Models.ViewModels.UTP.VistaAlumnoUtp_obtenerExperiencia>
+
+
+<h6>Experiencia</h6>
+<div class="row grilla1-cabecera color-paleta3">
+    <div class="col-sm-2">
+        Empresa
+    </div>
+    <div class="col-sm-2">
+        Sector
+    </div>
+    <div class="col-sm-2">
+        Cargo
+    </div>
+    <div class="col-sm-1">
+        Inicio
+    </div>
+    <div class="col-sm-1">
+        Fin
+    </div>
+    <div class="col-sm-2">
+        Tipo
+    </div>
+</div>
+@foreach (var item in @Model)
+{
+<div class="row grilla1-linea">
+    <div class="col-sm-2">
+        @item.NombreComercial
+    </div>
+    <div class="col-sm-2">
+        @item.Sector
+    </div>
+    <div class="col-sm-2">
+     @item.NombreCargo
+    </div>
+    <div class="col-sm-1">
+       @item.FechaInicio
+    </div>
+    <div class="col-sm-1">
+       @item.Fechafin
+    </div>
+    <div class="col-sm-2">
+        @item.TipoCargo
+    </div>
+</div>
+}
+<hr />
