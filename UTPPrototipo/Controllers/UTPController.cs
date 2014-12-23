@@ -989,6 +989,10 @@ namespace UTPPrototipo.Controllers
                 alumno.CicloEquivalente = dtResultado.Rows[0]["CicloEquivalente"].ToString();
                 alumno.NumeroDocumento = dtResultado.Rows[0]["NumeroDocumento"].ToString();
                 alumno.TipoDocumento = dtResultado.Rows[0]["TipoDocumento"].ToString();
+                alumno.CreadoPor = dtResultado.Rows[0]["CreadoPor"].ToString();
+                alumno.Creadoel = Convert.ToDateTime(dtResultado.Rows[0]["FechaCreacion"] == DBNull.Value ? null : dtResultado.Rows[0]["FechaCreacion"]);
+                alumno.ModificadoPor = dtResultado.Rows[0]["ModificadoPor"].ToString();
+                alumno.FechaModificacion = Convert.ToDateTime(dtResultado.Rows[0]["FechaModificacion"] == DBNull.Value ? null   : dtResultado.Rows[0]["FechaModificacion"]);
                 alumno.CorreoElectronico = dtResultado.Rows[0]["CorreoElectronico"].ToString();
                 alumno.FechaRegistro = dtResultado.Rows[0]["FechaRegistro"].ToString();
                 alumno.CodEstadoAlumno = Convert.ToString(dtResultado.Rows[0]["CodEstado"]);
@@ -1010,13 +1014,9 @@ namespace UTPPrototipo.Controllers
 
             if (lnalumno.UTPAlumnos_ActualizarEstadoAlumno(alumno))
             {
-
                 ViewBag.Message = "Datos Actualizado";
-                return RedirectToAction("Alumnos");  
-               
+                return RedirectToAction("Alumnos");    
             }
-
-          
 
             else
             {
@@ -1028,8 +1028,6 @@ namespace UTPPrototipo.Controllers
                 {
                     string nombre = dtresultado.Rows[i]["EstadoAlumno"].ToString();
                     string valor = dtresultado.Rows[i]["CodEstado"].ToString();
-
-
 
                     SelectListItem item = new SelectListItem() { Text = nombre, Value = valor };
 
@@ -1055,21 +1053,66 @@ namespace UTPPrototipo.Controllers
             for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
             {
                 UtpAlumnoDetalle alumno = new UtpAlumnoDetalle();
-                alumno.IdAlumno = Convert.ToInt32(dtResultado.Rows[i]["IdAlumno"].ToString());
-                alumno.FechaInicio = dtResultado.Rows[i]["FechaInicio"].ToString();
-                alumno.Carrera = dtResultado.Rows[i]["Carrera"].ToString();
-                alumno.Estudio = dtResultado.Rows[i]["Estudio"].ToString();
-                alumno.CicloEquivalente = dtResultado.Rows[i]["CicloEquivalente"].ToString();
-                alumno.EstadoEstudio = dtResultado.Rows[i]["EstadoEstudio"].ToString();
-                alumno.FechaFin = dtResultado.Rows[i]["FechaFin"].ToString();
-                alumno.EstadoAlumno = dtResultado.Rows[i]["EstadoAlumno"].ToString();
+                alumno.IdAlumno         = Convert.ToInt32(dtResultado.Rows[i]["IdAlumno"]);
+                alumno.FechaInicio      = Convert.ToString(dtResultado.Rows[i]["FechaInicio"]);
+                alumno.Carrera          = Convert.ToString(dtResultado.Rows[i]["Carrera"]);
+                alumno.Estudio          = Convert.ToString(dtResultado.Rows[i]["Estudio"]);
+                alumno.CicloEquivalente = Convert.ToString(dtResultado.Rows[i]["CicloEquivalente"]);
+                alumno.EstadoEstudio    = Convert.ToString(dtResultado.Rows[i]["EstadoEstudio"]);
+                alumno.FechaFin         = Convert.ToString(dtResultado.Rows[i]["FechaFin"]);
+                alumno.EstadoAlumno     = Convert.ToString(dtResultado.Rows[i]["EstadoAlumno"]);
                 lista.Add(alumno);
             }
 
             return PartialView("_VistaObtenerEstudiosAlumnos", lista);
         }
 
- 
+        public ActionResult AlumnoUtp_obtenerExperiencia(int? Id)
+        {
+            List<VistaAlumnoUtp_obtenerExperiencia> lista = new List<VistaAlumnoUtp_obtenerExperiencia>();
+            DataTable dtResultado = lnalumno.AlumnoUtp_obtenerExperiencia(Convert.ToInt32(Id));
+
+
+            for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
+            {
+                VistaAlumnoUtp_obtenerExperiencia alumno = new VistaAlumnoUtp_obtenerExperiencia();
+                alumno.IdAlumno         = Convert.ToInt32(dtResultado.Rows[i]["IdAlumno"]);
+                alumno.NombreComercial  = Convert.ToString(dtResultado.Rows[i]["NombreComercial"]);
+                alumno.Sector           = Convert.ToString(dtResultado.Rows[i]["Sector"]);
+                alumno.NombreCargo      = Convert.ToString(dtResultado.Rows[i]["NombreCargo"]);
+                alumno.FechaInicio      = Convert.ToString(dtResultado.Rows[i]["FechaInicio"]);
+                alumno.Fechafin         = Convert.ToString(dtResultado.Rows[i]["Fechafin"]);
+                alumno.TipoCargo        = Convert.ToString(dtResultado.Rows[i]["TipoCargo"]);
+                lista.Add(alumno);
+            }
+
+            return PartialView("AlumnoUtp_obtenerExperiencia", lista);
+        }
+
+
+        public ActionResult AlumnoUtp_obtenerInformacionAdicional(int? Id)
+        {
+            List<AlumnoUtp_obtenerInformacionAdicional> lista = new List<AlumnoUtp_obtenerInformacionAdicional>();
+            DataTable dtResultado = lnalumno.AlumnoUtp_obtenerInformacionAdicional(Convert.ToInt32(Id));
+
+
+            for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
+            {
+                AlumnoUtp_obtenerInformacionAdicional alumno = new AlumnoUtp_obtenerInformacionAdicional();
+
+                alumno.IdAlumno         = Convert.ToInt32(dtResultado.Rows[i]["IdAlumno"]);
+                alumno.Tipo             = Convert.ToString(dtResultado.Rows[i]["Tipo"]);
+                alumno.Conocimiento     = Convert.ToString(dtResultado.Rows[i]["Conocimiento"]);
+                alumno.Nivel            = Convert.ToString(dtResultado.Rows[i]["Nivel"]);
+                alumno.FechaInicio      = Convert.ToString(dtResultado.Rows[i]["FechaInicio"]);
+                alumno.FechaFin         = Convert.ToString(dtResultado.Rows[i]["FechaFin"]);
+                alumno.AñosExperiencia  = Convert.ToString(dtResultado.Rows[i]["AñosExperiencia"]);
+                lista.Add(alumno);
+            }
+
+            return PartialView("AlumnoUtp_obtenerInformacionAdicional", lista);
+        }
+            
 
         public ActionResult LogOut()
         {

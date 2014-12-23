@@ -115,5 +115,18 @@ namespace UTP.PortalEmpleabilidad.Logica
 
         }
 
+        public DataTable AlumnoUtp_obtenerExperiencia(int id)
+        {
+            return adUTPAlumnos.AlumnoUtp_obtenerExperiencia(id);
+        }
+
+        public DataTable AlumnoUtp_obtenerInformacionAdicional(int id)
+        {
+            return adUTPAlumnos.AlumnoUtp_obtenerInformacionAdicional(id);
+        }
+
+        
+
+
     }
 }

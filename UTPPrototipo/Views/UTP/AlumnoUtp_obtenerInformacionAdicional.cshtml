@@ -1,0 +1,48 @@
+﻿@model  IEnumerable <UTPPrototipo.Models.ViewModels.UTP.AlumnoUtp_obtenerInformacionAdicional>
+
+<h6>Información Adicional</h6>
+<div class="row grilla1-cabecera color-paleta3">
+    <div class="col-sm-2">
+        Tipo
+    </div>
+    <div class="col-sm-2">
+        Conocimiento
+    </div>
+    <div class="col-sm-2">
+        Nivel
+    </div>
+    <div class="col-sm-1">
+        Inicio
+    </div>
+    <div class="col-sm-1">
+        Fin
+    </div>
+    <div class="col-sm-2">
+        Experiencia
+    </div>
+</div>
+@foreach (var item in @Model)
+{ 
+<div class="row grilla1-linea">
+    <div class="col-sm-2">
+       
+        @item.Tipo
+    </div>
+    <div class="col-sm-2">
+       @item.Conocimiento
+    </div>
+    <div class="col-sm-2">
+        @item.Nivel
+    </div>
+    <div class="col-sm-1">
+        @item.FechaInicio
+    </div>
+    <div class="col-sm-1">
+       @item.FechaFin 
+    </div>
+    <div class="col-sm-2">
+       @item.AñosExperiencia
+    </div>
+</div>
+}
+<hr />
