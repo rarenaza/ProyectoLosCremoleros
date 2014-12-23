@@ -58,7 +58,7 @@
                             <a href="../Home/Registro" style="padding: 18px 0px 0px 9px;"><span class="fui color-icono-paleta2" style="font-size:35px;">!</span></a>
                         </li>
                         <li>
-                            <a href="#" style="padding: 18px 0px 0px 9px;" data-toggle="modal" data-target="#Modal-ingresar">
+                            <a href="#" style="padding: 18px 0px 0px 9px;" data-toggle="modal" data-target="#Modal-ingresar" id="LinkIngresar">
                                 <span class="fui color-icono-paleta2" style="font-size:35px;">,</span>
                             </a>
                         </li>
@@ -111,3 +111,11 @@
     
 </body>
 </html>
+
+@if (TempData["UsuarioNoExitoso"] == "_ClickAqui")
+{
+    <script>
+        document.getElementById("LinkIngresar").click();
+    </script>
+    TempData["UsuarioNoExitoso"] = null;
+}

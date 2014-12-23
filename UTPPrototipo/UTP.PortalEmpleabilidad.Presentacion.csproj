@@ -263,6 +263,7 @@
     <Content Include="img\logos\computrabajo.jpg" />
     <Content Include="img\logos\laborum.jpg" />
     <Content Include="img\logos\trabajando.jpg" />
+    <Content Include="img\sinimagen.jpg" />
     <Content Include="img\testimonio\customer-testimonials.jpg" />
     <Content Include="img\empleabilidad\imagen4.jpg" />
     <Content Include="img\evento\Evento1.jpg" />

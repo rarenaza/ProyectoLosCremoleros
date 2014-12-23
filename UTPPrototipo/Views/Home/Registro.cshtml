@@ -222,8 +222,9 @@
         <div class="col-sm-4">
             <div class="input-group fuente-pequeña">
                 <span class="input-group-addon fuente-pequeña">(*) Repita<br />Contraseña</span>
-                <input type="password" class="form-control fuente-pequeña">
-            </div>
+                @*@Html.Raw(@Html.PasswordFor(model => model.Contrasena).ToString().Replace("text-box single-line", "form-control"))*@
+                @Html.PasswordFor(m => m.ContrasenaValidador, new { @class = "form-control" })
+            </div>@Html.ValidationMessageFor(model => model.ContrasenaValidador, "", new { @class = "text-danger" })
         </div>
     </div>
     <hr />

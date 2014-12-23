@@ -174,7 +174,10 @@ namespace UTPPrototipo.Controllers
             }
 
                
-            return PartialView("_Login", usuario);
+            //return PartialView("_Login", usuario);
+            TempData["UsuarioNoExitoso"] = usuario.NombreUsuario;
+            //Aquí debería enviarse un correo
+            return RedirectToAction("Index","Home");
 
             
         }        

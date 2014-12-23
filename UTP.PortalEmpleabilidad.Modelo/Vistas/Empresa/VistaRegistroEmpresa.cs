@@ -77,8 +77,13 @@ namespace UTP.PortalEmpleabilidad.Modelo.Vistas.Empresa
         [Required(ErrorMessage = "Falta el Nombre de Usuario del Contacto")]
         public string CuentaUsuario { get; set; }
 
+        [RegularExpression(@"^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$", ErrorMessage = "Password no válido")]
         [Required(ErrorMessage = "Falta la Contraseña")]
         public string Contrasena { get; set; }
+
+        [Compare("Contrasena", ErrorMessage = "Contraseña ingresada no coincide")]
+        public string ContrasenaValidador { get; set; }
+
 
         [Required(ErrorMessage = "Falta el Tipo de Documento")]
         public string TipoDocumentoIdListaValor { get; set; }

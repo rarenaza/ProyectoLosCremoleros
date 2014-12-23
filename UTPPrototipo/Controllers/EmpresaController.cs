@@ -695,7 +695,7 @@ namespace UTPPrototipo.Controllers
 
         public FileResult ObtenerImagenEmpresa(int id)
         {
-            const string alternativePicturePath = @"/Content/Images/question_mark.jpg";
+            const string alternativePicturePath = @"/img/sinimagen.jpg";
                
 
             TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];
@@ -706,10 +706,10 @@ namespace UTPPrototipo.Controllers
 
 
             DataTable dtResultado = lnEmpresa.Empresa_Elegir_Imagen(ticket.IdEmpresa);
-
+           
             if (dtResultado.Rows.Count > 0)
             {
-                empresa.LogoEmpresa = (byte[])dtResultado.Rows[0]["LogoEmpresa"];
+                empresa.LogoEmpresa = dtResultado.Rows[0]["LogoEmpresa"] == DBNull.Value ? null : (byte[])dtResultado.Rows[0]["LogoEmpresa"];
               
 
             }
@@ -722,9 +722,11 @@ namespace UTPPrototipo.Controllers
             if (empresa  != null && empresa.LogoEmpresa != null)
             {
                 stream = new MemoryStream(empresa.LogoEmpresa);
+
             }
             else
             {
+                
                 stream = new MemoryStream();
 
                 var path = Server.MapPath(alternativePicturePath);
