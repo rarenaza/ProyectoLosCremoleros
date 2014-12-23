@@ -2,10 +2,17 @@
 
 @foreach (var item in Model)
 {
+    if (item.Dia == -1)
+    {
+
+        <div class="alert alert-warning" role="alert"><strong>¡No se han encontrado Postulaciones!</strong></div>
+
+
+    }
     if (item.Dia > 7)
     {
 
-        <div class="alert alert-warning" role="alert"><strong>Sin Postulaciones hace @Html.DisplayFor(modelItem => item.Dia) días </strong></div>
+        <div class="alert alert-warning" role="alert"><strong>¡Sin Postulaciones hace @Html.DisplayFor(modelItem => item.Dia) días!</strong></div>
 
 
     }
