@@ -77,30 +77,45 @@ namespace UTP.PortalEmpleabilidad.Datos
             cmd.ExecuteNonQuery();
             cnn.Desconectar();
         }
-        public void Update(VistaAlumnoCV vistaalumnocv)
+        public void Update(AlumnoCV alumnocv)
         {
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = "AlumnoCV_Update";
             cmd.Connection = cnn.cn;
             cnn.Conectar();
-            cmd.Parameters.Add(new SqlParameter("@IdCV", SqlDbType.Int)).Value = vistaalumnocv.IdCV;
-            cmd.Parameters.Add(new SqlParameter("@IdAlumno", SqlDbType.Int)).Value = vistaalumnocv.IdAlumno;
-            cmd.Parameters.Add(new SqlParameter("@IdPlantillaCV", SqlDbType.Int)).Value = vistaalumnocv.IdPlantillaCV;
-            cmd.Parameters.Add(new SqlParameter("@IncluirTelefonoFijo", SqlDbType.Bit)).Value = vistaalumnocv.IncluirTelefonoFijo;
-            cmd.Parameters.Add(new SqlParameter("@IncluirCorreoElectronico2", SqlDbType.Bit)).Value = vistaalumnocv.IncluirCorreoElectronico1;
-            cmd.Parameters.Add(new SqlParameter("@IncluirFoto", SqlDbType.Bit)).Value = vistaalumnocv.IncluirFoto;
-            cmd.Parameters.Add(new SqlParameter("@Perfil", SqlDbType.VarChar, 5000)).Value = vistaalumnocv.Perfil;
-            cmd.Parameters.Add(new SqlParameter("@IncluirNombre1", SqlDbType.Bit)).Value = vistaalumnocv.IncluirNombre1;
-            cmd.Parameters.Add(new SqlParameter("@IncluirNombre2", SqlDbType.Bit)).Value = vistaalumnocv.IncluirNombre2;
-            cmd.Parameters.Add(new SqlParameter("@IncluirNombre3", SqlDbType.Bit)).Value = vistaalumnocv.IncluirNombre3;
-            cmd.Parameters.Add(new SqlParameter("@IncluirNombre4", SqlDbType.Bit)).Value = vistaalumnocv.IncluirNombre4;
-            cmd.Parameters.Add(new SqlParameter("@ModificadoPor", SqlDbType.VarChar, 50)).Value = vistaalumnocv.Usuario;
-            cmd.Parameters.Add(new SqlParameter("@IncluirDireccion", SqlDbType.Bit)).Value = vistaalumnocv.IncluirDireccion;
+            cmd.Parameters.Add(new SqlParameter("@IdCV", SqlDbType.Int)).Value = alumnocv.IdCV;
+            cmd.Parameters.Add(new SqlParameter("@IdAlumno", SqlDbType.Int)).Value = alumnocv.IdAlumno;
+            cmd.Parameters.Add(new SqlParameter("@IdPlantillaCV", SqlDbType.Int)).Value = alumnocv.IdPlantillaCV;
+            cmd.Parameters.Add(new SqlParameter("@IncluirTelefonoFijo", SqlDbType.Bit)).Value = alumnocv.IncluirTelefonoFijo;
+            cmd.Parameters.Add(new SqlParameter("@IncluirCorreoElectronico2", SqlDbType.Bit)).Value = alumnocv.IncluirCorreoElectronico1;
+            cmd.Parameters.Add(new SqlParameter("@IncluirFoto", SqlDbType.Bit)).Value = alumnocv.IncluirFoto;
+            cmd.Parameters.Add(new SqlParameter("@Perfil", SqlDbType.VarChar, 5000)).Value = alumnocv.Perfil == null ? "" : alumnocv.Perfil;
+            cmd.Parameters.Add(new SqlParameter("@IncluirNombre1", SqlDbType.Bit)).Value = alumnocv.IncluirNombre1;
+            cmd.Parameters.Add(new SqlParameter("@IncluirNombre2", SqlDbType.Bit)).Value = alumnocv.IncluirNombre2;
+            cmd.Parameters.Add(new SqlParameter("@IncluirNombre3", SqlDbType.Bit)).Value = alumnocv.IncluirNombre3;
+            cmd.Parameters.Add(new SqlParameter("@IncluirNombre4", SqlDbType.Bit)).Value = alumnocv.IncluirNombre4;
+            cmd.Parameters.Add(new SqlParameter("@ModificadoPor", SqlDbType.VarChar, 50)).Value = alumnocv.Usuario;
+            cmd.Parameters.Add(new SqlParameter("@IncluirDireccion", SqlDbType.Bit)).Value = alumnocv.IncluirDireccion;
 
             cmd.ExecuteNonQuery();
             cnn.Desconectar();
         }
 
+        public void RegistrarCV(ref AlumnoCV alumnocv)
+        {
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "AlumnoCV_RegistrarCV";
+            cmd.Connection = cnn.cn;
+            cnn.Conectar();
+            cmd.Parameters.Add(new SqlParameter("@NombreCV", SqlDbType.VarChar,100)).Value = alumnocv.NombreCV;
+            cmd.Parameters.Add(new SqlParameter("@IdAlumno", SqlDbType.Int)).Value = alumnocv.IdAlumno;
+            cmd.Parameters.Add(new SqlParameter("@IdPlantillaCV", SqlDbType.Int)).Value = alumnocv.IdPlantillaCV;
+            cmd.Parameters.Add(new SqlParameter("@Usuario", SqlDbType.VarChar, 50)).Value = alumnocv.Usuario;
+            cmd.Parameters.Add(new SqlParameter("@IdCV", SqlDbType.Int)).Direction = ParameterDirection.Output;
 
+            cmd.ExecuteNonQuery();
+            alumnocv.IdCV = (int) cmd.Parameters["@IdCV"].Value;
+            cnn.Desconectar();
+        }
     }
 }

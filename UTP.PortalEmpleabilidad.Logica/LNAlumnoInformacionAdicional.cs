@@ -45,5 +45,41 @@ namespace UTP.PortalEmpleabilidad.Logica
             aiad.Registrar(alumnoinformacionadicional);
 
         }
+
+        public AlumnoInformacionAdicional ObtenerAlumnoEstudioPorId(int IdInforacionAdicional)
+        {
+            DataTable dtResultado = new DataTable();
+            dtResultado = aiad.ObtenerAlumnoInformacionAdicionalPorId(IdInforacionAdicional);
+            AlumnoInformacionAdicional alumnoinformacionadicional = new AlumnoInformacionAdicional();
+
+            if (dtResultado.Rows.Count > 0)
+            {
+                alumnoinformacionadicional.IdInformacionAdicional = Funciones.ToInt(dtResultado.Rows[0]["IdInformacionAdicional"]);
+                alumnoinformacionadicional.TipoConocimientoIdListaValor = Funciones.ToString(dtResultado.Rows[0]["TipoConocimiento"]);
+                alumnoinformacionadicional.Conocimiento = Funciones.ToString(dtResultado.Rows[0]["Conocimiento"]);
+                alumnoinformacionadicional.NivelConocimientoIdListaValor = Funciones.ToString(dtResultado.Rows[0]["NivelConocimiento"]);
+                alumnoinformacionadicional.FechaConocimientoDesdeMes = Funciones.ToInt(dtResultado.Rows[0]["FechaConocimientoDesdeMes"]);
+                alumnoinformacionadicional.FechaConocimientoDesdeAno = Funciones.ToInt(dtResultado.Rows[0]["FechaConocimientoDesdeAno"]);
+                alumnoinformacionadicional.FechaConocimientoHastaMes = Funciones.ToInt(dtResultado.Rows[0]["FechaConocimientoHastaMes"]);
+                alumnoinformacionadicional.FechaConocimientoHastaAno = Funciones.ToInt(dtResultado.Rows[0]["FechaConocimientoHastaAno"]);
+                alumnoinformacionadicional.PaisIdListaValor = Funciones.ToString(dtResultado.Rows[0]["Pais"]);
+                alumnoinformacionadicional.Ciudad = Funciones.ToString(dtResultado.Rows[0]["Ciudad"]);
+                alumnoinformacionadicional.InstituciónDeEstudio = Funciones.ToString(dtResultado.Rows[0]["InstituciónDeEstudio"]);
+                alumnoinformacionadicional.AñosExperiencia = Funciones.ToInt(dtResultado.Rows[0]["AñosExperiencia"]);
+            }
+            return alumnoinformacionadicional;
+        }
+
+        public void Update(AlumnoInformacionAdicional alumnoinformacionadicional)
+        {
+            aiad.Update(alumnoinformacionadicional);
+
+        }
+
+        public void Desactivar(int IdInforacionAdicional, string Usuario)
+        {
+            aiad.Desactivar(IdInforacionAdicional, Usuario);
+
+        }
     }
 }

@@ -11,7 +11,7 @@ namespace UTP.PortalEmpleabilidad.Datos
    public  class ADAlumnoCVEstudio
     {
         ADConexion cnn = new ADConexion();
-        SqlCommand cmd = new SqlCommand();
+    
  
         public DataTable ObtenerAlumnoCVEstudioPorIdCVYIdEstudio( int IdCV,int IdEstudio)
         {
@@ -39,6 +39,7 @@ namespace UTP.PortalEmpleabilidad.Datos
 
         public void DesactivarPorCV(int IdCV)
         {
+            SqlCommand cmd = new SqlCommand();
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = "AlumnoCVEstudio_DesactivarPorCV";
             cmd.Connection = cnn.cn;
@@ -50,6 +51,7 @@ namespace UTP.PortalEmpleabilidad.Datos
 
         public void AgregarOrModificar(int IdCV, int IdEstudio,string Usuario)
         {
+            SqlCommand cmd = new SqlCommand();
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = "AlumnoCVEstudio_AgregarPorCV";
             cmd.Connection = cnn.cn;
@@ -57,7 +59,6 @@ namespace UTP.PortalEmpleabilidad.Datos
             cmd.Parameters.Add(new SqlParameter("@IdCV", SqlDbType.Int)).Value = IdCV;
             cmd.Parameters.Add(new SqlParameter("@IdEstudio", SqlDbType.Int)).Value = IdEstudio;
             cmd.Parameters.Add(new SqlParameter("@Usuario", SqlDbType.VarChar,50)).Value = Usuario;
-
             cmd.ExecuteNonQuery();
             cnn.Desconectar();
         }

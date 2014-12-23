@@ -13,13 +13,13 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string DesNivelConocimiento { get; set; }
         public string Conocimiento { get; set; }
         public int FechaConocimientoDesdeMes { get; set; }
-        public int FechaConocimientoDesdeAno { get; set; }
+        public int? FechaConocimientoDesdeAno { get; set; }
         public int FechaConocimientoHastaMes { get; set; }
-        public int FechaConocimientoHastaAno { get; set; }
+        public int? FechaConocimientoHastaAno { get; set; }
         public string NomPais { get; set; }
         public string Ciudad { get; set; }
         public string InstituciónDeEstudio { get; set; }
-        public int AñosExperiencia { get; set; }
+        public int? AñosExperiencia { get; set; }
         public bool Incluir { get; set; }
 
         public List<ListaValor> ListaTipoConocimiento { get; set; }
@@ -30,8 +30,11 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string NivelConocimientoIdListaValor { get; set; }
         public string PaisIdListaValor { get; set; }
 
-        public string CreadoPor { get; set; }
+        //public string CreadoPor { get; set; }
         public string Usuario { get; set; }
+
+        public int IdCV { get; set; }
+        public int Movimiento { get; set; }
 
        
 

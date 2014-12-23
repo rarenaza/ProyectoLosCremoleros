@@ -31,6 +31,7 @@ namespace UTPPrototipo.Controllers
         LNAlumnoExperienciaCargo lnalumnoexperienciacargo = new LNAlumnoExperienciaCargo();
         LNAlumnoExperiencia lnalumnoexperiencia = new LNAlumnoExperiencia();
 
+
         LNAlumnoCVExperienciaCargo lnalumnocvexperienciacargo = new LNAlumnoCVExperienciaCargo();
         LNAlumnoInformacionAdicional lnalumnoinformacionadicional = new LNAlumnoInformacionAdicional();
         LNAlumnoCVInformacionAdicional lnalumnocvinformacionadicional = new LNAlumnoCVInformacionAdicional();
@@ -331,6 +332,21 @@ namespace UTPPrototipo.Controllers
         }
 
 
+
+
+
+
+        #region "Mi Portal"
+
+        #endregion
+        #region "Postulaciones"
+
+        #endregion
+        #region "Ofertas"
+
+        #endregion
+
+        #region MiCV
         private VistaPanelAlumnoMiCV VistaMICV(int IdAlumno, int IdCV)
         {
             //Declaracion de objetos
@@ -376,20 +392,6 @@ namespace UTPPrototipo.Controllers
 
             return panel;
         }
-
-
-
-        #region "Mi Portal"
-
-        #endregion
-        #region "Postulaciones"
-
-        #endregion
-        #region "Ofertas"
-
-        #endregion
-
-        #region "Mi CV"
         public ActionResult MiCV()
         {
 
@@ -451,8 +453,6 @@ namespace UTPPrototipo.Controllers
 
             Alumno alumno = new Alumno();
             List<AlumnoEstudio> listaalumnoestudio = new List<AlumnoEstudio>();
-
-
             listaalumnoestudio = lnAlumnoEstudio.ObtenerAlumnoEstudioPorIdAlumno(entidad.IdAlumno);
             if (alumno != null && listaalumnoestudio.Count > 0)
             {
@@ -471,7 +471,7 @@ namespace UTPPrototipo.Controllers
             listaalumnoexperienciacargo = lnalumnoexperienciacargo.ObtenerAlumnoExperienciaCargoPorIdAlumno(entidad.IdAlumno);
             if (alumno != null && listaalumnoexperienciacargo.Count > 0)
             {
-                listaalumnoexperienciacargo = lnalumnocvexperienciacargo.ObtenerAlumnoCVExperienciaCargoPorIdAlumno(entidad.IdCV, listaalumnoexperienciacargo);
+                listaalumnoexperienciacargo = lnalumnocvexperienciacargo.ObtenerAlumnoCVExperienciaCargoPorIdCV(entidad.IdCV, listaalumnoexperienciacargo);
             }
             return PartialView("_AlumnoExperienciaCV", listaalumnoexperienciacargo);
         }
@@ -486,210 +486,406 @@ namespace UTPPrototipo.Controllers
             listaalumnoinformacionadicional = lnalumnoinformacionadicional.ObtenerAlumnoInformacionAdicionalPorIdAlumno(entidad.IdAlumno);
             if (listaalumnoinformacionadicional.Count > 0)
             {
-                listaalumnoinformacionadicional = lnalumnocvinformacionadicional.ObtenerAlumnoCVInformacionAdicionalPorIdAlumno(entidad.IdCV, listaalumnoinformacionadicional);
+                listaalumnoinformacionadicional = lnalumnocvinformacionadicional.ObtenerAlumnoCVInformacionAdicionalPorIdCV(entidad.IdCV, listaalumnoinformacionadicional);
+            }
+            return PartialView("_AlumnoInformacionAdicionalCV", listaalumnoinformacionadicional);
+        }
+
+        public PartialViewResult ModalRegistroEstudio(int IdAlumno, int IdCV)
+        {
+
+            LNGeneral lngeneral = new LNGeneral();
+            AlumnoEstudio alumnoestudio = new AlumnoEstudio();
+
+            alumnoestudio.IdAlumno = IdAlumno;
+            alumnoestudio.IdCV = IdCV;
+            Dictionary<int, string> meses = new Dictionary<int, string>();
+            meses.Add(1, "Enero");
+            meses.Add(2, "Febrero");
+            meses.Add(3, "Marzo");
+            meses.Add(4, "Abril");
+            meses.Add(5, "Mayo");
+            meses.Add(6, "Junio");
+            meses.Add(7, "Julio");
+            meses.Add(8, "Agosto");
+            meses.Add(9, "Setiembre");
+            meses.Add(10, "Octubre");
+            meses.Add(11, "Noviembre");
+            meses.Add(12, "Diciembre");
+            ViewBag.meses = meses;
+            ViewBag.TipoDeEstudio = new SelectList(lngeneral.ObtenerListaValor(7), "IdListaValor", "Valor");
+            ViewBag.EstadoDelEstudio = new SelectList(lngeneral.ObtenerListaValor(43), "IdListaValor", "Valor");
+            ViewBag.Observacion = new SelectList(lngeneral.ObtenerListaValor(44), "IdListaValor", "Valor");
+            alumnoestudio.Movimiento = 1;
+            return PartialView("_ModalRegistroEstudio", alumnoestudio);
+        }
+
+        public PartialViewResult ModalModificarEstudio(int IdEstudio, int IdAlumno, int IdCV)
+        {
+
+            LNGeneral lngeneral = new LNGeneral();
+            AlumnoEstudio alumnoestudio = new AlumnoEstudio();
+            alumnoestudio = lnAlumnoEstudio.ObtenerAlumnoEstudioPorId(IdEstudio);
+            if (alumnoestudio != null && alumnoestudio.IdEstudio > 0)
+            {
+                alumnoestudio.IdAlumno = IdAlumno;
+                alumnoestudio.IdCV = IdCV;
+                alumnoestudio.IdEstudio = IdEstudio;
+                Dictionary<int, string> meses = new Dictionary<int, string>();
+                meses.Add(1, "Enero");
+                meses.Add(2, "Febrero");
+                meses.Add(3, "Marzo");
+                meses.Add(4, "Abril");
+                meses.Add(5, "Mayo");
+                meses.Add(6, "Junio");
+                meses.Add(7, "Julio");
+                meses.Add(8, "Agosto");
+                meses.Add(9, "Setiembre");
+                meses.Add(10, "Octubre");
+                meses.Add(11, "Noviembre");
+                meses.Add(12, "Diciembre");
+                ViewBag.TipoDeEstudio = new SelectList(lngeneral.ObtenerListaValor(7), "IdListaValor", "Valor", alumnoestudio.TipoDeEstudio);
+                ViewBag.meses = meses;
+                ViewBag.EstadoDelEstudio = new SelectList(lngeneral.ObtenerListaValor(43), "IdListaValor", "Valor", alumnoestudio.EstadoDelEstudio);
+                ViewBag.Observacion = new SelectList(lngeneral.ObtenerListaValor(44), "IdListaValor", "Valor", alumnoestudio.Observacion);
+                alumnoestudio.Movimiento = 2;
+                return PartialView("_ModalRegistroEstudio", alumnoestudio);
+            }
+            else
+            {
+                return PartialView();
+            }
+
+        }
+
+        public PartialViewResult ModalRegistroExperiencia(int IdAlumno, int IdCV)
+        {
+
+            LNGeneral lngeneral = new LNGeneral();
+            AlumnoExperiencia alumnoexperiencia = new AlumnoExperiencia();
+
+            alumnoexperiencia.IdAlumno = IdAlumno;
+            alumnoexperiencia.IdCV = IdCV;
+            Dictionary<int, string> meses = new Dictionary<int, string>();
+            meses.Add(1, "Enero");
+            meses.Add(2, "Febrero");
+            meses.Add(3, "Marzo");
+            meses.Add(4, "Abril");
+            meses.Add(5, "Mayo");
+            meses.Add(6, "Junio");
+            meses.Add(7, "Julio");
+            meses.Add(8, "Agosto");
+            meses.Add(9, "Setiembre");
+            meses.Add(10, "Octubre");
+            meses.Add(11, "Noviembre");
+            meses.Add(12, "Diciembre");
+            ViewBag.meses = meses;
+
+
+            ViewBag.SectorEmpresarial = new SelectList(lngeneral.ObtenerListaValor(8), "IdListaValor", "Valor");
+            ViewBag.Pais = new SelectList(lngeneral.ObtenerListaValor(17), "IdListaValor", "Valor");
+            ViewBag.TipoCargo = new SelectList(lngeneral.ObtenerListaValor(9), "IdListaValor", "Valor");
+            ViewBag.SectorEmpresarial2 = ViewBag.SectorEmpresarial;
+            ViewBag.SectorEmpresarial3 = ViewBag.SectorEmpresarial;
+            alumnoexperiencia.Movimiento = 1;
+
+
+            return PartialView("_ModalRegistrarExperiencia", alumnoexperiencia);
+        }
+
+        public PartialViewResult ModalModificarExperiencia(int IdExperienciaCargo, int IdAlumno, int IdCV)
+        {
+
+            LNGeneral lngeneral = new LNGeneral();
+            AlumnoExperiencia alumnoexperiencia = new AlumnoExperiencia();
+            alumnoexperiencia = lnalumnoexperienciacargo.ObtenerAlumnoExperienciaCargoPorId(IdExperienciaCargo);
+            if (alumnoexperiencia != null && alumnoexperiencia.IdExperienciaCargo > 0)
+            {
+                alumnoexperiencia.IdAlumno = IdAlumno;
+                alumnoexperiencia.IdCV = IdCV;
+                alumnoexperiencia.IdExperienciaCargo = IdExperienciaCargo;
+
+                Dictionary<int, string> meses = new Dictionary<int, string>();
+                meses.Add(1, "Enero");
+                meses.Add(2, "Febrero");
+                meses.Add(3, "Marzo");
+                meses.Add(4, "Abril");
+                meses.Add(5, "Mayo");
+                meses.Add(6, "Junio");
+                meses.Add(7, "Julio");
+                meses.Add(8, "Agosto");
+                meses.Add(9, "Setiembre");
+                meses.Add(10, "Octubre");
+                meses.Add(11, "Noviembre");
+                meses.Add(12, "Diciembre");
+                ViewBag.meses = meses;
+
+
+                ViewBag.SectorEmpresarial = new SelectList(lngeneral.ObtenerListaValor(8), "IdListaValor", "Valor", alumnoexperiencia.SectorEmpresarial);
+                ViewBag.SectorEmpresarial2 = new SelectList(lngeneral.ObtenerListaValor(8), "IdListaValor", "Valor", alumnoexperiencia.SectorEmpresarial2);
+                ViewBag.SectorEmpresarial3 = new SelectList(lngeneral.ObtenerListaValor(8), "IdListaValor", "Valor", alumnoexperiencia.SectorEmpresarial3);
+                ViewBag.Pais = new SelectList(lngeneral.ObtenerListaValor(17), "IdListaValor", "Valor", alumnoexperiencia.Pais);
+                ViewBag.TipoCargo = new SelectList(lngeneral.ObtenerListaValor(9), "IdListaValor", "Valor", alumnoexperiencia.TipoCargo);
+                alumnoexperiencia.Movimiento = 2;
+
+
+                return PartialView("_ModalRegistrarExperiencia", alumnoexperiencia);
+            }
+            else
+            {
+                return PartialView();
+            }
+
+        }
+
+
+
+        public PartialViewResult ModalRegistroInformacionAdicional(int IdAlumno, int IdCV)
+        {
+
+            AlumnoInformacionAdicional alumnoinformacionadicional = new AlumnoInformacionAdicional();
+            LNGeneral lngeneral = new LNGeneral();
+
+            Dictionary<int, string> meses = new Dictionary<int, string>();
+            meses.Add(1, "Enero");
+            meses.Add(2, "Febrero");
+            meses.Add(3, "Marzo");
+            meses.Add(4, "Abril");
+            meses.Add(5, "Mayo");
+            meses.Add(6, "Junio");
+            meses.Add(7, "Julio");
+            meses.Add(8, "Agosto");
+            meses.Add(9, "Setiembre");
+            meses.Add(10, "Octubre");
+            meses.Add(11, "Noviembre");
+            meses.Add(12, "Diciembre");
+            ViewBag.meses = meses;
+            ViewBag.TipoConocimientoIdListaValor = new SelectList(lngeneral.ObtenerListaValor(10), "IdListaValor", "Valor");
+            ViewBag.PaisIdListaValor = new SelectList(lngeneral.ObtenerListaValor(17), "IdListaValor", "Valor");
+            ViewBag.NivelConocimientoIdListaValor = new SelectList(lngeneral.ObtenerListaValor(16), "IdListaValor", "Valor");
+            alumnoinformacionadicional.IdAlumno = IdAlumno;
+            alumnoinformacionadicional.IdCV = IdCV;
+            alumnoinformacionadicional.Movimiento = 1;
+
+            return PartialView("_ModalRegistrarInformacionAdicional", alumnoinformacionadicional);
+        }
+
+        public PartialViewResult ModalModificarInformacionAdicional(int IdInformacionAdicional, int IdAlumno, int IdCV)
+        {
+
+            AlumnoInformacionAdicional alumnoinformacionadicional = new AlumnoInformacionAdicional();
+            alumnoinformacionadicional = lnalumnoinformacionadicional.ObtenerAlumnoEstudioPorId(IdInformacionAdicional);
+            if (alumnoinformacionadicional != null && alumnoinformacionadicional.IdInformacionAdicional > 0)
+            {
+                LNGeneral lngeneral = new LNGeneral();
+
+                Dictionary<int, string> meses = new Dictionary<int, string>();
+                meses.Add(1, "Enero");
+                meses.Add(2, "Febrero");
+                meses.Add(3, "Marzo");
+                meses.Add(4, "Abril");
+                meses.Add(5, "Mayo");
+                meses.Add(6, "Junio");
+                meses.Add(7, "Julio");
+                meses.Add(8, "Agosto");
+                meses.Add(9, "Setiembre");
+                meses.Add(10, "Octubre");
+                meses.Add(11, "Noviembre");
+                meses.Add(12, "Diciembre");
+                ViewBag.meses = meses;
+                ViewBag.TipoConocimientoIdListaValor = new SelectList(lngeneral.ObtenerListaValor(10), "IdListaValor", "Valor", alumnoinformacionadicional.TipoConocimientoIdListaValor);
+                ViewBag.PaisIdListaValor = new SelectList(lngeneral.ObtenerListaValor(17), "IdListaValor", "Valor", alumnoinformacionadicional.PaisIdListaValor);
+                ViewBag.NivelConocimientoIdListaValor = new SelectList(lngeneral.ObtenerListaValor(16), "IdListaValor", "Valor", alumnoinformacionadicional.NivelConocimientoIdListaValor);
+                alumnoinformacionadicional.IdAlumno = IdAlumno;
+                alumnoinformacionadicional.IdCV = IdCV;
+                alumnoinformacionadicional.IdInformacionAdicional = IdInformacionAdicional;
+                alumnoinformacionadicional.Movimiento = 2;
+
+                return PartialView("_ModalRegistrarInformacionAdicional", alumnoinformacionadicional);
+            }
+            else
+            {
+                return PartialView();
+            }
+
+        }
+
+        public PartialViewResult ModalRegistroCV(int IdAlumno)
+        {
+
+            AlumnoCV alumnocv = new AlumnoCV();
+            alumnocv.IdAlumno = IdAlumno;
+            return PartialView("_ModalRegistroCV", alumnocv);
+
+        }
+
+        public PartialViewResult _RegistrarAlumnoEstudio(AlumnoEstudio alumnoestudio)
+        {
+            TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
+            alumnoestudio.CreadoPor = ticket.Usuario;
+            if (alumnoestudio.Movimiento == 1)
+            {
+                lnAlumnoEstudio.Insertar(alumnoestudio);
+            }
+            else if (alumnoestudio.Movimiento == 2)
+            {
+                lnAlumnoEstudio.Update(alumnoestudio);
+            }
+
+
+            Alumno alumno = new Alumno();
+            List<AlumnoEstudio> listaalumnoestudio = new List<AlumnoEstudio>();
+
+
+            listaalumnoestudio = lnAlumnoEstudio.ObtenerAlumnoEstudioPorIdAlumno(alumnoestudio.IdAlumno);
+            if (alumno != null && listaalumnoestudio.Count > 0)
+            {
+                listaalumnoestudio = lnAlumnoCVEstudio.ObtenerAlumnoCVEstudioPorIdCVYIdEstudio(alumnoestudio.IdCV, listaalumnoestudio);
+            }
+            return PartialView("_AlumnoEstudiosCV", listaalumnoestudio);
+        }
+
+        public PartialViewResult _RegistrarAlumnoExperiencia(AlumnoExperiencia alumnoexperiencia)
+        {
+            TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
+            alumnoexperiencia.CreadoPor = ticket.Usuario;
+            alumnoexperiencia.Usuario = ticket.Usuario;
+
+            if (alumnoexperiencia.Movimiento == 1)
+            {
+                lnalumnoexperiencia.Registrar(alumnoexperiencia);
+            }
+            else if (alumnoexperiencia.Movimiento == 2)
+            {
+                lnalumnoexperienciacargo.Update(alumnoexperiencia);
+            }
+
+
+            List<AlumnoExperienciaCargo> listaalumnoexperienciacargo = new List<AlumnoExperienciaCargo>();
+
+
+            listaalumnoexperienciacargo = lnalumnoexperienciacargo.ObtenerAlumnoExperienciaCargoPorIdAlumno(alumnoexperiencia.IdAlumno);
+            if (listaalumnoexperienciacargo.Count > 0)
+            {
+                listaalumnoexperienciacargo = lnalumnocvexperienciacargo.ObtenerAlumnoCVExperienciaCargoPorIdCV(alumnoexperiencia.IdCV, listaalumnoexperienciacargo);
+            }
+            return PartialView("_AlumnoExperienciaCV", listaalumnoexperienciacargo);
+
+        }
+
+        public PartialViewResult _RegistrarAlumnoInformacionAdicional(AlumnoInformacionAdicional alumnoinformacionadicional)
+        {
+            TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
+            alumnoinformacionadicional.Usuario = ticket.Usuario;
+            if (alumnoinformacionadicional.Movimiento == 1)
+            {
+                lnalumnoinformacionadicional.Registrar(alumnoinformacionadicional);
+            }
+            else if (alumnoinformacionadicional.Movimiento == 2)
+            {
+                lnalumnoinformacionadicional.Update(alumnoinformacionadicional);
+            }
+
+            List<AlumnoInformacionAdicional> listaalumnoinformacionadicional = new List<AlumnoInformacionAdicional>();
+
+
+            listaalumnoinformacionadicional = lnalumnoinformacionadicional.ObtenerAlumnoInformacionAdicionalPorIdAlumno(alumnoinformacionadicional.IdAlumno);
+            if (listaalumnoinformacionadicional.Count > 0)
+            {
+                listaalumnoinformacionadicional = lnalumnocvinformacionadicional.ObtenerAlumnoCVInformacionAdicionalPorIdCV(alumnoinformacionadicional.IdCV, listaalumnoinformacionadicional);
+            }
+            return PartialView("_AlumnoInformacionAdicionalCV", listaalumnoinformacionadicional);
+        }
+        public PartialViewResult _RegistrarCV(AlumnoCV entidad)
+        {
+            TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
+            entidad.Usuario = ticket.Usuario;
+            entidad.IdPlantillaCV = int.Parse(Util.ObtenerSettings("IdPlantillaCV"));
+            lnAlumnoCV.RegistrarCV(ref entidad);
+
+            VistaPanelAlumnoMiCV panel = new VistaPanelAlumnoMiCV();
+            panel = VistaMICV(entidad.IdAlumno, entidad.IdCV);
+
+
+            List<SelectListItem> listItems = new List<SelectListItem>();
+            foreach (AlumnoCV modelo in panel.ListaAlumnoCV)
+            {
+                SelectListItem item = new SelectListItem();
+                item.Text = modelo.NombreCV;
+                item.Value = modelo.IdCV.ToString();
+                listItems.Add(item);
+            }
+            List<SelectListItem> listItemsPlantillaCV = new List<SelectListItem>();
+            foreach (PlantillaCV modelo in panel.ListaPlantillaCV)
+            {
+                SelectListItem item = new SelectListItem();
+                item.Text = modelo.Plantilla;
+                item.Value = modelo.IdPlantillaCV.ToString();
+                listItemsPlantillaCV.Add(item);
+            }
+            ViewBag.ListaAlumnoCV = listItems;
+            ViewBag.ListaPlantillaCV = listItemsPlantillaCV;
+
+            return PartialView("_OpcionesAlumnoCV", panel);
+        }
+        public PartialViewResult RegistrarInfoCV(AlumnoCV entidad)
+        {
+            TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
+            entidad.Usuario = ticket.Usuario;
+            lnAlumnoCV.UpdateInfo(entidad);
+            return PartialView();
+        }
+
+        public PartialViewResult DesactivarEstudioAlumno(int IdAlumno, int IdCV, int IdEstudio)
+        {
+            TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
+            //entidad.Usuario = ticket.CodAlumnoUTP;
+            lnAlumnoEstudio.Desactivar(IdEstudio, ticket.Usuario);
+            Alumno alumno = new Alumno();
+            List<AlumnoEstudio> listaalumnoestudio = new List<AlumnoEstudio>();
+
+
+            listaalumnoestudio = lnAlumnoEstudio.ObtenerAlumnoEstudioPorIdAlumno(IdAlumno);
+            if (alumno != null && listaalumnoestudio.Count > 0)
+            {
+                listaalumnoestudio = lnAlumnoCVEstudio.ObtenerAlumnoCVEstudioPorIdCVYIdEstudio(IdCV, listaalumnoestudio);
+            }
+            return PartialView("_AlumnoEstudiosCV", listaalumnoestudio);
+        }
+        public PartialViewResult DesactivarExperienciaAlumno(int IdAlumno, int IdCV, int IdExperienciaCargo)
+        {
+            TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
+            //entidad.Usuario = ticket.CodAlumnoUTP;
+            lnalumnoexperienciacargo.Desactivar(IdExperienciaCargo, ticket.Usuario);
+            List<AlumnoExperienciaCargo> listaalumnoexperienciacargo = new List<AlumnoExperienciaCargo>();
+
+
+            listaalumnoexperienciacargo = lnalumnoexperienciacargo.ObtenerAlumnoExperienciaCargoPorIdAlumno(IdAlumno);
+            if (listaalumnoexperienciacargo.Count > 0)
+            {
+                listaalumnoexperienciacargo = lnalumnocvexperienciacargo.ObtenerAlumnoCVExperienciaCargoPorIdCV(IdCV, listaalumnoexperienciacargo);
+            }
+            return PartialView("_AlumnoExperienciaCV", listaalumnoexperienciacargo);
+        }
+        public PartialViewResult DesactivarInformacionAdicionalAlumno(int IdAlumno, int IdCV, int IdInformacionAdicional)
+        {
+            TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
+            //entidad.Usuario = ticket.CodAlumnoUTP;
+            lnalumnoinformacionadicional.Desactivar(IdInformacionAdicional, ticket.Usuario);
+            List<AlumnoInformacionAdicional> listaalumnoinformacionadicional = new List<AlumnoInformacionAdicional>();
+
+
+            listaalumnoinformacionadicional = lnalumnoinformacionadicional.ObtenerAlumnoInformacionAdicionalPorIdAlumno(IdAlumno);
+            if (listaalumnoinformacionadicional.Count > 0)
+            {
+                listaalumnoinformacionadicional = lnalumnocvinformacionadicional.ObtenerAlumnoCVInformacionAdicionalPorIdCV(IdCV, listaalumnoinformacionadicional);
             }
             return PartialView("_AlumnoInformacionAdicionalCV", listaalumnoinformacionadicional);
         }
 
 
 
-        public ActionResult ModalRegistroEstudio()
-        {
 
-            AlumnoEstudio alumnoestudio = new AlumnoEstudio();
-            LNGeneral lngeneral = new LNGeneral();
-
-            alumnoestudio.ListaEstudios = lngeneral.ObtenerListaValor(5);
-            alumnoestudio.ListaTipoEstudios = lngeneral.ObtenerListaValor(7);
-            alumnoestudio.ListaEstadoEstudio = lngeneral.ObtenerListaValor(43);
-            alumnoestudio.ListaObservacionEstudios = lngeneral.ObtenerListaValor(44);
-            //Declara Lista
-            //Carreras y Estudios
-            List<SelectListItem> listItemsCarrera = new List<SelectListItem>();
-            foreach (ListaValor entidad in alumnoestudio.ListaEstudios)
-            {
-                SelectListItem item = new SelectListItem();
-                item.Text = entidad.Valor.ToUpper();
-                item.Value = entidad.IdListaValor.ToString();
-                listItemsCarrera.Add(item);
-            }
-
-            //Tipo Estudios
-            List<SelectListItem> listItemsTipoEstudios = new List<SelectListItem>();
-            foreach (ListaValor entidad in alumnoestudio.ListaTipoEstudios)
-            {
-                SelectListItem item = new SelectListItem();
-                item.Text = entidad.Valor.ToUpper();
-                item.Value = entidad.IdListaValor.ToString();
-                listItemsTipoEstudios.Add(item);
-            }
-
-            //Estado Estudio
-            List<SelectListItem> listItemsEstadoEstudio = new List<SelectListItem>();
-            foreach (ListaValor entidad in alumnoestudio.ListaEstadoEstudio)
-            {
-                SelectListItem item = new SelectListItem();
-                item.Text = entidad.Valor.ToUpper();
-                item.Value = entidad.IdListaValor.ToString();
-                listItemsEstadoEstudio.Add(item);
-            }
-
-            //Observaciones
-            List<SelectListItem> listItemsObservaciones = new List<SelectListItem>();
-            foreach (ListaValor entidad in alumnoestudio.ListaObservacionEstudios)
-            {
-                SelectListItem item = new SelectListItem();
-                item.Text = entidad.Valor.ToUpper();
-                item.Value = entidad.IdListaValor.ToString();
-                listItemsObservaciones.Add(item);
-            }
-
-
-
-            //Lista de Combos
-            ViewBag.ListaEstudios = listItemsCarrera;
-            ViewBag.ListaTipoEstudios = listItemsTipoEstudios;
-            ViewBag.ListaEstadoEstudio = listItemsEstadoEstudio;
-            ViewBag.ListaObservacionEstudios = listItemsObservaciones;
-
-            return PartialView("_ModalRegistroEstudio");
-        }
-
-        public ActionResult ModalRegistroExperiencia()
-        {
-
-            AlumnoExperienciaCargo alumnoexperienciacargo = new AlumnoExperienciaCargo();
-            LNGeneral lngeneral = new LNGeneral();
-
-            alumnoexperienciacargo.ListaSectorEmpresarial = lngeneral.ObtenerListaValor(8);
-            alumnoexperienciacargo.ListaPais = lngeneral.ObtenerListaValor(17);
-            alumnoexperienciacargo.ListaTipoCargo = lngeneral.ObtenerListaValor(9);
-            //Declara Lista
-            //Sector Empresarial
-            List<SelectListItem> listItemsSectorEmpresarial = new List<SelectListItem>();
-            foreach (ListaValor entidad in alumnoexperienciacargo.ListaSectorEmpresarial)
-            {
-                SelectListItem item = new SelectListItem();
-                item.Text = entidad.Valor.ToUpper();
-                item.Value = entidad.IdListaValor.ToString();
-                listItemsSectorEmpresarial.Add(item);
-            }
-
-
-            //Paises
-            List<SelectListItem> listItemsPaises = new List<SelectListItem>();
-            foreach (ListaValor entidad in alumnoexperienciacargo.ListaPais)
-            {
-                SelectListItem item = new SelectListItem();
-                item.Text = entidad.Valor.ToUpper();
-                item.Value = entidad.IdListaValor.ToString();
-                listItemsPaises.Add(item);
-            }
-
-            //Tipo Cargo
-            List<SelectListItem> listItemsTipoCargo = new List<SelectListItem>();
-            foreach (ListaValor entidad in alumnoexperienciacargo.ListaTipoCargo)
-            {
-                SelectListItem item = new SelectListItem();
-                item.Text = entidad.Valor.ToUpper();
-                item.Value = entidad.IdListaValor.ToString();
-                listItemsTipoCargo.Add(item);
-            }
-
-
-            //Lista de Combos
-            ViewBag.ListaSectorEmpresarial = listItemsSectorEmpresarial;
-            ViewBag.ListaPais = listItemsPaises;
-            ViewBag.ListaTipoCargo = listItemsTipoCargo;
-
-            return PartialView("_ModalRegistrarExperiencia");
-        }
-
-        public ActionResult ModalRegistroInformacionAdicional()
-        {
-
-            AlumnoInformacionAdicional alumnoinformacionadicional = new AlumnoInformacionAdicional();
-            LNGeneral lngeneral = new LNGeneral();
-
-            alumnoinformacionadicional.ListaTipoConocimiento = lngeneral.ObtenerListaValor(10);
-            alumnoinformacionadicional.ListaPais = lngeneral.ObtenerListaValor(17);
-            alumnoinformacionadicional.ListaNivelConocimiento = lngeneral.ObtenerListaValor(16);
-            //Declara Lista
-            //Tipo de Conocimiento
-            List<SelectListItem> listItemsTipoConocimiento = new List<SelectListItem>();
-            foreach (ListaValor entidad in alumnoinformacionadicional.ListaTipoConocimiento)
-            {
-                SelectListItem item = new SelectListItem();
-                item.Text = entidad.Valor.ToUpper();
-                item.Value = entidad.IdListaValor.ToString();
-                listItemsTipoConocimiento.Add(item);
-            }
-
-
-            //Paises
-            List<SelectListItem> listItemsPaises = new List<SelectListItem>();
-            foreach (ListaValor entidad in alumnoinformacionadicional.ListaPais)
-            {
-                SelectListItem item = new SelectListItem();
-                item.Text = entidad.Valor.ToUpper();
-                item.Value = entidad.IdListaValor.ToString();
-                listItemsPaises.Add(item);
-            }
-
-            //Nivel de Conocimiento
-            List<SelectListItem> listItemsNivelConocimiento = new List<SelectListItem>();
-            foreach (ListaValor entidad in alumnoinformacionadicional.ListaNivelConocimiento)
-            {
-                SelectListItem item = new SelectListItem();
-                item.Text = entidad.Valor.ToUpper();
-                item.Value = entidad.IdListaValor.ToString();
-                listItemsNivelConocimiento.Add(item);
-            }
-
-
-            //Lista de Combos
-            ViewBag.ListaTipoConocimiento = listItemsTipoConocimiento;
-            ViewBag.ListaPais = listItemsPaises;
-            ViewBag.ListaNivelConocimiento = listItemsNivelConocimiento;
-
-            return PartialView("_ModalRegistrarInformacionAdicional");
-        }
-
-
-
-        public ActionResult RegistrarAlumnoEstudio(AlumnoEstudio alumnoestudio)
-        {
-            TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
-            alumnoestudio.CreadoPor = ticket.Usuario;
-            lnAlumnoEstudio.Insertar(alumnoestudio);
-            return View();
-        }
-
-        public ActionResult RegistrarAlumnoExperiencia(AlumnoExperiencia alumnoexperiencia)
-        {
-            TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
-            alumnoexperiencia.CreadoPor = ticket.Usuario;
-            lnalumnoexperiencia.Registrar(alumnoexperiencia);
-            return View();
-        }
-
-        public ActionResult RegistrarAlumnoInformacionAdicional(AlumnoInformacionAdicional alumnoinformacionadicional)
-        {
-            TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
-            alumnoinformacionadicional.CreadoPor = ticket.Usuario;
-            lnalumnoinformacionadicional.Registrar(alumnoinformacionadicional);
-            return View();
-        }
-
-        public ActionResult RegistrarCV(VistaAlumnoCV entidad)
-        {
-            TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
-            entidad.Usuario = ticket.CodAlumnoUTP;
-            lnAlumnoCV.UpdateInfo(entidad);
-            return View();
-        }
-
-        
 
         #endregion
 
@@ -940,23 +1136,23 @@ namespace UTPPrototipo.Controllers
         {
 
             List<AlertasCvAlumno> lista = new List<AlertasCvAlumno>();
-            
+
 
             TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
 
             DataTable dtResultado = lnoferta.AlertaCvAlumno(ticket.Usuario);
-                       
-            
+
+
             for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
             {
                 AlertasCvAlumno alumno = new AlertasCvAlumno();
                 alumno.NombreCV = Convert.ToString(dtResultado.Rows[i]["NombreCV"]);
                 alumno.PorcentajeCV = Convert.ToInt32(dtResultado.Rows[i]["PorcentajeCV"]);
-                lista.Add(alumno );
+                lista.Add(alumno);
             }
 
             //return PartialView(alumno);
-            return PartialView("AlertaCvAlumno", lista ); 
+            return PartialView("AlertaCvAlumno", lista);
         }
 
         public ActionResult AlertaCvAlumnoDia()
@@ -969,14 +1165,17 @@ namespace UTPPrototipo.Controllers
 
             DataTable dtResultado = lnoferta.AlertaCvAlumnoDia(ticket.Usuario);
 
-
-            for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
+            if (dtResultado.Rows.Count > 0)
             {
-                AlertasCvAlumno alumno = new AlertasCvAlumno();
-                alumno.Dia = Convert.ToInt32(dtResultado.Rows[i]["Dia"]);
-          
-                lista.Add(alumno);
+                for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
+                {
+                    AlertasCvAlumno alumno = new AlertasCvAlumno();
+                    alumno.Dia = Convert.ToInt32(dtResultado.Rows[i]["Dia"] == DBNull.Value ? null : dtResultado.Rows[i]["Dia"]);
+
+                    lista.Add(alumno);
+                }
             }
+
 
             //return PartialView(alumno);
             return PartialView("AlertaCvAlumnoDia", lista);

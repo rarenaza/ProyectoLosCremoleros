@@ -833,6 +833,7 @@
     <Content Include="Views\UTP\AlumnoUtp_obtenerExperiencia.cshtml" />
     <Content Include="Views\UTP\AlumnoUtp_obtenerInformacionAdicional.cshtml" />
     <Content Include="Views\Home\_LayoutRegistro.cshtml" />
+    <Content Include="Views\Alumno\_ModalRegistroCV.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

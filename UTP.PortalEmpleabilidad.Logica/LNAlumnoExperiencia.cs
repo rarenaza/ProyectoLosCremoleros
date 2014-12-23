@@ -19,7 +19,7 @@ namespace UTP.PortalEmpleabilidad.Logica
             if (alumnoexperiencia.IdEmpresa == 0)
             {
                 Empresa empresa = new Empresa();
-                empresa.NombreComercial = alumnoexperiencia.NombreComercial;
+                empresa.NombreComercial = alumnoexperiencia.Empresa;
                 empresa.PaisIdListaValor = alumnoexperiencia.Pais;
                 empresa.DescripcionEmpresa = alumnoexperiencia.DescripcionEmpresa;
                 empresa.SectorEmpresarial1IdListaValor = alumnoexperiencia.SectorEmpresarial;
@@ -41,9 +41,9 @@ namespace UTP.PortalEmpleabilidad.Logica
             alumnoexperienciacargo.IdExperiencia = alumnoexperiencia.IdExperiencia;
             alumnoexperienciacargo.NombreCargo = alumnoexperiencia.NombreCargo;
             alumnoexperienciacargo.FechaInicioCargoMes = alumnoexperiencia.FechaInicioCargoMes;
-            alumnoexperienciacargo.FechaInicioCargoAno = alumnoexperiencia.FechaInicioCargoAno;
+            alumnoexperienciacargo.FechaInicioCargoAno = (int)alumnoexperiencia.FechaInicioCargoAno;
             alumnoexperienciacargo.FechaFinCargoMes = alumnoexperiencia.FechaFinCargoMes;
-            alumnoexperienciacargo.FechaFinCargoAno = alumnoexperiencia.FechaFinCargoAno;
+            alumnoexperienciacargo.FechaFinCargoAno = (int)alumnoexperiencia.FechaFinCargoAno;
             alumnoexperienciacargo.TipoCargo = alumnoexperiencia.TipoCargo;
             alumnoexperienciacargo.DescripcionCargo = alumnoexperiencia.DescripcionCargo;
             alumnoexperienciacargo.CreadoPor = alumnoexperiencia.CreadoPor;

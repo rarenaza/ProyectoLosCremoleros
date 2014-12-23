@@ -145,6 +145,7 @@
 
         };
         Cargar("resultadobusqueda", "/Alumno/BusquedaSimpleOferta", oferta);
+        return false;
     });
     $('#buscaravanzada').click(function () {
         $("#TipoBusqueda").attr('value', 2);
@@ -167,6 +168,7 @@
 
         };
         Cargar("resultadobusqueda", "/Alumno/BusquedaAvanzadaOferta", oferta);
+        return false;
     });
 
     function Cargar(id, link, entidad) {

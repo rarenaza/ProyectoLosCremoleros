@@ -39,7 +39,7 @@ namespace UTP.PortalEmpleabilidad.Logica
         {
             AlumnoCV alumnocv = new AlumnoCV();
 
-            DataTable dtResultado = acv.ObtenerAlumnoCVPorIdAlumnoYIdCV(IdAlumno,IdCV);
+            DataTable dtResultado = acv.ObtenerAlumnoCVPorIdAlumnoYIdCV(IdAlumno, IdCV);
 
             if (dtResultado.Rows.Count > 0)
             {
@@ -63,7 +63,7 @@ namespace UTP.PortalEmpleabilidad.Logica
         {
             List<AlumnoCV> listaAlumnoCV = new List<AlumnoCV>();
             listaAlumnoCV = ObtenerAlumnoCVPorIdAlumno(alumnocv.IdAlumno);
-            if (listaAlumnoCV ==null || listaAlumnoCV.Count == 0)
+            if (listaAlumnoCV == null || listaAlumnoCV.Count == 0)
             {
                 ADAlumnoCV acv = new ADAlumnoCV();
                 acv.Insertar(alumnocv);
@@ -73,33 +73,48 @@ namespace UTP.PortalEmpleabilidad.Logica
 
         }
 
-        public void UpdateInfo(VistaAlumnoCV vistaalumnocv)
+        public void UpdateInfo(AlumnoCV alumnocv)
         {
             ADAlumnoCVEstudio acve = new ADAlumnoCVEstudio();
             ADAlumnoCVExperienciaCargo acvs = new ADAlumnoCVExperienciaCargo();
             ADAlumnoCVInformacionAdicional acvc = new ADAlumnoCVInformacionAdicional();
-            acv.Update(vistaalumnocv);
-            acve.DesactivarPorCV(vistaalumnocv.IdCV);
-            acvs.DesactivarPorCV(vistaalumnocv.IdCV);
-            acvc.DesactivarPorCV(vistaalumnocv.IdCV);
-            foreach (AlumnoEstudio modelo in vistaalumnocv.Estudios)
+            acv.Update(alumnocv);
+            acve.DesactivarPorCV(alumnocv.IdCV);
+            acvs.DesactivarPorCV(alumnocv.IdCV);
+            acvc.DesactivarPorCV(alumnocv.IdCV);
+            if (alumnocv.Estudios != null)
             {
-                acve.AgregarOrModificar(vistaalumnocv.IdCV, modelo.IdEstudio, vistaalumnocv.Usuario);
+                foreach (AlumnoEstudio modelo in alumnocv.Estudios)
+                {
+                    acve.AgregarOrModificar(alumnocv.IdCV, modelo.IdEstudio, alumnocv.Usuario);
+                }
             }
 
-            foreach (AlumnoExperienciaCargo modelo in vistaalumnocv.Experiencias)
+            if (alumnocv.Experiencias != null)
             {
-                acvs.AgregarOrModificar(vistaalumnocv.IdCV, modelo.IdExperienciaCargo, vistaalumnocv.Usuario);
+                foreach (AlumnoExperienciaCargo modelo in alumnocv.Experiencias)
+                {
+                    acvs.AgregarOrModificar(alumnocv.IdCV, modelo.IdExperienciaCargo, alumnocv.Usuario);
+                }
             }
 
-            foreach (AlumnoInformacionAdicional modelo in vistaalumnocv.Conocimientos)
+            if (alumnocv.Conocimientos != null)
             {
-                acvc.AgregarOrModificar(vistaalumnocv.IdCV, modelo.IdInformacionAdicional, vistaalumnocv.Usuario);
+                foreach (AlumnoInformacionAdicional modelo in alumnocv.Conocimientos)
+                {
+                    acvc.AgregarOrModificar(alumnocv.IdCV, modelo.IdInformacionAdicional, alumnocv.Usuario);
+                }
             }
 
 
 
 
+
+        }
+
+        public void RegistrarCV(ref AlumnoCV alumnocv)
+        {
+            acv.RegistrarCV(ref alumnocv);
         }
     }
 }

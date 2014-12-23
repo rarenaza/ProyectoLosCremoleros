@@ -44,5 +44,46 @@ namespace UTP.PortalEmpleabilidad.Logica
 
             return listaAlumnoExperienciaCargo;
         }
+
+       public AlumnoExperiencia ObtenerAlumnoExperienciaCargoPorId(int IdExperienciaCargo)
+       {
+           DataTable dtResultado = new DataTable();
+           dtResultado = aecd.ObtenerAlumnoExperienciaCargoPorId(IdExperienciaCargo);
+           AlumnoExperiencia alumnoexperiencia = new AlumnoExperiencia();
+
+           if (dtResultado.Rows.Count > 0)
+           {
+               alumnoexperiencia.IdExperienciaCargo = Funciones.ToInt(dtResultado.Rows[0]["IdExperienciaCargo"]);
+               alumnoexperiencia.IdExperiencia = Funciones.ToInt(dtResultado.Rows[0]["IdExperiencia"]);
+               alumnoexperiencia.NombreCargo = Funciones.ToString(dtResultado.Rows[0]["NombreCargo"]);
+               alumnoexperiencia.FechaInicioCargoMes = Funciones.ToInt(dtResultado.Rows[0]["FechaInicioCargoMes"]);
+               alumnoexperiencia.Empresa = Funciones.ToString(dtResultado.Rows[0]["Empresa"]);
+               alumnoexperiencia.DescripcionEmpresa = Funciones.ToString(dtResultado.Rows[0]["DescripcionEmpresa"]);
+               alumnoexperiencia.IdEmpresa = Funciones.ToInt(dtResultado.Rows[0]["IdEmpresa"]);
+               alumnoexperiencia.SectorEmpresarial = Funciones.ToString(dtResultado.Rows[0]["SectorEmpresarial"]);
+               alumnoexperiencia.SectorEmpresarial2 = Funciones.ToString(dtResultado.Rows[0]["SectorEmpresarial2"]);
+               alumnoexperiencia.SectorEmpresarial3 = Funciones.ToString(dtResultado.Rows[0]["SectorEmpresarial3"]);
+               alumnoexperiencia.Pais = Funciones.ToString(dtResultado.Rows[0]["Pais"]);
+               alumnoexperiencia.Ciudad = Funciones.ToString(dtResultado.Rows[0]["Ciudad"]);
+               alumnoexperiencia.FechaInicioCargoAno = Funciones.ToInt(dtResultado.Rows[0]["FechaInicioCargoAno"]);
+               alumnoexperiencia.FechaFinCargoMes = Funciones.ToInt(dtResultado.Rows[0]["FechaFinCargoMes"]);
+               alumnoexperiencia.FechaFinCargoAno = Funciones.ToInt(dtResultado.Rows[0]["FechaFinCargoAno"]);
+               alumnoexperiencia.TipoCargo = Funciones.ToString(dtResultado.Rows[0]["TipoCargo"]);
+               alumnoexperiencia.DescripcionCargo = Funciones.ToString(dtResultado.Rows[0]["DescripcionCargo"]);
+           }
+           return alumnoexperiencia;
+       }
+
+       public void Update(AlumnoExperiencia alumnoexperiencia)
+       {
+           aecd.Update(alumnoexperiencia);
+
+       }
+
+       public void Desactivar( int IdExperienciaCargo, string Usuario)
+       {
+           aecd.Desactivar( IdExperienciaCargo,Usuario);
+
+       }
     }
 }

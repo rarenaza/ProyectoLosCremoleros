@@ -11,7 +11,7 @@ namespace UTP.PortalEmpleabilidad.Datos
     public class ADAlumnoCVInformacionAdicional
     {
         ADConexion cnn = new ADConexion();
-        SqlCommand cmd = new SqlCommand();
+        
 
         public DataTable ObtenerAlumnoCVInformacionAdicionalPorIdCVYIdEstudio(int IdCV, int IdInformacionAdicional)
         {
@@ -39,6 +39,7 @@ namespace UTP.PortalEmpleabilidad.Datos
 
         public void DesactivarPorCV(int IdCV)
         {
+            SqlCommand cmd = new SqlCommand();
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = "AlumnoCVInformacionAdicional_DesactivarPorCV";
             cmd.Connection = cnn.cn;
@@ -50,6 +51,7 @@ namespace UTP.PortalEmpleabilidad.Datos
 
         public void AgregarOrModificar(int IdCV, int IdInformacionAdicional, string Usuario)
         {
+            SqlCommand cmd = new SqlCommand();
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = "AlumnoCVInformacionAdicional_AgregarPorCV";
             cmd.Connection = cnn.cn;

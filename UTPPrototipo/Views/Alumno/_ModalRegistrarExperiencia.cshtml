@@ -1,479 +1,129 @@
-﻿
-<div class="modal-dialog">
-    <div class="modal-content">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true" id="idCloseExperiencia">&times;</span><span class="sr-only">Close</span></button>
-            <h4 class="modal-title" id="ExperienciaLaboral">Experiencia Laboral</h4>
+﻿@model UTP.PortalEmpleabilidad.Modelo.AlumnoExperiencia
+
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true" id="idCloseExperiencia">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="ExperienciaLaboral">Experiencia Laboral</h4>
+    </div>
+    <div class="modal-body">
+        @Html.HiddenFor(m => m.IdAlumno)
+        @Html.HiddenFor(m => m.IdCV)
+        @Html.HiddenFor(m => m.Movimiento)
+        @Html.HiddenFor(m => m.IdExperienciaCargo)
+@Html.HiddenFor(m => m.IdEmpresa)
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="input-group fuente-pequeña">
+                    <span class="input-group-addon">Empresa</span>
+                    @Html.TextBoxFor(m => m.Empresa, htmlAttributes: new { @class = "form-control", @placeholder = "Nombre de la Empresa" })
+                </div>
+            </div>
         </div>
-        <div class="modal-body">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="input-group fuente-pequeña">
-                        <span class="input-group-addon">Empresa</span>
-                        <input type="text" class="form-control" placeholder="Nombre de la Empresa" id="txtEmpresa">
-                    </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="input-group fuente-pequeña">
+                    <span class="input-group-addon">Descrip-<br />ción de<br />Empresa</span>
+                    @Html.TextAreaFor(m => m.DescripcionEmpresa, htmlAttributes: new { @class = "form-control", @placeholder = "Descripción de la Empresa", @rows = "3" })
                 </div>
             </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="input-group fuente-pequeña">
-                        <span class="input-group-addon">Descrip-<br />ción de<br />Empresa</span>
-                        <textarea class="form-control" placeholder="Descripción de la Empresa" rows="3" id="txtDescripcionEmpresa"></textarea>
-                    </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="input-group fuente-pequeña">
+                    <span class="input-group-addon">Sector<br />Principal</span>
+                    @Html.DropDownListFor(m => m.SectorEmpresarial, null, "- Seleccionar -", htmlAttributes: new { @class = "form-control" })
                 </div>
             </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="input-group fuente-pequeña">
-                        <span class="input-group-addon">Sector<br />Principal</span>
-                        @*<select id="Lista" class="form-control">
-                                <option value="" selected>- Elija el Sector Empresarial principal -</option>
-                                <option value="1">Auditoría y Consultoría</option>
-                                <option value="1">Banca y Seguros</option>
-                                <option value="1">Construcción e Inmobiliaria</option>
-                                <option value="1">Energía</option>
-                                <option value="1">Industria</option>
-                                <option value="1">Servicios</option>
-                                <option value="1">Tecnología y Software</option>
-                                <option value="1">Telecomunicaciones</option>
-                            </select>*@
-                        @Html.DropDownList("IdSectorEmpresarial1", new SelectList(ViewBag.ListaSectorEmpresarial, "Value", "Text"), "- Elija el Sector Empresarial principal -", new { @class = "form-control" })
-                    </div>
+            <div class="col-sm-3">
+                <div class="input-group fuente-pequeña">
+                    <span class="input-group-addon" style="width:0px;">2</span>
+                    @Html.DropDownListFor(m => m.SectorEmpresarial2, null, "- Seleccionar -", htmlAttributes: new { @class = "form-control" })
                 </div>
-                <div class="col-sm-3">
-                    <div class="input-group fuente-pequeña">
-                        <span class="input-group-addon" style="width:0px;">2</span>
-                        @*<select id="Lista" class="form-control">
-                                <option value="" selected>- - -</option>
-                                <option value="1">Auditoría y Consultoría</option>
-                                <option value="1">Banca y Seguros</option>
-                                <option value="1">Construcción e Inmobiliaria</option>
-                                <option value="1">Energía</option>
-                                <option value="1">Industria</option>
-                                <option value="1">Servicios</option>
-                                <option value="1">Tecnología y Software</option>
-                                <option value="1">Telecomunicaciones</option>
-                            </select>*@
-                        @Html.DropDownList("IdSectorEmpresarial2", new SelectList(ViewBag.ListaSectorEmpresarial, "Value", "Text"), "- - -", new { @class = "form-control" })
-                    </div>
-                </div>
+            </div>
 
-                <div class="col-sm-3">
-                    <div class="input-group fuente-pequeña">
-                        <span class="input-group-addon" style="width:0px;">3</span>
-                        @*<select id="Lista" class="form-control">
-                                <option value="" selected>- - -</option>
-                                <option value="1">Auditoría y Consultoría</option>
-                                <option value="1">Banca y Seguros</option>
-                                <option value="1">Construcción e Inmobiliaria</option>
-                                <option value="1">Energía</option>
-                                <option value="1">Industria</option>
-                                <option value="1">Servicios</option>
-                                <option value="1">Tecnología y Software</option>
-                                <option value="1">Telecomunicaciones</option>
-                            </select>*@
-                        @Html.DropDownList("IdSectorEmpresarial3", new SelectList(ViewBag.ListaSectorEmpresarial, "Value", "Text"), "- - -", new { @class = "form-control" })
-                    </div>
+            <div class="col-sm-3">
+                <div class="input-group fuente-pequeña">
+                    <span class="input-group-addon" style="width:0px;">3</span>
+                    @Html.DropDownListFor(m => m.SectorEmpresarial3, null, "- Seleccionar -", htmlAttributes: new { @class = "form-control" })
                 </div>
             </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="input-group fuente-pequeña">
-                        <span class="input-group-addon">País</span>
-                        @*<select id="Lista" class="form-control">
-                                <option value="" selected>País donde trabajó</option>
-                                <option>Afganistán</option>
-                                <option>Albania</option>
-                                <option>Alemania</option>
-                                <option>Andorra</option>
-                                <option>Angola</option>
-                                <option>Anguila</option>
-                                <option>Antigua y Barbuda</option>
-                                <option>Antillas Neerlandesas</option>
-                                <option>Antártida</option>
-                                <option>Arabia Saudí</option>
-                                <option>Argelia</option>
-                                <option>Argentina</option>
-                                <option>Armenia</option>
-                                <option>Aruba</option>
-                                <option>Australia</option>
-                                <option>Austria</option>
-                                <option>Azerbaiyán</option>
-                                <option>Bahamas</option>
-                                <option>Bangladesh</option>
-                                <option>Barbados</option>
-                                <option>Barhéin</option>
-                                <option>Belice</option>
-                                <option>Benín</option>
-                                <option>Bermudas</option>
-                                <option>Bielorrusia</option>
-                                <option>Bolivia</option>
-                                <option>Bosnia Herzegovina</option>
-                                <option>Botsuana</option>
-                                <option>Brasil</option>
-                                <option>Brunei Darussalam</option>
-                                <option>Bulgaria</option>
-                                <option>Burkina Faso</option>
-                                <option>Burundi</option>
-                                <option>Bután</option>
-                                <option>Bélgica</option>
-                                <option>Cabo Verde</option>
-                                <option>Camboya</option>
-                                <option>Camerún</option>
-                                <option>Canadá</option>
-                                <option>Chad</option>
-                                <option>Chile</option>
-                                <option>China</option>
-                                <option>Chipre</option>
-                                <option>Colombia</option>
-                                <option>Comoras</option>
-                                <option>Congo</option>
-                                <option>Costa Rica</option>
-                                <option>Costa de Marfil</option>
-                                <option>Croacia</option>
-                                <option>Cuba</option>
-                                <option>Dinamarca</option>
-                                <option>Dominica</option>
-                                <option>Ecuador</option>
-                                <option>Egipto</option>
-                                <option>El Salvador</option>
-                                <option>El Vaticano (Est Ciu Vaticano)</option>
-                                <option>Emiratos Árabes Unidos</option>
-                                <option>Eritrea</option>
-                                <option>Escocia</option>
-                                <option>Eslovaquia</option>
-                                <option>Eslovenia</option>
-                                <option>España</option>
-                                <option>Estados Unidos</option>
-                                <option>Estonia</option>
-                                <option>Etiopía</option>
-                                <option>Ex Repúb Yugosl de Macedonia</option>
-                                <option>Federación Rusa</option>
-                                <option>Filipinas</option>
-                                <option>Finlandia</option>
-                                <option>Fiyi</option>
-                                <option>Francia</option>
-                                <option>Gabón</option>
-                                <option>Gales</option>
-                                <option>Gambia</option>
-                                <option>Georgia</option>
-                                <option>Ghana</option>
-                                <option>Gibraltar</option>
-                                <option>Granada</option>
-                                <option>Grecia</option>
-                                <option>Groenlandia</option>
-                                <option>Guadalupe</option>
-                                <option>Guam</option>
-                                <option>Guatemala</option>
-                                <option>Guayana Francesa</option>
-                                <option>Guernsey</option>
-                                <option>Guinea</option>
-                                <option>Guinea Ecuatorial</option>
-                                <option>Guinea-Bisau</option>
-                                <option>Guyana</option>
-                                <option>Haití</option>
-                                <option>Honduras</option>
-                                <option>Hong Kong</option>
-                                <option>Hungría</option>
-                                <option>I Pitcairn</option>
-                                <option>India</option>
-                                <option>Indonesia</option>
-                                <option>Inglaterra</option>
-                                <option>Irak</option>
-                                <option>Irlanda</option>
-                                <option>Irlanda del Norte</option>
-                                <option>Irán (República Islámica de)</option>
-                                <option>Isla Bouvet</option>
-                                <option>Isla Christmas</option>
-                                <option>Isla Norfolk</option>
-                                <option>Isla de Man</option>
-                                <option>Islandia</option>
-                                <option>Islas Caimán</option>
-                                <option>Islas Cocos</option>
-                                <option>Islas Cook</option>
-                                <option>Islas Feroe</option>
-                                <option>Islas Georgia S y Sandwich S</option>
-                                <option>Islas Heard y McDonald</option>
-                                <option>Islas Malvinas</option>
-                                <option>Islas Marianas del Norte</option>
-                                <option>Islas Marshall</option>
-                                <option>Islas Menores Alejadas de EEUU</option>
-                                <option>Islas Salomón</option>
-                                <option>Islas Turcas y Caicos</option>
-                                <option>Islas Vírgenes Americanas</option>
-                                <option>Islas Vírgenes Británicas</option>
-                                <option>Islas de Aland</option>
-                                <option>Israel</option>
-                                <option>Italia</option>
-                                <option>Jamaica</option>
-                                <option>Japón</option>
-                                <option>Jersey</option>
-                                <option>Jordania</option>
-                                <option>Kazajstán</option>
-                                <option>Kenia</option>
-                                <option>Kirguizistán</option>
-                                <option>Kiribati</option>
-                                <option>Kosovo</option>
-                                <option>Kuwait</option>
-                                <option>Lesoto</option>
-                                <option>Letonia</option>
-                                <option>Liberia</option>
-                                <option>Libia, Yamahiriya Árabe</option>
-                                <option>Liechtenstein</option>
-                                <option>Lituania</option>
-                                <option>Luxemburgo</option>
-                                <option>Líbano</option>
-                                <option>Macao</option>
-                                <option>Madagascar</option>
-                                <option>Malasia</option>
-                                <option>Malaui</option>
-                                <option>Maldivas</option>
-                                <option>Malta</option>
-                                <option>Malí</option>
-                                <option>Marruecos</option>
-                                <option>Martinica</option>
-                                <option>Mauricio</option>
-                                <option>Mauritania</option>
-                                <option>Mayotte</option>
-                                <option>Mianmar</option>
-                                <option>Micronesia</option>
-                                <option>Mongolia</option>
-                                <option>Montserrat</option>
-                                <option>Mozambique</option>
-                                <option>México</option>
-                                <option>Mónaco</option>
-                                <option>Namibia</option>
-                                <option>Naurú</option>
-                                <option>Nepal</option>
-                                <option>Nicaragua</option>
-                                <option>Nigeria</option>
-                                <option>Niue</option>
-                                <option>Noruega</option>
-                                <option>Nueva Caledonia</option>
-                                <option>Nueva Zelanda</option>
-                                <option>Níger</option>
-                                <option>Omán</option>
-                                <option>Palaos</option>
-                                <option>Panamá</option>
-                                <option>Papúa Nueva Guinea</option>
-                                <option>Paquistán</option>
-                                <option>Paraguay</option>
-                                <option>Países Bajos</option>
-                                <option>Perú</option>
-                                <option>Polinesia Francesa</option>
-                                <option>Polonia</option>
-                                <option>Portugal</option>
-                                <option>Puerto Rico</option>
-                                <option>Qatar</option>
-                                <option>Reino Unido</option>
-                                <option>Rep Democrática del Congo</option>
-                                <option>Repúb Democrática Pop Laos</option>
-                                <option>Repúb Democrática Pop de Corea</option>
-                                <option>República Centroafricana</option>
-                                <option>República Checa</option>
-                                <option>República Dominicana</option>
-                                <option>República Unida de Tanzania</option>
-                                <option>República de Corea</option>
-                                <option>República de Moldavia</option>
-                                <option>República de Montenegro</option>
-                                <option>República de Serbia</option>
-                                <option>República Árabe Siria</option>
-                                <option>Reunión</option>
-                                <option>Ruanda</option>
-                                <option>Rumanía</option>
-                                <option>Samoa</option>
-                                <option>Samoa Americana</option>
-                                <option>San Bartolomé</option>
-                                <option>San Cristóbal y Nieves</option>
-                                <option>San Marino</option>
-                                <option>San Martín</option>
-                                <option>San Pedro y Miquelón</option>
-                                <option>San Vicente y las Granadinas</option>
-                                <option>Santa Elena</option>
-                                <option>Santa Lucía</option>
-                                <option>Santo Tomé y Príncipe</option>
-                                <option>Senegal</option>
-                                <option>Seychelles</option>
-                                <option>Sierra Leona</option>
-                                <option>Singapur</option>
-                                <option>Somalia</option>
-                                <option>Sri Lanka</option>
-                                <option>Suazilandia</option>
-                                <option>Sudáfrica</option>
-                                <option>Sudán</option>
-                                <option>Sudán del Sur</option>
-                                <option>Suecia</option>
-                                <option>Suiza</option>
-                                <option>Surinam</option>
-                                <option>Svalbard y Jan Mayen</option>
-                                <option>Sáhara Occidental</option>
-                                <option>Tailandia</option>
-                                <option>Taiwán</option>
-                                <option>Tayiquistán</option>
-                                <option>Terr Australes Franceses</option>
-                                <option>Terr Britán Océano Índico</option>
-                                <option>Terr Palestinos Ocupados</option>
-                                <option>Timor Oriental</option>
-                                <option>Togo</option>
-                                <option>Tokelau</option>
-                                <option>Tonga</option>
-                                <option>Trinidad y Tobago</option>
-                                <option>Turkmenistán</option>
-                                <option>Turquía</option>
-                                <option>Tuvalú</option>
-                                <option>Túnez</option>
-                                <option>Ucrania</option>
-                                <option>Uganda</option>
-                                <option>Uruguay</option>
-                                <option>Uzbekistán</option>
-                                <option>Vanuatú</option>
-                                <option>Venezuela</option>
-                                <option>Vietnam</option>
-                                <option>Wallis y Futuna</option>
-                                <option>Yemen</option>
-                                <option>Yibuti</option>
-                                <option>Yugoslavia</option>
-                                <option>Zambia</option>
-                                <option>Zimbabue</option>
-                            </select>*@
-                        @Html.DropDownList("IdPais", new SelectList(ViewBag.ListaPais, "Value", "Text"), "- Seleccionar -", new { @class = "form-control" })
-                    </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="input-group fuente-pequeña">
+                    <span class="input-group-addon">País</span>
+                    @Html.DropDownListFor(m => m.Pais, null, "- Seleccionar -", htmlAttributes: new { @class = "form-control" })
                 </div>
-                <div class="col-sm-6">
-                    <div class="input-group fuente-pequeña">
-                        <span class="input-group-addon">Ciudad</span>
-                        <input type="text" class="form-control" placeholder="Ciudad donde trabajó" id="txtCiudad">
-                    </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="input-group fuente-pequeña">
+                    <span class="input-group-addon">Ciudad</span>
+                    @Html.TextBoxFor(m => m.Ciudad, htmlAttributes: new { @class = "form-control", @placeholder = "Ciudad donde trabajó" })
                 </div>
+            </div>
 
 
-            </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="input-group fuente-pequeña">
-                        <span class="input-group-addon">Tipo</span>
-                        @*<select id="Lista" class="form-control">
-                                <option value="" selected>Tipo de Cargo</option>
-                                <option value="1">Practicante</option>
-                                <option value="1">Obrero</option>
-                                <option value="1">Empleado</option>
-                                <option value="1">Supervisor</option>
-                                <option value="1">Ejecutivo</option>
-                            </select>*@
-                        @Html.DropDownList("IdTipoCargo", new SelectList(ViewBag.ListaTipoCargo, "Value", "Text"), "- Tipo de Cargo -", new { @class = "form-control" })
-                    </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="input-group fuente-pequeña">
+                    <span class="input-group-addon">Tipo</span>
+                    @Html.DropDownListFor(m => m.TipoCargo , null, "- Seleccionar -", htmlAttributes: new { @class = "form-control" })
                 </div>
             </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="input-group fuente-pequeña">
-                        <span class="input-group-addon">Cargo</span>
-                        <input type="text" class="form-control" placeholder="Nombre del Cargo" id="txtCargo">
-                    </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="input-group fuente-pequeña">
+                    <span class="input-group-addon">Cargo</span>
+                    @Html.TextBoxFor(m => m.NombreCargo, htmlAttributes: new { @class = "form-control", @placeholder = "Nombre del Cargo" })
                 </div>
             </div>
-            <div class="row">
-                <div class="col-sm-3">
-                    <div class="input-group fuente-pequeña">
-                        <span class="input-group-addon">Año Inicio</span>
-                        <input type="text" class="form-control" placeholder="Año Inicio">
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="input-group fuente-pequeña">
-                        <span class="input-group-addon">Mes Inicio</span>
-                        <select id="Lista" class="form-control">
-                            <option value="" selected>Mes de Inicio de cargo</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
-                            <option>9</option>
-                            <option>10</option>
-                            <option>11</option>
-                            <option>12</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="input-group fuente-pequeña">
-                        <span class="input-group-addon">Año Fin</span>
-                        <input type="text" class="form-control" placeholder="Año Fin">
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="input-group fuente-pequeña">
-                        <span class="input-group-addon">Mes Fin</span>
-                        <select id="Lista" class="form-control">
-                            <option value="" selected>Mes de Fin de cargo</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
-                            <option>9</option>
-                            <option>10</option>
-                            <option>11</option>
-                            <option>12</option>
-                        </select>
-                    </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="input-group fuente-pequeña">
+                    <span class="input-group-addon">Año Inicio</span>
+                    @Html.TextBoxFor(m => m.FechaInicioCargoAno, htmlAttributes: new { @class = "form-control", @placeholder = "Año Inicio" })
                 </div>
             </div>
+            <div class="col-sm-6">
+                <div class="input-group fuente-pequeña">
+                    <span class="input-group-addon">Mes Inicio</span>
+                    @Html.DropDownListFor(m => m.FechaInicioCargoMes, new SelectList(ViewBag.meses, "Key", "Value"), "Mes de Inicio de cargo", htmlAttributes: new { @class = "form-control" })
+
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="input-group fuente-pequeña">
+                    <span class="input-group-addon">Año Fin</span>
+                    @Html.TextBoxFor(m => m.FechaFinCargoAno, htmlAttributes: new { @class = "form-control", @placeholder = "Año Fin" })
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="input-group fuente-pequeña">
+                    <span class="input-group-addon">Mes Fin</span>
+                    @Html.DropDownListFor(m => m.FechaFinCargoMes, new SelectList(ViewBag.meses, "Key", "Value"), "Mes de Inicio de cargo", htmlAttributes: new { @class = "form-control" })
+                </div>
+            </div>
+        </div>
             <div class="row">
                 <div class="col-sm-12">
                     <div class="input-group fuente-pequeña">
                         <span class="input-group-addon">Descrip-<br />ción de<br />Cargo</span>
-                        <textarea class="form-control" placeholder="Descripción de funciones" rows="8" id="txtDescripcionCargo"></textarea>
+                        @Html.TextAreaFor(m => m.DescripcionCargo, htmlAttributes: new { @class = "form-control", @placeholder = "Descripción de funciones", @rows = "8" })
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-12 text-right"><button type="button" class="btn btn-default color-paleta4 fuente-pequeña" style="color: white; margin-bottom: 10px;" id="IdRegistrarExperiencia">Grabar Experiencia Laboral</button></div>
+                <div class="col-sm-12 text-right"><button type="submit" class="btn btn-default color-paleta4 fuente-pequeña" style="color: white; margin-bottom: 10px;" id="IdRegistrarExperiencia">Grabar Experiencia Laboral</button></div>
             </div>
         </div>
-        <div class="modal-footer">
-        </div>
+    <div class="modal-footer">
     </div>
 </div>
 
-<script>
-    $("#IdRegistrarExperiencia").click(function () {
-        var Id = $("#HIIdCV").val();
-        var vistacv = {
-            IdAlumno: $('#IdAlumno').val(),
-            IdCV: Id
-        };
-        var experiencia = {
-            IdAlumno: $('#IdAlumno').val(),
-            Empresa: $('#txtEmpresa').val(),
-            DescripcionEmpresa: $('#txtDescripcionEmpresa').val(),
-            IdEmpresa: 0,
-            SectorEmpresarial: $('#IdSectorEmpresarial1').val(),
-            SectorEmpresarial2: $('#IdSectorEmpresarial2').val(),
-            SectorEmpresarial3: $('#IdSectorEmpresarial3').val(),
-            Pais: $('#IdPais').val(),
-            Ciudad: $('#txtCiudad').val(),
-            NombreComercial: $('#txtEmpresa').val(),
-            NombreCargo: $('#txtCargo').val(),
-            FechaInicioCargoMes: 1,
-            FechaInicioCargoAno: 2013,
-            FechaFinCargoMes: 5,
-            FechaFinCargoAno: 2014,
-            TipoCargo: $('#IdTipoCargo').val(),
-            DescripcionCargo: $('#txtDescripcionCargo').val()
-        };
-
-        CargarPOST(null, "/Alumno/RegistrarAlumnoExperiencia", experiencia);
-        CargarPOST("mi-cv-experiencia-laboral", "/Alumno/AlumnoExperienciaCV", vistacv);
-    });
-    $("#idCloseExperiencia").click(function () {
-        $("#Modal-experiencia-laboral").dialog("close");
-    });
-</script>

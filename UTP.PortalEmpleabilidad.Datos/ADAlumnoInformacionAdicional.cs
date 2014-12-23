@@ -60,7 +60,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.Parameters.Add(new SqlParameter("@Ciudad", alumnoinformacionadicional.Ciudad));
                 cmd.Parameters.Add(new SqlParameter("@InstituciónDeEstudio", alumnoinformacionadicional.InstituciónDeEstudio));
                 cmd.Parameters.Add(new SqlParameter("@AñosExperiencia", alumnoinformacionadicional.AñosExperiencia));
-                cmd.Parameters.Add(new SqlParameter("@CreadoPor", alumnoinformacionadicional.CreadoPor));
+                cmd.Parameters.Add(new SqlParameter("@CreadoPor", alumnoinformacionadicional.Usuario));
                 cmd.ExecuteNonQuery();
                 conexion.Close();
             }
@@ -131,7 +131,7 @@ namespace UTP.PortalEmpleabilidad.Datos
 
         }
 
-        public void Desactivar(int IdInformacionAdicional)
+        public void Desactivar(int IdInformacionAdicional,string Usuario)
         {
             using (SqlConnection conexion = new SqlConnection(cnn.Conexion()))
             {
@@ -147,6 +147,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "AlumnoInformacionAdicional_Desactivar";
                     cmd.Parameters.Add(new SqlParameter("@IdInformacionAdicional", SqlDbType.Int)).Value = IdInformacionAdicional;
+                    cmd.Parameters.Add(new SqlParameter("@ModificadoPor", SqlDbType.VarChar, 50)).Value = Usuario;
 
                     cmd.ExecuteNonQuery();
                     transaccion.Commit();

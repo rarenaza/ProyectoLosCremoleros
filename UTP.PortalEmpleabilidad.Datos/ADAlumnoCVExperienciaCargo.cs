@@ -11,9 +11,9 @@ namespace UTP.PortalEmpleabilidad.Datos
     public class ADAlumnoCVExperienciaCargo
     {
         ADConexion cnn = new ADConexion();
-        SqlCommand cmd = new SqlCommand();
+        
 
-        public DataTable ObtenerAlumnoCVExperienciaCargoPorIdCVYIdEstudio(int IdCV, int IdExperienciaCargo)
+        public DataTable ObtenerAlumnoCVExperienciaCargoPorIdCVYIdExperiencia(int IdCV, int IdExperienciaCargo)
         {
             DataTable dtResultado = new DataTable();
 
@@ -39,6 +39,7 @@ namespace UTP.PortalEmpleabilidad.Datos
 
         public void DesactivarPorCV(int IdCV)
         {
+            SqlCommand cmd = new SqlCommand();
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = "AlumnoCVExperienciaCargo_DesactivarPorCV";
             cmd.Connection = cnn.cn;
@@ -50,6 +51,7 @@ namespace UTP.PortalEmpleabilidad.Datos
 
         public void AgregarOrModificar(int IdCV, int IdExperienciaCargo, string Usuario)
         {
+            SqlCommand cmd = new SqlCommand();
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = "AlumnoCVExperienciaCargo_AgregarPorCV";
             cmd.Connection = cnn.cn;
@@ -57,7 +59,6 @@ namespace UTP.PortalEmpleabilidad.Datos
             cmd.Parameters.Add(new SqlParameter("@IdCV", SqlDbType.Int)).Value = IdCV;
             cmd.Parameters.Add(new SqlParameter("@IdExperienciaCargo", SqlDbType.Int)).Value = IdExperienciaCargo;
             cmd.Parameters.Add(new SqlParameter("@Usuario", SqlDbType.VarChar,50)).Value = Usuario;
-
             cmd.ExecuteNonQuery();
             cnn.Desconectar();
         }

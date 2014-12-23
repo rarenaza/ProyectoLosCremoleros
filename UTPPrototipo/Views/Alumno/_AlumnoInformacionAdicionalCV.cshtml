@@ -11,7 +11,7 @@
     <div id="collapseMiCVInformacionAdicional" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingMiCVInformacionAdicional">
         <div class="panel-body fuente-pequeña">
             <div class="row">
-                <div class="col-sm-12 text-right"><button type="button" class="btn btn-default color-paleta4 fuente-pequeña" style="color: white; margin-bottom: 10px;" id="IdGrabarInformacionAdicional">Agregar Información Adicional</button></div>
+                <div class="col-sm-12 text-right"><button type="button" class="btn btn-default color-paleta4 fuente-pequeña" style="color: white; margin-bottom: 10px;" id="IdGrabarInformacionAdicional" onclick="crearConocimiento();">Agregar Información Adicional</button></div>
             </div>
             @if (Model != null && Model.Count > 0)
             {
@@ -42,7 +42,7 @@
                                     <span class="valor-icono2">x</span><span class="valor-palabra">@item.DesNivelConocimiento</span>
                                 </div>
                                 <div class="col-sm-2">
-                                    <strong>@Html.FormatoFechaAnioMes(item.FechaConocimientoDesdeMes,item.FechaConocimientoDesdeAno)  - @Html.FormatoFechaAnioMes(item.FechaConocimientoHastaMes, item.FechaConocimientoHastaAno)</strong>
+                                    <strong>@Html.FormatoFechaAnioMes((int)item.FechaConocimientoDesdeMes,(int) item.FechaConocimientoDesdeAno)  - @Html.FormatoFechaAnioMes((int)item.FechaConocimientoHastaMes,(int) item.FechaConocimientoHastaAno)</strong>
                                 </div>
                             </div>
                             <div class="row">
@@ -54,13 +54,13 @@
                                 </div>
                                 <div class="col-sm-2">
                                     
-                                    @Html.FormatoFechaAnio(item.AñosExperiencia)
+                                    @Html.FormatoFechaAnio((int) item.AñosExperiencia)
                                 </div>
 
                             </div>
                         </div>
                         <div class="col-sm-1 fuente-pequeña">
-                            <button class="btn btn-xs fa fa-pencil color-paleta4"></button>&nbsp;&nbsp;<button class="btn btn-xs fa fa-remove color-paleta4"></button>
+                            <button class="btn btn-xs fa fa-pencil color-paleta4" onclick="editarConocimiento(this);" id='Editar_@item.IdInformacionAdicional'></button>&nbsp;&nbsp;<button class="btn btn-xs fa fa-remove color-paleta4" onclick="eliminarConocimiento(this);" id='Delete_@item.IdInformacionAdicional'></button>
                         </div>
                     </div>
                     <hr />
@@ -69,89 +69,43 @@
             }
 
 
-            @*<div class="row">
-                <div class="col-sm-1">
-                    <span>Incluir </span><input type="checkbox" />
-                </div>
-                <div class="col-sm-10">
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <span><strong>Idioma</strong></span>
-                        </div>
-                        <div class="col-sm-5">
-                            <strong>Francés </strong>
-                        </div>
-                        <div class="col-sm-2">
-                            <span class="valor-icono2">w</span><span class="valor-palabra">Nivel Básico</span>
-                        </div>
-                        <div class="col-sm-2">
-                            <strong>11/2011</strong>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <strong>Lima - Perú</strong>
-                        </div>
-                        <div class="col-sm-7">
-                            <strong>Alianza Francesa de Los Olivos</strong>
-                        </div>
-                        <div class="col-sm-2">
-                            1 año
-                        </div>
-
-                    </div>
-                </div>
-                <div class="col-sm-1 fui fa-2x" style="color:gray;">
-                    1 l
-                </div>
-            </div>
-            <hr />
-            <div class="row">
-                <div class="col-sm-1">
-                    <span>Incluir </span><input type="checkbox" />
-                </div>
-                <div class="col-sm-10">
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <span><strong>Curso</strong></span>
-                        </div>
-                        <div class="col-sm-5">
-                            <strong>Administración efectiva de Aplicaciones de Software</strong>
-                        </div>
-                        <div class="col-sm-2">
-                            <span class="valor-icono2">y</span><span class="valor-palabra">Nivel Avanzado</span>
-                        </div>
-                        <div class="col-sm-2">
-                            <strong>01/2013</strong>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <strong>Buenos Aires - Argentina</strong>
-                        </div>
-                        <div class="col-sm-7">
-                            <strong>Universidad de Belgrano</strong>
-                        </div>
-                        <div class="col-sm-2">
-                            1 año
-                        </div>
-
-                    </div>
-                </div>
-                <div class="col-sm-1 fui fa-2x" style="color:gray;">
-                    1 l
-                </div>
-            </div>*@
 
         </div>
     </div>
 </div>
 <script>
-    $("#IdGrabarInformacionAdicional").click(function () {
-        CargarPOSTNull("Modal-otro-conocimiento", "ModalRegistroInformacionAdicional");
-        //CargarPOST("Modal-otro-conocimiento", "ModalRegistroInformacionAdicional", null);
-        //$('#Modal-otro-conocimiento').modal("show");
-        //return false;
-    });
+    function crearConocimiento() {
+        var IdAlumno = $('#IdAlumno').val();
+        var IdCV = $('#HIIdCV').val();
+        var url = "/Alumno/ModalRegistroInformacionAdicional?idAlumno=" + IdAlumno + "&IdCV=" + IdCV; // el url del controlador
+        $.get(url, function (data) {
+            $('#Modal-Nuevo-otro-conocimiento').html(data);
+            $.validator.unobtrusive.parse('#Modal-Nuevo-otro-conocimiento');
+            $('#Modal-otro-conocimiento').modal("show");
+        });
+    }
+
+    function editarConocimiento(obj) {
+        var IdAlumno = $('#IdAlumno').val();
+        var IdCV = $('#HIIdCV').val();
+        var IdInformacionAdicional = $(obj).attr('Id').split("_")[1];
+        var url = "/Alumno/ModalModificarInformacionAdicional?idAlumno=" + IdAlumno + "&IdCV=" + IdCV + "&IdInformacionAdicional=" + IdInformacionAdicional; // el url del controlador
+        $.get(url, function (data) {
+            $('#Modal-Nuevo-otro-conocimiento').html(data);
+            $.validator.unobtrusive.parse('#Modal-Nuevo-otro-conocimiento');
+            $('#Modal-otro-conocimiento').modal("show");
+        });
+    }
+    function eliminarConocimiento(obj) {
+        var IdAlumno = $('#IdAlumno').val();
+        var IdCV = $('#HIIdCV').val();
+        var IdInformacionAdicional = $(obj).attr('Id').split("_")[1];
+        var url = "/Alumno/DesactivarInformacionAdicionalAlumno?idAlumno=" + IdAlumno + "&IdCV=" + IdCV + "&IdInformacionAdicional=" + IdInformacionAdicional; // el url del controlador
+        $.get(url, function (data) {
+            $('#mi-cv-informacion-adicional').html(data);
+            $.validator.unobtrusive.parse('#mi-cv-informacion-adicional');
+        });
+    }
+
 
 </script>

@@ -40,50 +40,53 @@
 
 <!-- Modal -->
 <div class="modal" id="Modal-experiencia-laboral" tabindex="-1" role="dialog" aria-labelledby="ExperienciaLaboral" aria-hidden="true">
+    @using (Ajax.BeginForm("_RegistrarAlumnoExperiencia", "Alumno", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "mi-cv-experiencia-laboral", OnComplete = "CerrarModal" }))
+    {
+        @Html.AntiForgeryToken()
 
+        <div class="modal-dialog" id="Modal-Nuevo-experiencia-laboral">
+
+        </div>
+    }
 </div>
 
 <!-- Modal -->
 <div class="modal" id="Modal-estudio" tabindex="-1" role="dialog" aria-labelledby="Estudio" aria-hidden="true">
-   
+    @using (Ajax.BeginForm("_RegistrarAlumnoEstudio", "Alumno", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "mi-cv-educacion", OnComplete = "CerrarModal" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="modal-dialog" id="Modal-Nuevo-Estudio">
+
+        </div>
+    }
 </div>
 
 <!-- Modal -->
 
 <div class="modal" id="Modal-otro-conocimiento" tabindex="-1" role="dialog" aria-labelledby="Estudio" aria-hidden="true">
 
-   
+    @using (Ajax.BeginForm("_RegistrarAlumnoInformacionAdicional", "Alumno", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "mi-cv-informacion-adicional", OnComplete = "CerrarModal" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="modal-dialog" id="Modal-Nuevo-otro-conocimiento">
+
+        </div>
+    }
 </div>
 
 <!-- Modal -->
-<div class="modal" id="Modal-nuevo-cv" tabindex="-1" role="dialog" aria-labelledby="NuevoCV" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="Estudio">Nuevo CV</h4>
-            </div>
-            <div class="modal-body">
+<div class="modal" id="Modal-cv" tabindex="-1" role="dialog" aria-labelledby="NuevoCV" aria-hidden="true">
+    @using (Ajax.BeginForm("_RegistrarCV", "Alumno", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "mi-cv-opciones", OnComplete = "CerrarModal" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="modal-dialog" id="Modal-Nuevo-CV">
 
 
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="input-group fuente-pequeña">
-                            <span class="input-group-addon">Nombre CV</span>
-                            <input type="text" class="form-control" placeholder="Ingrese Nombre del Nuevo CV">
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="row">
-                    <div class="col-sm-12 text-right"><button type="button" class="btn btn-default color-paleta4 fuente-pequeña" style="color: white; margin-bottom: 10px;">Guardar nuevo CV</button></div>
-                </div>
-            </div>
-            <div class="modal-footer">
-            </div>
         </div>
-    </div>
+    }
 </div>
 
 
@@ -101,7 +104,9 @@
 
     });
 
-
+    function CerrarModal() {
+        $('.modal.in').modal('hide');
+    }
 </script>
 
 
