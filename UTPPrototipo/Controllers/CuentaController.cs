@@ -26,9 +26,10 @@ namespace UTPPrototipo.Controllers
             return PartialView("_Login");
         }
 
-        [HttpPost]
+        [HttpPost,ValidateAntiForgeryToken]
         public ActionResult Autenticar(Usuario usuario)
         {
+              
             List<Usuario> lista = new List<Usuario>();
 
             //1. Validar si el login pertenece a la tabla Alumno.
@@ -170,12 +171,12 @@ namespace UTPPrototipo.Controllers
                     
 
                 }
-            }          
+            }
 
-    
+               
             return PartialView("_Login", usuario);
 
-                     
+            
         }        
 	}
 }

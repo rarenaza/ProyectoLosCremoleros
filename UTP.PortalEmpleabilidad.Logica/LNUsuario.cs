@@ -33,7 +33,11 @@ namespace UTP.PortalEmpleabilidad.Logica
         {
             return adUsuario.ValidarNombreDeUsuario(nombreUsuario);
         }
-
+        public bool ValidarExistenciaEmpresa(string empresaPais, string empresaRUC)
+        {
+            return adUsuario.ValidarExistenciaEmpresa(empresaPais, empresaRUC);
+        }
+        
         public List<Usuario> ObtenerUsuariosPorTipo(string tipoUsuario)
         {
             List<Usuario> usuarios = new List<Usuario>();

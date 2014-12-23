@@ -57,22 +57,22 @@ namespace UTP.PortalEmpleabilidad.Logica
             //Se formatea los valores nulos.
 
             //Empresa
-            if (empresa.LinkVideo == null) empresa.LinkVideo = string.Empty;
-            if (empresa.DescripcionEmpresa == null) empresa.DescripcionEmpresa = string.Empty;
-            if (empresa.PaisIdListaValor == null) empresa.PaisIdListaValor = string.Empty;
-            if (empresa.NumeroEmpleadosIdListaValor == null) empresa.NumeroEmpleadosIdListaValor = string.Empty;
-            if (empresa.SectorEmpresarial2IdListaValor == null) empresa.SectorEmpresarial2IdListaValor = string.Empty;
-            if (empresa.SectorEmpresarial3IdListaValor == null) empresa.SectorEmpresarial3IdListaValor = string.Empty;   
+            //if (empresa.LinkVideo == null) empresa.LinkVideo = string.Empty;
+            //if (empresa.DescripcionEmpresa == null) empresa.DescripcionEmpresa = string.Empty;
+            //if (empresa.PaisIdListaValor == null) empresa.PaisIdListaValor = string.Empty;
+            //if (empresa.NumeroEmpleadosIdListaValor == null) empresa.NumeroEmpleadosIdListaValor = string.Empty;
+            //if (empresa.SectorEmpresarial2IdListaValor == null) empresa.SectorEmpresarial2IdListaValor = string.Empty;
+            //if (empresa.SectorEmpresarial3IdListaValor == null) empresa.SectorEmpresarial3IdListaValor = string.Empty;   
 
-            //Locación
-            if (empresa.EmailLocacion == null) empresa.EmailLocacion = string.Empty;
-            if (empresa.TelefonoLocacion == null) empresa.TelefonoLocacion = string.Empty;
+            ////Locación
+            //if (empresa.EmailLocacion == null) empresa.EmailLocacion = string.Empty;
+            //if (empresa.TelefonoLocacion == null) empresa.TelefonoLocacion = string.Empty;
 
-            //Usuario
-            if (empresa.SexoIdListaValor == null) empresa.SexoIdListaValor = string.Empty;
-            if (empresa.TelefonoFijoUsuario == null) empresa.TelefonoFijoUsuario = string.Empty;
-            if (empresa.AnexoUsuario == null) empresa.AnexoUsuario = string.Empty;
-            if (empresa.CelularUsuario == null) empresa.CelularUsuario = string.Empty;
+            ////Usuario
+            //if (empresa.SexoIdListaValor == null) empresa.SexoIdListaValor = string.Empty;
+            //if (empresa.TelefonoFijoUsuario == null) empresa.TelefonoFijoUsuario = string.Empty;
+            //if (empresa.AnexoUsuario == null) empresa.AnexoUsuario = string.Empty;
+            //if (empresa.CelularUsuario == null) empresa.CelularUsuario = string.Empty;
 
 
             adEmpresa.Insertar(empresa);

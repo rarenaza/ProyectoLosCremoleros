@@ -24,22 +24,22 @@ namespace UTP.PortalEmpleabilidad.Modelo.Vistas.Empresa
         [RegularExpression(@"[0-9]*\.?[0-9]+", ErrorMessage = "Este campo sólo acepta números.")]
         public string IdentificadorTributario { get; set; }
 
-        [StringLength(500, ErrorMessage = "Este campo sólo acepta 500 caracteres.")]
-        [DataType(DataType.MultilineText)]
-        public string DescripcionEmpresa { get; set; }
+        //[StringLength(500, ErrorMessage = "Este campo sólo acepta 500 caracteres.")]
+        //[DataType(DataType.MultilineText)]
+        //public string DescripcionEmpresa { get; set; }
 
-        public string LinkVideo { get; set; }
-        public int AnoCreacion { get; set; }
+        //public string LinkVideo { get; set; }
+        //public int AnoCreacion { get; set; }
         public string CreadoPor { get; set; }
 
         [Required(ErrorMessage = "Falta País")]
         public string PaisIdListaValor { get; set; }
-        public string NumeroEmpleadosIdListaValor { get; set; }
+        //public string NumeroEmpleadosIdListaValor { get; set; }
 
         [Required(ErrorMessage = "Falta Sector Empresarial")]
         public string SectorEmpresarial1IdListaValor { get; set; }
-        public string SectorEmpresarial2IdListaValor { get; set; }
-        public string SectorEmpresarial3IdListaValor { get; set; }    
+        //public string SectorEmpresarial2IdListaValor { get; set; }
+        //public string SectorEmpresarial3IdListaValor { get; set; }    
         public string EstadoIdListaValor { get; set; }
 
         //Locación
@@ -47,10 +47,10 @@ namespace UTP.PortalEmpleabilidad.Modelo.Vistas.Empresa
         [Required(ErrorMessage = "Falta Tipo de Ubicación")]
         public string TipoLocacionIdListaValor { get; set; }
 
-        [Required(ErrorMessage = "Falta Nombre de Ubicación")]
+        //[Required(ErrorMessage = "Falta Nombre de Ubicación")]
         public string NombreLocacion { get; set; }
-        public string EmailLocacion { get; set; }
-        public string TelefonoLocacion { get; set; }
+        //public string EmailLocacion { get; set; }
+        //public string TelefonoLocacion { get; set; }
 
         [Required(ErrorMessage = "Falta el Departamento de la Dirección")]
         public string DireccionDepartamentoLocacion { get; set; }
@@ -86,14 +86,16 @@ namespace UTP.PortalEmpleabilidad.Modelo.Vistas.Empresa
         [Required(ErrorMessage = "Falta el Número de Documento de Identificación")]
         public string NumeroDocumento { get; set; }
 
-        public string SexoIdListaValor { get; set; }
-        public string TelefonoFijoUsuario { get; set; }
-        public string AnexoUsuario { get; set; }
+        //public string SexoIdListaValor { get; set; }
+        //public string TelefonoFijoUsuario { get; set; }
+        //public string AnexoUsuario { get; set; }
+        [Required(ErrorMessage = "Falta el Número Celular del Contacto")]
         public string CelularUsuario { get; set; }
 
-        [Required(ErrorMessage = "Falta el Correo electrónico del Usuario")]
+        [Required(ErrorMessage = "Falta el Correo electrónico del Contacto")]
         public string EmailUsuario { get; set; }
         public string EstadoUsuarioIdListaValor { get; set; }
         public string RolIdListaValor { get; set; }
+
     }
 }

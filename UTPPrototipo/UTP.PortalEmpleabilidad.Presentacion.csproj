@@ -832,6 +832,7 @@
     <Content Include="Views\Alumno\AlertaCvAlumnoMes.cshtml" />
     <Content Include="Views\UTP\AlumnoUtp_obtenerExperiencia.cshtml" />
     <Content Include="Views\UTP\AlumnoUtp_obtenerInformacionAdicional.cshtml" />
+    <Content Include="Views\Home\_LayoutRegistro.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

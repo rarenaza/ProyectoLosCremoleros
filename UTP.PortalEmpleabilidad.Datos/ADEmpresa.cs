@@ -37,14 +37,14 @@ namespace UTP.PortalEmpleabilidad.Datos
                     cmd.Parameters.Add(new SqlParameter("@RazonSocial", SqlDbType.VarChar, 200)).Value = empresa.RazonSocial;
                     cmd.Parameters.Add(new SqlParameter("@Pais", SqlDbType.VarChar, 6)).Value = empresa.PaisIdListaValor;
                     cmd.Parameters.Add(new SqlParameter("@IdentificadorTributario", SqlDbType.VarChar, 20)).Value = empresa.IdentificadorTributario;
-                    cmd.Parameters.Add(new SqlParameter("@DescripcionEmpresa", SqlDbType.VarChar, 500)).Value = empresa.DescripcionEmpresa;
-                    cmd.Parameters.Add(new SqlParameter("@LinkVideo", SqlDbType.VarChar, -1)).Value = empresa.LinkVideo;
-                    cmd.Parameters.Add(new SqlParameter("@AnoCreacion", SqlDbType.Int)).Value = empresa.AnoCreacion;
-                    cmd.Parameters.Add(new SqlParameter("@NumeroEmpleados", SqlDbType.VarChar, 6)).Value = empresa.NumeroEmpleadosIdListaValor;
+                    //cmd.Parameters.Add(new SqlParameter("@DescripcionEmpresa", SqlDbType.VarChar, 500)).Value = empresa.DescripcionEmpresa;
+                    //cmd.Parameters.Add(new SqlParameter("@LinkVideo", SqlDbType.VarChar, -1)).Value = empresa.LinkVideo;
+                    //cmd.Parameters.Add(new SqlParameter("@AnoCreacion", SqlDbType.Int)).Value = empresa.AnoCreacion;
+                    //cmd.Parameters.Add(new SqlParameter("@NumeroEmpleados", SqlDbType.VarChar, 6)).Value = empresa.NumeroEmpleadosIdListaValor;
                     cmd.Parameters.Add(new SqlParameter("@EstadoEmpresa", SqlDbType.VarChar, 6)).Value = empresa.EstadoIdListaValor;
                     cmd.Parameters.Add(new SqlParameter("@SectorEmpresarial", SqlDbType.VarChar, 6)).Value = empresa.SectorEmpresarial1IdListaValor;
-                    cmd.Parameters.Add(new SqlParameter("@SectorEmpresarial2", SqlDbType.VarChar, 6)).Value = empresa.SectorEmpresarial2IdListaValor;
-                    cmd.Parameters.Add(new SqlParameter("@SectorEmpresarial3", SqlDbType.VarChar, 6)).Value = empresa.SectorEmpresarial3IdListaValor;
+                    //cmd.Parameters.Add(new SqlParameter("@SectorEmpresarial2", SqlDbType.VarChar, 6)).Value = empresa.SectorEmpresarial2IdListaValor;
+                    //cmd.Parameters.Add(new SqlParameter("@SectorEmpresarial3", SqlDbType.VarChar, 6)).Value = empresa.SectorEmpresarial3IdListaValor;
                     cmd.Parameters.Add(new SqlParameter("@CreadoPor", SqlDbType.VarChar, 50)).Value = empresa.CreadoPor;
 
                     object resultado = cmd.ExecuteScalar();
@@ -60,8 +60,8 @@ namespace UTP.PortalEmpleabilidad.Datos
                     cmd.Parameters.Add(new SqlParameter("@IdEmpresa", idEmpresa));
                     cmd.Parameters.Add(new SqlParameter("@TipoLocacion", empresa.TipoLocacionIdListaValor));
                     cmd.Parameters.Add(new SqlParameter("@NombreLocacion", empresa.NombreLocacion));
-                    cmd.Parameters.Add(new SqlParameter("@CorreoElectronico", empresa.EmailLocacion));
-                    cmd.Parameters.Add(new SqlParameter("@TelefonoFijo", empresa.TelefonoLocacion));
+                    cmd.Parameters.Add(new SqlParameter("@CorreoElectronico", DBNull.Value));
+                    cmd.Parameters.Add(new SqlParameter("@TelefonoFijo", DBNull.Value));
                     cmd.Parameters.Add(new SqlParameter("@Direccion", empresa.DireccionLocacion));
                     cmd.Parameters.Add(new SqlParameter("@DireccionDistrito", empresa.DireccionDistritoLocacion));
                     cmd.Parameters.Add(new SqlParameter("@DireccionCiudad", empresa.DireccionCiudadLocacion));
@@ -83,13 +83,13 @@ namespace UTP.PortalEmpleabilidad.Datos
                     cmd.Parameters.Add(new SqlParameter("@Usuario", empresa.CuentaUsuario));
                     cmd.Parameters.Add(new SqlParameter("@Nombres", empresa.NombresUsuario));
                     cmd.Parameters.Add(new SqlParameter("@Apellidos", empresa.ApellidosUsuario));
-                    cmd.Parameters.Add(new SqlParameter("@Sexo", empresa.SexoIdListaValor));
+                    cmd.Parameters.Add(new SqlParameter("@Sexo", DBNull.Value));
                     cmd.Parameters.Add(new SqlParameter("@TipoDocumento", empresa.TipoDocumentoIdListaValor));
                     cmd.Parameters.Add(new SqlParameter("@NumeroDocumento", empresa.NumeroDocumento));
                     cmd.Parameters.Add(new SqlParameter("@IdEmpresaLocacion", idEmpresaLocacion));  //IdEmpresaLocacion creado
                     cmd.Parameters.Add(new SqlParameter("@CorreoElectronico", empresa.EmailUsuario));
-                    cmd.Parameters.Add(new SqlParameter("@TelefonoFijo", empresa.TelefonoFijoUsuario));
-                    cmd.Parameters.Add(new SqlParameter("@TelefonoAnexo", empresa.AnexoUsuario));
+                    cmd.Parameters.Add(new SqlParameter("@TelefonoFijo", DBNull.Value));
+                    cmd.Parameters.Add(new SqlParameter("@TelefonoAnexo", DBNull.Value));
                     cmd.Parameters.Add(new SqlParameter("@TelefonoCelular", empresa.CelularUsuario));
                     cmd.Parameters.Add(new SqlParameter("@Rol", empresa.RolIdListaValor));
                     cmd.Parameters.Add(new SqlParameter("@EstadoUsuario", empresa.EstadoUsuarioIdListaValor));

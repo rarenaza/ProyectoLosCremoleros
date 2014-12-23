@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal de Empleabilidad - @ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@RenderSection("scripts", required: false)
+<body class="cuerpo-zona-publica">
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color:rgb(245, 245, 245);border:0px;" role="navigation">
+        <div class="container">
+            @Html.ActionLink(" ", "Index", "Home", new { @class = "LogoUTPPE" })
+            <div class="navbar-header posicion-menu">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" style="margin: 6px 5px 3px 0px;">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+        </div>
+        <div class="row" style="background-color:rgb(230,230,230);">
+            <div class="container">
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="boton-menu-utp">
+                            <a class=" a-menu-utp" href="..\Home\Index" style="text-align:left;height:100%;padding:6px 6px 6px 6px;color:rgb(180,30,34)">
+                                Inicio<br />&nbsp;
+                            </a>
+                        </li>
+                        <li id="OpcionMenuEmpleabilidad" class="boton-menu-utp">
+                            <a href="..\Home\DirEmp" style="text-align:left;padding: 6px 3px 6px 3px;">Dirección de<br />Empleabilidad</a>
+                        </li>
+                        <li id="OpcionMenuServicios" class="boton-menu-utp">
+                            <a href="..\Home\Servicios" style="text-align:left;padding: 6px 3px 6px 3px;">Servicios a tu<br /> disposición</a>
+                        </li>
+                        <li id="OpcionMenuNoticiasEventos" class="boton-menu-utp">
+                            <a href="..\Home\NoticiasEventos" style="text-align:left;padding: 6px 3px 6px 3px;">Noticias<br />y Eventos</a>
+                        </li>
+                        <li id="OpcionMenuTestimonios" class="boton-menu-utp">
+                            <a href="..\Home\Testimonios" style="text-align:left;padding: 6px 3px 6px 3px;">Testimonios<br />&nbsp;</a>
+                            @*@Html.ActionLink("Generar CV", "GenerarCV", "Plantilla", null, new { @class = "btn btn-default navbar-btn Boton_pestana color-paleta4", @style = "padding: 2px 0px 2px 0px; color: white;" })*@
+                        </li>
+                        <li id="OpcionMenuParaEmpleadores" class="boton-menu-utp">
+                            <a href="..\Home\ParaEmpleadores" style="text-align:left;padding: 6px 3px 6px 3px;">
+                                Para<br />Empleadores
+                            </a>
+                        </li>
+                    </ul>
+                    
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    @RenderBody()
+    <div>
+        <footer style="background-color:rgb(131, 131, 129);">
+            <br />
+            <div class="container">
+                <p style="text-align:center;color:white;font-size:16px;">
+                    Universidad Tecnológica del Perú
+                </p>
+                <p style="text-align:center;color:white;font-size:10px;padding-bottom:0px;padding-top:0px;">
+                    Esquina Av. 28 de Julio y Av. Pettit Thouars, Lima Perú | teléfono: 315-9600 e-mail: admision@utp.edu.pe
+                </p>
+                <p style="text-align:center;color:white;font-size:10px;">
+                    Campus Chiclayo: Esquina Prol. Augusto B. Leguía con Av. Herman Meiner | teléfono: (074) 622121 | Informes: Calle San José 720 - teléfono: (074) 624 998 | e-mail: admisionchiclayo@utp.edu.pe
+                </p>
+                <p style="text-align:center;color:white;font-size:14px;">
+                    2014 UTP &copy; - <a href="../Home/TerminosDeUso" style="color:white;">Términos de Uso</a> - <a href="../Home/PoliticasDePrivacidad" style="color:white;">Política de Privacidad</a> - <a href="../Home/FAQ" style="color:white;">FAQ</a> - <a href="../Home/Contacto" style="color:white;">Contáctenos</a>
+                </p>
+            </div>
+        </footer>
+    </div>
+    @Scripts.Render("~/bundles/jqueryval")
+</body>
+</html>
+

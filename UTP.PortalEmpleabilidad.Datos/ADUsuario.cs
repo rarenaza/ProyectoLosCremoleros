@@ -27,7 +27,32 @@ namespace UTP.PortalEmpleabilidad.Datos
                 conexion.Open();
 
                 cmd.Parameters.Add(new SqlParameter("@NombreUsuario", nombreUsuario));
-               
+
+                object resultado = cmd.ExecuteScalar();
+
+                if (resultado != null) existe = Convert.ToBoolean(resultado);
+
+                conexion.Close();
+            }
+
+            return existe;
+        }
+        public bool ValidarExistenciaEmpresa(string empresaPais, string empresaRUC)
+        {
+            bool existe = false;
+
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Registro_ValidarExistenciaEmpresa";
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                cmd.Parameters.Add(new SqlParameter("@EmpresaPais", empresaPais));
+                cmd.Parameters.Add(new SqlParameter("@EmpresaRUC", empresaRUC));
                 object resultado = cmd.ExecuteScalar();
 
                 if (resultado != null) existe = Convert.ToBoolean(resultado);

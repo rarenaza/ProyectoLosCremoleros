@@ -302,3 +302,31 @@
 
 </div>
 <br />
+
+@if (TempData["GuardaRegistroExitoso"] != null)
+{
+    <div class="modal fade" id="GuardaRegistroExitoso" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Información de Registro recibida</h4>
+                </div>
+                <div class="modal-body">
+                    <p>@Html.Raw(TempData["GuardaRegistroExitoso"])</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <button type="button" class="" data-toggle="modal" data-target="#GuardaRegistroExitoso" id="BotonExito" hidden>.</button>
+
+    <script>
+        
+        //alert(document.getElementById("MsjExito").value);
+        document.getElementById("BotonExito").click();
+    </script>
+}
