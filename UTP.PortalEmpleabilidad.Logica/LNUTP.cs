@@ -153,5 +153,66 @@ namespace UTP.PortalEmpleabilidad.Logica
 
             adUtp.ActualizarEstadoYUsuarioEC(empresa);
         }
+
+        #region Mantenimiento de Usuarios UTP
+
+        public List<UTPUsuario> ObtenerUsuariosUTP()
+        {
+            List<UTPUsuario> lista = new List<UTPUsuario>();
+
+            DataTable dtResultado = adUtp.ObtenerUsuariosUTP();
+
+            foreach (DataRow fila in dtResultado.Rows)
+            {
+                UTPUsuario nuevo = new UTPUsuario();
+                nuevo.IdUTPUsuario = Convert.ToInt32(fila["IdUTPUsuario"]);
+                nuevo.NombreUsuario = Convert.ToString(fila["Usuario"]);
+                nuevo.Nombres = Convert.ToString(fila["Nombres"]);
+                nuevo.Apellidos = Convert.ToString(fila["Apellidos"]);
+                nuevo.SexoDescripcion = Convert.ToString(fila["SexoDescripcion"]);
+                nuevo.Correo = Convert.ToString(fila["CorreoElectronico"]);
+                nuevo.TelefonoFijo = Convert.ToString(fila["TelefonoFijo"]);
+                nuevo.TelefonoCelular = Convert.ToString(fila["TelefonoCelular"]);
+                nuevo.EstadoUsuarioDescripcion = Convert.ToString(fila["EstadoUsuarioDescripcion"]);
+                
+                lista.Add(nuevo);
+            }
+
+            return lista;
+        }
+
+        public UTPUsuario ObtenerUsuarioUTPPorId(int idUTPUsuario)
+        {
+            UTPUsuario utpUsuario = new UTPUsuario();
+            DataTable dtResultado = adUtp.ObtenerUsuarioUTPPorId(idUTPUsuario);
+
+            if (dtResultado.Rows.Count > 0)
+            {
+                utpUsuario.IdUTPUsuario = Convert.ToInt32(dtResultado.Rows[0]["IdUTPUsuario"]);
+                utpUsuario.NombreUsuario = Convert.ToString(dtResultado.Rows[0]["Usuario"]);
+                utpUsuario.Nombres = Convert.ToString(dtResultado.Rows[0]["Nombres"]);
+                utpUsuario.Apellidos = Convert.ToString(dtResultado.Rows[0]["Apellidos"]);
+                utpUsuario.SexoIdListaValor = Convert.ToString(dtResultado.Rows[0]["SexoIdListaValor"]);                
+                utpUsuario.Correo = Convert.ToString(dtResultado.Rows[0]["CorreoElectronico"]);
+                utpUsuario.TelefonoFijo = Convert.ToString(dtResultado.Rows[0]["TelefonoFijo"]);
+                utpUsuario.TelefonoCelular = Convert.ToString(dtResultado.Rows[0]["TelefonoCelular"]);
+                utpUsuario.EstadoUsuarioIdListaValor = Convert.ToString(dtResultado.Rows[0]["EstadoUsuarioIdListaValor"]);                
+                utpUsuario.RolIdListaValor = Convert.ToString(dtResultado.Rows[0]["RolIdListaValor"]);
+            }
+
+            return utpUsuario;
+        }
+
+        public void Insertar(UTPUsuario utpUsuario)
+        {
+            adUtp.Insertar(utpUsuario);
+        }
+
+        public void Actualizar(UTPUsuario utpUsuario)
+        {
+            adUtp.Actualizar(utpUsuario);
+        }
+
+        #endregion
     }
 }

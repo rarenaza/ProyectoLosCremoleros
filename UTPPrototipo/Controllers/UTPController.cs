@@ -1120,5 +1120,90 @@ namespace UTPPrototipo.Controllers
          Session["TicketUtp"]=null;
             return RedirectToAction("Index", "Home");
         }
+
+        #region Mantenimiento de usuarios
+
+        
+        /// <summary>
+        /// Obtener la lista de usuarios UTP:
+        /// </summary>
+        /// <returns></returns>
+    
+        public PartialViewResult _UsuariosUTPLista()
+        {            
+            List<UTPUsuario> lista = lnUtp.ObtenerUsuariosUTP();
+
+            return PartialView("_UsuariosUTPLista", lista);
+            //return PartialView("_UsuariosUTPLista");
+        }
+
+        /// <summary>
+        /// HttpGet del partialview para la creación de usuario UTP:
+        /// </summary>
+        /// <returns></returns>
+        public PartialViewResult _UsuariosUTPCrear()
+        {
+            LNGeneral lnGeneral = new LNGeneral();
+
+            UTPUsuario utpUsuario = new UTPUsuario();
+
+            //Sexo, Roles y Estado
+            ViewBag.SexoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_SEXO), "IdListaValor", "Valor");
+            ViewBag.RolIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ROL_USUARIO), "IdListaValor", "Valor");
+            ViewBag.EstadoUsuarioIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_USUARIO), "IdListaValor", "Valor");
+
+            return PartialView("_UsuariosUTPCrear", utpUsuario);
+        }
+
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public PartialViewResult _UsuariosUTPCrear(UTPUsuario utpUsuario)
+        {
+            TicketUTP ticket = (TicketUTP)Session["TicketUtp"];
+
+            utpUsuario.TipoUsuarioIdListaValor = "USERUT"; //Tipo usuario UTP
+            utpUsuario.CreadoPor = ticket.Usuario;
+            lnUtp.Insertar(utpUsuario);
+
+            List<UTPUsuario> lista = lnUtp.ObtenerUsuariosUTP();
+            return PartialView("_UsuariosUTPLista", lista);
+        }
+
+        /// <summary>
+        /// HttpGet del partialview para la edición de usuario UTP:
+        /// </summary>
+        /// <returns></returns>
+        public PartialViewResult _UsuariosUTPEditar(int id)
+        {
+            int idUTPUsuario = id;
+            
+            //1. Obtener al usuario UTP:
+            LNUTP lnUTP = new LNUTP();
+            LNGeneral lnGeneral = new LNGeneral();
+
+            UTPUsuario utpUsuario = lnUtp.ObtenerUsuarioUTPPorId(idUTPUsuario);
+
+            //2. Se cargan los combos: Sexo, Roles y Estado
+            ViewBag.SexoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_SEXO), "IdListaValor", "Valor", utpUsuario.SexoIdListaValor);
+            ViewBag.RolIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ROL_USUARIO), "IdListaValor", "Valor", utpUsuario.RolIdListaValor);
+            ViewBag.EstadoUsuarioIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_USUARIO), "IdListaValor", "Valor", utpUsuario.EstadoUsuarioIdListaValor);
+
+            return PartialView("_UsuariosUTPEditar", utpUsuario);
+        }
+
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public PartialViewResult _UsuariosUTPEditar(UTPUsuario utpUsuario)
+        {
+            TicketUTP ticket = (TicketUTP)Session["TicketUtp"];
+
+            utpUsuario.ModificadoPor = ticket.Usuario;
+            lnUtp.Actualizar(utpUsuario);
+
+            List<UTPUsuario> lista = lnUtp.ObtenerUsuariosUTP();
+            return PartialView("_UsuariosUTPLista", lista);
+        }
+        #endregion
+
     }
 }

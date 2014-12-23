@@ -210,7 +210,124 @@ namespace UTP.PortalEmpleabilidad.Datos
             }
         }
 
-        
+
+        #region Mantenimiento de Usuarios UTP
+
+        public DataTable ObtenerUsuariosUTP()
+        {
+            DataTable dtResultado = new DataTable();
+
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "UTPUsuario_ObtenerLista";                
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                dtResultado = new DataTable();
+                da.Fill(dtResultado);
+
+                conexion.Close();
+            }
+
+            return dtResultado;
+        }
+
+        public DataTable ObtenerUsuarioUTPPorId(int idUTPUsuario)
+        {
+            DataTable dtResultado = new DataTable();
+
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "UTPUsuario_ObtenerPorId";
+                cmd.Parameters.Add(new SqlParameter("@IdUTPUsuario", idUTPUsuario));
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                dtResultado = new DataTable();
+                da.Fill(dtResultado);
+
+                conexion.Close();
+            }
+
+            return dtResultado;
+        }
+
+        public void Insertar(UTPUsuario utpUsuario)
+        {
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "UTPUsuario_Insertar";
+
+                //Parámetros:
+                cmd.Parameters.Add(new SqlParameter("@Usuario", utpUsuario.NombreUsuario));
+                cmd.Parameters.Add(new SqlParameter("@Nombres", utpUsuario.Nombres));
+                cmd.Parameters.Add(new SqlParameter("@Apellidos", utpUsuario.Apellidos));
+                cmd.Parameters.Add(new SqlParameter("@Sexo", utpUsuario.SexoIdListaValor));
+                cmd.Parameters.Add(new SqlParameter("@CorreoElectronico", utpUsuario.Correo));
+                cmd.Parameters.Add(new SqlParameter("@TelefonoFijo", utpUsuario.TelefonoFijo));
+                cmd.Parameters.Add(new SqlParameter("@TelefonoAnexo", utpUsuario.TelefonoAnexo));
+                cmd.Parameters.Add(new SqlParameter("@TelefonoCelular", utpUsuario.TelefonoCelular));
+                cmd.Parameters.Add(new SqlParameter("@EstadoUsuario", utpUsuario.EstadoUsuarioIdListaValor));
+                cmd.Parameters.Add(new SqlParameter("@Rol", utpUsuario.RolIdListaValor));
+                cmd.Parameters.Add(new SqlParameter("@TipoUsuario", utpUsuario.TipoUsuarioIdListaValor));
+                cmd.Parameters.Add(new SqlParameter("@CreadoPor", utpUsuario.CreadoPor));
+
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                cmd.ExecuteNonQuery();
+
+                conexion.Close();
+            }
+        }
+
+        public void Actualizar(UTPUsuario utpUsuario)
+        {
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "UTPUsuario_Actualizar";
+
+                //Parámetros:
+                cmd.Parameters.Add(new SqlParameter("@Usuario", utpUsuario.NombreUsuario));
+                cmd.Parameters.Add(new SqlParameter("@Nombres", utpUsuario.Nombres));
+                cmd.Parameters.Add(new SqlParameter("@Apellidos", utpUsuario.Apellidos));
+                cmd.Parameters.Add(new SqlParameter("@Sexo", utpUsuario.SexoIdListaValor));
+                cmd.Parameters.Add(new SqlParameter("@CorreoElectronico", utpUsuario.Correo));
+                cmd.Parameters.Add(new SqlParameter("@TelefonoFijo", utpUsuario.TelefonoFijo));
+                cmd.Parameters.Add(new SqlParameter("@TelefonoAnexo", utpUsuario.TelefonoAnexo));
+                cmd.Parameters.Add(new SqlParameter("@TelefonoCelular", utpUsuario.TelefonoCelular));
+                cmd.Parameters.Add(new SqlParameter("@EstadoUsuario", utpUsuario.EstadoUsuarioIdListaValor));
+                cmd.Parameters.Add(new SqlParameter("@Rol", utpUsuario.RolIdListaValor));
+                cmd.Parameters.Add(new SqlParameter("@ModificadoPor", utpUsuario.ModificadoPor));
+
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                cmd.ExecuteNonQuery();
+
+                conexion.Close();
+            }
+        }
+        #endregion
+    
 
     }
 }
