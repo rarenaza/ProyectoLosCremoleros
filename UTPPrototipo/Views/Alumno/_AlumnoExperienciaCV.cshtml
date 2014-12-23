@@ -11,7 +11,7 @@
     <div id="collapseMiCVExperienciaLaboral" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingMiCVExperienciaLaboral">
         <div class="panel-body fuente-pequeña">
             <div class="row">
-                <div class="col-sm-12 text-right"><button type="button" class="btn btn-default color-paleta4 fuente-pequeña" style="color:white;margin-bottom:10px;" id="IdGrabarExperiencia" >Agregar Experiencia</button></div>
+                <div class="col-sm-12 text-right"><button type="button" class="btn btn-default color-paleta4 fuente-pequeña" style="color:white;margin-bottom:10px;" id="IdGrabarExperiencia" onclick="crearExperiencia()" >Agregar Experiencia</button></div>
             </div>
             @*<div class="row">
                 <div class="col-sm-1">
@@ -84,7 +84,7 @@
                         </div>
                     </div>
                     <div class="col-sm-1 fuente-pequeña">
-                        <button class="btn btn-xs fa fa-pencil color-paleta4"></button>&nbsp;&nbsp;<button class="btn btn-xs fa fa-remove color-paleta4"></button>
+                        <button class="btn btn-xs fa fa-pencil color-paleta4" onclick="editarExperiencia(this)" id='Editar_@item.IdExperienciaCargo'></button>&nbsp; &nbsp;<button class="btn btn-xs fa fa-remove color-paleta4" onclick="    eliminarExperiencia(this)" id='Delete_@item.IdExperienciaCargo'></button>
                     </div>
                 </div>
                 <hr />
@@ -157,11 +157,38 @@
     </div>
 </div>
 <script>
-    $("#IdGrabarExperiencia").click(function () {
-        CargarPOSTNull("Modal-experiencia-laboral", "ModalRegistroExperiencia");
-        //CargarPOST("Modal-experiencia-laboral", "ModalRegistroExperiencia", null);
-        //$('#Modal-experiencia-laboral').modal("show");
-        //return false;
-    });
+    function crearExperiencia() {
+        var IdAlumno = $('#IdAlumno').val();
+        var IdCV = $('#HIIdCV').val();
+        var url = "/Alumno/ModalRegistroExperiencia?idAlumno=" + IdAlumno + "&IdCV=" + IdCV; // el url del controlador
+        $.get(url, function (data) {
+            $('#Modal-Nuevo-experiencia-laboral').html(data);
+            $.validator.unobtrusive.parse('#Modal-Nuevo-experiencia-laboral');
+            $('#Modal-experiencia-laboral').modal("show");
+        });
+    }
+
+    function editarExperiencia(obj) {
+        var IdAlumno = $('#IdAlumno').val();
+        var IdCV = $('#HIIdCV').val();
+        var IdExperienciaCargo = $(obj).attr('Id').split("_")[1];
+        var url = "/Alumno/ModalModificarExperiencia?idAlumno=" + IdAlumno + "&IdCV=" + IdCV + "&IdExperienciaCargo=" + IdExperienciaCargo; // el url del controlador
+        $.get(url, function (data) {
+            $('#Modal-Nuevo-experiencia-laboral').html(data);
+            $.validator.unobtrusive.parse('#Modal-Nuevo-experiencia-laboral');
+            $('#Modal-experiencia-laboral').modal("show");
+        });
+    }
+    function eliminarExperiencia(obj) {
+        var IdAlumno = $('#IdAlumno').val();
+        var IdCV = $('#HIIdCV').val();
+        var IdExperienciaCargo = $(obj).attr('Id').split("_")[1];
+        var url = "/Alumno/DesactivarExperienciaAlumno?idAlumno=" + IdAlumno + "&IdCV=" + IdCV + "&IdExperienciaCargo=" + IdExperienciaCargo; // el url del controlador
+        $.get(url, function (data) {
+            $('#mi-cv-experiencia-laboral').html(data);
+            $.validator.unobtrusive.parse('#mi-cv-experiencia-laboral');
+        });
+    }
+
 
 </script>

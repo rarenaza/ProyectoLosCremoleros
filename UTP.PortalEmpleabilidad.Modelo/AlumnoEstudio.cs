@@ -15,11 +15,10 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string TipoDeEstudio { get; set; }
         public string EstadoDelEstudio { get; set; }
         public int FechaInicioMes { get; set; }
-        public int FechaInicioAno { get; set; }
+        public int? FechaInicioAno { get; set; }
         public int FechaFinMes { get; set; }
-        public int FechaFinAno { get; set; }
-
-        public int CicloEquivalente { get; set; }
+        public int? FechaFinAno { get; set; }
+        public int? CicloEquivalente { get; set; }
         public string Observacion { get; set; }
         public bool DatoUTP { get; set; }
         public string CreadoPor { get; set; }
@@ -27,6 +26,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public List<ListaValor> ListaTipoEstudios { get; set; }
         public List<ListaValor> ListaEstadoEstudio { get; set; }
         public List<ListaValor> ListaObservacionEstudios { get; set; }
-
+        public int IdCV { get; set; }
+        public int Movimiento { get; set; }
     }
 }

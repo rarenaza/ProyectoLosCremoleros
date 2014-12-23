@@ -12,7 +12,7 @@
     <div id="collapseMiCVEducacion" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingMiCVEducacion">
         <div class="panel-body fuente-pequeña">
             <div class="row">
-                <div class="col-sm-12 text-right"><button type="button" id="IdGrabarEstudio" class="btn btn-default color-paleta4 fuente-pequeña" style="color: white; margin-bottom: 10px;">Agregar Estudio</button></div>
+                <div class="col-sm-12 text-right"><button type="button" id="IdGrabarEstudio" class="btn btn-default color-paleta4 fuente-pequeña" style="color: white; margin-bottom: 10px;" onclick="crearEstudio()">Agregar Estudio</button></div>
             </div>
             @if (Model != null && Model.Count > 0)
             {
@@ -35,8 +35,8 @@
                             <div class="row">
                                 <div class="col-sm-2">
                                     <strong>
-                                        @Html.FormatoFechaAnioMes(item.FechaInicioMes, item.FechaInicioAno) -
-                                        @Html.FormatoFechaAnioMes(item.FechaFinMes, item.FechaFinAno)
+                                        @Html.FormatoFechaAnioMes((int) item.FechaInicioMes,(int) item.FechaInicioAno) -
+                                        @Html.FormatoFechaAnioMes((int)item.FechaFinMes, (int)item.FechaFinAno)
                                     </strong>
 
                                 </div>
@@ -67,9 +67,22 @@
 
                             </div>
                         </div>
-                        <div class="col-sm-1 fuente-pequeña" >
-                            <button class="btn btn-xs fa fa-pencil color-paleta4"></button>&nbsp;&nbsp;<button class="btn btn-xs fa fa-remove color-paleta4"></button>
-                        </div>
+                        @if (item.DatoUTP)
+                        {
+                            <div class="col-sm-1 fuente-pequeña">
+                                <button class="btn btn-xs fa fa-pencil color-paleta4" disabled></button>&nbsp; &nbsp;<button class="btn btn-xs fa fa-remove color-paleta4" disabled></button>
+                            </div>
+
+                        }
+                        else
+                        {
+                            <div class="col-sm-1 fuente-pequeña">
+                                <button class="btn btn-xs fa fa-pencil color-paleta4" onclick="editarEstudio(this)" id='Editar_@item.IdEstudio'></button>&nbsp; &nbsp;<button class="btn btn-xs fa fa-remove color-paleta4" onclick="eliminarEstudio(this)" id='Delete_@item.IdEstudio'></button>
+                            </div>                            
+                        }
+
+
+
 
 
                     </div>
@@ -84,11 +97,41 @@
     </div>
 </div>
 
- 
-<script>
 
-    $("#IdGrabarEstudio").click(function () {
-        CargarPOSTNull("Modal-estudio", "ModalRegistroEstudio");
-    });
+<script>
+    function crearEstudio() {
+        var IdAlumno = $('#IdAlumno').val();
+        var IdCV = $('#HIIdCV').val();
+
+        var url = "/Alumno/ModalRegistroEstudio?idAlumno=" + IdAlumno + "&IdCV=" + IdCV; // el url del controlador           
+        $.get(url, function (data) {
+            $('#Modal-Nuevo-Estudio').html(data);
+            $.validator.unobtrusive.parse('#Modal-Nuevo-Estudio');
+            $('#Modal-estudio').modal("show");
+        });
+    }
+
+    function editarEstudio(obj) {
+        var IdAlumno = $('#IdAlumno').val();
+        var IdCV = $('#HIIdCV').val();
+        var IdEstudio = $(obj).attr('Id').split("_")[1];
+        var url = "/Alumno/ModalModificarEstudio?idAlumno=" + IdAlumno + "&IdCV=" + IdCV + "&IdEstudio=" + IdEstudio; // el url del controlador           
+        $.get(url, function (data) {
+            $('#Modal-Nuevo-Estudio').html(data);
+            $.validator.unobtrusive.parse('#Modal-Nuevo-Estudio');
+            $('#Modal-estudio').modal("show");
+        });
+    }
+    function eliminarEstudio(obj) {
+        var IdAlumno = $('#IdAlumno').val();
+        var IdCV = $('#HIIdCV').val();
+        var IdEstudio = $(obj).attr('Id').split("_")[1];
+        var url = "/Alumno/DesactivarEstudioAlumno?idAlumno=" + IdAlumno + "&IdCV=" + IdCV + "&IdEstudio=" + IdEstudio; // el url del controlador              
+        $.get(url, function (data) {
+            $('#mi-cv-educacion').html(data);
+            $.validator.unobtrusive.parse('#mi-cv-educacion');
+        });
+    }
+
 
 </script>

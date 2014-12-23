@@ -113,7 +113,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "AlumnoEstudio_Update";
-                    cmd.Parameters.Add(new SqlParameter("@IdAlumno", SqlDbType.Int)).Value = alumnoestudio.IdAlumno;
+                    cmd.Parameters.Add(new SqlParameter("@IdEstudio", SqlDbType.Int)).Value = alumnoestudio.IdEstudio;
                     cmd.Parameters.Add(new SqlParameter("@Institucion", SqlDbType.VarChar, 100)).Value = alumnoestudio.Institucion;
                     cmd.Parameters.Add(new SqlParameter("@Estudio", SqlDbType.VarChar, 100)).Value = alumnoestudio.Estudio;
                     cmd.Parameters.Add(new SqlParameter("@TipoDeEstudio", SqlDbType.VarChar, 6)).Value = alumnoestudio.TipoDeEstudio;
@@ -138,7 +138,7 @@ namespace UTP.PortalEmpleabilidad.Datos
 
         }
 
-        public void Desactivar(int IdEstudio)
+        public void Desactivar(int IdEstudio,string Usuario)
         {
             using (SqlConnection conexion = new SqlConnection(cnn.Conexion()))
             {
@@ -154,6 +154,8 @@ namespace UTP.PortalEmpleabilidad.Datos
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "AlumnoEstudio_Desactivar";
                     cmd.Parameters.Add(new SqlParameter("@IdEstudio", SqlDbType.Int)).Value = IdEstudio;
+                    cmd.Parameters.Add(new SqlParameter("@ModificadoPor", SqlDbType.VarChar, 50)).Value = Usuario;
+
                     cmd.ExecuteNonQuery();
                     transaccion.Commit();
                     conexion.Close();

@@ -12,10 +12,10 @@ namespace UTP.PortalEmpleabilidad.Logica
     public class LNAlumnoCVExperienciaCargo
     {
         ADAlumnoCVExperienciaCargo acvecd = new ADAlumnoCVExperienciaCargo();
-        private List<AlumnoCVExperienciaCargo> ObtenerAlumnoCVExperienciaCargoPorIdAlumno(int IdCV, int IdExperienciaCargo)
+        private List<AlumnoCVExperienciaCargo> ObtenerAlumnoCVExperienciaCargoPorIdCVYIdExperiencia(int IdCV, int IdExperienciaCargo)
         {
             List<AlumnoCVExperienciaCargo> listaAlumnoCVExperienciaCargo = new List<AlumnoCVExperienciaCargo>();
-            DataTable dtResultado = acvecd.ObtenerAlumnoCVExperienciaCargoPorIdCVYIdEstudio(IdCV, IdExperienciaCargo);
+            DataTable dtResultado = acvecd.ObtenerAlumnoCVExperienciaCargoPorIdCVYIdExperiencia(IdCV, IdExperienciaCargo);
             if (dtResultado.Rows.Count > 0)
             {
                 for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
@@ -30,11 +30,11 @@ namespace UTP.PortalEmpleabilidad.Logica
             return listaAlumnoCVExperienciaCargo;
         }
 
-        public List<AlumnoExperienciaCargo> ObtenerAlumnoCVExperienciaCargoPorIdAlumno(int IdCV, List<AlumnoExperienciaCargo> listaalumnoexperienciacargo)
+        public List<AlumnoExperienciaCargo> ObtenerAlumnoCVExperienciaCargoPorIdCV(int IdCV, List<AlumnoExperienciaCargo> listaalumnoexperienciacargo)
         {
             for (int x = 0; x <= listaalumnoexperienciacargo.Count - 1; x++)
             {
-                if (ObtenerAlumnoCVExperienciaCargoPorIdAlumno(IdCV, listaalumnoexperienciacargo[x].IdExperienciaCargo).Count > 0)
+                if (ObtenerAlumnoCVExperienciaCargoPorIdCVYIdExperiencia(IdCV, listaalumnoexperienciacargo[x].IdExperienciaCargo).Count > 0)
                 {
                     listaalumnoexperienciacargo[x].Incluir = true;
                 }

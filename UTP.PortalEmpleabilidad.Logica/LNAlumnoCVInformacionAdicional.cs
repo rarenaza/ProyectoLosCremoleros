@@ -12,7 +12,7 @@ namespace UTP.PortalEmpleabilidad.Logica
     public class LNAlumnoCVInformacionAdicional
     {
         ADAlumnoCVInformacionAdicional acviad = new ADAlumnoCVInformacionAdicional();
-        private List<AlumnoCVInformacionAdicional> ObtenerAlumnoCVInformacionAdicionalPorIdAlumno(int IdCV, int IdInformacionAdicional)
+        private List<AlumnoCVInformacionAdicional> ObtenerAlumnoCVInformacionAdicionalPorIdCV(int IdCV, int IdInformacionAdicional)
         {
             List<AlumnoCVInformacionAdicional> listaAlumnoCVInformacionAdicional = new List<AlumnoCVInformacionAdicional>();
             DataTable dtResultado = acviad.ObtenerAlumnoCVInformacionAdicionalPorIdCVYIdEstudio(IdCV, IdInformacionAdicional);
@@ -30,11 +30,11 @@ namespace UTP.PortalEmpleabilidad.Logica
             return listaAlumnoCVInformacionAdicional;
         }
 
-        public List<AlumnoInformacionAdicional> ObtenerAlumnoCVInformacionAdicionalPorIdAlumno(int IdCV, List<AlumnoInformacionAdicional> listaalumnoinformacionadicional)
+        public List<AlumnoInformacionAdicional> ObtenerAlumnoCVInformacionAdicionalPorIdCV(int IdCV, List<AlumnoInformacionAdicional> listaalumnoinformacionadicional)
         {
             for (int x = 0; x <= listaalumnoinformacionadicional.Count - 1; x++)
             {
-                if (ObtenerAlumnoCVInformacionAdicionalPorIdAlumno(IdCV, listaalumnoinformacionadicional[x].IdInformacionAdicional).Count > 0)
+                if (ObtenerAlumnoCVInformacionAdicionalPorIdCV(IdCV, listaalumnoinformacionadicional[x].IdInformacionAdicional).Count > 0)
                 {
                     listaalumnoinformacionadicional[x].Incluir = true;
                 }

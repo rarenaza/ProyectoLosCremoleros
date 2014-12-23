@@ -22,6 +22,20 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string Plantilla { get; set; }
 
 
+        public bool IncluirCorreoElectronico1 { get; set; }
+
+
+
+        public string Usuario { get; set; }
+        public bool IncluirNombre1 { get; set; }
+        public bool IncluirNombre2 { get; set; }
+        public bool IncluirNombre3 { get; set; }
+        public bool IncluirNombre4 { get; set; }
+        public IEnumerable<AlumnoEstudio> Estudios { get; set; }
+        public IEnumerable<AlumnoExperienciaCargo> Experiencias { get; set; }
+        public IEnumerable<AlumnoInformacionAdicional> Conocimientos { get; set; }
+
+
 
     }
 }
