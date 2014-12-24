@@ -27,7 +27,8 @@ namespace UTPPrototipo.Common
                 {
                     if (ts.Minutes <= 59 && ts.Hours == 0 && ts.Days == 0)
                     {
-                        fechatexto = "Hace " + ts.Minutes + " minutos";
+                        if (ts.Minutes == 1) fechatexto = "Hace " + ts.Minutes + " minuto"; //Se puede ingresar directamente Hace 1 minuto
+                        else fechatexto = "Hace " + ts.Minutes + " minutos";
                     }
                     else
                     {

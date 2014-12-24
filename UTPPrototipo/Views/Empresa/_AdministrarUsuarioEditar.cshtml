@@ -35,6 +35,7 @@
                 <div class="input-group">
                     <span class="input-group-addon">Usuario *</span>   
                     <input type="text" class="form-control" placeholder="Username" value="@Model.NombreUsuario" name="NombreUsuario" disabled>
+                    @Html.HiddenFor(m => m.NombreUsuario)
                 </div>
             </div>
         </div>

@@ -19,6 +19,7 @@ namespace UTP.PortalEmpleabilidad.Modelo.Vistas.Empresa
         public string LocacionNombre { get; set; }
         public string LocacionDireccion { get; set; }
         public string LocacionTelefonoFijo { get; set; }
+        public int IdEmpresaUsuario { get; set; }
 
         //Otras propiedades.
     }

@@ -166,9 +166,20 @@ namespace UTPPrototipo.Controllers
                 //oferta.AreaEmpresa = "";
                 oferta.CreadoPor = ticket.Usuario;
 
-                lnOfertaEmpresa.Insertar(oferta);
+                int idOfertaGenerado = lnOfertaEmpresa.Insertar(oferta);
 
-                //Mostrar alerta de éxito.
+                if (idOfertaGenerado > 0)
+                {
+                    //1. Se completa el mensaje de éxito.
+                    TempData["MsjExitoCrearOferta"] = "La oferta ha sido creada con éxito.";
+
+                    //2. Se redirecciona a la nueva oferta.
+                    return RedirectToAction("EditarOferta", new { id = idOfertaGenerado });
+                }
+                else
+                {
+                    //Mostrar un mensaje de error.
+                }
 
                 return RedirectToAction("Publicacion");
             }
@@ -622,7 +633,14 @@ namespace UTPPrototipo.Controllers
 
                 return PartialView("_AdministrarUsuarios", empresa.Usuarios);
             }
+            else
+            {
+                var errors = ModelState.Select(x => x.Value.Errors)
+                           .Where(y => y.Count > 0)
+                           .ToList();
 
+                int a = 0;
+            }
             return PartialView("_AdministrarUsuarioEditar", empresaUsuario);
         }
 
@@ -658,7 +676,7 @@ namespace UTPPrototipo.Controllers
             }
 
             lnOferta.ActualizarOfertaFase(listaOfertaFase);
-
+      
             //return PartialView("_OfertaFase", lista);
             return PartialView("_OfertaFase", listaOfertaFase);
         }
@@ -747,5 +765,36 @@ namespace UTPPrototipo.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        [ValidateAntiForgeryToken]
+        public PartialViewResult _AdministrarUsuarioEditarTMP(EmpresaUsuario empresaUsuario)
+        {
+            if (ModelState.IsValid)
+            {
+                TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];
+
+                empresaUsuario.Empresa.IdEmpresa = ticket.IdEmpresa;
+                empresaUsuario.ModificadoPor = ticket.Usuario;
+
+                LNEmpresaUsuario lnEmpresaUsuario = new LNEmpresaUsuario();
+                lnEmpresaUsuario.Actualizar(empresaUsuario);
+
+                VistaPanelCabecera panel = new VistaPanelCabecera();
+               
+                ViewBag.IdEmpresa = ticket.IdEmpresa;
+                //Se cargan los datos del empresaUsuario autenticado:
+                panel = lnEmpresa.ObtenerPanelCabecera(ticket.Usuario);
+
+                return PartialView("_DatosUsuario", panel);
+            }
+            else
+            {
+                var errors = ModelState.Select(x => x.Value.Errors)
+                           .Where(y => y.Count > 0)
+                           .ToList();
+
+                int a = 0;
+            }
+            return PartialView("_AdministrarUsuarioEditar", empresaUsuario);
+        }
     }
 }

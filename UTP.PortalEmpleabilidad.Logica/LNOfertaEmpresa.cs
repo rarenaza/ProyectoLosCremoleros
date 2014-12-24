@@ -13,7 +13,7 @@ namespace UTP.PortalEmpleabilidad.Logica
     {
         ADOferta adOferta = new ADOferta();
                 
-        public void Insertar(Oferta oferta)
+        public int Insertar(Oferta oferta)
         {
             try
             {
@@ -54,7 +54,7 @@ namespace UTP.PortalEmpleabilidad.Logica
 
                 #endregion
 
-                adOferta.Insertar(oferta, listaOfertaFase);
+                return adOferta.Insertar(oferta, listaOfertaFase);
             }
             catch (Exception ex)
             {
