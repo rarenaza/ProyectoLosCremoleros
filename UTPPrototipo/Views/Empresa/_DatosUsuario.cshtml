@@ -10,48 +10,61 @@
             </h5>
         </div>
         <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-            <div class="panel-body">
-                <div class="col-md-2">
-                    <img alt="" style="max-height:150px; max-width:150px; height: auto; width:auto;" src='@Url.Action("ObtenerImagenEmpresa", "Empresa", new { id = ViewBag.IdEmpresa })' />
-                    @*@Url.Action("ObtenerImagenEmpresa", "Empresa", new { id = ViewBag.IdEmpresa })*@                    
-                    @Html.HiddenFor(m => m.IdEmpresaUsuario)
-                </div>
-                <div class="col-md-3">
-                    <strong>@Model.EmpresaRazonSocial<br />@Model.EmpresaIdentificadorTributario</strong><br />
-                    @*<a href="#" class="fuente-pequeña">Modificar Datos ...</a>*@
-                    <button type="button" value="Modificar datos" onclick="modificarDatosUsuario(@Model.IdEmpresaUsuario);">Modificar</button>
-                </div>
-                <div class="col-md-3 fuente-pequeña">
-                    <strong>@Model.UsuarioNombre @Model.UsuarioApellido</strong><br />
-                    <strong>@Model.UsuarioNumeroDocumento</strong><br />
-                    <strong>@Model.UsuarioCorreoElectronico</strong><br />
-                    <strong>@Model.UsuarioTelefonoCelular</strong>
-                </div>
-                <div class="col-md-4 fuente-pequeña">
-                    <strong>@Model.LocacionNombre</strong><br />
-                    <strong>@Model.LocacionDireccion</strong><br />
-                    <strong>@Model.LocacionTelefonoFijo</strong><br />
+            <div class="panel-body fuente-pequeña">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <img class="foto-empresa" src='@Url.Action("ObtenerImagenEmpresa", "Empresa", new { id = ViewBag.IdEmpresa })' />
+                        @*@Url.Action("ObtenerImagenEmpresa", "Empresa", new { id = ViewBag.IdEmpresa })*@
+                        @Html.HiddenFor(m => m.IdEmpresaUsuario)
+                    </div>
+                    <div class="col-sm-10">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <strong>@Model.EmpresaRazonSocial</strong><br />
+                                <strong>@Model.EmpresaIdentificadorTributario</strong><br />
+                                @*<a href="#" class="fuente-pequeña">Modificar Datos ...</a>*@
+                                
+                            </div>
+                            <div class="col-md-4">
+                                <strong>@Model.UsuarioNombre @Model.UsuarioApellido</strong><br />
+                                <strong>@Model.UsuarioNumeroDocumento</strong><br />
+                                <strong>@Model.UsuarioCorreoElectronico</strong><br />
+                                <strong>@Model.UsuarioTelefonoCelular</strong>
+                            </div>
+                            <div class="col-md-4">
+                                <strong>@Model.LocacionNombre</strong><br />
+                                <strong>@Model.LocacionDireccion</strong><br />
+                                <strong>@Model.LocacionTelefonoFijo</strong><br />
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div class="col-sm-12" style="text-align:right;">
+                                <button type="button" value="Modificar datos" class="btn btn-default color-paleta1" onclick="modificarDatosUsuario(@Model.IdEmpresaUsuario);">Modificar mis datos ...</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+
+    </div>
+</div>
+
+    <!--Editar usuario-->
+    <div class="modal" id="divModalUsuarioEditarTMP" tabindex="-1" role="dialog" aria-labelledby="EditarUbicacion" aria-hidden="true">
+
+        @using (Ajax.BeginForm("_AdministrarUsuarioEditarTMP", "Empresa", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "datos-cuenta", OnComplete = "cerrarModalTMP" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div id="divUsuarioContenedorEditarTMP" class="modal-dialog">
+
+            </div>
+        }
     </div>
 
-</div>
+    <script>
 
-<!--Editar usuario-->
-<div class="modal" id="divModalUsuarioEditarTMP" tabindex="-1" role="dialog" aria-labelledby="EditarUbicacion" aria-hidden="true">
 
-    @using (Ajax.BeginForm("_AdministrarUsuarioEditarTMP", "Empresa", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "datos-cuenta", OnComplete = "cerrarModalTMP" }))
-    {
-        @Html.AntiForgeryToken()
-
-        <div id="divUsuarioContenedorEditarTMP" class="modal-dialog">
-
-        </div>
-    }
-</div>
-
-<script>
-
-   
-</script>
+    </script>
