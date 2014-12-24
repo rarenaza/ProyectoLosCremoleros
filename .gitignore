@@ -24,7 +24,7 @@ $RECYCLE.BIN/
 
 Packages/
 obj/
-bin/
+bin/*
 
 # =========================
 # Operating System Files
