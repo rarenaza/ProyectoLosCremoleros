@@ -85,7 +85,6 @@
             </div>
 
             <script>
-
                 CKEDITOR.replace('Funciones');
                 CKEDITOR.replace('Competencias');
             </script>
@@ -105,7 +104,8 @@
                             <div class="panel-body fuente-pequeña">
                                 <div class="input-group">
                                     <span class="input-group-addon">Recibir<br />CVs hasta</span>                                    
-                                    @Html.Raw(@Html.EditorFor(m => m.FechaFinRecepcionCV).ToString().Replace("text-box single-line", "form-control"))
+                                    @Html.EditorFor(m => m.FechaFinRecepcionCV)
+                                    @*@Html.Raw(@Html.EditorFor(m => m.FechaFinRecepcionCV).ToString().Replace("text-box single-line", "form-control"))*@
                                     @Html.ValidationMessageFor(m => m.FechaFinRecepcionCV, "", new { @class = "text-danger" })
                                 </div>
                                 <div class="input-group">
@@ -216,12 +216,13 @@
 
             <div class="panel-group" id="oferta-fases" role="tablist" aria-multiselectable="true">
                 <div id="divContenedorFases" class="panel panel-default">
-                    @using (Ajax.BeginForm("_OfertaFaseEditar", "Empresa", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divContenedorFases", OnComplete = "alertTemporal" }))
+                    @using (Ajax.BeginForm("_OfertaFaseEditar", "Empresa", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divFases", OnComplete = "alertTemporal" }))
                     {
                         @Html.AntiForgeryToken()
     
-                        @Html.Action("ObtenerOfertaFase", "Empresa", new { idOferta = Model.IdOferta })
-                       
+                        <div id="divFases">
+                            @Html.Action("ObtenerOfertaFase", "Empresa", new { idOferta = Model.IdOferta })
+                       </div>
                     }
                 </div>
             </div>
@@ -337,18 +338,24 @@
     //});
 
     function crearEstudio(idOferta) {
+        //debugger;
+        //var url = "../../OfertaEstudio/_OfertaEstudioCrear/" + idOferta; // el url del controlador
 
-        var url = "../OfertaEstudio/_OfertaEstudioCrear/" + idOferta; // el url del controlador
+        var url = '@Url.Action("_OfertaEstudioCrear", "OfertaEstudio")' + "/" + idOferta;
+        //debugger;
         $.get(url, function (data) {
+
             $('#divCrearEstudioContenedor').html(data);
-           
             $.validator.unobtrusive.parse('#divCrearEstudioContenedor');
             $('#divModalEstudio').modal('show');
-        });
+        }).error(function (err) { console.log(err); alert(err); });
     };
 
     function crearSector(idOferta) {
-        var url = "../OfertaSectorEmpresarial/_OfertaSectorEmpresarialCrear/" + idOferta; // el url del controlador
+        //var url = "../OfertaSectorEmpresarial/_OfertaSectorEmpresarialCrear/" + idOferta; // el url del controlador
+
+        var url = '@Url.Action("_OfertaSectorEmpresarialCrear", "OfertaSectorEmpresarial")' + "/" + idOferta;
+
         $.get(url, function (data) {
             $('#divCrearSectorEmpresarialContenedor').html(data);
             $.validator.unobtrusive.parse('#divCrearSectorEmpresarialContenedor');
@@ -367,7 +374,10 @@
 
     function crearInfoAdicional(idOferta) {
         //debugger;
-        var url = "../OfertaInformacionAdicional/_OfertaInformacionAdicionalCrear/" + idOferta; // el url del controlador
+        //var url = "../OfertaInformacionAdicional/_OfertaInformacionAdicionalCrear/" + idOferta; // el url del controlador
+
+        var url = '@Url.Action("_OfertaInformacionAdicionalCrear", "OfertaInformacionAdicional")' + "/" + idOferta;
+
         $.get(url, function (data) {
             $('#divCrearInfoAdicionalContenedor').html(data);
             $.validator.unobtrusive.parse('#divCrearInfoAdicionalContenedor');
@@ -397,8 +407,11 @@
 
     function editarEstudio(id) {
 
-        var url = "../OfertaEstudio/_OfertaEstudioEditar"; // el url del controlador
-        $.get(url + '/' + id, function (data) {
+        //var url = "../OfertaEstudio/_OfertaEstudioEditar"; // el url del controlador
+
+        var url = '@Url.Action("_OfertaEstudioEditar", "OfertaEstudio")' + "/" + id;
+
+        $.get(url, function (data) {
             $('#divEditarEstudioContenedor').html(data);
             $.validator.unobtrusive.parse('#divEditarEstudioContenedor');
             $('#divEditarModalEstudio').modal('show');
@@ -407,8 +420,11 @@
 
     function editarSector(id) {
 
-        var url = "../OfertaSectorEmpresarial/_OfertaSectorEmpresarialEditar"; // el url del controlador
-        $.get(url + '/' + id, function (data) {
+        //var url = "../OfertaSectorEmpresarial/_OfertaSectorEmpresarialEditar"; // el url del controlador
+
+        var url = '@Url.Action("_OfertaSectorEmpresarialEditar", "OfertaSectorEmpresarial")' + "/" + id;
+
+        $.get(url, function (data) {
             $('#divEditarSectorEmpresarialContenedor').html(data);
             $.validator.unobtrusive.parse('#divEditarSectorEmpresarialContenedor');
             $('#divEditarModalSectorEmpresarial').modal('show');
@@ -417,8 +433,11 @@
 
     function editarInfoAdicional(id) {
 
-        var url = "../OfertaInformacionAdicional/_OfertaInformacionAdicionalEditar"; // el url del controlador
-        $.get(url + '/' + id, function (data) {
+        //var url = "../OfertaInformacionAdicional/_OfertaInformacionAdicionalEditar"; // el url del controlador
+
+        var url = '@Url.Action("_OfertaInformacionAdicionalEditar", "OfertaInformacionAdicional")' + "/" + id;
+
+        $.get(url, function (data) {
             $('#divEditarInfoAdicionalContenedor').html(data);
             $.validator.unobtrusive.parse('#divEditarInfoAdicionalContenedor');
             $('#divEditarModalInfoAdicional').modal('show');
@@ -428,32 +447,33 @@
     //Eliminaciones
     function eliminarEstudio(idOfertaEstudio) {
 
-        if (confirm('Está seguro de eliminar el registro?')) {           
+        if (confirm('Está seguro de eliminar el registro?')) {
             //debugger;
-            var url = "../OfertaEstudio/_OfertaEstudioEliminar/" + idOfertaEstudio; // el url del controlador
-            $.get(url, function (data)
-                {                   
-                    $('#divListaEstudios').html(data);                    
-                });
-        }             
+            //var url = "../OfertaEstudio/_OfertaEstudioEliminar/" + idOfertaEstudio; // el url del controlador
+            var url = '@Url.Action("_OfertaEstudioEliminar", "OfertaEstudio")' + "/" + idOfertaEstudio;
+            $.get(url, function (data) {
+                $('#divListaEstudios').html(data);
+            });
+        }
     };
 
     function eliminarSector(idOfertaSector) {
 
-        if (confirm('Está seguro de eliminar el registro?'))
-        {            
-            var url = "../OfertaSectorEmpresarial/_OfertaSectorEmpresarialEliminar/" + idOfertaSector;
+        if (confirm('Está seguro de eliminar el registro?')) {
+            //var url = "../OfertaSectorEmpresarial/_OfertaSectorEmpresarialEliminar/" + idOfertaSector;
+            var url = '@Url.Action("_OfertaSectorEmpresarialEliminar", "OfertaSectorEmpresarial")' + "/" + idOfertaSector;
             $.get(url, function (data) {
                 $('#divListaSectores').html(data);
 
             });
-        }       
+        }
     };
 
     function eliminarInfoAdicional(idOfertaInfoAdicional) {
 
         if (confirm('Está seguro de eliminar el registro?')) {
-            var url = "../OfertaInformacionAdicional/_OfertaInformacionAdicionalEliminar/" + idOfertaInfoAdicional;
+            //var url = "../OfertaInformacionAdicional/_OfertaInformacionAdicionalEliminar/" + idOfertaInfoAdicional;
+            var url = '@Url.Action("_OfertaInformacionAdicionalEliminar", "OfertaInformacionAdicional")' + "/" + idOfertaInfoAdicional;
             $.get(url, function (data) {
                 $('#divListaInfoAdicional').html(data);
             });
@@ -471,3 +491,21 @@
     }
 
 </script>
+
+@{
+    //Se valida que exista mensaje de éxito al crear una oferta
+    if (TempData["MsjExitoCrearOferta"] != null)
+    {
+        <input id="msjExitoCrearOferta" type="hidden" value="@TempData["MsjExitoCrearOferta"]" />
+        TempData["MsjExitoCrearOferta"] = null; //Se establece el valor nuevamente en NULL.
+
+        //Se muestra el script
+        <script>
+
+            var msjExito = document.getElementById("msjExitoCrearOferta").value;
+            alert(msjExito);
+
+        </script>
+    }
+    
+}

@@ -332,8 +332,9 @@ namespace UTP.PortalEmpleabilidad.Datos
             return dtResultado;
         }
 
-        public void Insertar(Oferta oferta, List<OfertaFase> listaOfertaFase)
+        public int Insertar(Oferta oferta, List<OfertaFase> listaOfertaFase)
         {
+            int idOfertaGenerado = 0;
             try
             {
                 using (SqlConnection conexion = new SqlConnection(cadenaConexion))
@@ -371,7 +372,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                     
                     if (resultado != null)
                     {
-                        int idOfertaGenerado = Convert.ToInt32(resultado);
+                        idOfertaGenerado = Convert.ToInt32(resultado);
 
                         //Se insertan las fases de la oferta.
                         foreach (var item in listaOfertaFase)
@@ -396,6 +397,8 @@ namespace UTP.PortalEmpleabilidad.Datos
             {
                 throw ex;
             }
+
+            return idOfertaGenerado;
         }
 
         /// <summary>

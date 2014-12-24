@@ -19,7 +19,9 @@
             {
                 <p>
                     <span>                        
-                        @Html.CheckBoxFor(m => m[i].Incluir, new { @disabled = "disabled" })
+                        @*@Html.CheckBoxFor(m => m[i].Incluir, new { @disabled = "disabled", @checked = "checked" })*@
+                        <input type="checkbox" checked="checked" disabled>
+                        @*@Html.CheckBoxFor(m => m[i].Incluir)*@
                     </span>@Model[i].FaseOferta
                 </p>
             }
@@ -35,6 +37,7 @@
             @Html.HiddenFor(m => m[i].IdOfertaFase)
             @Html.HiddenFor(m => m[i].FaseOferta)
             @Html.HiddenFor(m => m[i].IdListaValor)
+            @Html.HiddenFor(m => m[i].Incluir)
         }     
     </div>
 </div>

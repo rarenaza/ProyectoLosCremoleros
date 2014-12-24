@@ -40,6 +40,9 @@ namespace UTP.PortalEmpleabilidad.Logica
                 panel.LocacionDireccion = dtResultado.Rows[0]["LocacionDireccion"].ToString();
                 panel.LocacionTelefonoFijo = dtResultado.Rows[0]["LocacionTelefonoFijo"].ToString();
 
+                //Datos del ID
+                panel.IdEmpresaUsuario = Convert.ToInt32(dtResultado.Rows[0]["IdEmpresaUsuario"]);
+
             }
 
             else

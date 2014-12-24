@@ -16,12 +16,13 @@
              </div>
 
              <div class="panel-group" id="divContenedorPostulantes" role="tablist" aria-multiselectable="true">
-                @using (Ajax.BeginForm("_OfertaPostulanteMoverDeFase", "Empresa", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divContenedorPostulantes", OnComplete = "alertaExito" }))
+                @using (Ajax.BeginForm("_OfertaPostulanteMoverDeFase", "Empresa", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divActualizarPostulantes", OnComplete = "alertaExito" }))
                 {
                     @Html.AntiForgeryToken()
-                    
-                    @Html.Action("VistaOfertaPostulantes", "Empresa", new { id = @Model.IdOferta })
-            
+
+                    <div id="divActualizarPostulantes">
+                        @Html.Action("VistaOfertaPostulantes", "Empresa", new { id = @Model.IdOferta })
+                    </div>
                 }
 
              </div>

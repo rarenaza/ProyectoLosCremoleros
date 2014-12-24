@@ -31,7 +31,8 @@ namespace UTP.PortalEmpleabilidad.Modelo
 
 
         [Required(ErrorMessage = Constantes.MSJ_CAMPO_OBLIGATORIO)]
-        [DataType(DataType.Date)]    
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime FechaFinRecepcionCV { get; set; }
         public DateTime FechaFinProceso { get; set; }
 
