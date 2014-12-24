@@ -443,7 +443,13 @@ namespace UTPPrototipo.Controllers
                 alumno.IncluirFoto = alumnocv.IncluirFoto;
                 alumno.IncluirTelefonoFijo = alumnocv.IncluirTelefonoFijo;
                 alumno.IncluirDireccion = alumnocv.IncluirDireccion;
+                alumno.IncluirNombre1 = alumnocv.IncluirNombre1;
+                alumno.IncluirNombre2 = alumnocv.IncluirNombre2;
+                alumno.IncluirNombre3 = alumnocv.IncluirNombre3;
+                alumno.IncluirNombre4 = alumnocv.IncluirNombre4;
+
                 alumno.Perfil = alumnocv.Perfil;
+                alumno.ListaNombres =alumno.Nombres.Split(new Char[]{' '});
             }
             return PartialView("_AlumnoDatosGenerales", alumno);
         }

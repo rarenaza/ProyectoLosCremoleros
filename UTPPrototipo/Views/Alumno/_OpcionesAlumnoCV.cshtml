@@ -79,7 +79,7 @@
 
     function crearCV() {
         var IdAlumno = $('#IdAlumno').val();
-        var url = "/Alumno/ModalRegistroCV?idAlumno=" + IdAlumno; // el url del controlador           
+        var url = "/Alumno/ModalRegistroCV?idAlumno=" + IdAlumno; // el url del controlador
         $.get(url, function (data) {
             $('#Modal-Nuevo-CV').html(data);
             $.validator.unobtrusive.parse('#Modal-Nuevo-CV');
@@ -105,7 +105,6 @@
             conocimientos.push({ IdInformacionAdicional: Id });
         });
 
-
         var cv = {
             IdCV: $("#IdCV").val(),
             IdPlantillaCV: $("#IdPlantillaCV").val(),
@@ -114,10 +113,10 @@
             IncluirTelefonoFijo: $("#IncluirTelefonoFijo").is(':checked'),
             IncluirFoto: $("#IncluirFoto").is(':checked'),
             IncluirDireccion: $("#IncluirDireccion").is(':checked'),
-            Incluirnombre1: 1,
-            Incluirnombre2: 0,
-            Incluirnombre3: 0,
-            Incluirnombre4: 0,
+            IncluirNombre1: $("#IncluirNombre1").is(':checked'),
+            IncluirNombre2: $("#IncluirNombre2").is(':checked'),
+            IncluirNombre3: $("#IncluirNombre3").is(':checked'),
+            IncluirNombre4: $("#IncluirNombre4").is(':checked'),
             Perfil: $("#Perfil").val(),
             Estudios: estudios,
             Experiencias: experiencias,

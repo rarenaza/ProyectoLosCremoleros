@@ -49,6 +49,11 @@ namespace UTP.PortalEmpleabilidad.Logica
                     alumnocv.IncluirFoto = Funciones.ToBoolean(dtResultado.Rows[i]["IncluirFoto"]);
                     alumnocv.IncluirTelefonoFijo = Funciones.ToBoolean(dtResultado.Rows[i]["IncluirTelefonoFijo"]);
                     alumnocv.IncluirDireccion = Funciones.ToBoolean(dtResultado.Rows[i]["IncluirDireccion"]);
+                    alumnocv.IncluirNombre1 = Funciones.ToBoolean(dtResultado.Rows[i]["IncluirNombre1"]);
+                    alumnocv.IncluirNombre2 = Funciones.ToBoolean(dtResultado.Rows[i]["IncluirNombre2"]);
+                    alumnocv.IncluirNombre3 = Funciones.ToBoolean(dtResultado.Rows[i]["IncluirNombre3"]);
+                    alumnocv.IncluirNombre4 = Funciones.ToBoolean(dtResultado.Rows[i]["IncluirNombre4"]);
+
                     alumnocv.Perfil = Funciones.ToString(dtResultado.Rows[i]["Perfil"]);
 
                 }

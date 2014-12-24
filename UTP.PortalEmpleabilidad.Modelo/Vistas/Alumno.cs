@@ -12,6 +12,11 @@ namespace UTP.PortalEmpleabilidad.Modelo
        public bool IncluirCorreoElectronico1 { get; set; }
        public bool IncluirFoto { get; set; }
        public bool IncluirDireccion { get; set; }
+       public bool IncluirNombre1 { get; set; }
+       public bool IncluirNombre2 { get; set; }
+       public bool IncluirNombre3 { get; set; }
+       public bool IncluirNombre4 { get; set; }
        public string Perfil { get; set; }
+       public string[] ListaNombres { get; set; }
     }
 }

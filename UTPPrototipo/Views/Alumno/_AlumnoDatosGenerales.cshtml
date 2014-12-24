@@ -14,13 +14,65 @@
                 <div class="panel-body">
                     <p style="text-align:center;">
                         <strong>
-                            <input type="checkbox" checked />Karina <input type="checkbox" checked />María Barrionuevo Chang
+                            @*<input type="checkbox" checked />Karina <input type="checkbox" checked />María Barrionuevo Chang*@
+                            @{int cnt = 1;}
+                            @for (int x = 0; x <= 3; x++)
+                            {
+                                if (Model.ListaNombres.Length - 1 >= x)
+                                {
+                                    if (x == 0)
+                                    {
+                                        @Html.CheckBoxFor(y=>y.IncluirNombre1)
+                                        @Model.ListaNombres[x]
+                                    }
+                                    else if (x == 1)
+                                    {
+                                        @Html.CheckBoxFor(y => y.IncluirNombre2)
+                                        @Model.ListaNombres[x]
+                                    }
+
+                                    else if (x == 2)
+                                    {
+                                        @Html.CheckBoxFor(y => y.IncluirNombre3)
+                                        @Model.ListaNombres[x]
+                                    }
+                                    else if (x == 3)
+                                    {
+                                        @Html.CheckBoxFor(y => y.IncluirNombre4)
+                                        string nombre = string.Empty; 
+                                        for (int z = x; z < Model.ListaNombres.Length-1; z++) {
+                                            nombre = nombre + " " + Model.ListaNombres[z] ;
+                                        }
+                                        @nombre
+                                    }
+                                }
+                                else
+                                {
+                                    if (x == 0)
+                                    {
+                                        @Html.CheckBoxFor(y => y.IncluirNombre1, htmlAttributes: new { @style = "display:none" })
+                                    }
+                                    else if (x == 1)
+                                    {
+                                        @Html.CheckBoxFor(y => y.IncluirNombre2, htmlAttributes: new { @style = "display:none" })
+                                    }
+
+                                    else if (x == 2)
+                                    {
+                                        @Html.CheckBoxFor(y => y.IncluirNombre3, htmlAttributes: new { @style = "display:none" })
+                                    }
+                                    else if (x == 3)
+                                    {
+                                        @Html.CheckBoxFor(y => y.IncluirNombre4, htmlAttributes: new { @style = "display:none" })
+                                    }
+                                }
+                            }
+ 
+                            @Model.Apellidos
                         </strong>
                     </p>
                     <p style="text-align:center;">
                         @Model.CorreoElectronico1 / @Model.TelefonoCelular
-                        @*karina_barrionuevo@utp.edu.pe / 954123876*@
-
                     </p>
                     <div class="row">
                         <div class="col-sm-4">
@@ -28,15 +80,6 @@
                                 <span class="input-group-addon">
                                     
                                     @Html.CheckBoxFor(x=>x.IncluirCorreoElectronico1)
-                                    @*@if (Model.IncluirCorreoElectronico1)
-                                    {
-                                        <input type="checkbox" checked="true" id="IncluirCorreoElectronico1">
-
-                                    }
-                                    else
-                                    {
-                                        <input type="checkbox" checked="false" id="IncluirCorreoElectronico1">
-                                    }*@
                                 </span>
                                 <span class="form-control" style="padding-top:8px;">@Model.CorreoElectronico1</span>
                             </div>
@@ -45,16 +88,6 @@
                             <div class="input-group fuente-pequeña">
                                 <span class="input-group-addon">
                                     @Html.CheckBoxFor(x=>x.IncluirTelefonoFijo)
-
-                                    @*@if (Model.IncluirTelefonoFijo)
-                                    {
-                                        <input type="checkbox" checked="true" id="IncluirTelefonoFijo">
-
-                                    }
-                                    else
-                                    {
-                                        <input type="checkbox" checked="false" id="IncluirTelefonoFijo">
-                                    }*@
                                 </span>
                                 <span class="form-control" style="padding-top:8px;">@Model.TelefonoFijoCasa</span>
                             </div>
@@ -63,15 +96,6 @@
                             <div class="input-group fuente-pequeña">
                                 <span class="input-group-addon">
                                     @Html.CheckBoxFor(x => x.IncluirFoto)
-                                    @*@if (Model.IncluirFoto)
-                                    {
-                                        <input type="checkbox" checked="true" id="IncluirFoto">
-
-                                    }
-                                    else
-                                    {
-                                        <input type="checkbox" checked="false" id="IncluirFoto">
-                                    }*@
                                 </span>
                                 <span class="form-control" style="padding-top:8px;">Foto</span>
                             </div>
@@ -82,15 +106,6 @@
                             <div class="input-group fuente-pequeña">
                                 <span class="input-group-addon">
                                     @Html.CheckBoxFor(x => x.IncluirDireccion)
-                                    @*@if (Model.IncluirDireccion)
-                                    {
-                                        <input type="checkbox" checked="true" id="IncluirDireccion">
-
-                                    }
-                                    else
-                                    {
-                                        <input type="checkbox" checked="false" id="IncluirDireccion">
-                                    }*@
                                 </span>
                                 <span class="form-control" style="padding-top:8px;">@Model.DireccionLinea1</span>
                             </div>
