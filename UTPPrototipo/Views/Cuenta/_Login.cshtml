@@ -23,19 +23,15 @@
                 <span class="input-group-addon nombre-campo">Usuario</span>
                 @*<input type="text" class="form-control" placeholder="Usuario" style="width:100%;">*@
                 @Html.TextBoxFor(m => m.NombreUsuario, new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.NombreUsuario, "", new { @class = "text-danger" })
-
-            </div>
-      
-      
-                <div class="input-group grupo-ingreso">
+             </div>@Html.ValidationMessageFor(m => m.NombreUsuario, "", new { @class = "text-danger" })
+                  <div class="input-group grupo-ingreso">
                     <span class="input-group-addon nombre-campo">Clave</span>
                     @*<input type="password" class="form-control" placeholder="Clave">*@
                     @*@Html.TextBoxFor(m => m.Contrasena, new { @class = "form-control" })*@
                     @Html.PasswordFor(m => m.Contrasena, new { @class = "form-control" })
 
-                    @Html.ValidationMessageFor(m => m.Contrasena, "", new { @class = "text-danger" })
-                </div>
+                   
+                </div>@Html.ValidationMessageFor(m => m.Contrasena, "", new { @class = "text-danger" })
                 <br />
                 <div class="grupo-ingreso" style="text-align:center;">
                     <input type="checkbox">
