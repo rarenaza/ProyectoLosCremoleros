@@ -1,4 +1,5 @@
-﻿@model IEnumerable<UTP.PortalEmpleabilidad.Modelo.Vistas.Ofertas.VistaOfertaEmpresa>
+﻿@using UTPPrototipo.Common
+@model IEnumerable<UTP.PortalEmpleabilidad.Modelo.Vistas.Ofertas.VistaOfertaEmpresa>
 
 @{
     Layout = "~/Views/Empresa/_LayoutEmpresa.cshtml";
@@ -62,7 +63,7 @@
             @foreach (var item in Model)
             {
                 <div class="row grilla1-linea">
-                    <div class="col-xs-12 col-sm-2"><span>@item.FechaPublicacion</span></div>
+                    <div class="col-xs-12 col-sm-2"><span>@Html.FormatoFrecuencia(item.FechaPublicacion)</span></div>
                     <div class="col-xs-3 col-sm-5 linea-destacada">
                         @*<a href="..\Empresa\Oferta?Idoferta=@item.IdOferta"><strong>@item.Cargo</strong></a>*@
                         <strong>@Html.ActionLink(item.Cargo, "Oferta", new { id = item.IdOferta })</strong>
