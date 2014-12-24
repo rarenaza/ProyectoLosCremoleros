@@ -56,10 +56,10 @@
             IdCV: $('#IdCV').val()
         };
         $("#HIIdCV").attr("value", $('#IdCV').val());
-        CargarPOST("alumno-datos-generales", "/Alumno/AlumnoDatosGenerales", vistacv);
-        CargarPOST("mi-cv-educacion", "/Alumno/AlumnoEstudiosCV", vistacv);
-        CargarPOST("mi-cv-experiencia-laboral", "/Alumno/AlumnoExperienciaCV", vistacv);
-        CargarPOST("mi-cv-informacion-adicional", "/Alumno/AlumnoInformacionAdicionalCV", vistacv);
+        CargarPOST("alumno-datos-generales",'@Url.Action("AlumnoDatosGenerales", "Alumno")', vistacv);
+        CargarPOST("mi-cv-educacion",'@Url.Action("AlumnoEstudiosCV", "Alumno")', vistacv);
+        CargarPOST("mi-cv-experiencia-laboral",'@Url.Action("AlumnoExperienciaCV", "Alumno")', vistacv);
+        CargarPOST("mi-cv-informacion-adicional",'@Url.Action("AlumnoInformacionAdicionalCV", "Alumno")', vistacv);
 
     });
 
@@ -70,11 +70,11 @@
             IdAlumno: $('#IdAlumno').val(),
             IdCV: Id
         };
-        CargarPOST("mi-cv-opciones", "/Alumno/OpcionesCV", vistacv);
-        CargarPOST("alumno-datos-generales", "/Alumno/AlumnoDatosGenerales", vistacv);
-        CargarPOST("mi-cv-educacion", "/Alumno/AlumnoEstudiosCV", vistacv);
-        CargarPOST("mi-cv-experiencia-laboral", "/Alumno/AlumnoExperienciaCV", vistacv);
-        CargarPOST("mi-cv-informacion-adicional", "/Alumno/AlumnoInformacionAdicionalCV", vistacv);
+        CargarPOST("mi-cv-opciones",'@Url.Action("OpcionesCV", "Alumno")', vistacv);
+        CargarPOST("alumno-datos-generales",'@Url.Action("AlumnoDatosGenerales", "Alumno")', vistacv);
+        CargarPOST("mi-cv-educacion",'@Url.Action("AlumnoEstudiosCV", "Alumno")', vistacv);
+        CargarPOST("mi-cv-experiencia-laboral",'@Url.Action("AlumnoExperienciaCV", "Alumno")', vistacv);
+        CargarPOST("mi-cv-informacion-adicional",'@Url.Action("AlumnoInformacionAdicionalCV", "Alumno")', vistacv);
     });
 
     function crearCV() {
@@ -122,7 +122,7 @@
             Experiencias: experiencias,
             Conocimientos: conocimientos
         }
-        CargarPOST(null, '@Url.Action("RegistrarInfoCV", "Alumno")', cv);
+        CargarPOST("myModal", '@Url.Action("RegistrarInfoCV", "Alumno")', cv);
     }
 
 </script>

@@ -449,7 +449,7 @@ namespace UTPPrototipo.Controllers
                 alumno.IncluirNombre4 = alumnocv.IncluirNombre4;
 
                 alumno.Perfil = alumnocv.Perfil;
-                alumno.ListaNombres =alumno.Nombres.Split(new Char[]{' '});
+                alumno.ListaNombres = alumno.Nombres.Split(new Char[] { ' ' });
             }
             return PartialView("_AlumnoDatosGenerales", alumno);
         }
@@ -807,8 +807,15 @@ namespace UTPPrototipo.Controllers
             TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
             entidad.Usuario = ticket.Usuario;
             entidad.IdPlantillaCV = int.Parse(Util.ObtenerSettings("IdPlantillaCV"));
-            lnAlumnoCV.RegistrarCV(ref entidad);
-
+            ViewBag.Mensaje = "";
+            if (lnAlumnoCV.RegistrarCV(ref entidad))
+            {
+                ViewBag.Mensaje = "Se registro el CV.";
+            }
+            else
+            {
+                ViewBag.Mensaje = "No se registro el CV.";
+            }
             VistaPanelAlumnoMiCV panel = new VistaPanelAlumnoMiCV();
             panel = VistaMICV(entidad.IdAlumno, entidad.IdCV);
 
@@ -833,13 +840,17 @@ namespace UTPPrototipo.Controllers
             ViewBag.ListaPlantillaCV = listItemsPlantillaCV;
 
             return PartialView("_OpcionesAlumnoCV", panel);
+
+
+
         }
         public PartialViewResult RegistrarInfoCV(AlumnoCV entidad)
         {
             TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
             entidad.Usuario = ticket.Usuario;
             lnAlumnoCV.UpdateInfo(entidad);
-            return PartialView();
+            ViewBag.Mensaje = "Se registro la información del CV.";
+            return PartialView("_AlertModal");
         }
 
         public PartialViewResult DesactivarEstudioAlumno(int IdAlumno, int IdCV, int IdEstudio)
