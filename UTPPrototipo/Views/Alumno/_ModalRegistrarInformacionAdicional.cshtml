@@ -10,15 +10,14 @@
             @Html.HiddenFor(m => m.IdCV)
             @Html.HiddenFor(m => m.Movimiento)
             @Html.HiddenFor(m => m.IdInformacionAdicional)
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="row">
                 <div class="col-sm-6">
                     <div class="input-group fuente-pequeña">
                         <span class="input-group-addon">Tipo</span>
                         @Html.DropDownListFor(m => m.TipoConocimientoIdListaValor, null, "- Seleccionar -", htmlAttributes: new { @class = "form-control" })
-                        @*@Html.DropDownList("IdTipoConocimiento", new SelectList(ViewBag.ListaTipoConocimiento, "Value", "Text"), "- Seleccionar -", new { @class = "form-control" })*@
-
-
                     </div>
+                    @Html.ValidationMessageFor(m => m.TipoConocimientoIdListaValor, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="row">
@@ -27,6 +26,7 @@
                         <span class="input-group-addon">Nombre</span>
                         @Html.TextBoxFor(m => m.Conocimiento, htmlAttributes: new { @class = "form-control", @placeholder = "Nombre del Conocimiento" })
                     </div>
+                    @Html.ValidationMessageFor(m => m.Conocimiento, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="row">
@@ -34,32 +34,36 @@
                     <div class="input-group fuente-pequeña">
                         <span class="input-group-addon">Nivel</span>
                         @Html.DropDownListFor(m => m.NivelConocimientoIdListaValor, null, "- Seleccionar -", htmlAttributes: new { @class = "form-control" })
-                        @*@Html.DropDownList("IdNivelConocimiento", new SelectList(ViewBag.ListaNivelConocimiento, "Value", "Text"), "- Seleccionar -", new { @class = "form-control" })*@
 
 
                     </div>
+                    @Html.ValidationMessageFor(m => m.NivelConocimientoIdListaValor, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     <div class="input-group fuente-pequeña">
                         <span class="input-group-addon">Año Inicio</span>
                         @Html.TextBoxFor(m => m.FechaConocimientoDesdeAno, htmlAttributes: new { @class = "form-control", @placeholder = "Año Inicio" })
                     </div>
+                    @Html.ValidationMessageFor(m => m.FechaConocimientoDesdeAno, "", new { @class = "text-danger" })
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-6">
                     <div class="input-group fuente-pequeña">
                         <span class="input-group-addon">Mes Inicio</span>
                         @Html.DropDownListFor(m => m.FechaConocimientoDesdeMes, new SelectList(ViewBag.meses, "Key", "Value"), "Mes de Inicio", htmlAttributes: new { @class = "form-control" })
                     </div>
+                    @Html.ValidationMessageFor(m => m.FechaConocimientoDesdeMes, "", new { @class = "text-danger" })
                 </div>
-                <div class="col-sm-3">
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
                     <div class="input-group fuente-pequeña">
                         <span class="input-group-addon">Año Fin</span>
                         @Html.TextBoxFor(m => m.FechaConocimientoHastaAno, htmlAttributes: new { @class = "form-control", @placeholder = "Año Fin" })
                     </div>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-6">
                     <div class="input-group fuente-pequeña">
                         <span class="input-group-addon">Mes Fin</span>
                         @Html.DropDownListFor(m => m.FechaConocimientoHastaMes, new SelectList(ViewBag.meses, "Key", "Value"), "Mes de Fin", htmlAttributes: new { @class = "form-control" })
@@ -70,35 +74,32 @@
                 <div class="col-sm-6">
                     <div class="input-group fuente-pequeña">
                         <span class="input-group-addon">País</span>
-                        @*@Html.DropDownList("IdPais", new SelectList(ViewBag.ListaPais, "Value", "Text"), "- Seleccionar -", new { @class = "form-control" })*@
                         @Html.DropDownListFor(m => m.PaisIdListaValor, null, "- Seleccionar -", htmlAttributes: new { @class = "form-control" })
-
-
-
                     </div>
+                    @Html.ValidationMessageFor(m => m.PaisIdListaValor, "", new { @class = "text-danger" })
                 </div>
                 <div class="col-sm-6">
                     <div class="input-group fuente-pequeña">
                         <span class="input-group-addon">Ciudad</span>
-                        @*<input type="text" class="form-control" placeholder="Ciudad donde lo obtuvo" id="txtCiudad">*@
                         @Html.TextBoxFor(m => m.Ciudad, htmlAttributes: new { @class = "form-control", @placeholder = "Ciudad donde lo obtuvo" })
                     </div>
+                    @Html.ValidationMessageFor(m => m.Ciudad, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-8">
                     <div class="input-group fuente-pequeña">
                         <span class="input-group-addon">Institución</span>
-                        @*<input type="text" class="form-control" placeholder="Institución donde lo obtuvo" id="txtInstitucion">*@
                         @Html.TextBoxFor(m => m.InstituciónDeEstudio, htmlAttributes: new { @class = "form-control", @placeholder = "Institución donde lo obtuvo" })
                     </div>
+                    @Html.ValidationMessageFor(m => m.InstituciónDeEstudio, "", new { @class = "text-danger" })
                 </div>
                 <div class="col-sm-4">
                     <div class="input-group fuente-pequeña">
                         <span class="input-group-addon">Experiencia</span>
-                        @*<input type="text" class="form-control" placeholder="Años de experiencia" id="IdAnioExperiencia">*@
                         @Html.TextBoxFor(m => m.AñosExperiencia, htmlAttributes: new { @class = "form-control", @placeholder = "Años de experiencia" })
                     </div>
+                    @Html.ValidationMessageFor(m => m.AñosExperiencia, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="row">
@@ -110,31 +111,31 @@
     </div>
 </div>
 @*<script>
-    $("#IdRegistrarInformacionAdicional").click(function () {
-        var Id = $("#HIIdCV").val();
-        var vistacv = {
-            IdAlumno: $('#IdAlumno').val(),
-            IdCV: Id
-        };
-        var conocimiento = {
-            IdAlumno: $('#IdAlumno').val(),
-            TipoConocimientoIdListaValor: $('#IdTipoConocimiento').val(),
-            Conocimiento: $('#txtConocimiento').val(),
-            NivelConocimientoIdListaValor: $('#IdNivelConocimiento').val(),
-            FechaConocimientoDesdeMes: $('#IdMesInicio').val(),
-            FechaConocimientoDesdeAno: $('#txtAnioInicio').val(),
-            FechaConocimientoHastaMes: $('#IdMesFin').val(),
-            FechaConocimientoHastaAno: $('#txtAnioFin').val(),
-            PaisIdListaValor: $('#IdPais').val(),
-            Ciudad: $('#txtCiudad').val(),
-            InstituciónDeEstudio: $('#txtInstitucion').val(),
-            AñosExperiencia: $('#IdAnioExperiencia').val()
-        };
+        $("#IdRegistrarInformacionAdicional").click(function () {
+            var Id = $("#HIIdCV").val();
+            var vistacv = {
+                IdAlumno: $('#IdAlumno').val(),
+                IdCV: Id
+            };
+            var conocimiento = {
+                IdAlumno: $('#IdAlumno').val(),
+                TipoConocimientoIdListaValor: $('#IdTipoConocimiento').val(),
+                Conocimiento: $('#txtConocimiento').val(),
+                NivelConocimientoIdListaValor: $('#IdNivelConocimiento').val(),
+                FechaConocimientoDesdeMes: $('#IdMesInicio').val(),
+                FechaConocimientoDesdeAno: $('#txtAnioInicio').val(),
+                FechaConocimientoHastaMes: $('#IdMesFin').val(),
+                FechaConocimientoHastaAno: $('#txtAnioFin').val(),
+                PaisIdListaValor: $('#IdPais').val(),
+                Ciudad: $('#txtCiudad').val(),
+                InstituciónDeEstudio: $('#txtInstitucion').val(),
+                AñosExperiencia: $('#IdAnioExperiencia').val()
+            };
 
-        CargarPOST(null, "/Alumno/RegistrarAlumnoInformacionAdicional", conocimiento);
-        CargarPOST("mi-cv-informacion-adicional", "/Alumno/AlumnoInformacionAdicionalCV", vistacv);
-    });
-    $("#idCloseConocimiento").click(function () {
-        $("#Modal-otro-conocimiento").dialog("close");
-    });
-</script>*@
+            CargarPOST(null, "/Alumno/RegistrarAlumnoInformacionAdicional", conocimiento);
+            CargarPOST("mi-cv-informacion-adicional", "/Alumno/AlumnoInformacionAdicionalCV", vistacv);
+        });
+        $("#idCloseConocimiento").click(function () {
+            $("#Modal-otro-conocimiento").dialog("close");
+        });
+    </script>*@

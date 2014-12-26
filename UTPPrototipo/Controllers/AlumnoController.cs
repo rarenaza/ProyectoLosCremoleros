@@ -906,6 +906,49 @@ namespace UTPPrototipo.Controllers
 
         #endregion
 
+        #region "Generales"
+        public ActionResult DatosAlumno(int? Id)
+        {
+            if (Id != null)
+            {
+                Alumno alumno = lnAlumno.ObtenerAlumnoPorIdAlumno((int)Id);
+                if (alumno != null && string.IsNullOrEmpty(alumno.Usuario) == false)
+                {
+                    LNGeneral lngeneral = new LNGeneral();
+                    ViewBag.TipoDocumentoIdListaValor = new SelectList(lngeneral.ObtenerListaValor(1), "IdListaValor", "Valor", alumno.TipoDocumentoIdListaValor);
+                    ViewBag.SexoIdListaValor = new SelectList(lngeneral.ObtenerListaValor(2), "IdListaValor", "Valor", alumno.SexoIdListaValor);
+                    ViewBag.DireccionRegion = new SelectList(lngeneral.ObtenerListaValor(47), "IdListaValor", "Valor", alumno.DireccionRegion);
+
+                    return View(alumno);
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Alumno");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Alumno");
+            }
+
+        }
+        [HttpPost]
+        public PartialViewResult DatosAlumno(Alumno entidad)
+        {
+            TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
+            entidad.Usuario = ticket.Usuario;
+            lnAlumno.ModifcarDatos(entidad);
+            ViewBag.Mensaje = "Se modifico los datos del alumno.";
+            return PartialView("_AlertModal");
+        }
+        public ActionResult ListarListaValor(string Id)
+        {
+            LNGeneral lngeneral = new LNGeneral();
+            var Data = lngeneral.ObtenerListaValorPorIdPadre( Id);
+            return Json(Data, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+
 
 
 
@@ -1144,10 +1187,10 @@ namespace UTPPrototipo.Controllers
             Session["TicketAlumno"] = null;
             return RedirectToAction("Index", "Home");
         }
-        public ActionResult DatosAlumno()
-        {
-            return View();
-        }
+        //public ActionResult DatosAlumno()
+        //{
+        //    return View();
+        //}
 
         public ActionResult AlertaCvAlumno()
         {

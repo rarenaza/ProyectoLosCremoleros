@@ -11,13 +11,14 @@
         @Html.HiddenFor(m => m.IdCV)
         @Html.HiddenFor(m => m.Movimiento)
         @Html.HiddenFor(m => m.IdEstudio)
-
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="row">
             <div class="col-sm-4">
                 <div class="input-group fuente-pequeña">
                     <span class="input-group-addon">Año Inicio</span>
                     @Html.TextBoxFor(m => m.FechaInicioAno, htmlAttributes: new { @class = "form-control", @placeholder = "Año Inicio" })
                 </div>
+                @Html.ValidationMessageFor(m => m.FechaInicioAno, "", new { @class = "text-danger" })
             </div>
             <div class="col-sm-6">
                 <div class="input-group fuente-pequeña">
@@ -25,6 +26,7 @@
                     @Html.DropDownListFor(m => m.FechaInicioMes, new SelectList(ViewBag.meses, "Key", "Value"), "- Seleccionar -", htmlAttributes: new { @class = "form-control" })
 
                 </div>
+                @Html.ValidationMessageFor(m => m.FechaInicioMes, "", new { @class = "text-danger" })
             </div>
 
         </div>
@@ -33,9 +35,8 @@
                 <div class="input-group fuente-pequeña">
                     <span class="input-group-addon">Año Fin</span>
                     @Html.TextBoxFor(m => m.FechaFinAno, htmlAttributes: new { @class = "form-control", @placeholder = "Año Fin" })
-
-
                 </div>
+                @Html.ValidationMessageFor(m => m.FechaFinAno, "", new { @class = "text-danger" })
             </div>
             <div class="col-sm-6">
                 <div class="input-group fuente-pequeña">
@@ -51,15 +52,16 @@
                     <span class="input-group-addon">Tipo</span>
                     @Html.DropDownListFor(m => m.TipoDeEstudio, null, "- Seleccionar -", htmlAttributes: new { @class = "form-control" })
                 </div>
+                @Html.ValidationMessageFor(m => m.TipoDeEstudio, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="row">
             <div class="col-sm-12">
                 <div class="input-group fuente-pequeña">
                     <span class="input-group-addon">Institución</span>
-
                     @Html.TextBoxFor(m => m.Institucion, htmlAttributes: new { @class = "form-control", @placeholder = "Nombre de la Institución Educativa" })
                 </div>
+                @Html.ValidationMessageFor(m => m.Institucion, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -70,15 +72,16 @@
                     <span class="input-group-addon">Estudio</span>
                     @Html.TextBoxFor(m => m.Estudio, htmlAttributes: new { @class = "form-control", @placeholder = "Nombre del Estudio y/o Carrera" })
                 </div>
+                @Html.ValidationMessageFor(m => m.Estudio, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="row">
             <div class="col-sm-12">
                 <div class="input-group fuente-pequeña">
                     <span class="input-group-addon">Estado</span>
-
                     @Html.DropDownListFor(m => m.EstadoDelEstudio, null, "- Seleccionar -", htmlAttributes: new { @class = "form-control" })
                 </div>
+                @Html.ValidationMessageFor(m => m.EstadoDelEstudio, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="row">
@@ -96,6 +99,7 @@
                     <span class="input-group-addon">Ciclo</span>
                     @Html.TextBoxFor(m => m.CicloEquivalente, htmlAttributes: new { @class = "form-control", @placeholder = "Ciclo de Estudios" })
                 </div>
+                @Html.ValidationMessageFor(m => m.CicloEquivalente, "", new { @class = "text-danger" })
             </div>
         </div>
 

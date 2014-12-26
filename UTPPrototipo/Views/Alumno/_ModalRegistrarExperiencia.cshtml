@@ -10,14 +10,15 @@
         @Html.HiddenFor(m => m.IdCV)
         @Html.HiddenFor(m => m.Movimiento)
         @Html.HiddenFor(m => m.IdExperienciaCargo)
-@Html.HiddenFor(m => m.IdEmpresa)
-
+        @Html.HiddenFor(m => m.IdEmpresa)
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="row">
             <div class="col-sm-12">
                 <div class="input-group fuente-pequeña">
                     <span class="input-group-addon">Empresa</span>
                     @Html.TextBoxFor(m => m.Empresa, htmlAttributes: new { @class = "form-control", @placeholder = "Nombre de la Empresa" })
                 </div>
+                @Html.ValidationMessageFor(m => m.Empresa, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="row">
@@ -26,6 +27,7 @@
                     <span class="input-group-addon">Descrip-<br />ción de<br />Empresa</span>
                     @Html.TextAreaFor(m => m.DescripcionEmpresa, htmlAttributes: new { @class = "form-control", @placeholder = "Descripción de la Empresa", @rows = "3" })
                 </div>
+                @Html.ValidationMessageFor(m => m.DescripcionEmpresa, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="row">
@@ -34,6 +36,7 @@
                     <span class="input-group-addon">Sector<br />Principal</span>
                     @Html.DropDownListFor(m => m.SectorEmpresarial, null, "- Seleccionar -", htmlAttributes: new { @class = "form-control" })
                 </div>
+                @Html.ValidationMessageFor(m => m.SectorEmpresarial, "", new { @class = "text-danger" })
             </div>
             <div class="col-sm-3">
                 <div class="input-group fuente-pequeña">
@@ -55,12 +58,14 @@
                     <span class="input-group-addon">País</span>
                     @Html.DropDownListFor(m => m.Pais, null, "- Seleccionar -", htmlAttributes: new { @class = "form-control" })
                 </div>
+                @Html.ValidationMessageFor(m => m.Pais, "", new { @class = "text-danger" })
             </div>
             <div class="col-sm-6">
                 <div class="input-group fuente-pequeña">
                     <span class="input-group-addon">Ciudad</span>
                     @Html.TextBoxFor(m => m.Ciudad, htmlAttributes: new { @class = "form-control", @placeholder = "Ciudad donde trabajó" })
                 </div>
+                @Html.ValidationMessageFor(m => m.Ciudad, "", new { @class = "text-danger" })
             </div>
 
 
@@ -69,8 +74,9 @@
             <div class="col-sm-12">
                 <div class="input-group fuente-pequeña">
                     <span class="input-group-addon">Tipo</span>
-                    @Html.DropDownListFor(m => m.TipoCargo , null, "- Seleccionar -", htmlAttributes: new { @class = "form-control" })
+                    @Html.DropDownListFor(m => m.TipoCargo, null, "- Seleccionar -", htmlAttributes: new { @class = "form-control" })
                 </div>
+                @Html.ValidationMessageFor(m => m.TipoCargo, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="row">
@@ -79,6 +85,7 @@
                     <span class="input-group-addon">Cargo</span>
                     @Html.TextBoxFor(m => m.NombreCargo, htmlAttributes: new { @class = "form-control", @placeholder = "Nombre del Cargo" })
                 </div>
+                @Html.ValidationMessageFor(m => m.NombreCargo, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="row">
@@ -87,6 +94,7 @@
                     <span class="input-group-addon">Año Inicio</span>
                     @Html.TextBoxFor(m => m.FechaInicioCargoAno, htmlAttributes: new { @class = "form-control", @placeholder = "Año Inicio" })
                 </div>
+                @Html.ValidationMessageFor(m => m.FechaInicioCargoAno, "", new { @class = "text-danger" })
             </div>
             <div class="col-sm-6">
                 <div class="input-group fuente-pequeña">
@@ -94,6 +102,7 @@
                     @Html.DropDownListFor(m => m.FechaInicioCargoMes, new SelectList(ViewBag.meses, "Key", "Value"), "Mes de Inicio de cargo", htmlAttributes: new { @class = "form-control" })
 
                 </div>
+                @Html.ValidationMessageFor(m => m.FechaInicioCargoMes, "", new { @class = "text-danger" })
             </div>
 
         </div>
@@ -103,6 +112,7 @@
                     <span class="input-group-addon">Año Fin</span>
                     @Html.TextBoxFor(m => m.FechaFinCargoAno, htmlAttributes: new { @class = "form-control", @placeholder = "Año Fin" })
                 </div>
+                @Html.ValidationMessageFor(m => m.FechaFinCargoAno, "", new { @class = "text-danger" })
             </div>
             <div class="col-sm-6">
                 <div class="input-group fuente-pequeña">
@@ -111,18 +121,19 @@
                 </div>
             </div>
         </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="input-group fuente-pequeña">
-                        <span class="input-group-addon">Descrip-<br />ción de<br />Cargo</span>
-                        @Html.TextAreaFor(m => m.DescripcionCargo, htmlAttributes: new { @class = "form-control", @placeholder = "Descripción de funciones", @rows = "8" })
-                    </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="input-group fuente-pequeña">
+                    <span class="input-group-addon">Descrip-<br />ción de<br />Cargo</span>
+                    @Html.TextAreaFor(m => m.DescripcionCargo, htmlAttributes: new { @class = "form-control", @placeholder = "Descripción de funciones", @rows = "8" })
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12 text-right"><button type="submit" class="btn btn-default color-paleta4 fuente-pequeña" style="color: white; margin-bottom: 10px;" id="IdRegistrarExperiencia">Grabar Experiencia Laboral</button></div>
+                @Html.ValidationMessageFor(m => m.DescripcionCargo, "", new { @class = "text-danger" })
             </div>
         </div>
+        <div class="row">
+            <div class="col-sm-12 text-right"><button type="submit" class="btn btn-default color-paleta4 fuente-pequeña" style="color: white; margin-bottom: 10px;" id="IdRegistrarExperiencia">Grabar Experiencia Laboral</button></div>
+        </div>
+    </div>
     <div class="modal-footer">
     </div>
 </div>
