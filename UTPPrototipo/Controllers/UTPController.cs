@@ -705,7 +705,10 @@ namespace UTPPrototipo.Controllers
             return View();
         }
 
-
+        public ActionResult Evento()
+        {
+            return View();
+        }
 
         public ActionResult verimagen()
         {

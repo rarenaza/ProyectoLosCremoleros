@@ -1,0 +1,229 @@
+﻿@{
+    Layout = "~/Views/UTP/_LayoutUTP.cshtml";
+    ViewBag.Title = "Evento";
+}
+
+<link href="~/Content/font-awesome.css" rel="stylesheet" />
+<div class="container fuente-pequeña" style="margin-top:2px;">
+    <div class="panel-group" id="datos-cuenta" role="tablist" aria-multiselectable="true">
+        @{Html.RenderAction("VistaCabeceraUtp", "UTP");}
+    </div>
+    <h5>Evento: Feria de Empleos</h5>
+    <br />
+    <div class="row">
+        <div class="col-sm-6" style="border-right:solid;border-color:rgb(220, 220, 220);border-width:1px;">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="input-group">
+                        <span class="input-group-addon">Nombre<br />Evento</span>
+                        <input type="text" class="form-control" placeholder="Nombre del Evento">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <span class="input-group-addon">Estado</span>
+                        <select class="form-control" placeholder="Nombre del Evento">
+                            <option>
+                                Activo
+                            </option>
+                            <option>
+                                No Activo
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <span class="input-group-addon" ">Tipo</span>
+                        <select class="form-control" placeholder="Nombre del Evento">
+                            <option>
+                                Feria
+                            </option>
+                            <option>
+                                Baile
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-9">
+                    <div class="input-group">
+                        <span class="input-group-addon">Empresa<br />auspiciad.</span>
+                        <input type="text" class="form-control" placeholder="Empresa auspiciadora">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="input-group">
+                        <span class="input-group-addon">Descrip-<br />ción</span>
+                        <textarea rows="6" class="form-control" placeholder="Empresa auspiciadora"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <span class="input-group-addon">Fecha <br />Inicio</span>
+                        <input type="text" class="form-control" placeholder="Fecha de Inicio (dd/mm/aaaa)">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="input-group">
+                        <span class="input-group-addon">Describa<br />Fecha</span>
+                        <input type="text" class="form-control" placeholder="Fecha del Evento. Ej: Lunes 27 de Enero del 2014, de 8 a 9 de la Noche">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="input-group">
+                        <span class="input-group-addon">Lugar</span>
+                        <input type="text" class="form-control" placeholder="Describa el Lugar del Evento. Ej: Centro de Convenciones CLARO">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <span class="input-group-addon">Departa-<br />mento</span>
+                        <input type="text" class="form-control" placeholder="Departamento del Evento">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <span class="input-group-addon">Ciudad</span>
+                        <input type="text" class="form-control" placeholder="Ciudad del Evento">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <span class="input-group-addon">Distrito</span>
+                        <input type="text" class="form-control" placeholder="Distrito del Evento">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="input-group">
+                        <span class="input-group-addon">Dirección</span>
+                        <input type="text" class="form-control" placeholder="Dirección del Evento. Ej: Calle Amapolas 991">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <span class="input-group-addon">Asistentes<br />esperados</span>
+                        <input type="text" class="form-control" placeholder="Número">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <span class="input-group-addon"><input type="checkbox"></span>
+                        <input type="text" class="form-control" placeholder="Pueden asistir Alumnos">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <span class="input-group-addon"><input type="checkbox"></span>
+                        <input type="text" class="form-control" placeholder="Pueden asistir Usuarios empresa">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <span class="input-group-addon"><input type="checkbox" ></span>
+                        <input type="text" class="form-control" placeholder="Puede asistir el público en general">
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-sm-12" style="text-align:right;">
+                    <button class="btn btn-default color-paleta5">Guardar</button>
+                </div>
+            </div>
+            <hr />
+            <table>
+                <tr>
+                    <td class="celda-nombre">
+                        Creado Por
+                    </td>
+                    <td class="celda-datos">
+                        MarioAlberti
+                    </td>
+                </tr>
+                <tr>
+                    <td class="celda-nombre">
+                        Creado el
+                    </td>
+                    <td class="celda-datos">
+                        10/01/2015 12:45:51
+                    </td>
+                </tr>
+                <tr>
+                    <td class="celda-nombre">
+                        Modificado Por
+                    </td>
+                    <td class="celda-datos">
+                        ---
+                    </td>
+                </tr>
+                <tr>
+                    <td class="celda-nombre">
+                        Modificado el
+                    </td>
+                    <td class="celda-datos">
+                        ---
+                    </td>
+                </tr>
+            </table>
+            <br />
+        </div>
+
+
+        <div class="col-sm-6 ">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h6>Poster del Evento</h6>
+                    <img src="../img/evento/Evento1.jpg" style="width:100%;border:solid;border-width:thick;border-color:rgb(220,220,220);">
+                    <br /><br />
+                    <button class="btn btn-default color-paleta5">Cambiar imagen</button>
+                    <hr />
+                </div>
+                <div class="col-sm-6">
+                    <h6>Imagen del Ticket</h6>
+                    <img src="../img/evento/Evento1.jpg" style="width:100%;border:solid;border-width:thick;border-color:rgb(220,220,220);">
+                    <br /><br />
+                    <button class="btn btn-default color-paleta5">Cambar imagen</button>
+                    <hr />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        <script>
+
+            $(document).ready(function () {
+                $("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta3 color-paleta4 color-paleta6 color-paleta7 color-paleta8").addClass("color-paleta5");
+            });
+
+
+        </script>
