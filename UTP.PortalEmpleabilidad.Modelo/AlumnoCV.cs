@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.ComponentModel.DataAnnotations;
 namespace UTP.PortalEmpleabilidad.Modelo
 {
     public class AlumnoCV
@@ -11,6 +11,9 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public int IdCV { get; set; }
         public int IdAlumno { get; set; }
         public int IdPlantillaCV { get; set; }
+        [Required(ErrorMessage="Falta el Nombre de CV. ")]
+        [StringLength(50, ErrorMessage = "Este campo sólo acepta maximo 50 caracteres.")]
+        [RegularExpression(@"[0-9A-Za-zÑñ ]+", ErrorMessage = "Este campo sólo acepta números y letras.")]
         public string NombreCV { get; set; }
         public bool IncluirTelefonoFijo { get; set; }
         public bool IncluirCorreoElectronico2 { get; set; }

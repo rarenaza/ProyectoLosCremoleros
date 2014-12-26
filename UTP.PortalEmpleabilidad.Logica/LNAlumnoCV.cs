@@ -117,9 +117,14 @@ namespace UTP.PortalEmpleabilidad.Logica
 
         }
 
-        public void RegistrarCV(ref AlumnoCV alumnocv)
+        public bool RegistrarCV(ref AlumnoCV alumnocv)
         {
-            acv.RegistrarCV(ref alumnocv);
+            bool existe = false;
+            if (acv.ValidarExistencia(alumnocv.IdAlumno, alumnocv.NombreCV) == false)
+            {
+              existe=  acv.RegistrarCV(ref alumnocv);
+            }
+            return existe;
         }
     }
 }
