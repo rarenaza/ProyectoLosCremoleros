@@ -1159,20 +1159,17 @@ namespace UTPPrototipo.Controllers
         /// <returns></returns>
         public PartialViewResult _UsuariosUTPCrear()
         {
+            
+                 LNGeneral lnGeneral = new LNGeneral();
 
-            LNGeneral lnGeneral = new LNGeneral();
+                 UTPUsuario utpUsuario = new UTPUsuario();
 
-            UTPUsuario utpUsuario = new UTPUsuario();
+                 //Sexo, Roles y Estado
+                 ViewBag.SexoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_SEXO), "IdListaValor", "Valor");
+                 ViewBag.RolIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ROL_USUARIO), "IdListaValor", "Valor");
+                 ViewBag.EstadoUsuarioIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_USUARIO), "IdListaValor", "Valor");
 
-            //Sexo, Roles y Estado
-            ViewBag.SexoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_SEXO), "IdListaValor", "Valor");
-            ViewBag.RolIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ROL_USUARIO), "IdListaValor", "Valor");
-            ViewBag.EstadoUsuarioIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_USUARIO), "IdListaValor", "Valor");
-
-            return PartialView("_UsuariosUTPCrear", utpUsuario);
-
-
-
+                 return PartialView("_UsuariosUTPCrear", utpUsuario);
 
         }
 
@@ -1180,7 +1177,8 @@ namespace UTPPrototipo.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public PartialViewResult _UsuariosUTPCrear(UTPUsuario utpUsuario)
         {
-
+     
+ 
             TicketUTP ticket = (TicketUTP)Session["TicketUtp"];
 
             utpUsuario.TipoUsuarioIdListaValor = "USERUT"; //Tipo usuario UTP
@@ -1189,6 +1187,8 @@ namespace UTPPrototipo.Controllers
 
             List<UTPUsuario> lista = lnUtp.ObtenerUsuariosUTP();
             return PartialView("_UsuariosUTPLista", lista);
+
+
         }
 
         /// <summary>
@@ -1225,6 +1225,10 @@ namespace UTPPrototipo.Controllers
             List<UTPUsuario> lista = lnUtp.ObtenerUsuariosUTP();
             return PartialView("_UsuariosUTPLista", lista);
         }
+
+       
+
+
         #endregion
 
 
