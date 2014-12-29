@@ -26,6 +26,7 @@
                                 
                             </div>
                             <div class="col-md-4">
+                                <strong>Rol: @Model.UsuarioRolDescripcion</strong><br />
                                 <strong>@Model.UsuarioNombre @Model.UsuarioApellido</strong><br />
                                 <strong>@Model.UsuarioNumeroDocumento</strong><br />
                                 <strong>@Model.UsuarioCorreoElectronico</strong><br />
@@ -51,20 +52,32 @@
     </div>
 </div>
 
-    <!--Editar usuario-->
-    <div class="modal" id="divModalUsuarioEditarTMP" tabindex="-1" role="dialog" aria-labelledby="EditarUbicacion" aria-hidden="true">
+<!--Editar usuario-->
+<div class="modal" id="divModalUsuarioEditarTMP" tabindex="-1" role="dialog" aria-labelledby="EditarUbicacion" aria-hidden="true">
 
-        @using (Ajax.BeginForm("_AdministrarUsuarioEditarTMP", "Empresa", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "datos-cuenta", OnComplete = "cerrarModalTMP" }))
-        {
-            @Html.AntiForgeryToken()
+    @using (Ajax.BeginForm("_AdministrarUsuarioEditarTMP", "Empresa", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "datos-cuenta", OnComplete = "cerrarModalTMP" }))
+    {
+        @Html.AntiForgeryToken()
 
-            <div id="divUsuarioContenedorEditarTMP" class="modal-dialog">
+        <div id="divUsuarioContenedorEditarTMP" class="modal-dialog">
 
-            </div>
-        }
-    </div>
+        </div>
+    }
+</div>
 
-    <script>
+@{
+    //Se valida que exista el mensaje.
+    if (TempData["_AdministrarUsuarioEditarTMP"] != null)
+    {
+        //Se obtiene el valor de TempData en un hidden para ser llamado desde javascript.
+        <input id="_AdministrarUsuarioEditarTMP" type="hidden" value="@TempData["_AdministrarUsuarioEditarTMP"]" />
+        TempData["_AdministrarUsuarioEditarTMP"] = null; //Se establece el valor nuevamente en NULL.
 
+        //Se muestra el script
+        <script>
+            var msjExito = document.getElementById("_AdministrarUsuarioEditarTMP").value;
+            alert(msjExito); //Acá se puede llamar a una librería de mensajes parar crear una mejor experiencia de usuario.
+        </script>
+    }
 
-    </script>
+}

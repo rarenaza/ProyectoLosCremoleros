@@ -17,9 +17,20 @@ namespace UTPPrototipo.Controllers
         {
             LNOferta lnOferta = new LNOferta();
 
-            //lnOferta.CambiarEstado(id, "OFERFI");  //Estado oferta finalizado.
             lnOferta.CambiarEstado(Convert.ToInt32(idOferta), estado);  //Estado oferta finalizado.
+            
+            //No debe retornar vistas.
+            return Content("");
+        }
 
+        [HttpGet]
+        public ActionResult AsignarUsuario(string idOferta, string usuario)
+        {
+            LNOferta lnOferta = new LNOferta();
+
+            lnOferta.AsignarUsuario(Convert.ToInt32(idOferta), usuario);
+
+            //No debe retornar vistas.
             return Content("");
         }
     }

@@ -311,6 +311,7 @@
     <Content Include="Plantillas\PlantillaCV01.dotx" />
     <Content Include="Plantillas\Plantilla2.docx" />
     <Content Include="Plantillas\PlantillaVER2.docx" />
+    <None Include="Properties\PublishProfiles\PortalV1.pubxml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\ckeditor\adapters\jquery.js" />
     <Content Include="Scripts\ckeditor\ckeditor.js" />

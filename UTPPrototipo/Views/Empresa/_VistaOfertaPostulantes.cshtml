@@ -1,4 +1,9 @@
 ﻿@model List<UTP.PortalEmpleabilidad.Modelo.OfertaPostulante>
+@using UTPPrototipo.Models.ViewModels.Cuenta;
+
+@{
+    TicketEmpresa ticketEmpresa = (TicketEmpresa)Session["TicketEmpresa"];
+}
 
 <div class="panel panel-default">
     <div class="panel-heading" role="tab" id="headingPostulante" style="padding: 2px 2px 2px 6px;">
@@ -21,9 +26,18 @@
                         @Html.DropDownList("IdOfertaFase", null, "< Mover postulantes a fase >", htmlAttributes: new { @class = "form-control" })
                     </div>
 
-                </div><div class="col-sm-2">
-                    <span>&nbsp;&nbsp;<button class="btn btn-default color-paleta2" onclick="return validar();">Mover</button></span>
-                          
+                </div>
+                <div class="col-sm-2">
+                    @{
+                        if (ticketEmpresa.Rol == "ROLADE" || ticketEmpresa.Rol == "ROLSUE" || ticketEmpresa.Rol == "ROLUEM") //Si es Administrador o Supervisor.
+                        {
+                            <span>&nbsp;&nbsp;<button class="btn btn-default color-paleta2" onclick="return validar();">Mover</button></span>
+                        }
+                        else
+                        {
+                            <span>&nbsp;&nbsp;<button class="btn btn-default color-paleta2" disabled title="No tiene permisos para ejecutar esta acción.">Mover</button></span>
+                        }
+                    }
                 </div>
             </div>
             <br /><br />
@@ -69,7 +83,7 @@
 </div>
 <script>
     function validar() {
-       
+
         var itemSeleccionado = $('#IdOfertaFase').val();
 
         if (itemSeleccionado == '') {
@@ -81,8 +95,8 @@
             console.log(itemSeleccionado);
             return true;
         }
-        
-        
+
+
     }
 
 </script>

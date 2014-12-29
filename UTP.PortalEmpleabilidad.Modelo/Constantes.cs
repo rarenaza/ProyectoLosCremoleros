@@ -48,5 +48,30 @@ namespace UTP.PortalEmpleabilidad.Modelo
         #endregion
 
         public const string MSJ_CAMPO_OBLIGATORIO = "Este campo es obligatorio";
+
+        
+
+        #region Estado del Usuario
+        //IdLista = 39. Estado del Usuario
+        public static string LISTAVALOR_ESTADO_DEL_USUARIO_ACTIVO = "USEMAC";
+        public static string LISTAVALOR_ESTADO_DEL_USUARIO_FINALIZADO = "USEMFI";
+        public static string LISTAVALOR_ESTADO_DEL_USUARIO_NOACTIVO = "USEMNO";
+        public static string LISTAVALOR_ESTADO_DEL_USUARIO_PENDIENTEDEVALIDACION = "USEMPE";
+
+        #endregion
+
+        #region Roles del Usuario
+        //IdLista = 40. Roles del Usuario
+
+        public static string LISTAVALOR_ROL_DEL_USUARIO_ADMINISTRADOREMPRESA = "ROLADE";
+        public static string LISTAVALOR_ROL_DEL_USUARIO_ADMINISTRADOR = "ROLADM";
+        public static string LISTAVALOR_ROL_DEL_USUARIO_USUARIOEMPRESACORREO = "ROLECO";
+        public static string LISTAVALOR_ROL_DEL_USUARIO_USUARIOEMPRESAVISTA = "ROLEVI";
+        public static string LISTAVALOR_ROL_DEL_USUARIO_SUPERVISOREMPRESA = "ROLSUE";
+        public static string LISTAVALOR_ROL_DEL_USUARIO_SUPERVISORUTP = "ROLSUT";
+        public static string LISTAVALOR_ROL_DEL_USUARIO_USUARIOEMPRESA = "ROLUEM";
+        public static string LISTAVALOR_ROL_DEL_USUARIO_USUARIOUTP = "ROLUTP";
+
+        #endregion
     }
 }

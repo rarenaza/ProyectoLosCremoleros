@@ -77,11 +77,12 @@ namespace UTPPrototipo.Controllers
                         ticketEmpresa.TelefonoCelular = Convert.ToString(dsResultado.Tables[2].Rows[0]["TelefonoCelular"]);
                         ticketEmpresa.TipoUsuario = Convert.ToString(dsResultado.Tables[2].Rows[0]["TipoUsuario"]);
                         ticketEmpresa.IdEmpresa = Convert.ToInt32(dsResultado.Tables[2].Rows[0]["IdEmpresa"]);
+                        ticketEmpresa.Rol = Convert.ToString(dsResultado.Tables[2].Rows[0]["Rol"]);
 
                         Session["TicketEmpresa"] = ticketEmpresa;
 
 
-                        //                        TicketEmpresa tcke2 = (TicketEmpresa)Session["TicketEmpresa"];
+                        //TicketEmpresa tcke2 = (TicketEmpresa)Session["TicketEmpresa"];
 
                         //REdireccionas al indexl de la empresa
 

@@ -14,6 +14,7 @@ namespace UTPPrototipo.Models.ViewModels.Cuenta
         public string CorreoElectronico { get; set; }
         public string TelefonoCelular { get; set; }
         public string TipoUsuario { get; set; }
+        public string Rol { get; set; }
 
     }
 }

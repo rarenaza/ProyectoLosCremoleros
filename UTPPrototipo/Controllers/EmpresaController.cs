@@ -32,26 +32,27 @@ namespace UTPPrototipo.Controllers
             return View();
         }
 
-        [VerificarSesion]
+        [VerificarSesion]        
         public ActionResult Publicacion(string filtroBusqueda)
         {
             //Se obtiene los datos de la sesion.
-            Ticket ticket = (Ticket)Session["Ticket"];
+            TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];
             int idEmpresa = ticket.IdEmpresa;
+            string rolIdListaValor = ticket.Rol;
 
             string filtro = filtroBusqueda == null ? "" : filtroBusqueda;
 
-            List<VistaOfertaEmpresa> lista = lnOferta.Obtener_PanelEmpresa(idEmpresa, filtro);
+            List<VistaOfertaEmpresa> lista = lnOferta.Obtener_PanelEmpresa(idEmpresa, filtro, rolIdListaValor, ticket.Usuario);
 
             return View(lista);
         }
         public ActionResult Oferta(int id)
         {
-            int idOferta = id;
-
-            Session["asdsad"] = 0;
+            int idOferta = id;            
 
             Oferta oferta = lnOferta.ObtenerPorId(idOferta);
+
+            
 
             return View(oferta);
         }
@@ -120,6 +121,7 @@ namespace UTPPrototipo.Controllers
             return View(oferta);
         }
 
+        [AutorizarEmpresa(Rol = "ROLADE,ROLSUE,ROLUEM")]
         public ActionResult NuevaOferta()
         {
             TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];
@@ -153,7 +155,7 @@ namespace UTPPrototipo.Controllers
 
             if (ModelState.IsValid)
             {
-                oferta.UsuarioPropietarioEmpresa = ticket.Usuario;
+                oferta.UsuarioPropietarioEmpresa = ticket.Usuario; //Se guarda el usuario asignado.
                 oferta.EstadoOferta = "OFERPR"; //Estado pendiente de activación.
                 //oferta.FechaPublicacion = DateTime.Now;
                 //oferta.FechaFinProceso = DateTime.Now.AddDays(10);
@@ -249,6 +251,7 @@ namespace UTPPrototipo.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        [AutorizarEmpresa(Rol = "ROLADE")] //Rol Administrador.        
         public ActionResult Administrar()
         {
             TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];
@@ -319,7 +322,15 @@ namespace UTPPrototipo.Controllers
         }
 
         public ActionResult VistaOfertaCondiciones(Oferta oferta)
-        {
+        {            
+            TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];
+
+            //Se obtienen los usuarios de la empresa con roles Administrador, Supervisor y Usuario.
+            LNEmpresaUsuario lnEmpresaUsuario = new LNEmpresaUsuario();
+            List<VistaEmpresaUsuario> lista = lnEmpresaUsuario.ObtenerUsuariosActivosYPorRolesPorIdEmpresa(ticket.IdEmpresa);
+
+            ViewBag.UsuarioPropietarioEmpresa = new SelectList(lista, "NombreUsuario", "NombreCompletoUsuario", oferta.UsuarioPropietarioEmpresa);
+
             return PartialView("_VistaOfertaCondiciones", oferta);
         }
 
@@ -523,8 +534,11 @@ namespace UTPPrototipo.Controllers
 
             ViewBag.IdEmpresaLocacion = new SelectList(lnEmpresaLocacion.ObtenerLocaciones(ticket.IdEmpresa), "IdEmpresaLocacion", "NombreLocacion");
             ViewBag.SexoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_SEXO), "IdListaValor", "Valor");
-            ViewBag.TipoDocumentoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_DOCUMENTO), "IdListaValor", "Valor");            
-            ViewBag.RolIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ROL_USUARIO), "IdListaValor", "Valor");
+            ViewBag.TipoDocumentoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_DOCUMENTO), "IdListaValor", "Valor");
+            
+            //Obtiene todos registros que contengan la palabra "empresa".
+            ViewBag.RolIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ROL_USUARIO, "empresa"), "IdListaValor", "Valor");
+
             ViewBag.EstadoUsuarioIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_USUARIO), "IdListaValor", "Valor");
 
             return PartialView("_AdministrarNuevoUsuario", empresaUsuario);
@@ -543,7 +557,7 @@ namespace UTPPrototipo.Controllers
             ViewBag.IdEmpresaLocacion = new SelectList(lnEmpresaLocacion.ObtenerLocaciones(ticket.IdEmpresa), "IdEmpresaLocacion", "NombreLocacion", empresaUsuario.IdEmpresaLocacion);
             ViewBag.SexoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_SEXO), "IdListaValor", "Valor", empresaUsuario.SexoIdListaValor);
             ViewBag.TipoDocumentoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_DOCUMENTO), "IdListaValor", "Valor", empresaUsuario.TipoDocumentoIdListaValor);
-            ViewBag.RolIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ROL_USUARIO), "IdListaValor", "Valor", empresaUsuario.RolIdListaValor);
+            ViewBag.RolIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ROL_USUARIO, "empresa"), "IdListaValor", "Valor", empresaUsuario.RolIdListaValor);
             ViewBag.EstadoUsuarioIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_USUARIO), "IdListaValor", "Valor", empresaUsuario.EstadoUsuarioIdListaValor);
 
             //Se devuelve la lista parcial con el usuario.
@@ -777,6 +791,9 @@ namespace UTPPrototipo.Controllers
 
                 LNEmpresaUsuario lnEmpresaUsuario = new LNEmpresaUsuario();
                 lnEmpresaUsuario.Actualizar(empresaUsuario);
+
+                //Se crea una variable temporal para mostra el mensaje:
+                TempData["_AdministrarUsuarioEditarTMP"] = "Los datos se modificaron con éxito.";
 
                 VistaPanelCabecera panel = new VistaPanelCabecera();
                

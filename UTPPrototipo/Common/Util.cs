@@ -39,12 +39,42 @@ namespace UTPPrototipo.Common
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            if (filterContext.HttpContext.Session["TicketEmpresa"] == null && filterContext.HttpContext.Session["TicketUTP"] == null && filterContext.HttpContext.Session["TicketAlumno"] == null)
+            TicketEmpresa ticket = (TicketEmpresa)filterContext.HttpContext.Session["TicketEmpresa"];
+            if (ticket.Rol == "ROLADM") //Rol administrador.
             {
-                filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Home", action = "Index" }));
+                if (filterContext.Controller.TempData.ContainsKey("keyDemo"))
+                {
+                    filterContext.Controller.TempData["keyDemo"] = "MensajeDemo";                    
+                }
+                else
+                {
+                    filterContext.Controller.TempData.Add("keyDemo", "MensajeDemo");
+                }
+                
+                filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Empresa", action = "Index" }));
+                filterContext.Result.ExecuteResult(filterContext.Controller.ControllerContext);
+            }
+           
+            base.OnActionExecuting(filterContext);
+        }
+    }
+
+    public class AutorizarEmpresa : ActionFilterAttribute
+    {
+        public string Rol { get; set; }
+
+        public override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            TicketEmpresa ticket = (TicketEmpresa)filterContext.HttpContext.Session["TicketEmpresa"];
+            string[] listaRoles = Rol.Split(',');
+            if (!listaRoles.Contains(ticket.Rol))
+            {                
+                //Si el usuario autenticado no pertenece al Rol del parámetro => se redirecciona a la página principal.
+                filterContext.Result = new RedirectToRouteResult(new RouteValueDictionary(new { controller = "Empresa", action = "Index" }));
                 filterContext.Result.ExecuteResult(filterContext.Controller.ControllerContext);
             }
 
+            //Caso contrario la ejecución continúa de manera normal.
             base.OnActionExecuting(filterContext);
         }
     }

@@ -14,5 +14,8 @@ namespace UTP.PortalEmpleabilidad.Modelo.Vistas.Empresa
         public string ApellidosUsuario { get; set; }
         public string NombreRol { get; set; }
         public string NombreEstado { get; set; }
+        public string NombreCompletoUsuario { get; set; }
+        public string RolIdListaValor { get; set; }
+        public string EstadoIdListaValor { get; set; }
     }
 }

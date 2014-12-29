@@ -100,5 +100,49 @@ namespace UTP.PortalEmpleabilidad.Logica
 
             return lista;
         }
+
+        /// <summary>
+        /// Obtiene los usuarios activos(USEMAC) y los que tienen los roles ROLADE, ROLSUE, ROLUEM
+        /// </summary>
+        /// <param name="idEmpresa"></param>
+        /// <returns></returns>
+        public List<VistaEmpresaUsuario> ObtenerUsuariosActivosYPorRolesPorIdEmpresa(int idEmpresa)
+        {
+            List<VistaEmpresaUsuario> lista = new List<VistaEmpresaUsuario>();
+
+            DataTable dtResultado = new DataTable();
+
+            dtResultado = adEmpresaUsuario.ObtenerUsuariosPorIdEmpresa(idEmpresa);
+            
+            foreach (DataRow fila in dtResultado.Rows)
+            {
+                string estado = Convert.ToString(fila["EstadoUsuarioIdListaValor"]);
+                string rol = Convert.ToString(fila["RolIdListaValor"]);
+
+                //Se agregan a la lista los usuarios ACTIVOS y los que tienen uno de estos roles ROLADE, ROLSUE, ROLUEM.
+                if (estado == Constantes.LISTAVALOR_ESTADO_DEL_USUARIO_ACTIVO && 
+                    (rol == Constantes.LISTAVALOR_ROL_DEL_USUARIO_ADMINISTRADOREMPRESA ||
+                    rol == Constantes.LISTAVALOR_ROL_DEL_USUARIO_SUPERVISOREMPRESA ||
+                    rol == Constantes.LISTAVALOR_ROL_DEL_USUARIO_USUARIOEMPRESA))
+                { 
+
+                    VistaEmpresaUsuario vista = new VistaEmpresaUsuario();
+
+                    vista.IdEmpresaUsuario = Convert.ToInt32(fila["IdEmpresaUsuario"]);
+                    vista.NombreUsuario = Convert.ToString(fila["Usuario"]);
+                    vista.NombresUsuario = Convert.ToString(fila["Nombres"]);
+                    vista.ApellidosUsuario = Convert.ToString(fila["Apellidos"]);
+                    vista.NombreRol = Convert.ToString(fila["UsuarioRolDescripcion"]);
+                    vista.NombreEstado = Convert.ToString(fila["UsuarioEstadoDescripcion"]);
+
+                    vista.NombreCompletoUsuario = Convert.ToString(fila["UsuarioNombreCompleto"]);
+
+                    lista.Add(vista);
+
+                }
+            }
+
+            return lista;
+        }
     }
 }

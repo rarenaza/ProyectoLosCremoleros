@@ -19,9 +19,22 @@
 <script>
 
     $(document).ready(function () {
-
         $("#divFinalCabeceraEmpresa").removeClass("color-paleta2 color-paleta3 color-paleta4 color-paleta5").addClass("color-paleta1");
-
-
     });
+
 </script>
+
+@{
+    //Se valida que exista mensaje de éxito al crear una oferta
+    if (TempData["keyDemo"] != null)
+    {
+        <input id="keyDemo" type="hidden" value="@TempData["keyDemo"]" />
+        TempData["keyDemo"] = null; //Se establece el valor nuevamente en NULL.
+
+        //Se muestra el script
+        <script>
+            var msjExito = document.getElementById("keyDemo").value;
+            alert(msjExito);
+        </script>
+    }
+}

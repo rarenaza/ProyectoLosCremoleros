@@ -34,6 +34,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 panel.UsuarioNumeroDocumento = dtResultado.Rows[0]["UsuarioNumeroDocumento"].ToString();
                 panel.UsuarioCorreoElectronico = dtResultado.Rows[0]["UsuarioCorreoElectronico"].ToString();
                 panel.UsuarioTelefonoCelular = dtResultado.Rows[0]["UsuarioTelefonoCelular"].ToString();
+                panel.UsuarioRolDescripcion = Convert.ToString(dtResultado.Rows[0]["UsuarioRolDescripcion"]);
 
                 //Datos de la locación
                 panel.LocacionNombre = dtResultado.Rows[0]["LocacionNombre"].ToString();
@@ -42,7 +43,7 @@ namespace UTP.PortalEmpleabilidad.Logica
 
                 //Datos del ID
                 panel.IdEmpresaUsuario = Convert.ToInt32(dtResultado.Rows[0]["IdEmpresaUsuario"]);
-
+                
             }
 
             else

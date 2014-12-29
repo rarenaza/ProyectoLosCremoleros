@@ -264,11 +264,11 @@ namespace UTP.PortalEmpleabilidad.Logica
         }
 
 
-        public List<VistaOfertaEmpresa> Obtener_PanelEmpresa(int idEmpresa, string filtroBusqueda)
+        public List<VistaOfertaEmpresa> Obtener_PanelEmpresa(int idEmpresa, string filtroBusqueda, string rolIdListaValor, string usuario)
         {
             List<VistaOfertaEmpresa> lista = new List<VistaOfertaEmpresa>();
 
-            DataTable dtResultados = adOferta.Obtener_PanelEmpresa(idEmpresa, filtroBusqueda);
+            DataTable dtResultados = adOferta.Obtener_PanelEmpresa(idEmpresa, filtroBusqueda, rolIdListaValor, usuario);
 
             foreach(DataRow fila in dtResultados.Rows)
             {
@@ -282,6 +282,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 vista.EstadoOferta = Convert.ToString(fila["EstadoOferta"]);
                 vista.MensajesNoLeidos = Convert.ToInt32(fila["MensajesNoLeidos"]);
                 vista.MensajesTotales = Convert.ToInt32(fila["MensajesTotales"]);
+                vista.UsuarioPropietarioEmpresa = Convert.ToString(fila["UsuarioPropietarioEmpresa"]);
 
                 lista.Add(vista);
             }
@@ -333,6 +334,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 oferta.FechaModificacion = Convert.ToDateTime(dsResultado.Tables[0].Rows[0]["FechaModificacion"]);
 
                 oferta.EstadoOferta = Convert.ToString(dsResultado.Tables[0].Rows[0]["EstadoOferta"]);
+                oferta.UsuarioPropietarioEmpresa = Convert.ToString(dsResultado.Tables[0].Rows[0]["UsuarioPropietarioEmpresa"]);
             }
 
             //Tabla Index 1: Lista de estudios.
@@ -547,7 +549,10 @@ namespace UTP.PortalEmpleabilidad.Logica
             return adOferta.AlertaCvAlumnoMes(Usuario);
         }
 
-
+        public void AsignarUsuario(int idOferta, string usuario)
+        {
+            adOferta.AsignarUsuario(idOferta, usuario);
+        }
     }
 
 }

@@ -304,10 +304,10 @@ namespace UTP.PortalEmpleabilidad.Datos
 
             return dtResultado;
         }
-        
 
-                       
-        public DataTable Obtener_PanelEmpresa(int idEmpresa, string filtroBusqueda)
+
+
+        public DataTable Obtener_PanelEmpresa(int idEmpresa, string filtroBusqueda, string rolIdListaValor, string usuario)
         {
             DataTable dtResultado = new DataTable();
 
@@ -319,6 +319,8 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.CommandText = "Oferta_ObtenerPanelEmpresa";
                 cmd.Parameters.Add(new SqlParameter("@IdEmpresa", idEmpresa));
                 cmd.Parameters.Add(new SqlParameter("@FiltroBusqueda", filtroBusqueda));
+                cmd.Parameters.Add(new SqlParameter("@RolIdListaValor", rolIdListaValor));
+                cmd.Parameters.Add(new SqlParameter("@Usuario", usuario));
                 cmd.Connection = conexion;
 
                 conexion.Open();
@@ -770,6 +772,31 @@ namespace UTP.PortalEmpleabilidad.Datos
             return dtResultado;
         }
 
+        public void AsignarUsuario(int idOferta, string usuario)
+        {
+            try
+            {
+                using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+                {
+                    SqlCommand cmd = new SqlCommand();
 
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "Oferta_AsignarUsuario";
+
+                    //Parámetros:
+                    cmd.Parameters.Add(new SqlParameter("@IdOferta", idOferta));
+                    cmd.Parameters.Add(new SqlParameter("@UsuarioPropiertarioEmpresa", usuario));
+
+                    cmd.Connection = conexion;
+                    conexion.Open();
+                    cmd.ExecuteNonQuery();
+                    conexion.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
