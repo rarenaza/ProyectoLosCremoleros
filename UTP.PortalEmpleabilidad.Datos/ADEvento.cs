@@ -92,5 +92,23 @@ namespace UTP.PortalEmpleabilidad.Datos
             }
 
         }
+
+        public DataTable Listar_Eventos()
+        {
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "Evento_Mostrar";
+            cmd.Connection = cnn.cn;
+            cnn.Conectar();
+
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+
+            da.Fill(dt);
+
+            cnn.Desconectar();
+
+            return dt;
+        }
     }
 }

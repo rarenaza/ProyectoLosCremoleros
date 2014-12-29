@@ -14,6 +14,7 @@ using UTP.PortalEmpleabilidad.Modelo.UTP;
 using UTP.PortalEmpleabilidad.Modelo.Vistas.Alumno;
 using UTP.PortalEmpleabilidad.Modelo.Vistas.Empresa;
 using UTP.PortalEmpleabilidad.Modelo.Vistas.Ofertas;
+//using UTP.PortalEmpleabilidad.Modelo.Vistas.Eventos;
 using UTPPrototipo.Common;
 using UTPPrototipo.Models;
 using UTPPrototipo.Models.ViewModels.Contenido;
@@ -31,6 +32,8 @@ namespace UTPPrototipo.Controllers
         LNEmpresaListaOferta lnEmpresa = new LNEmpresaListaOferta();
         LNOferta lnoferta = new LNOferta();
         LNUTPAlumnos lnalumno = new LNUTPAlumnos();
+
+        LNEvento lnEventos = new LNEvento();
         // GET: UTP
         public ActionResult Index()
         {
@@ -221,6 +224,16 @@ namespace UTPPrototipo.Controllers
             return PartialView("_ResultadoBusquedaEmpresas", entidad.ListaBusqueda);
 
         }
+
+        //// saaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadasdddddddddddddddddddddd
+        //public ActionResult BusquedaSimpleEventosActivos(VistaListEventos entidad)
+        //{
+        //    entidad.ListaBusqueda = lnEventos.Listar_Eventos(entidad.PalabraClave);
+
+
+        //    return PartialView("_ResultadoBusquedaEmpresas", entidad.ListaBusqueda);
+
+        //}
              
 
 
@@ -705,7 +718,10 @@ namespace UTPPrototipo.Controllers
             return View();
         }
 
-
+        public ActionResult Evento()
+        {
+            return View();
+        }
 
         public ActionResult verimagen()
         {
@@ -1143,6 +1159,7 @@ namespace UTPPrototipo.Controllers
         /// <returns></returns>
         public PartialViewResult _UsuariosUTPCrear()
         {
+
             LNGeneral lnGeneral = new LNGeneral();
 
             UTPUsuario utpUsuario = new UTPUsuario();
@@ -1153,12 +1170,17 @@ namespace UTPPrototipo.Controllers
             ViewBag.EstadoUsuarioIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_USUARIO), "IdListaValor", "Valor");
 
             return PartialView("_UsuariosUTPCrear", utpUsuario);
+
+
+
+
         }
 
 
         [HttpPost, ValidateAntiForgeryToken]
         public PartialViewResult _UsuariosUTPCrear(UTPUsuario utpUsuario)
         {
+
             TicketUTP ticket = (TicketUTP)Session["TicketUtp"];
 
             utpUsuario.TipoUsuarioIdListaValor = "USERUT"; //Tipo usuario UTP
@@ -1204,6 +1226,8 @@ namespace UTPPrototipo.Controllers
             return PartialView("_UsuariosUTPLista", lista);
         }
         #endregion
+
+
 
     }
 }

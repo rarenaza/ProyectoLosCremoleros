@@ -101,21 +101,49 @@ namespace UTP.PortalEmpleabilidad.Datos
             cnn.Desconectar();
         }
 
-        public void RegistrarCV(ref AlumnoCV alumnocv)
+        public bool RegistrarCV(ref AlumnoCV alumnocv)
         {
+            bool existe = false;
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = "AlumnoCV_RegistrarCV";
             cmd.Connection = cnn.cn;
             cnn.Conectar();
-            cmd.Parameters.Add(new SqlParameter("@NombreCV", SqlDbType.VarChar,100)).Value = alumnocv.NombreCV;
+            cmd.Parameters.Add(new SqlParameter("@NombreCV", SqlDbType.VarChar, 100)).Value = alumnocv.NombreCV;
             cmd.Parameters.Add(new SqlParameter("@IdAlumno", SqlDbType.Int)).Value = alumnocv.IdAlumno;
             cmd.Parameters.Add(new SqlParameter("@IdPlantillaCV", SqlDbType.Int)).Value = alumnocv.IdPlantillaCV;
             cmd.Parameters.Add(new SqlParameter("@Usuario", SqlDbType.VarChar, 50)).Value = alumnocv.Usuario;
             cmd.Parameters.Add(new SqlParameter("@IdCV", SqlDbType.Int)).Direction = ParameterDirection.Output;
-
-            cmd.ExecuteNonQuery();
-            alumnocv.IdCV = (int) cmd.Parameters["@IdCV"].Value;
+            if (cmd.ExecuteNonQuery() > 0)
+            {
+                alumnocv.IdCV = (int)cmd.Parameters["@IdCV"].Value;
+                if (alumnocv.IdCV > 0)
+                {
+                    existe = true;
+                }
+            }
             cnn.Desconectar();
+            return existe;
+        }
+        public bool ValidarExistencia(int IdAlumno, string NombreCV)
+        {
+            bool existe = false;
+
+            using (SqlConnection conexion = new SqlConnection(cnn.Conexion()))
+            {
+                SqlCommand cmd = new SqlCommand();
+                SqlDataReader dr = null;
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "AlumnoCV_ValidarExitencia";
+                cmd.Connection = conexion;
+                conexion.Open();
+                cmd.Parameters.Add(new SqlParameter("@IdAlumno", SqlDbType.Int)).Value = IdAlumno;
+                cmd.Parameters.Add(new SqlParameter("@NombreCV", SqlDbType.VarChar, 50)).Value = NombreCV;
+                dr = cmd.ExecuteReader();
+                existe = dr.HasRows;
+                conexion.Close();
+            }
+
+            return existe;
         }
     }
 }

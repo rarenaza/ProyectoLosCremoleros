@@ -73,6 +73,40 @@ namespace UTP.PortalEmpleabilidad.Logica
             return panel;
         }
 
+        public void ModifcarDatos(Alumno alumno)
+        {
+            ad.ModifcarDatos(alumno);
+        }
 
+        public Alumno ObtenerAlumnoPorIdAlumno(int IdAlumno)
+        {
+            Alumno alumno = new Alumno();
+
+            DataTable dtResultado = ad.ObtenerAlumnoPorIdAlumno(IdAlumno);
+
+            if (dtResultado.Rows.Count > 0)
+            {
+                alumno.IdAlumno = Funciones.ToInt(dtResultado.Rows[0]["IdAlumno"]);
+                alumno.Usuario = Funciones.ToString(dtResultado.Rows[0]["Usuario"]);
+                alumno.Nombres = Funciones.ToString(dtResultado.Rows[0]["Nombres"]);
+                alumno.Apellidos = Funciones.ToString(dtResultado.Rows[0]["Apellidos"]);
+                alumno.TipoDocumentoIdListaValor = Funciones.ToString(dtResultado.Rows[0]["TipoDocumento"]);
+                alumno.NumeroDocumento = Funciones.ToString(dtResultado.Rows[0]["NumeroDocumento"]);
+                alumno.FechaNacimiento = Funciones.ToDateTime(dtResultado.Rows[0]["FechaNacimiento"]);
+                alumno.SexoIdListaValor = Funciones.ToString(dtResultado.Rows[0]["Sexo"]);
+                alumno.Direccion = Funciones.ToString(dtResultado.Rows[0]["Direccion"]);
+                alumno.DireccionRegion = Funciones.ToString(dtResultado.Rows[0]["DireccionRegion"]);
+                alumno.DireccionCiudad = Funciones.ToString(dtResultado.Rows[0]["DireccionCiudad"]);
+                alumno.DireccionDistrito = Funciones.ToString(dtResultado.Rows[0]["DireccionDistrito"]);
+                alumno.CorreoElectronico1 = Funciones.ToString(dtResultado.Rows[0]["CorreoElectronico"]);
+                alumno.CorreoElectronico2 = Funciones.ToString(dtResultado.Rows[0]["CorreoElectronico2"]);
+                alumno.TelefonoCelular = Funciones.ToString(dtResultado.Rows[0]["TelefonoCelular"]);
+                alumno.TelefonoFijoCasa = Funciones.ToString(dtResultado.Rows[0]["TelefonoFijoCasa"]);
+                alumno.Foto= Funciones.ToBytes(dtResultado.Rows[0]["Foto"]);
+
+            }
+
+            return alumno;
+        }
     }
 }

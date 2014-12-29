@@ -56,7 +56,9 @@
       
                      </li>
                     <li>
-                        <a class="btn btn-default navbar-btn Boton_pestana color-paleta5" href=@Url.Action("Eventos", "UTP") style="padding: 2px 0px 2px 0px; color: white;">Eventos</a>
+                        
+                        @Html.ActionLink("Eventos", "Eventos", null, new { @class = "btn btn-default navbar-btn Boton_pestana color-paleta5", @style = "padding: 2px 0px 2px 0px; color: white;" })
+
                     </li>
                     <li>
                         <a class="btn btn-default navbar-btn Boton_pestana color-paleta6" href=@Url.Action("Reportes", "UTP") style="padding: 2px 0px 2px 0px; color: white;">Reportes</a>

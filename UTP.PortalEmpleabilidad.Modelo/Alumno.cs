@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,8 +28,11 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public DateTime FechaNacimiento { get; set; }
         public string SexoIdListaValor { get; set; }
         public string Direccion { get; set; }
+        [Required(ErrorMessage = "Falta el distrito.")]
         public string DireccionDistrito { get; set; }
+        [Required(ErrorMessage = "Falta la provincia.")]
         public string DireccionCiudad { get; set; }
+        [Required(ErrorMessage = "Falta el departamento.")]
         public string DireccionRegion { get; set; }     
         public byte[] Foto { get; set; }
         public string EstadoAlumnoIdListaValor { get; set; }

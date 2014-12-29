@@ -13,6 +13,10 @@ namespace UTPPrototipo.Controllers
     {
         LNMensaje lnMensaje = new LNMensaje();
 
+        public ActionResult Mensajes()
+        {
+            return View();
+        }
         public PartialViewResult _ObtenerMensajes(int id)
         {
             int idOferta = id;

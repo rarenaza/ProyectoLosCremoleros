@@ -22,21 +22,22 @@ namespace UTP.PortalEmpleabilidad.Logica
             foreach (DataRow fila in dtResultado.Rows)
             {
                 ListaValor item = new ListaValor();
-                item.IdLista            = Convert.ToInt32   (fila["IDLista"]);
-                item.IdListaValor       = Convert.ToString  (fila["IDListaValor"]);
-                item.IdListaValorPadre  = Convert.ToString  (fila["IDListaValorPadre"]); ;
-                item.Valor              = Convert.ToString  (fila["Valor"]); ;
-                item.DescripcionValor   = Convert.ToString  (fila["DescripcionValor"]); ;
-                item.Icono              = Convert.ToString  (fila["Icono"]); ;
-                item.Peso               = Convert.ToInt32   (fila["Peso"] == DBNull.Value ? 0 : fila["Peso"]); ;
-                item.ValorUTP           = Convert.ToString  (fila["ValorUTP"]); ;
-                item.EstadoValor        = Convert.ToString  (fila["EstadoValor"]); ;                
+                item.IdLista = Convert.ToInt32(fila["IDLista"]);
+                item.IdListaValor = Convert.ToString(fila["IDListaValor"]);
+                item.IdListaValorPadre = Convert.ToString(fila["IDListaValorPadre"]); ;
+                item.Valor = Convert.ToString(fila["Valor"]); ;
+                item.DescripcionValor = Convert.ToString(fila["DescripcionValor"]); ;
+                item.Icono = Convert.ToString(fila["Icono"]); ;
+                item.Peso = Convert.ToInt32(fila["Peso"] == DBNull.Value ? 0 : fila["Peso"]); ;
+                item.ValorUTP = Convert.ToString(fila["ValorUTP"]); ;
+                item.EstadoValor = Convert.ToString(fila["EstadoValor"]); ;
 
                 lista.Add(item);
             }
 
             return lista;
         }
+
 
         /// <summary>
         /// Se agrega el parámetro de filtro para obtener los datos que contenga este valor.
@@ -54,7 +55,7 @@ namespace UTP.PortalEmpleabilidad.Logica
             foreach (DataRow fila in dtResultado.Rows)
             {
                 if (Convert.ToString(fila["Valor"]).ToUpper().Contains(filtro.ToUpper()))
-                { 
+                {
                     ListaValor item = new ListaValor();
                     item.IdLista = Convert.ToInt32(fila["IDLista"]);
                     item.IdListaValor = Convert.ToString(fila["IDListaValor"]);
@@ -72,5 +73,24 @@ namespace UTP.PortalEmpleabilidad.Logica
 
             return lista;
         }
+
+        public List<ListaValor> ObtenerListaValorPorIdPadre( string idListaPadre)
+        {
+            List<ListaValor> lista = new List<ListaValor>();
+
+            DataTable dtResultado = adGeneral.ObtenerListaValorPorIdPadre(idListaPadre);
+
+            foreach (DataRow fila in dtResultado.Rows)
+            {
+                ListaValor item = new ListaValor();
+                item.IdListaValor = Funciones.ToString(fila["IDListaValor"]);
+                item.Valor = Funciones.ToString(fila["Valor"]); ;
+                lista.Add(item);
+
+            }
+
+            return lista;
+        }
+
     }
 }

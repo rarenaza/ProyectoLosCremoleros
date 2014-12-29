@@ -51,7 +51,7 @@
                         <hr />
                         <div class="row">
                             <div class="col-sm-12" style="text-align:right;">
-                                <a href="../Alumno/DatosAlumno" class="btn btn-default color-paleta1">Modificar Datos ...</a>
+                                @Html.ActionLink("Modificar Datos ...", "DatosAlumno", "Alumno", new { Id = Model.IdAlumno }, new { @class = "btn btn-default color-paleta1" })
                             </div>
                         </div>
                     </div>
