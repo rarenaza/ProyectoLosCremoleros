@@ -30,76 +30,16 @@
                             </div>
                         </div>
                         <div class="col-sm-4">
-                            <button class="btn btn-default color-paleta5 fa fa-search"></button>
+                            <button class="btn btn-default color-paleta5 fa fa-search" id="buscar"></button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
     <br />
-    <div class="row grilla1-cabecera color-paleta5">
-        <div class="col-sm-2">
-            Fecha
-        </div>
-        <div class="col-sm-3">
-            Evento
-        </div>
-        <div class="col-sm-3">
-            Lugar
-        </div>
-        <div class="col-sm-1">
-            Público Experado
-        </div>
-        <div class="col-sm-1">
-            Asistencia
-        </div>
-        <div class="col-sm-2">
-            Estado
-        </div>
+    <div id="resultadobusqueda">
     </div>
-    <div class="row grilla1-linea color-paleta5">
-        <div class="col-sm-2">
-            <a href="../UTP/Evento">XXXXX</a>
-        </div>
-        <div class="col-sm-3">
-            <a href="../UTP/Evento">XXXXX</a>
-        </div>
-        <div class="col-sm-3">
-            XXXXXXX
-        </div>
-        <div class="col-sm-1">
-            XXXXXXXX
-        </div>
-        <div class="col-sm-1">
-            XXXXXXX
-        </div>
-        <div class="col-sm-2">
-            XXXXXXXXXX
-        </div>
-    </div>
-    <div class="row grilla1-linea color-paleta5">
-        <div class="col-sm-2">
-            <a href="../UTP/Evento">XXXXX</a>
-        </div>
-        <div class="col-sm-3">
-            XXXXX
-        </div>
-        <div class="col-sm-3">
-            XXXXXXX
-        </div>
-        <div class="col-sm-1">
-            XXXXXXXX
-        </div>
-        <div class="col-sm-1">
-            XXXXXXX
-        </div>
-        <div class="col-sm-2">
-            XXXXXXXXXX
-        </div>
-    </div>
-    <br />
     <div class="row">
         <div class="col-sm-12" style="text-align:right;">
             <button class="btn btn-default color-paleta5">Nuevo Evento</button>
@@ -112,6 +52,15 @@
 <script>
     $(document).ready(function () {
         $("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta3 color-paleta4 color-paleta6 color-paleta7 color-paleta8").addClass("color-paleta5");
+    });
+    $('#buscar').click(function () {
+        var empresa = {
+            PalabraClave: $('#PalabraClave').val(),
+
+        };
+        Cargar("resultadobusqueda", "/UTP/BusquedaSimpleEmpresasActivas", empresa);
+
+
     });
 </script>
 

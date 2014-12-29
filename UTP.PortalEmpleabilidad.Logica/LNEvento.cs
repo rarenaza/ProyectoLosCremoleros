@@ -80,5 +80,27 @@ namespace UTP.PortalEmpleabilidad.Logica
            }
 
        }
+
+       public List<Evento> Listar_Eventos(string palabra)
+       {
+           List<Evento> lista = new List<Evento>();
+
+           DataTable dtResultado = ad.Evento_Mostrar();
+
+
+           for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
+           {
+               Evento listaEvento = new Evento();
+               listaEvento.FechaEvento = Convert.ToDateTime(dtResultado.Rows[i]["FechaEvento"].ToString());
+               listaEvento.NombreEvento = dtResultado.Rows[i]["NombreEvento"].ToString();        
+               listaEvento.DireccionEvento = dtResultado.Rows[i]["DireccionEvento"].ToString();
+               listaEvento.AsistentesEsperados = Convert.ToInt32(dtResultado.Rows[i]["AsistentesEsperados"]);
+               listaEvento.AsistentesReales = Convert.ToInt32(dtResultado.Rows[i]["AsistentesReales"]);
+
+               lista.Add(listaEvento);
+           }
+           return lista;
+       }
+
     }
 }

@@ -14,6 +14,7 @@ using UTP.PortalEmpleabilidad.Modelo.UTP;
 using UTP.PortalEmpleabilidad.Modelo.Vistas.Alumno;
 using UTP.PortalEmpleabilidad.Modelo.Vistas.Empresa;
 using UTP.PortalEmpleabilidad.Modelo.Vistas.Ofertas;
+using UTP.PortalEmpleabilidad.Modelo.Vistas.Eventos;
 using UTPPrototipo.Common;
 using UTPPrototipo.Models;
 using UTPPrototipo.Models.ViewModels.Contenido;
@@ -31,6 +32,8 @@ namespace UTPPrototipo.Controllers
         LNEmpresaListaOferta lnEmpresa = new LNEmpresaListaOferta();
         LNOferta lnoferta = new LNOferta();
         LNUTPAlumnos lnalumno = new LNUTPAlumnos();
+
+        LNEvento lnEventos = new LNEvento();
         // GET: UTP
         public ActionResult Index()
         {
@@ -216,6 +219,17 @@ namespace UTPPrototipo.Controllers
         public ActionResult BusquedaAvanzadaEmpresas(VistaEmpresListarOfertas entidad)
         {
             entidad.ListaBusqueda = lnUtp.EmpresaBusquedaAvanzada(entidad);
+
+
+            return PartialView("_ResultadoBusquedaEmpresas", entidad.ListaBusqueda);
+
+        }
+
+         // saaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadasdddddddddddddddddddddd
+        public ActionResult BusquedaSimpleEventosActivos(VistaListEventos entidad)
+        {
+            entidad.ListaBusqueda = lnEventos.Listar_Eventos(entidad.PalabraClave);
+                
 
 
             return PartialView("_ResultadoBusquedaEmpresas", entidad.ListaBusqueda);
@@ -1207,6 +1221,8 @@ namespace UTPPrototipo.Controllers
             return PartialView("_UsuariosUTPLista", lista);
         }
         #endregion
+
+
 
     }
 }
