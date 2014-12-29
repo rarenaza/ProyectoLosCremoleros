@@ -47,7 +47,7 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-12">
-                                <strong>RE: Gerente de Cuentas</strong>
+                                <strong><a href="#" data-toggle="modal" data-target="#verMensaje">RE: Gerente de Cuentas</a></strong>
                             </div>
                         </div>
                     </div>
@@ -70,7 +70,7 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-12">
-                                <strong>RE: Gerente de Proyectos de Informática</strong>
+                                <strong><a href="#" data-toggle="modal" data-target="#verMensaje">RE: Gerente de Proyectos de Informática</a></strong>
                             </div>
                         </div>
                     </div>
@@ -93,7 +93,7 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-12">
-                                <strong>RE: Analista / Programador</strong>
+                                <strong><a href="#" data-toggle="modal" data-target="#verMensaje">RE: Analista / Programador</a></strong>
                             </div>
                         </div>
                     </div>
@@ -116,7 +116,7 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-12">
-                                <strong>RE: Gerente de Servicios TI</strong>
+                                <strong><a href="#" data-toggle="modal" data-target="#verMensaje">RE: Gerente de Servicios TI</a></strong>
                             </div>
                         </div>
                     </div>
@@ -148,6 +148,7 @@
                 </div>
                 <hr />
             </div>
+            <!--Modal para nuevos mensajes -->
             <div class="modal fade" id="nuevoMensaje" tabindex="-1" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content fuente-pequeña">
@@ -233,6 +234,82 @@
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-primary color-paleta1">Enviar</button>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+
+
+            <!--Modal para ver un mensaje -->
+            <div class="modal fade" id="verMensaje" tabindex="-1" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content fuente-pequeña">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">RE: Gerente de Proyectos para Sistemas de Información</h4>
+                        </div>
+                        <div class="modal-body">
+                            <h6>Mensaje posterior: <a href="#">(Hace 15 minutos) RE: RE: Gerente de Proyectos para Sistemas de Información</a></h6>
+                            <br />
+                            <table>
+                                <tr class="linea_raya">
+                                    <td class="celda-nombre">
+                                        Fecha:
+                                    </td>
+                                    <td class="celda-datos">
+                                        Hace 1 día (26/12/2014 16:24:00 HH)
+                                    </td>
+                                </tr>
+                                <tr class="linea_raya">
+                                    <td class="celda-nombre">
+                                        De:
+                                    </td>
+                                    <td class="celda-datos">
+                                        Víctor Canal Aguirre (vcanal)
+                                    </td>
+                                </tr>
+                                <tr class="linea_raya">
+                                    <td class="celda-nombre">
+                                        Para:
+                                    </td>
+                                    <td class="celda-datos">
+                                        Alberto Beingochea Elcorrobarrutia (abel)
+                                    </td>
+                                </tr>
+                                <tr class="linea_raya">
+                                    <td class="celda-nombre">
+                                        Oferta Laboral:
+                                    </td>
+                                    <td class="celda-datos">
+                                        <a href="#">Gerente de Proyectos para Sistemas de Información (IBM del Perú)</a>
+                                    </td>
+                                </tr>
+                                <tr class="linea_raya">
+                                    <td class="celda-nombre">
+                                        Evento:
+                                    </td>
+                                    <td class="celda-datos">
+                                        <a href="#">Feria Laboral 2015 UTP</a>
+                                    </td>
+                                </tr>
+                                <tr class="linea_raya">
+                                    <td class="celda-nombre">
+                                        Mensaje:
+                                    </td>
+                                    <td class="celda-datos">
+                                        Lorem Ipsun dolor que duele, sip dale muc tirnao rxe delatolre lorem, ipsum facto secuelo seculorum tedea. Ersip dale muc tirnao rxe delatolre lorem, ipsum facto secuelo seculorum tedea.
+                                        Lorem Ipsun dolor que duele, sip dale muc tirnao rxe delatolre lorem, ipsum facto secuelo seculorum tedea. Ersip dale muc tirnao rxe delatolre lorem, ipsum facto secuelo seculorum tedea.
+                                    </td>
+                                </tr>
+                            </table>
+                            <br />
+                            <h6>Mensaje anterior: <a href="#">(Hace 3 días) Gerente de Proyectos para Sistemas de Información</a></h6>
+                            
+
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary color-paleta1" data-dismiss="modal" data-toggle="modal" data-target="#nuevoMensaje">Contestar</button>
                         </div>
                     </div><!-- /.modal-content -->
                 </div><!-- /.modal-dialog -->

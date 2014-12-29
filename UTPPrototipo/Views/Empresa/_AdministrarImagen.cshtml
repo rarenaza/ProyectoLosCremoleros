@@ -1,30 +1,37 @@
-﻿
-@model UTPPrototipo.Models.ViewModels.Empresa.EmpresaVista 
+﻿@model UTPPrototipo.Models.ViewModels.Empresa.EmpresaVista
 
 
 @*@using (Ajax.BeginForm("", "", new AjaxOptions() { HttpMethod = "POST", UpdateTargetId = "divAdministrarImagen", InsertionMode = InsertionMode.Replace }, new { enctype = "multipart/form-data", action = "/Empresa/_AdministrarActualizarImagen" }))*@
 @using (Html.BeginForm("_AdministrarActualizarImagen", "Empresa", FormMethod.Post, new { enctype = "multipart/form-data" }))
-
 {
-    @Html.AntiForgeryToken()
-<div class="col-sm-12" style="text-align:center;">
-    <br /><br />
-    @*<img src="~/img/logos/LogoCriteria.jpg" style="width:100%;" /><hr />*@
-    <img alt="" style="max-height:250px; max-width:250px; height: auto; width:auto;" src='@Url.Action("ObtenerImagenEmpresa", "Empresa", new { id = Model.IdEmpresa })' />
-    <br />
-    <br />
-        @Html.HiddenFor(m => m.IdEmpresa)   
-        <div class="col-md-10">
-            @Html.TextBoxFor(model => model.LogoEmpresaHtml, new { type = "file" })
-            @*@Html.EditorFor(model => model.Imagen)*@
-            @Html.ValidationMessageFor(model => model.LogoEmpresaHtml)
-        </div>        
-    <br />       
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Guardar" class="btn btn-default" />
+    <div class="panel-group" id="datos-empresa" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingDatosEmpresa" style="padding: 2px 2px 2px 6px;">
+                <h5 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#datos-empresa" href="#collapseDatosEmpresa" aria-expanded="true" aria-controls="collapseDatosEmpresa" class="fuente-seccion">
+                        Logo - @Model.NombreComercial
+                    </a>
+                </h5>
+            </div>
+            <div id="collapseDatosEmpresa" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingDatosEmpresa">
+                <div class="panel-body">
+                    @Html.AntiForgeryToken()
+                    <div class="col-sm-12" style="text-align:center;">
+
+                        @*<img src="~/img/logos/LogoCriteria.jpg" style="width:100%;" /><hr />*@
+                        <img alt="" class="foto-empresa" src='@Url.Action("ObtenerImagenEmpresa", "Empresa", new { id = Model.IdEmpresa })' />
+                        <br /><br />
+                        @Html.HiddenFor(m => m.IdEmpresa)
+                        @Html.TextBoxFor(model => model.LogoEmpresaHtml, new { type = "file"})
+                        @*@Html.EditorFor(model => model.Imagen)*@
+                        @Html.ValidationMessageFor(model => model.LogoEmpresaHtml)
+                        <br />
+                        <input type="submit" value="Guardar" class="btn btn-default color-paleta4" />
+                    </div>
+                    
+                </div>
+            </div>
         </div>
-    </div>    
-</div>
-   
+    </div>
+
 }
