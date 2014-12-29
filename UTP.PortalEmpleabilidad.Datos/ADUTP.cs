@@ -266,6 +266,7 @@ namespace UTP.PortalEmpleabilidad.Datos
         {
             using (SqlConnection conexion = new SqlConnection(cadenaConexion))
             {
+
                 SqlCommand cmd = new SqlCommand();
 
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -275,11 +276,13 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.Parameters.Add(new SqlParameter("@Usuario", utpUsuario.NombreUsuario));
                 cmd.Parameters.Add(new SqlParameter("@Nombres", utpUsuario.Nombres));
                 cmd.Parameters.Add(new SqlParameter("@Apellidos", utpUsuario.Apellidos));
-                cmd.Parameters.Add(new SqlParameter("@Sexo", utpUsuario.SexoIdListaValor));
+                cmd.Parameters.Add(new SqlParameter("@Sexo", utpUsuario.SexoIdListaValor == null ? "" : utpUsuario.SexoIdListaValor));
+
+            
                 cmd.Parameters.Add(new SqlParameter("@CorreoElectronico", utpUsuario.Correo));
-                cmd.Parameters.Add(new SqlParameter("@TelefonoFijo", utpUsuario.TelefonoFijo));
-                cmd.Parameters.Add(new SqlParameter("@TelefonoAnexo", utpUsuario.TelefonoAnexo));
-                cmd.Parameters.Add(new SqlParameter("@TelefonoCelular", utpUsuario.TelefonoCelular));
+                cmd.Parameters.Add(new SqlParameter("@TelefonoFijo", utpUsuario.TelefonoFijo == null ? "" : utpUsuario.TelefonoFijo));
+                cmd.Parameters.Add(new SqlParameter("@TelefonoAnexo", utpUsuario.TelefonoAnexo == null ? "" : utpUsuario.TelefonoAnexo));
+                cmd.Parameters.Add(new SqlParameter("@TelefonoCelular", utpUsuario.TelefonoCelular == null ? "" : utpUsuario.TelefonoCelular));
                 cmd.Parameters.Add(new SqlParameter("@EstadoUsuario", utpUsuario.EstadoUsuarioIdListaValor));
                 cmd.Parameters.Add(new SqlParameter("@Rol", utpUsuario.RolIdListaValor));
                 cmd.Parameters.Add(new SqlParameter("@TipoUsuario", utpUsuario.TipoUsuarioIdListaValor));
@@ -288,7 +291,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.Connection = conexion;
 
                 conexion.Open();
-
+                
                 cmd.ExecuteNonQuery();
 
                 conexion.Close();

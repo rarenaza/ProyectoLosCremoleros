@@ -1159,6 +1159,7 @@ namespace UTPPrototipo.Controllers
         /// <returns></returns>
         public PartialViewResult _UsuariosUTPCrear()
         {
+
             LNGeneral lnGeneral = new LNGeneral();
 
             UTPUsuario utpUsuario = new UTPUsuario();
@@ -1169,12 +1170,17 @@ namespace UTPPrototipo.Controllers
             ViewBag.EstadoUsuarioIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_USUARIO), "IdListaValor", "Valor");
 
             return PartialView("_UsuariosUTPCrear", utpUsuario);
+
+
+
+
         }
 
 
         [HttpPost, ValidateAntiForgeryToken]
         public PartialViewResult _UsuariosUTPCrear(UTPUsuario utpUsuario)
         {
+
             TicketUTP ticket = (TicketUTP)Session["TicketUtp"];
 
             utpUsuario.TipoUsuarioIdListaValor = "USERUT"; //Tipo usuario UTP

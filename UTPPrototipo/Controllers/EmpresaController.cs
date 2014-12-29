@@ -409,7 +409,7 @@ namespace UTPPrototipo.Controllers
                 empresa.Pais.Valor              = Convert.ToString(dtResultado.Rows[0]["Pais"]);
                 empresa.IdentificadorTributario = Convert.ToString(dtResultado.Rows[0]["IdentificadorTributario"]);
                 empresa.DescripcionEmpresa      = Convert.ToString(dtResultado.Rows[0]["DescripcionEmpresa"]);
-                empresa.AnoCreacion             = Convert.ToInt32(dtResultado.Rows[0]["AnoCreacion"]);
+                empresa.AnoCreacion = Convert.ToInt32(dtResultado.Rows[0]["AnoCreacion"] == DBNull.Value ? null : dtResultado.Rows[0]["AnoCreacion"]);
                 empresa.NumeroEmpleados.Valor   = Convert.ToString(dtResultado.Rows[0]["NumeroEmpleados"]);
                 empresa.SectorEmpresarial.Valor = Convert.ToString(dtResultado.Rows[0]["SectorEmpresarial"]);
                 empresa.ArchivoNombreOriginal   = Convert.ToString(dtResultado.Rows[0]["ArchivoNombreOriginal"]);
