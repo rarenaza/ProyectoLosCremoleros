@@ -8,13 +8,17 @@
     <div class="modal-body">
 
         @Html.HiddenFor(m => m.IdUTPUsuario)
+        @Html.HiddenFor(m => m.NombreUsuario)
 
         <div class="row">
             <div class="col-sm-6">
                 <div class="input-group">
                     <span class="input-group-addon">Usuario</span>
                     @*<input type="text" class="form-control" placeholder="Usuario">*@
-                    @Html.Raw(@Html.EditorFor(model => model.NombreUsuario).ToString().Replace("text-box single-line", "form-control"))
+                    @Html.TextBoxFor(x => x.NombreUsuario, htmlAttributes: new { @class = "form-control", @disabled = "disabled" })
+                    @*@Html.Raw(@Html.EditorFor(model => model.NombreUsuario).ToString().Replace("text-box single-line", "form-control"))*@
+
+
                     @Html.ValidationMessageFor(model => model.Nombres, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -52,7 +56,7 @@
             <div class="col-sm-6">
                 <div class="input-group">
                     <span class="input-group-addon">Sexo</span>
-                    @Html.DropDownListFor(m => m.SexoIdListaValor, null, "-- Especifique Rol --", htmlAttributes: new { @class = "form-control" })
+                    @Html.DropDownListFor(m => m.SexoIdListaValor, null, "-- Especifique Sexo --", htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.SexoIdListaValor, "", new { @class = "text-danger" })             
                 </div>
             </div>
@@ -99,13 +103,14 @@
             <div class="col-sm-12">
                 <div class="input-group">
                     <span class="input-group-addon">Estado</span>
-                    @Html.DropDownListFor(m => m.EstadoUsuarioIdListaValor, null, "-- Especifique Rol --", htmlAttributes: new { @class = "form-control" })
+                    @Html.DropDownListFor(m => m.EstadoUsuarioIdListaValor, null, "-- Especifique Estado --", htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.EstadoUsuarioIdListaValor, "", new { @class = "text-danger" })                   
                 </div>
             </div>
         </div>
     </div>
     <div class="modal-footer">
+       
         <button class="btn btn-default color-paleta8">Guardar</button>
     </div>
 </div>

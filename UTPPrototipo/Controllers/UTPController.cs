@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -23,9 +24,12 @@ using UTPPrototipo.Models.ViewModels.UTP;
 
 namespace UTPPrototipo.Controllers
 {
+
+    
         [VerificarSesion]
     public class UTPController : Controller
     {
+       
         LNContenido ln = new LNContenido();
         LNAutenticarUsuario lnAutenticar = new LNAutenticarUsuario();
         LNUTP lnUtp = new LNUTP();
@@ -1226,7 +1230,15 @@ namespace UTPPrototipo.Controllers
             return PartialView("_UsuariosUTPLista", lista);
         }
 
-       
+        [HttpGet]
+        public ActionResult UsuarioSistemaUTP_Exitencia(string Usuario)
+        {
+            int cantidad;
+            cantidad = lnUtp.UsuarioSistemaUTP_Exitencia(Usuario);
+
+            //No debe retornar vistas.
+            return Content(cantidad.ToString());
+        }
 
 
         #endregion

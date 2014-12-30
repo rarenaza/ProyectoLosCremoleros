@@ -311,11 +311,11 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.Parameters.Add(new SqlParameter("@Usuario", utpUsuario.NombreUsuario));
                 cmd.Parameters.Add(new SqlParameter("@Nombres", utpUsuario.Nombres));
                 cmd.Parameters.Add(new SqlParameter("@Apellidos", utpUsuario.Apellidos));
-                cmd.Parameters.Add(new SqlParameter("@Sexo", utpUsuario.SexoIdListaValor));
+                cmd.Parameters.Add(new SqlParameter("@Sexo", utpUsuario.SexoIdListaValor == null ? "" : utpUsuario.SexoIdListaValor));
                 cmd.Parameters.Add(new SqlParameter("@CorreoElectronico", utpUsuario.Correo));
-                cmd.Parameters.Add(new SqlParameter("@TelefonoFijo", utpUsuario.TelefonoFijo));
-                cmd.Parameters.Add(new SqlParameter("@TelefonoAnexo", utpUsuario.TelefonoAnexo));
-                cmd.Parameters.Add(new SqlParameter("@TelefonoCelular", utpUsuario.TelefonoCelular));
+                cmd.Parameters.Add(new SqlParameter("@TelefonoFijo", utpUsuario.TelefonoFijo == null ? "" : utpUsuario.TelefonoFijo));
+                cmd.Parameters.Add(new SqlParameter("@TelefonoAnexo", utpUsuario.TelefonoAnexo == null ? "" : utpUsuario.TelefonoAnexo));
+                cmd.Parameters.Add(new SqlParameter("@TelefonoCelular", utpUsuario.TelefonoCelular == null ? "" : utpUsuario.TelefonoCelular));
                 cmd.Parameters.Add(new SqlParameter("@EstadoUsuario", utpUsuario.EstadoUsuarioIdListaValor));
                 cmd.Parameters.Add(new SqlParameter("@Rol", utpUsuario.RolIdListaValor));
                 cmd.Parameters.Add(new SqlParameter("@ModificadoPor", utpUsuario.ModificadoPor));
@@ -329,6 +329,42 @@ namespace UTP.PortalEmpleabilidad.Datos
                 conexion.Close();
             }
         }
+
+        public int UsuarioSistemaUTP_Exitencia(string Usuario)
+        {
+            int cantidad=0;
+            try
+            {
+                using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+                {
+                    SqlCommand cmd = new SqlCommand();
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "UsuarioSistemaUTP_Exitencia";
+
+                    //Parámetros:
+                    cmd.Parameters.Add(new SqlParameter("@Usuario", Usuario));
+                
+
+                    cmd.Connection = conexion;
+                    conexion.Open();
+                    cmd.ExecuteScalar();
+
+                    object resultado=cmd.ExecuteScalar ();
+                    cantidad =Convert.ToInt32 (resultado);
+
+                    conexion.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return cantidad;
+        }
+
+
         #endregion
     
 

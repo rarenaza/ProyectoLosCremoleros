@@ -33,6 +33,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
          [Required(ErrorMessage = Constantes.MSJ_CAMPO_OBLIGATORIO)]
         public string RolDescripcion { get; set; }
          [Required(ErrorMessage = Constantes.MSJ_CAMPO_OBLIGATORIO)]
+
         public string RolIdListaValor { get; set; }
         public string TipoUsuarioIdListaValor { get; set; }
 

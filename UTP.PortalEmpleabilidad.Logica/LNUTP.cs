@@ -26,6 +26,14 @@ namespace UTP.PortalEmpleabilidad.Logica
             return adUtp.EmpresaObtenerPendientes();
         }
 
+        public int UsuarioSistemaUTP_Exitencia(string Usuario)
+        {
+            
+          return adUtp.UsuarioSistemaUTP_Exitencia(Usuario);
+
+        }
+
+
         //public DataTable Empresa_ObtenerPorNombre(string nombre)
         //{
 
