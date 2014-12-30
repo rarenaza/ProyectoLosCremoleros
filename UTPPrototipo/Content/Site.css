@@ -82,12 +82,11 @@ input[type="checkbox"].input-validation-error {
 
 
 .LogoUTPPE {
-    content: url("../img/LogoUTPPE2.png");
-    padding-bottom:5px;
+    padding-bottom:10px;
 }
 
 .LogoUTPPE2 {
-    content: url("../img/LogoUTPPE2.png");
+
 }
 
 .Boton_pestana {
