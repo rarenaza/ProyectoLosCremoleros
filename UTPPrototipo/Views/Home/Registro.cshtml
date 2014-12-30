@@ -26,37 +26,36 @@
     <hr />
     <div class="row">
         <div class="col-sm-8">
-            <div class="input-group fuente-pequeña">
-                <span class="input-group-addon fuente-pequeña">(*) Nombre<br />Comercial</span>
+            <div class="input-group">
+                <span class="input-group-addon">(*) Nombre<br />Comercial</span>
                 @*<input type="text" class="form-control fuente-pequeña" placeholder="Nombre Comercial de la Empresa">*@
-                @Html.Raw(@Html.EditorFor(model => model.NombreComercial).ToString().Replace("text-box single-line", "form-control"))
-                
+                @Html.TextBoxFor(model => model.NombreComercial, new { @class = "form-control", @placeholder = "Nombre Comercial de la Empresa" })
             </div>@Html.ValidationMessageFor(model => model.NombreComercial, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="row">
         <div class="col-sm-8">
-            <div class="input-group fuente-pequeña">
+            <div class="input-group">
                 <span class="input-group-addon fuente-pequeña">(*) Razón<br />Social</span>
                 @*<input type="text" class="form-control fuente-pequeña" placeholder="Razón Social de la Empresa">*@
-                @Html.Raw(@Html.EditorFor(model => model.RazonSocial).ToString().Replace("text-box single-line", "form-control"))
+                @Html.TextBoxFor(model => model.RazonSocial, new { @class = "form-control", @placeholder = "Razón Social de la Empresa" })
                 
             </div>@Html.ValidationMessageFor(model => model.RazonSocial, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="row">
         <div class="col-sm-4">
-            <div class="input-group fuente-pequeña">
+            <div class="input-group">
                 <span class="input-group-addon fuente-pequeña">(*) RUC</span>
                 @*<input type="text" class="form-control fuente-pequeña" placeholder="Identificador Tributario">*@
-                @Html.Raw(@Html.EditorFor(model => model.IdentificadorTributario).ToString().Replace("text-box single-line", "form-control"))
+                @Html.TextBoxFor(model => model.IdentificadorTributario, new { @class = "form-control", @placeholder = "Identificador Tributario" })
                 
             </div>@Html.ValidationMessageFor(model => model.IdentificadorTributario, "", new { @class = "text-danger" })
         </div>
         <div class="col-sm-4">
-            <div class="input-group fuente-pequeña">
+            <div class="input-group">
                 <span class="input-group-addon fuente-pequeña">(*) País</span>
-                @Html.DropDownListFor(m => m.PaisIdListaValor, null, "Seleccione", htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownListFor(m => m.PaisIdListaValor, null, "- Seleccione País -", htmlAttributes: new { @class = "form-control" })
                 
                 @*<select class="form-control fuente-pequeña">
                     <option value="">-- Seleccione País donde se ubica la Empresa --</option>
@@ -72,7 +71,7 @@
         <div class="col-sm-4">
             <div class="input-group fuente-pequeña">
                 <span class="input-group-addon fuente-pequeña">(*) Sector</span>
-                @Html.DropDownListFor(m => m.SectorEmpresarial1IdListaValor, null, "Seleccione", htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownListFor(m => m.SectorEmpresarial1IdListaValor, null, "- Seleccione Sector Empresarial -", htmlAttributes: new { @class = "form-control" })
                 
                 @*<select class="form-control fuente-pequeña">
                     <option value="">-- Sector empresarial principal --</option>
@@ -90,7 +89,7 @@
         <div class="col-sm-4">
             <div class="input-group fuente-pequeña">
                 <span class="input-group-addon fuente-pequeña">(*) Tipo<br />Ubicación</span>
-                @Html.DropDownListFor(m => m.TipoLocacionIdListaValor, null, "Seleccione", htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownListFor(m => m.TipoLocacionIdListaValor, null, "- Seleccione Tipo de Ubicación -", htmlAttributes: new { @class = "form-control" })
                 
                 @*<select class="form-control fuente-pequeña">
                     <option value="">-- Tipo de Ubicación --</option>
@@ -100,28 +99,26 @@
             </div>@Html.ValidationMessageFor(model => model.TipoLocacionIdListaValor, "", new { @class = "text-danger" })
         </div>
     </div>
-    
-    
     <div class="row">
         <div class="col-sm-4">
             <div class="input-group fuente-pequeña">
                 <span class="input-group-addon fuente-pequeña">(*)<br />Departam.</span>
-                @*<input type="text" class="form-control fuente-pequeña" placeholder="Ingrese Departamente/Región/Estado">*@
-                @Html.Raw(@Html.EditorFor(model => model.DireccionDepartamentoLocacion).ToString().Replace("text-box single-line", "form-control"))
+                @*<input type="text" class="form-control fuente-pequeña" placeholder="Ingrese Departamento/Región/Estado">*@
+                @Html.TextBoxFor(model => model.DireccionDepartamentoLocacion, new { @class = "form-control", @placeholder = "Ingrese Departamento/Región/Estado" })
             </div>@Html.ValidationMessageFor(model => model.DireccionDepartamentoLocacion, "", new { @class = "text-danger" })
         </div>
         <div class="col-sm-4">
             <div class="input-group fuente-pequeña">
                 <span class="input-group-addon fuente-pequeña">(*) Ciudad</span>
                 @*<input type="text" class="form-control fuente-pequeña" placeholder="Ingrese Ciudad">*@
-                @Html.Raw(@Html.EditorFor(model => model.DireccionCiudadLocacion).ToString().Replace("text-box single-line", "form-control"))
+                @Html.TextBoxFor(model => model.DireccionCiudadLocacion, new { @class = "form-control", @placeholder = "Ingrese Ciudad/Provincia" })
             </div>@Html.ValidationMessageFor(model => model.DireccionCiudadLocacion, "", new { @class = "text-danger" })
         </div>
         <div class="col-sm-4">
             <div class="input-group fuente-pequeña">
                 <span class="input-group-addon fuente-pequeña">(*) Distrito</span>
                 @*<input type="text" class="form-control fuente-pequeña" placeholder="Ingrese Distrito/Comuna">*@
-                @Html.Raw(@Html.EditorFor(model => model.DireccionDistritoLocacion).ToString().Replace("text-box single-line", "form-control"))
+                @Html.TextBoxFor(model => model.DireccionDistritoLocacion, new { @class = "form-control", @placeholder = "Ingrese Distrito/Comuna" })
             </div>@Html.ValidationMessageFor(model => model.DireccionDistritoLocacion, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -130,7 +127,7 @@
             <div class="input-group fuente-pequeña">
                 <span class="input-group-addon fuente-pequeña">(*)<br />Dirección</span>
                 @*<input type="text" class="form-control fuente-pequeña" placeholder="Ingrese Dirección. Ej: Avenida Las Palmeras 123, Urbanización El Palmeral">*@
-                @Html.Raw(@Html.EditorFor(model => model.DireccionLocacion).ToString().Replace("text-box single-line", "form-control"))
+                @Html.TextBoxFor(model => model.DireccionLocacion, new { @class = "form-control", @placeholder = "Ingrese Dirección. Ej: Avenida Las Palmeras 123, Urbanización El Palmeral" })
             </div>@Html.ValidationMessageFor(model => model.DireccionLocacion, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -142,14 +139,14 @@
             <div class="input-group fuente-pequeña">
                 <span class="input-group-addon fuente-pequeña">(*)<br />Nombres</span>
                 @*<input type="text" class="form-control fuente-pequeña" placeholder="Ingrese sus nombres">*@
-                @Html.Raw(@Html.EditorFor(model => model.NombresUsuario).ToString().Replace("text-box single-line", "form-control"))
+                @Html.TextBoxFor(model => model.NombresUsuario, new { @class = "form-control", @placeholder = "Ingrese su(s) nombre(s)" })
             </div>@Html.ValidationMessageFor(model => model.NombresUsuario, "", new { @class = "text-danger" })
         </div>
         <div class="col-sm-6">
             <div class="input-group fuente-pequeña">
                 <span class="input-group-addon fuente-pequeña">(*)<br />Apellidos</span>
                 @*<input type="text" class="form-control fuente-pequeña" placeholder="Ingrese sus apellidos">*@
-                @Html.Raw(@Html.EditorFor(model => model.ApellidosUsuario).ToString().Replace("text-box single-line", "form-control"))
+                @Html.TextBoxFor(model => model.ApellidosUsuario, new { @class = "form-control", @placeholder = "Ingrese sus apellidos" })
             </div>@Html.ValidationMessageFor(model => model.ApellidosUsuario, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -158,7 +155,7 @@
         <div class="col-sm-4">
             <div class="input-group fuente-pequeña">
                 <span class="input-group-addon fuente-pequeña">(*) Tipo <br />Document.</span>
-                @Html.DropDownListFor(m => m.TipoDocumentoIdListaValor, null, "Seleccione", htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownListFor(m => m.TipoDocumentoIdListaValor, null, "- Seleccione tipo de Documento -", htmlAttributes: new { @class = "form-control" })
                
                 @*<select class="form-control fuente-pequeña">
                     <option value="">-- Elija Tipo Documento de Identificación--</option>
@@ -172,7 +169,7 @@
             <div class="input-group fuente-pequeña">
                 <span class="input-group-addon fuente-pequeña">(*) Número<br />Document.</span>
                 @*<input type="text" class="form-control fuente-pequeña" placeholder="Ingrese su Número de Documento">*@
-                @Html.Raw(@Html.EditorFor(model => model.NumeroDocumento).ToString().Replace("text-box single-line", "form-control"))
+                @Html.TextBoxFor(model => model.NumeroDocumento, new { @class = "form-control", @placeholder = "Número de Documento de Identidad" })
             </div>@Html.ValidationMessageFor(model => model.NumeroDocumento, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -181,7 +178,7 @@
             <div class="input-group">
                 <span class="input-group-addon">(*)<br />Celular</span>
                 @*<input type="text" class="form-control" placeholder="Número de Celular">*@
-                @Html.Raw(@Html.EditorFor(model => model.CelularUsuario).ToString().Replace("text-box single-line", "form-control"))
+                @Html.TextBoxFor(model => model.CelularUsuario, new { @class = "form-control", @placeholder = "Número de Celular" })
             </div>@Html.ValidationMessageFor(model => model.CelularUsuario, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -190,7 +187,7 @@
             <div class="input-group">
                 <span class="input-group-addon">(*) e-Mail</span>
                 @*<input type="text" class="form-control" placeholder="e-Mail del Usuario">*@
-                @Html.Raw(@Html.EditorFor(model => model.EmailUsuario).ToString().Replace("text-box single-line", "form-control"))
+                @Html.TextBoxFor(model => model.EmailUsuario, new { @class = "form-control", @placeholder = "Correo electrónico de contacto" })
             </div>@Html.ValidationMessageFor(model => model.EmailUsuario, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -200,7 +197,7 @@
             <div class="input-group fuente-pequeña">
                 <span class="input-group-addon fuente-pequeña">(*)<br />Usuario</span>
                 @*<input type="text" class="form-control fuente-pequeña" placeholder="Ingrese un nombre de Usuario, con no menos de 8, y máximo 40 caracteres">*@
-                @Html.Raw(@Html.EditorFor(model => model.CuentaUsuario).ToString().Replace("text-box single-line", "form-control"))
+                @Html.TextBoxFor(model => model.CuentaUsuario, new { @class = "form-control", @placeholder = "Ingrese un nombre de Usuario, con no menos de 8, y máximo 40 caracteres" })
             </div>@Html.ValidationMessageFor(model => model.CuentaUsuario, "", new { @class = "text-danger" })
         </div>
     </div>

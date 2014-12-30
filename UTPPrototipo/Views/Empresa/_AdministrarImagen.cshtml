@@ -4,7 +4,7 @@
 @*@using (Ajax.BeginForm("", "", new AjaxOptions() { HttpMethod = "POST", UpdateTargetId = "divAdministrarImagen", InsertionMode = InsertionMode.Replace }, new { enctype = "multipart/form-data", action = "/Empresa/_AdministrarActualizarImagen" }))*@
 @using (Html.BeginForm("_AdministrarActualizarImagen", "Empresa", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    <div class="panel-group" id="datos-empresa" role="tablist" aria-multiselectable="true">
+    <div class="panel-group" id="datos-imagen" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default">
             <div class="panel-heading" role="tab" id="headingDatosEmpresa" style="padding: 2px 2px 2px 6px;">
                 <h5 class="panel-title">

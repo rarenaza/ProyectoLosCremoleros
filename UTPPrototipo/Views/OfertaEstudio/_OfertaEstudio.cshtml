@@ -10,56 +10,43 @@
 
 @foreach (var item in Model)
 {
-<div class="row">
-    <div class="col-sm-7">
-        <table class="fuente-pequeña">
-            <tr>
-                <td class="celda-nombre">Tipo</td>
-                <td class="celda-datos">@item.TipoDeEstudio.Valor</td>
-            </tr>
-            <tr>
-                <td class="celda-nombre">Estudio</td>
-                <td class="celda-datos">@item.Estudio</td>
-            </tr>
+    <div class="row fuente-pequeña">
+        <div class="col-sm-7">
+            <table class="fuente-pequeña">
+                <tr>
+                    <td class="celda-nombre">Tipo</td>
+                    <td class="celda-datos">@item.TipoDeEstudio.Valor</td>
+                </tr>
+                <tr>
+                    <td class="celda-nombre">Estudio</td>
+                    <td class="celda-datos">@item.Estudio</td>
+                </tr>
 
-            <tr>
-                <td class="celda-nombre">Estado</td>
-                <td class="celda-datos">@item.EstadoDelEstudio.Valor</td>
-            </tr>
-            <tr>
-                <td class="celda-nombre">Ciclo mínimo</td>
-                <td class="celda-datos">@item.CicloEstudio</td>
-            </tr>
-            <tr>
-                <td class="celda-nombre"></td>
-                <td class="celda-datos">
-  
-                </td>
-            </tr>
-        </table>
-    </div>
-    @*<div class="col-sm-5">
-        <br />
-        <button class="btn btn-primary btn-sm" onclick="editarEstudio(@item.IdOfertaEstudio);" data-id="@item.IdOfertaEstudio">Editar</button>
-        <button class="btn btn-danger btn-sm"  onclick="eliminarEstudio(@item.IdOfertaEstudio);" data-id="@item.IdOfertaEstudio">Eliminar</button>       
-    </div>*@
-        
-
-        <div class="col-sm-5">
-        
-            <a class="fui fa-2x" style="color:gray;cursor:pointer" onclick="editarEstudio(@item.IdOfertaEstudio);" data-id="@item.IdOfertaEstudio">
-                1
-
-            </a>
-            
-            <a class="fui fa-2x" style="color:gray;cursor:pointer" onclick="eliminarEstudio(@item.IdOfertaEstudio);" data-id="@item.IdOfertaEstudio">
-                l
-
-            </a>
-
+                <tr>
+                    <td class="celda-nombre">Estado</td>
+                    <td class="celda-datos">@item.EstadoDelEstudio.Valor</td>
+                </tr>
+                <tr>
+                    <td class="celda-nombre">Ciclo mínimo</td>
+                    <td class="celda-datos">@item.CicloEstudio</td>
+                </tr>
+                <tr>
+                    <td class="celda-nombre"></td>
+                    <td class="celda-datos"></td>
+                </tr>
+            </table>
         </div>
-    
-</div>
+        @*<div class="col-sm-5">
+                <br />
+                <button class="btn btn-primary btn-sm" onclick="editarEstudio(@item.IdOfertaEstudio);" data-id="@item.IdOfertaEstudio">Editar</button>
+                <button class="btn btn-danger btn-sm"  onclick="eliminarEstudio(@item.IdOfertaEstudio);" data-id="@item.IdOfertaEstudio">Eliminar</button>
+            </div>*@
+        <div class="col-sm-5">
+            <button class="btn btn-default fa fa-pencil color-paleta2" onclick="editarEstudio(@item.IdOfertaEstudio);" data-id="@item.IdOfertaEstudio"></button>
+            &nbsp;&nbsp;
+            <button class="btn btn-default fa fa-remove color-paleta2" onclick="eliminarEstudio(@item.IdOfertaEstudio);" data-id="@item.IdOfertaEstudio"></button>
+        </div>
+    </div>
     <br />
 }
 

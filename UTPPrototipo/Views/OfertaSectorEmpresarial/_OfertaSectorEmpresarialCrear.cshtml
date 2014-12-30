@@ -1,50 +1,52 @@
 ﻿@model UTP.PortalEmpleabilidad.Modelo.OfertaSectorEmpresarial
 
-    <div class="modal-content">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            <h4 class="modal-title" id="ExperienciaLaboral">Experiencia Por Sector</h4>
+<div class="modal-content fuente-pequeña">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="ExperienciaLaboral">Experiencia Por Sector</h4>
+    </div>
+    <div class="modal-body">
+
+        @Html.HiddenFor(m => m.IdOferta)
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="input-group">
+                    <span class="input-group-addon">Sector</span>
+                    @Html.DropDownListFor(m => m.SectorEmpresarialIdListaValor, null, "Seleccione", htmlAttributes: new { @class = "form-control" })
+                </div>
+                @Html.ValidationMessageFor(m => m.SectorEmpresarialIdListaValor, "", new { @class = "text-danger" })
+            </div>
         </div>
-        <div class="modal-body">
-
-            @Html.HiddenFor(m => m.IdOferta)
-
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="input-group fuente-pequeña">
-                        <span class="input-group-addon">Sector</span>                        
-                        @Html.DropDownListFor(m => m.SectorEmpresarialIdListaValor, null, "Seleccione", htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.SectorEmpresarialIdListaValor, "", new { @class = "text-danger" })
-                    </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="input-group">
+                    <span class="input-group-addon">Años de<br />Experiencia</span>
+                    @Html.TextBoxFor(m => m.AniosTrabajados, new { @class = "form-control", @placeholder = "Años de experiencia mínimos" })
                 </div>
             </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="input-group fuente-pequeña">
-                        <span class="input-group-addon">Años de<br />Experiencia</span>                        
-                        @Html.TextBoxFor(m => m.AniosTrabajados, new { @class = "form-control", @placeholder = "Años de experiencia mínimos" })
-                    </div>
-                </div>
 
-                <div class="col-sm-6">
-                    <div class="input-group fuente-pequeña">
-                        <span class="input-group-addon">Excluyente</span>
+            <div class="col-sm-6">
+                <div class="input-group">
+                    <span class="input-group-addon">
                         @*<span class="form-control">Excluyente</span>*@
                         @Html.CheckBoxFor(m => m.ExperienciaExcluyente)
                         @*<input type="checkbox" name="ExperienciaExcluyente" />*@
-                        
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm-12 text-right">
-                    <button type="submit" class="btn btn-default color-paleta2 fuente-pequeña" style="color: white; margin-bottom: 10px;">
-                        Grabar Experiencia x Sector
-                    </button>
+                    </span>
+                    <span class="form-control">Excluyente</span>
                 </div>
             </div>
         </div>
-        <div class="modal-footer">
+
+
+    </div>
+    <div class="modal-footer">
+        <div class="row">
+            <div class="col-sm-12 text-right">
+                <button type="submit" class="btn btn-default color-paleta2" style="color: white; margin-bottom: 10px;">
+                    Guardar Experiencia x Sector
+                </button>
+            </div>
         </div>
     </div>
+</div>

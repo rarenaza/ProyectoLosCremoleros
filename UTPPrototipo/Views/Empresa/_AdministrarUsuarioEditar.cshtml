@@ -117,17 +117,18 @@
                 <div class="input-group">
                     <span class="input-group-addon">Rol *</span>
 
-                    @{
+                    @*@{
                         if (ticketEmpresa.Rol == "ROLADE") //Rol Administrador de Empresa.
                         {
                             @Html.DropDownListFor(m => m.RolIdListaValor, null, "-- Especifique el Rol --", htmlAttributes: new { @class = "form-control" })
                         }
                         else
-                        {                          
+                        {*@                          
                             @Html.DropDownListFor(m => m.RolIdListaValor, null, null, htmlAttributes: new { @class = "form-control", @disabled = "disabled" })                                                            
-                            @Html.HiddenFor(m => m.RolIdListaValor) //Se crea un hidden que contiene el valor del Rol.
-                        }
-                    }
+                            @Html.HiddenFor(m => m.RolIdListaValor) 
+                    <!--//Se crea un hidden que contiene el valor del Rol.-->
+                        @*}
+                    }*@
 
                 </div>
                 @Html.ValidationMessageFor(model => model.RolIdListaValor, "", new { @class = "text-danger" })
