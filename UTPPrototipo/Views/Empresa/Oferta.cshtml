@@ -22,7 +22,7 @@
                     @Html.AntiForgeryToken()
 
                     <div id="divActualizarPostulantes">
-                        @Html.Action("VistaOfertaPostulantes", "Empresa", new { id = @Model.IdOferta })
+                        @Html.Action("VistaOfertaPostulantes", "Empresa", new { id = @Model.IdOferta, estado = @Model.EstadoOferta })
                     </div>
                 }
 

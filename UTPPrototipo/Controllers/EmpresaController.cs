@@ -90,7 +90,7 @@ namespace UTPPrototipo.Controllers
 
             if (ModelState.IsValid)
             {
-                oferta.UsuarioPropietarioEmpresa = "";
+                //oferta.UsuarioPropietarioEmpresa = "";
                 oferta.ModificadoPor = ticket.Usuario;
 
                 lnOfertaEmpresa.Actualizar(oferta);
@@ -308,7 +308,7 @@ namespace UTPPrototipo.Controllers
             return PartialView("_VistaOfertaAnuncio", oferta);
         }
 
-        public ActionResult VistaOfertaPostulantes(int id)
+        public ActionResult VistaOfertaPostulantes(int id, string estado)
         {
             LNOferta lnOferta = new LNOferta ();
             List<OfertaPostulante> postulantes = lnOferta.ObtenerPostulantesPorIdOferta(id);
@@ -317,6 +317,7 @@ namespace UTPPrototipo.Controllers
             List<OfertaFase> listaFasesActivas = lnOferta.Obtener_OfertaFaseActivas(id);
 
             ViewBag.IdOfertaFase = new SelectList(listaFasesActivas, "IdListaValor", "FaseOferta");
+            ViewBag.EstadoOfertaIdListaValor = estado;
 
             return PartialView("_VistaOfertaPostulantes", postulantes);
         }

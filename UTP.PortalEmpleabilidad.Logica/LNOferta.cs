@@ -283,6 +283,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 vista.MensajesNoLeidos = Convert.ToInt32(fila["MensajesNoLeidos"]);
                 vista.MensajesTotales = Convert.ToInt32(fila["MensajesTotales"]);
                 vista.UsuarioPropietarioEmpresa = Convert.ToString(fila["UsuarioPropietarioEmpresa"]);
+                vista.EstadoOfertaIdListaValor = Convert.ToString(fila["EstadoOfertaIdListaValor"]);
 
                 lista.Add(vista);
             }

@@ -29,7 +29,7 @@
                 </div>
                 <div class="col-sm-2">
                     @{
-                        if (ticketEmpresa.Rol == "ROLADE" || ticketEmpresa.Rol == "ROLSUE" || ticketEmpresa.Rol == "ROLUEM") //Si es Administrador o Supervisor.
+                        if ((ticketEmpresa.Rol == "ROLADE" || ticketEmpresa.Rol == "ROLSUE" || ticketEmpresa.Rol == "ROLUEM") && (ViewBag.EstadoOfertaIdListaValor == "OFERAC")) //Si es Administrador o Supervisor.
                         {
                             <span>&nbsp;&nbsp;<button class="btn btn-default color-paleta2" onclick="return validar();">Mover</button></span>
                         }
