@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -43,6 +44,7 @@ namespace UTP.PortalEmpleabilidad.Modelo.Vistas.Ofertas
         public Dictionary<int, string> PeriodoPublicacion { get; set; }
         public string AreaEmpresa { get; set; }
         public int? AniosExperiencia { get; set; }
+        [RegularExpression(@"[0-9]+", ErrorMessage = "Este campo sólo acepta numeros.")]
         public int? Sueldo { get; set; }
         public string Ubicacion { get; set; }
         public bool IncluirMensaje { get; set; }

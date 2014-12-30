@@ -61,7 +61,9 @@ namespace UTP.PortalEmpleabilidad.Logica
                Evento listaEvento = new Evento();
                listaEvento.NombreEvento =Funciones.ToString( dtResultado.Rows[i]["NombreEvento"]);
                listaEvento.FechaEventoTexto = Funciones.ToString(dtResultado.Rows[i]["FechaEventoTexto"]);
-               listaEvento.LugarEvento = Funciones.ToString( dtResultado.Rows[i]["LugarEvento"]);
+               listaEvento.LugarEvento = Funciones.ToString(dtResultado.Rows[i]["LugarEvento"]);
+               listaEvento.IdEvento = Funciones.ToInt(dtResultado.Rows[i]["IdEvento"]);
+
                lista.Add(listaEvento);
            }
            return lista;

@@ -75,6 +75,17 @@ namespace UTPPrototipo.Controllers
             else return null;
         }
 
+        public FileContentResult GetImageAlumno(int IdAlumno)
+        {
+            Alumno alumno= lnAlumno.ObtenerAlumnoPorIdAlumno(IdAlumno);
+            if (alumno.Foto != null && string.IsNullOrEmpty(alumno.ArchivoMimeType) == false) return File(alumno.Foto, alumno.ArchivoMimeType);
+            //if (empresa.LogoEmpresa != null) return File(empresa.LogoEmpresa, empresa.ArchivoMimeType);
+
+            else return null;
+        }
+
+
+
         public ActionResult PostulacionOferta()
         {
 
@@ -933,20 +944,99 @@ namespace UTPPrototipo.Controllers
 
         }
         [HttpPost]
-        public PartialViewResult DatosAlumno(Alumno entidad)
+        public ActionResult DatosAlumno(Alumno entidad, HttpPostedFileBase foto2)
         {
-            TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
-            entidad.Usuario = ticket.Usuario;
-            lnAlumno.ModifcarDatos(entidad);
-            ViewBag.Mensaje = "Se modifico los datos del alumno.";
-            return PartialView("_AlertModal");
+            LNGeneral lngeneral = new LNGeneral();
+            if (ModelState.IsValid)
+            {
+                if (foto2 != null)
+                {
+                    entidad.ArchivoMimeType = foto2.ContentType;
+                    entidad.Foto = new byte[foto2.ContentLength];
+                    foto2.InputStream.Read(entidad.Foto, 0, foto2.ContentLength);
+
+                }
+
+                TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
+                entidad.Usuario = ticket.Usuario;
+                lnAlumno.ModifcarDatos(entidad);
+                Alumno alumno = lnAlumno.ObtenerAlumnoPorIdAlumno(entidad.IdAlumno);
+                if (alumno != null && string.IsNullOrEmpty(alumno.Usuario) == false)
+                {
+                    ViewBag.TipoDocumentoIdListaValor = new SelectList(lngeneral.ObtenerListaValor(1), "IdListaValor", "Valor", alumno.TipoDocumentoIdListaValor);
+                    ViewBag.SexoIdListaValor = new SelectList(lngeneral.ObtenerListaValor(2), "IdListaValor", "Valor", alumno.SexoIdListaValor);
+                    ViewBag.DireccionRegion = new SelectList(lngeneral.ObtenerListaValor(47), "IdListaValor", "Valor", alumno.DireccionRegion);
+                }
+                else
+                {
+                    ViewBag.TipoDocumentoIdListaValor = new SelectList(lngeneral.ObtenerListaValor(1), "IdListaValor", "Valor", entidad.TipoDocumentoIdListaValor);
+                    ViewBag.SexoIdListaValor = new SelectList(lngeneral.ObtenerListaValor(2), "IdListaValor", "Valor", entidad.SexoIdListaValor);
+                    ViewBag.DireccionRegion = new SelectList(lngeneral.ObtenerListaValor(47), "IdListaValor", "Valor", entidad.DireccionRegion);
+                }
+
+            }
+            else
+            {
+                //     var errors = ModelState.Select(x => x.Value.Errors)
+                //.Where(y => y.Count > 0)
+                //.ToList();
+                ViewBag.TipoDocumentoIdListaValor = new SelectList(lngeneral.ObtenerListaValor(1), "IdListaValor", "Valor", entidad.TipoDocumentoIdListaValor);
+                ViewBag.SexoIdListaValor = new SelectList(lngeneral.ObtenerListaValor(2), "IdListaValor", "Valor", entidad.SexoIdListaValor);
+                ViewBag.DireccionRegion = new SelectList(lngeneral.ObtenerListaValor(47), "IdListaValor", "Valor", entidad.DireccionRegion);
+            }
+
+
+
+            return View(entidad);
         }
         public ActionResult ListarListaValor(string Id)
         {
             LNGeneral lngeneral = new LNGeneral();
-            var Data = lngeneral.ObtenerListaValorPorIdPadre( Id);
+            var Data = lngeneral.ObtenerListaValorPorIdPadre(Id);
             return Json(Data, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpPost]
+        public JsonResult ListarEstudio(string query)
+        {
+            LNGeneral lngeneral = new LNGeneral();
+            var resultado = lngeneral.ObtenerListaValor(Constantes.IDLISTA_DE_CARRERA);
+            var result = resultado.Where(s => s.Valor.ToLower().StartsWith(query.ToLower())).Select(c => new { Value = c.IdListaValor, Label = c.Valor }).ToList();
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult ListarDistritos(string query)
+        {
+            LNGeneral lngeneral = new LNGeneral();
+            var resultado = lngeneral.ObtenerListaValor(Constantes.IDLISTA_DISTRITO_PERU);
+            var result = resultado.Where(s => s.Valor.ToLower().StartsWith(query.ToLower())).Select(c => new { Value = c.IdListaValor, Label = c.Valor }).ToList();
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult ListarAreasEmpresa(string query)
+        {
+            LNGeneral lngeneral = new LNGeneral();
+            var resultado = lngeneral.ObtenerListaValor(Constantes.IDLISTA_AREA_EMPRESA);
+            var result = resultado.Where(s => s.Valor.ToLower().StartsWith(query.ToLower())).Select(c => new { Value = c.IdListaValor, Label = c.Valor }).ToList();
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        public FileResult ReturnImagen(byte[] imagen)
+        {
+
+            if (imagen != null) return File(imagen, "image/jpg");
+            else return null;
+        }
+        //public FileContentResult ReturnImagen(byte[] imagen, string MimeType)
+        //{
+
+        //    if (imagen != null && string.IsNullOrEmpty(MimeType) == false) return File(imagen, MimeType);
+
+        //    else return null;
+        //}
+
         #endregion
 
 

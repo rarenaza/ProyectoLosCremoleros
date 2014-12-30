@@ -9,66 +9,18 @@
 <link href="~/Content/font-awesome.css" rel="stylesheet" />
 <div class="container" style="margin-top:2px;">
 
-    @*Prueba de control de usuario*@
+
     @Html.Partial("_DatosPersonales", Model.Alumno)
 
-    @*<div class="panel-group" id="datos-cuenta" role="tablist" aria-multiselectable="true">
-            <div class="panel panel-default">
-                <div class="panel-heading" role="tab" id="headingOne" style="padding: 2px 2px 2px 6px;">
-                    <h5 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="fuente-seccion">
-                            Tu Cuenta -
-                        </a>
-                    </h5>
-                </div>
-                <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                    <div class="panel-body">
-                        <div class="col-md-4 fuente-seccion">
-                            <table>
-                                <tr>
-                                    <td>
-                                        <img class="foto-usuario" src="~/img/Alumna.png" />
-                                    </td>
-                                    <td style="vertical-align:top;">
-                                        <strong>
-
-                                            <br />
-                                        </strong>
-                                        <br />Ingeniería Industrial
-                                        <br /><a href="#" class="fuente-pequeña">Modificar Datos ...</a>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="col-md-4 fuente-pequeña">
-                            Código <strong></strong><br />
-                            DNI <strong></strong><br />
-                            <strong></strong><br />
-                            <strong></strong>
-
-                        </div>
-                        <div class="col-md-4 fuente-pequeña">
-                            Dirección <strong></strong><br />
-                            Teléfono <strong></strong><br />
-                            Celular <strong></strong>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-        </div>*@
 
     @{Html.RenderAction("AlertaCvAlumno", "Alumno");}
-    @*<div class="alert alert-danger" role="alert"><strong>¡Completa tu CV: '@Model.NombreCV' está al @Model.PorcentajeCV%! &nbsp;&nbsp;&nbsp;<a href="../Alumno/MiCV">Ingresa aquí</a></strong></div>*@
-
+   
     
     @{Html.RenderAction("AlertaCvAlumnoDia", "Alumno");}
-   @*<div class="alert alert-warning" role="alert"><strong>Sin Postulaciones hace 20 días </strong></div>*@
 
 
     @{Html.RenderAction("AlertaCvAlumnoMes", "Alumno");}
-    @*<div class="alert alert-warning" role="alert"><strong>Sin Trabajo hace 2 meses </strong></div>*@
+
 
     <div class="row">
         <div class="col-md-2 fuente-pequeña" style="border-right:solid;border-color:rgb(220, 220, 220);border-width:1px;">
@@ -250,58 +202,6 @@
         </div>
 
         @Html.Partial("_AlumnoEventos", Model.ListaEventos)
-        @*<div class="col-sm-4">
-                <h5>Eventos</h5>
-                <hr />
-                <div class="row grilla1-linea fuente-pequeña">
-                    <div class="col-sm-4">
-                        <a href="~/Views/Alumno/Eventos">Curso de SAP Funcional</a>
-                    </div>
-                    <div class="col-sm-4">
-                        Viernes 15 de Diciembre
-                    </div>
-                    <div class="col-sm-4">
-                        Campus UTP
-                    </div>
-                </div>
-                <hr />
-                <div class="row grilla1-linea fuente-pequeña">
-                    <div class="col-sm-4">
-                        <a href="~/Views/Alumno/Eventos">Curso de SAP Funcional</a>
-                    </div>
-                    <div class="col-sm-4">
-                        Viernes 15 de Diciembre
-                    </div>
-                    <div class="col-sm-4">
-                        Campus UTP
-                    </div>
-                </div>
-                <hr />
-                <div class="row grilla1-linea fuente-pequeña">
-                    <div class="col-sm-4">
-                        <a href="~/Views/Alumno/Eventos">Curso de SAP Funcional</a>
-                    </div>
-                    <div class="col-sm-4">
-                        Viernes 15 de Diciembre
-                    </div>
-                    <div class="col-sm-4">
-                        Campus UTP
-                    </div>
-                </div>
-                <hr />
-                <div class="row grilla1-linea fuente-pequeña">
-                    <div class="col-sm-4">
-                        <a href="~/Views/Alumno/Eventos">Curso de SAP Funcional</a>
-                    </div>
-                    <div class="col-sm-4">
-                        Viernes 15 de Diciembre
-                    </div>
-                    <div class="col-sm-4">
-                        Campus UTP
-                    </div>
-                </div>
-                <hr />
-            </div>*@
     </div>
     <hr />
     <div class="row">

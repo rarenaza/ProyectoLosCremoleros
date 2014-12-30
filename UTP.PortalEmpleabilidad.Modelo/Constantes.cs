@@ -24,7 +24,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
 
         public static int IDLISTA_TIPO_DOCUMENTO = 1;
         public static int IDLISTA_SEXO = 2;
-
+        public static int IDLISTA_DE_CARRERA = 5;
         public static int IDLISTA_TIPO_DE_ESTUDIO = 7;
         public static int IDLISTA_SECTOR_EMPRESARIAL = 8;
         public static int IDLISTA_TIPO_CARGO = 9;
@@ -44,6 +44,8 @@ namespace UTP.PortalEmpleabilidad.Modelo
 
         public static int IDLISTA_ESTADO_DEL_ESTUDIO = 43;
         public static int IDLISTA_OFERTA_RECIBECORREOS = 45;
+        public static int IDLISTA_DISTRITO_PERU = 49;
+        public static int IDLISTA_AREA_EMPRESA = 50;
 
         #endregion
 

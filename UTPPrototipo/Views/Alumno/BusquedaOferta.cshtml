@@ -4,7 +4,6 @@
     Layout = "~/Views/Alumno/_LayoutAlumno.cshtml";
     ViewBag.Title = "Búsqueda de Oferta";
 }
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -54,7 +53,7 @@
                                 </div>
                                 <div class="input-group">
                                     <span class="input-group-addon">Carrera</span>
-                                    @Html.DropDownListFor(model => model.IdEstudio, new SelectList(ViewBag.ListaEstudios, "Value", "Text"), "- Seleccionar -", new { @class = "form-control" })
+                                    @Html.TextBoxFor(model => model.IdEstudio, new { @class = "form-control", @placeholder = "Carrera de Estudio" })
                                 </div>
                                 <div class="input-group">
                                     <span class="input-group-addon">Grado</span>
@@ -68,12 +67,10 @@
                                 </div>
                                 <div class="input-group">
                                     <span class="input-group-addon">Área</span>
-                                    @*<input type="text" class="form-control" placeholder="Área en la empresa">*@
                                     @Html.TextBoxFor(model => model.AreaEmpresa, new { @class = "form-control", @placeholder = "Área en la empresa" })
                                 </div>
                                 <div class="input-group">
                                     <span class="input-group-addon">Experiencia</span>
-                                    @*<input type="text" class="form-control" placeholder="Años de experiencia">*@
                                     @Html.TextBoxFor(model => model.AniosExperiencia, new { @class = "form-control", @placeholder = "Años de experiencia" })
                                 </div>
 
@@ -100,6 +97,7 @@
                                     <span class="input-group-addon">Sueldo</span>
                                     @Html.TextBoxFor(model => model.Sueldo, new { @class = "form-control", @placeholder = "Sueldo ofrecido" })
                                 </div>
+                                @Html.ValidationMessageFor(m => m.Sueldo, "", new { @class = "text-danger" })
                                 <div class="input-group">
                                     <span class="input-group-addon">Ubicación</span>
                                     @Html.TextBoxFor(model => model.Ubicacion, new { @class = "form-control", @id = "Ubicacion", @placeholder = "Ubicación del trabajo" })
@@ -125,15 +123,18 @@
     </div>
 
     <div class="modal" id="Modal-datos-empresa" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-
+        <div class="modal-dialog" id="Modal-Nuevo-empresa">
+        </div>
     </div>
 }
-<script src="~/Scripts/jquery-2.1.1.min.js"></script>
 
 <script>
 
     $(document).ready(function () {
         $("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta4 color-paleta5").addClass("color-paleta3");
+        AutoCompleteText('#Ubicacion', '@Url.Action("ListarDistritos", "Alumno")', '#Ubicacion');
+        AutoCompleteText('#AreaEmpresa', '@Url.Action("ListarAreasEmpresa", "Alumno")', '#AreaEmpresa');
+        AutoCompleteText('#IdEstudio', '@Url.Action("ListarEstudio", "Alumno")', '#IdEstudio');
     });
     $('#buscar').click(function () {
         $("#TipoBusqueda").attr('value', 1);

@@ -17,6 +17,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string Apellidos { get; set; }
         public string DireccionLinea1 { get; set; }
         public string CorreoElectronico1 { get; set; }
+        [EmailAddress(ErrorMessage="Email inválido")]
         public string CorreoElectronico2 { get; set; }
         public string TelefonoFijoCasa { get; set; }
 
@@ -27,6 +28,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string TipoDocumentoIdListaValor { get; set; }
         public DateTime FechaNacimiento { get; set; }
         public string SexoIdListaValor { get; set; }
+        [Required(ErrorMessage = "Falta la dirección.")]
         public string Direccion { get; set; }
         [Required(ErrorMessage = "Falta el distrito.")]
         public string DireccionDistrito { get; set; }
@@ -36,6 +38,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string DireccionRegion { get; set; }     
         public byte[] Foto { get; set; }
         public string EstadoAlumnoIdListaValor { get; set; }
+        public string ArchivoMimeType { get; set; }
      
     }
 }

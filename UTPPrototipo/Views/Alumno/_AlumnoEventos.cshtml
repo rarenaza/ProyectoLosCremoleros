@@ -6,7 +6,7 @@
     {
         <div class="row grilla1-linea fuente-pequeña">
             <div class="col-sm-4">
-                <a href="~/Views/Alumno/Eventos">@Html.DisplayFor(modelItem => item.NombreEvento)</a>
+                @Html.ActionLink(item.NombreEvento, "Eventos", "Alumno", new { id = item.IdEvento }, null)
             </div>
             <div class="col-sm-4">
                 @Html.DisplayFor(modelItem => item.FechaEventoTexto)

@@ -12,10 +12,11 @@ namespace UTP.PortalEmpleabilidad.Datos
     public class ADAlumno
     {
         ADConexion cnn = new ADConexion();
-        SqlCommand cmd = new SqlCommand();
+
 
         public DataTable ObtenerUsuarioPorId(string nombreUsuario)
         {
+            SqlCommand cmd = new SqlCommand();
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = "ObtenerUsuarioPorId";
             cmd.Connection = cnn.cn;
@@ -34,6 +35,7 @@ namespace UTP.PortalEmpleabilidad.Datos
 
         public DataTable ObtenerAlumnoPorCodigo(string codigoAlumno)
         {
+            SqlCommand cmd = new SqlCommand();
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = "Alumno_ObtenerPorCodigo";
             cmd.Connection = cnn.cn;
@@ -52,6 +54,7 @@ namespace UTP.PortalEmpleabilidad.Datos
 
         public void ModifcarDatos(Alumno alumno)
         {
+            SqlCommand cmd = new SqlCommand();
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = "Alumno_ModificarDatos";
             cmd.Connection = cnn.cn;
@@ -61,10 +64,13 @@ namespace UTP.PortalEmpleabilidad.Datos
             cmd.Parameters.Add(new SqlParameter("@DireccionDistrito", SqlDbType.VarChar, 6)).Value = alumno.DireccionDistrito;
             cmd.Parameters.Add(new SqlParameter("@DireccionCiudad", SqlDbType.VarChar, 6)).Value = alumno.DireccionCiudad;
             cmd.Parameters.Add(new SqlParameter("@DireccionRegion", SqlDbType.VarChar, 6)).Value = alumno.DireccionRegion;
-            cmd.Parameters.Add(new SqlParameter("@CorreoElectronico2", SqlDbType.VarChar,300)).Value = alumno.CorreoElectronico2;
-            cmd.Parameters.Add(new SqlParameter("@TelefonoFijoCasa", SqlDbType.VarChar, 40)).Value = alumno.TelefonoFijoCasa;
-            cmd.Parameters.Add(new SqlParameter("@TelefonoCelular", SqlDbType.VarChar, 40)).Value = alumno.TelefonoCelular;
+            cmd.Parameters.Add(new SqlParameter("@CorreoElectronico2", SqlDbType.VarChar, 300)).Value = alumno.CorreoElectronico2 == null ? "" : alumno.CorreoElectronico2;
+            cmd.Parameters.Add(new SqlParameter("@TelefonoFijoCasa", SqlDbType.VarChar, 40)).Value = alumno.TelefonoFijoCasa == null ? "" : alumno.TelefonoFijoCasa;
+            cmd.Parameters.Add(new SqlParameter("@TelefonoCelular", SqlDbType.VarChar, 40)).Value = alumno.TelefonoCelular == null ? "" : alumno.TelefonoCelular;
             cmd.Parameters.Add(new SqlParameter("@ModificadoPor", SqlDbType.VarChar, 50)).Value = alumno.Usuario;
+            cmd.Parameters.Add(new SqlParameter("@Foto", SqlDbType.VarBinary,-1)).Value = alumno.Foto;
+            cmd.Parameters.Add(new SqlParameter("@ArchivoMimeType", SqlDbType.VarChar, 50)).Value = alumno.ArchivoMimeType;
+
             cmd.ExecuteNonQuery();
             cnn.Desconectar();
 
@@ -72,6 +78,7 @@ namespace UTP.PortalEmpleabilidad.Datos
 
         public DataTable ObtenerAlumnoPorIdAlumno(int IdAlumno)
         {
+            SqlCommand cmd = new SqlCommand();
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = "Alumno_ObtenerPorIdAlumno";
             cmd.Connection = cnn.cn;

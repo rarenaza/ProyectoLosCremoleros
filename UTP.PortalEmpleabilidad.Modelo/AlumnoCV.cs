@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using UTP.PortalEmpleabilidad.Modelo.Vistas.Alumno;
 namespace UTP.PortalEmpleabilidad.Modelo
 {
     public class AlumnoCV
@@ -30,9 +31,11 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public bool IncluirNombre2 { get; set; }
         public bool IncluirNombre3 { get; set; }
         public bool IncluirNombre4 { get; set; }
-        public IEnumerable<AlumnoEstudio> Estudios { get; set; }
-        public IEnumerable<AlumnoExperienciaCargo> Experiencias { get; set; }
-        public IEnumerable<AlumnoInformacionAdicional> Conocimientos { get; set; }
+        public IEnumerable<VistaAlumnoEstudio> Estudios { get; set; }
+        public IEnumerable<VistaAlumnoExperienciaCargo> Experiencias { get; set; }
+        public IEnumerable<VistaAlumnoConocimiento> Conocimientos { get; set; }
+
+        public IEnumerable<int> Estudios2 { get; set; }
 
 
 

@@ -19,7 +19,6 @@
     @foreach (var item in Model.ListaOfertas)
     {
         <div class="row grilla1-linea">
-            @*<div class="col-sm-1 linea-destacada"><span>@item.FechaPublicacion </span></div>*@
             <div class="col-sm-1 linea-destacada"><span>@Html.FormatoFrecuencia(item.FechaPublicacion) </span></div>
 
             <div class="col-sm-2 linea-destacada"><a href="#">@Html.ActionLink(item.NombreComercial, "DetalleEmpresa", "Alumno", new { IdEmpresa = item.IdEmpresa }, new { @class = "popup-empresa" })</a></div>
@@ -40,9 +39,6 @@
             <div class="col-sm-1"><span class="fui fa-2x valor-icono">h</span>&nbsp;&nbsp;<span>@item.Mensaje</span></div>
             <div class="col-sm-2">
                 <div class="progress" style="background-color:white;margin:5px 10px 5px 10px;">
-                    @*<div class="progress-bar progress-bar-success progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width:90%;">
-                            @item.Compatible %
-                        </div>*@
                     @Html.Raw(Html.CompatibilidaOferta((int)item.Compatible))
 
 
@@ -76,8 +72,10 @@
 
     $('.popup-empresa').click(function () {
         var url = $(this).attr('href');
-        CargarGET("Modal-datos-empresa", url);
-        $('#Modal-datos-empresa').modal('show');
+        $.get(url, function (data) {
+            $('#Modal-Nuevo-empresa').html(data);
+            $('#Modal-datos-empresa').modal("show");
+        });
         return false;
     });
     $('.gridindex').click(function () {

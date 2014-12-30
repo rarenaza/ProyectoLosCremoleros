@@ -4,15 +4,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portal de Empleabilidad: Alumno - @ViewBag.Title</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-    <link href="~/Content/animate.css" rel="stylesheet" />
-    <link href="~/Content/font-awesome.css" rel="stylesheet" />
+    @Styles.Render("/Content/themes/base/css","~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")  
     @Scripts.Render("~/bundles/jquery") 
-    @Scripts.Render("~/bundles/jqueryval")
     <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    @Scripts.Render("~/bundles/jqueryval")
     <script src="~/Scripts/carga.asincrona.js"></script>
-    <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
     @Scripts.Render("~/bundles/bootstrap")    
     @RenderSection("scripts", required: false)
 </head>
@@ -32,21 +29,17 @@
             <div class="navbar-collapse collapse" style="border:0px;background-color:transparent;">
                 <ul class="nav navbar-nav">
                     <li>
-                        @*<a class="btn btn-default navbar-btn Boton_pestana color-paleta1" href="Alumno\Index" style="padding: 2px 0px 2px 0px;color:white;">Mi Portal</a>*@
                         @Html.ActionLink("Mi Portal", "Index", null, new { @class = "btn btn-default navbar-btn Boton_pestana color-paleta1", @style = "padding: 2px 0px 2px 0px; color: white;" })
                     </li>
                     <li>
-                        @*<a class="btn btn-default navbar-btn Boton_pestana color-paleta2" href="Alumno\Postulacion" style="padding: 2px 0px 2px 0px;color:white;">Postulaciones</a>*@
                         @Html.ActionLink("Postulaciones", "Postulacion", null, new { @class = "btn btn-default navbar-btn Boton_pestana color-paleta2", @style = "padding: 2px 0px 2px 0px; color: white;" })
                     </li>
                     <li>
-                        @*<a class="btn btn-default navbar-btn Boton_pestana color-paleta3" href="Alumno\BusquedaOferta" style="padding: 2px 0px 2px 0px; color: white;">Ofertas</a>*@
                         @Html.ActionLink("Ofertas", "BusquedaOferta", null, new { @class = "btn btn-default navbar-btn Boton_pestana color-paleta3", @style = "padding: 2px 0px 2px 0px; color: white;" })
                     </li>
 
 
                     <li>
-                        @*<a class="btn btn-default navbar-btn Boton_pestana color-paleta4" href="Alumno\MiCV" style="padding: 2px 0px 2px 0px; color: white;">Mi CV</a>*@
                         @Html.ActionLink("Mi CV", "MiCV", null, new { @class = "btn btn-default navbar-btn Boton_pestana color-paleta4", @style = "padding: 2px 0px 2px 0px; color: white;" })
                     </li>
                     <!--<li>
@@ -65,7 +58,6 @@
                         <a href="#" class="fui fa-2x" style=" padding:2px 3px 0px 8px;"><span class="color-icono-facebook">)</span></a>
                     </li>
                     <li>
-                        @*<a href="#" class="fui fa-2x" style=" padding:2px 10px 0px 10px;"><span class="color-icono-paleta2">*</span></a>*@
                         <a href=@Url.Action("Logout", "Alumno") class="fui fa-2x" style=" padding:2px 10px 0px 10px;"><span class="color-icono-paleta2">*</span></a>
 
                     </li>
@@ -97,7 +89,8 @@
             </div>
         </footer>
     </div>
-
+   
+    @Scripts.Render("~/bundles/jqueryui")
 
     <script>
 
@@ -159,15 +152,75 @@
                 console.log(status);
             })
         }
-        function ShowModal(id) {
-            $(id).dialog();
-        }
-        function CloseModal(id) {
-            alert($("#divFinalCabecera").html());
-            $(id).dialog("close");
-        }
 
-        
+
+        function AutoComplete(inputsearch, urlsearch, inputtext, inputid) {
+            alert(1);
+            $(inputsearch).autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: urlsearch,
+                        data: "{ 'query': '" + request.term + "' }",
+                        dataType: "json",
+                        type: "POST",
+                        contentType: "application/json; charset=utf-8",
+                        dataFilter: function (data) { return data; },
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                console.log(data);
+                                return {
+                                    value: item.Label,
+                                    id: item.Value
+                                }
+                            }))
+                        },
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                            alert(textStatus);
+                        }
+                    });
+                },
+                minLength: 1,
+                select: function (even, ui) {
+                    $(inputid).val(ui.item.id);
+                    $(inputtext).val(ui.item.value);
+
+                    alert($(inputid).val());
+                    alert($(inputtext).val());
+
+                }
+            });
+        }
+        function AutoCompleteText(inputsearch, urlsearch, inputtext) {
+            $(inputsearch).autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: urlsearch,
+                        data: "{ 'query': '" + request.term + "' }",
+                        dataType: "json",
+                        type: "POST",
+                        contentType: "application/json; charset=utf-8",
+                        dataFilter: function (data) { return data; },
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                console.log(data);
+                                return {
+                                    value: item.Label,
+                                    id: item.Value
+                                }
+                            }))
+                        },
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                            alert(textStatus);
+                        }
+                    });
+                },
+                minLength: 1,
+                select: function (even, ui) {
+                    $(inputtext).val(ui.item.value);
+
+                }
+            });
+        }
 
     </script>
 </body>

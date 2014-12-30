@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UTP.PortalEmpleabilidad.Datos;
 using UTP.PortalEmpleabilidad.Modelo;
+using UTP.PortalEmpleabilidad.Modelo.Vistas.Alumno;
 
 namespace UTP.PortalEmpleabilidad.Logica
 {
@@ -89,7 +90,7 @@ namespace UTP.PortalEmpleabilidad.Logica
             acvc.DesactivarPorCV(alumnocv.IdCV);
             if (alumnocv.Estudios != null)
             {
-                foreach (AlumnoEstudio modelo in alumnocv.Estudios)
+                foreach (VistaAlumnoEstudio modelo in alumnocv.Estudios)
                 {
                     acve.AgregarOrModificar(alumnocv.IdCV, modelo.IdEstudio, alumnocv.Usuario);
                 }
@@ -97,7 +98,7 @@ namespace UTP.PortalEmpleabilidad.Logica
 
             if (alumnocv.Experiencias != null)
             {
-                foreach (AlumnoExperienciaCargo modelo in alumnocv.Experiencias)
+                foreach (VistaAlumnoExperienciaCargo modelo in alumnocv.Experiencias)
                 {
                     acvs.AgregarOrModificar(alumnocv.IdCV, modelo.IdExperienciaCargo, alumnocv.Usuario);
                 }
@@ -105,7 +106,7 @@ namespace UTP.PortalEmpleabilidad.Logica
 
             if (alumnocv.Conocimientos != null)
             {
-                foreach (AlumnoInformacionAdicional modelo in alumnocv.Conocimientos)
+                foreach (VistaAlumnoConocimiento modelo in alumnocv.Conocimientos)
                 {
                     acvc.AgregarOrModificar(alumnocv.IdCV, modelo.IdInformacionAdicional, alumnocv.Usuario);
                 }

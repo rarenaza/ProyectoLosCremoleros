@@ -21,8 +21,6 @@
         <div class="col-sm-1 linea-destacada"><span>@Html.FormatoFrecuencia(item.FechaPublicacion)</span></div>
         <div class="col-sm-1 linea-destacada"><span>@Html.FormatoFrecuencia(item.FechaPostulacion)</span></div>
         <div class="col-sm-2 linea-destacada">@Html.ActionLink(item.Empresa, "DetalleEmpresa", "Alumno", new { IdEmpresa = item.IdEmpresa }, new { @class = "popup-empresa" })</div>
-        @*<div class="col-sm-2 linea-destacada"><a href="#" class="popup-empresa">@item.Empresa</a></div>*@
-
         <div class="col-sm-2 linea-destacada">@Html.ActionLink(item.CargoOfrecido, "postulacionOferta2", "Alumno", new { id = item.IdOferta }, null)</div>
         <div class="col-sm-1"><span class="valor-palabra">@item.TipoTrabajo</span><span class="valor-icono2">I</span></div>
         <div class="col-sm-1"><span>@item.Horario</span></div>
@@ -65,8 +63,10 @@
 
     $('.popup-empresa').click(function () {
         var url = $(this).attr('href');
-        CargarGET("Modal-datos-empresa", url);
-        $('#Modal-datos-empresa').dialog();
+        $.get(url, function (data) {
+            $('#Modal-Nuevo-empresa').html(data);
+            $('#Modal-datos-empresa').modal("show");
+        });
         return false;
     });
     $('.gridindex').click(function () {
@@ -107,21 +107,21 @@
         }
 
     });
-    function CargarGET(id, link) {
-        $.ajax({
-            url: link,
-            contentType: 'application/html; charset=utf-8',
-            type: 'GET',
-            dataType: 'html'
+    //function CargarGET(id, link) {
+    //    $.ajax({
+    //        url: link,
+    //        contentType: 'application/html; charset=utf-8',
+    //        type: 'GET',
+    //        dataType: 'html'
 
-        })
-        .success(function (result) {
-            if (id != null) {
-                $("#" + id).html(result);
-            }
-        })
-        .error(function (xhr, status) {
-            alert(status);
-        })
-    }
+    //    })
+    //    .success(function (result) {
+    //        if (id != null) {
+    //            $("#" + id).html(result);
+    //        }
+    //    })
+    //    .error(function (xhr, status) {
+    //        alert(status);
+    //    })
+    //}
 </script>

@@ -4,6 +4,22 @@ namespace UTP.PortalEmpleabilidad.Modelo
 {
     public partial class AlumnoEstudio
     {
+        public AlumnoEstudio()
+        {
+            FechaInicioAno = 0;
+            FechaFinAno = 0;
+            FechaInicioMes = 0;
+            FechaFinMes = 0;
+            IdEstudio = 0;
+            IdAlumno = 0;
+            Institucion = "";
+            Estudio = "";
+            TipoDeEstudio = "";
+            EstadoDelEstudio = "";
+            Institucion = "";
+            CicloEquivalente = 0;
+
+        }
         public int IdEstudio { get; set; }
         public int IdAlumno { get; set; }
         [Required(ErrorMessage = "Falta la institución de estudio")]

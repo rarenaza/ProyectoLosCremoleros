@@ -65,13 +65,10 @@
 <!-- Modal -->
 
 <div class="modal" id="Modal-otro-conocimiento" tabindex="-1" role="dialog" aria-labelledby="Estudio" aria-hidden="true">
-
     @using (Ajax.BeginForm("_RegistrarAlumnoInformacionAdicional", "Alumno", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "mi-cv-informacion-adicional", OnComplete = "CerrarModal" }))
     {
         @Html.AntiForgeryToken()
-
         <div class="modal-dialog" id="Modal-Nuevo-otro-conocimiento">
-
         </div>
     }
 </div>
@@ -81,10 +78,7 @@
     @using (Ajax.BeginForm("_RegistrarCV", "Alumno", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "mi-cv-opciones", OnComplete = "CerrarModal" }))
     {
         @Html.AntiForgeryToken()
-
         <div class="modal-dialog" id="Modal-Nuevo-CV">
-
-
         </div>
     }
 </div>

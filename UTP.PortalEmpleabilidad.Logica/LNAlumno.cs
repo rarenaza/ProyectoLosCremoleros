@@ -33,6 +33,9 @@ namespace UTP.PortalEmpleabilidad.Logica
                 alumno.TelefonoFijoCasa = dtResultado.Rows[0]["TelefonoFijoCasa"].ToString();
                 alumno.TelefonoCelular = dtResultado.Rows[0]["TelefonoCelular"].ToString();
                 alumno.Carrera = dtResultado.Rows[0]["Carrera"].ToString();
+                alumno.Foto =Funciones.ToBytes( dtResultado.Rows[0]["Foto"]);
+                alumno.ArchivoMimeType = Funciones.ToString(dtResultado.Rows[0]["ArchivoMimeType"]);
+
             }
 
             return alumno;
@@ -102,8 +105,8 @@ namespace UTP.PortalEmpleabilidad.Logica
                 alumno.CorreoElectronico2 = Funciones.ToString(dtResultado.Rows[0]["CorreoElectronico2"]);
                 alumno.TelefonoCelular = Funciones.ToString(dtResultado.Rows[0]["TelefonoCelular"]);
                 alumno.TelefonoFijoCasa = Funciones.ToString(dtResultado.Rows[0]["TelefonoFijoCasa"]);
-                alumno.Foto= Funciones.ToBytes(dtResultado.Rows[0]["Foto"]);
-
+                alumno.Foto = Funciones.ToBytes(dtResultado.Rows[0]["Foto"]);
+                alumno.ArchivoMimeType = Funciones.ToString(dtResultado.Rows[0]["ArchivoMimeType"]);
             }
 
             return alumno;

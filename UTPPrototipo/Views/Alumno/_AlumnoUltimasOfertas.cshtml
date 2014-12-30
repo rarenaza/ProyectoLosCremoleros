@@ -5,12 +5,10 @@
     <hr />
     <div class="row">
         <div class="col-sm-12">
-            @*<img src="~/img/logos/logoibm.jpg" class="logo-empresa2" />*@
+
             @if (item.LogoEmpresa != null && string.IsNullOrEmpty(item.ArchivoMimeType) == false)
             {
-                @*<img src="@Html.GetImageEmpresa(item.LogoEmpresa, "image/jpeg")" class="logo-empresa2" />*@
                 <img src="@Url.Action("GetImageEmpresa", "Alumno", new { item.IdEmpresa })" class="logo-empresa2" />
-
             }
             else
             {
@@ -20,56 +18,10 @@
             <br />@Html.FormatoFrecuencia(item.FechaPublicacion)
             <br />
             <div class="progress">
-                @*<div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-                    @Html.DisplayFor(modelItem => item.Compatible)% Cumplimiento
-                </div>*@
                 @Html.Raw(Html.CompatibilidaOferta((int)item.Compatible))
             </div>
         </div>
     </div>
     <hr />
  }
-@*<hr />
-<div class="row">
-    <div class="col-sm-12">
-        <img src="~/img/logos/logoibm.jpg" class="logo-empresa2" />
-        <br /><a href="..\Alumno\PostulacionOferta2"><strong>Gerente de Proyectos en TI</strong></a>
-        <br />28/10/2014
-        <br />
-        <div class="progress">
-            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-                80% Cumplimiento
-            </div>
-        </div>
-    </div>
-</div>
-<hr />
-<div class="row">
-    <div class="col-sm-12">
-        <img src="~/img/logos/logoeveris.jpg" class="logo-empresa2" />
 
-        <br /><a href="..\Alumno\PostulacionOferta2"><strong>Consultor Senior</strong></a>
-        <br />28/10/2014
-        <br />
-        <div class="progress">
-            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%">
-                75% Cumplimiento
-            </div>
-        </div>
-    </div>
-</div>
-<hr />
-<div class="row">
-    <div class="col-sm-12">
-        <img src="~/img/logos/logoatos.jpg" class="logo-empresa2" />
-
-        <br /><a href="..\Alumno\PostulacionOferta2"><strong>Jefe de Proyectos</strong></a>
-        <br />28/10/2014
-        <br />
-        <div class="progress">
-            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100" style="width: 72%">
-                72% Cumplimiento
-            </div>
-        </div>
-    </div>
-</div>*@

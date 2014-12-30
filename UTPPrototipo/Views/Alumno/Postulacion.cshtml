@@ -5,7 +5,7 @@
     Layout = "~/Views/Alumno/_LayoutAlumno.cshtml";
     ViewBag.Title = "Postulaciones";
 }
-<script src="~/Scripts/jquery-2.1.1.min.js"></script>
+@*<script src="~/Scripts/jquery-2.1.1.min.js"></script>*@
 <script>
     $(document).ready(function () {
         $("#divFinalCabecera").removeClass("color-paleta1 color-paleta3 color-paleta4 color-paleta5").addClass("color-paleta2");
@@ -31,32 +31,11 @@
     });
 
 
-    function CargarPOST(id, link, entidad) {
-        $.ajax({
-            url: link,
-            contentType: 'application/json; charset=utf-8',
-            type: 'POST',
-            data: JSON.stringify(entidad),
-            dataType: 'html'
-        })
-        .success(function (result) {
-            if (id != null) {
-                $("#" + id).html(result);
-            }
-        })
-        .error(function (xhr, status) {
-            console.log(xhr);
-            console.log(status);
-
-        })
-    }
 </script>
 <div class="container" style="margin-top:2px;">
    
 
     @{Html.RenderAction("VistaCabecera", "Alumno");}
-
-
     <div class="panel-group" id="CriterioBusquedaPostulacion" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default">
             <div class="panel-heading" role="tab" id="CabeceraColapsaBusqueda" style="padding: 2px 2px 2px 6px;">
@@ -83,7 +62,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 
     <div class="row" style="margin:0px 0px 0px 0px;" id="idResulBusPostulaciones">
@@ -93,60 +71,6 @@
 
 
 <div class="modal" id="Modal-datos-empresa" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    @*<div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="myModalLabel">Datos de la Empresa</h4>
-            </div>
-            <div class="modal-body">
-                <table style="width:100%">
-                    <tr>
-                        <td style="width:50%;text-align:center;"><img src="~/img/logos/logoibm.jpg" style="text-align:center;" /></td>
-                        <td style="width:50%;"><h4>IBM del Perú</h4><br />Perú</td>
-                    </tr>
-                </table>
-                <br />
-                <h5>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</h5>
-                <br />
-                <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec id sagittis leo. Morbi in sagittis diam. Ut imperdiet pulvinar ligula, ac rhoncus eros pretium quis. Aenean sapien est, posuere ut neque sollicitudin, volutpat tristique erat. Vestibulum lobortis augue metus, ut tincidunt lacus scelerisque tristique. Pellentesque dui nisi, sagittis in neque a, molestie laoreet erat. Donec ultricies sapien ac lectus pharetra, non vestibulum lectus blandit. Morbi ultrices augue vitae tellus iaculis, varius varius tortor iaculis. Duis libero velit, accumsan sit amet ipsum non, viverra consectetur nisi. Phasellus bibendum ut ipsum aliquet vestibulum.</h6>
-                <table>
-                    <tr>
-                        <td class="celda-nombre">
-                            Año de Creación
-                        </td>
-                        <td class="celda-datos">
-                            2013
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="celda-nombre">
-                            Empleados
-                        </td>
-                        <td class="celda-datos">
-                            10 a 50
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="celda-nombre">
-                            Sector Empresarial
-                        </td>
-                        <td class="celda-datos">
-                            Tecnología y Software
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="celda-nombre">
-                            Oficina Principal
-                        </td>
-                        <td class="celda-datos">
-                            Avenida Del Sur 310, oficina 102, Santiago de Surco, Lima
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <div class="modal-footer">
-            </div>
-        </div>
-    </div>*@
+    <div class="modal-dialog" id="Modal-Nuevo-empresa">
+    </div>    
 </div>

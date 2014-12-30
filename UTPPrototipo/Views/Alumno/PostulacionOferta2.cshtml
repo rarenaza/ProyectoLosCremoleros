@@ -61,10 +61,9 @@
                 <table>
                     <tr>
                         <td>
-                            @*<img class="logo-empresa" src="~/img/logos/logoibm.jpg" />*@
+                            
                             @if (Model.Oferta.LogoEmpresa != null && string.IsNullOrEmpty(Model.Oferta.ArchivoMimeType) == false)
                             {
-                                @*<img src="@Html.GetImageEmpresa(item.LogoEmpresa, "image/jpeg")" class="logo-empresa2" />*@
                                 <img src="@Url.Action("GetImageEmpresa", "Alumno", new { Model.Oferta.IdEmpresa })" class="logo-empresa2" />
 
                             }
@@ -76,7 +75,11 @@
                         <td style="vertical-align:top;">
                             <a data-toggle="modal" data-target="#Modal-datos-empresa"><strong>@Model.Oferta.NombreComercial </strong></a>
                             <br /><span class="fuente-pequeña">
-                                @Html.ActionLink(Model.Oferta.SitioWeb, null, null, "http", Model.Oferta.SitioWeb, null, null, null)
+                                @if (string.IsNullOrEmpty(Model.Oferta.SitioWeb) == false)
+                                {
+                                    @Html.ActionLink(Model.Oferta.SitioWeb, null, null, "http", Model.Oferta.SitioWeb, null, null, null)
+                                }
+                                
 
                             </span>
                             <br /><span class="fuente-pequeña">
