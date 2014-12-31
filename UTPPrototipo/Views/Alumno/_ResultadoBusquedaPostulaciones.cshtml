@@ -2,63 +2,68 @@
 @model UTP.PortalEmpleabilidad.Modelo.Vistas.Ofertas.VistaPostulacionAlumno
 @Html.Hidden("PaginaActual", Model.PaginaActual)
 @Html.Hidden("MaxPagina", Model.MaxPagina)
-<div class="row grilla1-cabecera color-paleta2">
-    <div class="col-sm-1">Fecha Publicación</div>
-    <div class="col-sm-1">Fecha Postulación</div>
-    <div class="col-sm-2">Empresa</div>
-    <div class="col-sm-2">Cargo</div>
-    <div class="col-sm-1">Tipo Trabajo</div>
-    <div class="col-sm-1">Horario</div>
-    <div class="col-sm-1">Remuneración</div>
-    <div class="col-sm-1">Msj</div>
-    <div class="col-sm-1">Estado</div>
-    <div class="col-sm-1"></div>
-</div>
 
-@foreach (var item in Model.ListaPostulacionesOfertas)
+@if (Model.ListaPostulacionesOfertas != null && Model.ListaPostulacionesOfertas.Count > 0)
 {
-    <div class="row grilla1-linea">
-        <div class="col-sm-1 linea-destacada"><span>@Html.FormatoFrecuencia(item.FechaPublicacion)</span></div>
-        <div class="col-sm-1 linea-destacada"><span>@Html.FormatoFrecuencia(item.FechaPostulacion)</span></div>
-        <div class="col-sm-2 linea-destacada">@Html.ActionLink(item.Empresa, "DetalleEmpresa", "Alumno", new { IdEmpresa = item.IdEmpresa }, new { @class = "popup-empresa" })</div>
-        <div class="col-sm-2 linea-destacada">@Html.ActionLink(item.CargoOfrecido, "postulacionOferta2", "Alumno", new { id = item.IdOferta }, null)</div>
-        <div class="col-sm-1"><span class="valor-palabra">@item.TipoTrabajo</span><span class="valor-icono2">I</span></div>
-        <div class="col-sm-1"><span>@item.Horario</span></div>
-        <div class="col-sm-1">
-            @if (item.RemuneracionOfrecida > 0)
-            {
-
-                <span>@String.Format("{0:###,###,###.#0}", item.RemuneracionOfrecida)</span>
-            }
-            else
-            {
-                <span></span>
-            }
-        </div>
-        <div class="col-sm-1"><span class="fui fa-2x valor-icono">h</span>&nbsp;&nbsp;<span>@item.Mensajes</span></div>
-        <div class="col-sm-1"><span class="valor-palabra">@item.EstadoOferta</span><span class="valor-icono2">D</span></div>
-        <div class="col-sm-1">@Html.ActionLink("Ver más", "postulacionOferta2", "Alumno", new { id = item.IdOferta }, null)</div>
+    <div class="row grilla1-cabecera color-paleta2">
+        <div class="col-sm-1">Fecha Publicación</div>
+        <div class="col-sm-1">Fecha Postulación</div>
+        <div class="col-sm-2">Empresa</div>
+        <div class="col-sm-2">Cargo</div>
+        <div class="col-sm-1">Tipo Trabajo</div>
+        <div class="col-sm-1">Horario</div>
+        <div class="col-sm-1">Remuneración</div>
+        <div class="col-sm-1">Msj</div>
+        <div class="col-sm-1">Estado</div>
+        <div class="col-sm-1"></div>
     </div>
-}
-<br />
-<nav class="navbar-right">
-    <ul class="pagination">
-        <li><a href="#" class="before">&laquo;</a></li>
-        @for (int i = 1; i <= Model.MaxPagina; i++)
-        {
 
-            if (i == Model.PaginaActual)
+    foreach (var item in Model.ListaPostulacionesOfertas)
+    {
+        <div class="row grilla1-linea">
+            <div class="col-sm-1 linea-destacada"><span>@Html.FormatoFrecuencia(item.FechaPublicacion)</span></div>
+            <div class="col-sm-1 linea-destacada"><span>@Html.FormatoFrecuencia(item.FechaPostulacion)</span></div>
+            <div class="col-sm-2 linea-destacada">@Html.ActionLink(item.Empresa, "DetalleEmpresa", "Alumno", new { IdEmpresa = item.IdEmpresa }, new { @class = "popup-empresa" })</div>
+            <div class="col-sm-2 linea-destacada">@Html.ActionLink(item.CargoOfrecido, "postulacionOferta2", "Alumno", new { id = item.IdOferta }, null)</div>
+            <div class="col-sm-1"><span class="valor-palabra">@item.TipoTrabajo</span><span class="valor-icono2">I</span></div>
+            <div class="col-sm-1"><span>@item.Horario</span></div>
+            <div class="col-sm-1">
+                @if (item.RemuneracionOfrecida > 0)
+                {
+
+                    <span>@String.Format("{0:###,###,###.#0}", item.RemuneracionOfrecida)</span>
+                }
+                else
+                {
+                    <span></span>
+                }
+            </div>
+            <div class="col-sm-1"><span class="fui fa-2x valor-icono">h</span>&nbsp;&nbsp;<span>@item.Mensajes</span></div>
+            <div class="col-sm-1"><span class="valor-palabra">@item.EstadoOferta</span><span class="valor-icono2">D</span></div>
+            <div class="col-sm-1">@Html.ActionLink("Ver más", "postulacionOferta2", "Alumno", new { id = item.IdOferta }, null)</div>
+        </div>
+    }
+    <br />
+    <nav class="navbar-right">
+        <ul class="pagination">
+            <li><a href="#" class="before">&laquo;</a></li>
+            @for (int i = 1; i <= Model.MaxPagina; i++)
             {
-                <li class="active" ><a href="#" class="gridindex">@Html.DisplayName(i.ToString())</a></li>
+
+                if (i == Model.PaginaActual)
+                {
+                    <li class="active"><a href="#" class="gridindex">@Html.DisplayName(i.ToString())</a></li>
+                }
+                else
+                {
+                    <li><a href="#" class="gridindex">@Html.DisplayName(i.ToString())</a></li>
+                }
             }
-            else
-            {
-                <li><a href="#" class="gridindex">@Html.DisplayName(i.ToString())</a></li>
-            }
-        }
-        <li><a href="#" class="after">&raquo;</a></li>
-    </ul>
-</nav>
+            <li><a href="#" class="after">&raquo;</a></li>
+        </ul>
+    </nav>
+}
+
 <script>
 
     $('.popup-empresa').click(function () {
