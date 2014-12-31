@@ -470,10 +470,10 @@ namespace UTPPrototipo.Controllers
             if (lnEmpresa.Empresa_Actualizar_imagen(empresa) == true)
             {
                 ViewBag.Message = "Datos Actualizado";
-                //return RedirectToAction("Administrar");
+                return RedirectToAction("Administrar","Empresa");
 
-                return PartialView("_AdministrarImagen", empresaHTML);
-
+                
+                //return PartialView("_AdministrarImagen", empresaHTML);
                
             }
             else
