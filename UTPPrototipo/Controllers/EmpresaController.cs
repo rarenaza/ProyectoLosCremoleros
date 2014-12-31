@@ -204,12 +204,14 @@ namespace UTPPrototipo.Controllers
             return View();
         }
 
-        public ActionResult VistaCabecera()
+        public ActionResult VistaCabecera(string estiloPanel)
         {            
             VistaPanelCabecera panel = new VistaPanelCabecera();
             TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];
 
             ViewBag.IdEmpresa = ticket.IdEmpresa;
+            ViewBag.EstiloPanel = estiloPanel;
+
             //Se cargan los datos del empresaUsuario autenticado:
             panel = lnEmpresa.ObtenerPanelCabecera(ticket.Usuario);
 

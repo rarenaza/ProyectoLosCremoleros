@@ -46,7 +46,10 @@
             <div class="row">
                 <div class="col-sm-1"></div>
                 <div class="col-sm-2"><span class="fa fa-1x fa-arrow-down"></span><a href="#"><strong> Fase</strong></a></div>
-                <div class="col-sm-3"><a href="#"><strong>Fecha de <br />Postulación</strong></a></div>
+                <div class="col-sm-3">
+                    <a href="#"><strong>Fecha de <br />Postulación</strong></a>
+                    @Html.ActionLink("Fecha", "Index", new { Sorting_Order = ViewBag.SortingName })
+                </div>
                 <div class="col-sm-4"><a href="#"><strong>Nombre</strong></a></div>
                 <div class="col-sm-2"><a href="#"><strong>Cump.</strong></a></div>
             </div>
