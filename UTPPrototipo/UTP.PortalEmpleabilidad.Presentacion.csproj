@@ -218,6 +218,7 @@
     <Compile Include="Models\ViewModels\UTP\VistaAlumnoUtp_obtenerExperiencia.cs" />
     <Compile Include="Models\ViewModels\UTP\VistaEmpresaListaOpciones.cs" />
     <Compile Include="Models\ViewModels\UTP\VistaEmpresasPendientes.cs" />
+    <Compile Include="Models\ViewModels\UTP\VistaObtenerEventosUTP.cs" />
     <Compile Include="Models\ViewModels\UTP\VistaOfertasPendientes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -827,7 +828,7 @@
     <Content Include="Views\UTP\BuscarGrilla.cshtml" />
     <Content Include="Views\Empresa\Administrar.cshtml" />
     <Content Include="Views\UTP\VerDetalleEmpresa.cshtml" />
-    <Content Include="Views\UTP\Oferta.cshtml" />
+    <Content Include="Views\UTP\Ofertas.cshtml" />
     <Content Include="Views\UTP\EmpresaUsuario.cshtml" />
     <Content Include="Views\UTP\EmpresaLocacion.cshtml" />
     <Content Include="Views\UTP\verimagen.cshtml" />
@@ -884,7 +885,6 @@
     <Content Include="Views\UTP\_UsuariosUTPLista.cshtml" />
     <Content Include="Views\UTP\_UsuariosUTPCrear.cshtml" />
     <Content Include="Views\UTP\_UsuariosUTPEditar.cshtml" />
-    <Content Include="Views\UTP\Ofertas.cshtml" />
     <Content Include="Views\UTP\ListaValor.cshtml" />
     <Content Include="Views\Alumno\DatosAlumno.cshtml" />
     <Content Include="Views\UTP\Plantilla.cshtml" />

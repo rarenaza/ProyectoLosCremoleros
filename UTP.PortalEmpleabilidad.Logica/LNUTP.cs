@@ -20,6 +20,16 @@ namespace UTP.PortalEmpleabilidad.Logica
             
             return adUtp.OfertasObtenerPendientes();
         }
+
+        public DataTable UTP_ObtenerOfertasporActivar(string oferta)
+        {
+
+            return adUtp.UTP_ObtenerOfertasporActivar(oferta);
+        }
+
+
+
+
         public DataTable EmpresaObtenerPendientes()
         {
 
@@ -99,30 +109,7 @@ namespace UTP.PortalEmpleabilidad.Logica
             return listaEjemplo;
         }
 
-        public List<VistaUTPListaAlumno> ObternerUTPListaAlumno()
-        {
-            List<VistaUTPListaAlumno> listaAlumno = new List<VistaUTPListaAlumno>();
-
-            DataTable dtResultado = adUtp.UTP_ListarUltimosAlumnos();
-
-            for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
-            {
-                VistaUTPListaAlumno vista = new VistaUTPListaAlumno();
-
-
-                vista.FechaRegistro = dtResultado.Rows[i]["FechaRegistro"].ToString();
-                vista.Nombre = dtResultado.Rows[i]["Nombres"].ToString();
-                vista.Apellidos = dtResultado.Rows[i]["Apellidos"].ToString();
-                vista.Carrera = dtResultado.Rows[i]["Carrera"].ToString();
-                vista.Ciclo = dtResultado.Rows[i]["CicloEquivalente"].ToString();
-                vista.idAlumno = Convert.ToInt32(dtResultado.Rows[i]["IdAlumno"]);
-
-                vista.EstadoAlumno = Convert.ToString(dtResultado.Rows[i]["EstadoAlumno"]);
-
-                listaAlumno.Add(vista);
-            }
-            return listaAlumno;
-        }
+       
 
 
         public DataTable UTP_ObtenerUltimosAlumnos(string Dato)
@@ -160,6 +147,13 @@ namespace UTP.PortalEmpleabilidad.Logica
             if (empresa.UsuarioEC == null) empresa.UsuarioEC = "";
 
             adUtp.ActualizarEstadoYUsuarioEC(empresa);
+        }
+
+      
+        public DataTable UTP_ObtenerEventosObtenerBuscar(string evento)
+        {
+
+            return adUtp.UTP_ObtenerEventosObtenerBuscar(evento);
         }
 
         #region Mantenimiento de Usuarios UTP

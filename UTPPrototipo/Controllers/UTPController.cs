@@ -583,59 +583,31 @@ namespace UTPPrototipo.Controllers
 
         }
 
-        public ActionResult Alumnos(string sortOrder, string currentFilter, string searchString, int? page)
+        public ActionResult Alumnos(string SearchString)
         {
 
-            if (searchString != null)
-            {
-                page = 1;
-            }
-            else
-            {
-                searchString = currentFilter;
-            }
-
-            ViewBag.CurrentFilter = searchString;
-
+            string palabraClave = SearchString == null ? "" : SearchString;
 
             List<VistaUTPListaAlumno> listaEjemplo = new List<VistaUTPListaAlumno>();
 
-            if (!String.IsNullOrEmpty(searchString))
+            DataTable dtResultado = lnUtp.UTP_ObtenerUltimosAlumnos(palabraClave);
+
+            for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
             {
+                VistaUTPListaAlumno vista = new VistaUTPListaAlumno();
 
-                DataTable dtResultado = lnUtp.UTP_ObtenerUltimosAlumnos(searchString);
+                vista.FechaRegistro = dtResultado.Rows[i]["FechaRegistro"].ToString();
+                vista.Nombre = dtResultado.Rows[i]["Nombres"].ToString();
+                vista.Apellidos = dtResultado.Rows[i]["Apellidos"].ToString();
+                vista.Carrera = dtResultado.Rows[i]["Carrera"].ToString();
+                vista.Ciclo = dtResultado.Rows[i]["CicloEquivalente"].ToString();
+                vista.idAlumno = Convert.ToInt32(dtResultado.Rows[i]["IdAlumno"]);
 
-                for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
-                {
-                    VistaUTPListaAlumno vista = new VistaUTPListaAlumno();
-                  
-                    vista.FechaRegistro = dtResultado.Rows[i]["FechaRegistro"].ToString();
-                    vista.Nombre = dtResultado.Rows[i]["Nombres"].ToString();
-                    vista.Apellidos = dtResultado.Rows[i]["Apellidos"].ToString();
-                    vista.Carrera = dtResultado.Rows[i]["Carrera"].ToString();
-                    vista.Ciclo = dtResultado.Rows[i]["CicloEquivalente"].ToString();
-                    vista.idAlumno = Convert.ToInt32(dtResultado.Rows[i]["IdAlumno"]);
-                    
-                    listaEjemplo.Add(vista);
-                }
-
-
+                listaEjemplo.Add(vista);
             }
-            else
-            {
-                List<VistaUTPListaAlumno> lista = new List<VistaUTPListaAlumno>();
 
-                lista = lnUtp.ObternerUTPListaAlumno();
+            return View(listaEjemplo);
 
-                return View(lista);
-            }
-                   
-
-            //int pageSize = 3;
-            //int pageNumber = (page ?? 1);
-           return View(listaEjemplo);
-
-                        
         }
 
 
@@ -685,14 +657,77 @@ namespace UTPPrototipo.Controllers
         {
             return View();
         }
-        public ActionResult Ofertas()
+        //public ActionResult Ofertas()
+        //{
+        //    return View();
+        //}
+
+        public ActionResult Ofertas(string sortOrder, string currentFilter, string searchString, int? page)
         {
-            return View();
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            List<VistaOfertasPendientes> listaEjemplo = new List<VistaOfertasPendientes>();
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+
+                DataTable dtResultado = lnUtp.UTP_ObtenerOfertasporActivar(searchString);
+
+                foreach (DataRow fila in dtResultado.Rows)
+                {
+                    VistaOfertasPendientes vista = new VistaOfertasPendientes();
+
+                    vista.FechaPublicacion = Convert.ToDateTime(fila["FechaPublicacion"]);
+                    vista.NombreComercial = Convert.ToString(fila["NombreComercial"]);
+                    vista.CargoOfrecido = Convert.ToString(fila["CargoOfrecido"]);
+                    vista.IdOferta = Convert.ToInt32(fila["IdOferta"]);
+
+                    listaEjemplo.Add(vista);
+                }
+
+            }
+            else
+            {
+               
+                List<VistaOfertasPendientes> listaOfertasPendientes = new List<VistaOfertasPendientes>();
+
+                DataTable dtResultado = lnUtp.OfertasObtenerPendientes();
+
+                foreach (DataRow fila in dtResultado.Rows)
+                {
+                    VistaOfertasPendientes vistaNueva = new VistaOfertasPendientes();
+
+                    vistaNueva.FechaPublicacion = Convert.ToDateTime(fila["FechaPublicacion"]);
+                    vistaNueva.NombreComercial = Convert.ToString(fila["NombreComercial"]);
+                    vistaNueva.CargoOfrecido = Convert.ToString(fila["CargoOfrecido"]);
+                    vistaNueva.IdOferta = Convert.ToInt32(fila["IdOferta"]);
+
+                    listaOfertasPendientes.Add(vistaNueva);
+                }
+
+                return View(listaOfertasPendientes);
+                
+            }
+            
+            //int pageSize = 3;
+            //int pageNumber = (page ?? 1);
+            return View(listaEjemplo);
+
+
         }
-        public ActionResult Oferta()
-        {
-            return View();
-        }
+
+
+ 
         public ActionResult Sistema()
         {
             return View();
@@ -717,9 +752,35 @@ namespace UTPPrototipo.Controllers
         {
             return View();
         }
-        public ActionResult Eventos()
+
+            public ActionResult Eventos(string SearchString)
         {
-            return View();
+
+            List<VistaObtenerEventosUTP> listaEjemplo = new List<VistaObtenerEventosUTP>();
+
+            string palabraClave = SearchString == null ? "" : SearchString;
+
+             
+                DataTable dtResultado = lnUtp.UTP_ObtenerEventosObtenerBuscar(palabraClave);
+
+                foreach (DataRow fila in dtResultado.Rows)
+                {
+                    VistaObtenerEventosUTP vista = new VistaObtenerEventosUTP();
+
+                    vista.IdEvento = Convert.ToInt32(fila["IdEvento"]);
+                    vista.NombreEvento = Convert.ToString(fila["NombreEvento"]);
+                    vista.LugarEvento = Convert.ToString(fila["LugarEvento"]);
+                    vista.Expositor = Convert.ToString(fila["Expositor"]);
+                    vista.DireccionEvento = Convert.ToString(fila["DireccionEvento"]);
+                    vista.AsistentesEsperados = Convert.ToInt32(fila["AsistentesEsperados"]);
+                    vista.FechaEvento = Convert.ToString(fila["FechaEvento"]);
+
+                    listaEjemplo.Add(vista);
+                }
+
+            return View(listaEjemplo);
+
+
         }
 
         public ActionResult Evento()
@@ -844,6 +905,28 @@ namespace UTPPrototipo.Controllers
             }
 
             return PartialView("_OfertasPendientes", listaOfertasPendientes);
+
+        }
+
+        public ActionResult VistaOfertasporActivar()
+        {
+            List<VistaOfertasPendientes> listaOfertasPendientes = new List<VistaOfertasPendientes>();
+
+            DataTable dtResultado = lnUtp.OfertasObtenerPendientes();
+
+            foreach (DataRow fila in dtResultado.Rows)
+            {
+                VistaOfertasPendientes vistaNueva = new VistaOfertasPendientes();
+
+                vistaNueva.FechaPublicacion = Convert.ToDateTime(fila["FechaPublicacion"]);
+                vistaNueva.NombreComercial = Convert.ToString(fila["NombreComercial"]);
+                vistaNueva.CargoOfrecido = Convert.ToString(fila["CargoOfrecido"]);
+                vistaNueva.IdOferta = Convert.ToInt32(fila["IdOferta"]);
+
+                listaOfertasPendientes.Add(vistaNueva);
+            }
+
+            return PartialView("VistaOfertasporActivar", listaOfertasPendientes);
 
         }
 

@@ -42,6 +42,33 @@ namespace UTP.PortalEmpleabilidad.Datos
             return dtResultado;
         }
 
+        public DataTable UTP_ObtenerOfertasporActivar(string oferta)
+        {
+            DataTable dtResultado = new DataTable();
+
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "UTP_Obtenerofertasporactivar";
+                cmd.Parameters.Add(new SqlParameter("@oferta", oferta));
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+                dtResultado = new DataTable();
+
+                da.Fill(dtResultado);
+
+                conexion.Close();
+            }
+
+            return dtResultado;
+        }
+
         public DataTable EmpresaObtenerPendientes()
         {
             DataTable dtResultado = new DataTable();
@@ -128,32 +155,7 @@ namespace UTP.PortalEmpleabilidad.Datos
             return dt;
         }
 
-        public DataTable UTP_ListarUltimosAlumnos()
-        {
-            DataTable dtResultado = new DataTable();
-
-            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
-            {
-                SqlCommand cmd = new SqlCommand();
-
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "UTP_ListarUltimosAlumnos";
-
-                cmd.Connection = conexion;
-
-                conexion.Open();
-
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-
-                dtResultado = new DataTable();
-
-                da.Fill(dtResultado);
-
-                conexion.Close();
-            }
-
-            return dtResultado;
-        }
+        
 
         public DataTable UTP_ObtenerUltimosAlumnos(string Dato)
         {
@@ -364,6 +366,34 @@ namespace UTP.PortalEmpleabilidad.Datos
             return cantidad;
         }
 
+              
+
+        public DataTable UTP_ObtenerEventosObtenerBuscar(string evento)
+        {
+            DataTable dtResultado = new DataTable();
+
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "UTP_ObtenerEventosObtenerBuscar";
+                cmd.Parameters.Add(new SqlParameter("@Evento", evento));
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+                dtResultado = new DataTable();
+
+                da.Fill(dtResultado);
+
+                conexion.Close();
+            }
+
+            return dtResultado;
+        }
 
         #endregion
     

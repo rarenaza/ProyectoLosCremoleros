@@ -17,12 +17,15 @@
     <div class="row grilla1-linea">
         <div class="col-sm-2">@item.NombreUsuario</div>
 
-        <div class="col-sm-2" onclick="UsuarioUTPEditar(@item.IdUTPUsuario);">
 
-            @*<a href="../UTP/usuario">@item.Nombres @item.Apellidos</a>*@
-           @item.Nombres @item.Apellidos
 
-        </div>
+        @*<div class="col-sm-2" onclick="UsuarioUTPEditar(@item.IdUTPUsuario);">*@
+            <div class="col-sm-2">
+
+                @*<a href="../UTP/usuario">@item.Nombres @item.Apellidos</a>*@
+                @item.Nombres @item.Apellidos
+
+            </div>
 
         <div class="col-sm-1">@item.SexoDescripcion</div>
         <div class="col-sm-2">@item.Correo</div>
