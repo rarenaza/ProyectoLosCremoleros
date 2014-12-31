@@ -6,7 +6,7 @@
     Layout = "~/Views/Empresa/_LayoutEmpresa.cshtml";
     ViewBag.Title = "Nueva Oferta Laboral";
 }
-<div class="container" style="margin-top:2px;">
+<div class="container fuente-pequeña" style="margin-top:2px;">
 
     @{Html.RenderAction("VistaCabecera", "Empresa");}
 
@@ -20,26 +20,57 @@
         @Html.HiddenFor(model => model.IdEmpresa)
         @Html.HiddenFor(model => model.CreadoPor)
         @Html.HiddenFor(model => model.UsuarioPropietarioEmpresa)
+        <div class="panel-group" id="oferta-cabecera" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default fuente-pequeña">
+                <div class="panel-heading" role="tab" id="headingOfertaCabecera" style="padding: 2px 2px 2px 6px;">
+                    <h5 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOfertaCabecera" aria-expanded="true" aria-controls="collapseOfertaCabecera" class="fuente-seccion">
+                            Edición de Oferta Laboral
+                        </a>
+                    </h5>
+                </div>
+                <div id="collapseOfertaCabecera" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOfertaCabecera">
+                    <div class="panel-body">
+                        <div class="row">
 
-        <div class="row">
-            <div class="col-sm-3 fuente-seccion">
-                Edición de Oferta Laboral
-            </div>
-            <div class="col-sm-3 fuente-seccion">
-                Estado: Pendiente de Activación
-            </div>
-            <div class="col-sm-3 fuente-seccion">
-                @*<input type="checkbox" /><span> Recibir correos&nbsp;&nbsp;&nbsp;&nbsp;</span>*@
-                @*Alertas: @Html.DropDownList("RecibeCorreosIdListaValor", null, htmlAttributes: new { @class = "form-control" })*@
-                Alertas *: @Html.DropDownListFor(m => m.RecibeCorreosIdListaValor, null, "Seleccione", htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(m => m.RecibeCorreosIdListaValor, "", new { @class = "text-danger" })
-            </div>
-            <div class="col-sm-3 fuente-seccion" style="text-align:right;">
-                <button class="btn btn-default color-paleta2" style="margin-bottom:5px;">Guadar Cambios</button>
+                            <div class="col-sm-3" style="text-align:right;">
+                                <span>Defina como desea recibir notificaciones via correo electrónico, por cada Postulación.</span>
+                            </div>
+                            <div class="col-sm-3">
+                                @*<input type="checkbox" /><span> Recibir correos&nbsp;&nbsp;&nbsp;&nbsp;</span>*@
+                                @*Alertas: @Html.DropDownList("RecibeCorreosIdListaValor", null, htmlAttributes: new { @class = "form-control" })*@
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        (*) Correos
+                                    </span>
+                                    @Html.DropDownListFor(m => m.RecibeCorreosIdListaValor, null, "- Seleccione forma de Notificación -", htmlAttributes: new { @class = "form-control" })
+                                </div>
+                                @Html.ValidationMessageFor(m => m.RecibeCorreosIdListaValor, "", new { @class = "text-danger" })
+                            </div>
 
+                            <div class="col-sm-3" style="text-align:right;">
+                                <span>Si ha finalizado la edición de su Oferta laboral, entonces Publíquela.</span>
+                            </div>
+                            <div class="col-sm-3">
+                                <button class="btn btn-default color-paleta2" style="margin-bottom:5px;">Publicar</button>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row">
+                            <div class="col-sm-6"></div>
+                            <div class="col-sm-3" style="text-align:right;">
+                                <span>Si ha modificado la forma en que recibirá los Correos, la Descripción o Condiciones de la Oferta laboral, guarde sus cambios.</span>
+                            </div>
+                            <div class="col-sm-3" >
+                                <button class="btn btn-default color-paleta2" style="margin-bottom:5px;">Guadar Cambios</button>
+
+                            </div>
+                        </div>
+                       
+                    </div>
+                </div>
             </div>
         </div>
-
         <script src="~/Scripts/ckeditor/ckeditor.js"></script>
 
         <div id="divDescripcionOferta" class="row">
@@ -58,10 +89,10 @@
                         <div id="collapseOferta" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOferta">
                             <div class="panel-body fuente-pequeña">
                                 <div class="input-group">
-                                    <span class="input-group-addon">Cargo</span>
+                                    <span class="input-group-addon">(*) Cargo</span>
                                     @*<input id="CargoOfrecido" data-val="true" data-val-required="No ha ingresado el campo" name="CargoOfrecido" type="text" class="form-control" placeholder="Nombre del cargo a publicar" value="@Model.CargoOfrecido">*@
                                     @Html.TextBoxFor(m => m.CargoOfrecido, new { @class = "form-control", @placeholder = "Nombre del cargo a publicar" })
-                                    
+
                                     @*<input class="text-box single-line" id="CargoOfrecido" name="CargoOfrecido" type="text" value="">*@
                                     @*@Html.EditorFor(model => model.CargoOfrecido, new { @class = "form-control" })*@
                                 </div>
@@ -70,14 +101,14 @@
                                     <span class="input-group-addon">Funciones</span>
                                     @*<textarea class="form-control" rows="6"></textarea>*@
                                     <textarea name="Funciones" id="Funciones" rows="6" cols="80">@Html.Raw(@Model.Funciones)</textarea>
-                                    
+
                                 </div>
                                 @Html.ValidationMessageFor(m => m.Funciones, "", new { @class = "text-danger" })
                                 <div class="input-group">
                                     <span class="input-group-addon">Compe-<br />tencias</span>
                                     @*<textarea class="form-control" rows="4"></textarea>*@
                                     <textarea name="Competencias" id="Competencias" rows="6" cols="80">@Html.Raw(@Model.Competencias)</textarea>
-                                    
+
                                 </div>
                                 @Html.ValidationMessageFor(m => m.Competencias, "", new { @class = "text-danger" })
                                 <br />
@@ -107,9 +138,9 @@
                         <div id="collapseDetalle" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingDetalle">
                             <div class="panel-body fuente-pequeña">
                                 <div class="input-group">
-                                    <span class="input-group-addon">Recibir<br />CVs hasta</span>                                    
-                                    @Html.TextBoxFor(m => m.FechaFinRecepcionCV, new { @class = "form-control" })
-                                    @*@Html.Raw(@Html.EditorFor(m => m.FechaFinRecepcionCV).ToString().Replace("text-box single-line", "form-control"))*@
+                                    <span class="input-group-addon">Recibir<br />CVs hasta</span>
+                                    @*@Html.TextBoxFor(m => m.FechaFinRecepcionCV, new { @class = "form-control", @placeholder = "Fecha final de Recepcion de CVs" })*@
+                                    @Html.Raw(@Html.EditorFor(m => m.FechaFinRecepcionCV).ToString().Replace("text-box single-line", "form-control"))
                                 </div>
                                 @Html.ValidationMessageFor(m => m.FechaFinRecepcionCV, "", new { @class = "text-danger" })
                                 <div class="input-group">
@@ -119,12 +150,12 @@
                                 </div>
                                 @Html.ValidationMessageFor(m => m.AreaEmpresa, "", new { @class = "text-danger" })
                                 <div class="input-group">
-                                    <span class="input-group-addon">Tipo de<br />Cargo</span>                                    
+                                    <span class="input-group-addon">Tipo de<br />Cargo</span>
                                     @Html.DropDownListFor(m => m.TipoCargoIdListaValor, null, "Seleccione", htmlAttributes: new { @class = "form-control" })
                                 </div>
                                 @Html.ValidationMessageFor(m => m.TipoCargoIdListaValor, "", new { @class = "text-danger" })
                                 <div class="input-group">
-                                    <span class="input-group-addon">Tipo de<br />Trabajo</span>
+                                    <span class="input-group-addon">(*) Tipo de<br />Trabajo</span>
                                     @Html.DropDownListFor(m => m.TipoTrabajoIdListaValor, null, "Seleccione", htmlAttributes: new { @class = "form-control" })
                                 </div>
                                 @Html.ValidationMessageFor(m => m.TipoTrabajoIdListaValor, "", new { @class = "text-danger" })
@@ -132,7 +163,7 @@
                                 <div class="input-group">
                                     <span class="input-group-addon">Tipo de<br />Contrato</span>
                                     @Html.DropDownListFor(m => m.TipoContratoIdListaValor, null, "Seleccione", htmlAttributes: new { @class = "form-control" })
-                                    
+
                                 </div>
                                 @Html.ValidationMessageFor(m => m.TipoContratoIdListaValor, "", new { @class = "text-danger" })
                                 <div class="input-group">
@@ -145,7 +176,7 @@
                                     <span class="input-group-addon">Horario</span>
                                     @*<input id="Horario" name="Horario" type="text" class="form-control" placeholder="Ej: De Lunes a Viernes de 9:00am a 6:00pm" value="@Model.Horario">*@
                                     @Html.TextBoxFor(m => m.Horario, new { @class = "form-control", @placeholder = "Ej: De Lunes a Viernes de 9:00am a 6:00pm" })
-                                </div>                                
+                                </div>
                                 @Html.ValidationMessageFor(m => m.Horario, "", new { @class = "text-danger" })
                                 <div class="input-group">
                                     <span class="input-group-addon">Sueldo S/.</span>
@@ -164,15 +195,15 @@
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <div class="input-group">
-                                            <span class="input-group-addon">Ubicación</span>
+                                            <span class="input-group-addon">(*)<br />Ubicación</span>
                                             @Html.DropDownListFor(m => m.IdEmpresaLocacion, null, "- Seleccione Ubicación -", htmlAttributes: new { @class = "form-control" })
-                                            
+
                                         </div>
                                         @Html.ValidationMessageFor(m => m.IdEmpresaLocacion, "", new { @class = "text-danger" })
                                     </div>
                                     @*<div class="col-sm-5 fuente-pequeña" style="text-align:right;">
-                                        <button class="btn btn-default color-paleta2">Nueva Ubicación</button>
-                                    </div>*@
+                                            <button class="btn btn-default color-paleta2">Nueva Ubicación</button>
+                                        </div>*@
                                 </div>
 
                                 <br />
@@ -220,16 +251,16 @@
 
         <div id="ofertaFases" class="col-sm-6">
 
-           
-                    @using (Ajax.BeginForm("_OfertaFaseEditar", "Empresa", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divFases", OnComplete = "alertTemporal" }))
-                    {
-                        @Html.AntiForgeryToken()
-    
-                        <div id="divFases">
-                            @Html.Action("ObtenerOfertaFase", "Empresa", new { idOferta = Model.IdOferta })
-                       </div>
-                    }
-                
+
+            @using (Ajax.BeginForm("_OfertaFaseEditar", "Empresa", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divFases", OnComplete = "alertTemporal" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div id="divFases">
+                    @Html.Action("ObtenerOfertaFase", "Empresa", new { idOferta = Model.IdOferta })
+                </div>
+            }
+
         </div>
 
     </div>
@@ -237,266 +268,266 @@
 
 </div>
 
-@*<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>*@
+
+
+                    @*<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+                        <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>*@
 
 
 
-<!--Bloque de modales-->
-<!--Modal de estudio Crear-->
-<div class="modal" id="divModalEstudio" tabindex="-1" role="dialog" aria-labelledby="Estudio" aria-hidden="true">
+                    <!--Bloque de modales-->
+                    <!--Modal de estudio Crear-->
+                    <div class="modal" id="divModalEstudio" tabindex="-1" role="dialog" aria-labelledby="Estudio" aria-hidden="true">
 
-    @using (Ajax.BeginForm("_OfertaEstudioCrear", "OfertaEstudio", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divListaEstudios", OnComplete = "cerrarModal" }))
+                        @using (Ajax.BeginForm("_OfertaEstudioCrear", "OfertaEstudio", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divListaEstudios", OnComplete = "cerrarModal" }))
     {
-        @Html.AntiForgeryToken()
+                            @Html.AntiForgeryToken()
 
-        <div id="divCrearEstudioContenedor" class="modal-dialog">
+                            <div id="divCrearEstudioContenedor" class="modal-dialog">
 
-        </div>
+                            </div>
     }
-</div>
+                    </div>
 
-<!--Modal de sector empresarial-->
-<div class="modal" id="divModalSectorEmpresarial" tabindex="-1" role="dialog" aria-labelledby="ExperienciaLaboral" aria-hidden="true">
+                    <!--Modal de sector empresarial-->
+                    <div class="modal" id="divModalSectorEmpresarial" tabindex="-1" role="dialog" aria-labelledby="ExperienciaLaboral" aria-hidden="true">
 
-    @using (Ajax.BeginForm("_OfertaSectorEmpresarialCrear", "OfertaSectorEmpresarial", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divListaSectores", OnComplete = "cerrarModal" }))
+                        @using (Ajax.BeginForm("_OfertaSectorEmpresarialCrear", "OfertaSectorEmpresarial", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divListaSectores", OnComplete = "cerrarModal" }))
     {
-        @Html.AntiForgeryToken()
+                            @Html.AntiForgeryToken()
 
-        <div id="divCrearSectorEmpresarialContenedor" class="modal-dialog">
+                            <div id="divCrearSectorEmpresarialContenedor" class="modal-dialog">
 
-        </div>
+                            </div>
     }
 
-</div>
+                    </div>
 
-<!--Modal de infomación adicional-->
-<div class="modal" id="divModalInfoAdicional" tabindex="-1" role="dialog" aria-labelledby="Estudio" aria-hidden="true">
+                    <!--Modal de infomación adicional-->
+                    <div class="modal" id="divModalInfoAdicional" tabindex="-1" role="dialog" aria-labelledby="Estudio" aria-hidden="true">
 
-    @using (Ajax.BeginForm("_OfertaInformacionAdicionalCrear", "OfertaInformacionAdicional", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divListaInfoAdicional", OnComplete = "cerrarModal" }))
+                        @using (Ajax.BeginForm("_OfertaInformacionAdicionalCrear", "OfertaInformacionAdicional", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divListaInfoAdicional", OnComplete = "cerrarModal" }))
     {
-        @Html.AntiForgeryToken()
+                            @Html.AntiForgeryToken()
 
-        <div id="divCrearInfoAdicionalContenedor" class="modal-dialog">
+                            <div id="divCrearInfoAdicionalContenedor" class="modal-dialog">
 
-        </div>
+                            </div>
     }
 
-</div>
+                    </div>
 
-<!--Modal de estudio Editar-->
-<div class="modal" id="divEditarModalEstudio" tabindex="-1" role="dialog" aria-labelledby="Estudio" aria-hidden="true">
+                    <!--Modal de estudio Editar-->
+                    <div class="modal" id="divEditarModalEstudio" tabindex="-1" role="dialog" aria-labelledby="Estudio" aria-hidden="true">
 
-    @using (Ajax.BeginForm("_OfertaEstudioEditar", "OfertaEstudio", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divListaEstudios", OnComplete = "cerrarModal" }))
+                        @using (Ajax.BeginForm("_OfertaEstudioEditar", "OfertaEstudio", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divListaEstudios", OnComplete = "cerrarModal" }))
     {
-        @Html.AntiForgeryToken()
+                            @Html.AntiForgeryToken()
 
-        <div id="divEditarEstudioContenedor" class="modal-dialog">
+                            <div id="divEditarEstudioContenedor" class="modal-dialog">
 
-        </div>
+                            </div>
     }
-</div>
+                    </div>
 
-<!--Modal edición de sector empresarial-->
-<div class="modal" id="divEditarModalSectorEmpresarial" tabindex="-1" role="dialog" aria-labelledby="ExperienciaLaboral" aria-hidden="true">
+                    <!--Modal edición de sector empresarial-->
+                    <div class="modal" id="divEditarModalSectorEmpresarial" tabindex="-1" role="dialog" aria-labelledby="ExperienciaLaboral" aria-hidden="true">
 
-    @using (Ajax.BeginForm("_OfertaSectorEmpresarialEditar", "OfertaSectorEmpresarial", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divListaSectores", OnComplete = "cerrarModal" }))
+                        @using (Ajax.BeginForm("_OfertaSectorEmpresarialEditar", "OfertaSectorEmpresarial", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divListaSectores", OnComplete = "cerrarModal" }))
     {
-        @Html.AntiForgeryToken()
+                            @Html.AntiForgeryToken()
 
-        <div id="divEditarSectorEmpresarialContenedor" class="modal-dialog">
+                            <div id="divEditarSectorEmpresarialContenedor" class="modal-dialog">
 
-        </div>
+                            </div>
     }
 
-</div>
+                    </div>
 
-<!--Modal de edición de infomación adicional-->
-<div class="modal" id="divEditarModalInfoAdicional" tabindex="-1" role="dialog" aria-labelledby="Estudio" aria-hidden="true">
+                    <!--Modal de edición de infomación adicional-->
+                    <div class="modal" id="divEditarModalInfoAdicional" tabindex="-1" role="dialog" aria-labelledby="Estudio" aria-hidden="true">
 
-    @using (Ajax.BeginForm("_OfertaInformacionAdicionalEditar", "OfertaInformacionAdicional", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divListaInfoAdicional", OnComplete = "cerrarModal" }))
+                        @using (Ajax.BeginForm("_OfertaInformacionAdicionalEditar", "OfertaInformacionAdicional", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divListaInfoAdicional", OnComplete = "cerrarModal" }))
     {
-        @Html.AntiForgeryToken()
+                            @Html.AntiForgeryToken()
 
-        <div id="divEditarInfoAdicionalContenedor" class="modal-dialog">
+                            <div id="divEditarInfoAdicionalContenedor" class="modal-dialog">
 
-        </div>
+                            </div>
     }
 
-</div>
+                    </div>
 
-<!--Bloque de javascript-->
-<script>
-    $(document).ready(function () {
-        $("#divFinalCabeceraEmpresa").removeClass("color-paleta1 color-paleta3 color-paleta4 color-paleta5").addClass("color-paleta2");
-    });
+                    <!--Bloque de javascript-->
+                    <script>
+                        $(document).ready(function () {
+                            $("#divFinalCabeceraEmpresa").removeClass("color-paleta1 color-paleta3 color-paleta4 color-paleta5").addClass("color-paleta2");
+                        });
 
-    //Scripts de creación.
-    //$('#btnNuevoEstudiossss').click(function () {
+                        //Scripts de creación.
+                        //$('#btnNuevoEstudiossss').click(function () {
 
-    //    var url = "../OfertaEstudio/_OfertaEstudioCrear"; // el url del controlador
-    //    $.get(url, function (data) {
-    //        $('#divCrearEstudioContenedor').html(data);
-    //        $('#divModalEstudio').modal('show');
-    //    });
-    //});
+                        //    var url = "../OfertaEstudio/_OfertaEstudioCrear"; // el url del controlador
+                        //    $.get(url, function (data) {
+                        //        $('#divCrearEstudioContenedor').html(data);
+                        //        $('#divModalEstudio').modal('show');
+                        //    });
+                        //});
 
-    function crearEstudio(idOferta) {
-        //debugger;
-        //var url = "../../OfertaEstudio/_OfertaEstudioCrear/" + idOferta; // el url del controlador
+                        function crearEstudio(idOferta) {
+                            //debugger;
+                            //var url = "../../OfertaEstudio/_OfertaEstudioCrear/" + idOferta; // el url del controlador
 
-        var url = '@Url.Action("_OfertaEstudioCrear", "OfertaEstudio")' + "/" + idOferta;
-        //debugger;
-        $.get(url, function (data) {
+                            var url = '@Url.Action("_OfertaEstudioCrear", "OfertaEstudio")' + "/" + idOferta;
+                            //debugger;
+                            $.get(url, function (data) {
 
-            $('#divCrearEstudioContenedor').html(data);
-            $.validator.unobtrusive.parse('#divCrearEstudioContenedor');
-            $('#divModalEstudio').modal('show');
-        }).error(function (err) { console.log(err); alert(err); });
-    };
+                                $('#divCrearEstudioContenedor').html(data);
+                                $.validator.unobtrusive.parse('#divCrearEstudioContenedor');
+                                $('#divModalEstudio').modal('show');
+                            }).error(function (err) { console.log(err); alert(err); });
+                        };
 
-    function crearSector(idOferta) {
-        //var url = "../OfertaSectorEmpresarial/_OfertaSectorEmpresarialCrear/" + idOferta; // el url del controlador
+                        function crearSector(idOferta) {
+                            //var url = "../OfertaSectorEmpresarial/_OfertaSectorEmpresarialCrear/" + idOferta; // el url del controlador
 
-        var url = '@Url.Action("_OfertaSectorEmpresarialCrear", "OfertaSectorEmpresarial")' + "/" + idOferta;
+                            var url = '@Url.Action("_OfertaSectorEmpresarialCrear", "OfertaSectorEmpresarial")' + "/" + idOferta;
 
-        $.get(url, function (data) {
-            $('#divCrearSectorEmpresarialContenedor').html(data);
-            $.validator.unobtrusive.parse('#divCrearSectorEmpresarialContenedor');
-            $('#divModalSectorEmpresarial').modal('show');
-        });
-    }
+                            $.get(url, function (data) {
+                                $('#divCrearSectorEmpresarialContenedor').html(data);
+                                $.validator.unobtrusive.parse('#divCrearSectorEmpresarialContenedor');
+                                $('#divModalSectorEmpresarial').modal('show');
+                            });
+                        }
 
-    //$('#btnNuevoSectorEmpresarial').click(function () {
+                        //$('#btnNuevoSectorEmpresarial').click(function () {
 
-    //    var url = "../OfertaSectorEmpresarial/_OfertaSectorEmpresarialCrear"; // el url del controlador
-    //    $.get(url, function (data) {
-    //        $('#divCrearSectorEmpresarialContenedor').html(data);
-    //        $('#divModalSectorEmpresarial').modal('show');
-    //    });
-    //});
+                        //    var url = "../OfertaSectorEmpresarial/_OfertaSectorEmpresarialCrear"; // el url del controlador
+                        //    $.get(url, function (data) {
+                        //        $('#divCrearSectorEmpresarialContenedor').html(data);
+                        //        $('#divModalSectorEmpresarial').modal('show');
+                        //    });
+                        //});
 
-    function crearInfoAdicional(idOferta) {
-        //debugger;
-        //var url = "../OfertaInformacionAdicional/_OfertaInformacionAdicionalCrear/" + idOferta; // el url del controlador
+                        function crearInfoAdicional(idOferta) {
+                            //debugger;
+                            //var url = "../OfertaInformacionAdicional/_OfertaInformacionAdicionalCrear/" + idOferta; // el url del controlador
 
-        var url = '@Url.Action("_OfertaInformacionAdicionalCrear", "OfertaInformacionAdicional")' + "/" + idOferta;
+                            var url = '@Url.Action("_OfertaInformacionAdicionalCrear", "OfertaInformacionAdicional")' + "/" + idOferta;
 
-        $.get(url, function (data) {
-            $('#divCrearInfoAdicionalContenedor').html(data);
-            $.validator.unobtrusive.parse('#divCrearInfoAdicionalContenedor');
-            $('#divModalInfoAdicional').modal('show');
-        });
-    }
+                            $.get(url, function (data) {
+                                $('#divCrearInfoAdicionalContenedor').html(data);
+                                $.validator.unobtrusive.parse('#divCrearInfoAdicionalContenedor');
+                                $('#divModalInfoAdicional').modal('show');
+                            });
+                        }
 
-    //$('#btnNuevaInfoAdicional').click(function () {
+                        //$('#btnNuevaInfoAdicional').click(function () {
 
-    //    var url = "../OfertaInformacionAdicional/_OfertaInformacionAdicionalCrear"; // el url del controlador
-    //    $.get(url, function (data) {
-    //        $('#divCrearInfoAdicionalContenedor').html(data);
-    //        $('#divModalInfoAdicional').modal('show');
-    //    });
-    //});
+                        //    var url = "../OfertaInformacionAdicional/_OfertaInformacionAdicionalCrear"; // el url del controlador
+                        //    $.get(url, function (data) {
+                        //        $('#divCrearInfoAdicionalContenedor').html(data);
+                        //        $('#divModalInfoAdicional').modal('show');
+                        //    });
+                        //});
 
-    //Scripts para actualizar.
-    //$('.btnEditarEstudio22').click(function () {
-    //    debugger;
-    //    var url = "../OfertaEstudio/_OfertaEstudioEditar"; // el url del controlador
-    //    var id = $(this).attr('data-id'); // el id del botón.
-    //    $.get(url + '/' + id, function (data) {
-    //        $('#divEditarEstudioContenedor').html(data);
-    //        $('#divEditarModalEstudio').modal('show');
-    //    });
-    //});
+                        //Scripts para actualizar.
+                        //$('.btnEditarEstudio22').click(function () {
+                        //    debugger;
+                        //    var url = "../OfertaEstudio/_OfertaEstudioEditar"; // el url del controlador
+                        //    var id = $(this).attr('data-id'); // el id del botón.
+                        //    $.get(url + '/' + id, function (data) {
+                        //        $('#divEditarEstudioContenedor').html(data);
+                        //        $('#divEditarModalEstudio').modal('show');
+                        //    });
+                        //});
 
-    function editarEstudio(id) {
+                        function editarEstudio(id) {
 
-        //var url = "../OfertaEstudio/_OfertaEstudioEditar"; // el url del controlador
+                            //var url = "../OfertaEstudio/_OfertaEstudioEditar"; // el url del controlador
 
-        var url = '@Url.Action("_OfertaEstudioEditar", "OfertaEstudio")' + "/" + id;
+                            var url = '@Url.Action("_OfertaEstudioEditar", "OfertaEstudio")' + "/" + id;
 
-        $.get(url, function (data) {
-            $('#divEditarEstudioContenedor').html(data);
-            $.validator.unobtrusive.parse('#divEditarEstudioContenedor');
-            $('#divEditarModalEstudio').modal('show');
-        });
-    };
+                            $.get(url, function (data) {
+                                $('#divEditarEstudioContenedor').html(data);
+                                $.validator.unobtrusive.parse('#divEditarEstudioContenedor');
+                                $('#divEditarModalEstudio').modal('show');
+                            });
+                        };
 
-    function editarSector(id) {
+                        function editarSector(id) {
 
-        //var url = "../OfertaSectorEmpresarial/_OfertaSectorEmpresarialEditar"; // el url del controlador
+                            //var url = "../OfertaSectorEmpresarial/_OfertaSectorEmpresarialEditar"; // el url del controlador
 
-        var url = '@Url.Action("_OfertaSectorEmpresarialEditar", "OfertaSectorEmpresarial")' + "/" + id;
+                            var url = '@Url.Action("_OfertaSectorEmpresarialEditar", "OfertaSectorEmpresarial")' + "/" + id;
 
-        $.get(url, function (data) {
-            $('#divEditarSectorEmpresarialContenedor').html(data);
-            $.validator.unobtrusive.parse('#divEditarSectorEmpresarialContenedor');
-            $('#divEditarModalSectorEmpresarial').modal('show');
-        });
-    };
+                            $.get(url, function (data) {
+                                $('#divEditarSectorEmpresarialContenedor').html(data);
+                                $.validator.unobtrusive.parse('#divEditarSectorEmpresarialContenedor');
+                                $('#divEditarModalSectorEmpresarial').modal('show');
+                            });
+                        };
 
-    function editarInfoAdicional(id) {
+                        function editarInfoAdicional(id) {
 
-        //var url = "../OfertaInformacionAdicional/_OfertaInformacionAdicionalEditar"; // el url del controlador
+                            //var url = "../OfertaInformacionAdicional/_OfertaInformacionAdicionalEditar"; // el url del controlador
 
-        var url = '@Url.Action("_OfertaInformacionAdicionalEditar", "OfertaInformacionAdicional")' + "/" + id;
+                            var url = '@Url.Action("_OfertaInformacionAdicionalEditar", "OfertaInformacionAdicional")' + "/" + id;
 
-        $.get(url, function (data) {
-            $('#divEditarInfoAdicionalContenedor').html(data);
-            $.validator.unobtrusive.parse('#divEditarInfoAdicionalContenedor');
-            $('#divEditarModalInfoAdicional').modal('show');
-        });
-    };
+                            $.get(url, function (data) {
+                                $('#divEditarInfoAdicionalContenedor').html(data);
+                                $.validator.unobtrusive.parse('#divEditarInfoAdicionalContenedor');
+                                $('#divEditarModalInfoAdicional').modal('show');
+                            });
+                        };
 
-    //Eliminaciones
-    function eliminarEstudio(idOfertaEstudio) {
+                        //Eliminaciones
+                        function eliminarEstudio(idOfertaEstudio) {
 
-        if (confirm('Está seguro de eliminar el registro?')) {
-            //debugger;
-            //var url = "../OfertaEstudio/_OfertaEstudioEliminar/" + idOfertaEstudio; // el url del controlador
-            var url = '@Url.Action("_OfertaEstudioEliminar", "OfertaEstudio")' + "/" + idOfertaEstudio;
-            $.get(url, function (data) {
-                $('#divListaEstudios').html(data);
-            });
-        }
-    };
+                            if (confirm('Está seguro de eliminar el registro?')) {
+                                //debugger;
+                                //var url = "../OfertaEstudio/_OfertaEstudioEliminar/" + idOfertaEstudio; // el url del controlador
+                                var url = '@Url.Action("_OfertaEstudioEliminar", "OfertaEstudio")' + "/" + idOfertaEstudio;
+                                $.get(url, function (data) {
+                                    $('#divListaEstudios').html(data);
+                                });
+                            }
+                        };
 
-    function eliminarSector(idOfertaSector) {
+                        function eliminarSector(idOfertaSector) {
 
-        if (confirm('Está seguro de eliminar el registro?')) {
-            //var url = "../OfertaSectorEmpresarial/_OfertaSectorEmpresarialEliminar/" + idOfertaSector;
-            var url = '@Url.Action("_OfertaSectorEmpresarialEliminar", "OfertaSectorEmpresarial")' + "/" + idOfertaSector;
-            $.get(url, function (data) {
-                $('#divListaSectores').html(data);
+                            if (confirm('Está seguro de eliminar el registro?')) {
+                                //var url = "../OfertaSectorEmpresarial/_OfertaSectorEmpresarialEliminar/" + idOfertaSector;
+                                var url = '@Url.Action("_OfertaSectorEmpresarialEliminar", "OfertaSectorEmpresarial")' + "/" + idOfertaSector;
+                                $.get(url, function (data) {
+                                    $('#divListaSectores').html(data);
 
-            });
-        }
-    };
+                                });
+                            }
+                        };
 
-    function eliminarInfoAdicional(idOfertaInfoAdicional) {
+                        function eliminarInfoAdicional(idOfertaInfoAdicional) {
 
-        if (confirm('Está seguro de eliminar el registro?')) {
-            //var url = "../OfertaInformacionAdicional/_OfertaInformacionAdicionalEliminar/" + idOfertaInfoAdicional;
-            var url = '@Url.Action("_OfertaInformacionAdicionalEliminar", "OfertaInformacionAdicional")' + "/" + idOfertaInfoAdicional;
-            $.get(url, function (data) {
-                $('#divListaInfoAdicional').html(data);
-            });
-        }
-    };
+                            if (confirm('Está seguro de eliminar el registro?')) {
+                                //var url = "../OfertaInformacionAdicional/_OfertaInformacionAdicionalEliminar/" + idOfertaInfoAdicional;
+                                var url = '@Url.Action("_OfertaInformacionAdicionalEliminar", "OfertaInformacionAdicional")' + "/" + idOfertaInfoAdicional;
+                                $.get(url, function (data) {
+                                    $('#divListaInfoAdicional').html(data);
+                                });
+                            }
+                        };
 
-    //Script para cerrar el modal cuando la actualización por ajax termina.
-    function cerrarModal() {
-        $('.modal.in').modal('hide');
-    }
+                        //Script para cerrar el modal cuando la actualización por ajax termina.
+                        function cerrarModal() {
+                            $('.modal.in').modal('hide');
+                        }
 
-    function alertTemporal()
-    {
-        alert('Las fase se guardaron con éxito');
-    }
+                        function alertTemporal() {
+                            alert('Las fase se guardaron con éxito');
+                        }
 
-</script>
-
-@{
+                    </script>
+                    @{
     //Se valida que exista mensaje de éxito al crear una oferta
     if (TempData["MsjExitoCrearOferta"] != null)
     {
@@ -511,5 +542,5 @@
 
         </script>
     }
-    
-}
+
+                    }

@@ -618,6 +618,10 @@ input, select, option, textarea {
     max-width:initial;
     }
 
+.btn-default {
+    margin-top: 4px;
+    }
+
 .row-contenido1 {
     padding: 20px 0px 10px 0px;
     background-color:white;

@@ -6,7 +6,7 @@
     Layout = "~/Views/Empresa/_LayoutEmpresa.cshtml";
     ViewBag.Title = "Nueva Oferta Laboral";
 }
-<div class="container" style="margin-top:2px;">
+<div class="container fuente-pequeña" style="margin-top:2px;">
 
     @{Html.RenderAction("VistaCabecera", "Empresa");}
 
@@ -19,26 +19,25 @@
         @*@Html.HiddenFor(model => model.CreadoPor)*@
 
         <div class="row">
-            <div class="col-sm-3 fuente-seccion">
-                <h4><strong>Nueva Oferta Laboral</strong></h4>
+            <div class="col-sm-3">
+                <h6><strong>Nueva Oferta Laboral</strong></h6>
             </div>
-            <div class="col-sm-3 fuente-seccion">
+            <div class="col-sm-3">
                 <!--Estado: Pendiente de Activación-->
             </div>
-            <div class="col-sm-3 fuente-seccion">
+            <div class="col-sm-3">
                 @*<input type="checkbox" /><span> Recibir correos&nbsp;&nbsp;&nbsp;&nbsp;</span>*@
-                <table>
-                    <tr>
-                        <td>Alertas* &nbsp;&nbsp;</td>
-                        <td>
-                            @Html.DropDownListFor(m => m.RecibeCorreosIdListaValor, null, "Seleccione", htmlAttributes: new { @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.RecibeCorreosIdListaValor, "", new { @class = "text-danger" })
-                        </td>
-                    </tr>
-                </table>                
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        (*) Alertas
+                    </span>
+                    
+                    @Html.DropDownListFor(m => m.RecibeCorreosIdListaValor, null, "- Seleccione forma de alertar -", htmlAttributes: new { @class = "form-control" })
+                </div>
+                @Html.ValidationMessageFor(m => m.RecibeCorreosIdListaValor, "", new { @class = "text-danger" })              
             </div>
-            <div class="col-sm-3 fuente-seccion" style="text-align:right;">
-                <button class="btn btn-default color-paleta2" style="margin-bottom:5px;">Grabar Cambios</button>
+            <div class="col-sm-3 " style="text-align:right;">
+                <button class="btn btn-default color-paleta2" >Guardar</button>
             </div>
         </div>
 
@@ -60,27 +59,29 @@
                         <div id="collapseOferta" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOferta">
                             <div class="panel-body fuente-pequeña">
                                 <div class="input-group">
-                                    <span class="input-group-addon">Cargo *</span>
+                                    <span class="input-group-addon">(*) Cargo</span>
                                     @*<input id="CargoOfrecido" name="CargoOfrecido" type="text" class="form-control" placeholder="Nombre del cargo a publicar">*@
                                     @*@Html.Raw(@Html.EditorFor(m => m.CargoOfrecido, new { htmlAttributes = new { @placeholder = "Nombre del cargo a publicar 2" } }).ToString().Replace("text-box single-line", "form-control"))*@
                                     @Html.TextBoxFor(m => m.CargoOfrecido, new { @class = "form-control", @placeholder = "Nombre del cargo a publicar" })
-                                    @Html.ValidationMessageFor(m => m.CargoOfrecido, "", new { @class = "text-danger" })
+                                    
                                     @*<input class="text-box single-line" id="CargoOfrecido" name="CargoOfrecido" type="text" value="">*@
                                     @*@Html.EditorFor(model => model.CargoOfrecido, new { @class = "form-control" })*@
 
                                 </div>
+                                @Html.ValidationMessageFor(m => m.CargoOfrecido, "", new { @class = "text-danger" })
                                 <div class="input-group">
                                     <span class="input-group-addon">Funciones</span>
                                     @*<textarea class="form-control" rows="6"></textarea>*@
                                     <textarea name="Funciones" id="Funciones" rows="6" cols="80"></textarea>
-                                    @Html.ValidationMessageFor(m => m.Funciones, "", new { @class = "text-danger" })
+                                    
                                 </div>
+                                @Html.ValidationMessageFor(m => m.Funciones, "", new { @class = "text-danger" })
                                 <div class="input-group">
                                     <span class="input-group-addon">Compe-<br />tencias</span>
                                     @*<textarea class="form-control" rows="4"></textarea>*@
                                     <textarea name="Competencias" id="Competencias" rows="6" cols="80"></textarea>
-                                    @Html.ValidationMessageFor(m => m.Competencias, "", new { @class = "text-danger" })
                                 </div>
+                                @Html.ValidationMessageFor(m => m.Competencias, "", new { @class = "text-danger" })
                                 <br />
 
                             </div>
@@ -111,66 +112,65 @@
                                     @*<input type="date" id="FechaFinRecepcionCV" name="FechaFinRecepcionCV" class="form-control" placeholder="Fecha de fin de publicación">*@
                                     @Html.Raw(@Html.EditorFor(m => m.FechaFinRecepcionCV).ToString().Replace("text-box single-line", "form-control"))
                                     @*@Html.TextBoxFor(m => m.FechaFinRecepcionCV, new { @class = "form-control", @placeholder = "Fecha de fin de publicación" })*@
-                                    @Html.ValidationMessageFor(m => m.FechaFinRecepcionCV, "", new { @class = "text-danger" })
                                 </div>
+                                @Html.ValidationMessageFor(m => m.FechaFinRecepcionCV, "", new { @class = "text-danger" })
                                 <div class="input-group">
                                     <span class="input-group-addon">Área</span>
                                     @*<input id="AreaEmpresa" name="AreaEmpresa" type="text" class="form-control" placeholder="Área o división de la empresa">*@
                                     @Html.TextBoxFor(m => m.AreaEmpresa, new { @class = "form-control", @placeholder = "Área o división de la empresa" })
-                                    @Html.ValidationMessageFor(m => m.AreaEmpresa, "", new { @class = "text-danger" })
                                 </div>
+                                @Html.ValidationMessageFor(m => m.AreaEmpresa, "", new { @class = "text-danger" })
                                 <div class="input-group">
                                     <span class="input-group-addon">Tipo de<br />Cargo</span>
-                                    @Html.DropDownListFor(m => m.TipoCargoIdListaValor, null, "Seleccione", htmlAttributes: new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(m => m.TipoCargoIdListaValor, "", new { @class = "text-danger" })
+                                    @Html.DropDownListFor(m => m.TipoCargoIdListaValor, null, "- Seleccione Tipo de Cargo -", htmlAttributes: new { @class = "form-control" })
                                 </div>
+                                @Html.ValidationMessageFor(m => m.TipoCargoIdListaValor, "", new { @class = "text-danger" })
                                 <div class="input-group">
-                                    <span class="input-group-addon">Tipo de<br />Trabajo *</span>
-                                    @Html.DropDownListFor(m => m.TipoTrabajoIdListaValor, null, "Seleccione", htmlAttributes: new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(m => m.TipoTrabajoIdListaValor, "", new { @class = "text-danger" })
+                                    <span class="input-group-addon">(*) Tipo de<br />Trabajo</span>
+                                    @Html.DropDownListFor(m => m.TipoTrabajoIdListaValor, null, "- Seleccione Tipo de Trabajo -", htmlAttributes: new { @class = "form-control" })
                                 </div>
+                                @Html.ValidationMessageFor(m => m.TipoTrabajoIdListaValor, "", new { @class = "text-danger" })
                                 <div class="input-group">
                                     <span class="input-group-addon">Tipo de<br />Contrato</span>
-                                    @Html.DropDownListFor(m => m.TipoContratoIdListaValor, null, "Seleccione", htmlAttributes: new { @class = "form-control" })
-                                    @Html.ValidationMessageFor(m => m.TipoContratoIdListaValor, "", new { @class = "text-danger" })
+                                    @Html.DropDownListFor(m => m.TipoContratoIdListaValor, null, "- Seleccione Tipo de Contrato -", htmlAttributes: new { @class = "form-control" })
                                 </div>
+                                @Html.ValidationMessageFor(m => m.TipoContratoIdListaValor, "", new { @class = "text-danger" })
                                 <div class="input-group">
                                     <span class="input-group-addon">Duración<br />en meses</span>
                                     @*<input id="DuracionContrato" name="DuracionContrato" type="text" class="form-control" placeholder="Vacio si es indeterminada">*@
                                     @Html.TextBoxFor(m => m.DuracionContrato, new { @class = "form-control", @placeholder = "Vacío si es indeterminada" })
-                                    @Html.ValidationMessageFor(m => m.DuracionContrato, "", new { @class = "text-danger" })
                                 </div>
+                                @Html.ValidationMessageFor(m => m.DuracionContrato, "", new { @class = "text-danger" })
                                 <div class="input-group">
                                     <span class="input-group-addon">Horario</span>
                                     @*<input id="Horario" name="Horario" type="text" class="form-control" placeholder="Ej: De Lunes a Viernes de 9:00am a 6:00pm">*@
                                     @Html.TextBoxFor(m => m.Horario, new { @class = "form-control", @placeholder = "Ej: De Lunes a Viernes de 9:00am a 6:00pm" })
-                                    @Html.ValidationMessageFor(m => m.Horario, "", new { @class = "text-danger" })
                                 </div>
+                                @Html.ValidationMessageFor(m => m.Horario, "", new { @class = "text-danger" })
                                 <div class="input-group">
                                     <span class="input-group-addon">Sueldo S/.</span>
                                     @*<input id="RemuneracionOfrecida" name="RemuneracionOfrecida" type="text" class="form-control" placeholder="Sueldo a pagar en Nuevos Soles">*@
                                     @Html.TextBoxFor(m => m.RemuneracionOfrecida, new { @class = "form-control", @placeholder = "Sueldo a pagar en Nuevos Soles" })
-                                    @Html.ValidationMessageFor(m => m.RemuneracionOfrecida, "", new { @class = "text-danger" })
                                 </div>
-
+                                @Html.ValidationMessageFor(m => m.RemuneracionOfrecida, "", new { @class = "text-danger" })
                                 <div class="input-group">
                                     <span class="input-group-addon">Vacantes</span>
                                     @*<input id="NumeroVacantes" name="NumeroVacantes" type="text" class="form-control" placeholder="Número de vacantes para el puesto">*@
                                     @Html.TextBoxFor(m => m.NumeroVacantes, new { @class = "form-control", @placeholder = "Número de vacantes para el puesto" })
-                                    @Html.ValidationMessageFor(m => m.NumeroVacantes, "", new { @class = "text-danger" })
                                 </div>
+                                @Html.ValidationMessageFor(m => m.NumeroVacantes, "", new { @class = "text-danger" })
                                 <div class="row">
-                                    <div class="col-sm-7">
+                                    <div class="col-sm-12">
                                         <div class="input-group">
-                                            <span class="input-group-addon">Ubicación *</span>
-                                            @Html.DropDownListFor(m => m.IdEmpresaLocacion, null, "Seleccione", htmlAttributes: new { @class = "form-control" })
-                                            @Html.ValidationMessageFor(m => m.IdEmpresaLocacion, "", new { @class = "text-danger" })
+                                            <span class="input-group-addon">(*)<br />Ubicación</span>
+                                            @Html.DropDownListFor(m => m.IdEmpresaLocacion, null, "- Seleccione Ubicación -", htmlAttributes: new { @class = "form-control" })
                                         </div>
+                                        @Html.ValidationMessageFor(m => m.IdEmpresaLocacion, "", new { @class = "text-danger" })
                                     </div>
-                                    <div class="col-sm-5 fuente-pequeña" style="text-align:right;">
-                                        @*<button class="btn btn-default color-paleta2">Nueva Ubicación</button>
-                                        <span class="btn btn-default color-paleta2">Nueva ubicación</span>*@
-                                    </div>
+                                    @*<div class="col-sm-5 fuente-pequeña" style="text-align:right;">
+        <button class="btn btn-default color-paleta2">Nueva Ubicación</button>
+    <span class="btn btn-default color-paleta2">Nueva ubicación</span>
+                                    </div>*@
                                 </div>
 
                                 <br />
@@ -179,8 +179,6 @@
                     </div>
                 </div>
             </div>
-
-
         </div>
     }
     <div id="fila2" class="row" style="display:none;">
