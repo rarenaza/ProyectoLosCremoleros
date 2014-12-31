@@ -304,7 +304,8 @@ input[type="checkbox"].input-validation-error {
     }
 
 .foto-usuario {
-    height: 120px;
+    max-height: 100%;
+    max-width: 100%;
     border:solid;
     border-width:1px;
     border-color:rgb(180,30,34);
@@ -312,8 +313,9 @@ input[type="checkbox"].input-validation-error {
     }
 
 .foto-empresa {
-    height: 120px;
-
+    
+    max-height:100%;
+    max-width: 100%;
     }
 
 
@@ -509,6 +511,12 @@ input[type="checkbox"].input-validation-error {
     }
 .etiqueta-oculta {
     visibility:visible;
+    }
+.foto-empresa {
+    height:120px;
+    }
+.foto-usuario {
+    height:120px;
     }
 }
 

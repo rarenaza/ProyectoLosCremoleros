@@ -450,7 +450,7 @@ namespace UTPPrototipo.Controllers
             if (alumno != null)
             {
                 alumnocv = lnAlumnoCV.ObtenerAlumnoCVPorIdAlumnoYIdCV(alumno.IdAlumno, entidad.IdCV);
-                alumno.IncluirCorreoElectronico1 = alumnocv.IncluirCorreoElectronico2;
+                alumno.IncluirCorreoElectronico2 = alumnocv.IncluirCorreoElectronico2;
                 alumno.IncluirFoto = alumnocv.IncluirFoto;
                 alumno.IncluirTelefonoFijo = alumnocv.IncluirTelefonoFijo;
                 alumno.IncluirDireccion = alumnocv.IncluirDireccion;
