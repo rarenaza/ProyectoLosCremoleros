@@ -603,6 +603,7 @@ namespace UTPPrototipo.Controllers
                 vista.Carrera = dtResultado.Rows[i]["Carrera"].ToString();
                 vista.Ciclo = dtResultado.Rows[i]["CicloEquivalente"].ToString();
                 vista.idAlumno = Convert.ToInt32(dtResultado.Rows[i]["IdAlumno"]);
+                vista.completitud = Convert.ToInt32(dtResultado.Rows[i]["Completitud"]);
 
                 listaEjemplo.Add(vista);
             }
@@ -663,19 +664,21 @@ namespace UTPPrototipo.Controllers
         {
             
             string palabraClave = SearchString == null ? "" : SearchString;
-            List<VistaOfertasPendientes> listaEjemplo = new List<VistaOfertasPendientes>();
+            List<VistaOferta> listaEjemplo = new List<VistaOferta>();
 
 
             DataTable dtResultado = lnUtp.UTP_ObtenerOfertasporActivar(palabraClave);
 
                 foreach (DataRow fila in dtResultado.Rows)
                 {
-                    VistaOfertasPendientes vista = new VistaOfertasPendientes();
+                    VistaOferta vista = new VistaOferta();
 
                     vista.FechaPublicacion = Convert.ToDateTime(fila["FechaPublicacion"]);
                     vista.NombreComercial = Convert.ToString(fila["NombreComercial"]);
                     vista.CargoOfrecido = Convert.ToString(fila["CargoOfrecido"]);
                     vista.IdOferta = Convert.ToInt32(fila["IdOferta"]);
+                    vista.Estado = Convert.ToString(fila["Estado"]);
+                    vista.Cargo = Convert.ToString(fila["Cargo"]);
 
                     listaEjemplo.Add(vista);
                 }

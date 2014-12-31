@@ -1,5 +1,5 @@
 ﻿@using UTPPrototipo.Common
-@model IEnumerable<UTPPrototipo.Models.ViewModels.UTP.VistaOfertasPendientes>
+@model IEnumerable<UTPPrototipo.Models.ViewModels.UTP.VistaOferta>
 
 @{
     Layout = "~/Views/UTP/_LayoutUTP.cshtml";
@@ -83,15 +83,21 @@
         @foreach (var item in Model)
         {
             <div class="row grilla1-linea">
-                <div class="col-sm-3">
+                <div class="col-sm-2">
                     @Html.FormatoFrecuencia(@item.FechaPublicacion)
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-2">
                     @item.NombreComercial
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     @*<a href="../UTP/RegistroOferta">@item.CargoOfrecido</a>*@
                     @Html.ActionLink(@item.CargoOfrecido, "VerDetalleOferta", new { id = item.IdOferta })
+                </div>
+                <div class="col-sm-2">
+                    @item.Estado
+                </div>
+                <div class="col-sm-2">
+                    @item.Cargo
                 </div>
             </div>
         }
