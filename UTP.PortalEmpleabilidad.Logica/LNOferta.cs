@@ -26,6 +26,7 @@ namespace UTP.PortalEmpleabilidad.Logica
             {
                 List<Oferta> ListaEstudios = new List<Oferta>();
                 List<Oferta> ListaSectorEmpresarial = new List<Oferta>();
+                List<Oferta> ListaInformacionAdicional = new List<Oferta>();
 
                 if (dsResultado.Tables[0].Rows.Count > 0)
                 {
@@ -53,6 +54,20 @@ namespace UTP.PortalEmpleabilidad.Logica
                     }
                     vistaofertaalumno.ListadoSectorEmpresarial = ListaSectorEmpresarial;
                 }
+                if (dsResultado.Tables[2].Rows.Count > 0)
+                {
+                    foreach (DataRow row in dsResultado.Tables[2].Rows)
+                    {
+                        Oferta of = new Oferta();
+                        of.Requisito = Funciones.ToString(row["Caracteristica"]);
+                        of.Cumplimiento = Funciones.ToInt(row["Estado"]);
+                        of.Tipo = Funciones.ToInt(row["Tipo2"]);
+                        of.Line = Funciones.ToInt(row["Line"]);
+                        ListaInformacionAdicional.Add(of);
+                    }
+                    vistaofertaalumno.ListadoInformacionAdicional = ListaInformacionAdicional;
+                }
+
             }
         }
         private Oferta ObtenerOfertasAlumnoPorID(int idOferta, int idAlumno)
