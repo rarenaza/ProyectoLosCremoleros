@@ -64,7 +64,7 @@
                             
                             @if (Model.Oferta.LogoEmpresa != null && string.IsNullOrEmpty(Model.Oferta.ArchivoMimeType) == false)
                             {
-                                <img src="@Url.Action("GetImageEmpresa", "Alumno", new { Model.Oferta.IdEmpresa })" class="logo-empresa2" />
+                                <img src="@Url.Action("GetImageEmpresa", "Alumno", new { Model.Oferta.IdEmpresa })" class="logo-empresa" />
 
                             }
                             else
