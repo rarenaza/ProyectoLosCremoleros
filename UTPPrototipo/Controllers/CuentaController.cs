@@ -155,6 +155,7 @@ namespace UTPPrototipo.Controllers
                             ticketAlumno.CorreoElectronico = Convert.ToString(dsDatosAlumno.Tables[0].Rows[0]["CorreoInstitucional"]);
                             ticketAlumno.TelefonoCelular = Convert.ToString(dsDatosAlumno.Tables[0].Rows[0]["Celular"]);
                             ticketAlumno.TipoUsuario = "USERAL";
+                            ticketAlumno.CodAlumnoUTP = Convert.ToString(dsDatosAlumno.Tables[0].Rows[0]["Codigo"]);
                             Session["TicketAlumno"] = ticketAlumno;
 
                             //Si tiene acceso se redirecciona al portal principal del alumno.

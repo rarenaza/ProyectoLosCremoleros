@@ -5,6 +5,12 @@
     TicketEmpresa ticketEmpresa = (TicketEmpresa)Session["TicketEmpresa"];
 }
 
+<input id="hddEstadoOfertaIdListaValor" type="hidden" value="@ViewBag.EstadoOfertaIdListaValor" />
+
+<!--Se guarda la columna  -->
+<input id="hddColumnaActual" type="hidden" value="@ViewBag.Columna" />
+<input id="hddOrdenActual" type="hidden" value="@ViewBag.Orden" />
+
 <div class="panel panel-default">
     <div class="panel-heading" role="tab" id="headingPostulante" style="padding: 2px 2px 2px 6px;">
         <h5 class="panel-title">
@@ -45,10 +51,24 @@
             <!--Cabecera-->
             <div class="row">
                 <div class="col-sm-1"></div>
-                <div class="col-sm-2"><span class="fa fa-1x fa-arrow-down"></span><a href="#"><strong> Fase</strong></a></div>
+                <div class="col-sm-2">
+                    @*<span class="fa fa-1x fa-arrow-down"></span>*@
+                    <a href="#"><strong> Fase</strong></a>
+                </div>
                 <div class="col-sm-3">
-                    <a href="#"><strong>Fecha de <br />Postulación</strong></a>
-                    @Html.ActionLink("Fecha", "Index", new { Sorting_Order = ViewBag.SortingName })
+                    @*<a href="#"><strong>Fecha de <br />Postulación</strong></a>*@
+                    @*@Html.ActionLink("Fecha de Postulación", "VistaOfertaPostulantes", new { ColumnaOrden = "FechaPostulacion" })*@                                        
+                    @{
+                        if (ViewBag.Columna == "Fecha" && ViewBag.Orden == "ASC")
+                        {
+                            <span class="fa fa-1x fa-arrow-up"></span>
+                        }
+                        if (ViewBag.Columna == "Fecha" && ViewBag.Orden == "DESC")
+                        {
+                            <span class="fa fa-1x fa-arrow-down"></span>
+                        }
+                    }
+                    <label id="colFecha">Fecha de <br />Postulación</label>
                 </div>
                 <div class="col-sm-4"><a href="#"><strong>Nombre</strong></a></div>
                 <div class="col-sm-2"><a href="#"><strong>Cump.</strong></a></div>
@@ -102,4 +122,27 @@
 
     }
 
+    $(document).ready(function () {
+
+        $('#colFecha').on('click', function () {
+            debugger;
+            console.log('click en colFecha');
+
+            //Se obtiene el Id y el estado:
+            var idOferta = $('#hddIdOferta').val();
+            var estadoOferta = $('#hddEstadoOfertaIdListaValor').val();
+            var columnActual = $('#hddColumnaActual').val();
+            var ordenActual = $('#hddOrdenActual').val();
+
+            var orden = ordenActual == 'ASC' ? 'DESC' : 'ASC';
+
+            //Se llama al controlador pasando los parámetros para ordenar las columnas.
+            var url = '@Url.Action("VistaOfertaPostulantes", "Empresa")' + '?id=' + idOferta + '&columna=Fecha&orden=' + orden + '&estado=' + estadoOferta;
+            $.get(url, function (data) {
+                $('#divActualizarPostulantes').html(data);
+            });
+
+        });
+
+    });
 </script>
