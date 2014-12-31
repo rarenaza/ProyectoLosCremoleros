@@ -598,6 +598,7 @@ namespace UTPPrototipo.Controllers
 
                 vista.FechaRegistro = dtResultado.Rows[i]["FechaRegistro"].ToString();
                 vista.Nombre = dtResultado.Rows[i]["Nombres"].ToString();
+                vista.EstadoAlumno = dtResultado.Rows[i]["Valor"].ToString();
                 vista.Apellidos = dtResultado.Rows[i]["Apellidos"].ToString();
                 vista.Carrera = dtResultado.Rows[i]["Carrera"].ToString();
                 vista.Ciclo = dtResultado.Rows[i]["CicloEquivalente"].ToString();
@@ -657,31 +658,15 @@ namespace UTPPrototipo.Controllers
         {
             return View();
         }
-        //public ActionResult Ofertas()
-        //{
-        //    return View();
-        //}
-
-        public ActionResult Ofertas(string sortOrder, string currentFilter, string searchString, int? page)
+ 
+        public ActionResult Ofertas(string SearchString)
         {
-
-            if (searchString != null)
-            {
-                page = 1;
-            }
-            else
-            {
-                searchString = currentFilter;
-            }
-
-            ViewBag.CurrentFilter = searchString;
-
+            
+            string palabraClave = SearchString == null ? "" : SearchString;
             List<VistaOfertasPendientes> listaEjemplo = new List<VistaOfertasPendientes>();
 
-            if (!String.IsNullOrEmpty(searchString))
-            {
 
-                DataTable dtResultado = lnUtp.UTP_ObtenerOfertasporActivar(searchString);
+            DataTable dtResultado = lnUtp.UTP_ObtenerOfertasporActivar(palabraClave);
 
                 foreach (DataRow fila in dtResultado.Rows)
                 {
@@ -694,33 +679,7 @@ namespace UTPPrototipo.Controllers
 
                     listaEjemplo.Add(vista);
                 }
-
-            }
-            else
-            {
-               
-                List<VistaOfertasPendientes> listaOfertasPendientes = new List<VistaOfertasPendientes>();
-
-                DataTable dtResultado = lnUtp.OfertasObtenerPendientes();
-
-                foreach (DataRow fila in dtResultado.Rows)
-                {
-                    VistaOfertasPendientes vistaNueva = new VistaOfertasPendientes();
-
-                    vistaNueva.FechaPublicacion = Convert.ToDateTime(fila["FechaPublicacion"]);
-                    vistaNueva.NombreComercial = Convert.ToString(fila["NombreComercial"]);
-                    vistaNueva.CargoOfrecido = Convert.ToString(fila["CargoOfrecido"]);
-                    vistaNueva.IdOferta = Convert.ToInt32(fila["IdOferta"]);
-
-                    listaOfertasPendientes.Add(vistaNueva);
-                }
-
-                return View(listaOfertasPendientes);
-                
-            }
-            
-            //int pageSize = 3;
-            //int pageNumber = (page ?? 1);
+                     
             return View(listaEjemplo);
 
 

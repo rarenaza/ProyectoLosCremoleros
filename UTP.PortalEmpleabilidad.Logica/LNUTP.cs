@@ -118,30 +118,7 @@ namespace UTP.PortalEmpleabilidad.Logica
             return adUtp.UTP_ObtenerUltimosAlumnos(Dato);
         }
 
-        //public List<VistaUTPListaAlumno> UTP_ObtenerUltimosAlumnospaginacion()
-        //{
-
-        //    List<VistaUTPListaAlumno> listaEjemplo = new List<VistaUTPListaAlumno>();
-        //    DataTable dtResultado = adUtp.UTP_ListarUltimosAlumnos();
-
-        //    for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
-        //    {
-        //        VistaUTPListaAlumno vista = new VistaUTPListaAlumno();
-
-        //        vista.FechaRegistro = dtResultado.Rows[i]["FechaRegistro"].ToString();
-        //        vista.Nombre = dtResultado.Rows[i]["Nombres"].ToString();
-        //        vista.Apellidos = dtResultado.Rows[i]["Apellidos"].ToString();
-        //        vista.Carrera = dtResultado.Rows[i]["Carrera"].ToString();
-        //        vista.Ciclo = dtResultado.Rows[i]["CicloEquivalente"].ToString();
-
-        //        listaEjemplo.Add(vista);
-        //    }
-
-
-        //    return listaEjemplo;
-        //}
-
-
+       
         public void ActualizarEstadoYUsuarioEC(Empresa empresa)
         {
             if (empresa.UsuarioEC == null) empresa.UsuarioEC = "";
