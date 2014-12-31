@@ -1345,7 +1345,9 @@ namespace UTPPrototipo.Controllers
             for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
             {
                 AlertasCvAlumno alumno = new AlertasCvAlumno();
-                alumno.MesesSinTrabajo = Convert.ToInt32(dtResultado.Rows[i]["MesesSinTrabajo"]);
+
+                //31DIC14 - Aldo Chocos: Se valida que no sea nulo
+                alumno.MesesSinTrabajo = Convert.ToInt32(dtResultado.Rows[i]["MesesSinTrabajo"] == DBNull.Value ? 0 : dtResultado.Rows[i]["MesesSinTrabajo"]);
 
                 lista.Add(alumno);
             }

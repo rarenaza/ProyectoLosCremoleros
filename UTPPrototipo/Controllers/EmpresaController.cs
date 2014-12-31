@@ -156,7 +156,7 @@ namespace UTPPrototipo.Controllers
             if (ModelState.IsValid)
             {
                 oferta.UsuarioPropietarioEmpresa = ticket.Usuario; //Se guarda el usuario asignado.
-                oferta.EstadoOferta = "OFERPR"; //Estado pendiente de activación.
+                oferta.EstadoOferta = "OFERCO"; //Estado oferta en construcción.
                 //oferta.FechaPublicacion = DateTime.Now;
                 //oferta.FechaFinProceso = DateTime.Now.AddDays(10);
                 //oferta.IdEmpresaLocacion = 1; //TODO: Reemplazar por combo.
@@ -310,16 +310,37 @@ namespace UTPPrototipo.Controllers
             return PartialView("_VistaOfertaAnuncio", oferta);
         }
 
-        public ActionResult VistaOfertaPostulantes(int id, string estado)
+        public ActionResult VistaOfertaPostulantes(int id, string estado, string columna, string orden)
         {
             LNOferta lnOferta = new LNOferta ();
-            List<OfertaPostulante> postulantes = lnOferta.ObtenerPostulantesPorIdOferta(id);
 
+            List<OfertaPostulante> postulantes = new List<OfertaPostulante>();
+            if (columna == "Fecha")
+            {
+                if (orden == "ASC")
+                {
+                    //Fecha descendente.
+                    postulantes = lnOferta.ObtenerPostulantesPorIdOferta(id).OrderBy(m => m.FechaPostulacion).ToList();
+                }
+                else
+                {
+                    postulantes = lnOferta.ObtenerPostulantesPorIdOferta(id).OrderByDescending(m => m.FechaPostulacion).ToList();
+                }
+            }
+            else  //Orden por defecto:
+            {
+                postulantes = lnOferta.ObtenerPostulantesPorIdOferta(id).OrderBy(m => m.FechaPostulacion).ToList();
+            }
+                        
             //Llenar el combo de Fases:
             List<OfertaFase> listaFasesActivas = lnOferta.Obtener_OfertaFaseActivas(id);
 
             ViewBag.IdOfertaFase = new SelectList(listaFasesActivas, "IdListaValor", "FaseOferta");
             ViewBag.EstadoOfertaIdListaValor = estado;
+
+            //Se envían datos para mostrar el orden de la grilla. Se valida si es NULL para la primera vez que cargue el bloque.
+            ViewBag.Columna = columna == null ? "Fecha" : columna;
+            ViewBag.Orden = orden == null ? "ASC" : orden;
 
             return PartialView("_VistaOfertaPostulantes", postulantes);
         }

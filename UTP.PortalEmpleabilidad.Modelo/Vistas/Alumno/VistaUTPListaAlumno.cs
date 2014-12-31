@@ -16,5 +16,7 @@ namespace UTP.PortalEmpleabilidad.Modelo.Vistas.Alumno
         public string Ciclo { get; set; }
         public int idAlumno { get; set; }
         public string EstadoAlumno { get; set; }
+
+        public int  completitud { get; set;}
     }
 }
