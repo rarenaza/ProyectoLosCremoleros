@@ -57,8 +57,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
 
         public int IdCV { get; set; }
         public int Movimiento { get; set; }
-
-       
+        public int Cumple { get; set; }
 
     }
 }

@@ -12,5 +12,8 @@ namespace UTPPrototipo.Models.ViewModels.Empresa
         public string AlumnoNombres { get; set; }
         public string AlumnoApellidos { get; set; }
         public int Cumplimiento { get; set; }
+        public int IdOfertaPostulante { get; set; }
+        public int IdOferta { get; set; }
+
     }
 }

@@ -77,6 +77,7 @@
     <Compile Include="UTPUsuario.cs" />
     <Compile Include="UTP\VistaPanelCabeceraUTP.cs" />
     <Compile Include="VistaAlumnoCV.cs" />
+    <Compile Include="VistaOfertaPostulante.cs" />
     <Compile Include="VistaPanelAlumno.cs" />
     <Compile Include="VistaPanelAlumnoOfertas.cs" />
     <Compile Include="VistaPanelAlumnoPostulaciones.cs" />
