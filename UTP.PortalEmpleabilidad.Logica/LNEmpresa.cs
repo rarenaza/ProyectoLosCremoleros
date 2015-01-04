@@ -235,6 +235,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                     empresa.LogoEmpresa = Funciones.ToBytes(dsResultado.Tables[0].Rows[0]["LogoEmpresa"]);
                     empresa.ArchivoMimeType = Funciones.ToString(dsResultado.Tables[0].Rows[0]["ArchivoMimeType"]);
                     empresa.NombrePais = Funciones.ToString(dsResultado.Tables[0].Rows[0]["NombrePais"]);
+
                     empresa.NumeroEmpleadosIdListaValor = Funciones.ToString(dsResultado.Tables[0].Rows[0]["NumeroEmpleados"]);
                     empresa.DescripcionEmpresa = Funciones.ToString(dsResultado.Tables[0].Rows[0]["DescripcionEmpresa"]);
                     empresa.AnoCreacion = Funciones.ToInt(dsResultado.Tables[0].Rows[0]["AnoCreacion"]);

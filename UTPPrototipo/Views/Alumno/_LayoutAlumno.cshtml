@@ -7,8 +7,9 @@
     @Styles.Render("/Content/themes/base/css","~/Content/css")
     @Scripts.Render("~/bundles/modernizr")  
     @Scripts.Render("~/bundles/jquery") 
-    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    
     @Scripts.Render("~/bundles/jqueryval")
+
     <script src="~/Scripts/carga.asincrona.js"></script>
     @Scripts.Render("~/bundles/bootstrap")    
     @RenderSection("scripts", required: false)
@@ -89,7 +90,7 @@
             </div>
         </footer>
     </div>
-   
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     @Scripts.Render("~/bundles/jqueryui")
 
     <script>
