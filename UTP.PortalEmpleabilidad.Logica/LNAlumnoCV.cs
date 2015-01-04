@@ -23,6 +23,7 @@ namespace UTP.PortalEmpleabilidad.Logica
             List<AlumnoEstudio> alumnoestudiocv =new List<AlumnoEstudio>();
             List<AlumnoExperiencia> alumnoexperienciacv = new List<AlumnoExperiencia>();
             List<AlumnoInformacionAdicional> alumnoinformacionadicionalcv = new List<AlumnoInformacionAdicional>();
+            List<AlumnoPostulaciones> alumnopostulaciones = new List<AlumnoPostulaciones>();
 
             if (dsResultado.Tables.Count > 0)
             {
@@ -44,6 +45,10 @@ namespace UTP.PortalEmpleabilidad.Logica
                         alumnocv.DireccionDistrito = Funciones.ToString(dsResultado.Tables[0].Rows[n]["DireccionDistrito"]);
                         alumnocv.Foto = Funciones.ToBytes(dsResultado.Tables[0].Rows[n]["Foto"]);
                         alumnocv.IdAlumno = Funciones.ToInt(dsResultado.Tables[0].Rows[n]["IdAlumno"]);
+                        alumnocv.IdOferta = Funciones.ToInt(dsResultado.Tables[0].Rows[n]["IdOferta"]);
+			            alumnocv.FaseOferta = Funciones.ToString(dsResultado.Tables[0].Rows[n]["FaseOferta"]);
+                        alumnocv.FechaPostulacion = Funciones.ToDateTime(dsResultado.Tables[0].Rows[n]["FechaPostulacion"]);
+                        alumnocv.CargoOfrecido = Funciones.ToString(dsResultado.Tables[0].Rows[n]["CargoOfrecido"]);
                     }
                 }
                 if (dsResultado.Tables[1].Rows.Count > 0)
@@ -61,7 +66,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                         alumnoestudio.FechaFinMes = Funciones.ToInt(dsResultado.Tables[1].Rows[n]["FechaFinMes"]);
                         alumnoestudio.FechaFinAno = Funciones.ToInt(dsResultado.Tables[1].Rows[n]["FechaFinAno"]);
                         alumnoestudio.CicloEquivalente = Funciones.ToInt(dsResultado.Tables[1].Rows[n]["CicloEquivalente"]);
-                        alumnoestudio.Cumple = Funciones.ToInt(dsResultado.Tables[2].Rows[n]["Cumple"]);
+                        alumnoestudio.Cumple = Funciones.ToInt(dsResultado.Tables[1].Rows[n]["Cumple"]);
                         alumnoestudiocv.Add(alumnoestudio);
                     }
                 }
@@ -107,6 +112,19 @@ namespace UTP.PortalEmpleabilidad.Logica
                         alumnoinformacionadicional.Cumple = Funciones.ToInt(dsResultado.Tables[3].Rows[n]["Cumple"]);
                         
                         alumnoinformacionadicionalcv.Add(alumnoinformacionadicional);
+                    }
+                }
+                if (dsResultado.Tables[4].Rows.Count > 0)
+                {
+                    for (int n = 0; n <= dsResultado.Tables[3].Rows.Count - 1; n++)
+                    {
+                        AlumnoPostulaciones alumnopostulacionesdata = new AlumnoPostulaciones();
+                        alumnopostulacionesdata.IdOferta = Funciones.ToInt(dsResultado.Tables[4].Rows[n]["IdOferta"]);
+                        alumnopostulacionesdata.CargoOfrecido = Funciones.ToString(dsResultado.Tables[4].Rows[n]["CargoOfrecido"]);
+                        alumnopostulacionesdata.FechaPostulacion = Funciones.ToDateTime(dsResultado.Tables[4].Rows[n]["FechaPostulacion"]);
+                        alumnopostulacionesdata.IdOfertaPostulante = Funciones.ToInt(dsResultado.Tables[4].Rows[n]["IdOfertaPostulante"]);
+
+                        alumnopostulaciones.Add(alumnopostulacionesdata);
                     }
                 }
 

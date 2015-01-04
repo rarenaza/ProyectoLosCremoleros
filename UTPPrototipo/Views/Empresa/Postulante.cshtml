@@ -61,8 +61,7 @@
                     </div>
                 </div>
             </div>
-
-
+            
             <div class="panel-group" id="mi-cv-perfil" role="tablist" aria-multiselectable="true">
                 <div class="panel panel-default">
                     <div class="panel-heading" role="tab" id="headingCVPerfil" style="padding: 2px 2px 2px 6px;">
@@ -186,6 +185,11 @@
                                         <div class="col-sm-11">
                                             @if (item.Empresa != EmpresaExperiencia)
                                             {
+                                                if (EmpresaExperiencia != "")
+                                                {
+                                                    <hr />
+                                                }
+
                                                 EmpresaExperiencia = item.Empresa;
 
                                                 <div class="row">
@@ -250,7 +254,7 @@
                                             }
                                         </div>
                                     </div>
-                                    <hr />
+                                    
                                 }
                             }
 
@@ -278,6 +282,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="panel-group" id="cv-informacion-adicional" role="tablist" aria-multiselectable="true">
                 <div class="panel panel-default">
                     <div class="panel-heading" role="tab" id="headingCVInformacionAdicional" style="padding: 2px 2px 2px 6px;">
@@ -353,24 +358,27 @@
                 </div>
             </div>
             
-
         </div>
         <div class="col-md-3">
-            <div class="panel-group" id="cv-informacion-adicional" role="tablist" aria-multiselectable="true">
+
+            <div class="panel-group" id="cv-postulacion" role="tablist" aria-multiselectable="true">
                 <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingCVInformacionAdicional" style="padding: 2px 2px 2px 6px;">
+                    <div class="panel-heading" role="tab" id="headingCVPostulacion" style="padding: 2px 2px 2px 6px;">
                         <h5 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#cv-informacion-adicional" href="#collapseCVInformacionAdicional" aria-expanded="true" aria-controls="collapseCVInformacionAdicional" style="font-size:12px;">
+                            <a data-toggle="collapse" data-parent="#cv-postulacion" href="#collapseCVPostulacion" aria-expanded="true" aria-controls="collapseCVPostulacion" style="font-size:12px;">
                                 Postulación
                             </a>
                         </h5>
                     </div>
-                    <div id="collapseCVInformacionAdicional" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingCVInformacionAdicional">
+                    <div id="collapseCVPostulacion" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingCVPostulacion">
                         <div class="panel-body fuente-pequeña">
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <h6><a href="../Empresa/Oferta"><strong>Gerente de Proyectos en Desarrollo de Software</strong></a></h6>
-                                    <p>Postuló el <strong>12/10/2014 13:55</strong></p>
+                                    <h6>
+                                        @*<a href="../Empresa/Oferta"><strong>Gerente de Proyectos en Desarrollo de Software</strong></a>*@
+                                        @Html.ActionLink(Model.alumnocv.CargoOfrecido, "Oferta", new { id = Model.alumnocv.IdOferta })
+                                    </h6>
+                                    <p>Postuló el <strong>@Model.alumnocv.FechaPostulacion</strong></p>
                                     <a href="#">Descargar CV </a>
                                 </div>
                             </div>
@@ -389,7 +397,7 @@
                                 </div>
                             </div>
                             <hr />
-                            <p>Fase Actual: <strong>Revisión de CV</strong></p>
+                            <p>Fase Actual: <strong>@Model.alumnocv.FaseOferta</strong></p>
                             <br />
                             <div class="row">
                                 <div class="col-xs-12"><span><button class="btn btn-default color-paleta2">Mover a</button></span></div>
@@ -420,18 +428,21 @@
 
                             <hr />
                             <p>Otras Postulaciones </p>
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <a href="#">Jefe de Proyectos en Desarrollo de Software</a>
-                                    <p>Postuló el 17/12/2013 09:15</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <a href="#">Analista Programador</a>
-                                    <p>Postuló el 03/07/207 16:30</p>
-                                </div>
-                            </div>
+
+                            @if (Model.alumnopostulaciones != null && Model.alumnopostulaciones.Count > 0)
+                            {
+
+                                foreach (var item in Model.alumnopostulaciones)
+                                {
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            @Html.ActionLink(item.CargoOfrecido,"Oferta", new { id = item.IdOferta })
+                                            
+                                            <p>Postuló el @item.FechaPostulacion</p>
+                                        </div>
+                                    </div>
+                                }
+                            }
                         </div>
                     </div>
                 </div>

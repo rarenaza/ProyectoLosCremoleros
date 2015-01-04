@@ -18,5 +18,9 @@ namespace UTP.PortalEmpleabilidad.Modelo
        public bool IncluirNombre4 { get; set; }
        public string Perfil { get; set; }
        public string[] ListaNombres { get; set; }
+       public int IdOferta { get; set; }
+	   public string FaseOferta { get; set; }
+	   public DateTime FechaPostulacion { get; set; }
+       public string CargoOfrecido { get; set; }
     }
 }

@@ -52,6 +52,7 @@
     <Compile Include="AlumnoExperiencia.cs" />
     <Compile Include="AlumnoExperienciaCargo.cs" />
     <Compile Include="AlumnoInformacionAdicional.cs" />
+    <Compile Include="AlumnoPostulaciones.cs" />
     <Compile Include="EmpresaListaEmpresa.cs" />
     <Compile Include="Auditoria.cs" />
     <Compile Include="EmpresaLocacion.cs" />
