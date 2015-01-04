@@ -116,7 +116,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 }
                 if (dsResultado.Tables[4].Rows.Count > 0)
                 {
-                    for (int n = 0; n <= dsResultado.Tables[3].Rows.Count - 1; n++)
+                    for (int n = 0; n <= dsResultado.Tables[4].Rows.Count - 1; n++)
                     {
                         AlumnoPostulaciones alumnopostulacionesdata = new AlumnoPostulaciones();
                         alumnopostulacionesdata.IdOferta = Funciones.ToInt(dsResultado.Tables[4].Rows[n]["IdOferta"]);
@@ -133,6 +133,7 @@ namespace UTP.PortalEmpleabilidad.Logica
             vistaofertapostulante.alumnoestudiocv = alumnoestudiocv;
             vistaofertapostulante.alumnoexperienciacv = alumnoexperienciacv;
             vistaofertapostulante.alumnoinformacionadicionalcv = alumnoinformacionadicionalcv;
+            vistaofertapostulante.alumnopostulacionesdata = alumnopostulaciones;
             return vistaofertapostulante;
         }
         public AlumnoCV ObtenerAlumnoCVPorIdAlumnoYIdCV(int IdAlumno, int IdCV)

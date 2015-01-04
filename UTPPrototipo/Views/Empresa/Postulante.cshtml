@@ -426,18 +426,19 @@
                             <hr />
                             <div><button class="btn btn-danger">Descartar Potulante</button></div>
 
-                            <hr />
-                            <p>Otras Postulaciones </p>
 
-                            @if (Model.alumnopostulaciones != null && Model.alumnopostulaciones.Count > 0)
+
+
+                            @if (Model.alumnopostulacionesdata != null && Model.alumnopostulacionesdata.Count > 0)
                             {
-
-                                foreach (var item in Model.alumnopostulaciones)
+                                <hr />
+                                <p>Otras Postulaciones </p>
+                                foreach (var item in Model.alumnopostulacionesdata)
                                 {
                                     <div class="row">
                                         <div class="col-sm-12">
-                                            @Html.ActionLink(item.CargoOfrecido,"Oferta", new { id = item.IdOferta })
-                                            
+                                            @Html.ActionLink(item.CargoOfrecido, "Oferta", new { id = item.IdOferta })
+
                                             <p>Postuló el @item.FechaPostulacion</p>
                                         </div>
                                     </div>
@@ -445,6 +446,7 @@
                             }
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
