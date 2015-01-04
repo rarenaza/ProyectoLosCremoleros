@@ -9,5 +9,6 @@ namespace UTP.PortalEmpleabilidad.Modelo
    public partial  class AlumnoEstudio
     {
        public bool Incluir { get; set; }
+       public int Cumple { get; set; }
     }
 }

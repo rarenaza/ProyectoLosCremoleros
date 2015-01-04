@@ -14,27 +14,108 @@ namespace UTP.PortalEmpleabilidad.Logica
     {
         ADAlumnoCV acv = new ADAlumnoCV();
 
-        public List<AlumnoCV> ObtenerAlumnoCVPorIdAlumno(int IdAlumno)
+        public VistaOfertaPostulante ObtenerPostulanteCV(int IdCV)
         {
-            List<AlumnoCV> listaAlumnoCV = new List<AlumnoCV>();
+            VistaOfertaPostulante vistaofertapostulante = new VistaOfertaPostulante();
 
-            DataTable dtResultado = acv.ObtenerAlumnoCVPorIdAlumno(IdAlumno);
+            DataSet dsResultado = acv.ObtenerPostulanteCV(IdCV);
+            Alumno alumnocv = new Alumno();
+            List<AlumnoEstudio> alumnoestudiocv =new List<AlumnoEstudio>();
+            List<AlumnoExperiencia> alumnoexperienciacv = new List<AlumnoExperiencia>();
+            List<AlumnoInformacionAdicional> alumnoinformacionadicionalcv = new List<AlumnoInformacionAdicional>();
 
-            if (dtResultado.Rows.Count > 0)
+            if (dsResultado.Tables.Count > 0)
             {
-                for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
+                if (dsResultado.Tables[0].Rows.Count > 0)
                 {
-                    AlumnoCV alumnocv = new AlumnoCV();
-                    alumnocv.IdCV = int.Parse(dtResultado.Rows[i]["IdCV"].ToString());
-                    alumnocv.NombreCV = dtResultado.Rows[i]["NombreCV"].ToString();
-                    alumnocv.IdPlantillaCV = int.Parse(dtResultado.Rows[i]["IdPlantillaCV"].ToString());
-                    listaAlumnoCV.Add(alumnocv);
+                    for(int n=0;n<=dsResultado.Tables[0].Rows.Count -1;n++){
+                        alumnocv.IdCV = Funciones.ToInt(dsResultado.Tables[0].Rows[n]["IdCV"]);
+                        alumnocv.Perfil = Funciones.ToString(dsResultado.Tables[0].Rows[n]["Perfil"]);
+                        alumnocv.CodAlumnoUTP = Funciones.ToString(dsResultado.Tables[0].Rows[n]["CodAlumnoUtp"]);
+                        alumnocv.Nombres = Funciones.ToString(dsResultado.Tables[0].Rows[n]["Nombres"]);
+                        alumnocv.Apellidos = Funciones.ToString(dsResultado.Tables[0].Rows[n]["Apellidos"]);
+                        alumnocv.TelefonoCelular = Funciones.ToString(dsResultado.Tables[0].Rows[n]["TelefonoCelular"]);
+                        alumnocv.CorreoElectronico1 = Funciones.ToString(dsResultado.Tables[0].Rows[n]["CorreoElectronico"]);
+                        alumnocv.CorreoElectronico2 = Funciones.ToString(dsResultado.Tables[0].Rows[n]["CorreoElectronico2"]);
+                        alumnocv.TelefonoFijoCasa = Funciones.ToString(dsResultado.Tables[0].Rows[n]["TelefonoFijoCasa"]);
+                        alumnocv.Direccion = Funciones.ToString(dsResultado.Tables[0].Rows[n]["Direccion"]);
+                        alumnocv.DireccionRegion = Funciones.ToString(dsResultado.Tables[0].Rows[n]["DireccionRegion"]);
+                        alumnocv.DireccionCiudad = Funciones.ToString(dsResultado.Tables[0].Rows[n]["DireccionCiudad"]);
+                        alumnocv.DireccionDistrito = Funciones.ToString(dsResultado.Tables[0].Rows[n]["DireccionDistrito"]);
+                        alumnocv.Foto = Funciones.ToBytes(dsResultado.Tables[0].Rows[n]["Foto"]);
+                        alumnocv.IdAlumno = Funciones.ToInt(dsResultado.Tables[0].Rows[n]["IdAlumno"]);
+                    }
+                }
+                if (dsResultado.Tables[1].Rows.Count > 0)
+                {
+                    for (int n = 0; n <= dsResultado.Tables[1].Rows.Count - 1; n++)
+                    {
+                        AlumnoEstudio alumnoestudio = new AlumnoEstudio();
+                        alumnoestudio.Institucion = Funciones.ToString(dsResultado.Tables[1].Rows[n]["Institucion"]);
+                        alumnoestudio.Estudio = Funciones.ToString(dsResultado.Tables[1].Rows[n]["Estudio"]);
+                        alumnoestudio.TipoDeEstudio = Funciones.ToString(dsResultado.Tables[1].Rows[n]["TipoDeEstudio"]);
+                        alumnoestudio.EstadoDelEstudio = Funciones.ToString(dsResultado.Tables[1].Rows[n]["EstadoDelEstudio"]);
+                        alumnoestudio.Observacion = Funciones.ToString(dsResultado.Tables[1].Rows[n]["Observacion"]);
+                        alumnoestudio.FechaInicioMes = Funciones.ToInt(dsResultado.Tables[1].Rows[n]["FechaInicioMes"]);
+                        alumnoestudio.FechaInicioAno = Funciones.ToInt(dsResultado.Tables[1].Rows[n]["FechaInicioAno"]);
+                        alumnoestudio.FechaFinMes = Funciones.ToInt(dsResultado.Tables[1].Rows[n]["FechaFinMes"]);
+                        alumnoestudio.FechaFinAno = Funciones.ToInt(dsResultado.Tables[1].Rows[n]["FechaFinAno"]);
+                        alumnoestudio.CicloEquivalente = Funciones.ToInt(dsResultado.Tables[1].Rows[n]["CicloEquivalente"]);
+                        alumnoestudio.Cumple = Funciones.ToInt(dsResultado.Tables[2].Rows[n]["Cumple"]);
+                        alumnoestudiocv.Add(alumnoestudio);
+                    }
+                }
+                if (dsResultado.Tables[2].Rows.Count > 0)
+                {
+                    for (int n = 0; n <= dsResultado.Tables[2].Rows.Count - 1; n++)
+                    {
+                        AlumnoExperiencia alumnoexperiencia = new AlumnoExperiencia();
+                        alumnoexperiencia.Empresa = Funciones.ToString(dsResultado.Tables[2].Rows[n]["Empresa"]);
+                        alumnoexperiencia.DescripcionEmpresa = Funciones.ToString(dsResultado.Tables[2].Rows[n]["DescripcionEmpresa"]);
+                        alumnoexperiencia.SectorEmpresarial = Funciones.ToString(dsResultado.Tables[2].Rows[n]["SectorEmpresarial"]);
+                        alumnoexperiencia.SectorEmpresarial2 = Funciones.ToString(dsResultado.Tables[2].Rows[n]["SectorEmpresarial2"]);
+                        alumnoexperiencia.SectorEmpresarial3 = Funciones.ToString(dsResultado.Tables[2].Rows[n]["SectorEmpresarial3"]);
+                        alumnoexperiencia.Pais = Funciones.ToString(dsResultado.Tables[2].Rows[n]["Pais"]);
+                        alumnoexperiencia.Ciudad = Funciones.ToString(dsResultado.Tables[2].Rows[n]["Ciudad"]);
+                        alumnoexperiencia.NombreCargo = Funciones.ToString(dsResultado.Tables[2].Rows[n]["NombreCargo"]);
+                        alumnoexperiencia.FechaInicioCargoMes = Funciones.ToInt(dsResultado.Tables[2].Rows[n]["FechaInicioCargoMes"]);
+                        alumnoexperiencia.FechaInicioCargoAno = Funciones.ToInt(dsResultado.Tables[2].Rows[n]["FechaInicioCargoAno"]);
+                        alumnoexperiencia.FechaFinCargoMes = Funciones.ToInt(dsResultado.Tables[2].Rows[n]["FechaFinCargoMes"]);
+                        alumnoexperiencia.FechaFinCargoAno = Funciones.ToInt(dsResultado.Tables[2].Rows[n]["FechaFinCargoAno"]);
+                        alumnoexperiencia.TipoCargo = Funciones.ToString(dsResultado.Tables[2].Rows[n]["TipoCargo"]);
+                        alumnoexperiencia.DescripcionCargo = Funciones.ToString(dsResultado.Tables[2].Rows[n]["DescripcionCargo"]);
+                        alumnoexperiencia.Cumple = Funciones.ToInt(dsResultado.Tables[2].Rows[n]["Cumple"]);
+                        alumnoexperienciacv.Add(alumnoexperiencia);
+                    }
+                }
+                if (dsResultado.Tables[3].Rows.Count > 0)
+                {
+                    for (int n = 0; n <= dsResultado.Tables[3].Rows.Count - 1; n++)
+                    {
+                        AlumnoInformacionAdicional alumnoinformacionadicional = new AlumnoInformacionAdicional();
+                        alumnoinformacionadicional.DesTipoConocimiento = Funciones.ToString(dsResultado.Tables[3].Rows[n]["TipoConocimiento"]);
+                        alumnoinformacionadicional.Conocimiento = Funciones.ToString(dsResultado.Tables[3].Rows[n]["Conocimiento"]);
+                        alumnoinformacionadicional.DesNivelConocimiento = Funciones.ToString(dsResultado.Tables[3].Rows[n]["NivelConocimiento"]);
+                        alumnoinformacionadicional.FechaConocimientoDesdeMes = Funciones.ToInt(dsResultado.Tables[3].Rows[n]["FechaConocimientoDesdeMes"]);
+                        alumnoinformacionadicional.FechaConocimientoDesdeAno = Funciones.ToInt(dsResultado.Tables[3].Rows[n]["FechaConocimientoDesdeAno"]);
+                        alumnoinformacionadicional.FechaConocimientoHastaMes = Funciones.ToInt(dsResultado.Tables[3].Rows[n]["FechaConocimientoHastaMes"]);
+                        alumnoinformacionadicional.FechaConocimientoHastaAno = Funciones.ToInt(dsResultado.Tables[3].Rows[n]["FechaConocimientoHastaAno"]);
+                        alumnoinformacionadicional.NomPais = Funciones.ToString(dsResultado.Tables[3].Rows[n]["Pais"]);
+                        alumnoinformacionadicional.Ciudad = Funciones.ToString(dsResultado.Tables[3].Rows[n]["Ciudad"]);
+                        alumnoinformacionadicional.InstituciónDeEstudio = Funciones.ToString(dsResultado.Tables[3].Rows[n]["InstituciónDeEstudio"]);
+                        alumnoinformacionadicional.AñosExperiencia = Funciones.ToInt(dsResultado.Tables[3].Rows[n]["AñosExperiencia"]);
+                        alumnoinformacionadicional.Cumple = Funciones.ToInt(dsResultado.Tables[3].Rows[n]["Cumple"]);
+                        
+                        alumnoinformacionadicionalcv.Add(alumnoinformacionadicional);
+                    }
                 }
 
-
             }
-
-            return listaAlumnoCV;
+            vistaofertapostulante.alumnocv = alumnocv;
+            vistaofertapostulante.alumnoestudiocv = alumnoestudiocv;
+            vistaofertapostulante.alumnoexperienciacv = alumnoexperienciacv;
+            vistaofertapostulante.alumnoinformacionadicionalcv = alumnoinformacionadicionalcv;
+            return vistaofertapostulante;
         }
         public AlumnoCV ObtenerAlumnoCVPorIdAlumnoYIdCV(int IdAlumno, int IdCV)
         {
@@ -64,7 +145,28 @@ namespace UTP.PortalEmpleabilidad.Logica
         }
 
 
+        public List<AlumnoCV> ObtenerAlumnoCVPorIdAlumno(int IdAlumno)
+        {
+            List<AlumnoCV> listaAlumnoCV = new List<AlumnoCV>();
 
+            DataTable dtResultado = acv.ObtenerAlumnoCVPorIdAlumno(IdAlumno);
+
+            if (dtResultado.Rows.Count > 0)
+            {
+                for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
+                {
+                    AlumnoCV alumnocv = new AlumnoCV();
+                    alumnocv.IdCV = int.Parse(dtResultado.Rows[i]["IdCV"].ToString());
+                    alumnocv.NombreCV = dtResultado.Rows[i]["NombreCV"].ToString();
+                    alumnocv.IdPlantillaCV = int.Parse(dtResultado.Rows[i]["IdPlantillaCV"].ToString());
+                    listaAlumnoCV.Add(alumnocv);
+                }
+
+
+            }
+
+            return listaAlumnoCV;
+        }
         public List<AlumnoCV> ObtenerAlumnoCVPorIdAlumno(AlumnoCV alumnocv)
         {
             List<AlumnoCV> listaAlumnoCV = new List<AlumnoCV>();

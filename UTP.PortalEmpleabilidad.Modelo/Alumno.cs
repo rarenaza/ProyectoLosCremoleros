@@ -9,6 +9,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
 {
     public partial class Alumno : Auditoria
     {
+        
         public int IdAlumno { get; set; }
         public string CodAlumnoUTP { get; set; }
         public string Usuario { get; set; }
@@ -39,6 +40,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public byte[] Foto { get; set; }
         public string EstadoAlumnoIdListaValor { get; set; }
         public string ArchivoMimeType { get; set; }
+        public int IdCV { get; set; }
      
     }
 }

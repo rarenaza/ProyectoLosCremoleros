@@ -17,11 +17,13 @@
                 @Html.FormatoFrecuencia(item.FechaPostulacion)
             </div>
             <div class="col-sm-3">
-                <a href="../Empresa/Oferta">@item.CargaOfrecido</a>
+                @*<a href="../Empresa/Oferta">@item.CargaOfrecido</a>*@
+                @Html.ActionLink(item.CargaOfrecido, "Oferta", "Empresa", new { id = item.IdOferta }, null)
             </div>
             <div class="col-sm-4">
-                <a href="../Empresa/Postulante"><strong>@item.AlumnoNombres @item.AlumnoApellidos</strong></a>
-            </div>
+                @*<a href="../Empresa/Postulante"><strong>@item.AlumnoNombres @item.AlumnoApellidos</strong></a>*@
+                <strong> @Html.ActionLink(item.AlumnoNombres + " " + item.AlumnoApellidos, "Postulante", "Empresa",  new { id = item.IdOfertaPostulante }, null)</strong>
+</div> 
             <div class="col-sm-2">
                 <div class="progress">
                     <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="@item.Cumplimiento" aria-valuemin="0" aria-valuemax="100" style="width:@item.Cumplimiento%;">

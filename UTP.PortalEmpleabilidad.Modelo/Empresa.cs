@@ -49,6 +49,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public List<EmpresaUsuario> Usuarios { get; set; }
 
         public string PaisIdListaValor { get; set; }
+        public string NombrePais { get; set; }
         public string NumeroEmpleadosIdListaValor { get; set; }
 
         [Required(ErrorMessage = "Este campo es obligatorio.")]      

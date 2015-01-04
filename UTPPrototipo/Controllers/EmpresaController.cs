@@ -22,6 +22,8 @@ namespace UTPPrototipo.Controllers
         LNEmpresa lnEmpresa = new LNEmpresa();
         LNOferta lnOferta = new LNOferta();
         LNOfertaEmpresa lnOfertaEmpresa = new LNOfertaEmpresa();
+        LNAlumnoCV lnAlumnocv = new LNAlumnoCV();
+
         LNGeneral lnGeneral = new LNGeneral();
         public string usuarioEmpresa = "82727128";
 
@@ -218,9 +220,19 @@ namespace UTPPrototipo.Controllers
             return PartialView("_DatosUsuario", panel);
         }
 
-        public ActionResult Postulante()
+        public ActionResult Postulante(int? id)
         {
-            return View();
+            if (id != null)
+            {
+            VistaOfertaPostulante vistaofertapostulante = lnAlumnocv.ObtenerPostulanteCV((int)id);
+            
+            return View(vistaofertapostulante);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Empresa");
+            }
+
         }
 
         public ActionResult Registrar()
@@ -284,7 +296,8 @@ namespace UTPPrototipo.Controllers
                 vista.AlumnoNombres = Convert.ToString(fila["AlumnoNombres"]);
                 vista.AlumnoApellidos = Convert.ToString(fila["AlumnoApellidos"]);
                 vista.Cumplimiento = Convert.ToInt32(fila["Cumplimiento"]);
-
+                vista.IdOfertaPostulante = Convert.ToInt32(fila["IdOfertaPostulante"]);
+                vista.IdOferta = Convert.ToInt32(fila["IdOferta"]);
                 lista.Add(vista);
             }
 
