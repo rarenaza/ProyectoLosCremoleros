@@ -15,14 +15,14 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string DesNivelConocimiento { get; set; }
         [Required(ErrorMessage = "Falta el conocimiento")]
         [StringLength(100, ErrorMessage = "Este campo sólo acepta máximo 100 caracteres.")]
-        [RegularExpression(@"[0-9A-Za-zÑñ]+", ErrorMessage = "Este campo sólo acepta letras y numeros.")]
+        [RegularExpression(@"[0-9A-Za-zÑñ. ]+", ErrorMessage = "Este campo sólo acepta letras y numeros.")]
         public string Conocimiento { get; set; }
-        [Required(ErrorMessage = "Falta el mes de inicio")]
-        [StringLength(2, MinimumLength = 1, ErrorMessage = "Este campo sólo maximo 2 digitos.")]
+        //[Required(ErrorMessage = "Falta el mes de inicio")]
+        //[StringLength(2, MinimumLength = 1, ErrorMessage = "Este campo sólo maximo 2 digitos.")]
         public int FechaConocimientoDesdeMes { get; set; }
-        [Required(ErrorMessage = "Falta el año de inicio")]
-        [StringLength(4, MinimumLength = 4, ErrorMessage = "Este campo sólo acepta 4 digitos.")]
-        [RegularExpression(@"[0-9]+", ErrorMessage = "Este campo sólo acepta años con 4 numeros.")]
+        //[Required(ErrorMessage = "Falta el año de inicio")]
+        //[StringLength(4, MinimumLength = 4, ErrorMessage = "Este campo sólo acepta 4 digitos.")]
+        //[RegularExpression(@"[0-9]+", ErrorMessage = "Este campo sólo acepta años con 4 numeros.")]
         public int? FechaConocimientoDesdeAno { get; set; }
         public int FechaConocimientoHastaMes { get; set; }
         public int? FechaConocimientoHastaAno { get; set; }
@@ -35,9 +35,9 @@ namespace UTP.PortalEmpleabilidad.Modelo
         [StringLength(100, ErrorMessage = "Este campo sólo acepta máximo 100 caracteres.")]
         [RegularExpression(@"[0-9A-Za-zÑñ,. ]+", ErrorMessage = "Este campo sólo acepta letras y numeros.")]
         public string InstituciónDeEstudio { get; set; }
-        [Required(ErrorMessage = "Falta los años de experiencia")]
-        [RegularExpression(@"[0-9]+", ErrorMessage = "Este campo sólo acepta numeros.")]
-        [StringLength(2, MinimumLength = 1, ErrorMessage = "Este campo sólo maximo 2 digitos.")]
+        ////[Required(ErrorMessage = "Falta los años de experiencia")]
+        ////[RegularExpression(@"[0-9]+", ErrorMessage = "Este campo sólo acepta numeros.")]
+        ////[StringLength(2, MinimumLength = 1, ErrorMessage = "Este campo sólo maximo 2 digitos.")]
         public int? AñosExperiencia { get; set; }
         public bool Incluir { get; set; }
 

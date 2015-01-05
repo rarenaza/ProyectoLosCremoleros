@@ -110,32 +110,3 @@
         </div>
     </div>
 </div>
-@*<script>
-        $("#IdRegistrarInformacionAdicional").click(function () {
-            var Id = $("#HIIdCV").val();
-            var vistacv = {
-                IdAlumno: $('#IdAlumno').val(),
-                IdCV: Id
-            };
-            var conocimiento = {
-                IdAlumno: $('#IdAlumno').val(),
-                TipoConocimientoIdListaValor: $('#IdTipoConocimiento').val(),
-                Conocimiento: $('#txtConocimiento').val(),
-                NivelConocimientoIdListaValor: $('#IdNivelConocimiento').val(),
-                FechaConocimientoDesdeMes: $('#IdMesInicio').val(),
-                FechaConocimientoDesdeAno: $('#txtAnioInicio').val(),
-                FechaConocimientoHastaMes: $('#IdMesFin').val(),
-                FechaConocimientoHastaAno: $('#txtAnioFin').val(),
-                PaisIdListaValor: $('#IdPais').val(),
-                Ciudad: $('#txtCiudad').val(),
-                InstituciónDeEstudio: $('#txtInstitucion').val(),
-                AñosExperiencia: $('#IdAnioExperiencia').val()
-            };
-
-            CargarPOST(null, "/Alumno/RegistrarAlumnoInformacionAdicional", conocimiento);
-            CargarPOST("mi-cv-informacion-adicional", "/Alumno/AlumnoInformacionAdicionalCV", vistacv);
-        });
-        $("#idCloseConocimiento").click(function () {
-            $("#Modal-otro-conocimiento").dialog("close");
-        });
-    </script>*@
