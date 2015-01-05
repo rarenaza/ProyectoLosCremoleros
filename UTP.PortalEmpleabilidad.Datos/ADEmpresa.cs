@@ -16,6 +16,36 @@ namespace UTP.PortalEmpleabilidad.Datos
         ADConexion cnn = new ADConexion();
         SqlCommand cmd = new SqlCommand();
 
+
+
+        public DataTable ObtenerListaValor(int idLista)
+        {
+            DataTable dtResultado = new DataTable();
+
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Lista_ListaValor";
+                cmd.Parameters.Add(new SqlParameter("@IdLista", idLista));
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                dtResultado = new DataTable();
+
+                da.Fill(dtResultado);
+
+                conexion.Close();
+
+            }
+
+            return dtResultado;
+        }
+
+
         public void Insertar(VistaRegistroEmpresa empresa)
         {
             using (SqlConnection conexion = new SqlConnection(cadenaConexion))

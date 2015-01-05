@@ -60,10 +60,12 @@
                             <div class="panel-body fuente-pequeña">
                                 <div class="input-group">
                                     <span class="input-group-addon">(*) Cargo</span>
-                                    @*<input id="CargoOfrecido" name="CargoOfrecido" type="text" class="form-control" placeholder="Nombre del cargo a publicar">*@
-                                    @*@Html.Raw(@Html.EditorFor(m => m.CargoOfrecido, new { htmlAttributes = new { @placeholder = "Nombre del cargo a publicar 2" } }).ToString().Replace("text-box single-line", "form-control"))*@
-                                    @Html.TextBoxFor(m => m.CargoOfrecido, new { @class = "form-control", @placeholder = "Nombre del cargo a publicar" })
+                                   
+                                    @Html.TextBoxFor(m => m.CargoOfrecido, new { @class = "form-control",@id = "Cargo", @placeholder = "Nombre del cargo a publicar" })
                                     
+                                    
+
+
                                     @*<input class="text-box single-line" id="CargoOfrecido" name="CargoOfrecido" type="text" value="">*@
                                     @*@Html.EditorFor(model => model.CargoOfrecido, new { @class = "form-control" })*@
 
@@ -298,18 +300,10 @@
 
 </div>
 <script>
-    $(document).ready(function () {
-        $("#divFinalCabeceraEmpresa").removeClass("color-paleta1 color-paleta3 color-paleta4 color-paleta5").addClass("color-paleta2");
 
-        //$('#FechaFinRecepcionCV').datepicker({
-        //    dateFormat: "dd/mm/yy",
-        //    showStatus: true,
-        //    showWeeks: true,
-        //    currentText: 'Now',
-        //    autoSize: true,
-        //    gotoCurrent: true,
-        //    showAnim: 'blind',
-        //    highlightWeek: true
-        //});
+    $(document).ready(function () {
+        $("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta4 color-paleta5").addClass("color-paleta3");
+        @*AutoCompleteText('#Cargo', '@Url.Action("ListarCargo", "Empresa")', '#Ubicacion');*@
     });
+        
 </script>

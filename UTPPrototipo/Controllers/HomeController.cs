@@ -196,13 +196,15 @@ namespace UTPPrototipo.Controllers
 
         public FileResult Imagen_Diremp(int id)
         {
-            const string alternativePicturePath = @"/Content/Images/question_mark.jpg";
+            const string alternativePicturePath = @"/img/sinimagen.jpg";
+            //const string alternativePicturePath = @"/Content/Images/question_mark.jpg";
 
             List<Contenido> contenido = new List<Contenido>();
             string x = "2";
             contenido = ln.Contenido_BuscarNoticiasEventosOtros(x);
 
             Contenido producto = contenido.Where(k => k.IdContenido == id).FirstOrDefault();
+
 
             MemoryStream stream;
 

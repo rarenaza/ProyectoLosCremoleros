@@ -34,6 +34,25 @@ namespace UTPPrototipo.Controllers
             return View();
         }
 
+        //[HttpPost]
+        //public JsonResult ListarCargo(string query)
+        //{
+
+        //    var resultado = lnEmpresa.ObtenerListaValor(Constantes.IDLISTA_TIPO_CARGO);
+        //    var result = resultado.Where(s => s.Valor.ToLower().StartsWith(query.ToLower())).Select(c => new { Value = c.IdListaValor, Label = c.Valor }).ToList();
+        //    return Json(result, JsonRequestBehavior.AllowGet);
+        //}
+
+        public JsonResult ListarTipoEstudio(string query)
+        {
+
+            var resultado = lnEmpresa.ObtenerListaValor(Constantes.IDLISTA_TIPO_DE_ESTUDIO);
+            var result = resultado.Where(s => s.Valor.ToLower().StartsWith(query.ToLower())).Select(c => new { Value = c.IdListaValor, Label = c.Valor }).ToList();
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+
+
         [VerificarSesion]        
         public ActionResult Publicacion(string filtroBusqueda)
         {

@@ -14,6 +14,33 @@ namespace UTP.PortalEmpleabilidad.Logica
     {
         ADEmpresa adEmpresa = new ADEmpresa();
 
+ 
+        public List<ListaValor> ObtenerListaValor(int idLista)
+        {
+            List<ListaValor> lista = new List<ListaValor>();
+
+            DataTable dtResultado = adEmpresa.ObtenerListaValor(idLista);
+
+            foreach (DataRow fila in dtResultado.Rows)
+            {
+                ListaValor item = new ListaValor();
+                item.IdLista = Convert.ToInt32(fila["IDLista"]);
+                item.IdListaValor = Convert.ToString(fila["IDListaValor"]);
+                item.IdListaValorPadre = Convert.ToString(fila["IDListaValorPadre"]); ;
+                item.Valor = Convert.ToString(fila["Valor"]); ;
+                item.DescripcionValor = Convert.ToString(fila["DescripcionValor"]); ;
+                item.Icono = Convert.ToString(fila["Icono"]); ;
+                item.Peso = Convert.ToInt32(fila["Peso"] == DBNull.Value ? 0 : fila["Peso"]); ;
+                item.ValorUTP = Convert.ToString(fila["ValorUTP"]); ;
+                item.EstadoValor = Convert.ToString(fila["EstadoValor"]); ;
+
+                lista.Add(item);
+            }
+
+            return lista;
+        }
+
+
         public VistaPanelCabecera ObtenerPanelCabecera(string usuarioEmpresa)
         {
             VistaPanelCabecera panel = new VistaPanelCabecera();
