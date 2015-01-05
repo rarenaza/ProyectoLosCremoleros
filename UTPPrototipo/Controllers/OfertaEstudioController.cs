@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using UTP.PortalEmpleabilidad.Modelo;
 using UTP.PortalEmpleabilidad.Logica;
 using UTPPrototipo.Models.ViewModels.Cuenta;
+using UTP.PortalEmpleabilidad.Modelo.Vistas.Ofertas;
 
 namespace UTPPrototipo.Controllers
 {
@@ -130,6 +131,14 @@ namespace UTPPrototipo.Controllers
             ViewBag.IdOferta = ofertaEstudio.IdOferta;
 
             return PartialView("_OfertaEstudio", lista);                     
+        }
+
+        [HttpPost]
+        public JsonResult ListarEstudio(string query)
+        {
+            var resultado = lnGeneral.ObtenerListaValor(Constantes.IDLISTA_DE_CARRERA);
+            var result = resultado.Where(s => s.Valor.ToLower().StartsWith(query.ToLower())).Select(c => new { Value = c.IdListaValor, Label = c.Valor }).ToList();
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
     }
 }
