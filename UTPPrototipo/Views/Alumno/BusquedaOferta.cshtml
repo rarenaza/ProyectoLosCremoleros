@@ -138,6 +138,7 @@
         AutoCompleteText('#IdEstudio', '@Url.Action("ListarEstudio", "Alumno")', '#IdEstudio');     
     });
     $('#buscar').click(function () {
+        debugger;
         $("#TipoBusqueda").attr('value', 1);
         var oferta = {
             PalabraClave: $('#PalabraClave').val(),

@@ -22,5 +22,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
 	   public string FaseOferta { get; set; }
 	   public DateTime FechaPostulacion { get; set; }
        public string CargoOfrecido { get; set; }
+
+       public string FaseOfertaDescripcion { get; set; }
     }
 }

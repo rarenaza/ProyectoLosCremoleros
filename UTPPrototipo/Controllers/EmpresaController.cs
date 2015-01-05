@@ -226,13 +226,19 @@ namespace UTPPrototipo.Controllers
             {
             VistaOfertaPostulante vistaofertapostulante = lnAlumnocv.ObtenerPostulanteCV((int)id);
             
+            //Se cargan las fases de la oferta.
+            LNOferta lnOferta = new LNOferta();
+            List<OfertaFase> listaFasesActivas = lnOferta.Obtener_OfertaFaseActivas(vistaofertapostulante.alumnocv.IdOferta);
+            ViewBag.IdOfertaFase = new SelectList(listaFasesActivas, "IdListaValor", "FaseOferta", vistaofertapostulante.alumnocv.FaseOferta);
+            
+            ViewBag.IdOfertaPostulante = Convert.ToInt32(id);
+
             return View(vistaofertapostulante);
             }
             else
             {
                 return RedirectToAction("Index", "Empresa");
             }
-
         }
 
         public ActionResult Registrar()

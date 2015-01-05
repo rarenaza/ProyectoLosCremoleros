@@ -4,6 +4,8 @@
     ViewBag.Title = "Postulante";
 }
 
+<input id="hddIdOfertaPostulante" type="hidden" value="@ViewBag.IdOfertaPostulante" />
+
 <div class="container" style="margin-top:2px;">
     @{Html.RenderAction("VistaCabecera", "Empresa");}
     <div class="row">
@@ -61,7 +63,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="panel-group" id="mi-cv-perfil" role="tablist" aria-multiselectable="true">
                 <div class="panel panel-default">
                     <div class="panel-heading" role="tab" id="headingCVPerfil" style="padding: 2px 2px 2px 6px;">
@@ -127,7 +129,7 @@
                                                     @item.EstadoDelEstudio
                                                 </div>
                                                 <div class="col-sm-1">
-                                                    @if (item.CicloEquivalente>0)
+                                                    @if (item.CicloEquivalente > 0)
                                                     {
                                                         <span>Cicl.@item.CicloEquivalente</span>
                                                     }
@@ -173,14 +175,14 @@
                     </div>
                     <div id="collapseCVExperienciaLaboral" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingCVExperienciaLaboral">
                         <div class="panel-body fuente-pequeña">
-                            
+
                             @if (Model.alumnoexperienciacv != null && Model.alumnoexperienciacv.Count > 0)
                             {
                                 string EmpresaExperiencia = "";
                                 foreach (var item in Model.alumnoexperienciacv)
                                 {
-                                    
-                                    
+
+
                                     <div class="row">
                                         <div class="col-sm-11">
                                             @if (item.Empresa != EmpresaExperiencia)
@@ -231,7 +233,7 @@
                                                     @item.Ciudad-@item.Pais
                                                 </div>
                                             </div>
-                                            
+
                                             <div class="row">
                                                 <div class="col-sm-3">
                                                 </div>
@@ -254,11 +256,11 @@
                                             }
                                         </div>
                                     </div>
-                                    
+
                                 }
                             }
 
-                            
+
                             <div class="row">
                                 <div class="panel-group" id="datos-mas-experiencia" role="tablist" aria-multiselectable="true">
                                     <div class="panel " style="border-width:0px;">
@@ -357,7 +359,7 @@
                     </div>
                 </div>
             </div>
-            
+
         </div>
         <div class="col-md-3">
 
@@ -397,37 +399,28 @@
                                 </div>
                             </div>
                             <hr />
-                            <p>Fase Actual: <strong>@Model.alumnocv.FaseOferta</strong></p>
+                            <p>Fase Actual: <strong><label id="lblFaseOfertaDescripcion">@Model.alumnocv.FaseOfertaDescripcion</label></strong></p>
                             <br />
                             <div class="row">
-                                <div class="col-xs-12"><span><button class="btn btn-default color-paleta2">Mover a</button></span></div>
+                                <div class="col-xs-12">
+                                    <span>
+                                        <button id="btnMoverPostulante" class="btn btn-default color-paleta2">Mover a</button>
+                                    </span>
+                                </div>
                             </div><br />
                             <div class="row">
                                 <div class="col-sm-12">
                                     <div class="input-group">
                                         <span class="input-group-addon" style="width:auto;">Fase</span>
-                                        <select class="form-control">
-                                            <option selected value="">-- Seleccionar --</option>
-                                            <option>CVs revisados</option>
-                                            <option>Primera Entrevista</option>
-                                            <option>Evaluaciones Psicológicas/Psicotécnicas</option>
-                                            <option>Examen Médico</option>
-                                            <option>Dinámica Grupal</option>
-                                            <option>Entrevista Final</option>
-                                            <option>Contratación</option>
-                                            <option>Proceso Finalizado</option>
-                                        </select>
+                                        @Html.DropDownList("IdOfertaFase", null, "< Mover postulantes a fase >", htmlAttributes: new { @class = "form-control" })
                                     </div>
                                 </div>
                             </div>
 
-
-
                             <hr />
-                            <div><button class="btn btn-danger">Descartar Potulante</button></div>
-
-
-
+                            <div>
+                                <button id="btnDescartarPostulante" class="btn btn-danger">Descartar Potulante</button>
+                            </div>
 
                             @if (Model.alumnopostulacionesdata != null && Model.alumnopostulacionesdata.Count > 0)
                             {
@@ -452,9 +445,54 @@
         </div>
     </div>
 </div>
-                    <script>
-                        $(document).ready(function () {
-                            $("#divFinalCabeceraEmpresa").removeClass("color-paleta1 color-paleta3 color-paleta4 color-paleta5").addClass("color-paleta2");
-                        });
-                    </script>
+<script>
+    $(document).ready(function () {
+        $("#divFinalCabeceraEmpresa").removeClass("color-paleta1 color-paleta3 color-paleta4 color-paleta5").addClass("color-paleta2");
+
+
+        $('#btnMoverPostulante').on('click', function () {
+            //debugger;
+            console.log('click en el boton');
+
+            //Se obtiene el valor del combo.
+            var faseOferta = $('#IdOfertaFase').val();
+            var idOfertaPostulante = $('#hddIdOfertaPostulante').val();
+
+            if (faseOferta == '')
+            {
+                alert('Debe seleccionar una fase');
+                return false;
+            }
+
+            //Se llama al controlador pasando los parámetros para ordenar las columnas.
+            var url = '@Url.Action("CambiarEstadoPostulante", "Oferta")' + '?idOfertaPostulante=' + idOfertaPostulante + '&faseOferta=' + faseOferta;
+
+            $.get(url, function (data) {
+                alert('El estado se actualizó con éxito.');
+                $('#lblFaseOfertaDescripcion').text(data); //Se actualiza la descripción de la fase.
+            });
+
+        });
+
+        $('#btnDescartarPostulante').on('click', function () {
+            //debugger;
+            console.log('click en el boton');
+
+            //Se obtiene el valor del combo.
+            var faseOferta = 'OFFAFI'; //Fase de la oferta FINALIZADA: Proceso Finalizado
+            var idOfertaPostulante = $('#hddIdOfertaPostulante').val();
+
+            //Se llama al controlador pasando los parámetros para ordenar las columnas.
+            var url = '@Url.Action("CambiarEstadoPostulante", "Oferta")' + '?idOfertaPostulante=' + idOfertaPostulante + '&faseOferta=' + faseOferta;
+
+            $.get(url, function (data) {
+                //alert(data);
+                alert('El postulante ha sido descartado con éxito.');
+                $('#lblFaseOfertaDescripcion').text(data); //Se actualiza la descripción de la fase.
+                $('#IdOfertaFase').val('OFFAFI');
+            });
+
+        });
+    });
+</script>
 
