@@ -49,6 +49,9 @@ namespace UTP.PortalEmpleabilidad.Logica
 			            alumnocv.FaseOferta = Funciones.ToString(dsResultado.Tables[0].Rows[n]["FaseOferta"]);
                         alumnocv.FechaPostulacion = Funciones.ToDateTime(dsResultado.Tables[0].Rows[n]["FechaPostulacion"]);
                         alumnocv.CargoOfrecido = Funciones.ToString(dsResultado.Tables[0].Rows[n]["CargoOfrecido"]);
+                        alumnocv.FaseOfertaDescripcion = Funciones.ToString(dsResultado.Tables[0].Rows[n]["FaseOfertaDescripcion"]);
+
+                        break;
                     }
                 }
                 if (dsResultado.Tables[1].Rows.Count > 0)

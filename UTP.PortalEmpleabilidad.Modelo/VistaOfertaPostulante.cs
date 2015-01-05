@@ -13,6 +13,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public IList<AlumnoExperiencia> alumnoexperienciacv { get; set; }
         public IList<AlumnoInformacionAdicional> alumnoinformacionadicionalcv { get; set; }
         public IList<AlumnoPostulaciones> alumnopostulacionesdata { get; set; }
+        public int IdOfertaFase { get; set; }
 
     }
 }
