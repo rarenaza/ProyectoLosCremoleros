@@ -785,19 +785,22 @@ namespace UTPPrototipo.Controllers
       
         public FileResult Imagen(int id)
         {
-            const string alternativePicturePath = @"/Content/Images/question_mark.jpg";
+            const string alternativePicturePath = @"/img/sinimagen.jpg";
 
             List<Contenido> lista = new List<Contenido>();
 
-            DataTable dtResulatdo = ln.Contenido_Mostrar_imagen();
+            DataTable dtResultado = ln.Contenido_Mostrar_imagen();
 
-            for (int i = 0; i <= dtResulatdo.Rows.Count - 1; i++)
+            for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
             {
                 Contenido contenido = new Contenido();
-                contenido.IdContenido = Convert.ToInt32(dtResulatdo.Rows[i]["IdContenido"]);
-                contenido.Titulo = dtResulatdo.Rows[i]["Titulo"].ToString();
-                contenido.Imagen = (byte[])dtResulatdo.Rows[i]["Imagen"];
+                contenido.IdContenido = Convert.ToInt32(dtResultado.Rows[i]["IdContenido"]);
+                contenido.Titulo = dtResultado.Rows[i]["Titulo"].ToString();
 
+                //06ENE Aldo Chocos: Validación de imagen null.
+                if (dtResultado.Rows[i]["Imagen"] != null && dtResultado.Rows[i]["Imagen"] != DBNull.Value)
+                    contenido.Imagen = (byte[])dtResultado.Rows[i]["Imagen"];
+              
                 //contenido.Imagen = Encoding.UTF8.GetBytes(dtResulatdo.Rows[i]["Imagen"].ToString());
 
                 lista.Add(contenido);
@@ -806,8 +809,11 @@ namespace UTPPrototipo.Controllers
             Contenido producto = lista.Where(k => k.IdContenido== id).FirstOrDefault();
 
             MemoryStream stream;
-
-            if (producto != null && producto.Imagen != null)
+            if (producto.Titulo == "ABC")
+            {
+                int a = 0;
+            }
+            if (producto != null && producto.Imagen != null && producto.Imagen.Length > 1)
             {
                 stream = new MemoryStream(producto.Imagen);
             }

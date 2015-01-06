@@ -17,12 +17,12 @@ namespace UTP.PortalEmpleabilidad.Modelo
 
         [Required(ErrorMessage = "Falta la empresa")]
         [StringLength(100, ErrorMessage = "Este campo sólo acepta máximo 100 caracteres.")]
-        [RegularExpression(@"[0-9A-Za-zÑñ]+", ErrorMessage = "Este campo sólo acepta letras y numeros.")]
+        [RegularExpression(@"[0-9A-ZÀ-ÿa-zÑñ ]+", ErrorMessage = "Este campo sólo acepta letras y numeros2.")]           
         public string Empresa { get; set; }
         
         [Required(ErrorMessage = "Falta la descripcion de la empresa")]
         [StringLength(500, ErrorMessage = "Este campo sólo acepta máximo 500 caracteres.")]
-        [RegularExpression(@"[0-9A-Za-zÑñ]+", ErrorMessage = "Este campo sólo acepta letras y numeros.")]
+        [RegularExpression(@"[0-9A-ZÀ-ÿa-zÑñ ,.]+", ErrorMessage = "Este campo sólo acepta letras y numeros.")]
         public string DescripcionEmpresa { get; set; }
         
         public int IdEmpresa { get; set; }
@@ -37,14 +37,14 @@ namespace UTP.PortalEmpleabilidad.Modelo
         
         [Required(ErrorMessage = "Falta la ciudad")]
         [StringLength(100, ErrorMessage = "Este campo sólo acepta máximo 100 caracteres.")]
-        [RegularExpression(@"[A-Za-zÑñ]+", ErrorMessage = "Este campo sólo acepta letras.")]
+        [RegularExpression(@"[A-ZÀ-ÿa-zÑñ ]+", ErrorMessage = "Este campo sólo acepta letras.")]
         public string Ciudad { get; set; }
         public string CreadoPor { get; set; }
         public string NombreComercial { get; set; }
         
         [Required(ErrorMessage = "Falta el cargo")]
         [StringLength(100, ErrorMessage = "Este campo sólo acepta máximo 100 caracteres.")]
-        [RegularExpression(@"[A-Za-zÑñ]+", ErrorMessage = "Este campo sólo acepta letras.")]
+        [RegularExpression(@"[A-ZÀ-ÿa-zÑñ ,.]+", ErrorMessage = "Este campo sólo acepta letras.")]
         public string NombreCargo { get; set; }
         
         [Required(ErrorMessage = "Falta el mes de inicio del cargo")]
@@ -66,7 +66,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         ////[Required(ErrorMessage = "Falta la descripcion del cargo")]
 
         [StringLength(500, ErrorMessage = "Este campo sólo acepta máximo 500 caracteres.")]
-        [RegularExpression(@"[0-9A-Za-zÑñ]+", ErrorMessage = "Este campo sólo acepta letras y números.")]
+        [RegularExpression(@"[0-9A-ZÀ-ÿa-zÑñ ,.\r?\n]+", ErrorMessage = "Este campo sólo acepta letras y números.")]
         public string DescripcionCargo { get; set; }
         
         public int IdCV { get; set; }

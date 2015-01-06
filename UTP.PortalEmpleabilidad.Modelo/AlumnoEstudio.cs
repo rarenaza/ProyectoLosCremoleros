@@ -24,11 +24,11 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public int IdAlumno { get; set; }
         [Required(ErrorMessage = "Falta la institución de estudio")]
         [StringLength(100, ErrorMessage = "Este campo sólo acepta máximo 100 caracteres.")]
-        [RegularExpression(@"[0-9A-Za-zÑñ,. ]+", ErrorMessage = "Este campo sólo acepta letras y numeros.")]
+        [RegularExpression(@"[0-9A-ZÀ-ÿa-zÑñ,. ]+", ErrorMessage = "Este campo sólo acepta letras y numeros.")]
         public string Institucion { get; set; }
         [Required(ErrorMessage = "Falta el estudio")]
         [StringLength(100, ErrorMessage = "Este campo sólo acepta máximo 100 caracteres.")]
-        [RegularExpression(@"[0-9A-Za-zÑñ,. ]+", ErrorMessage = "Este campo sólo acepta letras y numeros.")]
+        [RegularExpression(@"[0-9A-ZÀ-ÿa-zÑñ,. ]+", ErrorMessage = "Este campo sólo acepta letras y numeros.")]
         public string Estudio { get; set; }
         [Required(ErrorMessage = "Falta el tipo estudio")]
         public string TipoDeEstudio { get; set; }

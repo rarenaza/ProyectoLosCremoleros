@@ -15,7 +15,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string DesNivelConocimiento { get; set; }
         [Required(ErrorMessage = "Falta el conocimiento")]
         [StringLength(100, ErrorMessage = "Este campo sólo acepta máximo 100 caracteres.")]
-        [RegularExpression(@"[0-9A-Za-zÑñ. ]+", ErrorMessage = "Este campo sólo acepta letras y numeros.")]
+        [RegularExpression(@"[0-9A-ZÀ-ÿa-zÑñ., ]+", ErrorMessage = "Este campo sólo acepta letras y numeros.")]
         public string Conocimiento { get; set; }
         //[Required(ErrorMessage = "Falta el mes de inicio")]
         //[StringLength(2, MinimumLength = 1, ErrorMessage = "Este campo sólo maximo 2 digitos.")]
@@ -29,11 +29,11 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string NomPais { get; set; }
         [Required(ErrorMessage = "Falta la ciudad")]
         [StringLength(100, ErrorMessage = "Este campo sólo acepta máximo 100 caracteres.")]
-        [RegularExpression(@"[A-Za-zÑñ]+", ErrorMessage = "Este campo sólo acepta letras.")]
+        [RegularExpression(@"[A-ZÀ-ÿa-zÑñ ,.]+", ErrorMessage = "Este campo sólo acepta letras.")]
         public string Ciudad { get; set; }
         [Required(ErrorMessage = "Falta la institución de estudio")]
         [StringLength(100, ErrorMessage = "Este campo sólo acepta máximo 100 caracteres.")]
-        [RegularExpression(@"[0-9A-Za-zÑñ,. ]+", ErrorMessage = "Este campo sólo acepta letras y numeros.")]
+        [RegularExpression(@"[0-9A-ZÀ-ÿa-zÑñ,. ]+", ErrorMessage = "Este campo sólo acepta letras y numeros.")]
         public string InstituciónDeEstudio { get; set; }
         ////[Required(ErrorMessage = "Falta los años de experiencia")]
         ////[RegularExpression(@"[0-9]+", ErrorMessage = "Este campo sólo acepta numeros.")]
@@ -45,11 +45,11 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public List<ListaValor> ListaPais { get; set; }
         public List<ListaValor> ListaNivelConocimiento { get; set; }
         public int IdAlumno { get; set; }
-       [Required(ErrorMessage = "Falta el tipo de conocimiento")]
+        [Required(ErrorMessage = "Falta el tipo de conocimiento")]
         public string TipoConocimientoIdListaValor { get; set; }
-       [Required(ErrorMessage = "Falta el nivel de conocimiento")]
+        [Required(ErrorMessage = "Falta el nivel de conocimiento")]
         public string NivelConocimientoIdListaValor { get; set; }
-       [Required(ErrorMessage = "Falta el país")]
+        [Required(ErrorMessage = "Falta el país")]
         public string PaisIdListaValor { get; set; }
 
         //public string CreadoPor { get; set; }

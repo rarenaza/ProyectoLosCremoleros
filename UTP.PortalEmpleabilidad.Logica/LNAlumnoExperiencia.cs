@@ -16,6 +16,9 @@ namespace UTP.PortalEmpleabilidad.Logica
 
         public void Registrar(AlumnoExperiencia alumnoexperiencia)
         {
+            if (alumnoexperiencia.SectorEmpresarial2 == null) alumnoexperiencia.SectorEmpresarial2 = "";
+            if (alumnoexperiencia.SectorEmpresarial3 == null) alumnoexperiencia.SectorEmpresarial3 = "";
+
             if (alumnoexperiencia.IdEmpresa == 0)
             {
                 Empresa empresa = new Empresa();
