@@ -26,7 +26,10 @@
                 <div class="input-group fuente-pequeña">
                     <span class="input-group-addon">Estudio</span>
                     @*<input type="text" name="Estudio" class="form-control" placeholder="Nombre del estudio">*@
-                    @Html.TextBoxFor(m => m.Estudio, new { @class = "form-control", @placeholder = "Nombre del estudio" })
+          
+                    @Html.TextBoxFor(m => m.Estudio, new { @class = "form-control", @id = "estudio", @placeholder = "Nombre del estudio" })
+
+                    
 
                 </div>
                 @Html.ValidationMessageFor(m => m.Estudio, "", new { @class = "text-danger" })
@@ -66,9 +69,22 @@
 </div>
 
 
-<script>
+@*<script>
     $(document).ready(function () {
         AutoCompleteText('#Estudios', '@Url.Action("ListarEstudio", "OfertaEstudio")', '#Estudio');
     });
+
+
+</script>*@
+
+
+<script>
+
+    $(document).ready(function () {
+        $("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta4 color-paleta5").addClass("color-paleta3");
+        AutoCompleteText('#estudio', '@Url.Action("ListarTipoEstudio", "Empresa")', '#estudio');
+    });
+
+
 
 </script>
