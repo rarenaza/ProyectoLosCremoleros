@@ -40,7 +40,7 @@
 
 <!-- Modal -->
 <div class="modal" id="Modal-experiencia-laboral" tabindex="-1" role="dialog" aria-labelledby="ExperienciaLaboral" aria-hidden="true">
-    @using (Ajax.BeginForm("_RegistrarAlumnoExperiencia", "Alumno", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "mi-cv-experiencia-laboral", OnComplete = "CerrarModal" }))
+    @using (Ajax.BeginForm("_RegistrarAlumnoExperiencia", "Alumno", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "mi-cv-experiencia-laboral", OnComplete = "CerrarModal", OnFailure = "mostrarError", OnBegin = "verificarVariables" }))
     {
         @Html.AntiForgeryToken()
 
@@ -100,6 +100,17 @@
 
     function CerrarModal() {
         $('.modal.in').modal('hide');
+    }
+
+    function verificarVariables(ini)
+    {
+        console.log('Verificando variables...');
+        console.log(ini);
+    }
+
+    function mostrarError(err)
+    {
+        console.log(err);
     }
     
 </script>

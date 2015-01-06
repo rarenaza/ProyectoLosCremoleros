@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using UTP.PortalEmpleabilidad.Modelo;
 using UTP.PortalEmpleabilidad.Logica;
 using UTPPrototipo.Models.ViewModels.Cuenta;
+using UTP.PortalEmpleabilidad.Modelo.Vistas.Empresa;
 
 namespace UTPPrototipo.Controllers
 {
@@ -60,7 +61,93 @@ namespace UTPPrototipo.Controllers
 
             ViewBag.IdOferta = mensaje.IdOferta;
 
-            return PartialView("_ObtenerMensajes", lista);                     
+            return PartialView("_ObtenerMensajes", lista);
         }
+
+        #region Mensajes formato nuevo
+
+        [HttpGet]
+        public PartialViewResult _Mensajes(string pantalla)
+        {
+            ViewBag.Pantalla = pantalla;
+
+            //int idOferta = id;
+
+            //TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];
+
+            //Se guarda el Id de la oferta
+            //ViewBag.IdOferta = idOferta;
+
+            //List<Mensaje> lista = lnMensaje.ObtenerPorIdEmpresaIdOferta(ticket.IdEmpresa, idOferta);
+
+            return PartialView("_Mensajes");
+        }
+
+        [HttpGet]
+        public PartialViewResult _MensajesRedactar(string pantalla)
+        {
+            PartialViewResult vistaParcialResultado = new PartialViewResult();
+            vistaParcialResultado = PartialView("_MensajesRedactar");
+
+            switch (pantalla)
+            { 
+                case "EMPRESA_MICUENTA":
+                    vistaParcialResultado = mensajeEmpresaMiCuenta(pantalla);
+                    break;
+            }
+            //OfertaEstudio ofertaEstudio = new OfertaEstudio();
+            //ofertaEstudio.IdOferta = id;
+
+            //ViewBag.TipoDeEstudioIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_DE_ESTUDIO), "IdListaValor", "Valor");
+            //ViewBag.EstadoDelEstudioIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_DEL_ESTUDIO), "IdListaValor", "Valor");
+
+            return vistaParcialResultado;
+        }
+
+        
+
+        [HttpGet]
+        public PartialViewResult _MensajesVer()
+        {
+            //OfertaEstudio ofertaEstudio = new OfertaEstudio();
+            //ofertaEstudio.IdOferta = id;
+
+            //ViewBag.TipoDeEstudioIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_DE_ESTUDIO), "IdListaValor", "Valor");
+            //ViewBag.EstadoDelEstudioIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_DEL_ESTUDIO), "IdListaValor", "Valor");
+
+            return PartialView("_MensajesVer");
+        }
+
+        /// <summary>
+        /// Método interno para completar los datos de la pantalla Mi Cuenta en Empresa.
+        /// </summary>
+        private PartialViewResult mensajeEmpresaMiCuenta(string pantalla)
+        {
+            ViewBag.Pantalla = pantalla;
+            TicketEmpresa ticketEmpresa = (TicketEmpresa)Session["TicketEmpresa"];
+
+            //1. Obtener ofertas activas de la empresa.
+            LNOferta lnOferta = new LNOferta ();
+            //Se obtienen las ofertas activas
+            List<VistaEmpresaOferta> listaOfertas = lnOferta.ObtenerOfertasPorIdEmpresa(ticketEmpresa.IdEmpresa).Where(m => m.NombreEstado == "OFERAC").ToList();
+            //Se cargan en el ViewBag para ser consumidas desde el html.
+            ViewBag.IdOferta = new SelectList(listaOfertas, "IdOferta", "CargoOfrecido");
+            
+
+            return PartialView("_MensajesRedactar");
+        }
+
+        public JsonResult ObtenerPostulantesPorOferta(int idOferta)
+        {
+            LNOferta lnOferta = new LNOferta();
+
+            List<OfertaPostulante> postulantes = new List<OfertaPostulante>();
+            postulantes = lnOferta.ObtenerPostulantesPorIdOferta(idOferta);
+
+            return Json(postulantes, JsonRequestBehavior.AllowGet);
+        }
+
+        #endregion
+
     }
 }

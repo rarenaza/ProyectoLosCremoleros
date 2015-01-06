@@ -861,8 +861,8 @@
     <Content Include="Views\UTP\prueba.cshtml" />
     <Content Include="Views\Empresa\_OfertaFase.cshtml" />
     <Content Include="Views\UTP\_ResultadoBusquedaEmpresas.cshtml" />
-    <Content Include="Views\Mensaje\_ObtenerMensajes.cshtml" />
-    <Content Include="Views\Mensaje\_MensajeFormulario.cshtml" />
+    <Content Include="Views\Mensaje\_OLDObtenerMensajes.cshtml" />
+    <Content Include="Views\Mensaje\_OLDMensajeFormulario.cshtml" />
     <Content Include="Views\Home\Registro.cshtml" />
     <Content Include="Views\Empresa\_AdministrarUbicacionEditar.cshtml" />
     <Content Include="Views\Empresa\_AdministrarUsuarioEditar.cshtml" />
@@ -897,8 +897,13 @@
     <Content Include="Views\Home\_LayoutRegistro.cshtml" />
     <Content Include="Views\Alumno\_ModalRegistroCV.cshtml" />
     <Content Include="Views\UTP\Evento.cshtml" />
-    <Content Include="Views\Mensaje\Mensajes.cshtml" />
+    <Content Include="Views\Mensaje\_Mensajes.cshtml" />
     <Content Include="Views\Alumno\_AlertModal.cshtml" />
+    <Content Include="Views\Mensaje\_MensajesRedactar.cshtml" />
+    <Content Include="Views\Mensaje\_MensajesVer.cshtml" />
+    <Content Include="Views\Mensaje\_BaseMensajes.cshtml" />
+    <Content Include="Views\Mensaje\_BaseMensajesRedactar.cshtml" />
+    <Content Include="Views\Mensaje\_BaseMensajesVer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

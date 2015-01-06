@@ -1,0 +1,225 @@
+﻿@model IEnumerable<UTP.PortalEmpleabilidad.Modelo.Mensaje>
+
+<div class="container">
+    <div class="row fuente-pequeña">
+        <div class="col-sm-8">
+
+        </div>
+        <div class="col-sm-4">
+            <div class="row">
+                <h6>Mensajes</h6>
+                <!--Cabecera de la grilla-->
+                <div class="row grilla1-cabecera color-paleta1">
+                    <div class="col-sm-1">
+                    </div>
+                    <div class="col-sm-11">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                Fecha
+                            </div>
+                            <div class="col-sm-4">
+                                Remitente
+                            </div>
+                            <div class="col-sm-4">
+                                Destinatario
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <!--Detalle resultados-->
+                <div class="row grilla1-linea">
+                    <div class="col-sm-1">
+                        <span class="fui color-icono-paleta1" style="font-size:22px;">i</span>
+                    </div>
+                    <div class="col-sm-11">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                Hace 1 día
+                            </div>
+                            <div class="col-sm-4">
+                                Mario Perez Espino
+                            </div>
+                            <div class="col-sm-4">
+                                Pedro Calderón Aguirre
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                @*<strong><a href="#" data-toggle="modal" data-target="#verMensaje">RE: Gerente de Cuentas</a></strong>*@
+                                <strong>                                    
+                                    <label onclick="mensajeVer();" style="cursor:pointer;">RE: Gerente de Cuentas</label>                                    
+                                </strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row grilla1-linea">
+                    <div class="col-sm-1">
+                        <span class="fui color-icono-paleta2" style="font-size:22px;">j</span>
+                    </div>
+                    <div class="col-sm-11">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                Hace 2 día
+                            </div>
+                            <div class="col-sm-4">
+                                Víctor Canal Aguirre
+                            </div>
+                            <div class="col-sm-4">
+                                Luis Alcazar Calderón
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <strong><a href="#" data-toggle="modal" data-target="#verMensaje">RE: Gerente de Proyectos de Informática</a></strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row grilla1-linea">
+                    <div class="col-sm-1">
+                        <span class="fui color-icono-paleta1" style="font-size:22px;">k</span>
+                    </div>
+                    <div class="col-sm-11">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                Hace 1 semana
+                            </div>
+                            <div class="col-sm-4">
+                                Juan Perez Espino
+                            </div>
+                            <div class="col-sm-4">
+                                Luis Alcazar Calderón
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <strong><a href="#" data-toggle="modal" data-target="#verMensaje">RE: Analista / Programador</a></strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row grilla1-linea">
+                    <div class="col-sm-1">
+                        <span class="fui color-icono-paleta2" style="font-size:22px;">k</span>
+                    </div>
+                    <div class="col-sm-11">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                Hace 9 días
+                            </div>
+                            <div class="col-sm-4">
+                                Víctor Canal Aguirre
+                            </div>
+                            <div class="col-sm-4">
+                                Luis Felipe Rodriguez Vildósola
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <strong><a href="#" data-toggle="modal" data-target="#verMensaje">RE: Gerente de Servicios TI</a></strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <!--Acción para redactar nuevos mensajes.-->
+                    <div class="col-sm-2">
+                        @*<button class="btn btn-default color-paleta1" data-toggle="modal" data-target="#divModalMensajeRedactar">Redactar</button>*@
+                        <button id="btnMensajeRedactar" class="btn btn-default color-paleta1" onclick="mensajeRedactar();">Redactar</button>
+                    </div>
+                    <!--Paginación de los mensajes-->
+                    <div class="col-sm-10" style="text-align:right;">
+                        <nav>
+                            <ul class="pagination">
+                                <li>
+                                    <a href="#" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li>
+                                    <a href="#" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <hr />
+            </div>
+            <!--Modal para nuevos mensajes -->
+            <div class="modal fade" id="divModalMensajeRedactar" tabindex="-1" role="dialog">
+
+                @using (Ajax.BeginForm("_MensajesRedactar", "Mensajes", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divListaMensajes", OnComplete = "cerrarModal" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="modal-dialog" id="divMensajeRedactarContenedorInterno">
+
+                    </div>
+                }
+
+            </div><!-- /.modal -->
+            <!--Modal para ver un mensaje -->
+            <div class="modal fade" id="divModalMensajeVer" tabindex="-1" role="dialog">
+
+                @using (Ajax.BeginForm("_MensajesVer", "Mensajes", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divListaMensajes", OnComplete = "cerrarModal" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="modal-dialog" id="divMensajeVerContenedorInterno">
+
+                    </div><!-- /.modal-dialog -->
+                }
+            </div><!-- /.modal -->
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+    });
+
+    function mensajeRedactar() {
+
+        var url = '@Url.Action("_MensajesRedactar", "Mensaje")';
+
+        $.get(url, function (data) {
+
+            $('#divMensajeRedactarContenedorInterno').html(data);
+            $.validator.unobtrusive.parse('#divMensajeRedactarContenedorInterno');
+            $('#divModalMensajeRedactar').modal('show');
+
+        }).error(function (err) {
+            console.log(err);
+        });
+    };
+
+    function mensajeVer() {
+
+        var url = '@Url.Action("_MensajesVer", "Mensaje")';
+
+        $.get(url, function (data) {
+
+            $('#divMensajeVerContenedorInterno').html(data);
+            $.validator.unobtrusive.parse('#divMensajeVerContenedorInterno');
+            $('#divModalMensajeVer').modal('show');
+
+        }).error(function (err) {
+            console.log(err);
+        });
+    };
+
+</script>
