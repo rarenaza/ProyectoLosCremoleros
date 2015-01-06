@@ -319,6 +319,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="img\Alumna.png" />
     <Content Include="img\cargando.gif" />
+    <Content Include="img\demo.bmp" />
     <Content Include="img\empleabilidad\PlanoDirEmpleabilidad.jpg" />
     <Content Include="img\logos\aptitus.jpg" />
     <Content Include="img\logos\bumeran.jpg" />
