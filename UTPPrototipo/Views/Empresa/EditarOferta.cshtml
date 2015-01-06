@@ -102,7 +102,7 @@
                                 <div class="input-group">
                                     <span class="input-group-addon">(*) Cargo</span>
                                     @*<input id="CargoOfrecido" data-val="true" data-val-required="No ha ingresado el campo" name="CargoOfrecido" type="text" class="form-control" placeholder="Nombre del cargo a publicar" value="@Model.CargoOfrecido">*@
-                                    @Html.TextBoxFor(m => m.CargoOfrecido, new { @class = "form-control", @placeholder = "Nombre del cargo a publicar" })
+                                    @Html.TextBoxFor(m => m.CargoOfrecido, new { @class = "form-control",@id = "Cargo", @placeholder = "Nombre del cargo a publicar" })
 
                                     @*<input class="text-box single-line" id="CargoOfrecido" name="CargoOfrecido" type="text" value="">*@
                                     @*@Html.EditorFor(model => model.CargoOfrecido, new { @class = "form-control" })*@
@@ -132,6 +132,7 @@
 
             <script>
                 CKEDITOR.replace('Funciones');
+               
                 CKEDITOR.replace('Competencias');
             </script>
 
@@ -226,6 +227,16 @@
             </div>
         </div>
     }
+
+    <script>
+
+    $(document).ready(function () {
+        $("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta4 color-paleta5").addClass("color-paleta3");
+        AutoCompleteText('#Cargo', '@Url.Action("ListarCargo", "Empresa")', '#Cargo');
+    });
+
+    </script>
+
     <div class="row">
 
         <div id="ofertaRequisitos" class="col-sm-6">
@@ -269,6 +280,7 @@
 
                 <div id="divFases">
                     @Html.Action("ObtenerOfertaFase", "Empresa", new { idOferta = Model.IdOferta })
+
                 </div>
             }
 
@@ -370,9 +382,16 @@
 </div>
 
 <!--Bloque de javascript-->
+
+
+
 <script>
     $(document).ready(function () {
         $("#divFinalCabeceraEmpresa").removeClass("color-paleta1 color-paleta3 color-paleta4 color-paleta5").addClass("color-paleta2");
+        @*AutoCompleteText('#estudio', '@Url.Action("ListarTipoEstudio", "Empresa")', '#estudio');*@
+
+
+
 
         $('#lblPublicarOferta').on('click', function () {
 

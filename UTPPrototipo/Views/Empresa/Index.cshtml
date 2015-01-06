@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     Layout = "~/Views/Empresa/_LayoutEmpresa.cshtml";
     ViewBag.Title = "Inicio";
 }
@@ -9,11 +8,14 @@
     @{Html.RenderAction("VistaCabecera", "Empresa", new { estiloPanel = " in" });}
 
     <div class="row">
-      
+
+        <div>
             @Html.Action("ObtenerNuevasPostulaciones", "Empresa")
-                          
-            @*@Html.Action("ObtenerNuevosMensajes", "Empresa")*@
-                 
+        </div>
+        <div id="divListaMensajes">
+            @Html.Action("_Mensajes", "Mensaje", new { pantalla = "EMPRESA_MICUENTA" })
+        </div>
+
     </div>
 </div>
 <script>
