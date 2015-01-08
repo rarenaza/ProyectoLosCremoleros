@@ -17,6 +17,7 @@ using UTPPrototipo.Models.ViewModels.Empresa;
 namespace UTPPrototipo.Controllers
 {
     [VerificarSesion]
+
     public class EmpresaController : Controller
     {
         LNEmpresa lnEmpresa = new LNEmpresa();
@@ -220,7 +221,15 @@ namespace UTPPrototipo.Controllers
         }
 
 
-        public ActionResult Reclutar()
+        public ActionResult Hunting()
+        {
+            return View();
+        }
+        public ActionResult Eventos()
+        {
+            return View();
+        }
+        public ActionResult Evento()
         {
             return View();
         }

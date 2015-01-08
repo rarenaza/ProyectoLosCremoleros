@@ -103,6 +103,72 @@ namespace UTP.PortalEmpleabilidad.Logica
            }
            return lista;
        }
+       public VistaEventosPorUsuario EventosPorUsuario(string Usuario)
+       {
+           VistaEventosPorUsuario vistaeventosporusuario = new VistaEventosPorUsuario();
+
+           DataSet dsResultado = ad.EventosPorUsuario(Usuario);
+
+           List<Evento> usuarioeventoposible = new List<Evento>();
+           List<Evento> usuarioeventoactivo = new List<Evento>();
+           List<Evento> usuarioeventopasado = new List<Evento>();
+
+           if (dsResultado.Tables.Count > 0)
+           {
+               if (dsResultado.Tables[0].Rows.Count > 0)
+               {
+                   for (int n = 0; n <= dsResultado.Tables[0].Rows.Count - 1; n++)
+                   {
+                       Evento usuarioeventoposibledata = new Evento();
+                       usuarioeventoposibledata.IdEvento = Funciones.ToInt(dsResultado.Tables[0].Rows[n]["IdEvento"]);
+                       usuarioeventoposibledata.NombreEvento = Funciones.ToString(dsResultado.Tables[0].Rows[n]["NombreEvento"]);
+                       usuarioeventoposibledata.FechaEventoTexto = Funciones.ToString(dsResultado.Tables[0].Rows[n]["FechaEventoTexto"]);
+                       usuarioeventoposibledata.LugarEvento = Funciones.ToString(dsResultado.Tables[0].Rows[n]["LugarEvento"]);
+                       usuarioeventoposibledata.NombreComercial = Funciones.ToString(dsResultado.Tables[0].Rows[n]["NombreComercial"]);
+                       usuarioeventoposibledata.EstadoEvento = Funciones.ToString(dsResultado.Tables[0].Rows[n][".EstadoEvento"]);
+                       usuarioeventoposible.Add(usuarioeventoposibledata);
+                   }
+               }
+               if (dsResultado.Tables[1].Rows.Count > 0)
+               {
+                   for (int n = 0; n <= dsResultado.Tables[1].Rows.Count - 1; n++)
+                   {
+                       Evento usuarioeventoactivodata = new Evento();
+                       usuarioeventoactivodata.IdEvento = Funciones.ToInt(dsResultado.Tables[1].Rows[n]["IdEvento"]);
+                       usuarioeventoactivodata.NombreEvento = Funciones.ToString(dsResultado.Tables[1].Rows[n]["NombreEvento"]);
+                       usuarioeventoactivodata.FechaEventoTexto = Funciones.ToString(dsResultado.Tables[1].Rows[n]["FechaEventoTexto"]);
+                       usuarioeventoactivodata.LugarEvento = Funciones.ToString(dsResultado.Tables[1].Rows[n]["LugarEvento"]);
+                       usuarioeventoactivodata.NombreComercial = Funciones.ToString(dsResultado.Tables[1].Rows[n]["NombreComercial"]);
+                       usuarioeventoactivodata.FechaInscripcion = Funciones.ToDateTime(dsResultado.Tables[1].Rows[n]["FechaInscripcion"]);
+                       usuarioeventoactivodata.EstadoTicket = Funciones.ToString(dsResultado.Tables[1].Rows[n]["EstadoTicket"]);
+                       usuarioeventoactivodata.EstadoEvento = Funciones.ToString(dsResultado.Tables[1].Rows[n][".EstadoEvento"]);
+                       usuarioeventoactivo.Add(usuarioeventoactivodata);
+                   }
+               }
+               if (dsResultado.Tables[2].Rows.Count > 0)
+               {
+                   for (int n = 0; n <= dsResultado.Tables[2].Rows.Count - 1; n++)
+                   {
+                       Evento usuarioeventopasadodata = new Evento();
+                       usuarioeventopasadodata.IdEvento = Funciones.ToInt(dsResultado.Tables[2].Rows[n]["IdEvento"]);
+                       usuarioeventopasadodata.NombreEvento = Funciones.ToString(dsResultado.Tables[2].Rows[n]["NombreEvento"]);
+                       usuarioeventopasadodata.FechaEventoTexto = Funciones.ToString(dsResultado.Tables[2].Rows[n]["FechaEventoTexto"]);
+                       usuarioeventopasadodata.LugarEvento = Funciones.ToString(dsResultado.Tables[2].Rows[n]["LugarEvento"]);
+                       usuarioeventopasadodata.NombreComercial = Funciones.ToString(dsResultado.Tables[2].Rows[n]["NombreComercial"]);
+                       usuarioeventopasadodata.FechaInscripcion = Funciones.ToDateTime(dsResultado.Tables[2].Rows[n]["FechaInscripcion"]);
+                       usuarioeventopasadodata.EstadoTicket = Funciones.ToString(dsResultado.Tables[2].Rows[n]["EstadoTicket"]);
+                       usuarioeventopasadodata.FechaAsistencia = Funciones.ToDateTime(dsResultado.Tables[2].Rows[n]["FechaAsistencia"]);
+                       usuarioeventopasadodata.EstadoEvento = Funciones.ToString(dsResultado.Tables[2].Rows[n][".EstadoEvento"]);
+                       usuarioeventopasado.Add(usuarioeventopasadodata);
+                   }
+               }
+
+           }
+           vistaeventosporusuario.usuarioeventoposible = usuarioeventoposible;
+           vistaeventosporusuario.usuarioeventoactivo = usuarioeventoactivo;
+           vistaeventosporusuario.usuarioeventopasado = usuarioeventopasado;
+           return vistaeventosporusuario;
+       }
 
     }
 }

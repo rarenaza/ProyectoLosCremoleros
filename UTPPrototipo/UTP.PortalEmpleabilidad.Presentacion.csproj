@@ -191,7 +191,7 @@
     <Compile Include="Controllers\ContenidoController.cs" />
     <Compile Include="Controllers\CuentaController.cs" />
     <Compile Include="Controllers\EmpresaController.cs" />
-    <Compile Include="Controllers\Evento_Controller.cs" />
+    <Compile Include="Controllers\EventoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ListaController.cs" />
     <Compile Include="Controllers\MensajeController.cs" />
@@ -794,9 +794,9 @@
     <Content Include="Views\Empresa\Postulante.cshtml" />
     <Content Include="Views\Empresa\NuevaOferta.cshtml" />
     <Content Include="Views\Alumno\VistaPostulante.cshtml" />
-    <Content Include="Views\Evento_\Evento_Mostrar.cshtml" />
+    <Content Include="Views\Evento\Evento_Mostrar.cshtml" />
     <Content Include="Views\Cuenta\_Login.cshtml" />
-    <Content Include="Views\Empresa\Reclutar.cshtml" />
+    <Content Include="Views\Empresa\Hunting.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Html.cshtml" />
     <Content Include="Views\Alumno\ObtenerLista_Cargo.cshtml" />
     <Content Include="Views\Empresa\Registrar.cshtml" />
@@ -905,6 +905,7 @@
     <Content Include="Views\Mensaje\_BaseMensajes.cshtml" />
     <Content Include="Views\Mensaje\_BaseMensajesRedactar.cshtml" />
     <Content Include="Views\Mensaje\_BaseMensajesVer.cshtml" />
+    <Content Include="Views\Empresa\Eventos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

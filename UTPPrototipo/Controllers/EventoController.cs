@@ -8,7 +8,7 @@ using UTP.PortalEmpleabilidad.Modelo;
 
 namespace UTPPrototipo.Controllers
 {
-    public class Evento_Controller : Controller
+    public class EventoController : Controller
     {
         LNEvento ad = new LNEvento();
         // GET: Evento_
@@ -20,8 +20,7 @@ namespace UTPPrototipo.Controllers
 
             return View(lista); 
         }
-
-
+        
 
        
     }

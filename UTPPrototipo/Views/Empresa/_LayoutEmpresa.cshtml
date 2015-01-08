@@ -38,9 +38,10 @@
                         @Html.ActionLink("Ofertas", "Publicacion", null, new { @class = "btn btn-default navbar-btn Boton_pestana color-paleta2", @style = "padding: 2px 0px 2px 0px; color: white;" })
                         @*<a class="btn btn-default navbar-btn Boton_pestana color-paleta2" href="..\Empresa\Publicacion" style="padding: 2px 0px 2px 0px;color:white;">Ofertas</a>*@
                     </li>
-                    <!--<li>
-                        <a class="btn btn-default navbar-btn Boton_pestana color-paleta3" href="..\Empresa\Reclutar" style="padding: 2px 0px 2px 0px; color: white;">Buscar CVs</a>
-                    </li>-->
+                    <li>
+                        @Html.ActionLink("Hunting", "Hunting", null, new { @class = "btn btn-default navbar-btn Boton_pestana color-paleta3", @style = "padding: 2px 0px 2px 0px; color: white;" })
+                        @*<a class="btn btn-default navbar-btn Boton_pestana color-paleta3" href="..\Empresa\Hunting" style="padding: 2px 0px 2px 0px; color: white;">Buscar CVs</a>*@
+                    </li>
                     <li>
                         @Html.ActionLink("Mi Empresa", "Administrar", null, new { @class = "btn btn-default navbar-btn Boton_pestana color-paleta4", @style = "padding: 2px 0px 2px 0px; color: white;" })
 
@@ -48,9 +49,11 @@
                         
                         @*<a class="btn btn-default navbar-btn Boton_pestana color-paleta4" href="..\Empresa\Administrar" style="padding: 2px 0px 2px 0px; color: white;">Mi Empresa</a>*@
                     </li>
-                    <!--<li>
-                        <a class="btn btn-default navbar-btn Boton_pestana color-paleta5" href="..\Empresa\Evento" style="padding: 2px 0px 2px 0px; color: white;">Eventos</a>
-                    </li>-->
+                    <li>
+                        @*<a class="btn btn-default navbar-btn Boton_pestana color-paleta5" href="..\Empresa\Eventos" style="padding: 2px 0px 2px 0px; color: white;">Eventos</a>*@
+                        @Html.ActionLink("Eventos", "Eventos", "Evento", new { ControlLayout = "1"},new { @class = "btn btn-default navbar-btn Boton_pestana color-paleta5", @style = "padding: 2px 0px 2px 0px; color: white;" })
+                                  
+                    </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right" style="padding-right: 15px; ">
                     <li>

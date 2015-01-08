@@ -392,9 +392,27 @@
                                     </p>
                                     <br />
                                     <div class="progress" style="margin:3px 2px 3px 2px;">
-                                        <div class="progress-bar progress-bar-success progress-bar" role="progressbar" aria-valuenow="@Model.alumnocv.Cumplimiento" aria-valuemin="0" aria-valuemax="100" style="width: @Model.alumnocv.Cumplimiento%">
-                                            @Model.alumnocv.Cumplimiento%
-                                        </div>
+                                        @if (@Model.alumnocv.Cumplimiento > 59) 
+                                        {
+                                            if (@Model.alumnocv.Cumplimiento >79) 
+                                            {                                        
+                                                <div class="progress-bar progress-bar-success progress-bar" role="progressbar" aria-valuenow="@Model.alumnocv.Cumplimiento" aria-valuemin="0" aria-valuemax="100" style="width: @Model.alumnocv.Cumplimiento%">
+                                                    @Model.alumnocv.Cumplimiento%
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="progress-bar progress-bar-warning progress-bar" role="progressbar" aria-valuenow="@Model.alumnocv.Cumplimiento" aria-valuemin="0" aria-valuemax="100" style="width: @Model.alumnocv.Cumplimiento%">
+                                                    @Model.alumnocv.Cumplimiento%
+                                                </div>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <div class="progress-bar progress-bar-danger progress-bar" role="progressbar" aria-valuenow="@Model.alumnocv.Cumplimiento" aria-valuemin="0" aria-valuemax="100" style="width: @Model.alumnocv.Cumplimiento%">
+                                                @Model.alumnocv.Cumplimiento%
+                                            </div>
+                                        }
                                     </div>
                                 </div>
                             </div>

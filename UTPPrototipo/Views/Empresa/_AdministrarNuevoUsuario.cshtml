@@ -65,8 +65,8 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="input-group">
-                    <span class="input-group-addon">Locación *</span>
-                    @Html.DropDownListFor(m => m.IdEmpresaLocacion, null, "-- Especifique Locación de trabajo --", htmlAttributes: new { @class = "form-control" })                                        
+                    <span class="input-group-addon">(*)<br />Ubicación</span>
+                    @Html.DropDownListFor(m => m.IdEmpresaLocacion, null, "-- Especifique Ubicación de trabajo --", htmlAttributes: new { @class = "form-control" })                                        
                     
                 </div>@Html.ValidationMessageFor(model => model.NombreUsuario, "", new { @class = "text-danger" })
             </div>

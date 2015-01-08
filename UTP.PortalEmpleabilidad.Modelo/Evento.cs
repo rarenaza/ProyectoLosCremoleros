@@ -53,8 +53,12 @@ namespace UTP.PortalEmpleabilidad.Modelo
 
    public DateTime FechaModificacion{get;set;}
    public string LugarEvento { get; set; }
- 
- 
 
+   public string NombreComercial { get; set; }
+
+   public DateTime FechaInscripcion { get; set; }
+   public string EstadoTicket { get; set; }
+
+   public DateTime FechaAsistencia { get; set; }
     }
 }
