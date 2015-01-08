@@ -17,6 +17,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string Estado { get; set; }
         public string SectorEmpresarial { get; set; }
         public string Ofertas { get; set; }
+        public string EjecutivoUTP { get; set; }
         public string Clasificacion { get; set; }
         public string IdEstadoEmpresa { get; set; }
        public string IdSector { get; set; }

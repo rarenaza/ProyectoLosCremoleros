@@ -454,6 +454,8 @@ namespace UTP.PortalEmpleabilidad.Logica
                 postulante.FechaPostulacion = Convert.ToDateTime(fila["FechaPostulacion"]);
                 postulante.Alumno = new Alumno() { Nombres = Convert.ToString(fila["AlumnoNombres"]), Apellidos = Convert.ToString(fila["AlumnoApellidos"]) };
                 postulante.NivelDeMatch = Convert.ToInt32(fila["NivelDeMatch"]);
+                postulante.CorreoElectronico = Convert.ToString(fila["CorreoElectronico"]);
+                postulante.Usuario = Convert.ToString(fila["Usuario"]);
 
                 postulantes.Add(postulante);
             }

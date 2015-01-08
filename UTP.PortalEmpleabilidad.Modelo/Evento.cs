@@ -12,7 +12,11 @@ namespace UTP.PortalEmpleabilidad.Modelo
       public int  IdEvento { get; set; }
       public string NombreEvento { get; set; }
 
-      public string EstadoEvento {get;set;}
+      public string EstadoEvento { get; set; }
+      
+      public string ListaEstadoEvento {get;set;}
+      public string ListaTipoEvento { get; set; }
+      
       public string TipoEvento { get; set; }
       public int IdEmpresa { get; set; }
        public string DescripcionEvento { get; set; }

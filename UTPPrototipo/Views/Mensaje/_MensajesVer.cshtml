@@ -1,10 +1,26 @@
-﻿<div class="modal-content fuente-pequeña">
+﻿@model UTP.PortalEmpleabilidad.Modelo.Mensaje
+@using UTPPrototipo.Common
+
+<div class="modal-content fuente-pequeña">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">RE: Gerente de Proyectos para Sistemas de Información</h4>
+        <h4 class="modal-title">@Model.Asunto</h4>
     </div>
     <div class="modal-body">
-        <h6>Mensaje posterior: <a href="#">(Hace 15 minutos) RE: RE: Gerente de Proyectos para Sistemas de Información</a></h6>
+        <h6>
+            Mensaje posterior:
+            @*<a href="#">(Hace 15 minutos) RE: RE: Gerente de Proyectos para Sistemas de Información</a>*@
+
+            @{
+                <!--Sólo se muestra el link de mensaje posterior si existe.-->
+                if (Model.MensajePosteriorIdMensaje != 0)
+                {
+                    <label style="cursor: pointer; text-decoration: underline" onclick="mensajeVer('@Model.MensajePosteriorIdMensaje')">(@Html.FormatoFrecuencia(Model.MensajePosteriorFechaEnvio)) @Model.MensajePosteriorAsunto</label>
+                }
+            }
+            
+        </h6>
+
         <br />
         <table>
             <tr class="linea_raya">
@@ -12,7 +28,8 @@
                     Fecha:
                 </td>
                 <td class="celda-datos">
-                    Hace 1 día (26/12/2014 16:24:00 HH)
+                    @*Hace 1 día (26/12/2014 16:24:00 HH)*@
+                    @Html.FormatoFrecuencia(Model.FechaEnvio) @Model.FechaEnvio
                 </td>
             </tr>
             <tr class="linea_raya">
@@ -20,7 +37,8 @@
                     De:
                 </td>
                 <td class="celda-datos">
-                    Víctor Canal Aguirre (vcanal)
+                    @Model.DeUsuario
+                    @*Víctor Canal Aguirre (vcanal)*@
                 </td>
             </tr>
             <tr class="linea_raya">
@@ -28,7 +46,8 @@
                     Para:
                 </td>
                 <td class="celda-datos">
-                    Alberto Beingochea Elcorrobarrutia (abel)
+                    @*Alberto Beingochea Elcorrobarrutia (abel)*@
+                    @Model.ParaUsuario
                 </td>
             </tr>
             <tr class="linea_raya">
@@ -36,35 +55,46 @@
                     Oferta Laboral:
                 </td>
                 <td class="celda-datos">
-                    <a href="#">Gerente de Proyectos para Sistemas de Información (IBM del Perú)</a>
+                    @*<a href="#">Gerente de Proyectos para Sistemas de Información (IBM del Perú) @Model.Oferta.CargoOfrecido</a>*@
+                    <a href="#">@Model.Oferta.CargoOfrecido</a>
                 </td>
             </tr>
-            <tr class="linea_raya">
+            @*<tr class="linea_raya">
                 <td class="celda-nombre">
                     Evento:
                 </td>
                 <td class="celda-datos">
                     <a href="#">Feria Laboral 2015 UTP</a>
                 </td>
-            </tr>
+            </tr>*@
             <tr class="linea_raya">
                 <td class="celda-nombre">
                     Mensaje:
                 </td>
                 <td class="celda-datos">
-                    Lorem Ipsun dolor que duele, sip dale muc tirnao rxe delatolre lorem, ipsum facto secuelo seculorum tedea. Ersip dale muc tirnao rxe delatolre lorem, ipsum facto secuelo seculorum tedea.
-                    Lorem Ipsun dolor que duele, sip dale muc tirnao rxe delatolre lorem, ipsum facto secuelo seculorum tedea. Ersip dale muc tirnao rxe delatolre lorem, ipsum facto secuelo seculorum tedea.
+                    @Model.MensajeTexto                    
                 </td>
             </tr>
         </table>
         <br />
-        <h6>Mensaje anterior: <a href="#">(Hace 3 días) Gerente de Proyectos para Sistemas de Información</a></h6>
+        <h6>
+            Mensaje anterior:
+            @*<a href="#">(Hace 3 días) Gerente de Proyectos para Sistemas de Información</a>*@
+
+            @{
+                <!--Sólo se muestra el link de mensaje posterior si existe.-->
+                if (Model.MensajeAnteriorIdMensaje != 0)
+                {
+                    <label style="cursor: pointer; text-decoration: underline" onclick="mensajeVer('@Model.MensajeAnteriorIdMensaje')" >(@Html.FormatoFrecuencia(Model.MensajeAnteriorFechaEnvio)) @Model.MensajeAnteriorAsunto</label>
+                }
+            }
+        </h6>
 
 
     </div>
 
     <div class="modal-footer">
         @*<button type="button" class="btn btn-primary color-paleta1" data-dismiss="modal" data-toggle="modal" data-target="#divModalMensajeRedactar">Contestar</button>*@
-        <button type="button" class="btn btn-primary color-paleta1" onclick="mensajeContestar();">Contestar</button>
+        <button type="button" class="btn btn-primary color-paleta1" onclick="mensajeResponder('@Model.Pantalla', '@Model.IdMensaje');">Contestar</button>
     </div>
 </div>

@@ -68,21 +68,7 @@ namespace UTPPrototipo.Controllers
             ViewData["ContenidoMenu"] = li;
                      
 
-            //List<Contenido> contenido = new List<Contenido>();
-
-
-            //int codMenu = Convert.ToInt32(Menu);
-
-            //if (Menu == null)
-            //{
-            //    contenido  = ln.Contenido_ObtenerPorCodMenu(0);
-            //}
-            //else
-            //{
-            //    contenido = ln.Contenido_ObtenerPorCodMenu(codMenu);
-            //}
-            
-                      
+                                
 
             //return View(contenido);
             List<Contenido> lista = new List<Contenido>();
@@ -747,7 +733,52 @@ namespace UTPPrototipo.Controllers
 
         public ActionResult Evento()
         {
+
+
+            //Lista Estado Evento
+            DataTable dtresultadoEstadoEvento = lnUtp.Evento_ListaEstadoEvento();
+
+            List<SelectListItem> estadoEvento = new List<SelectListItem>();
+
+            for (int i = 0; i <= dtresultadoEstadoEvento.Rows.Count - 1; i++)
+            {
+                string nombre = dtresultadoEstadoEvento.Rows[i]["Valor"].ToString();
+                string valor = dtresultadoEstadoEvento.Rows[i]["IDListaValor"].ToString();
+
+                SelectListItem item = new SelectListItem() { Text = nombre, Value = valor };
+
+                estadoEvento.Add(item);
+
+            }
+            ViewData["ListaEstadoEvento"] = estadoEvento;
+
+
+
+            //LISTA TIPO EVENTO
+
+            DataTable dtresultadoTipoEvento = lnUtp.Evento_ListaTipoEvento();
+
+            List<SelectListItem> TipoEvento = new List<SelectListItem>();
+
+            for (int i = 0; i <= dtresultadoTipoEvento.Rows.Count - 1; i++)
+            {
+                string nombre = dtresultadoTipoEvento.Rows[i]["Valor"].ToString();
+                string valor = dtresultadoTipoEvento.Rows[i]["IDListaValor"].ToString();
+
+                SelectListItem item = new SelectListItem() { Text = nombre, Value = valor };
+
+                TipoEvento.Add(item);
+
+            }
+            ViewData["ListaTipoEvento"] = TipoEvento;
+
+
+            
+
+
+
             return View();
+            
         }
 
         public ActionResult verimagen()
@@ -1191,6 +1222,39 @@ namespace UTPPrototipo.Controllers
          Session["TicketUtp"]=null;
             return RedirectToAction("Index", "Home");
         }
+
+    
+
+        public FileResult GetImagenLogoEmpresa(int id)
+        {
+
+            const string alternativePicturePath = @"/img/sinimagen.jpg";
+            LNEmpresa lnEmpresa = new LNEmpresa();
+            Empresa empresa = lnEmpresa.ObtenerDatosEmpresaPorId(id);
+           
+
+            MemoryStream stream;
+
+            if (empresa != null && empresa.LogoEmpresa != null)
+            {
+                stream = new MemoryStream(empresa.LogoEmpresa);
+            }
+            else
+            {
+                stream = new MemoryStream();
+
+                var path = Server.MapPath(alternativePicturePath);
+                var image = new System.Drawing.Bitmap(path);
+
+                image.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
+                stream.Seek(0, SeekOrigin.Begin);
+            }
+
+            return new FileStreamResult(stream, "image/jpeg");
+        } 
+    
+
+
 
         #region Mantenimiento de usuarios
 

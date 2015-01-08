@@ -110,6 +110,7 @@ namespace UTPPrototipo.Controllers
                         ticketAlumno.TelefonoCelular = Convert.ToString(dsResultado.Tables[2].Rows[0]["TelefonoCelular"]);
                         ticketAlumno.TipoUsuario = Convert.ToString(dsResultado.Tables[2].Rows[0]["TipoUsuario"]);
                         ticketAlumno.CodAlumnoUTP = Convert.ToString(dsResultado.Tables[2].Rows[0]["CodAlumnoUtp"]);
+                        ticketAlumno.IdAlumno = Convert.ToInt32(dsResultado.Tables[2].Rows[0]["IdAlumno"]);
 
                         Session["TicketAlumno"] = ticketAlumno;
 
@@ -156,6 +157,8 @@ namespace UTPPrototipo.Controllers
                             ticketAlumno.TelefonoCelular = Convert.ToString(dsDatosAlumno.Tables[0].Rows[0]["Celular"]);
                             ticketAlumno.TipoUsuario = "USERAL";
                             ticketAlumno.CodAlumnoUTP = Convert.ToString(dsDatosAlumno.Tables[0].Rows[0]["Codigo"]);
+                            ticketAlumno.IdAlumno = Convert.ToInt32(dsDatosAlumno.Tables[0].Rows[0]["IdAlumno"]);
+
                             Session["TicketAlumno"] = ticketAlumno;
 
                             //Si tiene acceso se redirecciona al portal principal del alumno.

@@ -35,6 +35,10 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public DateTime FechaModificacion { get; set; }
         public string NombreCV { get; set; }
 
+        public string CorreoElectronico { get; set; }
+
+        public string Usuario { get; set; }
+
         public OfertaPostulante()
         {
             Oferta = new Oferta();

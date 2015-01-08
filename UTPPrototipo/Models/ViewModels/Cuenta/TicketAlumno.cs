@@ -14,5 +14,6 @@ namespace UTPPrototipo.Models.ViewModels.Cuenta
         public string TelefonoCelular { get; set; }
         public string TipoUsuario { get; set; }
         public string CodAlumnoUTP { get; set; }
+        public int IdAlumno { get; set; }
     }
 }

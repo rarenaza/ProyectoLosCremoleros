@@ -17,7 +17,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public Oferta Oferta { get; set; }
         public int IdEvento { get; set; }
         public Evento Evento { get; set; }
-        public DateTime FechaEnvio { get; set; }
+        public DateTime FechaEnvio { get; set; }                        
         public string Asunto { get; set; }
         public string MensajeTexto { get; set; }
         public string EstadoMensaje { get; set; }
@@ -25,6 +25,18 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public int IdMensajePadre { get; set; }
         public string CreadoPor { get; set; }
         public string ModificadoPor { get; set; }
+        
+        public string Pantalla { get; set; } //Parámetro para conocer el origen de la llamada.
+
+        //Datos mensaje anterior.
+        public int MensajeAnteriorIdMensaje { get; set; }
+        public string MensajeAnteriorAsunto { get; set; }
+        public DateTime MensajeAnteriorFechaEnvio { get; set; }
+
+        //Datos mensaje posterior
+        public int MensajePosteriorIdMensaje { get; set; }
+        public string MensajePosteriorAsunto { get; set; }
+        public DateTime MensajePosteriorFechaEnvio { get; set; }
 
         public Mensaje()
         {

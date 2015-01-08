@@ -1,4 +1,5 @@
-﻿@{
+﻿@model UTP.PortalEmpleabilidad.Modelo.Evento 
+@{
     Layout = "~/Views/UTP/_LayoutUTP.cshtml";
     ViewBag.Title = "Evento";
 }
@@ -20,22 +21,28 @@
                     </div>
                 </div>
             </div>
+
             <div class="row">
+ 
                 <div class="col-sm-6">
                     <div class="input-group">
                         <span class="input-group-addon">Estado</span>
-                        <select class="form-control" placeholder="Nombre del Evento">
-                            <option>
-                                Activo
-                            </option>
-                            <option>
-                                No Activo
-                            </option>
-                        </select>
+                        @Html.DropDownList("ListaEstadoEvento", ViewData["ListaEstadoEvento"] as List<SelectListItem>, "- Seleccione Estado -", new { @class = "form-control" })
                     </div>
                 </div>
             </div>
+                
             <div class="row">
+
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <span class="input-group-addon">Tipo</span>
+                        @Html.DropDownList("ListaTipoEvento", ViewData["ListaTipoEvento"] as List<SelectListItem>, "- Seleccione Tipo Evento -", new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+
+            @*<div class="row">
                 <div class="col-sm-6">
                     <div class="input-group">
                         <span class="input-group-addon" ">Tipo</span>
@@ -49,7 +56,7 @@
                         </select>
                     </div>
                 </div>
-            </div>
+            </div>*@
             <div class="row">
                 <div class="col-sm-9">
                     <div class="input-group">

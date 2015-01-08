@@ -89,6 +89,7 @@
     <Compile Include="Vistas\Alumno\VistaAlumnoConocimiento.cs" />
     <Compile Include="Vistas\Alumno\VistaAlumnoEstudio.cs" />
     <Compile Include="Vistas\Alumno\VistaAlumnoExperienciaCargo.cs" />
+    <Compile Include="Vistas\Alumno\VistaAlumnoOferta.cs" />
     <Compile Include="Vistas\Alumno\VistaUTPListaAlumno.cs" />
     <Compile Include="Vistas\ContenidoCombo\ContenidoVistaCombo.cs" />
     <Compile Include="Vistas\Empresa\VistaEmpresaLocacion.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="Vistas\Empresa\VistaEmpresaUsuario.cs" />
     <Compile Include="Vistas\Empresa\VistaPanelCabecera.cs" />
     <Compile Include="Vistas\Empresa\VistaRegistroEmpresa.cs" />
+    <Compile Include="Vistas\Mensaje\VistaMensajeUsuarioEmpresaOferta.cs" />
     <Compile Include="Vistas\Mensaje\VistaPostulantePorMensaje.cs" />
     <Compile Include="Vistas\Ofertas\ListaOfertaFase.cs" />
     <Compile Include="Vistas\Ofertas\VistaComboAlumno.cs" />
