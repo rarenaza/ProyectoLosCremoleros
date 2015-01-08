@@ -102,7 +102,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public List<OfertaPostulante> Postulantes { get; set; }
 
         public int MaxPagina { get; set; }
-
+        
 
        public Oferta() {
 

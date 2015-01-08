@@ -1,0 +1,157 @@
+﻿@model UTP.PortalEmpleabilidad.Modelo.Mensaje
+
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Responder Mensaje</h4>
+    </div>
+    <div class="modal-body">
+
+        @Html.HiddenFor(m => m.ParaUsuario)
+        @Html.HiddenFor(m => m.ParaUsuarioCorreoElectronico)
+        @Html.HiddenFor(m => m.DeUsuario)
+        @Html.HiddenFor(m => m.DeUsuarioCorreoElectronico)
+        @Html.HiddenFor(m => m.IdMensajePadre)
+        @Html.HiddenFor(m => m.IdOferta)
+        @Html.HiddenFor(m => m.Pantalla)
+
+        @if (ViewBag.Pantalla == "")
+        {
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="input-group">
+                        <span class="input-group-addon">Destina-<br />tario</span>
+                        <input class="form-control" palceholder="Usuario Destinatario" />
+                    </div>
+                </div>
+            </div>
+        }
+
+        @*@if (ViewBag.Pantalla == "EMPRESA_MICUENTA")
+            {*@
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="input-group">
+                    <span class="input-group-addon">Destina-<br />tario</span>
+                    @*<select id="slcDestinatarios" name="slcDestinatarios" class="form-control"></select>*@
+                    <input type="text" class="form-control" value="@Model.ParaUsuario (@Model.ParaUsuarioCorreoElectronico)" readonly />
+                </div>
+            </div>
+        </div>
+        @*}*@
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="input-group">
+                    <span class="input-group-addon">Asunto</span>
+                    <input id="Asunto" name="Asunto" class="form-control" placeholder="Asunto del Correo" value="@Model.Asunto" />
+                </div>
+            </div>
+        </div>
+        @*@if (ViewBag.Pantalla == "EMPRESA_MICUENTA")
+            {*@
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="input-group">
+                    <span class="input-group-addon">Oferta<br />Laboral</span>
+                    @Html.DropDownListFor(m => m.IdOferta, null, "Seleccione Oferta Laboral relacionada", htmlAttributes: new { @class = "form-control", @disabled = "disabled" })
+                </div>
+            </div>
+        </div>
+        @*}*@
+
+        @if (ViewBag.Pantalla == "")
+        {
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="input-group">
+                        <span class="input-group-addon">Evento</span>
+                        <select class="form-control">
+                            <option>- Seleccione Evento relacionado -</option>
+                            <option>Feria de Trabajo 2015</option>
+                            <option>Charla RRHH</option>
+                            <option>Seminaro de Presentación</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        }
+
+        <!--
+        <div class="row">
+            <div class="col-sm-12">
+                <a href="#">Gerente de Proyectos (IBM del Perú)</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <a href="#">Feria Laboral UTP 2015</a>
+            </div>
+        </div>
+            -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="input-group">
+                    <span class="input-group-addon">Mensaje</span>
+                    <textarea name="MensajeTexto" class="form-control" placeholder="Mensaje del Correo" rows="10"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary color-paleta1">Enviar</button>
+    </div>
+</div>
+<script>
+
+    $(document).ready(function () {
+
+        @*$('#IdOferta').on('change', function() {
+
+            console.log('Valor: ' + this.value);
+            var idOfertaSeleccionada = this.value;
+            var cargoOfrecidoSeleccionado = $('#IdOferta option:selected').text();
+            console.log(cargoOfrecidoSeleccionado);
+
+            $("#Asunto").val(cargoOfrecidoSeleccionado);
+
+            var url = '@Url.Action("ObtenerPostulantesPorOferta", "Mensaje")' + '?IdOferta=' + idOfertaSeleccionada;
+
+            $('#slcDestinatarios option[value!="0"]').remove();
+            $("#slcDestinatarios").append("<option selected>- Cargando destinatarios ... -</option>")
+
+            $.getJSON(url, cargarComboDestinatarios).error(function(err) { console.log (err); });
+        });
+
+        function cargarComboDestinatarios(data)
+        {
+            console.log(data);
+
+            $('#slcDestinatarios option[value!="0"]').remove();
+            $("#slcDestinatarios").append("<option selected>- Seleccione Alumno Destinatario -</option>")
+
+            //Se crea un html con el combo de destinatarios.
+            for (var i = 0; i < data.length; i++) {
+
+                $("#slcDestinatarios").append("<option data-usuario='" + data[i].Usuario + "' value= '" + data[i].CorreoElectronico + "'>" + data[i].Alumno.Apellidos + " " + data[i].Alumno.Nombres + "</option>")
+            }
+        }
+
+        //Se almacen el nombre del usuario en un Hidden que está enlazado al modelo.
+        $('#slcDestinatarios').on('change', function() {
+
+            var correoElectronico = this.value;
+            var nombreUsuario = $(this).find(':selected').data('usuario');
+
+            $('#ParaUsuario').val(nombreUsuario);
+            $('#ParaUsuarioCorreoElectronico').val(correoElectronico);
+
+            console.log(correoElectronico);
+            console.log(nombreUsuario);
+
+        });*@
+
+    });
+
+</script>

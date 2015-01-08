@@ -41,6 +41,7 @@ namespace UTP.PortalEmpleabilidad.Logica
 
         public void Registrar(AlumnoInformacionAdicional alumnoinformacionadicional)
         {
+            if (alumnoinformacionadicional.AñosExperiencia == null) alumnoinformacionadicional.AñosExperiencia = 0;
 
             aiad.Registrar(alumnoinformacionadicional);
 

@@ -75,5 +75,12 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public static string LISTAVALOR_ROL_DEL_USUARIO_USUARIOUTP = "ROLUTP";
 
         #endregion
+
+        #region Mensajes
+
+        public const string MENSAJES_EMPRESA_INDEX = "EMPRESA_INDEX";
+        public const string MENSAJES_ALUMNO_INDEX = "ALUMNO_INDEX";
+
+        #endregion
     }
 }
