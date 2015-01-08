@@ -151,6 +151,13 @@ namespace UTP.PortalEmpleabilidad.Logica
                     empresa.SectorEmpresarial1IdListaValor = Convert.ToString(dsResultado.Tables[0].Rows[0]["SectorEmpresarial"]);
                     empresa.SectorEmpresarial2IdListaValor = Convert.ToString(dsResultado.Tables[0].Rows[0]["SectorEmpresarial2"]);
                     empresa.SectorEmpresarial3IdListaValor = Convert.ToString(dsResultado.Tables[0].Rows[0]["SectorEmpresarial3"]);
+                    //empresa.LogoEmpresa = (byte[])dsResultado.Tables[0].Rows[0]["LogoEmpresa"];
+
+                    empresa.LogoEmpresa = dsResultado.Tables[0].Rows[0]["LogoEmpresa"] == DBNull.Value ? null : (byte[])dsResultado.Tables[0].Rows[0]["LogoEmpresa"];
+
+                 
+
+           
                     empresa.SitioWeb = Convert.ToString(dsResultado.Tables[0].Rows[0]["SitioWeb"]);
                     empresa.FechaCreacion = Convert.ToDateTime(dsResultado.Tables[0].Rows[0]["FechaCreacion"]);
 

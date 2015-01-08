@@ -26,9 +26,8 @@ namespace UTP.PortalEmpleabilidad.Logica
 
             return adUtp.UTP_ObtenerOfertasporActivar(oferta);
         }
-
-
-
+        
+       
 
         public DataTable EmpresaObtenerPendientes()
         {
@@ -72,6 +71,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 vista.RazonSocial = dtResultado.Rows[i]["Razon"].ToString();
                 vista.RUC = dtResultado.Rows[i]["RUC"].ToString();
                 vista.Estado = dtResultado.Rows[i]["Estado"].ToString();
+                vista.EjecutivoUTP = dtResultado.Rows[i]["EjecutivoUTP"].ToString();
                 vista.SectorEmpresarial = dtResultado.Rows[i]["SectorEmpresarial"].ToString();
                 vista.Clasificacion = dtResultado.Rows[i]["Clasificación"].ToString();
                 vista.Ofertas = dtResultado.Rows[i]["Ofertas"].ToString();
@@ -97,6 +97,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 vista.RazonSocial = dtResultado.Rows[i]["Razon"].ToString();
                 vista.RUC = dtResultado.Rows[i]["RUC"].ToString();
                 vista.Estado = dtResultado.Rows[i]["Estado"].ToString();
+                vista.EjecutivoUTP = dtResultado.Rows[i]["EjecutivoUTP"].ToString();
                 vista.SectorEmpresarial = dtResultado.Rows[i]["SectorEmpresarial"].ToString();
                 vista.Clasificacion = dtResultado.Rows[i]["Clasificación"].ToString();
                 vista.Ofertas = dtResultado.Rows[i]["Ofertas"].ToString();
@@ -131,6 +132,19 @@ namespace UTP.PortalEmpleabilidad.Logica
         {
 
             return adUtp.UTP_ObtenerEventosObtenerBuscar(evento);
+        }
+
+
+        public DataTable Evento_ListaEstadoEvento()
+        {
+
+            return adUtp.Evento_ListaEstado();
+        }
+
+        public DataTable Evento_ListaTipoEvento()
+        {
+
+            return adUtp.Evento_ListaTipoEvento();
         }
 
         #region Mantenimiento de Usuarios UTP

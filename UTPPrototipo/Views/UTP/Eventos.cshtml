@@ -33,7 +33,7 @@
                             <div class="input-group fuente-pequeña">
                                 <span class="input-group-addon fuente-pequeña">Palabra Clave</span>
                                 
-                                @Html.TextBox("SearchString", "", new { @class = "form-control", @placeholder = "Busca Por Ofertas" })
+                                @Html.TextBox("SearchString", "", new { @class = "form-control", @placeholder = "Busca Por Evento" })
                                 @*<input type="text" class="form-control" placeholder="Palabra clave" />*@
 
 
@@ -101,17 +101,16 @@
         }
 
 
-   
-
-
-
     </div>
     <br />
     <div id="resultadobusqueda">
     </div>
     <div class="row">
         <div class="col-sm-12" style="text-align:right;">
-            <button class="btn btn-default color-paleta5">Nuevo Evento</button>
+           @* <button class="btn btn-default color-paleta5" >Nuevo Evento</button>*@
+            <a class="btn btn-default color-paleta5" href=@Url.Action("evento", "UTP")>Nuevo Evento</a>
+
+     
         </div>
     </div>
     <hr />

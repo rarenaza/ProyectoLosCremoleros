@@ -169,7 +169,14 @@
                     Logo
                 </td>
                 <td class="celda-datos">
-                    <img src="~/img/logos/logoibm.jpg" />
+                    <img alt="" style="width:100%" src='@Url.Action("GetImagenLogoEmpresa", "UTP", new { id = Model.IdEmpresa })' />
+
+
+
+
+
+
+                    @*<img src="~/img/logos/logoibm.jpg" />*@
                 </td>
             </tr>
         </table>
