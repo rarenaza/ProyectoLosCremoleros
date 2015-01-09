@@ -12,14 +12,14 @@ namespace UTPPrototipo.Controllers
     {
         LNEvento ad = new LNEvento();
         // GET: Evento_
-        public ActionResult Evento_Mostrar()
-        {
-            List<Evento> lista = new List<Evento>();
+        //public ActionResult Evento_Mostrar()
+        //{
+        //    List<Evento> lista = new List<Evento>();
 
-            lista = ad.Evento_Mostrar();
+        //    lista = ad.Evento_Mostrar();
 
-            return View(lista); 
-        }
+        //    return View(lista); 
+        //}
         
 
        

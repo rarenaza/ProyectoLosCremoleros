@@ -146,6 +146,11 @@ namespace UTP.PortalEmpleabilidad.Logica
 
             return adUtp.Evento_ListaTipoEvento();
         }
+        public DataTable EMPRESA_LISTAEMPRESA()
+        {
+
+            return adUtp.EMPRESA_LISTAEMPRESA();
+        }
 
         #region Mantenimiento de Usuarios UTP
 

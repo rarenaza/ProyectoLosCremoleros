@@ -16,6 +16,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
       
       public string ListaEstadoEvento {get;set;}
       public string ListaTipoEvento { get; set; }
+      public string ListaEmpresa { get; set; }
       
       public string TipoEvento { get; set; }
       public int IdEmpresa { get; set; }
@@ -44,11 +45,11 @@ namespace UTP.PortalEmpleabilidad.Modelo
 
      public byte []ImagenTicket{get;set;}
 
-    public int  RegistraAlumnos{get; set;}
+     public bool  RegistraAlumnos { get; set; }
 
-	public int  RegistraUsuariosEmpresa{get; set;}
+     public bool  RegistraUsuariosEmpresa { get; set; }
 
-    public int RegistraPublicoEnGeneral{get;set;}
+     public bool  RegistraPublicoEnGeneral { get; set; }
 	
    public string CreadoPor{get;set;}
    public DateTime FechaCreacion{get;set;}
