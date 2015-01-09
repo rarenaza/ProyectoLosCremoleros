@@ -16,7 +16,7 @@
 
 {
     @Html.AntiForgeryToken()
-
+    @Html.HiddenFor(model => model.IdEvento)
     <div class="row">
         <div class="col-sm-6" style="border-right:solid;border-color:rgb(220, 220, 220);border-width:1px;">
             <div class="row">
@@ -35,6 +35,7 @@
                 <div class="col-sm-6">
                     <div class="input-group">
                         <span class="input-group-addon">Estado</span>
+                      
                         @Html.DropDownList("EstadoEvento", ViewData["ListaEstadoEvento"] as List<SelectListItem>, "- Seleccione Estado -", new { @class = "form-control" })
                     </div>
                 </div>
@@ -45,26 +46,11 @@
                 <div class="col-sm-6">
                     <div class="input-group">
                         <span class="input-group-addon">Tipo</span>
+    
                         @Html.DropDownList("TipoEvento", ViewData["ListaTipoEvento"] as List<SelectListItem>, "- Seleccione Tipo Evento -", new { @class = "form-control" })
                     </div>
                 </div>
             </div>
-
-            @*<div class="row">
-                <div class="col-sm-6">
-                    <div class="input-group">
-                        <span class="input-group-addon" ">Tipo</span>
-                        <select class="form-control" placeholder="Nombre del Evento">
-                            <option>
-                                Feria
-                            </option>
-                            <option>
-                                Baile
-                            </option>
-                        </select>
-                    </div>
-                </div>
-            </div>*@
 
          
             <div class="row">

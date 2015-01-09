@@ -701,40 +701,8 @@ namespace UTPPrototipo.Controllers
             return View();
         }
 
-            public ActionResult Eventos(string SearchString)
+        public ActionResult Evento_Editar(int? Id)
         {
-
-            List<VistaObtenerEventosUTP> listaEjemplo = new List<VistaObtenerEventosUTP>();
-
-            string palabraClave = SearchString == null ? "" : SearchString;
-
-             
-                DataTable dtResultado = lnUtp.UTP_ObtenerEventosObtenerBuscar(palabraClave);
-
-                foreach (DataRow fila in dtResultado.Rows)
-                {
-                    VistaObtenerEventosUTP vista = new VistaObtenerEventosUTP();
-
-                    vista.IdEvento = Convert.ToInt32(fila["IdEvento"]);
-                    vista.NombreEvento = Convert.ToString(fila["NombreEvento"]);
-                    vista.LugarEvento = Convert.ToString(fila["LugarEvento"]);
-                    vista.Expositor = Convert.ToString(fila["Expositor"]);
-                    vista.DireccionEvento = Convert.ToString(fila["DireccionEvento"]);
-                    vista.AsistentesEsperados = Convert.ToInt32(fila["AsistentesEsperados"]);
-                    vista.FechaEvento = Convert.ToString(fila["FechaEvento"]);
-
-                    listaEjemplo.Add(vista);
-                }
-
-            return View(listaEjemplo);
-
-
-        }
-
-        public ActionResult Evento()
-        {
-
-
             //Lista Estado Evento
             DataTable dtresultadoEstadoEvento = lnUtp.Evento_ListaEstadoEvento();
 
@@ -752,7 +720,7 @@ namespace UTPPrototipo.Controllers
             }
             ViewData["ListaEstadoEvento"] = estadoEvento;
 
-
+            //------------------------------------------------------------
 
             //LISTA TIPO EVENTO
 
@@ -772,14 +740,340 @@ namespace UTPPrototipo.Controllers
             }
             ViewData["ListaTipoEvento"] = TipoEvento;
 
+            //------------------------------------------------------------
+
+            //LISTA EMPRESA
+
+            DataTable dtresultadoEmpresa = lnUtp.EMPRESA_LISTAEMPRESA();
+
+            List<SelectListItem> empresa = new List<SelectListItem>();
+
+            for (int i = 0; i <= dtresultadoEmpresa.Rows.Count - 1; i++)
+            {
+                string nombre = dtresultadoEmpresa.Rows[i]["NombreComercial"].ToString();
+                string valor = dtresultadoEmpresa.Rows[i]["IdEmpresa"].ToString();
+
+                SelectListItem item = new SelectListItem() { Text = nombre, Value = valor };
+
+                empresa.Add(item);
+
+            }
+            ViewData["ListaEmpresa"] = empresa;
+
+            Evento evento = new Evento();
+
+
+            DataTable dtResultado = lnEventos.EVENTO_OBTENERPORID(Convert.ToInt32(Id));
+
+            if (dtResultado.Rows.Count > 0)
+            {
+
+                evento.IdEvento             = Convert.ToInt32(dtResultado.Rows[0]["IdEvento"]);
+                evento.NombreEvento         = Convert.ToString(dtResultado.Rows[0]["NombreEvento"]);
+                evento.DescripcionEvento    = Convert.ToString(dtResultado.Rows[0]["DescripcionEvento"]);
+                evento.FechaEvento          = Convert.ToDateTime(dtResultado.Rows[0]["FechaEvento"]);
+                evento.FechaEventoTexto     = Convert.ToString(dtResultado.Rows[0]["FechaEventoTexto"]);
+                evento.LugarEvento          = Convert.ToString(dtResultado.Rows[0]["LugarEvento"]);
+                evento.DireccionRegion      = Convert.ToString(dtResultado.Rows[0]["DireccionRegion"]);
+                evento.DireccionCiudad      = Convert.ToString(dtResultado.Rows[0]["DireccionCiudad"]);
+                evento.DireccionDistrito    = Convert.ToString(dtResultado.Rows[0]["DireccionDistrito"]);
+                evento.DireccionEvento      = Convert.ToString(dtResultado.Rows[0]["DireccionEvento"]);
+                evento.AsistentesEsperados  = Convert.ToInt32(dtResultado.Rows[0]["AsistentesEsperados"]);
+                evento.RegistraAlumnos      = Convert.ToBoolean(dtResultado.Rows[0]["RegistraAlumnos"]);
+                evento.RegistraUsuariosEmpresa = Convert.ToBoolean(dtResultado.Rows[0]["RegistraUsuariosEmpresa"] == DBNull.Value ? 0 : dtResultado.Rows[0]["RegistraUsuariosEmpresa"]);
+                evento.RegistraPublicoEnGeneral = Convert.ToBoolean(dtResultado.Rows[0]["RegistraPublicoEnGeneral"] == DBNull.Value ? 0 : dtResultado.Rows[0]["RegistraPublicoEnGeneral"]);
+                evento.EstadoEvento         = Convert.ToString(dtResultado.Rows[0]["EstadoEvento"]);
+                evento.TipoEvento           = Convert.ToString(dtResultado.Rows[0]["TipoEvento"]);
+                evento.IdEmpresa            = Convert.ToInt32(dtResultado.Rows[0]["IdEmpresa"]);
+                
+
+                //evento.CreadoPor = dtResultado.Rows[0]["CreadoPor"].ToString();
+                //evento.Creadoel = Convert.ToDateTime(dtResultado.Rows[0]["FechaCreacion"] == DBNull.Value ? null : dtResultado.Rows[0]["FechaCreacion"]);
+                //alumno.ModificadoPor        = dtResultado.Rows[0]["ModificadoPor"].ToString();
+                //alumno.FechaModificacion    = Convert.ToDateTime(dtResultado.Rows[0]["FechaModificacion"] == DBNull.Value ? null : dtResultado.Rows[0]["FechaModificacion"]);
+                //alumno.CorreoElectronico    = dtResultado.Rows[0]["CorreoElectronico"].ToString();
+                //alumno.FechaRegistro        = dtResultado.Rows[0]["FechaRegistro"].ToString();
+                //alumno.CodEstadoAlumno      = Convert.ToString(dtResultado.Rows[0]["CodEstado"]);
+                
+            }
+
+         
+            
+            return View(evento);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
+        public ActionResult Evento_Editar([Bind(Include = "")] Evento evento)
+        {
 
             
+            TicketUTP ticketUtp = (TicketUTP)Session["TicketUtp"];
+
+
+            evento.ModificadoPor = ticketUtp.Usuario;
+
+            if (lnEventos.Evento_Actualizar(evento) == true)
+            {
+
+                ViewBag.Message = "Registro Actualizado Correctamente";
+                return RedirectToAction("Eventos");
+            }
+            else
+            {
+
+                //Lista Estado Evento
+                DataTable dtresultadoEstadoEvento = lnUtp.Evento_ListaEstadoEvento();
+
+                List<SelectListItem> estadoEvento = new List<SelectListItem>();
+
+                for (int i = 0; i <= dtresultadoEstadoEvento.Rows.Count - 1; i++)
+                {
+                    string nombre = dtresultadoEstadoEvento.Rows[i]["Valor"].ToString();
+                    string valor = dtresultadoEstadoEvento.Rows[i]["IDListaValor"].ToString();
+
+                    SelectListItem item = new SelectListItem() { Text = nombre, Value = valor };
+
+                    estadoEvento.Add(item);
+
+                }
+                ViewData["ListaEstadoEvento"] = estadoEvento;
+
+                //------------------------------------------------------------
+
+                //LISTA TIPO EVENTO
+
+                DataTable dtresultadoTipoEvento = lnUtp.Evento_ListaTipoEvento();
+
+                List<SelectListItem> TipoEvento = new List<SelectListItem>();
+
+                for (int i = 0; i <= dtresultadoTipoEvento.Rows.Count - 1; i++)
+                {
+                    string nombre = dtresultadoTipoEvento.Rows[i]["Valor"].ToString();
+                    string valor = dtresultadoTipoEvento.Rows[i]["IDListaValor"].ToString();
+
+                    SelectListItem item = new SelectListItem() { Text = nombre, Value = valor };
+
+                    TipoEvento.Add(item);
+
+                }
+                ViewData["ListaTipoEvento"] = TipoEvento;
+
+                //------------------------------------------------------------
+
+                //LISTA EMPRESA
+
+                DataTable dtresultadoEmpresa = lnUtp.EMPRESA_LISTAEMPRESA();
+
+                List<SelectListItem> empresa = new List<SelectListItem>();
+
+                for (int i = 0; i <= dtresultadoEmpresa.Rows.Count - 1; i++)
+                {
+                    string nombre = dtresultadoEmpresa.Rows[i]["NombreComercial"].ToString();
+                    string valor = dtresultadoEmpresa.Rows[i]["IdEmpresa"].ToString();
+
+                    SelectListItem item = new SelectListItem() { Text = nombre, Value = valor };
+
+                    empresa.Add(item);
+
+                }
+                ViewData["ListaEmpresa"] = empresa;
+
+
+                return View(evento);
+
+            }
+
+        }
+
+
+
+            public ActionResult Eventos(string SearchString)
+        {
+
+            List<VistaObtenerEventosUTP> listaEjemplo = new List<VistaObtenerEventosUTP>();
+
+            string palabraClave = SearchString == null ? "" : SearchString;
+
+             
+                DataTable dtResultado = lnUtp.UTP_ObtenerEventosObtenerBuscar(palabraClave);
+
+                foreach (DataRow fila in dtResultado.Rows)
+                {
+                    VistaObtenerEventosUTP vista = new VistaObtenerEventosUTP();
+
+                    vista.IdEvento = Convert.ToInt32(fila["IdEvento"]);
+                    vista.NombreEvento = Convert.ToString(fila["NombreEvento"]);
+                    vista.LugarEvento = Convert.ToString(fila["LugarEvento"]);
+                    //vista.Expositor = Convert.ToString(fila["Expositor"]);
+                    vista.DireccionEvento = Convert.ToString(fila["DireccionEvento"]);
+                    vista.AsistentesEsperados = Convert.ToInt32(fila["AsistentesEsperados"]);
+                    vista.FechaEvento = Convert.ToString(fila["FechaEvento"]);
+
+                    listaEjemplo.Add(vista);
+                }
+
+            return View(listaEjemplo);
+
+
+        }
+
+ 
+        public ActionResult Evento()
+        {
+
+            //Lista Estado Evento
+            DataTable dtresultadoEstadoEvento = lnUtp.Evento_ListaEstadoEvento();
+
+            List<SelectListItem> estadoEvento = new List<SelectListItem>();
+
+            for (int i = 0; i <= dtresultadoEstadoEvento.Rows.Count - 1; i++)
+            {
+                string nombre = dtresultadoEstadoEvento.Rows[i]["Valor"].ToString();
+                string valor = dtresultadoEstadoEvento.Rows[i]["IDListaValor"].ToString();
+
+                SelectListItem item = new SelectListItem() { Text = nombre, Value = valor };
+
+                estadoEvento.Add(item);
+
+            }
+            ViewData["ListaEstadoEvento"] = estadoEvento;
+
+            //------------------------------------------------------------
+
+            //LISTA TIPO EVENTO
+
+            DataTable dtresultadoTipoEvento = lnUtp.Evento_ListaTipoEvento();
+
+            List<SelectListItem> TipoEvento = new List<SelectListItem>();
+
+            for (int i = 0; i <= dtresultadoTipoEvento.Rows.Count - 1; i++)
+            {
+                string nombre = dtresultadoTipoEvento.Rows[i]["Valor"].ToString();
+                string valor = dtresultadoTipoEvento.Rows[i]["IDListaValor"].ToString();
+
+                SelectListItem item = new SelectListItem() { Text = nombre, Value = valor };
+
+                TipoEvento.Add(item);
+
+            }
+            ViewData["ListaTipoEvento"] = TipoEvento;
+
+            //------------------------------------------------------------
+
+            //LISTA EMPRESA
+
+            DataTable dtresultadoEmpresa = lnUtp.EMPRESA_LISTAEMPRESA();
+
+            List<SelectListItem> empresa = new List<SelectListItem>();
+
+            for (int i = 0; i <= dtresultadoEmpresa.Rows.Count - 1; i++)
+            {
+                string nombre = dtresultadoEmpresa.Rows[i]["NombreComercial"].ToString();
+                string valor = dtresultadoEmpresa.Rows[i]["IdEmpresa"].ToString();
+
+                SelectListItem item = new SelectListItem() { Text = nombre, Value = valor };
+
+                empresa.Add(item);
+
+            }
+            ViewData["ListaEmpresa"] = empresa;
 
 
 
             return View();
             
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
+        public ActionResult Evento([Bind(Include = "")] Evento evento)
+        {
+
+            
+
+            TicketUTP ticketUtp = (TicketUTP)Session["TicketUtp"];
+
+
+            evento.CreadoPor = ticketUtp.Usuario;
+
+            if (lnEventos.Evento_insertar(evento) == true)
+            {
+            
+                ViewBag.Message = "Registro Insertado Correctamente";
+                return RedirectToAction("Eventos");
+            }
+            else
+            {
+
+                //Lista Estado Evento
+                DataTable dtresultadoEstadoEvento = lnUtp.Evento_ListaEstadoEvento();
+
+                List<SelectListItem> estadoEvento = new List<SelectListItem>();
+
+                for (int i = 0; i <= dtresultadoEstadoEvento.Rows.Count - 1; i++)
+                {
+                    string nombre = dtresultadoEstadoEvento.Rows[i]["Valor"].ToString();
+                    string valor = dtresultadoEstadoEvento.Rows[i]["IDListaValor"].ToString();
+
+                    SelectListItem item = new SelectListItem() { Text = nombre, Value = valor };
+
+                    estadoEvento.Add(item);
+
+                }
+                ViewData["ListaEstadoEvento"] = estadoEvento;
+
+                //------------------------------------------------------------
+
+                //LISTA TIPO EVENTO
+
+                DataTable dtresultadoTipoEvento = lnUtp.Evento_ListaTipoEvento();
+
+                List<SelectListItem> TipoEvento = new List<SelectListItem>();
+
+                for (int i = 0; i <= dtresultadoTipoEvento.Rows.Count - 1; i++)
+                {
+                    string nombre = dtresultadoTipoEvento.Rows[i]["Valor"].ToString();
+                    string valor = dtresultadoTipoEvento.Rows[i]["IDListaValor"].ToString();
+
+                    SelectListItem item = new SelectListItem() { Text = nombre, Value = valor };
+
+                    TipoEvento.Add(item);
+
+                }
+                ViewData["ListaTipoEvento"] = TipoEvento;
+
+                //------------------------------------------------------------
+
+                //LISTA EMPRESA
+
+                DataTable dtresultadoEmpresa = lnUtp.EMPRESA_LISTAEMPRESA();
+
+                List<SelectListItem> empresa = new List<SelectListItem>();
+
+                for (int i = 0; i <= dtresultadoEmpresa.Rows.Count - 1; i++)
+                {
+                    string nombre = dtresultadoEmpresa.Rows[i]["NombreComercial"].ToString();
+                    string valor = dtresultadoEmpresa.Rows[i]["IdEmpresa"].ToString();
+
+                    SelectListItem item = new SelectListItem() { Text = nombre, Value = valor };
+
+                    empresa.Add(item);
+
+                }
+                ViewData["ListaEmpresa"] = empresa;
+
+
+                return View(evento);
+
+            }
+
+        }
+
+
+
 
         public ActionResult verimagen()
         {

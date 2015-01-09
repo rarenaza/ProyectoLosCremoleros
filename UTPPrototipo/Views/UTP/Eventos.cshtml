@@ -68,9 +68,9 @@
             <div class="col-sm-2">
                 Dirección
             </div>
-            <div class="col-sm-2">
+            @*<div class="col-sm-2">
                 Expositor
-            </div>
+            </div>*@
             <div class="col-sm-2">
                 Asistente Esperado
             </div>
@@ -83,7 +83,9 @@
                  @item.FechaEvento
                 </div>
                 <div class="col-sm-2">
-                    @item.NombreEvento
+                    @*@item.NombreEvento*@
+
+                    @Html.ActionLink(@item.NombreEvento, "Evento_Editar", new { id = item.IdEvento })
                 </div>
                 <div class="col-sm-2">
                    @item.LugarEvento          
@@ -91,9 +93,9 @@
                 <div class="col-sm-2">
                     @item.DireccionEvento
                 </div>
-                <div class="col-sm-2">
+                @*<div class="col-sm-2">
                     @item.Expositor
-                </div>
+                </div>*@
                 <div class="col-sm-2">
                     @item.AsistentesEsperados
                 </div>
