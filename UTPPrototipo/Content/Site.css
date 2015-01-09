@@ -33,12 +33,12 @@
     font-family: GothamRnd-Book;
 }
 .cuerpo-zona-alumno {
-    padding-top: 102px;
+    padding-top: 104px;
     font-family: GothamRnd-Book;
     }
 
 .cuerpo-zona-empresa {
-    padding-top: 102px;
+    padding-top: 104px;
     font-family: GothamRnd-Book;
     }
 
@@ -88,6 +88,16 @@ input[type="checkbox"].input-validation-error {
 .LogoUTPPE2 {
 
 }
+
+.ImagenEvento {
+    max-width: 320px;
+    max-height:500px;
+    border: solid;
+    border-width: 1px;
+    border-color: rgb(220,220,220);
+    border-radius:10px;
+}
+
 
 .Boton_pestana {
     border-radius: 10px 10px 0px 0px;

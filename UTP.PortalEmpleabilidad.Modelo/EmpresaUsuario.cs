@@ -40,7 +40,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         [Required(ErrorMessage="Falta Apellidos")]
         public string Apellidos { get; set; }
 
-        [Required(ErrorMessage="Falta Locación")]
+        [Required(ErrorMessage = "Falta Ubicación")]
         public int IdEmpresaLocacion { get; set; }
         
         [Required(ErrorMessage="Falta Correo electrónico")]

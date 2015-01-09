@@ -227,7 +227,12 @@ namespace UTPPrototipo.Controllers
         }
         public ActionResult Eventos()
         {
-            return View();
+            TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];
+
+            LNEvento lnEvento = new LNEvento();
+            VistaEventosPorUsuario evento = lnEvento.EventosPorUsuario(ticket.Usuario);
+
+            return View(evento);
         }
         public ActionResult Evento()
         {

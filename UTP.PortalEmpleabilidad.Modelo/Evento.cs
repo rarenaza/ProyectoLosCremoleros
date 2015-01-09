@@ -72,7 +72,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
 
    public DateTime FechaInscripcion { get; set; }
    public string EstadoTicket { get; set; }
-
+   public string ValorEstadoTicket { get; set; }
    public DateTime FechaAsistencia { get; set; }
     }
 }

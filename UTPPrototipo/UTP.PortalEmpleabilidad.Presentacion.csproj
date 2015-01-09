@@ -909,6 +909,7 @@
     <Content Include="Views\Mensaje\_BaseMensajesVer.cshtml" />
     <Content Include="Views\Empresa\Eventos.cshtml" />
     <Content Include="Views\Mensaje\_MensajesResponder.cshtml" />
+    <Content Include="Views\Empresa\Evento.cshtml" />
     <Content Include="Views\UTP\Evento_Editar.cshtml" />
     <Content Include="Views\UTP\_AdministrarActualizarImagenEventoUTP.cshtml" />
   </ItemGroup>

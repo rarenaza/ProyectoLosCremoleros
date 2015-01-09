@@ -1,0 +1,32 @@
+﻿@model UTP.PortalEmpleabilidad.Modelo.VistaEventoPorUsuario
+@{
+    Layout = "~/Views/Empresa/_LayoutEmpresa.cshtml";
+    ViewBag.Title = "Eventos";
+}
+
+<div class="container fuente-pequeña" style="margin-top:2px;">
+    @{Html.RenderAction("VistaCabecera", "Empresa");}
+    <div class="row">
+        <div class="col-sm-4">
+            <h6>Evento</h6>
+            <img class="ImagenEvento" src="~/img/evento/Evento1.jpg" />
+            <hr />
+        </div>
+        <div class="col-sm-4" style="border-right:solid;border-color:rgb(220, 220, 220);border-width:1px;">
+            <table>
+                <tr class="linea_raya">
+                    <td class="celda-nombre"></td>
+                    <td class="celda-datos"></td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-sm-4">
+
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $("#divFinalCabeceraEmpresa").removeClass("color-paleta1 color-paleta2 color-paleta3 color-paleta4").addClass("color-paleta5");
+    });
+</script>

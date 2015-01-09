@@ -256,7 +256,7 @@ namespace UTP.PortalEmpleabilidad.Datos
 
             return dt;
         }
-        public DataSet EventosPorUsuario(string Usuario)
+        public DataSet EventosPorUsuario(string usuario)
         {
             DataSet dsResultado = new DataSet();
 
@@ -268,7 +268,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.CommandText = "EventosPorUsuario";
                 cmd.Connection = conexion;
                 conexion.Open();
-                cmd.Parameters.Add(new SqlParameter("@Usuario", SqlDbType.Int)).Value = Usuario;
+                cmd.Parameters.Add(new SqlParameter("@Usuario", usuario));
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 da.Fill(dsResultado);
                 conexion.Close();

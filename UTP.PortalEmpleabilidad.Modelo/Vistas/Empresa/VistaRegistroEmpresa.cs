@@ -42,7 +42,7 @@ namespace UTP.PortalEmpleabilidad.Modelo.Vistas.Empresa
         //public string SectorEmpresarial3IdListaValor { get; set; }    
         public string EstadoIdListaValor { get; set; }
 
-        //Locación
+        //Ubicación
 
         [Required(ErrorMessage = "Falta Tipo de Ubicación")]
         public string TipoLocacionIdListaValor { get; set; }
