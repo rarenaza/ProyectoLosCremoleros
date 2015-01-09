@@ -409,7 +409,7 @@ namespace UTPPrototipo.Controllers
                 empresa.CreadoPor = empresa.CuentaUsuario;  //Usuario anónimo.
                 empresa.EstadoIdListaValor = "EMPRRV";  //Estado de la empresa pendiente de aprobación.
 
-                //Locación
+                //Ubicación
                 empresa.EstadoLocacionIdListaValor = "LOSTNO";  //Estado NO ACTIVA. Se debe activar al momento que UTP active la cuenta.      
                 empresa.NombreLocacion = empresa.DireccionLocacion + ", " + empresa.DireccionDistritoLocacion + ", " + empresa.DireccionCiudadLocacion + ", " + empresa.DireccionDepartamentoLocacion;
 
@@ -421,7 +421,7 @@ namespace UTPPrototipo.Controllers
 
                 //Si el registro fue exitoso redireccionar a página de resultado.
                 TempData["GuardaRegistroExitoso"] = "Estimado(a) <strong>" + empresa.NombresUsuario + " " + empresa.ApellidosUsuario
-                    + "</strong>, muchas gracias por enviarnos su información. En breve recibirá un correo de confirmación con sus datos.</br></br>Nuestro proceso de activación tomará un plazo no mayor a 24 horas, antes del cual estaremos comunicándole la activación de su Usuario. ";
+                    + "</strong>, muchas gracias por enviarnos su información. En breve recibirá un correo de confirmación con sus datos.</br></br>Nuestro proceso de activación tomará un plazo no mayor a 1 día útil, antes del cual estaremos comunicándole la activación de su Usuario. ";
                 //Aquí debería enviarse un correo
                 return RedirectToAction("Index");
             }

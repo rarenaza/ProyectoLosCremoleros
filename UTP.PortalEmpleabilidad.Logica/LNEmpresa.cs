@@ -63,7 +63,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 panel.UsuarioTelefonoCelular = dtResultado.Rows[0]["UsuarioTelefonoCelular"].ToString();
                 panel.UsuarioRolDescripcion = Convert.ToString(dtResultado.Rows[0]["UsuarioRolDescripcion"]);
 
-                //Datos de la locación
+                //Datos de la Ubicación
                 panel.LocacionNombre = dtResultado.Rows[0]["LocacionNombre"].ToString();
                 panel.LocacionDireccion = dtResultado.Rows[0]["LocacionDireccion"].ToString();
                 panel.LocacionTelefonoFijo = dtResultado.Rows[0]["LocacionTelefonoFijo"].ToString();
@@ -95,7 +95,7 @@ namespace UTP.PortalEmpleabilidad.Logica
             //if (empresa.SectorEmpresarial2IdListaValor == null) empresa.SectorEmpresarial2IdListaValor = string.Empty;
             //if (empresa.SectorEmpresarial3IdListaValor == null) empresa.SectorEmpresarial3IdListaValor = string.Empty;   
 
-            ////Locación
+            ////Ubicación
             //if (empresa.EmailLocacion == null) empresa.EmailLocacion = string.Empty;
             //if (empresa.TelefonoLocacion == null) empresa.TelefonoLocacion = string.Empty;
 
