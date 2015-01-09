@@ -15,6 +15,103 @@ namespace UTP.PortalEmpleabilidad.Datos
         SqlCommand cmd = new SqlCommand();
 
 
+        public bool Evento_insertar(Evento evento)
+        {
+            try
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Evento_Insertar";
+                cmd.Connection = cnn.cn;
+                cmd.Parameters.Add(new SqlParameter("@NombreEvento", SqlDbType.VarChar, 100)).Value = evento.NombreEvento;
+                cmd.Parameters.Add(new SqlParameter("@EstadoEvento", SqlDbType.VarChar, 6)).Value = evento.EstadoEvento;
+                cmd.Parameters.Add(new SqlParameter("@TipoEvento", SqlDbType.VarChar, 6)).Value = evento.TipoEvento;
+                cmd.Parameters.Add(new SqlParameter("@IdEmpresa", SqlDbType.Int)).Value = evento.IdEmpresa;
+                cmd.Parameters.Add(new SqlParameter("@DescripcionEvento", SqlDbType.VarChar, -1)).Value = evento.DescripcionEvento;
+                cmd.Parameters.Add(new SqlParameter("@FechaEvento", SqlDbType.DateTime)).Value = evento.FechaEvento;
+                cmd.Parameters.Add(new SqlParameter("@FechaEventoTexto", SqlDbType.VarChar, 100)).Value = evento.FechaEventoTexto;
+                cmd.Parameters.Add(new SqlParameter("@LugarEvento", SqlDbType.VarChar, 200)).Value = evento.LugarEvento;
+
+                cmd.Parameters.Add(new SqlParameter("@DireccionDistrito", SqlDbType.VarChar, 100)).Value = evento.DireccionDistrito;
+                cmd.Parameters.Add(new SqlParameter("@DireccionCiudad", SqlDbType.VarChar, 100)).Value = evento.DireccionCiudad;
+                cmd.Parameters.Add(new SqlParameter("@DireccionRegion", SqlDbType.VarChar, 100)).Value = evento.DireccionRegion;
+                cmd.Parameters.Add(new SqlParameter("@DireccionEvento", SqlDbType.VarChar, -1)).Value = evento.DireccionEvento;
+                cmd.Parameters.Add(new SqlParameter("@AsistentesEsperados", SqlDbType.Int)).Value = evento.AsistentesEsperados;
+
+
+                cmd.Parameters.Add(new SqlParameter("@RegistraAlumnos", SqlDbType.Bit)).Value = evento.RegistraAlumnos;
+                cmd.Parameters.Add(new SqlParameter("@RegistraUsuariosEmpresa", SqlDbType.Bit)).Value = evento.RegistraUsuariosEmpresa;
+                cmd.Parameters.Add(new SqlParameter("@RegistraPublicoEnGeneral", SqlDbType.Bit)).Value = evento.RegistraPublicoEnGeneral;
+                cmd.Parameters.Add(new SqlParameter("@CreadoPor", SqlDbType.VarChar, 50)).Value = evento.CreadoPor;
+
+                cnn.Conectar();
+                cmd.ExecuteNonQuery();
+                cmd.Parameters.Clear();
+                cnn.Desconectar();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
+
+        }
+
+        public DataTable EVENTO_OBTENERPORID(int id)
+        {
+            DataTable dtResultado = new DataTable();
+
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "EVENTO_OBTENERPORID";
+                cmd.Parameters.Add(new SqlParameter("@IdEvento", id));
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+                dtResultado = new DataTable();
+
+                da.Fill(dtResultado);
+
+                conexion.Close();
+            }
+
+            return dtResultado;
+        }
+
+        public bool EVENTO_ACTUALIZAR_IMAGENEVENTO(Evento  evento)
+        {
+            ADConexion cnn = new ADConexion();
+            SqlCommand cmd = new SqlCommand();
+
+            try
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "EVENTO_ACTUALIZAR_IMAGENEVENTO";
+                cmd.Connection = cnn.cn;
+
+                cmd.Parameters.Add(new SqlParameter("@ImagenEvento", SqlDbType.Binary)).Value = (evento.ImagenEvento == null ? new byte[] { } : evento.ImagenEvento);
+
+                cmd.Parameters.Add(new SqlParameter("@ArchivoNombreOriginalImagenEvento", SqlDbType.VarChar, 100)).Value = (evento.ArchivoNombreOriginalImagenEvento == null ? "" : evento.ArchivoNombreOriginalImagenEvento);
+                cmd.Parameters.Add(new SqlParameter("@ArchivoMimeTypeImagenEvento", SqlDbType.VarChar, 100)).Value = (evento.ArchivoMimeTypeImagenEvento == null ? "" : evento.ArchivoMimeTypeImagenEvento);
+                cmd.Parameters.Add(new SqlParameter("@IdEvento", SqlDbType.VarChar, 50)).Value = evento.IdEvento;
+                cnn.Conectar();
+                cmd.ExecuteNonQuery();
+                cmd.Parameters.Clear();
+                cnn.Desconectar();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
         public DataTable Evento_Mostrar()
         {
             cmd.CommandType = CommandType.StoredProcedure;
@@ -67,26 +164,15 @@ namespace UTP.PortalEmpleabilidad.Datos
 
                 cmd.Parameters.Add(new SqlParameter("@SubTitulo", SqlDbType.VarChar, 500)).Value = (contenido.SubTitulo == null ? "" : contenido.SubTitulo);
 
-                //cmd.Parameters.Add(new SqlParameter("@Descripcion", SqlDbType.VarChar, -1)).Value = contenido.Descripcion;
-
                 cmd.Parameters.Add(new SqlParameter("@Descripcion", SqlDbType.VarChar, -1)).Value = (contenido.Descripcion == null ? "" : contenido.Descripcion);
-
-                //cmd.Parameters.Add(new SqlParameter("@Imagen", SqlDbType.Binary)).Value = contenido.Imagen;
 
                 cmd.Parameters.Add(new SqlParameter("@Imagen", SqlDbType.Binary)).Value = (contenido.Imagen == null ? new byte[] { } : contenido.Imagen);
 
-
                 cmd.Parameters.Add(new SqlParameter("@Activo", SqlDbType.Bit)).Value = contenido.Activo;
 
-
-
-
-                //cmd.Parameters.Add(new SqlParameter("@ArchivoNombreOriginal", SqlDbType.VarChar, 100)).Value = contenido.ArchivoNombreOriginal;
                 cmd.Parameters.Add(new SqlParameter("@ArchivoNombreOriginal", SqlDbType.VarChar, 100)).Value = (contenido.ArchivoNombreOriginal == null ? "" : contenido.ArchivoNombreOriginal);
                 cmd.Parameters.Add(new SqlParameter("@ArchivoMimeType", SqlDbType.VarChar, 100)).Value = (contenido.ArchivoMimeType == null ? "" : contenido.ArchivoMimeType);
 
-
-                //cmd.Parameters.Add(new SqlParameter("@ArchivoMimeType", SqlDbType.VarChar, 50)).Value = contenido.ArchivoMimeType;
                 cmd.Parameters.Add(new SqlParameter("@EnPantallaPrincipal", SqlDbType.Bit)).Value = contenido.EnPantallaPrincipal;
                 cmd.Parameters.Add(new SqlParameter("@CodMenu", SqlDbType.VarChar, 50)).Value = contenido.Menu;
                 cmd.Parameters.Add(new SqlParameter("@CreadoPor", SqlDbType.VarChar, 50)).Value = contenido.CreadoPor;
@@ -103,51 +189,9 @@ namespace UTP.PortalEmpleabilidad.Datos
             }
 
         }
+    
 
-      
-
-
-        public bool Evento_insertar(Evento evento)
-        {
-            try
-            {
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "Evento_Insertar";
-                cmd.Connection = cnn.cn;
-                cmd.Parameters.Add(new SqlParameter("@NombreEvento", SqlDbType.VarChar, 100)).Value = evento.NombreEvento;
-                cmd.Parameters.Add(new SqlParameter("@EstadoEvento", SqlDbType.VarChar, 6)).Value = evento.EstadoEvento;
-                cmd.Parameters.Add(new SqlParameter("@TipoEvento", SqlDbType.VarChar, 6)).Value = evento.TipoEvento;
-                cmd.Parameters.Add(new SqlParameter("@IdEmpresa", SqlDbType.Int)).Value = evento.IdEmpresa;
-                cmd.Parameters.Add(new SqlParameter("@DescripcionEvento", SqlDbType.VarChar, -1)).Value = evento.DescripcionEvento;
-                cmd.Parameters.Add(new SqlParameter("@FechaEvento", SqlDbType.DateTime)).Value = evento.FechaEvento;
-                cmd.Parameters.Add(new SqlParameter("@FechaEventoTexto", SqlDbType.VarChar, 100)).Value = evento.FechaEventoTexto;
-                cmd.Parameters.Add(new SqlParameter("@LugarEvento", SqlDbType.VarChar, 200)).Value = evento.LugarEvento;
-
-                cmd.Parameters.Add(new SqlParameter("@DireccionDistrito", SqlDbType.VarChar, 100)).Value = evento.DireccionDistrito;
-                cmd.Parameters.Add(new SqlParameter("@DireccionCiudad", SqlDbType.VarChar, 100)).Value = evento.DireccionCiudad;
-                cmd.Parameters.Add(new SqlParameter("@DireccionRegion", SqlDbType.VarChar, 100)).Value = evento.DireccionRegion;
-                cmd.Parameters.Add(new SqlParameter("@DireccionEvento", SqlDbType.VarChar,-1)).Value = evento.DireccionEvento;
-                cmd.Parameters.Add(new SqlParameter("@AsistentesEsperados", SqlDbType.Int)).Value = evento.AsistentesEsperados;
-                          
-              
-                cmd.Parameters.Add(new SqlParameter("@RegistraAlumnos", SqlDbType.Bit)).Value = evento.RegistraAlumnos;
-                cmd.Parameters.Add(new SqlParameter("@RegistraUsuariosEmpresa", SqlDbType.Bit)).Value = evento.RegistraUsuariosEmpresa;
-                cmd.Parameters.Add(new SqlParameter("@RegistraPublicoEnGeneral", SqlDbType.Bit)).Value = evento.RegistraPublicoEnGeneral;
-                cmd.Parameters.Add(new SqlParameter("@CreadoPor", SqlDbType.VarChar, 50)).Value = evento.CreadoPor;
-
-                cnn.Conectar();
-                cmd.ExecuteNonQuery();
-                cmd.Parameters.Clear();
-                cnn.Desconectar();
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-
-
-        }
+        
 
 
         public bool Evento_Actualizar(Evento evento)
@@ -193,35 +237,7 @@ namespace UTP.PortalEmpleabilidad.Datos
 
         }
 
-        public DataTable EVENTO_OBTENERPORID(int id)
-        {
-            DataTable dtResultado = new DataTable();
-
-            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
-            {
-                SqlCommand cmd = new SqlCommand();
-
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "EVENTO_OBTENERPORID";
-                cmd.Parameters.Add(new SqlParameter("@IdEvento", id));
-                cmd.Connection = conexion;
-
-                conexion.Open();
-
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-
-                dtResultado = new DataTable();
-
-                da.Fill(dtResultado);
-
-                conexion.Close();
-            }
-
-            return dtResultado;
-        }
-
-
-
+       
 
         public DataTable Listar_Eventos()
         {

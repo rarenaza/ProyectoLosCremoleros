@@ -1,4 +1,4 @@
-﻿@model UTP.PortalEmpleabilidad.Modelo.Evento 
+﻿@model UTP.PortalEmpleabilidad.Modelo.Evento
 @{
     Layout = "~/Views/UTP/_LayoutUTP.cshtml";
     ViewBag.Title = "Evento";
@@ -11,279 +11,288 @@
     </div>
     <h5>Evento: Feria de Empleos</h5>
     <br />
-@*@using (Html.BeginForm("Evento", "UTP", FormMethod.Post, new { enctype = "multipart/form-data" }))*@
-@using (Html.BeginForm())
+    @*@using (Html.BeginForm("Evento", "UTP", FormMethod.Post, new { enctype = "multipart/form-data" }))*@
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.IdEvento)
 
-{
-    @Html.AntiForgeryToken()
-    @Html.HiddenFor(model => model.IdEvento)
-    <div class="row">
-        <div class="col-sm-6" style="border-right:solid;border-color:rgb(220, 220, 220);border-width:1px;">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="input-group">
-                        <span class="input-group-addon">Nombre<br />Evento</span>
-                        @*<input type="text" class="form-control" placeholder="Nombre del Evento">*@
-                      
-                        @Html.TextBoxFor(model => model.NombreEvento, new { @class = "form-control", rows = "3", @placeholder = "Nombre del Evento" })
-                    </div>
-                </div>
-            </div>
+        <div class="row">
+            <div class="col-sm-6" style="border-right:solid;border-color:rgb(220, 220, 220);border-width:1px;">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="input-group">
+                            <span class="input-group-addon">Nombre<br />Evento</span>
+                            @*<input type="text" class="form-control" placeholder="Nombre del Evento">*@
 
-            <div class="row">
- 
-                <div class="col-sm-6">
-                    <div class="input-group">
-                        <span class="input-group-addon">Estado</span>
-                      
-                        @Html.DropDownList("EstadoEvento", ViewData["ListaEstadoEvento"] as List<SelectListItem>, "- Seleccione Estado -", new { @class = "form-control" })
+                            @Html.TextBoxFor(model => model.NombreEvento, new { @class = "form-control", rows = "3", @placeholder = "Nombre del Evento" })
+                        </div>
                     </div>
                 </div>
-            </div>
-                
-            <div class="row">
 
-                <div class="col-sm-6">
-                    <div class="input-group">
-                        <span class="input-group-addon">Tipo</span>
-    
-                        @Html.DropDownList("TipoEvento", ViewData["ListaTipoEvento"] as List<SelectListItem>, "- Seleccione Tipo Evento -", new { @class = "form-control" })
-                    </div>
-                </div>
-            </div>
+                <div class="row">
 
-         
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="input-group">
-                        <span class="input-group-addon">Empresa<br />auspiciad.</span>
-                        @Html.DropDownList("IdEmpresa", ViewData["ListaEmpresa"] as List<SelectListItem>, "- Seleccione Empresa -", new { @class = "form-control" })
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="input-group">
-                        <span class="input-group-addon">Descrip-<br />ción</span>
-                        @*<textarea rows="6" class="form-control" placeholder="Empresa auspiciadora"></textarea>*@
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                            <span class="input-group-addon">Estado</span>
 
-                        @Html.TextAreaFor(model => model.DescripcionEvento, new { @class = "form-control", rows = "3", @placeholder = "Empresa auspiciadora" })
+                            @Html.DropDownList("EstadoEvento", ViewData["ListaEstadoEvento"] as List<SelectListItem>, "- Seleccione Estado -", new { @class = "form-control" })
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="input-group">
-                        <span class="input-group-addon">Fecha <br />Inicio</span>
-                        @*<input type="text" class="form-control" placeholder="Fecha de Inicio (dd/mm/aaaa)">*@
-                       @Html.TextBoxFor(model => model.FechaEvento, new { @class = "form-control", rows = "3", @placeholder = "Fecha de Inicio (dd/mm/aaaa)" })
+
+                <div class="row">
+
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                            <span class="input-group-addon">Tipo</span>
+
+                            @Html.DropDownList("TipoEvento", ViewData["ListaTipoEvento"] as List<SelectListItem>, "- Seleccione Tipo Evento -", new { @class = "form-control" })
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="input-group">
-                        <span class="input-group-addon">Describa<br />Fecha</span>
-                        @*<input type="text" class="form-control" placeholder="Fecha del Evento. Ej: Lunes 27 de Enero del 2014, de 8 a 9 de la Noche">*@
-                        @Html.TextBoxFor(model => model.FechaEventoTexto, new { @class = "form-control", rows = "3", @placeholder = "Fecha del Evento. Ej: Lunes 27 de Enero del 2014, de 8 a 9 de la Noche" })
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="input-group">
-                        <span class="input-group-addon">Lugar</span>
-                       @* <input type="text" class="form-control" placeholder="Describa el Lugar del Evento. Ej: Centro de Convenciones CLARO">*@
-                        @Html.TextBoxFor(model => model.LugarEvento, new { @class = "form-control", rows = "3", @placeholder = "Describa el Lugar del Evento. Ej: Centro de Convenciones CLARO" })
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="input-group">
-                        <span class="input-group-addon">Departa-<br />mento</span>
-                        @*<input type="text" class="form-control" placeholder="Departamento del Evento">*@
-                        @Html.TextBoxFor(model => model.DireccionRegion, new { @class = "form-control", rows = "3", @placeholder = "Departamento del Evento" })
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="input-group">
-                        <span class="input-group-addon">Ciudad</span>
-                        @*<input type="text" class="form-control" placeholder="Ciudad del Evento">*@
-                        @Html.TextBoxFor(model => model.DireccionCiudad, new { @class = "form-control", rows = "3", @placeholder = "Ciudad del Evento" })
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="input-group">
-                        <span class="input-group-addon">Distrito</span>
-                        @*<input type="text" class="form-control" placeholder="Distrito del Evento">*@
-                        @Html.TextBoxFor(model => model.DireccionDistrito, new { @class = "form-control", rows = "3", @placeholder = "Distrito del Evento" })
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="input-group">
-                        <span class="input-group-addon">Dirección</span>
-                        @*<input type="text" class="form-control" placeholder="Dirección del Evento. Ej: Calle Amapolas 991">*@
-                        @Html.TextBoxFor(model => model.DireccionEvento, new { @class = "form-control", rows = "3", @placeholder = "Dirección del Evento. Ej: Calle Amapolas 991" })
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="input-group">
-                        <span class="input-group-addon">Asistentes<br />esperados</span>
-                        @*<input type="text" class="form-control" placeholder="Número">*@
-                        @Html.TextBoxFor(model => model.AsistentesEsperados, new { @class = "form-control", rows = "3", @placeholder = "Número" })
-                    </div>
-                </div>
-            </div>
-            @*<div class="row">
-                <div class="col-sm-6">
-                    <div class="input-group">
-                        <span class="input-group-addon"><input type="checkbox"></span>
-                        <input type="text" class="form-control" placeholder="Pueden asistir Alumnos">
-                    </div>
-                </div>
-            </div>*@
 
 
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="input-group">
-                        <span class="input-group-addon">@Html.EditorFor(model => model.RegistraAlumnos)</span>
-                        <span class="form-control">Pueden asistir Alumnos</span>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                            <span class="input-group-addon">Empresa<br />auspiciad.</span>
+                            @Html.DropDownList("IdEmpresa", ViewData["ListaEmpresa"] as List<SelectListItem>, "- Seleccione Empresa -", new { @class = "form-control" })
+                        </div>
                     </div>
                 </div>
-            </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="input-group">
+                            <span class="input-group-addon">Descrip-<br />ción</span>
+                            @*<textarea rows="6" class="form-control" placeholder="Empresa auspiciadora"></textarea>*@
 
-
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="input-group">
-                        <span class="input-group-addon">@Html.EditorFor(model => model.RegistraUsuariosEmpresa)</span>
-                        <span class="form-control">Pueden asistir Usuarios empresa</span>
+                            @Html.TextAreaFor(model => model.DescripcionEvento, new { @class = "form-control", rows = "3", @placeholder = "Empresa auspiciadora" })
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="input-group">
-                        <span class="input-group-addon">@Html.EditorFor(model => model.RegistraPublicoEnGeneral)</span>
-                        <span class="form-control">Puede asistir el público en general</span>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                            <span class="input-group-addon">Fecha <br />Inicio</span>
+                            @*<input type="text" class="form-control" placeholder="Fecha de Inicio (dd/mm/aaaa)">*@
+                            @Html.TextBoxFor(model => model.FechaEvento, new { @class = "form-control", rows = "3", @placeholder = "Fecha de Inicio (dd/mm/aaaa)" })
+                        </div>
                     </div>
                 </div>
-            </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="input-group">
+                            <span class="input-group-addon">Describa<br />Fecha</span>
+                            @*<input type="text" class="form-control" placeholder="Fecha del Evento. Ej: Lunes 27 de Enero del 2014, de 8 a 9 de la Noche">*@
+                            @Html.TextBoxFor(model => model.FechaEventoTexto, new { @class = "form-control", rows = "3", @placeholder = "Fecha del Evento. Ej: Lunes 27 de Enero del 2014, de 8 a 9 de la Noche" })
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="input-group">
+                            <span class="input-group-addon">Lugar</span>
+                            @* <input type="text" class="form-control" placeholder="Describa el Lugar del Evento. Ej: Centro de Convenciones CLARO">*@
+                            @Html.TextBoxFor(model => model.LugarEvento, new { @class = "form-control", rows = "3", @placeholder = "Describa el Lugar del Evento. Ej: Centro de Convenciones CLARO" })
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                            <span class="input-group-addon">Departa-<br />mento</span>
+                            @*<input type="text" class="form-control" placeholder="Departamento del Evento">*@
+                            @Html.TextBoxFor(model => model.DireccionRegion, new { @class = "form-control", rows = "3", @placeholder = "Departamento del Evento" })
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                            <span class="input-group-addon">Ciudad</span>
+                            @*<input type="text" class="form-control" placeholder="Ciudad del Evento">*@
+                            @Html.TextBoxFor(model => model.DireccionCiudad, new { @class = "form-control", rows = "3", @placeholder = "Ciudad del Evento" })
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                            <span class="input-group-addon">Distrito</span>
+                            @*<input type="text" class="form-control" placeholder="Distrito del Evento">*@
+                            @Html.TextBoxFor(model => model.DireccionDistrito, new { @class = "form-control", rows = "3", @placeholder = "Distrito del Evento" })
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="input-group">
+                            <span class="input-group-addon">Dirección</span>
+                            @*<input type="text" class="form-control" placeholder="Dirección del Evento. Ej: Calle Amapolas 991">*@
+                            @Html.TextBoxFor(model => model.DireccionEvento, new { @class = "form-control", rows = "3", @placeholder = "Dirección del Evento. Ej: Calle Amapolas 991" })
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="input-group">
+                            <span class="input-group-addon">Asistentes<br />esperados</span>
+                            @*<input type="text" class="form-control" placeholder="Número">*@
+                            @Html.TextBoxFor(model => model.AsistentesEsperados, new { @class = "form-control", rows = "3", @placeholder = "Número" })
+                        </div>
+                    </div>
+                </div>
+                @*<div class="row">
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <span class="input-group-addon"><input type="checkbox"></span>
+                                <input type="text" class="form-control" placeholder="Pueden asistir Alumnos">
+                            </div>
+                        </div>
+                    </div>*@
+
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                            <span class="input-group-addon">@Html.EditorFor(model => model.RegistraAlumnos)</span>
+                            <span class="form-control">Pueden asistir Alumnos</span>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                            <span class="input-group-addon">@Html.EditorFor(model => model.RegistraUsuariosEmpresa)</span>
+                            <span class="form-control">Pueden asistir Usuarios empresa</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                            <span class="input-group-addon">@Html.EditorFor(model => model.RegistraPublicoEnGeneral)</span>
+                            <span class="form-control">Puede asistir el público en general</span>
+                        </div>
+                    </div>
+                </div>
 
 
 
-         
-            <br />
-            <div class="row">
+
+                <br />
+                <div class="row">
+                    @*<div class="col-sm-12" style="text-align:right;">
+                            <button class="btn btn-default color-paleta5">Guardar</button>
+                        </div>*@
+                    <div class="col-sm-12" style="text-align:right;">
+                        <button class="btn btn-default color-paleta5" type="submit" value="Guardar">Guardar</button>
+                    </div>
+                </div>
+
                 @*<div class="col-sm-12" style="text-align:right;">
-                    <button class="btn btn-default color-paleta5">Guardar</button>
-                </div>*@
-                <div class="col-sm-12" style="text-align:right;">
-                    <button class="btn btn-default color-paleta5" type="submit" value="Guardar">Guardar</button>
-                </div>
+                        <button class="btn btn-default color-paleta7" type="submit" value="Guardar">Guardar</button>
+                    </div>*@
+
+                <hr />
+                @*<table>
+                        <tr>
+                            <td class="celda-nombre">
+                                Creado Por
+                            </td>
+                            <td class="celda-datos">
+                                MarioAlberti
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="celda-nombre">
+                                Creado el
+                            </td>
+                            <td class="celda-datos">
+                                10/01/2015 12:45:51
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="celda-nombre">
+                                Modificado Por
+                            </td>
+                            <td class="celda-datos">
+                                ---
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="celda-nombre">
+                                Modificado el
+                            </td>
+                            <td class="celda-datos">
+                                ---
+                            </td>
+                        </tr>
+                    </table>*@
+                <br />
             </div>
-
-            @*<div class="col-sm-12" style="text-align:right;">
-                <button class="btn btn-default color-paleta7" type="submit" value="Guardar">Guardar</button>
-            </div>*@
-
-            <hr />
-            @*<table>
-                <tr>
-                    <td class="celda-nombre">
-                        Creado Por
-                    </td>
-                    <td class="celda-datos">
-                        MarioAlberti
-                    </td>
-                </tr>
-                <tr>
-                    <td class="celda-nombre">
-                        Creado el
-                    </td>
-                    <td class="celda-datos">
-                        10/01/2015 12:45:51
-                    </td>
-                </tr>
-                <tr>
-                    <td class="celda-nombre">
-                        Modificado Por
-                    </td>
-                    <td class="celda-datos">
-                        ---
-                    </td>
-                </tr>
-                <tr>
-                    <td class="celda-nombre">
-                        Modificado el
-                    </td>
-                    <td class="celda-datos">
-                        ---
-                    </td>
-                </tr>
-            </table>*@
-            <br />
+                        
         </div>
+    }
+
+    <div class="col-sm-6 ">
+        <div class="row">
+
+            @*<div id="divAdministrarImagen" class="col-sm-4">
+                    @Html.Action("_AdministrarImagen", "Empresa", new { IdEmpresa = @ViewBag.IdEmpresa })
+                </div>*@
+
+            @Html.Action("_AdministrarActualizarImagenEventoUTP", "UTP", new { IdEvento = Model.IdEvento })
 
 
-        <div class="col-sm-6 ">
-            <div class="row">
-                <div class="col-sm-6">
+
+            @*<div class="col-sm-6">
                     <h6>Poster del Evento</h6>
-                    <img src="../img/evento/Evento1.jpg" style="width:100%;border:solid;border-width:thick;border-color:rgb(220,220,220);">
+                    <img src="~/img/evento/Evento1.jpg" style="width:100%;border:solid;border-width:thick;border-color:rgb(220,220,220);">
                     <br /><br />
                     <button class="btn btn-default color-paleta5">Cambiar imagen</button>
                     <hr />
                 </div>
                 <div class="col-sm-6">
                     <h6>Imagen del Ticket</h6>
-                    <img src="../img/evento/Evento1.jpg" style="width:100%;border:solid;border-width:thick;border-color:rgb(220,220,220);">
+                    <img src="~/img/evento/Evento1.jpg" style="width:100%;border:solid;border-width:thick;border-color:rgb(220,220,220);">
                     <br /><br />
                     <button class="btn btn-default color-paleta5">Cambar imagen</button>
                     <hr />
-                </div>
-            </div>
+                </div>*@
         </div>
     </div>
-}
 </div>
-        <script>
+<script>
 
-            $(document).ready(function () {
-                $("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta3 color-paleta4 color-paleta6 color-paleta7 color-paleta8").addClass("color-paleta5");
-            });
+    $(document).ready(function () {
+        $("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta3 color-paleta4 color-paleta6 color-paleta7 color-paleta8").addClass("color-paleta5");
+    });
 
 
-        </script>
+</script>
 
 <script src="~/Scripts/jquery-ui.js"></script>
 <script src="~/Scripts/jquery.maskedinput.js"></script>
 
 
 <script>
-    $("#FechaEvento").datepicker({ dateFormat: "dd/mm/yy" }).mask("99/99/9999");
-    $.validator.addMethod('date',
-    function (value, element, params) {
-        if (this.optional(element)) {
-            return true;
-        }
-        var ok = true;
-        try {
-            $.datepicker.parseDate('dd/mm/yy', value);
-        }
-        catch (err) {
-            ok = false;
-        }
-        return ok;
-    });
+    //$("#FechaEvento").datepicker({ dateFormat: "dd/mm/yy" }).mask("99/99/9999");
+    //$.validator.addMethod('date',
+    //function (value, element, params) {
+    //    if (this.optional(element)) {
+    //        return true;
+    //    }
+    //    var ok = true;
+    //    try {
+    //        $.datepicker.parseDate('dd/mm/yy', value);
+    //    }
+    //    catch (err) {
+    //        ok = false;
+    //    }
+    //    return ok;
+    //});
 </script>

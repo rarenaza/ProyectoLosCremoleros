@@ -22,10 +22,10 @@ namespace UTP.PortalEmpleabilidad.Modelo
       public int IdEmpresa { get; set; }
        public string DescripcionEvento { get; set; }
  
-      public byte[] PosterGrandeEvento { get; set; }
+      //public byte[] PosterGrandeEvento { get; set; }
 
-	  public byte []PosterMedianoEvento{get;set;}
-      public byte []PosterChicoEvento{get;set;}
+      //public byte []PosterMedianoEvento{get;set;}
+      //public byte []PosterChicoEvento{get;set;}
        
       public DateTime  FechaEvento { get; set; }
 
@@ -42,8 +42,17 @@ namespace UTP.PortalEmpleabilidad.Modelo
 	 public int AsistentesEsperados { get; set; }
 
       public int AsistentesReales { get; set; }
+      
+      public byte[]ImagenEvento { get; set; }
+
+      public string ArchivoNombreOriginalImagenEvento { get; set; }
+      public string ArchivoMimeTypeImagenEvento { get; set; }
 
      public byte []ImagenTicket{get;set;}
+
+     //public string ArchivoNombreOriginalImagenEvento { get; set; }
+     //public string ArchivoMimeTypeImagenEvento { get; set; }
+
 
      public bool  RegistraAlumnos { get; set; }
 

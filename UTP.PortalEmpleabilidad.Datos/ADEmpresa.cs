@@ -352,7 +352,6 @@ namespace UTP.PortalEmpleabilidad.Datos
             {
                 return false;
             }
-
         }
         public DataTable Empresa_Elegir_Imagen(int Cod)
         {

@@ -480,7 +480,6 @@ namespace UTPPrototipo.Controllers
 
             //DataTable dtResultado = lnEmpresa.Empresa_Elejir_Imagen(1);
 
-
             DataTable dtResultado = lnEmpresa.Empresa_Elegir_Imagen(ticket.IdEmpresa);
 
             if (dtResultado.Rows.Count > 0)
@@ -494,8 +493,7 @@ namespace UTPPrototipo.Controllers
                 empresa.AnoCreacion = Convert.ToInt32(dtResultado.Rows[0]["AnoCreacion"] == DBNull.Value ? null : dtResultado.Rows[0]["AnoCreacion"]);
                 empresa.NumeroEmpleados.Valor   = Convert.ToString(dtResultado.Rows[0]["NumeroEmpleados"]);
                 empresa.SectorEmpresarial.Valor = Convert.ToString(dtResultado.Rows[0]["SectorEmpresarial"]);
-                empresa.ArchivoNombreOriginal   = Convert.ToString(dtResultado.Rows[0]["ArchivoNombreOriginal"]);
-                
+                empresa.ArchivoNombreOriginal   = Convert.ToString(dtResultado.Rows[0]["ArchivoNombreOriginal"]);            
             }
 
             return PartialView(empresa);           

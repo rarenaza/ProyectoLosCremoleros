@@ -13,6 +13,54 @@ namespace UTP.PortalEmpleabilidad.Logica
     {
        ADEvento ad = new ADEvento();
 
+       public DataTable EVENTO_OBTENERPORID(int id)
+       {
+           return ad.EVENTO_OBTENERPORID(id);
+       }
+       public bool Evento_insertar(Evento evento)
+       {
+
+
+           if (ad.Evento_insertar(evento) == true)
+           {
+               return true;
+           }
+           else
+           {
+               return false;
+           }
+
+       }
+
+       public bool Evento_Actualizar(Evento evento)
+       {
+
+
+           if (ad.Evento_Actualizar(evento) == true)
+           {
+               return true;
+           }
+           else
+           {
+               return false;
+           }
+
+       }
+       public bool EVENTO_ACTUALIZAR_IMAGENEVENTO(Evento  evento)
+       {
+
+
+           if (ad.EVENTO_ACTUALIZAR_IMAGENEVENTO(evento) == true)
+           {
+               return true;
+           }
+           else
+           {
+               return false;
+           }
+
+       }
+
        //public List<Evento> Evento_Mostrar()
        // {
        //     List<Evento> lista = new List<Evento>();
@@ -53,10 +101,7 @@ namespace UTP.PortalEmpleabilidad.Logica
        //     return lista;
        // }
 
-       public DataTable EVENTO_OBTENERPORID(int id)
-       {
-           return ad.EVENTO_OBTENERPORID(id);
-       }
+ 
 
 
        public List<Evento> Evento_MostrarUltimos()
@@ -75,35 +120,7 @@ namespace UTP.PortalEmpleabilidad.Logica
            }
            return lista;
        }
-       public bool Evento_insertar(Evento evento)
-       {
-
-         
-           if (ad.Evento_insertar(evento) == true)
-           {
-               return true;
-           }
-           else
-           {
-               return false;
-           }
-
-       }
-
-       public bool Evento_Actualizar(Evento evento)
-       {
-
-
-           if (ad.Evento_Actualizar(evento) == true)
-           {
-               return true;
-           }
-           else
-           {
-               return false;
-           }
-
-       }
+      
 
        public List<Evento> Listar_Eventos(string palabra)
        {
