@@ -61,6 +61,21 @@ namespace UTP.PortalEmpleabilidad.Logica
 
        }
 
+       public bool EVENTO_ACTUALIZAR_IMAGENTICKECT(Evento evento)
+       {
+
+
+           if (ad.EVENTO_ACTUALIZAR_IMAGENTICKECT(evento) == true)
+           {
+               return true;
+           }
+           else
+           {
+               return false;
+           }
+
+       }
+
        //public List<Evento> Evento_Mostrar()
        // {
        //     List<Evento> lista = new List<Evento>();

@@ -52,8 +52,8 @@ namespace UTP.PortalEmpleabilidad.Modelo
 
      public byte []ImagenTicket{get;set;}
 
-     //public string ArchivoNombreOriginalImagenEvento { get; set; }
-     //public string ArchivoMimeTypeImagenEvento { get; set; }
+     public string ArchivoNombreOriginalImagenTicket { get; set; }
+     public string ArchivoMimeTypeImagenEventoTicket { get; set; }
 
 
      public bool  RegistraAlumnos { get; set; }

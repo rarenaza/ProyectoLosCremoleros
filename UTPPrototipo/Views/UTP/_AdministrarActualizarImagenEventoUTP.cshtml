@@ -5,20 +5,15 @@
 { 
 <div class="col-sm-6">
 
-    @*@Html.AntiForgeryToken()*@
     <h6>Poster del Evento</h6>
-  @*  <img src="~/img/evento/Evento1.jpg" style="width:100%;border:solid;border-width:thick;border-color:rgb(220,220,220);">*@
 
-
+    @Html.HiddenFor(m => m.IdEvento)
+    
     <img alt="" style="width:100%" src='@Url.Action("GetImagenEvento", "UTP", new { id = Model.IdEvento })' />
-
-
-    @Html.HiddenFor(m => m.IdEvento ) 
+   
     @Html.TextBoxFor(model => model.ImagenEventoHtml, new { type = "file" })
     
-@*@Html.DisplayFor(m => m.LugarEvento)*@
     <br /><br />
-    @*<button class="btn btn-default color-paleta5">Cambiar imagen</button>*@
 
     <input type="submit" value="Cambiar imagen" class="btn btn-default color-paleta5" />
 
