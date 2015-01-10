@@ -209,6 +209,50 @@ namespace UTP.PortalEmpleabilidad.Logica
            vistaeventosporusuario.usuarioeventopasado = usuarioeventopasado;
            return vistaeventosporusuario;
        }
+       public Evento EventoPorUsuario(int idevento, string usuario)
+       {
+           Evento eventoporusuario = new Evento();
 
+           DataSet dsResultado = ad.EventoPorUsuario(idevento,usuario);
+           
+           if (dsResultado.Tables[0].Rows.Count > 0) 
+           {
+               eventoporusuario.IdEvento = Funciones.ToInt(dsResultado.Tables[0].Rows[0]["IdEvento"]);
+               eventoporusuario.NombreEvento = Funciones.ToString(dsResultado.Tables[0].Rows[0]["NombreEvento"]);
+               eventoporusuario.EstadoEvento = Funciones.ToString(dsResultado.Tables[0].Rows[0]["EstadoEvento"]);
+               eventoporusuario.ValorEstadoEvento = Funciones.ToString(dsResultado.Tables[0].Rows[0]["ValorEstadoEvento"]);
+               eventoporusuario.TipoEvento = Funciones.ToString(dsResultado.Tables[0].Rows[0]["TipoEvento"]);
+               eventoporusuario.ValorTipoEvento = Funciones.ToString(dsResultado.Tables[0].Rows[0]["ValorTipoEvento"]);
+               eventoporusuario.IdEmpresa = Funciones.ToInt(dsResultado.Tables[0].Rows[0]["IdEmpresa"]);
+               eventoporusuario.NombreComercial = Funciones.ToString(dsResultado.Tables[0].Rows[0]["NombreComercial"]);
+               eventoporusuario.LogoEmpresa = Funciones.ToBytes(dsResultado.Tables[0].Rows[0]["LogoEmpresa"]);
+               eventoporusuario.DescripcionEvento = Funciones.ToString(dsResultado.Tables[0].Rows[0]["DescripcionEvento"]);
+               eventoporusuario.FechaEvento = Funciones.ToDateTime(dsResultado.Tables[0].Rows[0]["FechaEvento"]);
+               eventoporusuario.FechaEventoTexto = Funciones.ToString(dsResultado.Tables[0].Rows[0]["FechaEventoTexto"]);
+               eventoporusuario.LugarEvento = Funciones.ToString(dsResultado.Tables[0].Rows[0]["LugarEvento"]);
+               eventoporusuario.DireccionEvento = Funciones.ToString(dsResultado.Tables[0].Rows[0]["DescripcionEvento"]);
+               eventoporusuario.DireccionDistrito = Funciones.ToString(dsResultado.Tables[0].Rows[0]["DireccionDistrito"]);
+               eventoporusuario.DireccionCiudad = Funciones.ToString(dsResultado.Tables[0].Rows[0]["DireccionCiudad"]);
+               eventoporusuario.DireccionRegion = Funciones.ToString(dsResultado.Tables[0].Rows[0]["DireccionRegion"]);
+               eventoporusuario.AsistentesEsperados = Funciones.ToInt(dsResultado.Tables[0].Rows[0]["AsistentesEsperados"]);
+               eventoporusuario.AsistentesReales = Funciones.ToInt(dsResultado.Tables[0].Rows[0]["AsistentesReales"]);
+               eventoporusuario.RegistraAlumnos = Funciones.ToBoolean(dsResultado.Tables[0].Rows[0]["RegistraAlumnos"]);
+               eventoporusuario.RegistraUsuariosEmpresa = Funciones.ToBoolean(dsResultado.Tables[0].Rows[0]["RegistraUsuariosEmpresa"]);
+               eventoporusuario.RegistraPublicoEnGeneral = Funciones.ToBoolean(dsResultado.Tables[0].Rows[0]["RegistraPublicoEnGeneral"]);
+               eventoporusuario.ImagenEvento = Funciones.ToBytes(dsResultado.Tables[0].Rows[0]["ImagenEvento"]);
+               eventoporusuario.ImagenTicket = Funciones.ToBytes(dsResultado.Tables[0].Rows[0]["ImagenTicket"]);
+               eventoporusuario.IdEventoAsistente = Funciones.ToInt(dsResultado.Tables[0].Rows[0]["IdEventoAsistente"]);
+               eventoporusuario.FechaInscripcion = Funciones.ToDateTime(dsResultado.Tables[0].Rows[0]["FechaInscripcion"]);
+               eventoporusuario.Nombres = Funciones.ToString(dsResultado.Tables[0].Rows[0]["Nombres"]);
+               eventoporusuario.Apellidos = Funciones.ToString(dsResultado.Tables[0].Rows[0]["Apellidos"]);
+               eventoporusuario.EstadoTicket = Funciones.ToString(dsResultado.Tables[0].Rows[0]["EstadoTicket"]);
+               eventoporusuario.ValorEstadoTicket = Funciones.ToString(dsResultado.Tables[0].Rows[0]["ValorEstadoTicket"]);
+               eventoporusuario.TipoDocumento = Funciones.ToString(dsResultado.Tables[0].Rows[0]["TipoDocumento"]);
+               eventoporusuario.ValorTipoDocumento = Funciones.ToString(dsResultado.Tables[0].Rows[0]["ValorTipoDocumento"]);
+               eventoporusuario.NumeroDocumento = Funciones.ToString(dsResultado.Tables[0].Rows[0]["NumeroDocumento"]);
+               eventoporusuario.FechaAsistencia = Funciones.ToDateTime(dsResultado.Tables[0].Rows[0]["FechaAsistencia"]);
+           }
+           return eventoporusuario;
+       }
     }
 }

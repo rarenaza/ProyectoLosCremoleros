@@ -1,4 +1,4 @@
-﻿@model UTP.PortalEmpleabilidad.Modelo.VistaEventoPorUsuario
+﻿@model UTP.PortalEmpleabilidad.Modelo.Evento
 @{
     Layout = "~/Views/Empresa/_LayoutEmpresa.cshtml";
     ViewBag.Title = "Eventos";
@@ -13,15 +13,61 @@
             <hr />
         </div>
         <div class="col-sm-4" style="border-right:solid;border-color:rgb(220, 220, 220);border-width:1px;">
+            <h6>Detalles</h6>
             <table>
                 <tr class="linea_raya">
-                    <td class="celda-nombre"></td>
-                    <td class="celda-datos"></td>
+                    <td class="celda-nombre">Evento</td>
+                    <td class="celda-datos">@Model.NombreEvento</td>
                 </tr>
+                <tr class="linea_raya">
+                    <td class="celda-nombre">Tipo</td>
+                    <td class="celda-datos">@Model.ValorTipoEvento</td>
+                </tr>
+                <tr class="linea_raya">
+                    <td class="celda-nombre">Estado</td>
+                    <td class="celda-datos">@Model.ValorEstadoEvento</td>
+                </tr>
+                @if (@Model.NombreComercial != null)
+                { 
+                <tr class="linea_raya">
+                    <td class="celda-nombre">Auspiciado Por</td>
+                    <td class="celda-datos">
+                        <img src="~/img/LogoCriteria.jpg" /><hr />
+                        @Model.NombreComercial
+                    </td>
+                </tr>
+                }
+                <tr class="linea_raya">
+                    <td class="celda-nombre">Descripción</td>
+                    <td class="celda-datos">@Model.DescripcionEvento</td>
+                </tr>
+                <tr class="linea_raya">
+                    <td class="celda-nombre">Fecha y Horarios</td>
+                    <td class="celda-datos">@Model.FechaEventoTexto</td>
+                </tr>
+                <tr class="linea_raya">
+                    <td class="celda-nombre">Lugar</td>
+                    <td class="celda-datos">@Model.LugarEvento</td>
+                </tr>
+                <tr class="linea_raya">
+                    <td class="celda-nombre">Dirección</td>
+                    <td class="celda-datos">@Model.DireccionEvento, @Model.DireccionDistrito, @Model.DireccionCiudad, @Model.DireccionRegion</td>
+                </tr>
+                
+
             </table>
+            <hr />
         </div>
         <div class="col-sm-4">
+            <h6>Su Participación</h6>
+            @if (Model.EstadoEvento == "EVSTAC")
+            {
+                if (Model.IdEventoAsistente != null)
+                {
+                    <p>Se ha Inscrito el @Model.FechaInscripcion</p>
 
+                }
+            }
         </div>
     </div>
 </div>

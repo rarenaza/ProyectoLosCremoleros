@@ -12,13 +12,15 @@ namespace UTP.PortalEmpleabilidad.Modelo
       public int  IdEvento { get; set; }
       public string NombreEvento { get; set; }
 
-      public string EstadoEvento { get; set; }
+      public string EstadoEvento { get; set; }    
+      public string ValorEstadoEvento { get; set; }
       
       public string ListaEstadoEvento {get;set;}
       public string ListaTipoEvento { get; set; }
       public string ListaEmpresa { get; set; }
       
       public string TipoEvento { get; set; }
+      public string ValorTipoEvento { get; set; }
       public int IdEmpresa { get; set; }
        public string DescripcionEvento { get; set; }
  
@@ -74,5 +76,13 @@ namespace UTP.PortalEmpleabilidad.Modelo
    public string EstadoTicket { get; set; }
    public string ValorEstadoTicket { get; set; }
    public DateTime FechaAsistencia { get; set; }
+   public string Nombres { get; set; }
+   public string Apellidos { get; set; }
+   public string TipoDocumento { get; set; }
+   public string ValorTipoDocumento { get; set; }
+   public string NumeroDocumento { get; set; }
+   public byte[] LogoEmpresa { get; set; }
+   public string ValorDireccionPais { get; set; }
+   public int IdEventoAsistente { get; set; }
     }
 }

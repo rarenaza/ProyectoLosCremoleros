@@ -276,5 +276,26 @@ namespace UTP.PortalEmpleabilidad.Datos
 
             return dsResultado;
         }
+        public DataSet EventoPorUsuario(int idevento, string usuario)
+        {
+            DataSet dsResultado = new DataSet();
+
+            using (SqlConnection conexion = new SqlConnection(cnn.Conexion()))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Evento_Mostrar";
+                cmd.Connection = conexion;
+                conexion.Open();
+                cmd.Parameters.Add(new SqlParameter("@IdEvento", idevento));
+                cmd.Parameters.Add(new SqlParameter("@Usuario", usuario));
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dsResultado);
+                conexion.Close();
+            }
+
+            return dsResultado;
+        }
     }
 }

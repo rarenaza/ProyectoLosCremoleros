@@ -234,9 +234,13 @@ namespace UTPPrototipo.Controllers
 
             return View(evento);
         }
-        public ActionResult Evento()
+        public ActionResult Evento(int idEvento)
         {
-            return View();
+            TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];
+
+            LNEvento lnEvento = new LNEvento();
+            Evento evento = lnEvento.EventoPorUsuario(idEvento, ticket.Usuario);
+            return View(evento);
         }
 
         public ActionResult VistaCabecera(string estiloPanel)
