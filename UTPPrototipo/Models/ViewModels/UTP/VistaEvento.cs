@@ -49,8 +49,8 @@ namespace UTPPrototipo.Models.ViewModels.UTP
 
         public byte[] ImagenTicket { get; set; }
 
-        //public string ArchivoNombreOriginalImagenEvento { get; set; }
-        //public string ArchivoMimeTypeImagenEvento { get; set; }
+        public string ArchivoNombreOriginalImagenTicket { get; set; }
+        public string ArchivoMimeTypeImagenEventoTicket { get; set; }
 
 
         public bool RegistraAlumnos { get; set; }
@@ -73,7 +73,9 @@ namespace UTPPrototipo.Models.ViewModels.UTP
         public string EstadoTicket { get; set; }
 
         public DateTime FechaAsistencia { get; set; }
-        public HttpPostedFileBase ImagenEventoHtml { get; set; }        
+        public HttpPostedFileBase ImagenEventoHtml { get; set; }
+
+        public HttpPostedFileBase ImagenEventoTicketHtml { get; set; }       
 
     }
 }

@@ -1230,6 +1230,7 @@ namespace UTPPrototipo.Controllers
                 vistaEvento.EstadoEvento = Convert.ToString(dtResultado.Rows[0]["EstadoEvento"]);
                 vistaEvento.TipoEvento = Convert.ToString(dtResultado.Rows[0]["TipoEvento"]);
                 vistaEvento.IdEmpresa = Convert.ToInt32(dtResultado.Rows[0]["IdEmpresa"]);
+                vistaEvento.ImagenEvento = dtResultado.Rows[0]["ImagenEvento"] == DBNull.Value ? null : (byte[])dtResultado.Rows[0]["ImagenEvento"];
 
             }
 
@@ -1244,14 +1245,114 @@ namespace UTPPrototipo.Controllers
             
         }
 
+
+        public PartialViewResult _AdministrarActualizarImagenTickect(int IdEvento)
+        {
+
+            VistaEvento vistaEvento = new VistaEvento();
+
+            DataTable dtResultado = lnEventos.EVENTO_OBTENERPORID(Convert.ToInt32(IdEvento));
+
+            if (dtResultado.Rows.Count > 0)
+            {
+
+                vistaEvento.IdEvento = Convert.ToInt32(dtResultado.Rows[0]["IdEvento"]);
+                vistaEvento.NombreEvento = Convert.ToString(dtResultado.Rows[0]["NombreEvento"]);
+                vistaEvento.DescripcionEvento = Convert.ToString(dtResultado.Rows[0]["DescripcionEvento"]);
+                vistaEvento.FechaEvento = Convert.ToDateTime(dtResultado.Rows[0]["FechaEvento"]);
+                vistaEvento.FechaEventoTexto = Convert.ToString(dtResultado.Rows[0]["FechaEventoTexto"]);
+                vistaEvento.LugarEvento = Convert.ToString(dtResultado.Rows[0]["LugarEvento"]);
+                vistaEvento.DireccionRegion = Convert.ToString(dtResultado.Rows[0]["DireccionRegion"]);
+                vistaEvento.DireccionCiudad = Convert.ToString(dtResultado.Rows[0]["DireccionCiudad"]);
+                vistaEvento.DireccionDistrito = Convert.ToString(dtResultado.Rows[0]["DireccionDistrito"]);
+                vistaEvento.DireccionEvento = Convert.ToString(dtResultado.Rows[0]["DireccionEvento"]);
+                vistaEvento.AsistentesEsperados = Convert.ToInt32(dtResultado.Rows[0]["AsistentesEsperados"]);
+                vistaEvento.RegistraAlumnos = Convert.ToBoolean(dtResultado.Rows[0]["RegistraAlumnos"]);
+                vistaEvento.RegistraUsuariosEmpresa = Convert.ToBoolean(dtResultado.Rows[0]["RegistraUsuariosEmpresa"] == DBNull.Value ? 0 : dtResultado.Rows[0]["RegistraUsuariosEmpresa"]);
+                vistaEvento.RegistraPublicoEnGeneral = Convert.ToBoolean(dtResultado.Rows[0]["RegistraPublicoEnGeneral"] == DBNull.Value ? 0 : dtResultado.Rows[0]["RegistraPublicoEnGeneral"]);
+                vistaEvento.EstadoEvento = Convert.ToString(dtResultado.Rows[0]["EstadoEvento"]);
+                vistaEvento.TipoEvento = Convert.ToString(dtResultado.Rows[0]["TipoEvento"]);
+                vistaEvento.IdEmpresa = Convert.ToInt32(dtResultado.Rows[0]["IdEmpresa"]);
+                vistaEvento.ImagenTicket = dtResultado.Rows[0]["ImagenTicket"] == DBNull.Value ? null : (byte[])dtResultado.Rows[0]["ImagenTicket"];
+
+            }
+
+
+            //VistaEvento vistaEvento = new VistaEvento();
+            //vistaEvento.LugarEvento = "demo";
+            //vistaEvento.IdEvento = 10;
+            //return PartialView("_AdministrarActualizarImagenEventoUTP", listaOfertasPendientes);
+
+            return PartialView("_AdministrarActualizarImagenTickect", vistaEvento);
+
+
+        }
+
+
+
+
         public FileResult GetImagenEvento(int id)
+        {
+            
+            const string alternativePicturePath = @"/img/sinimagen.jpg";
+            //LNEmpresa lnEmpresa = new LNEmpresa();
+            //Empresa empresa = lnEmpresa.ObtenerDatosEmpresaPorId(id);
+            
+            VistaEvento vistaEvento = new VistaEvento();
+
+            DataTable dtResultado = lnEventos.EVENTO_OBTENERPORID(Convert.ToInt32(id));
+
+            if (dtResultado.Rows.Count > 0)
+            {
+
+                vistaEvento.IdEvento = Convert.ToInt32(dtResultado.Rows[0]["IdEvento"]);
+                vistaEvento.NombreEvento = Convert.ToString(dtResultado.Rows[0]["NombreEvento"]);
+                vistaEvento.DescripcionEvento = Convert.ToString(dtResultado.Rows[0]["DescripcionEvento"]);
+                vistaEvento.FechaEvento = Convert.ToDateTime(dtResultado.Rows[0]["FechaEvento"]);
+                vistaEvento.FechaEventoTexto = Convert.ToString(dtResultado.Rows[0]["FechaEventoTexto"]);
+                vistaEvento.LugarEvento = Convert.ToString(dtResultado.Rows[0]["LugarEvento"]);
+                vistaEvento.DireccionRegion = Convert.ToString(dtResultado.Rows[0]["DireccionRegion"]);
+                vistaEvento.DireccionCiudad = Convert.ToString(dtResultado.Rows[0]["DireccionCiudad"]);
+                vistaEvento.DireccionDistrito = Convert.ToString(dtResultado.Rows[0]["DireccionDistrito"]);
+                vistaEvento.DireccionEvento = Convert.ToString(dtResultado.Rows[0]["DireccionEvento"]);
+                vistaEvento.AsistentesEsperados = Convert.ToInt32(dtResultado.Rows[0]["AsistentesEsperados"]);
+                vistaEvento.RegistraAlumnos = Convert.ToBoolean(dtResultado.Rows[0]["RegistraAlumnos"]);
+                vistaEvento.RegistraUsuariosEmpresa = Convert.ToBoolean(dtResultado.Rows[0]["RegistraUsuariosEmpresa"] == DBNull.Value ? 0 : dtResultado.Rows[0]["RegistraUsuariosEmpresa"]);
+                vistaEvento.RegistraPublicoEnGeneral = Convert.ToBoolean(dtResultado.Rows[0]["RegistraPublicoEnGeneral"] == DBNull.Value ? 0 : dtResultado.Rows[0]["RegistraPublicoEnGeneral"]);
+                vistaEvento.EstadoEvento = Convert.ToString(dtResultado.Rows[0]["EstadoEvento"]);
+                vistaEvento.TipoEvento = Convert.ToString(dtResultado.Rows[0]["TipoEvento"]);
+                vistaEvento.IdEmpresa = Convert.ToInt32(dtResultado.Rows[0]["IdEmpresa"]);
+                vistaEvento.ImagenEvento = dtResultado.Rows[0]["ImagenEvento"] == DBNull.Value ? null : (byte[])dtResultado.Rows[0]["ImagenEvento"];
+
+            }
+                     
+            
+            MemoryStream stream;
+
+            if (vistaEvento != null && vistaEvento.ImagenEvento != null)
+            {
+                stream = new MemoryStream(vistaEvento.ImagenEvento);
+            }
+            else
+            {
+                stream = new MemoryStream();
+
+                var path = Server.MapPath(alternativePicturePath);
+                var image = new System.Drawing.Bitmap(path);
+
+                image.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
+                stream.Seek(0, SeekOrigin.Begin);
+            }
+
+            return new FileStreamResult(stream, "image/jpeg");
+        }
+
+        public FileResult GetImagenEventoTickect(int id)
         {
 
             const string alternativePicturePath = @"/img/sinimagen.jpg";
             //LNEmpresa lnEmpresa = new LNEmpresa();
             //Empresa empresa = lnEmpresa.ObtenerDatosEmpresaPorId(id);
-
-
 
             VistaEvento vistaEvento = new VistaEvento();
 
@@ -1277,15 +1378,16 @@ namespace UTPPrototipo.Controllers
                 vistaEvento.EstadoEvento = Convert.ToString(dtResultado.Rows[0]["EstadoEvento"]);
                 vistaEvento.TipoEvento = Convert.ToString(dtResultado.Rows[0]["TipoEvento"]);
                 vistaEvento.IdEmpresa = Convert.ToInt32(dtResultado.Rows[0]["IdEmpresa"]);
+                vistaEvento.ImagenTicket = dtResultado.Rows[0]["ImagenTicket"] == DBNull.Value ? null : (byte[])dtResultado.Rows[0]["ImagenTicket"];
 
             }
-                     
-            
+
+
             MemoryStream stream;
 
-            if (vistaEvento != null && vistaEvento.ImagenEvento != null)
+            if (vistaEvento != null && vistaEvento.ImagenTicket != null)
             {
-                stream = new MemoryStream(vistaEvento.ImagenEvento);
+                stream = new MemoryStream(vistaEvento.ImagenTicket);
             }
             else
             {
@@ -1299,9 +1401,7 @@ namespace UTPPrototipo.Controllers
             }
 
             return new FileStreamResult(stream, "image/jpeg");
-        } 
-
-
+        }
 
 
         [HttpPost]
@@ -1309,9 +1409,7 @@ namespace UTPPrototipo.Controllers
         //[ValidateInput(false)]
         public ActionResult EVENTO_ACTUALIZAR_IMAGENEVENTO(VistaEvento EventoHTML)
         {
-
             Evento evento = new Evento();
-
 
             if (EventoHTML.ImagenEventoHtml != null)
             {
@@ -1323,14 +1421,11 @@ namespace UTPPrototipo.Controllers
                 EventoHTML.ImagenEvento = uploadedFile;
 
                 evento.ArchivoNombreOriginalImagenEvento = EventoHTML.ArchivoNombreOriginalImagenEvento;
-
             }
 
             evento.ImagenEvento = EventoHTML.ImagenEvento;
             evento.ArchivoMimeTypeImagenEvento = EventoHTML.ArchivoMimeTypeImagenEvento;
             evento.ArchivoNombreOriginalImagenEvento = EventoHTML.ArchivoNombreOriginalImagenEvento;
-
-
             evento.IdEvento = EventoHTML.IdEvento;
 
             //if (ModelState.IsValid)
@@ -1339,22 +1434,57 @@ namespace UTPPrototipo.Controllers
             if (lnEventos.EVENTO_ACTUALIZAR_IMAGENEVENTO(evento) == true)
             {
                 ViewBag.Message = "Datos Actualizado";
-                return RedirectToAction("Evento_Editar", "UTP");
 
-
-                //return PartialView("_AdministrarImagen", empresaHTML);
-
+                return RedirectToAction("Evento_Editar", "UTP", new { id =evento.IdEvento });
             }
             else
             {
-
                 ViewBag.Message = "Error al Actualizar";
                 return View(EventoHTML);
             }
 
         }
 
+        [HttpPost]
+        //[ValidateAntiForgeryToken]
+        //[ValidateInput(false)]
+        public ActionResult EVENTO_ACTUALIZAR_IMAGENTICKECT(VistaEvento EventoHTML)
+        {
+            Evento evento = new Evento();
 
+            if (EventoHTML.ImagenEventoTicketHtml != null)
+            {
+
+                byte[] uploadedFile = new byte[EventoHTML.ImagenEventoTicketHtml.InputStream.Length];
+                EventoHTML.ImagenEventoTicketHtml.InputStream.Read(uploadedFile, 0, Convert.ToInt32(EventoHTML.ImagenEventoTicketHtml.InputStream.Length));
+                EventoHTML.ArchivoNombreOriginalImagenTicket = EventoHTML.ImagenEventoTicketHtml.FileName;
+                EventoHTML.ArchivoMimeTypeImagenEventoTicket = EventoHTML.ImagenEventoTicketHtml.ContentType;
+                EventoHTML.ImagenTicket = uploadedFile;
+
+                evento.ArchivoNombreOriginalImagenTicket = EventoHTML.ArchivoNombreOriginalImagenTicket;
+            }
+
+            evento.ImagenTicket = EventoHTML.ImagenTicket;
+            evento.ArchivoMimeTypeImagenEventoTicket = EventoHTML.ArchivoMimeTypeImagenEventoTicket;
+            evento.ArchivoNombreOriginalImagenTicket = EventoHTML.ArchivoNombreOriginalImagenTicket;
+            evento.IdEvento = EventoHTML.IdEvento;
+
+            //if (ModelState.IsValid)
+            //{
+
+            if (lnEventos.EVENTO_ACTUALIZAR_IMAGENTICKECT(evento) == true)
+            {
+                ViewBag.Message = "Datos Actualizado";
+
+                return RedirectToAction("Evento_Editar", "UTP", new { id = evento.IdEvento });
+            }
+            else
+            {
+                ViewBag.Message = "Error al Actualizar";
+                return View(EventoHTML);
+            }
+
+        }
 
 
         public ActionResult VistaOfertasporActivar()

@@ -912,6 +912,7 @@
     <Content Include="Views\Empresa\Evento.cshtml" />
     <Content Include="Views\UTP\Evento_Editar.cshtml" />
     <Content Include="Views\UTP\_AdministrarActualizarImagenEventoUTP.cshtml" />
+    <Content Include="Views\UTP\_AdministrarActualizarImagenTickect.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

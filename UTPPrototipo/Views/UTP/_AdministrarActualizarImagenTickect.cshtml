@@ -1,0 +1,29 @@
+﻿
+@model UTPPrototipo.Models.ViewModels.UTP.VistaEvento
+
+@using (Html.BeginForm("EVENTO_ACTUALIZAR_IMAGENTICKECT", "UTP", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{ 
+<div class="col-sm-6">
+
+    <h6>Imagen del Ticket</h6>
+    
+    @Html.HiddenFor(m => m.IdEvento)
+    
+    <img alt="" style="width:100%" src='@Url.Action("GetImagenEventoTickect", "UTP", new { id = Model.IdEvento })' />
+    
+    @*<img src="~/img/evento/Evento1.jpg" style="width:100%;border:solid;border-width:thick;border-color:rgb(220,220,220);">*@
+    @Html.TextBoxFor(model => model.ImagenEventoTicketHtml, new { type = "file" })
+    
+
+    <br /><br />
+
+
+    <input type="submit" value="Cambiar imagen2" class="btn btn-default color-paleta5" />
+
+
+    
+    <hr />
+</div>
+
+    
+}

@@ -112,6 +112,35 @@ namespace UTP.PortalEmpleabilidad.Datos
             }
         }
 
+        public bool EVENTO_ACTUALIZAR_IMAGENTICKECT(Evento evento)
+        {
+            ADConexion cnn = new ADConexion();
+            SqlCommand cmd = new SqlCommand();
+
+            try
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "EVENTO_ACTUALIZAR_IMAGENTICKECT";
+                cmd.Connection = cnn.cn;
+
+                cmd.Parameters.Add(new SqlParameter("@ImagenTicket", SqlDbType.Binary)).Value = (evento.ImagenTicket == null ? new byte[] { } : evento.ImagenTicket);
+
+                cmd.Parameters.Add(new SqlParameter("@ArchivoNombreOriginalImagenTicket", SqlDbType.VarChar, 100)).Value = (evento.ArchivoNombreOriginalImagenTicket == null ? "" : evento.ArchivoNombreOriginalImagenTicket);
+                cmd.Parameters.Add(new SqlParameter("@ArchivoMimeTypeImagenTicket", SqlDbType.VarChar, 100)).Value = (evento.ArchivoMimeTypeImagenEventoTicket == null ? "" : evento.ArchivoMimeTypeImagenEventoTicket);
+                cmd.Parameters.Add(new SqlParameter("@IdEvento", SqlDbType.VarChar, 50)).Value = evento.IdEvento;
+                cnn.Conectar();
+                cmd.ExecuteNonQuery();
+                cmd.Parameters.Clear();
+                cnn.Desconectar();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+
         public DataTable Evento_Mostrar()
         {
             cmd.CommandType = CommandType.StoredProcedure;
