@@ -15,14 +15,14 @@ namespace UTPPrototipo.Controllers
     public class EventoController : Controller
     {
         LNEvento ad = new LNEvento();
-        public PartialViewResult _Eventos(string Pantalla)
+        public PartialViewResult _Eventos(string Pantalla, int idEvento)
         {
             TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];
 
             LNEvento lnEvento = new LNEvento();
-            VistaEventosPorUsuario evento = lnEvento.EventosPorUsuario(ticket.Usuario);
+            Evento evento = lnEvento.EventoPorUsuario(idEvento, ticket.Usuario);
             ViewBag.Pantalla = Pantalla;
-            return PartialView(evento);
+            return PartialView("_Evento", evento);
         }
 
 

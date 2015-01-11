@@ -199,40 +199,41 @@
                     </div>*@
 
                 <hr />
-                @*<table>
-                        <tr>
-                            <td class="celda-nombre">
-                                Creado Por
-                            </td>
-                            <td class="celda-datos">
-                                MarioAlberti
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="celda-nombre">
-                                Creado el
-                            </td>
-                            <td class="celda-datos">
-                                10/01/2015 12:45:51
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="celda-nombre">
-                                Modificado Por
-                            </td>
-                            <td class="celda-datos">
-                                ---
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="celda-nombre">
-                                Modificado el
-                            </td>
-                            <td class="celda-datos">
-                                ---
-                            </td>
-                        </tr>
-                    </table>*@
+                                        <table>
+        <tr>
+            <td class="celda-nombre">
+                Creado Por
+            </td>
+            <td class="celda-datos">
+                @*MarioAlberti*@
+     @Html.DisplayFor(m => m.CreadoPor)
+            </td>
+        </tr>
+        <tr>
+            <td class="celda-nombre">
+                Creado el
+            </td>
+            <td class="celda-datos">
+                 @Html.DisplayFor(m => m.FechaCreacion)
+            </td>
+        </tr>
+        <tr>
+            <td class="celda-nombre">
+                Modificado Por
+            </td>
+            <td class="celda-datos">
+                @Html.DisplayFor(m => m.ModificadoPor)
+            </td>
+        </tr>
+        <tr>
+            <td class="celda-nombre">
+                Modificado el
+            </td>
+            <td class="celda-datos">
+                @Html.DisplayFor(m => m.FechaModificacion)
+            </td>
+        </tr>
+    </table>
                 <br />
 
             }

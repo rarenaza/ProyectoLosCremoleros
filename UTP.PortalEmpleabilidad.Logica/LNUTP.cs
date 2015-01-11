@@ -75,6 +75,9 @@ namespace UTP.PortalEmpleabilidad.Logica
                 vista.SectorEmpresarial = dtResultado.Rows[i]["SectorEmpresarial"].ToString();
                 vista.Clasificacion = dtResultado.Rows[i]["Clasificación"].ToString();
                 vista.Ofertas = dtResultado.Rows[i]["Ofertas"].ToString();
+                vista.NivelDeRelacion = dtResultado.Rows[i]["NivelDeRelacion"].ToString();
+                vista.FacultadPrincipal = dtResultado.Rows[i]["FacultadPrincipal"].ToString();
+                vista.Comentarios = dtResultado.Rows[i]["Comentarios"].ToString();
                 listaEjemplo.Add(vista);
             }
 
@@ -103,7 +106,9 @@ namespace UTP.PortalEmpleabilidad.Logica
                 vista.Ofertas = dtResultado.Rows[i]["Ofertas"].ToString();
                 vista.IdEstadoEmpresa = dtResultado.Rows[i]["Idestado"].ToString();
                 vista.IdSector = dtResultado.Rows[i]["Idsector"].ToString();
-           
+                vista.NivelDeRelacion = dtResultado.Rows[i]["NivelDeRelacion"].ToString();
+                vista.FacultadPrincipal = dtResultado.Rows[i]["FacultadPrincipal"].ToString();
+                vista.Comentarios = dtResultado.Rows[i]["Comentarios"].ToString();
                 listaEjemplo.Add(vista);
             }
 

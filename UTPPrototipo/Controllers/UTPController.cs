@@ -785,15 +785,13 @@ namespace UTPPrototipo.Controllers
                 evento.EstadoEvento         = Convert.ToString(dtResultado.Rows[0]["EstadoEvento"]);
                 evento.TipoEvento           = Convert.ToString(dtResultado.Rows[0]["TipoEvento"]);
                 evento.IdEmpresa            = Convert.ToInt32(dtResultado.Rows[0]["IdEmpresa"]);
-                
 
-                //evento.CreadoPor = dtResultado.Rows[0]["CreadoPor"].ToString();
-                //evento.Creadoel = Convert.ToDateTime(dtResultado.Rows[0]["FechaCreacion"] == DBNull.Value ? null : dtResultado.Rows[0]["FechaCreacion"]);
-                //alumno.ModificadoPor        = dtResultado.Rows[0]["ModificadoPor"].ToString();
-                //alumno.FechaModificacion    = Convert.ToDateTime(dtResultado.Rows[0]["FechaModificacion"] == DBNull.Value ? null : dtResultado.Rows[0]["FechaModificacion"]);
-                //alumno.CorreoElectronico    = dtResultado.Rows[0]["CorreoElectronico"].ToString();
-                //alumno.FechaRegistro        = dtResultado.Rows[0]["FechaRegistro"].ToString();
-                //alumno.CodEstadoAlumno      = Convert.ToString(dtResultado.Rows[0]["CodEstado"]);
+
+                evento.CreadoPor = dtResultado.Rows[0]["CreadoPor"].ToString();
+                evento.FechaCreacion = Convert.ToDateTime(dtResultado.Rows[0]["FechaCreacion"] == DBNull.Value ? null : dtResultado.Rows[0]["FechaCreacion"]);
+                evento.ModificadoPor = dtResultado.Rows[0]["ModificadoPor"].ToString();
+                evento.FechaModificacion = Convert.ToDateTime(dtResultado.Rows[0]["FechaModificacion"] == DBNull.Value ? null : dtResultado.Rows[0]["FechaModificacion"]);
+      
                 
             }
 
@@ -1295,9 +1293,7 @@ namespace UTPPrototipo.Controllers
         {
             
             const string alternativePicturePath = @"/img/sinimagen.jpg";
-            //LNEmpresa lnEmpresa = new LNEmpresa();
-            //Empresa empresa = lnEmpresa.ObtenerDatosEmpresaPorId(id);
-            
+                  
             VistaEvento vistaEvento = new VistaEvento();
 
             DataTable dtResultado = lnEventos.EVENTO_OBTENERPORID(Convert.ToInt32(id));
@@ -1306,22 +1302,7 @@ namespace UTPPrototipo.Controllers
             {
 
                 vistaEvento.IdEvento = Convert.ToInt32(dtResultado.Rows[0]["IdEvento"]);
-                vistaEvento.NombreEvento = Convert.ToString(dtResultado.Rows[0]["NombreEvento"]);
-                vistaEvento.DescripcionEvento = Convert.ToString(dtResultado.Rows[0]["DescripcionEvento"]);
-                vistaEvento.FechaEvento = Convert.ToDateTime(dtResultado.Rows[0]["FechaEvento"]);
-                vistaEvento.FechaEventoTexto = Convert.ToString(dtResultado.Rows[0]["FechaEventoTexto"]);
-                vistaEvento.LugarEvento = Convert.ToString(dtResultado.Rows[0]["LugarEvento"]);
-                vistaEvento.DireccionRegion = Convert.ToString(dtResultado.Rows[0]["DireccionRegion"]);
-                vistaEvento.DireccionCiudad = Convert.ToString(dtResultado.Rows[0]["DireccionCiudad"]);
-                vistaEvento.DireccionDistrito = Convert.ToString(dtResultado.Rows[0]["DireccionDistrito"]);
-                vistaEvento.DireccionEvento = Convert.ToString(dtResultado.Rows[0]["DireccionEvento"]);
-                vistaEvento.AsistentesEsperados = Convert.ToInt32(dtResultado.Rows[0]["AsistentesEsperados"]);
-                vistaEvento.RegistraAlumnos = Convert.ToBoolean(dtResultado.Rows[0]["RegistraAlumnos"]);
-                vistaEvento.RegistraUsuariosEmpresa = Convert.ToBoolean(dtResultado.Rows[0]["RegistraUsuariosEmpresa"] == DBNull.Value ? 0 : dtResultado.Rows[0]["RegistraUsuariosEmpresa"]);
-                vistaEvento.RegistraPublicoEnGeneral = Convert.ToBoolean(dtResultado.Rows[0]["RegistraPublicoEnGeneral"] == DBNull.Value ? 0 : dtResultado.Rows[0]["RegistraPublicoEnGeneral"]);
-                vistaEvento.EstadoEvento = Convert.ToString(dtResultado.Rows[0]["EstadoEvento"]);
-                vistaEvento.TipoEvento = Convert.ToString(dtResultado.Rows[0]["TipoEvento"]);
-                vistaEvento.IdEmpresa = Convert.ToInt32(dtResultado.Rows[0]["IdEmpresa"]);
+         
                 vistaEvento.ImagenEvento = dtResultado.Rows[0]["ImagenEvento"] == DBNull.Value ? null : (byte[])dtResultado.Rows[0]["ImagenEvento"];
 
             }
@@ -1351,8 +1332,7 @@ namespace UTPPrototipo.Controllers
         {
 
             const string alternativePicturePath = @"/img/sinimagen.jpg";
-            //LNEmpresa lnEmpresa = new LNEmpresa();
-            //Empresa empresa = lnEmpresa.ObtenerDatosEmpresaPorId(id);
+
 
             VistaEvento vistaEvento = new VistaEvento();
 
@@ -1362,22 +1342,7 @@ namespace UTPPrototipo.Controllers
             {
 
                 vistaEvento.IdEvento = Convert.ToInt32(dtResultado.Rows[0]["IdEvento"]);
-                vistaEvento.NombreEvento = Convert.ToString(dtResultado.Rows[0]["NombreEvento"]);
-                vistaEvento.DescripcionEvento = Convert.ToString(dtResultado.Rows[0]["DescripcionEvento"]);
-                vistaEvento.FechaEvento = Convert.ToDateTime(dtResultado.Rows[0]["FechaEvento"]);
-                vistaEvento.FechaEventoTexto = Convert.ToString(dtResultado.Rows[0]["FechaEventoTexto"]);
-                vistaEvento.LugarEvento = Convert.ToString(dtResultado.Rows[0]["LugarEvento"]);
-                vistaEvento.DireccionRegion = Convert.ToString(dtResultado.Rows[0]["DireccionRegion"]);
-                vistaEvento.DireccionCiudad = Convert.ToString(dtResultado.Rows[0]["DireccionCiudad"]);
-                vistaEvento.DireccionDistrito = Convert.ToString(dtResultado.Rows[0]["DireccionDistrito"]);
-                vistaEvento.DireccionEvento = Convert.ToString(dtResultado.Rows[0]["DireccionEvento"]);
-                vistaEvento.AsistentesEsperados = Convert.ToInt32(dtResultado.Rows[0]["AsistentesEsperados"]);
-                vistaEvento.RegistraAlumnos = Convert.ToBoolean(dtResultado.Rows[0]["RegistraAlumnos"]);
-                vistaEvento.RegistraUsuariosEmpresa = Convert.ToBoolean(dtResultado.Rows[0]["RegistraUsuariosEmpresa"] == DBNull.Value ? 0 : dtResultado.Rows[0]["RegistraUsuariosEmpresa"]);
-                vistaEvento.RegistraPublicoEnGeneral = Convert.ToBoolean(dtResultado.Rows[0]["RegistraPublicoEnGeneral"] == DBNull.Value ? 0 : dtResultado.Rows[0]["RegistraPublicoEnGeneral"]);
-                vistaEvento.EstadoEvento = Convert.ToString(dtResultado.Rows[0]["EstadoEvento"]);
-                vistaEvento.TipoEvento = Convert.ToString(dtResultado.Rows[0]["TipoEvento"]);
-                vistaEvento.IdEmpresa = Convert.ToInt32(dtResultado.Rows[0]["IdEmpresa"]);
+
                 vistaEvento.ImagenTicket = dtResultado.Rows[0]["ImagenTicket"] == DBNull.Value ? null : (byte[])dtResultado.Rows[0]["ImagenTicket"];
 
             }
