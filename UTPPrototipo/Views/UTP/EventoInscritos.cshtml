@@ -1,0 +1,70 @@
+﻿@model UTP.PortalEmpleabilidad.Modelo.Evento
+@{
+    Layout = "~/Views/UTP/_LayoutUTP.cshtml";
+    ViewBag.Title = "Evento";
+}
+
+<link href="~/Content/font-awesome.css" rel="stylesheet" />
+<div class="container fuente-pequeña" style="margin-top:2px;">
+    <div class="panel-group" id="datos-cuenta" role="tablist" aria-multiselectable="true">
+        @{Html.RenderAction("VistaCabeceraUtp", "UTP");}
+    </div>
+    <h5>Evento: NOMBRE DEL EVENTO</h5>
+    <br />
+    <div class="row grilla1-cabecera color-paleta5">
+
+        <div class="col-sm-2">
+            Fecha de Inscripción
+        </div>
+        <div class="col-sm-2">
+            Usuario
+        </div>
+        <div class="col-sm-2">
+            Nombre
+        </div>
+        <div class="col-sm-1">
+            Sexo
+        </div>
+        <div class="col-sm-2">
+            Doc Identidad
+        </div>
+        <div class="col-sm-1">
+            Ticket
+        </div>
+        <div class="col-sm-2">
+            Asistió el
+        </div>
+    </div>
+    <div class="row grilla1-linea">
+        <div class="col-sm-2">
+            01/01/2015 14:09:32
+        </div>
+        <div class="col-sm-2">
+            JoseReq
+        </div>
+        <div class="col-sm-2">
+            José Manuel Requena Diaz
+        </div>
+        <div class="col-sm-1">
+            Masculino
+        </div>
+        <div class="col-sm-2">
+            DNI 989777887
+        </div>
+        <div class="col-sm-1">
+            Pendiente de Emitir
+        </div>
+        <div class="col-sm-2">
+            -
+        </div>
+    </div>
+    <hr />
+</div>
+<script>
+
+    $(document).ready(function () {
+        $("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta3 color-paleta4 color-paleta6 color-paleta7 color-paleta8").addClass("color-paleta5");
+    });
+
+
+</script>

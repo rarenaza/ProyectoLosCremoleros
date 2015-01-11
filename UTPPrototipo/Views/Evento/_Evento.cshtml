@@ -112,8 +112,23 @@
             </div>
             <div class="modal-footer fuente-pequeña">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-default color-paleta5">Aceptar Inscripción</button>
+                @Html.ActionLink("Aceptar Inscripción","InsertarEventoAsistente","Evento", new {idEvento = Model.IdEvento, Pantalla = ViewBag.Pantalla}, new {@class="btn btn-default color-paleta5" })
+                @*<button type="button" id="btnInscribirPostulante" class="btn btn-default color-paleta5">Aceptar Inscripción</button>*@
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+ @*$(document).ready(function () {
+    $('#btnInscribirPostulante').on('click', function () 
+    {
+        console.log('Click en el boton Aceptar Inscripción');
+        //Se llama al controlador pasando los parámetros para la inscripción.
+        var url = '@Url.Action("InsertarEventoAsistente", "Evento")' + '?idEvento=' + @Model.IdEvento + '&Pantalla=' + @ViewBag.Pantalla;
+        $.get(url, function (data) {
+                alert('Se ha inscrito en el Evento @Model.NombreEvento');
+                $('#lblFaseOfertaDescripcion').text(data); //Se actualiza la descripción de la fase.
+            });
+
+        });
+}*@
