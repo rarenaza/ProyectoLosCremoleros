@@ -1,0 +1,119 @@
+﻿@model UTP.PortalEmpleabilidad.Modelo.Evento
+
+
+<div class="row">
+
+    <div class="col-sm-5">
+        <h6>Evento</h6>
+        @*<img class="ImagenEvento" src='@Url.Action("ObtenerImagen", "Evento", new { imagen = Model.ImagenEvento, mimeType = Model.ArchivoMimeTypeImagenEvento })' />*@
+        <img alt="" class="ImagenEvento" src='@Url.Action("GetImagenEvento", "UTP", new { id = Model.IdEvento })' />
+        <hr />
+    </div>
+    <div class="col-sm-4" style="border-right:solid;border-color:rgb(220, 220, 220);border-width:1px;">
+        <h6>Detalles</h6>
+        <hr />
+        <table>
+            <tr class="linea_raya">
+                <td class="celda-nombre">Evento</td>
+                <td class="celda-datos">@Model.NombreEvento</td>
+            </tr>
+            <tr class="linea_raya">
+                <td class="celda-nombre">Tipo</td>
+                <td class="celda-datos">@Model.ValorTipoEvento</td>
+            </tr>
+            <tr class="linea_raya">
+                <td class="celda-nombre">Estado</td>
+                <td class="celda-datos">@Model.ValorEstadoEvento</td>
+            </tr>
+            @if (@Model.NombreComercial != null)
+            {
+                <tr class="linea_raya">
+                    <td class="celda-nombre">Auspiciado Por</td>
+                    <td class="celda-datos">
+                        <img class="logo-empresa2" src='@Url.Action("GetImagenLogoEmpresa", "UTP", new { id = Model.IdEmpresa })' /><hr />
+                        @Model.NombreComercial
+                    </td>
+                </tr>
+            }
+            <tr class="linea_raya">
+                <td class="celda-nombre">Descripción</td>
+                <td class="celda-datos">@Model.DescripcionEvento</td>
+            </tr>
+            <tr class="linea_raya">
+                <td class="celda-nombre">Fecha y Horarios</td>
+                <td class="celda-datos">@Model.FechaEventoTexto</td>
+            </tr>
+            <tr class="linea_raya">
+                <td class="celda-nombre">Lugar</td>
+                <td class="celda-datos">@Model.LugarEvento</td>
+            </tr>
+            <tr class="linea_raya">
+                <td class="celda-nombre">Dirección</td>
+                <td class="celda-datos">@Model.DireccionEvento, @Model.DireccionDistrito, @Model.DireccionCiudad, @Model.DireccionRegion</td>
+            </tr>
+
+
+        </table>
+        <hr />
+    </div>
+    <div class="col-sm-3">
+        <h6>Su Participación</h6>
+        <hr />
+        @if (Model.IdEventoAsistente > 0)
+        {
+            <p>Se ha Inscrito el <strong>@Model.FechaInscripcion</strong></p>
+        }
+        @if (Model.EstadoEvento == "EVSTAC" ^ Model.EstadoEvento == "EVSTSU")
+        {
+            if (Model.IdEventoAsistente > 0)
+            {
+
+                if (Model.EstadoTicket == "EVTKPE" || Model.EstadoEvento == "EVSTAC")
+                {
+                    <div class="alert alert-danger alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <strong>¡ Imprima Ticket de Registro !</strong> <br />Haga clic en el boton abajo para ver e imprimir su Tiket de acceso al Evento.
+                    </div>
+                    <br />
+                    @Html.ActionLink("Ver Ticket de Acceso", "PaginaTicket", "Evento", new { idEvento = Model.IdEvento, idEventoAsistente = Model.IdEventoAsistente, nombres = Model.Nombres, apellidos = Model.Apellidos, valorTipoDocumento = Model.ValorTipoDocumento, numeroDocumento = Model.NumeroDocumento}, new { @class = "btn btn-default color-paleta5", @target = "_blank" })
+                }
+            }
+            else
+            {
+                if (Model.EstadoEvento == "EVSTAC")
+                {
+                    <button class="btn btn-default color-paleta5" data-toggle="modal" data-target="#modal-Inscripcion">Incríbirse Aquí</button>
+                }
+            }
+        }
+        else
+        {
+            if (@Model.FechaAsistencia != null)
+            {
+                <p>Asistió el <strong>@Model.FechaAsistencia</strong></p>
+            }
+        }
+        <hr />
+    </div>
+</div>
+
+
+<div class="modal fade" id="modal-Inscripcion" tabindex="-1" role="dialog" aria-labelledby="ModalInscripcion" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header fuente-pequeña">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Incripción a Evento @Model.NombreEvento</h4>
+            </div>
+            <div class="modal-body fuente-pequeña">
+                <p>Haga Clic en el Boton "Aceptar Inscripción" para Inscribirse en el Evento <strong>@Model.NombreEvento.</strong></p>
+                <p>Este se realizará en: <strong>@Model.LugarEvento</strong></p>
+                <p>En el Horario: <strong>@Model.FechaEventoTexto</strong></p>
+            </div>
+            <div class="modal-footer fuente-pequeña">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-default color-paleta5">Aceptar Inscripción</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

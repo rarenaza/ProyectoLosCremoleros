@@ -1,0 +1,17 @@
+﻿@{
+    Layout = "~/Views/Evento/_LayoutTicket.cshtml";
+}
+<br />
+<div class="row">
+    <div class="col-sm-12" style="text-align:center;">
+        <img alt="" class="ImagenEvento" src='@Url.Action("GetImagenEventoTickect", "UTP", new { id = ViewBag.idEvento })' />
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12" style="text-align:center;">
+        <h4>@ViewBag.nombre</h4>
+        <h5>@ViewBag.documentoIdentidad</h5>
+        <p>Código de Participante: <strong>@ViewBag.idEventoAsistente</strong></p>
+        <p style="font-family:'3 of 9 Barcode';font-size:40px;">*UTP<span>@ViewBag.idEventoAsistente</span>EMP*</p>
+    </div>
+</div>

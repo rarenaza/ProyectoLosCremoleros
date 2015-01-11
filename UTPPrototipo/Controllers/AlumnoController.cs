@@ -1355,6 +1355,14 @@ namespace UTPPrototipo.Controllers
             //return PartialView(alumno);
             return PartialView("AlertaCvAlumnoMes", lista);
         }
+        public ActionResult Eventos()
+        {
+            return View();
+        }
+        public ActionResult Evento(int idEvento)
+        {
+            return View();
+        }
 
     }
 }

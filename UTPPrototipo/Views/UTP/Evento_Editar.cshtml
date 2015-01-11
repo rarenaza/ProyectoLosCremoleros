@@ -9,16 +9,17 @@
     <div class="panel-group" id="datos-cuenta" role="tablist" aria-multiselectable="true">
         @{Html.RenderAction("VistaCabeceraUtp", "UTP");}
     </div>
-    <h5>Evento: Feria de Empleos</h5>
+    <h5>Evento: @Model.NombreEvento</h5>
     <br />
-    @*@using (Html.BeginForm("Evento", "UTP", FormMethod.Post, new { enctype = "multipart/form-data" }))*@
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-        @Html.HiddenFor(model => model.IdEvento)
+    <div class="row">
+        <div class="col-sm-6" style="border-right:solid;border-color:rgb(220, 220, 220);border-width:1px;">
+            @*@using (Html.BeginForm("Evento", "UTP", FormMethod.Post, new { enctype = "multipart/form-data" }))*@
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(model => model.IdEvento)
 
-        <div class="row">
-            <div class="col-sm-6" style="border-right:solid;border-color:rgb(220, 220, 220);border-width:1px;">
+
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="input-group">
@@ -233,36 +234,37 @@
                         </tr>
                     </table>*@
                 <br />
-            </div>
-                        
+
+            }
         </div>
-    }
 
-    <div class="col-sm-6 ">
-        <div class="row">
 
-            @*<div id="divAdministrarImagen" class="col-sm-4">
-                    @Html.Action("_AdministrarImagen", "Empresa", new { IdEmpresa = @ViewBag.IdEmpresa })
-                </div>*@
+        <div class="col-sm-6 ">
+            <div class="row">
 
-            @Html.Action("_AdministrarActualizarImagenEventoUTP", "UTP", new { IdEvento = Model.IdEvento })
+                @*<div id="divAdministrarImagen" class="col-sm-4">
+                        @Html.Action("_AdministrarImagen", "Empresa", new { IdEmpresa = @ViewBag.IdEmpresa })
+                    </div>*@
 
-            @Html.Action("_AdministrarActualizarImagenTickect", "UTP", new { IdEvento = Model.IdEvento })
+                @Html.Action("_AdministrarActualizarImagenEventoUTP", "UTP", new { IdEvento = Model.IdEvento })
 
-            @*<div class="col-sm-6">
-                    <h6>Poster del Evento</h6>
-                    <img src="~/img/evento/Evento1.jpg" style="width:100%;border:solid;border-width:thick;border-color:rgb(220,220,220);">
-                    <br /><br />
-                    <button class="btn btn-default color-paleta5">Cambiar imagen</button>
-                    <hr />
-                </div>
-                <div class="col-sm-6">
-                    <h6>Imagen del Ticket</h6>
-                    <img src="~/img/evento/Evento1.jpg" style="width:100%;border:solid;border-width:thick;border-color:rgb(220,220,220);">
-                    <br /><br />
-                    <button class="btn btn-default color-paleta5">Cambar imagen</button>
-                    <hr />
-                </div>*@
+                @Html.Action("_AdministrarActualizarImagenTickect", "UTP", new { IdEvento = Model.IdEvento })
+
+                @*<div class="col-sm-6">
+                        <h6>Poster del Evento</h6>
+                        <img src="~/img/evento/Evento1.jpg" style="width:100%;border:solid;border-width:thick;border-color:rgb(220,220,220);">
+                        <br /><br />
+                        <button class="btn btn-default color-paleta5">Cambiar imagen</button>
+                        <hr />
+                    </div>
+                    <div class="col-sm-6">
+                        <h6>Imagen del Ticket</h6>
+                        <img src="~/img/evento/Evento1.jpg" style="width:100%;border:solid;border-width:thick;border-color:rgb(220,220,220);">
+                        <br /><br />
+                        <button class="btn btn-default color-paleta5">Cambar imagen</button>
+                        <hr />
+                    </div>*@
+            </div>
         </div>
     </div>
 </div>
@@ -280,19 +282,19 @@
 
 
 <script>
-    //$("#FechaEvento").datepicker({ dateFormat: "dd/mm/yy" }).mask("99/99/9999");
-    //$.validator.addMethod('date',
-    //function (value, element, params) {
-    //    if (this.optional(element)) {
-    //        return true;
-    //    }
-    //    var ok = true;
-    //    try {
-    //        $.datepicker.parseDate('dd/mm/yy', value);
-    //    }
-    //    catch (err) {
-    //        ok = false;
-    //    }
-    //    return ok;
-    //});
+    $("#FechaEvento").datepicker({ dateFormat: "dd/mm/yy" }).mask("99/99/9999");
+    $.validator.addMethod('date',
+    function (value, element, params) {
+        if (this.optional(element)) {
+            return true;
+        }
+        var ok = true;
+        try {
+            $.datepicker.parseDate('dd/mm/yy', value);
+        }
+        catch (err) {
+            ok = false;
+        }
+        return ok;
+    });
 </script>

@@ -1,12 +1,11 @@
-﻿
-@{
-    Layout = "~/Views/Empresa/_LayoutEmpresa.cshtml";
+﻿@{
+    Layout = "~/Views/Alumno/_LayoutAlumno.cshtml";
     ViewBag.Title = "Eventos";
 }
 
 <div class="container fuente-pequeña" style="margin-top:2px;">
-    @{Html.RenderAction("VistaCabecera", "Empresa");}
-    @Html.Action("_Evento", "Evento", new { Pantalla = "Empresa" })
+    
+    @Html.Action("_Eventos", "Evento", new { Pantalla = "Alumno" })
 </div>
 <script>
     $(document).ready(function () {

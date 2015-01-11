@@ -45,7 +45,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
 
       public int AsistentesReales { get; set; }
       
-      public byte[]ImagenEvento { get; set; }
+      public byte []ImagenEvento { get; set; }
 
       public string ArchivoNombreOriginalImagenEvento { get; set; }
       public string ArchivoMimeTypeImagenEvento { get; set; }

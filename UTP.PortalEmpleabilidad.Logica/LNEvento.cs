@@ -240,7 +240,6 @@ namespace UTP.PortalEmpleabilidad.Logica
                eventoporusuario.ValorTipoEvento = Funciones.ToString(dsResultado.Tables[0].Rows[0]["ValorTipoEvento"]);
                eventoporusuario.IdEmpresa = Funciones.ToInt(dsResultado.Tables[0].Rows[0]["IdEmpresa"]);
                eventoporusuario.NombreComercial = Funciones.ToString(dsResultado.Tables[0].Rows[0]["NombreComercial"]);
-               eventoporusuario.LogoEmpresa = Funciones.ToBytes(dsResultado.Tables[0].Rows[0]["LogoEmpresa"]);
                eventoporusuario.DescripcionEvento = Funciones.ToString(dsResultado.Tables[0].Rows[0]["DescripcionEvento"]);
                eventoporusuario.FechaEvento = Funciones.ToDateTime(dsResultado.Tables[0].Rows[0]["FechaEvento"]);
                eventoporusuario.FechaEventoTexto = Funciones.ToString(dsResultado.Tables[0].Rows[0]["FechaEventoTexto"]);
@@ -254,9 +253,14 @@ namespace UTP.PortalEmpleabilidad.Logica
                eventoporusuario.RegistraAlumnos = Funciones.ToBoolean(dsResultado.Tables[0].Rows[0]["RegistraAlumnos"]);
                eventoporusuario.RegistraUsuariosEmpresa = Funciones.ToBoolean(dsResultado.Tables[0].Rows[0]["RegistraUsuariosEmpresa"]);
                eventoporusuario.RegistraPublicoEnGeneral = Funciones.ToBoolean(dsResultado.Tables[0].Rows[0]["RegistraPublicoEnGeneral"]);
-               eventoporusuario.ImagenEvento = Funciones.ToBytes(dsResultado.Tables[0].Rows[0]["ImagenEvento"]);
-               eventoporusuario.ImagenTicket = Funciones.ToBytes(dsResultado.Tables[0].Rows[0]["ImagenTicket"]);
-               eventoporusuario.IdEventoAsistente = Funciones.ToInt(dsResultado.Tables[0].Rows[0]["IdEventoAsistente"]);
+               if (dsResultado.Tables[0].Rows[0]["IdEventoAsistente"] != null) 
+               { 
+                    eventoporusuario.IdEventoAsistente = Funciones.ToInt(dsResultado.Tables[0].Rows[0]["IdEventoAsistente"]);
+               }
+               else
+               {
+                   eventoporusuario.IdEventoAsistente = 0;
+               }
                eventoporusuario.FechaInscripcion = Funciones.ToDateTime(dsResultado.Tables[0].Rows[0]["FechaInscripcion"]);
                eventoporusuario.Nombres = Funciones.ToString(dsResultado.Tables[0].Rows[0]["Nombres"]);
                eventoporusuario.Apellidos = Funciones.ToString(dsResultado.Tables[0].Rows[0]["Apellidos"]);

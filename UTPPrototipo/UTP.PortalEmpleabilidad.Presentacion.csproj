@@ -305,6 +305,7 @@
     <Content Include="Content\themes\images\ui-icons_cd0a0a_256x240.png" />
     <Content Include="Content\UTP-Icons.css" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\3OF9_NEW.svg" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\GothamRnd-Bold.svg" />
@@ -375,6 +376,9 @@
     <Content Include="Plantillas\PlantillaCV01.dotx" />
     <Content Include="Plantillas\Plantilla2.docx" />
     <Content Include="Plantillas\PlantillaVER2.docx" />
+    <Content Include="fonts\3OF9_NEW.eot" />
+    <Content Include="fonts\3OF9_NEW.TTF" />
+    <Content Include="fonts\3OF9_NEW.woff" />
     <None Include="Properties\PublishProfiles\PortalV1.pubxml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\ckeditor\adapters\jquery.js" />
@@ -913,6 +917,12 @@
     <Content Include="Views\UTP\Evento_Editar.cshtml" />
     <Content Include="Views\UTP\_AdministrarActualizarImagenEventoUTP.cshtml" />
     <Content Include="Views\UTP\_AdministrarActualizarImagenTickect.cshtml" />
+    <Content Include="Views\Evento\_Eventos.cshtml" />
+    <Content Include="Views\Evento\_Evento.cshtml" />
+    <Content Include="Views\Evento\_LayoutTicket.cshtml" />
+    <Content Include="Views\Evento\PaginaTicket.cshtml" />
+    <Content Include="Views\Alumno\Evento.cshtml" />
+    <Content Include="Views\Alumno\Eventos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
