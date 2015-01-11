@@ -84,10 +84,7 @@ namespace UTPPrototipo.Controllers
             }
             return View("Evento");
         }
-        public ActionResult EventoInscritos()
-        {
-            return View();
-        }
+        
 
     }
 }
