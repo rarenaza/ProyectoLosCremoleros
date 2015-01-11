@@ -1796,9 +1796,12 @@ namespace UTPPrototipo.Controllers
             }
 
             return new FileStreamResult(stream, "image/jpeg");
-        } 
-    
+        }
 
+        public ActionResult EventoInscritos()
+        {
+            return View();
+        }
 
 
         #region Mantenimiento de usuarios

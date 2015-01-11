@@ -45,5 +45,29 @@ namespace UTPPrototipo.Controllers
             ViewBag.documentoIdentidad = valorTipoDocumento + " " + numeroDocumento;
             return View();
         }
+<<<<<<< HEAD
+=======
+        public ActionResult InsertarEventoAsistente(int idEvento, string Pantalla)
+        {
+            string usuario;
+            if (Pantalla == "Alumno")
+            {
+                TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
+                usuario = ticket.Usuario;
+                LNEvento lnEvento = new LNEvento();
+                lnEvento.InsertarEventoAsistente(idEvento, usuario, usuario);
+            }
+            if (Pantalla == "Empresa")
+            {
+                TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];
+                usuario = ticket.Usuario;
+                LNEvento lnEvento = new LNEvento();
+                lnEvento.InsertarEventoAsistente(idEvento, usuario, usuario);
+            }
+            return View("Evento");
+        }
+        
+
+>>>>>>> 310c018e18774702c98143e4a2441bb3f9c800eb
     }
 }
