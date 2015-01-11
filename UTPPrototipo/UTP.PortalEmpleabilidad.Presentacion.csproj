@@ -923,6 +923,7 @@
     <Content Include="Views\Evento\PaginaTicket.cshtml" />
     <Content Include="Views\Alumno\Evento.cshtml" />
     <Content Include="Views\Alumno\Eventos.cshtml" />
+    <Content Include="Views\UTP\EventoInscritos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

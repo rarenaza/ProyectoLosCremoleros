@@ -273,5 +273,10 @@ namespace UTP.PortalEmpleabilidad.Logica
            }
            return eventoporusuario;
        }
+       public void InsertarEventoAsistente(int idEvento, string usuario, string creadoPor)
+       {
+           ad.InsertarEventoAsistente(idEvento, usuario, creadoPor );
+       }
+
     }
 }

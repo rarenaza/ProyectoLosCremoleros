@@ -326,5 +326,34 @@ namespace UTP.PortalEmpleabilidad.Datos
 
             return dsResultado;
         }
+        public void InsertarEventoAsistente(int idEvento, string usuario, string creadoPor )
+        {
+             try
+            {
+                using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+                {
+                    SqlCommand cmd = new SqlCommand();
+
+                    conexion.Open();
+                    cmd = new SqlCommand();
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.CommandText = "EventoAsistente_Insertar";
+
+                    cmd.Parameters.Add(new SqlParameter("@IdEvento", idEvento));
+                    cmd.Parameters.Add(new SqlParameter("@Usuario", usuario));
+                    cmd.Parameters.Add(new SqlParameter("@CreadoPor", creadoPor));
+
+                    cmd.Connection = conexion;
+                    cmd.ExecuteNonQuery();
+                    conexion.Close();
+
+                }
+             }
+             catch (Exception ex)
+             {
+                 throw ex;
+             }
+        }
     }
 }
