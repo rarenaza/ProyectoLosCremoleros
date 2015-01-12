@@ -66,7 +66,13 @@ namespace UTP.PortalEmpleabilidad.Modelo
 
         public string SitioWeb { get; set; }
         public DateTime FechaCreacion { get; set; }        
-        public DateTime FechaModificacion { get; set; }        
+        public DateTime FechaModificacion { get; set; }
+        public string Clasificacion { get; set; }
+        public string NivelDeRelacion { get; set; }
+
+        public string FacultadPrincipal { get; set; }
+        public string Comentarios { get; set; }
+        public string NuevoComentario { get; set; } 
 
         public Empresa()
         {
