@@ -14,7 +14,7 @@
         <div class="col-sm-7">
             @Html.Action("ObtenerNuevasPostulaciones", "Empresa")
         </div>
-        <div id="divListaMensajes" class="col-sm-5">
+        <div class="col-sm-5">
             <!--Se envía el parámetro para distinguir el funcionamiento de cada página. [{MODULO}_{PAGINA}]-->
             @Html.Action("_Mensajes", "Mensaje", new { pantalla = Constantes.MENSAJES_EMPRESA_INDEX }) 
         </div>

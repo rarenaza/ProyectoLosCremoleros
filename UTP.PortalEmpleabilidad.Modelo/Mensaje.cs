@@ -38,9 +38,16 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string MensajePosteriorAsunto { get; set; }
         public DateTime MensajePosteriorFechaEnvio { get; set; }
 
+        public int? IdOfertaMensaje { get; set; }
+
+        /// <summary>
+        /// Campo que se utiliza para pasar los datos del alumno en los mensajes de UTP - Alumno.
+        /// </summary>
+        public string UsuarioAlumno { get; set; }
         public Mensaje()
         {
             Oferta = new Oferta();
+            IdOfertaMensaje = 0;
         }
     }
 }

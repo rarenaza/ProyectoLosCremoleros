@@ -60,7 +60,10 @@ namespace UTP.PortalEmpleabilidad.Logica
         }
 
         public void Insertar(Mensaje mensaje)
-        {            
+        {
+            if (mensaje.ParaUsuarioCorreoElectronico == null) mensaje.ParaUsuarioCorreoElectronico = "";
+            if (mensaje.IdOfertaMensaje == null) mensaje.IdOfertaMensaje = 0;
+
             adMensaje.Insertar(mensaje);
         }
 
@@ -100,11 +103,11 @@ namespace UTP.PortalEmpleabilidad.Logica
             return mensaje;
         }
 
-        public List<Mensaje> ObtenerPorAlumno(string usuarioAlumno)
+        public List<Mensaje> ObtenerPorUsuario(string usuarioAlumno)
         {
             List<Mensaje> lista = new List<Mensaje>();
 
-            DataTable dtResultado = adMensaje.ObtenerPorAlumno(usuarioAlumno);
+            DataTable dtResultado = adMensaje.ObtenerPorUsuario(usuarioAlumno);
 
             foreach (DataRow fila in dtResultado.Rows)
             {
@@ -117,6 +120,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 mensaje.ParaUsuario = Convert.ToString(fila["ParaUsuario"]);
                 mensaje.ParaUsuarioCorreoElectronico = Convert.ToString(fila["ParaUsuarioCorreoElectronico"]);
                 mensaje.Oferta.CargoOfrecido = Convert.ToString(fila["CargoOfrecido"]);
+                mensaje.Oferta.IdOferta = Convert.ToInt32(fila["IdOferta"]);
                 mensaje.IdMensaje = Convert.ToInt32(fila["IdMensaje"]);
 
                 lista.Add(mensaje);

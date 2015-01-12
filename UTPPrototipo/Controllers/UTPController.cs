@@ -1642,6 +1642,7 @@ namespace UTPPrototipo.Controllers
                 alumno.CorreoElectronico = dtResultado.Rows[0]["CorreoElectronico"].ToString();
                 alumno.FechaRegistro = dtResultado.Rows[0]["FechaRegistro"].ToString();
                 alumno.CodEstadoAlumno = Convert.ToString(dtResultado.Rows[0]["CodEstado"]);
+                alumno.Usuario = Convert.ToString(dtResultado.Rows[0]["Usuario"]);
 
                
             }

@@ -1,4 +1,5 @@
 ﻿@model UTP.PortalEmpleabilidad.Modelo.Oferta
+@using UTP.PortalEmpleabilidad.Modelo
 
 @{
     Layout = "~/Views/UTP/_LayoutUTP.cshtml";
@@ -455,147 +456,13 @@
     </div>
     <hr />
     <div class="row" style="display: none;">
-        <div class="col-sm-12">
-            <h5>Mensajes</h5>
 
-            <div class="row grilla1-cabecera color-paleta2">
-                <div class="col-sm-1">
-
-                </div>
-                <div class="col-sm-2">
-                    Fecha
-                </div>
-                <div class="col-sm-3">
-                    Asunto
-                </div>
-                <div class="col-sm-3">
-                    Remitente
-                </div>
-                <div class="col-sm-3">
-                    Destinatario
-                </div>
-            </div>
-            <div class="row grilla1-linea">
-                <div class="col-sm-1">
-                    <span class="fui fa-3x color-icono-paleta1">-</span>
-                </div>
-                <div class="col-sm-2">
-                    Hace 2 horas
-                </div>
-                <div class="col-sm-3">
-                    <a href="../Mensaje/VerMensaje">Bienvenido a la Postulación</a>
-                </div>
-                <div class="col-sm-3">
-                    Usuario
-                </div>
-                <div class="col-sm-3">
-                    Usuario Alumno
-                </div>
-            </div>
-            <div class="row grilla1-linea">
-                <div class="col-sm-1">
-                    <span class="fui fa-3x color-icono-paleta1">i</span>
-                </div>
-                <div class="col-sm-2">
-                    Hace 2 horas
-                </div>
-                <div class="col-sm-3">
-                    <a href="../Mensaje/VerMensaje">RE: Bienvenido a la Postulación</a>
-                </div>
-                <div class="col-sm-3">
-                    Usuario Alumno
-                </div>
-                <div class="col-sm-3">
-                    Usuario Empresa
-                </div>
-            </div>
-            <div class="row grilla1-linea">
-                <div class="col-sm-1">
-                    <span class="fui fa-3x color-icono-paleta1">j</span>
-                </div>
-                <div class="col-sm-2">
-                    Hace 2 horas
-                </div>
-                <div class="col-sm-3">
-                    <a href="../Mensaje/VerMensaje">Bienvenido a la Postulación</a>
-                </div>
-                <div class="col-sm-3">
-                    Usuario Empresa
-                </div>
-                <div class="col-sm-3">
-                    Usuario Alumno
-                </div>
-            </div>
-            <div class="row grilla1-linea">
-                <div class="col-sm-1">
-                    <span class="fui fa-3x color-icono-paleta1">-</span>
-                </div>
-                <div class="col-sm-2">
-                    Hace 2 horas
-                </div>
-                <div class="col-sm-3">
-                    <a href="../Mensaje/VerMensaje">Bienvenido a la Postulación</a>
-                </div>
-                <div class="col-sm-3">
-                    Usuario Empresa IBM
-                </div>
-                <div class="col-sm-3">
-                    Alumno
-                </div>
-            </div>
-            <div class="row grilla1-linea">
-                <div class="col-sm-1">
-                    <span class="fui fa-3x color-icono-paleta1">i</span>
-                </div>
-                <div class="col-sm-2">
-                    Hace 2 horas
-                </div>
-                <div class="col-sm-3">
-                    <a href="../Mensaje/VerMensaje">Bienvenido a la Postulación</a>
-                </div>
-                <div class="col-sm-3">
-                    Usuario
-                </div>
-                <div class="col-sm-3">
-                    Usuario
-                </div>
-            </div>
-            <div class="row grilla1-linea">
-                <div class="col-sm-1">
-                    <span class="fui fa-3x color-icono-paleta1">j</span>
-                </div>
-                <div class="col-sm-2">
-                    Hace 2 horas
-                </div>
-                <div class="col-sm-3">
-                    <a href="../Mensaje/VerMensaje">Bienvenido a la Postulación</a>
-                </div>
-                <div class="col-sm-3">
-                    Usuario
-                </div>
-                <div class="col-sm-3">
-                    Usuario
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12" style="text-align:right;">
-                    <nav>
-                        <nav>
-                            <ul class="pagination pagination-sm">
-                                <li><a href="#"><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>
-                                <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">5</a></li>
-                                <li><a href="#"><span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span></a></li>
-                            </ul>
-                        </nav>
-                    </nav>
-                </div>
+        <div class="row fuente-pequeña">
+            <div class="col-sm-12">
+                @Html.Action("_Mensajes", "Mensaje", new { pantalla = Constantes.MENSAJES_UTP_OFERTA, idOferta = Model.IdOferta })
             </div>
         </div>
-
+        
     </div>
 </div>
 <script>
