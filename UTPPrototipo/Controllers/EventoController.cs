@@ -78,10 +78,9 @@ namespace UTPPrototipo.Controllers
                 usuario = ticket.Usuario;
                 LNEvento lnEvento = new LNEvento();
                 lnEvento.InsertarEventoAsistente(idEvento, usuario, usuario);
-
-
-              
+                              
                 return RedirectToAction("Evento", "Alumno", new { idEvento = idEvento });
+
             }
             if (Pantalla == "Empresa")
             {

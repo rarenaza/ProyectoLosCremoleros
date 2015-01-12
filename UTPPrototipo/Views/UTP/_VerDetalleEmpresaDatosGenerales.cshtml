@@ -148,8 +148,18 @@
                     Facultad Principal
                 </td>
                 <td class="celda-datos">
-                    <input type="text" class="form-control" placeholder="Facultad Principal de la Empresa">
+                    @*<input type="text" class="form-control" placeholder="Facultad Principal de la Empresa">*@
                     @Html.TextBoxFor(model => model.FacultadPrincipal, new { @class = "form-control", @placeholder = "Facultad Principal de la Empresa" })
+                    @Html.TextBoxFor(model => model.FacultadSecundaria, new { @class = "form-control", @placeholder = "Facultad Secundaria de la Empresa" })
+                </td>
+
+            </tr>
+            <tr class="linea_raya">
+                <td class="celda-nombre">
+                    Nivel de Facturación
+                </td>
+                <td class="celda-datos">
+                    @Html.TextBoxFor(model => model.NivelDeFacturacion, new { @class = "form-control", @placeholder = "Nivel de Facturación" })
                 </td>
             </tr>
             <tr class="linea_raya">
@@ -157,7 +167,8 @@
                     Comentarios
                 </td>
                 <td class="celda-datos">
-                    <textarea class="form-control" placeholder="Agregar un comentario" rows="2"></textarea>
+                    @*<textarea class="form-control" placeholder="Agregar un comentario" rows="2"></textarea>*@
+                    @Html.TextAreaFor(model => model.Comentarios, new { @class = "form-control", @placeholder = "Nivel de Facturación" })
                     <br />
                     <textarea  class="form-control" placeholder="Sin Comentarios" rows="8" readonly></textarea>
                 </td>

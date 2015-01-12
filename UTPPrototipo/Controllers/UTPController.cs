@@ -626,6 +626,17 @@ namespace UTPPrototipo.Controllers
         public PartialViewResult _VerDetalleEmpresaDatosGeneralesEditar(Empresa empresa)
         {             
             LNUTP lnUTP = new LNUTP ();
+
+
+            //Empresa objempresa=new Empresa ();
+    
+
+
+            TicketUTP ticketUtp = (TicketUTP)Session["TicketUtp"];
+
+            empresa.Usuario = ticketUtp.Usuario;
+                   
+
             lnUtp.ActualizarEstadoYUsuarioEC(empresa);
 
             LNGeneral lnGeneral = new LNGeneral();
