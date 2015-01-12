@@ -69,12 +69,19 @@ namespace UTPPrototipo.Controllers
         public ActionResult InsertarEventoAsistente(int idEvento, string Pantalla)
         {
             string usuario;
+            Evento evento = new Evento();
+            ViewBag.Pantalla = Pantalla;
+
             if (Pantalla == "Alumno")
             {
                 TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
                 usuario = ticket.Usuario;
                 LNEvento lnEvento = new LNEvento();
                 lnEvento.InsertarEventoAsistente(idEvento, usuario, usuario);
+
+
+              
+                return RedirectToAction("Evento", "Alumno", new { idEvento = idEvento });
             }
             if (Pantalla == "Empresa")
             {
@@ -82,9 +89,12 @@ namespace UTPPrototipo.Controllers
                 usuario = ticket.Usuario;
                 LNEvento lnEvento = new LNEvento();
                 lnEvento.InsertarEventoAsistente(idEvento, usuario, usuario);
+
+      
+                return RedirectToAction("Evento", "Empresa", new { idEvento = idEvento });
             }
 
-            return View("Evento", "Empresa");
+            return PartialView("_Evento", evento);
         }
         
     }
