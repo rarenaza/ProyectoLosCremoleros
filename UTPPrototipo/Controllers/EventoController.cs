@@ -83,7 +83,8 @@ namespace UTPPrototipo.Controllers
                 LNEvento lnEvento = new LNEvento();
                 lnEvento.InsertarEventoAsistente(idEvento, usuario, usuario);
             }
-            return View("Evento");
+
+            return View("Evento", "Empresa");
         }
         
     }

@@ -1814,14 +1814,20 @@ namespace UTPPrototipo.Controllers
             {
 
                 EventoAsistente evento = new EventoAsistente();
-                evento.FechaCreacion = Convert.ToDateTime(dtResultado.Rows[i]["FechaCreacion"] == DBNull.Value ? null : dtResultado.Rows[0]["FechaCreacion"]);
+                evento.FechaInscripcion = Convert.ToDateTime(dtResultado.Rows[i]["FechaInscripcion"] == DBNull.Value ? null : dtResultado.Rows[i]["FechaInscripcion"]);
                 evento.IdEvento = Convert.ToInt32(dtResultado.Rows[i]["IdEvento"]);
                 evento.Usuario = Convert.ToString(dtResultado.Rows[i]["Usuario"]);
                 evento.Nombres = Convert.ToString(dtResultado.Rows[i]["Nombres"]);
+                evento.Apellidos = Convert.ToString(dtResultado.Rows[i]["Apellidos"]);
                 evento.Sexo = Convert.ToString(dtResultado.Rows[i]["Sexo"]);
-                evento.DocIdentidad = Convert.ToString(dtResultado.Rows[i]["DocIdentidad"]);
-                evento.Ticket = Convert.ToString(dtResultado.Rows[i]["DocIdentidad"]);
-                evento.FechaAsistencia = Convert.ToDateTime(dtResultado.Rows[i]["FechaAsistencia"] == DBNull.Value ? null : dtResultado.Rows[0]["FechaAsistencia"]);
+                evento.ValorTipoDocumento = Convert.ToString(dtResultado.Rows[i]["ValorTipoDocumento"]);
+                evento.NumeroDocumento = Convert.ToString(dtResultado.Rows[i]["NumeroDocumento"]);
+                evento.ValorEstadoTicket = Convert.ToString(dtResultado.Rows[i]["ValorEstadoTicket"]);
+                evento.FechaAsistencia = Convert.ToDateTime(dtResultado.Rows[i]["FechaAsistencia"] == DBNull.Value ? null : dtResultado.Rows[i]["FechaAsistencia"]);
+
+            
+
+
                 evento.NombreEvento = Convert.ToString(dtResultado.Rows[i]["NombreEvento"]);
                 
 

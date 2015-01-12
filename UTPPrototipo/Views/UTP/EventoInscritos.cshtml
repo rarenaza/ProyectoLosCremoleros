@@ -44,7 +44,7 @@
     <div class="row grilla1-linea">
         <div class="col-sm-2">
             @*01/01/2015 14:09:32*@
-            @item.FechaCreacion
+            @item.FechaInscripcion
         </div>
         <div class="col-sm-2">
             @*JoseReq*@
@@ -52,7 +52,7 @@
         </div>
         <div class="col-sm-2">
             @*José Manuel Requena Diaz*@
-            @item.Nombres
+            @item.Nombres @item.Apellidos 
         </div>
         <div class="col-sm-1">
             @*Masculino*@
@@ -60,11 +60,11 @@
         </div>
         <div class="col-sm-2">
             @*DNI 989777887*@
-            @item.DocIdentidad
+            @item.ValorTipoDocumento @item.NumeroDocumento
         </div>
         <div class="col-sm-1">
             @*Pendiente de Emitir*@
-            @item.Ticket
+            @item.ValorEstadoTicket
         </div>
         <div class="col-sm-2">
             @item.FechaAsistencia
