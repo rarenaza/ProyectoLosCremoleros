@@ -17,6 +17,10 @@ namespace UTP.PortalEmpleabilidad.Logica
        {
            return ad.EVENTO_OBTENERPORID(id);
        }
+       public DataTable UTP_INSCRITOS_EVENTOS(int id)
+       {
+           return ad.UTP_INSCRITOS_EVENTOS(id);
+       }
        public bool Evento_insertar(Evento evento)
        {
 

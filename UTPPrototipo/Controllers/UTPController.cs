@@ -795,8 +795,7 @@ namespace UTPPrototipo.Controllers
                 
             }
 
-         
-            
+                     
             return View(evento);
         }
 
@@ -1798,10 +1797,39 @@ namespace UTPPrototipo.Controllers
             return new FileStreamResult(stream, "image/jpeg");
         }
 
-        public ActionResult EventoInscritos()
+        //public ActionResult EventoInscritos()
+        //{
+        //    return View();
+        //}
+
+        public ActionResult EventoInscritos(int? Id)
         {
-            return View();
+            List<EventoAsistente> listaevento = new List<EventoAsistente>();
+
+
+            DataTable dtResultado = lnEventos.UTP_INSCRITOS_EVENTOS(Convert.ToInt32(Id));
+
+            for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
+            {
+                EventoAsistente evento = new EventoAsistente();
+                evento.FechaCreacion = Convert.ToDateTime(dtResultado.Rows[i]["FechaCreacion"] == DBNull.Value ? null : dtResultado.Rows[0]["FechaCreacion"]);
+                evento.IdEvento = Convert.ToInt32(dtResultado.Rows[i]["IdEvento"]);
+                evento.Usuario = Convert.ToString(dtResultado.Rows[i]["Usuario"]);
+                evento.Nombres = Convert.ToString(dtResultado.Rows[i]["Nombres"]);
+                evento.Sexo = Convert.ToString(dtResultado.Rows[i]["Sexo"]);
+                evento.DocIdentidad = Convert.ToString(dtResultado.Rows[i]["DocIdentidad"]);
+                evento.Ticket = Convert.ToString(dtResultado.Rows[i]["DocIdentidad"]);
+                evento.FechaAsistencia = Convert.ToDateTime(dtResultado.Rows[i]["FechaAsistencia"] == DBNull.Value ? null : dtResultado.Rows[0]["FechaAsistencia"]);
+                evento.NombreEvento = Convert.ToString(dtResultado.Rows[i]["NombreEvento"]);
+                
+
+                listaevento.Add(evento);
+            }
+
+            return View(listaevento);
+
         }
+
 
 
         #region Mantenimiento de usuarios

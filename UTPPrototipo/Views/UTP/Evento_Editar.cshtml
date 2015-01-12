@@ -235,7 +235,7 @@
         </tr>
     </table>
                 <br />
-
+  
             }
         </div>
 
@@ -250,6 +250,13 @@
                 @Html.Action("_AdministrarActualizarImagenEventoUTP", "UTP", new { IdEvento = Model.IdEvento })
 
                 @Html.Action("_AdministrarActualizarImagenTickect", "UTP", new { IdEvento = Model.IdEvento })
+                @Html.HiddenFor(model => model.IdEvento)
+                @Html.ActionLink("Ver Inscritos", "EventoInscritos", new { IdEvento = Model.IdEvento })     
+
+                @*@Html.ActionLink("Ver Inscritos", "EventoInscritos") |*@
+               
+
+               
 
                 @*<div class="col-sm-6">
                         <h6>Poster del Evento</h6>

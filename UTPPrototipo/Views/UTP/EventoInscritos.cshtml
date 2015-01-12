@@ -1,4 +1,4 @@
-﻿@model UTP.PortalEmpleabilidad.Modelo.Evento
+﻿@model IEnumerable<UTP.PortalEmpleabilidad.Modelo.EventoAsistente>
 @{
     Layout = "~/Views/UTP/_LayoutUTP.cshtml";
     ViewBag.Title = "Evento";
@@ -9,7 +9,10 @@
     <div class="panel-group" id="datos-cuenta" role="tablist" aria-multiselectable="true">
         @{Html.RenderAction("VistaCabeceraUtp", "UTP");}
     </div>
-    <h5>Evento: NOMBRE DEL EVENTO</h5>
+
+@*@foreach (var item in Model)
+{*@
+    @*<h5>Evento: NOMBRE DEL EVENTO</h5>*@
     <br />
     <div class="row grilla1-cabecera color-paleta5">
 
@@ -35,29 +38,39 @@
             Asistió el
         </div>
     </div>
+    @foreach (var item in Model)
+    {
+       
     <div class="row grilla1-linea">
         <div class="col-sm-2">
-            01/01/2015 14:09:32
+            @*01/01/2015 14:09:32*@
+            @item.FechaCreacion
         </div>
         <div class="col-sm-2">
-            JoseReq
+            @*JoseReq*@
+            @item.Usuario
         </div>
         <div class="col-sm-2">
-            José Manuel Requena Diaz
+            @*José Manuel Requena Diaz*@
+            @item.Nombres
         </div>
         <div class="col-sm-1">
-            Masculino
+            @*Masculino*@
+            @item.Sexo
         </div>
         <div class="col-sm-2">
-            DNI 989777887
+            @*DNI 989777887*@
+            @item.DocIdentidad
         </div>
         <div class="col-sm-1">
-            Pendiente de Emitir
+            @*Pendiente de Emitir*@
+            @item.Ticket
         </div>
         <div class="col-sm-2">
-            -
+            @item.FechaAsistencia
         </div>
     </div>
+    }
     <hr />
 </div>
 <script>

@@ -45,8 +45,8 @@ namespace UTPPrototipo.Controllers
             ViewBag.documentoIdentidad = valorTipoDocumento + " " + numeroDocumento;
             return View();
         }
-<<<<<<< HEAD
-=======
+//<<<<<<< HEAD
+//=======
         public ActionResult InsertarEventoAsistente(int idEvento, string Pantalla)
         {
             string usuario;
@@ -68,6 +68,6 @@ namespace UTPPrototipo.Controllers
         }
         
 
->>>>>>> 310c018e18774702c98143e4a2441bb3f9c800eb
+//>>>>>>> 310c018e18774702c98143e4a2441bb3f9c800eb
     }
 }
