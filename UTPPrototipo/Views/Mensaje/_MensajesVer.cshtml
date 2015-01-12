@@ -13,11 +13,11 @@
 
             @{
                 <!--Sólo se muestra el link de mensaje posterior si existe.-->
-                if (Model.MensajePosteriorIdMensaje != 0)
-                {
-                    <label style="cursor: pointer; text-decoration: underline" onclick="mensajeVer('@Model.MensajePosteriorIdMensaje')">(@Html.FormatoFrecuencia(Model.MensajePosteriorFechaEnvio)) @Model.MensajePosteriorAsunto</label>
-                }
-            }
+    if (Model.MensajePosteriorIdMensaje != 0)
+    {
+        <label style="cursor: pointer; text-decoration: underline" onclick="mensajeVer('@Model.MensajePosteriorIdMensaje','@Model.Pantalla')">(@Html.FormatoFrecuencia(Model.MensajePosteriorFechaEnvio)) @Model.MensajePosteriorAsunto</label>
+    }
+}
             
         </h6>
 
@@ -83,11 +83,11 @@
 
             @{
                 <!--Sólo se muestra el link de mensaje posterior si existe.-->
-                if (Model.MensajeAnteriorIdMensaje != 0)
-                {
-                    <label style="cursor: pointer; text-decoration: underline" onclick="mensajeVer('@Model.MensajeAnteriorIdMensaje')" >(@Html.FormatoFrecuencia(Model.MensajeAnteriorFechaEnvio)) @Model.MensajeAnteriorAsunto</label>
-                }
-            }
+    if (Model.MensajeAnteriorIdMensaje != 0)
+    {
+        <label style="cursor: pointer; text-decoration: underline" onclick="mensajeVer('@Model.MensajeAnteriorIdMensaje', '@Model.Pantalla')">(@Html.FormatoFrecuencia(Model.MensajeAnteriorFechaEnvio)) @Model.MensajeAnteriorAsunto</label>
+    }
+}
         </h6>
 
 

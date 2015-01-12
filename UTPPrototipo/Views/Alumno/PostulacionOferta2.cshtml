@@ -1,5 +1,7 @@
 ﻿@using UTPPrototipo.Common
 @model UTP.PortalEmpleabilidad.Modelo.Vistas.Ofertas.VistaOfertaAlumno
+@using UTP.PortalEmpleabilidad.Modelo
+
 @{
     Layout = "~/Views/Alumno/_LayoutAlumno.cshtml";
     ViewBag.Title = "Oferta de Trabajo";
@@ -257,81 +259,9 @@
                     </div>
                 </div>
             </div>
-            <div class="panel-group" id="oferta-mensaje" role="tablist" aria-multiselectable="true">
-                <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingMensaje" style="padding: 2px 2px 2px 6px;">
-                        <h5 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseMensaje" aria-expanded="true" aria-controls="collapseMensaje" class="fuente-seccion">
-                                Mensajes
-                            </a>
-                        </h5>
-                    </div>
-                    <div id="collapseMensaje" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingMensaje">
-                        <div class="panel-body fuente-pequeña">
-                            <div class="row" style="padding: 5px 5px 5px 5px; margin: 1px 1px 1px 1px;">
-                                <div class="col-md-9">
-                                    <div class="input-group" style="width:100%;">
-                                        <span class=" input-group-addon">
-                                            Asunto
-                                        </span>
-                                        <input type="text" class="form-control" placeholder="Asunto ...">
-                                    </div>
-                                    <div class="input-group" style="width:100%;">
-                                        <span class="input-group-addon">Msg</span>
-                                        <textarea class="form-control" placeholder="Escriba su mensaje aqui ..." rows="5"></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div><button type="submit">Enviar</button></div><br />
-                                    <div>
-                                        <span style="height:20px;"><input type="checkbox"></span>
-                                        <span style="height:20px;">&nbsp;&nbsp;Enviar a mi correo</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row" style="border-top: solid; border-color: rgb(220,220,220); border-width: 1px; padding: 5px 5px 5px 5px; margin: 1px 1px 1px 1px;">
-                                <div class="col-md-1"><span class="fui fa-3x">k</span></div>
-                                <div class="col-md-2"><strong>30/10/2014 20:12:12</strong><br /><a href="#">Contestar</a></div>
-                                <div class="col-md-5"><strong>Bienvenido a la Postulación</strong></div>
-                                <div class="col-md-4"><strong>De: Criteria IT S.A.C.</strong></div>
-                                <div class="col-md-9" style="background-color:rgb(240,240,240);border-radius:5px 5px 5px 5px;">
-                                    Estimada Karina Barrionuevo, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tellus sem, porttitor id dapibus tempor, consequat sed...<a href="#">Mostrar</a>
-                                </div>
+            <div id="oferta-mensaje2222"  aria-multiselectable="true">
 
-                            </div>
-                            <div class="row" style="border-top: solid; border-color: rgb(220,220,220); border-width: 1px; padding: 5px 5px 5px 5px; margin: 1px 1px 1px 1px;">
-                                <div class="col-md-1"><span class="fui fa-3x">i</span></div>
-                                <div class="col-md-2"><strong>29/10/2014 18:32:15</strong><br /><a href="#">Contestar</a></div>
-                                <div class="col-md-5"><strong>RE: Aenean tellus sem, porttitor id</strong></div>
-                                <div class="col-md-4"><strong>De: UTP</strong></div>
-                                <div class="col-md-9" style="background-color:rgb(240,240,240);border-radius:5px 5px 5px 5px;">
-                                    Aenean tellus sem, porttitor id dapibus tempor, consequat sed diam. Nunc semper, urna dignissim eleifend cursus, eleifend cursus ...<a href="#">Mostrar</a>
-                                </div>
-
-                            </div>
-                            <div class="row" style="border-top: solid; border-color: rgb(220,220,220); border-width: 1px; padding: 5px 5px 5px 5px; margin: 1px 1px 1px 1px;">
-                                <div class="col-md-1"><span class="fui fa-3x">j</span></div>
-                                <div class="col-md-2"><strong>28/10/2014 21:58:51</strong><br /><a href="#">Contestar</a></div>
-                                <div class="col-md-5"><strong>Aenean tellus sem, porttitor id </strong></div>
-                                <div class="col-md-4"><strong>De: Criteria IT S.A.C.</strong></div>
-                                <div class="col-md-9" style="background-color:rgb(240,240,240);border-radius:5px 5px 5px 5px;">
-                                    Nunc semper, urna dignissim eleifend cursus, nisi erat euismod sapien, in aliquet libero leo id sem. Nunc semper, urna dignissim eleifend cursus, nisi ...<a href="#">Mostrar</a>
-                                </div>
-
-                            </div>
-                            <div class="row" style="border-top: solid; border-color: rgb(220,220,220); border-width: 1px; padding: 5px 5px 5px 5px; margin: 1px 1px 1px 1px;">
-                                <div class="col-md-1"><span class="fui fa-3x" style="color:grey;">h</span></div>
-                                <div class="col-md-2"><strong>27/10/2014 21:58:51</strong><br /></div>
-                                <div class="col-md-9"><strong>Urna dignissim eleifend cursus </strong></div>
-                                <div class="col-md-9" style="background-color:rgb(240,240,240);border-radius:5px 5px 5px 5px;">
-                                    Consequat sed diam. Nunc semper, urna dignissim eleifend cursus, nisi erat euismod sapien, nisi erat euismod sapien ...<a href="#">Mostrar</a>
-                                </div>
-
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
+                @Html.Action("_Mensajes", "Mensaje", new { pantalla = Constantes.MENSAJES_ALUMNO_OFERTA, idOferta = Model.Oferta.IdOferta })
             </div>
 
         </div>
@@ -908,7 +838,7 @@
     </div>
 </div>
 
-<script src="~/Scripts/jquery-2.1.1.min.js"></script>
+@*<script src="~/Scripts/jquery-2.1.1.min.js"></script>*@
 <script>
 
     $(document).ready(function () {

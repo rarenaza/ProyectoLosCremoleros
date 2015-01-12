@@ -80,6 +80,12 @@ namespace UTP.PortalEmpleabilidad.Modelo
 
         public const string MENSAJES_EMPRESA_INDEX = "EMPRESA_INDEX";
         public const string MENSAJES_ALUMNO_INDEX = "ALUMNO_INDEX";
+        public const string MENSAJES_EMPRESA_OFERTA = "EMPRESA_OFERTA";
+        public const string MENSAJES_ALUMNO_OFERTA = "ALUMNO_OFERTA";
+        public const string MENSAJES_UTP_INDEX = "UTP_INDEX";
+        public const string MENSAJES_UTP_EMPRESA = "UTP_EMPRESA";
+        public const string MENSAJES_UTP_ALUMNO = "UTP_ALUMNO";
+        public const string MENSAJES_UTP_OFERTA = "UTP_OFERTA";
 
         #endregion
     }

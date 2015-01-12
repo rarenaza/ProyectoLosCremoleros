@@ -68,7 +68,7 @@
                     <!--Acción para redactar nuevos mensajes.-->
                     <div class="col-sm-2">
                         @*<button class="btn btn-default color-paleta1" data-toggle="modal" data-target="#divModalMensajeRedactar">Redactar</button>*@
-                        <button id="btnMensajeNuevo" class="btn btn-default color-paleta1" onclick="mensajeNuevo('@ViewBag.Pantalla');">Redactar</button>
+                        <button id="btnMensajeNuevo" class="btn btn-default color-paleta1" onclick="mensajeNuevo('@ViewBag.Pantalla','@ViewBag.IdOferta', '@ViewBag.UsuarioAlumno');">Redactar</button>
                     </div>
                     <!--Paginación de los mensajes-->
                     <div class="col-sm-10" style="text-align:right;">
@@ -148,12 +148,13 @@
 
     });
 
-    function mensajeNuevo(pantalla) {
-
-        var url = '@Url.Action("_MensajesNuevo", "Mensaje")' + '?pantalla=' + pantalla;
+    function mensajeNuevo(pantalla, idOferta, usuarioAlumno) {
+        
+        var url = '@Url.Action("_MensajesNuevo", "Mensaje")' + '?pantalla=' + pantalla + '&idOferta=' + idOferta + '&usuarioAlumno=' + usuarioAlumno;
 
         $.get(url, function (data) {
 
+            console.log(data);
             $('#divMensajeNuevoContenedorInterno').html(data);
             $.validator.unobtrusive.parse('#divMensajeNuevoContenedorInterno');
             $('#divModalMensajeNuevo').modal('show');
@@ -165,8 +166,15 @@
 
     function mensajeVer(idMensaje, pantalla) {
 
+        //debugger;
         //Se cierra cualquier modal que esté abierto y se abre el siguiente:
-        $('.modal.in').modal('hide');
+        try {
+            $('.modal.in').modal('hide');
+        }
+        catch (err)
+        {
+            console.log(err);
+        }
 
         //console.log(idMensaje);
 
@@ -174,12 +182,13 @@
 
         $.get(url, function (data) {
 
+            console.log(data);
             $('#divMensajeVerContenedorInterno').html(data);
-            $.validator.unobtrusive.parse('#divMensajeVerContenedorInterno');
+            //$.validator.unobtrusive.parse('#divMensajeVerContenedorInterno');
             $('#divModalMensajeVer').modal('show');
 
         }).error(function (err) {
-            console.log(err);
+            console.log('error en getMensajeVer' + err);
         });
     };
 

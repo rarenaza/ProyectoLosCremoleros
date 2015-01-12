@@ -1,5 +1,7 @@
 ﻿
 @model UTP.PortalEmpleabilidad.Modelo.UtpAlumnoDetalle
+@using UTP.PortalEmpleabilidad.Modelo
+
 @{
     Layout = "~/Views/UTP/_LayoutUTP.cshtml";
     ViewBag.Title = "Oferta de Empresa";
@@ -179,6 +181,13 @@
             @{Html.RenderAction("AlumnoUtp_obtenerInformacionAdicional", "UTP", new { id = Model.IdAlumno });}
         </div>
     </div>
+
+    <div class="row fuente-pequeña">
+        <div class="col-sm-12">
+            @Html.Action("_Mensajes", "Mensaje", new { pantalla = Constantes.MENSAJES_UTP_ALUMNO, usuarioAlumno = Model.Usuario }) 
+        </div>
+    </div>
+
     <br />
     @*<div class="row">
         <div class="col-sm-12" style="text-align:right;">

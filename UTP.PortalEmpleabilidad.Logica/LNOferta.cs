@@ -546,6 +546,9 @@ namespace UTP.PortalEmpleabilidad.Logica
                 vista.CantidadPostulantes = Convert.ToInt32(fila["Postulantes"]);
                 vista.NombreEstado = Convert.ToString(fila["EstadoOferta"]);
                 vista.NombreEstadoOfertaDescripcion = Convert.ToString(fila["EstadoOfertaDescripcion"]);
+
+                vista.UsuarioPropietarioEmpresa = Convert.ToString(fila["UsuarioPropietarioEmpresa"]);
+                vista.UsuarioPropietarioEmpresaCorreo = Convert.ToString(fila["UsuarioPropietarioEmpresaCorreo"]);
                
                 lista.Add(vista);
             }

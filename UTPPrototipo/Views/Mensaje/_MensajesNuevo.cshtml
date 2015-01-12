@@ -10,23 +10,29 @@
 
         @Html.HiddenFor(m => m.DeUsuario)
         @Html.HiddenFor(m => m.DeUsuarioCorreoElectronico)
-        @Html.HiddenFor(m => m.ParaUsuario)
-        @Html.HiddenFor(m => m.ParaUsuarioCorreoElectronico)
+
+        @if (ViewBag.Pantalla != Constantes.MENSAJES_UTP_INDEX)
+        {
+            @Html.HiddenFor(m => m.ParaUsuario)
+            @Html.HiddenFor(m => m.ParaUsuarioCorreoElectronico)
+        }
+
+
         @Html.HiddenFor(m => m.Pantalla)
 
-        @if (ViewBag.Pantalla == Constantes.MENSAJES_ALUMNO_INDEX)
+        @if (ViewBag.Pantalla == Constantes.MENSAJES_ALUMNO_INDEX || ViewBag.Pantalla == Constantes.MENSAJES_UTP_INDEX || ViewBag.Pantalla == Constantes.MENSAJES_UTP_ALUMNO)
         {
             <div class="row">
                 <div class="col-sm-12">
                     <div class="input-group">
                         <span class="input-group-addon">Destina-<br />tario</span>
-                        <input id="inpUsuarioPara" class="form-control" palceholder="Usuario Destinatario" />
+                        <input id="inpUsuarioPara" name="ParaUsuario" class="form-control" placeholder="Usuario Destinatario" value="@Model.ParaUsuario" />
                     </div>
                 </div>
             </div>
         }
-        
-        @if (ViewBag.Pantalla == Constantes.MENSAJES_EMPRESA_INDEX)
+
+        @if (ViewBag.Pantalla == Constantes.MENSAJES_EMPRESA_INDEX || ViewBag.Pantalla == Constantes.MENSAJES_EMPRESA_OFERTA)
         {
             <div class="row">
                 <div class="col-sm-12">
@@ -37,27 +43,30 @@
                 </div>
             </div>
         }
-        
+
         <div class="row">
             <div class="col-sm-12">
                 <div class="input-group">
                     <span class="input-group-addon">Asunto</span>
-                    <input id="Asunto" name="Asunto" class="form-control" placeholder="Asunto del Correo" />                    
+                    <input id="Asunto" name="Asunto" class="form-control" placeholder="Asunto del Correo" value="@Model.Asunto" />
                 </div>
             </div>
         </div>
-        @if (ViewBag.Pantalla == Constantes.MENSAJES_EMPRESA_INDEX || ViewBag.Pantalla == Constantes.MENSAJES_ALUMNO_INDEX)
+
+        @if (ViewBag.Pantalla == Constantes.MENSAJES_EMPRESA_INDEX || ViewBag.Pantalla == Constantes.MENSAJES_ALUMNO_INDEX
+            || ViewBag.Pantalla == Constantes.MENSAJES_EMPRESA_OFERTA || ViewBag.Pantalla == Constantes.MENSAJES_UTP_ALUMNO)
         {
             <div class="row">
                 <div class="col-sm-12">
                     <div class="input-group">
                         <span class="input-group-addon">Oferta<br />Laboral</span>
-                        @Html.DropDownListFor(m => m.IdOferta, null, "Seleccione Oferta Laboral relacionada", htmlAttributes: new { @class = "form-control" })
+                        @Html.DropDownListFor(m => m.IdOfertaMensaje, null, "Seleccione Oferta Laboral relacionada", htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.IdOfertaMensaje, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
         }
-        
+        <!--, onchange = "democambio(this.value)"-->
         @if (ViewBag.Pantalla == "")
         {
             <div class="row">
@@ -75,12 +84,22 @@
             </div>
         }
 
-        <!--
-        <div class="row">
-            <div class="col-sm-12">
-                <a href="#">Gerente de Proyectos (IBM del Perú)</a>
+        @if (ViewBag.Pantalla == "")
+        {
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="input-group">
+                        <span class="input-group-addon">Oferta<br />Laboral</span>
+                        @Model.Oferta.CargoOfrecido
+                        @Html.HiddenFor(m => m.IdOfertaMensaje)
+                    </div>
+                    @*<a href="#">Gerente de Proyectos (IBM del Perú)</a>*@
+
+                </div>
             </div>
-        </div>
+        }
+
+        <!--
         <div class="row">
             <div class="col-sm-12">
                 <a href="#">Feria Laboral UTP 2015</a>
@@ -103,13 +122,37 @@
 </div>
 <script>
 
+
     $(document).ready(function () {
 
-        $('#IdOferta').on('change', function () {
+        var pantalla = $('#Pantalla').val();
 
-            //console.log('Valor: ' + this.value);
+        if (pantalla == '@Constantes.MENSAJES_EMPRESA_OFERTA') {
+            var idOferta = @ViewBag.IdOfertaGeneral
+
+            $('#IdOfertaMensaje').val(idOferta);
+
+            //Llamada al controlador para cargar a los postulantes de la oferta seleccionada.
+            var url = '@Url.Action("ObtenerPostulantesPorOferta", "Mensaje")' + '?IdOferta=' + idOferta;
+
+            $('#slcDestinatarios option[value!="0"]').remove();
+            $("#slcDestinatarios").append("<option selected>- Cargando destinatarios ... -</option>")
+
+            $.getJSON(url, cargarComboDestinatarios).error(function (err) { console.log(err); });
+
+            //$('#IdOfertaMensaje').attr('disabled','disabled'); //Se deshabilita el combo de ofertas.
+        }
+
+        $('#IdOfertaMensaje').on('change', function () {
+
+            if (pantalla == '@Constantes.MENSAJES_UTP_ALUMNO')
+            {
+                return false;
+            }
+            //debugger;
+            console.log('IfOfertaChange');
             var idOfertaSeleccionada = this.value;
-            var cargoOfrecidoSeleccionado = $('#IdOferta option:selected').text();
+            var cargoOfrecidoSeleccionado = $('#IdOfertaMensaje option:selected').text();
             console.log(cargoOfrecidoSeleccionado);
 
             var pantalla = $('#Pantalla').val();
@@ -118,7 +161,7 @@
 
             $("#Asunto").val(cargoOfrecidoSeleccionado);
 
-            if (pantalla = '@Constantes.MENSAJES_EMPRESA_INDEX') {
+            if (pantalla == '@Constantes.MENSAJES_EMPRESA_INDEX' || pantalla == '@Constantes.MENSAJES_EMPRESA_OFERTA') {
                 var url = '@Url.Action("ObtenerPostulantesPorOferta", "Mensaje")' + '?IdOferta=' + idOfertaSeleccionada;
 
                 $('#slcDestinatarios option[value!="0"]').remove();
@@ -127,16 +170,17 @@
                 $.getJSON(url, cargarComboDestinatarios).error(function (err) { console.log(err); });
 
             }
-            if (pantalla = '@Constantes.MENSAJES_ALUMNO_INDEX') {
+            if (pantalla == '@Constantes.MENSAJES_ALUMNO_INDEX') {
+
+                console.log('EmpresaOferta');
                 var url = '@Url.Action("ObtenerUsuarioEmpresaPorOferta", "Mensaje")' + '?IdOferta=' + idOfertaSeleccionada;
 
                 $.getJSON(url, cargarDatosUsuarioPara)
             }
 
-        });
+        }).error(function (err) { console.log(err); });
 
-        function cargarComboDestinatarios(data)
-        {
+        function cargarComboDestinatarios(data) {
             console.log(data);
 
             $('#slcDestinatarios option[value!="0"]').remove();
@@ -149,11 +193,12 @@
             }
         }
 
-        function cargarDatosUsuarioPara(data)
-        {
+        function cargarDatosUsuarioPara(data) {
             console.log(data);
             //Se setea el campo:
             $("#inpUsuarioPara").val(data.UsuarioPropietarioEmpresa);
+
+            //$("#inpUsuarioPara").attr('disabled', disabled)
 
             //Se guardan los datos del usuario Para:
             $('#ParaUsuario').val(data.UsuarioPropietarioEmpresa);
@@ -161,7 +206,7 @@
         }
 
         //Se almacen el nombre del usuario en un Hidden que está enlazado al modelo.
-        $('#slcDestinatarios').on('change', function() {
+        $('#slcDestinatarios').on('change', function () {
 
             var correoElectronico = this.value;
             var nombreUsuario = $(this).find(':selected').data('usuario');

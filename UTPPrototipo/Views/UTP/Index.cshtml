@@ -1,6 +1,6 @@
 ﻿@*@model  IEnumerable<UTPPrototipo.Models.ViewModels.Cuenta.TicketUTP >*@
 
-
+@using UTP.PortalEmpleabilidad.Modelo
 
 @{
     Layout = "~/Views/UTP/_LayoutUTP.cshtml";
@@ -11,8 +11,8 @@
 <div class="container" style="margin-top:2px;">
 
     <!---Cabecera de la página.-->
-      @{Html.RenderAction("VistaCabeceraUtpMiPortal", "UTP");}
-    
+    @{Html.RenderAction("VistaCabeceraUtpMiPortal", "UTP");}
+
     <!--  Contenedores de alertas.
     <div class="alert alert-danger" role="alert">¡Alerta!</div>
     <div class="alert alert-warning" role="alert">Advertencia</div>
@@ -116,180 +116,12 @@
 
 
         </div>
-            <div class="col-md-5 fuente-pequeña">
-                <h5>Mensajes</h5>
-                
-                <div class="row grilla1-cabecera color-paleta1">
-                    <div class="col-sm-1">
-
-                    </div>
-                    <div class="col-sm-2">
-                        Fecha
-                    </div>
-                    <div class="col-sm-3">
-                        Asunto
-                    </div>
-                    <div class="col-sm-3">
-                        Remitente
-                    </div>
-                    <div class="col-sm-3">
-                        Oferta/Evento
-                    </div>
-                </div>
-                <div class="row grilla1-linea">
-                    <div class="col-sm-1">
-                        <span class="fui fa-3x color-icono-paleta1">-</span>
-                    </div>
-                    <div class="col-sm-2">
-                        Hace 2 horas
-                    </div>
-                    <div class="col-sm-3">
-                        <a href="../Mensaje/VerMensaje">Bienvenido a la Postulación</a>
-                    </div>
-                    <div class="col-sm-3">
-                        Criteria IT S.A.C.
-                    </div>
-                    <div class="col-sm-3">
-                        Gerente de Proyecto (Postulando)
-                    </div>
-                </div>
-                <div class="row grilla1-linea">
-                    <div class="col-sm-1">
-                        <span class="fui fa-3x color-icono-paleta1">i</span>
-                    </div>
-                    <div class="col-sm-2">
-                        Hace 2 horas
-                    </div>
-                    <div class="col-sm-3">
-                        <a href="../Mensaje/VerMensaje">Bienvenido a la Postulación</a>
-                    </div>
-                    <div class="col-sm-3">
-                        Criteria IT S.A.C.
-                    </div>
-                    <div class="col-sm-3">
-                        Gerente de Proyecto (Postulando)
-                    </div>
-                </div>
-                <div class="row grilla1-linea">
-                    <div class="col-sm-1">
-                        <span class="fui fa-3x color-icono-paleta1">j</span>
-                    </div>
-                    <div class="col-sm-2">
-                        Hace 2 horas
-                    </div>
-                    <div class="col-sm-3">
-                        <a href="../Mensaje/VerMensaje">Bienvenido a la Postulación</a>
-                    </div>
-                    <div class="col-sm-3">
-                        Criteria IT S.A.C.
-                    </div>
-                    <div class="col-sm-3">
-                        Gerente de Proyecto (Postulando)
-                    </div>
-                </div>
-                <div class="row grilla1-linea">
-                    <div class="col-sm-1">
-                        <span class="fui fa-3x color-icono-paleta1">-</span>
-                    </div>
-                    <div class="col-sm-2">
-                        Hace 2 horas
-                    </div>
-                    <div class="col-sm-3">
-                        <a href="../Mensaje/VerMensaje">Bienvenido a la Postulación</a>
-                    </div>
-                    <div class="col-sm-3">
-                        Criteria IT S.A.C.
-                    </div>
-                    <div class="col-sm-3">
-                        Gerente de Proyecto (Postulando)
-                    </div>
-                </div>
-                <div class="row grilla1-linea">
-                    <div class="col-sm-1">
-                        <span class="fui fa-3x color-icono-paleta1">i</span>
-                    </div>
-                    <div class="col-sm-2">
-                        Hace 2 horas
-                    </div>
-                    <div class="col-sm-3">
-                        <a href="../Mensaje/VerMensaje">Bienvenido a la Postulación</a>
-                    </div>
-                    <div class="col-sm-3">
-                        Criteria IT S.A.C.
-                    </div>
-                    <div class="col-sm-3">
-                        Gerente de Proyecto (Postulando)
-                    </div>
-                </div>
-                <div class="row grilla1-linea">
-                    <div class="col-sm-1">
-                        <span class="fui fa-3x color-icono-paleta1">j</span>
-                    </div>
-                    <div class="col-sm-2">
-                        Hace 2 horas
-                    </div>
-                    <div class="col-sm-3">
-                        <a href="../Mensaje/VerMensaje">Bienvenido a la Postulación</a>
-                    </div>
-                    <div class="col-sm-3">
-                        Criteria IT S.A.C.
-                    </div>
-                    <div class="col-sm-3">
-                        Gerente de Proyecto (Postulando)
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12" style="text-align:right;">
-                        <nav>
-                            <nav>
-                                <ul class="pagination pagination-sm">
-                                    <li><a href="#"><span aria-hidden="true">&laquo;</span><span class="sr-only">Previous</span></a></li>
-                                    <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-                                    <li><a href="#">2</a></li>
-                                    <li><a href="#">3</a></li>
-                                    <li><a href="#">4</a></li>
-                                    <li><a href="#">5</a></li>
-                                    <li><a href="#"><span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span></a></li>
-                                </ul>
-                            </nav>
-                        </nav>
-                    </div>
-                </div>
-                <hr />
-                <h6>Nuevo Mensaje</h6>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="input-group">
-                            <span class=" input-group-addon">
-                                Para
-                            </span>
-                            <select id="Lista" class="form-control">
-                                <option value="" selected>--- Elija una oferta ---</option>
-                                <option value="1">Gerente de Proyecto</option>
-                                <option value="1">Jefe de Proyectos</option>
-                                <option value="1">Analista Funcional</option>
-                            </select>
-                        </div>
-                        <div class="input-group">
-                            <span class=" input-group-addon">
-                                Asunto
-                            </span>
-                            <input type="text" class="form-control" placeholder="Asunto ...">
-                        </div>
-                        <div class="input-group">
-                            <span class="input-group-addon">Msg</span>
-                            <textarea class="form-control" placeholder="Escriba su mensaje aqui ..." rows="5"></textarea>
-                        </div>
-                        <div style="text-align:right;">
-                            <button type="submit">Enviar Mensaje</button>
-                        </div>
-                    </div>
-
-                </div>
-                <br />
-            </div>
+        
+        <div class="col-md-5 fuente-pequeña">
+            @Html.Action("_Mensajes", "Mensaje", new { pantalla = Constantes.MENSAJES_UTP_INDEX })
 
         </div>
+    </div>
 </div>
 <script>
 

@@ -79,7 +79,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                     cmd.Parameters.Add(new SqlParameter("@DeUsuarioCorreoElectronico", mensaje.DeUsuarioCorreoElectronico));
                     cmd.Parameters.Add(new SqlParameter("@ParaUsuario", mensaje.ParaUsuario));
                     cmd.Parameters.Add(new SqlParameter("@ParaUsuarioCorreoElectronico", mensaje.ParaUsuarioCorreoElectronico));
-                    cmd.Parameters.Add(new SqlParameter("@IdOferta", mensaje.IdOferta));
+                    cmd.Parameters.Add(new SqlParameter("@IdOferta", mensaje.IdOfertaMensaje));
                     cmd.Parameters.Add(new SqlParameter("@IdEvento", mensaje.IdEvento));
                     cmd.Parameters.Add(new SqlParameter("@FechaEnvio", mensaje.FechaEnvio));
                     cmd.Parameters.Add(new SqlParameter("@Asunto", mensaje.Asunto));
@@ -129,7 +129,7 @@ namespace UTP.PortalEmpleabilidad.Datos
             return dtResultado;
         }
 
-        public DataTable ObtenerPorAlumno(string usuario)
+        public DataTable ObtenerPorUsuario(string usuario)
         {
             DataTable dtResultado = new DataTable();
 
@@ -138,7 +138,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                 SqlCommand cmd = new SqlCommand();
 
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "Mensaje_ObtenerPorAlumno";
+                cmd.CommandText = "Mensaje_ObtenerPorUsuario";
                 cmd.Parameters.Add(new SqlParameter("@Usuario", usuario));
                 
                 cmd.Connection = conexion;
