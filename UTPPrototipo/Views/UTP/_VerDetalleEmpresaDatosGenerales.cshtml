@@ -129,6 +129,42 @@
             </tr>
             <tr class="linea_raya">
                 <td class="celda-nombre">
+                    Clasificación
+                </td>
+                <td class="celda-datos">
+                    @Html.TextBoxFor(model => model.Clasificacion, new { @class = "form-control", @placeholder = "Clasificación de la Empresa" })
+                </td>
+            </tr>
+            <tr class="linea_raya">
+                <td class="celda-nombre">
+                    Nivel de Relación
+                </td>
+                <td class="celda-datos">
+                    @Html.TextBoxFor(model => model.NivelDeRelacion, new { @class = "form-control", @placeholder = "Nivel de Relación de la Empresa" })
+                </td>
+            </tr>
+            <tr class="linea_raya">
+                <td class="celda-nombre">
+                    Facultad Principal
+                </td>
+                <td class="celda-datos">
+                    <input type="text" class="form-control" placeholder="Facultad Principal de la Empresa">
+                    @Html.TextBoxFor(model => model.FacultadPrincipal, new { @class = "form-control", @placeholder = "Facultad Principal de la Empresa" })
+                </td>
+            </tr>
+            <tr class="linea_raya">
+                <td class="celda-nombre">
+                    Comentarios
+                </td>
+                <td class="celda-datos">
+                    <textarea class="form-control" placeholder="Agregar un comentario" rows="2"></textarea>
+                    <br />
+                    <textarea  class="form-control" placeholder="Sin Comentarios" rows="8" readonly></textarea>
+                </td>
+            </tr>
+
+            <tr class="linea_raya">
+                <td class="celda-nombre">
                     Creado Por
                 </td>
                 <td class="celda-datos">                    
