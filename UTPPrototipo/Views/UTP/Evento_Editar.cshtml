@@ -250,28 +250,12 @@
                 @Html.Action("_AdministrarActualizarImagenEventoUTP", "UTP", new { IdEvento = Model.IdEvento })
 
                 @Html.Action("_AdministrarActualizarImagenTickect", "UTP", new { IdEvento = Model.IdEvento })
-                @Html.HiddenFor(model => model.IdEvento)
-                @Html.ActionLink("Ver Inscritos", "EventoInscritos", new { IdEvento = Model.IdEvento })     
+            
+                @Html.ActionLink("Ver Inscritos", "EventoInscritos", new { Id = Model.IdEvento })     
 
                 @*@Html.ActionLink("Ver Inscritos", "EventoInscritos") |*@
                
 
-               
-
-                @*<div class="col-sm-6">
-                        <h6>Poster del Evento</h6>
-                        <img src="~/img/evento/Evento1.jpg" style="width:100%;border:solid;border-width:thick;border-color:rgb(220,220,220);">
-                        <br /><br />
-                        <button class="btn btn-default color-paleta5">Cambiar imagen</button>
-                        <hr />
-                    </div>
-                    <div class="col-sm-6">
-                        <h6>Imagen del Ticket</h6>
-                        <img src="~/img/evento/Evento1.jpg" style="width:100%;border:solid;border-width:thick;border-color:rgb(220,220,220);">
-                        <br /><br />
-                        <button class="btn btn-default color-paleta5">Cambar imagen</button>
-                        <hr />
-                    </div>*@
             </div>
         </div>
     </div>

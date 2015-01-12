@@ -1811,6 +1811,7 @@ namespace UTPPrototipo.Controllers
 
             for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
             {
+
                 EventoAsistente evento = new EventoAsistente();
                 evento.FechaCreacion = Convert.ToDateTime(dtResultado.Rows[i]["FechaCreacion"] == DBNull.Value ? null : dtResultado.Rows[0]["FechaCreacion"]);
                 evento.IdEvento = Convert.ToInt32(dtResultado.Rows[i]["IdEvento"]);
