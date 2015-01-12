@@ -132,7 +132,7 @@
                     Clasificación
                 </td>
                 <td class="celda-datos">
-                    @Html.TextBoxFor(model => model.Clasificacion, new { @class = "form-control", @placeholder = "Clasificación de la Empresa" })
+                    @Html.TextBoxFor(m => m.Clasificacion, new { @class = "form-control", @placeholder = "Clasificación de la Empresa" })
                 </td>
             </tr>
             <tr class="linea_raya">
@@ -140,7 +140,7 @@
                     Nivel de Relación
                 </td>
                 <td class="celda-datos">
-                    @Html.TextBoxFor(model => model.NivelDeRelacion, new { @class = "form-control", @placeholder = "Nivel de Relación de la Empresa" })
+                    @Html.TextBoxFor(m => m.NivelDeRelacion, new { @class = "form-control", @placeholder = "Nivel de Relación de la Empresa" })
                 </td>
             </tr>
             <tr class="linea_raya">
@@ -148,18 +148,35 @@
                     Facultad Principal
                 </td>
                 <td class="celda-datos">
-                    <input type="text" class="form-control" placeholder="Facultad Principal de la Empresa">
-                    @Html.TextBoxFor(model => model.FacultadPrincipal, new { @class = "form-control", @placeholder = "Facultad Principal de la Empresa" })
+                    @Html.TextBoxFor(m => m.FacultadPrincipal, new { @class = "form-control", @placeholder = "Facultad Principal de la Empresa" })
                 </td>
             </tr>
+            <tr class="linea_raya">
+                <td class="celda-nombre">
+                    Facultad Secundaria
+                </td>
+                <td class="celda-datos">
+                    @Html.TextBoxFor(m => m.FacultadSecundaria, new { @class = "form-control", @placeholder = "Facultad Secundaria de la Empresa" })
+                </td>
+            </tr>
+            <tr class="linea_raya">
+                <td class="celda-nombre">
+                    Nivel de Facturación
+                </td>
+                <td class="celda-datos">
+                    @Html.TextBoxFor(m => m.NivelDeFacturacion, new { @class = "form-control", @placeholder = "Nivel de Facturación de la Empresa" })
+                </td>
+            </tr>
+
             <tr class="linea_raya">
                 <td class="celda-nombre">
                     Comentarios
                 </td>
                 <td class="celda-datos">
-                    <textarea class="form-control" placeholder="Agregar un comentario" rows="2"></textarea>
+                    @Html.TextAreaFor(m => m.NuevoComentario, htmlAttributes: new { @class = "form-control", @placeholder = "Agregar un comentario", @rows = "3" })
+                    
                     <br />
-                    <textarea  class="form-control" placeholder="Sin Comentarios" rows="8" readonly></textarea>
+                    <textarea class="form-control" placeholder="Sin Comentarios" rows="8" readonly>@Model.Comentarios</textarea>
                 </td>
             </tr>
 

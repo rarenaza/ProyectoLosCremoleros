@@ -71,6 +71,8 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string NivelDeRelacion { get; set; }
 
         public string FacultadPrincipal { get; set; }
+        public string FacultadSecundaria { get; set; }
+        public decimal NivelDeFacturacion { get; set; }
         public string Comentarios { get; set; }
         public string NuevoComentario { get; set; } 
 

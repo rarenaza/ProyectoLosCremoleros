@@ -151,6 +151,12 @@ namespace UTP.PortalEmpleabilidad.Logica
                     empresa.SectorEmpresarial1IdListaValor = Convert.ToString(dsResultado.Tables[0].Rows[0]["SectorEmpresarial"]);
                     empresa.SectorEmpresarial2IdListaValor = Convert.ToString(dsResultado.Tables[0].Rows[0]["SectorEmpresarial2"]);
                     empresa.SectorEmpresarial3IdListaValor = Convert.ToString(dsResultado.Tables[0].Rows[0]["SectorEmpresarial3"]);
+                    empresa.Clasificacion = Convert.ToString(dsResultado.Tables[0].Rows[0]["Clasificación"]);
+                    empresa.NivelDeRelacion = Convert.ToString(dsResultado.Tables[0].Rows[0]["NivelDeRelacion"]);
+                    empresa.FacultadPrincipal = Convert.ToString(dsResultado.Tables[0].Rows[0]["FacultadPrincipal"]);
+                    empresa.FacultadSecundaria = Convert.ToString(dsResultado.Tables[0].Rows[0]["FacultadSecundaria"]);
+                    empresa.NivelDeFacturacion = Convert.ToDecimal(dsResultado.Tables[0].Rows[0]["NivelDeFacturacion"]);
+                    empresa.Comentarios = Convert.ToString(dsResultado.Tables[0].Rows[0]["Comentarios"]);
                     //empresa.LogoEmpresa = (byte[])dsResultado.Tables[0].Rows[0]["LogoEmpresa"];
 
                     empresa.LogoEmpresa = dsResultado.Tables[0].Rows[0]["LogoEmpresa"] == DBNull.Value ? null : (byte[])dsResultado.Tables[0].Rows[0]["LogoEmpresa"];
