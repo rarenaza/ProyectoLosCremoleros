@@ -15,26 +15,46 @@ namespace UTPPrototipo.Controllers
     public class EventoController : Controller
     {
         LNEvento ad = new LNEvento();
-        public PartialViewResult _Eventos(string Pantalla, int idEvento)
+        public PartialViewResult _Eventos(string Pantalla)
         {
-            TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];
-
-            LNEvento lnEvento = new LNEvento();
-            Evento evento = lnEvento.EventoPorUsuario(idEvento, ticket.Usuario);
             ViewBag.Pantalla = Pantalla;
-            return PartialView("_Evento", evento);
+            if (Pantalla == "Alumno")
+            {
+                TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
+                LNEvento lnEvento = new LNEvento();
+                VistaEventosPorUsuario evento = lnEvento.EventosPorUsuario(ticket.Usuario);
+                return PartialView(evento);
+            }
+            else
+            {
+                TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];
+                LNEvento lnEvento = new LNEvento();
+                VistaEventosPorUsuario evento = lnEvento.EventosPorUsuario(ticket.Usuario);
+                return PartialView(evento);
+            }
         }
 
 
         //[ChildActionOnly]
         public PartialViewResult _Evento(string Pantalla, int idEvento)
         {
-            TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];
-
-            LNEvento lnEvento = new LNEvento();
-            Evento evento = lnEvento.EventoPorUsuario(idEvento, ticket.Usuario);
             ViewBag.Pantalla = Pantalla;
-            return PartialView("_Evento", evento);
+            if (Pantalla == "Alumno")
+            {
+                TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
+                LNEvento lnEvento = new LNEvento();
+                Evento evento = lnEvento.EventoPorUsuario(idEvento, ticket.Usuario);
+                return PartialView("_Evento", evento);
+            }
+            else
+            {
+                TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];
+                LNEvento lnEvento = new LNEvento();
+                Evento evento = lnEvento.EventoPorUsuario(idEvento, ticket.Usuario);
+                return PartialView("_Evento", evento);
+            }
+
+
         }
 
         public ActionResult PaginaTicket(int idEvento, int idEventoAsistente, string nombres, string apellidos, string valorTipoDocumento, string numeroDocumento)
@@ -45,8 +65,7 @@ namespace UTPPrototipo.Controllers
             ViewBag.documentoIdentidad = valorTipoDocumento + " " + numeroDocumento;
             return View();
         }
-//<<<<<<< HEAD
-//=======
+
         public ActionResult InsertarEventoAsistente(int idEvento, string Pantalla)
         {
             string usuario;
@@ -67,7 +86,5 @@ namespace UTPPrototipo.Controllers
             return View("Evento");
         }
         
-
-//>>>>>>> 310c018e18774702c98143e4a2441bb3f9c800eb
     }
 }
