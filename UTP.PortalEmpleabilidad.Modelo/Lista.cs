@@ -14,7 +14,9 @@ namespace UTP.PortalEmpleabilidad.Modelo
        public string NombreLista { get; set; }
        public string  Valor { get; set; }
        public string DescripcionLista { get; set; }
-       public int Modificable { get; set; }
+ 
+       public bool Modificable { get; set; }
+
        public string  Creadopor { get; set; }
        public DateTime  FechaCreacion { get; set; }
        public string Modificadopor { get; set; }

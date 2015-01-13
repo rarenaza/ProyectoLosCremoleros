@@ -14,29 +14,29 @@ namespace UTPPrototipo.Controllers
         LNLista ad = new LNLista();
 
         // GET: Lista
-        public ActionResult Index()
-        {
-            List<Lista> lista = new List<Lista>();
+        //public ActionResult Index()
+        //{
+        //    List<Lista> lista = new List<Lista>();
 
-            lista = ad.Evento_Mostrar();           
+        //    lista = ad.Evento_Mostrar();           
 
-            return View(lista); 
-        }
-        public ActionResult Lista_insertar()
-        {
+        //    return View(lista); 
+        //}
+        //public ActionResult Lista_insertar()
+        //{
     
-            Lista listavalor = new Lista();
-             ad.Lista_insertar(listavalor.IDLista, listavalor.NombreLista, listavalor.DescripcionLista, listavalor.Modificable, listavalor.Creadopor);
-            return View();
-        }
-        public ActionResult Lista_Buscar()
-        {
-            List<Lista> lista = new List<Lista>();
-            Lista  listaValor = new Lista();
+        //    Lista listavalor = new Lista();
+        //     ad.Lista_insertar(listavalor.IDLista, listavalor.NombreLista, listavalor.DescripcionLista, listavalor.Modificable, listavalor.Creadopor);
+        //    return View();
+        //}
+        //public ActionResult Lista_Buscar()
+        //{
+        //    List<Lista> lista = new List<Lista>();
+        //    Lista  listaValor = new Lista();
                  
-            return View(ad.Lista_Buscar(listaValor.IDLista)); 
+        //    return View(ad.Lista_Buscar(listaValor.IDLista)); 
             
-        }
+        //}
        
     }
 }

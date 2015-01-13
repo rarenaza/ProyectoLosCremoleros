@@ -200,14 +200,19 @@ namespace UTP.PortalEmpleabilidad.Datos
                     cmd.Parameters.Add(new SqlParameter("@Estado", empresa.EstadoIdListaValor));
                     cmd.Parameters.Add(new SqlParameter("@UsuarioEC", empresa.UsuarioEC));
 
-                    cmd.Parameters.Add(new SqlParameter("@Clasificacion", empresa.Clasificacion));
-                    cmd.Parameters.Add(new SqlParameter("@NivelDeRelacion", empresa.NivelDeRelacion));
-                    cmd.Parameters.Add(new SqlParameter("@FacultadPrincipal", empresa.FacultadPrincipal));
-                    cmd.Parameters.Add(new SqlParameter("@FacultadSecundaria", empresa.FacultadSecundaria));
+                    cmd.Parameters.Add(new SqlParameter("@Clasificacion", empresa.Clasificacion == null ? "" : empresa.Clasificacion));
+                    cmd.Parameters.Add(new SqlParameter("@NivelDeRelacion", empresa.NivelDeRelacion == null ? "" : empresa.NivelDeRelacion));
+                    cmd.Parameters.Add(new SqlParameter("@FacultadPrincipal", empresa.FacultadPrincipal == null ? "" : empresa.FacultadPrincipal));
+                    cmd.Parameters.Add(new SqlParameter("@FacultadSecundaria", empresa.FacultadSecundaria == null ? "" : empresa.FacultadSecundaria));
                     cmd.Parameters.Add(new SqlParameter("@Usuario", empresa.Usuario));
+           
                     cmd.Parameters.Add(new SqlParameter("@NivelDeFacturacion", empresa.NivelDeFacturacion));
-                    cmd.Parameters.Add(new SqlParameter("@NuevoComentario", empresa.NuevoComentario));  
-                    
+        
+               
+            
+
+                    cmd.Parameters.Add(new SqlParameter("@NuevoComentario", empresa.NuevoComentario == null?"" : empresa.NuevoComentario));
+
                     cmd.Connection = conexion;
                     conexion.Open();
                     cmd.ExecuteNonQuery();
@@ -233,6 +238,30 @@ namespace UTP.PortalEmpleabilidad.Datos
 
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "UTPUsuario_ObtenerLista";                
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                dtResultado = new DataTable();
+                da.Fill(dtResultado);
+
+                conexion.Close();
+            }
+
+            return dtResultado;
+        }
+
+        public DataTable UTP_LISTAVALORPADRE()
+        {
+            DataTable dtResultado = new DataTable();
+
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "UTP_LISTAVALORPADRE";
                 cmd.Connection = conexion;
 
                 conexion.Open();

@@ -41,6 +41,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public ListaValor SectorEmpresarial2 { get; set; }
         public ListaValor SectorEmpresarial3 { get; set; }
         public string CreadoPor { get; set; }
+        [Required(ErrorMessage = Constantes.MSJ_CAMPO_OBLIGATORIO)]
         public string UsuarioEC { get; set; }
         public byte[] LogoEmpresa { get; set; }
         public string ArchivoMimeType { get; set; }
@@ -59,8 +60,8 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string ModificadoPor { get; set; }
 
         public string OficinaPrincipal { get; set; }
-        
 
+        [Required(ErrorMessage = Constantes.MSJ_CAMPO_OBLIGATORIO)]
         public string EstadoIdListaValor { get; set; }
 
 
@@ -71,7 +72,10 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string NivelDeRelacion { get; set; }
         public string FacultadPrincipal { get; set; }
         public string FacultadSecundaria { get; set; }
+
+        [Required(ErrorMessage = Constantes.MSJ_CAMPO_OBLIGATORIO)]
         public decimal NivelDeFacturacion { get; set; }
+
         public string Comentarios { get; set; }
         public string NuevoComentario { get; set; } 
         public string Usuario { get; set; }

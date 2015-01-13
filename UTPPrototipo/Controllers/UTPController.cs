@@ -623,6 +623,7 @@ namespace UTPPrototipo.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public PartialViewResult _VerDetalleEmpresaDatosGeneralesEditar(Empresa empresa)
         {             
             LNUTP lnUTP = new LNUTP ();
@@ -1878,6 +1879,32 @@ namespace UTPPrototipo.Controllers
             return PartialView("_UsuariosUTPLista", lista);
             //return PartialView("_UsuariosUTPLista");
         }
+
+      public PartialViewResult _ListavalorPadre()
+        {
+            List<Lista> lista = new List<Lista>();
+
+            DataTable dtResultado = lnUtp.UTP_LISTAVALORPADRE();
+
+            foreach (DataRow fila in dtResultado.Rows)
+            {
+
+                Lista objlista = new Lista();
+
+                objlista.IDLista = Convert.ToInt32(fila["IDLista"]);
+                objlista.NombreLista = Convert.ToString(fila["NombreLista"]);
+                objlista.DescripcionLista = Convert.ToString(fila["DescripcionLista"]);
+                objlista.Modificable = Convert.ToBoolean(fila["Modificable"]);
+
+                lista.Add(objlista);
+            }
+
+            return PartialView("_ListavalorPadre", lista);
+      
+        }
+
+
+
 
         /// <summary>
         /// HttpGet del partialview para la creación de usuario UTP:

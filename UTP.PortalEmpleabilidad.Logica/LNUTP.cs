@@ -188,6 +188,14 @@ namespace UTP.PortalEmpleabilidad.Logica
             return lista;
         }
 
+        public DataTable UTP_LISTAVALORPADRE()
+        {
+
+            return adUtp.UTP_LISTAVALORPADRE(); 
+        }
+
+
+
         public UTPUsuario ObtenerUsuarioUTPPorId(int idUTPUsuario)
         {
             UTPUsuario utpUsuario = new UTPUsuario();
