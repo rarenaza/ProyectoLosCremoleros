@@ -181,37 +181,41 @@
                                 string EmpresaExperiencia = "";
                                 foreach (var item in Model.alumnoexperienciacv)
                                 {
-
-
-                                    <div class="row">
-                                        <div class="col-sm-11">
-                                            @if (item.Empresa != EmpresaExperiencia)
-                                            {
+                                    if (item.Empresa != EmpresaExperiencia)
+                                        {
                                                 if (EmpresaExperiencia != "")
                                                 {
                                                     <hr />
                                                 }
 
                                                 EmpresaExperiencia = item.Empresa;
-
                                                 <div class="row">
-                                                    <div class="col-sm-3">
+                                                    <div class="col-sm-11">
+                                                        <div class="row">
+                                                            <div class="col-sm-3">
 
-                                                    </div>
-                                                    <div class=" col-sm-9">
-                                                        <span><strong>@item.Empresa.</strong></span>
-                                                    </div>
+                                                            </div>
+                                                            <div class=" col-sm-9">
+                                                                <span><strong>@item.Empresa.</strong></span>
+                                                            </div>
 
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-3">
+
+                                                            </div>
+                                                            <div class=" col-sm-9">
+                                                                @item.DescripcionEmpresa
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-1">
+                                                    </div>
                                                 </div>
-                                                <div class="row">
-                                                    <div class="col-sm-3">
 
-                                                    </div>
-                                                    <div class=" col-sm-9">
-                                                        @item.DescripcionEmpresa
-                                                    </div>
-                                                </div>
-                                            }
+                                        }
+                                    <div class="row">
+                                        <div class="col-sm-11">
                                             <div class="row">
                                                 <div class="col-sm-3">
                                                     @item.FechaInicioCargoMes/@item.FechaInicioCargoAno -
@@ -257,8 +261,8 @@
                                         </div>
                                     </div>
 
-                                }
-                            }
+                                                        }
+                                                        }
 
 
                             <div class="row">
@@ -392,10 +396,10 @@
                                     </p>
                                     <br />
                                     <div class="progress" style="margin:3px 2px 3px 2px;">
-                                        @if (@Model.alumnocv.Cumplimiento > 59) 
+                                        @if (@Model.alumnocv.Cumplimiento > 59)
                                         {
-                                            if (@Model.alumnocv.Cumplimiento >79) 
-                                            {                                        
+                                            if (@Model.alumnocv.Cumplimiento >79)
+                                            {
                                                 <div class="progress-bar progress-bar-success progress-bar" role="progressbar" aria-valuenow="@Model.alumnocv.Cumplimiento" aria-valuemin="0" aria-valuemax="100" style="width: @Model.alumnocv.Cumplimiento%">
                                                     @Model.alumnocv.Cumplimiento%
                                                 </div>
@@ -476,8 +480,7 @@
             var faseOferta = $('#IdOfertaFase').val();
             var idOfertaPostulante = $('#hddIdOfertaPostulante').val();
 
-            if (faseOferta == '')
-            {
+            if (faseOferta == '') {
                 alert('Debe seleccionar una fase');
                 return false;
             }

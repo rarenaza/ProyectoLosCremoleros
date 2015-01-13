@@ -96,8 +96,8 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public int Cumplimiento { get; set; }
         public int Tipo { get; set; }
         public int Line { get; set; }
-
-
+        public int AnoCreacion { get; set; }
+        public string DesSectorEmpresarial { get; set; }
         public Empresa Empresa { get; set; }
         public List<OfertaPostulante> Postulantes { get; set; }
 

@@ -71,7 +71,7 @@
                             }
                             else
                             {
-                                <img class="logo-empresa" src="~/img/logos/logoibm.jpg" />
+                                <img class="logo-empresa" src="~/img/sinimagen.jpg" />
                             }
                         </td>
                         <td style="vertical-align:top;">
@@ -789,21 +789,29 @@
             <div class="modal-body">
                 <table style="width:100%">
                     <tr>
-                        <td style="width:50%;text-align:center;"><img src="~/img/logos/logoibm.jpg" style="text-align:center;" /></td>
-                        <td style="width:50%;"><h4>IBM del Perú</h4><br />Perú</td>
+                        <td style="width:50%;text-align:center;">
+                        @if (Model.Oferta.LogoEmpresa != null && string.IsNullOrEmpty(Model.Oferta.ArchivoMimeType) == false)
+                        {
+                            <img src="@Url.Action("GetImageEmpresa", "Alumno", new { Model.Oferta.IdEmpresa })" class="logo-empresa" />
+
+                        }
+                        else
+                        {
+                            <img class="logo-empresa" src="~/img/sinimagen.jpg" />
+                        }
+                        </td>
+                        <td style="width:50%;"><h4>@Model.Oferta.NombreComercial</h4><br />@Model.Oferta.SitioWeb</td>
                     </tr>
                 </table>
                 <br />
-                <h5>Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit</h5>
-                <br />
-                <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec id sagittis leo. Morbi in sagittis diam. Ut imperdiet pulvinar ligula, ac rhoncus eros pretium quis. Aenean sapien est, posuere ut neque sollicitudin, volutpat tristique erat. Vestibulum lobortis augue metus, ut tincidunt lacus scelerisque tristique. Pellentesque dui nisi, sagittis in neque a, molestie laoreet erat. Donec ultricies sapien ac lectus pharetra, non vestibulum lectus blandit. Morbi ultrices augue vitae tellus iaculis, varius varius tortor iaculis. Duis libero velit, accumsan sit amet ipsum non, viverra consectetur nisi. Phasellus bibendum ut ipsum aliquet vestibulum.</h6>
+                <h5>@Model.Oferta.DescripcionEmpresa</h5>
                 <table>
                     <tr>
                         <td class="celda-nombre">
                             Año de Creación
                         </td>
                         <td class="celda-datos">
-                            2013
+                            @Model.Oferta.AnoCreacion
                         </td>
                     </tr>
                     <tr>
@@ -811,7 +819,7 @@
                             Empleados
                         </td>
                         <td class="celda-datos">
-                            10 a 50
+                            @Model.Oferta.DesNumeroEmpleados
                         </td>
                     </tr>
                     <tr>
@@ -819,17 +827,10 @@
                             Sector Empresarial
                         </td>
                         <td class="celda-datos">
-                            Tecnología y Software
+                            @Model.Oferta.DesSectorEmpresarial
                         </td>
                     </tr>
-                    <tr>
-                        <td class="celda-nombre">
-                            Oficina Principal
-                        </td>
-                        <td class="celda-datos">
-                            Avenida Del Sur 310, oficina 102, Santiago de Surco, Lima
-                        </td>
-                    </tr>
+                    
                 </table>
             </div>
             <div class="modal-footer">

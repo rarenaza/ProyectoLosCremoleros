@@ -222,10 +222,10 @@ namespace UTPPrototipo.Controllers
             Dictionary<int, string> listaperiodopublicacion = new Dictionary<int, string>();
             listaperiodopublicacion.Add(0, "Hoy");
             listaperiodopublicacion.Add(1, "Ayer");
-            listaperiodopublicacion.Add(7, "Hace uan semana");
+            listaperiodopublicacion.Add(7, "Hace una semana");
             listaperiodopublicacion.Add(15, "Hace 15 dias");
             listaperiodopublicacion.Add(30, "Hace un mes");
-            listaperiodopublicacion.Add(31, "Hace mas de un mes");
+            listaperiodopublicacion.Add(31, "Hace más de un mes");
 
 
             // oferta.ListaOfertas = lnoferta.Oferta_Mostrar();
@@ -255,7 +255,8 @@ namespace UTPPrototipo.Controllers
             foreach (ListaValor entidad in oferta.ListaEstudios)
             {
                 SelectListItem item = new SelectListItem();
-                item.Text = entidad.Valor.ToUpper();
+                //item.Text = entidad.Valor.ToUpper();
+                item.Text = entidad.Valor.ToString();
                 item.Value = entidad.IdListaValor.ToString();
                 listItemsCarrera.Add(item);
             }
@@ -265,7 +266,8 @@ namespace UTPPrototipo.Controllers
             foreach (ListaValor entidad in oferta.ListaEstadoEstudio)
             {
                 SelectListItem item = new SelectListItem();
-                item.Text = entidad.Valor.ToUpper();
+                //item.Text = entidad.Valor.ToUpper();
+                item.Text = entidad.Valor.ToString();
                 item.Value = entidad.IdListaValor.ToString();
                 listItemsEstadoEstudio.Add(item);
             }
@@ -274,7 +276,8 @@ namespace UTPPrototipo.Controllers
             foreach (ListaValor entidad in oferta.ListaSectorEmpresarial)
             {
                 SelectListItem item = new SelectListItem();
-                item.Text = entidad.Valor.ToUpper();
+                //item.Text = entidad.Valor.ToUpper();
+                item.Text = entidad.Valor.ToString();
                 item.Value = entidad.IdListaValor.ToString();
                 listItemsSectorEmpresarial.Add(item);
             }
@@ -283,7 +286,8 @@ namespace UTPPrototipo.Controllers
             foreach (ListaValor entidad in oferta.ListaTipoTrabajo)
             {
                 SelectListItem item = new SelectListItem();
-                item.Text = entidad.Valor.ToUpper();
+                //item.Text = entidad.Valor.ToUpper();
+                item.Text = entidad.Valor.ToString();
                 item.Value = entidad.IdListaValor.ToString();
                 listItemsTipoTrabajo.Add(item);
             }
@@ -292,7 +296,8 @@ namespace UTPPrototipo.Controllers
             foreach (ListaValor entidad in oferta.ListaContrato)
             {
                 SelectListItem item = new SelectListItem();
-                item.Text = entidad.Valor.ToUpper();
+                //item.Text = entidad.Valor.ToUpper();
+                item.Text = entidad.Valor.ToString();
                 item.Value = entidad.IdListaValor.ToString();
                 listItemsContrato.Add(item);
             }
@@ -301,7 +306,8 @@ namespace UTPPrototipo.Controllers
             foreach (ListaValor entidad in oferta.ListaTipoCargo)
             {
                 SelectListItem item = new SelectListItem();
-                item.Text = entidad.Valor.ToUpper();
+                //item.Text = entidad.Valor.ToUpper();
+                item.Text = entidad.Valor.ToString();
                 item.Value = entidad.IdListaValor.ToString();
                 listItemsTipoCargo.Add(item);
             }

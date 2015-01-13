@@ -107,8 +107,8 @@ namespace UTP.PortalEmpleabilidad.Logica
                 oferta.IdAlumno = idAlumno;
                 oferta.LogoEmpresa = Funciones.ToBytes(dtResultado.Rows[0]["LogoEmpresa"]); ;
                 oferta.ArchivoMimeType = Funciones.ToString(dtResultado.Rows[0]["ArchivoMimeType"]); ;
-
-
+                oferta.AnoCreacion = Funciones.ToInt(dtResultado.Rows[0]["AnoCreacion"]);
+                oferta.DesSectorEmpresarial = Funciones.ToString(dtResultado.Rows[0]["DesSectorEmpresarial"]); ;
             }
 
             return oferta;
