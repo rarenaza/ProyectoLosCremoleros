@@ -1,11 +1,11 @@
-﻿
+﻿@*@model UTP.PortalEmpleabilidad.Modelo.VistaPanelAlumno*@
 @{
     Layout = "~/Views/Alumno/_LayoutAlumno.cshtml";
     ViewBag.Title = "Eventos";
 }
 
 <div class="container fuente-pequeña" style="margin-top:2px;">
-  
+    @*@Html.Partial("_DatosPersonales", Model.Alumno)*@
     @Html.Action("_Evento", "Evento", new { Pantalla = "Alumno" })
 </div>
 <script>

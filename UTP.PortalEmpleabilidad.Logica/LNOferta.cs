@@ -351,6 +351,7 @@ namespace UTP.PortalEmpleabilidad.Logica
 
                 oferta.EstadoOferta = Convert.ToString(dsResultado.Tables[0].Rows[0]["EstadoOferta"]);
                 oferta.UsuarioPropietarioEmpresa = Convert.ToString(dsResultado.Tables[0].Rows[0]["UsuarioPropietarioEmpresa"]);
+                oferta.FechaPublicacion = Convert.ToDateTime(dsResultado.Tables[0].Rows[0]["FechaPublicacion"]);
             }
 
             //Tabla Index 1: Lista de estudios.
