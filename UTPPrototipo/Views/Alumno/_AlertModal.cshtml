@@ -3,12 +3,18 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <!-- dialog body -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">.</h4>
+            </div>
             <div class="modal-body">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
                 @ViewBag.Mensaje
             </div>
             <!-- dialog buttons -->
-            <div class="modal-footer"><button type="button" class="btn btn-primary">OK</button></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+
+            </div>
         </div>
     </div>
 @*</div>*@
