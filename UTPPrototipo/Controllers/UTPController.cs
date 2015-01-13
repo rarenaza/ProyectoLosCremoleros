@@ -630,8 +630,7 @@ namespace UTPPrototipo.Controllers
 
             //Empresa objempresa=new Empresa ();
     
-
-
+            
             TicketUTP ticketUtp = (TicketUTP)Session["TicketUtp"];
 
             empresa.Usuario = ticketUtp.Usuario;
@@ -642,10 +641,23 @@ namespace UTPPrototipo.Controllers
             LNGeneral lnGeneral = new LNGeneral();
             LNUsuario lnUsuario = new LNUsuario();
 
-            ViewBag.EstadoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_EMPRESA), "IdListaValor", "Valor", empresa.EstadoIdListaValor);
-            ViewBag.UsuarioEC = new SelectList(lnUsuario.ObtenerUsuariosPorTipo("USERUT"), "NombreUsuario", "NombreCompleto", empresa.UsuarioEC);
+            //ViewBag.EstadoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_EMPRESA), "IdListaValor", "Valor", empresa.EstadoIdListaValor);
+            //ViewBag.UsuarioEC = new SelectList(lnUsuario.ObtenerUsuariosPorTipo("USERUT"), "NombreUsuario", "NombreCompleto", empresa.UsuarioEC);
 
-            return PartialView("_VerDetalleEmpresaDatosGenerales", empresa);
+
+           // return RedirectToAction("VerDetalleEmpresa", "Utp", new { id = empresa.IdEmpresa });
+
+            LNEmpresa lnEmpresa = new LNEmpresa();
+            //LNGeneral lnGeneral = new LNGeneral();
+            //LNUsuario lnUsuario = new LNUsuario();
+
+            Empresa empresaActualizada = lnEmpresa.ObtenerDatosEmpresaPorId(empresa.IdEmpresa);
+
+            ViewBag.EstadoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_EMPRESA), "IdListaValor", "Valor", empresaActualizada.EstadoIdListaValor);
+            ViewBag.UsuarioEC = new SelectList(lnUsuario.ObtenerUsuariosPorTipo("USERUT"), "NombreUsuario", "NombreCompleto", empresaActualizada.UsuarioEC);
+
+
+            return PartialView("_VerDetalleEmpresaDatosGenerales", empresaActualizada);
         }
 
         public ActionResult EmpresaUsuario()

@@ -69,15 +69,13 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public DateTime FechaModificacion { get; set; }
         public string Clasificacion { get; set; }
         public string NivelDeRelacion { get; set; }
-
         public string FacultadPrincipal { get; set; }
         public string FacultadSecundaria { get; set; }
-        public string NivelDeFacturacion { get; set; }
-        public string Usuario { get; set; }
-         
+        public decimal NivelDeFacturacion { get; set; }
         public string Comentarios { get; set; }
         public string NuevoComentario { get; set; } 
-
+        public string Usuario { get; set; }
+  
         public Empresa()
         {
             Pais = new ListaValor();
