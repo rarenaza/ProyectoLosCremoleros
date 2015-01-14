@@ -194,6 +194,11 @@ namespace UTP.PortalEmpleabilidad.Logica
             return adUtp.UTP_LISTAVALORPADRE(); 
         }
 
+        public DataTable UTP_LISTAVALORHIJO(int id)
+        {
+
+            return adUtp.UTP_LISTAVALORHIJO(id);
+        }
 
 
         public UTPUsuario ObtenerUsuarioUTPPorId(int idUTPUsuario)
@@ -221,6 +226,11 @@ namespace UTP.PortalEmpleabilidad.Logica
         public void Insertar(UTPUsuario utpUsuario)
         {
             adUtp.Insertar(utpUsuario);
+        }
+
+        public void UTPINSERTAR_LISTAVALORPADRE(Lista lista)
+        {
+            adUtp.UTPINSERTAR_LISTAVALORPADRE(lista);
         }
 
         public void Actualizar(UTPUsuario utpUsuario)
