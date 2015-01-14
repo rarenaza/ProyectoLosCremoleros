@@ -189,6 +189,28 @@ namespace UTP.PortalEmpleabilidad.Logica
 
             return listaAlumnoCV;
         }
+        public List<AlumnoCV> ObtenerAlumnoCVPorIdAlumnoCompleto(int IdAlumno)
+        {
+            List<AlumnoCV> listaAlumnoCV = new List<AlumnoCV>();
+
+            DataTable dtResultado = acv.ObtenerAlumnoCVPorIdAlumnoCompleto(IdAlumno);
+
+            if (dtResultado.Rows.Count > 0)
+            {
+                for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
+                {
+                    AlumnoCV alumnocv = new AlumnoCV();
+                    alumnocv.IdCV = int.Parse(dtResultado.Rows[i]["IdCV"].ToString());
+                    alumnocv.NombreCV = dtResultado.Rows[i]["NombreCV"].ToString();
+                    alumnocv.IdPlantillaCV = int.Parse(dtResultado.Rows[i]["IdPlantillaCV"].ToString());
+                    listaAlumnoCV.Add(alumnocv);
+                }
+
+
+            }
+
+            return listaAlumnoCV;
+        }
         public List<AlumnoCV> ObtenerAlumnoCVPorIdAlumno(AlumnoCV alumnocv)
         {
             List<AlumnoCV> listaAlumnoCV = new List<AlumnoCV>();
@@ -202,7 +224,19 @@ namespace UTP.PortalEmpleabilidad.Logica
             return listaAlumnoCV;
 
         }
+        public List<AlumnoCV> ObtenerAlumnoCVPorIdAlumnoCompleto(AlumnoCV alumnocv)
+        {
+            List<AlumnoCV> listaAlumnoCV = new List<AlumnoCV>();
+            listaAlumnoCV = ObtenerAlumnoCVPorIdAlumnoCompleto(alumnocv.IdAlumno);
+            if (listaAlumnoCV == null || listaAlumnoCV.Count == 0)
+            {
+                ADAlumnoCV acv = new ADAlumnoCV();
+                acv.Insertar(alumnocv);
+                listaAlumnoCV = ObtenerAlumnoCVPorIdAlumnoCompleto(alumnocv.IdAlumno);
+            }
+            return listaAlumnoCV;
 
+        }
         public void UpdateInfo(AlumnoCV alumnocv)
         {
             ADAlumnoCVEstudio acve = new ADAlumnoCVEstudio();

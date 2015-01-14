@@ -107,8 +107,8 @@ namespace UTP.PortalEmpleabilidad.Logica
                 oferta.IdAlumno = idAlumno;
                 oferta.LogoEmpresa = Funciones.ToBytes(dtResultado.Rows[0]["LogoEmpresa"]); ;
                 oferta.ArchivoMimeType = Funciones.ToString(dtResultado.Rows[0]["ArchivoMimeType"]); ;
-
-
+                oferta.AnoCreacion = Funciones.ToInt(dtResultado.Rows[0]["AnoCreacion"]);
+                oferta.DesSectorEmpresarial = Funciones.ToString(dtResultado.Rows[0]["DesSectorEmpresarial"]); ;
             }
 
             return oferta;
@@ -119,7 +119,7 @@ namespace UTP.PortalEmpleabilidad.Logica
             VistaOfertaAlumno vistaofertalumno = new VistaOfertaAlumno();
             Alumno alumno=new Alumno();
             vistaofertalumno.Oferta = ObtenerOfertasAlumnoPorID(IdOferta, IdAlumno);
-            vistaofertalumno.ListaAlumnoCV = lnalumnocv.ObtenerAlumnoCVPorIdAlumno(IdAlumno);
+            vistaofertalumno.ListaAlumnoCV = lnalumnocv.ObtenerAlumnoCVPorIdAlumnoCompleto(IdAlumno);
             vistaofertalumno.ListaOfertas = BuscarSimilaresOfertasAlumno(IdOferta);
             BuscarCumplimientoOfertasAlumno(ref vistaofertalumno);
 
@@ -351,6 +351,7 @@ namespace UTP.PortalEmpleabilidad.Logica
 
                 oferta.EstadoOferta = Convert.ToString(dsResultado.Tables[0].Rows[0]["EstadoOferta"]);
                 oferta.UsuarioPropietarioEmpresa = Convert.ToString(dsResultado.Tables[0].Rows[0]["UsuarioPropietarioEmpresa"]);
+                oferta.FechaPublicacion = Convert.ToDateTime(dsResultado.Tables[0].Rows[0]["FechaPublicacion"]);
             }
 
             //Tabla Index 1: Lista de estudios.

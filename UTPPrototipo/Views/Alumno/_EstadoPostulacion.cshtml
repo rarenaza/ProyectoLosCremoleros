@@ -42,17 +42,38 @@
             }
             else
             {
-                <div class="row">
-                    <div class="col-md-12">
-                        <button type="button" id="BotonPostularAhora" class="btn btn-default color-paleta3" style="color:white">¡Postular ahora!</button>
 
+
+                if (ViewBag.ListaAlumnoCV != null && ViewBag.ListaAlumnoCV.Count > 0)
+                {
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button type="button" id="BotonPostularAhora" class="btn btn-default color-paleta3" style="color:white">¡Postular ahora!</button>
+
+                        </div>
                     </div>
-                </div>
-                <br />
-                <div class="input-group input-group" id="CVParaPostulacion">
-                    <span class="input-group-addon">Elija el CV</span>
-                    @Html.DropDownList("IdCV", new SelectList(ViewBag.ListaAlumnoCV, "Value", "Text"), "- Seleccionar -", new { @class = "form-control" })
-                </div>
+                    <br />
+                    <div class="input-group input-group" id="CVParaPostulacion">
+                        <span class="input-group-addon">Elija el CV</span>
+                        @Html.DropDownList("IdCV", new SelectList(ViewBag.ListaAlumnoCV, "Value", "Text"), "- Seleccionar -", new { @class = "form-control" })
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-danger alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <strong>¡No registra CVs completos!</strong> Complete alguno de sus CVs para que pueda Postular.
+                    </div>
+                }
+                if (ViewBag.MensajePostulacion != "" && ViewBag.MensajePostulacion != null)
+                {
+                    <br />
+                    <div class="alert alert-danger alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <strong>¡Elija un CV!</strong> debe hacerlo para Postular.
+                    </div>
+                    ViewBag.MensajePostulacion = "";
+                }
                 <br />
             }
 

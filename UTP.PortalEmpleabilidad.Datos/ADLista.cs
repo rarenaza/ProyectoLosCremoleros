@@ -57,23 +57,23 @@ namespace UTP.PortalEmpleabilidad.Datos
 
         }
 
-        public DataTable Lista_Buscar(int Id)
-        {
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.CommandText = "Lista_Buscar";
-            cmd.Connection = cnn.cn;
-            cnn.Conectar();
-            cmd.Parameters.Add(new SqlParameter("@IDLista", SqlDbType.Int)).Value = Id;
+        //public DataTable Lista_Buscar(int Id)
+        //{
+        //    cmd.CommandType = CommandType.StoredProcedure;
+        //    cmd.CommandText = "Lista_Buscar";
+        //    cmd.Connection = cnn.cn;
+        //    cnn.Conectar();
+        //    cmd.Parameters.Add(new SqlParameter("@IDLista", SqlDbType.Int)).Value = Id;
 
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
+        //    SqlDataAdapter da = new SqlDataAdapter(cmd);
+        //    DataTable dt = new DataTable();
 
-            da.Fill(dt);
+        //    da.Fill(dt);
 
-            cnn.Desconectar();
+        //    cnn.Desconectar();
 
-            return dt;
-        }
+        //    return dt;
+        //}
 
 
 

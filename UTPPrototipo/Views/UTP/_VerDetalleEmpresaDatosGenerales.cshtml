@@ -79,6 +79,7 @@
                 </td>
                 <td class="celda-datos">
                     @Html.DropDownListFor(m => m.EstadoIdListaValor, null, "Seleccione", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.EstadoIdListaValor)
                     @*<select>
                         <option>Activa</option>
                         <option>Pendiente de aprobación de registro</option>
@@ -119,6 +120,8 @@
                 </td>
                 <td class="celda-datos">
                     @Html.DropDownListFor(m => m.UsuarioEC, null, "Seleccione", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.UsuarioEC)
+
                     @*<select>
                         <option>Mario Valentin</option>
                         <option>José Alvarado</option>
@@ -127,6 +130,60 @@
                     </select>*@
                 </td>
             </tr>
+            <tr class="linea_raya">
+                <td class="celda-nombre">
+                    Clasificación
+                </td>
+                <td class="celda-datos">
+                    @Html.TextBoxFor(m => m.Clasificacion, new { @class = "form-control", @placeholder = "Clasificación de la Empresa" })
+                </td>
+            </tr>
+            <tr class="linea_raya">
+                <td class="celda-nombre">
+                    Nivel de Relación
+                </td>
+                <td class="celda-datos">
+                    @Html.TextBoxFor(m => m.NivelDeRelacion, new { @class = "form-control", @placeholder = "Nivel de Relación de la Empresa" })
+                </td>
+            </tr>
+            <tr class="linea_raya">
+                <td class="celda-nombre">
+                    Facultad Principal
+                </td>
+                <td class="celda-datos">
+                    @Html.TextBoxFor(model => model.FacultadPrincipal, new { @class = "form-control", @placeholder = "Facultad Principal de la Empresa" })
+
+                </td>
+            </tr>
+            <tr class="linea_raya">
+                <td class="celda-nombre">
+                    Facultad Secundaria
+                </td>
+                <td class="celda-datos">
+                    @Html.TextBoxFor(m => m.FacultadSecundaria, new { @class = "form-control", @placeholder = "Facultad Secundaria de la Empresa" })
+                </td>
+            </tr>
+            <tr class="linea_raya">
+                <td class="celda-nombre">
+                    Nivel de Facturación
+                </td>
+                <td class="celda-datos">
+                    @Html.TextBoxFor(m => m.NivelDeFacturacion, new { @class = "form-control", @placeholder = "Nivel de Facturación de la Empresa" })
+                    @Html.ValidationMessageFor(model => model.NivelDeFacturacion)
+                </td>
+            </tr>
+
+            <tr class="linea_raya">
+                <td class="celda-nombre">
+                    Comentarios
+                </td>
+                <td class="celda-datos">
+                    @Html.TextAreaFor(m => m.NuevoComentario, htmlAttributes: new { @class = "form-control", @placeholder = "Agregar un comentario", @rows = "3" })
+                    <br />
+                    <textarea class="form-control" placeholder="Sin Comentarios" rows="8" readonly>@Model.Comentarios</textarea>
+                </td>
+            </tr>
+
             <tr class="linea_raya">
                 <td class="celda-nombre">
                     Creado Por

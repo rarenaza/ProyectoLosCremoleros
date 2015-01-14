@@ -13,42 +13,45 @@ namespace UTP.PortalEmpleabilidad.Logica
     {
       ADLista ad = new ADLista();
 
-      public List<Lista> Evento_Mostrar()
-      {
-          List<Lista> lista = new List<Lista>();
+      //public List<Lista> Evento_Mostrar()
+      //{
+      //    List<Lista> lista = new List<Lista>();
 
-          DataTable dtResultado = ad.MostrarLista();
+      //    DataTable dtResultado = ad.MostrarLista();
 
 
-          for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
-          {
-              Lista listavalor = new Lista();
-              listavalor.IDLista = Convert.ToInt32(dtResultado.Rows[i]["IdLista"]);
-              listavalor.NombreLista = dtResultado.Rows[i]["NombreLista"].ToString();
-              listavalor.DescripcionLista = dtResultado.Rows[i]["DescripcionLista"].ToString();
-              listavalor.Modificable = Convert.ToInt32(dtResultado.Rows[i]["Modificable"]);
-              listavalor.Creadopor = dtResultado.Rows[i]["CreadoPor"].ToString();
-              listavalor.FechaCreacion = Convert.ToDateTime(dtResultado.Rows[i]["FechaCreacion"].ToString());
+      //    for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
+      //    {
+      //        Lista listavalor = new Lista();
+      //        listavalor.IDLista = Convert.ToInt32(dtResultado.Rows[i]["IdLista"]);
+      //        listavalor.NombreLista = dtResultado.Rows[i]["NombreLista"].ToString();
+      //        listavalor.DescripcionLista = dtResultado.Rows[i]["DescripcionLista"].ToString();
+      //        listavalor.Modificable = Convert.ToInt32(dtResultado.Rows[i]["Modificable"]);
+      //        listavalor.Creadopor = dtResultado.Rows[i]["CreadoPor"].ToString();
+      //        listavalor.FechaCreacion = Convert.ToDateTime(dtResultado.Rows[i]["FechaCreacion"].ToString());
      
-              lista.Add(listavalor);
-          }
-          return lista;
-      }
+      //        lista.Add(listavalor);
+      //    }
+      //    return lista;
+      //}
 
-      public bool Lista_insertar(int IDLista, string NombreLista, string DescripcionLista, int Modificable, string CreadoPor)
-      {
+      //public bool Lista_insertar(int IDLista, string NombreLista, string DescripcionLista, int Modificable, string CreadoPor)
+      //{
 
-          Lista lista = new Lista();
-          if (ad.Lista_insertar(lista.IDLista,lista.NombreLista,lista.DescripcionLista,lista .Modificable,lista.Creadopor) == true)
-          {
-              return true;
-          }
-          else
-          {
-              return false;
-          }
+      //    Lista lista = new Lista();
+      //    if (ad.Lista_insertar(lista.IDLista,lista.NombreLista,lista.DescripcionLista,lista .Modificable,lista.Creadopor) == true)
+      //    {
+      //        return true;
+      //    }
+      //    else
+      //    {
+      //        return false;
+      //    }
 
-      }
+      //}
+
+
+
 
       //public List<Lista> Lista_Buscar(int IdLista)
       //{
@@ -75,24 +78,24 @@ namespace UTP.PortalEmpleabilidad.Logica
       //    return lista;
       //}
 
-      public Lista Lista_Buscar(int IdLista)
-      {
-          Lista listavalor = new Lista();
+      //public Lista Lista_Buscar(int IdLista)
+      //{
+      //    Lista listavalor = new Lista();
 
-          DataTable dtResultado = ad.Lista_Buscar(IdLista);
+      //    DataTable dtResultado = ad.Lista_Buscar(IdLista);
 
-          if (dtResultado.Rows.Count > 0)
-          {
-              listavalor.IDLista = Convert.ToInt32(dtResultado.Rows[0]["IdLista"]);
-              listavalor.NombreLista = dtResultado.Rows[0]["NombreLista"].ToString();
-              listavalor.DescripcionLista = dtResultado.Rows[0]["DescripcionLista"].ToString();
-              listavalor.Modificable = Convert.ToInt32(dtResultado.Rows[0]["Modificable"]);
-           listavalor.Creadopor = dtResultado.Rows[0]["CreadoPor"].ToString();
-              listavalor.FechaCreacion = Convert.ToDateTime(dtResultado.Rows[0]["FechaCreacion"].ToString());
-          }
+      //    if (dtResultado.Rows.Count > 0)
+      //    {
+      //        listavalor.IDLista = Convert.ToInt32(dtResultado.Rows[0]["IdLista"]);
+      //        listavalor.NombreLista = dtResultado.Rows[0]["NombreLista"].ToString();
+      //        listavalor.DescripcionLista = dtResultado.Rows[0]["DescripcionLista"].ToString();
+      //        listavalor.Modificable = Convert.ToInt32(dtResultado.Rows[0]["Modificable"]);
+      //     listavalor.Creadopor = dtResultado.Rows[0]["CreadoPor"].ToString();
+      //        listavalor.FechaCreacion = Convert.ToDateTime(dtResultado.Rows[0]["FechaCreacion"].ToString());
+      //    }
 
-          return listavalor;
-      }
+      //    return listavalor;
+      //}
 
 
 

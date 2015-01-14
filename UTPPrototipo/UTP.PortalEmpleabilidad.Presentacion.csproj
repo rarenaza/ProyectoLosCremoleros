@@ -924,6 +924,8 @@
     <Content Include="Views\Alumno\Evento.cshtml" />
     <Content Include="Views\Alumno\Eventos.cshtml" />
     <Content Include="Views\UTP\EventoInscritos.cshtml" />
+    <Content Include="Views\UTP\_ListavalorPadre.cshtml" />
+    <Content Include="Views\UTP\_ListaValorPadreInsertar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
