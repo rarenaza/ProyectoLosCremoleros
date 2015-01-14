@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<UTP.PortalEmpleabilidad.Modelo.Mensaje>
 @using UTPPrototipo.Common
+@using UTP.PortalEmpleabilidad.Modelo
 
 @*<div class="container" style="padding-left: 25px;">
     <div class="row fuente-pequeña">*@
@@ -8,7 +9,18 @@
     </div>*@
 <div id="divListaMensajes" class="col-sm-12">
     <div class="row">
-        <h6>Mensajes</h6>
+
+        @if (ViewBag.Pantalla == Constantes.MENSAJES_UTP_EMPRESA)
+        {
+            <h5>Mensajes</h5>
+            <hr />
+        }
+        else
+        {
+            <h6>Mensajes</h6>
+        }
+
+        
         <!--Cabecera de la grilla-->
         <div class="row grilla1-cabecera color-paleta1">
             <div class="col-sm-1">
@@ -38,21 +50,21 @@
                 <div class="col-sm-1">
                     <!--Estado del mensaje-->
                     @{
-                        if (item.EstadoMensaje == "MSJNOL") //Mensaje no leído.
-                        {
-                        <span class="fui color-icono-paleta1" style="font-size:22px;" title="Mensaje nuevo">k</span>
-                        }
-                        else
-                            if (item.EstadoMensaje == "MSJLEI") //Mensaje leído.
-                            {
-                                <span class="fui color-icono-paleta1" style="font-size:22px;" title="Mensaje leído">i</span>
-                            }
-                            else
-                                if (item.EstadoMensaje == "MSJCON") //Mensaje contestado
-                                {
-                                    <span class="fui color-icono-paleta1" style="font-size:22px;" title="Mensaje contestado ">j</span>
-                                }
-}                    
+            if (item.EstadoMensaje == "MSJNOL") //Mensaje no leído.
+            {
+                <span class="fui color-icono-paleta1" style="font-size:22px;" title="Mensaje nuevo">k</span>
+            }
+            else
+                if (item.EstadoMensaje == "MSJLEI") //Mensaje leído.
+                {
+                    <span class="fui color-icono-paleta1" style="font-size:22px;" title="Mensaje leído">i</span>
+                }
+                else
+                    if (item.EstadoMensaje == "MSJCON") //Mensaje contestado
+                    {
+                        <span class="fui color-icono-paleta1" style="font-size:22px;" title="Mensaje contestado ">j</span>
+                    }
+                    }
                 </div>
                 <div class="col-sm-11">
                     <div class="row">

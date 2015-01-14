@@ -26,33 +26,25 @@
     <div class="col-sm-6">
         @Html.Action("_VerDetalleEmpresaUsuarios", "UTP", new { id = ViewBag.IdEmpresa })
     </div>
-
-    <hr />
-    <div class="row">
-        <div class="col-sm-6">
-           @Html.Action("_VerDetalleEmpresaOfertas", "UTP", new { id = ViewBag.IdEmpresa })
-        </div>
-        <hr />
-
-        <div class="col-sm-6">
-            @Html.Action("_VerDetalleEmpresaUbicaciones", "UTP", new { id = ViewBag.IdEmpresa })
-
-        </div>
-        
+    <div class="col-sm-6">
+        @Html.Action("_VerDetalleEmpresaOfertas", "UTP", new { id = ViewBag.IdEmpresa })
     </div>
     <hr />
-
-
 </div>
 
     <div class="row">
         <div class="col-sm-6">
-            @*@Html.Action("_VerDetalleEmpresaMensajes", "UTP", new { id = ViewBag.IdEmpresa })*@
+            @Html.Action("_VerDetalleEmpresaUbicaciones", "UTP", new { id = ViewBag.IdEmpresa })
 
+        </div>
+        <div class="col-sm-6">
+            @*@Html.Action("_VerDetalleEmpresaMensajes", "UTP", new { id = ViewBag.IdEmpresa })*@
+          
             @Html.Action("_Mensajes", "Mensaje", new { pantalla = Constantes.MENSAJES_UTP_EMPRESA, idEmpresa = ViewBag.IdEmpresa })
         </div>
     </div>
 
+    </div>
 <script>
 
     $(document).ready(function () {
