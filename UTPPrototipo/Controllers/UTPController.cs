@@ -623,6 +623,7 @@ namespace UTPPrototipo.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public PartialViewResult _VerDetalleEmpresaDatosGeneralesEditar(Empresa empresa)
         {             
             LNUTP lnUTP = new LNUTP ();
@@ -703,14 +704,38 @@ namespace UTPPrototipo.Controllers
         {
             return View();
         }
+
+        public ActionResult Lista(int? Id)
+        {
+
+            List<ListaValor> lista = new List<ListaValor>();
+
+            DataTable dtResultado = lnUtp.UTP_LISTAVALORHIJO(Convert.ToInt32(Id));
+
+            for (int i = 0; i <= dtResultado.Rows.Count - 1;i++ )
+            {
+                ListaValor objListaValor = new ListaValor();
+                objListaValor.IdLista = Convert.ToInt32(dtResultado.Rows[i]["IdLista"].ToString());
+                objListaValor.IdListaValor = dtResultado.Rows[i]["IdListaValor"].ToString();
+                objListaValor.Valor = dtResultado.Rows[i]["Valor"].ToString();
+                objListaValor.DescripcionValor = dtResultado.Rows[i]["DescripcionValor"].ToString();
+                objListaValor.Icono = dtResultado.Rows[i]["Icono"].ToString();
+                objListaValor.Peso = Convert.ToInt32(dtResultado.Rows[i]["Peso"] == DBNull.Value ? 0 : dtResultado.Rows[i]["Peso"]);
+                objListaValor.ValorUTP = dtResultado.Rows[i]["ValorUTP"].ToString();
+                objListaValor.Padre = dtResultado.Rows[i]["Padre"].ToString();
+                objListaValor.EstadoValor = dtResultado.Rows[i]["EstadoValor"].ToString();
+                lista.Add(objListaValor);
+
+            }
+            return View(lista);
+
+        }
+
         public ActionResult Usuario()
         {
             return View();
         }
-        public ActionResult Lista()
-        {
-            return View();
-        }
+
         public ActionResult ListaValor()
         {
             return View();
@@ -1830,7 +1855,6 @@ namespace UTPPrototipo.Controllers
         {
             List<EventoAsistente> listaevento = new List<EventoAsistente>();
 
-
             DataTable dtResultado = lnEventos.UTP_INSCRITOS_EVENTOS(Convert.ToInt32(Id));
 
             for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
@@ -1848,11 +1872,7 @@ namespace UTPPrototipo.Controllers
                 evento.ValorEstadoTicket = Convert.ToString(dtResultado.Rows[i]["ValorEstadoTicket"]);
                 evento.FechaAsistencia = Convert.ToDateTime(dtResultado.Rows[i]["FechaAsistencia"] == DBNull.Value ? null : dtResultado.Rows[i]["FechaAsistencia"]);
 
-            
-
-
                 evento.NombreEvento = Convert.ToString(dtResultado.Rows[i]["NombreEvento"]);
-                
 
                 listaevento.Add(evento);
             }
@@ -1860,7 +1880,6 @@ namespace UTPPrototipo.Controllers
             return View(listaevento);
 
         }
-
 
 
         #region Mantenimiento de usuarios
@@ -1878,6 +1897,32 @@ namespace UTPPrototipo.Controllers
             return PartialView("_UsuariosUTPLista", lista);
             //return PartialView("_UsuariosUTPLista");
         }
+
+      public PartialViewResult _ListavalorPadre()
+        {
+            List<Lista> lista = new List<Lista>();
+
+            DataTable dtResultado = lnUtp.UTP_LISTAVALORPADRE();
+
+            foreach (DataRow fila in dtResultado.Rows)
+            {
+
+                Lista objlista = new Lista();
+
+                objlista.IDLista = Convert.ToInt32(fila["IDLista"]);
+                objlista.NombreLista = Convert.ToString(fila["NombreLista"]);
+                objlista.DescripcionLista = Convert.ToString(fila["DescripcionLista"]);
+                objlista.Modificable = Convert.ToBoolean(fila["Modificable"]);
+
+                lista.Add(objlista);
+            }
+
+            return PartialView("_ListavalorPadre", lista);
+      
+        }
+
+
+
 
         /// <summary>
         /// HttpGet del partialview para la creación de usuario UTP:
@@ -1916,6 +1961,37 @@ namespace UTPPrototipo.Controllers
 
 
         }
+            //get
+        public PartialViewResult _ListaValorPadreInsertar()
+        {
+
+            Lista objlista = new Lista();
+            return PartialView("_ListaValorPadreInsertar", objlista);
+
+        }
+
+            //set
+        [HttpPost, ValidateAntiForgeryToken]
+        public PartialViewResult _ListaValorPadreInsertar(Lista objlista)
+        {
+            //Esto es para guardar el usuario de creacion
+            TicketUTP ticket = (TicketUTP)Session["TicketUtp"];
+     
+            objlista.Creadopor  = ticket.Usuario;
+
+            // logica que guarda los datos
+
+            lnUtp.UTPINSERTAR_LISTAVALORPADRE(objlista);
+
+          //devuelvo la vista en un partial y le paso el modelo
+            //return PartialView("_ListaValorPadreInsertar", objlista);
+            return PartialView("_ListavalorPadre", objlista);
+            
+        }
+
+
+
+
 
         /// <summary>
         /// HttpGet del partialview para la edición de usuario UTP:

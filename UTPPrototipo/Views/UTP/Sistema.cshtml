@@ -5,40 +5,18 @@
 <link href="~/Content/font-awesome.css" rel="stylesheet" />
 
 <div class="container" style="margin-top:2px;">
-
    
         @Html.Action("_UsuariosUTPLista", "UTP")
-    
 
     <hr />
 
 
-    <h6>Listas de Valores</h6>
-
-    <div class="row grilla1-cabecera color-paleta8">
-        <div class="col-sm-1">ID</div>
-        <div class="col-sm-3">Nombre</div>
-        <div class="col-sm-7">Descripción</div>
-        <div class="col-sm-1">Modificable</div>
-
-    </div>
-    <div class="row grilla1-linea">
-        <div class="col-sm-1">1</div>
-        <div class="col-sm-3"><a href="../UTP/Lista">Estado de Oferta</a></div>
-        <div class="col-sm-7">Estado de una Oferta publicada por una Empresa</div>
-        <div class="col-sm-1">0</div>
-
-    </div>
+    @Html.Action("_ListavalorPadre", "UTP")
 
 
-    <br />
-    <div class="col-sm-12" style="text-align:right;">
-        <button class="btn btn-default color-paleta8" data-toggle="modal" data-target="#Nueva-lista">Nueva Lista de Valores</button>
-    </div>
     <hr />
 </div>
 
-@*<script src="~/Scripts/jquery-2.1.1.min.js"></script>*@
 
 <script>
     $(document).ready(function () {
@@ -78,43 +56,68 @@
 
 <div class="modal fade" id="Nueva-lista" role="dialog" aria-labelledby="Nueva Lista" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="myModalLabel">Nueva Lista</h4>
+                
+        @using (Ajax.BeginForm("_ListaValorPadreInsertar", "UTP", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divListaUsuariosUTP", OnComplete = "cerrarModal" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="modal-dialog" id="divContenedorListavalorPAdreCrear">
+
             </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="input-group">
-                            <span class="input-group-addon">Nombre</span>
-                            <input type="text" class="form-control" placeholder="Nombre de Lista">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="input-group">
-                            <span class="input-group-addon">Descrip-<br />ción</span>
-                            <textarea class="form-control" rows="4">Descripción</textarea>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="input-group">
-                            <span class="input-group-addon"><input type="checkbox"></span>
-                            <span class="form-control">Modificable</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-default color-paleta8">Guardar</button>
-            </div>
-        </div>
+        }
+
     </div>
 </div>
+
+
+@*<div class="modal fade" id="Nueva-lista" role="dialog" aria-labelledby="Nueva Lista" aria-hidden="true">
+    <div class="modal-dialog">*@
+
+
+
+        @*<div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Nueva Lista</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="input-group">
+                                <span class="input-group-addon">Nombre</span>
+                                <input type="text" class="form-control" placeholder="Nombre de Lista">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="input-group">
+                                <span class="input-group-addon">Descrip-<br />ción</span>
+                                <textarea class="form-control" rows="4">Descripción</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <span class="input-group-addon"><input type="checkbox"></span>
+                                <span class="form-control">Modificable</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default color-paleta8">Guardar</button>
+                </div>
+            </div>*@
+
+
+
+    @*</div>
+</div>*@
+
+
+
 
 <script>
 
@@ -143,6 +146,35 @@
             $('#divModalUsuarioUTPEditar').modal('show');
         });
     }
+
+    function ListaValorPadreInsertar() {
+
+        console.log('punto de control');
+        var url = "/UTP/_ListaValorPadreInsertar/";
+        $.get(url, function (data) {
+
+            console.log(data);
+
+            $('#divContenedorListavalorPAdreCrear').html(data);
+            $.validator.unobtrusive.parse('#divContenedorListavalorPAdreCrear');
+
+            $('#Nueva-lista').modal('show');
+        }).error(function (err) {
+            console.log(err);
+            alert(err);
+        });
+      
+    }
+
+    //function ListaValorPadreInsertar(id) {
+    //    var url = "/UTP/_ListaValorPadreInsertar/" + id;
+    //    $.get(url, function (data) {
+    //        $('#divContenedorListavalorPAdreCrear').html(data);
+    //        $.validator.unobtrusive.parse('#divContenedorListavalorPAdreCrear');
+
+    //        $('#divContenedorListavalorPAdreCrear').modal('show');
+    //    });
+    //}
 
     function cerrarModal() {
         $('.modal.in').modal('hide');

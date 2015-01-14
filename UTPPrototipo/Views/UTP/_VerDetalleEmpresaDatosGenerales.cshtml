@@ -79,6 +79,7 @@
                 </td>
                 <td class="celda-datos">
                     @Html.DropDownListFor(m => m.EstadoIdListaValor, null, "Seleccione", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.EstadoIdListaValor)
                     @*<select>
                         <option>Activa</option>
                         <option>Pendiente de aprobación de registro</option>
@@ -119,6 +120,8 @@
                 </td>
                 <td class="celda-datos">
                     @Html.DropDownListFor(m => m.UsuarioEC, null, "Seleccione", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.UsuarioEC)
+
                     @*<select>
                         <option>Mario Valentin</option>
                         <option>José Alvarado</option>
@@ -166,6 +169,7 @@
                 </td>
                 <td class="celda-datos">
                     @Html.TextBoxFor(m => m.NivelDeFacturacion, new { @class = "form-control", @placeholder = "Nivel de Facturación de la Empresa" })
+                    @Html.ValidationMessageFor(model => model.NivelDeFacturacion)
                 </td>
             </tr>
 

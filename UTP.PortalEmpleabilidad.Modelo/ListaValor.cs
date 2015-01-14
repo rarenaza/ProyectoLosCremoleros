@@ -17,6 +17,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
        public string Icono { get; set; }
        public int Peso { get; set; }
        public string ValorUTP { get; set; }
+       public string Padre { get; set; }
        public string EstadoValor { get; set; }
        public string  Creadopor { get; set; }
        public DateTime  FechaCreacion { get; set; }
