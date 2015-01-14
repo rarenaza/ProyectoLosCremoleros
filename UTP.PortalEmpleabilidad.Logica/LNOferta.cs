@@ -119,7 +119,7 @@ namespace UTP.PortalEmpleabilidad.Logica
             VistaOfertaAlumno vistaofertalumno = new VistaOfertaAlumno();
             Alumno alumno=new Alumno();
             vistaofertalumno.Oferta = ObtenerOfertasAlumnoPorID(IdOferta, IdAlumno);
-            vistaofertalumno.ListaAlumnoCV = lnalumnocv.ObtenerAlumnoCVPorIdAlumno(IdAlumno);
+            vistaofertalumno.ListaAlumnoCV = lnalumnocv.ObtenerAlumnoCVPorIdAlumnoCompleto(IdAlumno);
             vistaofertalumno.ListaOfertas = BuscarSimilaresOfertasAlumno(IdOferta);
             BuscarCumplimientoOfertasAlumno(ref vistaofertalumno);
 

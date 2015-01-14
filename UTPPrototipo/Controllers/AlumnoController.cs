@@ -109,9 +109,17 @@ namespace UTPPrototipo.Controllers
 
         public ActionResult PostularOferta(OfertaPostulante entidad)
         {
-            TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
-            entidad.CreadoPor = ticket.Usuario;
-            lnofertapostulante.Insertar(entidad);
+            ViewBag.MensajePostulacion = "";
+            if (entidad.IdCV > 0)
+            {
+                TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
+                entidad.CreadoPor = ticket.Usuario;
+                lnofertapostulante.Insertar(entidad);
+            }
+            else
+            {
+                ViewBag.MensajePostulacion = "XXX";
+            }
             return View();
         }
         public ActionResult PostulacionOferta2(int? id)

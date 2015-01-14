@@ -34,6 +34,27 @@ namespace UTP.PortalEmpleabilidad.Datos
 
             return dtResultado;
         }
+        public DataTable ObtenerAlumnoCVPorIdAlumnoCompleto(int IdAlumno)
+        {
+            DataTable dtResultado = new DataTable();
+
+            using (SqlConnection conexion = new SqlConnection(cnn.Conexion()))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "AlumnoCV_ObtenerPorIdAlumnoCompleto";
+                cmd.Connection = conexion;
+                conexion.Open();
+                cmd.Parameters.Add(new SqlParameter("@IdAlumno", SqlDbType.Int)).Value = IdAlumno;
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                dtResultado = new DataTable();
+                da.Fill(dtResultado);
+                conexion.Close();
+            }
+
+            return dtResultado;
+        }
         public DataTable ObtenerAlumnoCVPorIdAlumnoYIdCV(int IdAlumno, int IdCV)
         {
             DataTable dtResultado = new DataTable();
