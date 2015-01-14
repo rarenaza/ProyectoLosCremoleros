@@ -1,51 +1,73 @@
-﻿@{
+﻿@model UTP.PortalEmpleabilidad.Modelo.Mensaje
+@using UTP.PortalEmpleabilidad.Modelo
+
+@{
     ViewBag.Title = "Contacto";
 }
 <div class="container">
-    <h5 style="text-align:center;"><strong>Contacto</strong></h5>
 
-    <hr />
-    <div class="row">
-        <div class="col-sm-2"></div>
-        <div class="col-sm-8">
-            <p>Envíenos un Mensaje</p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-2"></div>
-        <div class="col-sm-8">
-            <div class="input-group ">
-                <span class="input-group-addon ">Su e-Mail</span>
-                <input type="text" class="form-control fuente-pequeña" placeholder="Ingrese su Correo Electrónico">
-            </div>
-        </div>
-    </div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
 
-    <div class="row">
-        <div class="col-sm-2"></div>
-        <div class="col-sm-8">
-            <div class="input-group ">
-                <span class="input-group-addon ">Asunto</span>
-                <input type="text" class="form-control " placeholder="Ingrese el Asunto de su correo">
+        <h5 style="text-align:center;"><strong>Contacto</strong></h5>
+       
+        @Html.HiddenFor(m => m.Pantalla)
+        <hr />
+        <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8">
+                <p>Envíenos un Mensaje</p>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-2"></div>
-        <div class="col-sm-8">
-            <div class="input-group ">
-                <span class="input-group-addon ">Mensaje</span>
-                <textarea class="form-control " placeholder="Ingrese su Mensaje" rows="6"></textarea>
+        <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8">
+                <div class="input-group ">
+                    <span class="input-group-addon ">Su e-Mail</span>
+
+                    @if (Model.Pantalla == Constantes.MENSAJES_INICIO)
+                    {
+                        <input type="text" name="DeUsuarioCorreoElectronico" class="form-control fuente-pequeña" placeholder="Ingrese su Correo Electrónico">
+                    }
+                    else
+                    {
+                        @Html.HiddenFor(m => m.DeUsuario)
+                        @Html.HiddenFor(m => m.DeUsuarioCorreoElectronico)
+                        <input type="text" class="form-control fuente-pequeña" placeholder="Ingrese su Correo Electrónico" value="@Model.DeUsuarioCorreoElectronico" disabled>
+                    }
+                    
+                </div>
             </div>
         </div>
-    </div>
-    <hr />
-    <div class="row">
-        <div class="col-sm-2"></div>
-        <div class="col-sm-8" style="text-align:right;">
-            <button class="btn btn-default color-paleta1">Enviar Mensaje</button>
+
+        <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8">
+                <div class="input-group ">
+                    <span class="input-group-addon ">Asunto</span>
+                    <input type="text" class="form-control" name="Asunto" placeholder="Ingrese el Asunto de su correo">
+                </div>
+            </div>
         </div>
-    </div>
+        <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8">
+                <div class="input-group ">
+                    <span class="input-group-addon ">Mensaje</span>
+                    <textarea class="form-control" name="MensajeTexto" placeholder="Ingrese su Mensaje" rows="6"></textarea>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8" style="text-align:right;">
+                <button class="btn btn-default color-paleta1">Enviar Mensaje</button>
+            </div>
+        </div>
+
+    }
     <hr />
     <p><strong>Oficina de Empleabilidad</strong></p>
     <br />
@@ -84,3 +106,20 @@
     </div>
     <br />
 </div>
+
+@{
+    //Se valida que exista mensaje de éxito al crear una oferta
+    if (TempData["MsjExitoCrearMensaje"] != null)
+    {
+        <input id="msjExitoCrearMensaje" type="hidden" value="@TempData["MsjExitoCrearMensaje"]" />
+        TempData["MsjExitoCrearMensaje"] = null; //Se establece el valor nuevamente en NULL.
+
+        //Se muestra el script
+        <script>
+            var msjExito = document.getElementById("msjExitoCrearMensaje").value;
+            alert(msjExito);
+
+        </script>
+    }
+
+}

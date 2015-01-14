@@ -59,12 +59,25 @@ namespace UTP.PortalEmpleabilidad.Logica
             return lista;
         }
 
-        public void Insertar(Mensaje mensaje)
+        public int Insertar(Mensaje mensaje)
         {
             if (mensaje.ParaUsuarioCorreoElectronico == null) mensaje.ParaUsuarioCorreoElectronico = "";
             if (mensaje.IdOfertaMensaje == null) mensaje.IdOfertaMensaje = 0;
 
-            adMensaje.Insertar(mensaje);
+            int idMensaje = adMensaje.Insertar(mensaje);
+
+            //Se envía el correo:
+            try
+            {
+                LNCorreo.EnviarCorreo(mensaje);
+            }
+            catch (Exception ex)
+            {
+                //Manejar la excepción del envío de correo.
+            }
+            
+
+            return idMensaje;
         }
 
         public Mensaje ObtenerPorIdMensaje(int idMensaje)
@@ -85,7 +98,8 @@ namespace UTP.PortalEmpleabilidad.Logica
                 mensaje.ParaUsuarioCorreoElectronico = Convert.ToString(fila["ParaUsuarioCorreoElectronico"]);
                 mensaje.Oferta.CargoOfrecido = Convert.ToString(fila["CargoOfrecido"]);
                 mensaje.IdOferta        = Convert.ToInt32(fila["IdOferta"]);
-                mensaje.IdMensaje       = Convert.ToInt32(fila["IdMensaje"]);      
+                mensaje.IdMensaje       = Convert.ToInt32(fila["IdMensaje"]);
+                mensaje.IdEmpresa       = Convert.ToInt32(fila["IdEmpresa"]);      
 
                 //Datos del mensaje anterior
                 mensaje.MensajeAnteriorIdMensaje = Convert.ToInt32(fila["MensajeAnteriorIdMensaje"]);
@@ -122,6 +136,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 mensaje.Oferta.CargoOfrecido = Convert.ToString(fila["CargoOfrecido"]);
                 mensaje.Oferta.IdOferta = Convert.ToInt32(fila["IdOferta"]);
                 mensaje.IdMensaje = Convert.ToInt32(fila["IdMensaje"]);
+                mensaje.EstadoMensaje = Convert.ToString(fila["EstadoMensaje"]);
 
                 lista.Add(mensaje);
             }
@@ -166,6 +181,30 @@ namespace UTP.PortalEmpleabilidad.Logica
             }
 
             return oferta;
+        }
+        public int ObtenerIdEmpresaPorIdOferta(int idOferta)
+        {
+            return adMensaje.ObtenerIdEmpresaPorIdOferta(idOferta);
+        }
+
+        public void ActualizarEstadoMensaje(int idMensaje, string estadoMensaje)
+        {
+            adMensaje.ActualizarEstadoMensaje(idMensaje, estadoMensaje);
+        }
+
+        public DataTable ObtenerUsuarioAdministradorUTP()
+        {
+            return adMensaje.ObtenerUsuarioAdministradorUTP();
+        }
+
+        public DataTable ObtenerUsuarioUTPAsignadoAEmpresa(int idEmpresa)
+        {
+            return adMensaje.ObtenerUsuarioUTPAsignadoAEmpresa(idEmpresa);
+        }
+
+        public DataTable ObtenerUsuarioEmpresaPorIdEmpresa(int idEmpresa)
+        {
+            return adMensaje.ObtenerUsuarioEmpresaPorIdEmpresa(idEmpresa);
         }
     }
 }

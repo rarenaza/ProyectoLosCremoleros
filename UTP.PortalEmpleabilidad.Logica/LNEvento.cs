@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UTP.PortalEmpleabilidad.Datos;
 using UTP.PortalEmpleabilidad.Modelo;
+using UTP.PortalEmpleabilidad.Modelo.Vistas.Evento;
 
 namespace UTP.PortalEmpleabilidad.Logica
 {
@@ -282,5 +283,25 @@ namespace UTP.PortalEmpleabilidad.Logica
            ad.InsertarEventoAsistente(idEvento, usuario, creadoPor );
        }
 
+       public List<VistaAsistente> ObtenerAsistentes(int idEvento, string tipoAsistente)
+       {
+           List<VistaAsistente> asistentes = new List<VistaAsistente>();
+
+           DataTable dtResultado = ad.ObtenerAsistentes(idEvento, tipoAsistente);
+
+           foreach (DataRow fila in dtResultado.Rows)
+           {
+               VistaAsistente asistente = new VistaAsistente();
+               asistente.Nombres = Convert.ToString(fila["Nombres"]);
+               asistente.Apellidos = Convert.ToString(fila["Apellidos"]);
+               asistente.Usuario = Convert.ToString(fila["Usuario"]);
+               asistente.CorreoElectronico = Convert.ToString(fila["CorreoElectronico"]);
+
+               asistentes.Add(asistente);
+
+           }
+
+           return asistentes;
+       }
     }
 }

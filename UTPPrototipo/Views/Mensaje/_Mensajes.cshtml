@@ -3,139 +3,153 @@
 
 @*<div class="container" style="padding-left: 25px;">
     <div class="row fuente-pequeña">*@
-        @*<div class="col-sm-8">
+@*<div class="col-sm-8">
 
-        </div>*@
-        <div id="divListaMensajes" class="col-sm-12">
-            <div class="row">
-                <h6>Mensajes</h6>
-                <!--Cabecera de la grilla-->
-                <div class="row grilla1-cabecera color-paleta1">
-                    <div class="col-sm-1">
-                    </div>
-                    <div class="col-sm-11">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                Fecha
-                            </div>
-                            <div class="col-sm-4">
-                                Remitente
-                            </div>
-                            <div class="col-sm-4">
-                                Destinatario
-                            </div>
-
-                        </div>
-                    </div>
-
-
-                </div>
-
-                <!--Detalle resultados-->
-                @foreach (var item in Model)
-                {
-                    <div class="row grilla1-linea">
-                        <div class="col-sm-1">
-                            <span class="fui color-icono-paleta1" style="font-size:22px;">i</span>
-                        </div>
-                        <div class="col-sm-11">
-                            <div class="row">
-                                <div class="col-sm-4">
-                                    @Html.FormatoFrecuencia(item.FechaEnvio)
-                                </div>
-                                <div class="col-sm-4">
-                                    @item.DeUsuario
-                                </div>
-                                <div class="col-sm-4">
-                                    @item.ParaUsuario                                    
-                                </div>
-
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    @*<strong><a href="#" data-toggle="modal" data-target="#verMensaje">RE: Gerente de Cuentas</a></strong>*@
-                                    <strong>
-                                        <label onclick="mensajeVer('@item.IdMensaje', '@ViewBag.Pantalla');" style="cursor:pointer;">@item.Asunto</label>
-                                    </strong>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                }
-
-                <br />
-                <div class="row">
-                    <!--Acción para redactar nuevos mensajes.-->
-                    <div class="col-sm-2">
-                        @*<button class="btn btn-default color-paleta1" data-toggle="modal" data-target="#divModalMensajeRedactar">Redactar</button>*@
-                        <button id="btnMensajeNuevo" class="btn btn-default color-paleta1" onclick="mensajeNuevo('@ViewBag.Pantalla','@ViewBag.IdOferta', '@ViewBag.UsuarioAlumno');">Redactar</button>
-                    </div>
-                    <!--Paginación de los mensajes-->
-                    <div class="col-sm-10" style="text-align:right;">
-                        <nav>
-                            <ul class="pagination">
-                                <li>
-                                    <a href="#" aria-label="Previous">
-                                        <span aria-hidden="true">&laquo;</span>
-                                    </a>
-                                </li>
-                                <li><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li>
-                                    <a href="#" aria-label="Next">
-                                        <span aria-hidden="true">&raquo;</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-                <hr />
+    </div>*@
+<div id="divListaMensajes" class="col-sm-12">
+    <div class="row">
+        <h6>Mensajes</h6>
+        <!--Cabecera de la grilla-->
+        <div class="row grilla1-cabecera color-paleta1">
+            <div class="col-sm-1">
             </div>
-            <!--Modal para nuevos mensajes -->
-            <div class="modal" id="divModalMensajeNuevo" tabindex="-1" role="dialog">
-
-                @using (Ajax.BeginForm("_MensajesNuevo", "Mensaje", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", OnComplete = "cerrarModal" , UpdateTargetId = "divListaMensajes" }))
-                {
-                    @Html.AntiForgeryToken()
-
-                    <div class="modal-dialog" id="divMensajeNuevoContenedorInterno">
-
+            <div class="col-sm-11">
+                <div class="row">
+                    <div class="col-sm-4">
+                        Fecha
                     </div>
-                }
-            </div><!-- /.modal -->
-
-            <!--Modal para ver un mensaje -->
-            <div class="modal" id="divModalMensajeVer" tabindex="-1" role="dialog">
-
-                @using (Ajax.BeginForm("_MensajesVer", "Mensajes", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divListaMensajes", OnComplete = "cerrarModal" }))
-                {
-                    @Html.AntiForgeryToken()
-
-                    <div class="modal-dialog" id="divMensajeVerContenedorInterno">
-
-                    </div><!-- /.modal-dialog -->
-                }
-            </div><!-- /.modal -->
-
-            <!--Modal para responder un mensaje -->
-            <div class="modal" id="divModalMensajeResponder" tabindex="-1" role="dialog">
-
-                @using (Ajax.BeginForm("_MensajesResponder", "Mensaje", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divListaMensajes", OnComplete = "cerrarModal" }))
-                {
-                    @Html.AntiForgeryToken()
-
-                    <div class="modal-dialog" id="divMensajeResponderContenedorInterno">
-
+                    <div class="col-sm-4">
+                        Remitente
                     </div>
-                }
+                    <div class="col-sm-4">
+                        Destinatario
+                    </div>
 
-            </div><!-- /.modal -->
+                </div>
+            </div>
+
 
         </div>
-    @*</div>
-</div>*@
+
+        <!--Detalle resultados-->
+        @foreach (var item in Model)
+        {
+            <div class="row grilla1-linea">
+                <div class="col-sm-1">
+                    <!--Estado del mensaje-->
+                    @{
+                        if (item.EstadoMensaje == "MSJNOL") //Mensaje no leído.
+                        {
+                        <span class="fui color-icono-paleta1" style="font-size:22px;" title="Mensaje nuevo">k</span>
+                        }
+                        else
+                            if (item.EstadoMensaje == "MSJLEI") //Mensaje leído.
+                            {
+                                <span class="fui color-icono-paleta1" style="font-size:22px;" title="Mensaje leído">i</span>
+                            }
+                            else
+                                if (item.EstadoMensaje == "MSJCON") //Mensaje contestado
+                                {
+                                    <span class="fui color-icono-paleta1" style="font-size:22px;" title="Mensaje contestado ">j</span>
+                                }
+}                    
+                </div>
+                <div class="col-sm-11">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            @Html.FormatoFrecuencia(item.FechaEnvio)
+                        </div>
+                        <div class="col-sm-4">
+                            @item.DeUsuario
+                        </div>
+                        <div class="col-sm-4">
+                            @item.ParaUsuario
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            @*<strong><a href="#" data-toggle="modal" data-target="#verMensaje">RE: Gerente de Cuentas</a></strong>*@
+                            <strong>
+                                <label onclick="mensajeVer('@item.IdMensaje', '@ViewBag.Pantalla');" style="cursor:pointer;">@item.Asunto</label>
+                            </strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+        <br />
+        <div class="row">
+            <!--Acción para redactar nuevos mensajes.-->
+            <div class="col-sm-2">
+                @*<button class="btn btn-default color-paleta1" data-toggle="modal" data-target="#divModalMensajeRedactar">Redactar</button>*@
+                <button id="btnMensajeNuevo" class="btn btn-default color-paleta1" onclick="mensajeNuevo('@ViewBag.Pantalla','@ViewBag.IdOferta', '@ViewBag.UsuarioAlumno', '@ViewBag.IdEvento', '@ViewBag.IdEmpresa');">Redactar</button>
+            </div>
+            <!--Paginación de los mensajes-->
+            <div class="col-sm-10" style="text-align:right;">
+                <nav>
+                    <ul class="pagination">
+                        <li>
+                            <a href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li>
+                            <a href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <hr />
+    </div>
+    <!--Modal para nuevos mensajes -->
+    <div class="modal" id="divModalMensajeNuevo" tabindex="-1" role="dialog">
+
+        @using (Ajax.BeginForm("_MensajesNuevo", "Mensaje", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", OnComplete = "cerrarModal", UpdateTargetId = "divListaMensajes" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="modal-dialog" id="divMensajeNuevoContenedorInterno">
+
+            </div>
+        }
+    </div><!-- /.modal -->
+    <!--Modal para ver un mensaje -->
+    <div class="modal" id="divModalMensajeVer" tabindex="-1" role="dialog">
+
+        @using (Ajax.BeginForm("_MensajesVer", "Mensajes", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divListaMensajes", OnComplete = "cerrarModal" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="modal-dialog" id="divMensajeVerContenedorInterno">
+
+            </div><!-- /.modal-dialog -->
+        }
+    </div><!-- /.modal -->
+    <!--Modal para responder un mensaje -->
+    <div class="modal" id="divModalMensajeResponder" tabindex="-1" role="dialog">
+
+        @using (Ajax.BeginForm("_MensajesResponder", "Mensaje", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divListaMensajes", OnComplete = "cerrarModal" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="modal-dialog" id="divMensajeResponderContenedorInterno">
+
+            </div>
+        }
+
+    </div><!-- /.modal -->
+
+</div>
+@*</div>
+    </div>*@
 
 <script type="text/javascript">
 
@@ -148,9 +162,9 @@
 
     });
 
-    function mensajeNuevo(pantalla, idOferta, usuarioAlumno) {
-        
-        var url = '@Url.Action("_MensajesNuevo", "Mensaje")' + '?pantalla=' + pantalla + '&idOferta=' + idOferta + '&usuarioAlumno=' + usuarioAlumno;
+    function mensajeNuevo(pantalla, idOferta, usuarioAlumno, idEvento, idEmpresa) {
+
+        var url = '@Url.Action("_MensajesNuevo", "Mensaje")' + '?pantalla=' + pantalla + '&idOferta=' + idOferta + '&usuarioAlumno=' + usuarioAlumno + '&idEvento=' + idEvento + '&idEmpresa=' + idEmpresa;
 
         $.get(url, function (data) {
 
@@ -171,8 +185,7 @@
         try {
             $('.modal.in').modal('hide');
         }
-        catch (err)
-        {
+        catch (err) {
             console.log(err);
         }
 
@@ -214,7 +227,7 @@
 
         $('.modal-backdrop').remove();
         $('.modal.in').modal('hide');
-        
+
     }
 
 </script>

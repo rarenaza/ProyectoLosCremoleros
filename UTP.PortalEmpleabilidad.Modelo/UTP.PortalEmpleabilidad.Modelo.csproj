@@ -98,6 +98,9 @@
     <Compile Include="Vistas\Empresa\VistaEmpresaUsuario.cs" />
     <Compile Include="Vistas\Empresa\VistaPanelCabecera.cs" />
     <Compile Include="Vistas\Empresa\VistaRegistroEmpresa.cs" />
+    <Compile Include="Vistas\Evento\VistaAsistente.cs" />
+    <Compile Include="Vistas\Mensaje\VistaMensajeDestinatario.cs" />
+    <Compile Include="Vistas\Mensaje\VistaMensajeOferta.cs" />
     <Compile Include="Vistas\Mensaje\VistaMensajeUsuarioEmpresaOferta.cs" />
     <Compile Include="Vistas\Mensaje\VistaPostulantePorMensaje.cs" />
     <Compile Include="Vistas\Ofertas\ListaOfertaFase.cs" />

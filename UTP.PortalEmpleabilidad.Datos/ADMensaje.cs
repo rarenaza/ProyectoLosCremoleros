@@ -62,8 +62,9 @@ namespace UTP.PortalEmpleabilidad.Datos
             return dtResultado;
         }
 
-        public void Insertar(Mensaje mensaje)
-        {           
+        public int Insertar(Mensaje mensaje)
+        {
+            int idMensajeInsertado = 0;
             try
             {
                 using (SqlConnection conexion = new SqlConnection(cadenaConexion))
@@ -90,16 +91,20 @@ namespace UTP.PortalEmpleabilidad.Datos
 
                     cmd.Connection = conexion;
                     conexion.Open();
-                    cmd.ExecuteNonQuery();
-                    conexion.Close();
-                    
+                    object resultado = cmd.ExecuteScalar();
+
+                    if (resultado != null)
+                    {
+                        idMensajeInsertado = Convert.ToInt32(resultado);
+                    }
+                    conexion.Close();                    
                 }
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-
+            return idMensajeInsertado;
         }
 
         public DataTable ObtenerPorIdMensaje(int idMensaje)
@@ -210,6 +215,125 @@ namespace UTP.PortalEmpleabilidad.Datos
                 da.Fill(dtResultado);
 
                 conexion.Close();
+            }
+
+            return dtResultado;
+        }
+
+        public int ObtenerIdEmpresaPorIdOferta(int idOferta)
+        {
+            int idEmpresa = 0;
+
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Mensaje_ObtenerIdEmpresaPorIdOferta";
+                cmd.Parameters.Add(new SqlParameter("@IdOferta", idOferta));
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                object resultado = cmd.ExecuteScalar();
+
+                if (resultado != null) idEmpresa = Convert.ToInt32(resultado);
+
+                conexion.Close();
+            }
+
+            return idEmpresa;
+        }
+        public void ActualizarEstadoMensaje(int idMensaje, string estadoMensaje)
+        {           
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Mensaje_ActualizarEstadoMensaje";
+                cmd.Parameters.Add(new SqlParameter("@IdMensaje", idMensaje));
+                cmd.Parameters.Add(new SqlParameter("@EstadoMensaje", estadoMensaje));
+
+                cmd.Connection = conexion;
+                conexion.Open();
+                cmd.ExecuteNonQuery();
+                conexion.Close();
+            }
+            
+        }
+
+        public DataTable ObtenerUsuarioAdministradorUTP()
+        {
+            DataTable dtResultado = new DataTable();
+
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Mensaje_ObtenerUsuarioAdministradorUTP";                
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dtResultado);
+
+                conexion.Close();
+            }
+
+            return dtResultado;
+        }
+
+        public DataTable ObtenerUsuarioUTPAsignadoAEmpresa(int idEmpresa)
+        {
+            DataTable dtResultado = new DataTable();
+
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Mensaje_ObtenerUsuarioUTPAsignadoAEmpresa";
+                cmd.Parameters.Add(new SqlParameter("@IdEmpresa", idEmpresa));
+
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dtResultado);
+
+                conexion.Close();
+            }
+
+            return dtResultado;
+        }
+
+        public DataTable ObtenerUsuarioEmpresaPorIdEmpresa(int idEmpresa)
+        {
+            DataTable dtResultado = new DataTable();
+
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Mensaje_ObtenerUsuarioEmpresaPorIdEmpresa";
+                cmd.Parameters.Add(new SqlParameter("@IdEmpresa", idEmpresa));
+                
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                dtResultado = new DataTable();
+
+                da.Fill(dtResultado);
+
+                conexion.Close();
+
             }
 
             return dtResultado;

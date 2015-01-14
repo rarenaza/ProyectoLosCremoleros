@@ -53,6 +53,7 @@
     <Compile Include="LNAlumnoInformacionAdicional.cs" />
     <Compile Include="LNAutenticarUsuario.cs" />
     <Compile Include="LNContenido.cs" />
+    <Compile Include="LNCorreo.cs" />
     <Compile Include="LNEmpresaListaOferta.cs" />
     <Compile Include="LNEmpresaLocacion.cs" />
     <Compile Include="LNEmpresaUsuario.cs" />

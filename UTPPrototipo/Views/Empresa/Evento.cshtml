@@ -1,4 +1,5 @@
-﻿
+﻿@using UTP.PortalEmpleabilidad.Modelo
+
 @{
     Layout = "~/Views/Empresa/_LayoutEmpresa.cshtml";
     ViewBag.Title = "Eventos";
@@ -7,6 +8,12 @@
 <div class="container fuente-pequeña" style="margin-top:2px;">
     @{Html.RenderAction("VistaCabecera", "Empresa");}
     @Html.Action("_Evento", "Evento", new { Pantalla = "Empresa" })
+
+    <!--Mensajes-->
+    <div class="col-sm-5">
+        <!--Se envía el parámetro para distinguir el funcionamiento de cada página. [MENSAJES_{MODULO}_{PAGINA}]-->
+        @Html.Action("_Mensajes", "Mensaje", new { pantalla = Constantes.MENSAJES_EMPRESA_EVENTO })
+    </div>
 </div>
 <script>
     $(document).ready(function () {

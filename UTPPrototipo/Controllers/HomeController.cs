@@ -10,6 +10,7 @@ using UTP.PortalEmpleabilidad.Logica;
 using UTP.PortalEmpleabilidad.Modelo;
 using UTP.PortalEmpleabilidad.Modelo.Vistas.Empresa;
 using UTPPrototipo.Models.ViewModels.Contenido;
+using UTPPrototipo.Models.ViewModels.Cuenta;
 
 namespace UTPPrototipo.Controllers
 {
@@ -115,10 +116,83 @@ namespace UTPPrototipo.Controllers
             return new FileStreamResult(stream, "image/jpeg");
         } 
 
-        public ActionResult Contacto()
+        public ActionResult Contacto(string pantalla = "")
         {
-            return View();
+            Mensaje mensaje = new Mensaje();
+            mensaje.Pantalla = pantalla;
+
+            if (pantalla == Constantes.MENSAJES_EMPRESA_CONTACTO)
+            {
+                TicketEmpresa ticketEmpresa = (TicketEmpresa)Session["TicketEmpresa"];
+
+                mensaje.DeUsuario = ticketEmpresa.Usuario;
+                mensaje.DeUsuarioCorreoElectronico = ticketEmpresa.CorreoElectronico;
+            }
+            else
+                if (pantalla == Constantes.MENSAJES_ALUMNO_CONTACTO)
+                {
+                    TicketAlumno ticketAlumno = (TicketAlumno)Session["TicketAlumno"];
+
+                    mensaje.DeUsuario = ticketAlumno.Usuario;
+                    mensaje.DeUsuarioCorreoElectronico = ticketAlumno.CorreoElectronico;
+                }
+
+            return View(mensaje);
         }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public ActionResult Contacto(Mensaje mensaje)
+        {
+            LNMensaje lnMensaje = new LNMensaje();
+            if (mensaje.Pantalla == Constantes.MENSAJES_EMPRESA_CONTACTO)
+            {
+                
+                TicketEmpresa ticketEmpresa = (TicketEmpresa)Session["TicketEmpresa"];
+                DataTable dtUsuarioAsignado = lnMensaje.ObtenerUsuarioUTPAsignadoAEmpresa(ticketEmpresa.IdEmpresa);
+
+                if (dtUsuarioAsignado.Rows.Count > 0)
+                {
+                    mensaje.ParaUsuario = Convert.ToString(dtUsuarioAsignado.Rows[0]["Usuario"]);
+                    mensaje.ParaUsuarioCorreoElectronico = Convert.ToString(dtUsuarioAsignado.Rows[0]["CorreoElectronico"]);
+                    mensaje.CreadoPor = ticketEmpresa.Usuario;
+                }
+            }
+            else
+                if (mensaje.Pantalla == Constantes.MENSAJES_ALUMNO_CONTACTO)
+                {
+                    TicketAlumno ticketAlumno = (TicketAlumno)Session["TicketAlumno"];
+
+                    //Obtener usuario administrador UTP.                    
+                    DataTable dtUsuarioUTPAdmin = lnMensaje.ObtenerUsuarioAdministradorUTP();
+
+                    mensaje.ParaUsuario = Convert.ToString(dtUsuarioUTPAdmin.Rows[0]["Usuario"]);
+                    mensaje.ParaUsuarioCorreoElectronico = Convert.ToString(dtUsuarioUTPAdmin.Rows[0]["CorreoElectronico"]);
+                    mensaje.CreadoPor = ticketAlumno.Usuario;
+                }
+                else
+                    if (mensaje.Pantalla == Constantes.MENSAJES_INICIO)
+                    {                        
+                        //Obtener usuario administrador UTP.                    
+                        DataTable dtUsuarioUTPAdmin = lnMensaje.ObtenerUsuarioAdministradorUTP();
+
+                        mensaje.ParaUsuario = Convert.ToString(dtUsuarioUTPAdmin.Rows[0]["Usuario"]);
+                        mensaje.ParaUsuarioCorreoElectronico = Convert.ToString(dtUsuarioUTPAdmin.Rows[0]["CorreoElectronico"]);
+                        mensaje.DeUsuario = mensaje.DeUsuarioCorreoElectronico;
+                        mensaje.CreadoPor = mensaje.DeUsuarioCorreoElectronico; //Se coloca el correo de la persona.
+                    }
+
+            mensaje.FechaEnvio = DateTime.Now;
+            mensaje.IdEvento = 0;
+            mensaje.EstadoMensaje = "MSJNOL";  //Pendiente de ser leido
+
+            
+            lnMensaje.Insertar(mensaje);
+
+            TempData["MsjExitoCrearMensaje"] = "El mensaje se envió con éxito";
+
+            return RedirectToAction("Contacto", new { pantalla = mensaje.Pantalla });
+        }
+
         public ActionResult Testimonios()
         {
             List<Contenido> contenido = new List<Contenido>();

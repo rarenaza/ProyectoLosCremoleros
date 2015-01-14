@@ -382,5 +382,30 @@ namespace UTP.PortalEmpleabilidad.Datos
                  throw ex;
              }
         }
+
+        public DataTable ObtenerAsistentes(int idEvento, string tipoAsistente)
+        {
+            DataTable dtResultado = new DataTable();
+
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Evento_ObtenerAsistentes";
+                cmd.Parameters.Add(new SqlParameter("@IdEvento", idEvento));
+                cmd.Parameters.Add(new SqlParameter("@TipoAsistente", tipoAsistente));
+
+                cmd.Connection = conexion;
+                conexion.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                dtResultado = new DataTable();
+                da.Fill(dtResultado);
+                conexion.Close();
+            }
+
+            return dtResultado;
+        }
     }
 }

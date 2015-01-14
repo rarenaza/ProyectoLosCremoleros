@@ -1,4 +1,6 @@
-﻿@{
+﻿@using UTP.PortalEmpleabilidad.Modelo
+
+@{
     Layout = "~/Views/UTP/_LayoutUTP.cshtml";
     ViewBag.Title = "Empresa";
 }
@@ -31,7 +33,9 @@
            @Html.Action("_VerDetalleEmpresaOfertas", "UTP", new { id = ViewBag.IdEmpresa })
         </div>
         <div class="col-sm-6">
-            @Html.Action("_VerDetalleEmpresaMensajes", "UTP", new { id = ViewBag.IdEmpresa })
+            @*@Html.Action("_VerDetalleEmpresaMensajes", "UTP", new { id = ViewBag.IdEmpresa })*@
+
+            @Html.Action("_Mensajes", "Mensaje", new { pantalla = Constantes.MENSAJES_UTP_EMPRESA, idEmpresa = ViewBag.IdEmpresa })
         </div>
         <hr />
     </div>

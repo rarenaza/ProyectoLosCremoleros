@@ -44,9 +44,12 @@ namespace UTP.PortalEmpleabilidad.Modelo
         /// Campo que se utiliza para pasar los datos del alumno en los mensajes de UTP - Alumno.
         /// </summary>
         public string UsuarioAlumno { get; set; }
+
+        public int IdEmpresa { get; set; }
         public Mensaje()
         {
             Oferta = new Oferta();
+            Evento = new Evento();
             IdOfertaMensaje = 0;
         }
     }
