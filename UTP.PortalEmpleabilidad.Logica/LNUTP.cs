@@ -78,7 +78,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 vista.NivelDeRelacion = dtResultado.Rows[i]["NivelDeRelacion"].ToString();
                 vista.FacultadPrincipal = dtResultado.Rows[i]["FacultadPrincipal"].ToString();
 
-                vista.Comentarios = dtResultado.Rows[i]["Comentarios"].ToString();
+                //vista.Comentarios = dtResultado.Rows[i]["Comentarios"].ToString();
                 vista.TieneComentarios = dtResultado.Rows[i]["TieneComentarios"].ToString();
                 
 

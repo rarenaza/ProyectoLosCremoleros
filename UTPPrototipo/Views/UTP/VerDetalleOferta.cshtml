@@ -455,14 +455,12 @@
         </div>
     </div>
     <hr />
-    <div class="row" style="display: none;">
+    <div class="row fuente-pequeña" style="display: block;">
 
-        <div class="row fuente-pequeña">
-            <div class="col-sm-12">
-                @Html.Action("_Mensajes", "Mensaje", new { pantalla = Constantes.MENSAJES_UTP_OFERTA, idOferta = Model.IdOferta })
-            </div>
+        <div class="col-sm-6">
+            @Html.Action("_Mensajes", "Mensaje", new { pantalla = Constantes.MENSAJES_UTP_OFERTA, idOferta = Model.IdOferta })
         </div>
-        
+       
     </div>
 </div>
 <script>

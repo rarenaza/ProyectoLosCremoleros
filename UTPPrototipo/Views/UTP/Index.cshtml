@@ -19,108 +19,102 @@
         -->
 
     <div class="row">
-        <div class="col-sm-7 fuente-pequeña">
-            <div class="row">
-                <div class="col-md-6 fuente-pequeña" style="border-right:solid;border-color:rgb(220, 220, 220);border-width:1px;">
-                    @Html.Action("VistaOfertasPendientes", "UTP")
-                </div>
 
-                <div class="row">
-
-                    <div class="col-sm-6 fuente-pequeña" style="border-right:solid;border-color:rgb(220, 220, 220);border-width:1px;">
-                        @Html.Action("Vista_EmpresasPendientes", "UTP")
-                    </div>
-
-                </div>
-
-            </div>
-            <!-- Zona de gráficos
-            <hr />
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="input-group">
-                        <span class="input-group-addon">Fecha <br />desde</span>
-                        <input id="CargoOfrecido" name="CargoOfrecido" type="text" class="form-control" placeholder="Fecha desde para Estadísticas">
-
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="input-group">
-                        <span class="input-group-addon">Fecha <br />hasta</span>
-                        <input id="CargoOfrecido" name="CargoOfrecido" type="text" class="form-control" placeholder="Fecha hasta para Estadísticas">
-
-                    </div>
-                </div>
-            </div>
-            <hr />
-            <div class="row">
-                <div class="col-sm-6">
-                    <img src="~/img/GraficoTemp.png" style="width:100%;" />
-                </div>
-                <div class="col-sm-6">
-                    <img src="~/img/GraficoTemp.png" style="width:100%;" />
-                </div>
-            </div>
-            <hr />
-            <div class="row">
-                <div class="col-sm-6 fuente-pequeña" style="border-right:solid;border-color:rgb(220, 220, 220);border-width:1px;">
-                    <h5>Estadísticas</h5>
-                    <table>
-                        <tr>
-                            <td class="celda-nombre">Estadística 1</td>
-                            <td class="celda-datos">9999</td>
-                        </tr>
-                        <tr>
-                            <td class="celda-nombre">Estadística 2</td>
-                            <td class="celda-datos">9999</td>
-                        </tr>
-                        <tr>
-                            <td class="celda-nombre">Estadística 3</td>
-                            <td class="celda-datos">9999</td>
-                        </tr>
-                        <tr>
-                            <td class="celda-nombre">Estadística 4</td>
-                            <td class="celda-datos">9999</td>
-                        </tr>
-                    </table>
-
-                </div>
-                <div class="col-sm-6 fuente-pequeña" style="border-right:solid;border-color:rgb(220, 220, 220);border-width:1px;">
-                    <h5>Estadísticas</h5>
-
-                    <table>
-                        <tr>
-                            <td class="celda-nombre">Estadística 5</td>
-                            <td class="celda-datos">9999</td>
-                        </tr>
-                        <tr>
-                            <td class="celda-nombre">Estadística 6</td>
-                            <td class="celda-datos">9999</td>
-                        </tr>
-                        <tr>
-                            <td class="celda-nombre">Estadística 7</td>
-                            <td class="celda-datos">9999</td>
-                        </tr>
-                        <tr>
-                            <td class="celda-nombre">Estadística 8</td>
-                            <td class="celda-datos">9999</td>
-                        </tr>
-                    </table>
-
-                </div>
-
-            </div>
-            <hr /> -->
-
-
-
-
+        <div class="col-md-4 fuente-pequeña" style="border-right:solid;border-color:rgb(220, 220, 220);border-width:1px;">
+            @Html.Action("VistaOfertasPendientes", "UTP")
         </div>
-        
-        <div class="col-md-5 fuente-pequeña">
+
+        <div class="col-md-4 fuente-pequeña" style="border-right:solid;border-color:rgb(220, 220, 220);border-width:1px;">
+            @Html.Action("Vista_EmpresasPendientes", "UTP")
+        </div>
+
+        <div class="col-md-4 fuente-pequeña">
+
             @Html.Action("_Mensajes", "Mensaje", new { pantalla = Constantes.MENSAJES_UTP_INDEX })
 
         </div>
+
+    </div>
+    <div class="col-sm-7 fuente-pequeña">
+        <div class="row">
+        </div>
+        <!-- Zona de gráficos
+        <hr />
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="input-group">
+                    <span class="input-group-addon">Fecha <br />desde</span>
+                    <input id="CargoOfrecido" name="CargoOfrecido" type="text" class="form-control" placeholder="Fecha desde para Estadísticas">
+
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="input-group">
+                    <span class="input-group-addon">Fecha <br />hasta</span>
+                    <input id="CargoOfrecido" name="CargoOfrecido" type="text" class="form-control" placeholder="Fecha hasta para Estadísticas">
+
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-sm-6">
+                <img src="~/img/GraficoTemp.png" style="width:100%;" />
+            </div>
+            <div class="col-sm-6">
+                <img src="~/img/GraficoTemp.png" style="width:100%;" />
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-sm-6 fuente-pequeña" style="border-right:solid;border-color:rgb(220, 220, 220);border-width:1px;">
+                <h5>Estadísticas</h5>
+                <table>
+                    <tr>
+                        <td class="celda-nombre">Estadística 1</td>
+                        <td class="celda-datos">9999</td>
+                    </tr>
+                    <tr>
+                        <td class="celda-nombre">Estadística 2</td>
+                        <td class="celda-datos">9999</td>
+                    </tr>
+                    <tr>
+                        <td class="celda-nombre">Estadística 3</td>
+                        <td class="celda-datos">9999</td>
+                    </tr>
+                    <tr>
+                        <td class="celda-nombre">Estadística 4</td>
+                        <td class="celda-datos">9999</td>
+                    </tr>
+                </table>
+
+            </div>
+            <div class="col-sm-6 fuente-pequeña" style="border-right:solid;border-color:rgb(220, 220, 220);border-width:1px;">
+                <h5>Estadísticas</h5>
+
+                <table>
+                    <tr>
+                        <td class="celda-nombre">Estadística 5</td>
+                        <td class="celda-datos">9999</td>
+                    </tr>
+                    <tr>
+                        <td class="celda-nombre">Estadística 6</td>
+                        <td class="celda-datos">9999</td>
+                    </tr>
+                    <tr>
+                        <td class="celda-nombre">Estadística 7</td>
+                        <td class="celda-datos">9999</td>
+                    </tr>
+                    <tr>
+                        <td class="celda-nombre">Estadística 8</td>
+                        <td class="celda-datos">9999</td>
+                    </tr>
+                </table>
+
+            </div>
+
+        </div>
+        <hr /> -->
     </div>
 </div>
 <script>

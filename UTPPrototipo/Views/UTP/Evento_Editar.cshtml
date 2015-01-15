@@ -1,4 +1,6 @@
 ﻿@model UTP.PortalEmpleabilidad.Modelo.Evento
+@using UTP.PortalEmpleabilidad.Modelo
+
 @{
     Layout = "~/Views/UTP/_LayoutUTP.cshtml";
     ViewBag.Title = "Evento";
@@ -258,6 +260,12 @@
 
             </div>
         </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            @Html.Action("_Mensajes", "Mensaje", new { pantalla = Constantes.MENSAJES_UTP_EVENTO, idEvento = @Model.IdEvento })
+        </div>        
     </div>
 </div>
 <script>

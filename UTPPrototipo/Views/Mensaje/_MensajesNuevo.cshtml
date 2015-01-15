@@ -87,23 +87,24 @@
             </div>
         }*@
 
-        @*@if (ViewBag.Pantalla == "")
+        <!--
+        if (ViewBag.Pantalla == "")
         {
             <div class="row">
                 <div class="col-sm-12">
                     <div class="input-group">
                         <span class="input-group-addon">Oferta<br />Laboral</span>
-                        @Model.Oferta.CargoOfrecido
-                        @Html.HiddenFor(m => m.IdOfertaMensaje)
+                        Model.Oferta.CargoOfrecido
+                        Html.HiddenFor(m => m.IdOfertaMensaje)
                     </div>
-                    @*<a href="#">Gerente de Proyectos (IBM del Perú)</a>*@
+                    <a href="#">Gerente de Proyectos (IBM del Perú)</a>*
 
                 </div>
             </div>
-        }*@
+        }
+        -->
 
-        @if (ViewBag.Pantalla == Constantes.MENSAJES_EMPRESA_EVENTO || ViewBag.Pantalla == Constantes.MENSAJES_ALUMNO_EVENTO 
-            || ViewBag.Pantalla == Constantes.MENSAJES_UTP_EVENTO)
+        @if (ViewBag.Pantalla == Constantes.MENSAJES_EMPRESA_EVENTO || ViewBag.Pantalla == Constantes.MENSAJES_ALUMNO_EVENTO || ViewBag.Pantalla == Constantes.MENSAJES_UTP_EVENTO)
         {
             @Html.HiddenFor(m => m.IdEvento)
             <div class="row">
@@ -125,7 +126,7 @@
     </div>
 
     <div class="modal-footer">
-        <button type="submit" class="btn btn-primary color-paleta1">Enviar</button>
+        <button id="btnEnviarMensaje" type="submit" class="btn btn-primary color-paleta1">Enviar</button>
     </div>
 </div>
 <script>
@@ -153,7 +154,7 @@
 
         if (pantalla == '@Constantes.MENSAJES_UTP_EVENTO') {
 
-            var idEvento = @ViewBag.IdEventoGeneral
+            var idEvento = @ViewBag.IdEventoGeneral;
 
             //Llamada al controlador para cargar a los postulantes de la oferta seleccionada.
             var url = '@Url.Action("ObtenerAsistentesPorEvento", "Mensaje")' + '?IdEvento=' + idEvento;
