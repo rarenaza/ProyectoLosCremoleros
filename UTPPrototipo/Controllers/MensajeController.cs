@@ -109,6 +109,7 @@ namespace UTPPrototipo.Controllers
             ViewBag.Pantalla = pantalla;
             ViewBag.UsuarioAlumno = usuarioAlumno;
             ViewBag.IdEmpresa = idEmpresa;
+            ViewBag.IdEventoGeneral = idEvento;
             this.IdOferta = idOferta;
             this.IdEventoParametro = idEvento;
             this.IdEmpresaParametro = idEmpresa;
@@ -210,7 +211,9 @@ namespace UTPPrototipo.Controllers
             ViewBag.IdEvento = mensaje.IdEvento;
 
             ViewBag.UsuarioAlumno = mensaje.ParaUsuario; //Este valor contiene el dato del usuario alumno en las pantallas UTP - Alumno.
-            
+
+            TempData["MsjExitoCrearMensaje"] = "El mensaje se ha enviado con éxito.";
+
             return PartialView("_Mensajes", lista.OrderByDescending(m => m.FechaEnvio));
             
         }
@@ -273,7 +276,7 @@ namespace UTPPrototipo.Controllers
                     lista = lnMensaje.ObtenerPorUsuario(ticketAlumno.Usuario).Where(m => m.IdEvento == IdEventoParametro).ToList();
                     break;
                 case Constantes.MENSAJES_UTP_EVENTO:
-                    lista = lnMensaje.ObtenerPorUsuario(ticketEmpresa.Usuario);
+                    lista = lnMensaje.ObtenerPorUsuario(ticketUTP.Usuario).Where(m => m.IdEvento == IdEventoParametro).ToList();
                     break;
 
             }            
@@ -386,7 +389,9 @@ namespace UTPPrototipo.Controllers
             ViewBag.IdOfertaMensaje = mensaje.IdOferta;
             ViewBag.IdEvento = mensaje.IdEvento;
             ViewBag.Pantalla = mensaje.Pantalla;
-            ViewBag.UsuarioAlumno = mensaje.ParaUsuario;            
+            ViewBag.UsuarioAlumno = mensaje.ParaUsuario;
+
+            TempData["MsjExitoCrearMensaje"] = "El mensaje se ha enviado con éxito.";
 
             return PartialView("_Mensajes", lista.OrderByDescending(m => m.FechaEnvio));
         }

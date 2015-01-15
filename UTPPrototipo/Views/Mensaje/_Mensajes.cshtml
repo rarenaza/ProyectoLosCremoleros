@@ -17,7 +17,7 @@
         }
         else
         {
-            <h6>Mensajes</h6>
+            <h5>Mensajes</h5>
         }
 
         
@@ -99,6 +99,8 @@
                 <button id="btnMensajeNuevo" class="btn btn-default color-paleta1" onclick="mensajeNuevo('@ViewBag.Pantalla','@ViewBag.IdOferta', '@ViewBag.UsuarioAlumno', '@ViewBag.IdEvento', '@ViewBag.IdEmpresa');">Redactar</button>
             </div>
             <!--Paginación de los mensajes-->
+
+            <!--
             <div class="col-sm-10" style="text-align:right;">
                 <nav>
                     <ul class="pagination">
@@ -118,13 +120,15 @@
                     </ul>
                 </nav>
             </div>
+                -->
         </div>
+
         <hr />
     </div>
     <!--Modal para nuevos mensajes -->
     <div class="modal" id="divModalMensajeNuevo" tabindex="-1" role="dialog">
 
-        @using (Ajax.BeginForm("_MensajesNuevo", "Mensaje", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", OnComplete = "cerrarModal", UpdateTargetId = "divListaMensajes" }))
+        @using (Ajax.BeginForm("_MensajesNuevo", "Mensaje", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", OnComplete = "cerrarModal", UpdateTargetId = "divListaMensajes", OnBegin= "AjaxBegin" }))
         {
             @Html.AntiForgeryToken()
 
@@ -148,7 +152,7 @@
     <!--Modal para responder un mensaje -->
     <div class="modal" id="divModalMensajeResponder" tabindex="-1" role="dialog">
 
-        @using (Ajax.BeginForm("_MensajesResponder", "Mensaje", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divListaMensajes", OnComplete = "cerrarModal" }))
+        @using (Ajax.BeginForm("_MensajesResponder", "Mensaje", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divListaMensajes", OnComplete = "cerrarModalResponder", OnBegin = "AjaxBeginResponder" }))
         {
             @Html.AntiForgeryToken()
 
@@ -180,13 +184,13 @@
 
         $.get(url, function (data) {
 
-            console.log(data);
+            //console.log(data);
             $('#divMensajeNuevoContenedorInterno').html(data);
             $.validator.unobtrusive.parse('#divMensajeNuevoContenedorInterno');
             $('#divModalMensajeNuevo').modal('show');
 
         }).error(function (err) {
-            console.log(err);
+            console.log("error: " + err);
         });
     };
 
@@ -240,6 +244,48 @@
         $('.modal-backdrop').remove();
         $('.modal.in').modal('hide');
 
+        $("#btnEnviarMensaje").removeAttr('disabled');
+        $("#btnEnviarMensaje").text('Enviar');
+
+    }
+
+    function AjaxBegin() {
+        $('#btnEnviarMensaje').text('Enviando ...');
+        $('#btnEnviarMensaje').attr('disabled','disabled')
+    }
+
+
+    function cerrarModalResponder() {
+
+        $('.modal-backdrop').remove();
+        $('.modal.in').modal('hide');
+
+        $("#btnResponderMensaje").removeAttr('disabled');
+        $("#btnResponderMensaje").text('Enviar');
+
+    }
+
+    function AjaxBeginResponder() {
+        $('#btnResponderMensaje').text('Enviando ...');
+        $('#btnResponderMensaje').attr('disabled', 'disabled')
     }
 
 </script>
+
+@{
+    //Se valida que exista mensaje de éxito al crear una oferta
+    if (TempData["MsjExitoCrearMensaje"] != null)
+    {
+        <input id="MsjExitoCrearMensaje" type="hidden" value="@TempData["MsjExitoCrearMensaje"]" />
+        TempData["MsjExitoCrearMensaje"] = null; //Se establece el valor nuevamente en NULL.
+
+        //Se muestra el script
+        <script>
+
+            var msjExito = document.getElementById("MsjExitoCrearMensaje").value;
+            alert(msjExito);
+
+        </script>
+    }
+
+}

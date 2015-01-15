@@ -108,11 +108,7 @@
         {
             @Html.Action("_Mensajes", "Mensaje", new { pantalla = Constantes.MENSAJES_ALUMNO_EVENTO, idEvento = @Model.IdEvento })
         }
-        else
-            if (ViewBag.Pantalla == "Utp")
-            {
-                @Html.Action("_Mensajes", "Mensaje", new { pantalla = Constantes.MENSAJES_UTP_EVENTO, idEvento = @Model.IdEvento })
-            }
+       
     }
 </div>
 
