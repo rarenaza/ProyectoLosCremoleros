@@ -89,6 +89,13 @@ namespace UTP.PortalEmpleabilidad.Logica
         {
             return adUTPAlumnos.AlumnoUTP_ObtenerDatosPorCodigo(id);
         }
+        public DataTable UTP_BUSCARLISTAVALORPADRE(int id)
+        {
+            return adUTPAlumnos.UTP_BUSCARLISTAVALORPADRE(id);
+        }
+
+
+
         public DataTable AlumnoUtp_obtenerEstudios(int id)
         {
             return adUTPAlumnos.AlumnoUtp_obtenerEstudios(id);

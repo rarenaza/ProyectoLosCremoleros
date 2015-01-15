@@ -1,4 +1,4 @@
-﻿
+﻿@model UTP.PortalEmpleabilidad.Modelo.Lista 
 <div class="modal-content">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -9,7 +9,9 @@
             <div class="col-sm-12">
                 <div class="input-group">
                     <span class="input-group-addon">Nombre</span>
-                    <input type="text" class="form-control" placeholder="Nombre de Lista">
+
+                    @Html.TextBoxFor(model => model.NombreLista, new { @class = "form-control", rows = "3", @placeholder = "Nombre de Lista" })
+                    @*<input type="text" class="form-control" placeholder="Nombre de Lista">*@
                 </div>
             </div>
         </div>
@@ -17,11 +19,23 @@
             <div class="col-sm-12">
                 <div class="input-group">
                     <span class="input-group-addon">Descrip-<br />ción</span>
-                    <textarea class="form-control" rows="4">Descripción</textarea>
+                    @*<textarea class="form-control" rows="4">Descripción</textarea>*@
+
+                    @Html.TextAreaFor(model => model.DescripcionLista, new { @class = "form-control", rows = "3", @placeholder = "Descripcion lista" })
                 </div>
             </div>
         </div>
+
         <div class="row">
+            <div class="col-sm-6">
+                <div class="input-group">
+                    <span class="input-group-addon">@Html.EditorFor(model => model.Modificable)</span>
+                    <span class="form-control">Modificable</span>
+                </div>
+            </div>
+        </div>
+
+        @*<div class="row">
             <div class="col-sm-6">
                 <div class="input-group">
                     <span class="input-group-addon"><input type="checkbox"></span>
@@ -29,7 +43,8 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>*@
+
     <div class="modal-footer">
         <button class="btn btn-default color-paleta8">Guardar</button>
     </div>

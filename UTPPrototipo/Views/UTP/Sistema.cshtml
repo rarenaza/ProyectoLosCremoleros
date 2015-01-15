@@ -5,17 +5,21 @@
 <link href="~/Content/font-awesome.css" rel="stylesheet" />
 
 <div class="container" style="margin-top:2px;">
-   
+
+
+    <div id="divListaUsuariosUTP">
         @Html.Action("_UsuariosUTPLista", "UTP")
-
-    <hr />
-
-
-    @Html.Action("_ListavalorPadre", "UTP")
+    </div>
+        <hr />
 
 
-    <hr />
-</div>
+    @* CARGA LA LISTA DE VALOR PADRE PERO SE ASINA CODIGO *@
+        <div id="divListaPadre">
+            @Html.Action("_ListavalorPadre", "UTP")
+        </div>
+
+        <hr />
+    </div>
 
 
 <script>
@@ -57,7 +61,7 @@
 <div class="modal fade" id="Nueva-lista" role="dialog" aria-labelledby="Nueva Lista" aria-hidden="true">
     <div class="modal-dialog">
                 
-        @using (Ajax.BeginForm("_ListaValorPadreInsertar", "UTP", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divListaUsuariosUTP", OnComplete = "cerrarModal" }))
+        @using (Ajax.BeginForm("_ListaValorPadreInsertar", "UTP", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divListaPadre", OnComplete = "cerrarModal" }))
         {
             @Html.AntiForgeryToken()
 
@@ -149,11 +153,11 @@
 
     function ListaValorPadreInsertar() {
 
-        console.log('punto de control');
+        //console.log('punto de control');
         var url = "/UTP/_ListaValorPadreInsertar/";
         $.get(url, function (data) {
 
-            console.log(data);
+            //console.log(data);
 
             $('#divContenedorListavalorPAdreCrear').html(data);
             $.validator.unobtrusive.parse('#divContenedorListavalorPAdreCrear');
@@ -166,17 +170,11 @@
       
     }
 
-    //function ListaValorPadreInsertar(id) {
-    //    var url = "/UTP/_ListaValorPadreInsertar/" + id;
-    //    $.get(url, function (data) {
-    //        $('#divContenedorListavalorPAdreCrear').html(data);
-    //        $.validator.unobtrusive.parse('#divContenedorListavalorPAdreCrear');
-
-    //        $('#divContenedorListavalorPAdreCrear').modal('show');
-    //    });
-    //}
 
     function cerrarModal() {
+
+        //alert('cerrarmodal');
+        //$('#divListaPadre').html('demo');
         $('.modal.in').modal('hide');
     }
 

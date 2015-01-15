@@ -1,0 +1,77 @@
+﻿@*@model UTP.PortalEmpleabilidad.Modelo.ListaValor*@
+
+@model IEnumerable<UTP.PortalEmpleabilidad.Modelo.ListaValor>
+<h6>Valores</h6>
+<div class="row grilla1-cabecera color-paleta8">
+    <div class="col-sm-1">
+        ID
+    </div>
+    <div class="col-sm-2">
+        Valor
+    </div>
+    <div class="col-sm-2">
+        Descripción
+    </div>
+    <div class="col-sm-1">
+        Icono
+    </div>
+    <div class="col-sm-1">
+        Peso
+    </div>
+    <div class="col-sm-1">
+        Valor UTP
+    </div>
+    <div class="col-sm-2">
+        Padre
+    </div>
+    <div class="col-sm-1">
+        Estado
+    </div>
+    <div class="col-sm-1">
+
+    </div>
+</div>
+
+@foreach (var item in Model)
+{
+
+    <div class="row grilla1-linea color-paleta8">
+        <div class="col-sm-1">
+            @item.IdListaValor
+        </div>
+        <div class="col-sm-2">
+            @*<a href="../UTP/ListaValor">CVs Pendientes de Revisión</a>*@
+            @item.Valor
+        </div>
+        <div class="col-sm-2">
+            @*Fase en la que se encuentran todos los CVs nuevos, que no han sido analizados*@
+            @item.DescripcionValor
+        </div>
+        <div class="col-sm-1">
+            <span class="fui fa-3x">@item.Icono</span>
+        </div>
+        <div class="col-sm-1">
+            @item.Peso
+        </div>
+        <div class="col-sm-1">
+            @item.ValorUTP
+        </div>
+        <div class="col-sm-2">
+            @*<a href="../UTP/ListaValor">padre</a>*@
+            @item.Padre
+        </div>
+        <div class="col-sm-1">
+            @*Activo*@
+            @item.EstadoValor
+
+        </div>
+        <div class="col-sm-1 fui fa-2x">
+            <a class="color-icono-paleta1">1</a> <a class="color-icono-paleta1">l</a>
+        </div>
+    </div>
+
+}
+<br />
+<div class="col-sm-12" style="text-align:right;">
+    <button class="btn btn-default color-paleta8" data-toggle="modal" data-target="#Nueva-lista">Nuevo Valor</button>
+</div>

@@ -926,6 +926,9 @@
     <Content Include="Views\UTP\EventoInscritos.cshtml" />
     <Content Include="Views\UTP\_ListavalorPadre.cshtml" />
     <Content Include="Views\UTP\_ListaValorPadreInsertar.cshtml" />
+    <Content Include="Views\UTP\Vista_ListaValorHijo.cshtml" />
+    <Content Include="Views\UTP\Vista_DatosdeListaValorPadre.cshtml" />
+    <Content Include="Views\UTP\_NuevoValor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

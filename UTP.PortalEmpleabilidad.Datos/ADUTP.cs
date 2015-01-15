@@ -303,6 +303,33 @@ namespace UTP.PortalEmpleabilidad.Datos
             return dtResultado;
         }
 
+        public DataTable UTP_BUSCARLISTAVALORPADRE(int id)
+        {
+            DataTable dtResultado = new DataTable();
+
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "UTP_BUSCARLISTAVALORPADRE";
+                cmd.Parameters.Add(new SqlParameter("@Idlista", id));
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+                dtResultado = new DataTable();
+
+                da.Fill(dtResultado);
+
+                conexion.Close();
+            }
+
+            return dtResultado;
+        }
+
         public DataTable ObtenerUsuarioUTPPorId(int idUTPUsuario)
         {
             DataTable dtResultado = new DataTable();
@@ -391,7 +418,32 @@ namespace UTP.PortalEmpleabilidad.Datos
             }
         }
 
+        public void UTPACTUALIZAR_LISTAVALORPADRE(Lista lista)
+        {
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
 
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "UTPACTUALIZAR_LISTAVALORPADRE";
+
+                //Parámetros:
+                cmd.Parameters.Add(new SqlParameter("@IDLista", lista.IDLista));
+                cmd.Parameters.Add(new SqlParameter("@NombreLista", lista.NombreLista));
+                cmd.Parameters.Add(new SqlParameter("@DescripcionLista", lista.DescripcionLista));
+                cmd.Parameters.Add(new SqlParameter("@Modificable", lista.Modificable));
+                cmd.Parameters.Add(new SqlParameter("@ModificadoPor", lista.Modificadopor));
+
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                cmd.ExecuteNonQuery();
+
+                conexion.Close();
+            }
+        }
 
 
 

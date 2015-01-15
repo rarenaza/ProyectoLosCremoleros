@@ -13,18 +13,11 @@
 {
 <div class="row grilla1-linea">
     <div class="col-sm-1">@item.IDLista</div>
-   
-
-    @*<div class="col-sm-3"><a href="../UTP/Lista">@item.NombreLista</a></div>*@
 
     <div class="col-sm-3">
   @Html.ActionLink(@item.NombreLista, "Lista", new { id = item.IDLista })
+
     </div>
-
-
-    
-   
-
     <div class="col-sm-7">@item.DescripcionLista</div>
     <div class="col-sm-1">@item.Modificable</div>
 
@@ -33,7 +26,8 @@
 
 <br />
 <div class="col-sm-12" style="text-align:right;">
-    @*<button class="btn btn-default color-paleta8" data-toggle="modal" data-target="#Nueva-lista">Nueva Lista de Valorespppp</button>*@
 
     <button class="btn btn-default color-paleta8" onclick="ListaValorPadreInsertar();">Nueva Lista de Valorespppp</button>
+
+    
 </div>

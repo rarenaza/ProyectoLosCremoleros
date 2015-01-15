@@ -1,0 +1,118 @@
+﻿
+@model UTP.PortalEmpleabilidad.Modelo.Lista
+
+
+    @using (Ajax.BeginForm("Vista_DatosdeListaValorPadre", "UTP", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", OnComplete = "mostrarMensaje", UpdateTargetId = "divDatosGenerales" }))
+    {
+        <div id="divDatosGenerales">
+            @*@using (Html.BeginForm())
+                {*@
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.IDLista)
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <h5>ID Lista: <strong>@Model.IDLista</strong></h5>
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="input-group">
+                        <span class="input-group-addon">Nombre</span>
+
+                        @Html.TextBoxFor(model => model.NombreLista, new { @class = "form-control", rows = "3", @placeholder = "Nombre de Lista" })
+
+                        @*<input type="text" class="form-control" placeholder="Nombre de Lista">*@
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="input-group">
+                        <span class="input-group-addon">Descrip-<br />ción</span>
+
+
+                        @Html.TextAreaFor(model => model.DescripcionLista, new { @class = "form-control", rows = "3", @placeholder = "Descripcion lista" })
+                        @*<textarea class="form-control" rows="4">Descripción</textarea>*@
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <span class="input-group-addon">@Html.EditorFor(model => model.Modificable)</span>
+                        <span class="form-control">Modificable</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-sm-12" style="text-align:right;">
+                    <button class="btn btn-default color-paleta8" type="submit" value="Guardar">Guardar</button>
+                </div>
+
+
+
+            </div>
+            @*</div>*@
+            <table class="fuente-pequeña">
+                <tr class="linea_raya">
+                    <td class="celda-nombre">
+                        Creado Por
+                    </td>
+                    <td class="celda-datos">
+                        @* Administrador*@
+                        @Model.Creadopor
+                    </td>
+                </tr>
+                <tr class="linea_raya">
+                    <td class="celda-nombre">
+                        Creado el
+                    </td>
+                    <td class="celda-datos">
+                        @*2014.12.01 12:00:03*@
+                        @Model.FechaCreacion
+
+                    </td>
+                </tr>
+                <tr class="linea_raya">
+                    <td class="celda-nombre">
+                        Modificado Por
+                    </td>
+                    <td class="celda-datos">
+                        @*Administrador*@
+                        @Model.Modificadopor
+                    </td>
+                </tr>
+                <tr class="linea_raya">
+                    <td class="celda-nombre">
+                        Modificado el
+                    </td>
+                    <td class="celda-datos">
+                        @*2014.12.15 17:30:03*@
+                        @Model.FechaModificacion
+                    </td>
+                </tr>
+            </table>
+
+
+            <hr />
+        </div>
+          
+    }
+       
+
+<script>
+    $(document).ready(function () {
+        $("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta3 color-paleta4 color-paleta5 color-paleta6 color-paleta7").addClass("color-paleta8");
+    });
+
+
+    function mostrarMensaje() {
+        alert('Los datos fueron grabados con éxito.');
+    }
+
+
+
+</script>
