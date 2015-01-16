@@ -2,12 +2,14 @@
 <div class="modal-content">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">Nuevo Valor de Lista</h4>
+        <h4 class="modal-title" id="myModalLabel">Actualizar Valor de Lista</h4>
     </div>
 
-    @*@Html.HiddenFor(m => m.IdLista)
-    @Html.ValidationSummary(true)*@
+
     <div class="modal-body">
+
+        @*@Html.HiddenFor(m => m.IdLista)*@
+        @Html.ValidationSummary(true)
         <div class="row">
             <div class="col-sm-4">
                 <div class="input-group">
@@ -87,6 +89,7 @@
             </div>
         </div>
     </div>
+
     <div class="modal-footer">
         <button class="btn btn-default color-paleta8">Guardar</button>
     </div>

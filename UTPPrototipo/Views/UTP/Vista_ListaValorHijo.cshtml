@@ -1,5 +1,4 @@
-﻿@*@model UTP.PortalEmpleabilidad.Modelo.ListaValor*@
-
+﻿
 @model IEnumerable<UTP.PortalEmpleabilidad.Modelo.ListaValor>
 <h6>Valores</h6>
 <div class="row grilla1-cabecera color-paleta8">
@@ -65,13 +64,23 @@
             @item.EstadoValor
 
         </div>
-        <div class="col-sm-1 fui fa-2x">
+        @*<div class="col-sm-1 fui fa-2x">
             <a class="color-icono-paleta1">1</a> <a class="color-icono-paleta1">l</a>
+        </div>*@
+
+        <div class="col-sm-1" style="text-align:right;">
+
+            <button class="btn btn-default color-paleta8" onclick="ListaValorHijoEditar('@item.IdListaValor');">Editar</button>
         </div>
     </div>
 
 }
 <br />
+
 <div class="col-sm-12" style="text-align:right;">
-    <button class="btn btn-default color-paleta8" data-toggle="modal" data-target="#Nueva-lista">Nuevo Valor</button>
+
+    <button class="btn btn-default color-paleta8" onclick="ListaValorHijoInsertar();">Nueva Lista de Valores TMP</button>
+
+
 </div>
+

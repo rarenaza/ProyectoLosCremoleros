@@ -355,6 +355,36 @@ namespace UTP.PortalEmpleabilidad.Datos
             return dtResultado;
         }
 
+
+   
+
+
+        public DataTable UTP_OBTENERVALORPADREEDITAR(string IDListaValor)
+        {
+            DataTable dtResultado = new DataTable();
+
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "UTP_OBTENERVALORPADREEDITAR";
+                cmd.Parameters.Add(new SqlParameter("@IDListaValor", IDListaValor));
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                dtResultado = new DataTable();
+                da.Fill(dtResultado);
+
+                conexion.Close();
+            }
+
+            return dtResultado;
+        }
+
+
         public void Insertar(UTPUsuario utpUsuario)
         {
             using (SqlConnection conexion = new SqlConnection(cadenaConexion))
@@ -417,6 +447,66 @@ namespace UTP.PortalEmpleabilidad.Datos
                 conexion.Close();
             }
         }
+
+        public void UTPINSERTAR_LISTAVALORHIJO(ListaValor lista)
+        {
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "UTPINSERTAR_LISTAVALORHIJO";
+
+                //Parámetros:
+                cmd.Parameters.Add(new SqlParameter("@IDListaValor", lista.IdListaValor));
+                cmd.Parameters.Add(new SqlParameter("@IDLista", lista.IdLista));
+                cmd.Parameters.Add(new SqlParameter("@Valor", lista.Valor == null ? "" : lista.Valor));
+                cmd.Parameters.Add(new SqlParameter("@DescripcionValor", lista.DescripcionValor == null ? "" : lista.DescripcionValor));
+                cmd.Parameters.Add(new SqlParameter("@Icono", lista.Icono == null ? "" : lista.Icono));
+                cmd.Parameters.Add(new SqlParameter("@Peso", lista.Peso));
+                cmd.Parameters.Add(new SqlParameter("@ValorUTP", lista.ValorUTP));
+                cmd.Parameters.Add(new SqlParameter("@EstadoValor", lista.EstadoValor == null ? "" : lista.EstadoValor));
+                cmd.Parameters.Add(new SqlParameter("@CreadoPor", lista.Creadopor));
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                cmd.ExecuteNonQuery();
+
+                conexion.Close();
+            }
+        }
+
+        public void UTPACTUALIZAR_LISTAVALORHIJO(ListaValor lista)
+        {
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "UTPACTUALIZAR_LISTAVALORHIJO";
+
+                //Parámetros:
+                cmd.Parameters.Add(new SqlParameter("@IDListaValor", lista.IdListaValor));
+                cmd.Parameters.Add(new SqlParameter("@Valor", lista.Valor == null ? "" : lista.Valor));
+                cmd.Parameters.Add(new SqlParameter("@DescripcionValor", lista.DescripcionValor == null ? "" : lista.DescripcionValor));
+                cmd.Parameters.Add(new SqlParameter("@Icono", lista.Icono == null ? "" : lista.Icono));
+                cmd.Parameters.Add(new SqlParameter("@Peso", lista.Peso));
+                cmd.Parameters.Add(new SqlParameter("@ValorUTP", lista.ValorUTP));
+                cmd.Parameters.Add(new SqlParameter("@EstadoValor", lista.EstadoValor == null ? "" : lista.EstadoValor));
+                cmd.Parameters.Add(new SqlParameter("@ModificadoPor", lista.Modificadopor));
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                cmd.ExecuteNonQuery();
+
+                conexion.Close();
+            }
+        }
+
 
         public void UTPACTUALIZAR_LISTAVALORPADRE(Lista lista)
         {

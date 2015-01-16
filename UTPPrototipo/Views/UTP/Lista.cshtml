@@ -20,23 +20,21 @@
 
             <div id="divListaHijo">
                 @{Html.RenderAction("Vista_ListaValorHijo", "UTP", new { id = Model.IDLista });}
+
+              
             </div>
             
             @*@{Html.RenderAction("Vista_ListaValorHijo", "UTP", new { id = Model.IDLista });}*@
 
-
         </div>
-
-
-
 
     </div>
 
 
-
     <hr />
 </div>
-<script src="~/Scripts/jquery-2.1.1.min.js"></script>
+
+
 
 <script>
     $(document).ready(function () {
@@ -52,17 +50,106 @@
 
 </script>
 
+<div class="modal fade" id="Nueva-listaTemporal" role="dialog" aria-labelledby="Nueva Lista" aria-hidden="true">
+    <div class="modal-dialog">
+
+        @using (Ajax.BeginForm("_NuevoValor", "UTP", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divListaHijo", OnComplete = "cerrarModal" }))
+        {
+            @Html.AntiForgeryToken()
+             @Html.HiddenFor(m => m.IDLista)
+             @Html.ValidationSummary(true)
+            <div class="modal-dialog" id="divContenedorListavalorHijoCrear">
+
+            </div>
+        }
+
+    </div>
+</div>
+
+<!--Modal para editar usuario-->>
+<div class="modal fade" id="EditarValor" role="dialog" aria-labelledby="Editar" aria-hidden="true">
+
+    @using (Ajax.BeginForm("_NuevoValorEditar", "UTP", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divListaHijo", OnComplete = "cerrarModal" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.IDLista)
+
+        @Html.ValidationSummary(true)
+
+        <div class="modal-dialog" id="divContenedorValorEditar">
+
+        </div>
+    }
+
+</div>
+
+
+<script>
+    function ListaValorHijoInsertar() {
+
+        //console.log('punto de control');
+        var url = "/UTP/_NuevoValor/";
+        $.get(url, function (data) {
+
+            console.log(data);
+
+            $('#divContenedorListavalorHijoCrear').html(data);
+            $.validator.unobtrusive.parse('#divContenedorListavalorHijoCrear');
+
+            $('#Nueva-listaTemporal').modal('show');
+
+
+        }).error(function (err) {
+            console.log(err);
+            alert(err);
+        });
+
+    }
+    
+
+    function ListaValorHijoEditar(id) {
+
+        //console.log('punto de control');
+        var url = "/UTP/_NuevoValorEditar/" + id;
+        $.get(url, function (data) {
+
+            console.log(data);
+
+            $('#divContenedorValorEditar').html(data);
+            $.validator.unobtrusive.parse('#divContenedorValorEditar');
+
+            $('#EditarValor').modal('show');
+
+
+        }).error(function (err) {
+            console.log(err);
+            alert(err);
+        });
+
+    }
+
+
+    function cerrarModal() {
+
+        //alert('cerrarmodal');
+        //$('#divListaPadre').html('demo');
+        $('.modal.in').modal('hide');
+    }
+
+</script>
+
+
+
+
+
+
+
+
 
 
 
 
 @*<div class="modal fade" id="Nueva-lista" role="dialog" aria-labelledby="Nueva Lista" aria-hidden="true">
-    <div class="modal-dialog">
-        
-    </div>
-</div>*@
-
-<div class="modal fade" id="Nueva-lista" role="dialog" aria-labelledby="Nueva Lista" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -143,63 +230,7 @@
             </div>
         </div>
     </div>
-</div>
+</div>*@
 
 
 
-@*<script>
-
-    function UsuarioUTPCrear() {
-        //debugger;
-        var url = "/UTP/_UsuariosUTPCrear"; //
-        $.get(url, function (data) {
-            //alert(data);
-            $('#divContenedorUsuarioUTPCrear').html(data);
-            $.validator.unobtrusive.parse('#divContenedorUsuarioUTPCrear');
-
-            $('#divModalUsuarioUTPCrear').modal('show');
-
-        }).error(function (err) {
-            console.log(err);
-            alert(err);
-        });
-    }
-
-    function UsuarioUTPEditar(id) {
-        var url = "/UTP/_UsuariosUTPEditar/" + id;
-        $.get(url, function (data) {
-            $('#divContenedorUsuarioUTPEditar').html(data);
-            $.validator.unobtrusive.parse('#divContenedorUsuarioUTPEditar');
-
-            $('#divModalUsuarioUTPEditar').modal('show');
-        });
-    }
-
-    function ListaValorPadreInsertar() {
-
-        //console.log('punto de control');
-        var url = "/UTP/_ListaValorPadreInsertar/";
-        $.get(url, function (data) {
-
-            //console.log(data);
-
-            $('#divContenedorListavalorPAdreCrear').html(data);
-            $.validator.unobtrusive.parse('#divContenedorListavalorPAdreCrear');
-
-            $('#Nueva-lista').modal('show');
-        }).error(function (err) {
-            console.log(err);
-            alert(err);
-        });
-
-    }
-
-
-    function cerrarModal() {
-
-        //alert('cerrarmodal');
-        //$('#divListaPadre').html('demo');
-        $('.modal.in').modal('hide');
-    }
-
-@*</script>*@

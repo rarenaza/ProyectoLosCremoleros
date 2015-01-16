@@ -230,6 +230,13 @@ namespace UTP.PortalEmpleabilidad.Logica
             return utpUsuario;
         }
 
+        public DataTable UTP_OBTENERVALORPADREEDITAR(string Cod)
+        {
+            return adUtp.UTP_OBTENERVALORPADREEDITAR(Cod);
+        }
+
+
+
         public void Insertar(UTPUsuario utpUsuario)
         {
             adUtp.Insertar(utpUsuario);
@@ -239,6 +246,17 @@ namespace UTP.PortalEmpleabilidad.Logica
         {
             adUtp.UTPINSERTAR_LISTAVALORPADRE(lista);
         }
+
+        public void UTPINSERTAR_LISTAVALORHIJO(ListaValor lista)
+        {
+            adUtp.UTPINSERTAR_LISTAVALORHIJO(lista);
+        }
+
+        public void UTPACTUALIZAR_LISTAVALORHIJO(ListaValor lista)
+        {
+            adUtp.UTPACTUALIZAR_LISTAVALORHIJO(lista);
+        }
+
 
         public void UTPACTUALIZAR_LISTAVALORPADRE(Lista lista)
         {

@@ -929,6 +929,7 @@
     <Content Include="Views\UTP\Vista_ListaValorHijo.cshtml" />
     <Content Include="Views\UTP\Vista_DatosdeListaValorPadre.cshtml" />
     <Content Include="Views\UTP\_NuevoValor.cshtml" />
+    <Content Include="Views\UTP\_NuevoValorEditar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
