@@ -87,6 +87,7 @@
     <Compile Include="Vistas\Alumno.cs" />
     <Compile Include="Vistas\AlumnoEstudio.cs" />
     <Compile Include="Vistas\Alumno\AlertasCvAlumno.cs" />
+    <Compile Include="Vistas\Alumno\VistaAlumnoHunting.cs" />
     <Compile Include="Vistas\Alumno\VistaAlumnoConocimiento.cs" />
     <Compile Include="Vistas\Alumno\VistaAlumnoEstudio.cs" />
     <Compile Include="Vistas\Alumno\VistaAlumnoExperienciaCargo.cs" />

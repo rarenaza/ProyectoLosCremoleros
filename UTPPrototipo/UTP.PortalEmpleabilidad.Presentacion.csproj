@@ -930,6 +930,7 @@
     <Content Include="Views\UTP\Vista_DatosdeListaValorPadre.cshtml" />
     <Content Include="Views\UTP\_NuevoValor.cshtml" />
     <Content Include="Views\UTP\_NuevoValorEditar.cshtml" />
+    <Content Include="Views\Empresa\_ResultadoBusquedaAvanzadaHunting.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

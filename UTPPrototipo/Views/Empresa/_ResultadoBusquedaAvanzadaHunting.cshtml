@@ -1,0 +1,58 @@
+﻿@using UTPPrototipo.Common
+@model UTP.PortalEmpleabilidad.Modelo.Vistas.Alumno.VistaAlumnoHunting
+<div class="row">
+    <div class="col-sm-7">
+        <div class="row grilla1-cabecera color-paleta3">
+            <div class="col-sm-1">Msj</div>
+            <div class="col-sm-3">Nombre</div>
+            <div class="col-sm-3">Estudio</div>
+            <div class="col-sm-2">Estado</div>
+            <div class="col-sm-2">Último Sector</div>
+            <div class="col-sm-1">Años<br />Exper.</div>
+        </div>
+        <div class="row grilla1-linea">
+            <div class="col-sm-1"><input type="checkbox" /></div>
+            <div class="col-sm-3 linea-destacada"><a href="..\Empresa\Recluta"><strong>Marcelo Alberto Perez Gomez</strong></a></div>
+            <div class="col-sm-3">Ingenieria Industrial</div>
+            <div class="col-sm-2">Bachiller</div>
+            <div class="col-sm-2">Tecnología y Software</div>
+            <div class="col-sm-1">2</div>
+        </div>
+ 
+        <br />
+    </div>
+    <div class="col-sm-5">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="input-group">
+                    <span class=" input-group-addon">
+                        Oferta
+                    </span>
+                    <select id="Lista" class="form-control">
+                        <option value="" selected>- Elija Oferta Laboral -</option>
+                        <option value="1">Jefe de Proyectos PHP</option>
+                        <option value="1">Gerente de Sericios</option>
+                        <option value="1">Gerente de Proyectos Senior</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <span class=" input-group-addon">
+                        Asunto
+                    </span>
+                    <input type="text" class="form-control" placeholder="Asunto ...">
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon">Msg</span>
+                    <textarea class="form-control" placeholder="Escriba su mensaje aqui ..." rows="5"></textarea>
+                </div>
+            </div>
+            <div class="col-md-3 fuente-pequeña">
+                <div><button type="submit">Enviar</button></div><br />
+                <div>
+                    <span style="height:20px;"><input type="checkbox"></span>
+                    <span style="height:20px;">&nbsp;&nbsp;Enviar a mi correo</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
