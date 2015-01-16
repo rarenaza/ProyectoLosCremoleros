@@ -912,7 +912,7 @@ namespace UTPPrototipo.Controllers
         public PartialViewResult DesactivarInformacionAdicionalAlumno(int IdAlumno, int IdCV, int IdInformacionAdicional)
         {
             TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
-            //entidad.Usuario = ticket.CodAlumnoUTP;
+            //entidad.Usuario = ticket.CodAla en utumnoUTP;
             lnalumnoinformacionadicional.Desactivar(IdInformacionAdicional, ticket.Usuario);
             List<AlumnoInformacionAdicional> listaalumnoinformacionadicional = new List<AlumnoInformacionAdicional>();
 

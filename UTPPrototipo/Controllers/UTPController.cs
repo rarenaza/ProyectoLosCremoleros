@@ -1833,7 +1833,7 @@ namespace UTPPrototipo.Controllers
 
         }
 
-            //AQUI LLAMO EL MODAL A EDITAR --- ESTO ES GET
+            //AQUI LLAMO EL MODAL A EDITAR Con datos--- ESTO ES GET
         public PartialViewResult _NuevoValorEditar(string id)
         {
 
@@ -1859,7 +1859,7 @@ namespace UTPPrototipo.Controllers
 
         }
 
-        //AQUÍ INSERTA LOS DATOS ---- ESTO ES SET
+        //AQUÍ Actualizo LOS DATOS ---- ESTO ES SET
         [HttpPost, ValidateAntiForgeryToken]
         public PartialViewResult _NuevoValorEditar(ListaValor objlista)
         {
@@ -1901,7 +1901,41 @@ namespace UTPPrototipo.Controllers
 
 
         }
-  
+
+        //Elimina datos de la lista de valor hijo
+        public PartialViewResult EliminarVista_ListaValorHijo(string idListaValor,int idlista)
+        {
+            
+            //ListaValor lista = new ListaValor();
+
+            lnUtp.UTPELIMINAR_LISTAVALORHIJO(idListaValor);
+
+
+            List<ListaValor> lista = new List<ListaValor>();
+
+            DataTable dtResultado = lnUtp.UTP_LISTAVALORHIJO(Convert.ToInt32(idlista));
+
+            for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
+            {
+                ListaValor objListaValor = new ListaValor();
+                objListaValor.IdLista = Convert.ToInt32(dtResultado.Rows[i]["IdLista"].ToString());
+                objListaValor.IdListaValor = dtResultado.Rows[i]["IdListaValor"].ToString();
+                objListaValor.Valor = dtResultado.Rows[i]["Valor"].ToString();
+                objListaValor.DescripcionValor = dtResultado.Rows[i]["DescripcionValor"].ToString();
+                objListaValor.Icono = dtResultado.Rows[i]["Icono"].ToString();
+                objListaValor.Peso = Convert.ToInt32(dtResultado.Rows[i]["Peso"] == DBNull.Value ? 0 : dtResultado.Rows[i]["Peso"]);
+                objListaValor.ValorUTP = dtResultado.Rows[i]["ValorUTP"].ToString();
+                objListaValor.Padre = dtResultado.Rows[i]["Padre"].ToString();
+                objListaValor.EstadoValor = dtResultado.Rows[i]["EstadoValor"].ToString();
+                lista.Add(objListaValor);
+
+            }
+
+            //return RedirectToAction("Vista_ListaValorHijo");
+            return PartialView("Vista_ListaValorHijo", lista); 
+
+        }
+
 
         public ActionResult VerDetalleAlumno(int? Id)
         {

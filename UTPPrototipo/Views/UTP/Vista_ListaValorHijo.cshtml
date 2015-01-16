@@ -1,6 +1,7 @@
 ﻿
 @model IEnumerable<UTP.PortalEmpleabilidad.Modelo.ListaValor>
 <h6>Valores</h6>
+
 <div class="row grilla1-cabecera color-paleta8">
     <div class="col-sm-1">
         ID
@@ -20,7 +21,7 @@
     <div class="col-sm-1">
         Valor UTP
     </div>
-    <div class="col-sm-2">
+    <div class="col-sm-1">
         Padre
     </div>
     <div class="col-sm-1">
@@ -29,11 +30,14 @@
     <div class="col-sm-1">
 
     </div>
+    <div class="col-sm-1">
+
+    </div>
 </div>
 
 @foreach (var item in Model)
 {
-
+  
     <div class="row grilla1-linea color-paleta8">
         <div class="col-sm-1">
             @item.IdListaValor
@@ -55,7 +59,7 @@
         <div class="col-sm-1">
             @item.ValorUTP
         </div>
-        <div class="col-sm-2">
+        <div class="col-sm-1">
             @*<a href="../UTP/ListaValor">padre</a>*@
             @item.Padre
         </div>
@@ -64,13 +68,14 @@
             @item.EstadoValor
 
         </div>
-        @*<div class="col-sm-1 fui fa-2x">
-            <a class="color-icono-paleta1">1</a> <a class="color-icono-paleta1">l</a>
-        </div>*@
-
-        <div class="col-sm-1" style="text-align:right;">
-
-            <button class="btn btn-default color-paleta8" onclick="ListaValorHijoEditar('@item.IdListaValor');">Editar</button>
+ 
+        <div class="col-sm-1 fuente-pequeña">
+            @*<button class="btn btn-default color-paleta8" onclick="ListaValorHijoEditar('@item.IdListaValor');">Editar</button>*@
+            <button class="fui fa-2x color-icono-paleta1" style="font-size:30px;border-width:0px;background-color:transparent;" onclick="ListaValorHijoEditar('@item.IdListaValor');">1</button>
+        </div>
+        <div class="col-sm-1 fuente-pequeña">
+            @*<button class="btn btn-default color-paleta8" onclick="EliminarVista_ListaValorHijo('@item.IdListaValor','@item.IdLista');">Eliminar</button>*@
+            <button class="fui fa-2x color-icono-paleta1" style="font-size:30px;border-width:0px;background-color:transparent;" onclick="EliminarVista_ListaValorHijo('@item.IdListaValor','@item.IdLista');">l</button>
         </div>
     </div>
 
@@ -79,8 +84,30 @@
 
 <div class="col-sm-12" style="text-align:right;">
 
-    <button class="btn btn-default color-paleta8" onclick="ListaValorHijoInsertar();">Nueva Lista de Valores TMP</button>
+    <button class="btn btn-default color-paleta8" onclick="ListaValorHijoInsertar();">Nueva Lista de Valores</button>
 
 
 </div>
+<script>
+    function EliminarVista_ListaValorHijo(IdListaValor, IdLista) {
 
+        try {
+            console.log('ingreso al metodo');
+            var url = "/UTP/EliminarVista_ListaValorHijo?idListaValor=" + IdListaValor + "&idLista=" + IdLista; // el url del controlador
+         
+            $.get(url, function (data) {
+                $('#divListaHijo').html(data);
+                $.validator.unobtrusive.parse('#divListaHijo');
+                alert('Eliminado con Exito');
+            });
+           
+        }
+        catch (err)
+        {
+            console.log(err);
+        }
+        
+    }
+    
+
+        </script>

@@ -24,7 +24,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
        public int Peso { get; set; }
        public string ValorUTP { get; set; }
        public string Padre { get; set; }
-           [Required(ErrorMessage = Constantes.MSJ_CAMPO_OBLIGATORIO)]
+       [Required(ErrorMessage = Constantes.MSJ_CAMPO_OBLIGATORIO)]
        public string EstadoValor { get; set; }
        public string  Creadopor { get; set; }
        public DateTime  FechaCreacion { get; set; }

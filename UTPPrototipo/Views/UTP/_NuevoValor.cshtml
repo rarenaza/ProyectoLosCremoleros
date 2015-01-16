@@ -67,7 +67,23 @@
                 </div>
             </div>
         </div>
+
         <div class="row">
+            <div class="col-sm-6">
+                <div class="input-group">
+                    <span class="input-group-addon">Estado</span>
+
+                    @Html.DropDownListFor(model => model.EstadoValor, new List<SelectListItem>{
+                    new SelectListItem() {Text = "Activo", Value="Activo"},
+                    new SelectListItem() {Text = "No Activo", Value="No Activo"}
+
+                    }, "-Seleccione-", new { @class = "form-control" })
+
+                </div>
+            </div>
+        </div>
+
+        @*<div class="row">
             <div class="col-sm-6">
                 <div class="input-group">
                     <span class="input-group-addon">Estado</span>
@@ -85,7 +101,7 @@
                     </select>
                 </div>
             </div>
-        </div>
+        </div>*@
     </div>
     <div class="modal-footer">
         <button class="btn btn-default color-paleta8">Guardar</button>

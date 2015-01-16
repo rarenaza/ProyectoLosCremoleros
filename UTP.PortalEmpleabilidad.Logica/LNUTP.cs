@@ -257,6 +257,11 @@ namespace UTP.PortalEmpleabilidad.Logica
             adUtp.UTPACTUALIZAR_LISTAVALORHIJO(lista);
         }
 
+        public void UTPELIMINAR_LISTAVALORHIJO(string id)
+        {
+            adUtp.UTPELIMINAR_LISTAVALORHIJO(id);
+        }
+
 
         public void UTPACTUALIZAR_LISTAVALORPADRE(Lista lista)
         {

@@ -16,12 +16,18 @@
                     <span class="input-group-addon">ID</span>
                     @*<input type="text" class="form-control" placeholder="Identificador de Valor (6 digitos)">*@
 
-                    @Html.TextBoxFor(model => model.IdListaValor, new { @class = "form-control", rows = "3", @placeholder = "Identificador de Valor (6 digitos)" })
+                    @Html.TextBoxFor(model => model.IdListaValor, new { @class = "form-control", rows = "3", @placeholder = "Identificador de Valor (6 digitos)", @disabled = "disabled" })
+                                     
                  
                     @Html.ValidationMessageFor(model => model.IdListaValor, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
+
+        
+
+
+
         <div class="row">
             <div class="col-sm-12">
                 <div class="input-group">
@@ -69,7 +75,35 @@
                 </div>
             </div>
         </div>
+        <div class="form-group" style="display:none">
+            @Html.LabelFor(model => model.IdListaValor, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.TextBoxFor(model => model.IdContenido, new { disabled = "disabled" })*@
+                @Html.EditorFor(model => model.IdListaValor)
+
+                @Html.ValidationMessageFor(model => model.IdListaValor)
+            </div>
+        </div>
         <div class="row">
+            <div class="col-sm-6">
+                <div class="input-group">
+                    <span class="input-group-addon">Estado</span>
+        
+                    @Html.DropDownListFor(model => model.EstadoValor, new List<SelectListItem>{
+                    new SelectListItem() {Text = "Activo", Value="Activo"},
+                    new SelectListItem() {Text = "No Activo", Value="No Activo"}
+                   
+                    },"-Seleccione-", new { @class = "form-control" })
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        @*<div class="row">
             <div class="col-sm-6">
                 <div class="input-group">
                     <span class="input-group-addon">Estado</span>
@@ -78,16 +112,25 @@
                             - Seleccionar -
                         </option>
                         <option>
+
                             Activo
                         </option>
                         <option>
                             No Activo
                         </option>
+
+
+
+
+
+
+
+
                        
                     </select>
                 </div>
             </div>
-        </div>
+        </div>*@
     </div>
 
     <div class="modal-footer">
