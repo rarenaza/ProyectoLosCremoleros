@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using UTP.PortalEmpleabilidad.Logica;
 using UTP.PortalEmpleabilidad.Modelo;
+using UTP.PortalEmpleabilidad.Modelo.Vistas.Alumno;
 using UTP.PortalEmpleabilidad.Modelo.Vistas.Empresa;
 using UTP.PortalEmpleabilidad.Modelo.Vistas.Ofertas;
 using UTPPrototipo.Common;
@@ -34,6 +35,7 @@ namespace UTPPrototipo.Controllers
         {
             return View();
         }
+
 
         [HttpPost]
         public JsonResult ListarCargo(string query)
@@ -223,8 +225,103 @@ namespace UTPPrototipo.Controllers
 
         public ActionResult Hunting()
         {
-            return View();
+                       
+            VistaAlumnoHunting utp = new VistaAlumnoHunting();
+
+            LNGeneral lngeneral = new LNGeneral();
+
+
+            //Tipo de Estudio
+
+            //Busca Lista Tipo de Estudio
+            utp.ListaTipoEstudio = lngeneral.ObtenerListaValor(7);
+            List<SelectListItem> listItemsTipoEstudio = new List<SelectListItem>();
+            foreach (ListaValor entidad in utp.ListaTipoEstudio)
+            {
+                SelectListItem item = new SelectListItem();
+                item.Text = entidad.Valor;
+                item.Value = entidad.IdListaValor.ToString();
+                listItemsTipoEstudio.Add(item);
+            }
+
+            //Estado del estudio
+
+            //Busca Lista Estado del estudio
+            utp.ListaEstadoEstudio = lngeneral.ObtenerListaValor(43);
+            List<SelectListItem> listItemEstadodelestudio = new List<SelectListItem>();
+            foreach (ListaValor entidad in utp.ListaEstadoEstudio)
+            {
+                SelectListItem item = new SelectListItem();
+                item.Text = entidad.Valor;
+                item.Value = entidad.IdListaValor.ToString();
+                listItemEstadodelestudio.Add(item);
+            }
+
+            //Sector empresarial
+
+            //Busca Lista Sector Empresarial
+            utp.ListaSectorEmpresarial = lngeneral.ObtenerListaValor(8);
+            List<SelectListItem> listItemSector = new List<SelectListItem>();
+            foreach (ListaValor entidad in utp.ListaSectorEmpresarial)
+            {
+                SelectListItem item = new SelectListItem();
+                item.Text = entidad.Valor;
+                item.Value = entidad.IdListaValor.ToString();
+                listItemSector.Add(item);
+            }
+
+            //Tipo Cargo
+
+            //Busca Lista Tipo Cargo
+            utp.ListaTipoCargo = lngeneral.ObtenerListaValor(9);
+            List<SelectListItem> listItemTipoCargo = new List<SelectListItem>();
+            foreach (ListaValor entidad in utp.ListaTipoCargo)
+            {
+                SelectListItem item = new SelectListItem();
+                item.Text = entidad.Valor;
+                item.Value = entidad.IdListaValor.ToString();
+                listItemTipoCargo.Add(item);
+            }
+
+            //Tipo Informacion Adicional
+
+            //Busca Lista Tipo informacion Adicional
+            utp.ListaInformacionAdicional = lngeneral.ObtenerListaValor(10);
+            List<SelectListItem> listItemTipoInformacionAdicional = new List<SelectListItem>();
+            foreach (ListaValor entidad in utp.ListaInformacionAdicional)
+            {
+                SelectListItem item = new SelectListItem();
+                item.Text = entidad.Valor;
+                item.Value = entidad.IdListaValor.ToString();
+                listItemTipoInformacionAdicional.Add(item);
+            }
+
+            //Lista de Combos
+
+            ViewBag.ListaTipoEstudio = listItemsTipoEstudio;
+            ViewBag.ListaEstadodelestudio = listItemEstadodelestudio;
+            ViewBag.ListaSectorEmpresarial = listItemSector;
+            ViewBag.ListaTipoCargo = listItemTipoCargo;
+            ViewBag.ListaTipoInformacionAdicional = listItemTipoInformacionAdicional;
+            return View(utp);                 
+           
         }
+
+
+        public ActionResult BusquedaSimpleHunting(VistaAlumnoHunting entidad)
+        {
+            LNGeneral lngeneral = new LNGeneral();
+            //entidad.ListaBusqueda = lngeneral.EmpresaHuntingBuscarSimple(entidad.PalabraClave == null ? "" : entidad.PalabraClave);
+
+            List<Hunting> lista = lngeneral.EmpresaHuntingBuscarSimple(entidad.PalabraClave == null ? "" : entidad.PalabraClave);
+
+            return PartialView("_ResultadoBusquedaAvanzadaHunting", lista);
+
+        }
+
+      
+
+
         public ActionResult Eventos()
         {
             return View();

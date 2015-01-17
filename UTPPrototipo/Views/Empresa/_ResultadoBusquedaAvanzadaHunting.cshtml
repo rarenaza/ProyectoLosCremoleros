@@ -1,5 +1,10 @@
 ﻿@using UTPPrototipo.Common
-@model UTP.PortalEmpleabilidad.Modelo.Vistas.Alumno.VistaAlumnoHunting
+
+@*@model List<UTP.PortalEmpleabilidad.Modelo.Vistas.Alumno.VistaAlumnoHunting>*@
+@model IEnumerable<UTP.PortalEmpleabilidad.Modelo.Hunting>
+
+
+
 <div class="row">
     <div class="col-sm-7">
         <div class="row grilla1-cabecera color-paleta3">
@@ -10,14 +15,20 @@
             <div class="col-sm-2">Último Sector</div>
             <div class="col-sm-1">Años<br />Exper.</div>
         </div>
+
+@foreach (var item in Model)
+    {
+
         <div class="row grilla1-linea">
             <div class="col-sm-1"><input type="checkbox" /></div>
-            <div class="col-sm-3 linea-destacada"><a href="..\Empresa\Recluta"><strong>Marcelo Alberto Perez Gomez</strong></a></div>
-            <div class="col-sm-3">Ingenieria Industrial</div>
-            <div class="col-sm-2">Bachiller</div>
-            <div class="col-sm-2">Tecnología y Software</div>
-            <div class="col-sm-1">2</div>
+            <div class="col-sm-3 linea-destacada"><a href="..\Empresa\Recluta"><strong>@item.Nombres @item.Apellidos</strong></a></div>
+            <div class="col-sm-3">@item.Estudios</div>
+            <div class="col-sm-2">@item.ValorEstadoEstudio</div>
+            <div class="col-sm-2">@item.ValorSectorEmpresarial</div>
+            <div class="col-sm-1">@item.AñoExperiencia</div>
         </div>
+}
+
  
         <br />
     </div>

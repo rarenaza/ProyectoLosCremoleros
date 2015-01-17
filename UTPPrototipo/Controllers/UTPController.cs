@@ -186,6 +186,8 @@ namespace UTPPrototipo.Controllers
                 listItemSector.Add(item);
             }
 
+
+
             //Lista de Combos
 
             ViewBag.ListaEstado = listItemsEstado;

@@ -61,5 +61,32 @@ namespace UTP.PortalEmpleabilidad.Datos
             return dtResultado;
         }
 
+        public DataTable EmpresaHuntingBuscarSimple(string Nombre)
+        {
+            DataTable dtResultado = new DataTable();
+
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "EmpresaHuntingBuscar";
+                cmd.Parameters.Add(new SqlParameter("@PalabraClave", Nombre));
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+                dtResultado = new DataTable();
+
+                da.Fill(dtResultado);
+
+                conexion.Close();
+            }
+
+            return dtResultado;
+        }
+
     }
 }
