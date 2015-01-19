@@ -9,6 +9,7 @@ using Novacode;
 using System.Drawing;
 using UTP.PortalEmpleabilidad.Logica;
 using System.Data;
+using System.Text;
 
 namespace UTPPrototipo.Controllers
 {
@@ -20,17 +21,17 @@ namespace UTPPrototipo.Controllers
             return View();
         }
 
-        public FileResult GenerarCV()
+        public FileResult GenerarCV(int idCV)
         {
             //1. Obtener información del alumno.
-            int idCV = 1; //Demo
+            //int idCV = 3; //Demo
 
             LNPlantillaCV lnPlantilla = new LNPlantillaCV();
             DataSet dsResultado = lnPlantilla.ObtenerDatosParaPlantilla(idCV);
 
             MemoryStream stream = new MemoryStream();
 
-            using (FileStream fileStream = System.IO.File.OpenRead(Server.MapPath("~/Plantillas/PlantillaVER2.docx")))
+            using (FileStream fileStream = System.IO.File.OpenRead(Server.MapPath("~/Plantillas/PlantillaVER3.docx")))
             {
                 stream.SetLength(fileStream.Length);
                 fileStream.Read(stream.GetBuffer(), 0, (int)fileStream.Length);
@@ -56,29 +57,34 @@ namespace UTPPrototipo.Controllers
 
                 //Estudios
 
-                DataTable dtEstudios = dsResultado.Tables[1];
-                DataTable dtExperiencia = dsResultado.Tables[2];
-                DataTable dtInfoAdicional = dsResultado.Tables[3];
+                //Se obtiene las tablas que vienen en el dataset.
+                DataTable dtEstudios = dsResultado.Tables[1]; //SQL
+                DataTable dtExperiencia = dsResultado.Tables[2]; //SQL
+                DataTable dtInfoAdicional = dsResultado.Tables[3]; //SQL
 
-                //1. Se completa la información de estudios:
-                Table tblTempEstudios = doc.Tables[1];
-                Table tblTempInfoAdicional = doc.Tables[3];
+                //1. Se completa la información de estudios. Se guarda en temporal para obtener el diseño en el Word y no se pierda el orden de las tablas al insertar filas en éstas.
+                Table tblTempEstudios = doc.Tables[1]; //Plantilla Word
+                Table tblTempExperiencia = doc.Tables[2]; //Plantilla Word
+                Table tblTempInfoAdicional = doc.Tables[3]; //Plantilla Word
 
                 Table tblEstudios = tblTempEstudios.InsertTableAfterSelf(dtEstudios.Rows.Count, 2);
-                //Table tblInfoAdicional = tblTempEstudios.InsertTableAfterSelf(dtInfoAdicional.Rows.Count, 1);
-                Table tblInfoAdicional = tblTempEstudios.InsertTableAfterSelf(1, 1); //Se inserta al menos una fila
+                Table tblExperiencia = tblTempExperiencia.InsertTableAfterSelf(dtExperiencia.Rows.Count, 2);
+                Table tblInfoAdicional = tblTempInfoAdicional.InsertTableAfterSelf(dtInfoAdicional.Rows.Count, 1); //Se inserta las filas y columnas.
 
+                //Se pasa el diseño del word a la nueva tabla.
                 tblEstudios.Design = tblTempEstudios.Design;
+                tblExperiencia.Design = tblTempEstudios.Design;
                 tblInfoAdicional.Design = tblTempInfoAdicional.Design;
                 //tblEstudios.AutoFit = AutoFit.ColumnWidth;
 
                 //Se recorre la tabla de estudios y se completa la data:
+                #region Se recorre la tabla de estudios y se completa la data:
                 for (int fila = 0; fila <= tblEstudios.RowCount - 1; fila++)
-                {
-                    for (int celda = 0; celda <= tblEstudios.Rows[fila].Cells.Count-1; celda++)
+                {                    
+                    for (int celda = 0; celda <= tblEstudios.Rows[fila].Cells.Count - 1; celda++)
                     {
                         Paragraph cell_paragraph = tblEstudios.Rows[fila].Cells[celda].Paragraphs[0];
-                        
+
                         string institucion = Convert.ToString(dtEstudios.Rows[fila]["Institucion"]);
                         string estudio = Convert.ToString(dtEstudios.Rows[fila]["Estudio"]);
                         int fechaInicioMes = Convert.ToInt32(dtEstudios.Rows[fila]["FechaInicioMes"]);
@@ -86,11 +92,11 @@ namespace UTPPrototipo.Controllers
                         int fechaFinMes = Convert.ToInt32(dtEstudios.Rows[fila]["FechaFinMes"]);
                         int fechaFinAno = Convert.ToInt32(dtEstudios.Rows[fila]["FechaFinAno"]);
 
-                        string periodo = ConvertirMes(fechaInicioMes) + fechaInicioAno.ToString().Substring(2, 2) + "-" + ConvertirMes(fechaFinMes) + fechaFinAno.ToString().Substring(2, 2);
+                        string periodo = ConvertirMes(fechaInicioMes) + fechaInicioAno.ToString().Substring(2, 2) + " - " + ConvertirMes(fechaFinMes) + fechaFinAno.ToString().Substring(2, 2);                       
 
                         if (celda == 0)
                         {
-                            tblEstudios.Rows[fila].Cells[celda].Width = 100;
+                            tblEstudios.Rows[fila].Cells[celda].Width = 120;
                             cell_paragraph.Append(periodo);
                             cell_paragraph.Font(new FontFamily("Arial")).FontSize(9);
                         }
@@ -103,57 +109,125 @@ namespace UTPPrototipo.Controllers
                                 cell_paragraph.Font(new FontFamily("Arial")).FontSize(9).Bold();
                                 cell_paragraph.AppendLine(estudio);
                                 cell_paragraph.Font(new FontFamily("Arial")).FontSize(9);
-                                cell_paragraph.AppendLine();                                
+                                cell_paragraph.AppendLine();
                             }
                             else
                                 cell_paragraph.InsertText("no existen datos", false);
                     }
                 }
+                #endregion
 
-                //Se recorre la tabla de informacion adicional y se completa los datos:
+                #region Se recorre la tabla de experiencia (WORD) y se completa los datos:
+
+                for (int fila = 0; fila <= tblExperiencia.RowCount - 1; fila++)
+                {
+                    for (int celda = 0; celda <= tblExperiencia.Rows[fila].Cells.Count - 1; celda++)
+                    {
+                        Paragraph cell_paragraph = tblExperiencia.Rows[fila].Cells[celda].Paragraphs[0];
+
+                        if (fila == 0) //Se agrega un salto de línea en cada celda de la fila.
+                        {
+                            cell_paragraph.AppendLine();
+                        }
+
+                        //Si es la primera celda de la fila =>
+                        if (celda == 0)
+                        {
+                            int fechaInicioMes = Convert.ToInt32(dtExperiencia.Rows[fila]["FechaInicioCargoMes"]);
+                            int fechaInicioAno = Convert.ToInt32(dtExperiencia.Rows[fila]["FechaInicioCargoAno"]);
+                            int fechaFinMes = Convert.ToInt32(dtExperiencia.Rows[fila]["FechaFinCargoMes"]);
+                            int fechaFinAno = Convert.ToInt32(dtExperiencia.Rows[fila]["FechaFinCargoAno"]);
+
+                            //Se arma el texto del periodo.
+                            string periodo = ConvertirMes(fechaInicioMes) + fechaInicioAno.ToString().Substring(2, 2) + " - " + ConvertirMes(fechaFinMes) + fechaFinAno.ToString().Substring(2, 2);
+
+                            tblExperiencia.Rows[fila].Cells[celda].Width = 120;  //Se coloca el ancho de la celda.
+                            cell_paragraph.Append(periodo); //Se indica el valor.
+                            cell_paragraph.Font(new FontFamily("Arial")).FontSize(9); //Se establece el formato de la celda.
+                        }
+                        else
+                            if (celda == 1)
+                            {
+                                string empresa = Convert.ToString(dtExperiencia.Rows[fila]["Empresa"]);
+                                string descripcionEmpresa = Convert.ToString(dtExperiencia.Rows[fila]["DescripcionEmpresa"]);
+                                string ciudad = Convert.ToString(dtExperiencia.Rows[fila]["Ciudad"]);
+                                string pais = Convert.ToString(dtExperiencia.Rows[fila]["PaisDescripcion"]);
+                                string cargo = Convert.ToString(dtExperiencia.Rows[fila]["NombreCargo"]);
+                                string descripcionCargo = Convert.ToString(dtExperiencia.Rows[fila]["DescripcionCargo"]);
+
+                                tblExperiencia.Rows[fila].Cells[celda].Width = 500; //Se coloca el ancho.                                
+                                cell_paragraph.Append(empresa + " (" + ciudad + " - " + pais + ")");
+                                cell_paragraph.Font(new FontFamily("Arial")).FontSize(9).Bold();
+
+                                cell_paragraph.AppendLine(descripcionEmpresa);
+                                cell_paragraph.Font(new FontFamily("Arial")).FontSize(9);
+
+                                cell_paragraph.AppendLine(cargo);
+                                cell_paragraph.Font(new FontFamily("Arial")).FontSize(9);
+
+                                cell_paragraph.AppendLine(descripcionCargo);
+                                cell_paragraph.Font(new FontFamily("Arial")).FontSize(9);
+
+                                cell_paragraph.AppendLine(); //Salto de línea para separar los cargos.
+                            }
+                            //else
+                            //    cell_paragraph.InsertText("no existen datos", false);
+                    }
+                }
+
+                #endregion
+
+                #region Se recorre la tabla de informacion adicional y se completa los datos:
                 for (int fila = 0; fila <= tblInfoAdicional.RowCount - 1; fila++)
                 {
+                    //Actualmente sólo va a haber una columna en esta tabla. Este for sólo va a recorrer una vez.
                     for (int celda = 0; celda <= tblInfoAdicional.Rows[fila].Cells.Count - 1; celda++)
                     {
                         Paragraph cell_paragraph = tblInfoAdicional.Rows[fila].Cells[celda].Paragraphs[0];
 
-                        string tipoConocimiento = "tipoConocimiento"; // Convert.ToString(dtInfoAdicional.Rows[fila]["TipoConocimientoDescripcion"]);
-                        string conocimiento = "conocimiento"; //Convert.ToString(dtInfoAdicional.Rows[fila]["Conocimiento"]);
-                        string nivelConocimiento = "nivelConocimiento"; //Convert.ToString(dtInfoAdicional.Rows[fila]["NivelConocimientoDescripcion"]);
-                        string pais = "pais"; //Convert.ToString(dtInfoAdicional.Rows[fila]["PaisDescripcion"]);
-                        string ciudad = "ciudad"; //Convert.ToString(dtInfoAdicional.Rows[fila]["Ciudad"]);
-                        string institucionEstudio = "institucionEstudio"; //Convert.ToString(dtInfoAdicional.Rows[fila]["InstituciónDeEstudio"]);
-                        string aniosExperiencia = "aniosExperiencia"; //Convert.ToString(dtInfoAdicional.Rows[fila]["AñosExperiencia"]);
+                        //Se obtiene la data de la tabla que viene de la BD.
+                        //string tipoConocimiento = "tipoConocimiento"; // Convert.ToString(dtInfoAdicional.Rows[fila]["TipoConocimientoDescripcion"]);
+                        string conocimiento = Convert.ToString(dtInfoAdicional.Rows[fila]["Conocimiento"]);
+                        string nivelConocimientoDescripcion = Convert.ToString(dtInfoAdicional.Rows[fila]["NivelConocimientoDescripcion"]);
+                        string fechaDesde = Convert.ToString(dtInfoAdicional.Rows[fila]["FechaConocimientoDesdeAno"]);
+                        string fechaHasta = Convert.ToString(dtInfoAdicional.Rows[fila]["FechaConocimientoHastaAno"]);
+                        //string pais = "pais"; //Convert.ToString(dtInfoAdicional.Rows[fila]["PaisDescripcion"]);
+                        //string ciudad = "ciudad"; //Convert.ToString(dtInfoAdicional.Rows[fila]["Ciudad"]);
+                        string institucionEstudio = Convert.ToString(dtInfoAdicional.Rows[fila]["InstituciónDeEstudio"]);
+                        //string aniosExperiencia = "aniosExperiencia"; //Convert.ToString(dtInfoAdicional.Rows[fila]["AñosExperiencia"]);
 
-                        cell_paragraph.Append(tipoConocimiento);
-                        cell_paragraph.Font(new FontFamily("Arial")).FontSize(9).Bold();
-                        cell_paragraph.AppendLine(conocimiento);
-                        cell_paragraph.Font(new FontFamily("Arial")).FontSize(9);
-                        cell_paragraph.AppendLine(nivelConocimiento);
-                        cell_paragraph.Font(new FontFamily("Arial")).FontSize(9);
-                        cell_paragraph.AppendLine(pais);
-                        cell_paragraph.Font(new FontFamily("Arial")).FontSize(9);
-                        cell_paragraph.AppendLine(ciudad);
-                        cell_paragraph.Font(new FontFamily("Arial")).FontSize(9);
-                        cell_paragraph.AppendLine(institucionEstudio);
-                        cell_paragraph.Font(new FontFamily("Arial")).FontSize(9);
-                        cell_paragraph.AppendLine(aniosExperiencia);
-                        cell_paragraph.Font(new FontFamily("Arial")).FontSize(9);
-                        cell_paragraph.AppendLine();        
+                        //Se arma la cadena de cada fila en la tabla de Información adicional.
+                        StringBuilder infoAdicional = new StringBuilder();
+                        infoAdicional.Append(conocimiento + " ");
+                        infoAdicional.Append(nivelConocimientoDescripcion + ", ");
+                        infoAdicional.Append(fechaDesde + "-");
+                        infoAdicional.Append(fechaHasta + ". ");
+                        infoAdicional.Append(institucionEstudio + ".");
+
+                        tblInfoAdicional.Rows[fila].Cells[celda].Width = 600;                        
+                        cell_paragraph.AppendLine(infoAdicional.ToString());
+                        cell_paragraph.Font(new FontFamily("Arial")).FontSize(9); //Se da formato a la nueva fila.
+
+                        //cell_paragraph.AppendLine(nivelConocimientoDescripcion);
+                        //cell_paragraph.Font(new FontFamily("Arial")).FontSize(9);
+                        //cell_paragraph.AppendLine(fechaDesde);
+                        //cell_paragraph.Font(new FontFamily("Arial")).FontSize(9);
+                        //cell_paragraph.AppendLine(fechaHasta);
+                        //cell_paragraph.Font(new FontFamily("Arial")).FontSize(9);
+                        //cell_paragraph.AppendLine(institucionEstudio);
+                        //cell_paragraph.Font(new FontFamily("Arial")).FontSize(9);
+                      
+                        cell_paragraph.AppendLine();
                     }
                 }
-
+                #endregion
+                //Se recorre la tabla de informacion adicional y se completa los datos:
+                
                 //Se eliminal las tablas temporales:
                 tblTempEstudios.Remove();
+                tblTempExperiencia.Remove();
                 tblTempInfoAdicional.Remove();
-
-               //2. Se completa la experiencia.
-               
-
-               //3. Se completa la información adicional
-               
-               
-
+                                            
                doc.Save();               
             
             }

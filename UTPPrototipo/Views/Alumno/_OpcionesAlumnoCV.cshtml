@@ -36,8 +36,8 @@
                     </span>
                 </div>
                 <div class="col-sm-1">
-                    <span class="fuente-pequeña">
-                        <a href="#">Descargar</a>
+                    <span class="fuente-pequeña">                       
+                        @Html.ActionLink("Descargar", "GenerarCV", "Plantilla", new { idCV = Model.IdCV }, null)
                     </span>
                 </div>
                 <div class="col-sm-2" style="text-align:center;border-left:solid;border-left-width:thin;border-left-color:rgb(210, 210, 210)">
