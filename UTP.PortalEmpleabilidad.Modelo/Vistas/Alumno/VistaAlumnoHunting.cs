@@ -28,7 +28,7 @@ namespace UTP.PortalEmpleabilidad.Modelo.Vistas.Alumno
         public string Conocimiento { get; set; }
         public string Distrito { get; set; }
         public List<AlumnoCV> ListaAlumnos { get; set; }
-
+        public string NombreCargo { get; set; }
 
         public int IdAlumno { get; set; }
         public string Nombres { get; set; }
@@ -36,7 +36,7 @@ namespace UTP.PortalEmpleabilidad.Modelo.Vistas.Alumno
         public string Estudios { get; set; }
         public string ValorEstadoEstudio { get; set; }
         public string ValorSectorEmpresarial { get; set; }
-        public string AñoExperiencia { get; set; }
+        public int AnosExperiencia { get; set; }
 
         public List<Hunting> ListaBusqueda { get; set; }
     }
