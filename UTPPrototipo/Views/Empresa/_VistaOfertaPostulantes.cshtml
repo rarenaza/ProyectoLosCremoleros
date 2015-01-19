@@ -49,11 +49,11 @@
             <br /><br />
 
             <!--Cabecera-->
-            <div class="row">
+            <div class="row grilla1-cabecera color-paleta2">
                 <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     @*<span class="fa fa-1x fa-arrow-down"></span>*@
-                    <a href="#"><strong> Fase</strong></a>
+                    <a href="#" style="color:white;"><strong> Fase</strong></a>
                 </div>
                 <div class="col-sm-3">
                     @*<a href="#"><strong>Fecha de <br />Postulación</strong></a>*@
@@ -70,15 +70,15 @@
                     }
                     <label id="colFecha">Fecha de <br />Postulación</label>
                 </div>
-                <div class="col-sm-4"><a href="#"><strong>Nombre</strong></a></div>
-                <div class="col-sm-2"><a href="#"><strong>Cump.</strong></a></div>
+                <div class="col-sm-4"><a href="#" style="color:white;"><strong>Nombre</strong></a></div>
+                <div class="col-sm-2"><a href="#" style="color:white;"><strong>Cump.</strong></a></div>
             </div>
             <!--Detalle-->
             @for (int i = 0; i < Model.Count(); i++)
             {
                 @Html.HiddenFor(m => m[i].IdOferta)
                 @Html.HiddenFor(m => m[i].IdOfertaPostulante)
-                <div class="row">
+                <div class="row grilla1-linea">
                     <div class="col-sm-1">
                         @*<input type="checkbox" />*@
                         @Html.CheckBoxFor(m => m[i].Seleccionado)
@@ -97,9 +97,24 @@
                     </div>
                     <div class="col-sm-2">
                         <div class="progress">
-                            <div class="progress-bar progress-bar-success progress-bar" role="progressbar" aria-valuenow="@Model[i].NivelDeMatch" aria-valuemin="0" aria-valuemax="100" style="width:90%;">
-                                @Model[i].NivelDeMatch
+                            @if (@Model[i].NivelDeMatch < 60) 
+                            { 
+                            <div class="progress-bar progress-bar-danger progress-bar" role="progressbar" aria-valuenow="@Model[i].NivelDeMatch" aria-valuemin="0" aria-valuemax="100" style="width:@Model[i].NivelDeMatch%;">
+                                @Model[i].NivelDeMatch%
                             </div>
+                            }
+                            @if (@Model[i].NivelDeMatch >= 60 && @Model[i].NivelDeMatch < 80)
+                            {
+                                <div class="progress-bar progress-bar-warning progress-bar" role="progressbar" aria-valuenow="@Model[i].NivelDeMatch" aria-valuemin="0" aria-valuemax="100" style="width:@Model[i].NivelDeMatch%;">
+                                    @Model[i].NivelDeMatch%
+                                </div>
+                            }
+                            @if (@Model[i].NivelDeMatch >= 80 )
+                            {
+                                <div class="progress-bar progress-bar-success progress-bar" role="progressbar" aria-valuenow="@Model[i].NivelDeMatch" aria-valuemin="0" aria-valuemax="100" style="width:@Model[i].NivelDeMatch%;">
+                                    @Model[i].NivelDeMatch%
+                                </div>
+                            }
                         </div>
                     </div>
                 </div>

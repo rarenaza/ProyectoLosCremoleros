@@ -20,7 +20,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         [Required(ErrorMessage = Constantes.MSJ_CAMPO_OBLIGATORIO)]
         public string CargoOfrecido { get; set; }
         public string UsuarioPropietarioEmpresa { get; set; }
-        
+        [Required(ErrorMessage = Constantes.MSJ_CAMPO_OBLIGATORIO)]
         public string Funciones { get; set; }
         public string Competencias { get; set; }
         public string  EstadoOferta { get; set; }

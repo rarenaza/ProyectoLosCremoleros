@@ -243,6 +243,8 @@
     <Content Include="Content\imagen\7.jpg" />
     <Content Include="Content\imagen\8.jpg" />
     <Content Include="Content\imagen\firmabeatriz.png" />
+    <Content Include="Content\jquery-ui.css" />
+    <Content Include="Content\jquery-ui.min.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />

@@ -208,7 +208,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                 SqlCommand cmd = new SqlCommand();
 
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "Oferta_ListarUltimosAlumno";
+                cmd.CommandText = "Oferta_ListarUltimosAlumno2";
                 cmd.Parameters.Add(new SqlParameter("@IdAlumno", SqlDbType.Int)).Value = IdAlumno;
                 cmd.Connection = conexion;
 
