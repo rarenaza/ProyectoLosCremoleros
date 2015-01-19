@@ -92,6 +92,8 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public const string MENSAJES_EMPRESA_EVENTO = "EMPRESA_EVENTO";
         public const string MENSAJES_ALUMNO_EVENTO = "ALUMNO_EVENTO";
         public const string MENSAJES_UTP_EVENTO = "UTP_EVENTO";
+        public const string MENSAJES_EMPRESA_HUNTING = "EMPRESA_HUNTING";
+
         #endregion
     }
 }
