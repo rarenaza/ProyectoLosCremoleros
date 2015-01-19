@@ -14,7 +14,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string Estudios { get; set; }
         public string ValorEstadoEstudio { get; set; }
         public string ValorSectorEmpresarial { get; set; }
-        public string AñoExperiencia { get; set; }
+        public int TotalMesesExperiencia { get; set; }
     }
 
 }

@@ -33,7 +33,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 vista.Estudios = dtResultado.Rows[i]["Estudio"].ToString();
                 vista.ValorEstadoEstudio = dtResultado.Rows[i]["ValorEstadoEstudio"].ToString();
                 vista.ValorSectorEmpresarial = dtResultado.Rows[i]["ValorSectorEmpresarial"].ToString();
-                //vista.AñoExperiencia = dtResultado.Rows[i]["AñoExperiencia"].ToString();
+                vista.TotalMesesExperiencia = Convert.ToInt32(dtResultado.Rows[i]["TotalMesesExperiencia"]);
 
                 listaEjemplo.Add(vista);
             }
@@ -41,6 +41,32 @@ namespace UTP.PortalEmpleabilidad.Logica
             return listaEjemplo;
         }
 
+        public List<Hunting> EmpresaHuntingBuscarAvanzada(string TipoDeEstudio, string Estudio, string EstadoEstudio,
+            string SectorEmpresarial, int AnosExperiencia, string NombreCargo, string TipoInformacionAdicional, string Conocimiento, string Distrito)
+        {
+            List<Hunting> listaEjemplo = new List<Hunting>();
+
+
+            DataTable dtResultado = adGeneral.EmpresaHuntingBuscarAvanzada(TipoDeEstudio,  Estudio,  EstadoEstudio,
+             SectorEmpresarial,  AnosExperiencia,  NombreCargo,  TipoInformacionAdicional,  Conocimiento,  Distrito);
+
+            for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
+            {
+                Hunting vista = new Hunting();
+
+                vista.IdAlumno = Convert.ToInt32(dtResultado.Rows[i]["IdAlumno"]);
+                vista.Nombres = dtResultado.Rows[i]["Nombres"].ToString();
+                vista.Apellidos = dtResultado.Rows[i]["Apellidos"].ToString();
+                vista.Estudios = dtResultado.Rows[i]["Estudio"].ToString();
+                vista.ValorEstadoEstudio = dtResultado.Rows[i]["ValorEstadoEstudio"].ToString();
+                vista.ValorSectorEmpresarial = dtResultado.Rows[i]["ValorSectorEmpresarial"].ToString();
+                vista.TotalMesesExperiencia = Convert.ToInt32(dtResultado.Rows[i]["TotalMesesExperiencia"]);
+
+                listaEjemplo.Add(vista);
+            }
+
+            return listaEjemplo;
+        }
 
         public List<ListaValor> ObtenerListaValor(int idLista)
         {

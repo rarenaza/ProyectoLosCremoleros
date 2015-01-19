@@ -88,5 +88,42 @@ namespace UTP.PortalEmpleabilidad.Datos
             return dtResultado;
         }
 
+        public DataTable EmpresaHuntingBuscarAvanzada(string TipoDeEstudio, string Estudio, string EstadoEstudio,
+            string SectorEmpresarial, int AnosExperiencia, string NombreCargo, string TipoInformacionAdicional, string Conocimiento, string Distrito)
+        {
+            DataTable dtResultado = new DataTable();
+
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "EmpresaHuntingBuscarAvanzado";
+                cmd.Parameters.Add(new SqlParameter("@TipoDeEstudio", TipoDeEstudio));
+                cmd.Parameters.Add(new SqlParameter("@Estudio", Estudio));
+                cmd.Parameters.Add(new SqlParameter("@EstadoEstudio", EstadoEstudio));
+                cmd.Parameters.Add(new SqlParameter("@SectorEmpresarial", SectorEmpresarial));
+                cmd.Parameters.Add(new SqlParameter("@AnosExperiencia", AnosExperiencia));
+                cmd.Parameters.Add(new SqlParameter("@NombreCargo", NombreCargo));
+                cmd.Parameters.Add(new SqlParameter("@TipoInformacionAdicional", TipoInformacionAdicional));
+                cmd.Parameters.Add(new SqlParameter("@Conocimiento", Conocimiento));
+                cmd.Parameters.Add(new SqlParameter("@Distrito", Distrito));
+
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+                dtResultado = new DataTable();
+
+                da.Fill(dtResultado);
+
+                conexion.Close();
+            }
+
+            return dtResultado;
+        }
+
     }
 }

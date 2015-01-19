@@ -21,11 +21,11 @@
 
         <div class="row grilla1-linea">
             <div class="col-sm-1"><input type="checkbox" /></div>
-            <div class="col-sm-3 linea-destacada"><a href="..\Empresa\Recluta"><strong>@item.Nombres @item.Apellidos</strong></a></div>
+            <div class="col-sm-3 linea-destacada"><strong>@item.Nombres @item.Apellidos</strong></div>
             <div class="col-sm-3">@item.Estudios</div>
             <div class="col-sm-2">@item.ValorEstadoEstudio</div>
             <div class="col-sm-2">@item.ValorSectorEmpresarial</div>
-            <div class="col-sm-1">@item.AñoExperiencia</div>
+            <div class="col-sm-1">@(item.TotalMesesExperiencia/12)</div>
         </div>
 }
 

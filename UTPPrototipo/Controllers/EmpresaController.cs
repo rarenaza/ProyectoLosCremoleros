@@ -315,11 +315,28 @@ namespace UTPPrototipo.Controllers
 
             List<Hunting> lista = lngeneral.EmpresaHuntingBuscarSimple(entidad.PalabraClave == null ? "" : entidad.PalabraClave);
 
-            return PartialView("_ResultadoBusquedaAvanzadaHunting", lista);
+            return PartialView("_ResultadoBusquedaHunting", lista);
 
         }
 
-      
+        public ActionResult BusquedaAvanzadaHunting(VistaAlumnoHunting entidad)
+        {
+            LNGeneral lngeneral = new LNGeneral();
+            //entidad.ListaBusqueda = lngeneral.EmpresaHuntingBuscarSimple(entidad.PalabraClave == null ? "" : entidad.PalabraClave);
+
+            List<Hunting> lista = lngeneral.EmpresaHuntingBuscarAvanzada(entidad.IdTipoEstudio == null ? "" : entidad.IdTipoEstudio,
+                entidad.Estudios == null ? "" : entidad.Estudios,
+                entidad.IdEstadoEstudio == null ? "" : entidad.IdEstadoEstudio,
+                entidad.IdSectorEmpresarial == null ? "" : entidad.IdSectorEmpresarial,
+                entidad.AnosExperiencia,
+                entidad.NombreCargo == null ? "" : entidad.NombreCargo,
+                entidad.IdInformacionAdicional == null ? "" : entidad.IdInformacionAdicional,
+                entidad.Conocimiento == null ? "" : entidad.Conocimiento,
+                entidad.Distrito == null ? "" : entidad.Distrito);
+
+            return PartialView("_ResultadoBusquedaHunting", lista);
+
+        }
 
 
         public ActionResult Eventos()

@@ -30,8 +30,8 @@
                         </td>
                         <td style="text-align:right;">
                             <span class="col-md-6 btn-group">
-                                @*<button class="btn btn-default fa fa-search" id="buscar"></button>*@
-                                <span class="fui" style=" font-size:30px;cursor:pointer" id="buscar">(</span>
+                                <button type="button" class="btn btn-default fa fa-search color-paleta3" id="buscar"></button>
+                                @*<span class="fui" style=" font-size:30px;cursor:pointer" id="buscar">(</span>*@
                             </span>
                         </td>
                     </tr>
@@ -39,7 +39,7 @@
             </div>
         </div>
     </div>
-    }
+    @*}*@
     <div class="panel panel-default">
         <div class="panel-heading" role="tab" id="CabeceraColapsaBusquedaAvanzada" style="padding: 2px 2px 2px 6px;">
             <h5 class="panel-title">
@@ -58,7 +58,7 @@
                         </div>
                         <div class="input-group fuente-pequeña">
                             <span class="input-group-addon">Estudio</span>
-                            @Html.TextBoxFor(model => model.EstudioRequerido, new { @class = "form-control fuente-pequeña", @placeholder = "Estudio Requerido" })
+                            @Html.TextBoxFor(model => model.Estudios, new { @class = "form-control fuente-pequeña", @placeholder = "Estudio Requerido", @Id = "Estudios" })
                         </div>
                         <div class="input-group fuente-pequeña">
                             <span class="input-group-addon">Estado</span>
@@ -70,14 +70,17 @@
                             <span class="input-group-addon">Sector</span>
                             @Html.DropDownListFor(model => model.IdSectorEmpresarial, new SelectList(ViewBag.ListaSectorEmpresarial, "Value", "Text"), "- Seleccionar Sector Empresarial -", new { @class = "form-control", @Id = "IdSectorEmpresarial" })
                         </div>
-
                         <div class="input-group fuente-pequeña">
                             <span class="input-group-addon">Experiencia</span>
-                            @Html.TextBoxFor(model => model.AniosExperiencia, new { @class = "form-control fuente-pequeña", @placeholder = "Años de Experiencia" })
+                            @Html.TextBoxFor(model => model.AnosExperiencia, new { @class = "form-control fuente-pequeña", @placeholder = "Años de Experiencia", @Id = "AnosExperiencia" })
                         </div>
+                        @*<div class="input-group fuente-pequeña">
+                            <span class="input-group-addon">Tipo<br />Cargo</span>
+                            @Html.DropDownListFor(model => model.IdTipoCargo, new SelectList(ViewBag.ListaTipoCargo, "Value", "Text"), "- Seleccionar Tipo de Cargo -", new { @class = "form-control", @Id = "IdTipoCargo" })
+                        </div>*@
                         <div class="input-group fuente-pequeña">
                             <span class="input-group-addon">Cargo</span>
-                            @Html.DropDownListFor(model => model.IdTipoCargo, new SelectList(ViewBag.ListaTipoCargo, "Value", "Text"), "- Seleccionar Tipo de Cargo -", new { @class = "form-control", @Id = "IdTipoCargo" })
+                            @Html.TextBoxFor(model => model.NombreCargo, new { @class = "form-control fuente-pequeña", @placeholder = "Nombre del Cargo", @Id = "NombreCargo" })
                         </div>
                     </div>
 
@@ -88,14 +91,14 @@
                         </div>
                         <div class="input-group fuente-pequeña">
                             <span class="input-group-addon">Conoci-<br />miento</span>
-                            @Html.TextBoxFor(model => model.Conocimiento, new { @class = "form-control fuente-pequeña", @placeholder = "Conocmiento" })
+                            @Html.TextBoxFor(model => model.Conocimiento, new { @class = "form-control fuente-pequeña", @placeholder = "Conocmiento específico: ej. SAP", @Id = "Conocimiento" })
                         </div>
                         <div class="input-group fuente-pequeña">
                             <span class="input-group-addon">Distrito</span>
-                            <input type="text" class="form-control" placeholder="Distrito donde vive">
+                            @Html.TextBoxFor(model => model.Distrito, new { @class = "form-control fuente-pequeña", @placeholder = "Distrito donde vive", @Id = "Distrito" })
                         </div>
                         <div>
-                            <button class="btn btn-default fa fa-search" id="buscaravanzada"></button>
+                            <button type="button" class="btn btn-default fa fa-search color-paleta3" id="buscaravanzada"></button>
                         </div>
 
                     </div>
@@ -103,14 +106,14 @@
             </div>
         </div>
        
-        <div id="resultadobusqueda">
-           
-        </div>
+        
    
    
 
     </div>
-    
+    <div id="resultadobusqueda">
+
+    </div>
     
 
    
@@ -131,16 +134,30 @@
 
         };
         Cargar("resultadobusqueda", "/Empresa/BusquedaSimpleHunting", Alumno);
-
-
     });
-    $(document).ready(function () {
+
+    $('#buscaravanzada').click(function () {
+        debugger;
         var Alumno = {
-            PalabraClave: $('#PalabraClave').val(),
-
+            IdTipoEstudio: $('#IdTipoEstudio').val(),
+            Estudios: $('#Estudios').val(),
+            IdEstadoEstudio: $('#IdEstadoEstudio').val(),
+            IdEstadoEstudio: $('#IdEstadoEstudio').val(),
+            AnosExperiencia: $('#AnosExperiencia').val(),
+            NombreCargo: $('#NombreCargo').val(),
+            IdInformacionAdicional: $('#IdInformacionAdicional').val(),
+            Conocimiento: $('#Conocimiento').val(),
+            Distrito: $('#Distrito').val(),
         };
-        Cargar("resultadobusqueda", "/Empresa/BusquedaSimpleHunting", Alumno);
+        Cargar("resultadobusqueda", "/Empresa/BusquedaAvanzadaHunting", Alumno);
     });
+    //$(document).ready(function () {
+    //    var Alumno = {
+    //        PalabraClave: $('#PalabraClave').val(),
+
+    //    };
+    //    Cargar("resultadobusqueda", "/Empresa/BusquedaSimpleHunting", Alumno);
+    //});
 
     function Cargar(id, link, entidad) {
         //debugger;
