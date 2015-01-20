@@ -10,6 +10,7 @@
         @Html.HiddenFor(m => m.IdOferta)
         @Html.HiddenFor(m => m.IdOfertaInformacionAdicional)
 
+   
         <div class="row">
             <div class="col-md-12">
                 <div class="input-group fuente-pequeña">
@@ -23,7 +24,7 @@
             <div class="col-md-12">
                 <div class="input-group fuente-pequeña">
                     <span class="input-group-addon">Nombre</span>                    
-                    @Html.TextBoxFor(m => m.Conocimiento, new { @class = "form-control", @placeholder = "Nombre del Conocimiento" })
+                    @Html.TextBoxFor(m => m.Conocimiento, new { @class = "form-control", @placeholder = "Nombre del Conocimiento", @Id = "Conocimientos"})
                     @Html.ValidationMessageFor(m => m.Conocimiento, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -43,9 +44,11 @@
                 </div>
             </div>
         </div>
+  
         <div class="row">
             <div class="col-sm-12 text-right">
                 <button type="submit" class="btn btn-default color-paleta4 fuente-pequeña" style="color: white; margin-bottom: 10px;">
+                 
                     Grabar Información Adicional
                 </button>                
             </div>
@@ -54,3 +57,20 @@
     <div class="modal-footer">
     </div>
 </div>
+
+
+<script>
+
+    $(document).ready(function () {
+        $("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta4 color-paleta5").addClass("color-paleta3");
+        
+        //se obtiene el valor del combo
+        var codigoTipoConocimiento = $('#TipoConocimientoIdListaValor').val();
+
+        //ESE ES LA CAJA, LA ACCION Y EL CONTROLADOR
+        AutoCompleteTextDemo('#Conocimientos', '@Url.Action("ListarDatosEspecificos", "OfertaInformacionAdicional")' + '?codigoTipo=' + codigoTipoConocimiento, '#Conocimientos', '#TipoConocimientoIdListaValor', 'option', 'appendTo', '.eventInsForm');
+    });
+
+
+
+</script>

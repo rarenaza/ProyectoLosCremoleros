@@ -5,9 +5,9 @@
         <h4 class="modal-title" id="myModalLabel">Nuevo Valor de Lista</h4>
     </div>
 
-    @*@Html.HiddenFor(m => m.IdLista)
-    @Html.ValidationSummary(true)*@
+
     <div class="modal-body">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="row">
             <div class="col-sm-4">
                 <div class="input-group">

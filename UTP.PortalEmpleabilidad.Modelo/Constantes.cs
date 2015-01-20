@@ -46,6 +46,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public static int IDLISTA_OFERTA_RECIBECORREOS = 45;
         public static int IDLISTA_DISTRITO_PERU = 49;
         public static int IDLISTA_AREA_EMPRESA = 50;
+              
 
         #endregion
 

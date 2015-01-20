@@ -209,6 +209,11 @@
         });
     }
     function AutoCompleteText(inputsearch, urlsearch, inputtext) {
+
+        console.log(inputsearch);
+        console.log(urlsearch);
+        console.log(inputtext);
+
         $(inputsearch).autocomplete({
             source: function (request, response) {
                 $.ajax({
@@ -240,7 +245,48 @@
         });
     }
 
-   
+    function AutoCompleteTextDemo(inputsearch, urlsearch, inputtext, combo) {
+
+        console.log(inputsearch);
+        console.log(urlsearch);
+        console.log(combo);
+
+        //var codigoTipoConocimiento = $('#TipoConocimientoIdListaValor').val();
+
+
+        $(inputsearch).autocomplete({
+            source: function (request, response) {
+                console.log(request);
+                var codigoTipoConocimiento = $('#TipoConocimientoIdListaValor').val();
+                $.ajax({
+                    url: urlsearch,
+                    data: "{ 'query': '" + request.term + "', 'codigoTipo': '" + codigoTipoConocimiento + "' }",
+                    dataType: "json",
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    dataFilter: function (data) { return data; },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            console.log(data);
+                            return {
+                                value: item.Label,
+                                id: item.Value
+                            }
+                        }))
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert(textStatus);
+                    }
+                });
+            },
+            minLength: 1,
+            select: function (even, ui) {
+                $(inputtext).val(ui.item.value);
+
+            }
+        });
+    }
+
     </script>
 
 
