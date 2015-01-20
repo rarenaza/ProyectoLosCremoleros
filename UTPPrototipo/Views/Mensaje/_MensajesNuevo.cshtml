@@ -21,7 +21,8 @@
         @Html.HiddenFor(m => m.Pantalla)
 
         @if (ViewBag.Pantalla == Constantes.MENSAJES_ALUMNO_INDEX || ViewBag.Pantalla == Constantes.MENSAJES_UTP_INDEX || ViewBag.Pantalla == Constantes.MENSAJES_UTP_ALUMNO
-            || ViewBag.Pantalla == Constantes.MENSAJES_EMPRESA_EVENTO || ViewBag.Pantalla == Constantes.MENSAJES_ALUMNO_EVENTO)
+            || ViewBag.Pantalla == Constantes.MENSAJES_EMPRESA_EVENTO || ViewBag.Pantalla == Constantes.MENSAJES_ALUMNO_EVENTO
+            || ViewBag.Pantalla == Constantes.MENSAJES_EMPRESA_HUNTING)
         {
             <div class="row">
                 <div class="col-sm-12">
@@ -71,21 +72,21 @@
         }
         <!--, onchange = "democambio(this.value)"-->
         @*@if (ViewBag.Pantalla == "")
-        {
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="input-group">
-                        <span class="input-group-addon">Evento</span>
-                        <select class="form-control">
-                            <option>- Seleccione Evento relacionado -</option>
-                            <option>Feria de Trabajo 2015</option>
-                            <option>Charla RRHH</option>
-                            <option>Seminaro de Presentación</option>
-                        </select>
+            {
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="input-group">
+                            <span class="input-group-addon">Evento</span>
+                            <select class="form-control">
+                                <option>- Seleccione Evento relacionado -</option>
+                                <option>Feria de Trabajo 2015</option>
+                                <option>Charla RRHH</option>
+                                <option>Seminaro de Presentación</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
-            </div>
-        }*@
+            }*@
 
         <!--
         if (ViewBag.Pantalla == "")
@@ -103,7 +104,6 @@
             </div>
         }
         -->
-
         @if (ViewBag.Pantalla == Constantes.MENSAJES_EMPRESA_EVENTO || ViewBag.Pantalla == Constantes.MENSAJES_ALUMNO_EVENTO || ViewBag.Pantalla == Constantes.MENSAJES_UTP_EVENTO)
         {
             @Html.HiddenFor(m => m.IdEvento)

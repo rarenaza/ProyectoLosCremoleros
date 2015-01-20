@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -15,18 +16,30 @@ namespace UTP.PortalEmpleabilidad.Logica
         {
             try
             {
-                MailMessage Message = new MailMessage("aldo.chocos@pucp.pe", "aldo.chocos@criteriait.com");
+                bool mensajesEnProduccion = Convert.ToBoolean(ConfigurationManager.AppSettings["MensajeCorreoEnProduccion"]);
+                string usuario = ConfigurationManager.AppSettings["MensajeCorreoUsuario"];
+                string contrasena = ConfigurationManager.AppSettings["MensajeCorreoContrasena"];
+                string host = ConfigurationManager.AppSettings["MensajeCorreoHost"];
+                int puerto = Convert.ToInt32(ConfigurationManager.AppSettings["MensajeCorreoPuerto"]);
+                bool enableSSL = Convert.ToBoolean(ConfigurationManager.AppSettings["MensajeCorreoEnableSSL"]);
+                string deDesarrollo = ConfigurationManager.AppSettings["MensajeCorreoUsuarioDeDesarrollo"];
+                string paraDesarrollo = ConfigurationManager.AppSettings["MensajeCorreoUsuarioParaDesarrollo"];
+
+                MailMessage Message = new MailMessage(mensajesEnProduccion ? mensaje.DeUsuarioCorreoElectronico : deDesarrollo,
+                                                        mensajesEnProduccion ? mensaje.ParaUsuarioCorreoElectronico : paraDesarrollo
+                                                      );
+               
                 //MailMessage Message = new MailMessage(mensaje.DeUsuarioCorreoElectronico, mensaje.ParaUsuarioCorreoElectronico);
                 Message.Body = mensaje.MensajeTexto;
                 Message.Subject = mensaje.Asunto;
 
                 SmtpClient client = new SmtpClient();
-                client.Host = "smtp.ipage.com";
-                client.Port = 587;
+                client.Host = host;
+                client.Port = puerto;
                 client.UseDefaultCredentials = false;
                 client.DeliveryMethod = SmtpDeliveryMethod.Network;
-                client.EnableSsl = false;
-                client.Credentials = new NetworkCredential("aldao@criteriait.com", "P4$$w0rd");  //Cuenta en criteria para el envío de correos.
+                client.EnableSsl = enableSSL;
+                client.Credentials = new NetworkCredential(usuario, contrasena);  //Cuenta en criteria para el envío de correos.
                 client.Send(Message);
             }
             catch (Exception ex)

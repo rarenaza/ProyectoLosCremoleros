@@ -80,6 +80,31 @@ namespace UTP.PortalEmpleabilidad.Logica
             return idMensaje;
         }
 
+        public void InsertarHunting(Mensaje mensaje)
+        {
+            if (mensaje.ParaUsuarioCorreoElectronico == null) mensaje.ParaUsuarioCorreoElectronico = "";
+            if (mensaje.IdOfertaMensaje == null) mensaje.IdOfertaMensaje = 0;
+
+            string[] arrayIds = mensaje.ParaUsuarioCorreoElectronico.Split('-');
+
+            //Se recorreo todos los Id's seleccionados y se envía los correos uno por uno.
+            foreach (string idAlumnoCadena in arrayIds)
+            {
+
+                string correoPara = adMensaje.InsertarHunting(mensaje, Convert.ToInt32(idAlumnoCadena));
+                mensaje.ParaUsuarioCorreoElectronico = correoPara;
+
+                try
+                {
+                    LNCorreo.EnviarCorreo(mensaje);
+                }
+                catch (Exception ex)
+                {
+                    //Manejar la excepción del envío de correo.
+                }
+            }
+        }
+
         public Mensaje ObtenerPorIdMensaje(int idMensaje)
         {
             Mensaje mensaje = new Mensaje();
@@ -205,6 +230,26 @@ namespace UTP.PortalEmpleabilidad.Logica
         public DataTable ObtenerUsuarioEmpresaPorIdEmpresa(int idEmpresa)
         {
             return adMensaje.ObtenerUsuarioEmpresaPorIdEmpresa(idEmpresa);
+        }
+
+        public string ObtenerListaAlumnosHunting(string listaIdAlumnos)
+        {
+            if (listaIdAlumnos == "") return "";
+
+            string[] arrayIds = listaIdAlumnos.Split('-');
+            StringBuilder usuarios = new StringBuilder();
+
+            foreach (string id in arrayIds)
+            {
+                DataTable dt = adMensaje.ObtenerDatosBasicosPorIdAlumno(Convert.ToInt32(id));
+                string usuario = Convert.ToString(dt.Rows[0]["Usuario"]);
+                usuarios.Append(usuario);
+                usuarios.Append(", ");
+            }
+
+            string resultado = usuarios.ToString().Substring(0, usuarios.Length - 2);
+
+            return resultado;
         }
     }
 }

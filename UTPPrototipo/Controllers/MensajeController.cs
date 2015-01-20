@@ -23,7 +23,10 @@ namespace UTPPrototipo.Controllers
         private int IdEventoParametro = 0;
         private int IdEmpresaParametro = 0;
         private string UsuarioAlumno = "";
+        private string ListaIdAlumnos = "";
 
+
+        #region Métodos anteriores
         public ActionResult Mensajes()
         {
             return View();
@@ -74,6 +77,8 @@ namespace UTPPrototipo.Controllers
             return PartialView("_ObtenerMensajes", lista);
         }
 
+        #endregion
+
         #region Mensajes formato nuevo
 
         /// <summary>
@@ -103,7 +108,7 @@ namespace UTPPrototipo.Controllers
         }
 
         [HttpGet]
-        public PartialViewResult _MensajesNuevo(string pantalla, int idOferta = 0, string usuarioAlumno = "", int idEvento = 0, int idEmpresa = 0)
+        public PartialViewResult _MensajesNuevo(string pantalla, int idOferta = 0, string usuarioAlumno = "", int idEvento = 0, int idEmpresa = 0, string listaIdAlumnos = "")
         {
             PartialViewResult vistaMensajeNuevo = new PartialViewResult();
             ViewBag.Pantalla = pantalla;
@@ -113,6 +118,7 @@ namespace UTPPrototipo.Controllers
             this.IdOferta = idOferta;
             this.IdEventoParametro = idEvento;
             this.IdEmpresaParametro = idEmpresa;
+            this.ListaIdAlumnos = listaIdAlumnos;
 
             switch (pantalla)
             {
@@ -159,11 +165,16 @@ namespace UTPPrototipo.Controllers
                 case Constantes.MENSAJES_UTP_EVENTO:
                     vistaMensajeNuevo = mensajeUTPOfertaNuevo(pantalla);
                     break;
-                    
+
+                case Constantes.MENSAJES_EMPRESA_HUNTING:
+                    vistaMensajeNuevo = mensajeEmpresaHuntingNuevo(pantalla, listaIdAlumnos);
+                    break;
             }
 
             return vistaMensajeNuevo;
         }
+
+        
 
         [HttpPost, ValidateAntiForgeryToken]
         public PartialViewResult _MensajesNuevo(Mensaje mensaje)
@@ -194,14 +205,28 @@ namespace UTPPrototipo.Controllers
                 mensaje.DeUsuario = ticketUtp.Usuario;
                 mensaje.DeUsuarioCorreoElectronico = ticketUtp.CorreoElectronico;
                 mensaje.CreadoPor = ticketUtp.Usuario;
-
             }
+           
+          
 
             mensaje.FechaEnvio = DateTime.Now;
             mensaje.IdEvento = 0;
             mensaje.EstadoMensaje = "MSJNOL";  //Pendiente de ser leido
+
+            if (mensaje.Pantalla == Constantes.MENSAJES_EMPRESA_HUNTING)
+            {
+                TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];
+
+                mensaje.DeUsuario = ticket.Usuario;
+                mensaje.DeUsuarioCorreoElectronico = ticket.CorreoElectronico;
+                mensaje.CreadoPor = ticket.Usuario;
+                lnMensaje.InsertarHunting(mensaje);
+            }
+            else
+            {
+                lnMensaje.Insertar(mensaje);
+            }
             
-            lnMensaje.Insertar(mensaje);
             ViewBag.Pantalla = mensaje.Pantalla;
             this.UsuarioAlumno = mensaje.ParaUsuario;
 
@@ -278,6 +303,9 @@ namespace UTPPrototipo.Controllers
                 case Constantes.MENSAJES_UTP_EVENTO:
                     lista = lnMensaje.ObtenerPorUsuario(ticketUTP.Usuario).Where(m => m.IdEvento == IdEventoParametro).ToList();
                     break;
+                case Constantes.MENSAJES_EMPRESA_HUNTING:
+                    lista = lnMensaje.ObtenerPorUsuario(ticketEmpresa.Usuario);
+                    break;
 
             }            
             return lista;
@@ -344,7 +372,15 @@ namespace UTPPrototipo.Controllers
                 DataTable dtEvento = lnEvento.EVENTO_OBTENERPORID(mensajeBase.IdEvento);
                 mensajeRespuesta.Evento.NombreEvento = Convert.ToString(dtEvento.Rows[0]["NombreEvento"]);
             }
-            
+             else
+            if (pantalla == Constantes.MENSAJES_EMPRESA_HUNTING)
+            {
+                TicketEmpresa ticketEmpresa = (TicketEmpresa)Session["TicketEmpresa"];
+                mensajeRespuesta.DeUsuario = ticketEmpresa.Usuario;
+                mensajeRespuesta.DeUsuarioCorreoElectronico = ticketEmpresa.CorreoElectronico;
+                mensajeRespuesta.CreadoPor = ticketEmpresa.Usuario;
+            }
+
             ViewBag.Pantalla = pantalla;
 
             return PartialView("_MensajesResponder", mensajeRespuesta);
@@ -614,6 +650,22 @@ namespace UTPPrototipo.Controllers
 
             //ViewBag.ParaUsuario = lnEvento.ObtenerAsistentes(idEvento, "EVTAAL"); //tipo alumno.
             ViewBag.IdEventoGeneral = idEvento;
+
+            return PartialView("_MensajesNuevo", mensaje);
+        }
+
+        private PartialViewResult mensajeEmpresaHuntingNuevo(string pantalla, string listaIdAlumnos)
+        {
+            ViewBag.Pantalla = pantalla;
+            TicketEmpresa ticketEmpresa = (TicketEmpresa)Session["TicketEmpresa"];
+
+            Mensaje mensaje = new Mensaje();
+            mensaje.DeUsuario = ticketEmpresa.Usuario;
+            mensaje.DeUsuarioCorreoElectronico = ticketEmpresa.CorreoElectronico;
+            mensaje.ParaUsuario = lnMensaje.ObtenerListaAlumnosHunting(listaIdAlumnos); //Se guarda la lista de ids en esta propiedad.
+            mensaje.ParaUsuarioCorreoElectronico = listaIdAlumnos;
+            mensaje.Pantalla = pantalla;            
+            mensaje.CreadoPor = ticketEmpresa.Usuario;
 
             return PartialView("_MensajesNuevo", mensaje);
         }
