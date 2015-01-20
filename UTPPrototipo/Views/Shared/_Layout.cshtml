@@ -14,7 +14,12 @@
     <div class="navbar navbar-inverse navbar-fixed-top" style="background-color:rgb(245, 245, 245);border:0px;" role="navigation">
         <div class="container">
             @*@Html.ActionLink(" ", "Index", "Home", new { @class = "LogoUTPPE" })*@
-            <a href="../Home/Index"><img src="~/img/LogoUTPPE2.png" class="LogoUTPPE" /></a>
+            <span>
+                <a href="../Home/Index"><img src="~/img/LogoUTPPE2.png" class="LogoUTPPE" /></a>
+            </span>
+            @*<span>
+                <a href="../Home/Index"><img src="~/img/intercorp.jpg" class="LogoINTERCORP"/></a>
+            </span>*@
             <div class="navbar-header posicion-menu">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" style="margin: 6px 5px 3px 0px;">
                     <span class="icon-bar"></span>
@@ -27,42 +32,42 @@
             <div class="container">
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li class="boton-menu-utp">
+                        @*<li class="boton-menu-utp">
                             <a class=" a-menu-utp" href="..\Home\Index" style="text-align:left;height:100%;padding:6px 6px 6px 6px;color:rgb(180,30,34)">
                                 Inicio<br />&nbsp;
                             </a>
-                        </li>
+                        </li>*@
                         <li id="OpcionMenuEmpleabilidad" class="boton-menu-utp">
-                            <a href="..\Home\DirEmp" style="text-align:left;padding: 6px 3px 6px 3px;">Dirección de<br />Empleabilidad</a>
+                            <a href="..\Home\DirEmp" style="text-align:left;padding: 10px 10px 10px 10px;">@*Dirección de<br />*@Empleabilidad</a>
                         </li>
                         <li id="OpcionMenuServicios" class="boton-menu-utp">
-                            <a href="..\Home\Servicios" style="text-align:left;padding: 6px 3px 6px 3px;">Servicios a tu<br /> disposición</a>
+                            <a href="..\Home\Servicios" style="text-align:left;padding: 10px 10px 10px 10px;">Servicios @*a tu<br /> disposición*@</a>
                         </li>
-                        <li id="OpcionMenuNoticiasEventos" class="boton-menu-utp">
+                        @*<li id="OpcionMenuNoticiasEventos" class="boton-menu-utp">
                             <a href="..\Home\NoticiasEventos" style="text-align:left;padding: 6px 3px 6px 3px;">Noticias<br />y Eventos</a>
-                        </li>
+                        </li>*@
                         <li id="OpcionMenuTestimonios" class="boton-menu-utp">
-                            <a href="..\Home\Testimonios" style="text-align:left;padding: 6px 3px 6px 3px;">Testimonios<br />&nbsp;</a>
+                            <a href="..\Home\Testimonios" style="text-align:left;padding: 10px 10px 10px 10px;">Testimonios@*<br />&nbsp;*@</a>
 
                             <!--Link para la programación de la plantilla CV. Sólo para desarrollo.-->
                             @*@Html.ActionLink("Generar CV", "GenerarCV", "Plantilla", new { idCV = 3 }, new { @class = "btn btn-default navbar-btn Boton_pestana color-paleta4", @style = "padding: 2px 0px 2px 0px; color: white;" })*@
                         </li>
                         <li id="OpcionMenuParaEmpleadores" class="boton-menu-utp">
-                            <a href="..\Home\ParaEmpleadores" style="text-align:left;padding: 6px 3px 6px 3px;">
-                                Para<br />Empleadores
+                            <a href="..\Home\ParaEmpleadores" style="text-align:left;padding: 10px 10px 10px 10px;">
+                                @*Para<br />*@Empleadores
                             </a>
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right" style="padding-right: 15px; ">
                         <li>
-                            <a href="#" style="padding: 18px 0px 0px 9px;"><span class="fui color-icono-facebook" style="font-size:35px;">)</span></a>
+                            <a href="#" style="padding: 11px 10px 0px 10px;"><span class="fui color-icono-facebook" style="font-size:35px;">)</span></a>
                         </li>
-                        <li>
+                        @*<li>
                             <a href="../Home/Registro" style="padding: 18px 0px 0px 9px;"><span class="fui color-icono-paleta2" style="font-size:35px;">!</span></a>
-                        </li>
+                        </li>*@
                         <li>
-                            <a href="#" style="padding: 18px 0px 0px 9px;" data-toggle="modal" data-target="#Modal-ingresar" id="LinkIngresar">
-                                <span class="fui color-icono-paleta2" style="font-size:35px;">,</span>
+                            <a href="#" style="padding: 11px 10px 0px 10px;" data-toggle="modal" data-target="#Modal-ingresar" id="LinkIngresar">
+                                <span @*style="font-size:35px;"*@>INGRESAR</span>
                             </a>
                         </li>
                     </ul>

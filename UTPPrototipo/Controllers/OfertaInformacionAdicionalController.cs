@@ -48,6 +48,18 @@ namespace UTPPrototipo.Controllers
         }
 
 
+        public JsonResult ListarDatosEspecificos(string query,string codigoTipo)
+        {
+
+            var resultado = lnGeneral.EMPRESA_BUSCAR_INFORMACIONADICIONAL(codigoTipo);
+            var result = resultado.Where(s => s.Valor.ToLower().StartsWith(query.ToLower())).Select(c => new { Value = c.IdListaValor, Label = c.Valor }).ToList();
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+
+
+
+
         [ValidateAntiForgeryToken]
         public PartialViewResult _OfertaInformacionAdicionalCrear(OfertaInformacionAdicional ofertaInfoAdicional)
         {

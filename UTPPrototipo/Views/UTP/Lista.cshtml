@@ -46,7 +46,7 @@
         {
             @Html.AntiForgeryToken()
              @Html.HiddenFor(m => m.IDLista)
-             @Html.ValidationSummary(true)
+            
             <div class="modal-dialog" id="divContenedorListavalorHijoCrear">
 
             </div>
@@ -83,7 +83,16 @@
             console.log(data);
 
             $('#divContenedorListavalorHijoCrear').html(data);
-            $.validator.unobtrusive.parse('#divContenedorListavalorHijoCrear');
+
+            try
+            {
+                $.validator.unobtrusive.parse('#divContenedorListavalorHijoCrear');
+            }
+            catch (err)
+            {
+                console.log(err);
+            }
+            
 
             $('#Nueva-listaTemporal').modal('show');
             

@@ -31,5 +31,6 @@ namespace UTP.PortalEmpleabilidad.Modelo
        public string Modificadopor { get; set; }
        public DateTime FechaModificacion { get; set; }
 
+
     }
 }

@@ -62,7 +62,7 @@ namespace UTPPrototipo.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
-         
+        [VerificarSesion]        
         public ActionResult Publicacion(string filtroBusqueda)
         {
             //Se obtiene los datos de la sesion.

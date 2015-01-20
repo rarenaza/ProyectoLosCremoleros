@@ -22,28 +22,29 @@
                                 {
                                     if (x == 0)
                                     {
-                                        @Html.CheckBoxFor(y=>y.IncluirNombre1)
-                                        @Model.ListaNombres[x]
+                                        @Html.CheckBoxFor(y => y.IncluirNombre1, new { @id = "IncluirNombre1" })<span>&nbsp;</span>
+                                        @Model.ListaNombres[x]<span>&nbsp;</span>
                                     }
                                     else if (x == 1)
                                     {
-                                        @Html.CheckBoxFor(y => y.IncluirNombre2)
-                                        @Model.ListaNombres[x]
+                                        @Html.CheckBoxFor(y => y.IncluirNombre2, new { @id = "IncluirNombre2" })<span>&nbsp;</span>
+                                        @Model.ListaNombres[x]<span>&nbsp;</span>
                                     }
 
                                     else if (x == 2)
                                     {
-                                        @Html.CheckBoxFor(y => y.IncluirNombre3)
-                                        @Model.ListaNombres[x]
+                                        @Html.CheckBoxFor(y => y.IncluirNombre3)<span>&nbsp;</span>
+                                        @Model.ListaNombres[x]<span>&nbsp;</span>
                                     }
                                     else if (x == 3)
                                     {
-                                        @Html.CheckBoxFor(y => y.IncluirNombre4)
-                                        string nombre = string.Empty; 
-                                        for (int z = x; z < Model.ListaNombres.Length-1; z++) {
-                                            nombre = nombre + " " + Model.ListaNombres[z] ;
+                                        @Html.CheckBoxFor(y => y.IncluirNombre4)<span>&nbsp;</span>
+                                        string nombre = string.Empty;
+                                        for (int z = x; z < Model.ListaNombres.Length - 1; z++)
+                                        {
+                                            nombre = nombre + " " + Model.ListaNombres[z];
                                         }
-                                        @nombre
+                                        @nombre<span>&nbsp;</span>
                                     }
                                 }
                                 else
@@ -158,3 +159,44 @@
 
     </div>
 </div>
+<script type =”text/javascript”>
+    $("#IncluirNombre1").click(function () {
+    if (document.getElementById("IncluirNombre2").checked == false &&
+        document.getElementById("IncluirNombre3").checked == false &&
+        document.getElementById("IncluirNombre4").checked == false)
+    {
+    document.getElementById("IncluirNombre1").checked = true;
+    Alert("Al menos incluya un Nombre");
+    }
+    });
+
+    $("#IncluirNombre2").click(function () {
+    if (document.getElementById("IncluirNombre1").checked == false &&
+        document.getElementById("IncluirNombre3").checked == false &&
+        document.getElementById("IncluirNombre4").checked == false)
+    {
+    document.getElementById("IncluirNombre2").checked = true;
+    Alert("Al menos incluya un Nombre");
+    }
+    });
+
+    $("#IncluirNombre3").click(function () {
+    if (document.getElementById("IncluirNombre1").checked == false &&
+        document.getElementById("IncluirNombre2").checked == false &&
+        document.getElementById("IncluirNombre4").checked == false)
+    {
+    document.getElementById("IncluirNombre3").checked = true;
+    Alert("Al menos incluya un Nombre");
+    }
+    });
+
+    $("#IncluirNombre4").click(function () {
+    if (document.getElementById("IncluirNombre1").checked == false &&
+        document.getElementById("IncluirNombre2").checked == false &&
+        document.getElementById("IncluirNombre3").checked == false)
+    {
+    document.getElementById("IncluirNombre4").checked = true;
+    Alert("Al menos incluya un Nombre");
+    }
+    });
+    </script>

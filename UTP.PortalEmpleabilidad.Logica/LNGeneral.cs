@@ -93,6 +93,26 @@ namespace UTP.PortalEmpleabilidad.Logica
             return lista;
         }
 
+        public List<ListaValor> EMPRESA_BUSCAR_INFORMACIONADICIONAL(string IDListaValorPadre)
+        {
+            List<ListaValor> lista = new List<ListaValor>();
+
+            DataTable dtResultado = adGeneral.EMPRESA_BUSCAR_INFORMACIONADICIONAL(IDListaValorPadre);
+
+            foreach (DataRow fila in dtResultado.Rows)
+            {
+                ListaValor item = new ListaValor();
+          
+                item.IdListaValor = Convert.ToString(fila["IDListaValor"]);
+                item.IdListaValorPadre = Convert.ToString(fila["IDListaValorPadre"]); ;
+                item.Valor = Convert.ToString(fila["Valor"]); ;
+
+                lista.Add(item);
+            }
+
+            return lista;
+        }
+
 
         /// <summary>
         /// Se agrega el parámetro de filtro para obtener los datos que contenga este valor.
