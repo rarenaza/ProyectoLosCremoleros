@@ -37,7 +37,7 @@
     font-style: normal;
 }
 .cuerpo-zona-publica {
-    padding-top: 132px;
+    padding-top: 120px;
     font-family: GothamRnd-Book;
 }
 .cuerpo-zona-alumno {
@@ -94,6 +94,10 @@ input[type="checkbox"].input-validation-error {
 }
 
 .LogoUTPPE2 {
+
+}
+
+.LogoINTERCORP {
 
 }
 
@@ -396,6 +400,9 @@ input[type="checkbox"].input-validation-error {
     width:190px;
 
     }
+.LogoINTERCORP {
+
+}
 .cuerpo-zona-alumno {
     padding-top: 78px;
     }

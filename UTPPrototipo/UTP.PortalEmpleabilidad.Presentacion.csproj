@@ -325,6 +325,7 @@
     <Content Include="img\cargando.gif" />
     <Content Include="img\demo.bmp" />
     <Content Include="img\empleabilidad\PlanoDirEmpleabilidad.jpg" />
+    <Content Include="img\intercorp.jpg" />
     <Content Include="img\logos\aptitus.jpg" />
     <Content Include="img\logos\bumeran.jpg" />
     <Content Include="img\logos\computrabajo.jpg" />
