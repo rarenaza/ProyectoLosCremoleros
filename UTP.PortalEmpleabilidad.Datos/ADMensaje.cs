@@ -107,6 +107,51 @@ namespace UTP.PortalEmpleabilidad.Datos
             return idMensajeInsertado;
         }
 
+        public string InsertarHunting(Mensaje mensaje, int idAlumno)
+        {
+            string correoPara = "";
+            try
+            {
+                using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+                {
+                    SqlCommand cmd = new SqlCommand();
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "Mensaje_InsertarHunting";
+
+                    //Parámetros:
+                    cmd.Parameters.Add(new SqlParameter("@DeUsuario", mensaje.DeUsuario));
+                    cmd.Parameters.Add(new SqlParameter("@DeUsuarioCorreoElectronico", mensaje.DeUsuarioCorreoElectronico));
+                    cmd.Parameters.Add(new SqlParameter("@IdAlumno", idAlumno));
+                    cmd.Parameters.Add(new SqlParameter("@ParaUsuario", mensaje.ParaUsuario));
+                    cmd.Parameters.Add(new SqlParameter("@ParaUsuarioCorreoElectronico", mensaje.ParaUsuarioCorreoElectronico));
+                    cmd.Parameters.Add(new SqlParameter("@IdOferta", mensaje.IdOfertaMensaje));
+                    cmd.Parameters.Add(new SqlParameter("@IdEvento", mensaje.IdEvento));
+                    cmd.Parameters.Add(new SqlParameter("@FechaEnvio", mensaje.FechaEnvio));
+                    cmd.Parameters.Add(new SqlParameter("@Asunto", mensaje.Asunto));
+                    cmd.Parameters.Add(new SqlParameter("@Mensaje", mensaje.MensajeTexto));
+                    cmd.Parameters.Add(new SqlParameter("@IdMensajePadre", mensaje.IdMensajePadre));
+                    cmd.Parameters.Add(new SqlParameter("@EstadoMensaje", mensaje.EstadoMensaje));
+                    cmd.Parameters.Add(new SqlParameter("@CreadoPor", mensaje.CreadoPor));
+
+                    cmd.Connection = conexion;
+                    conexion.Open();
+                    object resultado = cmd.ExecuteScalar();
+
+                    if (resultado != null)
+                    {
+                        correoPara = Convert.ToString(resultado);
+                    }
+                    conexion.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return correoPara;
+        }
+
         public DataTable ObtenerPorIdMensaje(int idMensaje)
         {
             DataTable dtResultado = new DataTable();
@@ -323,6 +368,33 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.CommandText = "Mensaje_ObtenerUsuarioEmpresaPorIdEmpresa";
                 cmd.Parameters.Add(new SqlParameter("@IdEmpresa", idEmpresa));
                 
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                dtResultado = new DataTable();
+
+                da.Fill(dtResultado);
+
+                conexion.Close();
+
+            }
+
+            return dtResultado;
+        }
+
+        public DataTable ObtenerDatosBasicosPorIdAlumno(int idAlumno)
+        {
+            DataTable dtResultado = new DataTable();
+
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Alumno_ObtenerDatosBasicosPorIdAlumno";
+                cmd.Parameters.Add(new SqlParameter("@IdAlumno", idAlumno));
                 cmd.Connection = conexion;
 
                 conexion.Open();

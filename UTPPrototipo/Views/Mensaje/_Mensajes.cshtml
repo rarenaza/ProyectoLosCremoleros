@@ -20,7 +20,7 @@
             <h5>Mensajes</h5>
         }
 
-        
+
         <!--Cabecera de la grilla-->
         <div class="row grilla1-cabecera color-paleta1">
             <div class="col-sm-1">
@@ -94,12 +94,14 @@
         <br />
         <div class="row">
             <!--Acción para redactar nuevos mensajes.-->
-            <div class="col-sm-2">
-                @*<button class="btn btn-default color-paleta1" data-toggle="modal" data-target="#divModalMensajeRedactar">Redactar</button>*@
-                <button id="btnMensajeNuevo" class="btn btn-default color-paleta1" onclick="mensajeNuevo('@ViewBag.Pantalla','@ViewBag.IdOferta', '@ViewBag.UsuarioAlumno', '@ViewBag.IdEvento', '@ViewBag.IdEmpresa');">Redactar</button>
+            <div class="col-sm-6">
+                @*<button class="btn btn-default color-paleta1" data-toggle="modal" data-target="#divModalMensajeRedactar">Redactar</button>*@              
+                <button id="btnMensajeNuevo" class="btn btn-default color-paleta1" onclick="mensajeNuevo('@ViewBag.Pantalla','@ViewBag.IdOferta', '@ViewBag.UsuarioAlumno', '@ViewBag.IdEvento', '@ViewBag.IdEmpresa');">Redactar</button>                              
+                <br />
+                <label id="lblCargando" style="font-size:xx-small"></label>
             </div>
+           
             <!--Paginación de los mensajes-->
-
             <!--
             <div class="col-sm-10" style="text-align:right;">
                 <nav>
@@ -128,7 +130,7 @@
     <!--Modal para nuevos mensajes -->
     <div class="modal" id="divModalMensajeNuevo" tabindex="-1" role="dialog">
 
-        @using (Ajax.BeginForm("_MensajesNuevo", "Mensaje", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", OnComplete = "cerrarModal", UpdateTargetId = "divListaMensajes", OnBegin= "AjaxBegin" }))
+        @using (Ajax.BeginForm("_MensajesNuevo", "Mensaje", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", OnComplete = "cerrarModal", UpdateTargetId = "divListaMensajes", OnBegin = "AjaxBegin" }))
         {
             @Html.AntiForgeryToken()
 
@@ -173,14 +175,44 @@
 
         $('#IdOferta').change(function () {
 
-            alert('cambio');
+            //alert('cambio');
         });
 
     });
 
     function mensajeNuevo(pantalla, idOferta, usuarioAlumno, idEvento, idEmpresa) {
 
-        var url = '@Url.Action("_MensajesNuevo", "Mensaje")' + '?pantalla=' + pantalla + '&idOferta=' + idOferta + '&usuarioAlumno=' + usuarioAlumno + '&idEvento=' + idEvento + '&idEmpresa=' + idEmpresa;
+        $('#lblCargando').text('Cargando, por favor espere.');
+        var listaIdAlumnos = '';
+
+        if (pantalla == '@Constantes.MENSAJES_EMPRESA_HUNTING')
+        {
+            //Cuando la pantalla es de Hunting se debe seleccionar los checks marcados.
+            //Se obtiene la grilla de alumnos.
+            //$('#divResultadoHunting').each(function (i, x) {
+
+            //    console.log(i);
+            //    console.log(x);
+            //});
+            
+            //Se realiza un foreach con los checks marcados.
+            $("#divResultadoHunting input:checked").each(function () {
+                
+                var idAlumno = $(this).attr('name');
+                listaIdAlumnos += idAlumno + '-';
+            });
+         
+            //Se quita el char '-' final.
+            if (listaIdAlumnos.length > 0)
+            {
+                listaIdAlumnos = listaIdAlumnos.substring(0, listaIdAlumnos.length - 1);
+            }
+
+            console.log(listaIdAlumnos);
+            //return false;
+        }
+
+        var url = '@Url.Action("_MensajesNuevo", "Mensaje")' + '?pantalla=' + pantalla + '&idOferta=' + idOferta + '&usuarioAlumno=' + usuarioAlumno + '&idEvento=' + idEvento + '&idEmpresa=' + idEmpresa + '&listaIdAlumnos=' + listaIdAlumnos;
 
         $.get(url, function (data) {
 
@@ -191,6 +223,8 @@
 
         }).error(function (err) {
             console.log("error: " + err);
+        }).then(function () {
+            $('#lblCargando').text('');
         });
     };
 
@@ -251,7 +285,7 @@
 
     function AjaxBegin() {
         $('#btnEnviarMensaje').text('Enviando ...');
-        $('#btnEnviarMensaje').attr('disabled','disabled')
+        $('#btnEnviarMensaje').attr('disabled', 'disabled')
     }
 
 
