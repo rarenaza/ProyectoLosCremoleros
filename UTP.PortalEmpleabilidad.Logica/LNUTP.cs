@@ -88,6 +88,28 @@ namespace UTP.PortalEmpleabilidad.Logica
             return listaEjemplo;
         }
 
+        public List<EmpresaListaEmpresa> Utp_ListaEmpresas()
+        {
+            List<EmpresaListaEmpresa> listaEjemplo = new List<EmpresaListaEmpresa>();
+
+
+            DataTable dtResultado = adUtp.Utp_ListaEmpresas();
+
+            for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
+            {
+                EmpresaListaEmpresa vista = new EmpresaListaEmpresa();
+
+                vista.IdEmpresa = Convert.ToInt32(dtResultado.Rows[i]["IdEmpresa"]);
+                vista.NombreComercial = dtResultado.Rows[i]["NombreComercial"].ToString();
+                vista.RazonSocial = dtResultado.Rows[i]["RazonSocial"].ToString();
+               
+
+                listaEjemplo.Add(vista);
+            }
+
+            return listaEjemplo;
+        }
+
         public List<EmpresaListaEmpresa> EmpresaBusquedaAvanzada(VistaEmpresListarOfertas entidad)
         {
             List<EmpresaListaEmpresa> listaEjemplo = new List<EmpresaListaEmpresa>();

@@ -336,6 +336,7 @@ namespace UTPPrototipo.Controllers
         }
 
 
+
         public ActionResult BusquedaAvanzadaOferta(VistaOfertaAlumno entidad)
         {
             entidad.ListaOfertas = lnoferta.BuscarAvanzadoOfertasAlumno(entidad);
@@ -478,6 +479,44 @@ namespace UTPPrototipo.Controllers
             }
             return PartialView("_AlumnoDatosGenerales", alumno);
         }
+
+
+        public ActionResult Utp_BuscarDatosListaEmpresas(string SearchString)
+        {
+
+            string palabraClave = SearchString == null ? "" : SearchString;
+
+            AlumnoExperiencia vista = new AlumnoExperiencia();
+
+            DataTable dtResultado = lnAlumno.Utp_BuscarDatosListaEmpresas(palabraClave);
+
+            if (dtResultado.Rows.Count> 0)
+            {
+                vista.IdEmpresa = Convert.ToInt32(dtResultado.Rows[0]["IdEmpresa"]);
+                vista.Empresa = dtResultado.Rows[0]["Empresa"].ToString();
+                vista.RazonSocial = dtResultado.Rows[0]["RazonSocial"].ToString();
+                vista.DescripcionEmpresa = dtResultado.Rows[0]["DescripcionEmpresa"].ToString();
+                              
+            }
+
+            return PartialView("_UsuariosUTPEditar", vista);
+
+        }
+
+
+        //public JsonResult Utp_BuscarDatosListaEmpresas(string query)
+        //{
+        //    LNGeneral lngeneral = new LNGeneral();
+        //    var resultado = lngeneral.ObtenerListaValor(Constantes.IDLISTA_DISTRITO_PERU);
+        //    var result = resultado.Where(s => s.Valor.ToLower().StartsWith(query.ToLower())).Select(c => new { Value = c.IdListaValor, Label = c.Valor }).ToList();
+        //    return Json(result, JsonRequestBehavior.AllowGet);
+        //}
+
+
+
+
+
+
 
         public ActionResult AlumnoEstudiosCV(VistaPanelAlumnoMiCV entidad)
         {

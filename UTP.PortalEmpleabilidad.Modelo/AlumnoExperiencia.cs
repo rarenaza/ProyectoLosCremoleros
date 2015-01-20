@@ -74,6 +74,8 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public int Movimiento { get; set; }
         public int Cumple { get; set; }
 
+        public string RazonSocial { get; set; }
+
     }
 
 }

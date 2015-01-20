@@ -62,6 +62,20 @@ namespace UTPPrototipo.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
+        public JsonResult ListarDistritos(string query)
+        {
+            LNGeneral lngeneral = new LNGeneral();
+            var resultado = lngeneral.ObtenerListaValor(Constantes.IDLISTA_DISTRITO_PERU);
+            var result = resultado.Where(s => s.Valor.ToLower().StartsWith(query.ToLower())).Select(c => new { Value = c.IdListaValor, Label = c.Valor }).ToList();
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+
+
+
+
+
+
         [VerificarSesion]        
         public ActionResult Publicacion(string filtroBusqueda)
         {

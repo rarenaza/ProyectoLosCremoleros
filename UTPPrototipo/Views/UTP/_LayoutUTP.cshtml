@@ -119,8 +119,188 @@
     @Scripts.Render("~/bundles/bootstrap")*@
 
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
     <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 
 @*    @RenderSection("scripts", required: false)*@
 </body>
 </html>
+
+<script>
+
+    function CargarPOSTNull(id, link) {
+        $.ajax({
+            url: link,
+            contentType: 'application/json; charset=utf-8',
+            type: 'POST',
+            dataType: 'html'
+        })
+        .success(function (result) {
+            if (id != null) {
+                $("#" + id).html(result);
+            }
+            ShowModal("#" + id);
+        })
+        .error(function (xhr, status) {
+            console.log(xhr);
+            console.log(status);
+
+        })
+    }
+    function CargarPOST(id, link, entidad) {
+        $.ajax({
+            url: link,
+            contentType: 'application/json; charset=utf-8',
+            type: 'POST',
+            data: JSON.stringify(entidad),
+            dataType: 'html'
+        })
+        .success(function (result) {
+            if (id != null) {
+                $("#" + id).html(result);
+            }
+        })
+        .error(function (xhr, status) {
+            console.log(xhr);
+            console.log(status);
+
+        })
+    }
+
+
+    function CargarGET(id, link) {
+        $.ajax({
+            url: link,
+            contentType: 'application/html; charset=utf-8',
+            type: 'GET',
+            dataType: 'html'
+
+        })
+        .success(function (result) {
+            if (id != null) {
+                $("#" + id).html(result);
+            }
+        })
+        .error(function (xhr, status) {
+            console.log(xhr.statusText);
+            console.log(status);
+        })
+    }
+
+
+    function AutoComplete(inputsearch, urlsearch, inputtext, inputid) {
+        alert(1);
+        $(inputsearch).autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: urlsearch,
+                    data: "{ 'query': '" + request.term + "' }",
+                    dataType: "json",
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    dataFilter: function (data) { return data; },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            console.log(data);
+                            return {
+                                value: item.Label,
+                                id: item.Value
+                            }
+                        }))
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert(textStatus);
+                    }
+                });
+            },
+            minLength: 1,
+            select: function (even, ui) {
+                $(inputid).val(ui.item.id);
+                $(inputtext).val(ui.item.value);
+
+                alert($(inputid).val());
+                alert($(inputtext).val());
+
+            }
+        });
+    }
+    function AutoCompleteText(inputsearch, urlsearch, inputtext) {
+
+        console.log(inputsearch);
+        console.log(urlsearch);
+        console.log(inputtext);
+
+        $(inputsearch).autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: urlsearch,
+                    data: "{ 'query': '" + request.term + "' }",
+                    dataType: "json",
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    dataFilter: function (data) { return data; },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            console.log(data);
+                            return {
+                                value: item.Label,
+                                id: item.Value
+                            }
+                        }))
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert(textStatus);
+                    }
+                });
+            },
+            minLength: 1,
+            select: function (even, ui) {
+                $(inputtext).val(ui.item.value);
+
+            }
+        });
+    }
+
+    function AutoCompleteTextDemo(inputsearch, urlsearch, inputtext, combo) {
+
+        console.log(inputsearch);
+        console.log(urlsearch);
+        console.log(combo);
+
+        //var codigoTipoConocimiento = $('#TipoConocimientoIdListaValor').val();
+
+
+        $(inputsearch).autocomplete({
+            source: function (request, response) {
+                console.log(request);
+                var codigoTipoConocimiento = $('#TipoConocimientoIdListaValor').val();
+                $.ajax({
+                    url: urlsearch,
+                    data: "{ 'query': '" + request.term + "', 'codigoTipo': '" + codigoTipoConocimiento + "' }",
+                    dataType: "json",
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    dataFilter: function (data) { return data; },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            console.log(data);
+                            return {
+                                value: item.Label,
+                                id: item.Value
+                            }
+                        }))
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert(textStatus);
+                    }
+                });
+            },
+            minLength: 1,
+            select: function (even, ui) {
+                $(inputtext).val(ui.item.value);
+
+            }
+        });
+    }
+
+</script>

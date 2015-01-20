@@ -24,7 +24,7 @@
                         <td>
                             <div class="input-group fuente-pequeña">
                                 <span class="input-group-addon fuente-pequeña">Palabra Clave</span>
-                                @Html.TextBoxFor(model => model.PalabraClave, new { @class = "form-control fuente-pequeña", @placeholder = "Palabra clave" })
+                                @Html.TextBoxFor(model => model.PalabraClave, new { @class = "form-control fuente-pequeña", @placeholder = "Nombre Alumno" })
 
                             </div>
                         </td>
@@ -87,11 +87,11 @@
                     <div class="col-sm-4">
                         <div class="input-group fuente-pequeña">
                             <span class="input-group-addon">Inform.<br />Adicional</span>
-                            @Html.DropDownListFor(model => model.IdInformacionAdicional, new SelectList(ViewBag.ListaTipoInformacionAdicional, "Value", "Text"), "- Seleccionar Informacion Adicional -", new { @class = "form-control", @Id = "IdInformacionAdicional" })
+                            @Html.DropDownListFor(model => model.IdInformacionAdicional, new SelectList(ViewBag.ListaTipoInformacionAdicional, "Value", "Text"), "- Seleccionar Informacion Adicional -", new { @class = "form-control", @Id = "TipoConocimientoIdListaValor" })
                         </div>
                         <div class="input-group fuente-pequeña">
                             <span class="input-group-addon">Conoci-<br />miento</span>
-                            @Html.TextBoxFor(model => model.Conocimiento, new { @class = "form-control fuente-pequeña", @placeholder = "Conocmiento específico: ej. SAP", @Id = "Conocimiento" })
+                            @Html.TextBoxFor(model => model.Conocimiento, new { @class = "form-control fuente-pequeña", @placeholder = "Conocmiento específico: ej. SAP", @Id = "Conocimientos" })
                         </div>
                         <div class="input-group fuente-pequeña">
                             <span class="input-group-addon">Distrito</span>
@@ -124,6 +124,19 @@
 <script>
     $(document).ready(function () {
         $("#divFinalCabeceraEmpresa").removeClass("color-paleta1 color-paleta2 color-paleta4 color-paleta5").addClass("color-paleta3");
+        AutoCompleteText('#Estudios', '@Url.Action("ListarEstudio", "Empresa")', '#Estudios', 'option', 'appendTo', '.eventInsForm');
+        @*AutoCompleteText('#NombreCargo', '@Url.Action("ListarCargo", "Empresa")', '#NombreCargo');*@
+        AutoCompleteText('#Distrito', '@Url.Action("ListarDistritos", "Empresa")', '#Distrito');
+
+        //se obtiene el valor del combo
+        var codigoTipoConocimiento = $('#TipoConocimientoIdListaValor').val();
+
+        //ESE ES LA CAJA, LA ACCION Y EL CONTROLADOR
+        AutoCompleteTextDemo('#Conocimientos', '@Url.Action("ListarDatosEspecificos", "OfertaInformacionAdicional")' + '?codigoTipo=' + codigoTipoConocimiento, '#Conocimientos', '#TipoConocimientoIdListaValor', 'option', 'appendTo', '.eventInsForm');
+
+
+
+
     });
 
     $('#buscar').click(function () {

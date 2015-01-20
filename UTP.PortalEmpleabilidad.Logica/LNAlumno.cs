@@ -111,5 +111,14 @@ namespace UTP.PortalEmpleabilidad.Logica
 
             return alumno;
         }
+
+
+        public DataTable Utp_BuscarDatosListaEmpresas(string NombreComercial)
+        {
+
+            return ad.Utp_BuscarDatosListaEmpresas(NombreComercial);
+        }
+
+
     }
 }

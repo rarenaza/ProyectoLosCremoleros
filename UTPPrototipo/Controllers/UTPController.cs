@@ -217,16 +217,26 @@ namespace UTPPrototipo.Controllers
 
         }
 
-        //// saaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadasdddddddddddddddddddddd
-        //public ActionResult BusquedaSimpleEventosActivos(VistaListEventos entidad)
-        //{
-        //    entidad.ListaBusqueda = lnEventos.Listar_Eventos(entidad.PalabraClave);
+        [HttpPost]
+        public JsonResult ListarNombreEmpresa(string query)
+        {
+            //aqui muestro todas las empresas
+            var resultado = lnUtp.Utp_ListaEmpresas();
+            //aqui busco el nombre comercial                                                                               //obtengo el id         // muestro la empresa buscada
+            var result = resultado.Where(s => s.NombreComercial.ToLower().StartsWith(query.ToLower())).Select(c => new { Value = c.IdEmpresa, Label = c.NombreComercial }).ToList();
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
 
+        [HttpPost]
+        public JsonResult ListarRazonSocial(string query)
+        {
+            //aqui muestro todas las empresas
+            var resultado = lnUtp.Utp_ListaEmpresas();
+            //aqui busco el nombre comercial                                                                               //obtengo el id         // muestro la empresa buscada
+            var result = resultado.Where(s => s.RazonSocial.ToLower().StartsWith(query.ToLower())).Select(c => new { Value = c.IdEmpresa, Label = c.RazonSocial }).ToList();
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
 
-        //    return PartialView("_ResultadoBusquedaEmpresas", entidad.ListaBusqueda);
-
-        //}
-             
 
 
         public FileResult Imagen2(int id, string Menu)

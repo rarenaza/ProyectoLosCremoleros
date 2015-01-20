@@ -72,14 +72,14 @@
                                     <span class="input-group-addon">Nombre</span>
                                     @*<input type="text" class="form-control" placeholder="Nombre de la empresa">*@
 
-                                    @Html.TextBoxFor(model => model.NombreComercial, new { @class = "form-control", @placeholder = "Nombre Comercial" })
+                                    @Html.TextBoxFor(model => model.NombreComercial, new { @class = "form-control", @placeholder = "Nombre Comercial" ,@id="NombreComercial"})
 
 
                                 </div>
                                 <div class="input-group fuente-pequeña">
                                     <span class="input-group-addon">Razón<br />Social</span>
                                     @*<input type="text" class="form-control" placeholder="Razón Social de la empresa">*@
-                                    @Html.TextBoxFor(model => model.RazonSocial, new { @class = "form-control", @placeholder = "Razón Social de la empresa" })
+                                    @Html.TextBoxFor(model => model.RazonSocial, new { @class = "form-control", @placeholder = "Razón Social de la empresa",@id="RazonSocial" })
                                 </div>
                             </div>
                             <div class="col-sm-4">
@@ -146,12 +146,18 @@
         </div>
     </div>
 }
-<script src="~/Scripts/jquery-2.1.1.min.js"></script>
+@*<script src="~/Scripts/jquery-2.1.1.min.js"></script>*@
+
+
 
 <script>
 
     $(document).ready(function () {
         $("#divFinalCabecera").removeClass("color-paleta1 color-paleta3 color-paleta4 color-paleta5 color-paleta6 color-paleta7 color-paleta8").addClass("color-paleta2");
+
+        AutoCompleteText('#NombreComercial', '@Url.Action("ListarNombreEmpresa", "UTP")', '#NombreComercial');
+        AutoCompleteText('#RazonSocial', '@Url.Action("ListarRazonSocial", "UTP")', '#RazonSocial');
+
     });
     $('#buscar').click(function () {
         var empresa = {

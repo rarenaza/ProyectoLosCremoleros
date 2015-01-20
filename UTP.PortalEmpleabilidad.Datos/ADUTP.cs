@@ -120,6 +120,30 @@ namespace UTP.PortalEmpleabilidad.Datos
 
             return dt;
         }
+
+        public DataTable Utp_ListaEmpresas()
+        {
+
+            ADConexion cnn = new ADConexion();
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "Utp_ListaEmpresas";
+          
+
+            cmd.Connection = cnn.cn;
+            cnn.Conectar();
+
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+
+            da.Fill(dt);
+
+            cnn.Desconectar();
+
+            return dt;
+        }
    
 
         public DataTable Empresa_BusquedaAvanzada(VistaEmpresListarOfertas entidad)
@@ -137,9 +161,6 @@ namespace UTP.PortalEmpleabilidad.Datos
             //cmd.Parameters.Add(new SqlParameter("@Ruc", entidad.RUC == null ? "" : entidad.RUC));
 
             //cmd.Parameters.Add(new SqlParameter("@EstadoOferta", entidad.EstadoOferta));
-
-
-
 
             cmd.Connection = cnn.cn;
             cnn.Conectar();
