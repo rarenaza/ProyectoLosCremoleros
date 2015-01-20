@@ -25,6 +25,7 @@
                 <div class="col-md-12 fuente-seccion"><strong class="sub-titulo-seccion"></strong></div>
             </div>
             <br />
+            
             <div class="row">
                 <div class="col-sm-7">
                     <div class="input-group">
@@ -46,14 +47,26 @@
                     }
                 </div>
             </div>
-            <br /><br />
+            
 
             <!--Cabecera-->
+            <label id="lblCargando" style="visibility:hidden;">Cargando, por favor espere.</label>
             <div class="row grilla1-cabecera color-paleta2">
                 <div class="col-sm-1"></div>
                 <div class="col-sm-2">
                     @*<span class="fa fa-1x fa-arrow-down"></span>*@
-                    <a href="#" style="color:white;"><strong> Fase</strong></a>
+                    @*<a href="#" style="color:white;"><strong> fase</strong></a>*@
+                    @{
+                        if (ViewBag.Columna == "Fase" && ViewBag.Orden == "ASC")
+                        {
+                            <span class="fa fa-1x fa-arrow-up"></span>
+                        }
+                        if (ViewBag.Columna == "Fase" && ViewBag.Orden == "DESC")
+                        {
+                            <span class="fa fa-1x fa-arrow-down"></span>
+                        }
+                    }
+                    <label id="colFase" style="cursor:pointer;">Fase</label>
                 </div>
                 <div class="col-sm-3">
                     @*<a href="#"><strong>Fecha de <br />Postulación</strong></a>*@
@@ -68,10 +81,35 @@
                             <span class="fa fa-1x fa-arrow-down"></span>
                         }
                     }
-                    <label id="colFecha">Fecha de <br />Postulación</label>
+                    <label id="colFecha" style="cursor:pointer;">Fecha de <br />Postulación</label>
                 </div>
-                <div class="col-sm-4"><a href="#" style="color:white;"><strong>Nombre</strong></a></div>
-                <div class="col-sm-2"><a href="#" style="color:white;"><strong>Cump.</strong></a></div>
+                <div class="col-sm-4">
+                    @{
+                        if (ViewBag.Columna == "Nombre" && ViewBag.Orden == "ASC")
+                        {
+                            <span class="fa fa-1x fa-arrow-up"></span>
+                        }
+                        if (ViewBag.Columna == "Nombre" && ViewBag.Orden == "DESC")
+                        {
+                            <span class="fa fa-1x fa-arrow-down"></span>
+                        }
+                    }
+                    <label id="colNombre" style="cursor:pointer;">Nombre</label>
+                </div>
+                <div class="col-sm-2">
+                    @*<a href="#" style="color:white;"><strong>cump.</strong></a>*@
+                    @{
+                        if (ViewBag.Columna == "Cumplimiento" && ViewBag.Orden == "ASC")
+                        {
+                            <span class="fa fa-1x fa-arrow-up"></span>
+                        }
+                        if (ViewBag.Columna == "Cumplimiento" && ViewBag.Orden == "DESC")
+                        {
+                            <span class="fa fa-1x fa-arrow-down"></span>
+                        }
+                    }
+                    <label id="colCumplimiento" style="cursor:pointer;">Cump</label>
+                </div>
             </div>
             <!--Detalle-->
             @for (int i = 0; i < Model.Count(); i++)
@@ -89,19 +127,19 @@
                     <div class="col-sm-3">
                         @Model[i].FechaPostulacion
                     </div>
-                    <div class="col-sm-4">                   
-                        @Html.ActionLink(Model[i].Alumno.Nombres + ' ' + Model[i].Alumno.Apellidos, "Postulante", "Empresa", new { id = Model[i].IdOfertaPostulante }, null)
+                    <div class="col-sm-4">
+                        @Html.ActionLink(Model[i].Alumno.Apellidos + ", " + Model[i].Alumno.Nombres, "Postulante", "Empresa", new { id = Model[i].IdOfertaPostulante }, null)
                         @*<a href="../Empresa/Postulante">
-                            <strong>@Model[i].Alumno.Nombres @Model[i].Alumno.Apellidos</strong>
-                        </a>*@
+                                <strong>@Model[i].Alumno.Nombres @Model[i].Alumno.Apellidos</strong>
+                            </a>*@
                     </div>
                     <div class="col-sm-2">
                         <div class="progress">
-                            @if (@Model[i].NivelDeMatch < 60) 
-                            { 
-                            <div class="progress-bar progress-bar-danger progress-bar" role="progressbar" aria-valuenow="@Model[i].NivelDeMatch" aria-valuemin="0" aria-valuemax="100" style="width:@Model[i].NivelDeMatch%;">
-                                @Model[i].NivelDeMatch%
-                            </div>
+                            @if (@Model[i].NivelDeMatch < 60)
+                            {
+                                <div class="progress-bar progress-bar-danger progress-bar" role="progressbar" aria-valuenow="@Model[i].NivelDeMatch" aria-valuemin="0" aria-valuemax="100" style="width:@Model[i].NivelDeMatch%;">
+                                    @Model[i].NivelDeMatch%
+                                </div>
                             }
                             @if (@Model[i].NivelDeMatch >= 60 && @Model[i].NivelDeMatch < 80)
                             {
@@ -109,7 +147,7 @@
                                     @Model[i].NivelDeMatch%
                                 </div>
                             }
-                            @if (@Model[i].NivelDeMatch >= 80 )
+                            @if (@Model[i].NivelDeMatch >= 80)
                             {
                                 <div class="progress-bar progress-bar-success progress-bar" role="progressbar" aria-valuenow="@Model[i].NivelDeMatch" aria-valuemin="0" aria-valuemax="100" style="width:@Model[i].NivelDeMatch%;">
                                     @Model[i].NivelDeMatch%
@@ -142,9 +180,12 @@
 
     $(document).ready(function () {
 
+        //Eventos clic para el ordenamiento de la grilla de postulantes:
         $('#colFecha').on('click', function () {
-            debugger;
-            console.log('click en colFecha');
+            //debugger;
+
+            OrdenarPostulantes('Fecha');
+            @*console.log('click en colFecha');
 
             //Se obtiene el Id y el estado:
             var idOferta = $('#hddIdOferta').val();
@@ -158,9 +199,41 @@
             var url = '@Url.Action("VistaOfertaPostulantes", "Empresa")' + '?id=' + idOferta + '&columna=Fecha&orden=' + orden + '&estado=' + estadoOferta;
             $.get(url, function (data) {
                 $('#divActualizarPostulantes').html(data);
-            });
+            });*@
 
         });
+
+        $('#colNombre').on('click', function () {
+            OrdenarPostulantes('Nombre');
+        });
+
+        $('#colFase').on('click', function () {
+            OrdenarPostulantes('Fase');
+        });
+
+        $('#colCumplimiento').on('click', function () {
+            OrdenarPostulantes('Cumplimiento');
+        });
+
+        function OrdenarPostulantes(columna) {
+            //Se obtiene el Id y el estado:
+            $('#lblCargando').css('visibility','visible')
+
+            var idOferta = $('#hddIdOferta').val();
+            var estadoOferta = $('#hddEstadoOfertaIdListaValor').val();
+            var columnActual = $('#hddColumnaActual').val();
+            var ordenActual = $('#hddOrdenActual').val();
+
+            var orden = ordenActual == 'ASC' ? 'DESC' : 'ASC';  //Se cambia el orden actual
+
+            //Se llama al controlador pasando los parámetros para ordenar las columnas.
+            var url = '@Url.Action("VistaOfertaPostulantes", "Empresa")' + '?id=' + idOferta + '&columna=' + columna + '&orden=' + orden + '&estado=' + estadoOferta;
+            $.get(url, function (data) {
+                $('#divActualizarPostulantes').html(data);
+            }).then(function () {
+                $('#lblCargando').css('visibility', 'hidden')
+            });
+        }
 
     });
 </script>

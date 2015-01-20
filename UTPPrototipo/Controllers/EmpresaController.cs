@@ -62,7 +62,7 @@ namespace UTPPrototipo.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
-        [VerificarSesion]        
+         
         public ActionResult Publicacion(string filtroBusqueda)
         {
             //Se obtiene los datos de la sesion.
@@ -76,6 +76,8 @@ namespace UTPPrototipo.Controllers
 
             return View(lista);
         }
+
+
         public ActionResult Oferta(int id)
         {
             int idOferta = id;            
@@ -485,8 +487,7 @@ namespace UTPPrototipo.Controllers
             if (columna == "Fecha")
             {
                 if (orden == "ASC")
-                {
-                    //Fecha descendente.
+                {                    
                     postulantes = lnOferta.ObtenerPostulantesPorIdOferta(id).OrderBy(m => m.FechaPostulacion).ToList();
                 }
                 else
@@ -494,7 +495,41 @@ namespace UTPPrototipo.Controllers
                     postulantes = lnOferta.ObtenerPostulantesPorIdOferta(id).OrderByDescending(m => m.FechaPostulacion).ToList();
                 }
             }
-            else  //Orden por defecto:
+            if (columna == "Nombre")
+            {
+                if (orden == "ASC")
+                {                    
+                    postulantes = lnOferta.ObtenerPostulantesPorIdOferta(id).OrderBy(m => m.Alumno.Apellidos).ToList();
+                }
+                else
+                {
+                    postulantes = lnOferta.ObtenerPostulantesPorIdOferta(id).OrderByDescending(m => m.Alumno.Apellidos).ToList();
+                }
+            }
+            if (columna == "Fase")
+            {
+                if (orden == "ASC")
+                {                  
+                    postulantes = lnOferta.ObtenerPostulantesPorIdOferta(id).OrderBy(m => m.FaseOferta.Peso).ToList();
+                }
+                else
+                {
+                    postulantes = lnOferta.ObtenerPostulantesPorIdOferta(id).OrderByDescending(m => m.FaseOferta.Peso).ToList();
+                }
+            }
+            if (columna == "Cumplimiento")
+            {
+                if (orden == "ASC")
+                {                 
+                    postulantes = lnOferta.ObtenerPostulantesPorIdOferta(id).OrderBy(m => m.NivelDeMatch).ToList();
+                }
+                else
+                {
+                    postulantes = lnOferta.ObtenerPostulantesPorIdOferta(id).OrderByDescending(m => m.NivelDeMatch).ToList();
+                }
+            }
+
+           if (postulantes.Count == 0)
             {
                 postulantes = lnOferta.ObtenerPostulantesPorIdOferta(id).OrderBy(m => m.FechaPostulacion).ToList();
             }
@@ -1001,6 +1036,20 @@ namespace UTPPrototipo.Controllers
                 int a = 0;
             }
             return PartialView("_AdministrarUsuarioEditar", empresaUsuario);
+        }
+
+        public ActionResult BuscarOfertas(string palabraClave)
+        {
+            //Se obtiene los datos de la sesion.
+            TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];
+            int idEmpresa = ticket.IdEmpresa;
+            string rolIdListaValor = ticket.Rol;
+
+            string filtro = palabraClave == null ? "" : palabraClave;
+
+            List<VistaOfertaEmpresa> lista = lnOferta.Obtener_PanelEmpresa(idEmpresa, filtro, rolIdListaValor, ticket.Usuario);
+
+            return PartialView("_ListaOfertas",lista);
         }
     }
 }

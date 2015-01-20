@@ -457,6 +457,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 postulante.NivelDeMatch = Convert.ToInt32(fila["NivelDeMatch"]);
                 postulante.CorreoElectronico = Convert.ToString(fila["CorreoElectronico"]);
                 postulante.Usuario = Convert.ToString(fila["Usuario"]);
+                postulante.FaseOferta.Peso = Convert.ToInt32(fila["FasePeso"]);
 
                 postulantes.Add(postulante);
             }

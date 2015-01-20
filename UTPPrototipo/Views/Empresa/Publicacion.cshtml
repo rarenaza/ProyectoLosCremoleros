@@ -22,127 +22,60 @@
                 </h5>
             </div>
 
-            @using (Html.BeginForm())
-            {
-                <div id="ColapsaBusqueda" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="CabeceraColapsaBusqueda">
-                    <div class="panel-body">
-                        <div class="col-md-6">
-                            <div class="input-group fuente-pequeña">
-                                <span class="input-group-addon">Palabra Clave</span>
-                                @*<input type="text" id="filtroBusqueda" name="filtroBusqueda" class="form-control" placeholder="Palabra clave" />*@
-                                @Html.TextBox("filtroBusqueda", "", new { @class = "form-control", @placeholder = "Palabra clave" })
-                            </div>
+            
+            <div id="ColapsaBusqueda" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="CabeceraColapsaBusqueda">
+                <div class="panel-body">
+                    <div class="col-md-6">
+                        <div class="input-group fuente-pequeña">
+                            <span class="input-group-addon">Palabra Clave</span>
+                            @*<input type="text" id="filtroBusqueda" name="filtroBusqueda" class="form-control" placeholder="Palabra clave" />*@
+                            @Html.TextBox("filtroBusqueda", "", new { @class = "form-control", @placeholder = "Palabra clave" })
                         </div>
-                        <div class="col-md-6 fuente-pequeña">
-                            @*<span class="col-md-6 btn-group">
-                                    <span class="fui" style="font-size:30px;">(</span>
-                                </span>*@
-                            <button type="submit" class="btn btn-default fa fa-search color-paleta2"></button>
-                        </div>
-
                     </div>
+                    <div class="col-md-6 fuente-pequeña">
+                        @*<span class="col-md-6 btn-group">
+                                <span class="fui" style="font-size:30px;">(</span>
+                            </span>*@
+                        <button id="btnBuscar" type="submit" class="btn btn-default fa fa-search color-paleta2"></button>
+                    </div>
+
                 </div>
-            }
-
-        </div>
-
-    </div>
-
-
-    <div class="row">
-        <div class="col-md-12">
-            <!--Cabecera-->
-            <div class="row grilla1-cabecera color-paleta2">
-                <div class="col-xs-12 col-sm-2">Fecha de <br />Publicación</div>
-                <div class="col-xs-3 col-sm-3">Cargo</div>
-                <div class="col-xs-3 col-sm-2">Usuario asignado</div>
-                <!-- Optional: clear the XS cols if their content doesn't match in height -->
-                <div class="clearfix visible-xs-block"></div>
-                <div class="col-xs-3 col-sm-1">CVs Pendientes<br />de Revisión</div>
-                <div class="col-xs-2 col-sm-2">Estado</div>
-                <div class="col-xs-2 col-sm-1">Msj</div>
-                <div class="col-xs-2 col-sm-1">Editar</div>
             </div>
-            <!--Detalle-->
-            @foreach (var item in Model)
-            {
-                <div class="row grilla1-linea table-hover">
-                    <div class="col-xs-12 col-sm-2"><span>@Html.FormatoFrecuencia(@item.FechaPublicacion)</span></div>
-                    <div class="col-xs-3 col-sm-3">
+           
 
-                        @{
-                //Sólo se muestra el link cuando la oferta está ACTIVA o FINALIZADA.
-                if (item.EstadoOfertaIdListaValor == "OFERAC" || item.EstadoOfertaIdListaValor == "OFERFI")
-                {
-                    <strong>@Html.ActionLink(item.Cargo, "Oferta", new { id = item.IdOferta })</strong>
-                }
-                else
-                {
-                    @item.Cargo
-                }
-                        }
-
-
-                    </div>
-                    <div class="col-xs-12 col-sm-2"><span>@item.UsuarioPropietarioEmpresa</span></div>
-                    <div class="clearfix visible-xs-block"></div>
-                    <div class="col-xs-3 col-sm-1"><span class="valor-icono2">r&nbsp;</span>@item.CVPendientesRevision/@item.CVTotales</div>
-                    <div class="col-xs-2 col-sm-2"><span class="valor-palabra">@item.EstadoOferta</span><span class="valor-icono2">D</span></div>
-                    <div class="col-xs-2 col-sm-1"><span class="valor-icono2">h&nbsp;</span>@item.MensajesNoLeidos/@item.MensajesTotales</div>
-                    <div class="col-xs-2 col-sm-1">
-                        @{
-                //El botón editar sólo está activo para los roles: Administrador (ROLADE), Supervisor (ROLSUE), y Usuario (ROLUEM).
-                //Y para las ofertas PENDIENTES DE ACTIVACION (OFERPR) o EN CONSTRUCCION (OFERCO)
-                if ((ticketEmpresa.Rol == "ROLADE" || ticketEmpresa.Rol == "ROLSUE" || ticketEmpresa.Rol == "ROLUEM") &&
-                    (item.EstadoOfertaIdListaValor == "OFERPR" || item.EstadoOfertaIdListaValor == "OFERCO"))
-                {
-                    @Html.ActionLink(" ", "EditarOferta", new { id = item.IdOferta }, new { @class = "btn btn-xs fa fa-pencil color-paleta2", @tooltip = "Editar oferta" })
-                }
-                else
-                {
-                    @Html.ActionLink(" ", "EditarOferta", new { id = item.IdOferta }, new { @class = "btn btn-xs fa fa-pencil color-paleta2", @disabled = "disabled", @title = "No tiene permisos para ejecutar esta acción." })
-                }
-                        }
-                    </div>
-                </div>
-            }
-            @*<a href="~/Views/Empresa/NuevaOferta"></a><button class="btn btn-default" style="margin:10px 10px 10px 10px;color:white;background-color:rgb(60, 172, 201);">Crear Oferta </button>*@
         </div>
+
     </div>
-    <br />
-    <div class="row">
-        <div class="col-sm-6">
-            @{
-                if (ticketEmpresa.Rol == "ROLADE" || ticketEmpresa.Rol == "ROLSUE" || ticketEmpresa.Rol == "ROLUEM") //Rol Administrador de Empresa. ROLADE,ROLSUE,ROLUEM
-                {
-                    @Html.ActionLink("Crear oferta", "NuevaOferta", null, new { @class = "btn btn-default color-paleta2" })
-                }
-                else
-                {
-                    @Html.ActionLink("Crear oferta", "NuevaOferta", null, new { @class = "btn btn-default color-paleta2", @disabled = "disabled", @title = "No tiene permisos para ejecutar esta acción." })
-                }
-            }
-        </div>
-        <div class="col-sm-6" style="text-align:right;">
-            <!--Paginación-->
-            <nav class="navbar-right">
-                <ul class="pagination">
-                    <li><a href="#">&laquo;</a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#">&raquo;</a></li>
-                </ul>
-            </nav>
-        </div>
+
+
+    <div id="divResultadoBusqueda">
+        <label id="lblCargandoOfertas" style="visibility:hidden"></label>
     </div>
-    <hr />
 </div>
 <script>
     $(document).ready(function () {
+
+        buscarOfertas();
+
         $("#divFinalCabeceraEmpresa").removeClass("color-paleta1 color-paleta3 color-paleta4 color-paleta5").addClass("color-paleta2");
+
+        $('#btnBuscar').on('click', function () {
+            buscarOfertas();
+        });
+
+        function buscarOfertas()
+        {
+            $('#lblCargandoOfertas').css('visibility', 'visible');
+
+            var palabraClave = $('#filtroBusqueda').val();
+            var url = '@Url.Action("BuscarOfertas", "Empresa")' + "?palabraClave=" + palabraClave;
+
+            $.get(url, function (data) {
+                $('#divResultadoBusqueda').html(data);
+            }).then(function () {
+                $('#lblCargandoOfertas').css('visibility', 'hidden');
+            });
+        }
     });
 </script>
 

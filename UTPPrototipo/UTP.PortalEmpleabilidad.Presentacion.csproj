@@ -933,6 +933,7 @@
     <Content Include="Views\UTP\_NuevoValor.cshtml" />
     <Content Include="Views\UTP\_NuevoValorEditar.cshtml" />
     <Content Include="Views\Empresa\_ResultadoBusquedaHunting.cshtml" />
+    <Content Include="Views\Empresa\_ListaOfertas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
