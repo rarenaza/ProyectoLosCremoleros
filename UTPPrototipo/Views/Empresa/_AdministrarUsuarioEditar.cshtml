@@ -118,7 +118,7 @@
                     <span class="input-group-addon">Rol *</span>
 
                     @{
-                        if (ticketEmpresa.Rol == "ROLADE") //Rol Administrador de Empresa.
+                        if (ticketEmpresa.Rol == "ROLEAD") //Rol Administrador de Empresa.
                         {
                             @Html.DropDownListFor(m => m.RolIdListaValor, null, "-- Especifique el Rol --", htmlAttributes: new { @class = "form-control" })
                         }
@@ -140,7 +140,7 @@
                     <span class="input-group-addon">Estado *</span>
                     
                     @{
-                        if (ticketEmpresa.Rol == "ROLADE") //Rol Administrador de Empresa.
+                        if (ticketEmpresa.Rol == "ROLEAD") //Rol Administrador de Empresa.
                         {
                             @Html.DropDownListFor(m => m.EstadoUsuarioIdListaValor, null, "-- Especifique el estado --", htmlAttributes: new { @class = "form-control" })
                         }

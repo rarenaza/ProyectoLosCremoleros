@@ -102,7 +102,7 @@ namespace UTP.PortalEmpleabilidad.Logica
         }
 
         /// <summary>
-        /// Obtiene los usuarios activos(USEMAC) y los que tienen los roles ROLADE, ROLSUE, ROLUEM
+        /// Obtiene los usuarios activos(USEMAC) y los que tienen los roles ROLEAD, ROLEUS
         /// </summary>
         /// <param name="idEmpresa"></param>
         /// <returns></returns>
@@ -119,10 +119,9 @@ namespace UTP.PortalEmpleabilidad.Logica
                 string estado = Convert.ToString(fila["EstadoUsuarioIdListaValor"]);
                 string rol = Convert.ToString(fila["RolIdListaValor"]);
 
-                //Se agregan a la lista los usuarios ACTIVOS y los que tienen uno de estos roles ROLADE, ROLSUE, ROLUEM.
+                //Se agregan a la lista los usuarios ACTIVOS y los que tienen uno de estos roles ROLEAD, ROLEUS.
                 if (estado == Constantes.LISTAVALOR_ESTADO_DEL_USUARIO_ACTIVO && 
                     (rol == Constantes.LISTAVALOR_ROL_DEL_USUARIO_ADMINISTRADOREMPRESA ||
-                    rol == Constantes.LISTAVALOR_ROL_DEL_USUARIO_SUPERVISOREMPRESA ||
                     rol == Constantes.LISTAVALOR_ROL_DEL_USUARIO_USUARIOEMPRESA))
                 { 
 

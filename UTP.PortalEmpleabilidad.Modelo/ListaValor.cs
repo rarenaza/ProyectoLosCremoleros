@@ -16,12 +16,12 @@ namespace UTP.PortalEmpleabilidad.Modelo
        public string IdListaValorPadre { get; set; }
        [Required(ErrorMessage = Constantes.MSJ_CAMPO_OBLIGATORIO)]
        public string Valor { get; set; }
-       [Required(ErrorMessage = Constantes.MSJ_CAMPO_OBLIGATORIO)]
+       
        public string DescripcionValor { get; set; }
-       [Required(ErrorMessage = Constantes.MSJ_CAMPO_OBLIGATORIO)]
+       
        public string Icono { get; set; }
-        [Required(ErrorMessage = Constantes.MSJ_CAMPO_OBLIGATORIO)]
-       public int Peso { get; set; }
+        
+       public int? Peso { get; set; }
        public string ValorUTP { get; set; }
        public string Padre { get; set; }
        [Required(ErrorMessage = Constantes.MSJ_CAMPO_OBLIGATORIO)]

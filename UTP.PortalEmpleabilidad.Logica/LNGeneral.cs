@@ -129,7 +129,7 @@ namespace UTP.PortalEmpleabilidad.Logica
 
             foreach (DataRow fila in dtResultado.Rows)
             {
-                if (Convert.ToString(fila["Valor"]).ToUpper().Contains(filtro.ToUpper()))
+                if (Convert.ToString(fila["IDListaValor"]).ToUpper().Contains(filtro.ToUpper()))
                 {
                     ListaValor item = new ListaValor();
                     item.IdLista = Convert.ToInt32(fila["IDLista"]);

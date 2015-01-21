@@ -510,10 +510,10 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.Parameters.Add(new SqlParameter("@IDListaValor", lista.IdListaValor));
                 cmd.Parameters.Add(new SqlParameter("@IDLista", lista.IdLista));
                 cmd.Parameters.Add(new SqlParameter("@Valor", lista.Valor == null ? "" : lista.Valor));
-                cmd.Parameters.Add(new SqlParameter("@DescripcionValor", lista.DescripcionValor == null ? "" : lista.DescripcionValor));
-                cmd.Parameters.Add(new SqlParameter("@Icono", lista.Icono == null ? "" : lista.Icono));
-                cmd.Parameters.Add(new SqlParameter("@Peso", lista.Peso));
-                cmd.Parameters.Add(new SqlParameter("@ValorUTP", lista.ValorUTP));
+                cmd.Parameters.Add(new SqlParameter("@DescripcionValor", lista.DescripcionValor == null ? System.Data.SqlTypes.SqlString.Null : lista.DescripcionValor));
+                cmd.Parameters.Add(new SqlParameter("@Icono", lista.Icono == null ? System.Data.SqlTypes.SqlString.Null : lista.Icono));
+                cmd.Parameters.Add(new SqlParameter("@Peso", lista.Peso == null ? 0 : lista.Peso));
+                cmd.Parameters.Add(new SqlParameter("@ValorUTP", lista.ValorUTP == null ? System.Data.SqlTypes.SqlString.Null : lista.ValorUTP));
                 cmd.Parameters.Add(new SqlParameter("@EstadoValor", lista.EstadoValor == null ? "" : lista.EstadoValor));
                 cmd.Parameters.Add(new SqlParameter("@CreadoPor", lista.Creadopor));
                 cmd.Connection = conexion;
@@ -538,13 +538,13 @@ namespace UTP.PortalEmpleabilidad.Datos
 
                 //Parámetros:
                 cmd.Parameters.Add(new SqlParameter("@IDListaValor", lista.IdListaValor));
-                cmd.Parameters.Add(new SqlParameter("@Valor", lista.Valor == null ? "" : lista.Valor));
-                cmd.Parameters.Add(new SqlParameter("@DescripcionValor", lista.DescripcionValor == null ? "" : lista.DescripcionValor));
-                cmd.Parameters.Add(new SqlParameter("@Icono", lista.Icono == null ? "" : lista.Icono));
-                cmd.Parameters.Add(new SqlParameter("@Peso", lista.Peso));
-                cmd.Parameters.Add(new SqlParameter("@ValorUTP", lista.ValorUTP));
-                cmd.Parameters.Add(new SqlParameter("@EstadoValor", lista.EstadoValor == null ? "" : lista.EstadoValor));
-                cmd.Parameters.Add(new SqlParameter("@ModificadoPor", lista.Modificadopor));
+                cmd.Parameters.Add(new SqlParameter("@Valor", lista.Valor));
+                cmd.Parameters.Add(new SqlParameter("@DescripcionValor", lista.DescripcionValor == null ? System.Data.SqlTypes.SqlString.Null : lista.DescripcionValor));
+                cmd.Parameters.Add(new SqlParameter("@Icono", lista.Icono == null ? System.Data.SqlTypes.SqlString.Null : lista.Icono));
+                cmd.Parameters.Add(new SqlParameter("@Peso", lista.Peso == null ? 0 : lista.Peso));
+                cmd.Parameters.Add(new SqlParameter("@ValorUTP", lista.ValorUTP == null ? System.Data.SqlTypes.SqlString.Null : lista.ValorUTP));
+                cmd.Parameters.Add(new SqlParameter("@EstadoValor", lista.EstadoValor));
+                cmd.Parameters.Add(new SqlParameter("@ModificadoPor", lista.Modificadopor == null ? System.Data.SqlTypes.SqlString.Null : lista.Modificadopor));
                 cmd.Connection = conexion;
 
                 conexion.Open();

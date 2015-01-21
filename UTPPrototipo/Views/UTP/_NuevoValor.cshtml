@@ -15,9 +15,9 @@
                     @*<input type="text" class="form-control" placeholder="Identificador de Valor (6 digitos)">*@
 
                     @Html.TextBoxFor(model => model.IdListaValor, new { @class = "form-control", rows = "3", @placeholder = "Identificador de Valor (6 digitos)" })
-                 
-                    @Html.ValidationMessageFor(model => model.IdListaValor, "", new { @class = "text-danger" })
+                  
                 </div>
+                @Html.ValidationMessageFor(model => model.IdListaValor, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="row">
@@ -26,8 +26,9 @@
                     <span class="input-group-addon">Valor</span>
                     @*<input type="text" class="form-control" placeholder="Texto del Valor">*@
                     @Html.TextBoxFor(model => model.Valor, new { @class = "form-control", rows = "3", @placeholder = "Texto del Valor" })
-                    @Html.ValidationMessageFor(model => model.Valor)
+                    
                 </div>
+                @Html.ValidationMessageFor(model => model.Valor)
             </div>
         </div>
         <div class="row">
@@ -36,8 +37,9 @@
                     <span class="input-group-addon">Descrip-<br />ción</span>
                     @*<textarea class="form-control" rows="4">Descripción</textarea>*@
                     @Html.TextAreaFor(model => model.DescripcionValor, new { @class = "form-control", rows = "3", @placeholder = "Descripcion" })
-                    @Html.ValidationMessageFor(model => model.DescripcionValor)
+                    
                 </div>
+                @Html.ValidationMessageFor(model => model.DescripcionValor)
             </div>
         </div>
         <div class="row">
@@ -54,8 +56,9 @@
                     <span class="input-group-addon">Peso</span>
                     @*<input type="text" class="form-control" placeholder="Peso u orden numérico: 0-999">*@
                     @Html.TextBoxFor(model => model.Peso, new { @class = "form-control", rows = "3", @placeholder = "Peso" })
-                    @Html.ValidationMessageFor(model => model.Peso)
+                   
                 </div>
+                @Html.ValidationMessageFor(model => model.Peso)
             </div>
         </div>
         <div class="row">
@@ -77,7 +80,7 @@
                     new SelectListItem() {Text = "Activo", Value="Activo"},
                     new SelectListItem() {Text = "No Activo", Value="No Activo"}
 
-                    }, "-Seleccione-", new { @class = "form-control" })
+                    }, "- Seleccione -", new { @class = "form-control" })
 
                 </div>
             </div>

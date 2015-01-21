@@ -488,8 +488,8 @@ namespace UTPPrototipo.Controllers
                 empresa.NombreLocacion = empresa.DireccionLocacion + ", " + empresa.DireccionDistritoLocacion + ", " + empresa.DireccionCiudadLocacion + ", " + empresa.DireccionDepartamentoLocacion;
 
                 //Usuario
-                empresa.RolIdListaValor = "ROLADE";  //La cuenta es creada como Rol: "Administrador de Empresa"
-                empresa.EstadoUsuarioIdListaValor = "USEMPE";  //El usuario también se encuenta pendiente de activación. Se debe activar al momento que UTP active la cuenta.
+                empresa.RolIdListaValor = "ROLEAD";  //La cuenta es creada como Rol: "Administrador de Empresa"
+                empresa.EstadoUsuarioIdListaValor = "USEUTP";  //El usuario también se encuenta pendiente de activación. Se debe activar al momento que UTP active la cuenta.
 
                 lnEmpresa.Insertar(empresa);
 
