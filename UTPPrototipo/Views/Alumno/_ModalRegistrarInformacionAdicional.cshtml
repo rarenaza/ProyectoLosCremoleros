@@ -24,7 +24,7 @@
                 <div class="col-sm-12">
                     <div class="input-group fuente-pequeña">
                         <span class="input-group-addon">Nombre</span>
-                        @Html.TextBoxFor(m => m.Conocimiento, htmlAttributes: new { @class = "form-control", @placeholder = "Nombre del Conocimiento" })
+                        @Html.TextBoxFor(m => m.Conocimiento, htmlAttributes: new { @class = "form-control", @placeholder = "Nombre del Conocimiento", @Id = "Conocimientos" })
                     </div>
                     @Html.ValidationMessageFor(m => m.Conocimiento, "", new { @class = "text-danger" })
                 </div>
@@ -110,3 +110,22 @@
         </div>
     </div>
 </div>
+<script>
+
+    $(document).ready(function () {
+        //$("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta4 color-paleta5").addClass("color-paleta3");
+
+        //se obtiene el valor del combo
+        var codigoTipoConocimiento = $('#TipoConocimientoIdListaValor').val();
+
+        //ESE ES LA CAJA, LA ACCION Y EL CONTROLADOR
+        AutoCompleteTextDemo('#Conocimientos', '@Url.Action("ListarDatosEspecificos", "OfertaInformacionAdicional")' + '?codigoTipo=' + codigoTipoConocimiento, '#Conocimientos', '#TipoConocimientoIdListaValor', 'option', 'appendTo', '.eventInsForm');
+
+
+
+
+    });
+
+
+
+</script>
