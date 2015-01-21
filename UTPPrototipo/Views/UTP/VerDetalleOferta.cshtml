@@ -424,7 +424,8 @@
             {
                 <div class="row grilla1-linea">
                     <div class="col-sm-3">
-                        <a href="../UTP/Alumno">Mario José Alvarado Peña</a>
+                        @*<a href="../UTP/Alumno">Mario José Alvarado Peña</a>*@
+                        @Html.ActionLink(item.Alumno.Nombres + ' ' + item.Alumno.Apellidos, "VerDetalleAlumno", new { id = item.Alumno.IdAlumno })
                     </div>
                     <div class="col-sm-2">
                         @item.FechaPostulacion

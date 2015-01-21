@@ -114,6 +114,13 @@ namespace UTPPrototipo.Controllers
             {
                 TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
                 entidad.CreadoPor = ticket.Usuario;
+
+                //Se crea el CV en formato Word.
+                string rutaPlantilla = Server.MapPath("~/Plantillas/PlantillaVER3.docx");
+                PlantillaController plantilla = new PlantillaController();
+                MemoryStream streamCurriculum = plantilla.CrearCurriculum(entidad.IdCV, rutaPlantilla);
+                entidad.DocumentoCV = streamCurriculum.ToArray();
+
                 lnofertapostulante.Insertar(entidad);
             }
             else

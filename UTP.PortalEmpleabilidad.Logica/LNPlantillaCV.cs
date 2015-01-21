@@ -41,5 +41,12 @@ namespace UTP.PortalEmpleabilidad.Logica
 
             return adPlantilla.ObtenerDatosParaPlantilla(IdCV);
         }
+
+        public DataTable ObtenerDocumentoCV(int idOfertaPostulante)
+        {
+            DataTable dtResultado = pcv.ObtenerDocumentoCV(idOfertaPostulante);
+
+            return dtResultado;
+        }
     }
 }

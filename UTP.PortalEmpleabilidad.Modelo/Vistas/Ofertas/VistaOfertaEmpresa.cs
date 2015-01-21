@@ -19,5 +19,6 @@ namespace UTP.PortalEmpleabilidad.Modelo.Vistas.Ofertas
         public int MensajesTotales { get; set; }
         public string UsuarioPropietarioEmpresa { get; set; }
         public string EstadoOfertaIdListaValor { get; set; }
+        public int CantidadTotal { get; set; }
     }
 }

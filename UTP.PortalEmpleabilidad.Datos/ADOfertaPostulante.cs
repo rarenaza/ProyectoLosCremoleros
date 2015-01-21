@@ -23,7 +23,7 @@ namespace UTP.PortalEmpleabilidad.Datos
             cmd.Parameters.Add(new SqlParameter("@IdAlumno", SqlDbType.Int)).Value = ofertapostulante.IdAlumno;
             cmd.Parameters.Add(new SqlParameter("@FaseOferta", SqlDbType.VarChar, 6)).Value = ofertapostulante.FaseOfertaPostulacion;
             cmd.Parameters.Add(new SqlParameter("@IdCV", SqlDbType.Int)).Value = ofertapostulante.IdCV;
-            //cmd.Parameters.Add(new SqlParameter("@DocumentoCV", SqlDbType.)).Value = ofertapostulante.DocumentoCV;
+            cmd.Parameters.Add(new SqlParameter("@DocumentoCV", ofertapostulante.DocumentoCV));
             cmd.Parameters.Add(new SqlParameter("@CreadoPor", SqlDbType.VarChar,50)).Value = ofertapostulante.CreadoPor;
 
             cmd.ExecuteNonQuery();

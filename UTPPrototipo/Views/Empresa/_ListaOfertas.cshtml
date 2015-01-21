@@ -1,11 +1,20 @@
 ﻿@model IEnumerable<UTP.PortalEmpleabilidad.Modelo.Vistas.Ofertas.VistaOfertaEmpresa>
 @using UTPPrototipo.Models.ViewModels.Cuenta;
 @using UTPPrototipo.Common
+@using UTP.PortalEmpleabilidad.Modelo
 
 @{
 
     TicketEmpresa ticketEmpresa = (TicketEmpresa)Session["TicketEmpresa"];
+
+    <!--Se guardan los valores de página actual y cantidad total de resultados para la paginación.-->
+    Paginacion paginacion = (Paginacion)ViewBag.Paginacion;
 }
+
+@*<input id="hddNroPaginaActual" type="hidden" value="@ViewBag.NroPaginaActual" />
+<input id="hddCantidadTotal" type="hidden" value="@ViewBag.CantidadTotalResultados" />*@
+
+
 <div class="row">
     <div class="col-md-12">
         <!--Cabecera-->

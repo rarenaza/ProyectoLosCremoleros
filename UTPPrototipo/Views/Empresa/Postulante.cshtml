@@ -385,7 +385,8 @@
                                         @Html.ActionLink(Model.alumnocv.CargoOfrecido, "Oferta", new { id = Model.alumnocv.IdOferta })
                                     </h6>
                                     <p>Postuló el <strong>@Model.alumnocv.FechaPostulacion</strong></p>
-                                    <a href="#">Descargar CV </a>
+                                    @*<a href="#">Descargar CV </a>*@
+                                    @Html.ActionLink("Descargar CV", "DescargarDesdeBD", "Plantilla", new { idOfertaPostulante = Model.alumnocv.IdOfertaPostulante }, null)
                                 </div>
                             </div>
                             <hr />
