@@ -251,8 +251,20 @@ input[type="checkbox"].input-validation-error {
 	color:white;
     }
 .color-paleta8 {
-    background-color:rgb(0, 0, 0);
-	color:white;
+    background-color: rgb(0, 0, 0);
+	color: white;
+    }
+.color-paleta-msg {
+	color: rgb(100,100,100);
+    }
+
+.color-paleta-msg-ent {
+    color: rgb(180, 30, 34);
+    }
+
+.color-paleta-msg-btn {
+	background-color: rgb(100,100,100);
+    color: white;
     }
 
 .color-icono-paleta1 {

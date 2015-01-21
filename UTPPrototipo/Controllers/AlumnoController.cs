@@ -481,14 +481,14 @@ namespace UTPPrototipo.Controllers
         }
 
 
-        public ActionResult Utp_BuscarDatosListaEmpresas(string SearchString)
+        public ActionResult BuscarDatosEmpresas(string NombreEmpresa)
         {
 
-            string palabraClave = SearchString == null ? "" : SearchString;
+            
 
             AlumnoExperiencia vista = new AlumnoExperiencia();
 
-            DataTable dtResultado = lnAlumno.Utp_BuscarDatosListaEmpresas(palabraClave);
+            DataTable dtResultado = lnAlumno.Utp_BuscarDatosListaEmpresas(NombreEmpresa);
 
             if (dtResultado.Rows.Count> 0)
             {
@@ -499,7 +499,7 @@ namespace UTPPrototipo.Controllers
                               
             }
 
-            return PartialView("_UsuariosUTPEditar", vista);
+            return Json(vista);
 
         }
 

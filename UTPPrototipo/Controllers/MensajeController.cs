@@ -272,39 +272,51 @@ namespace UTPPrototipo.Controllers
             {
                 case Constantes.MENSAJES_EMPRESA_INDEX:
                     lista = lnMensaje.ObtenerPorUsuario(ticketEmpresa.Usuario);
+                    ViewBag.usuarioActual = ticketEmpresa.Usuario;
                     break;
                 case Constantes.MENSAJES_EMPRESA_OFERTA:            
                     lista = lnMensaje.ObtenerPorIdEmpresaIdOferta(ticketEmpresa.IdEmpresa, IdOferta);
+                    ViewBag.usuarioActual = ticketEmpresa.Usuario;
                     break;
                 case Constantes.MENSAJES_ALUMNO_INDEX:
                     lista = lnMensaje.ObtenerPorUsuario(ticketAlumno.Usuario);
+                    ViewBag.usuarioActual = ticketAlumno.Usuario;
                     break;
                 case Constantes.MENSAJES_ALUMNO_OFERTA:
                     lista = lnMensaje.ObtenerPorUsuario(ticketAlumno.Usuario).Where(m => m.Oferta.IdOferta == IdOferta).ToList();
+                    ViewBag.usuarioActual = ticketAlumno.Usuario;
                     break;
                 case Constantes.MENSAJES_UTP_INDEX:
                     lista = lnMensaje.ObtenerPorUsuario(ticketUTP.Usuario);
+                    ViewBag.usuarioActual = ticketUTP.Usuario;
                     break;
                 case Constantes.MENSAJES_UTP_EMPRESA:
                     lista = lnMensaje.ObtenerPorIdEmpresaIdOferta(IdEmpresaParametro, 0);
+                    ViewBag.usuarioActual = ticketUTP.Usuario;
                     break;
                 case Constantes.MENSAJES_UTP_ALUMNO:
                     lista = lnMensaje.ObtenerPorUsuario(ticketUTP.Usuario).Where(m => m.DeUsuario == UsuarioAlumno || m.ParaUsuario == UsuarioAlumno).ToList();
+                    ViewBag.usuarioActual = ticketUTP.Usuario;
                     break;
                 case Constantes.MENSAJES_UTP_OFERTA:
                     lista = lnMensaje.ObtenerPorUsuario(ticketUTP.Usuario).Where(m => m.Oferta.IdOferta == IdOferta).ToList();
+                    ViewBag.usuarioActual = ticketUTP.Usuario;
                     break;
                 case Constantes.MENSAJES_EMPRESA_EVENTO:
                     lista = lnMensaje.ObtenerPorUsuario(ticketEmpresa.Usuario).Where(m => m.IdEvento == IdEventoParametro).ToList();
+                    ViewBag.usuarioActual = ticketEmpresa.Usuario;
                     break;
                 case Constantes.MENSAJES_ALUMNO_EVENTO:
                     lista = lnMensaje.ObtenerPorUsuario(ticketAlumno.Usuario).Where(m => m.IdEvento == IdEventoParametro).ToList();
+                    ViewBag.usuarioActual = ticketAlumno.Usuario;
                     break;
                 case Constantes.MENSAJES_UTP_EVENTO:
                     lista = lnMensaje.ObtenerPorUsuario(ticketUTP.Usuario).Where(m => m.IdEvento == IdEventoParametro).ToList();
+                    ViewBag.usuarioActual = ticketUTP.Usuario;
                     break;
                 case Constantes.MENSAJES_EMPRESA_HUNTING:
                     lista = lnMensaje.ObtenerPorUsuario(ticketEmpresa.Usuario);
+                    ViewBag.usuarioActual = ticketEmpresa.Usuario;
                     break;
 
             }            

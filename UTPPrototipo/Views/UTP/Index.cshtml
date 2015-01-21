@@ -19,15 +19,18 @@
         -->
 
     <div class="row">
-
-        <div class="col-md-4 fuente-pequeña" style="border-right:solid;border-color:rgb(220, 220, 220);border-width:1px;">
-            @Html.Action("VistaOfertasPendientes", "UTP")
+        <div class="col-sm-8">
+            <div class="row">
+                <div class="col-md-12 fuente-pequeña" style="border-right:solid;border-color:rgb(220, 220, 220);border-width:1px;">
+                    @Html.Action("VistaOfertasPendientes", "UTP")
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 fuente-pequeña" style="border-right:solid;border-color:rgb(220, 220, 220);border-width:1px;">
+                    @Html.Action("Vista_EmpresasPendientes", "UTP")
+                </div>
+            </div>
         </div>
-
-        <div class="col-md-4 fuente-pequeña" style="border-right:solid;border-color:rgb(220, 220, 220);border-width:1px;">
-            @Html.Action("Vista_EmpresasPendientes", "UTP")
-        </div>
-
         <div class="col-md-4 fuente-pequeña">
 
             @Html.Action("_Mensajes", "Mensaje", new { pantalla = Constantes.MENSAJES_UTP_INDEX })
