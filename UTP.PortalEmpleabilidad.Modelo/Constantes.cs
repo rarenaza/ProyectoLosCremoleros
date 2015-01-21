@@ -94,5 +94,12 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public const string MENSAJES_EMPRESA_HUNTING = "EMPRESA_HUNTING";
 
         #endregion
+
+        #region Paginación
+
+        public const int FILAS_POR_PAGINA = 10;
+
+        #endregion
+
     }
 }

@@ -86,9 +86,10 @@ namespace UTPPrototipo.Controllers
 
             string filtro = filtroBusqueda == null ? "" : filtroBusqueda;
 
-            List<VistaOfertaEmpresa> lista = lnOferta.Obtener_PanelEmpresa(idEmpresa, filtro, rolIdListaValor, ticket.Usuario);
+            //List<VistaOfertaEmpresa> lista = lnOferta.Obtener_PanelEmpresa(idEmpresa, filtro, rolIdListaValor, ticket.Usuario);
+            ViewBag.NroPaginaActual = 1;
 
-            return View(lista);
+            return View();
         }
 
 
@@ -1052,7 +1053,7 @@ namespace UTPPrototipo.Controllers
             return PartialView("_AdministrarUsuarioEditar", empresaUsuario);
         }
 
-        public ActionResult BuscarOfertas(string palabraClave)
+        public ActionResult BuscarOfertas(string palabraClave, int nroPaginaActual = 1, int filasPorPagina = Constantes.FILAS_POR_PAGINA)
         {
             //Se obtiene los datos de la sesion.
             TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];
@@ -1061,7 +1062,16 @@ namespace UTPPrototipo.Controllers
 
             string filtro = palabraClave == null ? "" : palabraClave;
 
-            List<VistaOfertaEmpresa> lista = lnOferta.Obtener_PanelEmpresa(idEmpresa, filtro, rolIdListaValor, ticket.Usuario);
+            List<VistaOfertaEmpresa> lista = lnOferta.Obtener_PanelEmpresa(idEmpresa, filtro, rolIdListaValor, ticket.Usuario, nroPaginaActual, filasPorPagina);
+
+            //Datos para la paginación.
+            int cantidadTotal = lista.Count() == 0 ? 0 : lista[0].CantidadTotal;
+
+            Paginacion paginacion = new Paginacion();
+            paginacion.NroPaginaActual = nroPaginaActual;
+            paginacion.CantidadTotalResultados = cantidadTotal;
+
+            ViewBag.Paginacion = paginacion;
 
             return PartialView("_ListaOfertas",lista);
         }

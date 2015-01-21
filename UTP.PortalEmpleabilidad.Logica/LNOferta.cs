@@ -108,7 +108,8 @@ namespace UTP.PortalEmpleabilidad.Logica
                 oferta.LogoEmpresa = Funciones.ToBytes(dtResultado.Rows[0]["LogoEmpresa"]); ;
                 oferta.ArchivoMimeType = Funciones.ToString(dtResultado.Rows[0]["ArchivoMimeType"]); ;
                 oferta.AnoCreacion = Funciones.ToInt(dtResultado.Rows[0]["AnoCreacion"]);
-                oferta.DesSectorEmpresarial = Funciones.ToString(dtResultado.Rows[0]["DesSectorEmpresarial"]); ;
+                oferta.DesSectorEmpresarial = Funciones.ToString(dtResultado.Rows[0]["DesSectorEmpresarial"]);
+                oferta.IdOfertaPostulante = Funciones.ToInt(dtResultado.Rows[0]["IdOfertaPostulante"]);
             }
 
             return oferta;
@@ -279,11 +280,11 @@ namespace UTP.PortalEmpleabilidad.Logica
         }
 
 
-        public List<VistaOfertaEmpresa> Obtener_PanelEmpresa(int idEmpresa, string filtroBusqueda, string rolIdListaValor, string usuario)
+        public List<VistaOfertaEmpresa> Obtener_PanelEmpresa(int idEmpresa, string filtroBusqueda, string rolIdListaValor, string usuario, int nroPaginaActual, int filasPorPagina)
         {
             List<VistaOfertaEmpresa> lista = new List<VistaOfertaEmpresa>();
 
-            DataTable dtResultados = adOferta.Obtener_PanelEmpresa(idEmpresa, filtroBusqueda, rolIdListaValor, usuario);
+            DataTable dtResultados = adOferta.Obtener_PanelEmpresa(idEmpresa, filtroBusqueda, rolIdListaValor, usuario, nroPaginaActual, filasPorPagina);
 
             foreach(DataRow fila in dtResultados.Rows)
             {
@@ -299,6 +300,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 vista.MensajesTotales = Convert.ToInt32(fila["MensajesTotales"]);
                 vista.UsuarioPropietarioEmpresa = Convert.ToString(fila["UsuarioPropietarioEmpresa"]);
                 vista.EstadoOfertaIdListaValor = Convert.ToString(fila["EstadoOfertaIdListaValor"]);
+                vista.CantidadTotal = Convert.ToInt32(fila["CantidadTotal"]);
 
                 lista.Add(vista);
             }
@@ -417,6 +419,7 @@ namespace UTP.PortalEmpleabilidad.Logica
             foreach (DataRow filaPostulante in dsResultado.Tables[4].Rows)
             {
                 OfertaPostulante postulante = new OfertaPostulante();
+                postulante.Alumno.IdAlumno = Convert.ToInt32(filaPostulante["IdAlumno"]);
                 postulante.Alumno.Nombres = Convert.ToString(filaPostulante["AlumnoNombres"]);
                 postulante.Alumno.Apellidos = Convert.ToString(filaPostulante["AlumnoApellidos"]);
                 postulante.FechaPostulacion = Convert.ToDateTime(filaPostulante["FechaPostulacion"]);

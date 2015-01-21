@@ -55,6 +55,7 @@
     <Compile Include="AlumnoPostulaciones.cs" />
     <Compile Include="EventoAsistente.cs" />
     <Compile Include="Hunting.cs" />
+    <Compile Include="Paginacion.cs" />
     <Compile Include="VistaEventosPorUsuario.cs" />
     <Compile Include="EmpresaListaEmpresa.cs" />
     <Compile Include="Auditoria.cs" />

@@ -22,7 +22,7 @@
                         <table class="fuente-pequeña" id="DatosDePostulacion">
                             <tr>
                                 <td class="celda-nombre">
-                                    <span>Fecha Postulción</span>
+                                    <span>Fecha Postulación</span>
                                 </td>
                                 <td class="celda-datos">
                                     <strong>@Html.FormatoFrecuencia(Model.FechaPostulacion) </strong>
@@ -33,7 +33,9 @@
                                     CV de Postulación
                                 </td>
                                 <td class="celda-datos">
-                                    <strong>@Model.NombreCV </strong>&nbsp;&nbsp;<a href="#" id="idDescargaCV" >descargar</a>
+                                    <strong>@Model.NombreCV </strong>&nbsp;&nbsp;
+                                    @*<a href="#" id="idDescargaCV">descargar</a>*@
+                                    @Html.ActionLink("Descargar", "DescargarDesdeBD", "Plantilla", new { idOfertaPostulante = Model.IdOfertaPostulante }, null)
                                 </td>
                             </tr>
                         </table>

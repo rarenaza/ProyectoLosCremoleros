@@ -8,12 +8,10 @@ using System.Threading.Tasks;
 
 namespace UTP.PortalEmpleabilidad.Datos
 {
-    public class ADPlantilla
+    public class ADPlantilla : ADBase
     {
         ADConexion cnn = new ADConexion();
         SqlCommand cmd = new SqlCommand();
-
-
 
         public DataTable MostrarPlantillaCV()
         {
@@ -60,5 +58,34 @@ namespace UTP.PortalEmpleabilidad.Datos
 
             return dsResultado;
         }
+
+        public DataTable ObtenerDocumentoCV(int idOfertaPostulante)
+        {
+            DataTable dtResultado = new DataTable();
+
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "OfertaPostulante_DescargarCV";
+                cmd.Parameters.Add(new SqlParameter("@IdOfertaPostulante", idOfertaPostulante));
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                dtResultado = new DataTable();
+
+                da.Fill(dtResultado);
+
+                conexion.Close();
+
+            }
+
+            return dtResultado;
+        }
+
+
     }
 }
