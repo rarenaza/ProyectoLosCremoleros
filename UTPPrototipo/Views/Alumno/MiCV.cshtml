@@ -95,7 +95,9 @@
             IdAlumno: $('#IdAlumno').val(),
             IdCV: 0
         };
-        CargarPOST("mi-cv-opciones", "/Alumno/OpcionesCV", vistacv);
+       
+        //CargarPOST("mi-cv-opciones", "/Alumno/OpcionesCV", vistacv);
+        CargarPOST("mi-cv-opciones", '@Url.Action("OpcionesCV", "Alumno")', vistacv);
     });
 
     function CerrarModal() {
@@ -112,7 +114,7 @@
     {
         console.log(err);
     }
-    
+
 </script>
 
 

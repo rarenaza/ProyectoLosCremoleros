@@ -140,11 +140,12 @@
 
         //    });
         //});
-       
+
     });
 
     function modificarEmpresa(id) {
-        var url = "/Empresa/EditarEmpresa"; // el url del controlador
+        //var url = "/Empresa/EditarEmpresa"; // el url del controlador
+        var url = '@Url.Action("EditarEmpresa", "Empresa")';
         //alert(id);
         //var id = $(this).attr('data-id'); // el id del botón.
         $.get(url + '/' + id, function (data) {
@@ -164,7 +165,8 @@
     }
 
     function crearUsuario() {
-        var url = "/Empresa/_AdministrarNuevoUsuario"; // el url del controlador           
+        //var url = "/Empresa/_AdministrarNuevoUsuario"; // el url del controlador
+        var url = '@Url.Action("_AdministrarNuevoUsuario", "Empresa")';
         $.get(url, function (data) {
             $('#divNuevoUsuarioContenedor').html(data);
             $.validator.unobtrusive.parse('#divNuevoUsuarioContenedor');
@@ -174,7 +176,9 @@
     }
 
     function editarUsuario(id) {
-        var url = "/Empresa/_AdministrarUsuarioEditar/" + id;
+        //var url = "/Empresa/_AdministrarUsuarioEditar/" + id;
+        var url = '@Url.Action("_AdministrarUsuarioEditar", "Empresa")' + '/' + id;
+
         $.get(url, function (data) {
             $('#divUsuarioContenedorEditar').html(data);
             $.validator.unobtrusive.parse('#divUsuarioContenedorEditar');
@@ -184,7 +188,9 @@
 
     function crearLocacion()
     {
-        var url = "/Empresa/_AdministrarNuevaUbicacion"; // el url del controlador            
+        //var url = "/Empresa/_AdministrarNuevaUbicacion"; // el url del controlador
+        var url = '@Url.Action("_AdministrarNuevaUbicacion", "Empresa")'
+
         $.get(url, function (data) {
             //alert(data);
             $('#divNuevaUbicacionContenedor').html(data);
@@ -194,15 +200,17 @@
     }
 
     function editarLocacion(id) {
-        var url = "/Empresa/_AdministrarUbicacionEditar/" + id; // el url del controlador            
-        $.get(url, function (data) {            
+        //var url = "/Empresa/_AdministrarUbicacionEditar/" + id; // el url del controlador
+        var url = '@Url.Action("_AdministrarUbicacionEditar", "Empresa")' + '/' + id;
+
+        $.get(url, function (data) {
             $('#divUbicacionContenedorEditar').html(data);
             $.validator.unobtrusive.parse('#divUbicacionContenedorEditar');
             $('#divModalUbicacionEditar').modal('show');
         }).error(function (err) { console.log(err); });
     }
 
-    function cerrarModal() {      
+    function cerrarModal() {
         $('.modal.in').modal('hide');
     }
 
@@ -212,7 +220,7 @@
 
     //    //var validacion = $(form).validate();
     //    var esValido = $('#form0').valid();
-        
+
     //    if (esValido)
     //    {
     //        return true;
