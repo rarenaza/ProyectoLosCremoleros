@@ -8,240 +8,246 @@
 {
 
     @Html.AntiForgeryToken()
-<div class="container fuente-pequeña">
-    <h5 style="text-align:center;"><strong>Registro</strong></h5>
-    <hr />
-    <h5><strong>Alumnos o Exalumnos UTP</strong></h5>
-    <p>Para acceder al portal de Empleabilidad de la UTP, solo necesitas ingresar con tu Usuario y Clave de Correo. Haz <a href="#" data-toggle="modal" data-target="#Modal-ingresar">Clic aquí</a> para ingresar. En caso de presentarse algún inconveniente con su ingreso al portal,  por favor comunicarse con la Mesa de Ayuda del Grupo UTP al 3159600 Anexo 1444 o al correo mesadeayuda@utp.edu.pe</p>
-    <hr />
-    <h5><strong>Empresas</strong></h5>
-    <p>Si desea incribir una empresa en nuestro Portal, por favor complete los datos a continuación.</p>
-    <br />
-    @*<div class="alert alert-danger" role="alert">Faltan Datos</div>*@
-    @Html.ValidationSummary(false, "", new { @class = "alert alert-danger" })
-    @if (ViewBag.MensajeDeError != null) 
+    <div class="container fuente-pequeña">
+        <h5 style="text-align:center;"><strong>Registro</strong></h5>
+        <hr />
+        <h5><strong>Alumnos o Exalumnos UTP</strong></h5>
+        <p>Para acceder al portal de Empleabilidad de la UTP, solo necesitas ingresar con tu Usuario y Clave de Correo. Haz <a href="#" data-toggle="modal" data-target="#Modal-ingresar">Clic aquí</a> para ingresar. En caso de presentarse algún inconveniente con su ingreso al portal,  por favor comunicarse con la Mesa de Ayuda del Grupo UTP al 3159600 Anexo 1444 o al correo mesadeayuda@utp.edu.pe</p>
+        <hr />
+        <h5><strong>Empresas</strong></h5>
+        <p>Si desea incribir una empresa en nuestro Portal, por favor complete los datos a continuación.</p>
+        <br />
+        @*<div class="alert alert-danger" role="alert">Faltan Datos</div>*@
+        @Html.ValidationSummary(false, "", new { @class = "alert alert-danger" })
+        @if (ViewBag.MensajeDeError != null)
         {
-         <div class = "alert alert-danger">@Html.Raw( ViewBag.MensajeDeError)</div>
+            <div class="alert alert-danger">@Html.Raw(ViewBag.MensajeDeError)</div>
         }
-    <h5>Datos de la Empresa</h5>
-    <hr />
-    <div class="row">
-        <div class="col-sm-8">
-            <div class="input-group">
-                <span class="input-group-addon">(*) Nombre<br />Comercial</span>
-                @*<input type="text" class="form-control fuente-pequeña" placeholder="Nombre Comercial de la Empresa">*@
-                @Html.TextBoxFor(model => model.NombreComercial, new { @class = "form-control", @placeholder = "Nombre Comercial de la Empresa" })
-            </div>@Html.ValidationMessageFor(model => model.NombreComercial, "", new { @class = "text-danger" })
+        <h5>Datos de la Empresa</h5>
+        <hr />
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="input-group">
+                    <span class="input-group-addon">(*) Nombre<br />Comercial</span>
+                    @*<input type="text" class="form-control fuente-pequeña" placeholder="Nombre Comercial de la Empresa">*@
+                    @Html.TextBoxFor(model => model.NombreComercial, new { @class = "form-control", @placeholder = "Nombre Comercial de la Empresa" })
+                </div>@Html.ValidationMessageFor(model => model.NombreComercial, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-8">
-            <div class="input-group">
-                <span class="input-group-addon fuente-pequeña">(*) Razón<br />Social</span>
-                @*<input type="text" class="form-control fuente-pequeña" placeholder="Razón Social de la Empresa">*@
-                @Html.TextBoxFor(model => model.RazonSocial, new { @class = "form-control", @placeholder = "Razón Social de la Empresa" })
-                
-            </div>@Html.ValidationMessageFor(model => model.RazonSocial, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-4">
-            <div class="input-group">
-                <span class="input-group-addon fuente-pequeña">(*) RUC</span>
-                @*<input type="text" class="form-control fuente-pequeña" placeholder="Identificador Tributario">*@
-                @Html.TextBoxFor(model => model.IdentificadorTributario, new { @class = "form-control", @placeholder = "Identificador Tributario" })
-                
-            </div>@Html.ValidationMessageFor(model => model.IdentificadorTributario, "", new { @class = "text-danger" })
-        </div>
-        <div class="col-sm-4">
-            <div class="input-group">
-                <span class="input-group-addon fuente-pequeña">(*) País</span>
-                @Html.DropDownListFor(m => m.PaisIdListaValor, null, "- Seleccione País -", htmlAttributes: new { @class = "form-control" })
-                
-                @*<select class="form-control fuente-pequeña">
-                    <option value="">-- Seleccione País donde se ubica la Empresa --</option>
-                    <option>Perú</option>
-                    <option>Chile</option>
-                </select>*@
-            </div>@Html.ValidationMessageFor(model => model.PaisIdListaValor, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    
-   
-    <div class="row">
-        <div class="col-sm-4">
-            <div class="input-group fuente-pequeña">
-                <span class="input-group-addon fuente-pequeña">(*) Sector</span>
-                @Html.DropDownListFor(m => m.SectorEmpresarial1IdListaValor, null, "- Seleccione Sector Empresarial -", htmlAttributes: new { @class = "form-control" })
-                
-                @*<select class="form-control fuente-pequeña">
-                    <option value="">-- Sector empresarial principal --</option>
-                    <option>Servicios</option>
-                    <option>Metalurgia</option>
-                </select>*@
-            </div>@Html.ValidationMessageFor(model => model.SectorEmpresarial1IdListaValor, "", new { @class = "text-danger" })
-        </div>
-        
-    </div>
-    @*<br />
-    <h5>Datos de su ubicación</h5>
-    <hr />*@
-    <div class="row">
-        <div class="col-sm-4">
-            <div class="input-group fuente-pequeña">
-                <span class="input-group-addon fuente-pequeña">(*) Tipo<br />Ubicación</span>
-                @Html.DropDownListFor(m => m.TipoLocacionIdListaValor, null, "- Seleccione Tipo de Ubicación -", htmlAttributes: new { @class = "form-control" })
-                
-                @*<select class="form-control fuente-pequeña">
-                    <option value="">-- Tipo de Ubicación --</option>
-                    <option>Sede Central</option>
-                    <option>Metalurgia</option>
-                </select>*@
-            </div>@Html.ValidationMessageFor(model => model.TipoLocacionIdListaValor, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-4">
-            <div class="input-group fuente-pequeña">
-                <span class="input-group-addon fuente-pequeña">(*)<br />Departam.</span>
-                @*<input type="text" class="form-control fuente-pequeña" placeholder="Ingrese Departamento/Región/Estado">*@
-               @* @Html.TextBoxFor(model => model.DireccionDepartamentoLocacion, new { @class = "form-control", @placeholder = "Ingrese Departamento/Región/Estado" })*@
-                      
-                @Html.DropDownList("DireccionDepartamentoLocacion", ViewData["Departamento"] as List<SelectListItem>, "-Seleccione-", new { @class = "form-control" })
-            @*  *@</div>@Html.ValidationMessageFor(model => model.DireccionDepartamentoLocacion, "", new { @class = "text-danger" })
-        </div>
-        <div class="col-sm-4">
-            <div class="input-group fuente-pequeña">
-                <span class="input-group-addon fuente-pequeña">(*) Ciudad</span>
-                @*<input type="text" class="form-control fuente-pequeña" placeholder="Ingrese Ciudad">*@
-              
-                @*@Html.TextBoxFor(model => model.DireccionCiudadLocacion, new { @class = "form-control", @placeholder = "Ingrese Ciudad/Provincia" })*@
-                @Html.DropDownList("DireccionCiudadLocacion", new SelectList(string.Empty, "Value", "Text"), "-Seleccione-", new { @class = "form-control" })
-               
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="input-group">
+                    <span class="input-group-addon fuente-pequeña">(*) Razón<br />Social</span>
+                    @*<input type="text" class="form-control fuente-pequeña" placeholder="Razón Social de la Empresa">*@
+                    @Html.TextBoxFor(model => model.RazonSocial, new { @class = "form-control", @placeholder = "Razón Social de la Empresa" })
 
-            </div>@Html.ValidationMessageFor(model => model.DireccionCiudadLocacion, "", new { @class = "text-danger" })
+                </div>@Html.ValidationMessageFor(model => model.RazonSocial, "", new { @class = "text-danger" })
+            </div>
         </div>
-        <div class="col-sm-4">
-            <div class="input-group fuente-pequeña">
-                <span class="input-group-addon fuente-pequeña">(*) Distrito</span>
-                @*<input type="text" class="form-control fuente-pequeña" placeholder="Ingrese Distrito/Comuna">*@
-                <select class="form-control" id="DireccionDistritoLocacion" name="DireccionDistritoLocacion" data-val="true" data-val_required="Falta el distrito"></select>
-                @*@Html.TextBoxFor(model => model.DireccionDistritoLocacion, new { @class = "form-control", @placeholder = "Ingrese Distrito/Comuna" })*@
-              
-            </div>@Html.ValidationMessageFor(model => model.DireccionDistritoLocacion, "", new { @class = "text-danger" })
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="input-group">
+                    <span class="input-group-addon fuente-pequeña">(*) RUC</span>
+                    @*<input type="text" class="form-control fuente-pequeña" placeholder="Identificador Tributario">*@
+                    @Html.TextBoxFor(model => model.IdentificadorTributario, new { @class = "form-control", @placeholder = "Identificador Tributario" })
+
+                </div>@Html.ValidationMessageFor(model => model.IdentificadorTributario, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-sm-4">
+                <div class="input-group">
+                    <span class="input-group-addon fuente-pequeña">(*) País</span>
+                    @Html.DropDownListFor(m => m.PaisIdListaValor, null, "- Seleccione País -", htmlAttributes: new { @class = "form-control" })
+
+                    @*<select class="form-control fuente-pequeña">
+                            <option value="">-- Seleccione País donde se ubica la Empresa --</option>
+                            <option>Perú</option>
+                            <option>Chile</option>
+                        </select>*@
+                </div>@Html.ValidationMessageFor(model => model.PaisIdListaValor, "", new { @class = "text-danger" })
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="input-group fuente-pequeña">
-                <span class="input-group-addon fuente-pequeña">(*)<br />Dirección</span>
-                @*<input type="text" class="form-control fuente-pequeña" placeholder="Ingrese Dirección. Ej: Avenida Las Palmeras 123, Urbanización El Palmeral">*@
-                @Html.TextBoxFor(model => model.DireccionLocacion, new { @class = "form-control", @placeholder = "Ingrese Dirección. Ej: Avenida Las Palmeras 123, Urbanización El Palmeral" })
-            </div>@Html.ValidationMessageFor(model => model.DireccionLocacion, "", new { @class = "text-danger" })
+
+
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="input-group fuente-pequeña">
+                    <span class="input-group-addon fuente-pequeña">(*) Sector</span>
+                    @Html.DropDownListFor(m => m.SectorEmpresarial1IdListaValor, null, "- Seleccione Sector Empresarial -", htmlAttributes: new { @class = "form-control" })
+
+                    @*<select class="form-control fuente-pequeña">
+                            <option value="">-- Sector empresarial principal --</option>
+                            <option>Servicios</option>
+                            <option>Metalurgia</option>
+                        </select>*@
+                </div>@Html.ValidationMessageFor(model => model.SectorEmpresarial1IdListaValor, "", new { @class = "text-danger" })
+            </div>
+
         </div>
-    </div>
-    <br />
-    <h5>Datos de Contacto</h5>
-    <hr />
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="input-group fuente-pequeña">
-                <span class="input-group-addon fuente-pequeña">(*)<br />Nombres</span>
-                @*<input type="text" class="form-control fuente-pequeña" placeholder="Ingrese sus nombres">*@
-                @Html.TextBoxFor(model => model.NombresUsuario, new { @class = "form-control", @placeholder = "Ingrese su(s) nombre(s)" })
-            </div>@Html.ValidationMessageFor(model => model.NombresUsuario, "", new { @class = "text-danger" })
+        @*<br />
+            <h5>Datos de su ubicación</h5>
+            <hr />*@
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="input-group fuente-pequeña">
+                    <span class="input-group-addon fuente-pequeña">(*) Tipo<br />Ubicación</span>
+                    @Html.DropDownListFor(m => m.TipoLocacionIdListaValor, null, "- Seleccione Tipo de Ubicación -", htmlAttributes: new { @class = "form-control" })
+
+                    @*<select class="form-control fuente-pequeña">
+                            <option value="">-- Tipo de Ubicación --</option>
+                            <option>Sede Central</option>
+                            <option>Metalurgia</option>
+                        </select>*@
+                </div>@Html.ValidationMessageFor(model => model.TipoLocacionIdListaValor, "", new { @class = "text-danger" })
+            </div>
         </div>
-        <div class="col-sm-6">
-            <div class="input-group fuente-pequeña">
-                <span class="input-group-addon fuente-pequeña">(*)<br />Apellidos</span>
-                @*<input type="text" class="form-control fuente-pequeña" placeholder="Ingrese sus apellidos">*@
-                @Html.TextBoxFor(model => model.ApellidosUsuario, new { @class = "form-control", @placeholder = "Ingrese sus apellidos" })
-            </div>@Html.ValidationMessageFor(model => model.ApellidosUsuario, "", new { @class = "text-danger" })
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="input-group fuente-pequeña">
+                    <span class="input-group-addon fuente-pequeña">(*)<br />Departam.</span>
+                    @*<input type="text" class="form-control fuente-pequeña" placeholder="Ingrese Departamento/Región/Estado">*@
+                    @* @Html.TextBoxFor(model => model.DireccionDepartamentoLocacion, new { @class = "form-control", @placeholder = "Ingrese Departamento/Región/Estado" })*@
+
+                    @Html.DropDownList("DireccionDepartamentoLocacion", ViewData["Departamento"] as List<SelectListItem>, "-Seleccione-", new { @class = "form-control" })
+                    @*  *@
+                </div>@Html.ValidationMessageFor(model => model.DireccionDepartamentoLocacion, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-sm-4">
+                <div class="input-group fuente-pequeña">
+                    <span class="input-group-addon fuente-pequeña">(*) Ciudad</span>
+                    @*<input type="text" class="form-control fuente-pequeña" placeholder="Ingrese Ciudad">*@
+
+                    @*@Html.TextBoxFor(model => model.DireccionCiudadLocacion, new { @class = "form-control", @placeholder = "Ingrese Ciudad/Provincia" })*@
+                    @Html.DropDownList("DireccionCiudadLocacion", new SelectList(string.Empty, "Value", "Text"), "-Seleccione-", new { @class = "form-control" })
+
+
+                </div>@Html.ValidationMessageFor(model => model.DireccionCiudadLocacion, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-sm-4">
+                <div class="input-group fuente-pequeña">
+                    <span class="input-group-addon fuente-pequeña">(*) Distrito</span>
+                    @*<input type="text" class="form-control fuente-pequeña" placeholder="Ingrese Distrito/Comuna">*@
+
+
+                    @*<select class="form-control" id="DireccionDistritoLocacion" name="DireccionDistritoLocacion" data-val="true" data-val_required="Falta el distrito"></select>*@
+
+                    @Html.DropDownList("DireccionDistritoLocacion", new SelectList(string.Empty, "Value", "Text"), "-Seleccione-", new { @class = "form-control" })
+
+                    @*@Html.TextBoxFor(model => model.DireccionDistritoLocacion, new { @class = "form-control", @placeholder = "Ingrese Distrito/Comuna" })*@
+
+                </div>@Html.ValidationMessageFor(model => model.DireccionDistritoLocacion, "", new { @class = "text-danger" })
+            </div>
         </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="input-group fuente-pequeña">
+                    <span class="input-group-addon fuente-pequeña">(*)<br />Dirección</span>
+                    @*<input type="text" class="form-control fuente-pequeña" placeholder="Ingrese Dirección. Ej: Avenida Las Palmeras 123, Urbanización El Palmeral">*@
+                    @Html.TextBoxFor(model => model.DireccionLocacion, new { @class = "form-control", @placeholder = "Ingrese Dirección. Ej: Avenida Las Palmeras 123, Urbanización El Palmeral" })
+                </div>@Html.ValidationMessageFor(model => model.DireccionLocacion, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br />
+        <h5>Datos de Contacto</h5>
+        <hr />
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="input-group fuente-pequeña">
+                    <span class="input-group-addon fuente-pequeña">(*)<br />Nombres</span>
+                    @*<input type="text" class="form-control fuente-pequeña" placeholder="Ingrese sus nombres">*@
+                    @Html.TextBoxFor(model => model.NombresUsuario, new { @class = "form-control", @placeholder = "Ingrese su(s) nombre(s)" })
+                </div>@Html.ValidationMessageFor(model => model.NombresUsuario, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-sm-6">
+                <div class="input-group fuente-pequeña">
+                    <span class="input-group-addon fuente-pequeña">(*)<br />Apellidos</span>
+                    @*<input type="text" class="form-control fuente-pequeña" placeholder="Ingrese sus apellidos">*@
+                    @Html.TextBoxFor(model => model.ApellidosUsuario, new { @class = "form-control", @placeholder = "Ingrese sus apellidos" })
+                </div>@Html.ValidationMessageFor(model => model.ApellidosUsuario, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="input-group fuente-pequeña">
+                    <span class="input-group-addon fuente-pequeña">(*) Tipo <br />Document.</span>
+                    @Html.DropDownListFor(m => m.TipoDocumentoIdListaValor, null, "- Seleccione tipo de Documento -", htmlAttributes: new { @class = "form-control" })
+
+                    @*<select class="form-control fuente-pequeña">
+                            <option value="">-- Elija Tipo Documento de Identificación--</option>
+                            <option>DNI</option>
+                            <option>Pasaporte</option>
+                            <option>Carnet Extrangería</option>
+                        </select>*@
+                </div>@Html.ValidationMessageFor(model => model.TipoDocumentoIdListaValor, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-sm-4">
+                <div class="input-group fuente-pequeña">
+                    <span class="input-group-addon fuente-pequeña">(*) Número<br />Document.</span>
+                    @*<input type="text" class="form-control fuente-pequeña" placeholder="Ingrese su Número de Documento">*@
+                    @Html.TextBoxFor(model => model.NumeroDocumento, new { @class = "form-control", @placeholder = "Número de Documento de Identidad" })
+                </div>@Html.ValidationMessageFor(model => model.NumeroDocumento, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="input-group">
+                    <span class="input-group-addon">(*)<br />Celular</span>
+                    @*<input type="text" class="form-control" placeholder="Número de Celular">*@
+                    @Html.TextBoxFor(model => model.CelularUsuario, new { @class = "form-control", @placeholder = "Número de Celular" })
+                </div>@Html.ValidationMessageFor(model => model.CelularUsuario, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="input-group">
+                    <span class="input-group-addon">(*) e-Mail</span>
+                    @*<input type="text" class="form-control" placeholder="e-Mail del Usuario">*@
+                    @Html.TextBoxFor(model => model.EmailUsuario, new { @class = "form-control", @placeholder = "Correo electrónico de contacto" })
+                </div>@Html.ValidationMessageFor(model => model.EmailUsuario, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="input-group fuente-pequeña">
+                    <span class="input-group-addon fuente-pequeña">(*)<br />Usuario</span>
+                    @*<input type="text" class="form-control fuente-pequeña" placeholder="Ingrese un nombre de Usuario, con no menos de 8, y máximo 40 caracteres">*@
+                    @Html.TextBoxFor(model => model.CuentaUsuario, new { @class = "form-control", @placeholder = "Ingrese un nombre de Usuario, con no menos de 8, y máximo 40 caracteres" })
+                </div>@Html.ValidationMessageFor(model => model.CuentaUsuario, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="input-group fuente-pequeña">
+                    <span class="input-group-addon fuente-pequeña">(*)<br />Contraseña</span>
+                    @*<input type="password" class="form-control fuente-pequeña">*@
+                    @Html.PasswordFor(m => m.Contrasena, new { @class = "form-control" })
+                    @*@Html.Raw(@Html.PasswordFor(model => model.Contrasena).ToString().Replace("text-box single-line", "form-control"))*@
+
+                </div>@Html.ValidationMessageFor(model => model.Contrasena, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-sm-4">
+                <p>Ingrese una contraseña con al menos 8 caracteres utilizando al menos una letra mayúscula, una minúscula y un dígito.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="input-group fuente-pequeña">
+                    <span class="input-group-addon fuente-pequeña">(*) Repita<br />Contraseña</span>
+                    @*@Html.Raw(@Html.PasswordFor(model => model.Contrasena).ToString().Replace("text-box single-line", "form-control"))*@
+                    @Html.PasswordFor(m => m.ContrasenaValidador, new { @class = "form-control" })
+                </div>@Html.ValidationMessageFor(model => model.ContrasenaValidador, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-sm-12" style="text-align:right;">
+                <button class="btn btn-default color-paleta1" type="submit">Enviar Datos</button>
+            </div>
+        </div>
+        <br />
     </div>
 
-    <div class="row">
-        <div class="col-sm-4">
-            <div class="input-group fuente-pequeña">
-                <span class="input-group-addon fuente-pequeña">(*) Tipo <br />Document.</span>
-                @Html.DropDownListFor(m => m.TipoDocumentoIdListaValor, null, "- Seleccione tipo de Documento -", htmlAttributes: new { @class = "form-control" })
-               
-                @*<select class="form-control fuente-pequeña">
-                    <option value="">-- Elija Tipo Documento de Identificación--</option>
-                    <option>DNI</option>
-                    <option>Pasaporte</option>
-                    <option>Carnet Extrangería</option>
-                </select>*@
-            </div>@Html.ValidationMessageFor(model => model.TipoDocumentoIdListaValor, "", new { @class = "text-danger" })
-        </div>
-        <div class="col-sm-4">
-            <div class="input-group fuente-pequeña">
-                <span class="input-group-addon fuente-pequeña">(*) Número<br />Document.</span>
-                @*<input type="text" class="form-control fuente-pequeña" placeholder="Ingrese su Número de Documento">*@
-                @Html.TextBoxFor(model => model.NumeroDocumento, new { @class = "form-control", @placeholder = "Número de Documento de Identidad" })
-            </div>@Html.ValidationMessageFor(model => model.NumeroDocumento, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-4">
-            <div class="input-group">
-                <span class="input-group-addon">(*)<br />Celular</span>
-                @*<input type="text" class="form-control" placeholder="Número de Celular">*@
-                @Html.TextBoxFor(model => model.CelularUsuario, new { @class = "form-control", @placeholder = "Número de Celular" })
-            </div>@Html.ValidationMessageFor(model => model.CelularUsuario, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-8">
-            <div class="input-group">
-                <span class="input-group-addon">(*) e-Mail</span>
-                @*<input type="text" class="form-control" placeholder="e-Mail del Usuario">*@
-                @Html.TextBoxFor(model => model.EmailUsuario, new { @class = "form-control", @placeholder = "Correo electrónico de contacto" })
-            </div>@Html.ValidationMessageFor(model => model.EmailUsuario, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <br />
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="input-group fuente-pequeña">
-                <span class="input-group-addon fuente-pequeña">(*)<br />Usuario</span>
-                @*<input type="text" class="form-control fuente-pequeña" placeholder="Ingrese un nombre de Usuario, con no menos de 8, y máximo 40 caracteres">*@
-                @Html.TextBoxFor(model => model.CuentaUsuario, new { @class = "form-control", @placeholder = "Ingrese un nombre de Usuario, con no menos de 8, y máximo 40 caracteres" })
-            </div>@Html.ValidationMessageFor(model => model.CuentaUsuario, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-4">
-            <div class="input-group fuente-pequeña">
-                <span class="input-group-addon fuente-pequeña">(*)<br />Contraseña</span>
-                @*<input type="password" class="form-control fuente-pequeña">*@
-                @Html.PasswordFor(m => m.Contrasena, new { @class = "form-control" })
-                @*@Html.Raw(@Html.PasswordFor(model => model.Contrasena).ToString().Replace("text-box single-line", "form-control"))*@
-                
-            </div>@Html.ValidationMessageFor(model => model.Contrasena, "", new { @class = "text-danger" })
-        </div>
-        <div class="col-sm-4">
-            <p>Ingrese una contraseña con al menos 8 caracteres utilizando al menos una letra mayúscula, una minúscula y un dígito.</p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-4">
-            <div class="input-group fuente-pequeña">
-                <span class="input-group-addon fuente-pequeña">(*) Repita<br />Contraseña</span>
-                @*@Html.Raw(@Html.PasswordFor(model => model.Contrasena).ToString().Replace("text-box single-line", "form-control"))*@
-                @Html.PasswordFor(m => m.ContrasenaValidador, new { @class = "form-control" })
-            </div>@Html.ValidationMessageFor(model => model.ContrasenaValidador, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <hr />
-    <div class="row">
-        <div class="col-sm-12" style="text-align:right;">
-            <button class="btn btn-default color-paleta1" type="submit">Enviar Datos</button>
-        </div>
-    </div>
-    <br />
-</div>
-    
 }
 
 <script type="text/javascript">
@@ -250,14 +256,14 @@
         $("#DireccionDepartamentoLocacion").change(function () {
             $("#DireccionCiudadLocacion").empty();
 
-     
+
             $.ajax({
                 type: 'POST',
                 url: '@Url.Action("GetStateProvincia")', // we are calling json method
 
                 dataType: 'json',
 
-                data: { idDepartamento: $("#DireccionDepartamentoLocacion").val() },
+                data: { IDListaValorPadre: $("#DireccionDepartamentoLocacion").val() },
 
                 // here we are get value of selected country and passing same value
                 //as inputto json method GetStates.
@@ -288,6 +294,55 @@
         })
     });
 </script>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        //Dropdownlist Selectedchange event
+        $("#DireccionCiudadLocacion").change(function () {
+            $("#DireccionDistritoLocacion").empty();
+
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetStateProvincia")', // we are calling json method
+
+                dataType: 'json',
+
+                data: { IDListaValorPadre: $("#DireccionCiudadLocacion").val() },
+
+                // here we are get value of selected country and passing same value
+                //as inputto json method GetStates.
+
+                success: function (states) {
+                    // states contains the JSON formatted list
+                    // of states passed from the controller
+
+                    $("#DireccionDistritoLocacion").append('<option selected value="0">Seleccione</option>');
+
+                    //$("#Distrito").empty();
+                    //$("#Distrito").append('<option selected value="0">Seleccione</option>');
+
+                    $.each(states, function (i, state) {
+                        $("#DireccionDistritoLocacion").append('<option value="' + state.Value + '">' +
+                         state.Text + '</option>');
+                        // here we are adding option for States
+
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve states.' + ex);
+                }
+            });
+            return false;
+
+
+        })
+    });
+</script>
+
+
 
 
 

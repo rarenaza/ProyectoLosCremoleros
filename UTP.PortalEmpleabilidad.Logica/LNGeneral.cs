@@ -14,6 +14,14 @@ namespace UTP.PortalEmpleabilidad.Logica
     {
         ADGeneral adGeneral = new ADGeneral();
 
+        public DataTable Home_Departamento(int IDLista)
+        {
+            return adGeneral.Home_Departamento(IDLista);
+        }
+        public DataTable Home_ListarDistritos(string IDListaValorPadre)
+        {
+            return adGeneral.Home_ListarDistritos(IDListaValorPadre);
+        }
 
 
         public List<Hunting> EmpresaHuntingBuscarSimple(string nombre)

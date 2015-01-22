@@ -440,29 +440,7 @@ namespace UTPPrototipo.Controllers
             return View();
         }
 
-        public JsonResult GetStateProvincia(int idDepartamento)
-        {
-            LNGeneral lnGeneral = new LNGeneral();
-
-            DataTable dtProvincia = lnGeneral.ObtenerListaValor2(idDepartamento);
-
-            List<SelectListItem> li = new List<SelectListItem>();
-
-            for (int i = 0; i <= dtProvincia.Rows.Count - 1; i++)
-            {
-                string nombre = dtProvincia.Rows[i]["Valor"].ToString();
-                string valor = dtProvincia.Rows[i]["IdListaValor"].ToString();
-
-                SelectListItem item = new SelectListItem() { Text = nombre, Value = valor };
-
-                li.Add(item);
-
-            }
-
-            return Json(new SelectList(li, "Value", "Text"));
-                    
-
-        }
+        
         //public JsonResult GetCityDistrito(string idDepartamento, string idProvincia)
         //{
         //    LNGeneral lnGeneral = new LNGeneral();
@@ -486,16 +464,29 @@ namespace UTPPrototipo.Controllers
         //}
 
 
+        public JsonResult GetStateProvincia(string IDListaValorPadre)
+        {
+            LNGeneral lnGeneral = new LNGeneral();
+            DataTable dtProvincia = lnGeneral.Home_ListarDistritos(IDListaValorPadre);
+            List<SelectListItem> li = new List<SelectListItem>();
+            for (int i = 0; i <= dtProvincia.Rows.Count - 1; i++)
+            {
+                string nombre = dtProvincia.Rows[i]["Valor"].ToString();
+                string valor = dtProvincia.Rows[i]["IdListaValor"].ToString();
+                SelectListItem item = new SelectListItem() { Text = nombre, Value = valor };
+                li.Add(item);
+            }
+            return Json(new SelectList(li, "Value", "Text"));
+        }
+
         public ActionResult Registro()
         {
             LNGeneral lnGeneral = new LNGeneral();
-
-            ViewBag.PaisIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_PAIS), "IdListaValor", "Valor","PAIPER");
+            ViewBag.PaisIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_PAIS), "IdListaValor", "Valor", "PAIPER");
             ViewBag.NumeroEmpleadosIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_NRO_EMPLEADOS), "IdListaValor", "Valor");
             ViewBag.SectorEmpresarial1IdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_SECTOR_EMPRESARIAL), "IdListaValor", "Valor");
             ViewBag.SectorEmpresarial2IdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_SECTOR_EMPRESARIAL), "IdListaValor", "Valor");
             ViewBag.SectorEmpresarial3IdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_SECTOR_EMPRESARIAL), "IdListaValor", "Valor");
-
             ViewBag.TipoLocacionIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_LOCACION), "IdListaValor", "Valor");
             ViewBag.SexoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_SEXO), "IdListaValor", "Valor");
             ViewBag.TipoDocumentoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_DOCUMENTO), "IdListaValor", "Valor");
@@ -503,80 +494,62 @@ namespace UTPPrototipo.Controllers
             ViewBag.EstadoUsuarioIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_USUARIO), "IdListaValor", "Valor");
             //ViewBag.DireccionDepartamentoLocacion = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_Departamento), "IdListaValor", "Valor");
 
-
-            DataTable dtDepartamento = lnGeneral.ObtenerListaValor2(Constantes.IDLISTA_Departamento);
-
+            DataTable dtDepartamento = lnGeneral.Home_Departamento(Constantes.IDLISTA_Departamento);
             List<SelectListItem> li = new List<SelectListItem>();
-
             for (int i = 0; i <= dtDepartamento.Rows.Count - 1; i++)
             {
                 string nombre = dtDepartamento.Rows[i]["Valor"].ToString();
                 string valor = dtDepartamento.Rows[i]["IdListaValor"].ToString();
-
                 SelectListItem item = new SelectListItem() { Text = nombre, Value = valor };
-
                 li.Add(item);
-
             }
             ViewData["Departamento"] = li;
 
 
 
-
             return View();
         }
-
-        [HttpPost,ValidateAntiForgeryToken]
+        [HttpPost, ValidateAntiForgeryToken]
         public ActionResult Registro(VistaRegistroEmpresa empresa)
         {
             LNUsuario lnUsuario = new LNUsuario();
-
             StringBuilder mensajeDeError = new StringBuilder();
             if (lnUsuario.ValidarNombreDeUsuario(empresa.CuentaUsuario))
             {
-                mensajeDeError.Append( "El Nombre de Usuario ya está Registrado<br />");
-                
+                mensajeDeError.Append("El Nombre de Usuario ya está Registrado<br />");
             }
             if (lnUsuario.ValidarExistenciaEmpresa(empresa.PaisIdListaValor, empresa.IdentificadorTributario))
             {
                 mensajeDeError.Append("La Empresa ya se encuentra registrada, por favor comuníquese con nosotros<br />");
-                
             }
             if (ModelState.IsValid && mensajeDeError.ToString() == "")
-            {                                                                                                                 
+            {
                 LNEmpresa lnEmpresa = new LNEmpresa();
-
                 //Empresa
-                empresa.CreadoPor = empresa.CuentaUsuario;  //Usuario anónimo.
-                empresa.EstadoIdListaValor = "EMPRRV";  //Estado de la empresa pendiente de aprobación.
-
+                empresa.CreadoPor = empresa.CuentaUsuario; //Usuario anónimo.
+                empresa.EstadoIdListaValor = "EMPRRV"; //Estado de la empresa pendiente de aprobación.
                 //Ubicación
-                empresa.EstadoLocacionIdListaValor = "LOSTNO";  //Estado NO ACTIVA. Se debe activar al momento que UTP active la cuenta.      
+                empresa.EstadoLocacionIdListaValor = "LOSTNO"; //Estado NO ACTIVA. Se debe activar al momento que UTP active la cuenta. 
                 empresa.NombreLocacion = empresa.DireccionLocacion + ", " + empresa.DireccionDistritoLocacion + ", " + empresa.DireccionCiudadLocacion + ", " + empresa.DireccionDepartamentoLocacion;
-
                 //Usuario
-                empresa.RolIdListaValor = "ROLEAD";  //La cuenta es creada como Rol: "Administrador de Empresa"
-                empresa.EstadoUsuarioIdListaValor = "USEUTP";  //El usuario también se encuenta pendiente de activación. Se debe activar al momento que UTP active la cuenta.
-
+                empresa.RolIdListaValor = "ROLEAD"; //La cuenta es creada como Rol: "Administrador de Empresa"
+                empresa.EstadoUsuarioIdListaValor = "USEUTP"; //El usuario también se encuenta pendiente de activación. Se debe activar al momento que UTP active la cuenta.
                 lnEmpresa.Insertar(empresa);
-
                 //Si el registro fue exitoso redireccionar a página de resultado.
                 TempData["GuardaRegistroExitoso"] = "Estimado(a) <strong>" + empresa.NombresUsuario + " " + empresa.ApellidosUsuario
-                    + "</strong>, muchas gracias por enviarnos su información. En breve recibirá un correo de confirmación con sus datos.</br></br>Nuestro proceso de activación tomará un plazo no mayor a 1 día útil, antes del cual estaremos comunicándole la activación de su Usuario. ";
+                + "</strong>, muchas gracias por enviarnos su información. En breve recibirá un correo de confirmación con sus datos.</br></br>Nuestro proceso de activación tomará un plazo no mayor a 1 día útil, antes del cual estaremos comunicándole la activación de su Usuario. ";
                 //Aquí debería enviarse un correo
                 return RedirectToAction("Index");
             }
-
             LNGeneral lnGeneral = new LNGeneral();
-
-            ViewBag.PaisIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_PAIS), "IdListaValor", "Valor",empresa.PaisIdListaValor);
-            ViewBag.SectorEmpresarial1IdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_SECTOR_EMPRESARIAL), "IdListaValor", "Valor",empresa.SectorEmpresarial1IdListaValor);
-            ViewBag.TipoLocacionIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_LOCACION), "IdListaValor", "Valor",empresa.TipoLocacionIdListaValor);
+            ViewBag.PaisIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_PAIS), "IdListaValor", "Valor", empresa.PaisIdListaValor);
+            ViewBag.SectorEmpresarial1IdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_SECTOR_EMPRESARIAL), "IdListaValor", "Valor", empresa.SectorEmpresarial1IdListaValor);
+            ViewBag.TipoLocacionIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_LOCACION), "IdListaValor", "Valor", empresa.TipoLocacionIdListaValor);
             ViewBag.TipoDocumentoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_DOCUMENTO), "IdListaValor", "Valor", empresa.TipoDocumentoIdListaValor);
-
 
             ViewBag.MensajeDeError = mensajeDeError;
             return View(empresa);
         }
+       
     }
 }
