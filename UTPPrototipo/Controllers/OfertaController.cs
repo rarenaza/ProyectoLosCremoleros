@@ -21,6 +21,19 @@ namespace UTPPrototipo.Controllers
 
             lnOferta.CambiarEstado(Convert.ToInt32(idOferta), estado);  //Estado oferta finalizado.
             
+            //Si el estado es pendiente de activación se debe mandar un aviso al ejecutivo de cuenta de la oferta.
+            DataTable dtDatos = lnOferta.ObtenerDatosParaMensaje(Convert.ToInt32(idOferta));
+            string para = Convert.ToString(dtDatos.Rows[0]["CorreoUsuarioEmpresa"]);
+
+            TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];
+
+            Mensaje mensaje = new Mensaje ();
+            mensaje.DeUsuarioCorreoElectronico = ticket.CorreoElectronico;
+            mensaje.ParaUsuarioCorreoElectronico = para;
+            mensaje.MensajeTexto = "Se ha creado una nueva oferta.";
+            mensaje.Asunto = "Oferta pendiente de activación.";
+            LNCorreo.EnviarCorreo(mensaje);
+
             //No debe retornar vistas.
             return Content("");
         }

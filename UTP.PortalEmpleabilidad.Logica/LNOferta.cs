@@ -581,6 +581,11 @@ namespace UTP.PortalEmpleabilidad.Logica
         {
             adOferta.AsignarUsuario(idOferta, usuario);
         }
+
+        public DataTable ObtenerDatosParaMensaje(int idOferta)
+        {
+            return adOferta.ObtenerDatosParaMensaje(idOferta);
+        }
     }
 
 }

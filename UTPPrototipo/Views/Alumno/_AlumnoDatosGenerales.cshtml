@@ -140,17 +140,19 @@
 
                                 @if (string.IsNullOrEmpty(@Model.Perfil) == false)
                                 {
-                                    <textarea class="form-control" rows="6" placeholder="Perfil profesional" id="Perfil">@Model.Perfil</textarea>
+                                    <textarea class="form-control" rows="6" placeholder="Perfil profesional" id="Perfil" maxlength="2000">@Model.Perfil</textarea>
 
                                 }
                                 else
                                 {
-                                    <textarea class="form-control" rows="6" placeholder="Perfil profesional" id="Perfil"></textarea>
+                                    <textarea class="form-control" rows="6" placeholder="Perfil profesional" id="Perfil" maxlength="2000"></textarea>
                                 }
 
 
                             </div>
+                            <div class="fuente-pequeña" id="perfilContador"></div>
                         </div>
+                        
                     </div>
                 </div>
 
@@ -159,7 +161,8 @@
 
     </div>
 </div>
-<script type =”text/javascript”>
+
+<script type ='text/javascript'>
     $("#IncluirNombre1").click(function () {
     if (document.getElementById("IncluirNombre2").checked == false &&
         document.getElementById("IncluirNombre3").checked == false &&
@@ -199,4 +202,20 @@
     Alert("Al menos incluya un Nombre");
     }
     });
+
+
+    $(document).ready(function () {
+        var text_max = 2000;
+       
+        $('#perfilContador').html($('#Perfil').val().length + '/' + text_max);
+
+        //Contador de caracteres del perfil:
+        $('#Perfil').keyup(function () {
+            var text_length = $('#Perfil').val().length;
+            var text_remaining = text_max - text_length;
+
+            $('#perfilContador').html(text_remaining + '/' + text_max);
+        });
+    });
+
     </script>

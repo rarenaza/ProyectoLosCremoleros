@@ -671,6 +671,10 @@ namespace UTPPrototipo.Controllers
             ViewBag.Pantalla = pantalla;
             TicketEmpresa ticketEmpresa = (TicketEmpresa)Session["TicketEmpresa"];
 
+            LNOferta lnOferta = new LNOferta();            
+            List<VistaEmpresaOferta> listaOfertas = lnOferta.ObtenerOfertasPorIdEmpresa(ticketEmpresa.IdEmpresa).Where(m => m.NombreEstado == "OFERAC").ToList(); //Activas.
+            ViewBag.IdOfertaMensaje = new SelectList(listaOfertas, "IdOferta", "CargoOfrecido");
+
             Mensaje mensaje = new Mensaje();
             mensaje.DeUsuario = ticketEmpresa.Usuario;
             mensaje.DeUsuarioCorreoElectronico = ticketEmpresa.CorreoElectronico;

@@ -143,5 +143,15 @@ namespace UTP.PortalEmpleabilidad.Logica
 
             return lista;
         }
+
+        public int ValidarNumeroDocumento(int idEmpresa, string numeroDocumento, int idEmpresaUsuario)
+        {
+            return adEmpresaUsuario.ValidarNumeroDocumento(idEmpresa, numeroDocumento, idEmpresaUsuario);
+        }
+
+        public int ValidarUsuario(int idEmpresa, string usuario, int idEmpresaUsuario)
+        {
+            return adEmpresaUsuario.ValidarUsuario(idEmpresa, usuario, idEmpresaUsuario);
+        }
     }
 }

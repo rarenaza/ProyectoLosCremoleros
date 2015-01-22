@@ -237,10 +237,19 @@ namespace UTPPrototipo.Controllers
             LNGeneral lnGeneral = new LNGeneral();
             LNEmpresaLocacion lnEmpresaLocacion = new LNEmpresaLocacion();
 
-            ViewBag.ListaTipoCargo = lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_CARGO);
-            ViewBag.ListaTipoTrabajo = lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_TRABAJO);
-            ViewBag.ListaTipoContrato = lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_CONTRATO);
-            ViewBag.ListaLocaciones = lnEmpresaLocacion.ObtenerLocaciones(ticket.IdEmpresa);
+            //ViewBag.ListaTipoCargo = lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_CARGO);
+            //ViewBag.ListaTipoTrabajo = lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_TRABAJO);
+            //ViewBag.ListaTipoContrato = lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_CONTRATO);
+            //ViewBag.ListaLocaciones = lnEmpresaLocacion.ObtenerLocaciones(ticket.IdEmpresa);
+
+            //Se completan las listas:
+
+            ViewBag.TipoCargoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_CARGO), "IdListaValor", "Valor", oferta.TipoCargoIdListaValor);
+            ViewBag.TipoTrabajoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_TRABAJO), "IdListaValor", "Valor", oferta.TipoTrabajoIdListaValor);
+            ViewBag.TipoContratoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_CONTRATO), "IdListaValor", "Valor", oferta.TipoContratoIdListaValor);
+            ViewBag.IdEmpresaLocacion = new SelectList(lnEmpresaLocacion.ObtenerLocaciones(ticket.IdEmpresa), "IdEmpresaLocacion", "NombreLocacion", oferta.IdEmpresaLocacion);
+            ViewBag.RecibeCorreosIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_OFERTA_RECIBECORREOS), "IdListaValor", "Valor", oferta.RecibeCorreosIdListaValor);
+
 
             return View(oferta);
         }
@@ -779,6 +788,7 @@ namespace UTPPrototipo.Controllers
             ViewBag.RolIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ROL_USUARIO, "ROLE"), "IdListaValor", "Valor");
 
             ViewBag.EstadoUsuarioIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_USUARIO, "USEM"), "IdListaValor", "Valor");
+            ViewBag.IdEmpresa = ticket.IdEmpresa;
 
             return PartialView("_AdministrarNuevoUsuario", empresaUsuario);
         }
@@ -798,6 +808,8 @@ namespace UTPPrototipo.Controllers
             ViewBag.TipoDocumentoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_DOCUMENTO), "IdListaValor", "Valor", empresaUsuario.TipoDocumentoIdListaValor);
             ViewBag.RolIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ROL_USUARIO, "ROLE"), "IdListaValor", "Valor", empresaUsuario.RolIdListaValor);
             ViewBag.EstadoUsuarioIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_USUARIO, "USEM"), "IdListaValor", "Valor", empresaUsuario.EstadoUsuarioIdListaValor);
+
+            ViewBag.IdEmpresa = ticket.IdEmpresa;
 
             //Se devuelve la lista parcial con el usuario.
             return PartialView("_AdministrarUsuarioEditar", empresaUsuario);
@@ -1074,6 +1086,26 @@ namespace UTPPrototipo.Controllers
             ViewBag.Paginacion = paginacion;
 
             return PartialView("_ListaOfertas",lista);
+        }
+
+        [HttpGet]
+        public ActionResult ValidarNroDocumento(string nroDocumento, int idEmpresa, int idEmpresaUsuario)
+        {
+            LNEmpresaUsuario lnEmpresaUsuario = new LNEmpresaUsuario ();
+
+            int cantidad = lnEmpresaUsuario.ValidarNumeroDocumento(idEmpresa, nroDocumento, idEmpresaUsuario);
+
+            return Json(cantidad, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult ValidarUsuario(string usuario, int idEmpresa, int idEmpresaUsuario)
+        {
+            LNEmpresaUsuario lnEmpresaUsuario = new LNEmpresaUsuario();
+
+            int cantidad = lnEmpresaUsuario.ValidarUsuario(idEmpresa, usuario, idEmpresaUsuario);
+
+            return Json(cantidad, JsonRequestBehavior.AllowGet);
         }
     }
 }

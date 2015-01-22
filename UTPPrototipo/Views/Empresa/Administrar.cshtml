@@ -234,5 +234,54 @@
 
 </script>
 
+<script>
 
+    function validar(idEmpresa, idEmpresaUsuario) {
+        console.log(idEmpresa + ' - ' + idEmpresaUsuario);
+        var validacion = false;
+        var nroDocumento = $('#NumeroDocumento').val();
+        var usuario = $('#NombreUsuario').val();
+
+        var url = '@Url.Action("ValidarNroDocumento", "Empresa")' + '?nroDocumento=' + nroDocumento + '&idEmpresa=' + idEmpresa + '&idEmpresaUsuario=' + idEmpresaUsuario;
+
+        //Validación de # de documento>
+        jQuery.ajax({
+            url: url,
+            success: function (data) {
+                if (eval(data) == 0) {
+                    //console.log('if ' + data);
+                    validacion = true;
+                }
+                else {
+                    //console.log('else ' + data);
+                    alert('Ya existe un usuario en la empresa con el número de documento: "' + nroDocumento + '"');
+                    validacion = false;
+                }
+            },
+            async: false //se cambia esta propiedad para que la llamada del ajax sea síncrona. Por defecto es asíncrona.
+        });
+
+        var urlUsuario = '@Url.Action("ValidarUsuario", "Empresa")' + '?usuario=' + usuario + '&idEmpresa=' + idEmpresa + '&idEmpresaUsuario=' + idEmpresaUsuario;
+
+        //Validación de usuario
+        jQuery.ajax({
+            url: urlUsuario,
+            success: function (data) {
+                if (eval(data) == 0) {
+                    //console.log('if ' + data);
+                    validacion = true;
+                }
+                else {
+                    //console.log('else ' + data);
+                    alert('El nombre de usuario "' + usuario + '" ya existe.');
+                    validacion = false;
+                }
+            },
+            async: false //se cambia esta propiedad para que la llamada del ajax sea síncrona. Por defecto es asíncrona.
+        });
+
+        return validacion;
+    }
+
+</script>
 

@@ -143,5 +143,62 @@ namespace UTP.PortalEmpleabilidad.Datos
 
             return dtResultado;
         }
+
+        public int ValidarNumeroDocumento(int idEmpresa, string numeroDocumento, int idEmpresaUsuario)
+        {
+            int cantidad = 0;
+
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "EmpresaUsuario_ValidarNroDocumento";
+                cmd.Parameters.Add(new SqlParameter("@IdEmpresa", idEmpresa));
+                cmd.Parameters.Add(new SqlParameter("@NumeroDocumento", numeroDocumento));
+                cmd.Parameters.Add(new SqlParameter("@IdEmpresaUsuario", idEmpresaUsuario));
+
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                object resultado = cmd.ExecuteScalar();
+                if (resultado != null)
+                    cantidad = Convert.ToInt32(resultado);
+
+                conexion.Close();
+
+            }
+
+            return cantidad;
+        }
+
+        public int ValidarUsuario(int idEmpresa, string usuario, int idEmpresaUsuario)
+        {
+            int cantidad = 0;
+
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "EmpresaUsuario_ValidarUsuario";
+                cmd.Parameters.Add(new SqlParameter("@IdEmpresa", idEmpresa));
+                cmd.Parameters.Add(new SqlParameter("@Usuario", usuario));
+                cmd.Parameters.Add(new SqlParameter("@IdEmpresaUsuario", idEmpresaUsuario));
+
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                object resultado = cmd.ExecuteScalar();
+                if (resultado != null)
+                    cantidad = Convert.ToInt32(resultado);
+
+                conexion.Close();
+            }
+
+            return cantidad;
+        }
     }
 }

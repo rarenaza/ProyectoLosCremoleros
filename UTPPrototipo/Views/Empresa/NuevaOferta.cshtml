@@ -37,7 +37,7 @@
                 @Html.ValidationMessageFor(m => m.RecibeCorreosIdListaValor, "", new { @class = "text-danger" })              
             </div>
             <div class="col-sm-3 " style="text-align:right;">
-                <button class="btn btn-default color-paleta2" >Guardar</button>
+                <button class="btn btn-default color-paleta2">Guardar</button>
             </div>
         </div>
 
@@ -74,8 +74,8 @@
                                 <div class="input-group">
                                     <span class="input-group-addon">Funciones</span>
                                     @*<textarea class="form-control" rows="6"></textarea>*@
-                                    <textarea name="Funciones" id="Funciones" rows="6" cols="80"></textarea>
-                                    
+                                    <textarea name="Funciones" id="Funciones" rows="6" cols="80" data-val-required="Esta campo es olbigatorio"></textarea>
+                                    @*@Html.TextAreaFor(m => m.Funciones)*@
                                 </div>
                                 @Html.ValidationMessageFor(m => m.Funciones, "", new { @class = "text-danger" })
                                 <div class="input-group">
@@ -305,5 +305,6 @@
         $("#divFinalCabecera").removeClass("color-paleta1 color-paleta3 color-paleta4 color-paleta5").addClass("color-paleta2");
         AutoCompleteText('#Cargo', '@Url.Action("ListarCargo", "Empresa")', '#Cargo');
     });
-        
+          
+
 </script>
