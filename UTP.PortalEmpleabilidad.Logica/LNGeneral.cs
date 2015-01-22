@@ -93,6 +93,11 @@ namespace UTP.PortalEmpleabilidad.Logica
             return lista;
         }
 
+        public DataTable ObtenerListaValor2(int idLista)
+        {
+            return adGeneral.ObtenerListaValor2(idLista);
+        }
+
         public List<ListaValor> EMPRESA_BUSCAR_INFORMACIONADICIONAL(string IDListaValorPadre)
         {
             List<ListaValor> lista = new List<ListaValor>();

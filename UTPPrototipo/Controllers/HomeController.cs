@@ -439,6 +439,53 @@ namespace UTPPrototipo.Controllers
         {
             return View();
         }
+
+        public JsonResult GetStateProvincia(int idDepartamento)
+        {
+            LNGeneral lnGeneral = new LNGeneral();
+
+            DataTable dtProvincia = lnGeneral.ObtenerListaValor2(idDepartamento);
+
+            List<SelectListItem> li = new List<SelectListItem>();
+
+            for (int i = 0; i <= dtProvincia.Rows.Count - 1; i++)
+            {
+                string nombre = dtProvincia.Rows[i]["Valor"].ToString();
+                string valor = dtProvincia.Rows[i]["IdListaValor"].ToString();
+
+                SelectListItem item = new SelectListItem() { Text = nombre, Value = valor };
+
+                li.Add(item);
+
+            }
+
+            return Json(new SelectList(li, "Value", "Text"));
+                    
+
+        }
+        //public JsonResult GetCityDistrito(string idDepartamento, string idProvincia)
+        //{
+        //    LNGeneral lnGeneral = new LNGeneral();
+        //    DataTable dtDistritos = lnGeneral.ObtenerListaValor2(Constantes.IDLISTA_Departamento, Constantes.IDLISTA_Provincia);
+           
+
+        //    List<SelectListItem> li = new List<SelectListItem>();
+
+        //    for (int i = 0; i <= dtDistritos.Rows.Count - 1; i++)
+        //    {
+        //        string nombre = dtDistritos.Rows[i]["Distrito"].ToString();
+        //        string valor = dtDistritos.Rows[i]["CodigoDistrito"].ToString();
+
+        //        SelectListItem item = new SelectListItem() { Text = nombre, Value = valor };
+
+        //        li.Add(item);
+
+        //    }
+
+        //    return Json(new SelectList(li, "Value", "Text"));
+        //}
+
+
         public ActionResult Registro()
         {
             LNGeneral lnGeneral = new LNGeneral();
@@ -454,6 +501,26 @@ namespace UTPPrototipo.Controllers
             ViewBag.TipoDocumentoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_DOCUMENTO), "IdListaValor", "Valor");
             ViewBag.RolIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ROL_USUARIO), "IdListaValor", "Valor");
             ViewBag.EstadoUsuarioIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_USUARIO), "IdListaValor", "Valor");
+            //ViewBag.DireccionDepartamentoLocacion = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_Departamento), "IdListaValor", "Valor");
+
+
+            DataTable dtDepartamento = lnGeneral.ObtenerListaValor2(Constantes.IDLISTA_Departamento);
+
+            List<SelectListItem> li = new List<SelectListItem>();
+
+            for (int i = 0; i <= dtDepartamento.Rows.Count - 1; i++)
+            {
+                string nombre = dtDepartamento.Rows[i]["Valor"].ToString();
+                string valor = dtDepartamento.Rows[i]["IdListaValor"].ToString();
+
+                SelectListItem item = new SelectListItem() { Text = nombre, Value = valor };
+
+                li.Add(item);
+
+            }
+            ViewData["Departamento"] = li;
+
+
 
 
             return View();
@@ -506,6 +573,8 @@ namespace UTPPrototipo.Controllers
             ViewBag.SectorEmpresarial1IdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_SECTOR_EMPRESARIAL), "IdListaValor", "Valor",empresa.SectorEmpresarial1IdListaValor);
             ViewBag.TipoLocacionIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_LOCACION), "IdListaValor", "Valor",empresa.TipoLocacionIdListaValor);
             ViewBag.TipoDocumentoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_DOCUMENTO), "IdListaValor", "Valor", empresa.TipoDocumentoIdListaValor);
+
+
             ViewBag.MensajeDeError = mensajeDeError;
             return View(empresa);
         }

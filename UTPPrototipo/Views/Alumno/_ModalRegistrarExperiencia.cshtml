@@ -16,10 +16,10 @@
             <div class="col-sm-12">
                 <div class="input-group fuente-pequeña">
                     <span class="input-group-addon">Empresa</span>
-                    @Html.TextBoxFor(m => m.Empresa, htmlAttributes: new { @class = "form-control", @placeholder = "Nombre de la Empresa", @id = "NombreComercial" })
+                    @Html.TextBoxFor(m => m.Empresa, htmlAttributes: new { @class = "form-control", @placeholder = "Nombre de la Empresa", @id = "NombreComercial" }) 
                 </div>
                 @Html.ValidationMessageFor(m => m.Empresa, "", new { @class = "text-danger" })
-            </div>
+            </div>   
         </div>
         <div class="row">
             <div class="col-sm-12">
@@ -143,10 +143,25 @@
     $(document).ready(function () {
         $("#divFinalCabecera").removeClass("color-paleta1 color-paleta3 color-paleta4 color-paleta5 color-paleta6 color-paleta7 color-paleta8").addClass("color-paleta2");
 
-        AutoCompleteText('#NombreComercial', '@Url.Action("ListarNombreEmpresa", "UTP")', '#NombreComercial');
-       
+        AutoCompleteTextBuscarDescripcion('#NombreComercial', '@Url.Action("ListarNombreEmpresa", "UTP")', '#NombreComercial');
 
     });
+
+
+    function cargarDescripcoin(idEmpresa)
+    {
+        var url = '@Url.Action("BuscarDatosEmpresas","Alumno")' + '?idEmpresa=' + idEmpresa;
+
+        $.get(url, function (descripcionEmpresa) {
+
+            console.log(DescripcionEmpresa);
+            $('#DescripcionEmpresa').val(descripcionEmpresa);
+
+        });
+
+    }
+
+
     //$('#NombreComercial').focusout(function () {
     //    alert('Hola Junior');
     //});
