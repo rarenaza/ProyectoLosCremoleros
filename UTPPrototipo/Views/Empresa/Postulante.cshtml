@@ -501,7 +501,7 @@
             console.log('click en el boton');
 
             //Se obtiene el valor del combo.
-            var faseOferta = 'OFFAFI'; //Fase de la oferta FINALIZADA: Proceso Finalizado
+            var faseOferta = 'OFFADE'; //Fase de la oferta DESCARTADA
             var idOfertaPostulante = $('#hddIdOfertaPostulante').val();
 
             //Se llama al controlador pasando los parámetros para ordenar las columnas.
@@ -511,7 +511,7 @@
                 //alert(data);
                 alert('El postulante ha sido descartado con éxito.');
                 $('#lblFaseOfertaDescripcion').text(data); //Se actualiza la descripción de la fase.
-                $('#IdOfertaFase').val('OFFAFI');
+                $('#IdOfertaFase').val('OFFADE');
             });
 
         });

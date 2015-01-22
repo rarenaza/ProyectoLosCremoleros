@@ -39,11 +39,17 @@ namespace UTP.PortalEmpleabilidad.Modelo
 
         public string Usuario { get; set; }
 
+        public string RecibeCorreos { get; set; }
+        public string CorreoElectronicoUsuarioEmpresa { get; set; }
+        public string CargoOfrecido { get; set; }
+        public string NombreAlumno { get; set; }
+
         public OfertaPostulante()
         {
             Oferta = new Oferta();
             Alumno = new Alumno();
             FaseOferta = new ListaValor();
+
         }
 
     }

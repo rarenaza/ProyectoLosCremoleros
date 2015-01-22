@@ -73,6 +73,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         
         [Required(ErrorMessage=Constantes.MSJ_CAMPO_OBLIGATORIO)]
         public string RecibeCorreosIdListaValor { get; set; }
+        public string CorreoElectronicoUsuarioEmpresa { get; set; }
         public string TipoCargoIdListaValor { get; set; }
 
          [Required(ErrorMessage = Constantes.MSJ_CAMPO_OBLIGATORIO)]

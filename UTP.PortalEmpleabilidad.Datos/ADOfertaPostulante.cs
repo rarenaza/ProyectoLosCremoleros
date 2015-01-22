@@ -12,7 +12,9 @@ namespace UTP.PortalEmpleabilidad.Datos
     public class ADOfertaPostulante
     {
         ADConexion cnn = new ADConexion();
+        ADConexion cnn2 = new ADConexion();
         SqlCommand cmd = new SqlCommand();
+        SqlCommand cmd2 = new SqlCommand();
         public void Insertar(OfertaPostulante ofertapostulante)
         {
             cmd.CommandType = CommandType.StoredProcedure;
@@ -25,9 +27,22 @@ namespace UTP.PortalEmpleabilidad.Datos
             cmd.Parameters.Add(new SqlParameter("@IdCV", SqlDbType.Int)).Value = ofertapostulante.IdCV;
             cmd.Parameters.Add(new SqlParameter("@DocumentoCV", ofertapostulante.DocumentoCV));
             cmd.Parameters.Add(new SqlParameter("@CreadoPor", SqlDbType.VarChar,50)).Value = ofertapostulante.CreadoPor;
-
             cmd.ExecuteNonQuery();
             cnn.Desconectar();
+            if (ofertapostulante.RecibeCorreos == "OFCOCO") 
+            {
+                
+                cmd2.CommandType = CommandType.StoredProcedure;
+                cmd2.CommandText = "OfertaCorreo_Insertar";
+                cmd2.Connection = cnn2.cn;
+                cnn2.Conectar();
+                cmd2.Parameters.Add(new SqlParameter("@IdOferta", SqlDbType.Int)).Value = ofertapostulante.IdOferta;
+                cmd2.Parameters.Add(new SqlParameter("@IdAlumno", SqlDbType.Int)).Value = ofertapostulante.IdAlumno;
+                cmd2.Parameters.Add(new SqlParameter("@CorreoUsuarioEmpresa", SqlDbType.VarChar, 300)).Value = ofertapostulante.CorreoElectronicoUsuarioEmpresa;
+                cmd2.Parameters.Add(new SqlParameter("@CargoOfrecido", SqlDbType.VarChar, 300)).Value = ofertapostulante.CargoOfrecido;
+                cmd2.ExecuteNonQuery();
+                cnn2.Desconectar();
+            }
         }
 
         public DataTable OfertaPostulante_DescaragarCV(int IdAlumno, int IdOferta)

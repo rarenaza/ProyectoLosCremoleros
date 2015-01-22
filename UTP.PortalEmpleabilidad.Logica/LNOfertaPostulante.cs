@@ -11,11 +11,27 @@ using UTP.PortalEmpleabilidad.Modelo.Vistas.Ofertas;
 namespace UTP.PortalEmpleabilidad.Logica
 {
     public class LNOfertaPostulante
+      
     {
+        ADAlumno adAlumno = new ADAlumno();
         ADOfertaPostulante adOfertaPostulante = new ADOfertaPostulante();
+
         public void Insertar(OfertaPostulante ofertapostulante)
         {
             adOfertaPostulante.Insertar(ofertapostulante);
+            if (ofertapostulante.RecibeCorreos == "OFCOPO") 
+            {
+                DataTable dt = adAlumno.ObtenerAlumnoPorIdAlumno(ofertapostulante.IdAlumno);
+                if (dt.Rows.Count > 0)
+                {
+                    Mensaje mensaje = new Mensaje();
+                    mensaje.DeUsuarioCorreoElectronico = "utpempleabilidad@utp.edu.pe";
+                    mensaje.ParaUsuarioCorreoElectronico = ofertapostulante.CorreoElectronicoUsuarioEmpresa;
+                    mensaje.Asunto = "Nuevo Postulante: " + dt.Rows[0]["Nombres"] + " " + dt.Rows[0]["Apellidos"] + " - Oferta " + ofertapostulante.CargoOfrecido;
+                    mensaje.MensajeTexto = "Ha recibido un Postulante nuevo para su Oferta: " + ofertapostulante.CargoOfrecido + "\r\n\r\n" + dt.Rows[0]["Nombres"] + " " + dt.Rows[0]["Apellidos"];
+                    LNCorreo.EnviarCorreo(mensaje);
+                }
+            }
         }
 
         public byte[] OfertaPostulante_DescaragarCV(int IdAlumno, int IdOferta)

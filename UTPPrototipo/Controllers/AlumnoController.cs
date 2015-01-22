@@ -120,7 +120,6 @@ namespace UTPPrototipo.Controllers
                 PlantillaController plantilla = new PlantillaController();
                 MemoryStream streamCurriculum = plantilla.CrearCurriculum(entidad.IdCV, rutaPlantilla);
                 entidad.DocumentoCV = streamCurriculum.ToArray();
-
                 lnofertapostulante.Insertar(entidad);
             }
             else
