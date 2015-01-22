@@ -90,7 +90,7 @@ namespace UTP.PortalEmpleabilidad.Datos
             cnn.Desconectar();
             return dt;
         }
-        public DataTable Utp_BuscarDatosListaEmpresas(string NombreComercial)
+        public DataTable Utp_BuscarDatosListaEmpresas(int idempresa)
         {
             DataTable dtResultado = new DataTable();
 
@@ -100,7 +100,7 @@ namespace UTP.PortalEmpleabilidad.Datos
 
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "Utp_BuscarDatosListaEmpresas";
-                cmd.Parameters.Add(new SqlParameter("@NombreComercial", NombreComercial));
+                cmd.Parameters.Add(new SqlParameter("@IdEmpresa", idempresa));
                 cmd.Connection = conexion;
 
                 conexion.Open();

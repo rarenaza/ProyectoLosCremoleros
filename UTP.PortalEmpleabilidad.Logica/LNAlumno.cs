@@ -113,10 +113,10 @@ namespace UTP.PortalEmpleabilidad.Logica
         }
 
 
-        public DataTable Utp_BuscarDatosListaEmpresas(string NombreComercial)
+        public DataTable Utp_BuscarDatosListaEmpresas(int idempresa)
         {
 
-            return ad.Utp_BuscarDatosListaEmpresas(NombreComercial);
+            return ad.Utp_BuscarDatosListaEmpresas(idempresa);
         }
 
 

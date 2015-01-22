@@ -488,25 +488,25 @@ namespace UTPPrototipo.Controllers
         }
 
 
-        public ActionResult BuscarDatosEmpresas(string NombreEmpresa)
+        public ActionResult BuscarDatosEmpresas(int idempresa)
         {
-
+            //string descripocn = "";
             
 
             AlumnoExperiencia vista = new AlumnoExperiencia();
 
-            DataTable dtResultado = lnAlumno.Utp_BuscarDatosListaEmpresas(NombreEmpresa);
+            DataTable dtResultado = lnAlumno.Utp_BuscarDatosListaEmpresas(idempresa);
 
             if (dtResultado.Rows.Count> 0)
             {
                 vista.IdEmpresa = Convert.ToInt32(dtResultado.Rows[0]["IdEmpresa"]);
-                vista.Empresa = dtResultado.Rows[0]["Empresa"].ToString();
+                vista.Empresa = dtResultado.Rows[0]["NombreComercial"].ToString();
                 vista.RazonSocial = dtResultado.Rows[0]["RazonSocial"].ToString();
                 vista.DescripcionEmpresa = dtResultado.Rows[0]["DescripcionEmpresa"].ToString();
                               
             }
 
-            return Json(vista);
+            return Json(vista.DescripcionEmpresa, JsonRequestBehavior.AllowGet);
 
         }
 
