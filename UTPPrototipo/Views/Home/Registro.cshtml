@@ -23,6 +23,8 @@
         {
             <div class="alert alert-danger">@Html.Raw(ViewBag.MensajeDeError)</div>
         }
+
+
         <h5>Datos de la Empresa</h5>
         <hr />
         <div class="row">
@@ -58,6 +60,8 @@
                     <span class="input-group-addon fuente-pequeña">(*) País</span>
                     @Html.DropDownListFor(m => m.PaisIdListaValor, null, "- Seleccione País -", htmlAttributes: new { @class = "form-control" })
 
+
+
                     @*<select class="form-control fuente-pequeña">
                             <option value="">-- Seleccione País donde se ubica la Empresa --</option>
                             <option>Perú</option>
@@ -66,7 +70,6 @@
                 </div>@Html.ValidationMessageFor(model => model.PaisIdListaValor, "", new { @class = "text-danger" })
             </div>
         </div>
-
 
         <div class="row">
             <div class="col-sm-4">
@@ -100,7 +103,11 @@
                 </div>@Html.ValidationMessageFor(model => model.TipoLocacionIdListaValor, "", new { @class = "text-danger" })
             </div>
         </div>
-        <div class="row">
+
+
+
+
+        <div class="row" id="divUbigeoConCombos">
             <div class="col-sm-4">
                 <div class="input-group fuente-pequeña">
                     <span class="input-group-addon fuente-pequeña">(*)<br />Departam.</span>
@@ -137,122 +144,184 @@
                 </div>@Html.ValidationMessageFor(model => model.DireccionDistritoLocacion, "", new { @class = "text-danger" })
             </div>
         </div>
-        <div class="row">
-            <div class="col-sm-12">
+
+        <!--Por defecto el div está oculto-->
+        <div class="row" id="divUbigeoConCajasDeTexto" style="display:none;">
+
+            <!--Aca van las tres columnas y cada una con su caja de texto-->
+            <div class="col-sm-4">
                 <div class="input-group fuente-pequeña">
-                    <span class="input-group-addon fuente-pequeña">(*)<br />Dirección</span>
-                    @*<input type="text" class="form-control fuente-pequeña" placeholder="Ingrese Dirección. Ej: Avenida Las Palmeras 123, Urbanización El Palmeral">*@
-                    @Html.TextBoxFor(model => model.DireccionLocacion, new { @class = "form-control", @placeholder = "Ingrese Dirección. Ej: Avenida Las Palmeras 123, Urbanización El Palmeral" })
-                </div>@Html.ValidationMessageFor(model => model.DireccionLocacion, "", new { @class = "text-danger" })
+                    <span class="input-group-addon fuente-pequeña">(*)<br />Departam.</span>
+              
+                     @Html.TextBoxFor(model => model.DireccionDepartamentoLocacion, new { @class = "form-control", @placeholder = "Ingrese Departamento/Región/Estado" })
+
+                </div>@Html.ValidationMessageFor(model => model.DireccionDepartamentoLocacion, "", new { @class = "text-danger" })
+
             </div>
-        </div>
-        <br />
-        <h5>Datos de Contacto</h5>
-        <hr />
-        <div class="row">
-            <div class="col-sm-6">
+            <div class="col-sm-4">
                 <div class="input-group fuente-pequeña">
-                    <span class="input-group-addon fuente-pequeña">(*)<br />Nombres</span>
-                    @*<input type="text" class="form-control fuente-pequeña" placeholder="Ingrese sus nombres">*@
-                    @Html.TextBoxFor(model => model.NombresUsuario, new { @class = "form-control", @placeholder = "Ingrese su(s) nombre(s)" })
-                </div>@Html.ValidationMessageFor(model => model.NombresUsuario, "", new { @class = "text-danger" })
+                    <span class="input-group-addon fuente-pequeña">(*) Ciudad</span>
+                 
+                    @Html.TextBoxFor(model => model.DireccionCiudadLocacion, new { @class = "form-control", @placeholder = "Ingrese Ciudad/Provincia" })
+
+                </div>@Html.ValidationMessageFor(model => model.DireccionCiudadLocacion, "", new { @class = "text-danger" })
+
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-4">
+
                 <div class="input-group fuente-pequeña">
-                    <span class="input-group-addon fuente-pequeña">(*)<br />Apellidos</span>
-                    @*<input type="text" class="form-control fuente-pequeña" placeholder="Ingrese sus apellidos">*@
-                    @Html.TextBoxFor(model => model.ApellidosUsuario, new { @class = "form-control", @placeholder = "Ingrese sus apellidos" })
-                </div>@Html.ValidationMessageFor(model => model.ApellidosUsuario, "", new { @class = "text-danger" })
+                    <span class="input-group-addon fuente-pequeña">(*) Distrito</span>
+
+                    @Html.TextBoxFor(model => model.DireccionDistritoLocacion, new { @class = "form-control", @placeholder = "Ingrese Distrito/Comuna" })
+
+                </div>@Html.ValidationMessageFor(model => model.DireccionDistritoLocacion, "", new { @class = "text-danger" })
             </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="input-group fuente-pequeña">
+                        <span class="input-group-addon fuente-pequeña">(*)<br />Dirección</span>
+                        @*<input type="text" class="form-control fuente-pequeña" placeholder="Ingrese Dirección. Ej: Avenida Las Palmeras 123, Urbanización El Palmeral">*@
+                        @Html.TextBoxFor(model => model.DireccionLocacion, new { @class = "form-control", @placeholder = "Ingrese Dirección. Ej: Avenida Las Palmeras 123, Urbanización El Palmeral" })
+                    </div>@Html.ValidationMessageFor(model => model.DireccionLocacion, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <br />
+            <h5>Datos de Contacto</h5>
+            <hr />
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="input-group fuente-pequeña">
+                        <span class="input-group-addon fuente-pequeña">(*)<br />Nombres</span>
+                        @*<input type="text" class="form-control fuente-pequeña" placeholder="Ingrese sus nombres">*@
+                        @Html.TextBoxFor(model => model.NombresUsuario, new { @class = "form-control", @placeholder = "Ingrese su(s) nombre(s)" })
+                    </div>@Html.ValidationMessageFor(model => model.NombresUsuario, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-6">
+                    <div class="input-group fuente-pequeña">
+                        <span class="input-group-addon fuente-pequeña">(*)<br />Apellidos</span>
+                        @*<input type="text" class="form-control fuente-pequeña" placeholder="Ingrese sus apellidos">*@
+                        @Html.TextBoxFor(model => model.ApellidosUsuario, new { @class = "form-control", @placeholder = "Ingrese sus apellidos" })
+                    </div>@Html.ValidationMessageFor(model => model.ApellidosUsuario, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="input-group fuente-pequeña">
+                        <span class="input-group-addon fuente-pequeña">(*) Tipo <br />Document.</span>
+                        @Html.DropDownListFor(m => m.TipoDocumentoIdListaValor, null, "- Seleccione tipo de Documento -", htmlAttributes: new { @class = "form-control" })
+
+                        @*<select class="form-control fuente-pequeña">
+                                <option value="">-- Elija Tipo Documento de Identificación--</option>
+                                <option>DNI</option>
+                                <option>Pasaporte</option>
+                                <option>Carnet Extrangería</option>
+                            </select>*@
+                    </div>@Html.ValidationMessageFor(model => model.TipoDocumentoIdListaValor, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-4">
+                    <div class="input-group fuente-pequeña">
+                        <span class="input-group-addon fuente-pequeña">(*) Número<br />Document.</span>
+                        @*<input type="text" class="form-control fuente-pequeña" placeholder="Ingrese su Número de Documento">*@
+                        @Html.TextBoxFor(model => model.NumeroDocumento, new { @class = "form-control", @placeholder = "Número de Documento de Identidad" })
+                    </div>@Html.ValidationMessageFor(model => model.NumeroDocumento, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <span class="input-group-addon">(*)<br />Celular</span>
+                        @*<input type="text" class="form-control" placeholder="Número de Celular">*@
+                        @Html.TextBoxFor(model => model.CelularUsuario, new { @class = "form-control", @placeholder = "Número de Celular" })
+                    </div>@Html.ValidationMessageFor(model => model.CelularUsuario, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="input-group">
+                        <span class="input-group-addon">(*) e-Mail</span>
+                        @*<input type="text" class="form-control" placeholder="e-Mail del Usuario">*@
+                        @Html.TextBoxFor(model => model.EmailUsuario, new { @class = "form-control", @placeholder = "Correo electrónico de contacto" })
+                    </div>@Html.ValidationMessageFor(model => model.EmailUsuario, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="input-group fuente-pequeña">
+                        <span class="input-group-addon fuente-pequeña">(*)<br />Usuario</span>
+                        @*<input type="text" class="form-control fuente-pequeña" placeholder="Ingrese un nombre de Usuario, con no menos de 8, y máximo 40 caracteres">*@
+                        @Html.TextBoxFor(model => model.CuentaUsuario, new { @class = "form-control", @placeholder = "Ingrese un nombre de Usuario, con no menos de 8, y máximo 40 caracteres" })
+                    </div>@Html.ValidationMessageFor(model => model.CuentaUsuario, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="input-group fuente-pequeña">
+                        <span class="input-group-addon fuente-pequeña">(*)<br />Contraseña</span>
+                        @*<input type="password" class="form-control fuente-pequeña">*@
+                        @Html.PasswordFor(m => m.Contrasena, new { @class = "form-control" })
+                        @*@Html.Raw(@Html.PasswordFor(model => model.Contrasena).ToString().Replace("text-box single-line", "form-control"))*@
+
+                    </div>@Html.ValidationMessageFor(model => model.Contrasena, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-4">
+                    <p>Ingrese una contraseña con al menos 8 caracteres utilizando al menos una letra mayúscula, una minúscula y un dígito.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="input-group fuente-pequeña">
+                        <span class="input-group-addon fuente-pequeña">(*) Repita<br />Contraseña</span>
+                        @*@Html.Raw(@Html.PasswordFor(model => model.Contrasena).ToString().Replace("text-box single-line", "form-control"))*@
+                        @Html.PasswordFor(m => m.ContrasenaValidador, new { @class = "form-control" })
+                    </div>@Html.ValidationMessageFor(model => model.ContrasenaValidador, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-sm-12" style="text-align:right;">
+                    <button class="btn btn-default color-paleta1" type="submit">Enviar Datos</button>
+                </div>
+            </div>
+            <br />
         </div>
 
-        <div class="row">
-            <div class="col-sm-4">
-                <div class="input-group fuente-pequeña">
-                    <span class="input-group-addon fuente-pequeña">(*) Tipo <br />Document.</span>
-                    @Html.DropDownListFor(m => m.TipoDocumentoIdListaValor, null, "- Seleccione tipo de Documento -", htmlAttributes: new { @class = "form-control" })
-
-                    @*<select class="form-control fuente-pequeña">
-                            <option value="">-- Elija Tipo Documento de Identificación--</option>
-                            <option>DNI</option>
-                            <option>Pasaporte</option>
-                            <option>Carnet Extrangería</option>
-                        </select>*@
-                </div>@Html.ValidationMessageFor(model => model.TipoDocumentoIdListaValor, "", new { @class = "text-danger" })
-            </div>
-            <div class="col-sm-4">
-                <div class="input-group fuente-pequeña">
-                    <span class="input-group-addon fuente-pequeña">(*) Número<br />Document.</span>
-                    @*<input type="text" class="form-control fuente-pequeña" placeholder="Ingrese su Número de Documento">*@
-                    @Html.TextBoxFor(model => model.NumeroDocumento, new { @class = "form-control", @placeholder = "Número de Documento de Identidad" })
-                </div>@Html.ValidationMessageFor(model => model.NumeroDocumento, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-4">
-                <div class="input-group">
-                    <span class="input-group-addon">(*)<br />Celular</span>
-                    @*<input type="text" class="form-control" placeholder="Número de Celular">*@
-                    @Html.TextBoxFor(model => model.CelularUsuario, new { @class = "form-control", @placeholder = "Número de Celular" })
-                </div>@Html.ValidationMessageFor(model => model.CelularUsuario, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-8">
-                <div class="input-group">
-                    <span class="input-group-addon">(*) e-Mail</span>
-                    @*<input type="text" class="form-control" placeholder="e-Mail del Usuario">*@
-                    @Html.TextBoxFor(model => model.EmailUsuario, new { @class = "form-control", @placeholder = "Correo electrónico de contacto" })
-                </div>@Html.ValidationMessageFor(model => model.EmailUsuario, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <br />
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="input-group fuente-pequeña">
-                    <span class="input-group-addon fuente-pequeña">(*)<br />Usuario</span>
-                    @*<input type="text" class="form-control fuente-pequeña" placeholder="Ingrese un nombre de Usuario, con no menos de 8, y máximo 40 caracteres">*@
-                    @Html.TextBoxFor(model => model.CuentaUsuario, new { @class = "form-control", @placeholder = "Ingrese un nombre de Usuario, con no menos de 8, y máximo 40 caracteres" })
-                </div>@Html.ValidationMessageFor(model => model.CuentaUsuario, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-4">
-                <div class="input-group fuente-pequeña">
-                    <span class="input-group-addon fuente-pequeña">(*)<br />Contraseña</span>
-                    @*<input type="password" class="form-control fuente-pequeña">*@
-                    @Html.PasswordFor(m => m.Contrasena, new { @class = "form-control" })
-                    @*@Html.Raw(@Html.PasswordFor(model => model.Contrasena).ToString().Replace("text-box single-line", "form-control"))*@
-
-                </div>@Html.ValidationMessageFor(model => model.Contrasena, "", new { @class = "text-danger" })
-            </div>
-            <div class="col-sm-4">
-                <p>Ingrese una contraseña con al menos 8 caracteres utilizando al menos una letra mayúscula, una minúscula y un dígito.</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-4">
-                <div class="input-group fuente-pequeña">
-                    <span class="input-group-addon fuente-pequeña">(*) Repita<br />Contraseña</span>
-                    @*@Html.Raw(@Html.PasswordFor(model => model.Contrasena).ToString().Replace("text-box single-line", "form-control"))*@
-                    @Html.PasswordFor(m => m.ContrasenaValidador, new { @class = "form-control" })
-                </div>@Html.ValidationMessageFor(model => model.ContrasenaValidador, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <hr />
-        <div class="row">
-            <div class="col-sm-12" style="text-align:right;">
-                <button class="btn btn-default color-paleta1" type="submit">Enviar Datos</button>
-            </div>
-        </div>
-        <br />
-    </div>
-
+   
 }
+  
+<script >
+    $(document).ready(function () 
+    {
+
+        $('#PaisIdListaValor').on('change', function() 
+        
+        {
+            var idPais = $("#PaisIdListaValor").val()
+            //alert(idPais);
+            console.log(idPais);
+
+            if (idPais == "PAIPER")
+            {
+                console.log('peru');
+                $("#divUbigeoConCombos").css('display', 'block');       //los combos se muestran
+                $("#divUbigeoConCajasDeTexto").css('display', 'none'); //las cajas se ocultan      
+            }
+            else
+            {
+                console.log('otro');
+                $("#divUbigeoConCombos").css('display', 'none');        //los combos se ocultan
+                $("#divUbigeoConCajasDeTexto").css('display', 'block'); //las cajas se muestran
+            }
+ 
+    }
+        )}  );
+</script>
 
 <script type="text/javascript">
     $(document).ready(function () {
-        //Dropdownlist Selectedchange event
+
         $("#DireccionDepartamentoLocacion").change(function () {
             $("#DireccionCiudadLocacion").empty();
 
@@ -295,11 +364,9 @@
     });
 </script>
 
-
-
 <script type="text/javascript">
     $(document).ready(function () {
-        //Dropdownlist Selectedchange event
+  
         $("#DireccionCiudadLocacion").change(function () {
             $("#DireccionDistritoLocacion").empty();
 
