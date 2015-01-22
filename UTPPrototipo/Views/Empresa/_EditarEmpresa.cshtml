@@ -16,6 +16,9 @@
 
         <!--Se guarda el Id de la empresa en un Hidden-->
         @Html.HiddenFor(m => m.IdEmpresa)
+        @Html.HiddenFor(m => m.NivelDeFacturacion)
+        @Html.HiddenFor(m => m.UsuarioEC)
+        @Html.HiddenFor(m => m.EstadoIdListaValor)
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <div class="row">
