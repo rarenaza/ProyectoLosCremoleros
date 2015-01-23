@@ -26,9 +26,24 @@
             </div> 
             <div class="col-sm-2">
                 <div class="progress">
-                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="@item.Cumplimiento" aria-valuemin="0" aria-valuemax="100" style="width:@item.Cumplimiento%;">
-                        @item.Cumplimiento
-                    </div>
+                    @if (@item.Cumplimiento < 60)
+                    {
+                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="@item.Cumplimiento" aria-valuemin="0" aria-valuemax="100" style="width:@item.Cumplimiento%;">
+                            @item.Cumplimiento%
+                        </div>
+                    }
+                    @if (@item.Cumplimiento >= 60 && @item.Cumplimiento < 80)
+                    {
+                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="@item.Cumplimiento" aria-valuemin="0" aria-valuemax="100" style="width:@item.Cumplimiento%;">
+                            @item.Cumplimiento%
+                        </div>
+                    }
+                    @if (@item.Cumplimiento >= 80)
+                    {
+                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="@item.Cumplimiento" aria-valuemin="0" aria-valuemax="100" style="width:@item.Cumplimiento%;">
+                            @item.Cumplimiento%
+                        </div>
+                    }
                 </div>
             </div>
         </div>
