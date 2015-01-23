@@ -15,7 +15,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="input-group fuente-pequeña">
-                    <span class="input-group-addon">Empresa</span>
+                    <span class="input-group-addon">(*)Empresa</span>
                     @Html.TextBoxFor(m => m.Empresa, htmlAttributes: new { @class = "form-control", @placeholder = "Nombre de la Empresa", @id = "NombreComercial" }) 
                 </div>
                 @Html.ValidationMessageFor(m => m.Empresa, "", new { @class = "text-danger" })
@@ -24,7 +24,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="input-group fuente-pequeña">
-                    <span class="input-group-addon">Descrip-<br />ción de<br />Empresa</span>
+                    <span class="input-group-addon">(*)Descrip-<br />ción de<br />Empresa</span>
                     @Html.TextAreaFor(m => m.DescripcionEmpresa, htmlAttributes: new { @class = "form-control", @placeholder = "Descripción de la Empresa", @rows = "3" })
                 </div>
                 @Html.ValidationMessageFor(m => m.DescripcionEmpresa, "", new { @class = "text-danger" })
@@ -33,7 +33,7 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="input-group fuente-pequeña">
-                    <span class="input-group-addon">Sector<br />Principal</span>
+                    <span class="input-group-addon">(*)Sector<br />Principal</span>
                     @Html.DropDownListFor(m => m.SectorEmpresarial, null, "- Seleccionar -", htmlAttributes: new { @class = "form-control" })
                 </div>
                 @Html.ValidationMessageFor(m => m.SectorEmpresarial, "", new { @class = "text-danger" })
@@ -73,7 +73,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="input-group fuente-pequeña">
-                    <span class="input-group-addon">Tipo</span>
+                    <span class="input-group-addon">(*)Tipo</span>
                     @Html.DropDownListFor(m => m.TipoCargo, null, "- Seleccionar -", htmlAttributes: new { @class = "form-control" })
                 </div>
                 @Html.ValidationMessageFor(m => m.TipoCargo, "", new { @class = "text-danger" })
@@ -82,7 +82,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="input-group fuente-pequeña">
-                    <span class="input-group-addon">Cargo</span>
+                    <span class="input-group-addon">(*)Cargo</span>
                     @Html.TextBoxFor(m => m.NombreCargo, htmlAttributes: new { @class = "form-control", @placeholder = "Nombre del Cargo" })
                 </div>
                 @Html.ValidationMessageFor(m => m.NombreCargo, "", new { @class = "text-danger" })
@@ -91,14 +91,14 @@
         <div class="row">
             <div class="col-sm-4">
                 <div class="input-group fuente-pequeña">
-                    <span class="input-group-addon">Año Inicio</span>
+                    <span class="input-group-addon">(*)Año<br />Inicio</span>
                     @Html.TextBoxFor(m => m.FechaInicioCargoAno, htmlAttributes: new { @class = "form-control", @placeholder = "Año Inicio" })
                 </div>
                 @Html.ValidationMessageFor(m => m.FechaInicioCargoAno, "", new { @class = "text-danger" })
             </div>
             <div class="col-sm-6">
                 <div class="input-group fuente-pequeña">
-                    <span class="input-group-addon">Mes Inicio</span>
+                    <span class="input-group-addon">(*)Mes<br />Inicio</span>
                     @Html.DropDownListFor(m => m.FechaInicioCargoMes, new SelectList(ViewBag.meses, "Key", "Value"), "Mes de Inicio de cargo", htmlAttributes: new { @class = "form-control" })
 
                 </div>
@@ -148,15 +148,19 @@
     });
 
 
-    function cargarDescripcoin(idEmpresa)
+    function cargarDescripcion(idEmpresa)
     {
         var url = '@Url.Action("BuscarDatosEmpresas","Alumno")' + '?idEmpresa=' + idEmpresa;
 
-        $.get(url, function (descripcionEmpresa) {
+        $.get(url, function (empresa) {
 
             console.log(DescripcionEmpresa);
-            $('#DescripcionEmpresa').val(descripcionEmpresa);
-
+            $('#DescripcionEmpresa').val(empresa["DescripcionEmpresa"]);
+            $('#SectorEmpresarial').val(empresa["SectorEmpresarial"]);
+            $('#SectorEmpresarial2').val(empresa["SectorEmpresarial2"]);
+            $('#SectorEmpresarial3').val(empresa["SectorEmpresarial3"]);
+            $('#Pais').val(empresa["Pais"]);
+            $('#IdEmpresa').val(idEmpresa);
         });
 
     }

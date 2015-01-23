@@ -35,18 +35,18 @@ namespace UTP.PortalEmpleabilidad.Logica
                     alumnoexperiencia.IdEmpresa=IdEmpresa;
                 }
             }
-            int IdExperiencia=adalumnoexperiencia.ValidarExistePorIdEmpresa(alumnoexperiencia.IdEmpresa);
+            int IdExperiencia=adalumnoexperiencia.ValidarExistePorIdEmpresa(alumnoexperiencia.IdEmpresa, alumnoexperiencia.IdAlumno);
             if (IdExperiencia == 0)
             {
-                alumnoexperiencia.IdExperiencia = adalumnoexperiencia.Registrar(alumnoexperiencia);
+                IdExperiencia = adalumnoexperiencia.Registrar(alumnoexperiencia);
             }
             AlumnoExperienciaCargo alumnoexperienciacargo=new AlumnoExperienciaCargo();
-            alumnoexperienciacargo.IdExperiencia = alumnoexperiencia.IdExperiencia;
+            alumnoexperienciacargo.IdExperiencia = IdExperiencia;
             alumnoexperienciacargo.NombreCargo = alumnoexperiencia.NombreCargo;
             alumnoexperienciacargo.FechaInicioCargoMes = alumnoexperiencia.FechaInicioCargoMes;
             alumnoexperienciacargo.FechaInicioCargoAno = (int)alumnoexperiencia.FechaInicioCargoAno;
             alumnoexperienciacargo.FechaFinCargoMes = alumnoexperiencia.FechaFinCargoMes;
-            alumnoexperienciacargo.FechaFinCargoAno = (int)alumnoexperiencia.FechaFinCargoAno;
+            alumnoexperienciacargo.FechaFinCargoAno = alumnoexperiencia.FechaFinCargoAno;
             alumnoexperienciacargo.TipoCargo = alumnoexperiencia.TipoCargo;
             alumnoexperienciacargo.DescripcionCargo = alumnoexperiencia.DescripcionCargo;
             alumnoexperienciacargo.CreadoPor = alumnoexperiencia.CreadoPor;

@@ -35,6 +35,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                     alumnoexperienciacargo.FechaInicioCargoAno = Funciones.ToInt(dtResultado.Rows[i]["FechaInicioCargoAno"]);
                     alumnoexperienciacargo.FechaFinCargoMes = Funciones.ToInt(dtResultado.Rows[i]["FechaFinCargoMes"]);
                     alumnoexperienciacargo.FechaFinCargoAno = Funciones.ToInt(dtResultado.Rows[i]["FechaFinCargoAno"]);
+                    alumnoexperienciacargo.IconoTipoCargo = Funciones.ToString(dtResultado.Rows[i]["IconoTipoCargo"]);
 
                     listaAlumnoExperienciaCargo.Add(alumnoexperienciacargo);
                 }

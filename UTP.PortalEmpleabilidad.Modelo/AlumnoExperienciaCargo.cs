@@ -19,8 +19,8 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string Ciudad { get; set; }
         public int FechaInicioCargoMes { get; set; }
         public int FechaInicioCargoAno { get; set; }
-        public int FechaFinCargoMes { get; set; }
-        public int FechaFinCargoAno { get; set; }
+        public int? FechaFinCargoMes { get; set; }
+        public int? FechaFinCargoAno { get; set; }
         public bool Incluir { get; set; }
 
         public List<ListaValor> ListaSectorEmpresarial { get; set; }
@@ -35,6 +35,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string SectorEmpresarial2 { get; set; }
         public string SectorEmpresarial3 { get; set; }
         public string Pais { get; set; }
+        public string IconoTipoCargo { get; set; }
 
     }
 }

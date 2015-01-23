@@ -502,10 +502,13 @@ namespace UTPPrototipo.Controllers
                 vista.Empresa = dtResultado.Rows[0]["NombreComercial"].ToString();
                 vista.RazonSocial = dtResultado.Rows[0]["RazonSocial"].ToString();
                 vista.DescripcionEmpresa = dtResultado.Rows[0]["DescripcionEmpresa"].ToString();
-                              
+                vista.SectorEmpresarial = dtResultado.Rows[0]["SectorEmpresarial"].ToString();
+                vista.SectorEmpresarial2 = dtResultado.Rows[0]["SectorEmpresarial2"].ToString();
+                vista.SectorEmpresarial3 = dtResultado.Rows[0]["SectorEmpresarial3"].ToString();
+                vista.Pais = dtResultado.Rows[0]["Pais"].ToString(); 
             }
 
-            return Json(vista.DescripcionEmpresa, JsonRequestBehavior.AllowGet);
+            return Json(vista, JsonRequestBehavior.AllowGet);
 
         }
 

@@ -37,6 +37,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                     alumnoestudio.FechaFinMes = Funciones.ToInt(dtResultado.Rows[i]["FechaFinMes"]);
                     alumnoestudio.FechaFinAno = Funciones.ToInt(dtResultado.Rows[i]["FechaFinAno"]);
                     alumnoestudio.DatoUTP =  Funciones.ToBoolean(dtResultado.Rows[i]["DatoUTP"]);
+                    alumnoestudio.IconoTipoDeEstudio = Funciones.ToString(dtResultado.Rows[i]["IconoTipoDeEstudio"]);
                     listaAlumno.Add(alumnoestudio);
                 }
 

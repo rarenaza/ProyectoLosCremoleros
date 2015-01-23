@@ -31,11 +31,8 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string SectorEmpresarial { get; set; }
         public string SectorEmpresarial2 { get; set; }
         public string SectorEmpresarial3 { get; set; }
-        
-        [Required(ErrorMessage = "Falta el país")]
         public string Pais { get; set; }
-        
-        [Required(ErrorMessage = "Falta la ciudad")]
+
         [StringLength(100, ErrorMessage = "Este campo sólo acepta máximo 100 caracteres.")]
         [RegularExpression(@"[A-ZÀ-ÿa-zÑñ ]+", ErrorMessage = "Este campo sólo acepta letras.")]
         public string Ciudad { get; set; }
@@ -54,8 +51,8 @@ namespace UTP.PortalEmpleabilidad.Modelo
         [Required(ErrorMessage = "Falta el año de inicio del cargo")]
         //[StringLength(4, MinimumLength = 4, ErrorMessage = "Este campo sólo acepta 4 digitos.")] //ERROR
         [RegularExpression(@"[0-9]+", ErrorMessage = "Este campo sólo acepta años con 4 numeros.")]
-        public int? FechaInicioCargoAno { get; set; }
-        public int FechaFinCargoMes { get; set; }
+        public int FechaInicioCargoAno { get; set; }
+        public int? FechaFinCargoMes { get; set; }
 
         //[StringLength(4, MinimumLength = 4, ErrorMessage = "Este campo sólo acepta 4 digitos.")] //ERROR
         [RegularExpression(@"[0-9]+", ErrorMessage = "Este campo sólo acepta años con 4 numeros.")]

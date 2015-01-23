@@ -12,7 +12,7 @@ namespace UTP.PortalEmpleabilidad.Datos
     public class ADAlumnoExperiencia
     {
         ADConexion cnn = new ADConexion();
-        public int ValidarExistePorIdEmpresa(int IdEmpresa)
+        public int ValidarExistePorIdEmpresa(int IdEmpresa, int IdAlumno)
         {
             int id = 0;
             using (SqlConnection conexion = new SqlConnection(cnn.Conexion()))
@@ -26,12 +26,21 @@ namespace UTP.PortalEmpleabilidad.Datos
                 conexion.Open();
 
                 cmd.Parameters.Add(new SqlParameter("@IdEmpresa", IdEmpresa));
-                 dr = cmd.ExecuteReader();
-                if (dr.HasRows)
+                cmd.Parameters.Add(new SqlParameter("@IdAlumno", IdAlumno));
+
+                object resultado = cmd.ExecuteScalar();
+
+                if (resultado != null)
                 {
-                    id = dr.GetInt32(dr.GetOrdinal("@IdExperiencia"));
+                    id = Convert.ToInt32(resultado);
                 }
-                dr.Close();
+
+                // dr = cmd.ExecuteReader();
+                //if (dr.HasRows)
+                //{
+                //    id = dr.GetInt32(dr.GetOrdinal("@IdExperiencia"));
+                //}
+                //dr.Close();
                 conexion.Close();
             }
             return id;

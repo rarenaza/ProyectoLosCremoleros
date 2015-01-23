@@ -42,7 +42,23 @@
                                     <span class="valor-icono2">x</span><span class="valor-palabra">@item.DesNivelConocimiento</span>
                                 </div>
                                 <div class="col-sm-2">
-                                    <strong>@Html.FormatoFechaAnioMes((int)item.FechaConocimientoDesdeMes,(int) item.FechaConocimientoDesdeAno)  - @Html.FormatoFechaAnioMes((int)item.FechaConocimientoHastaMes,(int) item.FechaConocimientoHastaAno)</strong>
+
+                                    @if (item.FechaConocimientoDesdeAno == 0 || item.FechaConocimientoDesdeAno == null)
+                                    {
+                                        if (item.FechaConocimientoHastaAno > 0 && item.FechaConocimientoHastaAno != null)
+                                        {
+                                            <strong>
+                                                @Html.FormatoFechaAnioMes((int)item.FechaConocimientoHastaMes, (int)item.FechaConocimientoHastaAno)
+                                            </strong>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <strong>
+                                            @Html.FormatoFechaAnioMes((int)item.FechaConocimientoDesdeMes,(int) item.FechaConocimientoDesdeAno) - @Html.FormatoFechaAnioMes((int)item.FechaConocimientoHastaMes,(int) item.FechaConocimientoHastaAno)
+                                        </strong>
+                                    }
+
                                 </div>
                             </div>
                             <div class="row">
@@ -79,6 +95,7 @@
         var IdCV = $('#HIIdCV').val();
         var url = "/Alumno/ModalRegistroInformacionAdicional?idAlumno=" + IdAlumno + "&IdCV=" + IdCV; // el url del controlador
         $.get(url, function (data) {
+            console.log(data);
             $('#Modal-Nuevo-otro-conocimiento').html(data);
             $.validator.unobtrusive.parse('#Modal-Nuevo-otro-conocimiento');
             $('#Modal-otro-conocimiento').modal("show");

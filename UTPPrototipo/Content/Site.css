@@ -745,8 +745,8 @@ a.Boton_pestana:hover {
   display: none;
   min-width: 160px;
   width: 160px;
-  padding: 4px 0;
-  margin: 2px 0 0 0;
+  /*padding: 4px 0;
+  margin: 2px 0 0 0;*/
   list-style: none;
   background-color: #ffffff;
   border-color: #ccc;
@@ -755,7 +755,7 @@ a.Boton_pestana:hover {
   border-width: 1px;
   -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
-  border-radius: 2px;
+  /*border-radius: 2px;*/
   -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
   -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);

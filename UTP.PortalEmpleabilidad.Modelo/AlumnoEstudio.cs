@@ -7,17 +7,17 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public AlumnoEstudio()
         {
             FechaInicioAno = 0;
-            FechaFinAno = 0;
+            FechaFinAno = null;
             FechaInicioMes = 0;
-            FechaFinMes = 0;
+            FechaFinMes = null;
             IdEstudio = 0;
             IdAlumno = 0;
-            Institucion = "";
+            
             Estudio = "";
             TipoDeEstudio = "";
             EstadoDelEstudio = "";
             Institucion = "";
-            CicloEquivalente = 0;
+            CicloEquivalente = null;
 
         }
         public int IdEstudio { get; set; }
@@ -40,8 +40,8 @@ namespace UTP.PortalEmpleabilidad.Modelo
         //[Required(ErrorMessage = "Falta el año de inicio de estudio")]
         //[StringLength(4, MinimumLength = 4, ErrorMessage = "Este campo sólo acepta 4 digitos.")]
         //[RegularExpression(@"[0-9]+", ErrorMessage = "Este campo sólo acepta años con 4 numeros.")]
-        public int? FechaInicioAno { get; set; }
-        public int FechaFinMes { get; set; }
+        public int FechaInicioAno { get; set; }
+        public int? FechaFinMes { get; set; }
         //[StringLength(4, MinimumLength = 4, ErrorMessage = "Este campo sólo acepta 4 digitos.")]
         //[RegularExpression(@"[0-9]+", ErrorMessage = "Este campo sólo acepta años con 4 numeros.")]
         public int? FechaFinAno { get; set; }
@@ -58,5 +58,6 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public List<ListaValor> ListaObservacionEstudios { get; set; }
         public int IdCV { get; set; }
         public int Movimiento { get; set; }
+        public string IconoTipoDeEstudio { get; set; }
     }
 }

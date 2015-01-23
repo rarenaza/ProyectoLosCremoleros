@@ -129,11 +129,13 @@
                 dataType: 'html'
             })
             .success(function (result) {
+                
                 if (id != null) {
                     $("#" + id).html(result);
                 }
             })
             .error(function (xhr, status) {
+               
                 console.log(xhr);
                 console.log(status);
 
@@ -225,7 +227,7 @@
                 minLength: 1,
                 select: function (even, ui) {
                     $(inputtext).val(ui.item.value);
-                    cargarDescripcoin(ui.item.id);
+                    cargarDescripcion(ui.item.id);
                     console.log('seleccionado = ' + ui.item.id);
                 }
             });

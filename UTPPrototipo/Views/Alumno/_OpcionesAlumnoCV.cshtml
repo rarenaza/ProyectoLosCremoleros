@@ -57,7 +57,8 @@
         };
         $("#HIIdCV").attr("value", $('#IdCV').val());
         CargarPOST("alumno-datos-generales",'@Url.Action("AlumnoDatosGenerales", "Alumno")', vistacv);
-        CargarPOST("mi-cv-educacion",'@Url.Action("AlumnoEstudiosCV", "Alumno")', vistacv);
+        CargarPOST("mi-cv-educacion", '@Url.Action("AlumnoEstudiosCV", "Alumno")', vistacv);
+        
         CargarPOST("mi-cv-experiencia-laboral",'@Url.Action("AlumnoExperienciaCV", "Alumno")', vistacv);
         CargarPOST("mi-cv-informacion-adicional",'@Url.Action("AlumnoInformacionAdicionalCV", "Alumno")', vistacv);
 
@@ -72,7 +73,9 @@
         };
         CargarPOST("mi-cv-opciones",'@Url.Action("OpcionesCV", "Alumno")', vistacv);
         CargarPOST("alumno-datos-generales",'@Url.Action("AlumnoDatosGenerales", "Alumno")', vistacv);
-        CargarPOST("mi-cv-educacion",'@Url.Action("AlumnoEstudiosCV", "Alumno")', vistacv);
+        CargarPOST("mi-cv-educacion", '@Url.Action("AlumnoEstudiosCV", "Alumno")', vistacv);
+        
+        
         CargarPOST("mi-cv-experiencia-laboral",'@Url.Action("AlumnoExperienciaCV", "Alumno")', vistacv);
         CargarPOST("mi-cv-informacion-adicional",'@Url.Action("AlumnoInformacionAdicionalCV", "Alumno")', vistacv);
     });

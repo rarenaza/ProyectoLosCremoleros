@@ -14,8 +14,8 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="input-group fuente-pequeña">
-                        <span class="input-group-addon">Tipo</span>
-                        @Html.DropDownListFor(m => m.TipoConocimientoIdListaValor, null, "- Seleccionar -", htmlAttributes: new { @class = "form-control" })
+                        <span class="input-group-addon">(*)Tipo</span>
+                        @Html.DropDownListFor(m => m.TipoConocimientoIdListaValor, null, "- Seleccionar Tipo de Conocimiento -", htmlAttributes: new { @class = "form-control" })
                     </div>
                     @Html.ValidationMessageFor(m => m.TipoConocimientoIdListaValor, "", new { @class = "text-danger" })
                 </div>
@@ -23,7 +23,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="input-group fuente-pequeña">
-                        <span class="input-group-addon">Nombre</span>
+                        <span class="input-group-addon">(*)Nombre</span>
                         @Html.TextBoxFor(m => m.Conocimiento, htmlAttributes: new { @class = "form-control", @placeholder = "Nombre del Conocimiento", @Id = "Conocimientos" })
                     </div>
                     @Html.ValidationMessageFor(m => m.Conocimiento, "", new { @class = "text-danger" })
@@ -32,8 +32,8 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="input-group fuente-pequeña">
-                        <span class="input-group-addon">Nivel</span>
-                        @Html.DropDownListFor(m => m.NivelConocimientoIdListaValor, null, "- Seleccionar -", htmlAttributes: new { @class = "form-control" })
+                        <span class="input-group-addon">(*)Nivel</span>
+                        @Html.DropDownListFor(m => m.NivelConocimientoIdListaValor, null, "- Seleccionar Nivel de Conocimiento -", htmlAttributes: new { @class = "form-control" })
 
 
                     </div>
@@ -51,7 +51,7 @@
                 <div class="col-sm-6">
                     <div class="input-group fuente-pequeña">
                         <span class="input-group-addon">Mes Inicio</span>
-                        @Html.DropDownListFor(m => m.FechaConocimientoDesdeMes, new SelectList(ViewBag.meses, "Key", "Value"), "Mes de Inicio", htmlAttributes: new { @class = "form-control" })
+                        @Html.DropDownListFor(m => m.FechaConocimientoDesdeMes, new SelectList(ViewBag.meses, "Key", "Value"), "- Seleccionar Mes de Inicio -", htmlAttributes: new { @class = "form-control" })
                     </div>
                     @Html.ValidationMessageFor(m => m.FechaConocimientoDesdeMes, "", new { @class = "text-danger" })
                 </div>
@@ -66,15 +66,16 @@
                 <div class="col-sm-6">
                     <div class="input-group fuente-pequeña">
                         <span class="input-group-addon">Mes Fin</span>
-                        @Html.DropDownListFor(m => m.FechaConocimientoHastaMes, new SelectList(ViewBag.meses, "Key", "Value"), "Mes de Fin", htmlAttributes: new { @class = "form-control" })
+                        @Html.DropDownListFor(m => m.FechaConocimientoHastaMes, new SelectList(ViewBag.meses, "Key", "Value"), "- Seleccionar Mes de Fin -", htmlAttributes: new { @class = "form-control" })
                     </div>
+                    @Html.ValidationMessageFor(m => m.FechaConocimientoHastaMes, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-6">
                     <div class="input-group fuente-pequeña">
                         <span class="input-group-addon">País</span>
-                        @Html.DropDownListFor(m => m.PaisIdListaValor, null, "- Seleccionar -", htmlAttributes: new { @class = "form-control" })
+                        @Html.DropDownListFor(m => m.PaisIdListaValor, null, "- Seleccionar País -", htmlAttributes: new { @class = "form-control" })
                     </div>
                     @Html.ValidationMessageFor(m => m.PaisIdListaValor, "", new { @class = "text-danger" })
                 </div>
