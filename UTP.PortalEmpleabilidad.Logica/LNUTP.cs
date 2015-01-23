@@ -156,8 +156,22 @@ namespace UTP.PortalEmpleabilidad.Logica
         public void ActualizarEstadoYUsuarioEC(Empresa empresa)
         {
             if (empresa.UsuarioEC == null) empresa.UsuarioEC = "";
-
+            
             adUtp.ActualizarEstadoYUsuarioEC(empresa);
+
+            //Se envía la notificación vía correo.
+            
+            Mensaje mensaje = new Mensaje();
+            mensaje.DeUsuarioCorreoElectronico = empresa.Usuario;
+            //Obtener usuario empresa y su correo electronico.
+            LNMensaje lnMensaje = new LNMensaje ();
+            DataTable dt = lnMensaje.ObtenerUsuarioEmpresaPorIdEmpresa(empresa.IdEmpresa);
+
+            mensaje.ParaUsuarioCorreoElectronico = Convert.ToString(dt.Rows[0]["CorreoElectronico"]);
+            mensaje.Asunto = "Empresa actualizada";
+            mensaje.MensajeTexto = "El estado de la empresa '" + empresa.NombreComercial + "' han sido actualizados.";
+
+            LNCorreo.EnviarCorreo(mensaje);
         }
 
       

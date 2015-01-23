@@ -535,6 +535,18 @@ namespace UTPPrototipo.Controllers
                 empresa.RolIdListaValor = "ROLEAD"; //La cuenta es creada como Rol: "Administrador de Empresa"
                 empresa.EstadoUsuarioIdListaValor = "USEUTP"; //El usuario también se encuenta pendiente de activación. Se debe activar al momento que UTP active la cuenta.
                 lnEmpresa.Insertar(empresa);
+
+                //Enviar mensaje de correo:
+                LNMensaje lnMensaje = new LNMensaje();
+                DataTable dtUsuarioUTPAdmin = lnMensaje.ObtenerUsuarioAdministradorUTP();
+
+                Mensaje mensaje = new Mensaje();
+                mensaje.DeUsuarioCorreoElectronico = empresa.EmailUsuario;                
+                mensaje.ParaUsuarioCorreoElectronico = Convert.ToString(dtUsuarioUTPAdmin.Rows[0]["CorreoElectronico"]); //Administrador UTP
+                mensaje.Asunto = empresa.NombreComercial + "Empresa registrada en el Portal:";
+                mensaje.MensajeTexto = "La empresa '" + empresa.NombreComercial + "' se ha registrado en el portal y está la espera de activación";
+                LNCorreo.EnviarCorreo(mensaje);
+
                 //Si el registro fue exitoso redireccionar a página de resultado.
                 TempData["GuardaRegistroExitoso"] = "Estimado(a) <strong>" + empresa.NombresUsuario + " " + empresa.ApellidosUsuario
                 + "</strong>, muchas gracias por enviarnos su información. En breve recibirá un correo de confirmación con sus datos.</br></br>Nuestro proceso de activación tomará un plazo no mayor a 1 día útil, antes del cual estaremos comunicándole la activación de su Usuario. ";
