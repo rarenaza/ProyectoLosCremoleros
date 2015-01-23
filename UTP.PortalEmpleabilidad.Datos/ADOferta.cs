@@ -55,7 +55,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                 SqlCommand cmd = new SqlCommand();
 
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "Oferta_ListarUltimosAlumno";
+                cmd.CommandText = "Oferta_ListarUltimosAlumno2";
                 cmd.Parameters.Add(new SqlParameter("@DescripcionOferta", SqlDbType.VarChar, 100)).Value = DescripcionOferta;
                 cmd.Connection = conexion;
 
@@ -168,7 +168,7 @@ namespace UTP.PortalEmpleabilidad.Datos
 
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "Oferta_BusquedaAvazandaAlumno";
-                cmd.Parameters.Add(new SqlParameter("@Publicacion", SqlDbType.Int)).Value = entidad.IdPeriodoPublicacion == null ? 31 :(int) entidad.IdPeriodoPublicacion;
+                cmd.Parameters.Add(new SqlParameter("@Publicacion", SqlDbType.Int)).Value = entidad.IdPeriodoPublicacion == null ? 0 :(int) entidad.IdPeriodoPublicacion;
                 cmd.Parameters.Add(new SqlParameter("@Carrera", SqlDbType.VarChar, 200)).Value = entidad.IdEstudio == null ? "" : entidad.IdEstudio;
                 cmd.Parameters.Add(new SqlParameter("@EstadoEstudio", SqlDbType.VarChar, 6)).Value = entidad.IdEstadoEstudio == null ? "" : entidad.IdEstadoEstudio;
                 cmd.Parameters.Add(new SqlParameter("@SectorEmpresa", SqlDbType.VarChar, 6)).Value = entidad.IdSectorEmpresarial == null ? "" : entidad.IdSectorEmpresarial;
