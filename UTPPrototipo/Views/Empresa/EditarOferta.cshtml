@@ -158,7 +158,8 @@
                                 <div class="input-group">
                                     <span class="input-group-addon">Área</span>
                                     @*<input id="AreaEmpresa" name="AreaEmpresa" type="text" class="form-control" placeholder="Área o división de la empresa" value="@Model.AreaEmpresa">*@
-                                    @Html.TextBoxFor(m => m.AreaEmpresa, new { @class = "form-control", @placeholder = "Área o división de la empresa" })
+
+                                    @Html.TextBoxFor(m => m.AreaEmpresa, new { @class = "form-control", @placeholder = "Área o división de la empresa", @id="AreaEmpresa"})
                                 </div>
                                 @Html.ValidationMessageFor(m => m.AreaEmpresa, "", new { @class = "text-danger" })
                                 <div class="input-group">
@@ -237,6 +238,7 @@
     $(document).ready(function () {
         $("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta4 color-paleta5").addClass("color-paleta3");
         AutoCompleteText('#Cargo', '@Url.Action("ListarCargo", "Empresa")', '#Cargo');
+        AutoCompleteText('#AreaEmpresa', '@Url.Action("ListarAreasEmpresa", "Alumno")', '#AreaEmpresa');
     });
 
     </script>
