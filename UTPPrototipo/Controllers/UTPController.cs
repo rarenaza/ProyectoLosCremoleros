@@ -1793,6 +1793,7 @@ namespace UTPPrototipo.Controllers
 
         }
 
+
            //AQUÍ LLAMA EL MODAL --- ESTO ES GET
         public PartialViewResult _NuevoValor()
         {
@@ -1842,7 +1843,16 @@ namespace UTPPrototipo.Controllers
                 }
                 //
                 return PartialView("Vista_ListaValorHijo", lista);
+            //}
+            //else
+            //{
+            //    var errors = ModelState.Select(x => x.Value.Errors)
+            //               .Where(y => y.Count > 0)
+            //               .ToList();
+
+            //    int a = 0;
             }
+
             return PartialView("_NuevoValor", objlista);
 
         }
@@ -1877,6 +1887,8 @@ namespace UTPPrototipo.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public PartialViewResult _NuevoValorEditar(ListaValor objlista)
         {
+              if (ModelState.IsValid)
+            {
             //Esto es para guardar el usuario de creacion
             TicketUTP ticket = (TicketUTP)Session["TicketUtp"];
 
@@ -1911,7 +1923,9 @@ namespace UTPPrototipo.Controllers
             }
 
             return PartialView("Vista_ListaValorHijo", lista);
+            }
 
+              return PartialView("_NuevoValorEditar", objlista);
 
 
         }

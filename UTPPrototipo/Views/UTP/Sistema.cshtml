@@ -157,7 +157,7 @@
         var url = "/UTP/_ListaValorPadreInsertar/";
         $.get(url, function (data) {
 
-            //console.log(data);
+            console.log(data);
 
             $('#divContenedorListavalorPAdreCrear').html(data);
             $.validator.unobtrusive.parse('#divContenedorListavalorPAdreCrear');
