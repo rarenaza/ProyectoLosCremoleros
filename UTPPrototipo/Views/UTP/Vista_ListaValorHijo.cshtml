@@ -88,26 +88,28 @@
 
 
 </div>
+
+
 <script>
     function EliminarVista_ListaValorHijo(IdListaValor, IdLista) {
-
-        try {
+        if (confirm('Está seguro de eliminar el registro?')) {
+        //try {
             console.log('ingreso al metodo');
             var url = "/UTP/EliminarVista_ListaValorHijo?idListaValor=" + IdListaValor + "&idLista=" + IdLista; // el url del controlador
          
             $.get(url, function (data) {
                 $('#divListaHijo').html(data);
                 $.validator.unobtrusive.parse('#divListaHijo');
-                alert('Eliminado con Exito');
+                //alert('Eliminado con Exito');
             });
            
-        }
-        catch (err)
-        {
-            console.log(err);
-        }
-        
+        //}
+        //catch (err)
+        //{
+        //    console.log(err);
+        //}
+        };
     }
-    
-
+     
         </script>
+

@@ -613,13 +613,18 @@ namespace UTPPrototipo.Controllers
             ViewBag.SectorEmpresarial1IdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_SECTOR_EMPRESARIAL), "IdListaValor", "Valor", empresa.SectorEmpresarial1IdListaValor);
             ViewBag.SectorEmpresarial2IdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_SECTOR_EMPRESARIAL), "IdListaValor", "Valor", empresa.SectorEmpresarial2IdListaValor);
             ViewBag.SectorEmpresarial3IdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_SECTOR_EMPRESARIAL), "IdListaValor", "Valor", empresa.SectorEmpresarial3IdListaValor);
-            
+
+            //Se ponen valores a estos datos para que el IsValid pase. No son usados en la actualización de la empresa.
+            empresa.EstadoIdListaValor = "..";
+            empresa.NivelDeFacturacion = 0;
+            empresa.UsuarioEC = "..";
+
             return PartialView("_EditarEmpresa", empresa);
         }
 
         [ValidateAntiForgeryToken] // this action takes the viewModel from the modal
         public PartialViewResult EditarEmpresa(Empresa empresa) //Este es como el submit
-        {          
+        {           
             if (ModelState.IsValid)
             {
                 TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];
@@ -632,6 +637,14 @@ namespace UTPPrototipo.Controllers
                 return PartialView("_AdministrarDatosGenerales", empresa);
 
                 //return RedirectToAction("Administrar");
+            }
+            else
+            {
+                var errors = ModelState.Select(x => x.Value.Errors)
+                           .Where(y => y.Count > 0)
+                           .ToList();
+
+                int a = 0;
             }
 
             ViewBag.PaisIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_PAIS), "IdListaValor", "Valor", empresa.PaisIdListaValor);

@@ -34,7 +34,7 @@
                     <span class="input-group-addon">Valor</span>
                     @*<input type="text" class="form-control" placeholder="Texto del Valor">*@
                     @Html.TextBoxFor(model => model.Valor, new { @class = "form-control", rows = "3", @placeholder = "Texto del Valor" })
-                    @Html.ValidationMessageFor(model => model.Valor)
+                    @Html.ValidationMessageFor(model => model.Valor, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
@@ -44,7 +44,7 @@
                     <span class="input-group-addon">Descrip-<br />ción</span>
                     @*<textarea class="form-control" rows="4">Descripción</textarea>*@
                     @Html.TextAreaFor(model => model.DescripcionValor, new { @class = "form-control", rows = "3", @placeholder = "Descripcion" })
-                    @Html.ValidationMessageFor(model => model.DescripcionValor)
+          @Html.ValidationMessageFor(model => model.DescripcionValor, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
@@ -54,7 +54,7 @@
                     <span class="input-group-addon">Ícono</span>
                     @*<input type="text" class="form-control fui fa-2x">*@
                     @Html.TextBoxFor(model => model.Icono, new { @class = "form-control fui fa-2x"})
-                    @Html.ValidationMessageFor(model => model.Icono)
+                    @Html.ValidationMessageFor(model => model.Icono, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="col-sm-4">
@@ -62,7 +62,7 @@
                     <span class="input-group-addon">Peso</span>
                     @*<input type="text" class="form-control" placeholder="Peso u orden numérico: 0-999">*@
                     @Html.TextBoxFor(model => model.Peso, new { @class = "form-control", rows = "3", @placeholder = "Peso" })
-                    @Html.ValidationMessageFor(model => model.Peso)
+                    @Html.ValidationMessageFor(model => model.Peso, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
@@ -72,6 +72,7 @@
                     <span class="input-group-addon">Valor UTP</span>
                     @*<input type="text" class="form-control" placeholder="Valor o código UTP para este valor">*@
                     @Html.TextBoxFor(model => model.ValorUTP, new { @class = "form-control", rows = "3", @placeholder = "Valor o código UTP para este valor" })
+                    @Html.ValidationMessageFor(model => model.ValorUTP, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
@@ -81,7 +82,7 @@
                 @*@Html.TextBoxFor(model => model.IdContenido, new { disabled = "disabled" })*@
                 @Html.EditorFor(model => model.IdListaValor)
 
-                @Html.ValidationMessageFor(model => model.IdListaValor)
+                @Html.ValidationMessageFor(model => model.IdListaValor, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="row">
@@ -94,7 +95,7 @@
                     new SelectListItem() {Text = "No Activo", Value="No Activo"}
                    
                     },"-Seleccione-", new { @class = "form-control" })
-
+                    @Html.ValidationMessageFor(model => model.EstadoValor, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>

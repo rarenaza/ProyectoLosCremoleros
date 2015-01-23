@@ -12,6 +12,8 @@
 
                     @Html.TextBoxFor(model => model.NombreLista, new { @class = "form-control", rows = "3", @placeholder = "Nombre de Lista" })
                     @*<input type="text" class="form-control" placeholder="Nombre de Lista">*@
+
+                    @Html.ValidationMessageFor(m => m.NombreLista, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
@@ -22,6 +24,7 @@
                     @*<textarea class="form-control" rows="4">Descripción</textarea>*@
 
                     @Html.TextAreaFor(model => model.DescripcionLista, new { @class = "form-control", rows = "3", @placeholder = "Descripcion lista" })
+                    @Html.ValidationMessageFor(m => m.DescripcionLista, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
@@ -31,21 +34,23 @@
                 <div class="input-group">
                     <span class="input-group-addon">@Html.EditorFor(model => model.Modificable)</span>
                     <span class="form-control">Modificable</span>
+                    @Html.ValidationMessageFor(m => m.Modificable, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
 
         @*<div class="row">
-            <div class="col-sm-6">
-                <div class="input-group">
-                    <span class="input-group-addon"><input type="checkbox"></span>
-                    <span class="form-control">Modificable</span>
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><input type="checkbox"></span>
+                            <span class="form-control">Modificable</span>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>*@
+            </div>*@
 
-    <div class="modal-footer">
-        <button class="btn btn-default color-paleta8">Guardar</button>
+        <div class="modal-footer">
+            <button class="btn btn-default color-paleta8">Guardar</button>
+        </div>
     </div>
 </div>

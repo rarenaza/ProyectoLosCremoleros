@@ -34,14 +34,17 @@ namespace UTP.PortalEmpleabilidad.Modelo
         [Obsolete]
         public string PresentacionEmpresa { get; set; }
         public string LinkVideo { get; set; }
+
+         [Range(1900, 2020, ErrorMessage = "El año debe ser mayor a 1900")]
         public int AnoCreacion { get; set; }
+
         public ListaValor NumeroEmpleados { get; set; }        
         public ListaValor EstadoEmpresa { get; set; }
         public ListaValor SectorEmpresarial { get; set; }
         public ListaValor SectorEmpresarial2 { get; set; }
         public ListaValor SectorEmpresarial3 { get; set; }
         public string CreadoPor { get; set; }
-        [Required(ErrorMessage = Constantes.MSJ_CAMPO_OBLIGATORIO)]
+        [Required(ErrorMessage = Constantes.MSJ_CAMPO_OBLIGATORIO + " - UsuarioEC")]
         public string UsuarioEC { get; set; }
         public byte[] LogoEmpresa { get; set; }
         public string ArchivoMimeType { get; set; }
@@ -61,7 +64,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
 
         public string OficinaPrincipal { get; set; }
 
-        [Required(ErrorMessage = Constantes.MSJ_CAMPO_OBLIGATORIO)]
+        [Required(ErrorMessage = Constantes.MSJ_CAMPO_OBLIGATORIO + " EstadoIdListaValor")]
         public string EstadoIdListaValor { get; set; }
 
 
@@ -73,7 +76,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string FacultadPrincipal { get; set; }
         public string FacultadSecundaria { get; set; }
 
-        [Required(ErrorMessage = Constantes.MSJ_CAMPO_OBLIGATORIO)]
+        [Required(ErrorMessage = Constantes.MSJ_CAMPO_OBLIGATORIO + " NivelDeFacturacion")]
         public decimal NivelDeFacturacion { get; set; }
 
         public string Comentarios { get; set; }
