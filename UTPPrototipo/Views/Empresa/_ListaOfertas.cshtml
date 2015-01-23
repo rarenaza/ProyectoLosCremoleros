@@ -7,7 +7,7 @@
 
     TicketEmpresa ticketEmpresa = (TicketEmpresa)Session["TicketEmpresa"];
 
-    <!--Se guardan los valores de página actual y cantidad total de resultados para la paginación.-->
+    <!--Se obtiene los datos para la paginación.-->
     Paginacion paginacion = (Paginacion)ViewBag.Paginacion;
 }
 
@@ -99,17 +99,39 @@
     </div>
     <div class="col-sm-6" style="text-align:right;">
         <!--Paginación-->
-        @*<nav class="navbar-right">
+        <nav class="navbar-right">
             <ul class="pagination">
-                <li><a href="#">&laquo;</a></li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#">&raquo;</a></li>
-            </ul>
-        </nav>*@
+                
+                @{
+                    for (int i = 1; i <= paginacion.TotalPaginas; i++)
+                    {
+                        if (i == paginacion.NroPaginaActual)
+                        {
+                            <li class="active"><a href="#">@i <span class="sr-only"></span></a></li>
+                        }
+                        else
+                        {
+                            <li><a href="#" onclick="buscarOfertasPaginacion('@i');">@i</a></li>                                                          
+                            @*<li>
+                                @Url.Action("BuscarOfertas","Empresa", new { palabraClave = palabraClave, nroPaginaActual = i } )
+                            </li>*@
+                         }
+                     }
+                }
+                            @*<li><a href="#">&laquo;</a></li>
+                                <li><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">5</a></li>
+                                <li><a href="#">&raquo;</a></li>*@
+</ul>
+
+
+
+
+
+        </nav>
     </div>
 </div>
 <hr />

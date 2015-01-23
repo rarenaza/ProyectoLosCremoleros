@@ -1095,6 +1095,10 @@ namespace UTPPrototipo.Controllers
             Paginacion paginacion = new Paginacion();
             paginacion.NroPaginaActual = nroPaginaActual;
             paginacion.CantidadTotalResultados = cantidadTotal;
+            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA;
+            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA;
+            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA;
+            if (residuo > 0) paginacion.TotalPaginas += 1;
 
             ViewBag.Paginacion = paginacion;
 
