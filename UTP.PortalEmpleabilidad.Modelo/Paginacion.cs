@@ -10,5 +10,8 @@ namespace UTP.PortalEmpleabilidad.Modelo
     {
         public int NroPaginaActual { get; set; }
         public int CantidadTotalResultados { get; set; }
+
+        public int FilasPorPagina { get; set; }
+        public int TotalPaginas { get; set; }
     }
 }

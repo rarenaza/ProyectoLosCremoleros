@@ -68,7 +68,7 @@
 
         function buscarOfertas()
         {
-            $('#lblCargandoOfertas').css('visibility', 'visible');
+            //$('#lblCargandoOfertas').css('visibility', 'visible');
 
             var palabraClave = $('#filtroBusqueda').val();
             var nroPaginaActual = $('#hddNroPaginaActual').val();
@@ -78,9 +78,26 @@
             $.get(url, function (data) {
                 $('#divResultadoBusqueda').html(data);
             }).then(function () {
-                $('#lblCargandoOfertas').css('visibility', 'hidden');
+                //$('#lblCargandoOfertas').css('visibility', 'hidden');
             });
         }
+
+        
     });
+
+    function buscarOfertasPaginacion(nroPaginaActual) {
+        //$('#lblCargandoOfertas').css('visibility', 'visible');
+
+        var palabraClave = $('#filtroBusqueda').val();
+        //var nroPaginaActual = $('#hddNroPaginaActual').val();
+
+        var url = '@Url.Action("BuscarOfertas", "Empresa")' + "?palabraClave=" + palabraClave + '&nroPaginaActual=' + nroPaginaActual;
+
+        $.get(url, function (data) {
+            $('#divResultadoBusqueda').html(data);
+        }).then(function () {
+            //$('#lblCargandoOfertas').css('visibility', 'hidden');
+        });
+    }
 </script>
 

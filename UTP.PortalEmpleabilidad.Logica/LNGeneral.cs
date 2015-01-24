@@ -24,12 +24,12 @@ namespace UTP.PortalEmpleabilidad.Logica
         }
 
 
-        public List<Hunting> EmpresaHuntingBuscarSimple(string nombre)
+        public List<Hunting> EmpresaHuntingBuscarSimple(string nombre, int nroPagina, int filasPorPagina)
         {
             List<Hunting> listaEjemplo = new List<Hunting>();
 
 
-            DataTable dtResultado = adGeneral.EmpresaHuntingBuscarSimple(nombre);
+            DataTable dtResultado = adGeneral.EmpresaHuntingBuscarSimple(nombre, nroPagina, filasPorPagina);
 
             for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
             {
@@ -42,6 +42,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 vista.ValorEstadoEstudio = dtResultado.Rows[i]["ValorEstadoEstudio"].ToString();
                 vista.ValorSectorEmpresarial = dtResultado.Rows[i]["ValorSectorEmpresarial"].ToString();
                 vista.TotalMesesExperiencia = Convert.ToInt32(dtResultado.Rows[i]["TotalMesesExperiencia"]);
+                vista.CantidadTotal = Convert.ToInt32(dtResultado.Rows[i]["CantidadTotal"]);
 
                 listaEjemplo.Add(vista);
             }
@@ -50,13 +51,15 @@ namespace UTP.PortalEmpleabilidad.Logica
         }
 
         public List<Hunting> EmpresaHuntingBuscarAvanzada(string TipoDeEstudio, string Estudio, string EstadoEstudio,
-            string SectorEmpresarial, int AnosExperiencia, string NombreCargo, string TipoInformacionAdicional, string Conocimiento, string Distrito)
+            string SectorEmpresarial, int AnosExperiencia, string NombreCargo, string TipoInformacionAdicional, string Conocimiento, string Distrito,
+            int nroPagina, int filasPorPagina)
         {
             List<Hunting> listaEjemplo = new List<Hunting>();
 
 
             DataTable dtResultado = adGeneral.EmpresaHuntingBuscarAvanzada(TipoDeEstudio,  Estudio,  EstadoEstudio,
-             SectorEmpresarial,  AnosExperiencia,  NombreCargo,  TipoInformacionAdicional,  Conocimiento,  Distrito);
+             SectorEmpresarial,  AnosExperiencia,  NombreCargo,  TipoInformacionAdicional,  Conocimiento,  Distrito,
+             nroPagina, filasPorPagina);
 
             for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
             {
@@ -69,6 +72,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 vista.ValorEstadoEstudio = dtResultado.Rows[i]["ValorEstadoEstudio"].ToString();
                 vista.ValorSectorEmpresarial = dtResultado.Rows[i]["ValorSectorEmpresarial"].ToString();
                 vista.TotalMesesExperiencia = Convert.ToInt32(dtResultado.Rows[i]["TotalMesesExperiencia"]);
+                vista.CantidadTotal = Convert.ToInt32(dtResultado.Rows[i]["CantidadTotal"]);
 
                 listaEjemplo.Add(vista);
             }

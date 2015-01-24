@@ -15,7 +15,7 @@ namespace UTP.PortalEmpleabilidad.Datos
     {
         private string cadenaConexion = ConfigurationManager.ConnectionStrings["UTPConexionBD"].ConnectionString;
 
-        public DataTable OfertasObtenerPendientes()
+        public DataTable OfertasObtenerPendientes(int nroPagina, int filasPorPagina)
         {
             DataTable dtResultado = new DataTable();
 
@@ -25,6 +25,10 @@ namespace UTP.PortalEmpleabilidad.Datos
 
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "Ofertas_ObtenerPendientes";
+                //Paginación:
+                cmd.Parameters.Add(new SqlParameter("@NroPaginaActual", nroPagina));
+                cmd.Parameters.Add(new SqlParameter("@FilasPorPagina", filasPorPagina));
+
             
                 cmd.Connection = conexion;
 
@@ -42,7 +46,7 @@ namespace UTP.PortalEmpleabilidad.Datos
             return dtResultado;
         }
 
-        public DataTable UTP_ObtenerOfertasporActivar(string oferta)
+        public DataTable UTP_ObtenerOfertasporActivar(string oferta, int nroPagina, int filasPorPagina)
         {
             DataTable dtResultado = new DataTable();
 
@@ -53,6 +57,11 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "UTP_Obtenerofertasporactivar";
                 cmd.Parameters.Add(new SqlParameter("@oferta", oferta));
+
+                //Paginación:
+                cmd.Parameters.Add(new SqlParameter("@NroPaginaActual", nroPagina));
+                cmd.Parameters.Add(new SqlParameter("@FilasPorPagina", filasPorPagina));
+
                 cmd.Connection = conexion;
 
                 conexion.Open();
@@ -69,7 +78,7 @@ namespace UTP.PortalEmpleabilidad.Datos
             return dtResultado;
         }
 
-        public DataTable EmpresaObtenerPendientes()
+        public DataTable EmpresaObtenerPendientes(int nroPagina, int filasPorPagina)
         {
             DataTable dtResultado = new DataTable();
 
@@ -79,6 +88,9 @@ namespace UTP.PortalEmpleabilidad.Datos
 
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "Empresa_ObtenerPendientes";
+                //Paginación:
+                cmd.Parameters.Add(new SqlParameter("@NroPaginaActual", nroPagina));
+                cmd.Parameters.Add(new SqlParameter("@FilasPorPagina", filasPorPagina));
 
                 cmd.Connection = conexion;
 

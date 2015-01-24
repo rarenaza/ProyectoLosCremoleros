@@ -28,31 +28,20 @@
                 <div class="panel-body">
                     <table style="width:100%;">
                         <tr>
-                            @using (Html.BeginForm("Ofertas", "UTP", FormMethod.Get))
-                            {
-
                                 <td>
                                     <div class="input-group fuente-pequeña">
                                         <span class="input-group-addon fuente-pequeña">Palabra Clave</span>
                                         @Html.TextBox("SearchString", null, new { @class = "form-control", @placeholder = "Busca Por Ofertas" })
 
                                     </div>
-
-
                                 </td>
                                 <td style="text-align:right;">
                                     <span class="col-md-6 btn-group">
-
-                                        <input type="submit" class="fui" style="font-size:30px;border-width:0px;background-color:transparent;" value="(" />
-
+                                        <input type="submit" onclick ="buscarPaginacion(1);"class="fui" style="font-size:30px;border-width:0px;background-color:transparent;" value="(" />
                                     </span>
                                 </td>
-                            }
-
-                            @*aqui iva*@
                         </tr>
                     </table>
-
                 </div>
             </div>
         </div>
@@ -62,45 +51,9 @@
         @*<h5>Ofertas por Activar</h5>*@
      
 
-        <div class="row grilla1-cabecera color-paleta4">
-            <div class="col-sm-2">
-                Fecha Publicación
-            </div>
-            <div class="col-sm-2">
-                Empresa
-            </div>
-            <div class="col-sm-4">
-                Oferta
-            </div>
-            <div class="col-sm-2">
-                Estado
-            </div>
-            <div class="col-sm-2">
-                Tipo de Cargo
-            </div>
-        </div>
+        <div id="divResultadoBusqueda">
 
-        @foreach (var item in Model)
-        {
-            <div class="row grilla1-linea">
-                <div class="col-sm-2">
-                    @Html.FormatoFrecuencia(@item.FechaPublicacion)
-                </div>
-                <div class="col-sm-2">
-                    @item.NombreComercial
-                </div>
-                <div class="col-sm-4">
-                    @*<a href="../UTP/RegistroOferta">@item.CargoOfrecido</a>*@
-                    @Html.ActionLink(@item.CargoOfrecido, "VerDetalleOferta", new { id = item.IdOferta })
-                </div>
-                <div class="col-sm-2">
-                    @item.Estado
-                </div>
-                <div class="col-sm-2">
-                    @item.Cargo
-                </div>
-            </div>
-        }
+        </div>
 
 
     </div>
@@ -114,5 +67,17 @@
         $("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta3 color-paleta5 color-paleta6 color-paleta7").addClass("color-paleta4");
     });
 
+    function buscarPaginacion(nroPaginaActual)
+    {
+        var SearchString = $('#SearchString').val();        
+
+        var url = '@Url.Action("BuscarOfertas", "UTP")' + "?SearchString=" + SearchString + '&nroPaginaActual=' + nroPaginaActual;
+
+        $.get(url, function (data) {
+            $('#divResultadoBusqueda').html(data);
+        }).then(function () {
+            
+        });
+    }
 
 </script>
