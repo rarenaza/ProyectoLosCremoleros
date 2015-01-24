@@ -341,11 +341,25 @@ namespace UTPPrototipo.Controllers
 
 
         public ActionResult BusquedaSimpleHunting(VistaAlumnoHunting entidad)
-        {
+        {            
             LNGeneral lngeneral = new LNGeneral();
             //entidad.ListaBusqueda = lngeneral.EmpresaHuntingBuscarSimple(entidad.PalabraClave == null ? "" : entidad.PalabraClave);
 
-            List<Hunting> lista = lngeneral.EmpresaHuntingBuscarSimple(entidad.PalabraClave == null ? "" : entidad.PalabraClave);
+            List<Hunting> lista = lngeneral.EmpresaHuntingBuscarSimple(entidad.PalabraClave == null ? "" : entidad.PalabraClave, entidad.NroPagina, Constantes.FILAS_POR_PAGINA); //1 para demo.
+
+            //Datos para la paginación.
+            int cantidadTotal = lista.Count() == 0 ? 0 : lista[0].CantidadTotal;
+
+            Paginacion paginacion = new Paginacion();
+            paginacion.NroPaginaActual = entidad.NroPagina;
+            paginacion.CantidadTotalResultados = cantidadTotal;
+            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            if (residuo > 0) paginacion.TotalPaginas += 1;
+
+            ViewBag.Paginacion = paginacion;
+            ViewBag.TipoPaginacion = "Simple";
 
             return PartialView("_ResultadoBusquedaHunting", lista);
 
@@ -364,7 +378,23 @@ namespace UTPPrototipo.Controllers
                 entidad.NombreCargo == null ? "" : entidad.NombreCargo,
                 entidad.IdInformacionAdicional == null ? "" : entidad.IdInformacionAdicional,
                 entidad.Conocimiento == null ? "" : entidad.Conocimiento,
-                entidad.Distrito == null ? "" : entidad.Distrito);
+                entidad.Distrito == null ? "" : entidad.Distrito,
+                entidad.NroPagina, Constantes.FILAS_POR_PAGINA);
+
+            //Datos para la paginación.
+            int cantidadTotal = lista.Count() == 0 ? 0 : lista[0].CantidadTotal;
+
+            Paginacion paginacion = new Paginacion();
+            paginacion.NroPaginaActual = entidad.NroPagina;
+            paginacion.CantidadTotalResultados = cantidadTotal;
+            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            if (residuo > 0) paginacion.TotalPaginas += 1;
+
+            ViewBag.Paginacion = paginacion;
+
+            ViewBag.TipoPaginacion = "Avanzada";
 
             return PartialView("_ResultadoBusquedaHunting", lista);
 

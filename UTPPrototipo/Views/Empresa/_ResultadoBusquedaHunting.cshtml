@@ -3,7 +3,11 @@
 @*@model List<UTP.PortalEmpleabilidad.Modelo.Vistas.Alumno.VistaAlumnoHunting>*@
 @model IEnumerable<UTP.PortalEmpleabilidad.Modelo.Hunting>
 
-
+@using UTP.PortalEmpleabilidad.Modelo
+@{
+    <!--Se obtiene los datos para la paginación.-->
+    Paginacion paginacion = (Paginacion)ViewBag.Paginacion;
+}
 
 
 <div class="row grilla1-cabecera color-paleta3">
@@ -27,7 +31,40 @@
         </div>
 }
 
- 
+ <div>
+    <!--Paginación-->
+    <nav class="navbar-right">
+        <ul class="pagination">
+
+            @{
+                for (int i = 1; i <= paginacion.TotalPaginas; i++)
+                {
+                    if (i == paginacion.NroPaginaActual)
+                    {
+                        <li class="active"><a href="#">@i <span class="sr-only"></span></a></li>
+                    }
+                    else
+                    {
+                        if (ViewBag.TipoPaginacion == "Simple")
+                        {
+                            <li><a href="#" onclick="buscarPaginacion('@i');">@i</a></li>
+                        }
+                        else
+                        {
+                            <li><a href="#" onclick="buscarPaginacionAvanzada('@i');">@i</a></li>
+                        }
+                    }
+                }
+}
+
+        </ul>
+    </nav>
+</div>
+
+
+
+
+
  
    
   

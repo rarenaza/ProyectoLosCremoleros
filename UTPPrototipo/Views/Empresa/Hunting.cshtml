@@ -143,6 +143,7 @@
         //debugger;
         var Alumno = {
             PalabraClave: $('#PalabraClave').val(),
+            NroPagina: 1,
 
         };
         Cargar("resultadobusqueda", "/Empresa/BusquedaSimpleHunting", Alumno);
@@ -160,6 +161,7 @@
             IdInformacionAdicional: $('#IdInformacionAdicional').val(),
             Conocimiento: $('#Conocimiento').val(),
             Distrito: $('#Distrito').val(),
+            NroPagina: 1,
         };
         Cargar("resultadobusqueda", "/Empresa/BusquedaAvanzadaHunting", Alumno);
     });
@@ -190,5 +192,31 @@
             console.log(status);
             alert('error');
         })
+    }
+
+    function buscarPaginacion(nroPagina)
+    {
+        var Alumno = {
+            PalabraClave: $('#PalabraClave').val(),
+            NroPagina: nroPagina,
+
+        };
+        Cargar("resultadobusqueda", "/Empresa/BusquedaSimpleHunting", Alumno);
+    }
+
+    function buscarPaginacionAvanzada(nroPagina) {
+        var Alumno = {
+            IdTipoEstudio: $('#IdTipoEstudio').val(),
+            Estudios: $('#Estudios').val(),
+            IdEstadoEstudio: $('#IdEstadoEstudio').val(),
+            IdEstadoEstudio: $('#IdEstadoEstudio').val(),
+            AnosExperiencia: $('#AnosExperiencia').val(),
+            NombreCargo: $('#NombreCargo').val(),
+            IdInformacionAdicional: $('#IdInformacionAdicional').val(),
+            Conocimiento: $('#Conocimiento').val(),
+            Distrito: $('#Distrito').val(),
+            NroPagina: nroPagina,
+        };
+        Cargar("resultadobusqueda", "/Empresa/BusquedaAvanzadaHunting", Alumno);
     }
 </script>

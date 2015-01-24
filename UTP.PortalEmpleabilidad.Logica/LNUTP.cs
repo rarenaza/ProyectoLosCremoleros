@@ -15,24 +15,23 @@ namespace UTP.PortalEmpleabilidad.Logica
     {
         ADUTP adUtp = new ADUTP();
 
-        public DataTable OfertasObtenerPendientes()
-        {
-            
-            return adUtp.OfertasObtenerPendientes();
+        public DataTable OfertasObtenerPendientes(int nroPaginaActual, int filasPorPagina)
+        {            
+            return adUtp.OfertasObtenerPendientes(nroPaginaActual, filasPorPagina);
         }
 
-        public DataTable UTP_ObtenerOfertasporActivar(string oferta)
+        public DataTable UTP_ObtenerOfertasporActivar(string oferta, int nroPagina, int filasPorPagina)
         {
 
-            return adUtp.UTP_ObtenerOfertasporActivar(oferta);
+            return adUtp.UTP_ObtenerOfertasporActivar(oferta, nroPagina, filasPorPagina);
         }
         
        
 
-        public DataTable EmpresaObtenerPendientes()
+        public DataTable EmpresaObtenerPendientes(int nroPagina, int filasPorPagina)
         {
 
-            return adUtp.EmpresaObtenerPendientes();
+            return adUtp.EmpresaObtenerPendientes(nroPagina, filasPorPagina);
         }
 
         public int UsuarioSistemaUTP_Exitencia(string Usuario)
@@ -152,7 +151,16 @@ namespace UTP.PortalEmpleabilidad.Logica
 
             return adUtp.UTP_ObtenerUltimosAlumnos(Dato);
         }
+        public DataTable UTP_ObtenerUltimosConvenios(string Dato)
+        {
 
+            return adUtp.UTP_ObtenerUltimosConvenios(Dato);
+        }
+        public DataTable UTP_ObtenerConvenio(int idConvenio)
+        {
+
+            return adUtp.UTP_ObtenerConvenio(idConvenio);
+        }
        
         public void ActualizarEstadoYUsuarioEC(Empresa empresa)
         {

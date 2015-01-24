@@ -118,7 +118,7 @@ namespace UTP.PortalEmpleabilidad.Datos
             return dtResultado;
         }
 
-        public DataTable EmpresaHuntingBuscarSimple(string Nombre)
+        public DataTable EmpresaHuntingBuscarSimple(string Nombre, int nroPagina, int filasPorPagina)
         {
             DataTable dtResultado = new DataTable();
 
@@ -129,6 +129,9 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "EmpresaHuntingBuscar";
                 cmd.Parameters.Add(new SqlParameter("@PalabraClave", Nombre));
+                cmd.Parameters.Add(new SqlParameter("@NroPaginaActual", nroPagina));
+                cmd.Parameters.Add(new SqlParameter("@FilasPorPagina", filasPorPagina));
+
                 cmd.Connection = conexion;
 
                 conexion.Open();
@@ -146,7 +149,8 @@ namespace UTP.PortalEmpleabilidad.Datos
         }
 
         public DataTable EmpresaHuntingBuscarAvanzada(string TipoDeEstudio, string Estudio, string EstadoEstudio,
-            string SectorEmpresarial, int AnosExperiencia, string NombreCargo, string TipoInformacionAdicional, string Conocimiento, string Distrito)
+            string SectorEmpresarial, int AnosExperiencia, string NombreCargo, string TipoInformacionAdicional, string Conocimiento, string Distrito,
+            int nroPagina, int filasPorPagina)
         {
             DataTable dtResultado = new DataTable();
 
@@ -165,6 +169,8 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.Parameters.Add(new SqlParameter("@TipoInformacionAdicional", TipoInformacionAdicional));
                 cmd.Parameters.Add(new SqlParameter("@Conocimiento", Conocimiento));
                 cmd.Parameters.Add(new SqlParameter("@Distrito", Distrito));
+                cmd.Parameters.Add(new SqlParameter("@NroPaginaActual", nroPagina));
+                cmd.Parameters.Add(new SqlParameter("@FilasPorPagina", filasPorPagina));
 
                 cmd.Connection = conexion;
 

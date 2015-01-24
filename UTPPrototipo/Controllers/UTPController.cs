@@ -13,6 +13,7 @@ using UTP.PortalEmpleabilidad.Logica;
 using UTP.PortalEmpleabilidad.Modelo;
 using UTP.PortalEmpleabilidad.Modelo.UTP;
 using UTP.PortalEmpleabilidad.Modelo.Vistas.Alumno;
+using UTP.PortalEmpleabilidad.Modelo.Vistas.Convenio;
 using UTP.PortalEmpleabilidad.Modelo.Vistas.Empresa;
 using UTP.PortalEmpleabilidad.Modelo.Vistas.Ofertas;
 //using UTP.PortalEmpleabilidad.Modelo.Vistas.Eventos;
@@ -643,6 +644,47 @@ namespace UTPPrototipo.Controllers
 
         }
 
+        public ActionResult VistaConvenios(string SearchString)
+        {
+
+            string palabraClave = SearchString == null ? "" : SearchString;
+
+            List<VistaUTPListaConvenio> listaEjemplo = new List<VistaUTPListaConvenio>();
+
+            DataTable dtResultado = lnUtp.UTP_ObtenerUltimosConvenios(palabraClave);
+
+            for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
+            {
+                VistaUTPListaConvenio vista = new VistaUTPListaConvenio();
+
+                vista.IdConvenio = Convert.ToInt32(dtResultado.Rows[i]["IdConvenio"]);
+                vista.Nombres = dtResultado.Rows[i]["Nombres"].ToString();
+                vista.Apellidos = dtResultado.Rows[i]["Apellidos"].ToString();
+                vista.Carrera = dtResultado.Rows[i]["Carrera"].ToString();
+                vista.NombreComercial = dtResultado.Rows[i]["NombreComercial"].ToString();
+                vista.TipoTrabajo = dtResultado.Rows[i]["TipoTrabajo"].ToString();
+                vista.DuracionContrato = Convert.ToInt32(dtResultado.Rows[i]["DuracionContrato"]);
+                vista.SalarioOfrecido = Convert.ToDecimal(dtResultado.Rows[i]["SalarioOfrecido"]);
+                vista.AreaEmpresa = dtResultado.Rows[i]["AreaEmpresa"].ToString();
+                vista.FechaIngreso = Convert.ToDateTime(dtResultado.Rows[i]["FechaIngreso"]);
+
+                listaEjemplo.Add(vista);
+            }
+
+            return PartialView("_VistaConvenios",listaEjemplo);
+
+        }
+
+        public PartialViewResult _VistaNuevoConvenio()
+        {
+            //if (idConvenio != null)
+            //{
+            //    DataTable dtResultado = lnUtp.UTP_ObtenerConvenio(idConvenio);
+            //}
+            LNGeneral lngeneral = new LNGeneral();
+            Convenio convenio = new Convenio();
+            return PartialView("_VistaNuevoConvenio",convenio);
+        }
 
         public ActionResult VerDetalleEmpresa(int id)
         {
@@ -708,35 +750,47 @@ namespace UTPPrototipo.Controllers
             return View();
         }
  
-        public ActionResult Ofertas(string SearchString)
+        public ActionResult BuscarOfertas(string SearchString, int nroPaginaActual)
         {
-            
             string palabraClave = SearchString == null ? "" : SearchString;
             List<VistaOferta> listaEjemplo = new List<VistaOferta>();
+            DataTable dtResultado = lnUtp.UTP_ObtenerOfertasporActivar(palabraClave, nroPaginaActual, Constantes.FILAS_POR_PAGINA);
 
+            foreach (DataRow fila in dtResultado.Rows)
+            {
+                VistaOferta vista = new VistaOferta();
 
-            DataTable dtResultado = lnUtp.UTP_ObtenerOfertasporActivar(palabraClave);
+                vista.FechaPublicacion = Convert.ToDateTime(fila["FechaPublicacion"]);
+                vista.NombreComercial = Convert.ToString(fila["NombreComercial"]);
+                vista.CargoOfrecido = Convert.ToString(fila["CargoOfrecido"]);
+                vista.IdOferta = Convert.ToInt32(fila["IdOferta"]);
+                vista.Estado = Convert.ToString(fila["Estado"]);
+                vista.Cargo = Convert.ToString(fila["Cargo"]);
+                vista.CantidadTotal = Convert.ToInt32(fila["CantidadTotal"]);
 
-                foreach (DataRow fila in dtResultado.Rows)
-                {
-                    VistaOferta vista = new VistaOferta();
+                listaEjemplo.Add(vista);
+            }
 
-                    vista.FechaPublicacion = Convert.ToDateTime(fila["FechaPublicacion"]);
-                    vista.NombreComercial = Convert.ToString(fila["NombreComercial"]);
-                    vista.CargoOfrecido = Convert.ToString(fila["CargoOfrecido"]);
-                    vista.IdOferta = Convert.ToInt32(fila["IdOferta"]);
-                    vista.Estado = Convert.ToString(fila["Estado"]);
-                    vista.Cargo = Convert.ToString(fila["Cargo"]);
+            //Datos para la paginación.
+            int cantidadTotal = listaEjemplo.Count() == 0 ? 0 : listaEjemplo[0].CantidadTotal;
 
-                    listaEjemplo.Add(vista);
-                }
-                     
-            return View(listaEjemplo);
+            Paginacion paginacion = new Paginacion();
+            paginacion.NroPaginaActual = nroPaginaActual;
+            paginacion.CantidadTotalResultados = cantidadTotal;
+            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            if (residuo > 0) paginacion.TotalPaginas += 1;
 
+            ViewBag.Paginacion = paginacion;
 
+            return PartialView("_ListaUTPOfertas", listaEjemplo);
         }
 
-
+        public ActionResult Ofertas()
+        {
+            return View();
+        }
  
         public ActionResult Sistema()
         {
@@ -1238,11 +1292,11 @@ namespace UTPPrototipo.Controllers
             return PartialView("_DatosUtpPortal", panel);
         }
 
-        public ActionResult VistaOfertasPendientes()
+        public ActionResult VistaOfertasPendientes(int nroPaginaActual, int filasPorPagina = Constantes.FILAS_POR_PAGINA)
         {
             List<VistaOfertasPendientes> listaOfertasPendientes = new List<VistaOfertasPendientes>();
 
-            DataTable dtResultado = lnUtp.OfertasObtenerPendientes();
+            DataTable dtResultado = lnUtp.OfertasObtenerPendientes(nroPaginaActual, filasPorPagina);
 
             foreach (DataRow fila in dtResultado.Rows)
             {
@@ -1252,9 +1306,23 @@ namespace UTPPrototipo.Controllers
                 vistaNueva.NombreComercial = Convert.ToString(fila["NombreComercial"]);
                 vistaNueva.CargoOfrecido = Convert.ToString(fila["CargoOfrecido"]);
                 vistaNueva.IdOferta = Convert.ToInt32(fila["IdOferta"]);
+                vistaNueva.CantidadTotal = Convert.ToInt32(fila["CantidadTotal"]);
 
                 listaOfertasPendientes.Add(vistaNueva);
             }
+
+            //Datos para la paginación.
+            int cantidadTotal = listaOfertasPendientes.Count() == 0 ? 0 : listaOfertasPendientes[0].CantidadTotal;
+
+            Paginacion paginacion = new Paginacion();
+            paginacion.NroPaginaActual = nroPaginaActual;
+            paginacion.CantidadTotalResultados = cantidadTotal;
+            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            if (residuo > 0) paginacion.TotalPaginas += 1;
+
+            ViewBag.Paginacion = paginacion;
 
             return PartialView("_OfertasPendientes", listaOfertasPendientes);
 
@@ -1513,11 +1581,11 @@ namespace UTPPrototipo.Controllers
         }
 
 
-        public ActionResult VistaOfertasporActivar()
+        public ActionResult VistaOfertasporActivar(int nroPaginaActual)
         {
             List<VistaOfertasPendientes> listaOfertasPendientes = new List<VistaOfertasPendientes>();
 
-            DataTable dtResultado = lnUtp.OfertasObtenerPendientes();
+            DataTable dtResultado = lnUtp.OfertasObtenerPendientes(nroPaginaActual, Constantes.FILAS_POR_PAGINA);
 
             foreach (DataRow fila in dtResultado.Rows)
             {
@@ -1531,15 +1599,28 @@ namespace UTPPrototipo.Controllers
                 listaOfertasPendientes.Add(vistaNueva);
             }
 
+            //Datos para la paginación.
+            int cantidadTotal = listaOfertasPendientes.Count() == 0 ? 0 : listaOfertasPendientes[0].CantidadTotal;
+
+            Paginacion paginacion = new Paginacion();
+            paginacion.NroPaginaActual = nroPaginaActual;
+            paginacion.CantidadTotalResultados = cantidadTotal;
+            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            if (residuo > 0) paginacion.TotalPaginas += 1;
+
+            ViewBag.Paginacion = paginacion;
+
             return PartialView("VistaOfertasporActivar", listaOfertasPendientes);
 
         }
 
-        public ActionResult Vista_EmpresasPendientes()
+        public ActionResult Vista_EmpresasPendientes(int nroPaginaActual)
         {
             List<VistaEmpresasPendientes> listaEmpresasPendientes = new List<VistaEmpresasPendientes>();
 
-            DataTable dtResultado = lnUtp.EmpresaObtenerPendientes();
+            DataTable dtResultado = lnUtp.EmpresaObtenerPendientes(nroPaginaActual, Constantes.FILAS_POR_PAGINA);
 
             foreach (DataRow fila in dtResultado.Rows)
             {
@@ -1549,9 +1630,24 @@ namespace UTPPrototipo.Controllers
                 vistaNueva.NombreComercial = Convert.ToString(fila["NombreComercial"]);
 
                 vistaNueva.IdEmpresa = Convert.ToInt32(fila["IdEmpresa"]);
+                vistaNueva.CantidadTotal = Convert.ToInt32(fila["CantidadTotal"]);
 
                 listaEmpresasPendientes.Add(vistaNueva);
             }
+
+            //Datos para la paginación.
+            int cantidadTotal = listaEmpresasPendientes.Count() == 0 ? 0 : listaEmpresasPendientes[0].CantidadTotal;
+
+            Paginacion paginacion = new Paginacion();
+            paginacion.NroPaginaActual = nroPaginaActual;
+            paginacion.CantidadTotalResultados = cantidadTotal;
+            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            if (residuo > 0) paginacion.TotalPaginas += 1;
+
+            ViewBag.Paginacion = paginacion;
+
 
             return PartialView("_EmpresasPendientes", listaEmpresasPendientes);
 

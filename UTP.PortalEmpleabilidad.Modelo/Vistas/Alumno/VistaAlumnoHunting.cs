@@ -38,6 +38,9 @@ namespace UTP.PortalEmpleabilidad.Modelo.Vistas.Alumno
         public string ValorSectorEmpresarial { get; set; }
         public int AnosExperiencia { get; set; }
 
+        //Paginación.
+        public int NroPagina { get; set; }
+
         public List<Hunting> ListaBusqueda { get; set; }
     }
 

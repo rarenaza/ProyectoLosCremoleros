@@ -1,6 +1,11 @@
 ﻿@using UTPPrototipo.Common
 @model IEnumerable<UTPPrototipo.Models.ViewModels.UTP.VistaEmpresasPendientes>
 
+@using UTP.PortalEmpleabilidad.Modelo
+@{
+    <!--Se obtiene los datos para la paginación.-->
+    Paginacion paginacion = (Paginacion)ViewBag.Paginacion;
+}
 
     <h5>Empresas por Activar</h5>
 
@@ -25,7 +30,26 @@
         </div>
     </div>
 }
-   
+   <div>
+    <!--Paginación-->
+    <nav class="navbar-right">
+        <ul class="pagination">
+            @{
+                for (int i = 1; i <= paginacion.TotalPaginas; i++)
+                {
+                    if (i == paginacion.NroPaginaActual)
+                    {
+                        <li class="active"><a href="#">@i <span class="sr-only"></span></a></li>
+                    }
+                    else
+                    {
+                        <li><a href="#" onclick="buscarEmpresasPendientes('@i');">@i</a></li>
+                    }
+                }
+            }
+        </ul>
+    </nav>
+</div>
 
 <hr />
 
