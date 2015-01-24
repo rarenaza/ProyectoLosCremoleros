@@ -1,0 +1,71 @@
+﻿@model UTP.PortalEmpleabilidad.Modelo.Convenio
+
+<div class="row">
+    <div class="col-sm-12" style="text-align:right;">
+        <button class="btn btn-default color-paleta3" data-toggle="modal" data-target="#nuevoConvenio">Nuevo Convenio</button>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="nuevoConvenio" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Nuevo Convenio</h4>
+            </div>
+            <div class="modal-body">
+                @Html.HiddenFor(m => m.IdAlumno)
+                <input type="hidden" id="IdAlumno">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="input-group">
+                            <span class="input-group-addon">Alumno</span>
+                            @Html.TextBoxFor(m => m.Alumno, htmlAttributes: new { @class = "form-control", @placeholder = "Ingrese nombre, apellido o Código" })
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-9">
+                        <div class="input-group">
+                            <span class="input-group-addon">Carrera</span>
+                            @Html.TextBoxFor(m => m.Carrera, htmlAttributes: new { @class = "form-control", @placeholder = "Carrera" })
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="input-group">
+                            <span class="input-group-addon">Ciclo</span>
+                            @Html.TextBoxFor(m => m.Ciclo, htmlAttributes: new { @class = "form-control", @placeholder = "Ciclo" })
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="input-group">
+                            <span class="input-group-addon">Nivel<br />Académico</span>
+                            @Html.TextBoxFor(m => m.NivelAcademico, htmlAttributes: new { @class = "form-control", @placeholder = "Nivel Académico" })
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="input-group">
+                            <span class="input-group-addon">Teléfono<br />Casa</span>
+                            @Html.TextBoxFor(m => m.TelefonoFijoCasa, htmlAttributes: new { @class = "form-control", @placeholder = "Teléfono Fijo Casa" })
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="input-group">
+                            <span class="input-group-addon">Teléfono<br />Celular</span>
+                            @Html.TextBoxFor(m => m.TelefonoCelular, htmlAttributes: new { @class = "form-control", @placeholder = "Teléfono Celular" })
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-default color-paleta3">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>

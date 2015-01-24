@@ -151,7 +151,16 @@ namespace UTP.PortalEmpleabilidad.Logica
 
             return adUtp.UTP_ObtenerUltimosAlumnos(Dato);
         }
+        public DataTable UTP_ObtenerUltimosConvenios(string Dato)
+        {
 
+            return adUtp.UTP_ObtenerUltimosConvenios(Dato);
+        }
+        public DataTable UTP_ObtenerConvenio(int idConvenio)
+        {
+
+            return adUtp.UTP_ObtenerConvenio(idConvenio);
+        }
        
         public void ActualizarEstadoYUsuarioEC(Empresa empresa)
         {

@@ -53,6 +53,7 @@
     <Compile Include="AlumnoExperienciaCargo.cs" />
     <Compile Include="AlumnoInformacionAdicional.cs" />
     <Compile Include="AlumnoPostulaciones.cs" />
+    <Compile Include="Convenio.cs" />
     <Compile Include="EventoAsistente.cs" />
     <Compile Include="Hunting.cs" />
     <Compile Include="Paginacion.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="Vistas\Alumno\VistaAlumnoOferta.cs" />
     <Compile Include="Vistas\Alumno\VistaUTPListaAlumno.cs" />
     <Compile Include="Vistas\ContenidoCombo\ContenidoVistaCombo.cs" />
+    <Compile Include="Vistas\Convenio\VistaUTPListaConvenio.cs" />
     <Compile Include="Vistas\Empresa\VistaEmpresaLocacion.cs" />
     <Compile Include="Vistas\Empresa\VistaEmpresaOferta.cs" />
     <Compile Include="Vistas\Empresa\VistaEmpresaUsuario.cs" />

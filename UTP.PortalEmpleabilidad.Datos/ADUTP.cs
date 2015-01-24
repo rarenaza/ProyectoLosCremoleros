@@ -205,6 +205,61 @@ namespace UTP.PortalEmpleabilidad.Datos
             return dtResultado;
         }
 
+        public DataTable UTP_ObtenerUltimosConvenios(string Dato)
+        {
+            DataTable dtResultado = new DataTable();
+
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "UTP_ObtenerUltimosConvenios";
+                cmd.Parameters.Add(new SqlParameter("@PalabraClave", Dato));
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+                dtResultado = new DataTable();
+
+                da.Fill(dtResultado);
+
+                conexion.Close();
+            }
+
+            return dtResultado;
+        }
+
+
+        public DataTable UTP_ObtenerConvenio(int idConvenio)
+        {
+            DataTable dtResultado = new DataTable();
+
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "UTP_ObtenerConvenio";
+                cmd.Parameters.Add(new SqlParameter("@IdConvenio", idConvenio));
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+                dtResultado = new DataTable();
+
+                da.Fill(dtResultado);
+
+                conexion.Close();
+            }
+
+            return dtResultado;
+        }
+
         public void ActualizarEstadoYUsuarioEC(Empresa empresa)
         {
             try

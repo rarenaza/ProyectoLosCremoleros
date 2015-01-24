@@ -13,6 +13,7 @@ using UTP.PortalEmpleabilidad.Logica;
 using UTP.PortalEmpleabilidad.Modelo;
 using UTP.PortalEmpleabilidad.Modelo.UTP;
 using UTP.PortalEmpleabilidad.Modelo.Vistas.Alumno;
+using UTP.PortalEmpleabilidad.Modelo.Vistas.Convenio;
 using UTP.PortalEmpleabilidad.Modelo.Vistas.Empresa;
 using UTP.PortalEmpleabilidad.Modelo.Vistas.Ofertas;
 //using UTP.PortalEmpleabilidad.Modelo.Vistas.Eventos;
@@ -610,6 +611,47 @@ namespace UTPPrototipo.Controllers
 
         }
 
+        public ActionResult VistaConvenios(string SearchString)
+        {
+
+            string palabraClave = SearchString == null ? "" : SearchString;
+
+            List<VistaUTPListaConvenio> listaEjemplo = new List<VistaUTPListaConvenio>();
+
+            DataTable dtResultado = lnUtp.UTP_ObtenerUltimosConvenios(palabraClave);
+
+            for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
+            {
+                VistaUTPListaConvenio vista = new VistaUTPListaConvenio();
+
+                vista.IdConvenio = Convert.ToInt32(dtResultado.Rows[i]["IdConvenio"]);
+                vista.Nombres = dtResultado.Rows[i]["Nombres"].ToString();
+                vista.Apellidos = dtResultado.Rows[i]["Apellidos"].ToString();
+                vista.Carrera = dtResultado.Rows[i]["Carrera"].ToString();
+                vista.NombreComercial = dtResultado.Rows[i]["NombreComercial"].ToString();
+                vista.TipoTrabajo = dtResultado.Rows[i]["TipoTrabajo"].ToString();
+                vista.DuracionContrato = Convert.ToInt32(dtResultado.Rows[i]["DuracionContrato"]);
+                vista.SalarioOfrecido = Convert.ToDecimal(dtResultado.Rows[i]["SalarioOfrecido"]);
+                vista.AreaEmpresa = dtResultado.Rows[i]["AreaEmpresa"].ToString();
+                vista.FechaIngreso = Convert.ToDateTime(dtResultado.Rows[i]["FechaIngreso"]);
+
+                listaEjemplo.Add(vista);
+            }
+
+            return PartialView("_VistaConvenios",listaEjemplo);
+
+        }
+
+        public PartialViewResult _VistaNuevoConvenio()
+        {
+            //if (idConvenio != null)
+            //{
+            //    DataTable dtResultado = lnUtp.UTP_ObtenerConvenio(idConvenio);
+            //}
+            LNGeneral lngeneral = new LNGeneral();
+            Convenio convenio = new Convenio();
+            return PartialView("_VistaNuevoConvenio",convenio);
+        }
 
         public ActionResult VerDetalleEmpresa(int id)
         {
