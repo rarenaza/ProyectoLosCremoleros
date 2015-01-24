@@ -1,71 +1,252 @@
 ﻿@model UTP.PortalEmpleabilidad.Modelo.Convenio
 
-<div class="row">
-    <div class="col-sm-12" style="text-align:right;">
-        <button class="btn btn-default color-paleta3" data-toggle="modal" data-target="#nuevoConvenio">Nuevo Convenio</button>
-    </div>
-</div>
-<!-- Modal -->
-<div class="modal fade" id="nuevoConvenio" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">Nuevo Convenio</h4>
-            </div>
-            <div class="modal-body">
-                @Html.HiddenFor(m => m.IdAlumno)
-                <input type="hidden" id="IdAlumno">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="input-group">
-                            <span class="input-group-addon">Alumno</span>
-                            @Html.TextBoxFor(m => m.Alumno, htmlAttributes: new { @class = "form-control", @placeholder = "Ingrese nombre, apellido o Código" })
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-9">
-                        <div class="input-group">
-                            <span class="input-group-addon">Carrera</span>
-                            @Html.TextBoxFor(m => m.Carrera, htmlAttributes: new { @class = "form-control", @placeholder = "Carrera" })
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="input-group">
-                            <span class="input-group-addon">Ciclo</span>
-                            @Html.TextBoxFor(m => m.Ciclo, htmlAttributes: new { @class = "form-control", @placeholder = "Ciclo" })
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="input-group">
-                            <span class="input-group-addon">Nivel<br />Académico</span>
-                            @Html.TextBoxFor(m => m.NivelAcademico, htmlAttributes: new { @class = "form-control", @placeholder = "Nivel Académico" })
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-4">
-                        <div class="input-group">
-                            <span class="input-group-addon">Teléfono<br />Casa</span>
-                            @Html.TextBoxFor(m => m.TelefonoFijoCasa, htmlAttributes: new { @class = "form-control", @placeholder = "Teléfono Fijo Casa" })
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="input-group">
-                            <span class="input-group-addon">Teléfono<br />Celular</span>
-                            @Html.TextBoxFor(m => m.TelefonoCelular, htmlAttributes: new { @class = "form-control", @placeholder = "Teléfono Celular" })
-                        </div>
-                    </div>
-                </div>
 
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-default color-paleta3">Guardar</button>
+
+    <div class="row">
+        <div class="col-sm-12" style="text-align:right;">
+            <button class="btn btn-default color-paleta3" data-toggle="modal" data-target="#nuevoConvenio">Nuevo Convenio</button>
+        </div>
+    </div>
+
+    <div class="modal fade" id="nuevoConvenio" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Nuevo Convenio</h4>
+                </div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+                <div class="modal-body">
+
+                    @Html.HiddenFor(m => m.IdAlumno)
+                    @Html.HiddenFor(m => m.IdEmpresa)
+                    <input type="hidden" id="IdAlumno">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="input-group">
+                                <span class="input-group-addon">(*)Alumno</span>
+                                @Html.TextBoxFor(m => m.Alumno, htmlAttributes: new { @class = "form-control", @placeholder = "Ingrese nombre, apellido o Código", @id = "Alumno" })
+                            </div>
+                            @Html.ValidationMessageFor(m => m.Alumno, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <span class="input-group-addon">(*)Carrera</span>
+                                @Html.TextBoxFor(m => m.Carrera, htmlAttributes: new { @class = "form-control", @placeholder = "Carrera" })
+                            </div>
+                            @Html.ValidationMessageFor(m => m.Carrera, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="input-group">
+                                <span class="input-group-addon">(*)Ciclo</span>
+                                @Html.TextBoxFor(m => m.Ciclo, htmlAttributes: new { @class = "form-control", @placeholder = "Ciclo" })
+                            </div>
+                            @Html.ValidationMessageFor(m => m.Ciclo, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="input-group">
+                                <span class="input-group-addon">(*)Nivel<br />Académico</span>
+                                @Html.TextBoxFor(m => m.NivelAcademico, htmlAttributes: new { @class = "form-control", @placeholder = "Nivel Académico" })
+                            </div>
+                            @Html.ValidationMessageFor(m => m.NivelAcademico, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <span class="input-group-addon">(*)Teléfono<br />Casa</span>
+                                @Html.TextBoxFor(m => m.TelefonoFijoCasa, htmlAttributes: new { @class = "form-control", @placeholder = "Teléfono Fijo Casa" })
+                            </div>
+                            @Html.ValidationMessageFor(m => m.TelefonoFijoCasa, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <span class="input-group-addon">(*)Teléfono<br />Celular</span>
+                                @Html.TextBoxFor(m => m.TelefonoCelular, htmlAttributes: new { @class = "form-control", @placeholder = "Teléfono Celular" })
+                            </div>
+                            @Html.ValidationMessageFor(m => m.TelefonoCelular, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="input-group">
+                                <span class="input-group-addon">(*)Empresa</span>
+                                @Html.TextBoxFor(m => m.NombreComercial, htmlAttributes: new { @class = "form-control", @placeholder = "Empresa", @id = "NombreComercial" })
+                            </div>
+                            @Html.ValidationMessageFor(m => m.NombreComercial, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="input-group">
+                                <span class="input-group-addon">Sector<br />Empresa</span>
+                                <input class="form-control" id="ValorSectorEmpresarial" readonly />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="input-group">
+                                <span class="input-group-addon">Nombre<br />Contacto</span>
+                                @Html.TextBoxFor(m => m.ContactoNombre, htmlAttributes: new { @class = "form-control", @placeholder = "Nombre de la persona de Contacto" })
+                            </div>
+                            @Html.ValidationMessageFor(m => m.ContactoNombre, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <span class="input-group-addon">Cargo del<br />Contacto</span>
+                                @Html.TextBoxFor(m => m.ContactoCargo, htmlAttributes: new { @class = "form-control", @placeholder = "Cargo del Contacto" })
+                            </div>
+                            @Html.ValidationMessageFor(m => m.ContactoCargo, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="input-group">
+                                <span class="input-group-addon">e-Mail</span>
+                                @Html.TextBoxFor(m => m.ContactoCorreoElectronico, htmlAttributes: new { @class = "form-control", @placeholder = "e-Mail del Contacto" })
+                            </div>
+                            @Html.ValidationMessageFor(m => m.ContactoCorreoElectronico, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <span class="input-group-addon">Teléfono</span>
+                                @Html.TextBoxFor(m => m.ContactoTelefono, htmlAttributes: new { @class = "form-control", @placeholder = "Teléfono fijo del Contacto" })
+                            </div>
+                            @Html.ValidationMessageFor(m => m.ContactoTelefono, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <span class="input-group-addon">Celular</span>
+                                @Html.TextBoxFor(m => m.ContactoCelular, htmlAttributes: new { @class = "form-control", @placeholder = "Celular del Contacto" })
+                            </div>
+                            @Html.ValidationMessageFor(m => m.ContactoCelular, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <span class="input-group-addon">(*)Tipo<br />Trabajo</span>
+                                @Html.DropDownListFor(m => m.TipoTrabajo, null, "- Seleccionar -", htmlAttributes: new { @class = "form-control" })
+                            </div>
+                            @Html.ValidationMessageFor(m => m.TipoTrabajo, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="input-group">
+                                <span class="input-group-addon">(*)Duración</span>
+                                @Html.TextBoxFor(m => m.DuracionContrato, htmlAttributes: new { @class = "form-control", @placeholder = "Duración" })
+                            </div>
+                            @Html.ValidationMessageFor(m => m.DuracionContrato, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="input-group">
+                                <span class="input-group-addon">Salario<br />Ofrecido</span>
+                                @Html.TextBoxFor(m => m.SalarioOfrecido, htmlAttributes: new { @class = "form-control", @placeholder = "Salario Ofrecido" })
+                            </div>
+                            @Html.ValidationMessageFor(m => m.SalarioOfrecido, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <span class="input-group-addon">Cargo</span>
+                                @Html.TextBoxFor(m => m.CargoOfrecido, htmlAttributes: new { @class = "form-control", @placeholder = "Cargo Ofrecido" })
+                            </div>
+                            @Html.ValidationMessageFor(m => m.CargoOfrecido, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <span class="input-group-addon">Área</span>
+                                @Html.TextBoxFor(m => m.AreaEmpresa, htmlAttributes: new { @class = "form-control", @placeholder = "Área de la Empresa" })
+                            </div>
+                            @Html.ValidationMessageFor(m => m.AreaEmpresa, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="input-group">
+                                <span class="input-group-addon">(*)Fuente<br />Convenio</span>
+                                @Html.DropDownListFor(m => m.FuenteConvenio, null, "- Seleccionar -", htmlAttributes: new { @class = "form-control" })
+                            </div>
+                            @Html.ValidationMessageFor(m => m.FuenteConvenio, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="input-group">
+                                <span class="input-group-addon">Obser-<br />vación</span>
+                                @Html.TextAreaFor(m => m.Observaciones, htmlAttributes: new { @class = "form-control",@Rows = "4", @placeholder = "Observaciones" })
+                            </div>
+                            @Html.ValidationMessageFor(m => m.Observaciones, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" id="cierraModal">Cerrar</button>
+                    <button type="submit" class="btn btn-default color-paleta3" onclick="crearConvenio()">Guardar</button>
+                </div>
+}
             </div>
         </div>
     </div>
-</div>
+
+
+
+<!-- Modal -->
+
+<script>
+
+
+    $(document).ready(function () {
+
+        AutoCompleteTextVarios('#Alumno', '@Url.Action("ListarAlumnosNombreyCodigo", "UTP")', '#Alumno', 'A');
+        AutoCompleteTextVarios('#NombreComercial', '@Url.Action("ListarNombreEmpresa", "UTP")', '#NombreComercial', 'E');
+    });
+
+
+    function cargarDatosAlumno(idAlumno) {
+        var url = '@Url.Action("BuscarDatosAlumno", "UTP")' + '?idAlumno=' + idAlumno;
+
+        $.get(url, function (alumno) {
+            $('#IdAlumno').val(alumno["IdAlumno"]);
+            $('#Carrera').val(alumno["Carrera"]);
+            $('#Ciclo').val(alumno["Ciclo"]);
+            $('#TelefonoFijoCasa').val(alumno["TelefonoFijoCasa"]);
+            $('#TelefonoCelular').val(alumno["TelefonoCelular"]);
+        });
+
+    }
+
+    function cargarDescripcionEmpresa(idEmpresa) {
+        var url = '@Url.Action("BuscarDatosEmpresas","Alumno")' + '?idEmpresa=' + idEmpresa;
+
+        $.get(url, function (empresa) {
+
+            console.log(cargarDescripcionEmpresa);
+            
+            $('#ValorSectorEmpresarial').val(empresa["ValorSectorEmpresarial"]);
+            $('#IdEmpresa').val(idEmpresa);
+        });
+
+    }
+    function crearConvenio() {
+        
+        var url = "/UTP/CrearConvenio"; // el url del controlador
+        $.get(url, function (data) {
+            $('#_VistaNuevoConvenio').html(data);
+            $.validator.unobtrusive.parse('#_VistaNuevoConvenio');
+        });
+    }
+    </script>

@@ -505,7 +505,8 @@ namespace UTPPrototipo.Controllers
                 vista.SectorEmpresarial = dtResultado.Rows[0]["SectorEmpresarial"].ToString();
                 vista.SectorEmpresarial2 = dtResultado.Rows[0]["SectorEmpresarial2"].ToString();
                 vista.SectorEmpresarial3 = dtResultado.Rows[0]["SectorEmpresarial3"].ToString();
-                vista.Pais = dtResultado.Rows[0]["Pais"].ToString(); 
+                vista.Pais = dtResultado.Rows[0]["Pais"].ToString();
+                vista.ValorSectorEmpresarial = dtResultado.Rows[0]["ValorSectorEmpresarial"].ToString();
             }
 
             return Json(vista, JsonRequestBehavior.AllowGet);

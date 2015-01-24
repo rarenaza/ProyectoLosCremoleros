@@ -159,6 +159,29 @@ namespace UTP.PortalEmpleabilidad.Datos
 
             return dt;
         }
+        public DataTable Utp_ListarAlumnosNombreyCodigo()
+        {
+
+            ADConexion cnn = new ADConexion();
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "Utp_ListaAlumnosNombreyCodigo";
+
+
+            cmd.Connection = cnn.cn;
+            cnn.Conectar();
+
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+
+            da.Fill(dt);
+
+            cnn.Desconectar();
+
+            return dt;
+        }
 
         public DataTable Empresa_BusquedaAvanzada(VistaEmpresListarOfertas entidad, int nroPaginaActual, int filasPorPagina)
         //public DataTable Empresa_BusquedaAvanzada(string NombreComercial,string , int nroPaginaActual, int filasPorPagina)
@@ -317,6 +340,33 @@ namespace UTP.PortalEmpleabilidad.Datos
             }
         }
 
+        
+        public DataTable Utp_BuscarDatosAlumno(int idAlumno)
+        {
+            DataTable dtResultado = new DataTable();
+
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Convenio_ObtenerDatosAlumno";
+                cmd.Parameters.Add(new SqlParameter("@IdAlumno", idAlumno));
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+                dtResultado = new DataTable();
+
+                da.Fill(dtResultado);
+
+                conexion.Close();
+            }
+
+            return dtResultado;
+        }
 
         #region Mantenimiento de Usuarios UTP
 

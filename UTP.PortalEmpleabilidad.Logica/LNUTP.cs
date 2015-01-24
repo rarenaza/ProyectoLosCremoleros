@@ -8,7 +8,6 @@ using UTP.PortalEmpleabilidad.Datos;
 using UTP.PortalEmpleabilidad.Modelo;
 using UTP.PortalEmpleabilidad.Modelo.Vistas.Ofertas;
 using UTP.PortalEmpleabilidad.Modelo.Vistas.Alumno;
-
 namespace UTP.PortalEmpleabilidad.Logica
 {
     public class LNUTP
@@ -109,6 +108,32 @@ namespace UTP.PortalEmpleabilidad.Logica
             return listaEjemplo;
         }
 
+        public List<ConvenioListaAlumnosNombreyCodigo> Utp_ListarAlumnosNombreyCodigo()
+        {
+            List<ConvenioListaAlumnosNombreyCodigo> listaEjemplo = new List<ConvenioListaAlumnosNombreyCodigo>();
+
+
+            DataTable dtResultado = adUtp.Utp_ListarAlumnosNombreyCodigo();
+
+            for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
+            {
+                ConvenioListaAlumnosNombreyCodigo vista = new ConvenioListaAlumnosNombreyCodigo();
+
+                vista.IdAlumno = Convert.ToInt32(dtResultado.Rows[i]["IdAlumno"]);
+                vista.Alumno = dtResultado.Rows[i]["Alumno"].ToString();
+               
+
+                listaEjemplo.Add(vista);
+            }
+
+            return listaEjemplo;
+        }
+
+        public DataTable Utp_BuscarDatosAlumno(int idAlumno)
+        {
+
+            return adUtp.Utp_BuscarDatosAlumno(idAlumno);
+        }
         public List<EmpresaListaEmpresa> EmpresaBusquedaAvanzada(VistaEmpresListarOfertas entidad,int nroPaginaActual, int filasPorPagina)
         {
             List<EmpresaListaEmpresa> listaEjemplo = new List<EmpresaListaEmpresa>();

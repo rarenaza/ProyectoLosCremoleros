@@ -260,6 +260,14 @@ namespace UTPPrototipo.Controllers
             var result = resultado.Where(s => s.NombreComercial.ToLower().StartsWith(query.ToLower())).Select(c => new { Value = c.IdEmpresa, Label = c.NombreComercial }).ToList();
             return Json(result, JsonRequestBehavior.AllowGet);
         }
+        public JsonResult ListarAlumnosNombreyCodigo(string query)
+        {
+            //aqui muestro todos los alumnos
+            var resultado = lnUtp.Utp_ListarAlumnosNombreyCodigo();
+            //aqui busco el Alumno                                                                             //obtengo el id         // muestro la empresa buscada
+            var result = resultado.Where(s => s.Alumno.ToLower().Contains(query.ToLower())).Select(c => new { Value = c.IdAlumno, Label = c.Alumno }).ToList();
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
 
         [HttpPost]
         public JsonResult ListarRazonSocial(string query)
@@ -674,8 +682,8 @@ namespace UTPPrototipo.Controllers
             return PartialView("_VistaConvenios",listaEjemplo);
 
         }
-
-        public PartialViewResult _VistaNuevoConvenio()
+        
+        public ActionResult _VistaNuevoConvenio()
         {
             //if (idConvenio != null)
             //{
@@ -683,7 +691,37 @@ namespace UTPPrototipo.Controllers
             //}
             LNGeneral lngeneral = new LNGeneral();
             Convenio convenio = new Convenio();
+            convenio.TipoTrabajo = "";
+            convenio.FuenteConvenio = "";
+
+            ViewBag.TipoTrabajo = new SelectList(lngeneral.ObtenerListaValor(29), "IdListaValor", "Valor");
+            ViewBag.FuenteConvenio = new SelectList(lngeneral.ObtenerListaValor(51), "IdListaValor", "Valor");
+
+
+
             return PartialView("_VistaNuevoConvenio",convenio);
+        }
+
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult _VistaNuevoConvenio(Convenio convenio)
+        //{
+        //    //if (idConvenio != null)
+        //    //{
+        //    //    DataTable dtResultado = lnUtp.UTP_ObtenerConvenio(idConvenio);
+        //    //}
+        //    LNGeneral lngeneral = new LNGeneral();
+        //    //Convenio convenio = new Convenio();
+        //    //ViewBag.TipoTrabajo = new SelectList(lngeneral.ObtenerListaValor(29), "IdListaValor", "Valor");
+        //    //ViewBag.FuenteConvenio = new SelectList(lngeneral.ObtenerListaValor(51), "IdListaValor", "Valor");
+        //    return PartialView("_VistaNuevoConvenio", convenio);
+        //}
+
+        public ActionResult CrearConvenio(Convenio convenio)
+        {
+
+            return Json(convenio);
         }
 
         public ActionResult VerDetalleEmpresa(int id)
@@ -2429,6 +2467,49 @@ namespace UTPPrototipo.Controllers
 
         #endregion
 
+        public ActionResult BuscarDatosAlumno(int idAlumno)
+        {
+            //string descripocn = "";
+
+
+            Convenio vista = new Convenio();
+
+            DataTable dtResultado = lnUtp.Utp_BuscarDatosAlumno(idAlumno);
+
+            if (dtResultado.Rows.Count > 0)
+            {
+                vista.IdAlumno = Convert.ToInt32(dtResultado.Rows[0]["IdAlumno"]);
+                vista.Carrera = dtResultado.Rows[0]["Carrera"].ToString();
+                vista.Ciclo = Convert.ToInt32(dtResultado.Rows[0]["Ciclo"]);
+                vista.TelefonoFijoCasa = dtResultado.Rows[0]["TelefonoFijoCasa"].ToString();
+                vista.TelefonoCelular = dtResultado.Rows[0]["TelefonoCelular"].ToString();
+                
+            }
+
+            return Json(vista, JsonRequestBehavior.AllowGet);
+
+        }
+
+        //public ActionResult CrearConvenio(int idAlumno)
+        //{
+            
+        //    Convenio vista = new Convenio();
+
+        //    DataTable dtResultado = lnUtp.Utp_BuscarDatosAlumno(idAlumno);
+
+        //    if (dtResultado.Rows.Count > 0)
+        //    {
+        //        vista.IdAlumno = Convert.ToInt32(dtResultado.Rows[0]["IdAlumno"]);
+        //        vista.Carrera = dtResultado.Rows[0]["Carrera"].ToString();
+        //        vista.Ciclo = Convert.ToInt32(dtResultado.Rows[0]["Ciclo"]);
+        //        vista.TelefonoFijoCasa = dtResultado.Rows[0]["TelefonoFijoCasa"].ToString();
+        //        vista.TelefonoCelular = dtResultado.Rows[0]["TelefonoCelular"].ToString();
+
+        //    }
+
+        //    return Json(vista, JsonRequestBehavior.AllowGet);
+
+        //}
 
 
     }
