@@ -28,7 +28,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
 
 
       public string TieneComentarios { get; set; }
-
+      public int CantidadTotal { get; set; }
 
     }
 }
