@@ -14,5 +14,8 @@ namespace UTPPrototipo.Models.ViewModels.UTP
         public string  Estado { get; set; }
         public string Cargo { get; set; }
 
+        //Paginación:
+        public int CantidadTotal { get; set; }
+
     }
 }

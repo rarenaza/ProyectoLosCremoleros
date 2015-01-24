@@ -9,7 +9,8 @@ namespace UTPPrototipo.Models.ViewModels.UTP
     {
         public DateTime FechaCreacion{ get; set;}
         public string NombreComercial{ get; set;}
-        public int IdEmpresa{ get; set;} 
+        public int IdEmpresa{ get; set;}
+        public int CantidadTotal { get; set; }
 
     }
 }

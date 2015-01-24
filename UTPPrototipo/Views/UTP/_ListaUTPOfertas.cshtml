@@ -1,41 +1,49 @@
 ﻿@using UTPPrototipo.Common
-@model IEnumerable<UTPPrototipo.Models.ViewModels.UTP.VistaOfertasPendientes>
+@model IEnumerable<UTPPrototipo.Models.ViewModels.UTP.VistaOferta>
 @using UTP.PortalEmpleabilidad.Modelo
 @{
     <!--Se obtiene los datos para la paginación.-->
     Paginacion paginacion = (Paginacion)ViewBag.Paginacion;
 }
 
-        <h5>Ofertas por Activar</h5>
-        <div class="row grilla1-cabecera color-paleta1">
-            <div class="col-sm-3">
-                Fecha Publicación
-            </div>
-            <div class="col-sm-4">
-                Empresa
-            </div>
-            <div class="col-sm-5">
-                Oferta
-            </div>
-        </div>
+<div class="row grilla1-cabecera color-paleta4">
+    <div class="col-sm-2">
+        Fecha Publicación
+    </div>
+    <div class="col-sm-2">
+        Empresa
+    </div>
+    <div class="col-sm-4">
+        Oferta
+    </div>
+    <div class="col-sm-2">
+        Estado
+    </div>
+    <div class="col-sm-2">
+        Tipo de Cargo
+    </div>
+</div>
 
-
-@foreach (var item in @Model)
+@foreach (var item in Model)
 {
     <div class="row grilla1-linea">
-        <div class="col-sm-3">
+        <div class="col-sm-2">
             @Html.FormatoFrecuencia(@item.FechaPublicacion)
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-2">
             @item.NombreComercial
         </div>
-        <div class="col-sm-5">
+        <div class="col-sm-4">
             @*<a href="../UTP/RegistroOferta">@item.CargoOfrecido</a>*@
             @Html.ActionLink(@item.CargoOfrecido, "VerDetalleOferta", new { id = item.IdOferta })
         </div>
+        <div class="col-sm-2">
+            @item.Estado
+        </div>
+        <div class="col-sm-2">
+            @item.Cargo
+        </div>
     </div>
-
-  
 }
 
 <div>
@@ -51,12 +59,10 @@
                     }
                     else
                     {
-                        <li><a href="#" onclick="buscarOfertasPendientes('@i');">@i</a></li>
+                        <li><a href="#" onclick="buscarPaginacion('@i');">@i</a></li>                       
                     }
                 }
             }
         </ul>
     </nav>
 </div>
-        
-<hr />
