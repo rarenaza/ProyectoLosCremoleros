@@ -199,19 +199,52 @@ namespace UTPPrototipo.Controllers
 
 
 
-        public ActionResult BusquedaSimpleEmpresasActivas(VistaEmpresListarOfertas entidad)
+        public ActionResult BusquedaSimpleEmpresasActivas(VistaEmpresListarOfertas entidad, int nroPaginaActual = 1, int filasPorPagina = Constantes.FILAS_POR_PAGINA)
         {
-            entidad.ListaBusqueda = lnUtp.Empresa_ObtenerPorNombre(entidad.PalabraClave == null ? "" : entidad.PalabraClave);
+            entidad.ListaBusqueda = lnUtp.Empresa_ObtenerPorNombre(entidad.PalabraClave == null ? "" : entidad.PalabraClave, nroPaginaActual, filasPorPagina);
 
+            //Datos para la paginación.
+            //Una ves traido la info de la bd, se llenan estos campos del objeto Paginacion
+            int cantidadTotal = entidad.ListaBusqueda.Count() == 0 ? 0 : entidad.ListaBusqueda[0].CantidadTotal;
+
+            //Esto van en todas las paginas 
+            Paginacion paginacion = new Paginacion();
+            paginacion.NroPaginaActual = nroPaginaActual;
+            paginacion.CantidadTotalResultados = cantidadTotal;
+            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA;
+            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA;
+            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA;
+            if (residuo > 0) paginacion.TotalPaginas += 1;
+
+            ViewBag.Paginacion = paginacion;
+
+            ViewBag.TipoBusqueda = "Simple";
 
             return PartialView("_ResultadoBusquedaEmpresas", entidad.ListaBusqueda);
     
         }
 
-        public ActionResult BusquedaAvanzadaEmpresas(VistaEmpresListarOfertas entidad)
+        //aca estas pasando VistaEmpresListarOfertas entidad
+            //lo que hay que cambiar es esta llamada al metodo, en vez  de VistaEMpresaListarOfertas, debe ser string nombrecomercial, int idSector, etc.
+            //sino no va a entrar.
+        public ActionResult BusquedaAvanzadaEmpresas(VistaEmpresListarOfertas entidad, int nroPaginaActual = 1, int filasPorPagina = Constantes.FILAS_POR_PAGINA)
         {
-            entidad.ListaBusqueda = lnUtp.EmpresaBusquedaAvanzada(entidad);
+            entidad.ListaBusqueda = lnUtp.EmpresaBusquedaAvanzada(entidad, nroPaginaActual, filasPorPagina);
+            //Datos para la paginación.
+            //Una ves traido la info de la bd, se llenan estos campos del objeto Paginacion
+            int cantidadTotal = entidad.ListaBusqueda.Count() == 0 ? 0 : entidad.ListaBusqueda[0].CantidadTotal;
 
+            //Esto van en todas las paginas 
+            Paginacion paginacion = new Paginacion();
+            paginacion.NroPaginaActual = nroPaginaActual;
+            paginacion.CantidadTotalResultados = cantidadTotal;
+            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA;
+            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA;
+            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA;
+            if (residuo > 0) paginacion.TotalPaginas += 1;
+
+            ViewBag.Paginacion = paginacion;
+            ViewBag.TipoBusqueda = "Avanzada";
 
             return PartialView("_ResultadoBusquedaEmpresas", entidad.ListaBusqueda);
 

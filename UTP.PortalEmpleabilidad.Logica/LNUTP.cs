@@ -55,12 +55,12 @@ namespace UTP.PortalEmpleabilidad.Logica
         //    return adUtp.Empresa_ObtenerPorNombre(nombre);
         //}
 
-        public List<EmpresaListaEmpresa> Empresa_ObtenerPorNombre(string nombre)
+        public List<EmpresaListaEmpresa> Empresa_ObtenerPorNombre(string nombre, int nroPaginaActual, int filasPorPagina)
         {
             List<EmpresaListaEmpresa> listaEjemplo = new List<EmpresaListaEmpresa>();
 
 
-            DataTable dtResultado = adUtp.Empresa_ObtenerPorNombre(nombre);
+            DataTable dtResultado = adUtp.Empresa_ObtenerPorNombre(nombre, nroPaginaActual, filasPorPagina);
 
             for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
             {
@@ -80,7 +80,7 @@ namespace UTP.PortalEmpleabilidad.Logica
 
                 //vista.Comentarios = dtResultado.Rows[i]["Comentarios"].ToString();
                 vista.TieneComentarios = dtResultado.Rows[i]["TieneComentarios"].ToString();
-                
+                vista.CantidadTotal = Convert.ToInt32(dtResultado.Rows[i]["CantidadTotal"]);
 
                 listaEjemplo.Add(vista);
             }
@@ -110,12 +110,12 @@ namespace UTP.PortalEmpleabilidad.Logica
             return listaEjemplo;
         }
 
-        public List<EmpresaListaEmpresa> EmpresaBusquedaAvanzada(VistaEmpresListarOfertas entidad)
+        public List<EmpresaListaEmpresa> EmpresaBusquedaAvanzada(VistaEmpresListarOfertas entidad,int nroPaginaActual, int filasPorPagina)
         {
             List<EmpresaListaEmpresa> listaEjemplo = new List<EmpresaListaEmpresa>();
 
 
-            DataTable dtResultado = adUtp.Empresa_BusquedaAvanzada(entidad);
+            DataTable dtResultado = adUtp.Empresa_BusquedaAvanzada(entidad, nroPaginaActual, filasPorPagina);
 
             for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
             {
@@ -137,6 +137,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 //vista.Comentarios = dtResultado.Rows[i]["Comentarios"].ToString();
                
                 vista.TieneComentarios = dtResultado.Rows[i]["TieneComentarios"].ToString();
+                vista.CantidadTotal = Convert.ToInt32(dtResultado.Rows[i]["CantidadTotal"]);
                 listaEjemplo.Add(vista);
             }
 

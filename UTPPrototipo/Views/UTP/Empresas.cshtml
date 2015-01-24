@@ -150,6 +150,7 @@
 
 
 
+
 <script>
 
     $(document).ready(function () {
@@ -216,3 +217,120 @@
 
 </script>
 
+<!-- script de Paginacion busqueda simple-->
+
+<script>
+    $(document).ready(function () {
+
+        ////Al cargar la página se buscan las ofertas.
+        //BusquedaSimpleEmpresasActivas();
+
+        //$("#divFinalCabeceraEmpresa").removeClass("color-paleta1 color-paleta3 color-paleta4 color-paleta5").addClass("color-paleta2");
+
+        $('#btnBuscar').on('click', function () {
+            BusquedaSimpleEmpresasActivas();
+        });
+
+        function BusquedaSimpleEmpresasActivas() {
+            //$('#lblCargandoOfertas').css('visibility', 'visible');
+
+            var palabraClave = $('#filtroBusqueda').val();
+            var nroPaginaActual = $('#hddNroPaginaActual').val();
+
+            //Se llama a una accion para buscar las ofertas.
+            var url = '@Url.Action("BusquedaSimpleEmpresasActivas", "UTP")' + "?palabraClave=" + palabraClave + '&nroPaginaActual=' + nroPaginaActual;
+
+            $.get(url, function (data) {
+                $('#resultadobusqueda').html(data);
+            }).then(function () {
+                //$('#lblCargandoOfertas').css('visibility', 'hidden');
+            });
+        }
+
+
+    });
+
+    //Se le pasa el nro de pagina y hace lo mismo que el anterior.
+    function buscarSimpleEmpresasActivas(nroPaginaActual) {
+        //$('#lblCargandoOfertas').css('visibility', 'visible');
+
+        var palabraClave = $('#PalabraClave').val();
+        //var nroPaginaActual = $('#hddNroPaginaActual').val();
+
+        var url = '@Url.Action("BusquedaSimpleEmpresasActivas", "UTP")' + "?palabraClave=" + palabraClave + '&nroPaginaActual=' + nroPaginaActual;
+
+        $.get(url, function (data) {
+            $('#resultadobusqueda').html(data);
+        }).then(function () {
+            //$('#lblCargandoOfertas').css('visibility', 'hidden');
+        });
+    }
+</script>
+
+
+
+<!--Script de paginacion busqueda Avanzada-->
+
+<script>
+    $(document).ready(function () {
+
+        ////Al cargar la página se buscan las ofertas.
+        //BusquedaSimpleEmpresasActivas();
+
+        //$("#divFinalCabeceraEmpresa").removeClass("color-paleta1 color-paleta3 color-paleta4 color-paleta5").addClass("color-paleta2");
+
+        $('#buscaravanzada').on('click', function () {
+            BusquedaAvanzadaEmpresasActivas(1); //Cuando se hace clic en buscar siempre deberia traer la pagina 1, por eso se manda este parametro.
+        });
+
+
+        //Este metodo recibe nroPaginaActual dessde la paginacion.
+        //BusquedaAvanzadaEmpresasActivas se utiliza tanto en el buscar como en la paginacion por eso en el buscar se manda 1.
+        function BusquedaAvanzadaEmpresasActivas(nroPaginaActual) {
+            //$('#lblCargandoOfertas').css('visibility', 'visible');
+            //debugger;
+            console.log('ingreso');
+            var NombreComercial = $('#NombreComercial').val();
+            var IdEstadoEmpresa = $('#IdEstadoEmpresa').val();
+            var IdSector = $('#IdSector').val();
+            var RazonSocial = $('#RazonSocial').val();
+
+            console.log(NombreComercial);
+            console.log(IdEstadoEmpresa);
+            console.log(IdSector);
+            console.log(RazonSocial);
+            // este hay que comentarlo, porque no se usa. var nroPaginaActual = $('#nroPaginaActual').val();
+
+            //Se llama a una accion para buscar las ofertas.
+            //Aca estas pasando parametros  no entidades
+            var url = '@Url.Action("BusquedaAvanzadaEmpresas", "UTP")' + "?NombreComercial=" + NombreComercial + "?IdEstadoEmpresa=" + IdEstadoEmpresa + "?IdSector=" + IdSector + "?RazonSocial=" + RazonSocial + '&nroPaginaActual=' + nroPaginaActual;
+
+            $.get(url, function (data) {
+                $('#resultadobusqueda').html(data);
+            }).then(function () {
+                //$('#lblCargandoOfertas').css('visibility', 'hidden');
+            });
+        }
+
+
+    });
+
+    //Se le pasa el nro de pagina y hace lo mismo que el anterior.
+    function BusquedaAvanzadaEmpresasActivas(nroPaginaActual) {
+        //$('#lblCargandoOfertas').css('visibility', 'visible');
+
+        var NombreComercial = $('#NombreComercial').val();
+        var IdEstadoEmpresa = $('#IdEstadoEmpresa').val();
+        var IdSector = $('#IdSector').val();
+        var RazonSocial = $('#RazonSocial').val();
+        var nroPaginaActual = $('#nroPaginaActual').val();
+        var url = '@Url.Action("BusquedaAvanzadaEmpresas", "UTP")' + "?NombreComercial=" + NombreComercial + "?IdEstadoEmpresa=" + IdEstadoEmpresa + "?IdSector=" + IdSector + "?RazonSocial=" + RazonSocial + '&nroPaginaActual=' + nroPaginaActual;
+
+        $.get(url, function (data) {
+            $('#resultadobusqueda').html(data);
+        }).then(function () {
+            //$('#lblCargandoOfertas').css('visibility', 'hidden');
+        });
+    }
+
+</script>

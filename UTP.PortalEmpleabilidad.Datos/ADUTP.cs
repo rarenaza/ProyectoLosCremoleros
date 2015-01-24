@@ -97,7 +97,7 @@ namespace UTP.PortalEmpleabilidad.Datos
         }
 
 
-        public DataTable Empresa_ObtenerPorNombre(string nombre)
+        public DataTable Empresa_ObtenerPorNombre(string nombre, int nroPaginaActual, int filasPorPagina)
         {
   
             ADConexion cnn = new ADConexion();
@@ -106,6 +106,9 @@ namespace UTP.PortalEmpleabilidad.Datos
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = "Empresas_ObtenerNombre";
             cmd.Parameters.Add(new SqlParameter("@Nombre", nombre));
+            //Paginación.
+            cmd.Parameters.Add(new SqlParameter("@NroPaginaActual", nroPaginaActual));
+            cmd.Parameters.Add(new SqlParameter("@FilasPorPagina", filasPorPagina));
 
             cmd.Connection = cnn.cn;
             cnn.Conectar();
@@ -144,9 +147,9 @@ namespace UTP.PortalEmpleabilidad.Datos
 
             return dt;
         }
-   
 
-        public DataTable Empresa_BusquedaAvanzada(VistaEmpresListarOfertas entidad)
+        public DataTable Empresa_BusquedaAvanzada(VistaEmpresListarOfertas entidad, int nroPaginaActual, int filasPorPagina)
+        //public DataTable Empresa_BusquedaAvanzada(string NombreComercial,string , int nroPaginaActual, int filasPorPagina)
         {
 
             ADConexion cnn = new ADConexion();
@@ -158,9 +161,10 @@ namespace UTP.PortalEmpleabilidad.Datos
             cmd.Parameters.Add(new SqlParameter("@Valor", entidad.IdEstadoEmpresa == null ? "" : entidad.IdEstadoEmpresa));
             cmd.Parameters.Add(new SqlParameter("@Sector", entidad.IdSector == null ? "" : entidad.IdSector));
             cmd.Parameters.Add(new SqlParameter("@Razon", entidad.RazonSocial == null ? "" : entidad.RazonSocial));
-            //cmd.Parameters.Add(new SqlParameter("@Ruc", entidad.RUC == null ? "" : entidad.RUC));
+             //Paginación.
+            cmd.Parameters.Add(new SqlParameter("@NroPaginaActual", nroPaginaActual));
+            cmd.Parameters.Add(new SqlParameter("@FilasPorPagina", filasPorPagina));
 
-            //cmd.Parameters.Add(new SqlParameter("@EstadoOferta", entidad.EstadoOferta));
 
             cmd.Connection = cnn.cn;
             cnn.Conectar();

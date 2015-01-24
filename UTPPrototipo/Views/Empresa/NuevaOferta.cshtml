@@ -298,7 +298,192 @@
 
     </div>
 
-</div>
+
+    <div id='divNombre' class='classNombre'>
+        <div class="row">
+
+            <div id="ofertaRequisitos" class="col-sm-6">
+                <div class="panel-group" id="oferta-requisito" role="tablist" aria-multiselectable="true">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingRequisito" style="padding: 2px 2px 2px 6px;">
+                            <h5 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#oferta-requisito" href="#collapseRequisito" aria-expanded="true" aria-controls="collapseRequisito" class="fuente-seccion">
+                                    Requisitos de la Oferta
+                                </a>
+                            </h5>
+                        </div>
+                        <div id="collapseRequisito" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingRequisito">
+                            <div class="panel-body fuente-pequeña">
+                                <div id="divListaEstudios">
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <strong class="sub-titulo-seccion">Estudios</strong>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="row">
+                                        <div class="col-sm-12" style="text-align:right;">
+                                            <button disabled id="btnNuevoEstudio" data-toggle="modal" data-target="#divModalEstudio" onclick="crearEstudio(@ViewBag.IdOferta)" class=" btn btn-default color-paleta2">
+                                                Agregar un Estudio específico
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <hr />
+
+                                <div id="divListaSectores">
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <strong class="sub-titulo-seccion">Expericencia por Sector Empresarial</strong>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-12" style="text-align:right;">
+                                            <button disabled id="btnNuevoSectorEmpresarial" data-toggle="modal" data-target="#divModalSectorEmpresarial" onclick="crearSector(@ViewBag.IdOferta)" class="btn btn-default color-paleta2">
+                                                Agregar Experiencia por Sector
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <hr />
+
+                                <div id="divListaInfoAdicional">
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <strong class="sub-titulo-seccion">Información Adicional</strong>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-12" style="text-align:right;">
+                                            <button disabled class="btn btn-default color-paleta2" onclick="crearInfoAdicional(@ViewBag.IdOferta)">
+                                                Agregar Información Adicional
+                                            </button>
+                                            <!--id="btnNuevaInfoAdicional" data-toggle="modal" data-target="#divModalInfoAdicional"-->
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <br />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="ofertaFases" class="col-sm-6">
+
+
+                <div id="divContenedorFases" class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingFases" style="padding: 2px 2px 2px 6px;">
+                        <h5 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#oferta-fases" href="#collapseFases" aria-expanded="true" aria-controls="collapseFases" class="fuente-seccion">
+                                Fases de la Oferta
+                            </a>
+                        </h5>
+                    </div>
+
+                    <div id="collapseFases" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFases">
+                        <div class="panel-body fuente-pequeña">
+
+
+                            <p>Seleccionar Fases para esta Oferta</p>
+                            @*<div class="checkbox">
+                                <label>
+                                    <input type="checkbox" value="">
+                                    CVs Pendientes de Revisión
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" value="">
+                                    CVs en Revisión
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" value="">
+                                    Dinámica Grupal
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" value="">
+                                    Primera Entrevista
+                                </label>
+                            </div>
+
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" value="">
+                                    Examen de Conocimientos
+                                </label>
+                            </div>
+
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" value="">
+                                    Evaluaciones Psicológicas/Psicotécnicas
+                                </label>
+                            </div>
+
+
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" value="">
+                                    Examen Médico
+                                </label>
+                            </div>
+
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" value="">
+                                    Entrevista Final
+                                </label>
+                            </div>
+
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" value="">
+                                    Contratación
+                                </label>
+                            </div>
+
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" value="">
+                                    Proceso Finalizado
+                                </label>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-sm-12 " style="text-align:right;">
+                                    <button class="btn btn-default color-paleta2" style="margin-bottom:5px;">
+                                        Guardar
+                                    </button>
+                                </div>
+                            </div>*@
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+      </div>
 <script>
 
     $(document).ready(function () {
@@ -309,3 +494,5 @@
           
 
 </script>
+
+

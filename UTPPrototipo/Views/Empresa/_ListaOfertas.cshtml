@@ -97,11 +97,12 @@
             }
         }
     </div>
+
     <div class="col-sm-6" style="text-align:right;">
         <!--Paginación-->
         <nav class="navbar-right">
             <ul class="pagination">
-                
+
                 @{
                     for (int i = 1; i <= paginacion.TotalPaginas; i++)
                     {
@@ -112,26 +113,20 @@
                         else
                         {
                             <li><a href="#" onclick="buscarOfertasPaginacion('@i');">@i</a></li>                                                          
-                            @*<li>
-                                @Url.Action("BuscarOfertas","Empresa", new { palabraClave = palabraClave, nroPaginaActual = i } )
-                            </li>*@
+                       
                          }
                      }
                 }
-                            @*<li><a href="#">&laquo;</a></li>
-                                <li><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">5</a></li>
-                                <li><a href="#">&raquo;</a></li>*@
+         
 </ul>
-
-
-
-
 
         </nav>
     </div>
+
+
+   
+
+
+
 </div>
 <hr />

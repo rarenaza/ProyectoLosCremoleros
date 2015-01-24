@@ -1087,11 +1087,14 @@ namespace UTPPrototipo.Controllers
 
             string filtro = palabraClave == null ? "" : palabraClave;
 
+            //Al metodo normal se le añaden dos parámetros: nroPaginaActual y filasPorPagina
             List<VistaOfertaEmpresa> lista = lnOferta.Obtener_PanelEmpresa(idEmpresa, filtro, rolIdListaValor, ticket.Usuario, nroPaginaActual, filasPorPagina);
 
             //Datos para la paginación.
+            //Una ves traido la info de la bd, se llenan estos campos del objeto Paginacion
             int cantidadTotal = lista.Count() == 0 ? 0 : lista[0].CantidadTotal;
 
+            //Esto van en todas las paginas 
             Paginacion paginacion = new Paginacion();
             paginacion.NroPaginaActual = nroPaginaActual;
             paginacion.CantidadTotalResultados = cantidadTotal;
@@ -1102,6 +1105,7 @@ namespace UTPPrototipo.Controllers
 
             ViewBag.Paginacion = paginacion;
 
+            //Se devuelve una vista parcial con los resultados.
             return PartialView("_ListaOfertas",lista);
         }
 
