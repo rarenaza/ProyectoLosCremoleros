@@ -317,19 +317,19 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.Parameters.Add(new SqlParameter("@Ciclo", convenio.Ciclo));
                 cmd.Parameters.Add(new SqlParameter("@IdEmpresa", convenio.IdEmpresa));
                 cmd.Parameters.Add(new SqlParameter("@ContactoNombre", convenio.ContactoNombre));
-                cmd.Parameters.Add(new SqlParameter("@Ciclo", convenio.ContactoCargo));
-                cmd.Parameters.Add(new SqlParameter("@Ciclo", convenio.ContactoCorreoElectronico));
-                cmd.Parameters.Add(new SqlParameter("@Ciclo", convenio.ContactoTelefono));
-                cmd.Parameters.Add(new SqlParameter("@Ciclo", convenio.ContactoCelular));
-                cmd.Parameters.Add(new SqlParameter("@Ciclo", convenio.TipoTrabajo));
-                cmd.Parameters.Add(new SqlParameter("@Ciclo", convenio.DuracionContrato));
-                cmd.Parameters.Add(new SqlParameter("@Ciclo", convenio.SalarioOfrecido));
-                cmd.Parameters.Add(new SqlParameter("@Ciclo", convenio.CargoOfrecido));
-                cmd.Parameters.Add(new SqlParameter("@Ciclo", convenio.AreaEmpresa));
-                cmd.Parameters.Add(new SqlParameter("@Ciclo", convenio.FechaIngreso));
-                cmd.Parameters.Add(new SqlParameter("@Ciclo", convenio.FuenteConvenio));
-                cmd.Parameters.Add(new SqlParameter("@Ciclo", convenio.Observaciones));
-                cmd.Parameters.Add(new SqlParameter("@Ciclo", convenio.CreadoPor));
+                cmd.Parameters.Add(new SqlParameter("@ContactoCargo", convenio.ContactoCargo));
+                cmd.Parameters.Add(new SqlParameter("@ContactoCorreoElectronico", convenio.ContactoCorreoElectronico));
+                cmd.Parameters.Add(new SqlParameter("@ContactoTelefono", convenio.ContactoTelefono));
+                cmd.Parameters.Add(new SqlParameter("@ContactoCelular", convenio.ContactoCelular));
+                cmd.Parameters.Add(new SqlParameter("@TipoTrabajo", convenio.TipoTrabajo));
+                cmd.Parameters.Add(new SqlParameter("@DuracionContrato", convenio.DuracionContrato));
+                cmd.Parameters.Add(new SqlParameter("@SalarioOfrecido", convenio.SalarioOfrecido));
+                cmd.Parameters.Add(new SqlParameter("@CargoOfrecido", convenio.CargoOfrecido));
+                cmd.Parameters.Add(new SqlParameter("@AreaEmpresa", convenio.AreaEmpresa));
+                cmd.Parameters.Add(new SqlParameter("@FechaIngreso", convenio.FechaIngreso));
+                cmd.Parameters.Add(new SqlParameter("@FuenteConvenio", convenio.FuenteConvenio));
+                cmd.Parameters.Add(new SqlParameter("@Observaciones", convenio.Observaciones));
+                cmd.Parameters.Add(new SqlParameter("@CreadoPor", convenio.CreadoPor));
 
 
                 cmd.Connection = conexion;
