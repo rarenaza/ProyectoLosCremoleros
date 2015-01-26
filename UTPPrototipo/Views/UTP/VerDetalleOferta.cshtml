@@ -499,7 +499,9 @@
         var itemSeleccionado = $('#EstadoOferta').val();
         //alert('IdOferta: ' + idOferta + ' Estado Seleccionado: ' + itemSeleccionado);
 
-        var url = "../../Oferta/FinalizarOferta?idOferta=" + idOferta + '&estado=' + itemSeleccionado;
+        //var url = "../../Oferta/FinalizarOferta?idOferta=" + idOferta + '&estado=' + itemSeleccionado;
+        var url = '@Url.Action("FinalizarOferta", "Oferta")' + '?idOferta=' + idOferta + '&estado=' + itemSeleccionado;
+
         console.log(url);
 
         $.get(url, function (data) {

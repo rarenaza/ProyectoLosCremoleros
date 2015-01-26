@@ -160,7 +160,9 @@
     function crearExperiencia() {
         var IdAlumno = $('#IdAlumno').val();
         var IdCV = $('#HIIdCV').val();
-        var url = "/Alumno/ModalRegistroExperiencia?idAlumno=" + IdAlumno + "&IdCV=" + IdCV; // el url del controlador
+        //var url = "/Alumno/ModalRegistroExperiencia?idAlumno=" + IdAlumno + "&IdCV=" + IdCV; // el url del controlador
+        var url = '@Url.Action("ModalRegistroExperiencia", "Alumno")' + '?idAlumno=' + IdAlumno + '&IdCV=' + IdCV;
+
         $.get(url, function (data) {
             $('#Modal-Nuevo-experiencia-laboral').html(data);
             $.validator.unobtrusive.parse('#Modal-Nuevo-experiencia-laboral');
@@ -172,7 +174,9 @@
         var IdAlumno = $('#IdAlumno').val();
         var IdCV = $('#HIIdCV').val();
         var IdExperienciaCargo = $(obj).attr('Id').split("_")[1];
-        var url = "/Alumno/ModalModificarExperiencia?idAlumno=" + IdAlumno + "&IdCV=" + IdCV + "&IdExperienciaCargo=" + IdExperienciaCargo; // el url del controlador
+        //var url = "/Alumno/ModalModificarExperiencia?idAlumno=" + IdAlumno + "&IdCV=" + IdCV + "&IdExperienciaCargo=" + IdExperienciaCargo; // el url del controlador
+        var url = '@Url.Action("ModalModificarExperiencia", "Alumno")' + '?idAlumno=' + IdAlumno + '&IdCV=' + IdCV + '&IdExperienciaCargo=' + IdExperienciaCargo;
+
         $.get(url, function (data) {
             $('#Modal-Nuevo-experiencia-laboral').html(data);
             $.validator.unobtrusive.parse('#Modal-Nuevo-experiencia-laboral');
@@ -183,7 +187,8 @@
         var IdAlumno = $('#IdAlumno').val();
         var IdCV = $('#HIIdCV').val();
         var IdExperienciaCargo = $(obj).attr('Id').split("_")[1];
-        var url = "/Alumno/DesactivarExperienciaAlumno?idAlumno=" + IdAlumno + "&IdCV=" + IdCV + "&IdExperienciaCargo=" + IdExperienciaCargo; // el url del controlador
+        //var url = "/Alumno/DesactivarExperienciaAlumno?idAlumno=" + IdAlumno + "&IdCV=" + IdCV + "&IdExperienciaCargo=" + IdExperienciaCargo; // el url del controlador
+        var url = '@Url.Action("DesactivarExperienciaAlumno", "Alumno")' + '?idAlumno=' + IdAlumno + '&IdCV=' + IdCV + '&IdExperienciaCargo=' + IdExperienciaCargo;
         $.get(url, function (data) {
             $('#mi-cv-experiencia-laboral').html(data);
             $.validator.unobtrusive.parse('#mi-cv-experiencia-laboral');

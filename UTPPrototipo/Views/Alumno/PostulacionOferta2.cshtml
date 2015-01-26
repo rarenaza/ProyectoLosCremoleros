@@ -538,8 +538,12 @@
             CargoOfrecido: $('#CargoOfrecido').val()
 
         };
-        CargarPOST(null, "/Alumno/PostularOferta", ofertapostulacion);
-        var url = "/Alumno/EstadoPostulacionOferta/" + $('#IdOferta').val();
+        //CargarPOST(null, "/Alumno/PostularOferta", ofertapostulacion);
+        CargarPOST(null, '@Url.Action("PostularOferta", "Alumno")', ofertapostulacion);
+        
+        //var url = "/Alumno/EstadoPostulacionOferta/" + $('#IdOferta').val();
+        var url = '@Url.Action("EstadoPostulacionOferta", "Alumno")' + "/" + $('#IdOferta').val();
+
         CargarGET("oferta-postulacion", url);
     });
     $('#idDescargaCV').click(function () {
@@ -548,7 +552,8 @@
             IdOferta: $('#IdOferta').val()
         };
 
-        CargarPOST(null, "/Alumno/DescargarCV", ofertapostulacion);
+        //CargarPOST(null, "/Alumno/DescargarCV", ofertapostulacion);
+        CargarPOST(null, '@Url.Action("DescargarCV", "Alumno")', ofertapostulacion);
     });
 
     function CargarPOST(id, link, entidad) {

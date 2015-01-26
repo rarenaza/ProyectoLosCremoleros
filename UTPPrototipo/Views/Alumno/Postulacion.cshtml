@@ -16,7 +16,8 @@
             NumeroRegistros: parseInt($("#PagOfertasPostulacion").val())
         };
 
-        CargarPOST("idResulBusPostulaciones", "/Alumno/BusquedaSimplePostulacionOferta", ofertapostulacion);
+        //CargarPOST("idResulBusPostulaciones", "/Alumno/BusquedaSimplePostulacionOferta", ofertapostulacion);
+        CargarPOST("idResulBusPostulaciones", '@Url.Action("BusquedaSimplePostulacionOferta", "Alumno")', ofertapostulacion);
 
         $('#idBuscar').click(function () {
             var ofertapostulacion = {
@@ -25,7 +26,8 @@
                 PaginaActual: 1,
                 NumeroRegistros: parseInt($("#PagOfertasPostulacion").val())
             };
-            CargarPOST("idResulBusPostulaciones", "/Alumno/BusquedaSimplePostulacionOferta", ofertapostulacion);
+            //CargarPOST("idResulBusPostulaciones", "/Alumno/BusquedaSimplePostulacionOferta", ofertapostulacion);
+            CargarPOST("idResulBusPostulaciones", '@Url.Action("BusquedaSimplePostulacionOferta", "Alumno")', ofertapostulacion);
         });
 
     });

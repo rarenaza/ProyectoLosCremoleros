@@ -131,7 +131,8 @@
             PalabraClave: $('#PalabraClave').val(),
 
         };
-        Cargar("resultadobusqueda", "/UTP/BusquedaSimpleEmpresasActivas", empresa);
+        //Cargar("resultadobusqueda", "/UTP/BusquedaSimpleEmpresasActivas", empresa);
+        Cargar("resultadobusqueda", '@Url.Action("BusquedaSimpleEmpresasActivas", "Empresa")', empresa);
 
 
     });
