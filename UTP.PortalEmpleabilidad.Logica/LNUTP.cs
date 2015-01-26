@@ -19,6 +19,12 @@ namespace UTP.PortalEmpleabilidad.Logica
             return adUtp.OfertasObtenerPendientes(nroPaginaActual, filasPorPagina);
         }
 
+        
+
+        public void UTP_ConvenioInsertar(Convenio convenio)
+        {
+            adUtp.UTP_ConvenioInsertar(convenio);
+        }
 
 
         public DataTable EmpresaObtenerPendientes(int nroPagina, int filasPorPagina)
@@ -33,20 +39,6 @@ namespace UTP.PortalEmpleabilidad.Logica
           return adUtp.UsuarioSistemaUTP_Exitencia(Usuario);
 
         }
-
-
-        //public DataTable Empresa_ObtenerPorNombre(string nombre)
-        //{
-
-        //    return adUtp.Empresa_ObtenerPorNombre(nombre);
-        //}
-
-        //public DataTable Empresa_ObtenerPorNombre(string nombre)
-        //{
-
-        //    return adUtp.Empresa_ObtenerPorNombre(nombre);
-        //}
-
        
 
         public List<EmpresaListaEmpresa> Utp_ListaEmpresas()
@@ -209,6 +201,7 @@ namespace UTP.PortalEmpleabilidad.Logica
 
             return adUtp.UTP_ObtenerOfertasporActivar(oferta, nroPagina, filasPorPagina);
         }
+
         public DataTable UTP_ObtenerEventosObtenerBuscar(string evento, int nroPagina, int filasPorPagina)
         //public DataTable UTP_ObtenerEventosObtenerBuscar(string evento)
         {

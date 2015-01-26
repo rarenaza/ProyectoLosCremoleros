@@ -43,7 +43,7 @@
                                 </td>
                             </tr>
                         </table>
-                    
+
                     </div>
                 </div>
             </div>
@@ -72,14 +72,14 @@
                                     <span class="input-group-addon">Nombre</span>
                                     @*<input type="text" class="form-control" placeholder="Nombre de la empresa">*@
 
-                                    @Html.TextBoxFor(model => model.NombreComercial, new { @class = "form-control", @placeholder = "Nombre Comercial" ,@id="NombreComercial"})
+                                    @Html.TextBoxFor(model => model.NombreComercial, new { @class = "form-control", @placeholder = "Nombre Comercial", @id = "NombreComercial" })
 
 
                                 </div>
                                 <div class="input-group fuente-pequeña">
                                     <span class="input-group-addon">Razón<br />Social</span>
                                     @*<input type="text" class="form-control" placeholder="Razón Social de la empresa">*@
-                                    @Html.TextBoxFor(model => model.RazonSocial, new { @class = "form-control", @placeholder = "Razón Social de la empresa",@id="RazonSocial" })
+                                    @Html.TextBoxFor(model => model.RazonSocial, new { @class = "form-control", @placeholder = "Razón Social de la empresa", @id = "RazonSocial" })
                                 </div>
                             </div>
                             <div class="col-sm-4">
@@ -145,7 +145,7 @@
 
         </div>
     </div>
-    
+
     //$(document).ready(function () {
     //    var empresa = {
     //        PalabraClave: $('#PalabraClave').val(),
@@ -178,7 +178,7 @@
 
 
     });
- 
+
 
 
     $('#buscaravanzada').click(function () {
@@ -191,7 +191,7 @@
 
         };
         //debugger;
-     
+
         Cargar("resultadobusqueda", "/UTP/BusquedaAvanzadaEmpresas", oferta);
     });
 
@@ -227,7 +227,7 @@
     }
 
     function BusquedaAvanzadaEmpresasActivas(nroPagina) {
-         
+
         var oferta = {
             NombreComercial: $('#NombreComercial').val(),
             IdEstadoEmpresa: $('#IdEstadoEmpresa').val(),

@@ -935,7 +935,7 @@
     <Content Include="Views\UTP\_NuevoValorEditar.cshtml" />
     <Content Include="Views\Empresa\_ResultadoBusquedaHunting.cshtml" />
     <Content Include="Views\Empresa\_ListaOfertas.cshtml" />
-    <Content Include="Views\UTP\_VistaConvenios.cshtml" />
+    <Content Include="Views\UTP\Convenios.cshtml" />
     <Content Include="Views\UTP\_VistaNuevoConvenio.cshtml" />
     <Content Include="Views\UTP\_ListaUTPOfertas.cshtml" />
     <Content Include="Views\UTP\_ListaUtpEvento.cshtml" />

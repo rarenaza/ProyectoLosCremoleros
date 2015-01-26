@@ -18,6 +18,26 @@
     @Scripts.Render("~/bundles/modernizr")
     <link href="~/Content/animate.css" rel="stylesheet" />
     <link href="~/Content/font-awesome.css" rel="stylesheet" />
+<style>
+    .Boton_pestana {
+    border-radius: 10px 10px 0px 0px;
+    width: 80px;
+    margin: 0px 0px 0px 2px;
+    border-bottom: 0px;
+    padding: 2px 1px 2px 1px;
+    font-size: 12px;
+    }
+@Html.Raw("@")media screen and (max-width: 992px) {
+    .Boton_pestana {
+        border-radius: 6px 6px 0px 0px;
+        font-size: 10px;
+        width: 66px;
+        margin-left:1px;
+        }
+
+}
+
+</style>
 </head>
 <body class="cuerpo-zona-alumno">
     @*@Scripts.Render("~/bundles/jquery")
@@ -69,6 +89,9 @@
                     </li>
                     <li>
                         <a class="btn btn-default navbar-btn Boton_pestana color-paleta8" href=@Url.Action("Sistema", "UTP") style="padding: 2px 0px 2px 0px; color: white;">Sistema</a>
+                    </li>
+                    <li>
+                        <a class="btn btn-default navbar-btn Boton_pestana color-paleta9" href=@Url.Action("Convenios", "UTP") style="padding: 2px 0px 2px 0px; color: white;">Convenios</a>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right" style="padding-right: 15px; ">

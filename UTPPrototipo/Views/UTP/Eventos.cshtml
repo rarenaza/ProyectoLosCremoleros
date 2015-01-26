@@ -26,14 +26,14 @@
             <div id="ColapsaBusqueda" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="CabeceraColapsaBusqueda">
                 <div class="panel-body">
                     <div class="row">
-@*@using (Html.BeginForm("Eventos", "UTP", FormMethod.Get))
-{*@
+                        @*@using (Html.BeginForm("Eventos", "UTP", FormMethod.Get))
+                            {*@
                         <div class="col-sm-8">
 
 
                             <div class="input-group fuente-pequeña">
                                 <span class="input-group-addon fuente-pequeña">Palabra Clave</span>
-                                
+
                                 @Html.TextBox("SearchString", "", new { @class = "form-control", @placeholder = "Busca Por Evento" })
                                 @*<input type="text" class="form-control" placeholder="Palabra clave" />*@
 
@@ -42,11 +42,11 @@
                         </div>
                         <div class="col-sm-4">
 
-                           @* <input type="submit" class="fui" style="font-size:30px;border-width:0px;background-color:transparent;" value="(" />*@
+                            @* <input type="submit" class="fui" style="font-size:30px;border-width:0px;background-color:transparent;" value="(" />*@
                             @*<button class="btn btn-default color-paleta5 fa fa-search" id="buscar"></button>*@
                             <input type="submit" onclick="buscarPaginacion(1);" class="fui" style="font-size:30px;border-width:0px;background-color:transparent;" value="(" />
                         </div>
-@*}*@
+                        @*}*@
                     </div>
                 </div>
             </div>
@@ -56,9 +56,9 @@
 
         <h5>Eventos</h5>
 
-      
 
-  
+
+
 
 
     </div>
@@ -67,10 +67,10 @@
     </div>
     <div class="row">
         <div class="col-sm-12" style="text-align:right;">
-           @* <button class="btn btn-default color-paleta5" >Nuevo Evento</button>*@
+            @* <button class="btn btn-default color-paleta5" >Nuevo Evento</button>*@
             <a class="btn btn-default color-paleta5" href=@Url.Action("evento", "UTP")>Nuevo Evento</a>
 
-     
+
         </div>
     </div>
     <hr />
@@ -104,8 +104,8 @@
         $.get(url, function (data) {
             console.log(data);
             $('#resultadobusqueda').html(data);
-        }).error(function (err) { console.log(err); } );
-       
+        }).error(function (err) { console.log(err); });
+
     }
 </script>
 

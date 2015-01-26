@@ -706,8 +706,15 @@ namespace UTPPrototipo.Controllers
             return View(listaEjemplo);
 
         }
-
-        public ActionResult VistaConvenios(string SearchString)
+        //[HttpGet]
+        //public ActionResult Convenios()
+        //{
+        //    List<VistaUTPListaConvenio> listaEjemplo = new List<VistaUTPListaConvenio>();
+        //    return View("Convenios",listaEjemplo);
+        //}
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        public ActionResult Convenios(string SearchString)
         {
 
             string palabraClave = SearchString == null ? "" : SearchString;
@@ -727,17 +734,17 @@ namespace UTPPrototipo.Controllers
                 vista.NombreComercial = dtResultado.Rows[i]["NombreComercial"].ToString();
                 vista.TipoTrabajo = dtResultado.Rows[i]["TipoTrabajo"].ToString();
                 vista.DuracionContrato = Convert.ToInt32(dtResultado.Rows[i]["DuracionContrato"]);
-                vista.SalarioOfrecido = Convert.ToDecimal(dtResultado.Rows[i]["SalarioOfrecido"]);
+                vista.SalarioOfrecido = Convert.ToDecimal(dtResultado.Rows[i]["SalarioOfrecido"] == System.DBNull.Value ? null : dtResultado.Rows[i]["SalarioOfrecido"]);
                 vista.AreaEmpresa = dtResultado.Rows[i]["AreaEmpresa"].ToString();
-                vista.FechaIngreso = Convert.ToDateTime(dtResultado.Rows[i]["FechaIngreso"]);
+                vista.FechaIngreso = Convert.ToDateTime(dtResultado.Rows[i]["FechaIngreso"] == System.DBNull.Value ? null : dtResultado.Rows[i]["FechaIngreso"]);
 
                 listaEjemplo.Add(vista);
             }
 
-            return PartialView("_VistaConvenios",listaEjemplo);
+            return View("Convenios", listaEjemplo);
 
         }
-        
+        //[ValidateAntiForgeryToken]
         public ActionResult _VistaNuevoConvenio()
         {
             //if (idConvenio != null)
@@ -758,26 +765,41 @@ namespace UTPPrototipo.Controllers
         }
 
 
-        //[HttpPost]
+        [HttpPost]
         //[ValidateAntiForgeryToken]
-        //public ActionResult _VistaNuevoConvenio(Convenio convenio)
-        //{
-        //    //if (idConvenio != null)
-        //    //{
-        //    //    DataTable dtResultado = lnUtp.UTP_ObtenerConvenio(idConvenio);
-        //    //}
-        //    LNGeneral lngeneral = new LNGeneral();
-        //    //Convenio convenio = new Convenio();
-        //    //ViewBag.TipoTrabajo = new SelectList(lngeneral.ObtenerListaValor(29), "IdListaValor", "Valor");
-        //    //ViewBag.FuenteConvenio = new SelectList(lngeneral.ObtenerListaValor(51), "IdListaValor", "Valor");
-        //    return PartialView("_VistaNuevoConvenio", convenio);
-        //}
-
-        public ActionResult CrearConvenio(Convenio convenio)
+        public ActionResult NuevoConvenio(Convenio nconvenio)
         {
+            //if (idConvenio != null)
+            //{
+            //    DataTable dtResultado = lnUtp.UTP_ObtenerConvenio(idConvenio);
+            //}
 
-            return Json(convenio);
+            TicketUTP ticket = (TicketUTP)Session["TicketUTP"];
+            nconvenio.CreadoPor = ticket.Usuario;
+            lnUtp.UTP_ConvenioInsertar(nconvenio);
+
+
+            LNGeneral lngeneral = new LNGeneral();
+            Convenio convenio = new Convenio();
+            convenio.TipoTrabajo = "";
+            convenio.FuenteConvenio = "";
+
+            ViewBag.TipoTrabajo = new SelectList(lngeneral.ObtenerListaValor(29), "IdListaValor", "Valor");
+            ViewBag.FuenteConvenio = new SelectList(lngeneral.ObtenerListaValor(51), "IdListaValor", "Valor");
+
+            return View();
         }
+
+        //public ActionResult CrearConvenio(Convenio convenio)
+        //{
+        //    LNUTP lnUtp = new LNUTP();
+        //    //Convenio convenioNuevo = new Convenio();
+        //    //convenioNuevo.IdAlumno = convenio.IdAlumno;
+        //    TicketUTP ticket = (TicketUTP)Session["TicketUTP"];
+        //    convenio.CreadoPor = ticket.Usuario;
+        //    lnUtp.UTP_ConvenioInsertar(convenio);
+        //    return Json(convenio);
+        //}
 
         public ActionResult VerDetalleEmpresa(int id)
         {
@@ -2507,7 +2529,7 @@ namespace UTPPrototipo.Controllers
             {
                 vista.IdAlumno = Convert.ToInt32(dtResultado.Rows[0]["IdAlumno"]);
                 vista.Carrera = dtResultado.Rows[0]["Carrera"].ToString();
-                vista.Ciclo = Convert.ToInt32(dtResultado.Rows[0]["Ciclo"]);
+                vista.Ciclo = Convert.ToInt32(dtResultado.Rows[0]["Ciclo"] == System.DBNull.Value ? null : dtResultado.Rows[0]["Ciclo"]);
                 vista.TelefonoFijoCasa = dtResultado.Rows[0]["TelefonoFijoCasa"].ToString();
                 vista.TelefonoCelular = dtResultado.Rows[0]["TelefonoCelular"].ToString();
                 
