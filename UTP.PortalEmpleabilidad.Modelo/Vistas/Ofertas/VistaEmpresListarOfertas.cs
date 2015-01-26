@@ -28,5 +28,8 @@ namespace UTP.PortalEmpleabilidad.Modelo.Vistas.Ofertas
 
         public bool EstadoOferta { get; set; }
 
+        public int nroPaginaActual { get; set; }
+        public int filasPorPagina { get; set; }
+
     }
 }

@@ -198,19 +198,71 @@ namespace UTPPrototipo.Controllers
 
         }
 
-
-
-        public ActionResult BusquedaSimpleEmpresasActivas(VistaEmpresListarOfertas entidad, int nroPaginaActual = 1, int filasPorPagina = Constantes.FILAS_POR_PAGINA)
+        public ActionResult Eventos()
         {
-            entidad.ListaBusqueda = lnUtp.Empresa_ObtenerPorNombre(entidad.PalabraClave == null ? "" : entidad.PalabraClave, nroPaginaActual, filasPorPagina);
+            return View();
+        }
+        public ActionResult BusquedaEventos(string SearchString, int nroPaginaActual = 1)
+        //public ActionResult Eventos(string SearchString)
+        {
+
+            string palabraClave = SearchString == null ? "" : SearchString;
+            List<VistaObtenerEventosUTP> listaEjemplo = new List<VistaObtenerEventosUTP>();
+
+            DataTable dtResultado = lnUtp.UTP_ObtenerEventosObtenerBuscar(palabraClave, nroPaginaActual, Constantes.FILAS_POR_PAGINA);
+            //DataTable dtResultado = lnUtp.UTP_ObtenerEventosObtenerBuscar(palabraClave);
+
+            foreach (DataRow fila in dtResultado.Rows)
+            {
+                VistaObtenerEventosUTP vista = new VistaObtenerEventosUTP();
+
+                vista.IdEvento = Convert.ToInt32(fila["IdEvento"]);
+                vista.NombreEvento = Convert.ToString(fila["NombreEvento"]);
+                vista.LugarEvento = Convert.ToString(fila["LugarEvento"]);
+                //vista.Expositor = Convert.ToString(fila["Expositor"]);
+                vista.DireccionEvento = Convert.ToString(fila["DireccionEvento"]);
+                vista.AsistentesEsperados = Convert.ToInt32(fila["AsistentesEsperados"]);
+                vista.FechaEvento = Convert.ToString(fila["FechaEvento"]);
+                vista.CantidadTotal = Convert.ToInt32(fila["CantidadTotal"]);
+
+                listaEjemplo.Add(vista);
+            }
 
             //Datos para la paginación.
-            //Una ves traido la info de la bd, se llenan estos campos del objeto Paginacion
-            int cantidadTotal = entidad.ListaBusqueda.Count() == 0 ? 0 : entidad.ListaBusqueda[0].CantidadTotal;
+            int cantidadTotal = listaEjemplo.Count() == 0 ? 0 : listaEjemplo[0].CantidadTotal;
 
             //Esto van en todas las paginas 
             Paginacion paginacion = new Paginacion();
             paginacion.NroPaginaActual = nroPaginaActual;
+            paginacion.CantidadTotalResultados = cantidadTotal;
+            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA;
+            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA;
+            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA;
+            if (residuo > 0) paginacion.TotalPaginas += 1;
+
+            ViewBag.Paginacion = paginacion;
+
+            return PartialView("_ListaUtpEvento", listaEjemplo);
+            //return View(listaEjemplo);
+
+        }
+
+    
+    
+        //public ActionResult BusquedaSimpleEmpresasActivas(string PalabraClave, int nroPaginaActual = 1, int filasPorPagina = Constantes.FILAS_POR_PAGINA)
+        public ActionResult BusquedaSimpleEmpresasActivas(VistaEmpresListarOfertas entidad)
+        {
+
+            List<EmpresaListaEmpresa> lista = lnUtp.Empresa_ObtenerPorNombre(entidad.PalabraClave == null ? "" : entidad.PalabraClave, 
+                                                            entidad.nroPaginaActual, Constantes.FILAS_POR_PAGINA);
+
+            //Datos para la paginación.
+            //Una ves traido la info de la bd, se llenan estos campos del objeto Paginacion
+            int cantidadTotal = lista.Count() == 0 ? 0 : lista[0].CantidadTotal;
+
+            //Esto van en todas las paginas 
+            Paginacion paginacion = new Paginacion();
+            paginacion.NroPaginaActual = entidad.nroPaginaActual;
             paginacion.CantidadTotalResultados = cantidadTotal;
             paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA;
             paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA;
@@ -221,33 +273,36 @@ namespace UTPPrototipo.Controllers
 
             ViewBag.TipoBusqueda = "Simple";
 
-            return PartialView("_ResultadoBusquedaEmpresas", entidad.ListaBusqueda);
+            return PartialView("_ResultadoBusquedaEmpresas", lista);
     
         }
 
-        //aca estas pasando VistaEmpresListarOfertas entidad
-            //lo que hay que cambiar es esta llamada al metodo, en vez  de VistaEMpresaListarOfertas, debe ser string nombrecomercial, int idSector, etc.
-            //sino no va a entrar.
-        public ActionResult BusquedaAvanzadaEmpresas(VistaEmpresListarOfertas entidad, int nroPaginaActual = 1, int filasPorPagina = Constantes.FILAS_POR_PAGINA)
+
+        public ActionResult BusquedaAvanzadaEmpresas(VistaEmpresListarOfertas entidad)
         {
-            entidad.ListaBusqueda = lnUtp.EmpresaBusquedaAvanzada(entidad, nroPaginaActual, filasPorPagina);
-            //Datos para la paginación.
-            //Una ves traido la info de la bd, se llenan estos campos del objeto Paginacion
-            int cantidadTotal = entidad.ListaBusqueda.Count() == 0 ? 0 : entidad.ListaBusqueda[0].CantidadTotal;
+            List<EmpresaListaEmpresa> lista = lnUtp.EmpresaBusquedaAvanzada(entidad.NombreComercial == null ? "" : entidad.NombreComercial,
+                                                                            entidad.IdEstadoEmpresa == null ? "" : entidad.IdEstadoEmpresa, 
+                                                                            entidad.IdSector == null ? "" :entidad.IdSector, 
+                                                                            entidad.RazonSocial == null ? "" :entidad.RazonSocial, 
+                                                                            entidad.nroPaginaActual,
+                                                                            Constantes.FILAS_POR_PAGINA);
+         
+
+            int cantidadTotal = lista.Count() == 0 ? 0 : lista[0].CantidadTotal;
 
             //Esto van en todas las paginas 
             Paginacion paginacion = new Paginacion();
-            paginacion.NroPaginaActual = nroPaginaActual;
+            paginacion.NroPaginaActual = entidad.nroPaginaActual;
             paginacion.CantidadTotalResultados = cantidadTotal;
-            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA;
-            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA;
-            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA;
+            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
             if (residuo > 0) paginacion.TotalPaginas += 1;
 
             ViewBag.Paginacion = paginacion;
             ViewBag.TipoBusqueda = "Avanzada";
 
-            return PartialView("_ResultadoBusquedaEmpresas", entidad.ListaBusqueda);
+            return PartialView("_ResultadoBusquedaEmpresas", lista);
 
         }
 
@@ -788,42 +843,7 @@ namespace UTPPrototipo.Controllers
             return View();
         }
  
-        public ActionResult BuscarOfertas(string SearchString, int nroPaginaActual)
-        {
-            string palabraClave = SearchString == null ? "" : SearchString;
-            List<VistaOferta> listaEjemplo = new List<VistaOferta>();
-            DataTable dtResultado = lnUtp.UTP_ObtenerOfertasporActivar(palabraClave, nroPaginaActual, Constantes.FILAS_POR_PAGINA);
-
-            foreach (DataRow fila in dtResultado.Rows)
-            {
-                VistaOferta vista = new VistaOferta();
-
-                vista.FechaPublicacion = Convert.ToDateTime(fila["FechaPublicacion"]);
-                vista.NombreComercial = Convert.ToString(fila["NombreComercial"]);
-                vista.CargoOfrecido = Convert.ToString(fila["CargoOfrecido"]);
-                vista.IdOferta = Convert.ToInt32(fila["IdOferta"]);
-                vista.Estado = Convert.ToString(fila["Estado"]);
-                vista.Cargo = Convert.ToString(fila["Cargo"]);
-                vista.CantidadTotal = Convert.ToInt32(fila["CantidadTotal"]);
-
-                listaEjemplo.Add(vista);
-            }
-
-            //Datos para la paginación.
-            int cantidadTotal = listaEjemplo.Count() == 0 ? 0 : listaEjemplo[0].CantidadTotal;
-
-            Paginacion paginacion = new Paginacion();
-            paginacion.NroPaginaActual = nroPaginaActual;
-            paginacion.CantidadTotalResultados = cantidadTotal;
-            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
-            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
-            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
-            if (residuo > 0) paginacion.TotalPaginas += 1;
-
-            ViewBag.Paginacion = paginacion;
-
-            return PartialView("_ListaUTPOfertas", listaEjemplo);
-        }
+       
 
         public ActionResult Ofertas()
         {
@@ -1038,37 +1058,44 @@ namespace UTPPrototipo.Controllers
 
         }
 
- 
-
-            public ActionResult Eventos(string SearchString)
+        public ActionResult BuscarOfertas(string SearchString, int nroPaginaActual)
         {
-
-            List<VistaObtenerEventosUTP> listaEjemplo = new List<VistaObtenerEventosUTP>();
-
             string palabraClave = SearchString == null ? "" : SearchString;
+            List<VistaOferta> listaEjemplo = new List<VistaOferta>();
+            DataTable dtResultado = lnUtp.UTP_ObtenerOfertasporActivar(palabraClave, nroPaginaActual, Constantes.FILAS_POR_PAGINA);
 
-             
-                DataTable dtResultado = lnUtp.UTP_ObtenerEventosObtenerBuscar(palabraClave);
+            foreach (DataRow fila in dtResultado.Rows)
+            {
+                VistaOferta vista = new VistaOferta();
 
-                foreach (DataRow fila in dtResultado.Rows)
-                {
-                    VistaObtenerEventosUTP vista = new VistaObtenerEventosUTP();
+                vista.FechaPublicacion = Convert.ToDateTime(fila["FechaPublicacion"]);
+                vista.NombreComercial = Convert.ToString(fila["NombreComercial"]);
+                vista.CargoOfrecido = Convert.ToString(fila["CargoOfrecido"]);
+                vista.IdOferta = Convert.ToInt32(fila["IdOferta"]);
+                vista.Estado = Convert.ToString(fila["Estado"]);
+                vista.Cargo = Convert.ToString(fila["Cargo"]);
+                vista.CantidadTotal = Convert.ToInt32(fila["CantidadTotal"]);
 
-                    vista.IdEvento = Convert.ToInt32(fila["IdEvento"]);
-                    vista.NombreEvento = Convert.ToString(fila["NombreEvento"]);
-                    vista.LugarEvento = Convert.ToString(fila["LugarEvento"]);
-                    //vista.Expositor = Convert.ToString(fila["Expositor"]);
-                    vista.DireccionEvento = Convert.ToString(fila["DireccionEvento"]);
-                    vista.AsistentesEsperados = Convert.ToInt32(fila["AsistentesEsperados"]);
-                    vista.FechaEvento = Convert.ToString(fila["FechaEvento"]);
+                listaEjemplo.Add(vista);
+            }
 
-                    listaEjemplo.Add(vista);
-                }
+            //Datos para la paginación.
+            int cantidadTotal = listaEjemplo.Count() == 0 ? 0 : listaEjemplo[0].CantidadTotal;
 
-            return View(listaEjemplo);
+            Paginacion paginacion = new Paginacion();
+            paginacion.NroPaginaActual = nroPaginaActual;
+            paginacion.CantidadTotalResultados = cantidadTotal;
+            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            if (residuo > 0) paginacion.TotalPaginas += 1;
 
+            ViewBag.Paginacion = paginacion;
 
+            return PartialView("_ListaUTPOfertas", listaEjemplo);
         }
+
+       
 
  
         public ActionResult Evento()

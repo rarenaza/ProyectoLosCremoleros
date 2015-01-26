@@ -19,13 +19,7 @@ namespace UTP.PortalEmpleabilidad.Logica
             return adUtp.OfertasObtenerPendientes(nroPaginaActual, filasPorPagina);
         }
 
-        public DataTable UTP_ObtenerOfertasporActivar(string oferta, int nroPagina, int filasPorPagina)
-        {
 
-            return adUtp.UTP_ObtenerOfertasporActivar(oferta, nroPagina, filasPorPagina);
-        }
-        
-       
 
         public DataTable EmpresaObtenerPendientes(int nroPagina, int filasPorPagina)
         {
@@ -53,38 +47,7 @@ namespace UTP.PortalEmpleabilidad.Logica
         //    return adUtp.Empresa_ObtenerPorNombre(nombre);
         //}
 
-        public List<EmpresaListaEmpresa> Empresa_ObtenerPorNombre(string nombre, int nroPaginaActual, int filasPorPagina)
-        {
-            List<EmpresaListaEmpresa> listaEjemplo = new List<EmpresaListaEmpresa>();
-
-
-            DataTable dtResultado = adUtp.Empresa_ObtenerPorNombre(nombre, nroPaginaActual, filasPorPagina);
-
-            for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
-            {
-                EmpresaListaEmpresa vista = new EmpresaListaEmpresa();
-
-                vista.IdEmpresa = Convert.ToInt32(dtResultado.Rows[i]["IdEmpresa"]);
-                vista.NombreComercial = dtResultado.Rows[i]["Nombre"].ToString();
-                vista.RazonSocial = dtResultado.Rows[i]["Razon"].ToString();
-                vista.RUC = dtResultado.Rows[i]["RUC"].ToString();
-                vista.Estado = dtResultado.Rows[i]["Estado"].ToString();
-                vista.EjecutivoUTP = dtResultado.Rows[i]["EjecutivoUTP"].ToString();
-                vista.SectorEmpresarial = dtResultado.Rows[i]["SectorEmpresarial"].ToString();
-                vista.Clasificacion = dtResultado.Rows[i]["Clasificación"].ToString();
-                vista.Ofertas = dtResultado.Rows[i]["Ofertas"].ToString();
-                vista.NivelDeRelacion = dtResultado.Rows[i]["NivelDeRelacion"].ToString();
-                vista.FacultadPrincipal = dtResultado.Rows[i]["FacultadPrincipal"].ToString();
-
-                //vista.Comentarios = dtResultado.Rows[i]["Comentarios"].ToString();
-                vista.TieneComentarios = dtResultado.Rows[i]["TieneComentarios"].ToString();
-                vista.CantidadTotal = Convert.ToInt32(dtResultado.Rows[i]["CantidadTotal"]);
-
-                listaEjemplo.Add(vista);
-            }
-
-            return listaEjemplo;
-        }
+       
 
         public List<EmpresaListaEmpresa> Utp_ListaEmpresas()
         {
@@ -134,12 +97,45 @@ namespace UTP.PortalEmpleabilidad.Logica
 
             return adUtp.Utp_BuscarDatosAlumno(idAlumno);
         }
-        public List<EmpresaListaEmpresa> EmpresaBusquedaAvanzada(VistaEmpresListarOfertas entidad,int nroPaginaActual, int filasPorPagina)
+
+        public List<EmpresaListaEmpresa> Empresa_ObtenerPorNombre(string PalabraClave, int nroPaginaActual, int filasPorPagina)
         {
             List<EmpresaListaEmpresa> listaEjemplo = new List<EmpresaListaEmpresa>();
 
 
-            DataTable dtResultado = adUtp.Empresa_BusquedaAvanzada(entidad, nroPaginaActual, filasPorPagina);
+            DataTable dtResultado = adUtp.Empresa_ObtenerPorNombre(PalabraClave, nroPaginaActual, filasPorPagina);
+
+            for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
+            {
+                EmpresaListaEmpresa vista = new EmpresaListaEmpresa();
+
+                vista.IdEmpresa = Convert.ToInt32(dtResultado.Rows[i]["IdEmpresa"]);
+                vista.NombreComercial = dtResultado.Rows[i]["Nombre"].ToString();
+                vista.RazonSocial = dtResultado.Rows[i]["Razon"].ToString();
+                vista.RUC = dtResultado.Rows[i]["RUC"].ToString();
+                vista.Estado = dtResultado.Rows[i]["Estado"].ToString();
+                vista.EjecutivoUTP = dtResultado.Rows[i]["EjecutivoUTP"].ToString();
+                vista.SectorEmpresarial = dtResultado.Rows[i]["SectorEmpresarial"].ToString();
+                vista.Clasificacion = dtResultado.Rows[i]["Clasificación"].ToString();
+                vista.Ofertas = dtResultado.Rows[i]["Ofertas"].ToString();
+                vista.NivelDeRelacion = dtResultado.Rows[i]["NivelDeRelacion"].ToString();
+                vista.FacultadPrincipal = dtResultado.Rows[i]["FacultadPrincipal"].ToString();
+
+                //vista.Comentarios = dtResultado.Rows[i]["Comentarios"].ToString();
+                vista.TieneComentarios = dtResultado.Rows[i]["TieneComentarios"].ToString();
+                vista.CantidadTotal = Convert.ToInt32(dtResultado.Rows[i]["CantidadTotal"]);
+
+                listaEjemplo.Add(vista);
+            }
+
+            return listaEjemplo;
+        }
+        public List<EmpresaListaEmpresa> EmpresaBusquedaAvanzada(string NombreComercial, string IdEstadoEmpresa, string IdSector, string RazonSocial, int nroPaginaActual, int filasPorPagina)
+        {
+            List<EmpresaListaEmpresa> listaEjemplo = new List<EmpresaListaEmpresa>();
+
+
+            DataTable dtResultado = adUtp.Empresa_BusquedaAvanzada(NombreComercial, IdEstadoEmpresa, IdSector, RazonSocial, nroPaginaActual, filasPorPagina);
 
             for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
             {
@@ -208,11 +204,17 @@ namespace UTP.PortalEmpleabilidad.Logica
             LNCorreo.EnviarCorreo(mensaje);
         }
 
-      
-        public DataTable UTP_ObtenerEventosObtenerBuscar(string evento)
+        public DataTable UTP_ObtenerOfertasporActivar(string oferta, int nroPagina, int filasPorPagina)
         {
 
-            return adUtp.UTP_ObtenerEventosObtenerBuscar(evento);
+            return adUtp.UTP_ObtenerOfertasporActivar(oferta, nroPagina, filasPorPagina);
+        }
+        public DataTable UTP_ObtenerEventosObtenerBuscar(string evento, int nroPagina, int filasPorPagina)
+        //public DataTable UTP_ObtenerEventosObtenerBuscar(string evento)
+        {
+
+            return adUtp.UTP_ObtenerEventosObtenerBuscar(evento, nroPagina, filasPorPagina);
+            //return adUtp.UTP_ObtenerEventosObtenerBuscar(evento);
         }
 
 
