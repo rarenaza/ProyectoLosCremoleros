@@ -720,7 +720,12 @@ namespace UTPPrototipo.Controllers
 
         public ActionResult CrearConvenio(Convenio convenio)
         {
-
+            LNUTP lnUtp = new LNUTP();
+            //Convenio convenioNuevo = new Convenio();
+            //convenioNuevo.IdAlumno = convenio.IdAlumno;
+            TicketUTP ticket = (TicketUTP)Session["TicketUTP"];
+            convenio.CreadoPor = ticket.Usuario;
+            lnUtp.UTP_ConvenioInsertar(convenio);
             return Json(convenio);
         }
 

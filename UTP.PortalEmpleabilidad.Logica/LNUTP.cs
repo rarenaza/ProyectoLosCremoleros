@@ -24,8 +24,11 @@ namespace UTP.PortalEmpleabilidad.Logica
 
             return adUtp.UTP_ObtenerOfertasporActivar(oferta, nroPagina, filasPorPagina);
         }
-        
-       
+
+        public void UTP_ConvenioInsertar(Convenio convenio)
+        {
+            adUtp.UTP_ConvenioInsertar(convenio);
+        }
 
         public DataTable EmpresaObtenerPendientes(int nroPagina, int filasPorPagina)
         {

@@ -243,10 +243,22 @@
     }
     function crearConvenio() {
         
-        var url = "/UTP/CrearConvenio"; // el url del controlador
-        $.get(url, function (data) {
-            $('#_VistaNuevoConvenio').html(data);
-            $.validator.unobtrusive.parse('#_VistaNuevoConvenio');
-        });
+        var link = "/UTP/CrearConvenio"; // el url del controlador
+        var etidad = {
+            IdAlumno: $('#IdAlumno').val(),
+            
+        };
+        $.ajax({
+            url: link,
+            contentType: 'application/json; charset=utf-8',
+            type: 'POST',
+            data: JSON.stringify(entidad),
+            dataType: 'html'
+        })
+
+        //$.get(url, function (data) {
+        //    $('#_VistaNuevoConvenio').html(data);
+        //    $.validator.unobtrusive.parse('#_VistaNuevoConvenio');
+        //});
     }
     </script>

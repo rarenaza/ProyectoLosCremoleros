@@ -299,6 +299,49 @@ namespace UTP.PortalEmpleabilidad.Datos
             return dtResultado;
         }
 
+        public void UTP_ConvenioInsertar(Convenio convenio)
+        {
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Convenio_Insertar";
+
+                //Parámetros:
+                cmd.Parameters.Add(new SqlParameter("@IdAlumno", convenio.IdAlumno));
+                cmd.Parameters.Add(new SqlParameter("@Carrera", convenio.Carrera));
+                cmd.Parameters.Add(new SqlParameter("@NivelAcademico", convenio.NivelAcademico));
+                cmd.Parameters.Add(new SqlParameter("@TelefonoFijoCasa", convenio.TelefonoFijoCasa));
+                cmd.Parameters.Add(new SqlParameter("@TelefonoCelular", convenio.TelefonoCelular));
+                cmd.Parameters.Add(new SqlParameter("@Ciclo", convenio.Ciclo));
+                cmd.Parameters.Add(new SqlParameter("@IdEmpresa", convenio.IdEmpresa));
+                cmd.Parameters.Add(new SqlParameter("@ContactoNombre", convenio.ContactoNombre));
+                cmd.Parameters.Add(new SqlParameter("@Ciclo", convenio.ContactoCargo));
+                cmd.Parameters.Add(new SqlParameter("@Ciclo", convenio.ContactoCorreoElectronico));
+                cmd.Parameters.Add(new SqlParameter("@Ciclo", convenio.ContactoTelefono));
+                cmd.Parameters.Add(new SqlParameter("@Ciclo", convenio.ContactoCelular));
+                cmd.Parameters.Add(new SqlParameter("@Ciclo", convenio.TipoTrabajo));
+                cmd.Parameters.Add(new SqlParameter("@Ciclo", convenio.DuracionContrato));
+                cmd.Parameters.Add(new SqlParameter("@Ciclo", convenio.SalarioOfrecido));
+                cmd.Parameters.Add(new SqlParameter("@Ciclo", convenio.CargoOfrecido));
+                cmd.Parameters.Add(new SqlParameter("@Ciclo", convenio.AreaEmpresa));
+                cmd.Parameters.Add(new SqlParameter("@Ciclo", convenio.FechaIngreso));
+                cmd.Parameters.Add(new SqlParameter("@Ciclo", convenio.FuenteConvenio));
+                cmd.Parameters.Add(new SqlParameter("@Ciclo", convenio.Observaciones));
+                cmd.Parameters.Add(new SqlParameter("@Ciclo", convenio.CreadoPor));
+
+
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                cmd.ExecuteNonQuery();
+
+                conexion.Close();
+            }
+        }
+
         public void ActualizarEstadoYUsuarioEC(Empresa empresa)
         {
             try
