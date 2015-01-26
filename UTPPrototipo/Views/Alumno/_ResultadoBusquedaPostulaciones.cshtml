@@ -81,7 +81,9 @@
             PaginaActual: $(this).html(),
             NumeroRegistros: parseInt($("#PagOfertasPostulacion").val())
         };
-        CargarPOST("idResulBusPostulaciones", "/Alumno/BusquedaSimplePostulacionOferta", ofertapostulacion);
+
+        //CargarPOST("idResulBusPostulaciones", "/Alumno/BusquedaSimplePostulacionOferta", ofertapostulacion);
+        CargarPOST("idResulBusPostulaciones", '@Url.Action("BusquedaSimplePostulacionOferta", "Alumno")', ofertapostulacion);
 
     });
     $('.before').click(function () {
@@ -94,7 +96,8 @@
                 PaginaActual: paginaactual,
                 NumeroRegistros: parseInt($("#PagOfertasPostulacion").val())
             };
-            CargarPOST("idResulBusPostulaciones", "/Alumno/BusquedaSimplePostulacionOferta", ofertapostulacion);
+            //CargarPOST("idResulBusPostulaciones", "/Alumno/BusquedaSimplePostulacionOferta", ofertapostulacion);
+            CargarPOST("idResulBusPostulaciones", '@Url.Action("BusquedaSimplePostulacionOferta", "Alumno")', ofertapostulacion);
         }
     });
     $('.after').click(function () {
@@ -107,8 +110,8 @@
                 PaginaActual: paginaactual,
                 NumeroRegistros: parseInt($("#PagOfertasPostulacion").val())
             };
-            CargarPOST("idResulBusPostulaciones", "/Alumno/BusquedaSimplePostulacionOferta", ofertapostulacion);
-
+            //CargarPOST("idResulBusPostulaciones", "/Alumno/BusquedaSimplePostulacionOferta", ofertapostulacion);
+            CargarPOST("idResulBusPostulaciones", '@Url.Action("BusquedaSimplePostulacionOferta", "Alumno")', ofertapostulacion);
         }
 
     });

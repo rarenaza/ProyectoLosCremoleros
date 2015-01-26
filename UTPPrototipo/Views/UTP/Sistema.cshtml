@@ -127,7 +127,9 @@
 
     function UsuarioUTPCrear() {
         //debugger;
-        var url = "/UTP/_UsuariosUTPCrear"; //
+        //var url = "/UTP/_UsuariosUTPCrear"; //
+        var url = '@Url.Action("_UsuariosUTPCrear", "UTP")'
+
         $.get(url, function (data) {
             //alert(data);
             $('#divContenedorUsuarioUTPCrear').html(data);
@@ -142,7 +144,9 @@
     }
 
     function UsuarioUTPEditar(id) {
-        var url = "/UTP/_UsuariosUTPEditar/" + id;
+        //var url = "/UTP/_UsuariosUTPEditar/" + id;
+        var url = '@Url.Action("_UsuariosUTPEditar", "UTP")' + '/' + id;
+
         $.get(url, function (data) {
             $('#divContenedorUsuarioUTPEditar').html(data);
             $.validator.unobtrusive.parse('#divContenedorUsuarioUTPEditar');
@@ -154,7 +158,9 @@
     function ListaValorPadreInsertar() {
 
         //console.log('punto de control');
-        var url = "/UTP/_ListaValorPadreInsertar/";
+        //var url = "/UTP/_ListaValorPadreInsertar/";
+        var url = '@Url.Action("_ListaValorPadreInsertar", "UTP")'
+
         $.get(url, function (data) {
 
             console.log(data);
@@ -167,7 +173,7 @@
             console.log(err);
             alert(err);
         });
-      
+
     }
 
 

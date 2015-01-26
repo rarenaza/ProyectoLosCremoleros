@@ -90,7 +90,7 @@
                 NumeroRegistros: parseInt($("#PagOfertas").val())
 
             };
-            Cargar("resultadobusqueda", "/Alumno/BusquedaSimpleOferta", oferta);
+            Cargar("resultadobusqueda", '@Url.Action("BusquedaSimpleOferta", "Alumno")', oferta);  //Cargar("resultadobusqueda", "/Alumno/BusquedaSimpleOferta", oferta);
         } else if ($("#TipoBusqueda").val() == 2) {
             var oferta = {
                 IdPeriodoPublicacion: $('#IdPeriodoPublicacion').val(),
@@ -110,7 +110,7 @@
                 NumeroRegistros: parseInt($("#PagOfertas").val())
 
             };
-            Cargar("resultadobusqueda", "/Alumno/BusquedaAvanzadaOferta", oferta);
+            Cargar("resultadobusqueda", '@Url.Action("BusquedaAvanzadaOferta", "Alumno")', oferta);   //Cargar("resultadobusqueda", "/Alumno/BusquedaAvanzadaOferta", oferta);
         }
     });
     $('.before').click(function () {
@@ -124,7 +124,8 @@
                     PaginaActual: paginaactual,
                     NumeroRegistros: parseInt($("#PagOfertas").val())
                 };
-                Cargar("resultadobusqueda", "/Alumno/BusquedaSimpleOferta", oferta);
+                //Cargar("resultadobusqueda", "/Alumno/BusquedaSimpleOferta", oferta);
+                Cargar("resultadobusqueda", '@Url.Action("BusquedaSimpleOferta", "Alumno")', oferta);
             } else if ($("#TipoBusqueda").val() == 2) {
                 var oferta = {
                     IdPeriodoPublicacion: $('#IdPeriodoPublicacion').val(),
@@ -144,7 +145,8 @@
                     NumeroRegistros: parseInt($("#PagOfertas").val())
 
                 };
-                Cargar("resultadobusqueda", "/Alumno/BusquedaAvanzadaOferta", oferta);
+                //Cargar("resultadobusqueda", "/Alumno/BusquedaAvanzadaOferta", oferta);
+                Cargar("resultadobusqueda", '@Url.Action("BusquedaAvanzadaOferta", "Alumno")', oferta);
             }
         }
     });
@@ -159,7 +161,8 @@
                     PaginaActual: paginaactual,
                     NumeroRegistros: parseInt($("#PagOfertas").val())
                 };
-                Cargar("resultadobusqueda", "/Alumno/BusquedaSimpleOferta", oferta);
+                //Cargar("resultadobusqueda", "/Alumno/BusquedaSimpleOferta", oferta);
+                Cargar("resultadobusqueda", '@Url.Action("BusquedaSimpleOferta", "Alumno")', oferta);
             } else if ($("#TipoBusqueda").val() == 2) {
                 var oferta = {
                     IdPeriodoPublicacion: $('#IdPeriodoPublicacion').val(),
@@ -179,7 +182,8 @@
                     NumeroRegistros: parseInt($("#PagOfertas").val())
 
                 };
-                Cargar("resultadobusqueda", "/Alumno/BusquedaAvanzadaOferta", oferta);
+                //Cargar("resultadobusqueda", "/Alumno/BusquedaAvanzadaOferta", oferta);
+                Cargar("resultadobusqueda", '@Url.Action("BusquedaAvanzadaOferta", "Alumno")', oferta);
             }
 
         }
@@ -203,4 +207,4 @@
             alert(status);
         })
     }
-    </script>
+</script>

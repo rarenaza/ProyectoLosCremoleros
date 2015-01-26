@@ -103,7 +103,8 @@
         var IdAlumno = $('#IdAlumno').val();
         var IdCV = $('#HIIdCV').val();
 
-        var url = "/Alumno/ModalRegistroEstudio?idAlumno=" + IdAlumno + "&IdCV=" + IdCV; // el url del controlador           
+        //var url = "/Alumno/ModalRegistroEstudio?idAlumno=" + IdAlumno + "&IdCV=" + IdCV; // el url del controlador
+        var url = '@Url.Action("ModalRegistroEstudio", "Alumno")' + '?idAlumno=' + IdAlumno + '&IdCV=' + IdCV;
         $.get(url, function (data) {
             $('#Modal-Nuevo-Estudio').html(data);
             $.validator.unobtrusive.parse('#Modal-Nuevo-Estudio');
@@ -115,7 +116,9 @@
         var IdAlumno = $('#IdAlumno').val();
         var IdCV = $('#HIIdCV').val();
         var IdEstudio = $(obj).attr('Id').split("_")[1];
-        var url = "/Alumno/ModalModificarEstudio?idAlumno=" + IdAlumno + "&IdCV=" + IdCV + "&IdEstudio=" + IdEstudio; // el url del controlador           
+        //var url = "/Alumno/ModalModificarEstudio?idAlumno=" + IdAlumno + "&IdCV=" + IdCV + "&IdEstudio=" + IdEstudio; // el url del controlador
+        var url = '@Url.Action("ModalModificarEstudio", "Alumno")' + '?idAlumno=' + IdAlumno + '&IdCV=' + IdCV + '&IdEstudio=' + IdEstudio;
+
         $.get(url, function (data) {
             $('#Modal-Nuevo-Estudio').html(data);
             $.validator.unobtrusive.parse('#Modal-Nuevo-Estudio');
@@ -126,7 +129,8 @@
         var IdAlumno = $('#IdAlumno').val();
         var IdCV = $('#HIIdCV').val();
         var IdEstudio = $(obj).attr('Id').split("_")[1];
-        var url = "/Alumno/DesactivarEstudioAlumno?idAlumno=" + IdAlumno + "&IdCV=" + IdCV + "&IdEstudio=" + IdEstudio; // el url del controlador              
+        //var url = "/Alumno/DesactivarEstudioAlumno?idAlumno=" + IdAlumno + "&IdCV=" + IdCV + "&IdEstudio=" + IdEstudio; // el url del controlador
+        var url = '@Url.Action("DesactivarEstudioAlumno", "Alumno")' + '?idAlumno=' + IdAlumno + '&IdCV=' + IdCV + '&IdEstudio=' + IdEstudio;
         $.get(url, function (data) {
             $('#mi-cv-educacion').html(data);
             $.validator.unobtrusive.parse('#mi-cv-educacion');

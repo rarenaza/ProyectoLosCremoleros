@@ -77,32 +77,36 @@
     function ListaValorHijoInsertar() {
 
         //console.log('punto de control');
-        var url = "/UTP/_NuevoValor/";
+        //var url = "/UTP/_NuevoValor/";
+        var url = '@Url.Action("_NuevoValor", "UTP")'
+
         $.get(url, function (data) {
 
             console.log(data);
 
             $('#divContenedorListavalorHijoCrear').html(data);
 
-        
+
                 $.validator.unobtrusive.parse('#divContenedorListavalorHijoCrear');
 
 
             $('#Nueva-listaTemporal').modal('show');
-            
-            
+
+
         }).error(function (err) {
             console.log(err);
             alert(err);
         });
 
     }
-    
+
 
     function ListaValorHijoEditar(id) {
 
         //console.log('punto de control');
-        var url = "/UTP/_NuevoValorEditar/" + id;
+        //var url = "/UTP/_NuevoValorEditar/" + id;
+        var url = '@Url.Action("_NuevoValorEditar", "UTP")' + '/' + id;
+
         $.get(url, function (data) {
 
             console.log(data);

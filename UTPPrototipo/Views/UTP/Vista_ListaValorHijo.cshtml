@@ -95,8 +95,9 @@
         if (confirm('Está seguro de eliminar el registro?')) {
         //try {
             console.log('ingreso al metodo');
-            var url = "/UTP/EliminarVista_ListaValorHijo?idListaValor=" + IdListaValor + "&idLista=" + IdLista; // el url del controlador
-         
+            //var url = "/UTP/EliminarVista_ListaValorHijo?idListaValor=" + IdListaValor + "&idLista=" + IdLista; // el url del controlador
+            var url = '@Url.Action("EliminarVista_ListaValorHijo", "UTP")' + '?idListaValor' + IdListaValor + "&idLista=" + IdLista; // el url del controlador
+
             $.get(url, function (data) {
                 $('#divListaHijo').html(data);
                 $.validator.unobtrusive.parse('#divListaHijo');

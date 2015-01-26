@@ -82,7 +82,9 @@
 
     function crearCV() {
         var IdAlumno = $('#IdAlumno').val();
-        var url = "/Alumno/ModalRegistroCV?idAlumno=" + IdAlumno; // el url del controlador
+        //var url = "/Alumno/ModalRegistroCV?idAlumno=" + IdAlumno; // el url del controlador
+        var url = '@Url.Action("ModalRegistroCV","Alumno")' + '?idAlumno=' + IdAlumno
+
         $.get(url, function (data) {
             $('#Modal-Nuevo-CV').html(data);
             $.validator.unobtrusive.parse('#Modal-Nuevo-CV');

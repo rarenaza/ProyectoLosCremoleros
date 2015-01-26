@@ -146,7 +146,8 @@
             NroPagina: 1,
 
         };
-        Cargar("resultadobusqueda", "/Empresa/BusquedaSimpleHunting", Alumno);
+        //Cargar("resultadobusqueda", "/Empresa/BusquedaSimpleHunting", Alumno);
+        Cargar("resultadobusqueda", '@Url.Action("BusquedaSimpleHunting", "Empresa")', Alumno);
     });
 
     $('#buscaravanzada').click(function () {
@@ -163,7 +164,8 @@
             Distrito: $('#Distrito').val(),
             NroPagina: 1,
         };
-        Cargar("resultadobusqueda", "/Empresa/BusquedaAvanzadaHunting", Alumno);
+        //Cargar("resultadobusqueda", "/Empresa/BusquedaAvanzadaHunting", Alumno);
+        Cargar("resultadobusqueda", '@Url.Action("BusquedaAvanzadaHunting", "Empresa")', Alumno);
     });
     //$(document).ready(function () {
     //    var Alumno = {
@@ -194,14 +196,14 @@
         })
     }
 
-    function buscarPaginacion(nroPagina)
-    {
+    function buscarPaginacion(nroPagina) {
         var Alumno = {
             PalabraClave: $('#PalabraClave').val(),
             NroPagina: nroPagina,
 
         };
-        Cargar("resultadobusqueda", "/Empresa/BusquedaSimpleHunting", Alumno);
+        //Cargar("resultadobusqueda", "/Empresa/BusquedaSimpleHunting", Alumno);
+        Cargar("resultadobusqueda", '@Url.Action("BusquedaSimpleHunting", "Empresa")', Alumno);
     }
 
     function buscarPaginacionAvanzada(nroPagina) {
@@ -217,6 +219,7 @@
             Distrito: $('#Distrito').val(),
             NroPagina: nroPagina,
         };
-        Cargar("resultadobusqueda", "/Empresa/BusquedaAvanzadaHunting", Alumno);
+        //Cargar("resultadobusqueda", "/Empresa/BusquedaAvanzadaHunting", Alumno);
+        Cargar("resultadobusqueda", '@Url.Action("BusquedaAvanzadaHunting", "Empresa")', Alumno);
     }
 </script>
