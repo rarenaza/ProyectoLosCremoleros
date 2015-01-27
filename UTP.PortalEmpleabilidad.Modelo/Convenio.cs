@@ -50,5 +50,6 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string ModificadoPor { get; set; }
         public DateTime FechaModificacion { get; set; }
         public string CodAlumnoUtp { get; set; }
+
     }
 }
