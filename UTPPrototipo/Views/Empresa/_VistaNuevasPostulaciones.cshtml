@@ -3,7 +3,7 @@
 
 <div class="col-md-12 fuente-pequeña" style="border-right:solid;border-color:rgb(220, 220, 220);border-width:1px;">
     <h5>Pendientes de Revisión</h5>
-    
+
     <div class="row grilla1-cabecera color-paleta1">
         <div class="col-sm-3"><strong>Fecha de <br />Postulación</strong></div>
         <div class="col-sm-3"><strong>Oferta</strong></div>
@@ -23,31 +23,41 @@
             <div class="col-sm-4">
                 @*<a href="../Empresa/Postulante"><strong>@item.AlumnoNombres @item.AlumnoApellidos</strong></a>*@
                 <strong> @Html.ActionLink(item.AlumnoNombres + " " + item.AlumnoApellidos, "Postulante", "Empresa", new { id = item.IdOfertaPostulante }, null)</strong>
-            </div> 
+            </div>
             <div class="col-sm-2">
                 <div class="progress">
                     @if (@item.Cumplimiento < 60)
                     {
-                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="@item.Cumplimiento" aria-valuemin="0" aria-valuemax="100" style="width:@item.Cumplimiento%;">
-                            @item.Cumplimiento%
-                        </div>
+                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="@item.Cumplimiento" aria-valuemin="0" aria-valuemax="100" style="width:@item.Cumplimiento%;">
+                        @item.Cumplimiento%
+                    </div>
                     }
                     @if (@item.Cumplimiento >= 60 && @item.Cumplimiento < 80)
                     {
-                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="@item.Cumplimiento" aria-valuemin="0" aria-valuemax="100" style="width:@item.Cumplimiento%;">
-                            @item.Cumplimiento%
-                        </div>
+                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="@item.Cumplimiento" aria-valuemin="0" aria-valuemax="100" style="width:@item.Cumplimiento%;">
+                        @item.Cumplimiento%
+                    </div>
                     }
                     @if (@item.Cumplimiento >= 80)
                     {
-                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="@item.Cumplimiento" aria-valuemin="0" aria-valuemax="100" style="width:@item.Cumplimiento%;">
-                            @item.Cumplimiento%
-                        </div>
+                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="@item.Cumplimiento" aria-valuemin="0" aria-valuemax="100" style="width:@item.Cumplimiento%;">
+                        @item.Cumplimiento%
+                    </div>
                     }
                 </div>
             </div>
         </div>
     }
+
+    @if (Model.Count() == 0)
+    {
+        <div class="row grilla1-linea">
+            <div class="col-sm-12 text-center">
+                <h6>No se encontraron resultados.</h6>
+            </div>
+        </div>
+    }
+
     <br />
 </div>
 

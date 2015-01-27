@@ -32,6 +32,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public EmpresaLocacion EmpresaLocacion { get; set; }
 
         [Required(ErrorMessage = "Falta Usuario")]
+        [RegularExpression(@"[-0-9A-Z_a-z]+", ErrorMessage = "Este campo sólo acepta letras y numeros.")]
         public string NombreUsuario { get; set; }
 
         [Required(ErrorMessage="Falta Nombres")]
