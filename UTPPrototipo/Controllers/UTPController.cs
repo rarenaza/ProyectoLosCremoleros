@@ -732,19 +732,10 @@ namespace UTPPrototipo.Controllers
             ViewBag.TipoTrabajo = new SelectList(lngeneral.ObtenerListaValor(29), "IdListaValor", "Valor");
             ViewBag.FuenteConvenio = new SelectList(lngeneral.ObtenerListaValor(51), "IdListaValor", "Valor");
 
-            return View();
+            return RedirectToAction("Convenios");
         }
 
-        //public ActionResult CrearConvenio(Convenio convenio)
-        //{
-        //    LNUTP lnUtp = new LNUTP();
-        //    //Convenio convenioNuevo = new Convenio();
-        //    //convenioNuevo.IdAlumno = convenio.IdAlumno;
-        //    TicketUTP ticket = (TicketUTP)Session["TicketUTP"];
-        //    convenio.CreadoPor = ticket.Usuario;
-        //    lnUtp.UTP_ConvenioInsertar(convenio);
-        //    return Json(convenio);
-        //}
+        
 
         public ActionResult VerDetalleEmpresa(int id)
         {
