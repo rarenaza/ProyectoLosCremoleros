@@ -939,6 +939,8 @@
     <Content Include="Views\UTP\_VistaNuevoConvenio.cshtml" />
     <Content Include="Views\UTP\_ListaUTPOfertas.cshtml" />
     <Content Include="Views\UTP\Convenio.cshtml" />
+    <Content Include="Views\UTP\_ListaUtpEvento.cshtml" />
+    <Content Include="Views\UTP\_ListaUTPAlumnos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

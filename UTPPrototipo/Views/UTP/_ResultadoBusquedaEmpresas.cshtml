@@ -119,7 +119,7 @@
 
 
 
-<div class="col-sm-6" style="text-align:right;"> 
+@*<div class="col-sm-6" style="text-align:right;">*@ 
     <nav class="navbar-right">
         <ul class="pagination">
             @{
@@ -133,7 +133,7 @@
                     {
                         if (ViewBag.TipoBusqueda == "Simple")
                         {
-                            <li><a href="#" onclick="buscarSimpleEmpresasActivas('@i');">@i</a></li>
+                            <li><a href="#" onclick="BusquedaSimpleEmpresasActivas('@i');">@i</a></li>
                         }
                         else 
                         {
@@ -146,5 +146,8 @@
         </ul>
 
     </nav>
-</div>
+@*</div>*@
+
+
+
 

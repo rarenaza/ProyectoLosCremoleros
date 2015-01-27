@@ -46,37 +46,7 @@ namespace UTP.PortalEmpleabilidad.Datos
             return dtResultado;
         }
 
-        public DataTable UTP_ObtenerOfertasporActivar(string oferta, int nroPagina, int filasPorPagina)
-        {
-            DataTable dtResultado = new DataTable();
-
-            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
-            {
-                SqlCommand cmd = new SqlCommand();
-
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "UTP_Obtenerofertasporactivar";
-                cmd.Parameters.Add(new SqlParameter("@oferta", oferta));
-
-                //Paginación:
-                cmd.Parameters.Add(new SqlParameter("@NroPaginaActual", nroPagina));
-                cmd.Parameters.Add(new SqlParameter("@FilasPorPagina", filasPorPagina));
-
-                cmd.Connection = conexion;
-
-                conexion.Open();
-
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-
-                dtResultado = new DataTable();
-
-                da.Fill(dtResultado);
-
-                conexion.Close();
-            }
-
-            return dtResultado;
-        }
+      
 
         public DataTable EmpresaObtenerPendientes(int nroPagina, int filasPorPagina)
         {
@@ -109,32 +79,7 @@ namespace UTP.PortalEmpleabilidad.Datos
         }
 
 
-        public DataTable Empresa_ObtenerPorNombre(string nombre, int nroPaginaActual, int filasPorPagina)
-        {
-  
-            ADConexion cnn = new ADConexion();
-            SqlCommand cmd = new SqlCommand();
-            
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.CommandText = "Empresas_ObtenerNombre";
-            cmd.Parameters.Add(new SqlParameter("@Nombre", nombre));
-            //Paginación.
-            cmd.Parameters.Add(new SqlParameter("@NroPaginaActual", nroPaginaActual));
-            cmd.Parameters.Add(new SqlParameter("@FilasPorPagina", filasPorPagina));
-
-            cmd.Connection = cnn.cn;
-            cnn.Conectar();
-
-
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-
-            da.Fill(dt);
-
-            cnn.Desconectar();
-
-            return dt;
-        }
+       
 
         public DataTable Utp_ListaEmpresas()
         {
@@ -183,8 +128,35 @@ namespace UTP.PortalEmpleabilidad.Datos
             return dt;
         }
 
-        public DataTable Empresa_BusquedaAvanzada(VistaEmpresListarOfertas entidad, int nroPaginaActual, int filasPorPagina)
-        //public DataTable Empresa_BusquedaAvanzada(string NombreComercial,string , int nroPaginaActual, int filasPorPagina)
+        public DataTable Empresa_ObtenerPorNombre(string PalabraClave, int nroPaginaActual, int filasPorPagina)
+        {
+
+            ADConexion cnn = new ADConexion();
+            SqlCommand cmd = new SqlCommand();
+
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "Empresas_ObtenerNombre";
+            cmd.Parameters.Add(new SqlParameter("@Nombre", PalabraClave));
+            //Paginación.
+            cmd.Parameters.Add(new SqlParameter("@NroPaginaActual", nroPaginaActual));
+            cmd.Parameters.Add(new SqlParameter("@FilasPorPagina", filasPorPagina));
+
+            cmd.Connection = cnn.cn;
+            cnn.Conectar();
+
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+
+            da.Fill(dt);
+
+            cnn.Desconectar();
+
+            return dt;
+        }
+
+        //public DataTable Empresa_BusquedaAvanzada(VistaEmpresListarOfertas entidad, int nroPaginaActual, int filasPorPagina)
+        public DataTable Empresa_BusquedaAvanzada(string NombreComercial, string IdEstadoEmpresa, string IdSector, string RazonSocial, int nroPaginaActual, int filasPorPagina)
         {
 
             ADConexion cnn = new ADConexion();
@@ -192,10 +164,10 @@ namespace UTP.PortalEmpleabilidad.Datos
 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = "Empresa_BusquedaAvanzada";
-            cmd.Parameters.Add(new SqlParameter("@Nombre", entidad.NombreComercial == null ? "" : entidad.NombreComercial));
-            cmd.Parameters.Add(new SqlParameter("@Valor", entidad.IdEstadoEmpresa == null ? "" : entidad.IdEstadoEmpresa));
-            cmd.Parameters.Add(new SqlParameter("@Sector", entidad.IdSector == null ? "" : entidad.IdSector));
-            cmd.Parameters.Add(new SqlParameter("@Razon", entidad.RazonSocial == null ? "" : entidad.RazonSocial));
+            cmd.Parameters.Add(new SqlParameter("@Nombre", NombreComercial ));
+            cmd.Parameters.Add(new SqlParameter("@Valor", IdEstadoEmpresa));
+            cmd.Parameters.Add(new SqlParameter("@Sector", IdSector));
+            cmd.Parameters.Add(new SqlParameter("@Razon", RazonSocial));
              //Paginación.
             cmd.Parameters.Add(new SqlParameter("@NroPaginaActual", nroPaginaActual));
             cmd.Parameters.Add(new SqlParameter("@FilasPorPagina", filasPorPagina));
@@ -217,32 +189,7 @@ namespace UTP.PortalEmpleabilidad.Datos
 
         
 
-        public DataTable UTP_ObtenerUltimosAlumnos(string Dato)
-        {
-            DataTable dtResultado = new DataTable();
-
-            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
-            {
-                SqlCommand cmd = new SqlCommand();
-
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "UTP_ObtenerUltimosAlumnos";
-                cmd.Parameters.Add(new SqlParameter("@Dato", Dato));
-                cmd.Connection = conexion;
-
-                conexion.Open();
-
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-
-                dtResultado = new DataTable();
-
-                da.Fill(dtResultado);
-
-                conexion.Close();
-            }
-
-            return dtResultado;
-        }
+      
 
         public DataTable UTP_ObtenerUltimosConvenios(string Dato)
         {
@@ -815,9 +762,40 @@ namespace UTP.PortalEmpleabilidad.Datos
             return cantidad;
         }
 
-              
+        public DataTable UTP_ObtenerOfertasporActivar(string oferta, int nroPagina, int filasPorPagina)
+        {
+            DataTable dtResultado = new DataTable();
 
-        public DataTable UTP_ObtenerEventosObtenerBuscar(string evento)
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "UTP_Obtenerofertasporactivar";
+                cmd.Parameters.Add(new SqlParameter("@oferta", oferta));
+
+                //Paginación:
+                cmd.Parameters.Add(new SqlParameter("@NroPaginaActual", nroPagina));
+                cmd.Parameters.Add(new SqlParameter("@FilasPorPagina", filasPorPagina));
+
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+                dtResultado = new DataTable();
+
+                da.Fill(dtResultado);
+
+                conexion.Close();
+            }
+
+            return dtResultado;
+        }
+
+        public DataTable UTP_ObtenerEventosObtenerBuscar(string evento, int nroPagina, int filasPorPagina)
+        //public DataTable UTP_ObtenerEventosObtenerBuscar(string evento)
         {
             DataTable dtResultado = new DataTable();
 
@@ -828,6 +806,39 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "UTP_ObtenerEventosObtenerBuscar";
                 cmd.Parameters.Add(new SqlParameter("@Evento", evento));
+                   //Paginación:
+                cmd.Parameters.Add(new SqlParameter("@NroPaginaActual", nroPagina));
+                cmd.Parameters.Add(new SqlParameter("@FilasPorPagina", filasPorPagina));
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+                dtResultado = new DataTable();
+
+                da.Fill(dtResultado);
+
+                conexion.Close();
+            }
+
+            return dtResultado;
+        }
+
+        public DataTable UTP_ObtenerUltimosAlumnos(string Dato,int nroPagina, int filasPorPagina)
+        {
+            DataTable dtResultado = new DataTable();
+
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "UTP_ObtenerUltimosAlumnos";
+                cmd.Parameters.Add(new SqlParameter("@Dato", Dato));
+                //Paginación:
+                cmd.Parameters.Add(new SqlParameter("@NroPaginaActual", nroPagina));
+                cmd.Parameters.Add(new SqlParameter("@FilasPorPagina", filasPorPagina));
                 cmd.Connection = conexion;
 
                 conexion.Open();

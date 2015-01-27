@@ -1,0 +1,123 @@
+﻿
+
+@using UTPPrototipo.Common
+
+@model IEnumerable<UTP.PortalEmpleabilidad.Modelo.Vistas.Alumno.VistaUTPListaAlumno>
+@using UTP.PortalEmpleabilidad.Modelo
+@{
+    <!--Se obtiene los datos para la paginación.-->
+    Paginacion paginacion = (Paginacion)ViewBag.Paginacion;
+}
+
+<h5>Alumnos Registrados</h5>
+<div class="row grilla1-cabecera color-paleta3">
+
+    <div class="col-sm-1">
+        Fecha de Registro
+    </div>
+    <div class="col-sm-2">
+        Nombres
+    </div>
+    <div class="col-sm-2">
+        Apellidos
+    </div>
+    <div class="col-sm-2">
+        Carrera
+    </div>
+    <div class="col-sm-1">
+        Ciclo
+    </div>
+    <div class="col-sm-1">
+        Estado
+    </div>
+    <div class="col-sm-2">
+        Completitud
+    </div>
+
+</div>
+@foreach (var item in Model)
+{
+    <div class="row grilla1-linea">
+
+        <div class="col-sm-1">
+            @*<a href="../UTP/Empresa">@item.FechaRegistro</a>*@
+            @item.FechaRegistro
+        </div>
+        <div class="col-sm-2">
+
+            @* <a href="../UTP/VerDetalleAlumno"> @item.Nombre</a>*@
+
+
+            @Html.ActionLink(@item.Nombre, "VerDetalleAlumno", new { id = item.idAlumno })
+
+            @*@item.Nombre*@
+        </div>
+        <div class="col-sm-2">
+            @item.Apellidos
+        </div>
+        <div class="col-sm-2">
+            @item.Carrera
+        </div>
+        <div class="col-sm-1">
+            @item.Ciclo
+
+        </div>
+        <div class="col-sm-1">
+            @item.EstadoAlumno
+
+        </div>
+        <div class="col-sm-2">
+            <div class="progress">
+
+
+
+
+                @if (@item.completitud >= 80)
+                {
+
+                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="@item.completitud" aria-valuemin="0" aria-valuemax="100" style="width: @item.completitud%;">
+                        @item.completitud%
+                    </div>
+
+
+
+                }
+                else if (@item.completitud < 80 && @item.completitud >= 60)
+                {
+
+                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="@item.completitud" aria-valuemin="0" aria-valuemax="100" style="width: @item.completitud%;">
+                        @item.completitud%
+                    </div>
+                }
+                else if (@item.completitud < 60)
+                {
+
+                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="@item.completitud" aria-valuemin="0" aria-valuemax="100" style="width: @item.completitud%;">
+                        @item.completitud%
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    <!--Paginación-->
+    <nav class="navbar-right">
+        <ul class="pagination">
+            @{
+                for (int i = 1; i <= paginacion.TotalPaginas; i++)
+                {
+                    if (i == paginacion.NroPaginaActual)
+                    {
+                        <li class="active"><a href="#">@i <span class="sr-only"></span></a></li>
+                    }
+                    else
+                    {
+                        <li><a href="#" onclick="buscarPaginacion('@i');">@i</a></li>
+                    }
+                }
+            }
+        </ul>
+    </nav>
+</div>

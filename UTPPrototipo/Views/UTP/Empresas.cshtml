@@ -43,7 +43,7 @@
                                 </td>
                             </tr>
                         </table>
-                    
+
                     </div>
                 </div>
             </div>
@@ -72,14 +72,14 @@
                                     <span class="input-group-addon">Nombre</span>
                                     @*<input type="text" class="form-control" placeholder="Nombre de la empresa">*@
 
-                                    @Html.TextBoxFor(model => model.NombreComercial, new { @class = "form-control", @placeholder = "Nombre Comercial" ,@id="NombreComercial"})
+                                    @Html.TextBoxFor(model => model.NombreComercial, new { @class = "form-control", @placeholder = "Nombre Comercial", @id = "NombreComercial" })
 
 
                                 </div>
                                 <div class="input-group fuente-pequeña">
                                     <span class="input-group-addon">Razón<br />Social</span>
                                     @*<input type="text" class="form-control" placeholder="Razón Social de la empresa">*@
-                                    @Html.TextBoxFor(model => model.RazonSocial, new { @class = "form-control", @placeholder = "Razón Social de la empresa",@id="RazonSocial" })
+                                    @Html.TextBoxFor(model => model.RazonSocial, new { @class = "form-control", @placeholder = "Razón Social de la empresa", @id = "RazonSocial" })
                                 </div>
                             </div>
                             <div class="col-sm-4">
@@ -145,9 +145,16 @@
 
         </div>
     </div>
+
+    //$(document).ready(function () {
+    //    var empresa = {
+    //        PalabraClave: $('#PalabraClave').val(),
+
+    //    };
+    //    Cargar("resultadobusqueda", "/UTP/BusquedaSimpleEmpresasActivas", empresa);
+    //});
 }
 @*<script src="~/Scripts/jquery-2.1.1.min.js"></script>*@
-
 
 
 
@@ -160,22 +167,19 @@
         AutoCompleteText('#RazonSocial', '@Url.Action("ListarRazonSocial", "UTP")', '#RazonSocial');
 
     });
+
     $('#buscar').click(function () {
         var empresa = {
             PalabraClave: $('#PalabraClave').val(),
-
+            nroPaginaActual: 1,
         };
-        Cargar("resultadobusqueda", "/UTP/BusquedaSimpleEmpresasActivas", empresa);
 
+        //Cargar("resultadobusqueda", "/UTP/BusquedaSimpleEmpresasActivas", empresa);
 
+        Cargar("resultadobusqueda", '@Url.Action("BusquedaSimpleEmpresasActivas", "UTP")', empresa);
     });
-    $(document).ready(function () {
-        var empresa = {
-            PalabraClave: $('#PalabraClave').val(),
 
-        };
-        Cargar("resultadobusqueda", "/UTP/BusquedaSimpleEmpresasActivas", empresa);
-    });
+
 
     $('#buscaravanzada').click(function () {
         var oferta = {
@@ -183,11 +187,14 @@
             IdEstadoEmpresa: $('#IdEstadoEmpresa').val(),
             IdSector: $('#IdSector').val(),
             RazonSocial: $('#RazonSocial').val(),
-            //RUC: $('#RUC').val()
-            //,EstadoOferta: $('#OFERAC').val()
+            nroPaginaActual: 1,
 
         };
-        Cargar("resultadobusqueda", "/UTP/BusquedaAvanzadaEmpresas", oferta);
+        //debugger;
+
+        //Cargar("resultadobusqueda", "/UTP/BusquedaAvanzadaEmpresas", oferta);
+
+        Cargar("resultadobusqueda", '@Url.Action("BusquedaAvanzadaEmpresas", "UTP")', oferta);
     });
 
     function Cargar(id, link, entidad) {
@@ -212,125 +219,32 @@
     }
 
 
+    function BusquedaSimpleEmpresasActivas(nroPagina) {
+        var empresa = {
+            PalabraClave: $('#PalabraClave').val(),
+            nroPaginaActual: nroPagina,
 
-
-
-</script>
-
-<!-- script de Paginacion busqueda simple-->
-
-<script>
-    $(document).ready(function () {
-
-        ////Al cargar la página se buscan las ofertas.
-        //BusquedaSimpleEmpresasActivas();
-
-        $("#divFinalCabecera").removeClass("color-paleta1 color-paleta3 color-paleta4 color-paleta5 color-paleta6 color-paleta7 color-paleta8 color-paleta9").addClass("color-paleta2")
-
-        $('#btnBuscar').on('click', function () {
-            BusquedaSimpleEmpresasActivas();
-        });
-
-        function BusquedaSimpleEmpresasActivas() {
-            //$('#lblCargandoOfertas').css('visibility', 'visible');
-
-            var palabraClave = $('#filtroBusqueda').val();
-            var nroPaginaActual = $('#hddNroPaginaActual').val();
-
-            //Se llama a una accion para buscar las ofertas.
-            var url = '@Url.Action("BusquedaSimpleEmpresasActivas", "UTP")' + "?palabraClave=" + palabraClave + '&nroPaginaActual=' + nroPaginaActual;
-
-            $.get(url, function (data) {
-                $('#resultadobusqueda').html(data);
-            }).then(function () {
-                //$('#lblCargandoOfertas').css('visibility', 'hidden');
-            });
-        }
-
-
-    });
-
-    //Se le pasa el nro de pagina y hace lo mismo que el anterior.
-    function buscarSimpleEmpresasActivas(nroPaginaActual) {
-        //$('#lblCargandoOfertas').css('visibility', 'visible');
-
-        var palabraClave = $('#PalabraClave').val();
-        //var nroPaginaActual = $('#hddNroPaginaActual').val();
-
-        var url = '@Url.Action("BusquedaSimpleEmpresasActivas", "UTP")' + "?palabraClave=" + palabraClave + '&nroPaginaActual=' + nroPaginaActual;
-
-        $.get(url, function (data) {
-            $('#resultadobusqueda').html(data);
-        }).then(function () {
-            //$('#lblCargandoOfertas').css('visibility', 'hidden');
-        });
-    }
-</script>
-
-
-
-<!--Script de paginacion busqueda Avanzada-->
-
-<script>
-    $(document).ready(function () {
-
-        ////Al cargar la página se buscan las ofertas.
-        //BusquedaSimpleEmpresasActivas();
-
-        //$("#divFinalCabeceraEmpresa").removeClass("color-paleta1 color-paleta3 color-paleta4 color-paleta5").addClass("color-paleta2");
-
-        $('#buscaravanzada').on('click', function () {
-            BusquedaAvanzadaEmpresasActivas(1); //Cuando se hace clic en buscar siempre deberia traer la pagina 1, por eso se manda este parametro.
-        });
-
-
-        //Este metodo recibe nroPaginaActual dessde la paginacion.
-        //BusquedaAvanzadaEmpresasActivas se utiliza tanto en el buscar como en la paginacion por eso en el buscar se manda 1.
-        function BusquedaAvanzadaEmpresasActivas(nroPaginaActual) {
-            //$('#lblCargandoOfertas').css('visibility', 'visible');
-            //debugger;
-            console.log('ingreso');
-            var NombreComercial = $('#NombreComercial').val();
-            var IdEstadoEmpresa = $('#IdEstadoEmpresa').val();
-            var IdSector = $('#IdSector').val();
-            var RazonSocial = $('#RazonSocial').val();
-
-            console.log(NombreComercial);
-            console.log(IdEstadoEmpresa);
-            console.log(IdSector);
-            console.log(RazonSocial);
-            // este hay que comentarlo, porque no se usa. var nroPaginaActual = $('#nroPaginaActual').val();
-
-            //Se llama a una accion para buscar las ofertas.
-            //Aca estas pasando parametros  no entidades
-            var url = '@Url.Action("BusquedaAvanzadaEmpresas", "UTP")' + "?NombreComercial=" + NombreComercial + "?IdEstadoEmpresa=" + IdEstadoEmpresa + "?IdSector=" + IdSector + "?RazonSocial=" + RazonSocial + '&nroPaginaActual=' + nroPaginaActual;
-
-            $.get(url, function (data) {
-                $('#resultadobusqueda').html(data);
-            }).then(function () {
-                //$('#lblCargandoOfertas').css('visibility', 'hidden');
-            });
-        }
-
-
-    });
-
-    //Se le pasa el nro de pagina y hace lo mismo que el anterior.
-    function BusquedaAvanzadaEmpresasActivas(nroPaginaActual) {
-        //$('#lblCargandoOfertas').css('visibility', 'visible');
-
-        var NombreComercial = $('#NombreComercial').val();
-        var IdEstadoEmpresa = $('#IdEstadoEmpresa').val();
-        var IdSector = $('#IdSector').val();
-        var RazonSocial = $('#RazonSocial').val();
-        var nroPaginaActual = $('#nroPaginaActual').val();
-        var url = '@Url.Action("BusquedaAvanzadaEmpresas", "UTP")' + "?NombreComercial=" + NombreComercial + "?IdEstadoEmpresa=" + IdEstadoEmpresa + "?IdSector=" + IdSector + "?RazonSocial=" + RazonSocial + '&nroPaginaActual=' + nroPaginaActual;
-
-        $.get(url, function (data) {
-            $('#resultadobusqueda').html(data);
-        }).then(function () {
-            //$('#lblCargandoOfertas').css('visibility', 'hidden');
-        });
+        };
+        //Cargar("resultadobusqueda", "/UTP/BusquedaSimpleEmpresasActivas", empresa);
+        Cargar("resultadobusqueda", '@Url.Action("BusquedaSimpleEmpresasActivas", "UTP")', empresa);
     }
 
+    function BusquedaAvanzadaEmpresasActivas(nroPagina) {
+
+        var oferta = {
+            NombreComercial: $('#NombreComercial').val(),
+            IdEstadoEmpresa: $('#IdEstadoEmpresa').val(),
+            IdSector: $('#IdSector').val(),
+            RazonSocial: $('#RazonSocial').val(),
+            nroPaginaActual: nroPagina,
+
+        };
+        
+        //Cargar("resultadobusqueda", "/UTP/BusquedaAvanzadaEmpresas", oferta);
+        Cargar("resultadobusqueda", '@Url.Action("BusquedaAvanzadaEmpresas", "UTP")', oferta);
+    }
+
+
 </script>
+
+

@@ -4,6 +4,7 @@
     Layout = "~/Views/UTP/_LayoutUTP.cshtml";
     ViewBag.Title = "Eventos";
 }
+
 <link href="~/Content/font-awesome.css" rel="stylesheet" />
 
 <div class="container fuente-pequeña" style="margin-top:2px;">
@@ -25,14 +26,14 @@
             <div id="ColapsaBusqueda" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="CabeceraColapsaBusqueda">
                 <div class="panel-body">
                     <div class="row">
-@using (Html.BeginForm("Eventos", "UTP", FormMethod.Get))
-{
+                        @*@using (Html.BeginForm("Eventos", "UTP", FormMethod.Get))
+                            {*@
                         <div class="col-sm-8">
 
 
                             <div class="input-group fuente-pequeña">
                                 <span class="input-group-addon fuente-pequeña">Palabra Clave</span>
-                                
+
                                 @Html.TextBox("SearchString", "", new { @class = "form-control", @placeholder = "Busca Por Evento" })
                                 @*<input type="text" class="form-control" placeholder="Palabra clave" />*@
 
@@ -41,80 +42,37 @@
                         </div>
                         <div class="col-sm-4">
 
-                            <input type="submit" class="fui" style="font-size:30px;border-width:0px;background-color:transparent;" value="(" />
+                            @* <input type="submit" class="fui" style="font-size:30px;border-width:0px;background-color:transparent;" value="(" />*@
                             @*<button class="btn btn-default color-paleta5 fa fa-search" id="buscar"></button>*@
+                            <input type="submit" onclick="buscarPaginacion(1);" class="fui" style="font-size:30px;border-width:0px;background-color:transparent;" value="(" />
                         </div>
-}
+                        @*}*@
                     </div>
                 </div>
             </div>
+
         </div>
 
         <br />
 
-        <h5>Eventos</h5>
+        @*<h5>Eventos</h5>*@
 
-      
 
-        <div class="row grilla1-cabecera color-paleta5">
-            <div class="col-sm-2">
-                Fecha Evento
-            </div>
-            <div class="col-sm-2">
-                Evento
-            </div>
-            <div class="col-sm-2">
-                Lugar
-            </div>
-            <div class="col-sm-2">
-                Dirección
-            </div>
-            @*<div class="col-sm-2">
-                Expositor
-            </div>*@
-            <div class="col-sm-2">
-                Asistente Esperado
-            </div>
-        </div>
 
-        @foreach (var item in Model)
-        {
-         
-            <div class="row grilla1-linea">
-                <div class="col-sm-2">
-                 @item.FechaEvento
-                </div>
-                <div class="col-sm-2">
-                    @*@item.NombreEvento*@
 
-                    @Html.ActionLink(@item.NombreEvento, "Evento_Editar", new { id = item.IdEvento })
-                </div>
-                <div class="col-sm-2">
-                   @item.LugarEvento          
-                </div>
-                <div class="col-sm-2">
-                    @item.DireccionEvento
-                </div>
-                @*<div class="col-sm-2">
-                    @item.Expositor
-                </div>*@
-                <div class="col-sm-2">
-                    @item.AsistentesEsperados
-                </div>
-            </div>
-        }
 
 
     </div>
     <br />
     <div id="resultadobusqueda">
     </div>
+
     <div class="row">
         <div class="col-sm-12" style="text-align:right;">
-           @* <button class="btn btn-default color-paleta5" >Nuevo Evento</button>*@
+            @* <button class="btn btn-default color-paleta5" >Nuevo Evento</button>*@
             <a class="btn btn-default color-paleta5" href=@Url.Action("evento", "UTP")>Nuevo Evento</a>
 
-     
+
         </div>
     </div>
     <hr />
@@ -124,17 +82,32 @@
 
 <script>
     $(document).ready(function () {
-        $("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta3 color-paleta4 color-paleta6 color-paleta7 color-paleta8 color-paleta9").addClass("color-paleta5")
+        $("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta3 color-paleta4 color-paleta6 color-paleta7 color-paleta8").addClass("color-paleta5");
     });
-    $('#buscar').click(function () {
-        var empresa = {
-            PalabraClave: $('#PalabraClave').val(),
+    //$('#buscar').click(function () {
+    //    var empresa = {
+    //        PalabraClave: $('#PalabraClave').val(),
 
-        };
-        //Cargar("resultadobusqueda", "/UTP/BusquedaSimpleEmpresasActivas", empresa);
-        Cargar("resultadobusqueda", '@Url.Action("BusquedaSimpleEmpresasActivas", "Empresa")', empresa);
+    //    };
+    //    Cargar("resultadobusqueda", "/UTP/BusquedaSimpleEmpresasActivas", empresa);
 
 
-    });
+    //});
+
+
+
+    function buscarPaginacion(nroPaginaActual) {
+        //debugger;
+
+        var SearchString = $('#SearchString').val();
+
+        var url = '@Url.Action("BusquedaEventos", "UTP")' + "?SearchString=" + SearchString + '&nroPaginaActual=' + nroPaginaActual;
+
+        $.get(url, function (data) {
+            console.log(data);
+            $('#resultadobusqueda').html(data);
+        }).error(function (err) { console.log(err); });
+
+    }
 </script>
 
