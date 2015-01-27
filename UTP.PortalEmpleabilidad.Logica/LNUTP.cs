@@ -159,11 +159,7 @@ namespace UTP.PortalEmpleabilidad.Logica
        
 
 
-        public DataTable UTP_ObtenerUltimosAlumnos(string Dato)
-        {
-
-            return adUtp.UTP_ObtenerUltimosAlumnos(Dato);
-        }
+  
         public DataTable UTP_ObtenerUltimosConvenios(string Dato)
         {
 
@@ -201,6 +197,13 @@ namespace UTP.PortalEmpleabilidad.Logica
 
             return adUtp.UTP_ObtenerOfertasporActivar(oferta, nroPagina, filasPorPagina);
         }
+
+        public DataTable UTP_ObtenerUltimosAlumnos(string Dato, int nroPagina, int filasPorPagina)
+        {
+
+            return adUtp.UTP_ObtenerUltimosAlumnos(Dato, nroPagina, filasPorPagina);
+        }
+
 
         public DataTable UTP_ObtenerEventosObtenerBuscar(string evento, int nroPagina, int filasPorPagina)
         //public DataTable UTP_ObtenerEventosObtenerBuscar(string evento)

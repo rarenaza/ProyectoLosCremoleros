@@ -158,7 +158,6 @@
 
 
 
-
 <script>
 
     $(document).ready(function () {
@@ -174,9 +173,10 @@
             PalabraClave: $('#PalabraClave').val(),
             nroPaginaActual: 1,
         };
-        Cargar("resultadobusqueda", "/UTP/BusquedaSimpleEmpresasActivas", empresa);
 
+        //Cargar("resultadobusqueda", "/UTP/BusquedaSimpleEmpresasActivas", empresa);
 
+        Cargar("resultadobusqueda", '@Url.Action("BusquedaSimpleEmpresasActivas", "UTP")', empresa);
     });
 
 
@@ -192,7 +192,9 @@
         };
         //debugger;
 
-        Cargar("resultadobusqueda", "/UTP/BusquedaAvanzadaEmpresas", oferta);
+        //Cargar("resultadobusqueda", "/UTP/BusquedaAvanzadaEmpresas", oferta);
+
+        Cargar("resultadobusqueda", '@Url.Action("BusquedaAvanzadaEmpresas", "UTP")', oferta);
     });
 
     function Cargar(id, link, entidad) {
@@ -223,7 +225,8 @@
             nroPaginaActual: nroPagina,
 
         };
-        Cargar("resultadobusqueda", "/UTP/BusquedaSimpleEmpresasActivas", empresa);
+        //Cargar("resultadobusqueda", "/UTP/BusquedaSimpleEmpresasActivas", empresa);
+        Cargar("resultadobusqueda", '@Url.Action("BusquedaSimpleEmpresasActivas", "UTP")', empresa);
     }
 
     function BusquedaAvanzadaEmpresasActivas(nroPagina) {
@@ -236,9 +239,9 @@
             nroPaginaActual: nroPagina,
 
         };
-
-
-        Cargar("resultadobusqueda", "/UTP/BusquedaAvanzadaEmpresas", oferta);
+        
+        //Cargar("resultadobusqueda", "/UTP/BusquedaAvanzadaEmpresas", oferta);
+        Cargar("resultadobusqueda", '@Url.Action("BusquedaAvanzadaEmpresas", "UTP")', oferta);
     }
 
 

@@ -189,32 +189,7 @@ namespace UTP.PortalEmpleabilidad.Datos
 
         
 
-        public DataTable UTP_ObtenerUltimosAlumnos(string Dato)
-        {
-            DataTable dtResultado = new DataTable();
-
-            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
-            {
-                SqlCommand cmd = new SqlCommand();
-
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "UTP_ObtenerUltimosAlumnos";
-                cmd.Parameters.Add(new SqlParameter("@Dato", Dato));
-                cmd.Connection = conexion;
-
-                conexion.Open();
-
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-
-                dtResultado = new DataTable();
-
-                da.Fill(dtResultado);
-
-                conexion.Close();
-            }
-
-            return dtResultado;
-        }
+      
 
         public DataTable UTP_ObtenerUltimosConvenios(string Dato)
         {
@@ -832,6 +807,36 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.CommandText = "UTP_ObtenerEventosObtenerBuscar";
                 cmd.Parameters.Add(new SqlParameter("@Evento", evento));
                    //Paginación:
+                cmd.Parameters.Add(new SqlParameter("@NroPaginaActual", nroPagina));
+                cmd.Parameters.Add(new SqlParameter("@FilasPorPagina", filasPorPagina));
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+                dtResultado = new DataTable();
+
+                da.Fill(dtResultado);
+
+                conexion.Close();
+            }
+
+            return dtResultado;
+        }
+
+        public DataTable UTP_ObtenerUltimosAlumnos(string Dato,int nroPagina, int filasPorPagina)
+        {
+            DataTable dtResultado = new DataTable();
+
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "UTP_ObtenerUltimosAlumnos";
+                cmd.Parameters.Add(new SqlParameter("@Dato", Dato));
+                //Paginación:
                 cmd.Parameters.Add(new SqlParameter("@NroPaginaActual", nroPagina));
                 cmd.Parameters.Add(new SqlParameter("@FilasPorPagina", filasPorPagina));
                 cmd.Connection = conexion;

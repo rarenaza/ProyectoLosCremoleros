@@ -247,7 +247,51 @@ namespace UTPPrototipo.Controllers
 
         }
 
-    
+        public ActionResult Alumnos()
+        {
+            return View();
+        }
+        public ActionResult BusquedaAlumnos(string SearchString, int nroPaginaActual = 1)
+        {
+
+            string palabraClave = SearchString == null ? "" : SearchString;
+
+            List<VistaUTPListaAlumno> listaEjemplo = new List<VistaUTPListaAlumno>();
+
+            DataTable dtResultado = lnUtp.UTP_ObtenerUltimosAlumnos(palabraClave, nroPaginaActual, Constantes.FILAS_POR_PAGINA);
+
+            for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
+            {
+                VistaUTPListaAlumno vista = new VistaUTPListaAlumno();
+
+                vista.FechaRegistro = dtResultado.Rows[i]["FechaRegistro"].ToString();
+                vista.Nombre = dtResultado.Rows[i]["Nombres"].ToString();
+                vista.EstadoAlumno = dtResultado.Rows[i]["Valor"].ToString();
+                vista.Apellidos = dtResultado.Rows[i]["Apellidos"].ToString();
+                vista.Carrera = dtResultado.Rows[i]["Carrera"].ToString();
+                vista.Ciclo = dtResultado.Rows[i]["CicloEquivalente"].ToString();
+                vista.idAlumno = Convert.ToInt32(dtResultado.Rows[i]["IdAlumno"]);
+                vista.completitud = Convert.ToInt32(dtResultado.Rows[i]["Completitud"]);
+                vista.CantidadTotal = Convert.ToInt32(dtResultado.Rows[i]["CantidadTotal"]);
+                listaEjemplo.Add(vista);
+            }
+            //Datos para la paginación.
+            int cantidadTotal = listaEjemplo.Count() == 0 ? 0 : listaEjemplo[0].CantidadTotal;
+
+            //Esto van en todas las paginas 
+            Paginacion paginacion = new Paginacion();
+            paginacion.NroPaginaActual = nroPaginaActual;
+            paginacion.CantidadTotalResultados = cantidadTotal;
+            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA;
+            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA;
+            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA;
+            if (residuo > 0) paginacion.TotalPaginas += 1;
+
+            ViewBag.Paginacion = paginacion;
+            return PartialView("_ListaUTPAlumnos", listaEjemplo);
+            //return View(listaEjemplo);
+
+        }
     
         //public ActionResult BusquedaSimpleEmpresasActivas(string PalabraClave, int nroPaginaActual = 1, int filasPorPagina = Constantes.FILAS_POR_PAGINA)
         public ActionResult BusquedaSimpleEmpresasActivas(VistaEmpresListarOfertas entidad)
@@ -678,34 +722,7 @@ namespace UTPPrototipo.Controllers
 
         }
 
-        public ActionResult Alumnos(string SearchString)
-        {
-
-            string palabraClave = SearchString == null ? "" : SearchString;
-
-            List<VistaUTPListaAlumno> listaEjemplo = new List<VistaUTPListaAlumno>();
-
-            DataTable dtResultado = lnUtp.UTP_ObtenerUltimosAlumnos(palabraClave);
-
-            for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
-            {
-                VistaUTPListaAlumno vista = new VistaUTPListaAlumno();
-
-                vista.FechaRegistro = dtResultado.Rows[i]["FechaRegistro"].ToString();
-                vista.Nombre = dtResultado.Rows[i]["Nombres"].ToString();
-                vista.EstadoAlumno = dtResultado.Rows[i]["Valor"].ToString();
-                vista.Apellidos = dtResultado.Rows[i]["Apellidos"].ToString();
-                vista.Carrera = dtResultado.Rows[i]["Carrera"].ToString();
-                vista.Ciclo = dtResultado.Rows[i]["CicloEquivalente"].ToString();
-                vista.idAlumno = Convert.ToInt32(dtResultado.Rows[i]["IdAlumno"]);
-                vista.completitud = Convert.ToInt32(dtResultado.Rows[i]["Completitud"]);
-
-                listaEjemplo.Add(vista);
-            }
-
-            return View(listaEjemplo);
-
-        }
+       
         //[HttpGet]
         //public ActionResult Convenios()
         //{

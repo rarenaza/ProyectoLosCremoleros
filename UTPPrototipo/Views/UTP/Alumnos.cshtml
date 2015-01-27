@@ -1,5 +1,4 @@
-﻿
-@model IEnumerable<UTP.PortalEmpleabilidad.Modelo.Vistas.Alumno.VistaUTPListaAlumno>
+﻿@model IEnumerable<UTP.PortalEmpleabilidad.Modelo.Vistas.Alumno.VistaUTPListaAlumno>
 
 
 @{
@@ -28,129 +27,52 @@
                 <div class="panel-body">
                     <table style="width:100%;">
                         <tr>
-                            @using (Html.BeginForm("Alumnos", "UTP", FormMethod.Get))
-                            {
+                            @*@using (Html.BeginForm("Alumnos", "UTP", FormMethod.Get))
+                                {*@
 
-                                <td>
-                                    <div class="input-group fuente-pequeña">
-                                        <span class="input-group-addon fuente-pequeña">Palabra Clave</span>
-                                        @Html.TextBox("SearchString", null, new { @class = "form-control", @placeholder = "Buscar por Empresa, Apellidos y Nombre" })
+                            <td>
+                                <div class="input-group fuente-pequeña">
+                                    <span class="input-group-addon fuente-pequeña">Palabra Clave</span>
+                                    @Html.TextBox("SearchString", null, new { @class = "form-control", @placeholder = "Buscar por Empresa, Apellidos y Nombre" })
 
-                                    </div>
+                                </div>
 
 
-                                </td>
-                                <td style="text-align:right;">
-                                    <span class="col-md-6 btn-group">
+                            </td>
+                            <td style="text-align:right;">
+                                <span class="col-md-6 btn-group">
 
-                                        <button type="submit" class="btn btn-default color-paleta3 fa fa-search" />
-
-                                    </span>
-                                </td>
-                            }
+                                    @*<button type="submit" class="btn btn-default color-paleta3 fa fa-search" />*@
+                                    <input type="submit" onclick="buscarPaginacion(1);" class="fui" style="font-size:30px;border-width:0px;background-color:transparent;" value="(" />
+                                </span>
+                            </td>
+                            @*}*@
                         </tr>
                     </table>
 
                 </div>
             </div>
-        </div>
-    </div>
 
+        </div>
+
+        <br />
+
+        @*<h5>Eventos</h5>*@
+
+
+
+
+
+
+    </div>
     <br />
-    <h5>Alumnos Registrados</h5>
-    <div class="row grilla1-cabecera color-paleta3">
-
-        <div class="col-sm-1">
-            Fecha de Registro
-        </div>
-        <div class="col-sm-2">
-            Nombres
-        </div>
-        <div class="col-sm-2">
-            Apellidos
-        </div>
-        <div class="col-sm-2">
-            Carrera
-        </div>
-        <div class="col-sm-1">
-            Ciclo
-        </div>
-        <div class="col-sm-1">
-            Estado
-        </div>
-        <div class="col-sm-2">
-            Completitud
-        </div>
-
+    <div id="resultadobusqueda">
     </div>
-    @foreach (var item in Model)
-    {
-        <div class="row grilla1-linea">
-
-            <div class="col-sm-1">
-                @*<a href="../UTP/Empresa">@item.FechaRegistro</a>*@
-                @item.FechaRegistro
-            </div>
-            <div class="col-sm-2">
-
-                @* <a href="../UTP/VerDetalleAlumno"> @item.Nombre</a>*@
 
 
-                @Html.ActionLink(@item.Nombre, "VerDetalleAlumno", new { id = item.idAlumno })
-
-                @*@item.Nombre*@
-            </div>
-            <div class="col-sm-2">
-                @item.Apellidos
-            </div>
-            <div class="col-sm-2">
-                @item.Carrera
-            </div>
-            <div class="col-sm-1">
-                @item.Ciclo
-
-            </div>
-            <div class="col-sm-1">
-                @item.EstadoAlumno
-
-            </div>
-            <div class="col-sm-2">
-                <div class="progress">
-
-
-
-
-                    @if (@item.completitud >= 80)
-                    {
-
-                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="@item.completitud" aria-valuemin="0" aria-valuemax="100" style="width: @item.completitud%;">
-                            @item.completitud%
-                        </div>
-
-
-
-                    }
-                    else if (@item.completitud < 80 && @item.completitud >= 60)
-                    {
-
-                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="@item.completitud" aria-valuemin="0" aria-valuemax="100" style="width: @item.completitud%;">
-                            @item.completitud%
-                        </div>
-                    }
-                    else if (@item.completitud < 60)
-                    {
-
-                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="@item.completitud" aria-valuemin="0" aria-valuemax="100" style="width: @item.completitud%;">
-                            @item.completitud%
-                        </div>
-                    }
-                    </div>
-                </div>
-            </div>
-    }
     <hr />
 </div>
-<br />
+
 <script src="~/Scripts/jquery-2.1.1.min.js"></script>
 
 <script>
@@ -158,7 +80,19 @@
     $(document).ready(function () {
         $("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta4 color-paleta5 color-paleta6 color-paleta7 color-paleta8 color-paleta9").addClass("color-paleta3")
     });
+    function buscarPaginacion(nroPaginaActual) {
+        //debugger;
 
+        var SearchString = $('#SearchString').val();
+
+        var url = '@Url.Action("BusquedaAlumnos", "UTP")' + "?SearchString=" + SearchString + '&nroPaginaActual=' + nroPaginaActual;
+
+        $.get(url, function (data) {
+            console.log(data);
+            $('#resultadobusqueda').html(data);
+        }).error(function (err) { console.log(err); });
+
+    }
 
 
 </script>

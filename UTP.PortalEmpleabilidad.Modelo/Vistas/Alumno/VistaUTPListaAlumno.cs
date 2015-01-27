@@ -18,5 +18,8 @@ namespace UTP.PortalEmpleabilidad.Modelo.Vistas.Alumno
         public string EstadoAlumno { get; set; }
 
         public int  completitud { get; set;}
+
+        //Paginación:
+        public int CantidadTotal { get; set; }
     }
 }
