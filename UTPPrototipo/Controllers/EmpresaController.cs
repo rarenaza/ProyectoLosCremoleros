@@ -179,6 +179,7 @@ namespace UTPPrototipo.Controllers
             oferta.UsuarioPropietarioEmpresa = "";            
             oferta.FechaPublicacion = DateTime.Now;                        
             oferta.CreadoPor = ticket.Usuario;
+            oferta.FechaFinRecepcionCV = DateTime.Now; //Se establece la fecha actual para la nueva oferta.
 
             LNGeneral lnGeneral = new LNGeneral();
             LNEmpresaLocacion lnEmpresaLocacion = new LNEmpresaLocacion ();

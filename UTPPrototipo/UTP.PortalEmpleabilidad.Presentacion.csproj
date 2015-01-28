@@ -374,6 +374,7 @@
     <Content Include="fonts\UTP FONT ICON.eot" />
     <Content Include="fonts\UTP FONT ICON.ttf" />
     <Content Include="fonts\UTP FONT ICON.woff" />
+    <Content Include="Scripts\calendario.js" />
     <Content Include="Scripts\carga.asincrona.js" />
     <Content Include="Plantillas\Plantilla1.docx" />
     <Content Include="Plantillas\PlantillaCV01.dotx" />

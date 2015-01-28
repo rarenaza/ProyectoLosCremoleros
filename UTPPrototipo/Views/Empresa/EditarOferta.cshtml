@@ -6,6 +6,8 @@
     Layout = "~/Views/Empresa/_LayoutEmpresa.cshtml";
     ViewBag.Title = "Nueva Oferta Laboral";
 }
+
+
 <div class="container fuente-pequeña" style="margin-top:2px;">
 
     @{Html.RenderAction("VistaCabecera", "Empresa");}
@@ -152,7 +154,8 @@
                                 <div class="input-group">
                                     <span class="input-group-addon">Recibir<br />CVs hasta</span>
                                     @*@Html.TextBoxFor(m => m.FechaFinRecepcionCV, new { @class = "form-control", @placeholder = "Fecha final de Recepcion de CVs" })*@
-                                    @Html.Raw(@Html.EditorFor(m => m.FechaFinRecepcionCV).ToString().Replace("text-box single-line", "form-control"))
+                                    @*@Html.Raw(@Html.EditorFor(m => m.FechaFinRecepcionCV).ToString().Replace("text-box single-line", "form-control"))*@
+                                    @Html.TextBoxFor(m => m.FechaFinRecepcionCV, new { @class = "form-control", @placeholder = "Fecha de fin de publicación", @Value = Model.FechaFinRecepcionCV.ToString("d") })
                                 </div>
                                 @Html.ValidationMessageFor(m => m.FechaFinRecepcionCV, "", new { @class = "text-danger" })
                                 <div class="input-group">
@@ -426,6 +429,12 @@
             }
         });
 
+        
+
+        checkSupportForInputTypeDate();
+        $("#FechaFinRecepcionCV").datepicker({ dateFormat: 'dd/mm/yy' });
+
+        
     });
 
     //Scripts de creación.

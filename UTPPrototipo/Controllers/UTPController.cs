@@ -136,22 +136,9 @@ namespace UTPPrototipo.Controllers
         
                 
             }
-           
+                     
 
-            List<ContenidoVista> contentModel = lista.Select(item => new ContenidoVista()
-            {
-                IdContenido = item.IdContenido,
-                Menu =item.Menu,
-                Titulo = item.Titulo,
-                SubTitulo  = item.SubTitulo,
-                Descripcion =item .Descripcion,
-                Imagen = item.Imagen,
-                TituloMenu =item .TituloMenu 
-
-            }).ToList();
-            return View(contentModel);
-
-            //return View();
+            return View(lista);
           
         }
 

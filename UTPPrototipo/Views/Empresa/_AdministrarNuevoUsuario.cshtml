@@ -128,6 +128,7 @@
                 <div class="input-group">
                     <span class="input-group-addon">Contraseña</span>
                     @Html.Raw(@Html.EditorFor(model => model.Contrasena).ToString().Replace("text-box single-line", "form-control"))
+            
                     
                 </div>@Html.ValidationMessageFor(model => model.Contrasena, "", new { @class = "text-danger" })
             </div>
