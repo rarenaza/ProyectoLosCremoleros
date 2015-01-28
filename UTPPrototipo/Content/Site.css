@@ -782,7 +782,7 @@ a.Boton_pestana:hover {
 .ui-state-hover, .ui-state-active {
       color: #ffffff;
       text-decoration: none;
-      background-color: #0088cc;
+      background-color: rgb(180, 30, 34);
       border-radius: 0px;
       -webkit-border-radius: 0px;
       -moz-border-radius: 0px;

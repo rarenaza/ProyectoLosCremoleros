@@ -288,6 +288,50 @@ namespace UTP.PortalEmpleabilidad.Datos
                 conexion.Close();
             }
         }
+        public void UTP_ConvenioActualizar(Convenio convenio)
+        {
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Convenio_Actualizar";
+
+                //Parámetros:
+                cmd.Parameters.Add(new SqlParameter("@IdConvenio", convenio.IdConvenio));
+                cmd.Parameters.Add(new SqlParameter("@IdAlumno", convenio.IdAlumno));
+                cmd.Parameters.Add(new SqlParameter("@Carrera", convenio.Carrera));
+                cmd.Parameters.Add(new SqlParameter("@NivelAcademico", convenio.NivelAcademico));
+                cmd.Parameters.Add(new SqlParameter("@TelefonoFijoCasa", convenio.TelefonoFijoCasa));
+                cmd.Parameters.Add(new SqlParameter("@TelefonoCelular", convenio.TelefonoCelular));
+                cmd.Parameters.Add(new SqlParameter("@Ciclo", convenio.Ciclo));
+                cmd.Parameters.Add(new SqlParameter("@IdEmpresa", convenio.IdEmpresa));
+                cmd.Parameters.Add(new SqlParameter("@ContactoNombre", convenio.ContactoNombre));
+                cmd.Parameters.Add(new SqlParameter("@ContactoCargo", convenio.ContactoCargo));
+                cmd.Parameters.Add(new SqlParameter("@ContactoCorreoElectronico", convenio.ContactoCorreoElectronico));
+                cmd.Parameters.Add(new SqlParameter("@ContactoTelefono", convenio.ContactoTelefono));
+                cmd.Parameters.Add(new SqlParameter("@ContactoCelular", convenio.ContactoCelular));
+                cmd.Parameters.Add(new SqlParameter("@IdExperienciaCargo", convenio.IdExperienciaCargo));
+                cmd.Parameters.Add(new SqlParameter("@TipoTrabajo", convenio.TipoTrabajo));
+                cmd.Parameters.Add(new SqlParameter("@DuracionContrato", convenio.DuracionContrato));
+                cmd.Parameters.Add(new SqlParameter("@SalarioOfrecido", convenio.SalarioOfrecido));
+                cmd.Parameters.Add(new SqlParameter("@CargoOfrecido", convenio.CargoOfrecido));
+                cmd.Parameters.Add(new SqlParameter("@AreaEmpresa", convenio.AreaEmpresa));
+                cmd.Parameters.Add(new SqlParameter("@FechaIngreso", convenio.FechaIngreso));
+                cmd.Parameters.Add(new SqlParameter("@FuenteConvenio", convenio.FuenteConvenio));
+                cmd.Parameters.Add(new SqlParameter("@NuevaObservacion", convenio.NuevaObservacion));
+                cmd.Parameters.Add(new SqlParameter("@ModificadoPor", convenio.ModificadoPor));
+
+
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                cmd.ExecuteNonQuery();
+
+                conexion.Close();
+            }
+        }
 
         public void ActualizarEstadoYUsuarioEC(Empresa empresa)
         {

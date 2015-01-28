@@ -55,5 +55,11 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string SectorEmpresarial { get; set; }
         public string NuevaObservacion { get; set; }
         public IEnumerable<AlumnoExperiencia> Experiencias { get; set; }
+        public int? FechaInicioCargoAno { get; set; }
+        public int? FechaInicioCargoMes { get; set; }
+        public int? FechaFinCargoAno { get; set; }
+        public int? FechaFinCargoMes { get; set; }
+        public string NombreCargo { get; set; }
+        public string DescripcionCargo { get; set; }
     }
 }

@@ -25,7 +25,10 @@ namespace UTP.PortalEmpleabilidad.Logica
         {
             adUtp.UTP_ConvenioInsertar(convenio);
         }
-
+        public void UTP_ConvenioActualizar(Convenio convenio)
+        {
+            adUtp.UTP_ConvenioActualizar(convenio);
+        }
 
         public DataTable EmpresaObtenerPendientes(int nroPagina, int filasPorPagina)
         {
@@ -177,6 +180,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 if (dsResultado.Tables[0].Rows.Count > 0)
                 {
                     for(int n=0;n<=dsResultado.Tables[0].Rows.Count -1;n++){
+                        convenio.IdConvenio = Funciones.ToInt(dsResultado.Tables[0].Rows[n]["IdConvenio"]);
                         convenio.IdAlumno = Funciones.ToInt(dsResultado.Tables[0].Rows[n]["IdAlumno"]);
                         convenio.Nombres = Funciones.ToString(dsResultado.Tables[0].Rows[n]["Nombres"]);
                         convenio.Apellidos = Funciones.ToString(dsResultado.Tables[0].Rows[n]["Apellidos"]);
@@ -192,6 +196,13 @@ namespace UTP.PortalEmpleabilidad.Logica
                         convenio.IdentificadorTributario = Funciones.ToString(dsResultado.Tables[0].Rows[n]["IdentificadorTributario"]);
                         convenio.SectorEmpresarial = Funciones.ToString(dsResultado.Tables[0].Rows[n]["SectorEmpresarial"]);
                         convenio.IdExperienciaCargo = Funciones.ToInt(dsResultado.Tables[0].Rows[n]["IdExperienciaCargo"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[n]["IdExperienciaCargo"]);
+                        convenio.FechaInicioCargoAno = Funciones.ToInt(dsResultado.Tables[0].Rows[n]["FechaInicioCargoAno"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[n]["FechaInicioCargoAno"]);
+                        convenio.FechaInicioCargoMes = Funciones.ToInt(dsResultado.Tables[0].Rows[n]["FechaInicioCargoMes"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[n]["FechaInicioCargoMes"]);
+                        convenio.FechaFinCargoAno = Funciones.ToInt(dsResultado.Tables[0].Rows[n]["FechaFinCargoAno"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[n]["FechaFinCargoAno"]);
+                        convenio.FechaFinCargoMes = Funciones.ToInt(dsResultado.Tables[0].Rows[n]["FechaFinCargoMes"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[n]["FechaFinCargoMes"]);
+                        convenio.NombreCargo = Funciones.ToString(dsResultado.Tables[0].Rows[n]["NombreCargo"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[n]["NombreCargo"]);
+                        convenio.DescripcionCargo = Funciones.ToString(dsResultado.Tables[0].Rows[n]["DescripcionCargo"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[n]["DescripcionCargo"]);
+                        
                         convenio.ContactoNombre = Funciones.ToString(dsResultado.Tables[0].Rows[n]["ContactoNombre"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[n]["ContactoNombre"]);
                         convenio.ContactoCargo = Funciones.ToString(dsResultado.Tables[0].Rows[n]["ContactoCargo"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[n]["ContactoCargo"]);
                         convenio.ContactoCorreoElectronico = Funciones.ToString(dsResultado.Tables[0].Rows[n]["ContactoCorreoElectronico"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[n]["ContactoCorreoElectronico"]);

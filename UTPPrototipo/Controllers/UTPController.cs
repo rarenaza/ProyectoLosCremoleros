@@ -788,22 +788,37 @@ namespace UTPPrototipo.Controllers
             convenio.TipoTrabajo = "";
             convenio.FuenteConvenio = "";
 
-            ViewBag.TipoTrabajo = new SelectList(lngeneral.ObtenerListaValor(29), "IdListaValor", "Valor");
-            ViewBag.FuenteConvenio = new SelectList(lngeneral.ObtenerListaValor(51), "IdListaValor", "Valor");
+            //ViewBag.TipoTrabajo = new SelectList(lngeneral.ObtenerListaValor(29), "IdListaValor", "Valor");
+            //ViewBag.FuenteConvenio = new SelectList(lngeneral.ObtenerListaValor(51), "IdListaValor", "Valor");
 
             return RedirectToAction("Convenios");
         }
 
+        [HttpGet]
         public ActionResult Convenio(int idconvenio)
         {
             LNGeneral lngeneral = new LNGeneral();
-            LNUTP lnutp = new LNUTP();
-            
-            Convenio convenio = lnutp.UTP_ObtenerConvenio(idconvenio);
-            ViewBag.TipoTrabajo = new SelectList(lngeneral.ObtenerListaValor(29), "IdListaValor", "Valor");
-            ViewBag.FuenteConvenio = new SelectList(lngeneral.ObtenerListaValor(51), "IdListaValor", "Valor");
-            ViewBag.IdExperienciaCargo = new SelectList(convenio.Experiencias, "IdExperienciaCargo", "Experiencia");
+            Convenio convenio = lnUtp.UTP_ObtenerConvenio(idconvenio);
+            ViewBag.TipoTrabajo = new SelectList(lngeneral.ObtenerListaValor(29), "IdListaValor", "Valor",convenio.TipoTrabajo);
+            ViewBag.FuenteConvenio = new SelectList(lngeneral.ObtenerListaValor(51), "IdListaValor", "Valor",convenio.FuenteConvenio);
+            ViewBag.IdExperienciaCargo = new SelectList(convenio.Experiencias, "IdExperienciaCargo", "Experiencia",convenio.IdExperienciaCargo);
             return View(convenio);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Convenio(Convenio convenio)
+        {
+            LNGeneral lngeneral = new LNGeneral();
+            TicketUTP ticket = (TicketUTP)Session["TicketUTP"];
+            convenio.ModificadoPor = ticket.Usuario;
+            lnUtp.UTP_ConvenioActualizar(convenio);
+            Convenio convenioa = lnUtp.UTP_ObtenerConvenio(convenio.IdConvenio);
+            ViewBag.TipoTrabajo = new SelectList(lngeneral.ObtenerListaValor(29), "IdListaValor", "Valor", convenioa.TipoTrabajo);
+            ViewBag.FuenteConvenio = new SelectList(lngeneral.ObtenerListaValor(51), "IdListaValor", "Valor", convenioa.FuenteConvenio);
+            
+            ViewBag.IdExperienciaCargo = new SelectList(convenioa.Experiencias, "IdExperienciaCargo", "Experiencia", convenioa.IdExperienciaCargo);
+            return View(convenioa);
         }
 
         public ActionResult VerDetalleEmpresa(int id)
