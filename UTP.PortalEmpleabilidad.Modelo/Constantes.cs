@@ -103,6 +103,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public const int FILAS_POR_PAGINA = 10;
 
         #endregion
+        
 
     }
 }

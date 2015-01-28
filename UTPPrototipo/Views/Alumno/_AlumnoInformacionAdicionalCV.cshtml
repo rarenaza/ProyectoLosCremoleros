@@ -96,7 +96,7 @@
         //var url = "/Alumno/ModalRegistroInformacionAdicional?idAlumno=" + IdAlumno + "&IdCV=" + IdCV; // el url del controlador
         var url = '@Url.Action("ModalRegistroInformacionAdicional", "Alumno")' + '?idAlumno=' + IdAlumno + '&IdCV=' + IdCV;
         $.get(url, function (data) {
-            console.log(data);
+            //console.log(data);
             $('#Modal-Nuevo-otro-conocimiento').html(data);
             $.validator.unobtrusive.parse('#Modal-Nuevo-otro-conocimiento');
             $('#Modal-otro-conocimiento').modal("show");

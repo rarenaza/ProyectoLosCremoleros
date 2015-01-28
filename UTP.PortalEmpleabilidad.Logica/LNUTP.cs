@@ -259,19 +259,28 @@ namespace UTP.PortalEmpleabilidad.Logica
             
             adUtp.ActualizarEstadoYUsuarioEC(empresa);
 
-            //Se envía la notificación vía correo.
-            
-            Mensaje mensaje = new Mensaje();
-            mensaje.DeUsuarioCorreoElectronico = empresa.Usuario;
+            #region Envio de correo:
+            //Se completan los campos:
+            //Se indica el nombre del estado:
+            string estado = "";
+            if (empresa.EstadoIdListaValor == "EMPRAC") estado = "Activa";
+            if (empresa.EstadoIdListaValor == "EMPRNO") estado = "No Activa";
+            if (empresa.EstadoIdListaValor == "EMPRRV") estado = "Pendiente de aprobación de registro";
+            if (empresa.EstadoIdListaValor == "EMPRSU") estado = "Suspendida";
+                        
             //Obtener usuario empresa y su correo electronico.
-            LNMensaje lnMensaje = new LNMensaje ();
+            LNMensaje lnMensaje = new LNMensaje();
             DataTable dt = lnMensaje.ObtenerUsuarioEmpresaPorIdEmpresa(empresa.IdEmpresa);
 
+            Mensaje mensaje = new Mensaje();
+            mensaje.DeUsuarioCorreoElectronico = empresa.Usuario; //Contiene el ticket del usuario UTP.
             mensaje.ParaUsuarioCorreoElectronico = Convert.ToString(dt.Rows[0]["CorreoElectronico"]);
-            mensaje.Asunto = "Empresa actualizada";
-            mensaje.MensajeTexto = "El estado de la empresa '" + empresa.NombreComercial + "' han sido actualizados.";
+            mensaje.Asunto = "Empresa actualizada";            
+            mensaje.MensajeTexto = "El estado de la empresa '" + empresa.NombreComercial + "' ha sido actualizado a: " + estado + "'";
 
             LNCorreo.EnviarCorreo(mensaje);
+            #endregion
+           
         }
 
         public DataTable UTP_ObtenerOfertasporActivar(string oferta, int nroPagina, int filasPorPagina)

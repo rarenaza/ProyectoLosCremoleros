@@ -9,17 +9,18 @@ using System.Web.Mvc;
 using UTP.PortalEmpleabilidad.Logica;
 using UTP.PortalEmpleabilidad.Modelo;
 using UTP.PortalEmpleabilidad.Modelo.Vistas.Empresa;
+using UTPPrototipo.Common;
 using UTPPrototipo.Models.ViewModels.Contenido;
 using UTPPrototipo.Models.ViewModels.Cuenta;
 
 namespace UTPPrototipo.Controllers
 {
+    [LogPortal]
     public class HomeController : Controller
     {
         LNContenido ln = new LNContenido();
         public ActionResult Index()
-        {
-
+        {            
             ViewBag.ListaIndex = ln.Contenido_BuscarNoticiasEventosOtros("1");
 
             ViewBag.ListaNoticias = ln.Contenido_BuscarIndex("4");
@@ -558,8 +559,8 @@ namespace UTPPrototipo.Controllers
                 Mensaje mensaje = new Mensaje();
                 mensaje.DeUsuarioCorreoElectronico = empresa.EmailUsuario;
                 mensaje.ParaUsuarioCorreoElectronico = Convert.ToString(dtUsuarioUTPAdmin.Rows[0]["CorreoElectronico"]); //Administrador UTP
-                mensaje.Asunto = empresa.NombreComercial + "Empresa registrada en el Portal:";
-                mensaje.MensajeTexto = "La empresa '" + empresa.NombreComercial + "' se ha registrado en el portal y está la espera de activación";
+                mensaje.Asunto = empresa.NombreComercial + " Empresa registrada en el Portal:";
+                mensaje.MensajeTexto = "La empresa '" + empresa.NombreComercial + "' se ha registrado en el portal y está a la espera de activación";
                 LNCorreo.EnviarCorreo(mensaje);
 
                 //Si el registro fue exitoso redireccionar a página de resultado.
@@ -568,11 +569,19 @@ namespace UTPPrototipo.Controllers
                 //Aquí debería enviarse un correo
                 return RedirectToAction("Index");
             }
+            else
+            {
+                var errors = ModelState.Select(x => x.Value.Errors)
+                           .Where(y => y.Count > 0)
+                           .ToList();
+                //Variable temporal para poner el break
+                int a = 0;
+            }
             LNGeneral lnGeneral = new LNGeneral();
             ViewBag.PaisIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_PAIS), "IdListaValor", "Valor", empresa.PaisIdListaValor);
-            ViewBag.SectorEmpresarial1IdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_SECTOR_EMPRESARIAL), "IdListaValor", "Valor", empresa.SectorEmpresarial1IdListaValor);
+            ViewBag.SectorEmpresarial1IdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_SECTOR_EMPRESARIAL), "IdListaValor", "Valor", empresa.SectorEmpresarial1IdListaValor);            
             ViewBag.TipoLocacionIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_LOCACION), "IdListaValor", "Valor", empresa.TipoLocacionIdListaValor);
-            ViewBag.TipoDocumentoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_DOCUMENTO), "IdListaValor", "Valor", empresa.TipoDocumentoIdListaValor);
+            ViewBag.TipoDocumentoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_DOCUMENTO), "IdListaValor", "Valor", empresa.TipoDocumentoIdListaValor);            
 
 
             ViewBag.DireccionDepartamentoLocacion = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_Departamento), "IdListaValor", "Valor", empresa.DireccionDepartamentoLocacion);

@@ -226,5 +226,31 @@ namespace UTP.PortalEmpleabilidad.Datos
             return dtResultado;
         }
 
+        public void InsertarLog(Error error)
+        {
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "LogPortal_Insertar";
+
+                //Parámetros:
+                cmd.Parameters.Add(new SqlParameter("@Usuario", error.Usuario));
+                cmd.Parameters.Add(new SqlParameter("@Accion", error.Accion));
+                cmd.Parameters.Add(new SqlParameter("@Controlador", error.Controlador));
+                cmd.Parameters.Add(new SqlParameter("@ErrorInnerException", error.ErrorInnerException));
+                cmd.Parameters.Add(new SqlParameter("@ErrorMessage", error.ErrorMessage));
+                cmd.Parameters.Add(new SqlParameter("@ErrorSource", error.ErrorSource));
+                cmd.Parameters.Add(new SqlParameter("@ErrorStackTrace", error.ErrorStackTrace));
+                cmd.Parameters.Add(new SqlParameter("@IP", error.IP));
+               
+                cmd.Connection = conexion;
+                conexion.Open();
+                cmd.ExecuteNonQuery();
+                conexion.Close();
+            }
+        }
+
     }
 }

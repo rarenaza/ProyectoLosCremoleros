@@ -7,11 +7,13 @@ using System.Web;
 using System.Web.Mvc;
 using UTP.PortalEmpleabilidad.Logica;
 using UTP.PortalEmpleabilidad.Modelo;
+using UTPPrototipo.Common;
 using UTPPrototipo.Models.ViewModels.Cuenta;
 using UTPPrototipo.Models.ViewModels.Empresa;
 
 namespace UTPPrototipo.Controllers
 {
+    [LogPortal]
     public class EventoController : Controller
     {
         LNEvento ad = new LNEvento();

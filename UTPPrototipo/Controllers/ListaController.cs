@@ -6,9 +6,11 @@ using System.Web;
 using System.Web.Mvc;
 using UTP.PortalEmpleabilidad.Logica;
 using UTP.PortalEmpleabilidad.Modelo;
+using UTPPrototipo.Common;
 
 namespace UTPPrototipo.Controllers
 {
+    [LogPortal]
     public class ListaController : Controller
     {
         LNLista ad = new LNLista();

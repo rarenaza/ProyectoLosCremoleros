@@ -6,10 +6,12 @@ using System.Web.Mvc;
 using UTP.PortalEmpleabilidad.Modelo;
 using UTP.PortalEmpleabilidad.Logica;
 using UTPPrototipo.Models.ViewModels.Cuenta;
+using UTPPrototipo.Common;
 
 
 namespace UTPPrototipo.Controllers
 {
+    [LogPortal]
     public class OfertaSectorEmpresarialController : Controller
     {
         LNOfertaSectorEmpresarial lnSector = new LNOfertaSectorEmpresarial();

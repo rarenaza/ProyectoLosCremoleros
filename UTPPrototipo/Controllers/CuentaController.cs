@@ -6,10 +6,12 @@ using System.Web;
 using System.Web.Mvc;
 using UTP.PortalEmpleabilidad.Logica;
 using UTP.PortalEmpleabilidad.Modelo;
+using UTPPrototipo.Common;
 using UTPPrototipo.Models.ViewModels.Cuenta;
 
 namespace UTPPrototipo.Controllers
 {
+    [LogPortal]
     public class CuentaController : Controller
     {
         //

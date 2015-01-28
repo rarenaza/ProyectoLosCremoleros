@@ -17,8 +17,7 @@ using UTPPrototipo.Models.ViewModels.Empresa;
 
 namespace UTPPrototipo.Controllers
 {
-    [VerificarSesion]
-
+    [VerificarSesion, LogPortal]
     public class EmpresaController : Controller
     {
         LNEmpresa lnEmpresa = new LNEmpresa();

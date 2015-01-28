@@ -10,6 +10,22 @@ using UTP.PortalEmpleabilidad.Modelo.Vistas.Alumno;
 
 namespace UTP.PortalEmpleabilidad.Logica
 {
+    public static class LNLog
+    {        
+        public static void InsertarLog(Error error)
+        {
+            try
+            {
+                ADGeneral adGeneral = new ADGeneral();
+                adGeneral.InsertarLog(error);
+            }
+            catch
+            {
+
+            }
+            
+        }
+    }
     public class LNGeneral
     {
         ADGeneral adGeneral = new ADGeneral();

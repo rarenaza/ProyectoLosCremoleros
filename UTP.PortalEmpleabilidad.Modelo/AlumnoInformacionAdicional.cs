@@ -20,7 +20,8 @@ namespace UTP.PortalEmpleabilidad.Modelo
         //[StringLength(2, MinimumLength = 1, ErrorMessage = "Este campo sólo maximo 2 digitos.")]
         public int? FechaConocimientoDesdeMes { get; set; }
         //[Required(ErrorMessage = "Falta el año de inicio")]
-        [StringLength(4, MinimumLength = 4, ErrorMessage = "Este campo sólo acepta 4 digitos.")]
+        //[StringLength(4, MinimumLength = 4, ErrorMessage = "Este campo sólo acepta 4 digitos.")]
+        [Range(2000, 2015, ErrorMessage = "El valor debe estar en el rango de {1} y {2}.")]
         [RegularExpression(@"[0-9]+", ErrorMessage = "Este campo sólo acepta años con 4 numeros.")]
         public int? FechaConocimientoDesdeAno { get; set; }
         [StringLength(2, MinimumLength = 1, ErrorMessage = "Este campo sólo maximo 2 digitos.")]

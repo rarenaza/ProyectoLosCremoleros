@@ -27,7 +27,7 @@ namespace UTPPrototipo.Controllers
 {
 
     
-        [VerificarSesion]
+    [VerificarSesion, LogPortal]
     public class UTPController : Controller
     {
        
@@ -887,7 +887,8 @@ namespace UTPPrototipo.Controllers
 
             Empresa empresa = lnEmpresa.ObtenerDatosEmpresaPorId(idEmpresa);
 
-            ViewBag.EstadoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_EMPRESA), "IdListaValor", "Valor", empresa.EstadoIdListaValor);                        
+            ViewBag.EstadoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_EMPRESA), "IdListaValor", "Valor", empresa.EstadoIdListaValor);
+            //Se obtienen sólo los usuarios activos:
             ViewBag.UsuarioEC = new SelectList(lnUsuario.ObtenerUsuariosPorTipo("USERUT"), "NombreUsuario", "NombreCompleto", empresa.UsuarioEC);
 
             return PartialView("_VerDetalleEmpresaDatosGenerales", empresa);

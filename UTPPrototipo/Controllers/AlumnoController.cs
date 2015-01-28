@@ -17,7 +17,7 @@ using UTP.PortalEmpleabilidad.Modelo.Vistas.Alumno;
 
 namespace UTPPrototipo.Controllers
 {
-    [VerificarSesion]
+    [VerificarSesion, LogPortal]
     public class AlumnoController : Controller
     {
         LNAlumno lnAlumno = new LNAlumno();
@@ -853,6 +853,7 @@ namespace UTPPrototipo.Controllers
 
         }
 
+        [HttpPost, ValidateAntiForgeryToken]
         public PartialViewResult _RegistrarAlumnoInformacionAdicional(AlumnoInformacionAdicional alumnoinformacionadicional)
         {
             TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];

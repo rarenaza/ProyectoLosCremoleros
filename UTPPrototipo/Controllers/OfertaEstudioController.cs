@@ -7,9 +7,11 @@ using UTP.PortalEmpleabilidad.Modelo;
 using UTP.PortalEmpleabilidad.Logica;
 using UTPPrototipo.Models.ViewModels.Cuenta;
 using UTP.PortalEmpleabilidad.Modelo.Vistas.Ofertas;
+using UTPPrototipo.Common;
 
 namespace UTPPrototipo.Controllers
 {
+    [LogPortal]
     public class OfertaEstudioController : Controller
     {
         LNOfertaEstudio lnOfertaEstudio = new LNOfertaEstudio();

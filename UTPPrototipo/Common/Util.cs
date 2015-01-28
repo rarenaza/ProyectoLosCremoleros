@@ -6,6 +6,8 @@ using System.Configuration;
 using System.Web.Mvc;
 using UTPPrototipo.Models.ViewModels.Cuenta;
 using System.Web.Routing;
+using UTP.PortalEmpleabilidad.Logica;
+using UTP.PortalEmpleabilidad.Modelo;
 namespace UTPPrototipo.Common
 {
     public class Util
@@ -76,6 +78,60 @@ namespace UTPPrototipo.Common
 
             //Caso contrario la ejecución continúa de manera normal.
             base.OnActionExecuting(filterContext);
+        }
+    }
+
+    public class LogPortal : ActionFilterAttribute
+    {
+        //public override void OnActionExecuting(ActionExecutingContext filterContext)
+        //{
+        //   
+
+        //    base.OnActionExecuting(filterContext);
+        //}
+
+        public override void OnActionExecuted(ActionExecutedContext filterContext)
+        {
+            if (filterContext.Exception != null)
+            {
+                TicketEmpresa ticketEmpresa = (TicketEmpresa)filterContext.HttpContext.Session["TicketEmpresa"];
+                TicketAlumno ticketAlumno = (TicketAlumno)filterContext.HttpContext.Session["TicketAlumno"];
+                TicketUTP ticketUTP = (TicketUTP)filterContext.HttpContext.Session["TicketUtp"];
+                
+                string ip = HttpContext.Current.Request.UserHostAddress; 
+                string accion = "";
+                string controlador = "";
+
+                //Se obtiene la acción y el controlador:
+                var routeValues = HttpContext.Current.Request.RequestContext.RouteData.Values;
+                if (routeValues != null)
+                {
+                    if (routeValues.ContainsKey("action"))
+                    {
+                        accion = routeValues["action"].ToString();
+                    }
+                    if (routeValues.ContainsKey("controller"))
+                    {
+                        controlador = routeValues["controller"].ToString();
+                    }
+                }
+
+                //Se obtiene el usuario autenticado:
+                string usuario = ticketEmpresa == null ? (ticketAlumno == null ? ticketUTP.Usuario : ticketAlumno.Usuario) : ticketEmpresa.Usuario;
+                Error error = new Error ();
+                error.Usuario = usuario;
+                error.IP = ip;
+                error.Accion = accion;
+                error.Controlador = controlador;
+                error.ErrorMessage = filterContext.Exception.Message;
+                error.ErrorInnerException = filterContext.Exception.InnerException == null ? "" : filterContext.Exception.InnerException.Message;
+                error.ErrorSource = filterContext.Exception.Source;
+                error.ErrorStackTrace = filterContext.Exception.StackTrace;
+
+                LNLog.InsertarLog(error);
+            }
+                
+            base.OnActionExecuted(filterContext);
         }
     }
 }

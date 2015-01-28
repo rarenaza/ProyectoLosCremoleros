@@ -410,10 +410,10 @@
 
             //Se obtiene el valor de IdOferta
             var idOferta = document.getElementById('IdOferta').value;
-
+            var pantalla = '@Constantes.MENSAJES_EMPRESA_OFERTA';
             //Se envía una confirmación.
             if (confirm('¿Está seguro de publicar la oferta?')) {
-                var url = '@Url.Action("FinalizarOferta", "Oferta")' + "?idOferta=" + idOferta + '&estado=OFERPR'; //Se envía el estado Pendiente de Activación.
+                var url = '@Url.Action("FinalizarOferta", "Oferta")' + "?idOferta=" + idOferta + '&estado=OFERPR' + '&pantalla=' + pantalla; //Se envía el estado Pendiente de Activación.
 
                 $.get(url, function (data) {
                     alert("La oferta ha sido publicada y está pendiente de activación por UTP");
@@ -429,12 +429,12 @@
             }
         });
 
-        
+
 
         checkSupportForInputTypeDate();
         $("#FechaFinRecepcionCV").datepicker({ dateFormat: 'dd/mm/yy' });
 
-        
+
     });
 
     //Scripts de creación.

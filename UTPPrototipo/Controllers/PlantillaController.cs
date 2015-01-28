@@ -10,9 +10,11 @@ using System.Drawing;
 using UTP.PortalEmpleabilidad.Logica;
 using System.Data;
 using System.Text;
+using UTPPrototipo.Common;
 
 namespace UTPPrototipo.Controllers
 {
+    [LogPortal]
     public class PlantillaController : Controller
     {
         // GET: Plantilla

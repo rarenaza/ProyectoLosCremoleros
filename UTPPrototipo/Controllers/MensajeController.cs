@@ -14,7 +14,7 @@ using System.Data;
 
 namespace UTPPrototipo.Controllers
 {
-    [VerificarSesion]
+    [VerificarSesion, LogPortal]
     public class MensajeController : Controller
     {
         LNMensaje lnMensaje = new LNMensaje();

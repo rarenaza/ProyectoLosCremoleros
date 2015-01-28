@@ -6,9 +6,11 @@ using System.Web.Mvc;
 using UTP.PortalEmpleabilidad.Modelo;
 using UTP.PortalEmpleabilidad.Logica;
 using UTPPrototipo.Models.ViewModels.Cuenta;
+using UTPPrototipo.Common;
 
 namespace UTPPrototipo.Controllers
 {
+    [LogPortal]
     public class OfertaInformacionAdicionalController : Controller
     {
         LNOfertaInformacionAdicional lnInfoAdicional = new LNOfertaInformacionAdicional();
