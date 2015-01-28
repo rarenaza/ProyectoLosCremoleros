@@ -48,7 +48,7 @@ namespace UTPPrototipo.Controllers
      
         }
        
-        public ActionResult Portal(string id, string Menu)
+        public ActionResult Portal(string Menu)
         {
             LNContenido ln = new LNContenido();
 
@@ -97,6 +97,8 @@ namespace UTPPrototipo.Controllers
 
                         contenido.Imagen = (byte[])dtResultado.Rows[i]["Imagen"];
 
+                        //contenido.Imagen = dtResultado.Rows[0]["Imagen"] == DBNull.Value ? null : (byte[])dtResultado.Rows[0]["Imagen"];
+
                         contenido.TituloMenu = dtResultado.Rows[i]["Menu"].ToString();
 
 
@@ -140,6 +142,54 @@ namespace UTPPrototipo.Controllers
 
             return View(lista);
           
+        }
+
+        public FileResult Imagen(int id)
+        {
+            const string alternativePicturePath = @"/img/sinimagen.jpg";
+
+            List<Contenido> lista = new List<Contenido>();
+
+            DataTable dtResultado = ln.Contenido_Mostrar_imagen();
+
+            for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
+            {
+                Contenido contenido = new Contenido();
+                contenido.IdContenido = Convert.ToInt32(dtResultado.Rows[i]["IdContenido"]);
+                contenido.Titulo = dtResultado.Rows[i]["Titulo"].ToString();
+
+                //06ENE Aldo Chocos: Validación de imagen null.
+                if (dtResultado.Rows[i]["Imagen"] != null && dtResultado.Rows[i]["Imagen"] != DBNull.Value)
+                    contenido.Imagen = (byte[])dtResultado.Rows[i]["Imagen"];
+
+                //contenido.Imagen = Encoding.UTF8.GetBytes(dtResulatdo.Rows[i]["Imagen"].ToString());
+
+                lista.Add(contenido);
+            }
+
+            Contenido producto = lista.Where(k => k.IdContenido == id).FirstOrDefault();
+
+            MemoryStream stream;
+            if (producto.Titulo == "ABC")
+            {
+                int a = 0;
+            }
+            if (producto != null && producto.Imagen != null && producto.Imagen.Length > 1)
+            {
+                stream = new MemoryStream(producto.Imagen);
+            }
+            else
+            {
+                stream = new MemoryStream();
+
+                var path = Server.MapPath(alternativePicturePath);
+                var image = new System.Drawing.Bitmap(path);
+
+                image.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
+                stream.Seek(0, SeekOrigin.Begin);
+            }
+
+            return new FileStreamResult(stream, "image/jpeg");
         }
 
         public ActionResult Empresas()
@@ -1328,53 +1378,7 @@ namespace UTPPrototipo.Controllers
            
         }
       
-        public FileResult Imagen(int id)
-        {
-            const string alternativePicturePath = @"/img/sinimagen.jpg";
-
-            List<Contenido> lista = new List<Contenido>();
-
-            DataTable dtResultado = ln.Contenido_Mostrar_imagen();
-
-            for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
-            {
-                Contenido contenido = new Contenido();
-                contenido.IdContenido = Convert.ToInt32(dtResultado.Rows[i]["IdContenido"]);
-                contenido.Titulo = dtResultado.Rows[i]["Titulo"].ToString();
-
-                //06ENE Aldo Chocos: Validación de imagen null.
-                if (dtResultado.Rows[i]["Imagen"] != null && dtResultado.Rows[i]["Imagen"] != DBNull.Value)
-                    contenido.Imagen = (byte[])dtResultado.Rows[i]["Imagen"];
-              
-                //contenido.Imagen = Encoding.UTF8.GetBytes(dtResulatdo.Rows[i]["Imagen"].ToString());
-
-                lista.Add(contenido);
-            }
-
-            Contenido producto = lista.Where(k => k.IdContenido== id).FirstOrDefault();
-
-            MemoryStream stream;
-            if (producto.Titulo == "ABC")
-            {
-                int a = 0;
-            }
-            if (producto != null && producto.Imagen != null && producto.Imagen.Length > 1)
-            {
-                stream = new MemoryStream(producto.Imagen);
-            }
-            else
-            {
-                stream = new MemoryStream();
-
-                var path = Server.MapPath(alternativePicturePath);
-                var image = new System.Drawing.Bitmap(path);
-
-                image.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
-                stream.Seek(0, SeekOrigin.Begin);
-            }
-
-            return new FileStreamResult(stream, "image/jpeg");
-        }
+       
 
         public ActionResult VistaCabeceraUtp()
         {

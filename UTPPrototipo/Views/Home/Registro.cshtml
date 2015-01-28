@@ -8,6 +8,10 @@
 {
 
     @Html.AntiForgeryToken()
+    
+    @Html.HiddenFor(model => Model.TextoDepartamento)
+    @Html.HiddenFor(model => Model.TextoCiudad)
+    @Html.HiddenFor(model => Model.TextDistrito)
     <div class="container fuente-pequeña">
         <h5 style="text-align:center;"><strong>Registro</strong></h5>
         <hr />
@@ -114,7 +118,7 @@
                     @*<input type="text" class="form-control fuente-pequeña" placeholder="Ingrese Departamento/Región/Estado">*@
                     @* @Html.TextBoxFor(model => model.DireccionDepartamentoLocacion, new { @class = "form-control", @placeholder = "Ingrese Departamento/Región/Estado" })*@
 
-                    @Html.DropDownList("DireccionDepartamentoLocacion", ViewData["Departamento"] as List<SelectListItem>, "-Seleccione-", new { @class = "form-control", @text="DireccionDepartamentoLocacion"})
+                    @Html.DropDownList("DireccionDepartamentoLocacion", ViewData["Departamento"] as List<SelectListItem>, "-Seleccione-", new { @class = "form-control", @id = "DireccionDepartamentoLocacion" })
                     @*  *@
                 </div>@Html.ValidationMessageFor(model => model.DireccionDepartamentoLocacion, "", new { @class = "text-danger" })
             </div>
@@ -124,7 +128,7 @@
                     @*<input type="text" class="form-control fuente-pequeña" placeholder="Ingrese Ciudad">*@
 
                     @*@Html.TextBoxFor(model => model.DireccionCiudadLocacion, new { @class = "form-control", @placeholder = "Ingrese Ciudad/Provincia" })*@
-                    @Html.DropDownList("DireccionCiudadLocacion", new SelectList(string.Empty, "Value", "Text"), "-Seleccione-", new { @class = "form-control" })
+                    @Html.DropDownList("DireccionCiudadLocacion", new SelectList(string.Empty, "Value", "Text"), "-Seleccione-", new { @class = "form-control" ,@id="DireccionCiudadLocacion" })
 
 
                 </div>@Html.ValidationMessageFor(model => model.DireccionCiudadLocacion, "", new { @class = "text-danger" })
@@ -137,14 +141,14 @@
 
                     @*<select class="form-control" id="DireccionDistritoLocacion" name="DireccionDistritoLocacion" data-val="true" data-val_required="Falta el distrito"></select>*@
 
-                    @Html.DropDownList("DireccionDistritoLocacion", new SelectList(string.Empty, "Value", "Text"), "-Seleccione-", new { @class = "form-control" })
+                    @Html.DropDownList("DireccionDistritoLocacion", new SelectList(string.Empty, "Value", "Text"), "-Seleccione-", new { @class = "form-control", @id = "DireccionDistritoLocacion" })
 
                     @*@Html.TextBoxFor(model => model.DireccionDistritoLocacion, new { @class = "form-control", @placeholder = "Ingrese Distrito/Comuna" })*@
 
                 </div>@Html.ValidationMessageFor(model => model.DireccionDistritoLocacion, "", new { @class = "text-danger" })
             </div>
         </div>
-
+  
         <!--Por defecto el div está oculto-->
         <div class="row" id="divUbigeoConCajasDeTexto" style="display:none;">
 
@@ -291,6 +295,49 @@
    
 }
   
+
+<script>
+    //Este bloque sólo debe ir una vez, esto quiere decir que todo lo de adentro se ejecuta cuando toda la pagina se renderiza o muestra al c liente.
+    $(document).ready(function () {
+
+        //Combo de departamento.
+        $('#DireccionDepartamentoLocacion').on('change', function () {
+
+            //Se obtiene el texto del combo.
+            var TextDepartamento = $("#DireccionDepartamentoLocacion option:selected").text();
+
+            //Se guarda el valor en el hidden TextoDepartamento.
+            $('#TextoDepartamento').val(TextDepartamento);
+        });
+
+               
+
+        //Combo de provincia.
+        $('#DireccionCiudadLocacion').on('change', function () {
+
+            //Se obtiene el texto del combo.
+            var TextCiudad = $("#DireccionCiudadLocacion option:selected").text();
+
+            //Se guarda el valor en el hidden TextoDepartamento.
+            $('#TextoCiudad').val(TextCiudad);
+        });
+
+        //combo de distrito.
+        $('#DireccionDistritoLocacion').on('change', function () {
+
+            //Se obtiene el texto del combo.
+            var TextDistrito = $("#DireccionDistritoLocacion option:selected").text();
+
+            //Se guarda el valor en el hidden TextoDepartamento.
+            $('#TextDistrito').val(TextDistrito);
+        });
+
+    });
+   
+</script>
+
+
+
 <script >
     $(document).ready(function () 
     {

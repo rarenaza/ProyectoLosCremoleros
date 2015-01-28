@@ -531,7 +531,21 @@ namespace UTPPrototipo.Controllers
                 empresa.EstadoIdListaValor = "EMPRRV"; //Estado de la empresa pendiente de aprobación.
                 //Ubicación
                 empresa.EstadoLocacionIdListaValor = "LOSTNO"; //Estado NO ACTIVA. Se debe activar al momento que UTP active la cuenta. 
-                empresa.NombreLocacion = empresa.DireccionLocacion + ", " + empresa.DireccionDistritoLocacion + ", " + empresa.DireccionCiudadLocacion + ", " + empresa.DireccionDepartamentoLocacion;
+
+
+                if (empresa.PaisIdListaValor == "PAIPER")
+                {
+                    empresa.NombreLocacion = empresa.DireccionLocacion + ", " + empresa.TextDistrito + ", " + empresa.TextoCiudad + ", " + empresa.TextoDepartamento;
+                
+                }
+                else
+                {
+                    empresa.NombreLocacion = empresa.DireccionLocacion + ", " + empresa.DireccionDistritoLocacion + ", " + empresa.DireccionCiudadLocacion + ", " + empresa.DireccionDepartamentoLocacion;
+                }
+
+                //validar si el pais es peru, si es asi entonces:
+                
+                
                 //Usuario
                 empresa.RolIdListaValor = "ROLEAD"; //La cuenta es creada como Rol: "Administrador de Empresa"
                 empresa.EstadoUsuarioIdListaValor = "USEUTP"; //El usuario también se encuenta pendiente de activación. Se debe activar al momento que UTP active la cuenta.
