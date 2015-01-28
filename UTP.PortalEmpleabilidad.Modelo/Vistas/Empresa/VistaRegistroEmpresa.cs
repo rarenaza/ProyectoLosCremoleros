@@ -102,6 +102,8 @@ namespace UTP.PortalEmpleabilidad.Modelo.Vistas.Empresa
         public string EstadoUsuarioIdListaValor { get; set; }
         public string RolIdListaValor { get; set; }
 
-      
+        public string TextoDepartamento { get; set; }
+        public string TextoCiudad { get; set; }
+        public string TextDistrito { get; set; }
     }
 }
