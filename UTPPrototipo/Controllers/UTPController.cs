@@ -807,7 +807,17 @@ namespace UTPPrototipo.Controllers
             return RedirectToAction("Convenios");
         }
 
-        
+        public ActionResult Convenio(int idconvenio)
+        {
+            LNGeneral lngeneral = new LNGeneral();
+            LNUTP lnutp = new LNUTP();
+            
+            Convenio convenio = lnutp.UTP_ObtenerConvenio(idconvenio);
+            ViewBag.TipoTrabajo = new SelectList(lngeneral.ObtenerListaValor(29), "IdListaValor", "Valor");
+            ViewBag.FuenteConvenio = new SelectList(lngeneral.ObtenerListaValor(51), "IdListaValor", "Valor");
+            ViewBag.IdExperienciaCargo = new SelectList(convenio.Experiencias, "IdExperienciaCargo", "Experiencia");
+            return View(convenio);
+        }
 
         public ActionResult VerDetalleEmpresa(int id)
         {

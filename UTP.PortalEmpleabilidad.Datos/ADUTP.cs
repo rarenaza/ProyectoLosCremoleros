@@ -29,7 +29,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.Parameters.Add(new SqlParameter("@NroPaginaActual", nroPagina));
                 cmd.Parameters.Add(new SqlParameter("@FilasPorPagina", filasPorPagina));
 
-            
+
                 cmd.Connection = conexion;
 
                 conexion.Open();
@@ -46,7 +46,7 @@ namespace UTP.PortalEmpleabilidad.Datos
             return dtResultado;
         }
 
-      
+
 
         public DataTable EmpresaObtenerPendientes(int nroPagina, int filasPorPagina)
         {
@@ -79,7 +79,7 @@ namespace UTP.PortalEmpleabilidad.Datos
         }
 
 
-       
+
 
         public DataTable Utp_ListaEmpresas()
         {
@@ -89,7 +89,7 @@ namespace UTP.PortalEmpleabilidad.Datos
 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = "Utp_ListaEmpresas";
-          
+
 
             cmd.Connection = cnn.cn;
             cnn.Conectar();
@@ -164,11 +164,11 @@ namespace UTP.PortalEmpleabilidad.Datos
 
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = "Empresa_BusquedaAvanzada";
-            cmd.Parameters.Add(new SqlParameter("@Nombre", NombreComercial ));
+            cmd.Parameters.Add(new SqlParameter("@Nombre", NombreComercial));
             cmd.Parameters.Add(new SqlParameter("@Valor", IdEstadoEmpresa));
             cmd.Parameters.Add(new SqlParameter("@Sector", IdSector));
             cmd.Parameters.Add(new SqlParameter("@Razon", RazonSocial));
-             //Paginación.
+            //Paginación.
             cmd.Parameters.Add(new SqlParameter("@NroPaginaActual", nroPaginaActual));
             cmd.Parameters.Add(new SqlParameter("@FilasPorPagina", filasPorPagina));
 
@@ -187,9 +187,9 @@ namespace UTP.PortalEmpleabilidad.Datos
             return dt;
         }
 
-        
 
-      
+
+
 
         public DataTable UTP_ObtenerUltimosConvenios(string Dato)
         {
@@ -219,16 +219,16 @@ namespace UTP.PortalEmpleabilidad.Datos
         }
 
 
-        public DataTable UTP_ObtenerConvenio(int idConvenio)
+        public DataSet UTP_ObtenerConvenio(int idConvenio)
         {
-            DataTable dtResultado = new DataTable();
+            DataSet dsResultado = new DataSet();
 
             using (SqlConnection conexion = new SqlConnection(cadenaConexion))
             {
                 SqlCommand cmd = new SqlCommand();
 
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "UTP_ObtenerConvenio";
+                cmd.CommandText = "Convenio_ObtenerDatos";
                 cmd.Parameters.Add(new SqlParameter("@IdConvenio", idConvenio));
                 cmd.Connection = conexion;
 
@@ -236,14 +236,14 @@ namespace UTP.PortalEmpleabilidad.Datos
 
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
 
-                dtResultado = new DataTable();
+                dsResultado = new DataSet();
 
-                da.Fill(dtResultado);
+                da.Fill(dsResultado);
 
                 conexion.Close();
             }
 
-            return dtResultado;
+            return dsResultado;
         }
 
         public void UTP_ConvenioInsertar(Convenio convenio)
@@ -310,13 +310,13 @@ namespace UTP.PortalEmpleabilidad.Datos
                     cmd.Parameters.Add(new SqlParameter("@FacultadPrincipal", empresa.FacultadPrincipal == null ? "" : empresa.FacultadPrincipal));
                     cmd.Parameters.Add(new SqlParameter("@FacultadSecundaria", empresa.FacultadSecundaria == null ? "" : empresa.FacultadSecundaria));
                     cmd.Parameters.Add(new SqlParameter("@Usuario", empresa.Usuario));
-           
-                    cmd.Parameters.Add(new SqlParameter("@NivelDeFacturacion", empresa.NivelDeFacturacion));
-        
-               
-            
 
-                    cmd.Parameters.Add(new SqlParameter("@NuevoComentario", empresa.NuevoComentario == null?"" : empresa.NuevoComentario));
+                    cmd.Parameters.Add(new SqlParameter("@NivelDeFacturacion", empresa.NivelDeFacturacion));
+
+
+
+
+                    cmd.Parameters.Add(new SqlParameter("@NuevoComentario", empresa.NuevoComentario == null ? "" : empresa.NuevoComentario));
 
                     cmd.Connection = conexion;
                     conexion.Open();
@@ -330,7 +330,7 @@ namespace UTP.PortalEmpleabilidad.Datos
             }
         }
 
-        
+
         public DataTable Utp_BuscarDatosAlumno(int idAlumno)
         {
             DataTable dtResultado = new DataTable();
@@ -369,7 +369,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                 SqlCommand cmd = new SqlCommand();
 
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "UTPUsuario_ObtenerLista";                
+                cmd.CommandText = "UTPUsuario_ObtenerLista";
                 cmd.Connection = conexion;
 
                 conexion.Open();
@@ -515,7 +515,7 @@ namespace UTP.PortalEmpleabilidad.Datos
         }
 
 
-   
+
 
 
         public DataTable UTP_OBTENERVALORPADREEDITAR(string IDListaValor)
@@ -560,7 +560,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.Parameters.Add(new SqlParameter("@Apellidos", utpUsuario.Apellidos));
                 cmd.Parameters.Add(new SqlParameter("@Sexo", utpUsuario.SexoIdListaValor == null ? "" : utpUsuario.SexoIdListaValor));
 
-            
+
                 cmd.Parameters.Add(new SqlParameter("@CorreoElectronico", utpUsuario.Correo));
                 cmd.Parameters.Add(new SqlParameter("@TelefonoFijo", utpUsuario.TelefonoFijo == null ? "" : utpUsuario.TelefonoFijo));
                 cmd.Parameters.Add(new SqlParameter("@TelefonoAnexo", utpUsuario.TelefonoAnexo == null ? "" : utpUsuario.TelefonoAnexo));
@@ -573,7 +573,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.Connection = conexion;
 
                 conexion.Open();
-                
+
                 cmd.ExecuteNonQuery();
 
                 conexion.Close();
@@ -595,7 +595,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.Parameters.Add(new SqlParameter("@DescripcionLista", lista.DescripcionLista));
                 cmd.Parameters.Add(new SqlParameter("@Modificable", lista.Modificable));
                 cmd.Parameters.Add(new SqlParameter("@CreadoPor", lista.Creadopor));
-                         
+
 
                 cmd.Connection = conexion;
 
@@ -730,7 +730,7 @@ namespace UTP.PortalEmpleabilidad.Datos
 
         public int UsuarioSistemaUTP_Exitencia(string Usuario)
         {
-            int cantidad=0;
+            int cantidad = 0;
             try
             {
                 using (SqlConnection conexion = new SqlConnection(cadenaConexion))
@@ -742,14 +742,14 @@ namespace UTP.PortalEmpleabilidad.Datos
 
                     //Parámetros:
                     cmd.Parameters.Add(new SqlParameter("@Usuario", Usuario));
-                
+
 
                     cmd.Connection = conexion;
                     conexion.Open();
                     cmd.ExecuteScalar();
 
-                    object resultado=cmd.ExecuteScalar ();
-                    cantidad =Convert.ToInt32 (resultado);
+                    object resultado = cmd.ExecuteScalar();
+                    cantidad = Convert.ToInt32(resultado);
 
                     conexion.Close();
                 }
@@ -806,7 +806,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "UTP_ObtenerEventosObtenerBuscar";
                 cmd.Parameters.Add(new SqlParameter("@Evento", evento));
-                   //Paginación:
+                //Paginación:
                 cmd.Parameters.Add(new SqlParameter("@NroPaginaActual", nroPagina));
                 cmd.Parameters.Add(new SqlParameter("@FilasPorPagina", filasPorPagina));
                 cmd.Connection = conexion;
@@ -825,7 +825,7 @@ namespace UTP.PortalEmpleabilidad.Datos
             return dtResultado;
         }
 
-        public DataTable UTP_ObtenerUltimosAlumnos(string Dato,int nroPagina, int filasPorPagina)
+        public DataTable UTP_ObtenerUltimosAlumnos(string Dato, int nroPagina, int filasPorPagina)
         {
             DataTable dtResultado = new DataTable();
 
@@ -865,7 +865,7 @@ namespace UTP.PortalEmpleabilidad.Datos
 
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "Evento_ListaEstado";
-            
+
                 cmd.Connection = conexion;
 
                 conexion.Open();
@@ -937,7 +937,7 @@ namespace UTP.PortalEmpleabilidad.Datos
         }
 
         #endregion
-    
+
 
     }
 }

@@ -7,7 +7,7 @@
 
     </div>
 
-    @using (Html.BeginForm("NuevoConvenio", "UTP", FormMethod.Post))
+    @using (Html.BeginForm("Convenio", "UTP", FormMethod.Post))
     {
         @*@Html.AntiForgeryToken()*@
         <div class="modal-body">
@@ -28,7 +28,6 @@
                         <span class="input-group-addon">Alumno</span>
                         <span class="form-control" id="Alumno">@Model.Nombres @Model.Apellidos (@Model.CodAlumnoUtp )</span>
                     </div>
-                    @Html.ValidationMessageFor(m => m.Alumno, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="row">
@@ -75,30 +74,33 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="input-group">
-                        <span class="input-group-addon">(*)Empresa</span>
-                        @Html.TextBoxFor(m => m.NombreComercial, htmlAttributes: new { @class = "form-control", @placeholder = "Empresa", @id = "NombreComercial" })
+                        <span class="input-group-addon">Empresa</span>
+                        <span class="form-control" id="Empresa">@Model.NombreComercial (@Model.RazonSocial) </span>
                     </div>
-                    @Html.ValidationMessageFor(m => m.NombreComercial, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-12">
+                <div class="col-sm-6">
                     <div class="input-group">
                         <span class="input-group-addon">Sector<br />Empresa</span>
-                        <input class="form-control" id="ValorSectorEmpresarial" readonly />
+                        <span class="form-control" id="SectorEmpresarial">@Model.SectorEmpresarial</span>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <span class="input-group-addon">RUC</span>
+                        <span class="form-control" id="SectorEmpresarial">@Model.IdentificadorTributario</span>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-12">
+                <div class="col-sm-4">
                     <div class="input-group">
                         <span class="input-group-addon">Nombre<br />Contacto</span>
                         @Html.TextBoxFor(m => m.ContactoNombre, htmlAttributes: new { @class = "form-control", @placeholder = "Nombre de la persona de Contacto" })
                     </div>
                     @Html.ValidationMessageFor(m => m.ContactoNombre, "", new { @class = "text-danger" })
                 </div>
-            </div>
-            <div class="row">
                 <div class="col-sm-4">
                     <div class="input-group">
                         <span class="input-group-addon">Cargo del<br />Contacto</span>
@@ -106,7 +108,7 @@
                     </div>
                     @Html.ValidationMessageFor(m => m.ContactoCargo, "", new { @class = "text-danger" })
                 </div>
-                <div class="col-sm-8">
+                <div class="col-sm-4">
                     <div class="input-group">
                         <span class="input-group-addon">e-Mail</span>
                         @Html.TextBoxFor(m => m.ContactoCorreoElectronico, htmlAttributes: new { @class = "form-control", @placeholder = "e-Mail del Contacto" })
@@ -131,21 +133,21 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                     <div class="input-group">
                         <span class="input-group-addon">(*)Tipo<br />Trabajo</span>
                         @Html.DropDownListFor(m => m.TipoTrabajo, null, "- Seleccionar -", htmlAttributes: new { @class = "form-control" })
                     </div>
                     @Html.ValidationMessageFor(m => m.TipoTrabajo, "", new { @class = "text-danger" })
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     <div class="input-group">
                         <span class="input-group-addon">(*)Duración</span>
                         @Html.TextBoxFor(m => m.DuracionContrato, htmlAttributes: new { @class = "form-control", @placeholder = "Duración" })
                     </div>
                     @Html.ValidationMessageFor(m => m.DuracionContrato, "", new { @class = "text-danger" })
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     <div class="input-group">
                         <span class="input-group-addon">Salario<br />Ofrecido</span>
                         @Html.TextBoxFor(m => m.SalarioOfrecido, htmlAttributes: new { @class = "form-control", @placeholder = "Salario Ofrecido" })
@@ -154,23 +156,21 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                     <div class="input-group">
                         <span class="input-group-addon">Cargo</span>
                         @Html.TextBoxFor(m => m.CargoOfrecido, htmlAttributes: new { @class = "form-control", @placeholder = "Cargo Ofrecido" })
                     </div>
                     @Html.ValidationMessageFor(m => m.CargoOfrecido, "", new { @class = "text-danger" })
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                     <div class="input-group">
                         <span class="input-group-addon">Área</span>
                         @Html.TextBoxFor(m => m.AreaEmpresa, htmlAttributes: new { @class = "form-control", @placeholder = "Área de la Empresa" })
                     </div>
                     @Html.ValidationMessageFor(m => m.AreaEmpresa, "", new { @class = "text-danger" })
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12">
+                <div class="col-sm-4">
                     <div class="input-group">
                         <span class="input-group-addon">(*)Fuente<br />Convenio</span>
                         @Html.DropDownListFor(m => m.FuenteConvenio, null, "- Seleccionar -", htmlAttributes: new { @class = "form-control" })
@@ -182,18 +182,110 @@
                 <div class="col-sm-12">
                     <div class="input-group">
                         <span class="input-group-addon">Obser-<br />vación</span>
-                        @Html.TextAreaFor(m => m.Observaciones, htmlAttributes: new { @class = "form-control", @Rows = "4", @placeholder = "Observaciones" })
+                        @Html.TextAreaFor(m => m.NuevaObservacion, htmlAttributes: new { @class = "form-control", @Rows = "3", @placeholder = "Observaciones" })
+                    </div>
+                    @Html.ValidationMessageFor(m => m.NuevaObservacion, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="input-group">
+                        <span class="input-group-addon">Historial</span>
+                        @Html.TextAreaFor(m => m.Observaciones, htmlAttributes: new { @class = "form-control", @Rows = "10", @placeholder = "Observaciones" })
                     </div>
                     @Html.ValidationMessageFor(m => m.Observaciones, "", new { @class = "text-danger" })
                 </div>
             </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <span class="input-group-addon">Cargo</span>
+                        @Html.TextBoxFor(m => m.CargoOfrecido, htmlAttributes: new { @class = "form-control", @placeholder = "Cargo Ofrecido" })
+                    </div>
+                    @Html.ValidationMessageFor(m => m.CargoOfrecido, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <span class="input-group-addon">Área</span>
+                        @Html.TextBoxFor(m => m.AreaEmpresa, htmlAttributes: new { @class = "form-control", @placeholder = "Área de la Empresa" })
+                    </div>
+                    @Html.ValidationMessageFor(m => m.AreaEmpresa, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <span class="input-group-addon">(*)Fuente<br />Convenio</span>
+                        @Html.DropDownListFor(m => m.FuenteConvenio, null, "- Seleccionar -", htmlAttributes: new { @class = "form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(m => m.FuenteConvenio, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="input-group">
+                        <span class="input-group-addon">Experencia<br />Asociada</span>
+                        @Html.DropDownListFor(m => m.IdExperienciaCargo, null, "- Seleccionar -", htmlAttributes: new { @class = "form-control" })
+                    </div>
+                    @Html.ValidationMessageFor(m => m.IdExperienciaCargo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="input-group">
+                        <span class="input-group-addon">Fecha</span>
+                        <input class="form-control" id="ExperienciaFecha" readonly>
+                    </div>
 
+                </div>
+                <div class="col-sm-8">
+                    <div class="input-group">
+                        <span class="input-group-addon">Cargo</span>
+                        <input class="form-control" id="ExperienciaCargo" readonly>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="input-group">
+                        <span class="input-group-addon">Descrip<br />ción</span>
+                        <textarea class="form-control" id="ExperienciaCargoDesc" readonly rows="5"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <span class="input-group-addon">Creado<br />Por</span>
+                        <span class="form-control" id="SectorEmpresarial">@Model.CreadoPor</span>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <span class="input-group-addon">Fecha<br />Creación</span>
+                        <span class="form-control" id="SectorEmpresarial">@Model.FechaCreacion</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <span class="input-group-addon">Modificado<br />Por</span>
+                        <span class="form-control" id="SectorEmpresarial">@Model.CreadoPor</span>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <span class="input-group-addon">Fecha<br />Modific.</span>
+                        <span class="form-control" id="SectorEmpresarial">@Model.FechaCreacion</span>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="row">
             <div class="col-sm-12" style="text-align:right;">
                 <button type="submit" class="btn btn-default color-paleta9">Guardar</button>
             </div>
         </div>
+        
     }
 </div>
 <script>

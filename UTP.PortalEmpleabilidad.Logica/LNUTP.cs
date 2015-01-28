@@ -165,10 +165,81 @@ namespace UTP.PortalEmpleabilidad.Logica
 
             return adUtp.UTP_ObtenerUltimosConvenios(Dato);
         }
-        public DataTable UTP_ObtenerConvenio(int idConvenio)
+        public Convenio UTP_ObtenerConvenio(int idConvenio)
         {
+            DataSet dsResultado = adUtp.UTP_ObtenerConvenio(idConvenio);
+            Convenio convenio = new Convenio();
+            convenio.IdConvenio = idConvenio;
+            
+            List<AlumnoExperiencia> alumnoexperiencialst = new List<AlumnoExperiencia>();
+            if (dsResultado.Tables.Count > 0)
+            {
+                if (dsResultado.Tables[0].Rows.Count > 0)
+                {
+                    for(int n=0;n<=dsResultado.Tables[0].Rows.Count -1;n++){
+                        convenio.IdAlumno = Funciones.ToInt(dsResultado.Tables[0].Rows[n]["IdAlumno"]);
+                        convenio.Nombres = Funciones.ToString(dsResultado.Tables[0].Rows[n]["Nombres"]);
+                        convenio.Apellidos = Funciones.ToString(dsResultado.Tables[0].Rows[n]["Apellidos"]);
+                        convenio.CodAlumnoUtp = Funciones.ToString(dsResultado.Tables[0].Rows[n]["CodAlumnoUtp"]);
+                        convenio.Carrera = Funciones.ToString(dsResultado.Tables[0].Rows[n]["Carrera"]);
+                        convenio.NivelAcademico = Funciones.ToString(dsResultado.Tables[0].Rows[n]["NivelAcademico"]);
+                        convenio.TelefonoFijoCasa = Funciones.ToString(dsResultado.Tables[0].Rows[n]["TelefonoFijoCasa"]);
+                        convenio.TelefonoCelular = Funciones.ToString(dsResultado.Tables[0].Rows[n]["TelefonoCelular"]);
+                        convenio.Ciclo = Funciones.ToInt(dsResultado.Tables[0].Rows[n]["Ciclo"]);
+                        convenio.IdEmpresa = Funciones.ToInt(dsResultado.Tables[0].Rows[n]["IdEmpresa"]);
+                        convenio.NombreComercial = Funciones.ToString(dsResultado.Tables[0].Rows[n]["NombreComercial"]);
+                        convenio.RazonSocial = Funciones.ToString(dsResultado.Tables[0].Rows[n]["RazonSocial"]);
+                        convenio.IdentificadorTributario = Funciones.ToString(dsResultado.Tables[0].Rows[n]["IdentificadorTributario"]);
+                        convenio.SectorEmpresarial = Funciones.ToString(dsResultado.Tables[0].Rows[n]["SectorEmpresarial"]);
+                        convenio.IdExperienciaCargo = Funciones.ToInt(dsResultado.Tables[0].Rows[n]["IdExperienciaCargo"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[n]["IdExperienciaCargo"]);
+                        convenio.ContactoNombre = Funciones.ToString(dsResultado.Tables[0].Rows[n]["ContactoNombre"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[n]["ContactoNombre"]);
+                        convenio.ContactoCargo = Funciones.ToString(dsResultado.Tables[0].Rows[n]["ContactoCargo"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[n]["ContactoCargo"]);
+                        convenio.ContactoCorreoElectronico = Funciones.ToString(dsResultado.Tables[0].Rows[n]["ContactoCorreoElectronico"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[n]["ContactoCorreoElectronico"]);
+                        convenio.ContactoTelefono = Funciones.ToString(dsResultado.Tables[0].Rows[n]["ContactoTelefono"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[n]["ContactoTelefono"]);
+                        convenio.ContactoCelular = Funciones.ToString(dsResultado.Tables[0].Rows[n]["ContactoCelular"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[n]["ContactoCelular"]);
+                        convenio.TipoTrabajo = Funciones.ToString(dsResultado.Tables[0].Rows[n]["TipoTrabajo"]);
+                        convenio.DuracionContrato = Funciones.ToInt(dsResultado.Tables[0].Rows[n]["DuracionContrato"]);
+                        convenio.SalarioOfrecido = Funciones.ToDecimal(dsResultado.Tables[0].Rows[n]["SalarioOfrecido"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[n]["SalarioOfrecido"]);
+                        convenio.CargoOfrecido = Funciones.ToString(dsResultado.Tables[0].Rows[n]["CargoOfrecido"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[n]["CargoOfrecido"]);
+                        convenio.AreaEmpresa = Funciones.ToString(dsResultado.Tables[0].Rows[n]["AreaEmpresa"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[n]["AreaEmpresa"]);
+                        convenio.FechaIngreso = Funciones.ToDateTime(dsResultado.Tables[0].Rows[n]["FechaIngreso"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[n]["FechaIngreso"]);
+                        convenio.FuenteConvenio = Funciones.ToString(dsResultado.Tables[0].Rows[n]["FuenteConvenio"]);
+                        convenio.Observaciones = Funciones.ToString(dsResultado.Tables[0].Rows[n]["Observaciones"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[n]["Observaciones"]);
+                        convenio.CreadoPor = Funciones.ToString(dsResultado.Tables[0].Rows[n]["CreadoPor"]);
+                        convenio.FechaCreacion = Funciones.ToDateTime(dsResultado.Tables[0].Rows[n]["FechaCreacion"]);
+                        convenio.ModificadoPor = Funciones.ToString(dsResultado.Tables[0].Rows[n]["ModificadoPor"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[n]["ModificadoPor"]);
+                        convenio.FechaModificacion = Funciones.ToDateTime(dsResultado.Tables[0].Rows[n]["FechaModificacion"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[n]["FechaModificacion"]);
+                        
+                        
+                        break;
+                    }
+                }
+                if (dsResultado.Tables[1].Rows.Count > 0)
+                {
+                    for (int n = 0; n <= dsResultado.Tables[0].Rows.Count - 1; n++) 
+                    {
+                        AlumnoExperiencia alumnoexperiencia = new AlumnoExperiencia();
+                        alumnoexperiencia.IdExperienciaCargo = Funciones.ToInt(dsResultado.Tables[1].Rows[n]["IdExperienciaCargo"]);
+                        alumnoexperiencia.FechaInicioCargoAno = Funciones.ToInt(dsResultado.Tables[1].Rows[n]["FechaInicioCargoAno"]);
+                        alumnoexperiencia.FechaInicioCargoMes = Funciones.ToInt(dsResultado.Tables[1].Rows[n]["FechaInicioCargoMes"]);
+                        alumnoexperiencia.FechaFinCargoAno = Funciones.ToInt(dsResultado.Tables[1].Rows[n]["FechaFinCargoAno"] == System.DBNull.Value ? null : dsResultado.Tables[1].Rows[n]["FechaFinCargoAno"]);
+                        alumnoexperiencia.FechaFinCargoMes = Funciones.ToInt(dsResultado.Tables[1].Rows[n]["FechaFinCargoMes"] == System.DBNull.Value ? null : dsResultado.Tables[1].Rows[n]["FechaFinCargoMes"]);
+                        alumnoexperiencia.NombreCargo = Funciones.ToString(dsResultado.Tables[1].Rows[n]["NombreCargo"]);
+                        alumnoexperiencia.DescripcionCargo = Funciones.ToString(dsResultado.Tables[1].Rows[n]["DescripcionCargo"]);
+                        alumnoexperiencia.Experiencia = 
+                            Funciones.ToInt(dsResultado.Tables[1].Rows[n]["FechaInicioCargoMes"]) + "/" +
+                            Funciones.ToInt(dsResultado.Tables[1].Rows[n]["FechaInicioCargoAno"]) + " - " +
+                            Funciones.ToInt(dsResultado.Tables[1].Rows[n]["FechaFinCargoMes"] == System.DBNull.Value ? null : dsResultado.Tables[1].Rows[n]["FechaFinCargoMes"]) + "/" +
+                            Funciones.ToInt(dsResultado.Tables[1].Rows[n]["FechaFinCargoAno"] == System.DBNull.Value ? null : dsResultado.Tables[1].Rows[n]["FechaFinCargoAno"]) + ": " + 
+                            Funciones.ToString(dsResultado.Tables[1].Rows[n]["NombreCargo"]);
 
-            return adUtp.UTP_ObtenerConvenio(idConvenio);
+                        alumnoexperiencialst.Add(alumnoexperiencia);
+                    }
+                }
+            }
+            convenio.Experiencias = alumnoexperiencialst;
+
+            return convenio;
         }
        
         public void ActualizarEstadoYUsuarioEC(Empresa empresa)

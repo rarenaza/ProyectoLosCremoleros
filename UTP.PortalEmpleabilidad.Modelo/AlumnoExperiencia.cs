@@ -73,7 +73,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
 
         public string RazonSocial { get; set; }
         public string ValorSectorEmpresarial { get; set; }
-
+        public string Experiencia { get; set; }
     }
 
 }

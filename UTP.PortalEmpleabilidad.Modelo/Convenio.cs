@@ -50,6 +50,10 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string ModificadoPor { get; set; }
         public DateTime FechaModificacion { get; set; }
         public string CodAlumnoUtp { get; set; }
-
+        public string RazonSocial { get; set; }
+        public string IdentificadorTributario { get; set; }
+        public string SectorEmpresarial { get; set; }
+        public string NuevaObservacion { get; set; }
+        public IEnumerable<AlumnoExperiencia> Experiencias { get; set; }
     }
 }
