@@ -1,0 +1,58 @@
+﻿
+@model IEnumerable<UTP.PortalEmpleabilidad.Modelo.Contenido>
+
+
+<div class="row grilla1-cabecera color-paleta7">
+
+    <div class="col-sm-1">
+        ID
+    </div>
+    <div class="col-sm-1">
+        Menú
+    </div>
+    <div class="col-sm-2">
+        Título
+    </div>
+    <div class="col-sm-2">
+        Sub-Título
+    </div>
+    <div class="col-sm-2">
+        Descripción
+    </div>
+    <div class="col-sm-3">
+        Imagen
+    </div>
+    <div class="col-sm-1">
+
+    </div>
+</div>
+
+@foreach (var item in Model)
+{
+    <div class="row grilla1-linea">
+
+        <div class="col-sm-1">
+            @Html.DisplayFor(modelItem => item.IdContenido)
+        </div>
+        <div class="col-sm-1">
+            @Html.DisplayFor(modelItem => item.TituloMenu)
+        </div>
+        <div class="col-sm-2">
+            @Html.DisplayFor(modelItem => item.Titulo)
+        </div>
+        <div class="col-sm-2">
+            @Html.DisplayFor(modelItem => item.SubTitulo)
+        </div>
+        <div class="col-sm-2">
+            @Html.DisplayFor(modelItem => item.Descripcion)
+        </div>
+        <div class="col-sm-3">
+            <img alt="" style="width:100%" src='@Url.Action("Imagen", "UTP", new { id = @item.IdContenido })' />
+        </div>
+        <div class="col-sm-1">
+            @Html.ActionLink("1", "Portal_Editar_Buscar", new { id = item.IdContenido }, new { @class = "fui fa-2x color-icono-paleta1" })
+            @Html.ActionLink("l", "Contenido_Eliminar", new { id = item.IdContenido }, new { onclick = "return confirm('Está Seguro que desea Eliminar?');", @class = "fui fa-2x color-icono-paleta1" })
+
+        </div>
+    </div>
+}

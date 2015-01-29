@@ -47,13 +47,15 @@ namespace UTPPrototipo.Controllers
                        
      
         }
-       
-        public ActionResult Portal(string Menu)
+
+
+        public ActionResult Portal()
         {
+            
             LNContenido ln = new LNContenido();
 
             DataTable dtresultado = ln.ContenidoMenu_Mostrar();
-                       
+
             List<SelectListItem> li = new List<SelectListItem>();
 
             for (int i = 0; i <= dtresultado.Rows.Count - 1; i++)
@@ -67,83 +69,34 @@ namespace UTPPrototipo.Controllers
 
             }
             ViewData["ContenidoMenu"] = li;
-                     
 
-                                
+            return View();
 
-            //return View(contenido);
-            List<Contenido> lista = new List<Contenido>();
-
-            try
-            {
-           
-
-                int codMenu = Convert.ToInt32(Menu);
-
-                if (Menu == null)
-                {
-
-                    DataTable dtResultado = ln.Contenido_ObtenerPorCodMenu(0);
-
-
-                    for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
-                    {
-                        Contenido contenido = new Contenido();
-                        contenido.IdContenido = Convert.ToInt32(dtResultado.Rows[i]["IdContenido"]);
-                        contenido.Menu = dtResultado.Rows[i]["CodMenu"].ToString();
-                        contenido.Titulo = dtResultado.Rows[i]["Titulo"].ToString();
-                        contenido.SubTitulo = dtResultado.Rows[i]["SubTitulo"].ToString();
-                        contenido.Descripcion = dtResultado.Rows[i]["Descripcion"].ToString();
-
-                        contenido.Imagen = (byte[])dtResultado.Rows[i]["Imagen"];
-
-                        //contenido.Imagen = dtResultado.Rows[0]["Imagen"] == DBNull.Value ? null : (byte[])dtResultado.Rows[0]["Imagen"];
-
-                        contenido.TituloMenu = dtResultado.Rows[i]["Menu"].ToString();
-
-
-                        lista.Add(contenido);
-                    }
-
-
-                }
-                else
-                {
-
-                                        
-
-                    DataTable dtResultado = ln.Contenido_ObtenerPorCodMenu(codMenu);
-
-
-                    for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
-                    {
-                        Contenido contenido = new Contenido();
-                        contenido.IdContenido = Convert.ToInt32(dtResultado.Rows[i]["IdContenido"]);
-                        contenido.Menu = dtResultado.Rows[i]["CodMenu"].ToString();
-                        contenido.Titulo = dtResultado.Rows[i]["Titulo"].ToString();
-                        contenido.SubTitulo = dtResultado.Rows[i]["SubTitulo"].ToString();
-                        contenido.Descripcion = dtResultado.Rows[i]["Descripcion"].ToString();
-
-                        contenido.Imagen = (byte[])dtResultado.Rows[i]["Imagen"];
-
-                        contenido.TituloMenu = dtResultado.Rows[i]["Menu"].ToString();
-
-
-                        lista.Add(contenido);
-                    }
-                }
-            }
-            catch (Exception )
-            {
-        
-                
-            }
-                     
-
-            return View(lista);
-          
         }
 
+        public ActionResult ResultadoBusquedaContenidoUTP(int Menu = 0)
+        {
+            List<Contenido> lista = new List<Contenido>();
+            DataTable dtResultado = ln.Contenido_ObtenerPorCodMenu(Menu);
+
+            for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
+            {
+                Contenido contenido = new Contenido();
+                contenido.IdContenido = Convert.ToInt32(dtResultado.Rows[i]["IdContenido"]);
+                contenido.Menu = dtResultado.Rows[i]["CodMenu"].ToString();
+                contenido.Titulo = dtResultado.Rows[i]["Titulo"].ToString();
+                contenido.SubTitulo = dtResultado.Rows[i]["SubTitulo"].ToString();
+                contenido.Descripcion = dtResultado.Rows[i]["Descripcion"].ToString();
+                //contenido.Imagen = (byte[])dtResultado.Rows[i]["Imagen"];
+                contenido.Imagen = dtResultado.Rows[0]["Imagen"] == DBNull.Value ? null : (byte[])dtResultado.Rows[0]["Imagen"];
+                contenido.TituloMenu = dtResultado.Rows[i]["Menu"].ToString();
+                lista.Add(contenido);
+            }
+
+            return PartialView("_ListaUTPContenido", lista);
+        }
+
+          
         public FileResult Imagen(int id)
         {
             const string alternativePicturePath = @"/img/sinimagen.jpg";
@@ -191,6 +144,102 @@ namespace UTPPrototipo.Controllers
 
             return new FileStreamResult(stream, "image/jpeg");
         }
+
+        //public ActionResult Portal(string Menu)
+        //{
+        //    LNContenido ln = new LNContenido();
+
+        //    DataTable dtresultado = ln.ContenidoMenu_Mostrar();
+
+        //    List<SelectListItem> li = new List<SelectListItem>();
+
+        //    for (int i = 0; i <= dtresultado.Rows.Count - 1; i++)
+        //    {
+        //        string nombre = dtresultado.Rows[i]["Titulo"].ToString();
+        //        string valor = dtresultado.Rows[i]["IdMenu"].ToString();
+
+        //        SelectListItem item = new SelectListItem() { Text = nombre, Value = valor };
+
+        //        li.Add(item);
+
+        //    }
+        //    ViewData["ContenidoMenu"] = li;
+
+
+
+
+        //    //return View(contenido);
+        //    List<Contenido> lista = new List<Contenido>();
+
+        //    try
+        //    {
+
+
+        //        int codMenu = Convert.ToInt32(Menu);
+
+        //        if (Menu == null)
+        //        {
+
+        //            DataTable dtResultado = ln.Contenido_ObtenerPorCodMenu(0);
+
+
+        //            for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
+        //            {
+        //                Contenido contenido = new Contenido();
+        //                contenido.IdContenido = Convert.ToInt32(dtResultado.Rows[i]["IdContenido"]);
+        //                contenido.Menu = dtResultado.Rows[i]["CodMenu"].ToString();
+        //                contenido.Titulo = dtResultado.Rows[i]["Titulo"].ToString();
+        //                contenido.SubTitulo = dtResultado.Rows[i]["SubTitulo"].ToString();
+        //                contenido.Descripcion = dtResultado.Rows[i]["Descripcion"].ToString();
+
+        //                contenido.Imagen = (byte[])dtResultado.Rows[i]["Imagen"];
+
+        //                //contenido.Imagen = dtResultado.Rows[0]["Imagen"] == DBNull.Value ? null : (byte[])dtResultado.Rows[0]["Imagen"];
+
+        //                contenido.TituloMenu = dtResultado.Rows[i]["Menu"].ToString();
+
+
+        //                lista.Add(contenido);
+        //            }
+
+
+        //        }
+        //        else
+        //        {
+
+
+
+        //            DataTable dtResultado = ln.Contenido_ObtenerPorCodMenu(codMenu);
+
+
+        //            for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
+        //            {
+        //                Contenido contenido = new Contenido();
+        //                contenido.IdContenido = Convert.ToInt32(dtResultado.Rows[i]["IdContenido"]);
+        //                contenido.Menu = dtResultado.Rows[i]["CodMenu"].ToString();
+        //                contenido.Titulo = dtResultado.Rows[i]["Titulo"].ToString();
+        //                contenido.SubTitulo = dtResultado.Rows[i]["SubTitulo"].ToString();
+        //                contenido.Descripcion = dtResultado.Rows[i]["Descripcion"].ToString();
+
+        //                contenido.Imagen = (byte[])dtResultado.Rows[i]["Imagen"];
+
+        //                contenido.TituloMenu = dtResultado.Rows[i]["Menu"].ToString();
+
+
+        //                lista.Add(contenido);
+        //            }
+        //        }
+        //    }
+        //    catch (Exception )
+        //    {
+
+
+        //    }
+
+
+        //    return View(lista);
+
+        //}
 
         public ActionResult Empresas()
         {

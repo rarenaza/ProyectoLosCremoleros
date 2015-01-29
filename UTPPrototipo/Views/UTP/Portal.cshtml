@@ -24,81 +24,29 @@
         @*<b>Lista</b>
             @Html.DropDownList("Menu", ViewData["ContenidoMenu"] as List<SelectListItem>, new {style = "width: 200px;height:20px" })*@
 
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="input-group">
-                    <span class="input-group-addon">Menú</span>
-                    @Html.DropDownList("Menu", ViewData["ContenidoMenu"] as List<SelectListItem>, "- Seleccione una Sección-", new { @class = "form-control" })
-                </div>
-            </div>
-
-            <div class="col-sm-3">
-                <button class="btn btn-default color-paleta7"><span class="fa fa-search"></span></button>
-            </div>
-            <div class="col-sm-3">
-                @Html.ActionLink("Crear", "Portal_insertar", null, new { @class = "btn btn-default color-paleta7" })
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="input-group">
+                <span class="input-group-addon">Menú</span>
+                @Html.DropDownList("Menu", ViewData["ContenidoMenu"] as List<SelectListItem>, "- Seleccione una Sección-", new { @class = "form-control", @id = "Menu" })
             </div>
         </div>
-    }
 
-
-    <h2></h2>
-
-
-    <div class="row grilla1-cabecera color-paleta7">
-
-        <div class="col-sm-1">
-            ID
-        </div>
-        <div class="col-sm-1">
-            Menú
-        </div>
-        <div class="col-sm-2">
-            Título
-        </div>
-        <div class="col-sm-2">
-            Sub-Título
-        </div>
-        <div class="col-sm-2">
-            Descripción
+        <div class="col-sm-3">
+            @*<button class="btn btn-default color-paleta7"><span class="fa fa-search"></span></button>*@
+            <span class="fui" style="font-size:30px;cursor:pointer" id="buscaravanzada">(</span>
         </div>
         <div class="col-sm-3">
-            Imagen
+            @Html.ActionLink("Crear", "Portal_insertar", null, new { @class = "btn btn-default color-paleta7" })
         </div>
-        <div class="col-sm-1">
-
+     
         </div>
+    <div id="resultadobusqueda">
     </div>
-
-    @foreach (var item in Model)
-    {
-        <div class="row grilla1-linea">
-
-            <div class="col-sm-1">
-                @Html.DisplayFor(modelItem => item.IdContenido)
-            </div>
-            <div class="col-sm-1">
-                @Html.DisplayFor(modelItem => item.TituloMenu)
-            </div>
-            <div class="col-sm-2">
-                @Html.DisplayFor(modelItem => item.Titulo)
-            </div>
-            <div class="col-sm-2">
-                @Html.DisplayFor(modelItem => item.SubTitulo)
-            </div>
-            <div class="col-sm-2">
-                @Html.DisplayFor(modelItem => item.Descripcion)
-            </div>
-            <div class="col-sm-3">
-                <img alt="" style="width:100%" src='@Url.Action("Imagen", "UTP", new { id = @item.IdContenido })' />
-            </div>
-            <div class="col-sm-1">
-                @Html.ActionLink("1", "Portal_Editar_Buscar", new { id = item.IdContenido }, new { @class = "fui fa-2x color-icono-paleta1" })
-                @Html.ActionLink("l", "Contenido_Eliminar", new { id = item.IdContenido }, new { onclick = "return confirm('Está Seguro que desea Eliminar?');", @class = "fui fa-2x color-icono-paleta1" })
-
-            </div>
-        </div>
     }
+    <h2></h2>
+
+    
     <hr />
 </div>
 
@@ -108,7 +56,37 @@
         $("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta3 color-paleta4 color-paleta5 color-paleta6 color-paleta8 color-paleta9").addClass("color-paleta7")
     });
 
+    $('#buscaravanzada').click(function () {
+        var oferta = {
+            Menu: $('#Menu').val(),
+           
+            //nroPaginaActual: 1,
 
+        };
+
+        Cargar("resultadobusqueda", '@Url.Action("ResultadoBusquedaContenidoUTP", "UTP")', oferta);
+    });
+
+    function Cargar(id, link, entidad) {
+        //debugger;
+        $.ajax({
+            url: link,
+            contentType: 'application/json; charset=utf-8',
+            type: 'POST',
+            data: JSON.stringify(entidad),
+            dataType: 'html'
+        })
+        .success(function (result) {
+            $("#" + id).html(result);
+            //alert(result);
+            //console.log(result);
+        })
+        .error(function (xhr, status) {
+            console.log(xhr);
+            console.log(status);
+            alert('error');
+        })
+    }
 </script>
 
 

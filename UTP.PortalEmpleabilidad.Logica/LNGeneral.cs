@@ -34,10 +34,7 @@ namespace UTP.PortalEmpleabilidad.Logica
         {
             return adGeneral.Home_Departamento(IDLista);
         }
-        public DataTable Home_ListarDistritos(string IDListaValorPadre)
-        {
-            return adGeneral.Home_ListarDistritos(IDListaValorPadre);
-        }
+    
 
 
         public List<Hunting> EmpresaHuntingBuscarSimple(string nombre, int nroPagina, int filasPorPagina)
@@ -94,6 +91,10 @@ namespace UTP.PortalEmpleabilidad.Logica
             }
 
             return listaEjemplo;
+        }
+        public DataTable Home_ListarDistritos(string IDListaValorPadre)
+        {
+            return adGeneral.Home_ListarDistritos(IDListaValorPadre);
         }
 
         public List<ListaValor> ObtenerListaValor(int idLista)
