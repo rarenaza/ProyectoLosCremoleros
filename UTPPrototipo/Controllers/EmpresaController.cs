@@ -505,7 +505,7 @@ namespace UTPPrototipo.Controllers
                 vista.FechaPostulacion = Convert.ToDateTime(fila["FechaPostulacion"]);
                 vista.AlumnoNombres = Convert.ToString(fila["AlumnoNombres"]);
                 vista.AlumnoApellidos = Convert.ToString(fila["AlumnoApellidos"]);
-                vista.Cumplimiento = Convert.ToInt32(fila["Cumplimiento"]);
+                vista.Cumplimiento = Convert.ToInt32(fila["Cumplimiento"] == DBNull.Value ? 0 : fila["Cumplimiento"]);
                 vista.IdOfertaPostulante = Convert.ToInt32(fila["IdOfertaPostulante"]);
                 vista.IdOferta = Convert.ToInt32(fila["IdOferta"]);
                 lista.Add(vista);

@@ -52,8 +52,7 @@
 
     <div id="divResultadoBusqueda">
 
-        <!--toda la vista parcial antes estaba aca, solo hay que copiar y sacarlo todo en el partial.-->
-        <label id="lblCargandoOfertas" style="visibility:hidden"></label> <!--esto todavia no se usa, es para mostrar un aviso que el sistema esta cargando ...-->
+       
     </div>
 </div>
 <script>
@@ -70,7 +69,11 @@
 
         function buscarOfertas()
         {
-            //$('#lblCargandoOfertas').css('visibility', 'visible');
+            var cargando = '<div class="row grilla1-linea">'
+                            + '<div class="col-sm-12 text-center">'
+                                + '<h6>Çargando ...</h6></div></div>';
+
+            $('#divResultadoBusqueda').html(cargando);
 
             var palabraClave = $('#filtroBusqueda').val();
             var nroPaginaActual = $('#hddNroPaginaActual').val();
@@ -90,7 +93,12 @@
 
     //Se le pasa el nro de pagina y hace lo mismo que el anterior.
     function buscarOfertasPaginacion(nroPaginaActual) {
-        //$('#lblCargandoOfertas').css('visibility', 'visible');
+
+        var cargando = '<div class="row grilla1-linea">'
+                            + '<div class="col-sm-12 text-center">'
+                                + '<h6>Çargando ...</h6></div></div>';
+
+        $('#divResultadoBusqueda').html(cargando);
 
         var palabraClave = $('#filtroBusqueda').val();
         //var nroPaginaActual = $('#hddNroPaginaActual').val();

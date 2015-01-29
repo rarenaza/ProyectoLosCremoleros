@@ -229,12 +229,12 @@ namespace UTPPrototipo.Controllers
             
             ViewBag.Pantalla = mensaje.Pantalla;
             this.UsuarioAlumno = mensaje.ParaUsuario;
+            this.IdOferta = Convert.ToInt32(mensaje.IdOfertaMensaje);
 
             List<Mensaje> lista = ObtenerListaMensajes(mensaje.Pantalla);
 
             ViewBag.IdOfertaMensaje = mensaje.IdOfertaMensaje;
-            ViewBag.IdEvento = mensaje.IdEvento;
-
+            ViewBag.IdEvento = mensaje.IdEvento;            
             ViewBag.UsuarioAlumno = mensaje.ParaUsuario; //Este valor contiene el dato del usuario alumno en las pantallas UTP - Alumno.
 
             TempData["MsjExitoCrearMensaje"] = "El mensaje se ha enviado con éxito.";
@@ -583,8 +583,8 @@ namespace UTPPrototipo.Controllers
             //Se obtiene el IdEmpresa de la oferta.
             int idEmpresa = lnMensaje.ObtenerIdEmpresaPorIdOferta(IdOferta);
 
-            //Se obtiene las ofertas activas de esta empresa
-            List<VistaEmpresaOferta> listaOfertas = lnOferta.ObtenerOfertasPorIdEmpresa(idEmpresa).Where(m => m.NombreEstado == "OFERAC").ToList();
+            //Se obtiene las ofertas de la empresa y se selecciona solo una oferta.
+            List<VistaEmpresaOferta> listaOfertas = lnOferta.ObtenerOfertasPorIdEmpresa(idEmpresa).Where(m => m.IdOferta == IdOferta).ToList();
             
             //Se cargan en el ViewBag para ser consumidas desde el html. Se establece el valor del IdOferta.
             ViewBag.IdOfertaMensaje = new SelectList(listaOfertas, "IdOferta", "CargoOfrecido", IdOferta);
@@ -595,8 +595,10 @@ namespace UTPPrototipo.Controllers
             mensaje.Pantalla = pantalla;
 
             VistaEmpresaOferta ofertaSeleccionada = listaOfertas.Where(m => m.IdOferta == IdOferta).FirstOrDefault();
-            mensaje.Asunto = ofertaSeleccionada.CargoOfrecido;
-          
+            mensaje.Asunto = ofertaSeleccionada == null ? "" : ofertaSeleccionada.CargoOfrecido;
+            mensaje.ParaUsuario = ofertaSeleccionada.UsuarioPropietarioEmpresa;
+            mensaje.ParaUsuarioCorreoElectronico = ofertaSeleccionada.UsuarioPropietarioEmpresaCorreo;
+
             //Hay que llenar el combo de destinatarios con los postulantes y el usuario empresa de la oferta.
 
 
