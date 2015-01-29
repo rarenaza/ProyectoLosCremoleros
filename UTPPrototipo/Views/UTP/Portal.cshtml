@@ -59,8 +59,8 @@
     $('#buscaravanzada').click(function () {
         var oferta = {
             Menu: $('#Menu').val(),
-           
-            //nroPaginaActual: 1,
+
+            nroPaginaActual: 1,
 
         };
 
@@ -87,6 +87,18 @@
             alert('error');
         })
     }
+
+    @*function BusquedaPortalContenido(nroPagina) {
+        var empresa = {
+            Menu: $('#Menu').val(),
+            nroPaginaActual: nroPagina,
+
+        };
+
+        Cargar("resultadobusqueda", '@Url.Action("ResultadoBusquedaContenidoUTP", "UTP")', empresa);
+    }*@
+
+
 </script>
 
 
