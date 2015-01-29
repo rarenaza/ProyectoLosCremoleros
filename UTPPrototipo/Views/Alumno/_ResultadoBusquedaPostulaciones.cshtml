@@ -3,21 +3,21 @@
 @Html.Hidden("PaginaActual", Model.PaginaActual)
 @Html.Hidden("MaxPagina", Model.MaxPagina)
 
+<div class="row grilla1-cabecera color-paleta2">
+    <div class="col-sm-1">Fecha Publicación</div>
+    <div class="col-sm-1">Fecha Postulación</div>
+    <div class="col-sm-2">Empresa</div>
+    <div class="col-sm-2">Cargo</div>
+    <div class="col-sm-1">Tipo Trabajo</div>
+    <div class="col-sm-1">Horario</div>
+    <div class="col-sm-1">Remuneración</div>
+    <div class="col-sm-1">Msj</div>
+    <div class="col-sm-1">Estado</div>
+    <div class="col-sm-1"></div>
+</div>
+
 @if (Model.ListaPostulacionesOfertas != null && Model.ListaPostulacionesOfertas.Count > 0)
 {
-    <div class="row grilla1-cabecera color-paleta2">
-        <div class="col-sm-1">Fecha Publicación</div>
-        <div class="col-sm-1">Fecha Postulación</div>
-        <div class="col-sm-2">Empresa</div>
-        <div class="col-sm-2">Cargo</div>
-        <div class="col-sm-1">Tipo Trabajo</div>
-        <div class="col-sm-1">Horario</div>
-        <div class="col-sm-1">Remuneración</div>
-        <div class="col-sm-1">Msj</div>
-        <div class="col-sm-1">Estado</div>
-        <div class="col-sm-1"></div>
-    </div>
-
     foreach (var item in Model.ListaPostulacionesOfertas)
     {
         <div class="row grilla1-linea">
@@ -43,6 +43,15 @@
             <div class="col-sm-1">@Html.ActionLink("Ver más", "postulacionOferta2", "Alumno", new { id = item.IdOferta }, null)</div>
         </div>
     }
+}
+else
+{
+    <div class="row grilla1-linea">
+        <div class="col-sm-12 text-center">
+            <h6>No se encontraron resultados.</h6>
+        </div>
+    </div>
+}
     <br />
     <nav class="navbar-right">
         <ul class="pagination">
@@ -62,7 +71,7 @@
             <li><a href="#" class="after">&raquo;</a></li>
         </ul>
     </nav>
-}
+
 
 <script>
 
