@@ -19,7 +19,7 @@
     <div class="navbar navbar-inverse navbar-fixed-top" style="background-color:rgb(240, 240, 240);border:0px;">
         <div class="container">
 
-            <a href="../Alumno/Index"><img src="~/img/LogoUTPPE2.png" class="LogoUTPPE2" /></a>
+            <a href="@Url.Action("Index", "Alumno")"><img src="~/img/LogoUTPPE2.png" class="LogoUTPPE2" /></a>
             <div class="navbar-header posicion-menu">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" style="margin: 3px 5px 3px 0px">
                     <span class="icon-bar"></span>
@@ -87,7 +87,7 @@
                     Campus Chiclayo: Esquina Prol. Augusto B. Leguía con Av. Herman Meiner | teléfono: (074) 622121 | Informes: Calle San José 720 - teléfono: (074) 624 998 | e-mail: admisionchiclayo@utp.edu.pe
                 </p>
                 <p style="text-align:center;color:white;font-size:14px;">
-                    2014 UTP &copy; - <a href="../Home/TerminosDeUso" style="color:white;">Términos de Uso</a> - <a href="../Home/PoliticasDePrivacidad" style="color:white;">Política de Privacidad</a> - <a href="../Home/FAQ" style="color:white;">FAQ</a>
+                    2014 UTP &copy; - <a href="@Url.Action("TerminosDeUso", "Home")" style="color:white;">Términos de Uso</a> - <a href="@Url.Action("PoliticasDePrivacidad", "Home")" style="color:white;">Política de Privacidad</a> - <a href="@Url.Action("FAQ", "Home")" style="color:white;">FAQ</a>
                 </p>
             </div>
         </footer>
