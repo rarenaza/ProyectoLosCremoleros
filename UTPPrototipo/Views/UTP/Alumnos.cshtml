@@ -1,5 +1,8 @@
 ﻿@*@model IEnumerable<UTP.PortalEmpleabilidad.Modelo.Vistas.Alumno.VistaUTPListaAlumno>*@
-@model UTP.PortalEmpleabilidad.Modelo.Vistas.Alumno.VistaUTPListaAlumno
+@*@model UTP.PortalEmpleabilidad.Modelo.Vistas.Alumno.VistaUTPListaAlumno*@
+
+@model UTPPrototipo.Models.ViewModels.UTP.VistaAlumno 
+
 
 @{
     Layout = "~/Views/UTP/_LayoutUTP.cshtml";
@@ -34,7 +37,9 @@
                             <td>
                                 <div class="input-group fuente-pequeña">
                                     <span class="input-group-addon fuente-pequeña">Palabra Clave</span>
-                                    @Html.TextBox("SearchString", null, new { @class = "form-control", @placeholder = "Buscar por Empresa, Apellidos y Nombre" })
+                                  @*  @Html.TextBox("SearchString", null, new { @class = "form-control", @placeholder = "Buscar por Empresa, Apellidos y Nombre" })*@
+
+                                    @Html.TextBoxFor(model => model.PalabraClave, new { @class = "form-control", @placeholder = "Buscar por Apellidos y Nombres" })
 
                                 </div>
 
@@ -44,8 +49,10 @@
                                 <span class="col-md-6 btn-group">
 
                                     @*<button type="submit" class="btn btn-default color-paleta3 fa fa-search" />*@
-                                    <input type="submit" onclick="buscarPaginacion(1);" class="fui" style="font-size:30px;border-width:0px;background-color:transparent;" value="(" />
-                                </span>
+                                   @* <input type="submit" onclick="buscarPaginacion(1);" class="fui" style="font-size:30px;border-width:0px;background-color:transparent;" value="(" />*@
+                               
+                                    <span class="fui" style=" font-size:30px;cursor:pointer" id="buscar">(</span>
+                                 </span>
                             </td>
                             @*}*@
                         </tr>
@@ -55,7 +62,7 @@
             </div>
 
         </div>
-        <div class="panel panel-default">
+        @*<div class="panel panel-default">
             <div class="panel-heading" role="tab" id="CabeceraColapsaBusquedaAvanzada" style="padding: 2px 2px 2px 6px;">
                 <h5 class="panel-title">
                     <a class="collapsed fuente-seccion" data-toggle="collapse" data-parent="#CriterioBusquedaPostulacion" href="#ColapsaBusquedaAvanzada" aria-expanded="false" aria-controls="ColapsaBusquedaAvanzada">
@@ -94,20 +101,17 @@
 
                         <div class="col-sm-3">
 
+                            <!--Dejabajo de Tipo habiA 1 DIV CLAS INPUT-->
 
-                            @*<div class="input-group">
-                                <span class="input-group-addon">Ubicación</span>
-                             @Html.TextBoxFor(model => model.Ubicacion, new { @class = "form-control", @id = "Ubicacion", @placeholder = "Ubicación del trabajo" })
-                            </div>
-                 
-                            <br />*@
+                     
+
                             <button class="btn btn-default color-paleta3 fa fa-search" id="buscaravanzada"></button>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <br />
+        </div>*@
+        @*<br />*@
 
         @*<h5>Eventos</h5>*@
 
@@ -118,7 +122,7 @@
 
     </div>
     <br />
-    <div id="resultadobusqueda">
+    <div id="ResultadoBusqueda">
     </div>
 
 
@@ -132,7 +136,49 @@
     $(document).ready(function () {
         $("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta4 color-paleta5 color-paleta6 color-paleta7 color-paleta8 color-paleta9").addClass("color-paleta3")
     });
-    function buscarPaginacion(nroPaginaActual) {
+
+    $('#buscar').click(function () {
+        var alumno = {
+            PalabraClave: $('#PalabraClave').val(),
+            nroPaginaActual: 1,
+        };
+
+
+        Cargar("ResultadoBusqueda", '@Url.Action("BusquedaAlumnos", "UTP")', alumno);
+    });
+
+    function Cargar(id, link, entidad) {
+        //debugger;
+        $.ajax({
+            url: link,
+            contentType: 'application/json; charset=utf-8',
+            type: 'POST',
+            data: JSON.stringify(entidad),
+            dataType: 'html'
+        })
+        .success(function (result) {
+            $("#" + id).html(result);
+            //alert(result);
+            //console.log(result);
+        })
+        .error(function (xhr, status) {
+            console.log(xhr);
+            console.log(status);
+            alert('error');
+        })
+    }
+
+    function buscarPaginacion(nroPagina) {
+        var alumno = {
+            PalabraClave: $('#PalabraClave').val(),
+            nroPaginaActual: nroPagina,
+
+        };
+        //Cargar("resultadobusqueda", "/UTP/BusquedaSimpleEmpresasActivas", empresa);
+        Cargar("ResultadoBusqueda", '@Url.Action("BuscarOfertas", "UTP")', alumno);
+    }
+
+    @*function buscarPaginacion(nroPaginaActual) {
         //debugger;
 
         var SearchString = $('#SearchString').val();
@@ -144,7 +190,7 @@
             $('#resultadobusqueda').html(data);
         }).error(function (err) { console.log(err); });
 
-    }
+    }*@
 
 
 </script>

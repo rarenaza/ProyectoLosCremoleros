@@ -292,17 +292,113 @@ namespace UTP.PortalEmpleabilidad.Logica
            
         }
 
-        public DataTable UTP_ObtenerOfertasporActivar(string oferta, int nroPagina, int filasPorPagina)
+        public List<AlumnoUTP> UTP_ObtenerUltimosAlumnos(string Dato, int nroPagina, int filasPorPagina)
         {
+            List<AlumnoUTP> listaEjemplo = new List<AlumnoUTP>();
 
-            return adUtp.UTP_ObtenerOfertasporActivar(oferta, nroPagina, filasPorPagina);
+
+            DataTable dtResultado = adUtp.UTP_ObtenerUltimosAlumnos(Dato, nroPagina, filasPorPagina);
+
+            for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
+            {
+                AlumnoUTP vista = new AlumnoUTP();
+
+                vista.FechaperiodoRegistro = Convert.ToDateTime(dtResultado.Rows[i]["FechaCreacion"]);
+                vista.FechaRegistro = dtResultado.Rows[i]["FechaRegistro"].ToString();
+                vista.Nombre = dtResultado.Rows[i]["Nombres"].ToString();
+                vista.EstadoAlumno = dtResultado.Rows[i]["Valor"].ToString();
+                vista.Apellidos = dtResultado.Rows[i]["Apellidos"].ToString();
+                vista.Carrera = dtResultado.Rows[i]["Carrera"].ToString();
+                vista.Ciclo = dtResultado.Rows[i]["CicloEquivalente"].ToString();
+                vista.idAlumno = Convert.ToInt32(dtResultado.Rows[i]["IdAlumno"]);
+                vista.completitud = Convert.ToInt32(dtResultado.Rows[i]["Completitud"]);
+                vista.CantidadTotal = Convert.ToInt32(dtResultado.Rows[i]["CantidadTotal"]);
+                listaEjemplo.Add(vista);
+            }
+
+            return listaEjemplo;
         }
 
-        public DataTable UTP_ObtenerUltimosAlumnos(string Dato, int nroPagina, int filasPorPagina)
-        {
 
-            return adUtp.UTP_ObtenerUltimosAlumnos(Dato, nroPagina, filasPorPagina);
+
+        //public DataTable UTP_ObtenerUltimosAlumnos(string Dato, int nroPagina, int filasPorPagina)
+        //{
+
+        //    return adUtp.UTP_ObtenerUltimosAlumnos(Dato, nroPagina, filasPorPagina);
+        //}
+
+        public List<OfertaUTP> UTP_ObtenerOfertasporActivar(string Oferta, int nroPagina, int filasPorPagina)
+        {
+            List<OfertaUTP> listaEjemplo = new List<OfertaUTP>();
+
+
+            DataTable dtResultado = adUtp.UTP_ObtenerOfertasporActivar(Oferta, nroPagina, filasPorPagina);
+
+            for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
+            {
+                OfertaUTP vista = new OfertaUTP();
+
+                vista.FechaPublicacion = Convert.ToDateTime(dtResultado.Rows[i]["FechaPublicacion"]);
+                vista.NombreComercial = Convert.ToString(dtResultado.Rows[i]["NombreComercial"]);
+                vista.Clasificación = Convert.ToString(dtResultado.Rows[i]["Clasificación"]);
+                vista.CargoOfrecido = Convert.ToString(dtResultado.Rows[i]["CargoOfrecido"]);
+                vista.NumeroVacantes = Convert.ToString(dtResultado.Rows[i]["NumeroVacantes"]);
+                vista.Cargo = Convert.ToString(dtResultado.Rows[i]["Cargo"]);
+                vista.FacultadPrincipal = Convert.ToString(dtResultado.Rows[i]["FacultadPrincipal"]);
+                vista.EjecutivoUTP = Convert.ToString(dtResultado.Rows[i]["EjecutivoUTP"]);
+                vista.Nrocv = Convert.ToString(dtResultado.Rows[i]["Nrocv"]);
+                vista.FechaSeguimiento = Convert.ToString(dtResultado.Rows[i]["FechaSeguimiento"]);
+                //vista.FechaSeguimiento = Convert.ToDateTime(fila["FechaSeguimiento"] == DBNull.Value? (DateTime?)null :(DateTime)fila["FechaSeguimiento"]);
+
+                vista.Comentarios = Convert.ToString(dtResultado.Rows[i]["TieneComentarios"]);
+
+                vista.IdOferta = Convert.ToInt32(dtResultado.Rows[i]["IdOferta"]);
+                vista.Estado = Convert.ToString(dtResultado.Rows[i]["Estado"]);
+
+                vista.CantidadTotal = Convert.ToInt32(dtResultado.Rows[i]["CantidadTotal"]);
+
+                listaEjemplo.Add(vista);
+            }
+
+            return listaEjemplo;
         }
+        public List<OfertaUTP> UTP_ObtenerofertasAvanzada(string CargoOfrecido, string NombreComercial, string TipoCargo, int nroPagina, int filasPorPagina)
+        {
+            List<OfertaUTP> listaEjemplo = new List<OfertaUTP>();
+
+
+            DataTable dtResultado = adUtp.UTP_ObtenerofertasAvanzada(CargoOfrecido, NombreComercial, TipoCargo, nroPagina, filasPorPagina);
+
+            for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
+            {
+                OfertaUTP vista = new OfertaUTP();
+
+                vista.FechaPublicacion = Convert.ToDateTime(dtResultado.Rows[i]["FechaPublicacion"]);
+                vista.NombreComercial = Convert.ToString(dtResultado.Rows[i]["NombreComercial"]);
+                vista.Clasificación = Convert.ToString(dtResultado.Rows[i]["Clasificación"]);
+                vista.CargoOfrecido = Convert.ToString(dtResultado.Rows[i]["CargoOfrecido"]);
+                vista.NumeroVacantes = Convert.ToString(dtResultado.Rows[i]["NumeroVacantes"]);
+                vista.Cargo = Convert.ToString(dtResultado.Rows[i]["Cargo"]);
+                vista.FacultadPrincipal = Convert.ToString(dtResultado.Rows[i]["FacultadPrincipal"]);
+                vista.EjecutivoUTP = Convert.ToString(dtResultado.Rows[i]["EjecutivoUTP"]);
+                vista.Nrocv = Convert.ToString(dtResultado.Rows[i]["Nrocv"]);
+                vista.FechaSeguimiento = Convert.ToString(dtResultado.Rows[i]["FechaSeguimiento"]);
+                //vista.FechaSeguimiento = Convert.ToDateTime(fila["FechaSeguimiento"] == DBNull.Value? (DateTime?)null :(DateTime)fila["FechaSeguimiento"]);
+
+                vista.Comentarios = Convert.ToString(dtResultado.Rows[i]["TieneComentarios"]);
+
+                vista.IdOferta = Convert.ToInt32(dtResultado.Rows[i]["IdOferta"]);
+                vista.Estado = Convert.ToString(dtResultado.Rows[i]["Estado"]);
+
+                vista.CantidadTotal = Convert.ToInt32(dtResultado.Rows[i]["CantidadTotal"]);
+
+                listaEjemplo.Add(vista);
+            }
+
+            return listaEjemplo;
+        }         
+
+        
 
 
         public DataTable UTP_ObtenerEventosObtenerBuscar(string evento, int nroPagina, int filasPorPagina)

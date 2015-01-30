@@ -215,6 +215,7 @@
     <Compile Include="Models\ViewModels\Empresa\EmpresaVista.cs" />
     <Compile Include="Models\ViewModels\Empresa\VistaNuevasPostulaciones.cs" />
     <Compile Include="Models\ViewModels\UTP\AlumnoUtp_obtenerInformacionAdicional.cs" />
+    <Compile Include="Models\ViewModels\UTP\VistaAlumno.cs" />
     <Compile Include="Models\ViewModels\UTP\VistaAlumnoUtp_obtenerExperiencia.cs" />
     <Compile Include="Models\ViewModels\UTP\VistaEmpresaListaOpciones.cs" />
     <Compile Include="Models\ViewModels\UTP\VistaEmpresasPendientes.cs" />

@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using UTP.PortalEmpleabilidad.Modelo;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace UTPPrototipo.Models.ViewModels.UTP
+namespace UTP.PortalEmpleabilidad.Modelo
 {
-    public class VistaOferta
+   public  class OfertaUTP
     {
         public DateTime FechaPublicacion { get; set; }
         public string NombreComercial { get; set; }
@@ -19,21 +19,15 @@ namespace UTPPrototipo.Models.ViewModels.UTP
         public string Nrocv { get; set; }
 
         public int IdOferta { get; set; }
-        public string  Estado { get; set; }
+        public string Estado { get; set; }
         public List<ListaValor> ListaTipoCargo { get; set; }
-        public string PalabraClave { get; set; }
+
         public string Cargo { get; set; }
         public string IdTipoCargoutp { get; set; }
         //public DateTime FechaSeguimiento { get; set; }
         public string FechaSeguimiento { get; set; }
         public string Comentarios { get; set; }
-
-        public int nroPaginaActual { get; set; }
-        public int filasPorPagina { get; set; }
-
-
         //Paginación:
         public int CantidadTotal { get; set; }
-
     }
 }
