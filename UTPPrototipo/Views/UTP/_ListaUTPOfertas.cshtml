@@ -7,49 +7,94 @@
 }
 
 <div class="row grilla1-cabecera color-paleta4">
-    <div class="col-sm-2">
+    <div class="col-sm-1">
         Fecha Publicación
     </div>
-    <div class="col-sm-2">
+    <div class="col-sm-1">
         Empresa
     </div>
-    <div class="col-sm-4">
-        Oferta
+    <div class="col-sm-1">
+        Clasificación
     </div>
-    <div class="col-sm-2">
-        Estado
+    <div class="col-sm-1">
+        Cargo
+    </div>
+
+    <div class="col-sm-1">
+        # Vacantes
     </div>
     <div class="col-sm-2">
         Tipo de Cargo        
     </div>
+    <div class="col-sm-1">
+        Facultad Principal
+    </div>
+    <div class="col-sm-1">
+        Ejecutivo Utp
+    </div>
+    <div class="col-sm-1">
+        # Cv
+    </div>
+    <div class="col-sm-1">
+        Fecha Seguimiento
+    </div>
+    <div class="col-sm-1">
+        Comentarios
+    </div>
+    <div class="col-sm-1">
+        Estado
+    </div>
+    
 </div>
 
 @foreach (var item in Model)
 {
     <div class="row grilla1-linea">
-        <div class="col-sm-2">
+        <div class="col-sm-1">
             @Html.FormatoFrecuencia(@item.FechaPublicacion)
         </div>
-        <div class="col-sm-2">
+        <div class="col-sm-1">
             @item.NombreComercial
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-1">
+            @item.Clasificación
+        </div>
+        <div class="col-sm-1">
             @*<a href="../UTP/RegistroOferta">@item.CargoOfrecido</a>*@
             @Html.ActionLink(@item.CargoOfrecido, "VerDetalleOferta", new { id = item.IdOferta })
         </div>
-        <div class="col-sm-2">
-            @item.Estado
+        <div class="col-sm-1">
+            @item.NumeroVacantes
         </div>
-        <div class="col-sm-2">
+        <div class="col-sm-1">
             <div class="row">
                 <div class="col-sm-9">
                     @item.Cargo
                 </div>
                 <div class="col-sm-3">
-                        @Html.ActionLink("Ver", "Oferta", "Empresa", new { idOferta = item.IdOferta, pantalla = "UTP" }, null)
+                    @Html.ActionLink("Ver", "Oferta", "Empresa", new { idOferta = item.IdOferta, pantalla = "UTP" }, null)
                 </div>
-            </div>                        
+            </div>             
         </div>
+        <div class="col-sm-1">
+            @item.FacultadPrincipal
+        </div>
+        <div class="col-sm-1">
+            @item.EjecutivoUTP
+        </div>
+        <div class="col-sm-1">
+            @item.Nrocv
+        </div>
+        <div class="col-sm-1">
+            @item.FechaSeguimiento
+        </div>
+        <div class="col-sm-1">
+            @item.Comentarios
+        </div>
+        <div class="col-sm-1">
+            @item.Estado
+        </div>
+       
     </div>
 }
 @if (Model.Count() == 0)

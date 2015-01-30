@@ -19,6 +19,10 @@ namespace UTP.PortalEmpleabilidad.Modelo.Vistas.Alumno
 
         public int  completitud { get; set;}
 
+        public int? IdPeriodoRegistro { get; set; }
+       
+        public Dictionary<int, string> PeriodoRegistro { get; set; }
+
         //Paginación:
         public int CantidadTotal { get; set; }
     }

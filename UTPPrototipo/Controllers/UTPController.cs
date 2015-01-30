@@ -47,13 +47,15 @@ namespace UTPPrototipo.Controllers
                        
      
         }
-       
-        public ActionResult Portal(string Menu)
+
+
+        public ActionResult Portal()
         {
+            
             LNContenido ln = new LNContenido();
 
             DataTable dtresultado = ln.ContenidoMenu_Mostrar();
-                       
+
             List<SelectListItem> li = new List<SelectListItem>();
 
             for (int i = 0; i <= dtresultado.Rows.Count - 1; i++)
@@ -67,83 +69,34 @@ namespace UTPPrototipo.Controllers
 
             }
             ViewData["ContenidoMenu"] = li;
-                     
 
-                                
+            return View();
 
-            //return View(contenido);
-            List<Contenido> lista = new List<Contenido>();
-
-            try
-            {
-           
-
-                int codMenu = Convert.ToInt32(Menu);
-
-                if (Menu == null)
-                {
-
-                    DataTable dtResultado = ln.Contenido_ObtenerPorCodMenu(0);
-
-
-                    for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
-                    {
-                        Contenido contenido = new Contenido();
-                        contenido.IdContenido = Convert.ToInt32(dtResultado.Rows[i]["IdContenido"]);
-                        contenido.Menu = dtResultado.Rows[i]["CodMenu"].ToString();
-                        contenido.Titulo = dtResultado.Rows[i]["Titulo"].ToString();
-                        contenido.SubTitulo = dtResultado.Rows[i]["SubTitulo"].ToString();
-                        contenido.Descripcion = dtResultado.Rows[i]["Descripcion"].ToString();
-
-                        contenido.Imagen = (byte[])dtResultado.Rows[i]["Imagen"];
-
-                        //contenido.Imagen = dtResultado.Rows[0]["Imagen"] == DBNull.Value ? null : (byte[])dtResultado.Rows[0]["Imagen"];
-
-                        contenido.TituloMenu = dtResultado.Rows[i]["Menu"].ToString();
-
-
-                        lista.Add(contenido);
-                    }
-
-
-                }
-                else
-                {
-
-                                        
-
-                    DataTable dtResultado = ln.Contenido_ObtenerPorCodMenu(codMenu);
-
-
-                    for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
-                    {
-                        Contenido contenido = new Contenido();
-                        contenido.IdContenido = Convert.ToInt32(dtResultado.Rows[i]["IdContenido"]);
-                        contenido.Menu = dtResultado.Rows[i]["CodMenu"].ToString();
-                        contenido.Titulo = dtResultado.Rows[i]["Titulo"].ToString();
-                        contenido.SubTitulo = dtResultado.Rows[i]["SubTitulo"].ToString();
-                        contenido.Descripcion = dtResultado.Rows[i]["Descripcion"].ToString();
-
-                        contenido.Imagen = (byte[])dtResultado.Rows[i]["Imagen"];
-
-                        contenido.TituloMenu = dtResultado.Rows[i]["Menu"].ToString();
-
-
-                        lista.Add(contenido);
-                    }
-                }
-            }
-            catch (Exception )
-            {
-        
-                
-            }
-                     
-
-            return View(lista);
-          
         }
 
+        public ActionResult ResultadoBusquedaContenidoUTP(int Menu = 0)
+        {
+            List<Contenido> lista = new List<Contenido>();
+            DataTable dtResultado = ln.Contenido_ObtenerPorCodMenu(Menu);
+
+            for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
+            {
+                Contenido contenido = new Contenido();
+                contenido.IdContenido = Convert.ToInt32(dtResultado.Rows[i]["IdContenido"]);
+                contenido.Menu = dtResultado.Rows[i]["CodMenu"].ToString();
+                contenido.Titulo = dtResultado.Rows[i]["Titulo"].ToString();
+                contenido.SubTitulo = dtResultado.Rows[i]["SubTitulo"].ToString();
+                contenido.Descripcion = dtResultado.Rows[i]["Descripcion"].ToString();
+                //contenido.Imagen = (byte[])dtResultado.Rows[i]["Imagen"];
+                contenido.Imagen = dtResultado.Rows[0]["Imagen"] == DBNull.Value ? null : (byte[])dtResultado.Rows[0]["Imagen"];
+                contenido.TituloMenu = dtResultado.Rows[i]["Menu"].ToString();
+                lista.Add(contenido);
+            }
+
+            return PartialView("_ListaUTPContenido", lista);
+        }
+
+          
         public FileResult Imagen(int id)
         {
             const string alternativePicturePath = @"/img/sinimagen.jpg";
@@ -191,6 +144,102 @@ namespace UTPPrototipo.Controllers
 
             return new FileStreamResult(stream, "image/jpeg");
         }
+
+        //public ActionResult Portal(string Menu)
+        //{
+        //    LNContenido ln = new LNContenido();
+
+        //    DataTable dtresultado = ln.ContenidoMenu_Mostrar();
+
+        //    List<SelectListItem> li = new List<SelectListItem>();
+
+        //    for (int i = 0; i <= dtresultado.Rows.Count - 1; i++)
+        //    {
+        //        string nombre = dtresultado.Rows[i]["Titulo"].ToString();
+        //        string valor = dtresultado.Rows[i]["IdMenu"].ToString();
+
+        //        SelectListItem item = new SelectListItem() { Text = nombre, Value = valor };
+
+        //        li.Add(item);
+
+        //    }
+        //    ViewData["ContenidoMenu"] = li;
+
+
+
+
+        //    //return View(contenido);
+        //    List<Contenido> lista = new List<Contenido>();
+
+        //    try
+        //    {
+
+
+        //        int codMenu = Convert.ToInt32(Menu);
+
+        //        if (Menu == null)
+        //        {
+
+        //            DataTable dtResultado = ln.Contenido_ObtenerPorCodMenu(0);
+
+
+        //            for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
+        //            {
+        //                Contenido contenido = new Contenido();
+        //                contenido.IdContenido = Convert.ToInt32(dtResultado.Rows[i]["IdContenido"]);
+        //                contenido.Menu = dtResultado.Rows[i]["CodMenu"].ToString();
+        //                contenido.Titulo = dtResultado.Rows[i]["Titulo"].ToString();
+        //                contenido.SubTitulo = dtResultado.Rows[i]["SubTitulo"].ToString();
+        //                contenido.Descripcion = dtResultado.Rows[i]["Descripcion"].ToString();
+
+        //                contenido.Imagen = (byte[])dtResultado.Rows[i]["Imagen"];
+
+        //                //contenido.Imagen = dtResultado.Rows[0]["Imagen"] == DBNull.Value ? null : (byte[])dtResultado.Rows[0]["Imagen"];
+
+        //                contenido.TituloMenu = dtResultado.Rows[i]["Menu"].ToString();
+
+
+        //                lista.Add(contenido);
+        //            }
+
+
+        //        }
+        //        else
+        //        {
+
+
+
+        //            DataTable dtResultado = ln.Contenido_ObtenerPorCodMenu(codMenu);
+
+
+        //            for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
+        //            {
+        //                Contenido contenido = new Contenido();
+        //                contenido.IdContenido = Convert.ToInt32(dtResultado.Rows[i]["IdContenido"]);
+        //                contenido.Menu = dtResultado.Rows[i]["CodMenu"].ToString();
+        //                contenido.Titulo = dtResultado.Rows[i]["Titulo"].ToString();
+        //                contenido.SubTitulo = dtResultado.Rows[i]["SubTitulo"].ToString();
+        //                contenido.Descripcion = dtResultado.Rows[i]["Descripcion"].ToString();
+
+        //                contenido.Imagen = (byte[])dtResultado.Rows[i]["Imagen"];
+
+        //                contenido.TituloMenu = dtResultado.Rows[i]["Menu"].ToString();
+
+
+        //                lista.Add(contenido);
+        //            }
+        //        }
+        //    }
+        //    catch (Exception )
+        //    {
+
+
+        //    }
+
+
+        //    return View(lista);
+
+        //}
 
         public ActionResult Empresas()
         {
@@ -286,7 +335,34 @@ namespace UTPPrototipo.Controllers
 
         public ActionResult Alumnos()
         {
-            return View();
+            VistaUTPListaAlumno alumno = new VistaUTPListaAlumno();
+
+            Dictionary<int, string> listaperiodoregistro = new Dictionary<int, string>();
+            listaperiodoregistro.Add(0, "Hoy");
+            listaperiodoregistro.Add(1, "Ayer");
+            listaperiodoregistro.Add(7, "Hace una semana");
+            listaperiodoregistro.Add(15, "Hace 15 dias");
+            listaperiodoregistro.Add(30, "Hace un mes");
+            listaperiodoregistro.Add(31, "Hace más de un mes");
+
+            
+            alumno.PeriodoRegistro = listaperiodoregistro;
+
+            //Declara Lista
+            //Combo Periodo Registro
+            List<SelectListItem> listItemsPeridoRegistro = new List<SelectListItem>();
+            foreach (KeyValuePair<int, string> entidad in alumno.PeriodoRegistro)
+            {
+                SelectListItem item = new SelectListItem();
+                item.Text = entidad.Value.ToString();
+                item.Value = entidad.Key.ToString();
+                listItemsPeridoRegistro.Add(item);
+            }
+
+            //Lista de Combos
+            ViewBag.PeridoRegistro = listItemsPeridoRegistro;
+
+            return View(alumno);
         }
         public ActionResult BusquedaAlumnos(string SearchString, int nroPaginaActual = 1)
         {
@@ -1163,10 +1239,21 @@ namespace UTPPrototipo.Controllers
 
                 vista.FechaPublicacion = Convert.ToDateTime(fila["FechaPublicacion"]);
                 vista.NombreComercial = Convert.ToString(fila["NombreComercial"]);
+                vista.Clasificación = Convert.ToString(fila["Clasificación"]);
                 vista.CargoOfrecido = Convert.ToString(fila["CargoOfrecido"]);
+                vista.NumeroVacantes = Convert.ToString(fila["NumeroVacantes"]);
+                vista.Cargo = Convert.ToString(fila["Cargo"]);
+                vista.FacultadPrincipal = Convert.ToString(fila["FacultadPrincipal"]);
+                vista.EjecutivoUTP = Convert.ToString(fila["EjecutivoUTP"]);
+                vista.Nrocv = Convert.ToString(fila["Nrocv"]);
+                vista.FechaSeguimiento = Convert.ToString(fila["FechaSeguimiento"]);
+                //vista.FechaSeguimiento = Convert.ToDateTime(fila["FechaSeguimiento"] == DBNull.Value? (DateTime?)null :(DateTime)fila["FechaSeguimiento"]);
+                               
+                vista.Comentarios = Convert.ToString(fila["TieneComentarios"]);
+
                 vista.IdOferta = Convert.ToInt32(fila["IdOferta"]);
                 vista.Estado = Convert.ToString(fila["Estado"]);
-                vista.Cargo = Convert.ToString(fila["Cargo"]);
+             
                 vista.CantidadTotal = Convert.ToInt32(fila["CantidadTotal"]);
 
                 listaEjemplo.Add(vista);
