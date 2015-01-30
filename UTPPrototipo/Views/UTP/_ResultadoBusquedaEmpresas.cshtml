@@ -12,21 +12,19 @@
 <br />
     <div class="row grilla1-cabecera color-paleta2">
 
-        <div class="col-sm-2">
+        <div class="col-sm-1">
             Nombre
         </div>
-        <div class="col-sm-2">
+        <div class="col-sm-1">
             Razón Social
         </div>
         @*<div class="col-sm-1">
             RUC
         </div>*@
-        <div class="col-sm-2">
+        <div class="col-sm-1">
             Sector
         </div>
-        <div class="col-sm-1">
-            Clasificación
-        </div>
+        
         <div class="col-sm-1">
             Ejecutivo UTP asignado
         </div>
@@ -34,12 +32,23 @@
         <div class="col-sm-1">
             Estado
         </div>
-       
+        <div class="col-sm-1">
+           Nivel de Facturación
+        </div>
+        <div class="col-sm-1">
+            Posición en sector
+        </div>
+        <div class="col-sm-1">
+            Clasificación
+        </div>
         <div class="col-sm-1">
             Nivel Relación
         </div>
         <div class="col-sm-1">
             Facultad Principal
+        </div>
+        <div class="col-sm-1">
+            Facultad Secundaria
         </div>
         <div class="col-sm-1">
             Comentarios
@@ -52,22 +61,20 @@
     {
         <div class="row grilla1-linea">
 
-            <div class="col-sm-2">
+            <div class="col-sm-1">
                 @*<a href="../UTP/Empresa">@item.NombreComercial</a>*@
                 @Html.ActionLink(@item.NombreComercial, "VerDetalleEmpresa", new { id = item.IdEmpresa })
             </div>
-            <div class="col-sm-2">
+            <div class="col-sm-1">
                 @item.RazonSocial
             </div>
             @*<div class="col-sm-1">
                 @item.RUC
             </div>*@
-            <div class="col-sm-2">
+            <div class="col-sm-1">
                 @item.SectorEmpresarial
             </div>
-            <div class="col-sm-1">
-                @item.Clasificacion
-            </div>
+           
             <div class="col-sm-1">
                 @item.EjecutivoUTP
              
@@ -76,12 +83,23 @@
             <div class="col-sm-1">
                 @item.Estado
             </div>
-
+            <div class="col-sm-1">
+                @item.NivelDeFacturacion
+            </div>
+            <div class="col-sm-1">
+                @item.PosicionEnSector
+            </div>
+            <div class="col-sm-1">
+                @item.Clasificacion
+            </div>
             <div class="col-sm-1">
                 @item.NivelDeRelacion 
             </div>
             <div class="col-sm-1">
                 @item.FacultadPrincipal 
+            </div>
+            <div class="col-sm-1">
+                @item.FacultadSecundaria
             </div>
             <div class="col-sm-1">
                 @item.TieneComentarios

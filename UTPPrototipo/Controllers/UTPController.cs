@@ -335,7 +335,34 @@ namespace UTPPrototipo.Controllers
 
         public ActionResult Alumnos()
         {
-            return View();
+            VistaUTPListaAlumno alumno = new VistaUTPListaAlumno();
+
+            Dictionary<int, string> listaperiodoregistro = new Dictionary<int, string>();
+            listaperiodoregistro.Add(0, "Hoy");
+            listaperiodoregistro.Add(1, "Ayer");
+            listaperiodoregistro.Add(7, "Hace una semana");
+            listaperiodoregistro.Add(15, "Hace 15 dias");
+            listaperiodoregistro.Add(30, "Hace un mes");
+            listaperiodoregistro.Add(31, "Hace más de un mes");
+
+            
+            alumno.PeriodoRegistro = listaperiodoregistro;
+
+            //Declara Lista
+            //Combo Periodo Registro
+            List<SelectListItem> listItemsPeridoRegistro = new List<SelectListItem>();
+            foreach (KeyValuePair<int, string> entidad in alumno.PeriodoRegistro)
+            {
+                SelectListItem item = new SelectListItem();
+                item.Text = entidad.Value.ToString();
+                item.Value = entidad.Key.ToString();
+                listItemsPeridoRegistro.Add(item);
+            }
+
+            //Lista de Combos
+            ViewBag.PeridoRegistro = listItemsPeridoRegistro;
+
+            return View(alumno);
         }
         public ActionResult BusquedaAlumnos(string SearchString, int nroPaginaActual = 1)
         {
@@ -1212,10 +1239,21 @@ namespace UTPPrototipo.Controllers
 
                 vista.FechaPublicacion = Convert.ToDateTime(fila["FechaPublicacion"]);
                 vista.NombreComercial = Convert.ToString(fila["NombreComercial"]);
+                vista.Clasificación = Convert.ToString(fila["Clasificación"]);
                 vista.CargoOfrecido = Convert.ToString(fila["CargoOfrecido"]);
+                vista.NumeroVacantes = Convert.ToString(fila["NumeroVacantes"]);
+                vista.Cargo = Convert.ToString(fila["Cargo"]);
+                vista.FacultadPrincipal = Convert.ToString(fila["FacultadPrincipal"]);
+                vista.EjecutivoUTP = Convert.ToString(fila["EjecutivoUTP"]);
+                vista.Nrocv = Convert.ToString(fila["Nrocv"]);
+                vista.FechaSeguimiento = Convert.ToString(fila["FechaSeguimiento"]);
+                //vista.FechaSeguimiento = Convert.ToDateTime(fila["FechaSeguimiento"] == DBNull.Value? (DateTime?)null :(DateTime)fila["FechaSeguimiento"]);
+                               
+                vista.Comentarios = Convert.ToString(fila["TieneComentarios"]);
+
                 vista.IdOferta = Convert.ToInt32(fila["IdOferta"]);
                 vista.Estado = Convert.ToString(fila["Estado"]);
-                vista.Cargo = Convert.ToString(fila["Cargo"]);
+             
                 vista.CantidadTotal = Convert.ToInt32(fila["CantidadTotal"]);
 
                 listaEjemplo.Add(vista);

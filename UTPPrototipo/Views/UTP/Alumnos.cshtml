@@ -1,11 +1,12 @@
-﻿@model IEnumerable<UTP.PortalEmpleabilidad.Modelo.Vistas.Alumno.VistaUTPListaAlumno>
-
+﻿@*@model IEnumerable<UTP.PortalEmpleabilidad.Modelo.Vistas.Alumno.VistaUTPListaAlumno>*@
+@model UTP.PortalEmpleabilidad.Modelo.Vistas.Alumno.VistaUTPListaAlumno
 
 @{
     Layout = "~/Views/UTP/_LayoutUTP.cshtml";
     ViewBag.Title = "Alumnos";
 }
 <link href="~/Content/font-awesome.css" rel="stylesheet" />
+
 
 
 <div class="container" style="margin-top:2px;">
@@ -54,7 +55,58 @@
             </div>
 
         </div>
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="CabeceraColapsaBusquedaAvanzada" style="padding: 2px 2px 2px 6px;">
+                <h5 class="panel-title">
+                    <a class="collapsed fuente-seccion" data-toggle="collapse" data-parent="#CriterioBusquedaPostulacion" href="#ColapsaBusquedaAvanzada" aria-expanded="false" aria-controls="ColapsaBusquedaAvanzada">
+                        Búsqueda avanzada
+                    </a>
+                </h5>
+            </div>
+            <div id="ColapsaBusquedaAvanzada" class="panel-collapse collapse" role="tabpanel" aria-labelledby="CabeceraColapsaBusquedaAvanzada">
+                <div class="panel-body fuente-pequeña">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="input-group">
+                                <span class="input-group-addon">Registro</span>
+                                @Html.DropDownListFor(model => model.IdPeriodoRegistro, new SelectList(ViewBag.PeridoRegistro, "Value", "Text"), "- Seleccionar -", new { @class = "form-control", @Id = "IdPeriodoRegistro" })
+                            </div>
+                            <!--Dejabajo de Registro 2-->
+                          
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="input-group">
+                                <span class="input-group-addon">Carrera</span>
+                                @Html.TextBoxFor(model => model.Carrera, new { @class = "form-control", @placeholder = "Carrera de Estudio" })
+                            </div>
+                            <!--Dejabajo de carrera 2-->
 
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="input-group">
+                                <span class="input-group-addon">Ciclo</span>
+                                @Html.TextBoxFor(model => model.Ciclo, new { @class = "form-control", @placeholder = "Ciclo de Estudio" })
+                            </div>
+                            <!--Dejabajo de Tipo habian 2-->
+                   
+
+                        </div>
+
+                        <div class="col-sm-3">
+
+
+                            @*<div class="input-group">
+                                <span class="input-group-addon">Ubicación</span>
+                             @Html.TextBoxFor(model => model.Ubicacion, new { @class = "form-control", @id = "Ubicacion", @placeholder = "Ubicación del trabajo" })
+                            </div>
+                 
+                            <br />*@
+                            <button class="btn btn-default color-paleta3 fa fa-search" id="buscaravanzada"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <br />
 
         @*<h5>Eventos</h5>*@

@@ -50,7 +50,10 @@ namespace UTP.PortalEmpleabilidad.Logica
                 usuario.NombreUsuario = Convert.ToString(item["Usuario"]);
                 usuario.TipoUsuario.Valor = Convert.ToString(item["TipoUsuario"]);
                 usuario.NombreCompleto = Convert.ToString(item["UsuarioNombreCompleto"]);
-                usuario.EstadoUsuario.Valor = Convert.ToString(item["EstadoUsuario"]);
+
+                //Modificado por junior porque no ejecutaba por falta de Script
+
+                //usuario.EstadoUsuario.Valor = Convert.ToString(item["EstadoUsuario"]);
 
                 usuarios.Add(usuario);
             }

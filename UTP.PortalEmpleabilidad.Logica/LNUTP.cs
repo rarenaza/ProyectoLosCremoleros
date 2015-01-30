@@ -111,10 +111,15 @@ namespace UTP.PortalEmpleabilidad.Logica
                 vista.Estado = dtResultado.Rows[i]["Estado"].ToString();
                 vista.EjecutivoUTP = dtResultado.Rows[i]["EjecutivoUTP"].ToString();
                 vista.SectorEmpresarial = dtResultado.Rows[i]["SectorEmpresarial"].ToString();
-                vista.Clasificacion = dtResultado.Rows[i]["Clasificación"].ToString();
+               
                 vista.Ofertas = dtResultado.Rows[i]["Ofertas"].ToString();
+
+                vista.NivelDeFacturacion = dtResultado.Rows[i]["NivelDeFacturacion"].ToString();
+                vista.PosicionEnSector = dtResultado.Rows[i]["PosicionEnSector"].ToString();
+                vista.Clasificacion = dtResultado.Rows[i]["Clasificación"].ToString();
                 vista.NivelDeRelacion = dtResultado.Rows[i]["NivelDeRelacion"].ToString();
                 vista.FacultadPrincipal = dtResultado.Rows[i]["FacultadPrincipal"].ToString();
+                vista.FacultadSecundaria = dtResultado.Rows[i]["FacultadSecundaria"].ToString();
 
                 //vista.Comentarios = dtResultado.Rows[i]["Comentarios"].ToString();
                 vista.TieneComentarios = dtResultado.Rows[i]["TieneComentarios"].ToString();
@@ -143,16 +148,20 @@ namespace UTP.PortalEmpleabilidad.Logica
                 vista.Estado = dtResultado.Rows[i]["Estado"].ToString();
                 vista.EjecutivoUTP = dtResultado.Rows[i]["EjecutivoUTP"].ToString();
                 vista.SectorEmpresarial = dtResultado.Rows[i]["SectorEmpresarial"].ToString();
-                vista.Clasificacion = dtResultado.Rows[i]["Clasificación"].ToString();
+
                 vista.Ofertas = dtResultado.Rows[i]["Ofertas"].ToString();
-                vista.IdEstadoEmpresa = dtResultado.Rows[i]["Idestado"].ToString();
-                vista.IdSector = dtResultado.Rows[i]["Idsector"].ToString();
+
+                vista.NivelDeFacturacion = dtResultado.Rows[i]["NivelDeFacturacion"].ToString();
+                vista.PosicionEnSector = dtResultado.Rows[i]["PosicionEnSector"].ToString();
+                vista.Clasificacion = dtResultado.Rows[i]["Clasificación"].ToString();
                 vista.NivelDeRelacion = dtResultado.Rows[i]["NivelDeRelacion"].ToString();
                 vista.FacultadPrincipal = dtResultado.Rows[i]["FacultadPrincipal"].ToString();
+                vista.FacultadSecundaria = dtResultado.Rows[i]["FacultadSecundaria"].ToString();
+
                 //vista.Comentarios = dtResultado.Rows[i]["Comentarios"].ToString();
-               
                 vista.TieneComentarios = dtResultado.Rows[i]["TieneComentarios"].ToString();
                 vista.CantidadTotal = Convert.ToInt32(dtResultado.Rows[i]["CantidadTotal"]);
+
                 listaEjemplo.Add(vista);
             }
 
