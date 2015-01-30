@@ -36,13 +36,16 @@
                 </div>
                 <div class="col-sm-2">
                     @{
-                        if ((ticketEmpresa.Rol == "ROLEAD" || ticketEmpresa.Rol == "ROLEUS") && (ViewBag.EstadoOfertaIdListaValor == "OFERAC")) //Si es Administrador o Supervisor.
-                        {
-                            <span>&nbsp;&nbsp;<button class="btn btn-default color-paleta2" onclick="return validar();">Mover</button></span>
-                        }
-                        else
-                        {
-                            <span>&nbsp;&nbsp;<button class="btn btn-default color-paleta2" disabled title="No tiene permisos para ejecutar esta acción.">Mover</button></span>
+                        if (ViewBag.Pantalla == "Empresa")
+                        { 
+                            if ((ticketEmpresa.Rol == "ROLEAD" || ticketEmpresa.Rol == "ROLEUS") && (ViewBag.EstadoOfertaIdListaValor == "OFERAC")) //Si es Administrador o Supervisor.
+                            {
+                                <span>&nbsp;&nbsp;<button class="btn btn-default color-paleta2" onclick="return validar();">Mover</button></span>
+                            }
+                            else
+                            {
+                                <span>&nbsp;&nbsp;<button class="btn btn-default color-paleta2" disabled title="No tiene permisos para ejecutar esta acción.">Mover</button></span>
+                            }
                         }
                     }
                 </div>

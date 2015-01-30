@@ -252,5 +252,80 @@ namespace UTP.PortalEmpleabilidad.Datos
             }
         }
 
+        /// <summary>
+        /// Obtiene los correos pendientes de envío.
+        /// </summary>
+        /// <returns></returns>
+        public DataTable ObtenerOfertaCorreoPendientes()
+        {
+            DataTable dtResultado = new DataTable();
+
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "OfertaCorreo_ObtenerPendientes";
+
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                dtResultado = new DataTable();
+
+                da.Fill(dtResultado);
+
+                conexion.Close();
+
+            }
+
+            return dtResultado;
+        }
+
+        public void ActualizarOfertaCorreo(int idOfertaCorreo, int enviado)
+        {
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "OfertaCorreo_Actualizar";
+
+                //Parámetros:
+                cmd.Parameters.Add(new SqlParameter("@IdOfertaCorreo", idOfertaCorreo));
+                cmd.Parameters.Add(new SqlParameter("@Enviado", enviado));                
+
+                cmd.Connection = conexion;
+                conexion.Open();
+                cmd.ExecuteNonQuery();
+                conexion.Close();
+            }
+        }
+
+        /// <summary>
+        /// Actualiza el estado de las ofertas pasadas a finalizada y obtiene la lista de los IdOferta para el envío de mensajes.
+        /// </summary>
+        /// <returns></returns>
+        public DataTable FinalizarOfertaPorFechaCV()
+        {
+            DataTable dtResultado = new DataTable();
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Oferta_FinalizarPorFechaCV";              
+
+                cmd.Connection = conexion;
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                dtResultado = new DataTable();
+
+                da.Fill(dtResultado);
+                conexion.Close();
+            }
+
+            return dtResultado;
+        }
     }
 }

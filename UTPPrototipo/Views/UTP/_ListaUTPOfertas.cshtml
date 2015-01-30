@@ -20,7 +20,7 @@
         Estado
     </div>
     <div class="col-sm-2">
-        Tipo de Cargo
+        Tipo de Cargo        
     </div>
 </div>
 
@@ -41,7 +41,14 @@
             @item.Estado
         </div>
         <div class="col-sm-2">
-            @item.Cargo
+            <div class="row">
+                <div class="col-sm-9">
+                    @item.Cargo
+                </div>
+                <div class="col-sm-3">
+                        @Html.ActionLink("Ver", "Oferta", "Empresa", new { idOferta = item.IdOferta, pantalla = "UTP" }, null)
+                </div>
+            </div>                        
         </div>
     </div>
 }

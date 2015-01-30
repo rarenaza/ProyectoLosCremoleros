@@ -340,11 +340,21 @@ namespace UTPPrototipo.Controllers
                         string estudio = Convert.ToString(dtEstudios.Rows[fila]["Estudio"]);
                         int fechaInicioMes = Convert.ToInt32(dtEstudios.Rows[fila]["FechaInicioMes"]);
                         int fechaInicioAno = Convert.ToInt32(dtEstudios.Rows[fila]["FechaInicioAno"]);
-                        int fechaFinMes = Convert.ToInt32(dtEstudios.Rows[fila]["FechaFinMes"]);
-                        int fechaFinAno = Convert.ToInt32(dtEstudios.Rows[fila]["FechaFinAno"]);
-
-                        string periodo = ConvertirMes(fechaInicioMes) + fechaInicioAno.ToString().Substring(2, 2) + " - " + ConvertirMes(fechaFinMes) + fechaFinAno.ToString().Substring(2, 2);
-
+                        int fechaFinMes = 0;
+                        if (dtEstudios.Rows[fila]["FechaFinMes"] != DBNull.Value)
+                        {
+                            fechaFinMes = Convert.ToInt32(dtEstudios.Rows[fila]["FechaFinMes"]);
+                        }
+                        int fechaFinAno = 0;
+                        if (dtEstudios.Rows[fila]["FechaFinAno"] != DBNull.Value)
+                        {
+                            fechaFinAno = Convert.ToInt32(dtEstudios.Rows[fila]["FechaFinAno"]);
+                        }
+                        string periodo = ConvertirMes(fechaInicioMes) + fechaInicioAno.ToString().Substring(2, 2);
+                        if (fechaFinMes > 0 && fechaFinAno > 0)
+                        {
+                            periodo = periodo + " - " + ConvertirMes(fechaFinMes) + fechaFinAno.ToString().Substring(2, 2);
+                        }
                         if (celda == 0)
                         {
                             tblEstudios.Rows[fila].Cells[celda].Width = 120;
@@ -386,11 +396,33 @@ namespace UTPPrototipo.Controllers
                         {
                             int fechaInicioMes = Convert.ToInt32(dtExperiencia.Rows[fila]["FechaInicioCargoMes"]);
                             int fechaInicioAno = Convert.ToInt32(dtExperiencia.Rows[fila]["FechaInicioCargoAno"]);
-                            int fechaFinMes = Convert.ToInt32(dtExperiencia.Rows[fila]["FechaFinCargoMes"]);
-                            int fechaFinAno = Convert.ToInt32(dtExperiencia.Rows[fila]["FechaFinCargoAno"]);
+                            //int fechaFinMes = Convert.ToInt32(dtExperiencia.Rows[fila]["FechaFinCargoMes"]);
+                            //int fechaFinAno = Convert.ToInt32(dtExperiencia.Rows[fila]["FechaFinCargoAno"]);
 
-                            //Se arma el texto del periodo.
-                            string periodo = ConvertirMes(fechaInicioMes) + fechaInicioAno.ToString().Substring(2, 2) + " - " + ConvertirMes(fechaFinMes) + fechaFinAno.ToString().Substring(2, 2);
+                            ////Se arma el texto del periodo.
+                            //string periodo = ConvertirMes(fechaInicioMes) + fechaInicioAno.ToString().Substring(2, 2) + " - " + ConvertirMes(fechaFinMes) + fechaFinAno.ToString().Substring(2, 2);
+                            ////Se arma el texto del periodo.
+                            //string periodo = ConvertirMes(fechaInicioMes) + fechaInicioAno.ToString().Substring(2, 2) + " - " + ConvertirMes(fechaFinMes) + fechaFinAno.ToString().Substring(2, 2);
+                            int fechaFinMes = 0;
+                            if (dtExperiencia.Rows[fila]["FechaFinCargoMes"] != DBNull.Value)
+                            {
+                                fechaFinMes = Convert.ToInt32(dtExperiencia.Rows[fila]["FechaFinCargoMes"]);
+                            }
+                            int fechaFinAno = 0;
+                            if (dtExperiencia.Rows[fila]["FechaFinCargoAno"] != DBNull.Value)
+                            {
+                                fechaFinAno = Convert.ToInt32(dtExperiencia.Rows[fila]["FechaFinCargoAno"]);
+                            }
+                            string periodo = ConvertirMes(fechaInicioMes) + fechaInicioAno.ToString().Substring(2, 2);
+                            if (fechaFinMes > 0 && fechaFinAno > 0)
+                            {
+                                periodo = periodo + " - " + ConvertirMes(fechaFinMes) + fechaFinAno.ToString().Substring(2, 2);
+                            }
+                            else
+                            {
+                                periodo = periodo + " - Act";
+                            }
+
 
                             tblExperiencia.Rows[fila].Cells[celda].Width = 120;  //Se coloca el ancho de la celda.
                             cell_paragraph.Append(periodo); //Se indica el valor.

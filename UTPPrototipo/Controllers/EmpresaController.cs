@@ -92,9 +92,10 @@ namespace UTPPrototipo.Controllers
         }
 
 
-        public ActionResult Oferta(int id)
+        public ActionResult Oferta(int idOferta, string pantalla = "")
         {
-            int idOferta = id;            
+            //int idOferta = id;
+            ViewBag.Pantalla = pantalla;
 
             Oferta oferta = lnOferta.ObtenerPorId(idOferta);
 
@@ -601,15 +602,18 @@ namespace UTPPrototipo.Controllers
             return PartialView("_VistaOfertaPostulantes", postulantes);
         }
 
-        public ActionResult VistaOfertaCondiciones(Oferta oferta)
+        public ActionResult VistaOfertaCondiciones(Oferta oferta, string pantalla = "")
         {            
             TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];
 
-            //Se obtienen los usuarios de la empresa con roles Administrador, Supervisor y Usuario.
-            LNEmpresaUsuario lnEmpresaUsuario = new LNEmpresaUsuario();
-            List<VistaEmpresaUsuario> lista = lnEmpresaUsuario.ObtenerUsuariosActivosYPorRolesPorIdEmpresa(ticket.IdEmpresa);
-
-            ViewBag.UsuarioPropietarioEmpresa = new SelectList(lista, "NombreUsuario", "NombreCompletoUsuario", oferta.UsuarioPropietarioEmpresa);
+            if (pantalla == "Empresa")
+            { 
+                //Se obtienen los usuarios de la empresa con roles Administrador, Supervisor y Usuario.
+                LNEmpresaUsuario lnEmpresaUsuario = new LNEmpresaUsuario();
+                List<VistaEmpresaUsuario> lista = lnEmpresaUsuario.ObtenerUsuariosActivosYPorRolesPorIdEmpresa(ticket.IdEmpresa);
+                ViewBag.UsuarioPropietarioEmpresa = new SelectList(lista, "NombreUsuario", "NombreCompletoUsuario", oferta.UsuarioPropietarioEmpresa);
+            }
+            ViewBag.Pantalla = pantalla;
 
             return PartialView("_VistaOfertaCondiciones", oferta);
         }

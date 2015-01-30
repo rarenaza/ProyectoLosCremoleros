@@ -40,20 +40,24 @@
                     </td>
                     <td class="celda-datos">
                         <strong>@Model.FechaFinRecepcionCV</strong>
-                        <span>
-                            &nbsp;&nbsp;&nbsp;  <!--espacios en blanco-->
-                            @if (Model.EstadoOferta == "OFERFI")
-                            {
-                                <button id="btnFinalizarOferta" class="btn btn-default color-paleta2" disabled>Oferta finalizada</button>
-                            }
-                            else
-                            {
-                                if (ticketEmpresa.Rol == "ROLEAD" || ticketEmpresa.Rol == "ROLEUS" ) //Si es Administrador o Usuario.
+
+                        @if (ViewBag.Pantalla == "Empresa") //Solo si es de empresa
+                        { 
+                            <span>
+                                &nbsp;&nbsp;&nbsp;  <!--espacios en blanco-->
+                                @if (Model.EstadoOferta == "OFERFI")
                                 {
-                                    <button id="btnFinalizarOferta" class="btn btn-default color-paleta2" onclick="finalizarOferta(@Model.IdOferta)">Finalizar ahora</button>
+                                    <button id="btnFinalizarOferta" class="btn btn-default color-paleta2" disabled>Oferta finalizada</button>
                                 }
-                            }                            
-                        </span>
+                                else
+                                {
+                                    if (ticketEmpresa.Rol == "ROLEAD" || ticketEmpresa.Rol == "ROLEUS" ) //Si es Administrador o Usuario.
+                                    {
+                                        <button id="btnFinalizarOferta" class="btn btn-default color-paleta2" onclick="finalizarOferta(@Model.IdOferta)">Finalizar ahora</button>
+                                    }
+                                }                            
+                            </span>
+                        }
                     </td>
                 </tr>
 
@@ -135,21 +139,24 @@
                         Usuario asignado                        
                     </td>
                     <td class="celda-datos">
-                        @{
-                            //Si es Administrador  y la Oferta está Activa.
-                            if ((ticketEmpresa.Rol == "ROLEAD" ) && (Model.EstadoOferta == "OFERAC")) 
-                            {
-                                <!--Se agregan los usuarios-->
-                                @Html.DropDownListFor(m => m.UsuarioPropietarioEmpresa, null, null, htmlAttributes: new { @class = "form-control" })
-                                <span>
-                                    &nbsp;&nbsp;&nbsp;  <!--espacios en blanco-->
-                                    <button id="btnAsignarUsuario" class="btn btn-default color-paleta2" onclick="asignarUsuarioEmpresa(@Model.IdOferta)">Asignar usuario</button>
-                                </span>
-                            }
-                            else
-                            {
-                                @Html.DropDownListFor(m => m.UsuarioPropietarioEmpresa, null, null, htmlAttributes: new { @class = "form-control", @disabled = "disabled", @title = "No tiene permisos para modificar este campo" })
-                                @Html.HiddenFor(m => m.UsuarioPropietarioEmpresa) //Se crea un hidden que contiene el valor del Usuario.
+                        @{ 
+                            if (ViewBag.Pantalla == "Empresa")
+                            { 
+                                //Si es Administrador  y la Oferta está Activa.
+                                if ((ticketEmpresa.Rol == "ROLEAD" ) && (Model.EstadoOferta == "OFERAC")) 
+                                {
+                                    <!--Se agregan los usuarios-->
+                                    @Html.DropDownListFor(m => m.UsuarioPropietarioEmpresa, null, null, htmlAttributes: new { @class = "form-control" })
+                                    <span>
+                                        &nbsp;&nbsp;&nbsp;  <!--espacios en blanco-->
+                                        <button id="btnAsignarUsuario" class="btn btn-default color-paleta2" onclick="asignarUsuarioEmpresa(@Model.IdOferta)">Asignar usuario</button>
+                                    </span>
+                                }
+                                else
+                                {
+                                    @Html.DropDownListFor(m => m.UsuarioPropietarioEmpresa, null, null, htmlAttributes: new { @class = "form-control", @disabled = "disabled", @title = "No tiene permisos para modificar este campo" })
+                                    @Html.HiddenFor(m => m.UsuarioPropietarioEmpresa) //Se crea un hidden que contiene el valor del Usuario.
+                                }
                             }
                         }
                     </td>

@@ -7,6 +7,7 @@ using System.Data;
 using UTP.PortalEmpleabilidad.Datos;
 using UTP.PortalEmpleabilidad.Modelo;
 using UTP.PortalEmpleabilidad.Modelo.Vistas.Alumno;
+using System.Configuration;
 
 namespace UTP.PortalEmpleabilidad.Logica
 {
@@ -199,6 +200,62 @@ namespace UTP.PortalEmpleabilidad.Logica
 
             return lista;
         }
+      
 
+        public void EnviarOfertaCorreosPendientes()
+        {
+            DataTable dt = adGeneral.ObtenerOfertaCorreoPendientes();
+
+            foreach (DataRow fila in dt.Rows)
+            {
+                int idOfertaCorreo = Convert.ToInt32(fila["IdOfertaCorreo"]);
+                string destinatario = Convert.ToString(fila["Destinatario"]);
+                string asunto = Convert.ToString(fila["Asunto"]);
+                string mensajeTexto = Convert.ToString(fila["Mensaje"]);
+
+                Mensaje mensaje = new Mensaje();
+                mensaje.DeUsuarioCorreoElectronico = ConfigurationManager.AppSettings["OfertaCorreoRemitente"];
+                mensaje.ParaUsuarioCorreoElectronico = destinatario;
+                mensaje.Asunto = asunto;
+                mensaje.MensajeTexto = mensajeTexto;
+
+                //Se envia el mensaje:
+                LNCorreo.EnviarCorreo(mensaje);
+
+                //Se marca el mensaje como enviado.
+                int enviado = 1; //se envía el valor 1 para marcar el registro como enviado.
+                adGeneral.ActualizarOfertaCorreo(idOfertaCorreo, enviado);
+            }
+        }
+
+        /// <summary>
+        /// Actualizar el estado de la oferta a finalizado si se cumplen las siguientes condiciones:
+        /// 1. La oferta está activa.
+        /// 2. La fecha de fin de recepción de cv es mayor a la fecha actual.
+        /// </summary>
+        public void FinalizarOfertasPorFechaDeRecepcion()
+        {
+            DataTable dtOfertas = adGeneral.FinalizarOfertaPorFechaCV();
+            LNOferta lnOferta = new LNOferta();
+
+            foreach (DataRow fila in dtOfertas.Rows)
+            {
+                int idOferta = Convert.ToInt32(fila["IdOferta"]);
+
+                DataTable dtDatos = lnOferta.ObtenerDatosParaMensaje(Convert.ToInt32(idOferta));
+                string para = Convert.ToString(dtDatos.Rows[0]["CorreoUsuarioEmpresa"]);
+                string nombreEmpresa = Convert.ToString(dtDatos.Rows[0]["NombreEmpresa"]);
+                string nombreOferta = Convert.ToString(dtDatos.Rows[0]["NombreOferta"]);
+
+                Mensaje mensaje = new Mensaje();
+                mensaje.DeUsuarioCorreoElectronico = ConfigurationManager.AppSettings["OfertaCorreoRemitente"];
+                mensaje.ParaUsuarioCorreoElectronico = para;
+                mensaje.MensajeTexto = "La oferta " + nombreOferta + " ha finalizado";
+                mensaje.Asunto = nombreOferta + " - Oferta Finalizada";
+                LNCorreo.EnviarCorreo(mensaje);
+                
+
+            }
+        }
     }
 }
