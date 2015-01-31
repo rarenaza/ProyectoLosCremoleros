@@ -69,6 +69,13 @@
                     @Html.TextBoxFor(model => model.ValorUTP, new { @class = "form-control", rows = "3", @placeholder = "Valor o código UTP para este valor" })
                 </div>
             </div>
+            <div class="col-sm-6">
+                <div class="input-group">
+                    <span class="input-group-addon">Valor padre</span>
+                    @*<input type="text" class="form-control" placeholder="Id Valor Padre para este valor">*@
+                    @Html.TextBoxFor(model => model.IdListaValorPadre, new { @class = "form-control", rows = "3", @placeholder = "Valor o código UTP para este valor" })
+                </div>
+            </div>
         </div>
 
         <div class="row">

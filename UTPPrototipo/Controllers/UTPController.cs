@@ -2204,6 +2204,7 @@ namespace UTPPrototipo.Controllers
                 objlista.IdLista            = Convert.ToInt32(dtResultado.Rows[0]["IdLista"]);
                 objlista.Padre              = Convert.ToString(dtResultado.Rows[0]["Padre"]);
                 objlista.EstadoValor        = Convert.ToString(dtResultado.Rows[0]["EstadoValor"]);
+                objlista.IdListaValorPadre = Convert.ToString(dtResultado.Rows[0]["IdListaValorPadre"]);
             }
 
             return PartialView("_NuevoValorEditar", objlista);
@@ -2246,6 +2247,7 @@ namespace UTPPrototipo.Controllers
                 objListaValor.ValorUTP = dtResultado.Rows[i]["ValorUTP"].ToString();
                 objListaValor.Padre = dtResultado.Rows[i]["Padre"].ToString();
                 objListaValor.EstadoValor = dtResultado.Rows[i]["EstadoValor"].ToString();
+
                 lista.Add(objListaValor);
 
             }

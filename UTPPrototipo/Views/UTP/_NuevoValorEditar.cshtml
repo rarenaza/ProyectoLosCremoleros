@@ -75,6 +75,14 @@
                     @Html.ValidationMessageFor(model => model.ValorUTP, "", new { @class = "text-danger" })
                 </div>
             </div>
+            <div class="col-sm-6">
+                <div class="input-group">
+                    <span class="input-group-addon">Valor Padre</span>
+                    @*<input type="text" class="form-control" placeholder="Id Valor Padre para este valor">*@
+                    @Html.TextBoxFor(model => model.IdListaValorPadre, new { @class = "form-control", rows = "3", @placeholder = "Valor o código UTP para este valor" })
+                    @Html.ValidationMessageFor(model => model.IdListaValorPadre, "", new { @class = "text-danger" })
+                </div>
+            </div>
         </div>
         <div class="form-group" style="display:none">
             @Html.LabelFor(model => model.IdListaValor, htmlAttributes: new { @class = "control-label col-md-2" })

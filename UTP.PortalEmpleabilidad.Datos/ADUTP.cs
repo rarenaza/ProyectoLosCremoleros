@@ -700,6 +700,8 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.Parameters.Add(new SqlParameter("@ValorUTP", lista.ValorUTP == null ? System.Data.SqlTypes.SqlString.Null : lista.ValorUTP));
                 cmd.Parameters.Add(new SqlParameter("@EstadoValor", lista.EstadoValor));
                 cmd.Parameters.Add(new SqlParameter("@ModificadoPor", lista.Modificadopor == null ? System.Data.SqlTypes.SqlString.Null : lista.Modificadopor));
+                cmd.Parameters.Add(new SqlParameter("@IdListaValorPadre", lista.IdListaValorPadre == null ? System.Data.SqlTypes.SqlString.Null : lista.IdListaValorPadre));
+                
                 cmd.Connection = conexion;
 
                 conexion.Open();
