@@ -1,5 +1,7 @@
 ﻿@using UTPPrototipo.Common
-@model IEnumerable<UTPPrototipo.Models.ViewModels.UTP.VistaOferta>
+
+@model IEnumerable<UTP.PortalEmpleabilidad.Modelo.OfertaUTP>
+
 @using UTP.PortalEmpleabilidad.Modelo
 @{
     <!--Se obtiene los datos para la paginación.-->
@@ -118,10 +120,22 @@
                     }
                     else
                     {
-                        <li><a href="#" onclick="buscarPaginacion('@i');">@i</a></li>                       
+
+                        if (ViewBag.TipoBusqueda == "Simple")
+                        {
+                            <li><a href="#" onclick="buscarPaginacion('@i');">@i</a></li>
+                        }
+                        else
+                        {
+                            <li><a href="#" onclick="buscarPaginacionAvanzada('@i');">@i</a></li>
+                        }
+
+
+
+
                     }
                 }
-            }
+}
         </ul>
     </nav>
 </div>

@@ -1,5 +1,7 @@
 ﻿@using UTPPrototipo.Common
-@model IEnumerable<UTPPrototipo.Models.ViewModels.UTP.VistaOferta>
+
+@model UTPPrototipo.Models.ViewModels.UTP.VistaOferta
+
 
 @{
     Layout = "~/Views/UTP/_LayoutUTP.cshtml";
@@ -33,17 +35,89 @@
                                 <td>
                                     <div class="input-group fuente-pequeña">
                                         <span class="input-group-addon fuente-pequeña">Palabra Clave</span>
-                                        @Html.TextBox("SearchString", null, new { @class = "form-control", @placeholder = "Busca Por Ofertas" })
+                                       @* @Html.TextBox("SearchString", null, new { @class = "form-control", @placeholder = "Busca Por Ofertas" })*@
+
+                                        @Html.TextBoxFor(model => model.PalabraClave, new { @class = "form-control", @placeholder = "Cargo" })
 
                                     </div>
                                 </td>
                                 <td style="text-align:right;">
                                     <span class="col-md-6 btn-group">
-                                        <input id="btnBuscar" type="submit" onclick ="buscarPaginacion(1);"class="fui" style="font-size:30px;border-width:0px;background-color:transparent;" value="(" />
-                                    </span>                                    
+                                        @*<input id="btnBuscar" type="submit" onclick ="buscarPaginacion(1);"class="fui" style="font-size:30px;border-width:0px;background-color:transparent;" value="(" />*@
+                                   
+                                        <span class="fui" style=" font-size:30px;cursor:pointer" id="buscar">(</span>
+                                     </span>                                    
                                 </td>
                         </tr>
                     </table>
+                </div>
+            </div>
+
+            
+
+
+
+        </div>
+
+
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="CabeceraColapsaBusquedaAvanzada" style="padding: 2px 2px 2px 6px;">
+                <h5 class="panel-title">
+                    <a class="collapsed fuente-seccion" data-toggle="collapse" data-parent="#CriterioBusquedaPostulacion" href="#ColapsaBusquedaAvanzada" aria-expanded="false" aria-controls="ColapsaBusquedaAvanzada">
+                        Búsqueda avanzada
+                    </a>
+                </h5>
+            </div>
+            <div id="ColapsaBusquedaAvanzada" class="panel-collapse collapse" role="tabpanel" aria-labelledby="CabeceraColapsaBusquedaAvanzada">
+                <div class="panel-body fuente-pequeña">
+                    <div class="row">
+                        <div class="col-sm-3">
+
+
+                            <div class="input-group">
+                                <span class="input-group-addon">Empresa</span>
+                                @Html.TextBoxFor(model => model.NombreComercial, new { @class = "form-control", @placeholder = "Buscar Empresa" })
+                            </div>
+
+                            
+                            <!--Dejabajo de Registro 2-->
+
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="input-group">
+                                <span class="input-group-addon">Tipo Cargo</span>
+                                @*  @Html.DropDownListFor(model => model.IdPeriodoRegistro, new SelectList(ViewBag.PeridoRegistro, "Value", "Text"), "- Seleccionar -", new { @class = "form-control", @Id = "IdPeriodoRegistro" })*@
+                                @Html.DropDownListFor(model => model.IdTipoCargoutp, new SelectList(ViewBag.ListaTipoCargo, "Value", "Text"), "- Seleccionar -", new { @class = "form-control" })
+                            </div>
+                            <!--Dejabajo de carrera 2-->
+
+                        </div>
+                        <div class="col-sm-3">
+                            
+
+                            <div class="input-group">
+                                <span class="input-group-addon">Cargo</span>
+                                @Html.TextBoxFor(model => model.CargoOfrecido, new { @class = "form-control", @placeholder = "Cargo Oferta" })
+                            </div>
+
+
+                            <!--Dejabajo de Tipo habian 2-->
+
+
+                        </div>
+
+                        <div class="col-sm-3">
+
+
+                            @*<div class="input-group">
+                                <span class="input-group-addon">Ubicación</span>
+                             @Html.TextBoxFor(model => model.Ubicacion, new { @class = "form-control", @id = "Ubicacion", @placeholder = "Ubicación del trabajo" })
+                            </div>
+
+                            <br />*@
+                            <button class="btn btn-default color-paleta4 fa fa-search" id="buscaravanzada"></button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -53,7 +127,7 @@
         @*<h5>Ofertas por Activar</h5>*@
      
 
-        <div id="divResultadoBusqueda">
+        <div id="ResultadoBusqueda">
 
         </div>
 
@@ -69,17 +143,78 @@
         $("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta3 color-paleta5 color-paleta6 color-paleta7 color-paleta8 color-paleta9").addClass("color-paleta4")
     });
 
-    function buscarPaginacion(nroPaginaActual)
-    {
-        var SearchString = $('#SearchString').val();        
 
-        var url = '@Url.Action("BuscarOfertas", "UTP")' + "?SearchString=" + SearchString + '&nroPaginaActual=' + nroPaginaActual;
+    $('#buscar').click(function () {
+        var oferta = {
+            PalabraClave: $('#PalabraClave').val(),
+            nroPaginaActual: 1,
+        };
 
-        $.get(url, function (data) {
-            $('#divResultadoBusqueda').html(data);
-        }).then(function () {
-            
-        });
+        //Cargar("resultadobusqueda", "/UTP/BusquedaSimpleEmpresasActivas", empresa);
+
+        Cargar("ResultadoBusqueda", '@Url.Action("BuscarOfertas", "UTP")', oferta);
+    });
+
+    $('#buscaravanzada').click(function () {
+        var oferta = {
+            NombreComercial: $('#NombreComercial').val(),
+            IdTipoCargoutp: $('#IdTipoCargoutp').val(),
+            CargoOfrecido: $('#CargoOfrecido').val(),
+            nroPaginaActual: 1,
+
+        };
+        //debugger;
+
+        //Cargar("resultadobusqueda", "/UTP/BusquedaAvanzadaEmpresas", oferta);
+
+        Cargar("ResultadoBusqueda", '@Url.Action("UTP_ObtenerofertasAvanzada", "UTP")', oferta);
+    });
+
+    function Cargar(id, link, entidad) {
+        //debugger;
+        $.ajax({
+            url: link,
+            contentType: 'application/json; charset=utf-8',
+            type: 'POST',
+            data: JSON.stringify(entidad),
+            dataType: 'html'
+        })
+        .success(function (result) {
+            $("#" + id).html(result);
+            //alert(result);
+            //console.log(result);
+        })
+        .error(function (xhr, status) {
+            console.log(xhr);
+            console.log(status);
+            alert('error');
+        })
     }
+
+    function buscarPaginacion(nroPagina) {
+        var oferta = {
+            PalabraClave: $('#PalabraClave').val(),
+            nroPaginaActual: nroPagina,
+
+        };
+        //Cargar("resultadobusqueda", "/UTP/BusquedaSimpleEmpresasActivas", empresa);
+        Cargar("ResultadoBusqueda", '@Url.Action("BuscarOfertas", "UTP")', oferta);
+    }
+
+    function buscarPaginacionAvanzada(nroPagina) {
+
+        var oferta = {
+            NombreComercial: $('#NombreComercial').val(),
+            IdTipoCargoutp: $('#IdTipoCargoutp').val(),
+            CargoOfrecido: $('#CargoOfrecido').val(),
+            nroPaginaActual: nroPagina,
+
+        };
+
+        //Cargar("resultadobusqueda", "/UTP/BusquedaAvanzadaEmpresas", oferta);
+        Cargar("ResultadoBusqueda", '@Url.Action("UTP_ObtenerofertasAvanzada", "UTP")', oferta);
+    }
+
+
 
 </script>

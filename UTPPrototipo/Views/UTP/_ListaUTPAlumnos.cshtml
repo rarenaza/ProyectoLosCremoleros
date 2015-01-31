@@ -2,7 +2,9 @@
 
 @using UTPPrototipo.Common
 
-@model IEnumerable<UTP.PortalEmpleabilidad.Modelo.Vistas.Alumno.VistaUTPListaAlumno>
+@*@model IEnumerable<UTP.PortalEmpleabilidad.Modelo.Vistas.Alumno.VistaUTPListaAlumno>*@
+
+@model IEnumerable<UTP.PortalEmpleabilidad.Modelo.AlumnoUTP>
 
 @using UTP.PortalEmpleabilidad.Modelo
 @{
@@ -42,7 +44,9 @@
 
         <div class="col-sm-1">
             @*<a href="../UTP/Empresa">@item.FechaRegistro</a>*@
-            @item.FechaRegistro
+            @*@item.FechaRegistro*@
+            @Html.FormatoFrecuencia(@item.FechaperiodoRegistro)
+            
         </div>
         <div class="col-sm-2">
 
