@@ -11,6 +11,7 @@ using UTP.PortalEmpleabilidad.Modelo.Vistas.Alumno;
 using UTP.PortalEmpleabilidad.Modelo.Vistas.Mensaje;
 using UTPPrototipo.Common;
 using System.Data;
+using UTP.PortalEmpleabilidad.Modelo.Vistas.Evento;
 
 namespace UTPPrototipo.Controllers
 {
@@ -163,7 +164,7 @@ namespace UTPPrototipo.Controllers
                     break;
 
                 case Constantes.MENSAJES_UTP_EVENTO:
-                    vistaMensajeNuevo = mensajeUTPOfertaNuevo(pantalla);
+                    vistaMensajeNuevo = mensajeUTPEventoNuevo(pantalla, idEvento);
                     break;
 
                 case Constantes.MENSAJES_EMPRESA_HUNTING:
@@ -209,8 +210,7 @@ namespace UTPPrototipo.Controllers
            
           
 
-            mensaje.FechaEnvio = DateTime.Now;
-            mensaje.IdEvento = 0;
+            mensaje.FechaEnvio = DateTime.Now;            
             mensaje.EstadoMensaje = "MSJNOL";  //Pendiente de ser leido
 
             if (mensaje.Pantalla == Constantes.MENSAJES_EMPRESA_HUNTING)
@@ -227,9 +227,11 @@ namespace UTPPrototipo.Controllers
                 lnMensaje.Insertar(mensaje);
             }
             
+            //Se guardan las variables para utilizarlas al obtener la lista de mensajes.
             ViewBag.Pantalla = mensaje.Pantalla;
             this.UsuarioAlumno = mensaje.ParaUsuario;
             this.IdOferta = Convert.ToInt32(mensaje.IdOfertaMensaje);
+            this.IdEventoParametro = Convert.ToInt32(mensaje.IdEvento);
 
             List<Mensaje> lista = ObtenerListaMensajes(mensaje.Pantalla);
 
@@ -639,9 +641,12 @@ namespace UTPPrototipo.Controllers
             mensaje.DeUsuarioCorreoElectronico = ticketAlumno.CorreoElectronico;
             mensaje.Pantalla = pantalla;
             mensaje.Asunto = Convert.ToString(dtEvento.Rows[0]["NombreEvento"]);
-            mensaje.ParaUsuario = "faltaUsuarioUTPDelEvento";
-            mensaje.ParaUsuarioCorreoElectronico = "faltaUsuarioCorreoUTPDelEvento";
 
+            //Se manda el correo al administrador de la UPT. No existe funcionalidad de asignar usuario UTP al evento.
+            DataTable dtUsuarioUTPAdmin = lnMensaje.ObtenerUsuarioAdministradorUTP(); //--se obtiene, la información y se completan los campos.
+            mensaje.ParaUsuario = Convert.ToString(dtUsuarioUTPAdmin.Rows[0]["Usuario"]);
+            mensaje.ParaUsuarioCorreoElectronico = Convert.ToString(dtUsuarioUTPAdmin.Rows[0]["CorreoElectronico"]);
+            
             return PartialView("_MensajesNuevo", mensaje);
         }
 
@@ -784,6 +789,17 @@ namespace UTPPrototipo.Controllers
 
             return Json(postulantes, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult ObtenerAsistentesPorEvento(int idEvento)
+        {
+            LNEvento lnEvento = new LNEvento();
+
+            List<VistaAsistente> asistentes = new List<VistaAsistente>();
+            asistentes = lnEvento.ObtenerAsistentes(idEvento, "EVTAAL"); //tipo alumno.
+
+            return Json(asistentes, JsonRequestBehavior.AllowGet);
+        }
+
         #endregion
 
         public ActionResult _BaseMensajes()

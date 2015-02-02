@@ -156,12 +156,14 @@
 
             var idEvento = @ViewBag.IdEventoGeneral;
 
-            //Llamada al controlador para cargar a los postulantes de la oferta seleccionada.
-            var url = '@Url.Action("ObtenerAsistentesPorEvento", "Mensaje")' + '?IdEvento=' + idEvento;
+            //Llamada al controlador para cargar a los postulantes del evento seleccionado.
+            var url = '@Url.Action("ObtenerAsistentesPorEvento", "Mensaje")' + '?idEvento=' + idEvento;
 
             $('#slcDestinatarios option[value!="0"]').remove();
+            //Se muestra un mensaje de cargando asistentes.
             $("#slcDestinatarios").append("<option selected>- Cargando asistentes ... -</option>")
 
+            //Se llama al método ajax que obtiene la lista.
             $.getJSON(url, cargarComboAsistentes).error(function (err) { console.log(err); });
 
         }

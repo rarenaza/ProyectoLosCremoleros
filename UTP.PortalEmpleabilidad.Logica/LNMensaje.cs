@@ -63,6 +63,7 @@ namespace UTP.PortalEmpleabilidad.Logica
         {
             if (mensaje.ParaUsuarioCorreoElectronico == null) mensaje.ParaUsuarioCorreoElectronico = "";
             if (mensaje.IdOfertaMensaje == null) mensaje.IdOfertaMensaje = 0;
+            if (mensaje.IdEvento == null) mensaje.IdEvento = 0;
 
             int idMensaje = adMensaje.Insertar(mensaje);
 
@@ -84,7 +85,9 @@ namespace UTP.PortalEmpleabilidad.Logica
         {
             if (mensaje.ParaUsuarioCorreoElectronico == null) mensaje.ParaUsuarioCorreoElectronico = "";
             if (mensaje.IdOfertaMensaje == null) mensaje.IdOfertaMensaje = 0;
+            if (mensaje.IdEvento == null) mensaje.IdEvento = 0;
 
+            //Se obtiene la lista de los códigos de alumno.
             string[] arrayIds = mensaje.ParaUsuarioCorreoElectronico.Split('-');
 
             //Se recorreo todos los Id's seleccionados y se envía los correos uno por uno.
@@ -162,6 +165,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 mensaje.Oferta.IdOferta = Convert.ToInt32(fila["IdOferta"]);
                 mensaje.IdMensaje = Convert.ToInt32(fila["IdMensaje"]);
                 mensaje.EstadoMensaje = Convert.ToString(fila["EstadoMensaje"]);
+                mensaje.IdEvento = Convert.ToInt32(fila["IdEvento"]);
 
                 lista.Add(mensaje);
             }
