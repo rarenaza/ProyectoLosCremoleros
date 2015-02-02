@@ -82,7 +82,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string Comentarios { get; set; }
         public string NuevoComentario { get; set; } 
         public string Usuario { get; set; }
-  
+        public string PosicionEnSector { get; set; }
         public Empresa()
         {
             Pais = new ListaValor();

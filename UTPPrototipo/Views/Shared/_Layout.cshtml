@@ -14,12 +14,15 @@
     <div class="navbar navbar-inverse navbar-fixed-top" style="background-color:rgb(245, 245, 245);border:0px;" role="navigation">
         <div class="container">
             @*@Html.ActionLink(" ", "Index", "Home", new { @class = "LogoUTPPE" })*@
-            <span>
-                <a href="@Url.Action("Index", "Home")"><img src="~/img/LogoUTPPE2.png" class="LogoUTPPE" /></a>
-            </span>
-            <span>
-                <a href="@Url.Action("Index", "Home")"><img src="~/img/intercorp.jpg" class="LogoINTERCORP" /></a>
-            </span>
+            <div class="row">
+                <div class="col-sm-6">
+                    <a href="@Url.Action("Index", "Home")"><img src="~/img/LogoUTPPE2.png" class="LogoUTPPE" /></a>
+                </div>
+
+                <div class="col-sm-6 AreaLogoINTERCORP" style="text-align:right;">
+                    <a href="@Url.Action("Index", "Home")"><img src="~/img/intercorp.png" class="LogoINTERCORP" /></a>
+                </div>
+            </div>
             <div class="navbar-header posicion-menu">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" style="margin: 6px 5px 3px 0px;">
                     <span class="icon-bar"></span>
@@ -37,8 +40,8 @@
                                 Inicio<br />&nbsp;
                             </a>
                         </li>*@
-                        <li id="OpcionMenuEmpleabilidad" class="boton-menu-utp">
-                            <a href="..\Home\DirEmp" style="text-align:left;padding: 10px 10px 10px 10px;">@*Dirección de<br />*@Empleabilidad</a>
+                        <li id="OpcionMenuEmpleabilidad" class="boton-menu-utp" style="background-color:lightgray;">
+                            <a href="..\Home\DirEmp" style="text-align:left;padding: 10px 10px 10px 10px;">@*Dirección de<br />*@Nosotros</a>
                         </li>
                         <li id="OpcionMenuServicios" class="boton-menu-utp">
                             <a href="..\Home\Servicios" style="text-align:left;padding: 10px 10px 10px 10px;">Servicios @*a tu<br /> disposición*@</a>
@@ -60,15 +63,12 @@
                     </ul>
                     <ul class="nav navbar-nav navbar-right" style="padding-right: 15px; ">
                         <li>
-                            <a href="#" style="padding: 11px 10px 0px 10px;"><span class="fui color-icono-facebook" style="font-size:35px;">)</span></a>
-                        </li>
-                        @*<li>
-                            <a href="../Home/Registro" style="padding: 18px 0px 0px 9px;"><span class="fui color-icono-paleta2" style="font-size:35px;">!</span></a>
-                        </li>*@
-                        <li>
                             <a href="#" style="padding: 11px 10px 0px 10px;" data-toggle="modal" data-target="#Modal-ingresar" id="LinkIngresar">
-                                <span @*style="font-size:35px;"*@>INGRESAR</span>
+                                <span class="menuOpcionesAd">INGRESAR</span>
                             </a>
+                        </li>
+                        <li>
+                            <a href="#" style="padding: 11px 10px 0px 10px;"><span class="fui color-icono-facebook menuOpcionesAd" style="font-size:35px;">)</span></a>
                         </li>
                     </ul>
                     <!--@Html.Partial("_LoginPartial")-->

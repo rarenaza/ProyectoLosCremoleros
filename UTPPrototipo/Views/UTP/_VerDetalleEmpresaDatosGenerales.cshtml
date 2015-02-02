@@ -133,6 +133,24 @@
             </tr>
             <tr class="linea_raya">
                 <td class="celda-nombre">
+                    Nivel de Facturación
+                </td>
+                <td class="celda-datos">
+                    @Html.TextBoxFor(m => m.NivelDeFacturacion, new { @class = "form-control", @placeholder = "Nivel de Facturación de la Empresa" })
+                    @Html.ValidationMessageFor(model => model.NivelDeFacturacion)
+                </td>
+            </tr>
+            <tr class="linea_raya">
+                <td class="celda-nombre">
+                    Posición en el Sector
+                </td>
+                <td class="celda-datos">
+                    @Html.TextBoxFor(m => m.PosicionEnSector, new { @class = "form-control", @placeholder = "Posición en el Sector" })
+                    @Html.ValidationMessageFor(model => model.PosicionEnSector)
+                </td>
+            </tr>
+            <tr class="linea_raya">
+                <td class="celda-nombre">
                     Clasificación
                 </td>
                 <td class="celda-datos">
@@ -164,16 +182,6 @@
                     @Html.TextBoxFor(m => m.FacultadSecundaria, new { @class = "form-control", @placeholder = "Facultad Secundaria de la Empresa" })
                 </td>
             </tr>
-            <tr class="linea_raya">
-                <td class="celda-nombre">
-                    Nivel de Facturación
-                </td>
-                <td class="celda-datos">
-                    @Html.TextBoxFor(m => m.NivelDeFacturacion, new { @class = "form-control", @placeholder = "Nivel de Facturación de la Empresa" })
-                    @Html.ValidationMessageFor(model => model.NivelDeFacturacion)
-                </td>
-            </tr>
-
             <tr class="linea_raya">
                 <td class="celda-nombre">
                     Comentarios

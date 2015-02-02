@@ -32,10 +32,21 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string CodEstadoAlumno { get; set; }
 
         public string CreadoPor { get; set; }
-        public DateTime  Creadoel { get; set; }
+        public DateTime  FechaCreacion { get; set; }
         public string ModificadoPor { get; set; }
         public DateTime FechaModificacion { get; set; }
         public string Usuario { get; set; }
-       
+
+        public DateTime FechaNacimiento { get; set; }
+        public string Sexo { get; set; }
+        public string CodAlumnoUtp { get; set; }
+        public string DireccionDistrito { get; set; }
+        public string DireccionCiudad { get; set; }
+        public string DireccionRegion { get; set; }
+        public string CorreoElectronico2 { get; set; }
+        public string TelefonoFijoCasa { get; set; }
+        public string TelefonoCelular { get; set; }
+        public byte[] Foto { get; set; }
+        public string ArchivoMimeType { get; set; }
     }
 }

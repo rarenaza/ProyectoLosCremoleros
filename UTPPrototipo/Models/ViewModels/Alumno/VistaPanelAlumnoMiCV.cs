@@ -19,7 +19,7 @@ namespace UTPPrototipo.Models.ViewModels
         public List<AlumnoEstudio> ListaAlumnoEstudio { get; set; }
         public List<AlumnoExperiencia> ListaAlumnoExperiencia { get; set; }
         //public List<AlumnoExpericiencia> ListaAlumnoExperiencia { get; set; }
-
+        public int PorcentajeCV { get; set; }
          
 
     }

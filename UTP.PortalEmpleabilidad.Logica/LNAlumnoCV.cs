@@ -92,7 +92,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                         alumnoexperiencia.FechaFinCargoMes = Funciones.ToInt(dsResultado.Tables[2].Rows[n]["FechaFinCargoMes"]);
                         alumnoexperiencia.FechaFinCargoAno = Funciones.ToInt(dsResultado.Tables[2].Rows[n]["FechaFinCargoAno"]);
                         alumnoexperiencia.TipoCargo = Funciones.ToString(dsResultado.Tables[2].Rows[n]["TipoCargo"]);
-                        alumnoexperiencia.DescripcionCargo = Funciones.ToString(dsResultado.Tables[2].Rows[n]["DescripcionCargo"]);
+                        alumnoexperiencia.DescripcionCargo = Funciones.ToString(dsResultado.Tables[2].Rows[n]["DescripcionCargo"]).Replace("\n", "<br>");
                         alumnoexperiencia.Cumple = Funciones.ToInt(dsResultado.Tables[2].Rows[n]["Cumple"]);
                         alumnoexperienciacv.Add(alumnoexperiencia);
                     }
@@ -182,6 +182,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                     alumnocv.IdCV = int.Parse(dtResultado.Rows[i]["IdCV"].ToString());
                     alumnocv.NombreCV = dtResultado.Rows[i]["NombreCV"].ToString();
                     alumnocv.IdPlantillaCV = int.Parse(dtResultado.Rows[i]["IdPlantillaCV"].ToString());
+                    alumnocv.PorcentajeCV = int.Parse(dtResultado.Rows[i]["PorcentajeCV"].ToString());
                     listaAlumnoCV.Add(alumnocv);
                 }
 

@@ -2284,15 +2284,25 @@ namespace UTPPrototipo.Controllers
                 alumno.NumeroDocumento = dtResultado.Rows[0]["NumeroDocumento"].ToString();
                 alumno.TipoDocumento = dtResultado.Rows[0]["TipoDocumento"].ToString();
                 alumno.CreadoPor = dtResultado.Rows[0]["CreadoPor"].ToString();
-                alumno.Creadoel = Convert.ToDateTime(dtResultado.Rows[0]["FechaCreacion"] == DBNull.Value ? null : dtResultado.Rows[0]["FechaCreacion"]);
+                alumno.FechaCreacion = Convert.ToDateTime(dtResultado.Rows[0]["FechaCreacion"] == DBNull.Value ? null : dtResultado.Rows[0]["FechaCreacion"]);
                 alumno.ModificadoPor = dtResultado.Rows[0]["ModificadoPor"].ToString();
                 alumno.FechaModificacion = Convert.ToDateTime(dtResultado.Rows[0]["FechaModificacion"] == DBNull.Value ? null   : dtResultado.Rows[0]["FechaModificacion"]);
                 alumno.CorreoElectronico = dtResultado.Rows[0]["CorreoElectronico"].ToString();
                 alumno.FechaRegistro = dtResultado.Rows[0]["FechaRegistro"].ToString();
                 alumno.CodEstadoAlumno = Convert.ToString(dtResultado.Rows[0]["CodEstado"]);
                 alumno.Usuario = Convert.ToString(dtResultado.Rows[0]["Usuario"]);
+                alumno.CodAlumnoUtp = Convert.ToString(dtResultado.Rows[0]["CodAlumnoUtp"]);
+                alumno.FechaNacimiento = Convert.ToDateTime(dtResultado.Rows[0]["FechaNacimiento"] == DBNull.Value ? null : dtResultado.Rows[0]["FechaNacimiento"]);
+                alumno.Direccion = Convert.ToString(dtResultado.Rows[0]["Direccion"] == DBNull.Value ? null : dtResultado.Rows[0]["Direccion"]);
+                alumno.DireccionDistrito = Convert.ToString(dtResultado.Rows[0]["DireccionDistrito"] == DBNull.Value ? null : dtResultado.Rows[0]["DireccionDistrito"]);
+                alumno.DireccionCiudad = Convert.ToString(dtResultado.Rows[0]["DireccionCiudad"] == DBNull.Value ? null : dtResultado.Rows[0]["DireccionCiudad"]);
+                alumno.DireccionRegion = Convert.ToString(dtResultado.Rows[0]["DireccionRegion"] == DBNull.Value ? null : dtResultado.Rows[0]["DireccionRegion"]);
+                alumno.CorreoElectronico2 = Convert.ToString(dtResultado.Rows[0]["CorreoElectronico2"] == DBNull.Value ? null : dtResultado.Rows[0]["CorreoElectronico2"]);
+                alumno.TelefonoFijoCasa = Convert.ToString(dtResultado.Rows[0]["TelefonoFijoCasa"] == DBNull.Value ? null : dtResultado.Rows[0]["TelefonoFijoCasa"]);
+                alumno.TelefonoCelular = Convert.ToString(dtResultado.Rows[0]["TelefonoCelular"] == DBNull.Value ? null : dtResultado.Rows[0]["TelefonoCelular"]);
+                alumno.Foto = Funciones.ToBytes(dtResultado.Rows[0]["Foto"]);
+                alumno.ArchivoMimeType = Convert.ToString(dtResultado.Rows[0]["ArchivoMimeType"] == DBNull.Value ? null : dtResultado.Rows[0]["ArchivoMimeType"]);
 
-               
             }
             return View(alumno);
 

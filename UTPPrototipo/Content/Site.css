@@ -110,7 +110,9 @@ input[type="checkbox"].input-validation-error {
     border-color: rgb(220,220,220);
     border-radius:10px;
 }
+.menuOpcionesAd {
 
+}
 
 .Boton_pestana {
     border-radius: 10px 10px 0px 0px;
@@ -419,6 +421,9 @@ input[type="checkbox"].input-validation-error {
 .LogoINTERCORP {
 
 }
+.AreaLogoINTERCORP {
+
+}
 .cuerpo-zona-alumno {
     padding-top: 78px;
     }
@@ -465,6 +470,9 @@ input[type="checkbox"].input-validation-error {
 .LogoUTPPE2 {
     width:157px;
     }
+.LogoINTERCORP {
+    width:200px;
+    }
 .Boton_pestana {
     border-radius: 10px 10px 0px 0px;
     width: 100px;
@@ -480,7 +488,7 @@ input[type="checkbox"].input-validation-error {
     font-size: 15px;
     }
 .cuerpo-zona-publica {
-    padding-top: 120px;
+    padding-top: 108px;
     }
 .cuerpo-zona-alumno {
     padding-top: 70px;
@@ -504,6 +512,21 @@ input[type="checkbox"].input-validation-error {
 .LogoUTPPE2 {
     margin-bottom:9px;
     }
+.LogoINTERCORP {
+    visibility:hidden;
+    width:0;
+    height:0;
+    }
+.AreaLogoINTERCORP {
+    visibility:hidden;
+    width:0;
+    height:0;
+    }
+.menuOpcionesAd {
+    padding-left: 10px;
+    padding-top:20px;
+    margin-top:20px;
+}
 .Boton_pestana {
     border-radius: 10px 10px 10px 10px;
     width: 120px;

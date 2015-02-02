@@ -10,14 +10,14 @@
     <div id="collapseMiCVOpciones" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingMiCVOpciones">
         <div class="panel-body">
             <div class="row">
-                <div class="col-sm-3">
+                <div class="col-sm-2">
                     <div class="input-group fuente-pequeña">
                         <span class="input-group-addon">CV</span>
                         @Html.DropDownListFor(m => m.IdCV, new SelectList(ViewBag.ListaAlumnoCV, "Value", "Text"), new { @class = "form-control" })
 
                     </div>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-2">
                     <div class="input-group fuente-pequeña">
                         <span class="input-group-addon">Plantilla</span>
                         @Html.DropDownListFor(m => m.IdPlantillaCV, new SelectList(ViewBag.ListaPlantillaCV, "Value", "Text"), new { @class = "form-control" })
@@ -29,12 +29,6 @@
                         <button type="submit" class="btn btn-default fuente-pequeña color-paleta4" style="color:white;" onclick="GuardarCV();">Guardar cambios</button>
                     </span>
                 </div>
-
-                @*<div class="col-sm-1">
-                    <span class="fuente-pequeña">
-                        <a href="#">Ver CV</a>
-                    </span>
-                </div>*@
                 <div class="col-sm-1">
                     <span class="fuente-pequeña">                       
                         @Html.ActionLink("Descargar", "GenerarCV", "Plantilla", new { idCV = Model.IdCV }, null)
@@ -44,6 +38,13 @@
 
                     <button type="button" class="btn btn-default fuente-pequeña color-paleta4" style="color:white;" onclick="crearCV()">Crear Nuevo</button>
 
+                </div>
+                <div class="col-sm-2">
+                    <div class="progress">
+                        <div class="progress-bar color-paleta4" role="progressbar" aria-valuenow="@(Model.PorcentajeCV)" aria-valuemin="0" aria-valuemax="100" style="width: @Model.PorcentajeCV%;">
+                            <span>@Model.PorcentajeCV%</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

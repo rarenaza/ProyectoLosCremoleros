@@ -353,10 +353,11 @@ namespace UTP.PortalEmpleabilidad.Datos
                     cmd.Parameters.Add(new SqlParameter("@NivelDeRelacion", empresa.NivelDeRelacion == null ? "" : empresa.NivelDeRelacion));
                     cmd.Parameters.Add(new SqlParameter("@FacultadPrincipal", empresa.FacultadPrincipal == null ? "" : empresa.FacultadPrincipal));
                     cmd.Parameters.Add(new SqlParameter("@FacultadSecundaria", empresa.FacultadSecundaria == null ? "" : empresa.FacultadSecundaria));
+
                     cmd.Parameters.Add(new SqlParameter("@Usuario", empresa.Usuario));
 
                     cmd.Parameters.Add(new SqlParameter("@NivelDeFacturacion", empresa.NivelDeFacturacion));
-
+                    cmd.Parameters.Add(new SqlParameter("@PosicionEnSector", empresa.PosicionEnSector == null ? "" : empresa.PosicionEnSector));
 
 
 

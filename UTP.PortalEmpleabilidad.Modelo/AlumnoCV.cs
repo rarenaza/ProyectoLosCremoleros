@@ -23,9 +23,6 @@ namespace UTP.PortalEmpleabilidad.Modelo
 
 
         public bool IncluirCorreoElectronico1 { get; set; }
-
-
-
         public string Usuario { get; set; }
         public bool IncluirNombre1 { get; set; }
         public bool IncluirNombre2 { get; set; }
@@ -34,10 +31,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public IEnumerable<VistaAlumnoEstudio> Estudios { get; set; }
         public IEnumerable<VistaAlumnoExperienciaCargo> Experiencias { get; set; }
         public IEnumerable<VistaAlumnoConocimiento> Conocimientos { get; set; }
-
         public IEnumerable<int> Estudios2 { get; set; }
-
-
-
+        public int PorcentajeCV { get; set; }
     }
 }

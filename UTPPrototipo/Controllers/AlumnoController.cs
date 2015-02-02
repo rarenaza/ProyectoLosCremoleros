@@ -407,6 +407,7 @@ namespace UTPPrototipo.Controllers
                     if (panel.ListaAlumnoCV[i].IdCV == IdCV)
                     {
                         panel.IdPlantillaCV = panel.ListaAlumnoCV[i].IdPlantillaCV;
+                        panel.PorcentajeCV = panel.ListaAlumnoCV[i].PorcentajeCV;
                         break;
                     }
                 }
@@ -415,6 +416,7 @@ namespace UTPPrototipo.Controllers
             {
                 panel.IdCV = panel.ListaAlumnoCV[0].IdCV;
                 panel.IdPlantillaCV = panel.ListaAlumnoCV[0].IdPlantillaCV;
+                panel.PorcentajeCV = panel.ListaAlumnoCV[0].PorcentajeCV;
             }
 
 

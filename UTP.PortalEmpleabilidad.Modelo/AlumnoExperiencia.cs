@@ -17,12 +17,12 @@ namespace UTP.PortalEmpleabilidad.Modelo
 
         [Required(ErrorMessage = "Falta la empresa")]
         [StringLength(100, ErrorMessage = "Este campo sólo acepta máximo 100 caracteres.")]
-        [RegularExpression(@"[0-9A-ZÀ-ÿa-zÑñ ]+", ErrorMessage = "Este campo sólo acepta letras y numeros2.")]           
+        [RegularExpression(@"[0-9A-ZÀ-ÿa-zÑñ ,.]+", ErrorMessage = "Este campo sólo acepta letras, números, coma y punto.")]           
         public string Empresa { get; set; }
         
         [Required(ErrorMessage = "Falta la descripcion de la empresa")]
         [StringLength(500, ErrorMessage = "Este campo sólo acepta máximo 500 caracteres.")]
-        [RegularExpression(@"[0-9A-ZÀ-ÿa-zÑñ ,.]+", ErrorMessage = "Este campo sólo acepta letras y numeros.")]
+        [RegularExpression(@"[0-9A-ZÀ-ÿa-zÑñ ,.]+", ErrorMessage = "Este campo sólo acepta letras, números, coma y punto.")]
         public string DescripcionEmpresa { get; set; }
         
         public int IdEmpresa { get; set; }
@@ -34,7 +34,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string Pais { get; set; }
 
         [StringLength(100, ErrorMessage = "Este campo sólo acepta máximo 100 caracteres.")]
-        [RegularExpression(@"[A-ZÀ-ÿa-zÑñ ]+", ErrorMessage = "Este campo sólo acepta letras.")]
+        [RegularExpression(@"[A-ZÀ-ÿa-zÑñ ,.]+", ErrorMessage = "Este campo sólo acepta letras.")]
         public string Ciudad { get; set; }
         public string CreadoPor { get; set; }
         public string NombreComercial { get; set; }
@@ -50,12 +50,12 @@ namespace UTP.PortalEmpleabilidad.Modelo
 
         [Required(ErrorMessage = "Falta el año de inicio del cargo")]
         //[StringLength(4, MinimumLength = 4, ErrorMessage = "Este campo sólo acepta 4 digitos.")] //ERROR
-        [RegularExpression(@"[0-9]+", ErrorMessage = "Este campo sólo acepta años con 4 numeros.")]
+        [RegularExpression(@"[0-9]+", ErrorMessage = "Este campo sólo acepta años con 4 números.")]
         public int FechaInicioCargoAno { get; set; }
         public int? FechaFinCargoMes { get; set; }
 
         //[StringLength(4, MinimumLength = 4, ErrorMessage = "Este campo sólo acepta 4 digitos.")] //ERROR
-        [RegularExpression(@"[0-9]+", ErrorMessage = "Este campo sólo acepta años con 4 numeros.")]
+        [RegularExpression(@"[0-9]+", ErrorMessage = "Este campo sólo acepta años con 4 números.")]
         public int? FechaFinCargoAno { get; set; }
 
         [Required(ErrorMessage = "Falta el tipo cargo")]
@@ -63,7 +63,6 @@ namespace UTP.PortalEmpleabilidad.Modelo
         ////[Required(ErrorMessage = "Falta la descripcion del cargo")]
 
         [StringLength(500, ErrorMessage = "Este campo sólo acepta máximo 500 caracteres.")]
-        [RegularExpression(@"[0-9A-ZÀ-ÿa-zÑñ ,.\r?\n]+", ErrorMessage = "Este campo sólo acepta letras y números.")]
         public string DescripcionCargo { get; set; }
         
         public int IdCV { get; set; }
