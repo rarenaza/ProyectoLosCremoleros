@@ -81,6 +81,18 @@ namespace UTP.PortalEmpleabilidad.Logica
             ad.ModifcarDatos(alumno);
         }
 
+        public Alumno Alumno_ObtenerFoto(int idAlumno)
+        {
+            Alumno registroAlumno = new Alumno();
+            DataTable dtResultado = ad.Alumno_ObtenerFoto(idAlumno);
+            if (dtResultado.Rows.Count > 0)
+            {
+                registroAlumno.Foto = Funciones.ToBytes(dtResultado.Rows[0]["Foto"]);
+                registroAlumno.ArchivoMimeType = Funciones.ToString(dtResultado.Rows[0]["ArchivoMimeType"]);
+            }
+            return registroAlumno;
+        }
+
         public Alumno ObtenerAlumnoPorIdAlumno(int IdAlumno)
         {
             Alumno alumno = new Alumno();

@@ -36,8 +36,8 @@ namespace UTPPrototipo.Controllers
         LNUTP lnUtp = new LNUTP();
         LNEmpresaListaOferta lnEmpresa = new LNEmpresaListaOferta();
         LNOferta lnoferta = new LNOferta();
-        LNUTPAlumnos lnalumno = new LNUTPAlumnos();
-
+        LNUTPAlumnos lnutpalumno = new LNUTPAlumnos();
+        LNAlumno lnalumno = new LNAlumno();
         LNEvento lnEventos = new LNEvento();
         // GET: UTP
         public ActionResult Index()
@@ -2268,7 +2268,7 @@ namespace UTPPrototipo.Controllers
         {
 
 
-            DataTable dtresultado = lnalumno.UtpAlumnoMenuMostrar();
+            DataTable dtresultado = lnutpalumno.UtpAlumnoMenuMostrar();
 
             List<SelectListItem> li = new List<SelectListItem>();
 
@@ -2288,7 +2288,7 @@ namespace UTPPrototipo.Controllers
             UtpAlumnoDetalle alumno = new UtpAlumnoDetalle();
 
 
-            DataTable dtResultado = lnalumno.AlumnoUTP_ObtenerDatosPorCodigo(Convert.ToInt32(Id));
+            DataTable dtResultado = lnutpalumno.AlumnoUTP_ObtenerDatosPorCodigo(Convert.ToInt32(Id));
 
             if (dtResultado.Rows.Count > 0)
             {
@@ -2334,7 +2334,7 @@ namespace UTPPrototipo.Controllers
             //{
 
 
-            if (lnalumno.UTPAlumnos_ActualizarEstadoAlumno(alumno))
+            if (lnutpalumno.UTPAlumnos_ActualizarEstadoAlumno(alumno))
             {
                 ViewBag.Message = "Datos Actualizado";
                 return RedirectToAction("Alumnos");    
@@ -2342,7 +2342,7 @@ namespace UTPPrototipo.Controllers
 
             else
             {
-                DataTable dtresultado = lnalumno.UtpAlumnoMenuMostrar();
+                DataTable dtresultado = lnutpalumno.UtpAlumnoMenuMostrar();
 
                 List<SelectListItem> li = new List<SelectListItem>();
 
@@ -2368,21 +2368,30 @@ namespace UTPPrototipo.Controllers
 
         public ActionResult AlumnoUtp_obtenerEstudios(int? Id)
         {
-            List<UtpAlumnoDetalle> lista = new List<UtpAlumnoDetalle>();
-            DataTable dtResultado = lnalumno.AlumnoUtp_obtenerEstudios(Convert.ToInt32(Id));
+            List<AlumnoEstudio> lista = new List<AlumnoEstudio>();
+            DataTable dtResultado = lnutpalumno.AlumnoUtp_obtenerEstudios(Convert.ToInt32(Id));
                        
             
             for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
             {
-                UtpAlumnoDetalle alumno = new UtpAlumnoDetalle();
+                AlumnoEstudio alumno = new AlumnoEstudio();
                 alumno.IdAlumno         = Convert.ToInt32(dtResultado.Rows[i]["IdAlumno"]);
-                alumno.FechaInicio      = Convert.ToString(dtResultado.Rows[i]["FechaInicio"]);
-                alumno.Carrera          = Convert.ToString(dtResultado.Rows[i]["Carrera"]);
-                alumno.Estudio          = Convert.ToString(dtResultado.Rows[i]["Estudio"]);
-                alumno.CicloEquivalente = Convert.ToString(dtResultado.Rows[i]["CicloEquivalente"]);
-                alumno.EstadoEstudio    = Convert.ToString(dtResultado.Rows[i]["EstadoEstudio"]);
-                alumno.FechaFin         = Convert.ToString(dtResultado.Rows[i]["FechaFin"]);
-                alumno.EstadoAlumno     = Convert.ToString(dtResultado.Rows[i]["EstadoAlumno"]);
+                alumno.Institucion = Convert.ToString(dtResultado.Rows[i]["Institucion"]);
+                alumno.Estudio = Convert.ToString(dtResultado.Rows[i]["Estudio"]);
+                alumno.TipoDeEstudio = Convert.ToString(dtResultado.Rows[i]["TipoEstudioValor"]);
+                alumno.EstadoDelEstudio = Convert.ToString(dtResultado.Rows[i]["EstadoEstudioValor"]);
+                alumno.Observacion = Convert.ToString(dtResultado.Rows[i]["ObservacionValor"]);
+                alumno.FechaInicioMes = Convert.ToInt32(dtResultado.Rows[i]["FechaInicioMes"]);
+                alumno.FechaInicioAno = Convert.ToInt32(dtResultado.Rows[i]["FechaInicioAno"]);
+                alumno.FechaFinMes = Convert.ToInt32(dtResultado.Rows[i]["FechaFinMes"]);
+                alumno.FechaFinAno = Convert.ToInt32(dtResultado.Rows[i]["FechaFinAno"]);
+                alumno.CicloEquivalente = Convert.ToInt32(dtResultado.Rows[i]["CicloEquivalente"]);
+                alumno.DatoUTP = Convert.ToBoolean(dtResultado.Rows[i]["DatoUTP"]);
+                alumno.Estado = Convert.ToString(dtResultado.Rows[i]["EstadoValor"]);
+                alumno.CreadoPor = Convert.ToString(dtResultado.Rows[i]["CreadoPor"]);
+                alumno.FechaCreacion = Convert.ToDateTime(dtResultado.Rows[i]["FechaCreacion"]);
+                alumno.ModificadoPor = Convert.ToString(dtResultado.Rows[i]["ModificadoPor"]);
+                alumno.FechaModificacion = Convert.ToDateTime(dtResultado.Rows[i]["FechaModificacion"]);
                 lista.Add(alumno);
             }
 
@@ -2392,7 +2401,7 @@ namespace UTPPrototipo.Controllers
         public ActionResult AlumnoUtp_obtenerExperiencia(int? Id)
         {
             List<VistaAlumnoUtp_obtenerExperiencia> lista = new List<VistaAlumnoUtp_obtenerExperiencia>();
-            DataTable dtResultado = lnalumno.AlumnoUtp_obtenerExperiencia(Convert.ToInt32(Id));
+            DataTable dtResultado = lnutpalumno.AlumnoUtp_obtenerExperiencia(Convert.ToInt32(Id));
 
 
             for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
@@ -2415,7 +2424,7 @@ namespace UTPPrototipo.Controllers
         public ActionResult AlumnoUtp_obtenerInformacionAdicional(int? Id)
         {
             List<AlumnoUtp_obtenerInformacionAdicional> lista = new List<AlumnoUtp_obtenerInformacionAdicional>();
-            DataTable dtResultado = lnalumno.AlumnoUtp_obtenerInformacionAdicional(Convert.ToInt32(Id));
+            DataTable dtResultado = lnutpalumno.AlumnoUtp_obtenerInformacionAdicional(Convert.ToInt32(Id));
 
 
             for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
@@ -2473,16 +2482,18 @@ namespace UTPPrototipo.Controllers
             return new FileStreamResult(stream, "image/jpeg");
         }
 
-        public FileResult GetImagenAlumno(byte[] FotoAlumno,  string MimeTypeCadena)
+        public FileResult GetImagenAlumno(int idAlumno)
         {
-
+            Alumno registroAlumno = new Alumno();
+            registroAlumno = lnalumno.Alumno_ObtenerFoto(idAlumno);
+            string MimeTypeCadena = registroAlumno.ArchivoMimeType;
             const string alternativePicturePath = @"/img/sinimagen.jpg";
             
             MemoryStream stream;
 
-            if (FotoAlumno != null)
+            if (registroAlumno.Foto != null)
             {
-                stream = new MemoryStream(FotoAlumno);
+                stream = new MemoryStream(registroAlumno.Foto);
             }
             else
             {
