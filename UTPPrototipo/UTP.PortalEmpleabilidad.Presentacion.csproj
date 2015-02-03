@@ -948,6 +948,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Reportes\" />
     <Folder Include="Views\Autenticar_Usuario\" />
     <Folder Include="Views\Plantilla\" />
   </ItemGroup>

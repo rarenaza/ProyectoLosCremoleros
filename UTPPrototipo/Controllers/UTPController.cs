@@ -296,86 +296,68 @@ namespace UTPPrototipo.Controllers
 
         public ActionResult Alumnos()
         {
-            //VistaUTPListaAlumno alumno = new VistaUTPListaAlumno();
+     
+            VistaAlumno utpAlumno = new VistaAlumno();
 
-            //Dictionary<int, string> listaperiodoregistro = new Dictionary<int, string>();
-            //listaperiodoregistro.Add(0, "Hoy");
-            //listaperiodoregistro.Add(1, "Ayer");
-            //listaperiodoregistro.Add(7, "Hace una semana");
-            //listaperiodoregistro.Add(15, "Hace 15 dias");
-            //listaperiodoregistro.Add(30, "Hace un mes");
-            //listaperiodoregistro.Add(31, "Hace más de un mes");
+            LNGeneral lngeneral = new LNGeneral();
 
-            
-            //alumno.PeriodoRegistro = listaperiodoregistro;
+            //Sector empresarial
 
-            ////Declara Lista
-            ////Combo Periodo Registro
-            //List<SelectListItem> listItemsPeridoRegistro = new List<SelectListItem>();
-            //foreach (KeyValuePair<int, string> entidad in alumno.PeriodoRegistro)
-            //{
-            //    SelectListItem item = new SelectListItem();
-            //    item.Text = entidad.Value.ToString();
-            //    item.Value = entidad.Key.ToString();
-            //    listItemsPeridoRegistro.Add(item);
-            //}
+            //Busca Lista Sector Empresarial
+            utpAlumno.ListaSectorEmpresarial = lngeneral.ObtenerListaValor(8);
+            List<SelectListItem> listItemSector = new List<SelectListItem>();
+            foreach (ListaValor entidad in utpAlumno.ListaSectorEmpresarial)
+            {
+                SelectListItem item = new SelectListItem();
+                item.Text = entidad.Valor;
+                item.Value = entidad.IdListaValor.ToString();
+                listItemSector.Add(item);
+            }
 
-            ////Lista de Combos
-            //ViewBag.PeridoRegistro = listItemsPeridoRegistro;
+            //Sexo
 
-            //return View(alumno);
-            return View();
-        }
-        //public ActionResult BusquedaAlumnos(string SearchString, int nroPaginaActual = 1)
-        //{
+            //Busca Lista Sexo
+            utpAlumno.ListaSexo = lngeneral.ObtenerListaValor(2);
+            List<SelectListItem> listItemSexo = new List<SelectListItem>();
+            foreach (ListaValor entidad in utpAlumno.ListaSexo)
+            {
+                SelectListItem item = new SelectListItem();
+                item.Text = entidad.Valor;
+                item.Value = entidad.IdListaValor.ToString();
+                listItemSexo.Add(item);
+            }
+            //Tipo de Estudio
 
-        //    string palabraClave = SearchString == null ? "" : SearchString;
+            //Busca Lista Tipo de Estudio
+            utpAlumno.ListaTipoEstudio = lngeneral.ObtenerListaValor(7);
+            List<SelectListItem> listItemTipoEstudio = new List<SelectListItem>();
+            foreach (ListaValor entidad in utpAlumno.ListaTipoEstudio)
+            {
+                SelectListItem item = new SelectListItem();
+                item.Text = entidad.Valor;
+                item.Value = entidad.IdListaValor.ToString();
+                listItemTipoEstudio.Add(item);
+            }
+              
 
-        //    List<VistaUTPListaAlumno> listaEjemplo = new List<VistaUTPListaAlumno>();
+            //Lista de Combos
 
-        //    DataTable dtResultado = lnUtp.UTP_ObtenerUltimosAlumnos(palabraClave, nroPaginaActual, Constantes.FILAS_POR_PAGINA);
-
-        //    for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
-        //    {
-        //        VistaUTPListaAlumno vista = new VistaUTPListaAlumno();
-        //        vista.FechaperiodoRegistro = Convert.ToDateTime(dtResultado.Rows[i]["FechaCreacion"]);
-        //        vista.FechaRegistro = dtResultado.Rows[i]["FechaRegistro"].ToString();
-        //        vista.Nombre = dtResultado.Rows[i]["Nombres"].ToString();
-        //        vista.EstadoAlumno = dtResultado.Rows[i]["Valor"].ToString();
-        //        vista.Apellidos = dtResultado.Rows[i]["Apellidos"].ToString();
-        //        vista.Carrera = dtResultado.Rows[i]["Carrera"].ToString();
-        //        vista.Ciclo = dtResultado.Rows[i]["CicloEquivalente"].ToString();
-        //        vista.idAlumno = Convert.ToInt32(dtResultado.Rows[i]["IdAlumno"]);
-        //        vista.completitud = Convert.ToInt32(dtResultado.Rows[i]["Completitud"]);
-        //        vista.CantidadTotal = Convert.ToInt32(dtResultado.Rows[i]["CantidadTotal"]);
-        //        listaEjemplo.Add(vista);
-        //    }
-        //    //Datos para la paginación.
-        //    int cantidadTotal = listaEjemplo.Count() == 0 ? 0 : listaEjemplo[0].CantidadTotal;
-
-        //    //Esto van en todas las paginas 
-        //    Paginacion paginacion = new Paginacion();
-        //    paginacion.NroPaginaActual = nroPaginaActual;
-        //    paginacion.CantidadTotalResultados = cantidadTotal;
-        //    paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA;
-        //    paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA;
-        //    int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA;
-        //    if (residuo > 0) paginacion.TotalPaginas += 1;
-
-        //    ViewBag.Paginacion = paginacion;
-        //    return PartialView("_ListaUTPAlumnos", listaEjemplo);
-        //    //return View(listaEjemplo);
-
-        //}
-
-        public ActionResult BusquedaAlumnos(VistaAlumno entidad)
-        {
-
-       
-            List<AlumnoUTP> lista = lnUtp.UTP_ObtenerUltimosAlumnos(entidad.PalabraClave == null ? "" : entidad.PalabraClave, entidad.nroPaginaActual, Constantes.FILAS_POR_PAGINA);
+   
+            ViewBag.ListaSectorEmpresarial = listItemSector;
+            ViewBag.ListaSexo = listItemSexo;
+            ViewBag.ListaTipoEstudio = listItemTipoEstudio;
+            return View(utpAlumno);                 
                        
 
-
+            //return View();
+        }
+    
+        public ActionResult BusquedaAlumnos(VistaAlumno entidad)
+        {
+                   
+            List<AlumnoUTP> lista = lnUtp.UTP_ObtenerUltimosAlumnos(entidad.PalabraClave == null ? "" : entidad.PalabraClave, entidad.nroPaginaActual, Constantes.FILAS_POR_PAGINA);
+                      
+            
             //Datos para la paginación.
             int cantidadTotal = lista.Count() == 0 ? 0 : lista[0].CantidadTotal;
 
