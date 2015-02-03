@@ -3,10 +3,10 @@
 <h6>Estudios</h6>
 
 <div class="row grilla1-cabecera color-paleta3">
-    <div class="col-sm-2">
+    <div class="col-sm-1">
         Institución
     </div>
-    <div class="col-sm-2">
+    <div class="col-sm-1">
         Estudio
     </div>
     <div class="col-sm-1">
@@ -33,46 +33,54 @@
     <div class="col-sm-1">
         Estado
     </div>
+    <div class="col-sm-1">
+        Creado
+    </div>
+    <div class="col-sm-1">
+        Modificado
+    </div>
 </div>
 
 @foreach (var item in @Model)
 {
 
 <div class="row grilla1-linea">
-    <div class="col-sm-3">
+    <div class="col-sm-1">
         @item.Institucion
     </div>
     <div class="col-sm-1">
        @item.Estudio
     </div>
-    <div class="col-sm-2">
+    <div class="col-sm-1">
         @item.TipoDeEstudio    
     </div>
     <div class="col-sm-1">
         @item.EstadoDelEstudio
     </div>
     <div class="col-sm-1">
-        @item.EstadoDelEstudio
+        @item.Observacion
     </div>
     <div class="col-sm-1">
-        @item.EstadoDelEstudio
+        @item.FechaInicioMes/@item.FechaInicioAno
     </div>
     <div class="col-sm-1">
-        @item.EstadoDelEstudio
+        @item.FechaFinMes/@item.FechaFinAno
     </div>
     <div class="col-sm-1">
-        @item.EstadoDelEstudio
+        @item.CicloEquivalente
     </div>
     <div class="col-sm-1">
-        @item.EstadoDelEstudio
+        @item.DatoUTP
     </div>
     <div class="col-sm-1">
-        @item.EstadoDelEstudio
+        @item.Estado
     </div>
     <div class="col-sm-1">
-        @item.EstadoDelEstudio
+        @item.CreadoPor @item.FechaCreacion
     </div>
-
+    <div class="col-sm-1">
+        @item.ModificadoPor @item.FechaModificacion
+    </div>
 </div>
 }
 <hr />

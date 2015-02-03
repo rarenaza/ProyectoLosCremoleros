@@ -2317,9 +2317,7 @@ namespace UTPPrototipo.Controllers
                 alumno.CorreoElectronico2 = Convert.ToString(dtResultado.Rows[0]["CorreoElectronico2"] == DBNull.Value ? null : dtResultado.Rows[0]["CorreoElectronico2"]);
                 alumno.TelefonoFijoCasa = Convert.ToString(dtResultado.Rows[0]["TelefonoFijoCasa"] == DBNull.Value ? null : dtResultado.Rows[0]["TelefonoFijoCasa"]);
                 alumno.TelefonoCelular = Convert.ToString(dtResultado.Rows[0]["TelefonoCelular"] == DBNull.Value ? null : dtResultado.Rows[0]["TelefonoCelular"]);
-                alumno.Foto = Funciones.ToBytes(dtResultado.Rows[0]["Foto"]);
-                alumno.ArchivoMimeType = Convert.ToString(dtResultado.Rows[0]["ArchivoMimeType"] == DBNull.Value ? null : dtResultado.Rows[0]["ArchivoMimeType"]);
-
+                
             }
             return View(alumno);
 
@@ -2379,19 +2377,19 @@ namespace UTPPrototipo.Controllers
                 alumno.Institucion = Convert.ToString(dtResultado.Rows[i]["Institucion"]);
                 alumno.Estudio = Convert.ToString(dtResultado.Rows[i]["Estudio"]);
                 alumno.TipoDeEstudio = Convert.ToString(dtResultado.Rows[i]["TipoEstudioValor"]);
-                alumno.EstadoDelEstudio = Convert.ToString(dtResultado.Rows[i]["EstadoEstudioValor"]);
-                alumno.Observacion = Convert.ToString(dtResultado.Rows[i]["ObservacionValor"]);
+                alumno.EstadoDelEstudio = Convert.ToString(dtResultado.Rows[i]["EstadoEstudioValor"] == System.DBNull.Value ? 0 : dtResultado.Rows[i]["EstadoEstudioValor"]);
+                alumno.Observacion = Convert.ToString(dtResultado.Rows[i]["ObservacionValor"] == System.DBNull.Value ? 0 : dtResultado.Rows[i]["ObservacionValor"]);
                 alumno.FechaInicioMes = Convert.ToInt32(dtResultado.Rows[i]["FechaInicioMes"]);
                 alumno.FechaInicioAno = Convert.ToInt32(dtResultado.Rows[i]["FechaInicioAno"]);
-                alumno.FechaFinMes = Convert.ToInt32(dtResultado.Rows[i]["FechaFinMes"]);
-                alumno.FechaFinAno = Convert.ToInt32(dtResultado.Rows[i]["FechaFinAno"]);
-                alumno.CicloEquivalente = Convert.ToInt32(dtResultado.Rows[i]["CicloEquivalente"]);
-                alumno.DatoUTP = Convert.ToBoolean(dtResultado.Rows[i]["DatoUTP"]);
-                alumno.Estado = Convert.ToString(dtResultado.Rows[i]["EstadoValor"]);
+                alumno.FechaFinMes = Convert.ToInt32(dtResultado.Rows[i]["FechaFinMes"] == System.DBNull.Value ? 0 : dtResultado.Rows[i]["FechaFinMes"]);
+                alumno.FechaFinAno = Convert.ToInt32(dtResultado.Rows[i]["FechaFinAno"] == System.DBNull.Value ? 0 : dtResultado.Rows[i]["FechaFinAno"]);
+                alumno.CicloEquivalente = Convert.ToInt32(dtResultado.Rows[i]["CicloEquivalente"] == System.DBNull.Value ? 0 : dtResultado.Rows[i]["CicloEquivalente"]);
+                alumno.DatoUTP = Convert.ToBoolean(dtResultado.Rows[i]["DatoUTP"] == System.DBNull.Value ? 0 : dtResultado.Rows[i]["DatoUTP"]);
+                alumno.Estado = Convert.ToString(dtResultado.Rows[i]["EstadoValor"] == System.DBNull.Value ? 0 : dtResultado.Rows[i]["EstadoValor"]);
                 alumno.CreadoPor = Convert.ToString(dtResultado.Rows[i]["CreadoPor"]);
                 alumno.FechaCreacion = Convert.ToDateTime(dtResultado.Rows[i]["FechaCreacion"]);
-                alumno.ModificadoPor = Convert.ToString(dtResultado.Rows[i]["ModificadoPor"]);
-                alumno.FechaModificacion = Convert.ToDateTime(dtResultado.Rows[i]["FechaModificacion"]);
+                alumno.ModificadoPor = Convert.ToString(dtResultado.Rows[i]["ModificadoPor"] == System.DBNull.Value ? 0 : dtResultado.Rows[i]["ModificadoPor"]);
+                alumno.FechaModificacion = Convert.ToDateTime(dtResultado.Rows[i]["FechaModificacion"] == System.DBNull.Value ? null : dtResultado.Rows[i]["FechaModificacion"]);
                 lista.Add(alumno);
             }
 
