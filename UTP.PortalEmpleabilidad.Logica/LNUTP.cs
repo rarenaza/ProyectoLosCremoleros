@@ -320,12 +320,12 @@ namespace UTP.PortalEmpleabilidad.Logica
         }
 
         public List<AlumnoUTP> UTP_ObtenerUltimosAlumnosAvanzada(string Estudio, string Ciclo, string Sector, string Dato, string Sexo,
-                                                           string Distrito, string TipoEstudio, int nroPagina, int filasPorPagina)
+                                                           string Distrito, string TipoEstudio,string Conocimiento,string EstadoEstudio, int nroPagina, int filasPorPagina)
         {
             List<AlumnoUTP> listaEjemplo = new List<AlumnoUTP>();
 
 
-            DataTable dtResultado = adUtp.UTP_ObtenerUltimosAlumnosAvanzada(Estudio,Ciclo,Sector,Dato,Sexo,Distrito,TipoEstudio, nroPagina, filasPorPagina);
+            DataTable dtResultado = adUtp.UTP_ObtenerUltimosAlumnosAvanzada(Estudio, Ciclo, Sector, Dato, Sexo, Distrito, TipoEstudio, Conocimiento, EstadoEstudio, nroPagina, filasPorPagina);
 
             for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
             {

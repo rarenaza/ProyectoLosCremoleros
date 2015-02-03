@@ -122,6 +122,18 @@
                                 @*@Html.DropDownListFor(model => model.IdPeriodoRegistro, new SelectList(ViewBag.PeridoRegistro, "Value", "Text"), "- Seleccionar -", new { @class = "form-control", @Id = "IdPeriodoRegistro" })*@
 
                             </div>
+                            <div class="input-group">
+                                <span class="input-group-addon">Info.Adicional</span>
+                                @Html.DropDownListFor(model => model.InformacionAdicional, new SelectList(ViewBag.ListaInformacionAdicional, "Value", "Text"), "- Seleccionar -", new { @class = "form-control", @Id = "TipoConocimientoIdListaValor" })
+                                @*@Html.DropDownListFor(model => model.IdPeriodoRegistro, new SelectList(ViewBag.PeridoRegistro, "Value", "Text"), "- Seleccionar -", new { @class = "form-control", @Id = "IdPeriodoRegistro" })*@
+
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon">Conocimiento</span>
+                                @Html.TextBoxFor(model => model.Conocimientos, new { @class = "form-control fuente-pequeña", @placeholder = "Conocmiento específico: ej. SAP", @Id = "Conocimientos" })
+                                @*@Html.DropDownListFor(model => model.IdPeriodoRegistro, new SelectList(ViewBag.PeridoRegistro, "Value", "Text"), "- Seleccionar -", new { @class = "form-control", @Id = "IdPeriodoRegistro" })*@
+
+                            </div>
                           
                             <!--Dejabajo de Tipo habian 2-->
                    
@@ -131,7 +143,12 @@
                         <div class="col-sm-3">
 
                             <!--Dejabajo de Tipo habiA 1 DIV CLAS INPUT-->
+                            <div class="input-group">
+                                <span class="input-group-addon">Estado Estudio</span>
+                                @Html.DropDownListFor(model => model.EstadoEstudio, new SelectList(ViewBag.ListaEstadoEstudio, "Value", "Text"), "- Seleccionar -", new { @class = "form-control", @Id = "EstadoEstudio" })
+                                @*@Html.DropDownListFor(model => model.IdPeriodoRegistro, new SelectList(ViewBag.PeridoRegistro, "Value", "Text"), "- Seleccionar -", new { @class = "form-control", @Id = "IdPeriodoRegistro" })*@
 
+                            </div>
                      
 
                             <button class="btn btn-default color-paleta3 fa fa-search" id="buscaravanzada"></button>
@@ -164,6 +181,10 @@
 
     $(document).ready(function () {
         $("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta4 color-paleta5 color-paleta6 color-paleta7 color-paleta8 color-paleta9").addClass("color-paleta3")
+        var codigoTipoConocimiento = $('#TipoConocimientoIdListaValor').val();
+
+        //ESE ES LA CAJA, LA ACCION Y EL CONTROLADOR
+        AutoCompleteTextDemo('#Conocimientos', '@Url.Action("ListarDatosEspecificos", "OfertaInformacionAdicional")' + '?codigoTipo=' + codigoTipoConocimiento, '#Conocimientos', '#TipoConocimientoIdListaValor', 'option', 'appendTo', '.eventInsForm');
     });
 
     $('#buscar').click(function () {
@@ -185,6 +206,9 @@
             Sexo: $('#Sexo').val(),
             Distrito: $('#Distrito').val(),
             SectorEmpresarial: $('#SectorEmpresarial').val(),
+            Conocimientos: $('#Conocimientos').val(),
+            EstadoEstudio: $('#EstadoEstudio').val(),
+            
             nroPaginaActual: 1,
 
         };
@@ -236,6 +260,8 @@
             Sexo: $('#Sexo').val(),
             Distrito: $('#Distrito').val(),
             SectorEmpresarial: $('#SectorEmpresarial').val(),
+            Conocimiento: $('#Conocimiento').val(),
+            EstadoEstudio: $('#EstadoEstudio').val(),
             nroPaginaActual: 1,
 
         };
