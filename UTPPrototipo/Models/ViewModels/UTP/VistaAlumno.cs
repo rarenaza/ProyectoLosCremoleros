@@ -27,6 +27,9 @@ namespace UTPPrototipo.Models.ViewModels.UTP
         public int? IdPeriodoRegistro { get; set; }
 
         public string SectorEmpresarial { get; set; }
+        public string InformacionAdicional { get; set; }
+        public string EstadoEstudio { get; set; }
+        public string Conocimientos { get; set; }
         public string Sexo { get; set; }
         public string TipoEstudio { get; set; }
 
@@ -35,7 +38,8 @@ namespace UTPPrototipo.Models.ViewModels.UTP
         public List<ListaValor> ListaSectorEmpresarial { get; set; }
         public List<ListaValor> ListaSexo { get; set; }
         public List<ListaValor> ListaTipoEstudio { get; set; }
-
+        public List<ListaValor> ListaInformacionAdicional { get; set; }
+        public List<ListaValor> ListaEstadoEstudio { get; set; }
         public string PalabraClave { get; set; }
         public int nroPaginaActual { get; set; }
         public int filasPorPagina { get; set; }

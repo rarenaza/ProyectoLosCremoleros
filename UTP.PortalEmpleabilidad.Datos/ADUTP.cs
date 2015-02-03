@@ -938,7 +938,7 @@ namespace UTP.PortalEmpleabilidad.Datos
         }
 
         public DataTable UTP_ObtenerUltimosAlumnosAvanzada(string Estudio, string Ciclo, string Sector,string Dato,string Sexo,
-                                                           string Distrito,string TipoEstudio, int nroPagina, int filasPorPagina)
+                                                           string Distrito,string TipoEstudio,string Conocimiento,string EstadoEstudio, int nroPagina, int filasPorPagina)
         {
             DataTable dtResultado = new DataTable();
 
@@ -955,6 +955,8 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.Parameters.Add(new SqlParameter("@Sexo", Sexo));
                 cmd.Parameters.Add(new SqlParameter("@Distrito", Distrito));
                 cmd.Parameters.Add(new SqlParameter("@TipoEstudio", TipoEstudio));
+                cmd.Parameters.Add(new SqlParameter("@Conocimiento", Conocimiento));
+                cmd.Parameters.Add(new SqlParameter("@EstadoEstudio", EstadoEstudio));
                 //Paginación:
                 cmd.Parameters.Add(new SqlParameter("@NroPaginaActual", nroPagina));
                 cmd.Parameters.Add(new SqlParameter("@FilasPorPagina", filasPorPagina));

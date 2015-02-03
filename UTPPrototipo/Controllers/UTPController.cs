@@ -338,6 +338,32 @@ namespace UTPPrototipo.Controllers
                 item.Value = entidad.IdListaValor.ToString();
                 listItemTipoEstudio.Add(item);
             }
+
+            //Tipo Informacion Adicional
+
+            //Busca Lista Tipo informacion Adicional
+            utpAlumno.ListaInformacionAdicional = lngeneral.ObtenerListaValor(10);
+            List<SelectListItem> listItemTipoInformacionAdicional = new List<SelectListItem>();
+            foreach (ListaValor entidad in utpAlumno.ListaInformacionAdicional)
+            {
+                SelectListItem item = new SelectListItem();
+                item.Text = entidad.Valor;
+                item.Value = entidad.IdListaValor.ToString();
+                listItemTipoInformacionAdicional.Add(item);
+            }
+
+            //Estado de Estudio
+
+            //Busca Estado de Estudio
+            utpAlumno.ListaEstadoEstudio = lngeneral.ObtenerListaValor(43);
+            List<SelectListItem> listItemEstadoEstudio = new List<SelectListItem>();
+            foreach (ListaValor entidad in utpAlumno.ListaEstadoEstudio)
+            {
+                SelectListItem item = new SelectListItem();
+                item.Text = entidad.Valor;
+                item.Value = entidad.IdListaValor.ToString();
+                listItemEstadoEstudio.Add(item);
+            }
               
 
             //Lista de Combos
@@ -346,6 +372,8 @@ namespace UTPPrototipo.Controllers
             ViewBag.ListaSectorEmpresarial = listItemSector;
             ViewBag.ListaSexo = listItemSexo;
             ViewBag.ListaTipoEstudio = listItemTipoEstudio;
+            ViewBag.ListaInformacionAdicional = listItemTipoInformacionAdicional;
+            ViewBag.ListaEstadoEstudio = listItemEstadoEstudio;
             return View(utpAlumno);                 
                        
 
@@ -387,7 +415,9 @@ namespace UTPPrototipo.Controllers
                                                                             entidad.Alumno == null ? "" : entidad.Alumno,
                                                                             entidad.Sexo == null ? "" : entidad.Sexo,
                                                                             entidad.Distrito == null ? "" : entidad.Distrito,
-                                                                            entidad.TipoEstudio == null ? "" : entidad.TipoEstudio, 
+                                                                            entidad.TipoEstudio == null ? "" : entidad.TipoEstudio,
+                                                                            entidad.Conocimientos == null ? "" : entidad.Conocimientos,
+                                                                            entidad.EstadoEstudio == null ? "" : entidad.EstadoEstudio,
                                                                             entidad.nroPaginaActual, 
                                                                             Constantes.FILAS_POR_PAGINA);
 
