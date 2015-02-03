@@ -2456,6 +2456,32 @@ namespace UTPPrototipo.Controllers
             return new FileStreamResult(stream, "image/jpeg");
         }
 
+        public FileResult GetImagenAlumno(byte[] FotoAlumno,  string MimeTypeCadena)
+        {
+
+            const string alternativePicturePath = @"/img/sinimagen.jpg";
+            
+            MemoryStream stream;
+
+            if (FotoAlumno != null)
+            {
+                stream = new MemoryStream(FotoAlumno);
+            }
+            else
+            {
+                stream = new MemoryStream();
+
+                var path = Server.MapPath(alternativePicturePath);
+                var image = new System.Drawing.Bitmap(path);
+
+                image.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
+                stream.Seek(0, SeekOrigin.Begin);
+                MimeTypeCadena = "image/jpeg";
+            }
+
+            return new FileStreamResult(stream, MimeTypeCadena);
+        }
+
         //public ActionResult EventoInscritos()
         //{
         //    return View();

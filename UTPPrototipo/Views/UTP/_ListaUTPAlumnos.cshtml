@@ -118,7 +118,8 @@
     <nav class="navbar-right">
         <ul class="pagination">
             @{
-                for (int i = 1; i <= paginacion.TotalPaginas; i++)
+                
+                for (int i = (paginacion.NroPaginaActual - 2); (i <= paginacion.TotalPaginas && i <=(paginacion.NroPaginaActual + 2)); i++)
                 {
                     if (i == paginacion.NroPaginaActual)
                     {
@@ -126,10 +127,14 @@
                     }
                     else
                     {
-                        <li><a href="#" onclick="buscarPaginacion('@i');">@i</a></li>
+                        if (i > 0)
+                        {
+                            <li><a href="#" onclick="buscarPaginacion('@i');">@i</a></li>
+                        }
+
                     }
                 }
-            }
+}
         </ul>
     </nav>
 </div>

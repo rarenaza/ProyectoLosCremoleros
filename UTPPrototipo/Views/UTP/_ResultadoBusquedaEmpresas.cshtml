@@ -146,31 +146,105 @@
 
 @*<div class="col-sm-6" style="text-align:right;">*@ 
     <nav class="navbar-right">
-        <ul class="pagination">
-            @{
-                for (int i = 1; i <= paginacion.TotalPaginas; i++)
-                {
-                    if (i == paginacion.NroPaginaActual)
+    <ul class="pagination">
+        @{
+            if (paginacion.NroPaginaActual > 1)
+            {
+                int i1 = paginacion.NroPaginaActual - 5;
+                if (i1 < 1) { i1 = 1; }
+                <li>
+                    @if (ViewBag.TipoBusqueda == "Simple")
                     {
-                        <li class="active"><a href="#">@i <span class="sr-only"></span></a></li>
+                    <a href="#" onclick="BusquedaSimpleEmpresasActivas('1');">
+                        <span aria-hidden="true" class="glyphicon glyphicon-step-backward"></span>
+                    </a>
                     }
-                    else
+                    else {
+                    <a href="#" onclick="BusquedaAvanzadaEmpresasActivas('1');">
+                        <span aria-hidden="true" class="glyphicon glyphicon-step-backward"></span>
+                    </a>
+                    }
+                </li>
+                if (i1 > 1)
+                {
+                    <li>
+                        @if (ViewBag.TipoBusqueda == "Simple")
+                        {
+                        <a href="#" onclick="BusquedaSimpleEmpresasActivas('@i1');">
+                            <span aria-hidden="true" class="glyphicon glyphicon-backward"></span>
+                        </a>
+                        }
+                        else
+                        {
+                        <a href="#" onclick="BusquedaAvanzadaEmpresasActivas('@i1');">
+                            <span aria-hidden="true" class="glyphicon glyphicon-backward"></span>
+                        </a>
+                        }
+                    </li>
+                }
+            }
+
+            for (int i = (paginacion.NroPaginaActual - 2); (i <= paginacion.TotalPaginas && i <= (paginacion.NroPaginaActual + 2)); i++)
+            {
+                if (i == paginacion.NroPaginaActual)
+                {
+                    <li class="active"><a href="#">@i <span class="sr-only"></span></a></li>
+                }
+                else
+                {
+                    if (i > 0)
                     {
                         if (ViewBag.TipoBusqueda == "Simple")
                         {
                             <li><a href="#" onclick="BusquedaSimpleEmpresasActivas('@i');">@i</a></li>
                         }
-                        else 
+                        else
                         {
                             <li><a href="#" onclick="BusquedaAvanzadaEmpresasActivas('@i');">@i</a></li>
                         }
-
                     }
                 }
-}
-        </ul>
+            }
+            if (paginacion.NroPaginaActual < paginacion.TotalPaginas)
+            {
+                int i2 = paginacion.NroPaginaActual + 5;
+                if (i2 > paginacion.TotalPaginas) { i2 = paginacion.TotalPaginas; }
+                if (i2 < paginacion.TotalPaginas)
+                { 
+                    <li>
+                        @if (ViewBag.TipoBusqueda == "Simple")
+                        {
+                            <a href="#" onclick="BusquedaSimpleEmpresasActivas('@i2');">
+                                <span aria-hidden="true" class="glyphicon glyphicon-forward"></span>
+                            </a>
+                        }
+                        else
+                        {
+                            <a href="#" onclick="BusquedaAvanzadaEmpresasActivas('@i2');">
+                                <span aria-hidden="true" class="glyphicon glyphicon-forward"></span>
+                            </a>
+                        }
+                    </li>
+                }
+                <li>
+                    @if (ViewBag.TipoBusqueda == "Simple")
+                    {
+                        <a href="#" onclick="BusquedaSimpleEmpresasActivas('@paginacion.TotalPaginas');">
+                            <span aria-hidden="true" class="glyphicon glyphicon-step-forward"></span>
+                        </a>
+                    }
+                    else
+                    {
+                        <a href="#" onclick="BusquedaAvanzadaEmpresasActivas('@paginacion.TotalPaginas');">
+                            <span aria-hidden="true" class="glyphicon glyphicon-step-forward"></span>
+                        </a>
+                    }
+                </li>
+            }
+        }
+    </ul>
 
-    </nav>
+</nav>
 @*</div>*@
 
 

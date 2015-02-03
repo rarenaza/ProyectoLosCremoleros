@@ -34,6 +34,22 @@
                 </tr>
                 <tr class="linea_raya">
                     <td class="celda-nombre">
+                        Código UTP
+                    </td>
+                    <td class="celda-datos">
+                        @Html.DisplayFor(m => m.CodAlumnoUtp)
+                    </td>
+                </tr>
+                <tr class="linea_raya">
+                    <td class="celda-nombre">
+                        Usuario
+                    </td>
+                    <td class="celda-datos">
+                        @Html.DisplayFor(m => m.Usuario)
+                    </td>
+                </tr>
+                <tr class="linea_raya">
+                    <td class="celda-nombre">
                         Nombres
                     </td>
                     <td class="celda-datos">
@@ -50,31 +66,31 @@
                 </tr>
                 <tr class="linea_raya">
                     <td class="celda-nombre">
-                        Carrera
+                        Documento Identidad
                     </td>
                     <td class="celda-datos">
-                        @Html.DisplayFor(m => m.Carrera)
+                        @Html.DisplayFor(m => m.TipoDocumento): @Html.DisplayFor(m => m.NumeroDocumento)
                     </td>
                 </tr>
                 <tr class="linea_raya">
                     <td class="celda-nombre">
-                        Tipo de Documento
+                        Fecha de Nacimiento
                     </td>
                     <td class="celda-datos">
-                        @Html.DisplayFor(m => m.TipoDocumento)
+                        @Html.DisplayFor(m => m.FechaNacimiento)
                     </td>
                 </tr>
                 <tr class="linea_raya">
                     <td class="celda-nombre">
-                       Nro Documento
+                       Dirección
                     </td>
                     <td class="celda-datos">
-                        @Html.DisplayFor(m => m.NumeroDocumento)
+                        @Html.DisplayFor(m => m.Direccion), @Html.DisplayFor(m => m.DireccionDistrito), @Html.DisplayFor(m => m.DireccionCiudad), @Html.DisplayFor(m => m.DireccionRegion)
                     </td>
                 </tr>
                 <tr class="linea_raya">
                     <td class="celda-nombre">
-                        CorreoElectronico
+                        Correo Electronico
                     </td>
                     <td class="celda-datos">
                         @Html.DisplayFor(m => m.CorreoElectronico)
@@ -82,14 +98,30 @@
                 </tr>
                 <tr class="linea_raya">
                     <td class="celda-nombre">
-                        Ciclo Equivalente
+                        Correo Electronico 2
                     </td>
                     <td class="celda-datos">
-                        @Html.DisplayFor(m => m.CicloEquivalente)
+                        @Html.DisplayFor(m => m.CorreoElectronico2)
+                    </td>
+                </tr>
+                <tr class="linea_raya">
+                    <td class="celda-nombre">
+                        Teléfono Fijo Casa
+                    </td>
+                    <td class="celda-datos">
+                        @Html.DisplayFor(m => m.TelefonoFijoCasa)
                     </td>
 
                 </tr>
+                <tr class="linea_raya">
+                    <td class="celda-nombre">
+                        Teléfono Celular
+                    </td>
+                    <td class="celda-datos">
+                        @Html.DisplayFor(m => m.TelefonoCelular)
+                    </td>
 
+                </tr>
                 <tr class="linea_raya">
                     <td class="celda-nombre">
                         Estado
@@ -113,7 +145,7 @@
                         Creado el
                     </td>
                     <td class="celda-datos">
-                        @Html.DisplayFor(m => m.Creadoel)
+                        @Html.DisplayFor(m => m.FechaCreacion)
                     </td>
                 </tr>
                 <tr class="linea_raya">
@@ -137,7 +169,18 @@
             </table>
         </div>
 
-
+        <div class="col-sm-4">
+            <table>
+                <tr class="linea_raya">
+                    <td class="celda-nombre">
+                        Foto
+                    </td>
+                    <td class="celda-datos">
+                        <img alt="" style="width:100%" src='@Url.Action("GetImagenAlumno", "UTP", new { FotoAlumno = Model.Foto, MimeTypeCadena = Model.ArchivoMimeType })' />
+                    </td>
+                </tr>
+            </table>
+        </div>
     </div>
 
     <br />
