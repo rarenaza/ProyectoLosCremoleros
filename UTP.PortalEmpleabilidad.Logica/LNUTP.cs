@@ -319,13 +319,35 @@ namespace UTP.PortalEmpleabilidad.Logica
             return listaEjemplo;
         }
 
+        public List<AlumnoUTP> UTP_ObtenerUltimosAlumnosAvanzada(string Estudio, string Ciclo, string Sector, string Dato, string Sexo,
+                                                           string Distrito, string TipoEstudio, int nroPagina, int filasPorPagina)
+        {
+            List<AlumnoUTP> listaEjemplo = new List<AlumnoUTP>();
 
 
-        //public DataTable UTP_ObtenerUltimosAlumnos(string Dato, int nroPagina, int filasPorPagina)
-        //{
+            DataTable dtResultado = adUtp.UTP_ObtenerUltimosAlumnosAvanzada(Estudio,Ciclo,Sector,Dato,Sexo,Distrito,TipoEstudio, nroPagina, filasPorPagina);
 
-        //    return adUtp.UTP_ObtenerUltimosAlumnos(Dato, nroPagina, filasPorPagina);
-        //}
+            for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
+            {
+                AlumnoUTP vista = new AlumnoUTP();
+
+                vista.FechaperiodoRegistro = Convert.ToDateTime(dtResultado.Rows[i]["FechaCreacion"]);
+                vista.FechaRegistro = dtResultado.Rows[i]["FechaRegistro"].ToString();
+                vista.Nombre = dtResultado.Rows[i]["Nombres"].ToString();
+                vista.EstadoAlumno = dtResultado.Rows[i]["EstadoAlumnoValor"].ToString();
+                vista.Apellidos = dtResultado.Rows[i]["Apellidos"].ToString();
+                vista.Carrera = dtResultado.Rows[i]["Carrera"].ToString();
+                vista.Ciclo = dtResultado.Rows[i]["CicloEquivalente"].ToString();
+                vista.idAlumno = Convert.ToInt32(dtResultado.Rows[i]["IdAlumno"]);
+                vista.completitud = Convert.ToInt32(dtResultado.Rows[i]["Completitud"]);
+                vista.CantidadTotal = Convert.ToInt32(dtResultado.Rows[i]["CantidadTotal"]);
+                listaEjemplo.Add(vista);
+            }
+
+            return listaEjemplo;
+        }
+
+    
 
         public List<OfertaUTP> UTP_ObtenerOfertasporActivar(string Oferta, int nroPagina, int filasPorPagina)
         {

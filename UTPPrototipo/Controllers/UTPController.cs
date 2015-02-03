@@ -371,6 +371,41 @@ namespace UTPPrototipo.Controllers
             if (residuo > 0) paginacion.TotalPaginas += 1;
 
             ViewBag.Paginacion = paginacion;
+            //ViewBag.TipoPaginacion = "Simple";
+            return PartialView("_ListaUTPAlumnos", lista);
+            //return View(listaEjemplo);
+
+        }
+        
+
+        public ActionResult BusquedaAlumnosAvanzada(VistaAlumno entidad)
+        {
+
+            List<AlumnoUTP> lista = lnUtp.UTP_ObtenerUltimosAlumnosAvanzada(entidad.Carrera == null ? "" : entidad.Carrera,
+                                                                            entidad.Ciclo == null ? "" : entidad.Ciclo,
+                                                                            entidad.SectorEmpresarial == null ? "" : entidad.SectorEmpresarial,
+                                                                            entidad.Alumno == null ? "" : entidad.Alumno,
+                                                                            entidad.Sexo == null ? "" : entidad.Sexo,
+                                                                            entidad.Distrito == null ? "" : entidad.Distrito,
+                                                                            entidad.TipoEstudio == null ? "" : entidad.TipoEstudio, 
+                                                                            entidad.nroPaginaActual, 
+                                                                            Constantes.FILAS_POR_PAGINA);
+
+
+            //Datos para la paginación.
+            int cantidadTotal = lista.Count() == 0 ? 0 : lista[0].CantidadTotal;
+
+            //Esto van en todas las paginas 
+            Paginacion paginacion = new Paginacion();
+            paginacion.NroPaginaActual = entidad.nroPaginaActual;
+            paginacion.CantidadTotalResultados = cantidadTotal;
+            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA;
+            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA;
+            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA;
+            if (residuo > 0) paginacion.TotalPaginas += 1;
+
+            ViewBag.Paginacion = paginacion;
+            ViewBag.TipoPaginacion = "Avanzada";
             return PartialView("_ListaUTPAlumnos", lista);
             //return View(listaEjemplo);
 

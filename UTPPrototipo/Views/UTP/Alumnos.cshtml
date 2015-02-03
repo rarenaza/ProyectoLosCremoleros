@@ -76,7 +76,7 @@
                         <div class="col-sm-3">
                             <div class="input-group">
                                 <span class="input-group-addon">Tipo Estudio</span>
-                                @Html.DropDownListFor(model => model.TipoEstudio, new SelectList(ViewBag.ListaTipoEstudio, "Value", "Text"), "- Seleccionar -", new { @class = "form-control", @Id = "IdTipoEstudio" })
+                                @Html.DropDownListFor(model => model.TipoEstudio, new SelectList(ViewBag.ListaTipoEstudio, "Value", "Text"), "- Seleccionar -", new { @class = "form-control", @Id = "TipoEstudio" })
                                 @*@Html.DropDownListFor(model => model.IdPeriodoRegistro, new SelectList(ViewBag.PeridoRegistro, "Value", "Text"), "- Seleccionar -", new { @class = "form-control", @Id = "IdPeriodoRegistro" })*@
 
                             </div>
@@ -100,7 +100,7 @@
                             </div>
                             <div class="input-group">
                                 <span class="input-group-addon">Sexo</span>
-                                @Html.DropDownListFor(model => model.Sexo, new SelectList(ViewBag.ListaSexo, "Value", "Text"), "- Seleccionar -", new { @class = "form-control", @Id = "IdSexo" })
+                                @Html.DropDownListFor(model => model.Sexo, new SelectList(ViewBag.ListaSexo, "Value", "Text"), "- Seleccionar -", new { @class = "form-control", @Id = "Sexo" })
                                 @*@Html.DropDownListFor(model => model.IdPeriodoRegistro, new SelectList(ViewBag.PeridoRegistro, "Value", "Text"), "- Seleccionar -", new { @class = "form-control", @Id = "IdPeriodoRegistro" })*@
 
                             </div>
@@ -118,7 +118,7 @@
                         <div class="col-sm-3">
                             <div class="input-group">
                                 <span class="input-group-addon">Sector Empresarial</span>
-                                @Html.DropDownListFor(model => model.SectorEmpresarial, new SelectList(ViewBag.ListaSectorEmpresarial, "Value", "Text"), "- Seleccionar -", new { @class = "form-control", @Id = "IdSectorEmpresarial" })
+                                @Html.DropDownListFor(model => model.SectorEmpresarial, new SelectList(ViewBag.ListaSectorEmpresarial, "Value", "Text"), "- Seleccionar -", new { @class = "form-control", @Id = "SectorEmpresarial" })
                                 @*@Html.DropDownListFor(model => model.IdPeriodoRegistro, new SelectList(ViewBag.PeridoRegistro, "Value", "Text"), "- Seleccionar -", new { @class = "form-control", @Id = "IdPeriodoRegistro" })*@
 
                             </div>
@@ -176,6 +176,25 @@
         Cargar("ResultadoBusqueda", '@Url.Action("BusquedaAlumnos", "UTP")', alumno);
     });
 
+    $('#buscaravanzada').click(function () {
+        var alumno = {
+            TipoEstudio: $('#TipoEstudio').val(),
+            Alumno: $('#Alumno').val(),
+            Carrera: $('#Carrera').val(),
+            Ciclo: $('#Ciclo').val(),
+            Sexo: $('#Sexo').val(),
+            Distrito: $('#Distrito').val(),
+            SectorEmpresarial: $('#SectorEmpresarial').val(),
+            nroPaginaActual: 1,
+
+        };
+        //debugger;
+
+        //Cargar("resultadobusqueda", "/UTP/BusquedaAvanzadaEmpresas", oferta);
+
+        Cargar("ResultadoBusqueda", '@Url.Action("BusquedaAlumnosAvanzada", "UTP")', alumno);
+    });
+
     function Cargar(id, link, entidad) {
         //debugger;
         $.ajax({
@@ -205,6 +224,26 @@
         };
         //Cargar("resultadobusqueda", "/UTP/BusquedaSimpleEmpresasActivas", empresa);
         Cargar("ResultadoBusqueda", '@Url.Action("BusquedaAlumnos", "UTP")', alumno);
+    }
+
+    function buscarPaginacionAvanzada(nroPagina) {
+
+        var alumno = {
+            TipoEstudio: $('#TipoEstudio').val(),
+            Alumno: $('#Alumno').val(),
+            Carrera: $('#Carrera').val(),
+            Ciclo: $('#Ciclo').val(),
+            Sexo: $('#Sexo').val(),
+            Distrito: $('#Distrito').val(),
+            SectorEmpresarial: $('#SectorEmpresarial').val(),
+            nroPaginaActual: 1,
+
+        };
+        //debugger;
+
+        //Cargar("resultadobusqueda", "/UTP/BusquedaAvanzadaEmpresas", oferta);
+
+        Cargar("ResultadoBusqueda", '@Url.Action("BusquedaAlumnosAvanzada", "UTP")', alumno);
     }
 
     @*function buscarPaginacion(nroPaginaActual) {
