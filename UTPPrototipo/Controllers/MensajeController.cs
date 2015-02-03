@@ -372,7 +372,7 @@ namespace UTPPrototipo.Controllers
             }
             else
             if (pantalla == Constantes.MENSAJES_UTP_INDEX || pantalla == Constantes.MENSAJES_UTP_ALUMNO || pantalla == Constantes.MENSAJES_UTP_OFERTA
-                || pantalla == Constantes.MENSAJES_UTP_EMPRESA)
+                || pantalla == Constantes.MENSAJES_UTP_EMPRESA || pantalla == Constantes.MENSAJES_UTP_EVENTO)
             {
                 TicketUTP ticketUtp = (TicketUTP)Session["TicketUtp"];
                 mensajeRespuesta.DeUsuario = ticketUtp.Usuario;
@@ -380,13 +380,30 @@ namespace UTPPrototipo.Controllers
                 mensajeRespuesta.CreadoPor = ticketUtp.Usuario;
             }
             else
-             if (pantalla == Constantes.MENSAJES_EMPRESA_EVENTO || pantalla == Constantes.MENSAJES_ALUMNO_EVENTO)
+             if (pantalla == Constantes.MENSAJES_EMPRESA_EVENTO)
             {                
                 LNEvento lnEvento = new LNEvento();
                 DataTable dtEvento = lnEvento.EVENTO_OBTENERPORID(mensajeBase.IdEvento);
                 mensajeRespuesta.Evento.NombreEvento = Convert.ToString(dtEvento.Rows[0]["NombreEvento"]);
+
+                TicketEmpresa ticketEmpresa = (TicketEmpresa)Session["TicketEmpresa"];
+                mensajeRespuesta.DeUsuario = ticketEmpresa.Usuario;
+                mensajeRespuesta.DeUsuarioCorreoElectronico = ticketEmpresa.CorreoElectronico;
+                mensajeRespuesta.CreadoPor = ticketEmpresa.Usuario;
             }
-             else
+            else
+            if (pantalla == Constantes.MENSAJES_ALUMNO_EVENTO)
+            {
+                LNEvento lnEvento = new LNEvento();
+                DataTable dtEvento = lnEvento.EVENTO_OBTENERPORID(mensajeBase.IdEvento);
+                mensajeRespuesta.Evento.NombreEvento = Convert.ToString(dtEvento.Rows[0]["NombreEvento"]);
+
+                TicketAlumno ticketAlumno = (TicketAlumno)Session["TicketAlumno"];
+                mensajeRespuesta.DeUsuario = ticketAlumno.Usuario;
+                mensajeRespuesta.DeUsuarioCorreoElectronico = ticketAlumno.CorreoElectronico;
+                mensajeRespuesta.CreadoPor = ticketAlumno.Usuario;
+            }
+            else
             if (pantalla == Constantes.MENSAJES_EMPRESA_HUNTING)
             {
                 TicketEmpresa ticketEmpresa = (TicketEmpresa)Session["TicketEmpresa"];
@@ -421,8 +438,7 @@ namespace UTPPrototipo.Controllers
             //    mensaje.CreadoPor = ticketUtp.Usuario;
             //}
 
-            mensaje.FechaEnvio = DateTime.Now;
-            mensaje.IdEvento = 0; //Por desarrollar.
+            mensaje.FechaEnvio = DateTime.Now;            
             mensaje.EstadoMensaje = "MSJNOL";  //Pendiente de ser leido
 
             IdOferta = Convert.ToInt32(mensaje.IdOfertaMensaje);            
@@ -620,10 +636,13 @@ namespace UTPPrototipo.Controllers
             mensaje.DeUsuarioCorreoElectronico = ticketEmpresa.CorreoElectronico;
             mensaje.Pantalla = pantalla;
             mensaje.Asunto = Convert.ToString(dtEvento.Rows[0]["NombreEvento"]);
-            mensaje.ParaUsuario = "faltaUsuarioUTPDelEvento";
-            mensaje.ParaUsuarioCorreoElectronico = "faltaUsuarioCorreoUTPDelEvento";
             mensaje.Evento.NombreEvento = Convert.ToString(dtEvento.Rows[0]["NombreEvento"]);
             mensaje.IdEvento = Convert.ToInt32(dtEvento.Rows[0]["IdEvento"]);
+
+            //Se manda el correo al administrador de la UPT. No existe funcionalidad de asignar usuario UTP al evento.
+            DataTable dtUsuarioUTPAdmin = lnMensaje.ObtenerUsuarioAdministradorUTP(); //--se obtiene, la información y se completan los campos.
+            mensaje.ParaUsuario = Convert.ToString(dtUsuarioUTPAdmin.Rows[0]["Usuario"]);
+            mensaje.ParaUsuarioCorreoElectronico = Convert.ToString(dtUsuarioUTPAdmin.Rows[0]["CorreoElectronico"]);                        
             
             return PartialView("_MensajesNuevo", mensaje);
         }

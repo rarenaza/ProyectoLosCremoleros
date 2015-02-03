@@ -127,7 +127,8 @@ namespace UTP.PortalEmpleabilidad.Logica
                 mensaje.Oferta.CargoOfrecido = Convert.ToString(fila["CargoOfrecido"]);
                 mensaje.IdOferta        = Convert.ToInt32(fila["IdOferta"]);
                 mensaje.IdMensaje       = Convert.ToInt32(fila["IdMensaje"]);
-                mensaje.IdEmpresa       = Convert.ToInt32(fila["IdEmpresa"]);      
+                mensaje.IdEmpresa       = Convert.ToInt32(fila["IdEmpresa"]);
+                mensaje.IdEvento        = Convert.ToInt32(fila["IdEvento"]);   
 
                 //Datos del mensaje anterior
                 mensaje.MensajeAnteriorIdMensaje = Convert.ToInt32(fila["MensajeAnteriorIdMensaje"]);

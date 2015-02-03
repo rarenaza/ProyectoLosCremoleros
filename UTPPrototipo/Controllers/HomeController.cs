@@ -138,6 +138,8 @@ namespace UTPPrototipo.Controllers
                     mensaje.DeUsuarioCorreoElectronico = ticketAlumno.CorreoElectronico;
                 }
 
+            ViewBag.Pantalla = pantalla;
+
             return View(mensaje);
         }
 
