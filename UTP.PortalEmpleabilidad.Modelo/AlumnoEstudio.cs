@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+
 namespace UTP.PortalEmpleabilidad.Modelo
 {
     public partial class AlumnoEstudio
@@ -59,5 +61,9 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public int IdCV { get; set; }
         public int Movimiento { get; set; }
         public string IconoTipoDeEstudio { get; set; }
+        public string Estado { get; set; }
+        public DateTime FechaCreacion { get; set; }
+        public string ModificadoPor { get; set; }
+        public DateTime FechaModificacion { get; set; }
     }
 }

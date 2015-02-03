@@ -33,6 +33,24 @@ namespace UTP.PortalEmpleabilidad.Datos
             return dt;
         }
 
+        public DataTable Alumno_ObtenerFoto(int idAlumno)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "Alumno_ObtenerFoto";
+            cmd.Connection = cnn.cn;
+            cnn.Conectar();
+            cmd.Parameters.Add(new SqlParameter("@IdAlumno", SqlDbType.Int)).Value = idAlumno;
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+
+            da.Fill(dt);
+
+            cnn.Desconectar();
+
+            return dt;
+        }
         public DataTable ObtenerAlumnoPorCodigo(string codigoAlumno)
         {
             SqlCommand cmd = new SqlCommand();
