@@ -11,6 +11,7 @@ namespace UTP.PortalEmpleabilidad.Servicio
     {
         static void Main(string[] args)
         {
+            //Pruebas();
             Procesar();
         }
 
@@ -22,6 +23,12 @@ namespace UTP.PortalEmpleabilidad.Servicio
             //Se llaman a los funciones en la librería Logica.
             lnGeneral.EnviarOfertaCorreosPendientes();
             lnGeneral.FinalizarOfertasPorFechaDeRecepcion();          
+
+        }
+
+        private static void Pruebas()
+        {
+            
 
         }
     }

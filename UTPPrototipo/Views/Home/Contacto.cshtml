@@ -2,6 +2,18 @@
 @using UTP.PortalEmpleabilidad.Modelo
 
 @{
+    if (ViewBag.Pantalla == Constantes.MENSAJES_ALUMNO_CONTACTO)
+    {
+        Layout = "~/Views/Alumno/_LayoutAlumno.cshtml";     
+    }    
+    else
+        if (ViewBag.Pantalla == Constantes.MENSAJES_EMPRESA_CONTACTO)
+        {
+            Layout = "~/Views/Empresa/_LayoutEmpresa.cshtml";
+        }    
+}
+
+@{
     ViewBag.Title = "Contacto";
 }
 <div class="container">

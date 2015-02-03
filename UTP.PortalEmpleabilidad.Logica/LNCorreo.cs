@@ -24,14 +24,15 @@ namespace UTP.PortalEmpleabilidad.Logica
                 bool enableSSL = Convert.ToBoolean(ConfigurationManager.AppSettings["MensajeCorreoEnableSSL"]);
                 string deDesarrollo = ConfigurationManager.AppSettings["MensajeCorreoUsuarioDeDesarrollo"];
                 string paraDesarrollo = ConfigurationManager.AppSettings["MensajeCorreoUsuarioParaDesarrollo"];
+                string prefijoAsunto = ConfigurationManager.AppSettings["MensajeCorreoPrefijoAsunto"];
 
                 MailMessage Message = new MailMessage(mensajesEnProduccion ? mensaje.DeUsuarioCorreoElectronico : deDesarrollo,
                                                         mensajesEnProduccion ? mensaje.ParaUsuarioCorreoElectronico : paraDesarrollo
                                                       );
                
-                //MailMessage Message = new MailMessage(mensaje.DeUsuarioCorreoElectronico, mensaje.ParaUsuarioCorreoElectronico);
+                //MailMessage Message = new MailMessage(mensaje.DeUsuarioCorreoElectronico, mensaje.ParaUsuarioCorreoElectronico);                
                 Message.Body = mensaje.MensajeTexto;
-                Message.Subject = mensaje.Asunto;
+                Message.Subject = prefijoAsunto + " " + mensaje.Asunto;
 
                 SmtpClient client = new SmtpClient();
                 client.Host = host;
