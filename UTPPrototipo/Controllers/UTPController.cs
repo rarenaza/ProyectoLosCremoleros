@@ -2469,27 +2469,58 @@ namespace UTPPrototipo.Controllers
 
         public ActionResult AlumnoUtp_obtenerInformacionAdicional(int? Id)
         {
-            List<AlumnoUtp_obtenerInformacionAdicional> lista = new List<AlumnoUtp_obtenerInformacionAdicional>();
+            List<AlumnoInformacionAdicional> lista = new List<AlumnoInformacionAdicional>();
             DataTable dtResultado = lnutpalumno.AlumnoUtp_obtenerInformacionAdicional(Convert.ToInt32(Id));
 
 
             for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
             {
-                AlumnoUtp_obtenerInformacionAdicional alumno = new AlumnoUtp_obtenerInformacionAdicional();
+                AlumnoInformacionAdicional alumno = new AlumnoInformacionAdicional();
 
                 alumno.IdAlumno         = Convert.ToInt32(dtResultado.Rows[i]["IdAlumno"]);
-                alumno.Tipo             = Convert.ToString(dtResultado.Rows[i]["Tipo"]);
+                alumno.IdInformacionAdicional = Convert.ToInt32(dtResultado.Rows[i]["IdInformacionAdicional"]);
+                alumno.DesTipoConocimiento             = Convert.ToString(dtResultado.Rows[i]["TipoConocimientoValor"]);
                 alumno.Conocimiento     = Convert.ToString(dtResultado.Rows[i]["Conocimiento"]);
-                alumno.Nivel            = Convert.ToString(dtResultado.Rows[i]["Nivel"]);
-                alumno.FechaInicio      = Convert.ToString(dtResultado.Rows[i]["FechaInicio"]);
-                alumno.FechaFin         = Convert.ToString(dtResultado.Rows[i]["FechaFin"]);
-                alumno.AñosExperiencia  = Convert.ToString(dtResultado.Rows[i]["AñosExperiencia"]);
+                alumno.DesNivelConocimiento = Convert.ToString(dtResultado.Rows[i]["NivelConocimientoValor"] == System.DBNull.Value ? "" : dtResultado.Rows[i]["NivelConocimientoValor"]);
+                alumno.FechaConocimientoDesdeMes = Convert.ToInt32(dtResultado.Rows[i]["FechaConocimientoDesdeMes"] == System.DBNull.Value ? null : dtResultado.Rows[i]["FechaConocimientoDesdeMes"]);
+                alumno.FechaConocimientoDesdeAno = Convert.ToInt32(dtResultado.Rows[i]["FechaConocimientoDesdeAno"] == System.DBNull.Value ? null : dtResultado.Rows[i]["FechaConocimientoDesdeAno"]);
+                alumno.FechaConocimientoHastaMes = Convert.ToInt32(dtResultado.Rows[i]["FechaConocimientoHastaMes"] == System.DBNull.Value ? null : dtResultado.Rows[i]["FechaConocimientoHastaMes"]);
+                alumno.FechaConocimientoHastaAno = Convert.ToInt32(dtResultado.Rows[i]["FechaConocimientoHastaAno"] == System.DBNull.Value ? null : dtResultado.Rows[i]["FechaConocimientoHastaAno"]);
+                alumno.NomPais = Convert.ToString(dtResultado.Rows[i]["PaisValor"] == System.DBNull.Value ? "" : dtResultado.Rows[i]["PaisValor"]);
+                alumno.Ciudad = Convert.ToString(dtResultado.Rows[i]["Ciudad"] == System.DBNull.Value ? "" : dtResultado.Rows[i]["Ciudad"]);
+                alumno.InstituciónDeEstudio = Convert.ToString(dtResultado.Rows[i]["InstituciónDeEstudio"] == System.DBNull.Value ? "" : dtResultado.Rows[i]["InstituciónDeEstudio"]);
+                alumno.AñosExperiencia = Convert.ToInt32(dtResultado.Rows[i]["AñosExperiencia"] == System.DBNull.Value ? null : dtResultado.Rows[i]["AñosExperiencia"]);
+                alumno.Estado = Convert.ToString(dtResultado.Rows[i]["Estado"] == System.DBNull.Value ? "" : dtResultado.Rows[i]["Estado"]);
+                alumno.CreadoPor = Convert.ToString(dtResultado.Rows[i]["CreadoPor"]);
+                alumno.FechaCreacion = Convert.ToDateTime(dtResultado.Rows[i]["FechaCreacion"]);
+                alumno.ModificadoPor = Convert.ToString(dtResultado.Rows[i]["ModificadoPor"] == System.DBNull.Value ? "" : dtResultado.Rows[i]["ModificadoPor"]);
+                alumno.FechaModificacion = Convert.ToDateTime(dtResultado.Rows[i]["FechaModificacion"] == System.DBNull.Value ? null : dtResultado.Rows[i]["FechaModificacion"]);
                 lista.Add(alumno);
             }
 
             return PartialView("AlumnoUtp_obtenerInformacionAdicional", lista);
         }
+
+        public ActionResult AlumnoUtp_obtenerCV(string usuario)
+        {
+            List<AlertasCvAlumno> lista = new List<AlertasCvAlumno>();
             
+            DataTable dtResultado = lnoferta.AlertaCvAlumno(usuario);
+            for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
+            {
+                AlertasCvAlumno alumno = new AlertasCvAlumno();
+                alumno.IdCV = Convert.ToInt32(dtResultado.Rows[i]["IdCV"]);
+                alumno.NombreCV = Convert.ToString(dtResultado.Rows[i]["NombreCV"]);
+                alumno.NombrePlantilla = Convert.ToString(dtResultado.Rows[i]["NombrePlantilla"]);
+                alumno.PorcentajeCV = Convert.ToInt32(dtResultado.Rows[i]["PorcentajeCV"]);
+                alumno.CreadoPor = Convert.ToString(dtResultado.Rows[i]["CreadoPor"]);
+                alumno.FechaCreacion = Convert.ToDateTime(dtResultado.Rows[i]["FechaCreacion"]);
+                alumno.ModificadoPor = Convert.ToString(dtResultado.Rows[i]["ModificadoPor"] == System.DBNull.Value ? "" : dtResultado.Rows[i]["ModificadoPor"]);
+                alumno.FechaModificacion = Convert.ToDateTime(dtResultado.Rows[i]["FechaModificacion"] == System.DBNull.Value ? null : dtResultado.Rows[i]["FechaModificacion"]);
+                lista.Add(alumno);
+            }
+            return PartialView("AlumnoUtp_obtenerCV", lista);
+        }
 
         public ActionResult LogOut()
         {
@@ -2715,27 +2746,95 @@ namespace UTPPrototipo.Controllers
 
         }
 
-        //public ActionResult CrearConvenio(int idAlumno)
-        //{
+        public ActionResult _EmpresaNuevaModal()
+        {
+            LNGeneral lnGeneral = new LNGeneral();
+            ViewBag.PaisIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_PAIS), "IdListaValor", "Valor", "PAIPER");
+            ViewBag.NumeroEmpleadosIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_NRO_EMPLEADOS), "IdListaValor", "Valor");
+            ViewBag.SectorEmpresarial1IdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_SECTOR_EMPRESARIAL), "IdListaValor", "Valor");
+            ViewBag.SectorEmpresarial2IdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_SECTOR_EMPRESARIAL), "IdListaValor", "Valor");
+            ViewBag.SectorEmpresarial3IdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_SECTOR_EMPRESARIAL), "IdListaValor", "Valor");
+            ViewBag.TipoLocacionIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_LOCACION), "IdListaValor", "Valor");
             
-        //    Convenio vista = new Convenio();
+            DataTable dtDepartamento = lnGeneral.Home_Departamento(Constantes.IDLISTA_Departamento);
+            List<SelectListItem> li = new List<SelectListItem>();
+            for (int i = 0; i <= dtDepartamento.Rows.Count - 1; i++)
+            {
+                string nombre = dtDepartamento.Rows[i]["Valor"].ToString();
+                string valor = dtDepartamento.Rows[i]["IdListaValor"].ToString();
+                SelectListItem item = new SelectListItem() { Text = nombre, Value = valor };
 
-        //    DataTable dtResultado = lnUtp.Utp_BuscarDatosAlumno(idAlumno);
+                li.Add(item);
+            }
+            ViewData["Departamento"] = li;
 
-        //    if (dtResultado.Rows.Count > 0)
-        //    {
-        //        vista.IdAlumno = Convert.ToInt32(dtResultado.Rows[0]["IdAlumno"]);
-        //        vista.Carrera = dtResultado.Rows[0]["Carrera"].ToString();
-        //        vista.Ciclo = Convert.ToInt32(dtResultado.Rows[0]["Ciclo"]);
-        //        vista.TelefonoFijoCasa = dtResultado.Rows[0]["TelefonoFijoCasa"].ToString();
-        //        vista.TelefonoCelular = dtResultado.Rows[0]["TelefonoCelular"].ToString();
 
-        //    }
 
-        //    return Json(vista, JsonRequestBehavior.AllowGet);
+            return PartialView("_EmpresaNuevaModal");
+        }
+        [HttpPost]
+        public ActionResult _EmpresaNuevaModal(VistaRegistroEmpresa empresa)
+        {
+            LNUsuario lnUsuario = new LNUsuario();
+            StringBuilder mensajeDeError = new StringBuilder();
+            if (lnUsuario.ValidarExistenciaEmpresa(empresa.PaisIdListaValor, empresa.IdentificadorTributario))
+            {
+                mensajeDeError.Append("La Empresa ya se encuentra registrada<br />");
+            }
+            if (mensajeDeError.ToString() == "")
+            {
+                LNEmpresa lnEmpresa = new LNEmpresa();
+                //Empresa
+                TicketUTP ticket = (TicketUTP)Session["TicketUTP"];
+                empresa.CreadoPor = ticket.Usuario;
+                
+                empresa.EstadoIdListaValor = "EMPRNO"; //Estado de la empresa No Activa.
+                //Ubicación
+                empresa.EstadoLocacionIdListaValor = "LOSTNO"; //Estado NO ACTIVA. Se debe activar al momento que UTP active la cuenta. 
 
-        //}
 
+                if (empresa.PaisIdListaValor == "PAIPER")
+                {
+                    empresa.NombreLocacion = empresa.DireccionLocacion + ", " + empresa.TextDistrito + ", " + empresa.TextoCiudad + ", " + empresa.TextoDepartamento;
+
+                }
+                else
+                {
+                    empresa.NombreLocacion = empresa.DireccionLocacion + ", " + empresa.DireccionDistritoLocacion + ", " + empresa.DireccionCiudadLocacion + ", " + empresa.DireccionDepartamentoLocacion;
+                }
+
+                lnEmpresa.Insertar(empresa);
+
+
+                
+
+                //Si el registro fue exitoso redireccionar a página de resultado.
+                TempData["GuardaRegistroExitoso"] = "La Empresa <strong>" + empresa.NombreComercial
+                + "</strong>se ha registrado con éxito. ";
+                //Aquí debería enviarse un correo
+                //return PartialView();
+            }
+            else
+            {
+                var errors = ModelState.Select(x => x.Value.Errors)
+                           .Where(y => y.Count > 0)
+                           .ToList();
+                //Variable temporal para poner el break
+                int a = 0;
+            }
+            LNGeneral lnGeneral = new LNGeneral();
+            ViewBag.PaisIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_PAIS), "IdListaValor", "Valor", empresa.PaisIdListaValor);
+            ViewBag.SectorEmpresarial1IdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_SECTOR_EMPRESARIAL), "IdListaValor", "Valor", empresa.SectorEmpresarial1IdListaValor);
+            ViewBag.TipoLocacionIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_LOCACION), "IdListaValor", "Valor", empresa.TipoLocacionIdListaValor);
+            ViewBag.TipoDocumentoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_DOCUMENTO), "IdListaValor", "Valor", empresa.TipoDocumentoIdListaValor);
+
+
+            ViewBag.DireccionDepartamentoLocacion = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_Departamento), "IdListaValor", "Valor", empresa.DireccionDepartamentoLocacion);
+
+
+            ViewBag.MensajeDeError = mensajeDeError;
+            return RedirectToAction("Empresas");
+        }
 
     }
 }

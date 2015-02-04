@@ -1,47 +1,70 @@
-﻿@model  IEnumerable <UTPPrototipo.Models.ViewModels.UTP.AlumnoUtp_obtenerInformacionAdicional>
+﻿@model  IEnumerable <UTP.PortalEmpleabilidad.Modelo.AlumnoInformacionAdicional>
 
 <h6>Información Adicional</h6>
 <div class="row grilla1-cabecera color-paleta3">
-    <div class="col-sm-2">
+    <div class="col-sm-1">
         Tipo
     </div>
     <div class="col-sm-2">
         Conocimiento
     </div>
-    <div class="col-sm-2">
+    <div class="col-sm-1">
         Nivel
     </div>
     <div class="col-sm-1">
-        Inicio
+        Desde-Hasta
     </div>
     <div class="col-sm-1">
-        Fin
+        Lugar
     </div>
     <div class="col-sm-2">
+        Institución
+    </div>
+    <div class="col-sm-1">
         Experiencia
+    </div>
+    <div class="col-sm-1">
+        Estado
+    </div>
+    <div class="col-sm-1">
+        Creado
+    </div>
+    <div class="col-sm-1">
+        Modificado
     </div>
 </div>
 @foreach (var item in @Model)
 { 
 <div class="row grilla1-linea">
-    <div class="col-sm-2">
-       
-        @item.Tipo
+    <div class="col-sm-1">
+        @item.DesTipoConocimiento
     </div>
     <div class="col-sm-2">
        @item.Conocimiento
     </div>
-    <div class="col-sm-2">
-        @item.Nivel
+    <div class="col-sm-1">
+        @item.DesNivelConocimiento
     </div>
     <div class="col-sm-1">
-        @item.FechaInicio
+        @item.FechaConocimientoDesdeMes/@item.FechaConocimientoDesdeAno - @item.FechaConocimientoHastaMes/@item.FechaConocimientoHastaAno
     </div>
     <div class="col-sm-1">
-       @item.FechaFin 
+       @item.Ciudad - @item.NomPais 
     </div>
     <div class="col-sm-2">
-       @item.AñosExperiencia
+       @item.InstituciónDeEstudio
+    </div>
+    <div class="col-sm-1">
+        @item.AñosExperiencia
+    </div>
+    <div class="col-sm-1">
+        @item.Estado
+    </div>
+    <div class="col-sm-1">
+        @item.CreadoPor @item.FechaCreacion
+    </div>
+    <div class="col-sm-1">
+        @item.ModificadoPor @item.FechaModificacion
     </div>
 </div>
 }

@@ -103,31 +103,32 @@ namespace UTP.PortalEmpleabilidad.Datos
                     int idEmpresaLocacion = 0;
                     if (resultadoLocacion != null) idEmpresaLocacion = Convert.ToInt32(resultadoLocacion);
 
-                    //Usuario:
-                    cmd.Parameters.Clear();
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "EmpresaUsuario_Insertar";
+                    if (empresa.CuentaUsuario != "" && empresa.CuentaUsuario != null) { 
+                        //Usuario:
+                        cmd.Parameters.Clear();
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.CommandText = "EmpresaUsuario_Insertar";
 
-                    //Parámetros:
-                    cmd.Parameters.Add(new SqlParameter("@IdEmpresa", idEmpresa));
-                    cmd.Parameters.Add(new SqlParameter("@Usuario", empresa.CuentaUsuario));
-                    cmd.Parameters.Add(new SqlParameter("@Nombres", empresa.NombresUsuario));
-                    cmd.Parameters.Add(new SqlParameter("@Apellidos", empresa.ApellidosUsuario));
-                    cmd.Parameters.Add(new SqlParameter("@Sexo", DBNull.Value));
-                    cmd.Parameters.Add(new SqlParameter("@TipoDocumento", empresa.TipoDocumentoIdListaValor));
-                    cmd.Parameters.Add(new SqlParameter("@NumeroDocumento", empresa.NumeroDocumento));
-                    cmd.Parameters.Add(new SqlParameter("@IdEmpresaLocacion", idEmpresaLocacion));  //IdEmpresaLocacion creado
-                    cmd.Parameters.Add(new SqlParameter("@CorreoElectronico", empresa.EmailUsuario));
-                    cmd.Parameters.Add(new SqlParameter("@TelefonoFijo", DBNull.Value));
-                    cmd.Parameters.Add(new SqlParameter("@TelefonoAnexo", DBNull.Value));
-                    cmd.Parameters.Add(new SqlParameter("@TelefonoCelular", empresa.CelularUsuario));
-                    cmd.Parameters.Add(new SqlParameter("@Rol", empresa.RolIdListaValor));
-                    cmd.Parameters.Add(new SqlParameter("@EstadoUsuario", empresa.EstadoUsuarioIdListaValor));
-                    cmd.Parameters.Add(new SqlParameter("@Contrasena", empresa.Contrasena));
-                    cmd.Parameters.Add(new SqlParameter("@CreadoPor", empresa.CreadoPor));
+                        //Parámetros:
+                        cmd.Parameters.Add(new SqlParameter("@IdEmpresa", idEmpresa));
+                        cmd.Parameters.Add(new SqlParameter("@Usuario", empresa.CuentaUsuario));
+                        cmd.Parameters.Add(new SqlParameter("@Nombres", empresa.NombresUsuario));
+                        cmd.Parameters.Add(new SqlParameter("@Apellidos", empresa.ApellidosUsuario));
+                        cmd.Parameters.Add(new SqlParameter("@Sexo", DBNull.Value));
+                        cmd.Parameters.Add(new SqlParameter("@TipoDocumento", empresa.TipoDocumentoIdListaValor));
+                        cmd.Parameters.Add(new SqlParameter("@NumeroDocumento", empresa.NumeroDocumento));
+                        cmd.Parameters.Add(new SqlParameter("@IdEmpresaLocacion", idEmpresaLocacion));  //IdEmpresaLocacion creado
+                        cmd.Parameters.Add(new SqlParameter("@CorreoElectronico", empresa.EmailUsuario));
+                        cmd.Parameters.Add(new SqlParameter("@TelefonoFijo", DBNull.Value));
+                        cmd.Parameters.Add(new SqlParameter("@TelefonoAnexo", DBNull.Value));
+                        cmd.Parameters.Add(new SqlParameter("@TelefonoCelular", empresa.CelularUsuario));
+                        cmd.Parameters.Add(new SqlParameter("@Rol", empresa.RolIdListaValor));
+                        cmd.Parameters.Add(new SqlParameter("@EstadoUsuario", empresa.EstadoUsuarioIdListaValor));
+                        cmd.Parameters.Add(new SqlParameter("@Contrasena", empresa.Contrasena));
+                        cmd.Parameters.Add(new SqlParameter("@CreadoPor", empresa.CreadoPor));
 
-                    cmd.ExecuteNonQuery();
-
+                        cmd.ExecuteNonQuery();
+                    }
                     transaccion.Commit();
 
                     conexion.Close();
