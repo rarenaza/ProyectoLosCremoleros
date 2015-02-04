@@ -83,17 +83,21 @@
                                 </div>
                             </div>
                             <div class="col-sm-4">
-                                @*<div class="input-group fuente-pequeña">
-                                        <span class="input-group-addon">RUC</span>
-                                        <input type="text" class="form-control" placeholder="Identificador Tributario de la empresa">
-                                        @Html.TextBoxFor(model => model.RUC, new { @class = "form-control", @placeholder = "RUC" })
-                                    </div>*@
+                          
+                                <div class="input-group">
+                                    <span class="input-group-addon">Ruc</span>
+                                    @Html.TextBoxFor(model => model.RUC, new { @class = "form-control", @placeholder = "Ruc de la Empresa" })
+                                </div>
                                 <div class="input-group fuente-pequeña">
 
                                     <span class="input-group-addon">Sector</span>
 
                                     @Html.DropDownListFor(model => model.IdSector, new SelectList(ViewBag.ListaSector, "Value", "Text"), "- Seleccionar -", new { @class = "form-control" })
 
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-addon">Ciudad<br /></span>
+                                    @Html.TextBoxFor(model => model.Ciudad, new { @class = "form-control", @placeholder = "Ciudad de la Empresa" })
                                 </div>
 
                                 @*<span class="input-group-addon">Sector</span>
@@ -187,6 +191,9 @@
             IdEstadoEmpresa: $('#IdEstadoEmpresa').val(),
             IdSector: $('#IdSector').val(),
             RazonSocial: $('#RazonSocial').val(),
+            RUC: $('#RUC').val(),
+            Ciudad: $('#Ciudad').val(),
+            
             nroPaginaActual: 1,
 
         };
@@ -236,6 +243,8 @@
             IdEstadoEmpresa: $('#IdEstadoEmpresa').val(),
             IdSector: $('#IdSector').val(),
             RazonSocial: $('#RazonSocial').val(),
+            RUC: $('#RUC').val(),
+            Ciudad: $('#Ciudad').val(),
             nroPaginaActual: nroPagina,
 
         };

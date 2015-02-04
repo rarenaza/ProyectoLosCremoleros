@@ -156,7 +156,7 @@ namespace UTP.PortalEmpleabilidad.Datos
         }
 
         //public DataTable Empresa_BusquedaAvanzada(VistaEmpresListarOfertas entidad, int nroPaginaActual, int filasPorPagina)
-        public DataTable Empresa_BusquedaAvanzada(string NombreComercial, string IdEstadoEmpresa, string IdSector, string RazonSocial, int nroPaginaActual, int filasPorPagina)
+        public DataTable Empresa_BusquedaAvanzada(string NombreComercial, string IdEstadoEmpresa, string IdSector, string RazonSocial, string IdentificadorTributario,string Ciudad, int nroPaginaActual, int filasPorPagina)
         {
 
             ADConexion cnn = new ADConexion();
@@ -168,6 +168,8 @@ namespace UTP.PortalEmpleabilidad.Datos
             cmd.Parameters.Add(new SqlParameter("@Valor", IdEstadoEmpresa));
             cmd.Parameters.Add(new SqlParameter("@Sector", IdSector));
             cmd.Parameters.Add(new SqlParameter("@Razon", RazonSocial));
+            cmd.Parameters.Add(new SqlParameter("@IdentificadorTributario", IdentificadorTributario));
+            cmd.Parameters.Add(new SqlParameter("@Ciudad", Ciudad));
             //Paginación.
             cmd.Parameters.Add(new SqlParameter("@NroPaginaActual", nroPaginaActual));
             cmd.Parameters.Add(new SqlParameter("@FilasPorPagina", filasPorPagina));

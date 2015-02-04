@@ -223,6 +223,8 @@ namespace UTPPrototipo.Controllers
                                                                             entidad.IdEstadoEmpresa == null ? "" : entidad.IdEstadoEmpresa,
                                                                             entidad.IdSector == null ? "" : entidad.IdSector,
                                                                             entidad.RazonSocial == null ? "" : entidad.RazonSocial,
+                                                                            entidad.RUC == null ? "" : entidad.RUC,
+                                                                            entidad.Ciudad == null ? "" : entidad.Ciudad,
                                                                             entidad.nroPaginaActual,
                                                                             Constantes.FILAS_POR_PAGINA);
 
