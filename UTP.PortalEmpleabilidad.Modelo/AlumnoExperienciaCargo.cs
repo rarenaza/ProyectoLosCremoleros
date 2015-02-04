@@ -8,6 +8,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
 {
     public class AlumnoExperienciaCargo
     {
+        public int IdAlumno { get; set; }
         public int IdExperiencia { get; set; }
         public int IdExperienciaCargo { get; set; }
         public string NombreComercial { get; set; }
@@ -36,6 +37,9 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string SectorEmpresarial3 { get; set; }
         public string Pais { get; set; }
         public string IconoTipoCargo { get; set; }
-
+        public string Estado { get; set; }
+        public DateTime FechaCreacion { get; set; }
+        public string ModificadoPor { get; set; }
+        public DateTime FechaModificacion { get; set; }
     }
 }

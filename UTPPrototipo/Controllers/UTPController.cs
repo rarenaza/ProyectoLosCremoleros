@@ -2428,21 +2428,37 @@ namespace UTPPrototipo.Controllers
 
         public ActionResult AlumnoUtp_obtenerExperiencia(int? Id)
         {
-            List<VistaAlumnoUtp_obtenerExperiencia> lista = new List<VistaAlumnoUtp_obtenerExperiencia>();
+            List<AlumnoExperienciaCargo> lista = new List<AlumnoExperienciaCargo>();
             DataTable dtResultado = lnutpalumno.AlumnoUtp_obtenerExperiencia(Convert.ToInt32(Id));
 
 
             for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
             {
-                VistaAlumnoUtp_obtenerExperiencia alumno = new VistaAlumnoUtp_obtenerExperiencia();
-                alumno.IdAlumno         = Convert.ToInt32(dtResultado.Rows[i]["IdAlumno"]);
-                alumno.NombreComercial  = Convert.ToString(dtResultado.Rows[i]["NombreComercial"]);
-                alumno.Sector           = Convert.ToString(dtResultado.Rows[i]["Sector"]);
-                alumno.NombreCargo      = Convert.ToString(dtResultado.Rows[i]["NombreCargo"]);
-                alumno.FechaInicio      = Convert.ToString(dtResultado.Rows[i]["FechaInicio"]);
-                alumno.Fechafin         = Convert.ToString(dtResultado.Rows[i]["Fechafin"]);
-                alumno.TipoCargo        = Convert.ToString(dtResultado.Rows[i]["TipoCargo"]);
-                lista.Add(alumno);
+                AlumnoExperienciaCargo alumnoExperiencia = new AlumnoExperienciaCargo();
+                alumnoExperiencia.IdExperienciaCargo = Convert.ToInt32(dtResultado.Rows[i]["IdExperienciaCargo"]);
+                alumnoExperiencia.IdAlumno = Convert.ToInt32(dtResultado.Rows[i]["IdAlumno"]);
+                alumnoExperiencia.NombreComercial = Convert.ToString(dtResultado.Rows[i]["NombreComercial"]);
+                alumnoExperiencia.IdEmpresa = Convert.ToInt32(dtResultado.Rows[i]["IdEmpresa"]);
+                alumnoExperiencia.SectorEmpresarial = Convert.ToString(dtResultado.Rows[i]["SectorEmpresarialValor"]);
+                alumnoExperiencia.SectorEmpresarial2 = Convert.ToString(dtResultado.Rows[i]["SectorEmpresarialValor2"]);
+                alumnoExperiencia.SectorEmpresarial3 = Convert.ToString(dtResultado.Rows[i]["SectorEmpresarialValor3"]);
+                alumnoExperiencia.Pais = Convert.ToString(dtResultado.Rows[i]["Pais"] == System.DBNull.Value ? "" : dtResultado.Rows[i]["Pais"]);
+                alumnoExperiencia.Ciudad = Convert.ToString(dtResultado.Rows[i]["Ciudad"] == System.DBNull.Value ? "" : dtResultado.Rows[i]["Ciudad"]);
+                alumnoExperiencia.NombreCargo = Convert.ToString(dtResultado.Rows[i]["NombreCargo"]);
+                alumnoExperiencia.FechaInicioCargoMes = Convert.ToInt32(dtResultado.Rows[i]["FechaInicioCargoMes"]);
+                alumnoExperiencia.FechaInicioCargoAno = Convert.ToInt32(dtResultado.Rows[i]["FechaInicioCargoAno"]);
+                alumnoExperiencia.FechaFinCargoMes = Convert.ToInt32(dtResultado.Rows[i]["FechaFinCargoMes"] == System.DBNull.Value ? null : dtResultado.Rows[i]["FechaFinCargoMes"]);
+                alumnoExperiencia.FechaFinCargoAno = Convert.ToInt32(dtResultado.Rows[i]["FechaFinCargoAno"] == System.DBNull.Value ? null : dtResultado.Rows[i]["FechaFinCargoAno"]);
+                alumnoExperiencia.TipoCargo = Convert.ToString(dtResultado.Rows[i]["TipoCargoValor"]);
+                alumnoExperiencia.DescripcionCargo = Convert.ToString(dtResultado.Rows[i]["DescripcionCargo"] == System.DBNull.Value ? "" : dtResultado.Rows[i]["DescripcionCargo"]);
+                alumnoExperiencia.Estado = Convert.ToString(dtResultado.Rows[i]["EstadoValor"] == System.DBNull.Value ? "" : dtResultado.Rows[i]["EstadoValor"]);
+                alumnoExperiencia.CreadoPor = Convert.ToString(dtResultado.Rows[i]["CreadoPor"]);
+                alumnoExperiencia.FechaCreacion = Convert.ToDateTime(dtResultado.Rows[i]["FechaCreacion"]);
+                alumnoExperiencia.ModificadoPor = Convert.ToString(dtResultado.Rows[i]["ModificadoPor"] == System.DBNull.Value ? "" : dtResultado.Rows[i]["ModificadoPor"]);
+                alumnoExperiencia.FechaModificacion = Convert.ToDateTime(dtResultado.Rows[i]["FechaModificacion"] == System.DBNull.Value ? null : dtResultado.Rows[i]["FechaModificacion"]);
+                
+
+                lista.Add(alumnoExperiencia);
             }
 
             return PartialView("AlumnoUtp_obtenerExperiencia", lista);

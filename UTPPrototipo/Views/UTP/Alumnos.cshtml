@@ -75,7 +75,7 @@
                     <div class="row">
                         <div class="col-sm-3">
                             <div class="input-group">
-                                <span class="input-group-addon">Tipo Estudio</span>
+                                <span class="input-group-addon">Tipo<br />Estudio</span>
                                 @Html.DropDownListFor(model => model.TipoEstudio, new SelectList(ViewBag.ListaTipoEstudio, "Value", "Text"), "- Seleccionar -", new { @class = "form-control", @Id = "TipoEstudio" })
                                 @*@Html.DropDownListFor(model => model.IdPeriodoRegistro, new SelectList(ViewBag.PeridoRegistro, "Value", "Text"), "- Seleccionar -", new { @class = "form-control", @Id = "IdPeriodoRegistro" })*@
 
@@ -102,34 +102,27 @@
                                 <span class="input-group-addon">Sexo</span>
                                 @Html.DropDownListFor(model => model.Sexo, new SelectList(ViewBag.ListaSexo, "Value", "Text"), "- Seleccionar -", new { @class = "form-control", @Id = "Sexo" })
                                 @*@Html.DropDownListFor(model => model.IdPeriodoRegistro, new SelectList(ViewBag.PeridoRegistro, "Value", "Text"), "- Seleccionar -", new { @class = "form-control", @Id = "IdPeriodoRegistro" })*@
-
                             </div>
-                      
                             <div class="input-group">
                                 <span class="input-group-addon">Distrito</span>
                                 @Html.TextBoxFor(model => model.Distrito, new { @class = "form-control", @placeholder = "Distrito Del Alumno" })
                             </div>
-                    
-
-                 
-                            <!--Dejabajo de carrera 2-->
-
                         </div>
                         <div class="col-sm-3">
                             <div class="input-group">
-                                <span class="input-group-addon">Sector Empresarial</span>
+                                <span class="input-group-addon">Sector<br />Empresa</span>
                                 @Html.DropDownListFor(model => model.SectorEmpresarial, new SelectList(ViewBag.ListaSectorEmpresarial, "Value", "Text"), "- Seleccionar -", new { @class = "form-control", @Id = "SectorEmpresarial" })
                                 @*@Html.DropDownListFor(model => model.IdPeriodoRegistro, new SelectList(ViewBag.PeridoRegistro, "Value", "Text"), "- Seleccionar -", new { @class = "form-control", @Id = "IdPeriodoRegistro" })*@
 
                             </div>
                             <div class="input-group">
-                                <span class="input-group-addon">Info.Adicional</span>
+                                <span class="input-group-addon">Info.<br />Adicional</span>
                                 @Html.DropDownListFor(model => model.InformacionAdicional, new SelectList(ViewBag.ListaInformacionAdicional, "Value", "Text"), "- Seleccionar -", new { @class = "form-control", @Id = "TipoConocimientoIdListaValor" })
                                 @*@Html.DropDownListFor(model => model.IdPeriodoRegistro, new SelectList(ViewBag.PeridoRegistro, "Value", "Text"), "- Seleccionar -", new { @class = "form-control", @Id = "IdPeriodoRegistro" })*@
 
                             </div>
                             <div class="input-group">
-                                <span class="input-group-addon">Conocimiento</span>
+                                <span class="input-group-addon">Conoci-<br />miento</span>
                                 @Html.TextBoxFor(model => model.Conocimientos, new { @class = "form-control fuente-pequeña", @placeholder = "Conocmiento específico: ej. SAP", @Id = "Conocimientos" })
                                 @*@Html.DropDownListFor(model => model.IdPeriodoRegistro, new SelectList(ViewBag.PeridoRegistro, "Value", "Text"), "- Seleccionar -", new { @class = "form-control", @Id = "IdPeriodoRegistro" })*@
 
@@ -144,7 +137,7 @@
 
                             <!--Dejabajo de Tipo habiA 1 DIV CLAS INPUT-->
                             <div class="input-group">
-                                <span class="input-group-addon">Estado Estudio</span>
+                                <span class="input-group-addon">Estado<br />Estudio</span>
                                 @Html.DropDownListFor(model => model.EstadoEstudio, new SelectList(ViewBag.ListaEstadoEstudio, "Value", "Text"), "- Seleccionar -", new { @class = "form-control", @Id = "EstadoEstudio" })
                                 @*@Html.DropDownListFor(model => model.IdPeriodoRegistro, new SelectList(ViewBag.PeridoRegistro, "Value", "Text"), "- Seleccionar -", new { @class = "form-control", @Id = "IdPeriodoRegistro" })*@
 

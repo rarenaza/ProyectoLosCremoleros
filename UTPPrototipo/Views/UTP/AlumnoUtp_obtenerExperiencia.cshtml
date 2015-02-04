@@ -1,47 +1,83 @@
-﻿@model IEnumerable<UTPPrototipo.Models.ViewModels.UTP.VistaAlumnoUtp_obtenerExperiencia>
+﻿@model IEnumerable<UTP.PortalEmpleabilidad.Modelo.AlumnoExperienciaCargo>
 
 
 <h6>Experiencia</h6>
 <div class="row grilla1-cabecera color-paleta3">
-    <div class="col-sm-2">
+    <div class="col-sm-1">
         Empresa
     </div>
     <div class="col-sm-2">
         Sector
     </div>
-    <div class="col-sm-2">
+    <div class="col-sm-1">
         Cargo
     </div>
     <div class="col-sm-1">
-        Inicio
+        Inicio-Fin
     </div>
     <div class="col-sm-1">
-        Fin
+        Tipo Cargo
     </div>
-    <div class="col-sm-2">
-        Tipo
+    <div class="col-sm-3">
+        Descripción
+    </div>
+    <div class="col-sm-1">
+        Estado
+    </div>
+    <div class="col-sm-1">
+        Creado
+    </div>
+    <div class="col-sm-1">
+        Modificado
     </div>
 </div>
 @foreach (var item in @Model)
 {
 <div class="row grilla1-linea">
-    <div class="col-sm-2">
-        @item.NombreComercial
+    <div class="col-sm-1">
+        @Html.ActionLink(item.NombreComercial, "VerDetalleEmpresa", new { id = item.IdEmpresa }) (@item.Pais-@item.Ciudad)
     </div>
     <div class="col-sm-2">
-        @item.Sector
-    </div>
-    <div class="col-sm-2">
-     @item.NombreCargo
+        @item.SectorEmpresarial, @item.SectorEmpresarial2, @item.SectorEmpresarial3
     </div>
     <div class="col-sm-1">
-       @item.FechaInicio
+        @item.NombreCargo
     </div>
     <div class="col-sm-1">
-       @item.Fechafin
+       @item.FechaInicioCargoMes/@item.FechaInicioCargoAno - 
+        @if (item.FechaFinCargoAno == null || item.FechaFinCargoAno == 0)
+        {
+            <span>Act</span>
+        }
+        else
+        {
+            <span>
+                @(item.FechaFinCargoMes)/@(item.FechaFinCargoAno)
+            </span>
+        }
     </div>
-    <div class="col-sm-2">
-        @item.TipoCargo
+    <div class="col-sm-1">
+       @item.TipoCargo
+    </div>
+    <div class="col-sm-3">
+        <a data-toggle="collapse" href="#@item.IdExperienciaCargo" aria-expanded="false" aria-controls="collapseExample">
+            Ver Descripción
+        </a> 
+        <div class="collapse" id="@item.IdExperienciaCargo">
+            <div class="well">
+                @item.DescripcionCargo
+            </div>
+        </div>  
+         
+    </div>
+    <div class="col-sm-1">
+        @item.Estado
+    </div>
+    <div class="col-sm-1">
+        @item.CreadoPor @item.FechaCreacion
+    </div>
+    <div class="col-sm-1">
+        @item.ModificadoPor @item.FechaModificacion
     </div>
 </div>
 }
