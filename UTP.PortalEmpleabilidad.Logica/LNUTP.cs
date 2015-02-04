@@ -130,12 +130,12 @@ namespace UTP.PortalEmpleabilidad.Logica
 
             return listaEjemplo;
         }
-        public List<EmpresaListaEmpresa> EmpresaBusquedaAvanzada(string NombreComercial, string IdEstadoEmpresa, string IdSector, string RazonSocial, int nroPaginaActual, int filasPorPagina)
+        public List<EmpresaListaEmpresa> EmpresaBusquedaAvanzada(string NombreComercial, string IdEstadoEmpresa, string IdSector, string RazonSocial, string IdentificadorTributario,string Ciudad, int nroPaginaActual, int filasPorPagina)
         {
             List<EmpresaListaEmpresa> listaEjemplo = new List<EmpresaListaEmpresa>();
 
 
-            DataTable dtResultado = adUtp.Empresa_BusquedaAvanzada(NombreComercial, IdEstadoEmpresa, IdSector, RazonSocial, nroPaginaActual, filasPorPagina);
+            DataTable dtResultado = adUtp.Empresa_BusquedaAvanzada(NombreComercial, IdEstadoEmpresa, IdSector, RazonSocial, IdentificadorTributario,Ciudad, nroPaginaActual, filasPorPagina);
 
             for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
             {
