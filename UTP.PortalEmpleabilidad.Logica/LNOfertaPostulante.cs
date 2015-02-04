@@ -70,7 +70,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 postulacion.IdOferta = Funciones.ToInt(dtResultado.Rows[i]["IdOferta"]);
                 postulacion.Mensajes = Funciones.ToInt(dtResultado.Rows[i]["Mensajes"]);
                 postulacion.IdEmpresa = Funciones.ToInt(dtResultado.Rows[i]["IdEmpresa"]);
-                postulacion.MaxPagina = Funciones.ToInt(dtResultado.Rows[i]["MaxPagina"]);
+                postulacion.MaxPagina = Funciones.ToInt(dtResultado.Rows[i]["MaxPagina"]);                
 
                 listapostulacion.Add(postulacion);
             }

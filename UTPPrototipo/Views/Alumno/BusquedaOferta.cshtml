@@ -194,6 +194,45 @@
         })
     }
 
+    function buscarPaginacion (nroPagina) {
+        //debugger;
+        $("#TipoBusqueda").attr('value', 1);
+        var oferta = {
+            PalabraClave: $('#PalabraClave').val(),
+            IdAlumno: $('#IdAlumno').val(),
+            PaginaActual: nroPagina,
+            NumeroRegistros: parseInt($("#PagOfertas").val())
+
+        };
+        Cargar("resultadobusqueda", '@Url.Action("BusquedaSimpleOferta", "Alumno")', oferta);
+        //Cargar("resultadobusqueda", "/Alumno/BusquedaSimpleOferta", oferta);
+        return false;
+    }
+
+    function buscarPaginacionAvanzada(nroPagina) {
+        $("#TipoBusqueda").attr('value', 2);
+        var oferta = {
+            IdPeriodoPublicacion: $('#IdPeriodoPublicacion').val(),
+            IdEstudio: $('#IdEstudio').val(),
+            IdEstadoEstudio: $('#IdEstadoEstudio').val(),
+            IdSectorEmpresarial: $('#IdSectorEmpresarial').val(),
+            AreaEmpresa: $('#AreaEmpresa').val(),
+            AniosExperiencia: $('#AniosExperiencia').val(),
+            IdTipoTrabajo: $('#IdTipoTrabajo').val(),
+            IdContrato: $('#IdContrato').val(),
+            IdTipoCargo: $('#IdTipoCargo').val(),
+            Sueldo: $('#Sueldo').val(),
+            Ubicacion: $('#Ubicacion').val(),
+            IncluirMensaje: $('#IncluirMensaje:checked').val(),
+            IdAlumno: $('#IdAlumno').val(),
+            PaginaActual: nroPagina,
+            NumeroRegistros: parseInt($("#PagOfertas").val())
+
+        };
+        Cargar("resultadobusqueda", '@Url.Action("BusquedaAvanzadaOferta", "Alumno")', oferta);
+        //Cargar("resultadobusqueda", "/Alumno/BusquedaAvanzadaOferta", oferta);
+        return false;
+    }
 
 </script>
 

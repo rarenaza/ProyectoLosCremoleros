@@ -1138,6 +1138,7 @@ namespace UTPPrototipo.Controllers
             if (residuo > 0) paginacion.TotalPaginas += 1;
 
             ViewBag.Paginacion = paginacion;
+            ViewBag.TipoBusqueda = "Simple";
 
             //Se devuelve una vista parcial con los resultados.
             return PartialView("_ListaOfertas",lista);

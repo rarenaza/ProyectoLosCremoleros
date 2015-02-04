@@ -88,7 +88,7 @@ namespace UTPPrototipo.Controllers
         /// <param name="pantalla"></param>
         /// <returns></returns>
         [HttpGet]
-        public PartialViewResult _Mensajes(string pantalla, int idOferta = 0, string usuarioAlumno = "", int idEvento = 0, int idEmpresa = 0)
+        public PartialViewResult _Mensajes(string pantalla, int idOferta = 0, string usuarioAlumno = "", int idEvento = 0, int idEmpresa = 0, int nroPaginaActual = 1)
         {
             ViewBag.Pantalla = pantalla;
             ViewBag.IdOferta = idOferta;
@@ -103,7 +103,7 @@ namespace UTPPrototipo.Controllers
             
             List<Mensaje> lista = new List<Mensaje>();
 
-            lista = ObtenerListaMensajes(pantalla); 
+            lista = ObtenerListaMensajes(pantalla, nroPaginaActual); 
             
             return PartialView("_Mensajes", lista.OrderByDescending(m => m.FechaEnvio));
         }
@@ -262,7 +262,7 @@ namespace UTPPrototipo.Controllers
         /// </summary>
         /// <param name="pantalla"></param>
         /// <returns></returns>
-        private List<Mensaje> ObtenerListaMensajes(string pantalla)
+        private List<Mensaje> ObtenerListaMensajes(string pantalla, int nroPaginaActual = 1)
         {
             List<Mensaje> lista = new List<Mensaje>();
             
@@ -321,8 +321,23 @@ namespace UTPPrototipo.Controllers
                     ViewBag.usuarioActual = ticketEmpresa.Usuario;
                     break;
 
-            }            
-            return lista;
+            }
+
+            int cantidadTotal = lista.Count();
+
+            //Esto van en todas las paginas 
+            Paginacion paginacion = new Paginacion();
+            paginacion.NroPaginaActual = nroPaginaActual;
+            paginacion.CantidadTotalResultados = cantidadTotal;
+            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA;
+            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA;
+            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA;
+            if (residuo > 0) paginacion.TotalPaginas += 1;
+
+            ViewBag.Paginacion = paginacion;
+            ViewBag.TipoBusqueda = "Simple";
+
+            return lista.OrderByDescending(m => m.FechaEnvio).Skip((nroPaginaActual - 1) * Constantes.FILAS_POR_PAGINA).Take(Constantes.FILAS_POR_PAGINA).ToList();
         }
        
         [HttpGet]

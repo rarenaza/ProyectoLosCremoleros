@@ -85,7 +85,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 vista.Estudios = dtResultado.Rows[i]["Estudio"].ToString();
                 vista.ValorEstadoEstudio = dtResultado.Rows[i]["ValorEstadoEstudio"].ToString();
                 vista.ValorSectorEmpresarial = dtResultado.Rows[i]["ValorSectorEmpresarial"].ToString();
-                vista.TotalMesesExperiencia = Convert.ToInt32(dtResultado.Rows[i]["TotalMesesExperiencia"]);
+                vista.TotalMesesExperiencia = Convert.ToInt32(dtResultado.Rows[i]["TotalMesesExperiencia"] == DBNull.Value ? 0 : dtResultado.Rows[i]["TotalMesesExperiencia"]);
                 vista.CantidadTotal = Convert.ToInt32(dtResultado.Rows[i]["CantidadTotal"]);
 
                 listaEjemplo.Add(vista);
