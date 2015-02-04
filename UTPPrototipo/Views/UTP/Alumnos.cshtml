@@ -181,6 +181,7 @@
     });
 
     $('#buscar').click(function () {
+       
         var alumno = {
             PalabraClave: $('#PalabraClave').val(),
             nroPaginaActual: 1,
@@ -234,6 +235,7 @@
     }
 
     function buscarPaginacion(nroPagina) {
+        //debugger;
         var alumno = {
             PalabraClave: $('#PalabraClave').val(),
             nroPaginaActual: nroPagina,
@@ -255,7 +257,7 @@
             SectorEmpresarial: $('#SectorEmpresarial').val(),
             Conocimiento: $('#Conocimiento').val(),
             EstadoEstudio: $('#EstadoEstudio').val(),
-            nroPaginaActual: 1,
+            nroPaginaActual: nroPagina,
 
         };
         //debugger;

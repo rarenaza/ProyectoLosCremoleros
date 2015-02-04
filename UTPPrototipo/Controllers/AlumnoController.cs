@@ -98,6 +98,21 @@ namespace UTPPrototipo.Controllers
             {
                 entidad.MaxPagina = entidad.ListaPostulacionesOfertas[0].MaxPagina;
             }
+
+            //Actualización para las paginaciones, se completa el objeto Paginación.
+
+            Paginacion paginacion = new Paginacion();
+            paginacion.NroPaginaActual = entidad.PaginaActual;
+            //paginacion.CantidadTotalResultados = cantidadTotal;
+            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            paginacion.TotalPaginas = entidad.MaxPagina; //cantidadTotal / Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            //int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            //if (residuo > 0) paginacion.TotalPaginas += 1;
+
+            ViewBag.Paginacion = paginacion;
+
+            ViewBag.TipoBusqueda = "Simple";
+
             return PartialView("_ResultadoBusquedaPostulaciones", entidad);
         }
         public ActionResult DetalleEmpresa(int IdEmpresa)
@@ -350,6 +365,19 @@ namespace UTPPrototipo.Controllers
             {
                 entidad.MaxPagina = entidad.ListaOfertas[0].MaxPagina;
             }
+
+            Paginacion paginacion = new Paginacion();
+            paginacion.NroPaginaActual = entidad.PaginaActual;
+            //paginacion.CantidadTotalResultados = cantidadTotal;
+            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            paginacion.TotalPaginas = entidad.MaxPagina; // cantidadTotal / Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            //int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            //if (residuo > 0) paginacion.TotalPaginas += 1;
+
+            ViewBag.Paginacion = paginacion;
+
+            ViewBag.TipoBusqueda = "Avanzada";
+
             return PartialView("_ResultadoBusquedaOfertas", entidad);
         }
 
@@ -360,6 +388,21 @@ namespace UTPPrototipo.Controllers
             {
                 entidad.MaxPagina = entidad.ListaOfertas[0].MaxPagina;
             }
+
+            //Actualización para las paginaciones, se completa el objeto Paginación.
+            
+            Paginacion paginacion = new Paginacion();
+            paginacion.NroPaginaActual = entidad.PaginaActual;
+            //paginacion.CantidadTotalResultados = cantidadTotal;
+            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            paginacion.TotalPaginas = entidad.MaxPagina; // cantidadTotal / Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            //int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            //if (residuo > 0) paginacion.TotalPaginas += 1;
+
+            ViewBag.Paginacion = paginacion;
+
+            ViewBag.TipoBusqueda = "Simple";
+
             return PartialView("_ResultadoBusquedaOfertas", entidad);
         }
 

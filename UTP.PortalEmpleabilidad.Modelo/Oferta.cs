@@ -105,6 +105,8 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public int MaxPagina { get; set; }
 
         public int IdOfertaPostulante { get; set; }
+
+        public int TotalRegistros { get; set; }
        public Oferta() {
 
            TipoCargo = new ListaValor();

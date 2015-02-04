@@ -400,8 +400,8 @@ namespace UTPPrototipo.Controllers
             int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA;
             if (residuo > 0) paginacion.TotalPaginas += 1;
 
-            ViewBag.Paginacion = paginacion;
-            //ViewBag.TipoPaginacion = "Simple";
+            ViewBag.Paginacion = paginacion;            
+            ViewBag.TipoBusqueda = "Simple";
             return PartialView("_ListaUTPAlumnos", lista);
             //return View(listaEjemplo);
 
@@ -437,7 +437,7 @@ namespace UTPPrototipo.Controllers
             if (residuo > 0) paginacion.TotalPaginas += 1;
 
             ViewBag.Paginacion = paginacion;
-            ViewBag.TipoPaginacion = "Avanzada";
+            ViewBag.TipoBusqueda = "Avanzada";
             return PartialView("_ListaUTPAlumnos", lista);
             //return View(listaEjemplo);
 
@@ -484,7 +484,7 @@ namespace UTPPrototipo.Controllers
             if (residuo > 0) paginacion.TotalPaginas += 1;
 
             ViewBag.Paginacion = paginacion;
-            ViewBag.TipoPaginacion = "Simple";
+            ViewBag.TipoBusqueda = "Simple";
             return PartialView("_ListaUTPOfertas", lista);
         }
 
@@ -510,7 +510,7 @@ namespace UTPPrototipo.Controllers
             if (residuo > 0) paginacion.TotalPaginas += 1;
 
             ViewBag.Paginacion = paginacion;
-            ViewBag.TipoPaginacion = "Avanzada";
+            ViewBag.TipoBusqueda = "Avanzada";
 
             return PartialView("_ListaUTPOfertas", lista);
         }

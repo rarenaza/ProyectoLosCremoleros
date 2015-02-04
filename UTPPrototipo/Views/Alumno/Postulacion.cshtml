@@ -24,7 +24,7 @@
                 IdAlumno: $('#IdAlumno').val(),
                 PalabraClave: $('#IdPalabraClave').val(),
                 PaginaActual: 1,
-                NumeroRegistros: parseInt($("#PagOfertasPostulacion").val())
+                NumeroRegistros: 10, //parseInt($("#PagOfertasPostulacion").val())
             };
             //CargarPOST("idResulBusPostulaciones", "/Alumno/BusquedaSimplePostulacionOferta", ofertapostulacion);
             CargarPOST("idResulBusPostulaciones", '@Url.Action("BusquedaSimplePostulacionOferta", "Alumno")', ofertapostulacion);
@@ -76,3 +76,19 @@
     <div class="modal-dialog" id="Modal-Nuevo-empresa">
     </div>    
 </div>
+
+<script>
+
+    //Este método es el llamado por la paginación en la lista de postulaciones del alumno.
+    function buscarPaginacion(nroPagina) {
+        var ofertapostulacion = {
+            IdAlumno: $('#IdAlumno').val(),
+            PalabraClave: $('#IdPalabraClave').val(),
+            PaginaActual: nroPagina,
+            NumeroRegistros: 10, //parseInt($("#PagOfertasPostulacion").val())
+        };
+        //CargarPOST("idResulBusPostulaciones", "/Alumno/BusquedaSimplePostulacionOferta", ofertapostulacion);
+        CargarPOST("idResulBusPostulaciones", '@Url.Action("BusquedaSimplePostulacionOferta", "Alumno")', ofertapostulacion);
+    }
+
+</script>

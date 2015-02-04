@@ -24,7 +24,7 @@ namespace UTP.PortalEmpleabilidad.Modelo.Vistas.Ofertas
         public int MaxPagina { get; set; }
         public int PaginaActual { get; set; }
         public int NumeroRegistros { get; set; }
-        public List<VistaPostulacionAlumno> ListaPostulacionesOfertas { get; set; }
+        public List<VistaPostulacionAlumno> ListaPostulacionesOfertas { get; set; }       
 
     }
 }
