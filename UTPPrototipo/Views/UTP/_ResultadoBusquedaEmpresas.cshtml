@@ -63,7 +63,10 @@
 
             <div class="col-sm-1">
                 @*<a href="../UTP/Empresa">@item.NombreComercial</a>*@
-                @Html.ActionLink(@item.NombreComercial, "VerDetalleEmpresa", new { id = item.IdEmpresa })
+                @if (@item.NombreComercial != "") 
+                { 
+                    @Html.ActionLink(@item.NombreComercial, "VerDetalleEmpresa", new { id = item.IdEmpresa })
+                }
             </div>
             <div class="col-sm-1">
                 @item.RazonSocial
