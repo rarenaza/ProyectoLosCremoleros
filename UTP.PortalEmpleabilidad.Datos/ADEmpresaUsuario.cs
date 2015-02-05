@@ -200,5 +200,31 @@ namespace UTP.PortalEmpleabilidad.Datos
 
             return cantidad;
         }
+
+        public DataTable ObtenerUsuariosParaUTP(int nroPaginActual, int filasPorPagina)
+        {
+            DataTable dtResultado = new DataTable();
+
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "EmpresaUsuario_ObtenerListaParaUTP";
+                cmd.Parameters.Add(new SqlParameter("@NroPaginaActual", nroPaginActual));
+                cmd.Parameters.Add(new SqlParameter("@FilasPorPagina", filasPorPagina));
+
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dtResultado);
+
+                conexion.Close();
+            }
+
+            return dtResultado;
+        }
     }
 }

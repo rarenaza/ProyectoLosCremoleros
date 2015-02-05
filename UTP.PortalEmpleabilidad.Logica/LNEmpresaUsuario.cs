@@ -153,5 +153,38 @@ namespace UTP.PortalEmpleabilidad.Logica
         {
             return adEmpresaUsuario.ValidarUsuario(idEmpresa, usuario, idEmpresaUsuario);
         }
+
+        public List<EmpresaUsuario> ObtenerUsuariosParaUTP(int nroPaginActual, int filasPorPagina)
+        {
+            List<EmpresaUsuario> lista = new List<EmpresaUsuario>();
+
+            DataTable dtResultado = adEmpresaUsuario.ObtenerUsuariosParaUTP(nroPaginActual, filasPorPagina);
+
+            //Usuarios>
+            foreach (DataRow usuarioBD in dtResultado.Rows)
+            {
+                EmpresaUsuario empresaUsuario = new EmpresaUsuario();
+                empresaUsuario.IdEmpresaUsuario = Convert.ToInt32(usuarioBD["IdEmpresaUsuario"]);
+                empresaUsuario.Empresa.IdEmpresa = Convert.ToInt32(usuarioBD["IdEmpresa"]); ;
+                empresaUsuario.Usuario.NombreUsuario = Convert.ToString(usuarioBD["Usuario"]);
+                empresaUsuario.Usuario.Rol.Valor = Convert.ToString(usuarioBD["UsuarioRolDescripcion"]);
+                empresaUsuario.Usuario.EstadoUsuario.Valor = Convert.ToString(usuarioBD["UsuarioEstadoDescripcion"]);
+                empresaUsuario.Nombres = Convert.ToString(usuarioBD["Nombres"]);
+                empresaUsuario.Apellidos = Convert.ToString(usuarioBD["Apellidos"]);
+                empresaUsuario.TipoDocumento.Valor = Convert.ToString(usuarioBD["TipoDocumentoDescripcion"]);
+                empresaUsuario.NumeroDocumento = Convert.ToString(usuarioBD["NumeroDocumento"]);
+                empresaUsuario.Sexo.Valor = Convert.ToString(usuarioBD["SexoDescripcion"]);
+                empresaUsuario.CorreoElectronico = Convert.ToString(usuarioBD["CorreoElectronico"]);
+                empresaUsuario.TelefonoFijo = Convert.ToString(usuarioBD["TelefonoFijo"]);
+                empresaUsuario.TelefonoCelular = Convert.ToString(usuarioBD["TelefonoCelular"]);
+                empresaUsuario.TelefonoAnexo = Convert.ToString(usuarioBD["TelefonoAnexo"]);
+
+                empresaUsuario.CantidadTotal = Convert.ToInt32(usuarioBD["CantidadTotal"]); ;
+
+                lista.Add(empresaUsuario);
+            }
+
+            return lista;
+        }
     }
 }

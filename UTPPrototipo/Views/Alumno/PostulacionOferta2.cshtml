@@ -528,6 +528,13 @@
     });
 
     $('#BotonPostularAhora').click(function () {
+
+        //Se valida que el alumno haya seleccionado un CV
+        if ($('#IdCV').val() == "")
+        {
+            alert('Debe seleccionar un CV');
+            return false;
+        }
         var ofertapostulacion = {
             IdAlumno: $('#IdAlumno').val(),
             IdOferta: $('#IdOferta').val(),

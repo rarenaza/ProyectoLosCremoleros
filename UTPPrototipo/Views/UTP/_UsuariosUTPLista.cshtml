@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<UTP.PortalEmpleabilidad.Modelo.UTPUsuario>
 
-<h6>Usuarios UTP</h6>
+@*<h6>Usuarios UTP</h6>*@
 <div class="row grilla1-cabecera color-paleta8">
     <div class="col-sm-2">Usuario</div>
     <div class="col-sm-2">Nombre</div>
@@ -15,14 +15,9 @@
 @foreach (var item in Model)
 {
     <div class="row grilla1-linea">
-        <div class="col-sm-2">@item.NombreUsuario</div>
-
-
-
-        @*<div class="col-sm-2" onclick="UsuarioUTPEditar(@item.IdUTPUsuario);">*@
+        <div class="col-sm-2">@item.NombreUsuario</div>        
             <div class="col-sm-2">
-
-                @*<a href="../UTP/usuario">@item.Nombres @item.Apellidos</a>*@
+                
                 @item.Nombres @item.Apellidos
 
             </div>
@@ -33,7 +28,7 @@
         <div class="col-sm-1">@item.TelefonoCelular</div>
         <div class="col-sm-1">@item.EstadoUsuarioDescripcion</div>
         <div class="col-sm-1" style="text-align:right;">
-            <button class="fui fa-2x color-icono-paleta1" style="font-size:30px;border-width:0px;background-color:transparent;" onclick="UsuarioUTPEditar(@item.IdUTPUsuario);">1</button>
+            <button class="fui fa-lg color-icono-paleta1" style="font-size:22px;border-width:0px;background-color:transparent;" onclick="UsuarioUTPEditar(@item.IdUTPUsuario);">1</button>
 
         </div>
 
@@ -43,6 +38,7 @@
 
 <br />
 <div class="col-sm-12" style="text-align:right;">
+    
     <button class="btn btn-default color-paleta8" onclick="UsuarioUTPCrear();">Nuevo Usuario</button>
     <!--
         data-toggle="modal" data-target="#Nuevo-usuario"

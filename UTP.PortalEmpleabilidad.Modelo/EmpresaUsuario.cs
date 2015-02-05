@@ -67,7 +67,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
 
         public string RepetirContrasena { get; set; }
 
-              
+        public int CantidadTotal { get; set; }      
 
         public EmpresaUsuario() 
         {

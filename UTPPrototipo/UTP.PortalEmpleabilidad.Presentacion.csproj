@@ -896,7 +896,7 @@
     <Content Include="Views\UTP\_VistaObtenerEstudiosAlumnos.cshtml" />
     <Content Include="Views\UTP\Usuario.cshtml" />
     <Content Include="Views\UTP\Lista.cshtml" />
-    <Content Include="Views\UTP\_UsuariosUTPLista.cshtml" />
+    <Content Include="Views\UTP\_UsuariosEmpresaLista.cshtml" />
     <Content Include="Views\UTP\_UsuariosUTPCrear.cshtml" />
     <Content Include="Views\UTP\_UsuariosUTPEditar.cshtml" />
     <Content Include="Views\UTP\ListaValor.cshtml" />
@@ -945,6 +945,9 @@
     <Content Include="Views\UTP\_ListaUtpEvento.cshtml" />
     <Content Include="Views\UTP\_ListaUTPAlumnos.cshtml" />
     <Content Include="Views\UTP\_ListaUTPContenido.cshtml" />
+    <Content Include="Views\UTP\_UsuariosUTPLista.cshtml" />
+    <Content Include="Views\UTP\_AdministrarNuevoUsuario.cshtml" />
+    <Content Include="Views\UTP\_AdministrarUsuarioEditar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

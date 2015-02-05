@@ -1,0 +1,149 @@
+﻿@model UTP.PortalEmpleabilidad.Modelo.EmpresaUsuario
+
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="NuevoUsuario">Nuevo Usuario</h4>
+    </div>
+    <div class="modal-body">
+
+        @Html.HiddenFor(m => m.IdEmpresaUsuario)
+
+        <!--Si se desea mostrar los errores en un resumen se utiliza este helper-->
+        @Html.ValidationSummary(false, "", new { @class = "alert alert-danger" })
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="input-group">
+                    <span class="input-group-addon">Nombres *</span>                   
+                    @Html.Raw(@Html.EditorFor(model => model.Nombres).ToString().Replace("text-box single-line", "form-control"))
+                    
+                </div>@Html.ValidationMessageFor(model => model.Nombres, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="input-group">
+                    <span class="input-group-addon">Apellidos *</span>                    
+                    @Html.Raw(@Html.EditorFor(model => model.Apellidos).ToString().Replace("text-box single-line", "form-control"))
+                    
+                </div>@Html.ValidationMessageFor(model => model.Apellidos, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="input-group">
+                    <span class="input-group-addon">Usuario *</span>                    
+                    @Html.Raw(@Html.EditorFor(model => model.NombreUsuario).ToString().Replace("text-box single-line", "form-control"))
+                    
+                </div>@Html.ValidationMessageFor(model => model.NombreUsuario, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="input-group">
+                    <span class="input-group-addon">Tipo<br />Doc</span>
+                    @Html.DropDownListFor(m => m.TipoDocumentoIdListaValor, null, "-- Especifique Tipo de Documento --", htmlAttributes: new { @class = "form-control" })                    
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="input-group">
+                    <span class="input-group-addon">Nro <br />Doc</span>
+                    @Html.Raw(@Html.EditorFor(model => model.NumeroDocumento).ToString().Replace("text-box single-line", "form-control"))
+                    
+                </div>@Html.ValidationMessageFor(model => model.NumeroDocumento, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="input-group">
+                    <span class="input-group-addon">Sexo</span>
+                    @Html.DropDownListFor(m => m.SexoIdListaValor, null, "-- Especifique Sexo --", htmlAttributes: new { @class = "form-control" })                                        
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="input-group">
+                    <span class="input-group-addon">(*)<br />Ubicación</span>
+                    @Html.DropDownListFor(m => m.IdEmpresaLocacion, null, "-- Especifique Ubicación de trabajo --", htmlAttributes: new { @class = "form-control" })                                        
+                    
+                </div>@Html.ValidationMessageFor(model => model.NombreUsuario, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="input-group">
+                    <span class="input-group-addon">Teléfono<br />fijo</span>
+                    @Html.Raw(@Html.EditorFor(model => model.TelefonoFijo).ToString().Replace("text-box single-line", "form-control"))
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="input-group">
+                    <span class="input-group-addon">Anexo</span>
+                    @Html.Raw(@Html.EditorFor(model => model.TelefonoAnexo).ToString().Replace("text-box single-line", "form-control"))
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="input-group">
+                    <span class="input-group-addon">Celular</span>
+                    @Html.Raw(@Html.EditorFor(model => model.TelefonoCelular).ToString().Replace("text-box single-line", "form-control"))                    
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="input-group">
+                    <span class="input-group-addon">Email</span>
+                    @Html.Raw(@Html.EditorFor(model => model.CorreoElectronico).ToString().Replace("text-box single-line", "form-control"))
+                    
+                </div>@Html.ValidationMessageFor(model => model.CorreoElectronico, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="input-group">
+                    <span class="input-group-addon">Rol *</span>
+                    @Html.DropDownListFor(m => m.RolIdListaValor, null, "-- Especifique el Rol --", htmlAttributes: new { @class = "form-control" })
+                    
+                </div>@Html.ValidationMessageFor(model => model.RolIdListaValor, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="input-group">
+                    <span class="input-group-addon">Estado *</span>
+                    @Html.DropDownListFor(m => m.EstadoUsuarioIdListaValor, null, "-- Especifique el estado --", htmlAttributes: new { @class = "form-control" })
+                    
+                </div>@Html.ValidationMessageFor(model => model.EstadoUsuarioIdListaValor, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="input-group">
+                    <span class="input-group-addon">Contraseña</span>
+                    @Html.Raw(@Html.EditorFor(model => model.Contrasena).ToString().Replace("text-box single-line", "form-control"))
+            
+                    
+                </div>@Html.ValidationMessageFor(model => model.Contrasena, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-12" style="text-align:right;">
+                @*<button type="button" class="btn btn-default color-paleta4 fuente-pequeña" style="color: white; margin-bottom: 10px;">Guardar</button>*@
+
+                <button type="submit" onclick="return validar('@ViewBag.IdEmpresa', '0');" class="btn btn-default color-paleta4 fuente-pequeña">Guardar</button>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+    </div>
+</div>
+
+

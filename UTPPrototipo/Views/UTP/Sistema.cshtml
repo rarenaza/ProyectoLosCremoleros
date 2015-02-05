@@ -6,13 +6,14 @@
 
 <div class="container" style="margin-top:2px;">
 
-
+    <select id="selectUusuarios" onchange="cargarUsuarios(this);">
+        <option value="utp">Usuarios UTP</option>
+        <option value="empresa">Usuarios Empresa</option>
+    </select>
     <div id="divListaUsuariosUTP">
         @Html.Action("_UsuariosUTPLista", "UTP")
     </div>
-        <hr />
-
-
+        <hr />    
     @* CARGA LAS LISTAS DE VALOR *@
         <div id="divListaPadre">
             @Html.Action("_ListavalorPadre", "UTP")
@@ -176,7 +177,63 @@
 
     }
 
+    function cargarUsuarios(combo)
+    {  
+        //alert(combo.value);
 
+        if (combo.value == "empresa")
+        {
+            var url = '@Url.Action("_UsuariosEmpresaLista", "UTP", new { nroPaginaActual = 1 })';
+            $.get(url, function (data) {
+                console.log(data);
+                $('#divListaUsuariosUTP').html(data);
+            });
+        }
+        else if (combo.value == "utp") {
+            var url = '@Url.Action("_UsuariosUTPLista", "UTP")';
+            $.get(url, function (data) {
+                console.log(data);
+                $('#divListaUsuariosUTP').html(data);
+            });
+        }
+    }
+
+    function buscarPaginacion(nroPaginaActual)
+    {
+        var url = '@Url.Action("_UsuariosEmpresaLista", "UTP")' + '?nroPaginaActual=' + nroPaginaActual;
+        $.get(url, function (data) {
+            console.log(data);
+            $('#divListaUsuariosUTP').html(data);
+        });
+    }
+
+    function UsuarioEmpresaCrear() {
+        //debugger;
+        //var url = "/UTP/_UsuariosUTPCrear"; //
+        var url = '@Url.Action("_UsuariosEmpresaCrear", "UTP")'
+
+        $.get(url, function (data) {
+            //alert(data);
+            $('#divContenedorUsuarioUTPCrear').html(data);
+            $.validator.unobtrusive.parse('#divContenedorUsuarioUTPCrear');
+            $('#divModalUsuarioUTPCrear').modal('show');
+
+        }).error(function (err) {
+            console.log(err);
+            alert(err);
+        });
+    }
+
+    function UsuarioEmpresaEditar(id) {
+        //var url = "/UTP/_UsuariosUTPEditar/" + id;
+        var url = '@Url.Action("_UsuariosEmpresaEditar", "UTP")' + '/' + id;
+
+        $.get(url, function (data) {
+            $('#divContenedorUsuarioUTPEditar').html(data);
+            $.validator.unobtrusive.parse('#divContenedorUsuarioUTPEditar');
+            $('#divModalUsuarioUTPEditar').modal('show');
+        });
+    }
     function cerrarModal() {
 
         //alert('cerrarmodal');

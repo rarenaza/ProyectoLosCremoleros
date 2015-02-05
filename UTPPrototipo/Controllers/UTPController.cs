@@ -2736,6 +2736,27 @@ namespace UTPPrototipo.Controllers
 
         //}
 
+        public ActionResult _UsuariosEmpresaLista(int nroPaginaActual)
+        {
+            LNEmpresaUsuario lnEmpresaUsuario = new LNEmpresaUsuario ();
+            List<EmpresaUsuario> lista = lnEmpresaUsuario.ObtenerUsuariosParaUTP(nroPaginaActual, Constantes.FILAS_POR_PAGINA);
 
+            //Datos para la paginación.
+            int cantidadTotal = lista.Count() == 0 ? 0 : lista[0].CantidadTotal;
+
+            Paginacion paginacion = new Paginacion();
+            paginacion.NroPaginaActual = nroPaginaActual;
+            paginacion.CantidadTotalResultados = cantidadTotal;
+            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            if (residuo > 0) paginacion.TotalPaginas += 1;
+
+            ViewBag.Paginacion = paginacion;
+            ViewBag.TipoBusqueda = "Simple";
+
+            return PartialView("_UsuariosEmpresaLista", lista);
+            //return PartialView("_UsuariosUTPLista");
+        }
     }
 }
