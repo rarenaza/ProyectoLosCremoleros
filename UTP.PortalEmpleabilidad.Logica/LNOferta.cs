@@ -386,7 +386,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 sector.IdOfertaSectorEmpresarial    = Convert.ToInt32(filaSector["IdOfertaSectorEmpresarial"]);
                 sector.IdOferta                     = Convert.ToInt32(filaSector["IdOferta"]);
                 sector.SectorEmpresarial.Valor      = Convert.ToString(filaSector["SectorEmpresarialDescripcion"]);
-                sector.AniosTrabajados              = Convert.ToInt32(filaSector["AniosTrabajados"]);
+                sector.AniosTrabajados = Convert.ToInt32(filaSector["AniosTrabajados"] == System.DBNull.Value ? null : filaSector["AniosTrabajados"]);
                 sector.CreadoPor                    = Convert.ToString(filaSector["CreadoPor"]);
                 sector.ModificadoPor                = Convert.ToString(filaSector["ModificadoPor"]);
                 sector.FechaCreacion                = Convert.ToDateTime(filaSector["FechaCreacion"]);

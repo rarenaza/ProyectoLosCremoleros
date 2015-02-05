@@ -167,19 +167,19 @@
             </tr>
             <tr class="linea_raya">
                 <td class="celda-nombre">
-                    Facultad Principal
+                    Facultad 1
                 </td>
                 <td class="celda-datos">
-                    @Html.TextBoxFor(model => model.FacultadPrincipal, new { @class = "form-control", @placeholder = "Facultad Principal de la Empresa" })
+                    @Html.TextBoxFor(model => model.FacultadPrincipal, new { @class = "form-control", @placeholder = "Facultad 1" })
 
                 </td>
             </tr>
             <tr class="linea_raya">
                 <td class="celda-nombre">
-                    Facultad Secundaria
+                    Facultad 2
                 </td>
                 <td class="celda-datos">
-                    @Html.TextBoxFor(m => m.FacultadSecundaria, new { @class = "form-control", @placeholder = "Facultad Secundaria de la Empresa" })
+                    @Html.TextBoxFor(m => m.FacultadSecundaria, new { @class = "form-control", @placeholder = "Facultad 2" })
                 </td>
             </tr>
             <tr class="linea_raya">
@@ -236,13 +236,6 @@
                 </td>
                 <td class="celda-datos">
                     <img alt="" style="width:100%" src='@Url.Action("GetImagenLogoEmpresa", "UTP", new { id = Model.IdEmpresa })' />
-
-
-
-
-
-
-                    @*<img src="~/img/logos/logoibm.jpg" />*@
                 </td>
             </tr>
         </table>
