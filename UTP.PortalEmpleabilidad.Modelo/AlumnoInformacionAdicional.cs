@@ -52,15 +52,16 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string TipoConocimientoIdListaValor { get; set; }
         [Required(ErrorMessage = "Falta el nivel de conocimiento")]
         public string NivelConocimientoIdListaValor { get; set; }
-
         public string PaisIdListaValor { get; set; }
-
         //public string CreadoPor { get; set; }
         public string Usuario { get; set; }
-
         public int IdCV { get; set; }
         public int Movimiento { get; set; }
         public int Cumple { get; set; }
-
+        public string Estado { get; set; }
+        public string CreadoPor { get; set; }
+        public DateTime FechaCreacion { get; set; }
+        public string ModificadoPor { get; set; }
+        public DateTime FechaModificacion { get; set; }
     }
 }

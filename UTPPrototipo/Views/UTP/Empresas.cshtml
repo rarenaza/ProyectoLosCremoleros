@@ -7,8 +7,7 @@
     ViewBag.Title = "Empresas";
 }
 <link href="~/Content/font-awesome.css" rel="stylesheet" />
-@using (Html.BeginForm())
-{
+
 
     <div class="container" style="margin-top:2px;">
         <div class="panel-group" id="datos-cuenta" role="tablist" aria-multiselectable="true">
@@ -16,6 +15,8 @@
             @{Html.RenderAction("VistaCabeceraUtp", "UTP");}
 
         </div>
+@using (Html.BeginForm())
+{
         <div class="panel-group" id="CriterioBusquedaPostulacion" role="tablist" aria-multiselectable="true">
             <div class="panel panel-default">
                 <div class="panel-heading" role="tab" id="CabeceraColapsaBusqueda" style="padding: 2px 2px 2px 6px;">
@@ -27,6 +28,7 @@
                 </div>
                 <div id="ColapsaBusqueda" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="CabeceraColapsaBusqueda">
                     <div class="panel-body">
+
                         <table style="width:100%;">
                             <tr>
                                 <td>
@@ -61,19 +63,11 @@
                         <div class="row">
                             <div class="col-sm-4">
 
-                                <div class="input-group fuente-pequeña">
-
-                                    <span class="input-group-addon">Estado</span>
-                                    @Html.DropDownListFor(model => model.IdEstadoEmpresa, new SelectList(ViewBag.ListaEstado, "Value", "Text"), "- Seleccionar -", new { @class = "form-control" })
-
-                                </div>
 
                                 <div class="input-group fuente-pequeña">
                                     <span class="input-group-addon">Nombre</span>
-                                    @*<input type="text" class="form-control" placeholder="Nombre de la empresa">*@
 
                                     @Html.TextBoxFor(model => model.NombreComercial, new { @class = "form-control", @placeholder = "Nombre Comercial", @id = "NombreComercial" })
-
 
                                 </div>
                                 <div class="input-group fuente-pequeña">
@@ -81,24 +75,36 @@
                                     @*<input type="text" class="form-control" placeholder="Razón Social de la empresa">*@
                                     @Html.TextBoxFor(model => model.RazonSocial, new { @class = "form-control", @placeholder = "Razón Social de la empresa", @id = "RazonSocial" })
                                 </div>
-                            </div>
-                            <div class="col-sm-4">
-                          
                                 <div class="input-group">
                                     <span class="input-group-addon">Ruc</span>
                                     @Html.TextBoxFor(model => model.RUC, new { @class = "form-control", @placeholder = "Ruc de la Empresa" })
                                 </div>
+                     
+
+                  
+                          
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <span class="input-group-addon">Nro Oferta <br />Activas</span>
+                                    @Html.TextBoxFor(model => model.NroOferta, new { @class = "form-control", @placeholder = "Busca por Nro de Oferta ", @onblur = "ValidaSoloNumeros();" })
+                                    @*@Html.TextBoxFor(model => model.NroOferta, new { @class = "form-control", @placeholder = "Ej:Si pongo 5 busca los menores que 5 excepto 0 " })*@
+                                </div>
                                 <div class="input-group fuente-pequeña">
 
-                                    <span class="input-group-addon">Sector</span>
-
-                                    @Html.DropDownListFor(model => model.IdSector, new SelectList(ViewBag.ListaSector, "Value", "Text"), "- Seleccionar -", new { @class = "form-control" })
+                                    <span class="input-group-addon">Estado<br />Oferta</span>
+                                    @Html.DropDownListFor(model => model.IdEstadoEmpresa, new SelectList(ViewBag.ListaEstado, "Value", "Text"), "- Seleccionar -", new { @class = "form-control" })
 
                                 </div>
+             
                                 <div class="input-group">
-                                    <span class="input-group-addon">Ciudad<br /></span>
-                                    @Html.TextBoxFor(model => model.Ciudad, new { @class = "form-control", @placeholder = "Ciudad de la Empresa" })
+                                    <span class="input-group-addon">Nro<br />Postulante</span>
+                                    @Html.TextBoxFor(model => model.NroPostulante, new { @class = "form-control", @placeholder = "Busca por Nro de Postulante" })
+                                    @*@Html.DropDownListFor(model => model.IdPeriodoRegistro, new SelectList(ViewBag.PeridoRegistro, "Value", "Text"), "- Seleccionar -", new { @class = "form-control", @Id = "IdPeriodoRegistro" })*@
+
                                 </div>
+                                
+                           
 
                                 @*<span class="input-group-addon">Sector</span>
                                         <select id="Lista" class="form-control">
@@ -117,17 +123,16 @@
                             </div>
 
                             <div class="col-sm-4">
-                                @*<div class="input-group fuente-pequeña">
-                                    <span class="input-group-addon"><input type="checkbox" /></span>
-                                    <span class="form-control">Tiene Ofertas activas</span>
 
-                                    @Html.EditorFor(model => model.EstadoOferta)
+                                <div class="input-group fuente-pequeña">
 
-                                    </div>*@
-                                @*<div class="input-group fuente-pequeña">
-                                        <span class="input-group-addon"><input type="checkbox" /></span>
-                                        <span class="form-control">Tiene Ofertas pendientes de activar</span>
-                                    </div>*@
+                                    <span class="input-group-addon">Sector<br />Empresarial</span>
+
+                                    @Html.DropDownListFor(model => model.IdSector, new SelectList(ViewBag.ListaSector, "Value", "Text"), "- Seleccionar -", new { @class = "form-control" })
+
+                                </div>
+
+           
                                 <br />
 
                                 <div>
@@ -148,16 +153,11 @@
             </div>
 
         </div>
+}
+        @{Html.RenderAction("_EmpresaNuevaModal", "UTP");}
     </div>
 
-    //$(document).ready(function () {
-    //    var empresa = {
-    //        PalabraClave: $('#PalabraClave').val(),
-
-    //    };
-    //    Cargar("resultadobusqueda", "/UTP/BusquedaSimpleEmpresasActivas", empresa);
-    //});
-}
+   
 @*<script src="~/Scripts/jquery-2.1.1.min.js"></script>*@
 
 
@@ -167,7 +167,7 @@
     $(document).ready(function () {
         $("#divFinalCabecera").removeClass("color-paleta1 color-paleta3 color-paleta4 color-paleta5 color-paleta6 color-paleta7 color-paleta8").addClass("color-paleta2");
 
-        AutoCompleteText('#NombreComercial', '@Url.Action("ListarNombreEmpresa", "UTP")', '#NombreComercial');
+        //AutoCompleteText('#NombreComercial', '@Url.Action("ListarNombreEmpresa", "UTP")', '#NombreComercial');
         AutoCompleteText('#RazonSocial', '@Url.Action("ListarRazonSocial", "UTP")', '#RazonSocial');
 
     });
@@ -192,8 +192,8 @@
             IdSector: $('#IdSector').val(),
             RazonSocial: $('#RazonSocial').val(),
             RUC: $('#RUC').val(),
-            Ciudad: $('#Ciudad').val(),
-            
+            NroOferta: $('#NroOferta').val(),
+            NroPostulante: $('#NroPostulante').val(),
             nroPaginaActual: 1,
 
         };
@@ -244,16 +244,32 @@
             IdSector: $('#IdSector').val(),
             RazonSocial: $('#RazonSocial').val(),
             RUC: $('#RUC').val(),
-            Ciudad: $('#Ciudad').val(),
+            NroOferta: $('#NroOferta').val(),
+            NroPostulante: $('#NroPostulante').val(),
             nroPaginaActual: nroPagina,
 
         };
-        
+
         //Cargar("resultadobusqueda", "/UTP/BusquedaAvanzadaEmpresas", oferta);
         Cargar("resultadobusqueda", '@Url.Action("BusquedaAvanzadaEmpresas", "UTP")', oferta);
     }
 
+    //function ValidaSoloNumeros() {
+    //    if ((event.keyCode < 48) || (event.keyCode > 57))
+    //        event.returnValue = false;
+    //}
 
+    function validarNroOferta()
+    {
+        NroOferta: $('#NroOferta').val(),
+        document.getElementById(NroOferta);
+
+        if (NroOferta=null)     
+        {
+            NroOferta = 0;
+        }
+       
+    }
 </script>
 
 

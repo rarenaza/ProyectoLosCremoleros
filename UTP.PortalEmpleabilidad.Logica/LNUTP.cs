@@ -130,12 +130,13 @@ namespace UTP.PortalEmpleabilidad.Logica
 
             return listaEjemplo;
         }
-        public List<EmpresaListaEmpresa> EmpresaBusquedaAvanzada(string NombreComercial, string IdEstadoEmpresa, string IdSector, string RazonSocial, string IdentificadorTributario,string Ciudad, int nroPaginaActual, int filasPorPagina)
+        //public List<EmpresaListaEmpresa> EmpresaBusquedaAvanzada(string NombreComercial, string IdEstadoEmpresa, string IdSector, string RazonSocial, string IdentificadorTributario, string NroOferta, string NroPostulante, int nroPaginaActual, int filasPorPagina)
+        public List<EmpresaListaEmpresa> EmpresaBusquedaAvanzada(string NombreComercial, string IdEstadoEmpresa, string IdSector, string RazonSocial, string IdentificadorTributario, int NroOferta, int NroPostulante, int nroPaginaActual, int filasPorPagina)
         {
             List<EmpresaListaEmpresa> listaEjemplo = new List<EmpresaListaEmpresa>();
 
 
-            DataTable dtResultado = adUtp.Empresa_BusquedaAvanzada(NombreComercial, IdEstadoEmpresa, IdSector, RazonSocial, IdentificadorTributario,Ciudad, nroPaginaActual, filasPorPagina);
+            DataTable dtResultado = adUtp.Empresa_BusquedaAvanzada(NombreComercial, IdEstadoEmpresa, IdSector, RazonSocial, IdentificadorTributario, NroOferta, NroPostulante, nroPaginaActual, filasPorPagina);
 
             for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
             {
@@ -384,12 +385,12 @@ namespace UTP.PortalEmpleabilidad.Logica
 
             return listaEjemplo;
         }
-        public List<OfertaUTP> UTP_ObtenerofertasAvanzada(string CargoOfrecido, string NombreComercial, string TipoCargo, int nroPagina, int filasPorPagina)
+        public List<OfertaUTP> UTP_ObtenerofertasAvanzada(string CargoOfrecido, string NombreComercial, string TipoCargo, string Sector, string Contrato, int AExperiencia, int Remuneracion, string TipoEstudio, string Conocimiento, int NroPostulante, int nroPagina, int filasPorPagina)
         {
             List<OfertaUTP> listaEjemplo = new List<OfertaUTP>();
 
 
-            DataTable dtResultado = adUtp.UTP_ObtenerofertasAvanzada(CargoOfrecido, NombreComercial, TipoCargo, nroPagina, filasPorPagina);
+            DataTable dtResultado = adUtp.UTP_ObtenerofertasAvanzada(CargoOfrecido, NombreComercial, TipoCargo, Sector, Contrato, AExperiencia, Remuneracion, TipoEstudio, Conocimiento, NroPostulante, nroPagina, filasPorPagina);
 
             for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
             {

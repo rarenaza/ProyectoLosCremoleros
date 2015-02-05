@@ -948,6 +948,8 @@
     <Content Include="Views\UTP\_UsuariosUTPLista.cshtml" />
     <Content Include="Views\UTP\_AdministrarNuevoUsuario.cshtml" />
     <Content Include="Views\UTP\_AdministrarUsuarioEditar.cshtml" />
+    <Content Include="Views\UTP\AlumnoUtp_obtenerCV.cshtml" />
+    <Content Include="Views\UTP\_EmpresaNuevaModal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

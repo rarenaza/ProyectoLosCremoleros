@@ -14,7 +14,8 @@ namespace UTP.PortalEmpleabilidad.Modelo.Vistas.Ofertas
       //
         public string RazonSocial { get; set; }
         public string RUC { get; set; }
-        public string Ciudad { get; set; }
+        public int  NroOferta { get; set; }
+        public int NroPostulante { get; set; }
         public string Estado{ get; set; }
         public string SectorEmpresarial { get; set; }
         public string Ofertas { get; set; }

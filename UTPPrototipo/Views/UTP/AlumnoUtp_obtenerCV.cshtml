@@ -1,0 +1,40 @@
+﻿@model   IEnumerable<UTP.PortalEmpleabilidad.Modelo.Vistas.Alumno.AlertasCvAlumno>
+<h6>CVs</h6>
+<div class="row grilla1-cabecera color-paleta3">
+    <div class="col-sm-3">
+        Nombre CV
+    </div>
+    <div class="col-sm-3">
+        Plantilla
+    </div>
+    <div class="col-sm-2">
+        Completitud
+    </div>
+    <div class="col-sm-2">
+        Creado
+    </div>
+    <div class="col-sm-2">
+        Modificado
+    </div>
+</div>
+@foreach (var item in Model)
+{
+    <div class="row grilla1-linea">
+        <div class="col-sm-3">
+            @Html.ActionLink(item.NombreCV, "GenerarCV", "Plantilla", new { idCV = item.IdCV }, null)
+        </div>
+        <div class="col-sm-3">
+            @item.NombrePlantilla
+        </div>
+        <div class="col-sm-2">
+            @item.PorcentajeCV%
+        </div>
+        <div class="col-sm-2">
+            @item.CreadoPor @item.FechaCreacion
+        </div>
+        <div class="col-sm-2">
+            @item.ModificadoPor @item.FechaModificacion
+        </div>
+    </div>
+}
+<hr />

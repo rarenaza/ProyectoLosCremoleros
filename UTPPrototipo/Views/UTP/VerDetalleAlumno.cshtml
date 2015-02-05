@@ -229,6 +229,9 @@
         <div class="col-sm-6">
             @Html.Action("_Mensajes", "Mensaje", new { pantalla = Constantes.MENSAJES_UTP_ALUMNO, usuarioAlumno = Model.Usuario }) 
         </div>
+        <div class="col-sm-6">
+            @{Html.RenderAction("AlumnoUtp_obtenerCV", "UTP", new { usuario = Model.Usuario });}
+        </div>
     </div>
 
     <br />
