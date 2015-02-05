@@ -155,8 +155,9 @@ namespace UTP.PortalEmpleabilidad.Datos
             return dt;
         }
 
-        //public DataTable Empresa_BusquedaAvanzada(VistaEmpresListarOfertas entidad, int nroPaginaActual, int filasPorPagina)
-        public DataTable Empresa_BusquedaAvanzada(string NombreComercial, string IdEstadoEmpresa, string IdSector, string RazonSocial, string IdentificadorTributario,string Ciudad, int nroPaginaActual, int filasPorPagina)
+
+        public DataTable Empresa_BusquedaAvanzada(string NombreComercial, string IdEstadoEmpresa, string IdSector, string RazonSocial, string IdentificadorTributario, int NroOferta, int NroPostulante, int nroPaginaActual, int filasPorPagina)
+        //public DataTable Empresa_BusquedaAvanzada(string NombreComercial, string IdEstadoEmpresa, string IdSector, string RazonSocial, string IdentificadorTributario, string NroOferta, string NroPostulante, int nroPaginaActual, int filasPorPagina)
         {
 
             ADConexion cnn = new ADConexion();
@@ -169,7 +170,8 @@ namespace UTP.PortalEmpleabilidad.Datos
             cmd.Parameters.Add(new SqlParameter("@Sector", IdSector));
             cmd.Parameters.Add(new SqlParameter("@Razon", RazonSocial));
             cmd.Parameters.Add(new SqlParameter("@IdentificadorTributario", IdentificadorTributario));
-            cmd.Parameters.Add(new SqlParameter("@Ciudad", Ciudad));
+            cmd.Parameters.Add(new SqlParameter("@NroOferta", NroOferta));
+            cmd.Parameters.Add(new SqlParameter("@NroPostulante", NroPostulante));
             //Paginación.
             cmd.Parameters.Add(new SqlParameter("@NroPaginaActual", nroPaginaActual));
             cmd.Parameters.Add(new SqlParameter("@FilasPorPagina", filasPorPagina));
@@ -843,7 +845,7 @@ namespace UTP.PortalEmpleabilidad.Datos
             return dtResultado;
         }
 
-        public DataTable UTP_ObtenerofertasAvanzada(string CargoOfrecido, string NombreComercial, string TipoCargo, int nroPagina, int filasPorPagina)
+        public DataTable UTP_ObtenerofertasAvanzada(string CargoOfrecido, string NombreComercial, string TipoCargo, string sector, string Contrato, int AExperiencia, int Remuneracion, string TipoEstudio, string Conocimiento,int NroPostulante, int nroPagina, int filasPorPagina)
         {
             DataTable dtResultado = new DataTable();
 
@@ -856,8 +858,13 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.Parameters.Add(new SqlParameter("@Cargo", CargoOfrecido));
                 cmd.Parameters.Add(new SqlParameter("@Empresa", NombreComercial));
                 cmd.Parameters.Add(new SqlParameter("@TipoCargo", TipoCargo));
-               
-
+                cmd.Parameters.Add(new SqlParameter("@Sector", sector));
+                cmd.Parameters.Add(new SqlParameter("@Contrato", Contrato));
+                cmd.Parameters.Add(new SqlParameter("@AExperiencia", AExperiencia));
+                cmd.Parameters.Add(new SqlParameter("@Remuneracion", Remuneracion));
+                cmd.Parameters.Add(new SqlParameter("@TipoDeEstudio", TipoEstudio));
+                cmd.Parameters.Add(new SqlParameter("@Conocimiento", Conocimiento));
+                cmd.Parameters.Add(new SqlParameter("@NroPostulante", NroPostulante));
                 //Paginación:
                 cmd.Parameters.Add(new SqlParameter("@NroPaginaActual", nroPagina));
                 cmd.Parameters.Add(new SqlParameter("@FilasPorPagina", filasPorPagina));

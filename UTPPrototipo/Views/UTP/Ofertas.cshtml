@@ -78,17 +78,39 @@
                                 <span class="input-group-addon">Empresa</span>
                                 @Html.TextBoxFor(model => model.NombreComercial, new { @class = "form-control", @placeholder = "Buscar Empresa" })
                             </div>
-
-                            
+                            <div class="input-group">
+                                <span class="input-group-addon">Sector<br />Empresarial</span>
+                                @*  @Html.DropDownListFor(model => model.IdPeriodoRegistro, new SelectList(ViewBag.PeridoRegistro, "Value", "Text"), "- Seleccionar -", new { @class = "form-control", @Id = "IdPeriodoRegistro" })*@
+                                @Html.DropDownListFor(model => model.IdSectorutp, new SelectList(ViewBag.ListaSector, "Value", "Text"), "- Seleccionar -", new { @class = "form-control", @Id = "IdSectorutp" })
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon">Año<br />Experiencia</span>
+                                @Html.TextBoxFor(model => model.AExperiencia, new { @class = "form-control", @placeholder = "Buscar Año Experiencia" })
+                            </div>
                             <!--Dejabajo de Registro 2-->
 
                         </div>
                         <div class="col-sm-3">
+
                             <div class="input-group">
                                 <span class="input-group-addon">Tipo Cargo</span>
                                 @*  @Html.DropDownListFor(model => model.IdPeriodoRegistro, new SelectList(ViewBag.PeridoRegistro, "Value", "Text"), "- Seleccionar -", new { @class = "form-control", @Id = "IdPeriodoRegistro" })*@
                                 @Html.DropDownListFor(model => model.IdTipoCargoutp, new SelectList(ViewBag.ListaTipoCargo, "Value", "Text"), "- Seleccionar -", new { @class = "form-control" })
                             </div>
+
+                            <div class="input-group">
+                                <span class="input-group-addon">Tipo Contrato</span>
+                                @*  @Html.DropDownListFor(model => model.IdPeriodoRegistro, new SelectList(ViewBag.PeridoRegistro, "Value", "Text"), "- Seleccionar -", new { @class = "form-control", @Id = "IdPeriodoRegistro" })*@
+                                @Html.DropDownListFor(model => model.IdTipoContratoutp, new SelectList(ViewBag.ListaTipoContrato, "Value", "Text"), "- Seleccionar -", new { @class = "form-control" })
+                            </div>
+                                                      
+
+                            <div class="input-group">
+                                <span class="input-group-addon">Remuneración</span>
+                                @Html.TextBoxFor(model => model.RemuneracionOfrecida, new { @class = "form-control", @placeholder = "Buscar Remuneración", @Id = "RemuneracionOfrecida" })
+                               
+                            </div>
+
                             <!--Dejabajo de carrera 2-->
 
                         </div>
@@ -96,10 +118,19 @@
                             
 
                             <div class="input-group">
-                                <span class="input-group-addon">Cargo</span>
+                                <span class="input-group-addon">Cargo/<br />Oferta</span>
                                 @Html.TextBoxFor(model => model.CargoOfrecido, new { @class = "form-control", @placeholder = "Cargo Oferta" })
                             </div>
 
+                            <div class="input-group">
+                                <span class="input-group-addon">Tipo/<br />Estudio</span>
+                                @Html.DropDownListFor(model => model.IdTipoEstudioutp, new SelectList(ViewBag.ListaTipoEstudio, "Value", "Text"), "- Seleccionar -", new { @class = "form-control" })
+                            </div>
+
+                            <div class="input-group">
+                                <span class="input-group-addon">Nro/<br />Postulante</span>
+                                @Html.TextBoxFor(model => model.NumeroPostulante, new { @class = "form-control", @placeholder = "Busca por Postulante" })
+                            </div>
 
                             <!--Dejabajo de Tipo habian 2-->
 
@@ -109,12 +140,17 @@
                         <div class="col-sm-3">
 
 
-                            @*<div class="input-group">
-                                <span class="input-group-addon">Ubicación</span>
-                             @Html.TextBoxFor(model => model.Ubicacion, new { @class = "form-control", @id = "Ubicacion", @placeholder = "Ubicación del trabajo" })
+                            <div class="input-group">
+                                <span class="input-group-addon">Info/<br />Adicional</span>
+                                @Html.DropDownListFor(model => model.InformacionAdicional, new SelectList(ViewBag.ListaInformacionAdicional, "Value", "Text"), "- Seleccionar -", new { @class = "form-control", @Id = "TipoConocimientoIdListaValor" })
                             </div>
+                            <div class="input-group">
+                                <span class="input-group-addon">Conoci-<br />miento</span>
+                                @Html.TextBoxFor(model => model.Conocimientos, new { @class = "form-control fuente-pequeña", @placeholder = "Conocmiento específico: ej. SAP", @Id = "Conocimientos" })
+                                @*@Html.DropDownListFor(model => model.IdPeriodoRegistro, new SelectList(ViewBag.PeridoRegistro, "Value", "Text"), "- Seleccionar -", new { @class = "form-control", @Id = "IdPeriodoRegistro" })*@
 
-                            <br />*@
+                            </div>
+                            <br />
                             <button class="btn btn-default color-paleta4 fa fa-search" id="buscaravanzada"></button>
                         </div>
                     </div>
@@ -141,6 +177,10 @@
 
     $(document).ready(function () {
         $("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta3 color-paleta5 color-paleta6 color-paleta7 color-paleta8 color-paleta9").addClass("color-paleta4")
+        var codigoTipoConocimiento = $('#TipoConocimientoIdListaValor').val();
+
+        //ESE ES LA CAJA, LA ACCION Y EL CONTROLADOR
+        AutoCompleteTextDemo('#Conocimientos', '@Url.Action("ListarDatosEspecificos", "OfertaInformacionAdicional")' + '?codigoTipo=' + codigoTipoConocimiento, '#Conocimientos', '#TipoConocimientoIdListaValor', 'option', 'appendTo', '.eventInsForm');
     });
 
 
@@ -160,6 +200,14 @@
             NombreComercial: $('#NombreComercial').val(),
             IdTipoCargoutp: $('#IdTipoCargoutp').val(),
             CargoOfrecido: $('#CargoOfrecido').val(),
+            IdSectorutp: $('#IdSectorutp').val(),
+            IdTipoContratoutp: $('#IdTipoContratoutp').val(),
+            AExperiencia: $('#AExperiencia').val(), 
+            RemuneracionOfrecida: $('#RemuneracionOfrecida').val(),
+            IdTipoEstudioutp: $('#IdTipoEstudioutp').val(),
+            Conocimientos: $('#Conocimientos').val(),
+            NumeroPostulante: $('#NumeroPostulante').val(),
+            
             nroPaginaActual: 1,
 
         };
@@ -207,6 +255,13 @@
             NombreComercial: $('#NombreComercial').val(),
             IdTipoCargoutp: $('#IdTipoCargoutp').val(),
             CargoOfrecido: $('#CargoOfrecido').val(),
+            IdSectorutp: $('#IdSectorutp').val(),
+            IdTipoContratoutp: $('#IdTipoContratoutp').val(),
+            AExperiencia: $('#AExperiencia').val(),
+            RemuneracionOfrecida: $('#RemuneracionOfrecida').val(),
+            IdTipoEstudioutp: $('#IdTipoEstudioutp').val(),
+            Conocimientos: $('#Conocimientos').val(),
+            NumeroPostulante: $('#NumeroPostulante').val(),
             nroPaginaActual: nroPagina,
 
         };

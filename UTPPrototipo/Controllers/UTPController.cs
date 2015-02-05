@@ -224,7 +224,8 @@ namespace UTPPrototipo.Controllers
                                                                             entidad.IdSector == null ? "" : entidad.IdSector,
                                                                             entidad.RazonSocial == null ? "" : entidad.RazonSocial,
                                                                             entidad.RUC == null ? "" : entidad.RUC,
-                                                                            entidad.Ciudad == null ? "" : entidad.Ciudad,
+                                                                            entidad.NroOferta,
+                                                                            entidad.NroPostulante, 
                                                                             entidad.nroPaginaActual,
                                                                             Constantes.FILAS_POR_PAGINA);
 
@@ -459,10 +460,66 @@ namespace UTPPrototipo.Controllers
                 listItemsTipoCargo.Add(item);
             }
 
+            //Sector empresarial
+
+            //Busca Lista Sector Empresarial
+            oferta.ListaSectorEmpresarial = lngeneral.ObtenerListaValor(8);
+            List<SelectListItem> listItemSector = new List<SelectListItem>();
+            foreach (ListaValor entidad in oferta.ListaSectorEmpresarial)
+            {
+                SelectListItem item = new SelectListItem();
+                item.Text = entidad.Valor;
+                item.Value = entidad.IdListaValor.ToString();
+                listItemSector.Add(item);
+            }
+
+            //Tipo Contrato
+
+            //Busca Lista Tipo Contrato
+            oferta.ListaTipoContrato = lngeneral.ObtenerListaValor(30);
+            List<SelectListItem> listItemTipoContrato = new List<SelectListItem>();
+            foreach (ListaValor entidad in oferta.ListaTipoContrato)
+            {
+                SelectListItem item = new SelectListItem();
+                item.Text = entidad.Valor;
+                item.Value = entidad.IdListaValor.ToString();
+                listItemTipoContrato.Add(item);
+            }
+
+            //Tipo Estudio
+
+            //Busca Lista Tipo Estudio
+            oferta.ListaTipoEstudio = lngeneral.ObtenerListaValor(7);
+            List<SelectListItem> listItemTipoEstudio = new List<SelectListItem>();
+            foreach (ListaValor entidad in oferta.ListaTipoEstudio)
+            {
+                SelectListItem item = new SelectListItem();
+                item.Text = entidad.Valor;
+                item.Value = entidad.IdListaValor.ToString();
+                listItemTipoEstudio.Add(item);
+            }
+
+            //Tipo Informacion Adicional
+
+            //Busca Lista Tipo informacion Adicional
+            oferta.ListaInformacionAdicional = lngeneral.ObtenerListaValor(10);
+            List<SelectListItem> listItemTipoInformacionAdicional = new List<SelectListItem>();
+            foreach (ListaValor entidad in oferta.ListaInformacionAdicional)
+            {
+                SelectListItem item = new SelectListItem();
+                item.Text = entidad.Valor;
+                item.Value = entidad.IdListaValor.ToString();
+                listItemTipoInformacionAdicional.Add(item);
+            }
+
+
             //Lista de Combos
 
             ViewBag.ListaTipoCargo = listItemsTipoCargo;
-
+            ViewBag.ListaSector = listItemSector ;
+            ViewBag.ListaTipoContrato = listItemTipoContrato;
+            ViewBag.ListaTipoEstudio = listItemTipoEstudio;
+            ViewBag.ListaInformacionAdicional = listItemTipoInformacionAdicional;
             return View(oferta);
 
         }
@@ -494,6 +551,13 @@ namespace UTPPrototipo.Controllers
             List<OfertaUTP> lista = lnUtp.UTP_ObtenerofertasAvanzada(entidad.CargoOfrecido == null ? "" : entidad.CargoOfrecido,
                                                                      entidad.NombreComercial == null ? "" : entidad.NombreComercial,
                                                                       entidad.IdTipoCargoutp == null ? "" : entidad.IdTipoCargoutp,
+                                                                      entidad.IdSectorutp == null ? "" : entidad.IdSectorutp,
+                                                                      entidad.IdTipoContratoutp == null ? "" : entidad.IdTipoContratoutp,
+                                                                      entidad.AExperiencia,
+                                                                      entidad.RemuneracionOfrecida,
+                                                                      entidad.IdTipoEstudioutp == null ? "" : entidad.IdTipoEstudioutp,
+                                                                      entidad.Conocimientos == null ? "" : entidad.Conocimientos,
+                                                                      entidad.NumeroPostulante,
                                                                      entidad.nroPaginaActual,
                                                                      Constantes.FILAS_POR_PAGINA);
 
