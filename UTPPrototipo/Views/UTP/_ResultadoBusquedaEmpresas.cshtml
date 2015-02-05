@@ -67,6 +67,10 @@
                 { 
                     @Html.ActionLink(@item.NombreComercial, "VerDetalleEmpresa", new { id = item.IdEmpresa })
                 }
+                else
+                {
+                    @Html.ActionLink("-- SIN NOMBRE --", "VerDetalleEmpresa", new { id = item.IdEmpresa })
+                }
             </div>
             <div class="col-sm-1">
                 @item.RazonSocial
