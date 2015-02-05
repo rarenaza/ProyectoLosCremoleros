@@ -136,6 +136,7 @@ namespace UTP.PortalEmpleabilidad.Logica
             List<EmpresaListaEmpresa> listaEjemplo = new List<EmpresaListaEmpresa>();
 
 
+
             DataTable dtResultado = adUtp.Empresa_BusquedaAvanzada(NombreComercial, IdEstadoEmpresa, IdSector, RazonSocial, IdentificadorTributario, NroOferta, NroPostulante, nroPaginaActual, filasPorPagina);
 
             for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)

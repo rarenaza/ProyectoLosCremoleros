@@ -230,6 +230,7 @@ namespace UTPPrototipo.Controllers
                                                                             Constantes.FILAS_POR_PAGINA);
 
 
+
             int cantidadTotal = lista.Count() == 0 ? 0 : lista[0].CantidadTotal;
 
             //Esto van en todas las paginas 

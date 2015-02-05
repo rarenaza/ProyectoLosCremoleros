@@ -87,7 +87,8 @@
                             <div class="col-sm-4">
                                 <div class="input-group">
                                     <span class="input-group-addon">Nro Oferta <br />Activas</span>
-                                    @Html.TextBoxFor(model => model.NroOferta, new { @class = "form-control", @placeholder = "Busca por Nro de Oferta ", @onblur = "ValidaSoloNumeros();" })
+                                    @*@Html.TextBoxFor(model => model.NroOferta, new { @class = "form-control", @placeholder = "Busca por Nro de Oferta ", @onblur = "ValidaSoloNumeros();" })*@
+                                    @Html.TextBoxFor(model => model.NroOferta, new { @class = "form-control", @placeholder = "Busca por Nro de Oferta "})
                                     @*@Html.TextBoxFor(model => model.NroOferta, new { @class = "form-control", @placeholder = "Ej:Si pongo 5 busca los menores que 5 excepto 0 " })*@
                                 </div>
                                 <div class="input-group fuente-pequeña">
@@ -104,7 +105,8 @@
 
                                 </div>
                                 
-                           
+              
+                                             
 
                                 @*<span class="input-group-addon">Sector</span>
                                         <select id="Lista" class="form-control">
@@ -259,17 +261,17 @@
     //        event.returnValue = false;
     //}
 
-    function validarNroOferta()
-    {
-        NroOferta: $('#NroOferta').val(),
-        document.getElementById(NroOferta);
+    //function validarNroOferta()
+    //{
+    //    NroOferta: $('#NroOferta').val(),
+    //    document.getElementById(NroOferta);
 
-        if (NroOferta=null)     
-        {
-            NroOferta = 0;
-        }
+    //    if (NroOferta=null)     
+    //    {
+    //        NroOferta = 0;
+    //    }
        
-    }
+    //}
 </script>
 
 

@@ -145,6 +145,8 @@ namespace UTP.PortalEmpleabilidad.Datos
             cnn.Conectar();
 
 
+
+
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
 
