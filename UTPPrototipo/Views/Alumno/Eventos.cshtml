@@ -4,11 +4,11 @@
 }
 
 <div class="container fuente-pequeña" style="margin-top:2px;">
-    
+    @{Html.RenderAction("VistaCabecera", "Alumno", new { colapsaDatos = " " });}
     @Html.Action("_Eventos", "Evento", new { Pantalla = "Alumno" })
 </div>
 <script>
     $(document).ready(function () {
-        $("#divFinalCabeceraEmpresa").removeClass("color-paleta1 color-paleta2 color-paleta3 color-paleta4").addClass("color-paleta5");
+        $("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta3 color-paleta4").addClass("color-paleta5");
     });
 </script>

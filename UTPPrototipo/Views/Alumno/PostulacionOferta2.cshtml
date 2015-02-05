@@ -13,7 +13,7 @@
         @Html.Hidden("RecibeCorreosIdListaValor", Model.Oferta.RecibeCorreosIdListaValor)
         @Html.Hidden("CorreoElectronicoUsuarioEmpresa", Model.Oferta.CorreoElectronicoUsuarioEmpresa)
         @Html.Hidden("CargoOfrecido", Model.Oferta.CargoOfrecido)
-        @{Html.RenderAction("VistaCabecera", "Alumno");}
+        @{Html.RenderAction("VistaCabecera", "Alumno", new { colapsaDatos = " " });}
 
     </div>
 

@@ -1159,10 +1159,11 @@ namespace UTPPrototipo.Controllers
 
 
         //vista cabeceraa Oferta
-        public ActionResult VistaCabecera()
+        public ActionResult VistaCabecera(string colapsaDatos)
         {
             TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
             VistaPanelAlumno panel = lnAlumno.ObtenerPanel(ticket.CodAlumnoUTP);
+            ViewBag.ColapsaDatos = colapsaDatos;
             return PartialView("_DatosPersonales", panel.Alumno);
         }
         public ActionResult DatosAlumnoOferta()
