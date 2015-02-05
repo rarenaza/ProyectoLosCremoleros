@@ -63,5 +63,23 @@
         alert('Los datos fueron grabados con éxito.');
     }
 
+    function validarDatosGenerales()
+    {
+        var comboEstado = $('#EstadoIdListaValor').val();
+        var comboUsuarioEjecutivoUTP = $('#UsuarioEC').val();
+
+        if (comboEstado == "")
+        {
+            alert("Debe ingresar un estado.")
+            return false;
+        }
+        if (comboUsuarioEjecutivoUTP == "") {
+            alert("Debe ingresar un ejecutivo de cuenta.")
+            return false;
+        }
+
+        return true;
+    }
+
 </script>
 

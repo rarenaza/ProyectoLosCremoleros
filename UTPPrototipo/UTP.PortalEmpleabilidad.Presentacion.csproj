@@ -385,6 +385,7 @@
     <Content Include="fonts\3OF9_NEW.eot" />
     <Content Include="fonts\3OF9_NEW.TTF" />
     <Content Include="fonts\3OF9_NEW.woff" />
+    <Content Include="Plantillas\PlantillaVER3.docx" />
     <None Include="Properties\PublishProfiles\PortalV1.pubxml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\ckeditor\adapters\jquery.js" />

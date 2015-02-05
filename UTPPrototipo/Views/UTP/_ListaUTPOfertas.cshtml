@@ -64,7 +64,9 @@
         </div>
         <div class="col-sm-1">
             @*<a href="../UTP/RegistroOferta">@item.CargoOfrecido</a>*@
-            @Html.ActionLink(@item.CargoOfrecido, "VerDetalleOferta", new { id = item.IdOferta })
+            @Html.ActionLink(@item.CargoOfrecido, "VerDetalleOferta", new { id = item.IdOferta }, htmlAttributes: new { target = "_blank" })
+            <br />
+            @Html.ActionLink("Vista empresa", "Oferta", "Empresa", new { idOferta = item.IdOferta, pantalla = "UTP" }, htmlAttributes: new { target = "_blank" })
         </div>
         <div class="col-sm-1">
             @item.NumeroVacantes
@@ -75,7 +77,7 @@
                     @item.Cargo
                 </div>
                 <div class="col-sm-3">
-                    @Html.ActionLink("Ver", "Oferta", "Empresa", new { idOferta = item.IdOferta, pantalla = "UTP" }, null)
+                   
                 </div>
             </div>             
         </div>
