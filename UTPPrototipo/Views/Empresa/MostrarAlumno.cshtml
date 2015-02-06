@@ -1,0 +1,376 @@
+﻿@model UTP.PortalEmpleabilidad.Modelo.VistaOfertaPostulante
+@{
+    Layout = "~/Views/Empresa/_LayoutEmpresa.cshtml";
+    ViewBag.Title = "Postulante";
+}
+
+<div class="container" style="margin-top:2px;">
+    @{Html.RenderAction("VistaCabecera", "Empresa");}
+    <div class="row">
+        <div class="col-md-9">
+
+            <div class="panel-group" id="datos-CV" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingCV" style="padding: 2px 2px 2px 6px;">
+                        <h5 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseCV" aria-expanded="true" aria-controls="collapseCV" class="fuente-seccion">
+                                Alumno - @Model.alumnocv.Nombres @Model.alumnocv.Apellidos
+                            </a>
+                        </h5>
+                    </div>
+                    <div id="collapseCV" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingCV">
+                        <div class="panel-body">
+                            <div class="row fuente-pequeña">
+                                <div class="col-sm-2">
+
+                                    @*<img class="foto-usuario" src="~/img/Alumna.png" />*@
+                                    @if (Model.alumnocv.Foto != null)
+                                    {
+                                        <img src="@Url.Action("GetImageAlumno", "Alumno", new {Model.alumnocv.IdAlumno})" class="foto-usuario" />
+                                    }
+                                    else
+                                    {
+                                        <img class="foto-usuario" src="~/img/sinimagen.jpg" />
+                                    }
+                                </div>
+                                <div class="col-sm-10">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <strong>
+                                                @Model.alumnocv.Nombres
+                                                <br />@Model.alumnocv.Apellidos
+                                            </strong>
+                                            @*<br />@Model.alumnocv.Carrera*@
+                                        </div>
+                                        <div class="col-sm-4">
+                                            Código <strong>@Model.alumnocv.CodAlumnoUTP</strong><br />
+                                            DNI <strong>@Model.alumnocv.NumeroDocumento</strong><br />
+                                            <strong>@Model.alumnocv.CorreoElectronico1</strong><br />
+                                            <strong>@Model.alumnocv.CorreoElectronico2</strong>
+
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <strong>@Model.alumnocv.Direccion, @Model.alumnocv.DireccionDistrito, @Model.alumnocv.DireccionCiudad, @Model.alumnocv.DireccionRegion</strong><br />
+                                            <strong>@Model.alumnocv.TelefonoCelular</strong><br />
+                                            <strong>@Model.alumnocv.TelefonoFijoCasa</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-group" id="mi-cv-perfil" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingCVPerfil" style="padding: 2px 2px 2px 6px;">
+                        <h5 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseCVPerfil" aria-expanded="true" aria-controls="collapseCVPerfil" style="font-size:12px;">
+                                Perfil
+                            </a>
+                        </h5>
+                    </div>
+                    <div id="collapseCVPerfil" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingCVPerfil">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="input-group fuente-pequeña">
+                                        @Model.alumnocv.Perfil
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-group" id="mi-cv-educacion" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingCVEducacion" style="padding: 2px 2px 2px 6px;">
+                        <h5 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseCVEducacion" aria-expanded="true" aria-controls="collapseCVEducacion" style="font-size:12px;">
+                                Estudios
+                            </a>
+                        </h5>
+                    </div>
+                    <div id="collapseCVEducacion" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingCVEducacion">
+                        <div class="panel-body fuente-pequeña">
+                            @if (Model.alumnoestudiocv != null && Model.alumnoestudiocv.Count > 0)
+                            {
+                                foreach (var item in Model.alumnoestudiocv)
+                                {
+                                    <div class="row">
+                                        <div class="col-sm-11">
+
+                                            <div class="row">
+                                                <div class=" col-sm-3">
+                                                    <strong>@item.FechaInicioMes/@item.FechaInicioAno - @item.FechaFinMes/@item.FechaFinAno</strong>
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    <span><strong>@item.Institucion</strong></span>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="row">
+
+                                                <div class="col-sm-3">
+
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <strong>@item.Estudio</strong>
+                                                </div>
+
+                                                <div class="col-sm-2">
+                                                    @item.EstadoDelEstudio
+                                                </div>
+                                                <div class="col-sm-1">
+                                                    @if (item.CicloEquivalente > 0)
+                                                    {
+                                                        <span>Cicl.@item.CicloEquivalente</span>
+                                                    }
+
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    @item.Observacion
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                        <div class="col-sm-1">
+                                            @if (item.Cumple == 1)
+                                            {
+                                                <span class="fui si-cumple" style="font-size:30px;">g</span>
+                                            }
+                                            else
+                                            {
+                                                if (item.Cumple == 0)
+                                                {
+                                                    <span class="fui no-cumple" style="font-size:30px;">l</span>
+                                                }
+                                            }
+                                        </div>
+                                    </div>
+                                    <hr />
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-group" id="mi-cv-experiencia-laboral" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingCVExperienciaLaboral" style="padding: 2px 2px 2px 6px;">
+                        <h5 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseCVExperienciaLaboral" aria-expanded="true" aria-controls="collapseCVExperienciaLaboral" style="font-size:12px;">
+                                Experiencia laboral
+                            </a>
+                        </h5>
+                    </div>
+                    <div id="collapseCVExperienciaLaboral" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingCVExperienciaLaboral">
+                        <div class="panel-body fuente-pequeña">
+
+                            @if (Model.alumnoexperienciacv != null && Model.alumnoexperienciacv.Count > 0)
+                            {
+                                string EmpresaExperiencia = "";
+                                foreach (var item in Model.alumnoexperienciacv)
+                                {
+                                    if (item.Empresa != EmpresaExperiencia)
+                                        {
+                                                if (EmpresaExperiencia != "")
+                                                {
+                                                    <hr />
+                                                }
+
+                                                EmpresaExperiencia = item.Empresa;
+                                                <div class="row">
+                                                    <div class="col-sm-11">
+                                                        <div class="row">
+                                                            <div class="col-sm-3">
+
+                                                            </div>
+                                                            <div class=" col-sm-9">
+                                                                <span><strong>@item.Empresa.</strong></span>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-3">
+
+                                                            </div>
+                                                            <div class=" col-sm-9">
+                                                                @item.DescripcionEmpresa
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-1">
+                                                    </div>
+                                                </div>
+
+                                        }
+                                    <div class="row">
+                                        <div class="col-sm-11">
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                    @item.FechaInicioCargoMes/@item.FechaInicioCargoAno -
+                                                    @if (item.FechaFinCargoMes == 0)
+                                                    {
+                                                        <span>Actualidad</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span>@item.FechaFinCargoMes/@item.FechaFinCargoAno</span>
+                                                    }
+                                                    @*Queda pendiente calcular Años y Meses*@
+                                                    @*<br />(1 año, 11 meses)*@
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <strong>@item.NombreCargo</strong>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    @item.Ciudad-@item.Pais
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-sm-3">
+                                                </div>
+                                                <div class="col-sm-9">
+                                                    @Html.Raw(item.DescripcionCargo)
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-1">
+                                            @if (item.Cumple == 1)
+                                            {
+                                                <span class="fui si-cumple" style="font-size:30px;">g</span>
+                                            }
+                                            else
+                                            {
+                                                if (item.Cumple == 0)
+                                                {
+                                                    <span class="fui no-cumple" style="font-size:30px;">l</span>
+                                                }
+                                            }
+                                        </div>
+                                    </div>
+
+                                                        }
+                                                        }
+
+
+                            <div class="row">
+                                <div class="panel-group" id="datos-mas-experiencia" role="tablist" aria-multiselectable="true">
+                                    <div class="panel " style="border-width:0px;">
+                                        <div id="collapseMasExperiencia" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingMasExperiencia">
+                                            <div class="panel-body" style="border-width:0px;">
+
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12" style="text-align:right;">
+                                    <a data-toggle="collapse" data-parent="#datos-mas-experiencia" href="#collapseMasExperiencia" aria-expanded="true" aria-controls="collapseMasExperiencia" class="fuente-seccion">
+                                        Ver Más
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-group" id="cv-informacion-adicional" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingCVInformacionAdicional" style="padding: 2px 2px 2px 6px;">
+                        <h5 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#cv-informacion-adicional" href="#collapseCVInformacionAdicional" aria-expanded="true" aria-controls="collapseCVInformacionAdicional" style="font-size:12px;">
+                                Información Adicional
+                            </a>
+                        </h5>
+                    </div>
+                    <div id="collapseCVInformacionAdicional" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingCVInformacionAdicional">
+                        <div class="panel-body fuente-pequeña">
+
+                            <br />
+                            @if (Model.alumnoinformacionadicionalcv != null && Model.alumnoinformacionadicionalcv.Count > 0)
+                            {
+
+                                foreach (var item in Model.alumnoinformacionadicionalcv)
+                                {
+                                    <div class="row">
+                                        <div class="col-sm-11">
+                                            <div class="row">
+                                                <div class="col-sm-2">
+                                                    @item.Conocimiento,
+                                                </div>
+                                                <div class="col-sm-1">
+                                                    @item.DesNivelConocimiento,
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    @item.InstituciónDeEstudio,
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    @item.Ciudad-@item.NomPais,
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    @if (item.FechaConocimientoDesdeMes != 0)
+                                                    {
+                                                        <span>@item.FechaConocimientoDesdeMes/@item.FechaConocimientoDesdeAno</span>
+                                                    }
+                                                    @if (item.FechaConocimientoHastaMes != 0)
+                                                    {
+                                                        <span>- @item.FechaConocimientoHastaMes/@item.FechaConocimientoHastaAno</span>
+                                                    }
+                                                    ,
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    @if (item.AñosExperiencia > 0)
+                                                    {
+                                                        <span>@item.AñosExperiencia año(s)</span>
+                                                    }
+                                                </div>
+                                            </div>
+                                            @*<span>ingles, <span class="valor-icono2">x</span><span class="valor-palabra">Nivel Medio</span>, Instituto de Idiomas ICPNA. Lima - Perú, Ene 2009 - Abr 2011.</span>*@
+                                        </div>
+                                        <div class="col-sm-1">
+                                            @if (item.Cumple == 1)
+                                            {
+                                                <span class="fui si-cumple" style="font-size:30px;">g</span>
+                                            }
+                                            else
+                                            {
+                                                if (item.Cumple == 0)
+                                                {
+                                                    <span class="fui no-cumple" style="font-size:30px;">l</span>
+                                                }
+                                            }
+                                        </div>
+                                    </div>
+                                }
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-3">
+           
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $("#divFinalCabeceraEmpresa").removeClass("color-paleta1 color-paleta2 color-paleta4 color-paleta5").addClass("color-paleta3");
+    });
+</script>
+

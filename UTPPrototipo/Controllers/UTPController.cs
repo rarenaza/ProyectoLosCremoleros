@@ -1100,10 +1100,11 @@ namespace UTPPrototipo.Controllers
             
             TicketUTP ticketUtp = (TicketUTP)Session["TicketUtp"];
 
+            string correoUTP = ticketUtp.CorreoElectronico;
             empresa.Usuario = ticketUtp.Usuario;
                    
 
-            lnUtp.ActualizarEstadoYUsuarioEC(empresa);
+            lnUtp.ActualizarEstadoYUsuarioEC(empresa, correoUTP);
 
             LNGeneral lnGeneral = new LNGeneral();
             LNUsuario lnUsuario = new LNUsuario();

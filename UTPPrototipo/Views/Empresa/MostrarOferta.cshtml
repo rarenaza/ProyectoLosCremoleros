@@ -3,7 +3,7 @@
 @using UTP.PortalEmpleabilidad.Modelo
 
 @{
-    Layout = "~/Views/Alumno/_LayoutAlumno.cshtml";
+    Layout = "~/Views/Empresa/_LayoutEmpresa.cshtml";
     ViewBag.Title = "Oferta de Trabajo";
 }
 <div class="container" style="margin-top:2px;">
@@ -13,7 +13,6 @@
         @Html.Hidden("RecibeCorreosIdListaValor", Model.Oferta.RecibeCorreosIdListaValor)
         @Html.Hidden("CorreoElectronicoUsuarioEmpresa", Model.Oferta.CorreoElectronicoUsuarioEmpresa)
         @Html.Hidden("CargoOfrecido", Model.Oferta.CargoOfrecido)
-        @{Html.RenderAction("VistaCabecera", "Alumno", new { colapsaDatos = " " });}
 
     </div>
 
@@ -83,7 +82,7 @@
 
             </div>
 
-            <div class="panel-group" id="oferta-mensaje" role="tablist" aria-multiselectable="true">
+            @*<div class="panel-group" id="oferta-mensaje" role="tablist" aria-multiselectable="true">
                 <div class="panel panel-default">
                     <div class="panel-heading" role="tab" id="headingMensaje" style="padding: 2px 2px 2px 6px;">
                         <h5 class="panel-title">
@@ -101,7 +100,6 @@
                                         <div style="height:90px;">
                                             @if (item.LogoEmpresa != null && string.IsNullOrEmpty(item.ArchivoMimeType) == false)
                                             {
-                                                @*<img src="@Html.GetImageEmpresa(item.LogoEmpresa, "image/jpeg")" class="logo-empresa2" />*@
                                                 <img src="@Url.Action("GetImageEmpresa", "Alumno", new { item.IdEmpresa })" class="logo-empresa2" />
 
                                             }
@@ -112,13 +110,9 @@
 
 
                                         </div>
-                                        @*<div style="height:90px;"><img src="~/img/logos/logoCriteria.jpg" class="logo-empresa2" /></div>*@
+                                        @*<div style="height:90px;"><img src="~/img/logos/logoCriteria.jpg" class="logo-empresa2" /></div>
 
                                         <div>
-                                            <strong>
-                                                @Html.ActionLink(item.CargoOfrecido, "postulacionOferta2", "Alumno", new { id = item.IdOferta }, null)
-                                            </strong>
-                                            <br />@Html.FormatoFrecuencia(item.FechaPublicacion)
                                         </div>
                                     </div>
                                 }
@@ -133,18 +127,18 @@
             <div id="oferta-mensaje2222" aria-multiselectable="true">
 
                 @Html.Action("_Mensajes", "Mensaje", new { pantalla = Constantes.MENSAJES_ALUMNO_OFERTA, idOferta = Model.Oferta.IdOferta })
-            </div>
+            </div>*@
 
         </div>
         <div class="col-md-5">
 
 
-            <div class="panel-group" id="oferta-postulacion" role="tablist" aria-multiselectable="true">
+            @*<div class="panel-group" id="oferta-postulacion" role="tablist" aria-multiselectable="true">
                 @Html.Partial("_EstadoPostulacion", Model.Oferta)
-            </div>
+            </div>*@
 
 
-            <div class="panel-group" id="oferta-requisito" role="tablist" aria-multiselectable="true">
+            @*<div class="panel-group" id="oferta-requisito" role="tablist" aria-multiselectable="true">
                 <div class="panel panel-default">
                     <div class="panel-heading" role="tab" id="headingRequisito" style="padding: 2px 2px 2px 6px;">
                         <h5 class="panel-title">
@@ -304,7 +298,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>*@
 
             <!--Vista para la empresa-->
             <div class="panel-group" id="oferta-detalle" role="tablist" aria-multiselectable="true">
@@ -463,144 +457,10 @@
     </div>
 </div>
 
-<!-- Modal -->
-<div class="modal" id="Modal-datos-empresa" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="myModalLabel">Datos de la Empresa</h4>
-            </div>
-            <div class="modal-body">
-                <table style="width:100%">
-                    <tr>
-                        <td style="width:50%;text-align:center;">
-                            @if (Model.Oferta.LogoEmpresa != null && string.IsNullOrEmpty(Model.Oferta.ArchivoMimeType) == false)
-                            {
-                                <img src="@Url.Action("GetImageEmpresa", "Alumno", new { Model.Oferta.IdEmpresa })" class="logo-empresa" />
-
-                            }
-                            else
-                            {
-                                <img class="logo-empresa" src="~/img/sinimagen.jpg" />
-                            }
-                        </td>
-                        <td style="width:50%;"><h4>@Model.Oferta.NombreComercial</h4><br />@Model.Oferta.SitioWeb</td>
-                    </tr>
-                </table>
-                <br />
-                <h5>@Model.Oferta.DescripcionEmpresa</h5>
-                <table>
-                    <tr>
-                        <td class="celda-nombre">
-                            Año de Creación
-                        </td>
-                        <td class="celda-datos">
-                            @Model.Oferta.AnoCreacion
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="celda-nombre">
-                            Empleados
-                        </td>
-                        <td class="celda-datos">
-                            @Model.Oferta.DesNumeroEmpleados
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="celda-nombre">
-                            Sector Empresarial
-                        </td>
-                        <td class="celda-datos">
-                            @Model.Oferta.DesSectorEmpresarial
-                        </td>
-                    </tr>
-
-                </table>
-            </div>
-            <div class="modal-footer">
-            </div>
-        </div>
-    </div>
-</div>
-
-@*<script src="~/Scripts/jquery-2.1.1.min.js"></script>*@
 <script>
 
     $(document).ready(function () {
-        $("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta4 color-paleta5").addClass("color-paleta3");
+        $("#divFinalCabeceraEmpresa").removeClass("color-paleta1 color-paleta3 color-paleta4 color-paleta5").addClass("color-paleta2");
     });
-
-    $('#BotonPostularAhora').click(function () {
-
-        //Se valida que el alumno haya seleccionado un CV
-        if ($('#IdCV').val() == "") {
-            alert('Debe seleccionar un CV');
-            return false;
-        }
-        var ofertapostulacion = {
-            IdAlumno: $('#IdAlumno').val(),
-            IdOferta: $('#IdOferta').val(),
-            FaseOfertaPostulacion: 'OFFAPR',
-            IdCV: $('#IdCV').val(),
-            RecibeCorreos: $('#RecibeCorreosIdListaValor').val(),
-            CorreoElectronicoUsuarioEmpresa: $('#CorreoElectronicoUsuarioEmpresa').val(),
-            CargoOfrecido: $('#CargoOfrecido').val()
-
-        };
-        //CargarPOST(null, "/Alumno/PostularOferta", ofertapostulacion);
-        CargarPOST(null, '@Url.Action("PostularOferta", "Alumno")', ofertapostulacion);
-
-        //var url = "/Alumno/EstadoPostulacionOferta/" + $('#IdOferta').val();
-        var url = '@Url.Action("EstadoPostulacionOferta", "Alumno")' + "/" + $('#IdOferta').val();
-
-        CargarGET("oferta-postulacion", url);
-    });
-    $('#idDescargaCV').click(function () {
-        var ofertapostulacion = {
-            IdAlumno: $('#IdAlumno').val(),
-            IdOferta: $('#IdOferta').val()
-        };
-
-        //CargarPOST(null, "/Alumno/DescargarCV", ofertapostulacion);
-        CargarPOST(null, '@Url.Action("DescargarCV", "Alumno")', ofertapostulacion);
-    });
-
-    function CargarPOST(id, link, entidad) {
-        $.ajax({
-            url: link,
-            contentType: 'application/json; charset=utf-8',
-            type: 'POST',
-            data: JSON.stringify(entidad),
-            dataType: 'html'
-        })
-        .success(function (result) {
-            if (id != null) {
-                $("#" + id).html(result);
-            }
-        })
-        .error(function (xhr, status) {
-            console.log(xhr);
-            console.log(status);
-
-        })
-    }
-    function CargarGET(id, link) {
-        $.ajax({
-            url: link,
-            contentType: 'application/html; charset=utf-8',
-            type: 'GET',
-            dataType: 'html'
-
-        })
-        .success(function (result) {
-            if (id != null) {
-                $("#" + id).html(result);
-            }
-        })
-        .error(function (xhr, status) {
-            alert(status);
-        })
-    }
 
 </script>

@@ -11,24 +11,27 @@
 
 
 <div class="row grilla1-cabecera color-paleta3">
-            <div class="col-sm-1">Msj</div>
-            <div class="col-sm-3">Nombre</div>
-            <div class="col-sm-3">Estudio</div>
-            <div class="col-sm-2">Estado</div>
-            <div class="col-sm-2">Último Sector</div>
-            <div class="col-sm-1">Años<br />Exper.</div>
-        </div>
+    <div class="col-sm-1">Msj</div>
+    <div class="col-sm-3">Nombre</div>
+    <div class="col-sm-3">Estudio</div>
+    <div class="col-sm-2">Estado</div>
+    <div class="col-sm-2">Último Sector</div>
+    <div class="col-sm-1">Años<br />Exper.</div>
+</div>
 
 @foreach (var item in Model)
 {
     <div id="divResultadoHunting" class="row grilla1-linea">
-            <div class="col-sm-1 checkAlumno"><input type="checkbox" name="@item.IdAlumno" /> <input type="hidden" value="@item.IdAlumno"/></div>
-            <div class="col-sm-3 linea-destacada"><strong>@item.Nombres @item.Apellidos</strong></div>
-            <div class="col-sm-3">@item.Estudios</div>
-            <div class="col-sm-2">@item.ValorEstadoEstudio</div>
-            <div class="col-sm-2">@item.ValorSectorEmpresarial</div>
-            <div class="col-sm-1">@(item.TotalMesesExperiencia/12)</div>
+        <div class="col-sm-1 checkAlumno"><input type="checkbox" name="@item.IdAlumno" /> <input type="hidden" value="@item.IdAlumno" /></div>
+        <div class="col-sm-3 linea-destacada">
+            @*<strong>@item.Nombres @item.Apellidos</strong>*@
+            @Html.ActionLink(item.Nombres + "" + @item.Apellidos, "MostrarAlumno", new { id = item.IdAlumno }, htmlAttributes: new { @target = "_blank", @title = "Ver CV alumno" })
         </div>
+        <div class="col-sm-3">@item.Estudios</div>
+        <div class="col-sm-2">@item.ValorEstadoEstudio</div>
+        <div class="col-sm-2">@item.ValorSectorEmpresarial</div>
+        <div class="col-sm-1">@(item.TotalMesesExperiencia / 12)</div>
+    </div>
 }
 @if (Model.Count() == 0)
 {
@@ -38,31 +41,31 @@
         </div>
     </div>
 }
- <div>
+<div>
     <!--Paginación-->
     <nav class="navbar-right">
         <ul class="pagination">
 
             @*@{
-                for (int i = 1; i <= paginacion.TotalPaginas; i++)
-                {
-                    if (i == paginacion.NroPaginaActual)
-                    {
-                        <li class="active"><a href="#">@i <span class="sr-only"></span></a></li>
-                    }
-                    else
-                    {
-                        if (ViewBag.TipoPaginacion == "Simple")
-                        {
-                            <li><a href="#" onclick="buscarPaginacion('@i');">@i</a></li>
-                        }
-                        else
-                        {
-                            <li><a href="#" onclick="buscarPaginacionAvanzada('@i');">@i</a></li>
-                        }
-                    }
-                }
-               }*@
+                 for (int i = 1; i <= paginacion.TotalPaginas; i++)
+                 {
+                     if (i == paginacion.NroPaginaActual)
+                     {
+                         <li class="active"><a href="#">@i <span class="sr-only"></span></a></li>
+                     }
+                     else
+                     {
+                         if (ViewBag.TipoPaginacion == "Simple")
+                         {
+                             <li><a href="#" onclick="buscarPaginacion('@i');">@i</a></li>
+                         }
+                         else
+                         {
+                             <li><a href="#" onclick="buscarPaginacionAvanzada('@i');">@i</a></li>
+                         }
+                     }
+                 }
+                }*@
             @{
                 if (paginacion.NroPaginaActual > 1)
                 {
@@ -168,7 +171,7 @@
 
 
 
- 
-   
-  
+
+
+
 

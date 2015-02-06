@@ -33,7 +33,7 @@ namespace UTPPrototipo.Controllers
             //Correo de la empresa a UTP
             if (pantalla == Constantes.MENSAJES_EMPRESA_OFERTA && estado == "OFERPR") //Se envia pendiente de activación.
             {
-                //Si el estado es pendiente de activación se debe mandar un aviso al ejecutivo de cuenta de la oferta.
+                //Si el estado es pendiente de activación se debe mandar un aviso al ejecutivo de cuenta de UTP.
                 DataTable dtDatos = lnOferta.ObtenerDatosParaMensaje(Convert.ToInt32(idOferta));
                 string para = Convert.ToString(dtDatos.Rows[0]["CorreoUTP"]);
                 string nombreEmpresa = Convert.ToString(dtDatos.Rows[0]["NombreEmpresa"]);
