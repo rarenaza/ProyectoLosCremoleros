@@ -264,7 +264,7 @@ namespace UTP.PortalEmpleabilidad.Logica
             return convenio;
         }
        
-        public void ActualizarEstadoYUsuarioEC(Empresa empresa)
+        public void ActualizarEstadoYUsuarioEC(Empresa empresa, string correoUTPDe)
         {
             if (empresa.UsuarioEC == null) empresa.UsuarioEC = "";
             
@@ -284,7 +284,7 @@ namespace UTP.PortalEmpleabilidad.Logica
             DataTable dt = lnMensaje.ObtenerUsuarioEmpresaPorIdEmpresa(empresa.IdEmpresa);
 
             Mensaje mensaje = new Mensaje();
-            mensaje.DeUsuarioCorreoElectronico = empresa.Usuario; //Contiene el ticket del usuario UTP.
+            mensaje.DeUsuarioCorreoElectronico = correoUTPDe; // empresa.Usuario; //Contiene el ticket del usuario UTP.
             mensaje.ParaUsuarioCorreoElectronico = Convert.ToString(dt.Rows[0]["CorreoElectronico"]);
             mensaje.Asunto = "Empresa actualizada";            
             mensaje.MensajeTexto = "El estado de la empresa '" + empresa.NombreComercial + "' ha sido actualizado a: " + estado + "'";

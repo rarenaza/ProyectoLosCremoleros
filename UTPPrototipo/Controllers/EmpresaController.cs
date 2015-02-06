@@ -1163,5 +1163,63 @@ namespace UTPPrototipo.Controllers
 
             return Json(cantidad, JsonRequestBehavior.AllowGet);
         }
+
+
+        /// <summary>
+        /// Acción que devuelve la vista de la oferta desde la perspectiva del alumno
+        /// En esta llamada no existe alumno.
+        /// </summary>
+        /// <param name="id">idOferta</param>
+        /// <returns></returns>
+        public ActionResult MostrarOferta(int id)
+        {
+            if (id != null)
+            {
+                LNAlumno lnAlumno = new LNAlumno();
+                LNOferta lnOferta = new LNOferta();
+                VistaOfertaAlumno vistaofertalumno = new VistaOfertaAlumno();
+                //Alumno alumno = new Alumno();
+                //TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
+                //alumno = lnAlumno.ObtenerAlumnoPorCodigo(ticket.CodAlumnoUTP);
+                vistaofertalumno = lnOferta.OfertaAlumnoPostulacion((int)id, -1); //Se manda -1 porque no existe alumno en esta vista.
+                if (vistaofertalumno.Oferta != null && vistaofertalumno.Oferta.IdEmpresa > 0)
+                {
+                    //Periodo Publicacion
+                    if (vistaofertalumno.Oferta.Postulacion == 0)
+                    {
+                        List<SelectListItem> listItemsAlumnoCV = new List<SelectListItem>();
+                        foreach (AlumnoCV entidad in vistaofertalumno.ListaAlumnoCV)
+                        {
+                            SelectListItem item = new SelectListItem();
+                            item.Text = entidad.NombreCV.ToString();
+                            item.Value = entidad.IdCV.ToString();
+                            listItemsAlumnoCV.Add(item);
+                        }
+                        ViewBag.ListaAlumnoCV = listItemsAlumnoCV;
+
+                    }
+
+                    return View(vistaofertalumno);
+                }
+                //else
+                //{
+                //    return RedirectToAction("BusquedaOferta");
+                //}
+
+            }
+            //else
+            //{
+            //    return RedirectToAction("BusquedaOferta");
+            //}
+
+            return Content("");
+        }
+
+        public ActionResult MostrarAlumno(int id)
+        {
+            int idAlumno = id;
+            VistaOfertaPostulante vistaofertapostulante = lnAlumnocv.ObtenerDatosCV(idAlumno);
+            return View(vistaofertapostulante);            
+        }
     }
 }

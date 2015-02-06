@@ -187,5 +187,26 @@ namespace UTP.PortalEmpleabilidad.Datos
 
             return dsResultado;
         }
+
+        public DataSet ObtenerDatosCV(int idAlumno)
+        {
+            DataSet dsResultado = new DataSet();
+
+            using (SqlConnection conexion = new SqlConnection(cnn.Conexion()))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "AlumnoCV_ObtenerDatosCV_VistaEmpresa";
+                cmd.Connection = conexion;
+                conexion.Open();
+                cmd.Parameters.Add(new SqlParameter("@IdAlumno", idAlumno));
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dsResultado);
+                conexion.Close();
+            }
+
+            return dsResultado;
+        }
     }
 }

@@ -40,7 +40,7 @@
                 @Html.ValidationMessageFor(m => m.RecibeCorreosIdListaValor, "", new { @class = "text-danger" })              
             </div>
             <div class="col-sm-3 " style="text-align:right;">
-                <button type="submit" class="btn btn-default color-paleta2">Guardar</button>
+                <button id="btnGuardarOferta" type="submit" class="btn btn-default color-paleta2">Guardar</button>
             </div>
         </div>
 
@@ -302,7 +302,7 @@
 
     </div>
 
-    <span style="font-size:x-small">Debe crear la oferta para habilitar estas secciones:</span>
+    @*<span style="font-size:x-small">Debe crear la oferta para habilitar estas secciones:</span>*@
     <br /><br />
     <div id='divNombre' class='classNombre'>
         <div class="row">
@@ -329,7 +329,7 @@
                                     <br />
                                     <div class="row">
                                         <div class="col-sm-12" style="text-align:right;">
-                                            <button disabled id="btnNuevoEstudio" data-toggle="modal" data-target="#divModalEstudio" onclick="crearEstudio(@ViewBag.IdOferta)" class=" btn btn-default color-paleta2">
+                                            <button id="btnNuevoEstudio" data-toggle="modal" data-target="#divModalEstudio" onclick="validarGuardarOferta();" class=" btn btn-default color-paleta2">
                                                 Agregar un Estudio específico
                                             </button>
                                         </div>
@@ -348,7 +348,7 @@
 
                                     <div class="row">
                                         <div class="col-sm-12" style="text-align:right;">
-                                            <button disabled id="btnNuevoSectorEmpresarial" data-toggle="modal" data-target="#divModalSectorEmpresarial" onclick="crearSector(@ViewBag.IdOferta)" class="btn btn-default color-paleta2">
+                                            <button id="btnNuevoSectorEmpresarial" data-toggle="modal" data-target="#divModalSectorEmpresarial" onclick="validarGuardarOferta();" class="btn btn-default color-paleta2">
                                                 Agregar Experiencia por Sector
                                             </button>
                                         </div>
@@ -367,7 +367,7 @@
 
                                     <div class="row">
                                         <div class="col-sm-12" style="text-align:right;">
-                                            <button disabled class="btn btn-default color-paleta2" onclick="crearInfoAdicional(@ViewBag.IdOferta)">
+                                            <button class="btn btn-default color-paleta2" onclick="validarGuardarOferta();">
                                                 Agregar Información Adicional
                                             </button>
                                             <!--id="btnNuevaInfoAdicional" data-toggle="modal" data-target="#divModalInfoAdicional"-->
@@ -397,8 +397,10 @@
                     <div id="collapseFases" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFases">
                         <div class="panel-body fuente-pequeña">
 
-
-                            <p>Seleccionar Fases para esta Oferta</p>
+                            <button onclick="validarGuardarOferta();" class="btn btn-default color-paleta2">
+                                Mostrar fases de la oferta
+                            </button>
+                            @*<p>Seleccionar Fases para esta Oferta</p>*@
                             @*<div class="checkbox">
                                 <label>
                                     <input type="checkbox" value="">
@@ -501,6 +503,11 @@
         checkSupportForInputTypeDate();
         $("#FechaFinRecepcionCV").datepicker({ dateFormat: 'dd/mm/yy' });
     });
+
+    function validarGuardarOferta()
+    {
+        $('#btnGuardarOferta').click();
+    }
           
 
 </script>
