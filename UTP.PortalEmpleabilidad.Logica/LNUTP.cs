@@ -453,39 +453,39 @@ namespace UTP.PortalEmpleabilidad.Logica
 
         #region Mantenimiento de Usuarios UTP
 
-        public List<UTPUsuario> ObtenerUsuariosUTP()
-        {
-            List<UTPUsuario> lista = new List<UTPUsuario>();
-
-            DataTable dtResultado = adUtp.ObtenerUsuariosUTP();
-
-            foreach (DataRow fila in dtResultado.Rows)
-            {
-                UTPUsuario nuevo = new UTPUsuario();
-                nuevo.IdUTPUsuario = Convert.ToInt32(fila["IdUTPUsuario"]);
-                nuevo.NombreUsuario = Convert.ToString(fila["Usuario"]);
-                nuevo.Nombres = Convert.ToString(fila["Nombres"]);
-                nuevo.Apellidos = Convert.ToString(fila["Apellidos"]);
-                nuevo.SexoDescripcion = Convert.ToString(fila["SexoDescripcion"]);
-                nuevo.Correo = Convert.ToString(fila["CorreoElectronico"]);
-                nuevo.TelefonoFijo = Convert.ToString(fila["TelefonoFijo"]);
-                nuevo.TelefonoCelular = Convert.ToString(fila["TelefonoCelular"]);
-                nuevo.EstadoUsuarioDescripcion = Convert.ToString(fila["EstadoUsuarioDescripcion"]);
-                //nuevo.CantidadTotal = Convert.ToInt32(fila["CantidadTotal"]);
-
-                lista.Add(nuevo);
-            }
-
-
-
-            return lista;
-        }
-
-        //public DataTable ObtenerUsuariosUTP(int nroPagina, int filasPorPagina)
+        //public List<UTPUsuario> ObtenerUsuariosUTP()
         //{
+        //    List<UTPUsuario> lista = new List<UTPUsuario>();
 
-        //    return adUtp.ObtenerUsuariosUTP(nroPagina, filasPorPagina);
+        //    DataTable dtResultado = adUtp.ObtenerUsuariosUTP();
+
+        //    foreach (DataRow fila in dtResultado.Rows)
+        //    {
+        //        UTPUsuario nuevo = new UTPUsuario();
+        //        nuevo.IdUTPUsuario = Convert.ToInt32(fila["IdUTPUsuario"]);
+        //        nuevo.NombreUsuario = Convert.ToString(fila["Usuario"]);
+        //        nuevo.Nombres = Convert.ToString(fila["Nombres"]);
+        //        nuevo.Apellidos = Convert.ToString(fila["Apellidos"]);
+        //        nuevo.SexoDescripcion = Convert.ToString(fila["SexoDescripcion"]);
+        //        nuevo.Correo = Convert.ToString(fila["CorreoElectronico"]);
+        //        nuevo.TelefonoFijo = Convert.ToString(fila["TelefonoFijo"]);
+        //        nuevo.TelefonoCelular = Convert.ToString(fila["TelefonoCelular"]);
+        //        nuevo.EstadoUsuarioDescripcion = Convert.ToString(fila["EstadoUsuarioDescripcion"]);
+        //        //nuevo.CantidadTotal = Convert.ToInt32(fila["CantidadTotal"]);
+
+        //        lista.Add(nuevo);
+        //    }
+
+
+
+        //    return lista;
         //}
+
+        public DataTable ObtenerUsuariosUTP(int nroPagina, int filasPorPagina)
+        {
+
+            return adUtp.ObtenerUsuariosUTP(nroPagina, filasPorPagina);
+        }
 
         public DataTable UTP_LISTAVALORPADRE(int nroPagina, int filasPorPagina)
         {
@@ -493,10 +493,10 @@ namespace UTP.PortalEmpleabilidad.Logica
             return adUtp.UTP_LISTAVALORPADRE(nroPagina, filasPorPagina); 
         }
 
-        public DataTable UTP_LISTAVALORHIJO(int id)
+        public DataTable UTP_LISTAVALORHIJO(int id, int nroPagina, int filasPorPagina)
         {
 
-            return adUtp.UTP_LISTAVALORHIJO(id);
+            return adUtp.UTP_LISTAVALORHIJO(id, nroPagina, filasPorPagina);
         }
 
         public DataTable UTP_BUSCARLISTAVALORPADRE(int id)

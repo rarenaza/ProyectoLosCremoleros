@@ -13,7 +13,8 @@
     <div id="divListaUsuariosUTP">
         @Html.Action("_UsuariosUTPLista", "UTP")
     </div>
-        <hr />    
+        <br />  
+    <br /> 
     @* CARGA LAS LISTAS DE VALOR *@
         <div id="divListaPadre">
             @Html.Action("_ListavalorPadre", "UTP")
@@ -50,7 +51,13 @@
     }
 
 
-
+    function Paginar_UsuariosUTPLista(nroPaginaActual) {
+        var url = '@Url.Action("_UsuariosUTPLista", "UTP")' + '?nroPaginaActual=' + nroPaginaActual;
+        $.get(url, function (data) {
+            console.log(data);
+            $('#divListaUsuariosUTP').html(data);
+        });
+    }
 
 
 
@@ -139,9 +146,9 @@
         });
     }
 
-    function UsuarioUTPEditar(id) {
+    function UsuarioUTPEditar(id, nroPaginaActual) {
         //var url = "/UTP/_UsuariosUTPEditar/" + id;
-        var url = '@Url.Action("_UsuariosUTPEditar", "UTP")' + '/' + id;
+        var url = '@Url.Action("_UsuariosUTPEditar", "UTP")' + '?id=' + id + '&nroPaginaActual=' + nroPaginaActual;
 
         $.get(url, function (data) {
             $('#divContenedorUsuarioUTPEditar').html(data);

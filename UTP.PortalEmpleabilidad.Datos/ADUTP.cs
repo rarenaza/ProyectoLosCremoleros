@@ -411,8 +411,8 @@ namespace UTP.PortalEmpleabilidad.Datos
 
         #region Mantenimiento de Usuarios UTP
 
-        public DataTable ObtenerUsuariosUTP()
-        //public DataTable ObtenerUsuariosUTP(int nroPagina, int filasPorPagina)
+        //public DataTable ObtenerUsuariosUTP()
+        public DataTable ObtenerUsuariosUTP(int nroPagina, int filasPorPagina)
         {
             DataTable dtResultado = new DataTable();
 
@@ -423,8 +423,8 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "UTPUsuario_ObtenerLista";
                 ////Paginación:
-                //cmd.Parameters.Add(new SqlParameter("@NroPaginaActual", nroPagina));
-                //cmd.Parameters.Add(new SqlParameter("@FilasPorPagina", filasPorPagina));
+                cmd.Parameters.Add(new SqlParameter("@NroPaginaActual", nroPagina));
+                cmd.Parameters.Add(new SqlParameter("@FilasPorPagina", filasPorPagina));
                 cmd.Connection = conexion;
 
                 conexion.Open();
@@ -466,7 +466,7 @@ namespace UTP.PortalEmpleabilidad.Datos
             return dtResultado;
         }
 
-        public DataTable UTP_LISTAVALORHIJO(int id)
+        public DataTable UTP_LISTAVALORHIJO(int id, int nroPagina, int filasPorPagina)
         {
             DataTable dtResultado = new DataTable();
 
@@ -477,6 +477,10 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "UTP_LISTAVALORHIJO";
                 cmd.Parameters.Add(new SqlParameter("@Idlista", id));
+                //Paginación:
+                cmd.Parameters.Add(new SqlParameter("@NroPaginaActual", nroPagina));
+                cmd.Parameters.Add(new SqlParameter("@FilasPorPagina", filasPorPagina));
+
                 cmd.Connection = conexion;
 
                 conexion.Open();

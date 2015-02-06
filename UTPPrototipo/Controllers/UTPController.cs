@@ -2004,12 +2004,54 @@ namespace UTPPrototipo.Controllers
       
         #endregion
 
-        public PartialViewResult _UsuariosUTPLista()
+        //public PartialViewResult _UsuariosUTPLista()
+        //{
+        //    List<UTPUsuario> lista = lnUtp.ObtenerUsuariosUTP();
+
+        //    return PartialView("_UsuariosUTPLista", lista);
+        //    //return PartialView("_UsuariosUTPLista");
+        //}
+
+        public PartialViewResult _UsuariosUTPLista(int nroPaginaActual = 1, int filasPorPagina = Constantes.FILAS_POR_PAGINA)
         {
-            List<UTPUsuario> lista = lnUtp.ObtenerUsuariosUTP();
+         
+            List<UTPUsuario> lista = new List<UTPUsuario>();
+
+            DataTable dtResultado = lnUtp.ObtenerUsuariosUTP(nroPaginaActual, filasPorPagina);
+
+            foreach (DataRow fila in dtResultado.Rows)
+            {
+                UTPUsuario nuevo = new UTPUsuario();
+                nuevo.IdUTPUsuario = Convert.ToInt32(fila["IdUTPUsuario"]);
+                nuevo.NombreUsuario = Convert.ToString(fila["Usuario"]);
+                nuevo.Nombres = Convert.ToString(fila["Nombres"]);
+                nuevo.Apellidos = Convert.ToString(fila["Apellidos"]);
+                nuevo.SexoDescripcion = Convert.ToString(fila["SexoDescripcion"]);
+                nuevo.Correo = Convert.ToString(fila["CorreoElectronico"]);
+                nuevo.TelefonoFijo = Convert.ToString(fila["TelefonoFijo"]);
+                nuevo.TelefonoCelular = Convert.ToString(fila["TelefonoCelular"]);
+                nuevo.EstadoUsuarioDescripcion = Convert.ToString(fila["EstadoUsuarioDescripcion"]);
+                nuevo.CantidadTotal = Convert.ToInt32(fila["CantidadTotal"]);
+
+                lista.Add(nuevo);
+            }
+            //Datos para la paginación.
+            int cantidadTotal = lista.Count() == 0 ? 0 : lista[0].CantidadTotal;
+
+            Paginacion paginacion = new Paginacion();
+            paginacion.NroPaginaActual = nroPaginaActual;
+            paginacion.CantidadTotalResultados = cantidadTotal;
+            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            if (residuo > 0) paginacion.TotalPaginas += 1;
+
+            ViewBag.Paginacion = paginacion;
+            ViewBag.TipoBusqueda = "Simple";
+
 
             return PartialView("_UsuariosUTPLista", lista);
-            //return PartialView("_UsuariosUTPLista");
+    
         }
 
         public PartialViewResult _ListavalorPadre(int nroPaginaActual=1, int filasPorPagina = Constantes.FILAS_POR_PAGINA)
@@ -2067,11 +2109,11 @@ namespace UTPPrototipo.Controllers
         }
 
 
-        public ActionResult Vista_ListaValorHijo(int? Id)
+        public ActionResult Vista_ListaValorHijo(int? Id, int nroPaginaActual = 1, int filasPorPagina = Constantes.FILAS_POR_PAGINA)
         {
             List<ListaValor> lista = new List<ListaValor>();
 
-            DataTable dtResultado = lnUtp.UTP_LISTAVALORHIJO(Convert.ToInt32(Id));
+            DataTable dtResultado = lnUtp.UTP_LISTAVALORHIJO(Convert.ToInt32(Id), nroPaginaActual, filasPorPagina);
 
             for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
             {
@@ -2085,9 +2127,24 @@ namespace UTPPrototipo.Controllers
                 objListaValor.ValorUTP = dtResultado.Rows[i]["ValorUTP"].ToString();
                 objListaValor.Padre = dtResultado.Rows[i]["Padre"].ToString();
                 objListaValor.EstadoValor = dtResultado.Rows[i]["EstadoValor"].ToString();
+                objListaValor.CantidadTotal = Convert.ToInt32(dtResultado.Rows[i]["CantidadTotal"]);
                 lista.Add(objListaValor);
 
             }
+
+            //Datos para la paginación.
+            int cantidadTotal = lista.Count() == 0 ? 0 : lista[0].CantidadTotal;
+
+            Paginacion paginacion = new Paginacion();
+            paginacion.NroPaginaActual = nroPaginaActual;
+            paginacion.CantidadTotalResultados = cantidadTotal;
+            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            if (residuo > 0) paginacion.TotalPaginas += 1;
+
+            ViewBag.Paginacion = paginacion;
+            ViewBag.TipoBusqueda = "Simple";
            
             return PartialView("Vista_ListaValorHijo", lista);
         }
@@ -2245,7 +2302,7 @@ namespace UTPPrototipo.Controllers
 
                 List<ListaValor> lista = new List<ListaValor>();
 
-                DataTable dtResultado = lnUtp.UTP_LISTAVALORHIJO(Convert.ToInt32(objlista.IdLista));
+                DataTable dtResultado = lnUtp.UTP_LISTAVALORHIJO(Convert.ToInt32(objlista.IdLista),1,10);
 
                 for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
                 {
@@ -2259,19 +2316,38 @@ namespace UTPPrototipo.Controllers
                     objListaValor.ValorUTP = dtResultado.Rows[i]["ValorUTP"].ToString();
                     objListaValor.Padre = dtResultado.Rows[i]["Padre"].ToString();
                     objListaValor.EstadoValor = dtResultado.Rows[i]["EstadoValor"].ToString();
+                    objListaValor.CantidadTotal = Convert.ToInt32(dtResultado.Rows[i]["CantidadTotal"]);
                     lista.Add(objListaValor);
 
                 }
-                //
-                return PartialView("Vista_ListaValorHijo", lista);
-            //}
-            //else
-            //{
-            //    var errors = ModelState.Select(x => x.Value.Errors)
-            //               .Where(y => y.Count > 0)
-            //               .ToList();
+                //Datos para la paginación.
+                int cantidadTotal = lista.Count() == 0 ? 0 : lista[0].CantidadTotal;
 
-            //    int a = 0;
+                Paginacion paginacion = new Paginacion();
+                paginacion.NroPaginaActual = 1;
+                paginacion.CantidadTotalResultados = cantidadTotal;
+                paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+                paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+                int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+                if (residuo > 0) paginacion.TotalPaginas += 1;
+
+                ViewBag.Paginacion = paginacion;
+                ViewBag.TipoBusqueda = "Simple";
+                //
+
+
+
+
+
+                return PartialView("Vista_ListaValorHijo", lista);
+                //}
+                //else
+                //{
+                //    var errors = ModelState.Select(x => x.Value.Errors)
+                //               .Where(y => y.Count > 0)
+                //               .ToList();
+
+                //    int a = 0;
             }
 
             return PartialView("_NuevoValor", objlista);
@@ -2279,7 +2355,7 @@ namespace UTPPrototipo.Controllers
         }
 
             //AQUI LLAMO EL MODAL A EDITAR Con datos--- ESTO ES GET
-        public PartialViewResult _NuevoValorEditar(string id)
+        public PartialViewResult _NuevoValorEditar(string id, int nroPaginaActual)
         {
 
             ListaValor objlista = new ListaValor();
@@ -2298,8 +2374,9 @@ namespace UTPPrototipo.Controllers
                 objlista.Padre              = Convert.ToString(dtResultado.Rows[0]["Padre"]);
                 objlista.EstadoValor        = Convert.ToString(dtResultado.Rows[0]["EstadoValor"]);
                 objlista.IdListaValorPadre = Convert.ToString(dtResultado.Rows[0]["IdListaValorPadre"]);
-            }
 
+            }
+            objlista.idcod = nroPaginaActual;
             return PartialView("_NuevoValorEditar", objlista);
                       
 
@@ -2309,54 +2386,68 @@ namespace UTPPrototipo.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public PartialViewResult _NuevoValorEditar(ListaValor objlista)
         {
-              if (ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-            //Esto es para guardar el usuario de creacion
-            TicketUTP ticket = (TicketUTP)Session["TicketUtp"];
+                //Esto es para guardar el usuario de creacion
+                TicketUTP ticket = (TicketUTP)Session["TicketUtp"];
 
-            objlista.Modificadopor = ticket.Usuario;
+                objlista.Modificadopor = ticket.Usuario;
 
-            // logica que guarda los datos
+                // logica que guarda los datos
 
-            lnUtp.UTPACTUALIZAR_LISTAVALORHIJO(objlista);
-
-
-            ////recorro los datos para mostrar en el partial
+                lnUtp.UTPACTUALIZAR_LISTAVALORHIJO(objlista);
 
 
-            List<ListaValor> lista = new List<ListaValor>();
+                ////recorro los datos para mostrar en el partial
 
-            DataTable dtResultado = lnUtp.UTP_LISTAVALORHIJO(Convert.ToInt32(objlista.IdLista));
 
-            for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
-            {
-                ListaValor objListaValor = new ListaValor();
-                objListaValor.IdLista = Convert.ToInt32(dtResultado.Rows[i]["IdLista"].ToString());
-                objListaValor.IdListaValor = dtResultado.Rows[i]["IdListaValor"].ToString();
-                objListaValor.Valor = dtResultado.Rows[i]["Valor"].ToString();
-                objListaValor.DescripcionValor = dtResultado.Rows[i]["DescripcionValor"].ToString();
-                objListaValor.Icono = dtResultado.Rows[i]["Icono"].ToString();
-                objListaValor.Peso = Convert.ToInt32(dtResultado.Rows[i]["Peso"] == DBNull.Value ? 0 : dtResultado.Rows[i]["Peso"]);
-                objListaValor.ValorUTP = dtResultado.Rows[i]["ValorUTP"].ToString();
-                objListaValor.Padre = dtResultado.Rows[i]["Padre"].ToString();
-                objListaValor.EstadoValor = dtResultado.Rows[i]["EstadoValor"].ToString();
+                List<ListaValor> lista = new List<ListaValor>();
 
-                lista.Add(objListaValor);
+                DataTable dtResultado = lnUtp.UTP_LISTAVALORHIJO(Convert.ToInt32(objlista.IdLista), objlista.idcod, 10);
 
+                for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
+                {
+                    ListaValor objListaValor = new ListaValor();
+                    objListaValor.IdLista = Convert.ToInt32(dtResultado.Rows[i]["IdLista"].ToString());
+                    objListaValor.IdListaValor = dtResultado.Rows[i]["IdListaValor"].ToString();
+                    objListaValor.Valor = dtResultado.Rows[i]["Valor"].ToString();
+                    objListaValor.DescripcionValor = dtResultado.Rows[i]["DescripcionValor"].ToString();
+                    objListaValor.Icono = dtResultado.Rows[i]["Icono"].ToString();
+                    objListaValor.Peso = Convert.ToInt32(dtResultado.Rows[i]["Peso"] == DBNull.Value ? 0 : dtResultado.Rows[i]["Peso"]);
+                    objListaValor.ValorUTP = dtResultado.Rows[i]["ValorUTP"].ToString();
+                    objListaValor.Padre = dtResultado.Rows[i]["Padre"].ToString();
+                    objListaValor.EstadoValor = dtResultado.Rows[i]["EstadoValor"].ToString();
+                    objListaValor.CantidadTotal = Convert.ToInt32(dtResultado.Rows[i]["CantidadTotal"]);
+                    lista.Add(objListaValor);
+
+                }
+
+                //Datos para la paginación.
+                int cantidadTotal = lista.Count() == 0 ? 0 : lista[0].CantidadTotal;
+
+                Paginacion paginacion = new Paginacion();
+                paginacion.NroPaginaActual = objlista.idcod;
+                paginacion.CantidadTotalResultados = cantidadTotal;
+                paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+                paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+                int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+                if (residuo > 0) paginacion.TotalPaginas += 1;
+
+                ViewBag.Paginacion = paginacion;
+                ViewBag.TipoBusqueda = "Simple";
+
+                return PartialView("Vista_ListaValorHijo", lista);
             }
 
-            return PartialView("Vista_ListaValorHijo", lista);
-            }
-
-              return PartialView("_NuevoValorEditar", objlista);
+            return PartialView("_NuevoValorEditar", objlista);
 
 
         }
 
         //Elimina datos de la lista de valor hijo
-        public PartialViewResult EliminarVista_ListaValorHijo(string idListaValor,int idlista)
+        public PartialViewResult EliminarVista_ListaValorHijo(string idListaValor, int idlista)
         {
-            
+
             //ListaValor lista = new ListaValor();
 
             lnUtp.UTPELIMINAR_LISTAVALORHIJO(idListaValor);
@@ -2364,7 +2455,7 @@ namespace UTPPrototipo.Controllers
 
             List<ListaValor> lista = new List<ListaValor>();
 
-            DataTable dtResultado = lnUtp.UTP_LISTAVALORHIJO(Convert.ToInt32(idlista));
+            DataTable dtResultado = lnUtp.UTP_LISTAVALORHIJO(Convert.ToInt32(idlista),1,10);
 
             for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
             {
@@ -2378,12 +2469,27 @@ namespace UTPPrototipo.Controllers
                 objListaValor.ValorUTP = dtResultado.Rows[i]["ValorUTP"].ToString();
                 objListaValor.Padre = dtResultado.Rows[i]["Padre"].ToString();
                 objListaValor.EstadoValor = dtResultado.Rows[i]["EstadoValor"].ToString();
+                objListaValor.CantidadTotal = Convert.ToInt32(dtResultado.Rows[i]["CantidadTotal"]);
                 lista.Add(objListaValor);
 
             }
 
+            //Datos para la paginación.
+            int cantidadTotal = lista.Count() == 0 ? 0 : lista[0].CantidadTotal;
+
+            Paginacion paginacion = new Paginacion();
+            paginacion.NroPaginaActual = 1;
+            paginacion.CantidadTotalResultados = cantidadTotal;
+            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            if (residuo > 0) paginacion.TotalPaginas += 1;
+
+            ViewBag.Paginacion = paginacion;
+            ViewBag.TipoBusqueda = "Simple";
+
             //return RedirectToAction("Vista_ListaValorHijo");
-            return PartialView("Vista_ListaValorHijo", lista); 
+            return PartialView("Vista_ListaValorHijo", lista);
 
         }
 
@@ -2749,15 +2855,48 @@ namespace UTPPrototipo.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public PartialViewResult _UsuariosUTPCrear(UTPUsuario utpUsuario)
         {
-     
- 
+
+
             TicketUTP ticket = (TicketUTP)Session["TicketUtp"];
 
             utpUsuario.TipoUsuarioIdListaValor = "USERUT"; //Tipo usuario UTP
             utpUsuario.CreadoPor = ticket.Usuario;
             lnUtp.Insertar(utpUsuario);
 
-            List<UTPUsuario> lista = lnUtp.ObtenerUsuariosUTP();
+            List<UTPUsuario> lista = new List<UTPUsuario>();
+
+            DataTable dtResultado = lnUtp.ObtenerUsuariosUTP(1, 10);
+
+            foreach (DataRow fila in dtResultado.Rows)
+            {
+                UTPUsuario nuevo = new UTPUsuario();
+                nuevo.IdUTPUsuario = Convert.ToInt32(fila["IdUTPUsuario"]);
+                nuevo.NombreUsuario = Convert.ToString(fila["Usuario"]);
+                nuevo.Nombres = Convert.ToString(fila["Nombres"]);
+                nuevo.Apellidos = Convert.ToString(fila["Apellidos"]);
+                nuevo.SexoDescripcion = Convert.ToString(fila["SexoDescripcion"]);
+                nuevo.Correo = Convert.ToString(fila["CorreoElectronico"]);
+                nuevo.TelefonoFijo = Convert.ToString(fila["TelefonoFijo"]);
+                nuevo.TelefonoCelular = Convert.ToString(fila["TelefonoCelular"]);
+                nuevo.EstadoUsuarioDescripcion = Convert.ToString(fila["EstadoUsuarioDescripcion"]);
+                nuevo.CantidadTotal = Convert.ToInt32(fila["CantidadTotal"]);
+
+                lista.Add(nuevo);
+            }
+            //Datos para la paginación.
+            int cantidadTotal = lista.Count() == 0 ? 0 : lista[0].CantidadTotal;
+
+            Paginacion paginacion = new Paginacion();
+            paginacion.NroPaginaActual = 1;
+            paginacion.CantidadTotalResultados = cantidadTotal;
+            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            if (residuo > 0) paginacion.TotalPaginas += 1;
+
+            ViewBag.Paginacion = paginacion;
+            ViewBag.TipoBusqueda = "Simple";
+
             return PartialView("_UsuariosUTPLista", lista);
 
 
@@ -2771,7 +2910,7 @@ namespace UTPPrototipo.Controllers
         /// HttpGet del partialview para la edición de usuario UTP:
         /// </summary>
         /// <returns></returns>
-        public PartialViewResult _UsuariosUTPEditar(int id)
+        public PartialViewResult _UsuariosUTPEditar(int id, int nroPaginaActual)
         {
             int idUTPUsuario = id;
             
@@ -2786,11 +2925,14 @@ namespace UTPPrototipo.Controllers
             ViewBag.RolIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ROL_USUARIO), "IdListaValor", "Valor", utpUsuario.RolIdListaValor);
             ViewBag.EstadoUsuarioIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_USUARIO), "IdListaValor", "Valor", utpUsuario.EstadoUsuarioIdListaValor);
 
+            utpUsuario.idcod = nroPaginaActual;
+
             return PartialView("_UsuariosUTPEditar", utpUsuario);
         }
 
 
         [HttpPost, ValidateAntiForgeryToken]
+        //public PartialViewResult _UsuariosUTPEditar(UTPUsuario utpUsuario, int nroPaginaActual)
         public PartialViewResult _UsuariosUTPEditar(UTPUsuario utpUsuario)
         {
             TicketUTP ticket = (TicketUTP)Session["TicketUtp"];
@@ -2798,7 +2940,41 @@ namespace UTPPrototipo.Controllers
             utpUsuario.ModificadoPor = ticket.Usuario;
             lnUtp.Actualizar(utpUsuario);
 
-            List<UTPUsuario> lista = lnUtp.ObtenerUsuariosUTP();
+           
+            List<UTPUsuario> lista = new List<UTPUsuario>();
+
+            DataTable dtResultado = lnUtp.ObtenerUsuariosUTP(utpUsuario.idcod, 10);
+            //DataTable dtResultado = lnUtp.ObtenerUsuariosUTP(1, 10);
+            foreach (DataRow fila in dtResultado.Rows)
+            {
+                UTPUsuario nuevo = new UTPUsuario();
+                nuevo.IdUTPUsuario = Convert.ToInt32(fila["IdUTPUsuario"]);
+                nuevo.NombreUsuario = Convert.ToString(fila["Usuario"]);
+                nuevo.Nombres = Convert.ToString(fila["Nombres"]);
+                nuevo.Apellidos = Convert.ToString(fila["Apellidos"]);
+                nuevo.SexoDescripcion = Convert.ToString(fila["SexoDescripcion"]);
+                nuevo.Correo = Convert.ToString(fila["CorreoElectronico"]);
+                nuevo.TelefonoFijo = Convert.ToString(fila["TelefonoFijo"]);
+                nuevo.TelefonoCelular = Convert.ToString(fila["TelefonoCelular"]);
+                nuevo.EstadoUsuarioDescripcion = Convert.ToString(fila["EstadoUsuarioDescripcion"]);
+                nuevo.CantidadTotal = Convert.ToInt32(fila["CantidadTotal"]);
+
+                lista.Add(nuevo);
+            }
+            //Datos para la paginación.
+            int cantidadTotal = lista.Count() == 0 ? 0 : lista[0].CantidadTotal;
+
+            Paginacion paginacion = new Paginacion();
+            //paginacion.NroPaginaActual = 1;
+            paginacion.NroPaginaActual = utpUsuario.idcod;
+            paginacion.CantidadTotalResultados = cantidadTotal;
+            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            if (residuo > 0) paginacion.TotalPaginas += 1;
+
+            ViewBag.Paginacion = paginacion;
+            ViewBag.TipoBusqueda = "Simple";
             return PartialView("_UsuariosUTPLista", lista);
         }
 

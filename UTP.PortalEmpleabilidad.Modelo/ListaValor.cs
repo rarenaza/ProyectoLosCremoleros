@@ -26,10 +26,13 @@ namespace UTP.PortalEmpleabilidad.Modelo
        public string Padre { get; set; }
        [Required(ErrorMessage = Constantes.MSJ_CAMPO_OBLIGATORIO)]
        public string EstadoValor { get; set; }
+       public int CantidadTotal { get; set; }
        public string  Creadopor { get; set; }
        public DateTime  FechaCreacion { get; set; }
        public string Modificadopor { get; set; }
        public DateTime FechaModificacion { get; set; }
+
+       public int idcod { get; set; }
 
 
     }

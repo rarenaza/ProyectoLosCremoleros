@@ -1,4 +1,13 @@
 ﻿@model IEnumerable<UTP.PortalEmpleabilidad.Modelo.UTPUsuario>
+@using UTPPrototipo.Common
+@using UTP.PortalEmpleabilidad.Modelo
+@{
+    <!--Se obtiene los datos para la paginación.-->
+    Paginacion paginacion = (Paginacion)ViewBag.Paginacion;
+}
+
+
+
 
 @*<h6>Usuarios UTP</h6>*@
 <div class="row grilla1-cabecera color-paleta8">
@@ -28,13 +37,121 @@
         <div class="col-sm-1">@item.TelefonoCelular</div>
         <div class="col-sm-1">@item.EstadoUsuarioDescripcion</div>
         <div class="col-sm-1" style="text-align:right;">
-            <button class="fui fa-lg color-icono-paleta1" style="font-size:22px;border-width:0px;background-color:transparent;" onclick="UsuarioUTPEditar(@item.IdUTPUsuario);">1</button>
+            <!--Versión anterior-->
+            @*<button class="fui fa-lg color-icono-paleta1" style="font-size:22px;border-width:0px;background-color:transparent;" onclick="UsuarioUTPEditar(@item.IdUTPUsuario);">1</button>*@
+            <!--Versión con paginación-->
+            <button class="fui fa-lg color-icono-paleta1" style="font-size:22px;border-width:0px;background-color:transparent;" onclick="UsuarioUTPEditar(@item.IdUTPUsuario, @paginacion.NroPaginaActual);">1</button>
 
         </div>
 
     </div>
 }
 
+<nav class="navbar-right">
+    <ul class="pagination">
+
+
+        @{
+            //La paginación avanzada no existe para la búsqueda de oferta. Se deja el bloque de paginación avanzada para efectos de desarrollo futuro de esa funcionalidad.
+            if (paginacion.NroPaginaActual > 1)
+            {
+                int i1 = paginacion.NroPaginaActual - 5;
+                if (i1 < 1) { i1 = 1; }
+                <li>
+                    @if (ViewBag.TipoBusqueda == "Simple")
+                    {
+                        <a href="#" onclick="Paginar_UsuariosUTPLista('1');">
+                            <span aria-hidden="true" class="glyphicon glyphicon-step-backward"></span>
+                        </a>
+                    }
+                    else
+                    {
+                        <a href="#" onclick="Paginar_UsuariosUTPListaAvanzada('1');">
+                            <span aria-hidden="true" class="glyphicon glyphicon-step-backward"></span>
+                        </a>
+                    }
+                </li>
+                if (i1 > 1)
+                {
+                    <li>
+                        @if (ViewBag.TipoBusqueda == "Simple")
+                        {
+                            <a href="#" onclick="Paginar_UsuariosUTPLista('@i1');">
+                                <span aria-hidden="true" class="glyphicon glyphicon-backward"></span>
+                            </a>
+                        }
+                        else
+                        {
+                            <a href="#" onclick="Paginar_UsuariosUTPListaAvanzada('@i1');">
+                                <span aria-hidden="true" class="glyphicon glyphicon-backward"></span>
+                            </a>
+                        }
+                    </li>
+                }
+            }
+
+            for (int i = (paginacion.NroPaginaActual - 2); (i <= paginacion.TotalPaginas && i <= (paginacion.NroPaginaActual + 2)); i++)
+            {
+                if (i == paginacion.NroPaginaActual)
+                {
+                    <li class="active"><a href="#">@i <span class="sr-only"></span></a></li>
+                }
+                else
+                {
+                    if (i > 0)
+                    {
+                        if (ViewBag.TipoBusqueda == "Simple")
+                        {
+                            <li><a href="#" onclick="Paginar_UsuariosUTPLista('@i');">@i</a></li>
+                        }
+                        else
+                        {
+                            <li><a href="#" onclick="Paginar_UsuariosUTPListaAvanzada('@i');">@i</a></li>
+                        }
+                    }
+                }
+            }
+            if (paginacion.NroPaginaActual < paginacion.TotalPaginas)
+            {
+                int i2 = paginacion.NroPaginaActual + 5;
+                if (i2 > paginacion.TotalPaginas) { i2 = paginacion.TotalPaginas; }
+                if (i2 < paginacion.TotalPaginas)
+                {
+                    <li>
+                        @if (ViewBag.TipoBusqueda == "Simple")
+                        {
+                            <a href="#" onclick="Paginar_UsuariosUTPLista('@i2');">
+                                <span aria-hidden="true" class="glyphicon glyphicon-forward"></span>
+                            </a>
+                        }
+                        else
+                        {
+                            <a href="#" onclick="Paginar_UsuariosUTPListaAvanzada('@i2');">
+                                <span aria-hidden="true" class="glyphicon glyphicon-forward"></span>
+                            </a>
+                        }
+                    </li>
+                }
+                <li>
+                    @if (ViewBag.TipoBusqueda == "Simple")
+                    {
+                        <a href="#" onclick="Paginar_UsuariosUTPLista('@paginacion.TotalPaginas');">
+                            <span aria-hidden="true" class="glyphicon glyphicon-step-forward"></span>
+                        </a>
+                    }
+                    else
+                    {
+                        <a href="#" onclick="Paginar_UsuariosUTPListaAvanzada('@paginacion.TotalPaginas');">
+                            <span aria-hidden="true" class="glyphicon glyphicon-step-forward"></span>
+                        </a>
+                    }
+                </li>
+            }
+        }
+
+    </ul>
+
+</nav>
 
 <br />
 <div class="col-sm-12" style="text-align:right;">

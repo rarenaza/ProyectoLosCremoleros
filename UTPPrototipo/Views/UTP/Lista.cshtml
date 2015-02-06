@@ -25,7 +25,7 @@
     </div>
 
 
-    <hr />
+    @*<hr />*@
 </div>
 
 <script>
@@ -33,9 +33,24 @@
         $("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta3 color-paleta4 color-paleta5 color-paleta6 color-paleta7").addClass("color-paleta8");
     });
 
-    function mostrarMensaje() {
-        alert('Los datos fueron grabados con éxito.');
-    }
+    function PaginarListaValorHijo(nroPaginaActual) {
+    
+        var codigo = $('#IDLista').val();
+
+
+        var url = '@Url.Action("Vista_ListaValorHijo", "UTP")' + '?Id=' + codigo + '&nroPaginaActual=' + nroPaginaActual;
+
+       $.get(url, function (data) {
+           $('#divListaHijo').html(data);
+       }).then(function () {
+
+       });
+   }
+
+
+   function mostrarMensaje() {
+       alert('Los datos fueron grabados con éxito.');
+   }
 
 </script>
 
@@ -101,7 +116,32 @@
     }
 
 
-    function ListaValorHijoEditar(id) {
+
+    function ListaValorHijoEditar(id, nroPaginaActual) {
+
+        //console.log('punto de control');
+        //var url = "/UTP/_NuevoValorEditar/" + id;
+        var url = '@Url.Action("_NuevoValorEditar", "UTP")' + '?id=' + id + '&nroPaginaActual=' + nroPaginaActual;
+
+        $.get(url, function (data) {
+
+            console.log(data);
+
+            $('#divContenedorValorEditar').html(data);
+            $.validator.unobtrusive.parse('#divContenedorValorEditar');
+
+            $('#EditarValor').modal('show');
+
+
+        }).error(function (err) {
+            console.log(err);
+            alert(err);
+        });
+
+    }
+
+
+    @*function ListaValorHijoEditar(id) {
 
         //console.log('punto de control');
         //var url = "/UTP/_NuevoValorEditar/" + id;
@@ -122,7 +162,7 @@
             alert(err);
         });
 
-    }
+    }*@
 
 
     function cerrarModal() {

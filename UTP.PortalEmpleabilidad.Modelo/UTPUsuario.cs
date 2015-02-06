@@ -39,5 +39,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
 
         public int CantidadTotal { get; set; }
 
+        public int idcod { get; set; }
+
     }
 }
