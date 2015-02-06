@@ -136,6 +136,18 @@
         AutoCompleteText('#Ubicacion', '@Url.Action("ListarDistritos", "Alumno")', '#Ubicacion');
         AutoCompleteText('#AreaEmpresa', '@Url.Action("ListarAreasEmpresa", "Alumno")', '#AreaEmpresa');
         AutoCompleteText('#IdEstudio', '@Url.Action("ListarEstudio", "Alumno")', '#IdEstudio');
+
+        //debugger;
+        $("#TipoBusqueda").attr('value', 1);
+        var oferta = {
+            PalabraClave: $('#PalabraClave').val(),
+            IdAlumno: $('#IdAlumno').val(),
+            PaginaActual: 1,
+            NumeroRegistros: parseInt($("#PagOfertas").val())
+
+        };
+        Cargar("resultadobusqueda", '@Url.Action("BusquedaSimpleOferta", "Alumno")', oferta);
+
     });
     $('#buscar').click(function () {
         //debugger;

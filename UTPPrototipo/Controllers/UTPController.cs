@@ -2012,11 +2012,11 @@ namespace UTPPrototipo.Controllers
             //return PartialView("_UsuariosUTPLista");
         }
 
-        public PartialViewResult _ListavalorPadre()
+        public PartialViewResult _ListavalorPadre(int nroPaginaActual=1, int filasPorPagina = Constantes.FILAS_POR_PAGINA)
         {
             List<Lista> lista = new List<Lista>();
 
-            DataTable dtResultado = lnUtp.UTP_LISTAVALORPADRE();
+            DataTable dtResultado = lnUtp.UTP_LISTAVALORPADRE(nroPaginaActual, filasPorPagina);
 
             foreach (DataRow fila in dtResultado.Rows)
             {
@@ -2027,10 +2027,23 @@ namespace UTPPrototipo.Controllers
                 objlista.NombreLista = Convert.ToString(fila["NombreLista"]);
                 objlista.DescripcionLista = Convert.ToString(fila["DescripcionLista"]);
                 objlista.Modificable = Convert.ToBoolean(fila["Modificable"]);
-
+                objlista.CantidadTotal = Convert.ToInt32(fila["CantidadTotal"]);
                 lista.Add(objlista);
             }
 
+            //Datos para la paginación.
+            int cantidadTotal = lista.Count() == 0 ? 0 : lista[0].CantidadTotal;
+
+            Paginacion paginacion = new Paginacion();
+            paginacion.NroPaginaActual = nroPaginaActual;
+            paginacion.CantidadTotalResultados = cantidadTotal;
+            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            if (residuo > 0) paginacion.TotalPaginas += 1;
+
+            ViewBag.Paginacion = paginacion;
+            ViewBag.TipoBusqueda = "Simple";
             return PartialView("_ListavalorPadre", lista);
 
         }
@@ -2116,7 +2129,7 @@ namespace UTPPrototipo.Controllers
 
             //Lista coleccionDeLista = new Lista();
 
-            //DataTable dtResultado = lnUtp.UTP_LISTAVALORPADRE();
+            //DataTable dtResultado = lnUtp.UTP_LISTAVALORPADRE(1, 10);
 
             //if (dtResultado.Rows.Count > 0)
             //{
@@ -2129,6 +2142,7 @@ namespace UTPPrototipo.Controllers
             //    coleccionDeLista.Modificadopor = Convert.ToString(dtResultado.Rows[0]["Modificadopor"]);
             //    coleccionDeLista.FechaModificacion = Convert.ToDateTime(dtResultado.Rows[0]["FechaModificacion"] == DBNull.Value ? null : dtResultado.Rows[0]["FechaModificacion"]);
             //}
+
             return PartialView("Vista_DatosdeListaValorPadre", objlista);
 
         }
@@ -2164,7 +2178,7 @@ namespace UTPPrototipo.Controllers
 
             List<Lista> coleccionDeLista = new List<Lista>();
 
-            DataTable dtResultado = lnUtp.UTP_LISTAVALORPADRE();
+            DataTable dtResultado = lnUtp.UTP_LISTAVALORPADRE(1, 10);
 
             foreach (DataRow fila in dtResultado.Rows)
             {
@@ -2179,10 +2193,23 @@ namespace UTPPrototipo.Controllers
                 nuevalista.FechaCreacion = Convert.ToDateTime(fila["FechaCreacion"]);
                 nuevalista.Modificadopor = Convert.ToString(fila["Modificadopor"]);
                 nuevalista.FechaModificacion = Convert.ToDateTime(fila["FechaModificacion"] == DBNull.Value ? null : fila["FechaModificacion"]);
-
+                nuevalista.CantidadTotal = Convert.ToInt32(fila["CantidadTotal"]);
                 coleccionDeLista.Add(nuevalista);
             }
 
+            //Datos para la paginación.
+            int cantidadTotal = coleccionDeLista.Count() == 0 ? 0 : coleccionDeLista[0].CantidadTotal;
+
+            Paginacion paginacion = new Paginacion();
+            paginacion.NroPaginaActual = 1;
+            paginacion.CantidadTotalResultados = cantidadTotal;
+            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            if (residuo > 0) paginacion.TotalPaginas += 1;
+
+            ViewBag.Paginacion = paginacion;
+            ViewBag.TipoBusqueda = "Simple";
             return PartialView("_ListavalorPadre", coleccionDeLista);
 
         }

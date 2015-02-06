@@ -19,7 +19,7 @@
             @Html.Action("_ListavalorPadre", "UTP")
         </div>
 
-        <hr />
+     
     </div>
 
 
@@ -27,6 +27,50 @@
     $(document).ready(function () {
         $("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta3 color-paleta4 color-paleta5 color-paleta6 color-paleta7 color-paleta9").addClass("color-paleta8")
     });
+
+    //Se le pasa el nro de pagina y hace lo mismo que el anterior.
+    function buscarOfertasPaginacion(nroPaginaActual) {
+
+        var cargando = '<div class="row grilla1-linea">'
+                            + '<div class="col-sm-12 text-center">'
+                                + '<h6>Çargando ...</h6></div></div>';
+
+        $('#divResultadoBusqueda').html(cargando);
+
+        var palabraClave = $('#filtroBusqueda').val();
+        //var nroPaginaActual = $('#hddNroPaginaActual').val();
+
+        var url = '@Url.Action("BuscarOfertas", "Empresa")' + "?palabraClave=" + palabraClave + '&nroPaginaActual=' + nroPaginaActual;
+
+        $.get(url, function (data) {
+            $('#divResultadoBusqueda').html(data);
+        }).then(function () {
+            //$('#lblCargandoOfertas').css('visibility', 'hidden');
+        });
+    }
+
+
+
+
+
+
+    function PaginarListaValorPadre(nroPaginaActual) {
+        
+        //var cargando = '<div class="row grilla1-linea">'
+        //                   + '<div class="col-sm-12 text-center">'
+        //                       + '<h6>Çargando ...</h6></div></div>';
+
+        //$('#divListaPadre').html(cargando);
+
+        var url = '@Url.Action("_ListavalorPadre", "UTP")' + '?nroPaginaActual=' + nroPaginaActual;
+
+        $.get(url, function (data) {
+            $('#divListaPadre').html(data);
+        }).then(function () {
+
+        });
+    }
+
 </script>
 
 <!--Modal para crear usuario-->>
@@ -73,55 +117,6 @@
 
     </div>
 </div>
-
-
-@*<div class="modal fade" id="Nueva-lista" role="dialog" aria-labelledby="Nueva Lista" aria-hidden="true">
-    <div class="modal-dialog">*@
-
-
-
-        @*<div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Nueva Lista</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="input-group">
-                                <span class="input-group-addon">Nombre</span>
-                                <input type="text" class="form-control" placeholder="Nombre de Lista">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="input-group">
-                                <span class="input-group-addon">Descrip-<br />ción</span>
-                                <textarea class="form-control" rows="4">Descripción</textarea>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="input-group">
-                                <span class="input-group-addon"><input type="checkbox"></span>
-                                <span class="form-control">Modificable</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-default color-paleta8">Guardar</button>
-                </div>
-            </div>*@
-
-
-
-    @*</div>
-</div>*@
-
-
 
 
 <script>

@@ -471,17 +471,26 @@ namespace UTP.PortalEmpleabilidad.Logica
                 nuevo.TelefonoFijo = Convert.ToString(fila["TelefonoFijo"]);
                 nuevo.TelefonoCelular = Convert.ToString(fila["TelefonoCelular"]);
                 nuevo.EstadoUsuarioDescripcion = Convert.ToString(fila["EstadoUsuarioDescripcion"]);
-                
+                //nuevo.CantidadTotal = Convert.ToInt32(fila["CantidadTotal"]);
+
                 lista.Add(nuevo);
             }
+
+
 
             return lista;
         }
 
-        public DataTable UTP_LISTAVALORPADRE()
+        //public DataTable ObtenerUsuariosUTP(int nroPagina, int filasPorPagina)
+        //{
+
+        //    return adUtp.ObtenerUsuariosUTP(nroPagina, filasPorPagina);
+        //}
+
+        public DataTable UTP_LISTAVALORPADRE(int nroPagina, int filasPorPagina)
         {
 
-            return adUtp.UTP_LISTAVALORPADRE(); 
+            return adUtp.UTP_LISTAVALORPADRE(nroPagina, filasPorPagina); 
         }
 
         public DataTable UTP_LISTAVALORHIJO(int id)

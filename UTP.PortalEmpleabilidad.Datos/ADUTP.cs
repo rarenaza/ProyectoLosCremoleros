@@ -412,6 +412,7 @@ namespace UTP.PortalEmpleabilidad.Datos
         #region Mantenimiento de Usuarios UTP
 
         public DataTable ObtenerUsuariosUTP()
+        //public DataTable ObtenerUsuariosUTP(int nroPagina, int filasPorPagina)
         {
             DataTable dtResultado = new DataTable();
 
@@ -421,6 +422,9 @@ namespace UTP.PortalEmpleabilidad.Datos
 
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "UTPUsuario_ObtenerLista";
+                ////Paginación:
+                //cmd.Parameters.Add(new SqlParameter("@NroPaginaActual", nroPagina));
+                //cmd.Parameters.Add(new SqlParameter("@FilasPorPagina", filasPorPagina));
                 cmd.Connection = conexion;
 
                 conexion.Open();
@@ -435,7 +439,7 @@ namespace UTP.PortalEmpleabilidad.Datos
             return dtResultado;
         }
 
-        public DataTable UTP_LISTAVALORPADRE()
+        public DataTable UTP_LISTAVALORPADRE(int nroPagina, int filasPorPagina)
         {
             DataTable dtResultado = new DataTable();
 
@@ -445,6 +449,9 @@ namespace UTP.PortalEmpleabilidad.Datos
 
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "UTP_LISTAVALORPADRE";
+                //Paginación:
+                cmd.Parameters.Add(new SqlParameter("@NroPaginaActual", nroPagina));
+                cmd.Parameters.Add(new SqlParameter("@FilasPorPagina", filasPorPagina));
                 cmd.Connection = conexion;
 
                 conexion.Open();
@@ -744,6 +751,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.ExecuteNonQuery();
 
                 conexion.Close();
+               
             }
         }
 

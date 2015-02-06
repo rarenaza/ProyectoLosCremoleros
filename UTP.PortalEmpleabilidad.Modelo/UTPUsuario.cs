@@ -37,5 +37,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string RolIdListaValor { get; set; }
         public string TipoUsuarioIdListaValor { get; set; }
 
+        public int CantidadTotal { get; set; }
+
     }
 }

@@ -1,5 +1,13 @@
 ﻿@model IEnumerable<UTP.PortalEmpleabilidad.Modelo.Lista>
 
+@using UTPPrototipo.Common
+@using UTP.PortalEmpleabilidad.Modelo
+@{
+    <!--Se obtiene los datos para la paginación.-->
+    Paginacion paginacion = (Paginacion)ViewBag.Paginacion;
+}
+
+
 <h6>Listas de Valores</h6>
 
 <div class="row grilla1-cabecera color-paleta8">
@@ -24,10 +32,144 @@
 </div>
 }
 
-<br />
-<div class="col-sm-12" style="text-align:right;">
+    @*<div>*@
 
-    <button class="btn btn-default color-paleta8" onclick="ListaValorPadreInsertar();">Nueva Lista de Valores</button>
 
-    
-</div>
+  
+        @*<nav class="navbar-right">
+            <ul class="pagination">
+                @{
+                    for (int i = 1; i <= paginacion.TotalPaginas; i++)
+                    {
+                        if (i == paginacion.NroPaginaActual)
+                        {
+                            <li class="active"><a href="#">@i <span class="sr-only"></span></a></li>
+                        }
+                        else
+                        {
+                            <li><a href="#" onclick="PaginarListaValorPadre('@i');">@i</a></li>
+                        }
+                    }
+                }
+            </ul>
+        </nav>*@
+  
+
+
+    <!--Paginación-->
+    <nav class="navbar-right">
+        <ul class="pagination">
+
+          
+            @{
+                //La paginación avanzada no existe para la búsqueda de oferta. Se deja el bloque de paginación avanzada para efectos de desarrollo futuro de esa funcionalidad.
+                if (paginacion.NroPaginaActual > 1)
+                {
+                    int i1 = paginacion.NroPaginaActual - 5;
+                    if (i1 < 1) { i1 = 1; }
+                    <li>
+                        @if (ViewBag.TipoBusqueda == "Simple")
+                        {
+                            <a href="#" onclick="PaginarListaValorPadre('1');">
+                                <span aria-hidden="true" class="glyphicon glyphicon-step-backward"></span>
+                            </a>
+                        }
+                        else
+                        {
+                            <a href="#" onclick="PaginarListaValorPadreAvanzada('1');">
+                                <span aria-hidden="true" class="glyphicon glyphicon-step-backward"></span>
+                            </a>
+                        }
+                    </li>
+                    if (i1 > 1)
+                    {
+                        <li>
+                            @if (ViewBag.TipoBusqueda == "Simple")
+                            {
+                                <a href="#" onclick="PaginarListaValorPadre('@i1');">
+                                    <span aria-hidden="true" class="glyphicon glyphicon-backward"></span>
+                                </a>
+                            }
+                            else
+                            {
+                                <a href="#" onclick="PaginarListaValorPadreAvanzada('@i1');">
+                                    <span aria-hidden="true" class="glyphicon glyphicon-backward"></span>
+                                </a>
+                            }
+                        </li>
+                    }
+                }
+
+                for (int i = (paginacion.NroPaginaActual - 2); (i <= paginacion.TotalPaginas && i <= (paginacion.NroPaginaActual + 2)); i++)
+                {
+                    if (i == paginacion.NroPaginaActual)
+                    {
+                        <li class="active"><a href="#">@i <span class="sr-only"></span></a></li>
+                    }
+                    else
+                    {
+                        if (i > 0)
+                        {
+                            if (ViewBag.TipoBusqueda == "Simple")
+                            {
+                                <li><a href="#" onclick="PaginarListaValorPadre('@i');">@i</a></li>
+                            }
+                            else
+                            {
+                                <li><a href="#" onclick="PaginarListaValorPadreAvanzada('@i');">@i</a></li>
+                            }
+                        }
+                    }
+                }
+                if (paginacion.NroPaginaActual < paginacion.TotalPaginas)
+                {
+                    int i2 = paginacion.NroPaginaActual + 5;
+                    if (i2 > paginacion.TotalPaginas) { i2 = paginacion.TotalPaginas; }
+                    if (i2 < paginacion.TotalPaginas)
+                    {
+                        <li>
+                            @if (ViewBag.TipoBusqueda == "Simple")
+                            {
+                                <a href="#" onclick="PaginarListaValorPadre('@i2');">
+                                    <span aria-hidden="true" class="glyphicon glyphicon-forward"></span>
+                                </a>
+                            }
+                            else
+                            {
+                                <a href="#" onclick="PaginarListaValorPadreAvanzada('@i2');">
+                                    <span aria-hidden="true" class="glyphicon glyphicon-forward"></span>
+                                </a>
+                            }
+                        </li>
+                    }
+                    <li>
+                        @if (ViewBag.TipoBusqueda == "Simple")
+                        {
+                            <a href="#" onclick="PaginarListaValorPadre('@paginacion.TotalPaginas');">
+                                <span aria-hidden="true" class="glyphicon glyphicon-step-forward"></span>
+                            </a>
+                        }
+                        else
+                        {
+                            <a href="#" onclick="PaginarListaValorPadreAvanzada('@paginacion.TotalPaginas');">
+                                <span aria-hidden="true" class="glyphicon glyphicon-step-forward"></span>
+                            </a>
+                        }
+                    </li>
+                }
+            }
+
+        </ul>
+
+    </nav>
+
+
+
+
+    <br />
+    <div class="col-sm-12" style="text-align:right;">
+
+        <button class="btn btn-default color-paleta8" onclick="ListaValorPadreInsertar();">Nueva Lista de Valores</button>
+
+
+    </div>
