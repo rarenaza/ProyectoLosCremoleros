@@ -77,7 +77,7 @@
                         Fecha de Nacimiento
                     </td>
                     <td class="celda-datos">
-                        @Html.DisplayFor(m => m.FechaNacimiento)
+                        @Model.FechaNacimiento.ToString("dd/MM/yyyy")  (@Model.Edad años)
                     </td>
                 </tr>
                 <tr class="linea_raya">

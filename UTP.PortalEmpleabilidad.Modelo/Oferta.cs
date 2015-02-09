@@ -41,7 +41,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string  DescripcionOferta { get; set; }
         //public string TipoTrabajo { get; set; }
         //public string TipoContrato { get; set; }
-        public int DuracionContrato { get; set; }
+        public int? DuracionContrato { get; set; }
         //public string TipoCargo { get; set; }
           
         public decimal RemuneracionOfrecida { get; set; }

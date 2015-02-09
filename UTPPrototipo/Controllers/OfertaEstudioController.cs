@@ -43,11 +43,12 @@ namespace UTPPrototipo.Controllers
 
             ViewBag.TipoDeEstudioIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_DE_ESTUDIO), "IdListaValor", "Valor");
             ViewBag.EstadoDelEstudioIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_DEL_ESTUDIO), "IdListaValor", "Valor");
+            ViewBag.Estudio = new SelectList(lnGeneral.ObtenerListaValorPorIdPadre("TEUNIV"), "Valor","Valor");
             
             return PartialView("_OfertaEstudioCrear", ofertaEstudio);
         }
 
-
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public PartialViewResult _OfertaEstudioCrear(OfertaEstudio ofertaEstudio)
         {
@@ -87,13 +88,18 @@ namespace UTPPrototipo.Controllers
 
             ViewBag.TipoDeEstudioIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_DE_ESTUDIO), "IdListaValor", "Valor", ofertaEstudio.TipoDeEstudioIdListaValor);
             ViewBag.EstadoDelEstudioIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_DEL_ESTUDIO), "IdListaValor", "Valor", ofertaEstudio.EstadoDelEstudioIdListaValor);
-            
+            ViewBag.Estudio = new SelectList(lnGeneral.ObtenerListaValorPorIdPadre("TEUNIV"), "Valor","Valor",ofertaEstudio.Estudio);
+
             return PartialView("_OfertaEstudioEditar", ofertaEstudio);
         }
-
+        
         [ValidateAntiForgeryToken] // this action takes the viewModel from the modal
         public PartialViewResult _OfertaEstudioEditar(OfertaEstudio ofertaEstudio) //Este es como el submit
         {
+            if (ofertaEstudio.TipoDeEstudio.IdListaValor != "TEUNIV")
+            {
+                ofertaEstudio.Estudio = ofertaEstudio.estudio;
+            }
             if (ModelState.IsValid)
             {
                 TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];                
@@ -106,6 +112,7 @@ namespace UTPPrototipo.Controllers
                 //ofertaEstudio.EstadoDelEstudio.IdListaValor = "AWE2";
                 //ofertaEstudio.EstadoOfertaEstudio.IdListaValor = "ABC2";
                 ofertaEstudio.ModificadoPor = ticket.Usuario;
+                
 
                 lnOfertaEstudio.Actualizar(ofertaEstudio);
 

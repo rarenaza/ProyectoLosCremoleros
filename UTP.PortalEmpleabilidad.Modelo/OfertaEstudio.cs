@@ -11,10 +11,11 @@ namespace UTP.PortalEmpleabilidad.Modelo
     {
         public int IdOfertaEstudio{ get; set; }
         public int IdOferta { get; set; }
-        public int CicloEstudio { get; set; }
+        public int? CicloEstudio { get; set; }
         
         [Required (ErrorMessage=Constantes.MSJ_CAMPO_OBLIGATORIO)]
         public string Estudio { get; set; }
+        public string estudio { get; set; }
 
         [Obsolete]
         public string NivelConocimiento { get; set; }

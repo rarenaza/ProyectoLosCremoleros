@@ -38,6 +38,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string Usuario { get; set; }
 
         public DateTime FechaNacimiento { get; set; }
+        public int? Edad { get; set; }
         public string Sexo { get; set; }
         public string CodAlumnoUtp { get; set; }
         public string DireccionDistrito { get; set; }

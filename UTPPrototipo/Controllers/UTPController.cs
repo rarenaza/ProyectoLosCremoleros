@@ -2541,6 +2541,19 @@ namespace UTPPrototipo.Controllers
                 alumno.Usuario = Convert.ToString(dtResultado.Rows[0]["Usuario"]);
                 alumno.CodAlumnoUtp = Convert.ToString(dtResultado.Rows[0]["CodAlumnoUtp"]);
                 alumno.FechaNacimiento = Convert.ToDateTime(dtResultado.Rows[0]["FechaNacimiento"] == DBNull.Value ? null : dtResultado.Rows[0]["FechaNacimiento"]);
+                if (alumno.FechaNacimiento != null)
+                {
+                    DateTime now = DateTime.Today;
+                    int age = now.Year - alumno.FechaNacimiento.Year;
+                    if (now < alumno.FechaNacimiento.AddYears(age)) age--;
+
+                    alumno.Edad = age;
+                }
+                else
+                {
+                    alumno.Edad = null;
+                }
+                
                 alumno.Direccion = Convert.ToString(dtResultado.Rows[0]["Direccion"] == DBNull.Value ? null : dtResultado.Rows[0]["Direccion"]);
                 alumno.DireccionDistrito = Convert.ToString(dtResultado.Rows[0]["DireccionDistrito"] == DBNull.Value ? null : dtResultado.Rows[0]["DireccionDistrito"]);
                 alumno.DireccionCiudad = Convert.ToString(dtResultado.Rows[0]["DireccionCiudad"] == DBNull.Value ? null : dtResultado.Rows[0]["DireccionCiudad"]);

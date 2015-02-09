@@ -90,7 +90,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 oferta.DesTipoCargo = Funciones.ToString(dtResultado.Rows[0]["DesTipoCargo"]);
                 oferta.DesTipoTrabajo = Funciones.ToString(dtResultado.Rows[0]["DesTipoTrabajo"]);
                 oferta.DesTipoContrato = Funciones.ToString(dtResultado.Rows[0]["DesTipoContrato"]);
-                oferta.DuracionContrato = Funciones.ToInt(dtResultado.Rows[0]["DuracionContrato"]);
+                oferta.DuracionContrato = Funciones.ToInt(dtResultado.Rows[0]["DuracionContrato"] == System.DBNull.Value ? null : dtResultado.Rows[0]["DuracionContrato"]);
                 oferta.Horario = Funciones.ToString(dtResultado.Rows[0]["Horario"]);
                 oferta.RemuneracionOfrecida = Funciones.ToDecimal(dtResultado.Rows[0]["RemuneracionOfrecida"]);
                 oferta.AreaEmpresa = Funciones.ToString(dtResultado.Rows[0]["AreaEmpresa"]);
@@ -343,7 +343,15 @@ namespace UTP.PortalEmpleabilidad.Logica
                 oferta.RecibeCorreosIdListaValor = Convert.ToString(dsResultado.Tables[0].Rows[0]["RecibeCorreos"]);
                 oferta.FechaFinRecepcionCV = Convert.ToDateTime(dsResultado.Tables[0].Rows[0]["FechaFinRecepcionCV"]);
                 oferta.AreaEmpresa = Convert.ToString(dsResultado.Tables[0].Rows[0]["AreaEmpresa"]);
-                oferta.DuracionContrato = Convert.ToInt32(dsResultado.Tables[0].Rows[0]["DuracionContrato"]);
+
+                if (dsResultado.Tables[0].Rows[0]["DuracionContrato"] == System.DBNull.Value)
+                {
+                    oferta.DuracionContrato = null;
+                }
+                else
+                {
+                    oferta.DuracionContrato = Convert.ToInt32(dsResultado.Tables[0].Rows[0]["DuracionContrato"]);
+                }
 
                 oferta.Empresa.NombreComercial = Convert.ToString(dsResultado.Tables[0].Rows[0]["EmpresaNombreComercial"]);
                 oferta.NombreLocacion = Convert.ToString(dsResultado.Tables[0].Rows[0]["NombreLocacion"]);

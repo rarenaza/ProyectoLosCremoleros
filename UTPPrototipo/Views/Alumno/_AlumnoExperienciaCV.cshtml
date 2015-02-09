@@ -78,7 +78,7 @@
                                 @Html.FormatoFechaAnioMes(item.FechaInicioCargoMes,item.FechaInicioCargoAno) - @Html.FormatoFechaAnioMes(Convert.ToInt32(item.FechaFinCargoMes), Convert.ToInt32(item.FechaFinCargoAno)) 
                             </div>
                             <div class="col-sm-9">
-                                @item.DescripcionCargo
+                                @Html.Raw( item.DescripcionCargo.Replace("\n", "<br>"))
                             </div>
 
                         </div>

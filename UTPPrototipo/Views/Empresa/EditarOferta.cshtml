@@ -75,7 +75,7 @@
                                 <span>Si ha modificado la forma en que recibirá los Correos, la Descripción o Condiciones de la Oferta laboral, guarde sus cambios.</span>
                             </div>
                             <div class="col-sm-3">
-                                <button class="btn btn-default color-paleta2" style="margin-bottom:5px;">Guadar Cambios</button>
+                                <button class="btn btn-default color-paleta2" style="margin-bottom:5px;">Guadar</button>
 
                             </div>
                         </div>
@@ -112,15 +112,15 @@
                                 @Html.ValidationMessageFor(m => m.CargoOfrecido, "", new { @class = "text-danger" })
                                 <div class="input-group">
                                     <span class="input-group-addon">Funciones</span>
-                                    @*<textarea class="form-control" rows="6"></textarea>*@
-                                    <textarea name="Funciones" id="Funciones" rows="6" cols="80">@Html.Raw(@Model.Funciones)</textarea>
+                                    @*<textarea class="form-control" rows="2"></textarea>*@
+                                    <textarea name="Funciones" id="Funciones" rows="2" cols="80">@Html.Raw(@Model.Funciones)</textarea>
 
                                 </div>
                                 @Html.ValidationMessageFor(m => m.Funciones, "", new { @class = "text-danger" })
                                 <div class="input-group">
                                     <span class="input-group-addon">Información<br />Adicional</span>
-                                    @*<textarea class="form-control" rows="4"></textarea>*@
-                                    <textarea name="Competencias" id="Competencias" rows="6" cols="80">@Html.Raw(@Model.Competencias)</textarea>
+                                    @*<textarea class="form-control" rows="2"></textarea>*@
+                                    <textarea name="Competencias" id="Competencias" rows="2" cols="80">@Html.Raw(@Model.Competencias)</textarea>
 
                                 </div>
                                 @Html.ValidationMessageFor(m => m.Competencias, "", new { @class = "text-danger" })
@@ -194,23 +194,29 @@
                                     @Html.TextBoxFor(m => m.Horario, new { @class = "form-control", @placeholder = "Ej: De Lunes a Viernes de 9:00am a 6:00pm" })
                                 </div>
                                 @Html.ValidationMessageFor(m => m.Horario, "", new { @class = "text-danger" })
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">Sueldo S/.</span>
+                                            @*<input id="RemuneracionOfrecida" name="RemuneracionOfrecida" type="text" class="form-control" placeholder="Sueldo a pagar en Nuevos Soles" value="@Model.RemuneracionOfrecida">*@
+                                            @*@Html.TextBoxFor(m => m.RemuneracionOfrecida, new { @class = "form-control", @placeholder = "Sueldo a pagar en Nuevos Soles", Value = String.Format("{0:N}", Model.RemuneracionOfrecida) })*@
+                                            @Html.TextBoxFor(m => m.RemuneracionOfrecida, new { @class = "form-control", @placeholder = "Sueldo a pagar en Nuevos Soles" })
+                                            @*@Html.EditorFor(m => m.RemuneracionOfrecida, new { @class = "fsorm-control", @placeholder = "Sueldo a pagar en Nuevos Soles" })*@
+                                            @*@Html.EditorFor(m => m.RemuneracionOfrecida, new { htmlAttributes = new { @class = "form-control", @placeholder = "Sueldo a pagar en Nuevos Soles" }, })*@
+                                        </div>
+                                        @Html.ValidationMessageFor(m => m.RemuneracionOfrecida, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">Vacantes</span>
+                                            @*<input id="NumeroVacantes" name="NumeroVacantes" type="text" class="form-control" placeholder="Número de vacantes para el puesto" value="@Model.NumeroVacantes">*@
+                                            @Html.TextBoxFor(m => m.NumeroVacantes, new { @class = "form-control", @placeholder = "Número de vacantes para el puesto" })
+                                        </div>
+                                        @Html.ValidationMessageFor(m => m.NumeroVacantes, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
                                 
-                                <div class="input-group">
-                                    <span class="input-group-addon">Sueldo S/.</span>
-                                    @*<input id="RemuneracionOfrecida" name="RemuneracionOfrecida" type="text" class="form-control" placeholder="Sueldo a pagar en Nuevos Soles" value="@Model.RemuneracionOfrecida">*@
-                                    @*@Html.TextBoxFor(m => m.RemuneracionOfrecida, new { @class = "form-control", @placeholder = "Sueldo a pagar en Nuevos Soles", Value = String.Format("{0:N}", Model.RemuneracionOfrecida) })*@
-                                    @Html.TextBoxFor(m => m.RemuneracionOfrecida, new { @class = "form-control", @placeholder = "Sueldo a pagar en Nuevos Soles" })
-                                    @*@Html.EditorFor(m => m.RemuneracionOfrecida, new { @class = "fsorm-control", @placeholder = "Sueldo a pagar en Nuevos Soles" })*@
-                                    @*@Html.EditorFor(m => m.RemuneracionOfrecida, new { htmlAttributes = new { @class = "form-control", @placeholder = "Sueldo a pagar en Nuevos Soles" }, })*@    
-                                </div>
-                                @Html.ValidationMessageFor(m => m.RemuneracionOfrecida, "", new { @class = "text-danger" })
-                                <div class="input-group">
-                                    <span class="input-group-addon">Vacantes</span>
-                                    @*<input id="NumeroVacantes" name="NumeroVacantes" type="text" class="form-control" placeholder="Número de vacantes para el puesto" value="@Model.NumeroVacantes">*@
-                                    @Html.TextBoxFor(m => m.NumeroVacantes, new { @class = "form-control", @placeholder = "Número de vacantes para el puesto" })
-                                </div>
-                                @Html.ValidationMessageFor(m => m.NumeroVacantes, "", new { @class = "text-danger" })
-
+                                
 
                                 <div class="row">
                                     <div class="col-sm-12">
