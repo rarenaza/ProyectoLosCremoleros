@@ -9,15 +9,26 @@
         <link href="~/Content/animate.css" rel="stylesheet" />
         <link href="~/Content/font-awesome.css" rel="stylesheet" />*@
 
+  
+
+
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 
-
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <link href="~/Content/animate.css" rel="stylesheet" />
     <link href="~/Content/font-awesome.css" rel="stylesheet" />
+    <script src="~/Scripts/jsEmpresa.js"></script>
+    <!--Estilo para el datepicker con jquery-->
+
+
+
+
+
+
 <style>
     .Boton_pestana {
     border-radius: 10px 10px 0px 0px;
@@ -143,6 +154,14 @@
     @Scripts.Render("~/bundles/jqueryui")
     <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 
+
+
+
+
+    <script src="~/Scripts/carga.asincrona.js"></script>
+    <script>site.baseUrl = "@Url.Content("~/").TrimEnd('/')";</script>
+
+    <script src="~/Scripts/calendario.js"></script>
     @*    @RenderSection("scripts", required: false)*@
 </body>
 </html>
@@ -359,4 +378,8 @@
         });
     }
 
+   
+
 </script>
+
+

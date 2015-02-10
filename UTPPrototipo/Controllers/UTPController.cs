@@ -1424,10 +1424,15 @@ namespace UTPPrototipo.Controllers
 
             evento.CreadoPor = ticketUtp.Usuario;
 
+
+
             if (lnEventos.Evento_insertar(evento) == true)
             {
             
-                ViewBag.Message = "Registro Insertado Correctamente";
+                ViewBag.Mensaje = "Registro Insertado Correctamente";
+
+            TempData["MsjExitoCrearEvento"] = "Evento  creado con éxito.";
+
                 return RedirectToAction("Eventos");
             }
             else
@@ -1492,6 +1497,7 @@ namespace UTPPrototipo.Controllers
 
 
                 return View(evento);
+                //return PartialView(evento);
 
             }
 
