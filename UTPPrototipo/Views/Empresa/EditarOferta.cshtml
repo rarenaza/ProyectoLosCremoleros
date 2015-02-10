@@ -321,7 +321,7 @@
 <!--Modal de estudio Crear-->
 <div class="modal" id="divModalEstudio" tabindex="-1" role="dialog" aria-labelledby="Estudio" aria-hidden="true">
 
-    @using (Ajax.BeginForm("_OfertaEstudioCrear", "OfertaEstudio", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divListaEstudios", OnComplete = "cerrarModal" }))
+    @using (Ajax.BeginForm("_OfertaEstudioCrear", "OfertaEstudio", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divListaEstudios", OnComplete = "cerrarModal", OnFailure = "mostrarError" }))
     {
         @Html.AntiForgeryToken()
 
@@ -528,10 +528,11 @@
         var url = '@Url.Action("_OfertaEstudioEditar", "OfertaEstudio")' + "/" + id;
 
         $.get(url, function (data) {
+            console.log(data);
             $('#divEditarEstudioContenedor').html(data);
             $.validator.unobtrusive.parse('#divEditarEstudioContenedor');
             $('#divEditarModalEstudio').modal('show');
-        });
+        }).error(function (err) { console.log(err); } );
     };
 
     function editarSector(id) {
@@ -605,6 +606,10 @@
         alert('Las fase se guardaron con éxito');
     }
 
+    function mostrarError(err)
+    {
+        console.log(err);
+    }
 
 </script>
 

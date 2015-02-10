@@ -51,7 +51,7 @@ namespace UTPPrototipo.Controllers
                     // La creacion del objeto
                     string tipoUsuario = Convert.ToString(dsResultado.Tables[1].Rows[0]["TipoUsuario"]);
 
-                    if (tipoUsuario == "USERUT")
+                    if (tipoUsuario == "USERUT") 
                     {
                         //Crear un onbjketo TikcetUTP
 
@@ -61,7 +61,17 @@ namespace UTPPrototipo.Controllers
                         ticketUtp.CorreoElectronico = Convert.ToString(dsResultado.Tables[2].Rows[0]["CorreoElectronico"]);
                         ticketUtp.TelefonoCelular = Convert.ToString(dsResultado.Tables[2].Rows[0]["TelefonoCelular"]);
                         ticketUtp.TipoUsuario = Convert.ToString(dsResultado.Tables[2].Rows[0]["TipoUsuario"]);
+
+                        ////agrege este campo 
+                        //ticketUtp.Rol = Convert.ToString(dsResultado.Tables[2].Rows[0]["Rol"]);
+
                         Session["TicketUtp"] = ticketUtp;
+
+
+                        //TempData["ADMINISTRADORUTP"] = ticketUtp.Rol;
+
+                        //ViewBag.mensaje = ticketUtp.Rol;
+
 
                         //REdireccionas al indexl de la uitp
                         return RedirectToAction("Index", "UTP");

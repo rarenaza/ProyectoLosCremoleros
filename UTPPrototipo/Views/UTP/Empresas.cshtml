@@ -162,8 +162,20 @@
    
 @*<script src="~/Scripts/jquery-2.1.1.min.js"></script>*@
 
+@if (TempData["ADMINISTRADORUTP"] == "ROLEAD")
+{
+    <script>
+        var empresa = {
+            PalabraClave: $('#PalabraClave').val(),
+            nroPaginaActual: 1,
+        };
 
+        //Cargar("resultadobusqueda", "/UTP/BusquedaSimpleEmpresasActivas", empresa);
 
+        Cargar("resultadobusqueda", '@Url.Action("BusquedaSimpleEmpresasActivas", "UTP")', empresa);
+    </script>
+
+}
 <script>
 
     $(document).ready(function () {
@@ -172,7 +184,18 @@
         //AutoCompleteText('#NombreComercial', '@Url.Action("ListarNombreEmpresa", "UTP")', '#NombreComercial');
         AutoCompleteText('#RazonSocial', '@Url.Action("ListarRazonSocial", "UTP")', '#RazonSocial');
 
+        var empresa = {
+            PalabraClave: $('#PalabraClave').val(),
+            nroPaginaActual: 1,
+        };
+
+        //Cargar("resultadobusqueda", "/UTP/BusquedaSimpleEmpresasActivas", empresa);
+
+        Cargar("resultadobusqueda", '@Url.Action("BusquedaSimpleEmpresasActivas", "UTP")', empresa);
+
     });
+
+        
 
     $('#buscar').click(function () {
         var empresa = {

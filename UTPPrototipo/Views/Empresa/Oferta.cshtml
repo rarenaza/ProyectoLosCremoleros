@@ -65,9 +65,28 @@
                 //Solo si el origen de la pantalla es Empresa se cargan los mensajes:
                 if (ViewBag.Pantalla == "Empresa")
                 {
+                    <!--INICIO-->
+                    <div class="panel-group" id="grupoMensajes" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingOne2">
+                                <h5 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#grupoMensajes" href="#collapseMensajes" aria-expanded="true" aria-controls="collapseOne2" class="fuente-seccion">
+                                        Mensajes
+                                    </a>
+                                </h5>
+                            </div>
+                            <div id="collapseMensajes" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne2">
+                                <div class="panel-body">
+                                    @Html.Action("_Mensajes", "Mensaje", new { pantalla = Constantes.MENSAJES_EMPRESA_OFERTA, idOferta = Model.IdOferta })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--FIN-->
+                
                     <div class="panel-group" role="tablist" aria-multiselectable="true" id="divListaMensajes">
                         <!--Se envía el parámetro para distinguir el funcionamiento de cada página. [{MODULO}_{PAGINA}]-->
-                        @Html.Action("_Mensajes", "Mensaje", new { pantalla = Constantes.MENSAJES_EMPRESA_OFERTA, idOferta = Model.IdOferta })
+                       
                     </div>
                 }
             }

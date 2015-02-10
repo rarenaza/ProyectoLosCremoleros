@@ -9,7 +9,7 @@
     <div class="modal-body">
 
         @Html.HiddenFor(m => m.IdOferta)
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
 
         <div class="row">
             <div class="col-md-12">
@@ -35,9 +35,9 @@
             <div class="col-md-12">
                 <div class="input-group fuente-pequeña">
                     <span class="input-group-addon">Estudio</span>
-                    @Html.TextBoxFor(m => m.estudio, new { @class = "form-control", @id = "estudio", @placeholder = "Nombre del estudio", @style = "z-index:150000;" })
+                    @Html.TextBoxFor(m => m.EstudioTexto, new { @class = "form-control", @id = "EstudioTexto", @placeholder = "Nombre del estudio", @style = "z-index:150000;" })                    
                 </div>
-                @Html.ValidationMessageFor(m => m.estudio, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(m => m.EstudioTexto, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="row">
@@ -65,7 +65,7 @@
     <div class="modal-footer">
         <div class="row">
             <div class="col-md-12 text-right">
-                <button type="submit" class="btn btn-default color-paleta2 fuente-pequeña" style="color: white; margin-bottom: 10px;">
+                <button onclick="return validarEstudios();" type="submit" class="btn btn-default color-paleta2 fuente-pequeña" style="color: white; margin-bottom: 10px;">
                     Guardar Estudio específico
                 </button>
             </div>
@@ -102,10 +102,29 @@
             else {
                 $("#TipoUniversitario").css('display', 'none'); //los combos se ocultan
                 $("#TipoOtrosEstudios").css('display', 'block'); //las cajas se muestran
-                AutoCompleteText('#estudio', '@Url.Action("ListarEstudio", "Empresa")', '#estudio', 'option', 'appendTo', '.eventInsForm');
+                AutoCompleteText('#EstudioTexto', '@Url.Action("ListarEstudio", "Empresa")', '#EstudioTexto', 'option', 'appendTo', '.eventInsForm');
             }
 
         }
         )
     });
+
+    function validarEstudios()
+    {
+        var TipoDeEstudioIdListaValor = $("#TipoDeEstudioIdListaValor").val()
+
+        if (TipoDeEstudioIdListaValor != "TEUNIV") {
+            var estudioTexto = $("#EstudioTexto").val();
+
+            if (estudioTexto == "")
+            {
+                alert("Debe ingresar el estudio");
+                return false;
+            }
+
+            //Se seteal el campo estudio.            
+            $("#Estudio").val(estudioTexto);
+            alert($("#Estudio").val());
+        }        
+    }
 </script>

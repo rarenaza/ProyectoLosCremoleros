@@ -25,7 +25,7 @@
             <div class="col-sm-12">
                 <div class="input-group fuente-pequeña">
                     <span class="input-group-addon">(*)Descrip-<br />ción de<br />Empresa</span>
-                    @Html.TextAreaFor(m => m.DescripcionEmpresa, htmlAttributes: new { @class = "form-control", @placeholder = "Descripción de la Empresa", @rows = "3" })
+                    @Html.TextAreaFor(m => m.DescripcionEmpresa, htmlAttributes: new { @class = "form-control", @placeholder = "Descripción de la Empresa", @rows = "3", @maxlength = "200" })
                 </div>
                 @Html.ValidationMessageFor(m => m.DescripcionEmpresa, "", new { @class = "text-danger" })
             </div>

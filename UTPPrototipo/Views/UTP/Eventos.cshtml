@@ -83,17 +83,8 @@
 <script>
     $(document).ready(function () {
         $("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta3 color-paleta4 color-paleta6 color-paleta7 color-paleta8").addClass("color-paleta5");
+
     });
-    //$('#buscar').click(function () {
-    //    var empresa = {
-    //        PalabraClave: $('#PalabraClave').val(),
-
-    //    };
-    //    Cargar("resultadobusqueda", "/UTP/BusquedaSimpleEmpresasActivas", empresa);
-
-
-    //});
-
 
 
     function buscarPaginacion(nroPaginaActual) {
@@ -110,4 +101,51 @@
 
     }
 </script>
+
+@*<script>
+ 
+        var texto = "@ViewBag.Mensaje";
+        alert(texto);
+
+</script>*@
+
+
+@{
+    //Se valida que exista mensaje de éxito al crear una oferta
+    if (TempData["MsjExitoCrearEvento"] != null)
+    {
+        <input id="MsjExitoCrearEvento" type="hidden" value="@TempData["MsjExitoCrearEvento"]" />
+        TempData["MsjExitoCrearEvento"] = null; //Se establece el valor nuevamente en NULL.
+
+        //Se muestra el script
+        <script>
+
+            var msjExito = document.getElementById("MsjExitoCrearEvento").value;
+            alert(msjExito);
+
+                    
+            $(document).ready(function (nroPaginaActual) {
+             
+                var SearchString = $('#SearchString').val();
+
+                var url = '@Url.Action("BusquedaEventos", "UTP")' + "?SearchString=" + SearchString + '&nroPaginaActual=' + nroPaginaActual;
+
+                $.get(url, function (data) {
+                    console.log(data);
+                    $('#resultadobusqueda').html(data);
+                }).error(function (err) { console.log(err); });
+            });
+
+
+
+
+
+
+        </script>
+    }
+
+}
+
+
+
 

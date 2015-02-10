@@ -3,7 +3,7 @@
     Layout = "~/Views/UTP/_LayoutUTP.cshtml";
     ViewBag.Title = "Evento";
 }
-
+<script src="~/Scripts/calendario.js"></script>
 <link href="~/Content/font-awesome.css" rel="stylesheet" />
 <div class="container fuente-pequeña" style="margin-top:2px;">
     <div class="panel-group" id="datos-cuenta" role="tablist" aria-multiselectable="true">
@@ -11,7 +11,10 @@
     </div>
     <h5>Evento: Feria de Empleos</h5>
     <br />
-@*@using (Html.BeginForm("Evento", "UTP", FormMethod.Post, new { enctype = "multipart/form-data" }))*@
+
+@*@using (Ajax.BeginForm("Eventos", "UTP", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", OnComplete = "Exito", UpdateTargetId = "divDatosGenerales" }))*@
+
+@*@using (Ajax.BeginForm("Eventos", "UTP", new AjaxOptions() { OnSuccess = "Exito", UpdateTargetId = "resultadobusqueda" }))*@
 @using (Html.BeginForm())
 
 {
@@ -49,22 +52,6 @@
                     </div>
                 </div>
             </div>
-
-            @*<div class="row">
-                <div class="col-sm-6">
-                    <div class="input-group">
-                        <span class="input-group-addon" ">Tipo</span>
-                        <select class="form-control" placeholder="Nombre del Evento">
-                            <option>
-                                Feria
-                            </option>
-                            <option>
-                                Baile
-                            </option>
-                        </select>
-                    </div>
-                </div>
-            </div>*@
 
          
             <div class="row">
@@ -194,110 +181,56 @@
                 </div>
             </div>
 
-
-
-         
             <br />
             <div class="row">
                 @*<div class="col-sm-12" style="text-align:right;">
                     <button class="btn btn-default color-paleta5">Guardar</button>
                 </div>*@
                 <div class="col-sm-12" style="text-align:right;">
-                    <button class="btn btn-default color-paleta5" type="submit" value="Guardar">Guardar</button>
+                    <button class="btn btn-default color-paleta5" type="submit"  value=" guardar" >Guardar</button>
+                    @*<button class="btn btn-default color-paleta5" type="submit" onclick="mostrarMensaje();">Guardar</button>*@
+                   
                 </div>
             </div>
 
-            @*<div class="col-sm-12" style="text-align:right;">
-                <button class="btn btn-default color-paleta7" type="submit" value="Guardar">Guardar</button>
-            </div>*@
 
             <hr />
-            @*<table>
-                <tr>
-                    <td class="celda-nombre">
-                        Creado Por
-                    </td>
-                    <td class="celda-datos">
-                        MarioAlberti
-                    </td>
-                </tr>
-                <tr>
-                    <td class="celda-nombre">
-                        Creado el
-                    </td>
-                    <td class="celda-datos">
-                        10/01/2015 12:45:51
-                    </td>
-                </tr>
-                <tr>
-                    <td class="celda-nombre">
-                        Modificado Por
-                    </td>
-                    <td class="celda-datos">
-                        ---
-                    </td>
-                </tr>
-                <tr>
-                    <td class="celda-nombre">
-                        Modificado el
-                    </td>
-                    <td class="celda-datos">
-                        ---
-                    </td>
-                </tr>
-            </table>*@
+           
             <br />
         </div>
 
-
-        @*<div class="col-sm-6 ">
-            <div class="row">
-                <div class="col-sm-6">
-                    <h6>Poster del Evento</h6>
-                    <img src="../img/evento/Evento1.jpg" style="width:100%;border:solid;border-width:thick;border-color:rgb(220,220,220);">
-                    <br /><br />
-                    <button class="btn btn-default color-paleta5">Cambiar imagen</button>
-                    <hr />
-                </div>
-                <div class="col-sm-6">
-                    <h6>Imagen del Ticket</h6>
-                    <img src="../img/evento/Evento1.jpg" style="width:100%;border:solid;border-width:thick;border-color:rgb(220,220,220);">
-                    <br /><br />
-                    <button class="btn btn-default color-paleta5">Cambar imagen</button>
-                    <hr />
-                </div>
-            </div>
-        </div>*@
+      
     </div>
+    
 }
 </div>
+
         <script>
 
             $(document).ready(function () {
                 $("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta3 color-paleta4 color-paleta6 color-paleta7 color-paleta8").addClass("color-paleta5");
+                checkSupportForInputTypeDate();
+                $("#FechaEvento").datepicker({ dateFormat: 'dd/mm/yy' });
             });
+
+
+        
 
 
         </script>
 
-<script src="~/Scripts/jquery-ui.js"></script>
-<script src="~/Scripts/jquery.maskedinput.js"></script>
+
+
 
 
 <script>
-    $("#FechaEvento").datepicker({ dateFormat: "dd/mm/yy" }).mask("99/99/9999");
-    $.validator.addMethod('date',
-    function (value, element, params) {
-        if (this.optional(element)) {
-            return true;
-        }
-        var ok = true;
-        try {
-            $.datepicker.parseDate('dd/mm/yy', value);
-        }
-        catch (err) {
-            ok = false;
-        }
-        return ok;
-    });
+    function Exito() {
+
+        alert('Grabado Correctamente');
+      
+    }
+
 </script>
+
+
+

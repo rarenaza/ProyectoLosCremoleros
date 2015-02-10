@@ -24,13 +24,20 @@ namespace UTP.PortalEmpleabilidad.Logica
                 bool enableSSL = Convert.ToBoolean(ConfigurationManager.AppSettings["MensajeCorreoEnableSSL"]);
                 string deDesarrollo = ConfigurationManager.AppSettings["MensajeCorreoUsuarioDeDesarrollo"];
                 string paraDesarrollo = ConfigurationManager.AppSettings["MensajeCorreoUsuarioParaDesarrollo"];
-                string prefijoAsunto = ConfigurationManager.AppSettings["MensajeCorreoPrefijoAsunto"];
+                string prefijoAsunto = "Portal de Empleabilidad: ";  //ConfigurationManager.AppSettings["MensajeCorreoPrefijoAsunto"];
 
-                MailMessage Message = new MailMessage(mensajesEnProduccion ? mensaje.DeUsuarioCorreoElectronico : deDesarrollo,
-                                                        mensajesEnProduccion ? mensaje.ParaUsuarioCorreoElectronico : paraDesarrollo
-                                                      );
-               
-                //MailMessage Message = new MailMessage(mensaje.DeUsuarioCorreoElectronico, mensaje.ParaUsuarioCorreoElectronico);                
+                //MailMessage Message = new MailMessage(mensajesEnProduccion ? mensaje.DeUsuarioCorreoElectronico : deDesarrollo,
+                //                                        mensajesEnProduccion ? mensaje.ParaUsuarioCorreoElectronico : paraDesarrollo
+                //                                      );
+
+                MailMessage Message = new MailMessage();
+
+                //Cambiar a ConfigurationManager.AppSettings["MensajeCorreoAliasFrom"], Agregar tag en web.config
+                string correoDe = mensajesEnProduccion ? mensaje.DeUsuarioCorreoElectronico : deDesarrollo;
+                string correoPara = mensajesEnProduccion ? mensaje.ParaUsuarioCorreoElectronico : paraDesarrollo;
+                Message.From = new MailAddress(correoDe, "Dirección de Empleabilidad UTP");
+                Message.To.Add(new MailAddress(correoPara));
+                
                 Message.Body = mensaje.MensajeTexto;
                 Message.Subject = prefijoAsunto + " " + mensaje.Asunto;
 

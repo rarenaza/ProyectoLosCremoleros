@@ -17,6 +17,7 @@
         @Html.HiddenFor(m => m.Pantalla)
         @Html.HiddenFor(m => m.CreadoPor)
         @Html.HiddenFor(m => m.IdEmpresa)
+        @Html.HiddenFor(m => m.IdEvento)
 
         @if (ViewBag.Pantalla == "")
         {
@@ -84,7 +85,7 @@
         @if (ViewBag.Pantalla == Constantes.MENSAJES_EMPRESA_EVENTO || ViewBag.Pantalla == Constantes.MENSAJES_ALUMNO_EVENTO
             || ViewBag.Pantalla == Constantes.MENSAJES_UTP_EVENTO)
         {
-            @Html.HiddenFor(m => m.IdEvento)
+         
             @*<div class="row">
                 <div class="col-sm-12">
                     @Model.Evento.NombreEvento

@@ -52,6 +52,13 @@ namespace UTPPrototipo.Controllers
         [ValidateAntiForgeryToken]
         public PartialViewResult _OfertaEstudioCrear(OfertaEstudio ofertaEstudio)
         {
+            //Aldo 09FEB: Si el tipo de estudio es distinto a universitario se reemplaza el campo EstudioTexto en Estudio
+            //Si el campo TipoDeEstudioIdListaValor es TEUNIV entonces el dato de estudio sí se encuentra en ofertaEstudio.Estudio y no se necesita reemplazar.
+            if (ofertaEstudio.TipoDeEstudioIdListaValor != "TEUNIV")
+            {
+                ModelState.Remove("Estudio"); //Se quita el campo porque tiene null.
+                ofertaEstudio.Estudio = ofertaEstudio.EstudioTexto;
+            }
             if (ModelState.IsValid)
             {
                 TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];
@@ -65,7 +72,7 @@ namespace UTPPrototipo.Controllers
                 ofertaEstudio.EstadoOfertaEstudio.IdListaValor = "OFESAC"; //Estado oferta estudio activa.
                 ofertaEstudio.CreadoPor = ticket.Usuario;
 
-                LNOfertaEstudio lnOfertaEstudio = new LNOfertaEstudio();
+                LNOfertaEstudio lnOfertaEstudio = new LNOfertaEstudio();                
                 lnOfertaEstudio.Insertar(ofertaEstudio);
 
                 List<OfertaEstudio> lista = lnOfertaEstudio.ObtenerEstudios(ofertaEstudio.IdOferta, idOfertaEstudiosTodos);
@@ -74,7 +81,14 @@ namespace UTPPrototipo.Controllers
 
                 return PartialView("_OfertaEstudio", lista);
             }
+            else
+            {
+                var errors = ModelState.Select(x => x.Value.Errors)
+                           .Where(y => y.Count > 0)
+                           .ToList();
 
+                int a = 0;
+            }
             return PartialView("_OfertaEstudioCrear", ofertaEstudio);
         }
 
@@ -96,9 +110,10 @@ namespace UTPPrototipo.Controllers
         [ValidateAntiForgeryToken] // this action takes the viewModel from the modal
         public PartialViewResult _OfertaEstudioEditar(OfertaEstudio ofertaEstudio) //Este es como el submit
         {
-            if (ofertaEstudio.TipoDeEstudio.IdListaValor != "TEUNIV")
+            if (ofertaEstudio.TipoDeEstudioIdListaValor != "TEUNIV")
             {
-                ofertaEstudio.Estudio = ofertaEstudio.estudio;
+                ModelState.Remove("Estudio"); //Se quita el campo porque tiene null.
+                ofertaEstudio.Estudio = ofertaEstudio.EstudioTexto;
             }
             if (ModelState.IsValid)
             {
