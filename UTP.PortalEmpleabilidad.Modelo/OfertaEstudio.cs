@@ -15,7 +15,11 @@ namespace UTP.PortalEmpleabilidad.Modelo
         
         [Required (ErrorMessage=Constantes.MSJ_CAMPO_OBLIGATORIO)]
         public string Estudio { get; set; }
-        public string estudio { get; set; }
+        
+        /// <summary>
+        /// Se utiliza para los estudios que son distintos al tipo universitario.
+        /// </summary>
+        public string EstudioTexto { get; set; }
 
         [Obsolete]
         public string NivelConocimiento { get; set; }

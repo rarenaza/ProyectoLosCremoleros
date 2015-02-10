@@ -15,8 +15,29 @@
             @Html.Action("ObtenerNuevasPostulaciones", "Empresa")
         </div>
         <div class="col-sm-5">
+
             <!--Se envía el parámetro para distinguir el funcionamiento de cada página. [{MODULO}_{PAGINA}]-->
-            @Html.Action("_Mensajes", "Mensaje", new { pantalla = Constantes.MENSAJES_EMPRESA_INDEX }) 
+            <!--INICIO-->
+            <div class="panel-group" id="grupoMensajes" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne2">
+                        <h5 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#grupoMensajes" href="#collapseMensajes" aria-expanded="true" aria-controls="collapseOne2" class="fuente-seccion">
+                                Mensajes
+                            </a>
+                        </h5>
+                    </div>
+                    <div id="collapseMensajes" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne2">
+                        <div class="panel-body">
+
+                            @Html.Action("_Mensajes", "Mensaje", new { pantalla = Constantes.MENSAJES_EMPRESA_INDEX })
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--FIN-->
         </div>
 
     </div>
@@ -26,10 +47,10 @@
     $(document).ready(function () {
         $("#divFinalCabeceraEmpresa").removeClass("color-paleta2 color-paleta3 color-paleta4 color-paleta5").addClass("color-paleta1");
 
-       
+
     });
 
-    
+
 </script>
 
 @{

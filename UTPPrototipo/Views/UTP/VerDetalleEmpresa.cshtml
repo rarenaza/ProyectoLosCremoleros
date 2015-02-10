@@ -31,8 +31,25 @@
     </div>
     <div class="col-sm-6">
         @*@Html.Action("_VerDetalleEmpresaMensajes", "UTP", new { id = ViewBag.IdEmpresa })*@
-
-        @Html.Action("_Mensajes", "Mensaje", new { pantalla = Constantes.MENSAJES_UTP_EMPRESA, idEmpresa = ViewBag.IdEmpresa })
+        <!--INICIO-->
+        <div class="panel-group" id="grupoMensajes" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingOne2">
+                    <h5 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#grupoMensajes" href="#collapseMensajes" aria-expanded="true" aria-controls="collapseOne2" class="fuente-seccion">
+                            Mensajes
+                        </a>
+                    </h5>
+                </div>
+                <div id="collapseMensajes" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne2">
+                    <div class="panel-body">
+                        @Html.Action("_Mensajes", "Mensaje", new { pantalla = Constantes.MENSAJES_UTP_EMPRESA, idEmpresa = ViewBag.IdEmpresa })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--FIN-->
+       
     </div>
     <hr />
 </div>

@@ -191,6 +191,7 @@ namespace UTPPrototipo.Controllers
             ViewBag.TipoContratoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_CONTRATO), "IdListaValor", "Valor");
             ViewBag.IdEmpresaLocacion = new SelectList(lnEmpresaLocacion.ObtenerLocaciones(ticket.IdEmpresa), "IdEmpresaLocacion", "NombreLocacion"); 
             ViewBag.RecibeCorreosIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_OFERTA_RECIBECORREOS), "IdListaValor", "Valor");
+            ViewBag.FasesOferta = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_FASE_OFERTA), "IdListaValor", "Valor");
 
             return View(oferta);
         }
@@ -250,7 +251,7 @@ namespace UTPPrototipo.Controllers
             ViewBag.TipoContratoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_CONTRATO), "IdListaValor", "Valor", oferta.TipoContratoIdListaValor);
             ViewBag.IdEmpresaLocacion = new SelectList(lnEmpresaLocacion.ObtenerLocaciones(ticket.IdEmpresa), "IdEmpresaLocacion", "NombreLocacion", oferta.IdEmpresaLocacion);
             ViewBag.RecibeCorreosIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_OFERTA_RECIBECORREOS), "IdListaValor", "Valor", oferta.RecibeCorreosIdListaValor);
-
+            ViewBag.FasesOferta = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_FASE_OFERTA), "IdListaValor", "Valor");
 
             return View(oferta);
         }

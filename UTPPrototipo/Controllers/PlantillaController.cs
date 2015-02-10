@@ -231,10 +231,10 @@ namespace UTPPrototipo.Controllers
                         //Se arma la cadena de cada fila en la tabla de Información adicional.
                         StringBuilder infoAdicional = new StringBuilder();
                         infoAdicional.Append(conocimiento + " ");
-                        infoAdicional.Append(nivelConocimientoDescripcion + ", ");
+                        infoAdicional.Append(nivelConocimientoDescripcion + ", ");                        
+                        infoAdicional.Append(institucionEstudio + ", ");
                         infoAdicional.Append(fechaDesde + "-");
                         infoAdicional.Append(fechaHasta + ". ");
-                        infoAdicional.Append(institucionEstudio + ".");
 
                         tblInfoAdicional.Rows[fila].Cells[celda].Width = 600;                        
                         cell_paragraph.AppendLine(infoAdicional.ToString());
@@ -483,9 +483,9 @@ namespace UTPPrototipo.Controllers
                         StringBuilder infoAdicional = new StringBuilder();
                         infoAdicional.Append(conocimiento + " ");
                         infoAdicional.Append(nivelConocimientoDescripcion + ", ");
+                        infoAdicional.Append(institucionEstudio + ", ");
                         infoAdicional.Append(fechaDesde + "-");
                         infoAdicional.Append(fechaHasta + ". ");
-                        infoAdicional.Append(institucionEstudio + ".");
 
                         tblInfoAdicional.Rows[fila].Cells[celda].Width = 600;
                         cell_paragraph.AppendLine(infoAdicional.ToString());

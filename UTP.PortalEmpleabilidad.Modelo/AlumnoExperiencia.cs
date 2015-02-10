@@ -62,7 +62,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string TipoCargo { get; set; }
         ////[Required(ErrorMessage = "Falta la descripcion del cargo")]
 
-        [StringLength(500, ErrorMessage = "Este campo sólo acepta máximo 500 caracteres.")]
+        [StringLength(350, ErrorMessage = "Este campo sólo acepta máximo 350 caracteres.")]
         public string DescripcionCargo { get; set; }
         
         public int IdCV { get; set; }

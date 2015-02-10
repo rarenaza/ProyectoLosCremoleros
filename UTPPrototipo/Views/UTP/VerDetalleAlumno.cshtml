@@ -227,7 +227,25 @@
 
     <div class="row fuente-pequeña">
         <div class="col-sm-6">
-            @Html.Action("_Mensajes", "Mensaje", new { pantalla = Constantes.MENSAJES_UTP_ALUMNO, usuarioAlumno = Model.Usuario }) 
+            <!--INICIO-->
+            <div class="panel-group" id="grupoMensajes" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne2">
+                        <h5 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#grupoMensajes" href="#collapseMensajes" aria-expanded="true" aria-controls="collapseOne2" class="fuente-seccion">
+                                Mensajes
+                            </a>
+                        </h5>
+                    </div>
+                    <div id="collapseMensajes" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne2">
+                        <div class="panel-body">
+                            @Html.Action("_Mensajes", "Mensaje", new { pantalla = Constantes.MENSAJES_UTP_ALUMNO, usuarioAlumno = Model.Usuario })                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--FIN-->
+           
         </div>
         <div class="col-sm-6">
             @{Html.RenderAction("AlumnoUtp_obtenerCV", "UTP", new { usuario = Model.Usuario });}

@@ -8,54 +8,50 @@
     Paginacion paginacion = (Paginacion)ViewBag.Paginacion;
 }
 
-@*<div class="container" style="padding-left: 25px;">
-    <div class="row fuente-pequeña">*@
-@*<div class="col-sm-8">
-
-    </div>*@
 <div id="divListaMensajes" class="col-sm-12">
+
     <div class="row">
 
-        @if (ViewBag.Pantalla == Constantes.MENSAJES_UTP_EMPRESA)
+                        @*@if (ViewBag.Pantalla == Constantes.MENSAJES_UTP_EMPRESA)
+                            {
+                                        <h5>Mensajes</h5>
+                                        <hr />
+                            }
+                            else
+                            {
+                                        <h5>Mensajes</h5>
+                            }*@
+
+
+                        <!--Cabecera de la grilla-->
+                        <div class="row grilla1-cabecera color-paleta-msg-btn">
+                            <div class="col-sm-1">
+                            </div>
+                            <div class="col-sm-11">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        Fecha
+                                    </div>
+                                    <div class="col-sm-4">
+                                        Remitente
+                                    </div>
+                                    <div class="col-sm-4">
+                                        Destinatario
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                        <!--Detalle resultados-->
+                        @foreach (var item in Model)
         {
-            <h5>Mensajes</h5>
-            <hr />
-        }
-        else
-        {
-            <h5>Mensajes</h5>
-        }
-
-
-        <!--Cabecera de la grilla-->
-        <div class="row grilla1-cabecera color-paleta-msg-btn">
-            <div class="col-sm-1">
-            </div>
-            <div class="col-sm-11">
-                <div class="row">
-                    <div class="col-sm-4">
-                        Fecha
-                    </div>
-                    <div class="col-sm-4">
-                        Remitente
-                    </div>
-                    <div class="col-sm-4">
-                        Destinatario
-                    </div>
-
-                </div>
-            </div>
-
-
-        </div>
-
-        <!--Detalle resultados-->
-        @foreach (var item in Model)
-        {
-            <div class="row grilla1-linea">
-                <div class="col-sm-1">
-                    <!--Estado del mensaje-->
-                    @{
+                        <div class="row grilla1-linea">
+                            <div class="col-sm-1">
+                                <!--Estado del mensaje-->
+                                @{
             string paletaColor = "";
             if (item.DeUsuario == ViewBag.usuarioActual)
             {
@@ -67,90 +63,90 @@
             }
             if (item.EstadoMensaje == "MSJNOL") //Mensaje no leído.
             {
-                <span class="fui @paletaColor" style="font-size:22px;" title="Mensaje nuevo">k</span>
+                                    <span class="fui @paletaColor" style="font-size:22px;" title="Mensaje nuevo">k</span>
             }
             else
                 if (item.EstadoMensaje == "MSJLEI") //Mensaje leído.
                 {
-                    <span class="fui @paletaColor" style="font-size:22px;" title="Mensaje leído">i</span>
+                                    <span class="fui @paletaColor" style="font-size:22px;" title="Mensaje leído">i</span>
                 }
                 else
                     if (item.EstadoMensaje == "MSJCON") //Mensaje contestado
                     {
-                        <span class="fui @paletaColor" style="font-size:22px;" title="Mensaje contestado ">j</span>
+                                    <span class="fui @paletaColor" style="font-size:22px;" title="Mensaje contestado ">j</span>
                     }
-                    }
-                </div>
-                <div class="col-sm-11">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            @Html.FormatoFrecuencia(item.FechaEnvio)
-                        </div>
-                        <div class="col-sm-4">
-                            @item.DeUsuario
-                        </div>
-                        <div class="col-sm-4">
-                            @item.ParaUsuario
-                        </div>
+                                }
+                            </div>
+                            <div class="col-sm-11">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        @Html.FormatoFrecuencia(item.FechaEnvio)
+                                    </div>
+                                    <div class="col-sm-4">
+                                        @item.DeUsuario
+                                    </div>
+                                    <div class="col-sm-4">
+                                        @item.ParaUsuario
+                                    </div>
 
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            @*<strong><a href="#" data-toggle="modal" data-target="#verMensaje">RE: Gerente de Cuentas</a></strong>*@
-                            <strong>
-                                <label onclick="mensajeVer('@item.IdMensaje', '@ViewBag.Pantalla');" style="cursor:pointer;">@item.Asunto</label>
-                            </strong>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        @*<strong><a href="#" data-toggle="modal" data-target="#verMensaje">RE: Gerente de Cuentas</a></strong>*@
+                                        <strong>
+                                            <label onclick="mensajeVer('@item.IdMensaje', '@ViewBag.Pantalla');" style="cursor:pointer;">@item.Asunto</label>
+                                        </strong>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </div>
         }
-        @if (Model.Count() == 0)
+                        @if (Model.Count() == 0)
         {
-            <div class="row grilla1-linea">
-                <div class="col-sm-12 text-center">
-                    <h6>No se encontraron resultados.</h6>
-                </div>
-            </div>
+                        <div class="row grilla1-linea">
+                            <div class="col-sm-12 text-center">
+                                <h6>No se encontraron resultados.</h6>
+                            </div>
+                        </div>
         }
-        <br />
-        <nav class="navbar-right">
-            <ul class="pagination">
-                @{
+                        <br />
+                        <nav class="navbar-right">
+                            <ul class="pagination">
+                                @{
                     if (paginacion.NroPaginaActual > 1)
                     {
                         int i1 = paginacion.NroPaginaActual - 5;
                         if (i1 < 1) { i1 = 1; }
-                        <li>
-                            @if (ViewBag.TipoBusqueda == "Simple")
+                                <li>
+                                    @if (ViewBag.TipoBusqueda == "Simple")
                             {
-                                <a href="#" onclick="buscarPaginacion('1');">
-                                    <span aria-hidden="true" class="glyphicon glyphicon-step-backward"></span>
-                                </a>
+                            <a href="#" onclick="buscarPaginacion('1');">
+                                <span aria-hidden="true" class="glyphicon glyphicon-step-backward"></span>
+                            </a>
                             }
                             else
                             {
-                                <a href="#" onclick="buscarPaginacionAvanzada('1');">
-                                    <span aria-hidden="true" class="glyphicon glyphicon-step-backward"></span>
-                                </a>
+                            <a href="#" onclick="buscarPaginacionAvanzada('1');">
+                                <span aria-hidden="true" class="glyphicon glyphicon-step-backward"></span>
+                            </a>
                             }
-                        </li>
+                                </li>
                         if (i1 > 1)
                         {
-                            <li>
-                                @if (ViewBag.TipoBusqueda == "Simple")
+                                <li>
+                                    @if (ViewBag.TipoBusqueda == "Simple")
                                 {
-                                    <a href="#" onclick="buscarPaginacion('@i1');">
-                                        <span aria-hidden="true" class="glyphicon glyphicon-backward"></span>
-                                    </a>
+                                <a href="#" onclick="buscarPaginacion('@i1');">
+                                    <span aria-hidden="true" class="glyphicon glyphicon-backward"></span>
+                                </a>
                                 }
                                 else
                                 {
-                                    <a href="#" onclick="buscarPaginacionAvanzada('@i1');">
-                                        <span aria-hidden="true" class="glyphicon glyphicon-backward"></span>
-                                    </a>
+                                <a href="#" onclick="buscarPaginacionAvanzada('@i1');">
+                                    <span aria-hidden="true" class="glyphicon glyphicon-backward"></span>
+                                </a>
                                 }
-                            </li>
+                                </li>
                         }
                     }
 
@@ -158,7 +154,7 @@
                     {
                         if (i == paginacion.NroPaginaActual)
                         {
-                            <li class="active"><a href="#">@i <span class="sr-only"></span></a></li>
+                                <li class="active"><a href="#">@i <span class="sr-only"></span></a></li>
                         }
                         else
                         {
@@ -166,11 +162,11 @@
                             {
                                 if (ViewBag.TipoBusqueda == "Simple")
                                 {
-                                    <li><a href="#" onclick="buscarPaginacion('@i');">@i</a></li>
+                                <li><a href="#" onclick="buscarPaginacion('@i');">@i</a></li>
                                 }
                                 else
                                 {
-                                    <li><a href="#" onclick="buscarPaginacionAvanzada('@i');">@i</a></li>
+                                <li><a href="#" onclick="buscarPaginacionAvanzada('@i');">@i</a></li>
                                 }
                             }
                         }
@@ -181,116 +177,115 @@
                         if (i2 > paginacion.TotalPaginas) { i2 = paginacion.TotalPaginas; }
                         if (i2 < paginacion.TotalPaginas)
                         {
-                            <li>
-                                @if (ViewBag.TipoBusqueda == "Simple")
+                                <li>
+                                    @if (ViewBag.TipoBusqueda == "Simple")
                                 {
-                                    <a href="#" onclick="buscarPaginacion('@i2');">
-                                        <span aria-hidden="true" class="glyphicon glyphicon-forward"></span>
-                                    </a>
+                                <a href="#" onclick="buscarPaginacion('@i2');">
+                                    <span aria-hidden="true" class="glyphicon glyphicon-forward"></span>
+                                </a>
                                 }
                                 else
                                 {
-                                    <a href="#" onclick="buscarPaginacionAvanzada('@i2');">
-                                        <span aria-hidden="true" class="glyphicon glyphicon-forward"></span>
-                                    </a>
-                                }
-                            </li>
-                        }
-                        <li>
-                            @if (ViewBag.TipoBusqueda == "Simple")
-                            {
-                                <a href="#" onclick="buscarPaginacion('@paginacion.TotalPaginas');">
-                                    <span aria-hidden="true" class="glyphicon glyphicon-step-forward"></span>
+                                <a href="#" onclick="buscarPaginacionAvanzada('@i2');">
+                                    <span aria-hidden="true" class="glyphicon glyphicon-forward"></span>
                                 </a>
+                                }
+                                </li>
+                        }
+                                <li>
+                                    @if (ViewBag.TipoBusqueda == "Simple")
+                            {
+                            <a href="#" onclick="buscarPaginacion('@paginacion.TotalPaginas');">
+                                <span aria-hidden="true" class="glyphicon glyphicon-step-forward"></span>
+                            </a>
                             }
                             else
                             {
-                                <a href="#" onclick="buscarPaginacionAvanzada('@paginacion.TotalPaginas');">
-                                    <span aria-hidden="true" class="glyphicon glyphicon-step-forward"></span>
-                                </a>
+                            <a href="#" onclick="buscarPaginacionAvanzada('@paginacion.TotalPaginas');">
+                                <span aria-hidden="true" class="glyphicon glyphicon-step-forward"></span>
+                            </a>
                             }
-                        </li>
+                                </li>
                     }
-                }
-            </ul>
-        </nav>
-        <div class="row">
-            <!--Acción para redactar nuevos mensajes.-->
-            <div class="col-sm-6">
-                @*<button class="btn btn-default color-paleta1" data-toggle="modal" data-target="#divModalMensajeRedactar">Redactar</button>*@
-                <button id="btnMensajeNuevo" class="btn btn-default color-paleta-msg-btn" onclick="mensajeNuevo('@ViewBag.Pantalla','@ViewBag.IdOferta', '@ViewBag.UsuarioAlumno', '@ViewBag.IdEvento', '@ViewBag.IdEmpresa');">Redactar</button>
-                <br />
-                <label id="lblCargando" style="font-size:xx-small"></label>
-            </div>
+                                }
+                            </ul>
+                        </nav>
+                        <div class="row">
+                            <!--Acción para redactar nuevos mensajes.-->
+                            <div class="col-sm-6">
+                                @*<button class="btn btn-default color-paleta1" data-toggle="modal" data-target="#divModalMensajeRedactar">Redactar</button>*@
+                                <button id="btnMensajeNuevo" class="btn btn-default color-paleta-msg-btn" onclick="mensajeNuevo('@ViewBag.Pantalla','@ViewBag.IdOferta', '@ViewBag.UsuarioAlumno', '@ViewBag.IdEvento', '@ViewBag.IdEmpresa');">Redactar</button>
+                                <br />
+                                <label id="lblCargando" style="font-size:xx-small"></label>
+                            </div>
 
-            <!--Paginación de los mensajes-->
-            <!--
-            <div class="col-sm-10" style="text-align:right;">
-                <nav>
-                    <ul class="pagination">
-                        <li>
-                            <a href="#" aria-label="Previous">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li>
-                            <a href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-                -->
-        </div>
+                            <!--Paginación de los mensajes-->
+                            <!--
+                            <div class="col-sm-10" style="text-align:right;">
+                                <nav>
+                                    <ul class="pagination">
+                                        <li>
+                                            <a href="#" aria-label="Previous">
+                                                <span aria-hidden="true">&laquo;</span>
+                                            </a>
+                                        </li>
+                                        <li><a href="#">1</a></li>
+                                        <li><a href="#">2</a></li>
+                                        <li><a href="#">3</a></li>
+                                        <li>
+                                            <a href="#" aria-label="Next">
+                                                <span aria-hidden="true">&raquo;</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                                -->
+                        </div>
 
-        <hr />
-    </div>
+                        <hr />
+                    </div>
+
     <!--Modal para nuevos mensajes -->
     <div class="modal" id="divModalMensajeNuevo" tabindex="-1" role="dialog">
 
         @using (Ajax.BeginForm("_MensajesNuevo", "Mensaje", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", OnComplete = "cerrarModal", UpdateTargetId = "divListaMensajes", OnBegin = "AjaxBegin" }))
-        {
-            @Html.AntiForgeryToken()
+    {
+    @Html.AntiForgeryToken()
 
-            <div class="modal-dialog" id="divMensajeNuevoContenedorInterno">
+    <div class="modal-dialog" id="divMensajeNuevoContenedorInterno">
 
-            </div>
-        }
+    </div>
+    }
     </div><!-- /.modal -->
     <!--Modal para ver un mensaje -->
     <div class="modal" id="divModalMensajeVer" tabindex="-1" role="dialog">
 
         @using (Ajax.BeginForm("_MensajesVer", "Mensajes", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divListaMensajes", OnComplete = "cerrarModal" }))
-        {
-            @Html.AntiForgeryToken()
+    {
+    @Html.AntiForgeryToken()
 
-            <div class="modal-dialog" id="divMensajeVerContenedorInterno">
+    <div class="modal-dialog" id="divMensajeVerContenedorInterno">
 
-            </div><!-- /.modal-dialog -->
-        }
+    </div><!-- /.modal-dialog -->
+    }
     </div><!-- /.modal -->
     <!--Modal para responder un mensaje -->
     <div class="modal" id="divModalMensajeResponder" tabindex="-1" role="dialog">
 
         @using (Ajax.BeginForm("_MensajesResponder", "Mensaje", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divListaMensajes", OnComplete = "cerrarModalResponder", OnBegin = "AjaxBeginResponder" }))
-        {
-            @Html.AntiForgeryToken()
+    {
+    @Html.AntiForgeryToken()
 
-            <div class="modal-dialog" id="divMensajeResponderContenedorInterno">
+    <div class="modal-dialog" id="divMensajeResponderContenedorInterno">
 
-            </div>
-        }
+    </div>
+    }
 
     </div><!-- /.modal -->
 
 </div>
-@*</div>
-    </div>*@
-
+                     
 <script type="text/javascript">
 
     $(document).ready(function () {
@@ -425,7 +420,7 @@
     }
 
     function buscarPaginacion(nroPagina) {
-        
+
         var url = '@Url.Action("_Mensajes", "Mensaje", new {    pantalla = ViewBag.Pantalla,
                                                                 idOferta = ViewBag.IdOferta,
                                                                 usuarioAlumno = ViewBag.UsuarioAlumno,

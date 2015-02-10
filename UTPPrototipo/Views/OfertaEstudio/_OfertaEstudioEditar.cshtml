@@ -29,13 +29,13 @@
                 @Html.ValidationMessageFor(m => m.Estudio, "", new { @class = "text-danger" })
             </div>
         </div>
-        <div class="row" id="TipoOtrosEstudios" >
+        <div class="row" id="TipoOtrosEstudios" style="display:none;">
             <div class="col-md-12">
                 <div class="input-group fuente-pequeña">
                     <span class="input-group-addon">Estudio</span>
-                    @Html.TextBoxFor(m => m.estudio, new { @class = "form-control", @id = "estudio", @placeholder = "Nombre del estudio", @style = "z-index:150000;" })
+                    @Html.TextBoxFor(m => m.EstudioTexto, new { @class = "form-control", @id = "estudio", @placeholder = "Nombre del estudio", @style = "z-index:150000;" })
                 </div>
-                @Html.ValidationMessageFor(m => m.estudio, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(m => m.EstudioTexto, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="row">
