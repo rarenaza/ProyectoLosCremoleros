@@ -95,8 +95,8 @@
             </div>
 
             <script>
-                CKEDITOR.replace('Funciones', { height: 94 });                
-                CKEDITOR.replace('Competencias', { height: 93 });              
+                CKEDITOR.replace('Funciones', { height: 75 });
+                CKEDITOR.replace('Competencias', { height: 74 });
             </script>
 
             <div class="col-sm-6">
@@ -152,18 +152,24 @@
                                     @Html.TextBoxFor(m => m.Horario, new { @class = "form-control", @placeholder = "Ej: De Lunes a Viernes de 9:00am a 6:00pm" })
                                 </div>
                                 @Html.ValidationMessageFor(m => m.Horario, "", new { @class = "text-danger" })
-                                <div class="input-group">
-                                    <span class="input-group-addon">Sueldo S/.</span>
-                                    @*<input id="RemuneracionOfrecida" name="RemuneracionOfrecida" type="text" class="form-control" placeholder="Sueldo a pagar en Nuevos Soles">*@
-                                    @Html.TextBoxFor(m => m.RemuneracionOfrecida, new { @class = "form-control", @placeholder = "Sueldo a pagar en Nuevos Soles" })
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">Sueldo S/.</span>
+                                            @*<input id="RemuneracionOfrecida" name="RemuneracionOfrecida" type="text" class="form-control" placeholder="Sueldo a pagar en Nuevos Soles">*@
+                                            @Html.TextBoxFor(m => m.RemuneracionOfrecida, new { @class = "form-control", @placeholder = "Sueldo a pagar en Nuevos Soles" })
+                                        </div>@Html.ValidationMessageFor(m => m.RemuneracionOfrecida, "", new { @class = "text-danger" })
+                                    </div>
+                                    
+                                    <div class="col-sm-6">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">Vacantes</span>
+                                            @*<input id="NumeroVacantes" name="NumeroVacantes" type="text" class="form-control" placeholder="Número de vacantes para el puesto">*@
+                                            @Html.TextBoxFor(m => m.NumeroVacantes, new { @class = "form-control", @placeholder = "Número de vacantes para el puesto" })
+                                        </div>@Html.ValidationMessageFor(m => m.NumeroVacantes, "", new { @class = "text-danger" })
+                                    </div>
                                 </div>
-                                @Html.ValidationMessageFor(m => m.RemuneracionOfrecida, "", new { @class = "text-danger" })
-                                <div class="input-group">
-                                    <span class="input-group-addon">Vacantes</span>
-                                    @*<input id="NumeroVacantes" name="NumeroVacantes" type="text" class="form-control" placeholder="Número de vacantes para el puesto">*@
-                                    @Html.TextBoxFor(m => m.NumeroVacantes, new { @class = "form-control", @placeholder = "Número de vacantes para el puesto" })
-                                </div>
-                                @Html.ValidationMessageFor(m => m.NumeroVacantes, "", new { @class = "text-danger" })
+                               
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <div class="input-group">
