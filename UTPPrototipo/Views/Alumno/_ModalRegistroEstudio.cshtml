@@ -25,17 +25,17 @@
             <div class="col-sm-6">
                 <div class="input-group fuente-pequeña">
                     <span class="input-group-addon">(*)Mes<br />Inicio</span>
-                    @Html.DropDownListFor(m => m.FechaInicioMes, new SelectList(ViewBag.meses, "Key", "Value"), "- Seleccionar -", htmlAttributes: new { @class = "form-control" })
+                    @Html.DropDownListFor(m => m.FechaInicioMes, new SelectList(ViewBag.meses, "Key", "Value"), "- Seleccionar -", htmlAttributes: new { @class = "form-control", id = "FechaInicioMes" })
 
                 </div>
                 @Html.ValidationMessageFor(m => m.FechaInicioMes, "", new { @class = "text-danger" })
             </div>
         </div>
-        <div class="row">
+        <div class="row" id="areaFechaFin">
             <div class="col-sm-4">
                 <div class="input-group fuente-pequeña">
                     <span class="input-group-addon">Año Fin</span>
-                    @Html.TextBoxFor(m => m.FechaFinAno, htmlAttributes: new { @class = "form-control", @placeholder = "Año Fin" })
+                    @Html.TextBoxFor(m => m.FechaFinAno, htmlAttributes: new { @class = "form-control", @placeholder = "Año Fin", id = "FechaFinAno" })
                 </div>
                 @Html.ValidationMessageFor(m => m.FechaFinAno, "", new { @class = "text-danger" })
             </div>
@@ -59,7 +59,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="input-group fuente-pequeña">
-                    <span class="input-group-addon">(*)Institución</span>
+                    <span class="input-group-addon">(*)<br />Institución</span>
                     @Html.TextBoxFor(m => m.Institucion, htmlAttributes: new { @class = "form-control", @placeholder = "Nombre de la Institución Educativa" })
                 </div>
                 @Html.ValidationMessageFor(m => m.Institucion, "", new { @class = "text-danger" })
@@ -95,7 +95,7 @@
 
                 </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-4" id="areaCiclo">
                 <div class="input-group fuente-pequeña">
                     <span class="input-group-addon">Ciclo</span>
                     @Html.TextBoxFor(m => m.CicloEquivalente, htmlAttributes: new { @class = "form-control", @placeholder = "Ciclo de Estudios" })
@@ -103,10 +103,6 @@
                 @Html.ValidationMessageFor(m => m.CicloEquivalente, "", new { @class = "text-danger" })
             </div>
         </div>
-
-
-
-
         <div class="row">
             <div class="col-sm-12 text-right">
                 <input type="submit" class="btn btn-default color-paleta4 fuente-pequeña" style="color: white; margin-bottom: 10px;" id="IdRegistrarEstudio" value="Guardar" />
@@ -125,6 +121,23 @@
 
     });
 
+    $('#EstadoDelEstudio').on('change', function () {
+        var EstadoDelEstudio = $("#EstadoDelEstudio").val()
+        if (EstadoDelEstudio == "EDEEST") {
+            $('#areaFechaFin').css('display', 'none');  //los combos se ocultan
+            
+        }
+        else {
+            $('#areaFechaFin').css('display', 'block');  //los combos se muestran
+            if (EstadoDelEstudio != "EDEINC") {
+                $('#areaCiclo').css('display', 'none');  //Ciclo se oculta
+            }
+            else {
+                $('#areaCiclo').css('display', 'block');  //Ciclo se muestra
+            }
+        }
 
+    }
+        )
 
 </script>

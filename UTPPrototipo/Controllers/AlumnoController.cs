@@ -1394,15 +1394,9 @@ namespace UTPPrototipo.Controllers
 
         public ActionResult AlertaCvAlumno()
         {
-
             List<AlertasCvAlumno> lista = new List<AlertasCvAlumno>();
-
-
             TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
-
             DataTable dtResultado = lnoferta.AlertaCvAlumno(ticket.Usuario);
-
-
             for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
             {
                 AlertasCvAlumno alumno = new AlertasCvAlumno();
