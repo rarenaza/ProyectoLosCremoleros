@@ -111,7 +111,7 @@
                                 </div>
                                 @Html.ValidationMessageFor(m => m.CargoOfrecido, "", new { @class = "text-danger" })
                                 <div class="input-group">
-                                    <span class="input-group-addon">Funciones</span>
+                                    <span class="input-group-addon">(*)<br />Funciones</span>
                                     @*<textarea class="form-control" rows="2"></textarea>*@
                                     <textarea name="Funciones" id="Funciones" rows="2" cols="80">@Html.Raw(@Model.Funciones)</textarea>
 
