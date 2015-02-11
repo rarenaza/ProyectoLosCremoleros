@@ -19,6 +19,7 @@
 
 {
     @Html.AntiForgeryToken()
+  
 
     <div class="row">
         <div class="col-sm-6" style="border-right:solid;border-color:rgb(220, 220, 220);border-width:1px;">
@@ -29,6 +30,7 @@
                         @*<input type="text" class="form-control" placeholder="Nombre del Evento">*@
                       
                         @Html.TextBoxFor(model => model.NombreEvento, new { @class = "form-control", rows = "3", @placeholder = "Nombre del Evento" })
+                        @Html.ValidationMessageFor(model => model.NombreEvento, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
@@ -39,6 +41,7 @@
                     <div class="input-group">
                         <span class="input-group-addon">Estado</span>
                         @Html.DropDownList("EstadoEvento", ViewData["ListaEstadoEvento"] as List<SelectListItem>, "- Seleccione Estado -", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.EstadoEvento, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
@@ -49,7 +52,8 @@
                     <div class="input-group">
                         <span class="input-group-addon">Tipo</span>
                         @Html.DropDownList("TipoEvento", ViewData["ListaTipoEvento"] as List<SelectListItem>, "- Seleccione Tipo Evento -", new { @class = "form-control" })
-                    </div>
+                   @Html.ValidationMessageFor(model => model.TipoEvento, "", new { @class = "text-danger" })
+                     </div>
                 </div>
             </div>
 
@@ -59,6 +63,7 @@
                     <div class="input-group">
                         <span class="input-group-addon">Empresa<br />auspiciad.</span>
                         @Html.DropDownList("IdEmpresa", ViewData["ListaEmpresa"] as List<SelectListItem>, "- Seleccione Empresa -", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.IdEmpresa, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
@@ -69,6 +74,7 @@
                         @*<textarea rows="6" class="form-control" placeholder="Empresa auspiciadora"></textarea>*@
 
                         @Html.TextAreaFor(model => model.DescripcionEvento, new { @class = "form-control", rows = "3", @placeholder = "Empresa auspiciadora" })
+                        @Html.ValidationMessageFor(model => model.DescripcionEvento, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
@@ -78,6 +84,7 @@
                         <span class="input-group-addon">Fecha <br />Inicio</span>
                         @*<input type="text" class="form-control" placeholder="Fecha de Inicio (dd/mm/aaaa)">*@
                        @Html.TextBoxFor(model => model.FechaEvento, new { @class = "form-control", rows = "3", @placeholder = "Fecha de Inicio (dd/mm/aaaa)" })
+                        @Html.ValidationMessageFor(model => model.FechaEvento, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
@@ -87,6 +94,7 @@
                         <span class="input-group-addon">Describa<br />Fecha</span>
                         @*<input type="text" class="form-control" placeholder="Fecha del Evento. Ej: Lunes 27 de Enero del 2014, de 8 a 9 de la Noche">*@
                         @Html.TextBoxFor(model => model.FechaEventoTexto, new { @class = "form-control", rows = "3", @placeholder = "Fecha del Evento. Ej: Lunes 27 de Enero del 2014, de 8 a 9 de la Noche" })
+                        @Html.ValidationMessageFor(model => model.FechaEventoTexto, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
@@ -96,6 +104,7 @@
                         <span class="input-group-addon">Lugar</span>
                        @* <input type="text" class="form-control" placeholder="Describa el Lugar del Evento. Ej: Centro de Convenciones CLARO">*@
                         @Html.TextBoxFor(model => model.LugarEvento, new { @class = "form-control", rows = "3", @placeholder = "Describa el Lugar del Evento. Ej: Centro de Convenciones CLARO" })
+                        @Html.ValidationMessageFor(model => model.LugarEvento, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
@@ -105,6 +114,7 @@
                         <span class="input-group-addon">Departa-<br />mento</span>
                         @*<input type="text" class="form-control" placeholder="Departamento del Evento">*@
                         @Html.TextBoxFor(model => model.DireccionRegion, new { @class = "form-control", rows = "3", @placeholder = "Departamento del Evento" })
+                        @Html.ValidationMessageFor(model => model.DireccionRegion, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
@@ -114,6 +124,7 @@
                         <span class="input-group-addon">Ciudad</span>
                         @*<input type="text" class="form-control" placeholder="Ciudad del Evento">*@
                         @Html.TextBoxFor(model => model.DireccionCiudad, new { @class = "form-control", rows = "3", @placeholder = "Ciudad del Evento" })
+                        @Html.ValidationMessageFor(model => model.DireccionCiudad, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
@@ -123,6 +134,7 @@
                         <span class="input-group-addon">Distrito</span>
                         @*<input type="text" class="form-control" placeholder="Distrito del Evento">*@
                         @Html.TextBoxFor(model => model.DireccionDistrito, new { @class = "form-control", rows = "3", @placeholder = "Distrito del Evento" })
+                        @Html.ValidationMessageFor(model => model.DireccionDistrito, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
@@ -132,6 +144,7 @@
                         <span class="input-group-addon">Dirección</span>
                         @*<input type="text" class="form-control" placeholder="Dirección del Evento. Ej: Calle Amapolas 991">*@
                         @Html.TextBoxFor(model => model.DireccionEvento, new { @class = "form-control", rows = "3", @placeholder = "Dirección del Evento. Ej: Calle Amapolas 991" })
+                        @Html.ValidationMessageFor(model => model.DireccionEvento, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
@@ -141,6 +154,8 @@
                         <span class="input-group-addon">Asistentes<br />esperados</span>
                         @*<input type="text" class="form-control" placeholder="Número">*@
                         @Html.TextBoxFor(model => model.AsistentesEsperados, new { @class = "form-control", rows = "3", @placeholder = "Número" })
+                      
+                        <span class="help-inner">@Html.ValidationMessageFor(model => model.AsistentesEsperados)</span> 
                     </div>
                 </div>
             </div>
@@ -159,6 +174,7 @@
                     <div class="input-group">
                         <span class="input-group-addon">@Html.EditorFor(model => model.RegistraAlumnos)</span>
                         <span class="form-control">Pueden asistir Alumnos</span>
+                        @Html.ValidationMessageFor(model => model.RegistraAlumnos, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
@@ -169,6 +185,7 @@
                     <div class="input-group">
                         <span class="input-group-addon">@Html.EditorFor(model => model.RegistraUsuariosEmpresa)</span>
                         <span class="form-control">Pueden asistir Usuarios empresa</span>
+                        @Html.ValidationMessageFor(model => model.RegistraUsuariosEmpresa, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
@@ -177,6 +194,7 @@
                     <div class="input-group">
                         <span class="input-group-addon">@Html.EditorFor(model => model.RegistraPublicoEnGeneral)</span>
                         <span class="form-control">Puede asistir el público en general</span>
+                        @Html.ValidationMessageFor(model => model.RegistraPublicoEnGeneral, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>

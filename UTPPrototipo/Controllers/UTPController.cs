@@ -2284,7 +2284,7 @@ namespace UTPPrototipo.Controllers
         {
 
             ListaValor objlista = new ListaValor();
-         
+        
             return PartialView("_NuevoValor", objlista);
 
         }
@@ -2327,6 +2327,7 @@ namespace UTPPrototipo.Controllers
                     lista.Add(objListaValor);
 
                 }
+             
                 //Datos para la paginación.
                 int cantidadTotal = lista.Count() == 0 ? 0 : lista[0].CantidadTotal;
 
@@ -2537,6 +2538,7 @@ namespace UTPPrototipo.Controllers
                 alumno.CicloEquivalente = dtResultado.Rows[0]["CicloEquivalente"].ToString();
                 alumno.NumeroDocumento = dtResultado.Rows[0]["NumeroDocumento"].ToString();
                 alumno.TipoDocumento = dtResultado.Rows[0]["TipoDocumento"].ToString();
+                alumno.Sexo = dtResultado.Rows[0]["Sexo"].ToString();
                 alumno.CreadoPor = dtResultado.Rows[0]["CreadoPor"].ToString();
                 alumno.FechaCreacion = Convert.ToDateTime(dtResultado.Rows[0]["FechaCreacion"] == DBNull.Value ? null : dtResultado.Rows[0]["FechaCreacion"]);
                 alumno.ModificadoPor = dtResultado.Rows[0]["ModificadoPor"].ToString();

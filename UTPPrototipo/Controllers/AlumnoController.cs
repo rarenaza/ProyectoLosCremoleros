@@ -1038,7 +1038,7 @@ namespace UTPPrototipo.Controllers
                     ViewBag.TipoDocumentoIdListaValor = new SelectList(lngeneral.ObtenerListaValor(1), "IdListaValor", "Valor", alumno.TipoDocumentoIdListaValor);
                     ViewBag.SexoIdListaValor = new SelectList(lngeneral.ObtenerListaValor(2), "IdListaValor", "Valor", alumno.SexoIdListaValor);
                     ViewBag.DireccionRegion = new SelectList(lngeneral.ObtenerListaValor(47), "IdListaValor", "Valor", alumno.DireccionRegion);
-
+                    ViewBag.EstadoAlumno = new SelectList(lngeneral.ObtenerListaValor(3), "IdListaValor", "Valor", alumno.EstadoAlumno);
                     return View(alumno);
                 }
                 else
@@ -1075,12 +1075,14 @@ namespace UTPPrototipo.Controllers
                     ViewBag.TipoDocumentoIdListaValor = new SelectList(lngeneral.ObtenerListaValor(1), "IdListaValor", "Valor", alumno.TipoDocumentoIdListaValor);
                     ViewBag.SexoIdListaValor = new SelectList(lngeneral.ObtenerListaValor(2), "IdListaValor", "Valor", alumno.SexoIdListaValor);
                     ViewBag.DireccionRegion = new SelectList(lngeneral.ObtenerListaValor(47), "IdListaValor", "Valor", alumno.DireccionRegion);
+                    ViewBag.EstadoAlumno = new SelectList(lngeneral.ObtenerListaValor(3), "IdListaValor", "Valor", alumno.EstadoAlumno);
                 }
                 else
                 {
                     ViewBag.TipoDocumentoIdListaValor = new SelectList(lngeneral.ObtenerListaValor(1), "IdListaValor", "Valor", entidad.TipoDocumentoIdListaValor);
                     ViewBag.SexoIdListaValor = new SelectList(lngeneral.ObtenerListaValor(2), "IdListaValor", "Valor", entidad.SexoIdListaValor);
                     ViewBag.DireccionRegion = new SelectList(lngeneral.ObtenerListaValor(47), "IdListaValor", "Valor", entidad.DireccionRegion);
+                    ViewBag.EstadoAlumno = new SelectList(lngeneral.ObtenerListaValor(3), "IdListaValor", "Valor", entidad.EstadoAlumno);
                 }
 
             }
@@ -1092,6 +1094,7 @@ namespace UTPPrototipo.Controllers
                 ViewBag.TipoDocumentoIdListaValor = new SelectList(lngeneral.ObtenerListaValor(1), "IdListaValor", "Valor", entidad.TipoDocumentoIdListaValor);
                 ViewBag.SexoIdListaValor = new SelectList(lngeneral.ObtenerListaValor(2), "IdListaValor", "Valor", entidad.SexoIdListaValor);
                 ViewBag.DireccionRegion = new SelectList(lngeneral.ObtenerListaValor(47), "IdListaValor", "Valor", entidad.DireccionRegion);
+                ViewBag.EstadoAlumno = new SelectList(lngeneral.ObtenerListaValor(3), "IdListaValor", "Valor", entidad.EstadoAlumno);
             }
 
 

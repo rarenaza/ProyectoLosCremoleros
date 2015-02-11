@@ -84,6 +84,14 @@
     $(document).ready(function () {
         $("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta3 color-paleta4 color-paleta6 color-paleta7 color-paleta8").addClass("color-paleta5");
 
+        var SearchString = $('#SearchString').val();
+
+        var url = '@Url.Action("BusquedaEventos", "UTP")' + "?SearchString=" + SearchString + '&nroPaginaActual=' + 1;
+
+        $.get(url, function (data) {
+            console.log(data);
+            $('#resultadobusqueda').html(data);
+        }).error(function (err) { console.log(err); });
     });
 
 

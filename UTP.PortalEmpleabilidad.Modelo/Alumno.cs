@@ -36,11 +36,14 @@ namespace UTP.PortalEmpleabilidad.Modelo
         [Required(ErrorMessage = "Falta la provincia.")]
         public string DireccionCiudad { get; set; }
         [Required(ErrorMessage = "Falta el departamento.")]
-        public string DireccionRegion { get; set; }     
+        public string DireccionRegion { get; set; }
+        public string EstadoAlumno { get; set; }  
         public byte[] Foto { get; set; }
         public string EstadoAlumnoIdListaValor { get; set; }
         public string ArchivoMimeType { get; set; }
         public int IdCV { get; set; }
+
+        public string FechaCreacion { get; set; }
      
     }
 }

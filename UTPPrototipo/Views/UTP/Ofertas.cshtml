@@ -158,7 +158,7 @@
             </div>
         </div>
 
-        <br />
+        @*<br />*@
 
         @*<h5>Ofertas por Activar</h5>*@
      
@@ -170,7 +170,7 @@
 
     </div>
 
-    <hr />
+    <br />
    
 </div>
 <script>
@@ -181,6 +181,15 @@
 
         //ESE ES LA CAJA, LA ACCION Y EL CONTROLADOR
         AutoCompleteTextDemo('#Conocimientos', '@Url.Action("ListarDatosEspecificos", "OfertaInformacionAdicional")' + '?codigoTipo=' + codigoTipoConocimiento, '#Conocimientos', '#TipoConocimientoIdListaValor', 'option', 'appendTo', '.eventInsForm');
+
+        var oferta = {
+            PalabraClave: $('#PalabraClave').val(),
+            nroPaginaActual: 1,
+        };
+
+        //Cargar("resultadobusqueda", "/UTP/BusquedaSimpleEmpresasActivas", empresa);
+
+        Cargar("ResultadoBusqueda", '@Url.Action("BuscarOfertas", "UTP")', oferta);
     });
 
 

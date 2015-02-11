@@ -134,7 +134,15 @@
         //ESE ES LA CAJA, LA ACCION Y EL CONTROLADOR
         AutoCompleteTextDemo('#Conocimientos', '@Url.Action("ListarDatosEspecificos", "OfertaInformacionAdicional")' + '?codigoTipo=' + codigoTipoConocimiento, '#Conocimientos', '#TipoConocimientoIdListaValor', 'option', 'appendTo', '.eventInsForm');
 
+        var Alumno = {
+            PalabraClave: $('#PalabraClave').val(),
+            NroPagina: 1,
 
+        };
+
+
+        //Cargar("resultadobusqueda", "/Empresa/BusquedaSimpleHunting", Alumno);
+        Cargar("resultadobusqueda", '@Url.Action("BusquedaSimpleHunting", "Empresa")', Alumno);
 
 
     });

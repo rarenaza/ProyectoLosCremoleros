@@ -165,12 +165,12 @@
 
 
     </div>
-    <br />
+    @*<br />*@
     <div id="ResultadoBusqueda">
     </div>
 
 
-    <hr />
+    <br />
 </div>
 
 <script src="~/Scripts/jquery-2.1.1.min.js"></script>
@@ -183,6 +183,16 @@
 
         //ESE ES LA CAJA, LA ACCION Y EL CONTROLADOR
         AutoCompleteTextDemo('#Conocimientos', '@Url.Action("ListarDatosEspecificos", "OfertaInformacionAdicional")' + '?codigoTipo=' + codigoTipoConocimiento, '#Conocimientos', '#TipoConocimientoIdListaValor', 'option', 'appendTo', '.eventInsForm');
+
+        var alumno = {
+            PalabraClave: $('#PalabraClave').val(),
+            nroPaginaActual: 1,
+        };
+
+
+        Cargar("ResultadoBusqueda", '@Url.Action("BusquedaAlumnos", "UTP")', alumno);
+
+
     });
 
     $('#buscar').click(function () {

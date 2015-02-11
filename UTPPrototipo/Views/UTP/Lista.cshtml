@@ -89,11 +89,11 @@
 
 
 <script>
-    function ListaValorHijoInsertar() {
+    function ListaValorHijoInsertar(nroPaginaActual) {
 
         //console.log('punto de control');
         //var url = "/UTP/_NuevoValor/";
-        var url = '@Url.Action("_NuevoValor", "UTP")'
+        var url = '@Url.Action("_NuevoValor", "UTP")' + '?nroPaginaActual=' + nroPaginaActual;
 
         $.get(url, function (data) {
 

@@ -119,6 +119,9 @@ namespace UTP.PortalEmpleabilidad.Logica
                 alumno.TelefonoFijoCasa = Funciones.ToString(dtResultado.Rows[0]["TelefonoFijoCasa"]);
                 alumno.Foto = Funciones.ToBytes(dtResultado.Rows[0]["Foto"]);
                 alumno.ArchivoMimeType = Funciones.ToString(dtResultado.Rows[0]["ArchivoMimeType"]);
+                alumno.CodAlumnoUTP = Funciones.ToString(dtResultado.Rows[0]["CodAlumnoUtp"]);
+                alumno.FechaCreacion = Funciones.ToString(dtResultado.Rows[0]["FechaCreacion"]);
+                alumno.EstadoAlumno = Funciones.ToString(dtResultado.Rows[0]["EstadoAlumno"]);
             }
 
             return alumno;
