@@ -11,7 +11,9 @@
     </div>
     <h5>Evento: Feria de Empleos</h5>
     <br />
+    <script src="~/Scripts/jquery.maskedinput.js"></script>
 
+    <script src="~/Scripts/jquery.validate.min.js"></script>
 @*@using (Ajax.BeginForm("Eventos", "UTP", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", OnComplete = "Exito", UpdateTargetId = "divDatosGenerales" }))*@
 
 @*@using (Ajax.BeginForm("Eventos", "UTP", new AjaxOptions() { OnSuccess = "Exito", UpdateTargetId = "resultadobusqueda" }))*@
@@ -83,9 +85,11 @@
                     <div class="input-group">
                         <span class="input-group-addon">Fecha <br />Inicio</span>
                         @*<input type="text" class="form-control" placeholder="Fecha de Inicio (dd/mm/aaaa)">*@
-                       @Html.TextBoxFor(model => model.FechaEvento, new { @class = "form-control", rows = "3", @placeholder = "Fecha de Inicio (dd/mm/aaaa)" })
+                       @Html.TextBoxFor(model => model.FechaEvento, new { @class = "form-control", @placeholder = "Fecha de Inicio (dd/mm/aaaa)" })
+
                         @Html.ValidationMessageFor(model => model.FechaEvento, "", new { @class = "text-danger" })
                     </div>
+                 
                 </div>
             </div>
             <div class="row">

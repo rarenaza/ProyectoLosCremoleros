@@ -30,8 +30,8 @@
         </div>
     </div>
 }
-   <div>
-    <!--Paginación-->
+   @*<div>
+   
     <nav class="navbar-right">
         <ul class="pagination">
             @{
@@ -49,7 +49,111 @@
             }
         </ul>
     </nav>
-</div>
+       </div>*@
+<nav class="navbar-right">
+    <ul class="pagination">
 
+
+        @{
+            //La paginación avanzada no existe para la búsqueda de oferta. Se deja el bloque de paginación avanzada para efectos de desarrollo futuro de esa funcionalidad.
+            if (paginacion.NroPaginaActual > 1)
+            {
+                int i1 = paginacion.NroPaginaActual - 5;
+                if (i1 < 1) { i1 = 1; }
+                <li>
+                    @if (ViewBag.TipoBusqueda == "Simple")
+                    {
+                        <a href="#" onclick="buscarEmpresasPendientes('1');">
+                            <span aria-hidden="true" class="glyphicon glyphicon-step-backward"></span>
+                        </a>
+                    }
+                    else
+                    {
+                        <a href="#" onclick="buscarEmpresasPendientesAvanzada('1');">
+                            <span aria-hidden="true" class="glyphicon glyphicon-step-backward"></span>
+                        </a>
+                    }
+                </li>
+                if (i1 > 1)
+                {
+                    <li>
+                        @if (ViewBag.TipoBusqueda == "Simple")
+                        {
+                            <a href="#" onclick="buscarEmpresasPendientes('@i1');">
+                                <span aria-hidden="true" class="glyphicon glyphicon-backward"></span>
+                            </a>
+                        }
+                        else
+                        {
+                            <a href="#" onclick="buscarEmpresasPendientesAvanzada('@i1');">
+                                <span aria-hidden="true" class="glyphicon glyphicon-backward"></span>
+                            </a>
+                        }
+                    </li>
+                }
+            }
+
+            for (int i = (paginacion.NroPaginaActual - 2); (i <= paginacion.TotalPaginas && i <= (paginacion.NroPaginaActual + 2)); i++)
+            {
+                if (i == paginacion.NroPaginaActual)
+                {
+                    <li class="active"><a href="#">@i <span class="sr-only"></span></a></li>
+                }
+                else
+                {
+                    if (i > 0)
+                    {
+                        if (ViewBag.TipoBusqueda == "Simple")
+                        {
+                            <li><a href="#" onclick="buscarEmpresasPendientes('@i');">@i</a></li>
+                        }
+                        else
+                        {
+                            <li><a href="#" onclick="buscarEmpresasPendientesAvanzada('@i');">@i</a></li>
+                        }
+                    }
+                }
+            }
+            if (paginacion.NroPaginaActual < paginacion.TotalPaginas)
+            {
+                int i2 = paginacion.NroPaginaActual + 5;
+                if (i2 > paginacion.TotalPaginas) { i2 = paginacion.TotalPaginas; }
+                if (i2 < paginacion.TotalPaginas)
+                {
+                    <li>
+                        @if (ViewBag.TipoBusqueda == "Simple")
+                        {
+                            <a href="#" onclick="buscarEmpresasPendientes('@i2');">
+                                <span aria-hidden="true" class="glyphicon glyphicon-forward"></span>
+                            </a>
+                        }
+                        else
+                        {
+                            <a href="#" onclick="buscarEmpresasPendientesAvanzada('@i2');">
+                                <span aria-hidden="true" class="glyphicon glyphicon-forward"></span>
+                            </a>
+                        }
+                    </li>
+                }
+                <li>
+                    @if (ViewBag.TipoBusqueda == "Simple")
+                    {
+                        <a href="#" onclick="buscarEmpresasPendientes('@paginacion.TotalPaginas');">
+                            <span aria-hidden="true" class="glyphicon glyphicon-step-forward"></span>
+                        </a>
+                    }
+                    else
+                    {
+                        <a href="#" onclick="buscarEmpresasPendientesAvanzada('@paginacion.TotalPaginas');">
+                            <span aria-hidden="true" class="glyphicon glyphicon-step-forward"></span>
+                        </a>
+                    }
+                </li>
+            }
+        }
+
+    </ul>
+
+</nav>
 <hr />
 

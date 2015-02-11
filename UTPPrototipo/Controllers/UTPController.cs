@@ -292,7 +292,7 @@ namespace UTPPrototipo.Controllers
             if (residuo > 0) paginacion.TotalPaginas += 1;
 
             ViewBag.Paginacion = paginacion;
-
+            ViewBag.TipoBusqueda = "Simple";
             return PartialView("_ListaUtpEvento", listaEjemplo);
             //return View(listaEjemplo);
 
@@ -1595,7 +1595,7 @@ namespace UTPPrototipo.Controllers
             if (residuo > 0) paginacion.TotalPaginas += 1;
 
             ViewBag.Paginacion = paginacion;
-
+            ViewBag.TipoBusqueda = "Simple";
             return PartialView("_OfertasPendientes", listaOfertasPendientes);
 
         }
@@ -1919,7 +1919,7 @@ namespace UTPPrototipo.Controllers
             if (residuo > 0) paginacion.TotalPaginas += 1;
 
             ViewBag.Paginacion = paginacion;
-
+            ViewBag.TipoBusqueda = "Simple";
 
             return PartialView("_EmpresasPendientes", listaEmpresasPendientes);
 
