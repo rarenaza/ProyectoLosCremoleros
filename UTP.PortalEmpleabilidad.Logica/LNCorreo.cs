@@ -35,11 +35,13 @@ namespace UTP.PortalEmpleabilidad.Logica
                 //Cambiar a ConfigurationManager.AppSettings["MensajeCorreoAliasFrom"], Agregar tag en web.config
                 string correoDe = mensajesEnProduccion ? mensaje.DeUsuarioCorreoElectronico : deDesarrollo;
                 string correoPara = mensajesEnProduccion ? mensaje.ParaUsuarioCorreoElectronico : paraDesarrollo;
-                Message.From = new MailAddress(correoDe, "Dirección de Empleabilidad UTP");
+                Message.From = new MailAddress(correoDe, "Dirección de Empleabilidad UTP", Encoding.UTF8);
                 Message.To.Add(new MailAddress(correoPara));
                 
+              
                 Message.Body = mensaje.MensajeTexto;
                 Message.Subject = prefijoAsunto + " " + mensaje.Asunto;
+                Message.SubjectEncoding = Encoding.UTF8;
 
                 SmtpClient client = new SmtpClient();
                 client.Host = host;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,7 +19,11 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public int IdEvento { get; set; }
         public Evento Evento { get; set; }
         public DateTime FechaEnvio { get; set; }                        
+        
+        [Required]
         public string Asunto { get; set; }
+
+        [Required]
         public string MensajeTexto { get; set; }
         public string EstadoMensaje { get; set; }
         public DateTime FechaLectura { get; set; }

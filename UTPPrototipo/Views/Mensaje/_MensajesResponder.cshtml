@@ -110,17 +110,41 @@
             <div class="col-sm-12">
                 <div class="input-group">
                     <span class="input-group-addon">Mensaje</span>
-                    <textarea name="MensajeTexto" class="form-control" placeholder="Mensaje del Correo" rows="10"></textarea>
+                    <textarea id="MensajeTexto" name="MensajeTexto" class="form-control" placeholder="Mensaje del Correo" rows="10"></textarea>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="modal-footer">
-        <button id="btnResponderMensaje" type="submit" class="btn btn-primary color-paleta-msg-btn">Enviar</button>
+        <button onclick="return validarDatosResponder();"  id="btnResponderMensaje" type="submit" class="btn btn-primary color-paleta-msg-btn">Enviar</button>
     </div>
 </div>
 <script>
+
+    function validarDatosResponder() {
+        var destinatarioCombos = $('#slcDestinatarios').val();
+        var destinatario = $('#inpUsuarioPara').val();
+        var oferta = $('#IdOfertaMensaje').val();
+        var asunto = $('#Asunto').val();
+        var mensaje = $('#MensajeTexto').val();
+
+        var mensajeError = "";
+
+        if (destinatarioCombos == "") mensajeError += "No ha ingresado el destinatario. \r";
+        if (destinatario == "") mensajeError += "No ha ingresado el destinatario. \r";
+        if (oferta == "") mensajeError += "No ha ingresado la oferta. \r";
+        if (asunto == "") mensajeError += "No ha ingresado el asunto. \r";       
+        if (mensaje == "") mensajeError += "No ha ingresado mensaje. \r";
+
+        if (mensajeError == "") {
+            return true;
+        }
+        else {
+            alert(mensajeError);
+            return false;
+        }
+    }
 
     $(document).ready(function () {
 

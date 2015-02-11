@@ -93,7 +93,7 @@ namespace UTPPrototipo.Controllers
         }
         public ActionResult BusquedaSimplePostulacionOferta(VistaPostulacionAlumno entidad)
         {
-            entidad.ListaPostulacionesOfertas = lnofertapostulante.ObtenerPostulantesPorIDAlumno(entidad.IdAlumno, entidad.PalabraClave == null ? "" : entidad.PalabraClave, entidad.PaginaActual, entidad.NumeroRegistros);
+            entidad.ListaPostulacionesOfertas = lnofertapostulante.ObtenerPostulantesPorIDAlumno(entidad.IdAlumno, entidad.PalabraClave == null ? "" : entidad.PalabraClave, entidad.PaginaActual, Constantes.FILAS_POR_PAGINA);
             if (entidad.ListaPostulacionesOfertas.Count > 0)
             {
                 entidad.MaxPagina = entidad.ListaPostulacionesOfertas[0].MaxPagina;

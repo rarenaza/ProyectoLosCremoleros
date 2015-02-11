@@ -119,9 +119,30 @@
 
         AutoCompleteText('#estudio', '@Url.Action("ListarEstudio", "Empresa")', '#estudio');
 
+        //Al cargar la pantalla se debe mostrar/ocultar el campo ciclo:
+        //Mostrar/Ocultar la caja de texto de ciclo.
+        var EstadoDelEstudio = $("#EstadoDelEstudio").val()
+        if (EstadoDelEstudio == "EDEEST" || EstadoDelEstudio == "EDEEST") {
+            //Si el etado es Estudiante o Inconcluso se muestra
+            $('#areaCiclo').css('display', 'block');
+        }
+        else {
+            //Caso contrario se oculta.
+            $('#areaCiclo').css('display', 'none');
+        }
+
     });
 
     $('#EstadoDelEstudio').on('change', function () {
+
+        //EDEBAC = Bachiller (completo)
+        //EDEDOC = Doctor (completo)
+        //EDEEGR = Egresado (completo)
+        //EDEEST = Estudiante
+        //EDEINC = Inconcluso
+        //EDEMAG = Magister (completo)
+        //EDETIT = Titulado (completo)
+
         var EstadoDelEstudio = $("#EstadoDelEstudio").val()
         if (EstadoDelEstudio == "EDEEST") {
             $('#areaFechaFin').css('display', 'none');  //los combos se ocultan
@@ -137,7 +158,17 @@
             }
         }
 
-    }
-        )
+        //Mostrar/Ocultar la caja de texto de ciclo.
+        if (EstadoDelEstudio == "EDEEST" || EstadoDelEstudio == "EDEEST") {
+            //Si el etado es Estudiante o Inconcluso se muestra
+            $('#areaCiclo').css('display', 'block');
+        }
+        else
+        {
+            //Caso contrario se oculta.
+            $('#areaCiclo').css('display', 'none');
+        }
+
+    })
 
 </script>
