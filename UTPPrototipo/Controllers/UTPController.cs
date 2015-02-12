@@ -272,7 +272,7 @@ namespace UTPPrototipo.Controllers
                 vista.LugarEvento = Convert.ToString(fila["LugarEvento"]);
                 //vista.Expositor = Convert.ToString(fila["Expositor"]);
                 vista.DireccionEvento = Convert.ToString(fila["DireccionEvento"]);
-                vista.AsistentesEsperados = Convert.ToInt32(fila["AsistentesEsperados"]);
+                vista.AsistentesEsperados = Convert.ToInt32(fila["AsistentesEsperados"] == System.DBNull.Value ? null : fila["AsistentesEsperados"]);
                 vista.FechaEvento = Convert.ToString(fila["FechaEvento"]);
                 vista.CantidadTotal = Convert.ToInt32(fila["CantidadTotal"]);
 

@@ -76,14 +76,14 @@
                                 <div class="input-group">
                                     <span class="input-group-addon">(*)<br />Funciones</span>
                                     @*<textarea class="form-control" rows="6"></textarea>*@
-                                    <textarea name="Funciones" id="Funciones" rows="2" cols="80" data-val-required="Esta campo es olbigatorio"></textarea>
+                                    <textarea name="Funciones" id="Funciones" rows="2" cols="80" data-val-required="Esta campo es olbigatorio">@Html.Raw(Model.Funciones)</textarea>
                                     @*@Html.TextAreaFor(m => m.Funciones)*@
                                 </div>
                                 @Html.ValidationMessageFor(m => m.Funciones, "", new { @class = "text-danger" })
                                 <div class="input-group">
                                     <span class="input-group-addon">Informac.<br />Adicional</span>
                                     @*<textarea class="form-control" rows="4"></textarea>*@
-                                    <textarea name="Competencias" id="Competencias" rows="2" cols="80"></textarea>
+                                    <textarea name="Competencias" id="Competencias" rows="2" cols="80">@Html.Raw(Model.Competencias)</textarea>
                                 </div>
                                 @Html.ValidationMessageFor(m => m.Competencias, "", new { @class = "text-danger" })
                                 <br />

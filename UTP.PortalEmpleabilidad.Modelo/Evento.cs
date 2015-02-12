@@ -27,37 +27,30 @@ namespace UTP.PortalEmpleabilidad.Modelo
       [Required(ErrorMessage = "Seleccione Tipo de Evento")]
       public string TipoEvento { get; set; }
       public string ValorTipoEvento { get; set; }
-
-      [Required(ErrorMessage = "Seleccione Empresa Auspiciadora")]
-      public int IdEmpresa { get; set; }
-       public string DescripcionEvento { get; set; }
- 
-      //public byte[] PosterGrandeEvento { get; set; }
-
-      //public byte []PosterMedianoEvento{get;set;}
-      //public byte []PosterChicoEvento{get;set;}
+      public int? IdEmpresa { get; set; }
+      public string DescripcionEvento { get; set; }
         [Required(ErrorMessage = " Fecha de Evento")]
-      
-       //[DataType(DataType.Date)]
-       //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
       public DateTime  FechaEvento { get; set; }
-   
+        [Required(ErrorMessage = " Fecha de Evento")]
       public string FechaEventoTexto { get; set; }
+
+    [Required(ErrorMessage = "Ingrese Lugar del Evento")]
+   public string LugarEvento { get; set; }
 
        public string DireccionEvento { get; set; }
   
-      [Required(ErrorMessage = "Ingrese Distrito")]
+   
       public string DireccionDistrito{get;set;}
    
-    [Required(ErrorMessage = "Ingrese Ciudad")]
+  
       public string DireccionCiudad{get;set;}
       
-      [Required(ErrorMessage = "Ingrese Departamento")]
+     
        public string DireccionRegion{get;set;}
       public string DireccionPais{get;set;}
      
-       [Required(ErrorMessage = "Ingrese Nro Asistente Esperado")]
-	 public int AsistentesEsperados { get; set; }
+    
+	 public int? AsistentesEsperados { get; set; }
 
       public int AsistentesReales { get; set; }
       
@@ -87,8 +80,6 @@ namespace UTP.PortalEmpleabilidad.Modelo
 
    
 
-       [Required(ErrorMessage = "Ingrese Lugar del Evento")]
-   public string LugarEvento { get; set; }
 
    public string NombreComercial { get; set; }
 
