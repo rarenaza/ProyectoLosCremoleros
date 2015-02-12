@@ -27,8 +27,12 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="input-group">
-                            <span class="input-group-addon">Codigo</span>
-                            @Html.TextBoxFor(x => x.CodAlumnoUTP, htmlAttributes: new { @class = "form-control", @disabled = "disabled" })
+                            <span class="input-group-addon">Fecha <br />Registro</span>
+                            @*@Html.TextBoxFor(x => x.FechaCreacion, htmlAttributes: new { @class = "form-control", @disabled = "disabled" })*@
+                            @{
+                                DateTime fechaAMostrar = Convert.ToDateTime(Model.FechaCreacion);
+                            }
+                            <input type="text" value="@fechaAMostrar.ToString("dd/MM/yyyy")" class="form-control" disabled />
                         </div>
                     </div>
                 </div>
@@ -36,12 +40,11 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="input-group">
-                            <span class="input-group-addon">Fecha <br />Registro</span>
-                            @Html.TextBoxFor(x => x.FechaCreacion, htmlAttributes: new { @class = "form-control", @disabled = "disabled" })
+                            <span class="input-group-addon">Codigo</span>
+                            @Html.TextBoxFor(x => x.CodAlumnoUTP, htmlAttributes: new { @class = "form-control", @disabled = "disabled" })
                         </div>
                     </div>
                 </div>
-
 
                 <div class="row">
                     <div class="col-sm-6">
@@ -110,12 +113,12 @@
                         {
 
                         }
-                        
+
 
 
                     </div>
                     <div class="col-sm-8" style="text-align:left;">
-                        <button  type="button"  class="btn btn-default color-paleta1" id="IdCambiarImagen">Cambiar Imagen</button>
+                        <button type="button" class="btn btn-default color-paleta1" id="IdCambiarImagen">Cambiar Imagen</button>
                         <input id="fileUpload" type="file" name="foto2" />
                     </div>
                 </div>
@@ -187,7 +190,7 @@
                 @Html.ValidationMessageFor(m => m.TelefonoFijoCasa, "", new { @class = "text-danger" })
             </div>
 
-            
+
         </div>
         <div class="row">
             <div class="col-sm-3">
@@ -197,13 +200,14 @@
                 </div>
             </div>
         </div>
-            <div class="row">
-                <div class="col-sm-12" style="text-align:right;">
-                    <button type="submit" class="btn btn-default color-paleta1" disabled id="IdRegistarDatosPersonales">Guardar cambios</button>
-                </div>
+
+        <div class="row">
+            <div class="col-sm-12" style="text-align:right;">
+                <button type="submit" class="btn btn-default color-paleta1" disabled id="IdRegistarDatosPersonales">Guardar Cambios</button>
             </div>
-            <hr />
         </div>
+        <hr />
+    </div>
 
 }
 <script>

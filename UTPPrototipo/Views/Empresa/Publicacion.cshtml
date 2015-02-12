@@ -113,3 +113,20 @@
     }
 </script>
 
+@{
+    //Se obtiene el valor enviado desde el servidor:
+    if (TempData["msjOfertasEnOFERCV"] != null)
+    {
+        <input id="msjOfertasEnOFERCV" type="hidden" value="@TempData["msjOfertasEnOFERCV"]"  />
+        TempData["msjOfertasEnOFERCV"] = null; //Se establece el valor nuevamente en NULL.
+
+        //Se muestra el script
+        <script>
+
+            var msj = document.getElementById("msjOfertasEnOFERCV").value;
+            alert(msj);
+
+        </script>
+    }
+
+}

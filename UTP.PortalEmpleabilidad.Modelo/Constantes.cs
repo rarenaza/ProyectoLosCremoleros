@@ -103,7 +103,16 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public const int FILAS_POR_PAGINA = 10;
 
         #endregion
-        
 
+        #region Estados de la oferta
+
+        public static string OFERTA_ESTADO_ACTIVA = "OFERAC";
+        public static string OFERTA_ESTADO_ENCONSTRUCCION = "OFERCO";
+        public static string OFERTA_ESTADO_FINRECEPCIONCVS = "OFERCV";
+        public static string OFERTA_ESTADO_FINALIZADA = "OFERFI";
+        public static string OFERTA_ESTADO_PENDIENTEACTIVACION = "OFERPR";
+        public static string OFERTA_ESTADO_SUSPENDIDA = "OFERSU";
+
+        #endregion
     }
 }

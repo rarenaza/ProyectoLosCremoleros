@@ -112,6 +112,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 oferta.IdOfertaPostulante = Funciones.ToInt(dtResultado.Rows[0]["IdOfertaPostulante"]);
                 oferta.RecibeCorreosIdListaValor = Funciones.ToString(dtResultado.Rows[0]["RecibeCorreos"]);
                 oferta.CorreoElectronicoUsuarioEmpresa = Funciones.ToString(dtResultado.Rows[0]["CorreoElectronicoUsuarioEmpresa"]);
+                oferta.EstadoOferta = Funciones.ToString(dtResultado.Rows[0]["EstadoOferta"]);
             }
 
             return oferta;

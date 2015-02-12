@@ -35,25 +35,25 @@
                 </tr>
 
                 <tr>
-                    <td class="celda-nombre">
+                    <td class="celda-nombre" style="padding-top:9px;">
                         Recibir CVs hasta el
                     </td>
                     <td class="celda-datos">
-                        <strong>@Model.FechaFinRecepcionCV</strong>
+                        <strong>@Model.FechaFinRecepcionCV.ToString("dd/MM/yyyy")</strong>
 
                         @if (ViewBag.Pantalla == "Empresa") //Solo si es de empresa
                         { 
                             <span>
                                 &nbsp;&nbsp;&nbsp;  <!--espacios en blanco-->
-                                @if (Model.EstadoOferta == "OFERFI")
+                                @if (Model.EstadoOferta == "OFERCV")
                                 {
-                                    <button id="btnFinalizarOferta" class="btn btn-default color-paleta2" disabled>Oferta finalizada</button>
+                                    <button class="btn btn-default btn-sm color-paleta2" style="font-size: 10px;" disabled >Postulaciones finalizadas</button>
                                 }
                                 else
                                 {
-                                    if (ticketEmpresa.Rol == "ROLEAD" || ticketEmpresa.Rol == "ROLEUS" ) //Si es Administrador o Usuario.
+                                    if (ticketEmpresa.Rol == "ROLEAD" || ticketEmpresa.Rol == "ROLEUS") //Si es Administrador o Usuario.
                                     {
-                                        <button id="btnFinalizarOferta" class="btn btn-default color-paleta2" onclick="finalizarOferta(@Model.IdOferta)">Finalizar ahora</button>
+                                        <button id="btnFinalizarOferta" class="btn btn-default btn-sm color-paleta2" style="font-size: 10px;" onclick="finalizarOferta(@Model.IdOferta)">Finalizar postulaciones</button>
                                     }
                                 }                            
                             </span>
@@ -133,35 +133,7 @@
                     <td class="celda-datos">
                         <strong>@Model.IdEmpresaLocacion</strong>
                     </td>
-                </tr>
-                <tr>
-                    <td class="celda-nombre">
-                        Usuario asignado                        
-                    </td>
-                    <td class="celda-datos">
-                        @{ 
-                            if (ViewBag.Pantalla == "Empresa")
-                            { 
-                                //Si es Administrador  y la Oferta está Activa.
-                                if ((ticketEmpresa.Rol == "ROLEAD" ) && (Model.EstadoOferta == "OFERAC")) 
-                                {
-                                    <!--Se agregan los usuarios-->
-                                    @Html.DropDownListFor(m => m.UsuarioPropietarioEmpresa, null, null, htmlAttributes: new { @class = "form-control" })
-                                    <span>
-                                        &nbsp;&nbsp;&nbsp;  <!--espacios en blanco-->
-                                        <button id="btnAsignarUsuario" class="btn btn-default color-paleta2" onclick="asignarUsuarioEmpresa(@Model.IdOferta)">Asignar usuario</button>
-                                    </span>
-                                }
-                                else
-                                {
-                                    @Html.DropDownListFor(m => m.UsuarioPropietarioEmpresa, null, null, htmlAttributes: new { @class = "form-control", @disabled = "disabled", @title = "No tiene permisos para modificar este campo" })
-                                    @Html.HiddenFor(m => m.UsuarioPropietarioEmpresa) //Se crea un hidden que contiene el valor del Usuario.
-                                }
-                            }
-                        }
-                    </td>
-
-                </tr>
+                </tr>               
             </table>
             <br />
         </div>
@@ -175,38 +147,26 @@
 
         //var url = "../../Oferta/FinalizarOferta/" + idOferta + '&estado=OFERFI';
 
-        if (confirm('¿Está seguro de finalizar la oferta?')) {
-            var url = '@Url.Action("FinalizarOferta", "Oferta")' + "?idOferta="  + idOferta + '&estado=OFERFI'; //Se envía el estado Finalizado.
+        if (confirm('¿Está seguro de finalizar las postulaciones a la oferta?')) {
+
+            $('#btnFinalizarOferta').text("Procesando ...");
+            $('#btnFinalizarOferta').css("disabled", "disabled");
+
+            var url = '@Url.Action("FinalizarOferta", "Oferta")' + "?idOferta=" + idOferta + '&estado=OFERCV'; //Se envía el estado Fin de recepción de CV's.
 
             $.get(url, function (data) {
-                alert("La oferta ha sido finalizada");
 
-                $('#btnFinalizarOferta').html("Oferta finalizada")
-                $('#btnFinalizarOferta').attr("disabled", "disabled"); //Se deshabilita el botón.
-
+                $('#btnFinalizarOferta').text("Postulaciones finalizadas");
+                $('#btnFinalizarOferta').attr("disabled", "disabled"); //Se deshabilita el botón.                 
             }).error(function (err)  //Se muestran los errores en la consola.
             {
-                console.log(err);
-                //alert(err);
-            });
+                console.log(err);               
+            }).then(function ()
+            {
+                alert("La oferta ha sido actualizada");
+            });;
         }
     }
 
-    function asignarUsuarioEmpresa(idOferta)
-    {
-        //Se obtiene el valor del combo:
-        var usuarioEmpresa = $('#UsuarioPropietarioEmpresa').val();
-
-        //Se crea el URL
-        var url = '@Url.Action("AsignarUsuario", "Oferta")' + "?idOferta="  + idOferta + '&usuario=' + usuarioEmpresa; //Se envía el IdOferta y el estado
-
-        $.get(url, function (data) {
-            alert("El usuario ha sido asignado con éxito");                        
-        }).error(function (err)  
-        {
-            //Se muestran los errores en la consola.
-            console.log(err);            
-        });
-    }
 
 </script>

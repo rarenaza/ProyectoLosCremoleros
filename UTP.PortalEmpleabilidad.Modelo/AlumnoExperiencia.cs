@@ -31,6 +31,8 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string SectorEmpresarial { get; set; }
         public string SectorEmpresarial2 { get; set; }
         public string SectorEmpresarial3 { get; set; }
+
+         [Required(ErrorMessage = "Falta el país")]
         public string Pais { get; set; }
 
         [StringLength(100, ErrorMessage = "Este campo sólo acepta máximo 100 caracteres.")]

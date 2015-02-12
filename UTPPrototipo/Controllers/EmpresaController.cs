@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -14,6 +15,7 @@ using UTP.PortalEmpleabilidad.Modelo.Vistas.Ofertas;
 using UTPPrototipo.Common;
 using UTPPrototipo.Models.ViewModels.Cuenta;
 using UTPPrototipo.Models.ViewModels.Empresa;
+using UTPPrototipo.Utiles;
 
 namespace UTPPrototipo.Controllers
 {
@@ -92,9 +94,11 @@ namespace UTPPrototipo.Controllers
         }
 
 
-        public ActionResult Oferta(int idOferta, string pantalla = "")
+        public ActionResult Oferta(string idOfertaCrypt, string pantallaCrypt = "")
         {
             //int idOferta = id;
+            int idOferta = Convert.ToInt32(Helper.Desencriptar(idOfertaCrypt));
+            string pantalla = Helper.Desencriptar(pantallaCrypt);
             ViewBag.Pantalla = pantalla;
 
             Oferta oferta = lnOferta.ObtenerPorId(idOferta);
@@ -171,6 +175,31 @@ namespace UTPPrototipo.Controllers
         [AutorizarEmpresa(Rol = "ROLEAD,ROLEUS")]
         public ActionResult NuevaOferta()
         {
+            #region Validación 11FEB: Si existen ofertas en estado OFERCV mostrar un mensaje de alerta para que cierre las ofertas.
+           
+            List<VistaEmpresaOferta> lista = obtenerOfertasEnEstadoOFERCV();
+            //Si se encuentran filas => se obienen los cargos y se llena una variable temporal.
+            if (lista.Count() > 0)
+            {
+                StringBuilder msjAlUsuario = new StringBuilder();
+                msjAlUsuario.Append("Antes de continuar debe cerrar las siguientes ofertas: ");
+                msjAlUsuario.Append(Environment.NewLine);
+
+                foreach (var ofertaEncontrada in lista)
+                {
+                    msjAlUsuario.Append(ofertaEncontrada.CargoOfrecido);
+                    msjAlUsuario.Append(Environment.NewLine);
+                }
+
+                //En el vista Publicacion.html se lee este TempData y se muestra el mensaje al usuario.
+                TempData["msjOfertasEnOFERCV"] = msjAlUsuario.ToString();
+
+                //Se redirecciona a la lista de ofertas.
+                return RedirectToAction("Publicacion");
+            }
+            #endregion
+            
+
             TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];
 
             //Se envían datos de prueba.
@@ -1221,6 +1250,60 @@ namespace UTPPrototipo.Controllers
             int idAlumno = id;
             VistaOfertaPostulante vistaofertapostulante = lnAlumnocv.ObtenerDatosCV(idAlumno);
             return View(vistaofertapostulante);            
+        }
+
+        public PartialViewResult _VistaOfertaAdministracion(Oferta oferta, string pantalla = "")
+        {
+            TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];
+
+            if (pantalla == "Empresa")
+            {
+                //Se obtienen los usuarios de la empresa con roles Administrador, Supervisor y Usuario.
+                LNEmpresaUsuario lnEmpresaUsuario = new LNEmpresaUsuario();
+                List<VistaEmpresaUsuario> lista = lnEmpresaUsuario.ObtenerUsuariosActivosYPorRolesPorIdEmpresa(ticket.IdEmpresa);
+                ViewBag.UsuarioPropietarioEmpresa = new SelectList(lista, "NombreUsuario", "NombreCompletoUsuario", oferta.UsuarioPropietarioEmpresa);
+            }
+
+            ViewBag.Pantalla = pantalla;
+
+            return PartialView("_VistaOfertaAdministracion", oferta);
+        }
+
+
+        /// <summary>
+        /// Se revisa si existen ofertas en estado OFERCV
+        /// </summary>
+        public List<VistaEmpresaOferta> obtenerOfertasEnEstadoOFERCV()
+        {
+            TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];
+            LNOferta lnOferta = new LNOferta();
+            
+            //Se buscan la ofertas de la empresa que se encuentran en estado OFERCV (Fin de recepción de CVs)
+            List<VistaEmpresaOferta> lista = lnOferta.ObtenerOfertasPorIdEmpresa(ticket.IdEmpresa).Where(p => p.NombreEstado == Constantes.OFERTA_ESTADO_FINRECEPCIONCVS).ToList();
+
+            return lista;
+
+            ////Si se encuentran filas => se obienen los cargos y se llena una variable temporal.
+            //if (lista.Count() > 0)
+            //{
+            //    StringBuilder ofertasEncontradas = new StringBuilder();
+            //    ofertasEncontradas.Append("Antes de continuar debe cerrar las siguientes ofertas: ");
+            //    ofertasEncontradas.Append(Environment.NewLine);
+
+            //    foreach (var oferta in lista)
+            //    {
+            //        ofertasEncontradas.Append(oferta.CargoOfrecido);
+            //        ofertasEncontradas.Append(Environment.NewLine);
+            //    }
+
+            //    //En el vista Publicacion.html se lee este TempData y se muestra el mensaje al usuario.
+            //    TempData["msjOfertasEnOFERCV"] = ofertasEncontradas.ToString();
+
+            //    //Se redirecciona a la lista de ofertas.
+            //    return RedirectToAction("Publicacion");
+            //}
+           
+            
         }
     }
 }

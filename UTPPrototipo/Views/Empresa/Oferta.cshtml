@@ -58,6 +58,10 @@
             <div class="panel-group" id="oferta-requisito" role="tablist" aria-multiselectable="true">
                 @Html.Action("VistaOfertaRequisitos", "Empresa", new { oferta = @Model })
             </div>
+            <div class="panel-group" id="oferta-administracion" role="tablist" aria-multiselectable="true">
+                @Html.Action("_VistaOfertaAdministracion", "Empresa", new { oferta = @Model, pantalla = ViewBag.Pantalla })
+
+            </div>
             @*<div class="panel-group" id="divOfertaMensajes" role="tablist" aria-multiselectable="true">
                     @Html.Action("_ObtenerMensajes", "Mensaje", new { id = @Model.IdOferta })
                 </div>*@
@@ -66,22 +70,22 @@
                 if (ViewBag.Pantalla == "Empresa")
                 {
                     <!--INICIO-->
-                    <div class="panel-group" id="grupoMensajes" role="tablist" aria-multiselectable="true">
-                        <div class="panel panel-default">
-                            <div class="panel-heading" role="tab" id="headingOne2" style="padding: 2px 2px 2px 6px;">
-                                <h5 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#grupoMensajes" href="#collapseMensajes" aria-expanded="true" aria-controls="collapseOne2" class="fuente-seccion">
-                                        Mensajes
-                                    </a>
-                                </h5>
-                            </div>
-                            <div id="collapseMensajes" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne2">
-                                <div class="panel-body">
-                                    @Html.Action("_Mensajes", "Mensaje", new { pantalla = Constantes.MENSAJES_EMPRESA_OFERTA, idOferta = Model.IdOferta })
-                                </div>
-                            </div>
+            <div class="panel-group" id="grupoMensajes" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne2" style="padding: 2px 2px 2px 6px;">
+                        <h5 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#grupoMensajes" href="#collapseMensajes" aria-expanded="true" aria-controls="collapseOne2" class="fuente-seccion">
+                                Mensajes
+                            </a>
+                        </h5>
+                    </div>
+                    <div id="collapseMensajes" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne2">
+                        <div class="panel-body">
+                            @Html.Action("_Mensajes", "Mensaje", new { pantalla = Constantes.MENSAJES_EMPRESA_OFERTA, idOferta = Model.IdOferta })
                         </div>
                     </div>
+                </div>
+            </div>
                     <!--FIN-->
                 
                     <div class="panel-group" role="tablist" aria-multiselectable="true" id="divListaMensajes">
