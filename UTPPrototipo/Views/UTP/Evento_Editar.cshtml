@@ -24,7 +24,9 @@
             {
                 @Html.AntiForgeryToken()
                 @Html.HiddenFor(model => model.IdEvento)
-
+                @Html.HiddenFor(model => Model.TextoDepartamento)
+                @Html.HiddenFor(model => Model.TextoCiudad)
+                @Html.HiddenFor(model => Model.TextDistrito)
 
                 <div class="row">
                     <div class="col-sm-12">
@@ -111,6 +113,7 @@
                             <span class="input-group-addon">Departa-<br />mento</span>
                             @*<input type="text" class="form-control" placeholder="Departamento del Evento">*@
                             @Html.TextBoxFor(model => model.DireccionRegion, new { @class = "form-control", rows = "3", @placeholder = "Departamento del Evento" })
+                            @*@Html.DropDownList("DireccionRegion", ViewData["Departamento"] as List<SelectListItem>, "-Seleccione-", new { @class = "form-control", @id = "DireccionDepartamentoLocacion" })*@
                         </div>
                     </div>
                 </div>
