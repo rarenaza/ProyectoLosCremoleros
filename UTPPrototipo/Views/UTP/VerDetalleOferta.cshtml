@@ -8,7 +8,7 @@
 }
 
 <link href="~/Content/font-awesome.css" rel="stylesheet" />
-<div class="container" style="margin-top:2px;">
+<div class="container fuente-pequeña" style="margin-top:2px;">
     <!---Cabecera de la página.-->
     @{Html.RenderAction("VistaCabeceraUtp", "UTP");}
 
@@ -21,7 +21,7 @@
 
     <div class="row">
         <div class="col-sm-6">
-            <table class="table table-bordered fuente-pequeña">
+            <table>
                 <tr>
                     <td class="celda-nombre">
                         <span>Estado</span>
@@ -49,8 +49,7 @@
                         <span>Funciones</span>
                     </td>
                     <td class="celda-datos">
-                        @*@Model.Funciones*@
-                        <textarea name="Funciones" id="Funciones" rows="2" cols="80">@Html.Raw(@Model.Funciones)</textarea>
+                        @Html.Raw(Model.Funciones)
                     </td>
                 </tr>
                 <tr>
@@ -58,8 +57,7 @@
                         <span>Información Adicional</span>
                     </td>
                     <td class="celda-datos">
-                        @*@Model.Competencias*@
-                        <textarea name="Competencias" id="Competencias" rows="2" cols="80">@Html.Raw(@Model.Competencias)</textarea>
+                        @Html.Raw(Model.Competencias)
                     </td>
                 </tr>
                 <tr>
@@ -206,12 +204,12 @@
 
         </div>
 
-        
+
     </div>
 
 
 
-    
+
     <hr />
     <div class="row">
         <div class="col-sm-12">
@@ -277,12 +275,12 @@
                     </div>
                     <div class="col-sm-1">
                         @{
-                            if (item.FechaModificacion.ToString("yyyyMMdd") != "19000101")
-                            {
-                                @item.FechaModificacion
-                            }
+                if (item.FechaModificacion.ToString("yyyyMMdd") != "19000101")
+                {
+                    @item.FechaModificacion
+                }
                         }
-                        
+
                     </div>
                 </div>
             }
@@ -515,11 +513,12 @@
             </div>
             <!--FIN-->
 
-           
+
         </div>
-       
+
     </div>
 </div>
+
 <script>
 
     $(document).ready(function () {
@@ -548,10 +547,4 @@
     }
 
 
-</script>
-<script src="~/Scripts/ckeditor/ckeditor.js"></script>
-
-<script>
-    CKEDITOR.replace('Funciones', { height: 100 });
-    CKEDITOR.replace('Competencias', { height: 100 });
 </script>
