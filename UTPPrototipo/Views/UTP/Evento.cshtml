@@ -3,7 +3,7 @@
     Layout = "~/Views/UTP/_LayoutUTP.cshtml";
     ViewBag.Title = "Evento";
 }
-<script src="~/Scripts/calendario.js"></script>
+
 <link href="~/Content/font-awesome.css" rel="stylesheet" />
 <div class="container fuente-pequeña" style="margin-top:2px;">
     <div class="panel-group" id="datos-cuenta" role="tablist" aria-multiselectable="true">
@@ -11,9 +11,11 @@
     </div>
     <h5>Evento: Feria de Empleos</h5>
     <br />
+    <script src="~/Scripts/jquery-ui-1.11.2.js"></script>
     <script src="~/Scripts/jquery.maskedinput.js"></script>
-
+    <script src="~/Scripts/calendario.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
+
 @*@using (Ajax.BeginForm("Eventos", "UTP", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", OnComplete = "Exito", UpdateTargetId = "divDatosGenerales" }))*@
 
 @*@using (Ajax.BeginForm("Eventos", "UTP", new AjaxOptions() { OnSuccess = "Exito", UpdateTargetId = "resultadobusqueda" }))*@
@@ -85,7 +87,7 @@
                     <div class="input-group">
                         <span class="input-group-addon">Fecha <br />Inicio</span>
                         @*<input type="text" class="form-control" placeholder="Fecha de Inicio (dd/mm/aaaa)">*@
-                       @Html.TextBoxFor(model => model.FechaEvento, new { @class = "form-control", @placeholder = "Fecha de Inicio (dd/mm/aaaa)" })
+                       @Html.TextBoxFor(model => model.FechaEvento, new { @class = "form-control", @placeholder = "Fecha de Inicio (dd/mm/aaaa)", @Value = System.DateTime.Now })
 
                         @Html.ValidationMessageFor(model => model.FechaEvento, "", new { @class = "text-danger" })
                     </div>
@@ -231,8 +233,10 @@
 
             $(document).ready(function () {
                 $("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta3 color-paleta4 color-paleta6 color-paleta7 color-paleta8").addClass("color-paleta5");
+
                 checkSupportForInputTypeDate();
                 $("#FechaEvento").datepicker({ dateFormat: 'dd/mm/yy' });
+              
             });
 
 

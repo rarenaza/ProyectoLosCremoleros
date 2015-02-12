@@ -13,6 +13,10 @@
     </div>
     <h5>Evento: @Model.NombreEvento</h5>
     <br />
+    <script src="~/Scripts/jquery-ui-1.11.2.js"></script>
+    <script src="~/Scripts/jquery.maskedinput.js"></script>
+    <script src="~/Scripts/calendario.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
     <div class="row">
         <div class="col-sm-6" style="border-right:solid;border-color:rgb(220, 220, 220);border-width:1px;">
             @*@using (Html.BeginForm("Evento", "UTP", FormMethod.Post, new { enctype = "multipart/form-data" }))*@
@@ -79,7 +83,7 @@
                         <div class="input-group">
                             <span class="input-group-addon">Fecha <br />Inicio</span>
                             @*<input type="text" class="form-control" placeholder="Fecha de Inicio (dd/mm/aaaa)">*@
-                            @Html.TextBoxFor(model => model.FechaEvento, new { @class = "form-control", rows = "3", @placeholder = "Fecha de Inicio (dd/mm/aaaa)" })
+                            @Html.TextBoxFor(model => model.FechaEvento, new { @class = "form-control", rows = "3", @placeholder = "Fecha de Inicio (dd/mm/aaaa)",@id="FechaEvento" })
                         </div>
                     </div>
                 </div>
@@ -261,23 +265,31 @@
             </div>
         </div>
     </div>
+    <script>
 
+    $(document).ready(function () {
+        $("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta3 color-paleta4 color-paleta6 color-paleta7 color-paleta8").addClass("color-paleta5");
+    });
+    //checkSupportForInputTypeDate();
+    //$("#FechaEvento").datepicker({ dateFormat: 'dd/mm/yy' });
+    $(function () {
+        $("#FechaEvento").datepicker();
+        $(".ui-state-default").live("mouseenter", function () {
+            $("h1").text($(this).text());
+        });
+    });
+    </script>
     <div class="row">
         <div class="col-sm-6">
             @Html.Action("_Mensajes", "Mensaje", new { pantalla = Constantes.MENSAJES_UTP_EVENTO, idEvento = @Model.IdEvento })
         </div>        
     </div>
 </div>
-<script>
-
-    $(document).ready(function () {
-        $("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta3 color-paleta4 color-paleta6 color-paleta7 color-paleta8").addClass("color-paleta5");
-    });
 
 
-</script>
 
-<script src="~/Scripts/jquery-ui.js"></script>
+
+@*<script src="~/Scripts/jquery-ui.js"></script>
 <script src="~/Scripts/jquery.maskedinput.js"></script>
 
 
@@ -297,4 +309,4 @@
         }
         return ok;
     });
-</script>
+</script>*@

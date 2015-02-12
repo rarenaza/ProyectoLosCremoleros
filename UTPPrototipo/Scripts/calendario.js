@@ -11,10 +11,13 @@ jQuery(function ($) {
     dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
     weekHeader: 'Sm',
     dateFormat: 'dd/mm/yy',
+
     firstDay: 1,
     isRTL: false,
     showMonthAfterYear: false,
     yearSuffix: ''
+
+
 };
 $.datepicker.setDefaults($.datepicker.regional['es']);
 });

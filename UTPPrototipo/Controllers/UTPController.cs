@@ -1229,7 +1229,8 @@ namespace UTPPrototipo.Controllers
                 evento.IdEvento             = Convert.ToInt32(dtResultado.Rows[0]["IdEvento"]);
                 evento.NombreEvento         = Convert.ToString(dtResultado.Rows[0]["NombreEvento"]);
                 evento.DescripcionEvento    = Convert.ToString(dtResultado.Rows[0]["DescripcionEvento"]);
-                evento.FechaEvento          = Convert.ToDateTime(dtResultado.Rows[0]["FechaEvento"]);
+                evento.FechaEvento = Convert.ToDateTime(dtResultado.Rows[0]["FechaEvento"]);
+           
                 evento.FechaEventoTexto     = Convert.ToString(dtResultado.Rows[0]["FechaEventoTexto"]);
                 evento.LugarEvento          = Convert.ToString(dtResultado.Rows[0]["LugarEvento"]);
                 evento.DireccionRegion      = Convert.ToString(dtResultado.Rows[0]["DireccionRegion"]);
@@ -1249,7 +1250,7 @@ namespace UTPPrototipo.Controllers
                 evento.FechaCreacion = Convert.ToDateTime(dtResultado.Rows[0]["FechaCreacion"] == DBNull.Value ? null : dtResultado.Rows[0]["FechaCreacion"]);
                 evento.ModificadoPor = dtResultado.Rows[0]["ModificadoPor"].ToString();
                 evento.FechaModificacion = Convert.ToDateTime(dtResultado.Rows[0]["FechaModificacion"] == DBNull.Value ? null : dtResultado.Rows[0]["FechaModificacion"]);
-      
+                
                 
             }
 

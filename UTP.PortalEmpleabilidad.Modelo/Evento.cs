@@ -41,7 +41,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
        //[DataType(DataType.Date)]
        //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
       public DateTime  FechaEvento { get; set; }
-
+   
       public string FechaEventoTexto { get; set; }
 
        public string DireccionEvento { get; set; }
