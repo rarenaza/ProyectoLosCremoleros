@@ -13,7 +13,7 @@
             <div class="col-sm-12">
                 <div class="input-group">
                     <span class="input-group-addon">Sector</span>
-                    @Html.DropDownListFor(m => m.SectorEmpresarialIdListaValor, null, "Seleccione", htmlAttributes: new { @class = "form-control" })
+                    @Html.DropDownListFor(m => m.SectorEmpresarialIdListaValor, null, "- Seleccione Sector Empresarial -", htmlAttributes: new { @class = "form-control" })
                 </div>
                 @Html.ValidationMessageFor(m => m.SectorEmpresarialIdListaValor, "", new { @class = "text-danger" })
             </div>
@@ -44,7 +44,7 @@
         <div class="row">
             <div class="col-sm-12 text-right">
                 <button type="submit" class="btn btn-default color-paleta2" style="color: white; margin-bottom: 10px;">
-                    Guardar Experiencia x Sector
+                    Guardar Experiencia por Sector
                 </button>
             </div>
         </div>

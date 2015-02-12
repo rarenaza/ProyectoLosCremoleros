@@ -24,20 +24,20 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="input-group">
-                    <span class="input-group-addon">Nombre *</span>                                      
+                    <span class="input-group-addon">(*) Nombre</span>                                      
                     @Html.Raw(@Html.EditorFor(model => model.NombreComercial).ToString().Replace("text-box single-line", "form-control"))                 
-                    @Html.ValidationMessageFor(model => model.NombreComercial, "", new { @class = "text-danger" })
-                </div>
+                    
+                </div>@Html.ValidationMessageFor(model => model.NombreComercial, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="row">
             <div class="col-sm-12">
                 <div class="input-group">
-                    <span class="input-group-addon">Razón<br />Social *</span>
+                    <span class="input-group-addon">(*) Razón<br />Social</span>
                     @*<input name="RazonSocial" type="text" class="form-control" placeholder="Razón Social de la Empresa" value="@Model.RazonSocial">*@
                     @Html.Raw(@Html.EditorFor(model => model.RazonSocial).ToString().Replace("text-box single-line", "form-control"))                    
-                    @Html.ValidationMessageFor(model => model.RazonSocial, "", new { @class = "text-danger" })
-                </div>
+                    
+                </div>@Html.ValidationMessageFor(model => model.RazonSocial, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="row">
@@ -45,16 +45,16 @@
                 <div class="input-group fuente-pequeña">
                     <span class="input-group-addon">País</span>
                     @*@Html.DropDownList("PaisIdListaValor", null, htmlAttributes: new { @class = "form-control" })*@
-                    @Html.DropDownListFor(m => m.PaisIdListaValor, null, "Seleccione", htmlAttributes: new { @class = "form-control" })
+                    @Html.DropDownListFor(m => m.PaisIdListaValor, null, "- Seleccione País -", htmlAttributes: new { @class = "form-control" })
                 </div>
             </div>
             <div class="col-sm-6">
                 <div class="input-group fuente-pequeña">
-                    <span class="input-group-addon">RUC *</span>
+                    <span class="input-group-addon">(*) RUC</span>
                     @*<input type="text" class="form-control" name="IdentificadorTributario" placeholder="RUC o Identificador Tributario" value="@Model.IdentificadorTributario">*@
                     @Html.Raw(@Html.EditorFor(model => model.IdentificadorTributario).ToString().Replace("text-box single-line", "form-control"))
-                    @Html.ValidationMessageFor(model => model.IdentificadorTributario, "", new { @class = "text-danger" })
-                </div>
+                    
+                </div>@Html.ValidationMessageFor(model => model.IdentificadorTributario, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="row">
@@ -63,8 +63,8 @@
                     <span class="input-group-addon">Descrip-<br />ción</span>
                     @*<textarea class="form-control" placeholder="Descripción de la Empresa" name="DescripcionEmpresa" rows="3">@Model.DescripcionEmpresa</textarea>*@
                     @Html.Raw(@Html.EditorFor(model => model.DescripcionEmpresa).ToString().Replace("text-box multi-line", "form-control"))
-                    @Html.ValidationMessageFor(model => model.DescripcionEmpresa, "", new { @class = "text-danger" })
-                </div>
+                    
+                </div>@Html.ValidationMessageFor(model => model.DescripcionEmpresa, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="row">
@@ -82,14 +82,14 @@
                     <span class="input-group-addon">Año de<br />Creación</span>
                     @*<input type="text" class="form-control" name="AnoCreacion" placeholder="Año de Creación" value="@Model.AnoCreacion">*@
                     @Html.Raw(@Html.EditorFor(model => model.AnoCreacion).ToString().Replace("text-box single-line", "form-control"))
-                    @Html.ValidationMessageFor(model => model.AnoCreacion, "", new { @class = "text-danger" })
-                </div>
+                    
+                </div>@Html.ValidationMessageFor(model => model.AnoCreacion, "", new { @class = "text-danger" })
             </div>
             <div class="col-sm-6">
                 <div class="input-group fuente-pequeña">
                     <span class="input-group-addon">Número de<br />Empleados</span>
                     @*@Html.DropDownList("NumeroEmpleadosIdListaValor", null, htmlAttributes: new { @class = "form-control" })*@
-                    @Html.DropDownListFor(m => m.NumeroEmpleadosIdListaValor, null, "Seleccione", htmlAttributes: new { @class = "form-control" })
+                    @Html.DropDownListFor(m => m.NumeroEmpleadosIdListaValor, null, "- Seleccione Número de Empleados -", htmlAttributes: new { @class = "form-control" })
                 </div>
             </div>
         </div>
@@ -97,16 +97,16 @@
             <div class="col-sm-6">
                 <div class="input-group fuente-pequeña">
                     <span class="input-group-addon">Sector<br />Principal</span>
-                    @Html.DropDownListFor(m => m.SectorEmpresarial1IdListaValor, null, "Seleccione", htmlAttributes: new { @class = "form-control" })
-                   @Html.ValidationMessageFor(model => model.SectorEmpresarial1IdListaValor, "", new { @class = "text-danger" })
-                </div>
+                    @Html.DropDownListFor(m => m.SectorEmpresarial1IdListaValor, null, "- Seleccione Sector Empresarial -", htmlAttributes: new { @class = "form-control" })
+                   
+                </div>@Html.ValidationMessageFor(model => model.SectorEmpresarial1IdListaValor, "", new { @class = "text-danger" })
                 
             </div>
             <div class="col-sm-6">
                 <div class="input-group fuente-pequeña">
                     <span class="input-group-addon">Sector 2</span>
                     @*@Html.DropDownList("SectorEmpresarial2IdListaValor", null,  htmlAttributes: new { @class = "form-control" })*@
-                    @Html.DropDownListFor(m => m.SectorEmpresarial2IdListaValor, null, "Seleccione", htmlAttributes: new { @class = "form-control" })
+                    @Html.DropDownListFor(m => m.SectorEmpresarial2IdListaValor, null, "- Seleccione Sector Empresarial 2 -", htmlAttributes: new { @class = "form-control" })
                 </div>
             </div>
         </div>
@@ -115,18 +115,23 @@
                 <div class="input-group fuente-pequeña">
                     <span class="input-group-addon">Sector 3</span>
                     @*@Html.DropDownList("SectorEmpresarial3IdListaValor", null, htmlAttributes: new { @class = "form-control" })*@
-                    @Html.DropDownListFor(m => m.SectorEmpresarial3IdListaValor, null, "Seleccione", htmlAttributes: new { @class = "form-control" })
+                    @Html.DropDownListFor(m => m.SectorEmpresarial3IdListaValor, null, "- Seleccione Sector Empresarial 3 -", htmlAttributes: new { @class = "form-control" })
 
                 </div>
             </div>
         </div>
-
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="input-group fuente-pequeña">
+                    <span class="input-group-addon">Sitio Web</span>
+                    @Html.Raw(@Html.EditorFor(model => model.SitioWeb).ToString().Replace("text-box single-line", "form-control"))
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col-sm-12" style="text-align:right;">
                 @*<button type="button" class="btn btn-default color-paleta4 fuente-pequeña" style="color: white; margin-bottom: 10px;">Guardar</button>*@
-                <input type="submit"  class="btn btn-default color-paleta4 fuente-pequeña" value="Guardar"  />
-
- 
+                <input type="submit" class="btn btn-default color-paleta4 fuente-pequeña" value="Guardar"  />
             </div>
         </div>
 

@@ -39,7 +39,7 @@
                             <br /><span class="fuente-pequeña">
                                 @if (string.IsNullOrEmpty(Model.Oferta.SitioWeb) == false)
                                 {
-                            @Html.ActionLink(Model.Oferta.SitioWeb, null, null, "http", Model.Oferta.SitioWeb, null, null, null)
+                                    <a href="@Model.Oferta.SitioWeb">@Model.Oferta.SitioWeb</a>
                                 }
 
 
@@ -205,7 +205,7 @@
                                 {
                                     <tr>
                                         <td class="celda-nombre">
-                                            <strong class="sub-titulo-seccion">Experiencia x Sector</strong>
+                                            <strong class="sub-titulo-seccion">Experiencia por Sector</strong>
                                         </td>
                                         <td class="celda-datos"></td>
                                     </tr>

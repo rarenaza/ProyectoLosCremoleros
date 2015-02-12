@@ -49,7 +49,7 @@
                             </tr>
                             <tr>
                                 <td class="celda-nombre">Año de Creación</td>
-                                <td class="celda-datos">@Model.AnoCreacion</td>
+                                <td class="celda-datos">@if (Model.AnoCreacion > 0) { @Model.AnoCreacion}</td>
                             </tr>
                             <tr>
                                 <td class="celda-nombre">Número de Empleados</td>
@@ -58,6 +58,10 @@
                             <tr>
                                 <td class="celda-nombre">Sector Empresarial</td>
                                 <td class="celda-datos">@Model.SectorEmpresarial.Valor @Model.SectorEmpresarial2.Valor @Model.SectorEmpresarial3.Valor</td>
+                            </tr>
+                            <tr>
+                                <td class="celda-nombre">Sitio Web</td>
+                                <td class="celda-datos">@Model.SitioWeb</td>
                             </tr>
                         </table>
 

@@ -19,7 +19,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Cargo, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("Cargo", ViewData["ListaValor"] as List<SelectListItem>, "Seleccione")
+                @Html.DropDownList("Cargo", ViewData["ListaValor"] as List<SelectListItem>, "- Seleccione -")
 
         
             </div>

@@ -166,18 +166,18 @@
                                 @Html.ValidationMessageFor(m => m.AreaEmpresa, "", new { @class = "text-danger" })
                                 <div class="input-group">
                                     <span class="input-group-addon">Tipo de<br />Cargo</span>
-                                    @Html.DropDownListFor(m => m.TipoCargoIdListaValor, null, "Seleccione", htmlAttributes: new { @class = "form-control" })
+                                    @Html.DropDownListFor(m => m.TipoCargoIdListaValor, null, "- Seleccione Tipo de Cargo -", htmlAttributes: new { @class = "form-control" })
                                 </div>
                                 @Html.ValidationMessageFor(m => m.TipoCargoIdListaValor, "", new { @class = "text-danger" })
                                 <div class="input-group">
                                     <span class="input-group-addon">(*) Tipo de<br />Trabajo</span>
-                                    @Html.DropDownListFor(m => m.TipoTrabajoIdListaValor, null, "Seleccione", htmlAttributes: new { @class = "form-control" })
+                                    @Html.DropDownListFor(m => m.TipoTrabajoIdListaValor, null, "- Seleccione Tipo de Trabajo -", htmlAttributes: new { @class = "form-control" })
                                 </div>
                                 @Html.ValidationMessageFor(m => m.TipoTrabajoIdListaValor, "", new { @class = "text-danger" })
 
                                 <div class="input-group">
                                     <span class="input-group-addon">Tipo de<br />Contrato</span>
-                                    @Html.DropDownListFor(m => m.TipoContratoIdListaValor, null, "Seleccione", htmlAttributes: new { @class = "form-control" })
+                                    @Html.DropDownListFor(m => m.TipoContratoIdListaValor, null, "- Seleccione Tipo de Contrato -", htmlAttributes: new { @class = "form-control" })
 
                                 </div>
                                 @Html.ValidationMessageFor(m => m.TipoContratoIdListaValor, "", new { @class = "text-danger" })
@@ -602,7 +602,7 @@
     }
 
     function alertTemporal() {
-        alert('Las fase se guardaron con éxito');
+        alert('Las Fases se guardaron con éxito');
     }
 
     function mostrarError(err)
