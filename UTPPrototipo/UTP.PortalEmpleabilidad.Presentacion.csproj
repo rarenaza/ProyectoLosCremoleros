@@ -953,6 +953,8 @@
     <Content Include="Views\UTP\_EmpresaNuevaModal.cshtml" />
     <Content Include="Views\Empresa\MostrarOferta.cshtml" />
     <Content Include="Views\Empresa\MostrarAlumno.cshtml" />
+    <Content Include="Views\Home\VerOferta.cshtml" />
+    <Content Include="Views\Empresa\_VistaOfertaAdministracion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

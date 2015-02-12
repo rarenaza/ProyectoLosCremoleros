@@ -2,8 +2,7 @@
 @model UTP.PortalEmpleabilidad.Modelo.Vistas.Ofertas.VistaOfertaAlumno
 @using UTP.PortalEmpleabilidad.Modelo
 
-@{
-    Layout = "~/Views/Empresa/_LayoutEmpresa.cshtml";
+@{  
     ViewBag.Title = "Oferta de Trabajo";
 }
 <div class="container" style="margin-top:2px;">
@@ -82,62 +81,8 @@
 
             </div>
 
-            @*<div class="panel-group" id="oferta-mensaje" role="tablist" aria-multiselectable="true">
-                <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingMensaje" style="padding: 2px 2px 2px 6px;">
-                        <h5 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseMensaje" aria-expanded="true" aria-controls="collapseMensaje" class="fuente-seccion">
-                                Ofertas similares
-                            </a>
-                        </h5>
-                    </div>
-                    <div id="collapseMensaje" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingMensaje">
-                        <div class="panel-body fuente-pequeña">
-                            <div class="row" style="margin-bottom:10px;">
-                                @foreach (var item in Model.ListaOfertas)
-                                {
-                                    <div class="col-sm-4">
-                                        <div style="height:90px;">
-                                            @if (item.LogoEmpresa != null && string.IsNullOrEmpty(item.ArchivoMimeType) == false)
-                                            {
-                                                <img src="@Url.Action("GetImageEmpresa", "Alumno", new { item.IdEmpresa })" class="logo-empresa2" />
-
-                                            }
-                                            else
-                                            {
-                                                <img src="~/img/sinimagen.jpg" class="logo-empresa2" />
-                                            }
-
-
-                                        </div>
-                                        @*<div style="height:90px;"><img src="~/img/logos/logoCriteria.jpg" class="logo-empresa2" /></div>
-
-                                        <div>
-                                        </div>
-                                    </div>
-                                }
-
-
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="oferta-mensaje2222" aria-multiselectable="true">
-
-                @Html.Action("_Mensajes", "Mensaje", new { pantalla = Constantes.MENSAJES_ALUMNO_OFERTA, idOferta = Model.Oferta.IdOferta })
-            </div>*@
-
         </div>
         <div class="col-md-5">
-
-
-            @*<div class="panel-group" id="oferta-postulacion" role="tablist" aria-multiselectable="true">
-                @Html.Partial("_EstadoPostulacion", Model.Oferta)
-            </div>*@
-
-
             <div class="panel-group" id="oferta-requisito" role="tablist" aria-multiselectable="true">
                 <div class="panel panel-default">
                     <div class="panel-heading" role="tab" id="headingRequisito" style="padding: 2px 2px 2px 6px;">
@@ -148,10 +93,10 @@
 
                         </h5>
                         @*<div class="progress" style="background-color:white;margin:5px 10px 5px 10px;">
-                            @Html.Raw(Html.CompatibilidaOferta((int)Model.Oferta.Compatible))
+                        @Html.Raw(Html.CompatibilidaOferta((int)Model.Oferta.Compatible))
 
 
-                        </div>*@
+                    </div>*@
                     </div>
                     <div id="collapseRequisito" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingRequisito">
                         <div class="panel-body fuente-pequeña">
@@ -175,16 +120,16 @@
                                                 </td>
                                                 <td class="celda-datos">
                                                     @*@if (item.Line == 1)
+                                                {
+                                                    if (item.Cumplimiento == 1)
                                                     {
-                                                        if (item.Cumplimiento == 1)
-                                                        {
-                                                            <span class="valor-palabra si-cumple">Si cumple</span><span class="valor-icono2 si-cumple">g</span>
-                                                        }
-                                                        else
-                                                        {
-                                                            <span class="valor-palabra no-cumple"><strong>No cumple</strong></span><span class="valor-icono2 no-cumple">l</span>
-                                                        }
-                                                    }*@
+                                                        <span class="valor-palabra si-cumple">Si cumple</span><span class="valor-icono2 si-cumple">g</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span class="valor-palabra no-cumple"><strong>No cumple</strong></span><span class="valor-icono2 no-cumple">l</span>
+                                                    }
+                                                }*@
 
                                                 </td>
                                             </tr>
@@ -219,16 +164,16 @@
                                                 </td>
                                                 <td class="celda-datos">
                                                     @*@if (item.Line == 1)
+                                                {
+                                                    if (item.Cumplimiento == 1)
                                                     {
-                                                        if (item.Cumplimiento == 1)
-                                                        {
-                                                            <span class="valor-palabra si-cumple">Si cumple</span><span class="valor-icono2 si-cumple">g</span>
-                                                        }
-                                                        else
-                                                        {
-                                                            <span class="valor-palabra no-cumple"><strong>No cumple</strong></span><span class="valor-icono2 no-cumple">l</span>
-                                                        }
-                                                    }*@
+                                                        <span class="valor-palabra si-cumple">Si cumple</span><span class="valor-icono2 si-cumple">g</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span class="valor-palabra no-cumple"><strong>No cumple</strong></span><span class="valor-icono2 no-cumple">l</span>
+                                                    }
+                                                }*@
 
                                                 </td>
                                             </tr>
@@ -263,16 +208,16 @@
                                                 </td>
                                                 <td class="celda-datos">
                                                     @*@if (item.Line == 1)
+                                                {
+                                                    if (item.Cumplimiento == 1)
                                                     {
-                                                        if (item.Cumplimiento == 1)
-                                                        {
-                                                            <span class="valor-palabra si-cumple">Si cumple</span><span class="valor-icono2 si-cumple">g</span>
-                                                        }
-                                                        else
-                                                        {
-                                                            <span class="valor-palabra no-cumple"><strong>No cumple</strong></span><span class="valor-icono2 no-cumple">l</span>
-                                                        }
-                                                    }*@
+                                                        <span class="valor-palabra si-cumple">Si cumple</span><span class="valor-icono2 si-cumple">g</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span class="valor-palabra no-cumple"><strong>No cumple</strong></span><span class="valor-icono2 no-cumple">l</span>
+                                                    }
+                                                }*@
 
                                                 </td>
                                             </tr>
@@ -443,12 +388,7 @@
                                     </td>
                                 </tr>
                             </table>
-
-
-
-
                             <br />
-
                         </div>
                     </div>
                 </div>

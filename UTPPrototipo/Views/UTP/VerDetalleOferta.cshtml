@@ -1,5 +1,6 @@
 ﻿@model UTP.PortalEmpleabilidad.Modelo.Oferta
 @using UTP.PortalEmpleabilidad.Modelo
+@using UTPPrototipo.Utiles
 
 @{
     Layout = "~/Views/UTP/_LayoutUTP.cshtml";
@@ -20,7 +21,7 @@
 
     <div class="row">
         <div class="col-sm-6">
-            <table>
+            <table class="table table-bordered fuente-pequeña">
                 <tr>
                     <td class="celda-nombre">
                         <span>Estado</span>
@@ -32,7 +33,7 @@
                                 <td>&nbsp;&nbsp;</td>
                                 <td><button id="btnCambiarEstadoOferta" class="btn btn-default color-paleta2" onclick="cambiarEstado(@Model.IdOferta)">Cambiar estado</button></td>
                             </tr>
-                        </table>                            
+                        </table>
                     </td>
                 </tr>
                 <tr>
@@ -48,7 +49,8 @@
                         <span>Funciones</span>
                     </td>
                     <td class="celda-datos">
-                        @Model.Funciones
+                        @*@Model.Funciones*@
+                        <textarea name="Funciones" id="Funciones" rows="2" cols="80">@Html.Raw(@Model.Funciones)</textarea>
                     </td>
                 </tr>
                 <tr>
@@ -56,7 +58,8 @@
                         <span>Información Adicional</span>
                     </td>
                     <td class="celda-datos">
-                        @Model.Competencias
+                        @*@Model.Competencias*@
+                        <textarea name="Competencias" id="Competencias" rows="2" cols="80">@Html.Raw(@Model.Competencias)</textarea>
                     </td>
                 </tr>
                 <tr>
@@ -188,6 +191,14 @@
                         @Model.FechaModificacion
                     </td>
                 </tr>
+                <tr>
+                    <td class="celda-nombre">
+                        Link externo
+                    </td>
+                    <td class="celda-datos">
+                        @Html.ActionLink(" ", "VerOferta", "Home", new { crypt = Helper.Encriptar(Model.IdOferta.ToString()) }, htmlAttributes: new { @class = "fa fa-external-link", target = "_blank", title = "Link externo" })
+                    </td>
+                </tr>
             </table>
         </div>
 
@@ -197,6 +208,8 @@
 
         
     </div>
+
+
 
     
     <hr />
@@ -534,4 +547,11 @@
         });
     }
 
+
+</script>
+<script src="~/Scripts/ckeditor/ckeditor.js"></script>
+
+<script>
+    CKEDITOR.replace('Funciones', { height: 100 });
+    CKEDITOR.replace('Competencias', { height: 100 });
 </script>

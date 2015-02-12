@@ -29,7 +29,8 @@
                         Fecha Registro
                     </td>
                     <td class="celda-datos">
-                        @Html.DisplayFor(m => m.FechaRegistro)
+                        @*@Html.DisplayFor(m => m.FechaCreacion.ToString("dd/MM/yyyy"))*@
+                        <label>@Model.FechaCreacion.ToString("dd/MM/yyyy")</label>
                     </td>
                 </tr>
                 <tr class="linea_raya">

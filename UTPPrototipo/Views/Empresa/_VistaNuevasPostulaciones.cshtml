@@ -18,7 +18,7 @@
             </div>
             <div class="col-sm-3">
                 @*<a href="../Empresa/Oferta">@item.CargaOfrecido</a>*@
-                @Html.ActionLink(item.CargaOfrecido, "Oferta", "Empresa", new { id = item.IdOferta }, null)
+                @Html.ActionLink(item.CargaOfrecido, "Oferta", "Empresa", new { idOferta = item.IdOferta, pantalla = "Empresa" }, htmlAttributes: new { target = "_blank" })
             </div>
             <div class="col-sm-4">
                 @*<a href="../Empresa/Postulante"><strong>@item.AlumnoNombres @item.AlumnoApellidos</strong></a>*@

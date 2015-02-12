@@ -1,0 +1,124 @@
+﻿@model UTP.PortalEmpleabilidad.Modelo.Oferta
+@using UTPPrototipo.Models.ViewModels.Cuenta;
+
+@{
+    //Se obtiena la variable de sesión del ticket.
+    TicketEmpresa ticketEmpresa = (TicketEmpresa)Session["TicketEmpresa"];
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingDetalle" style="padding: 2px 2px 2px 6px;">
+        <h5 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapsAdministracion" aria-expanded="true" aria-controls="collapseDetalle" class="fuente-seccion">
+                Administración de la oferta
+            </a>
+        </h5>
+    </div>
+    <div id="collapsAdministracion" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingDetalle">
+        <div class="panel-body fuente-pequeña">
+            <table class="fuente-pequeña">
+                <tr>
+                    <td class="celda-nombre" style="padding-top:5px; width:35px; text-align:left; ">
+                        Usuario <br />
+                        asignado
+                    </td>
+                    <td class="celda-datos" style="padding-top:1px; width:250px; ">
+                        @{
+                            if (ViewBag.Pantalla == "Empresa")
+                            {
+                                //Si el usuario es Administrador
+                                if (ticketEmpresa.Rol == "ROLEAD" && Model.EstadoOferta != "OFERFI")
+                                {
+                                    <!--Se agregan los usuarios-->
+                                    @Html.DropDownListFor(m => m.UsuarioPropietarioEmpresa, null, null, htmlAttributes: new { @class = "form-control", style = "font-size: 10px;" })
+
+                                    <button id="btnAsignarUsuario" class="btn btn-default color-paleta2" style="font-size: 12px;" onclick="asignarUsuarioEmpresa(@Model.IdOferta)">Asignar usuario</button>
+                                    @*<span>
+                                    &nbsp;&nbsp;&nbsp;
+
+                                </span>*@
+                                }
+                                else
+                                {
+                                    @Html.DropDownListFor(m => m.UsuarioPropietarioEmpresa, null, null, htmlAttributes: new { @class = "form-control", @disabled = "disabled", @title = "No tiene permisos para modificar este campo" })
+                                    @Html.HiddenFor(m => m.UsuarioPropietarioEmpresa) //Se crea un hidden que contiene el valor del Usuario.
+                                }
+                            }
+                        }
+                    </td>
+                    <td style="width:10px; border-right: 1px solid #DDDDDD;"></td>
+                    <td style="width:20px;"></td>
+                    <td style="vertical-align:top;">
+                        @if (Model.EstadoOferta == "OFERFI")
+                        {
+                            <button class="btn btn-default color-paleta2" style="font-size: 12px;" disabled>Oferta cerrada</button>
+                        }
+                        else
+                        {
+                            <button id="btnCerrarOferta" class="btn btn-default color-paleta2" style="font-size: 12px;" onclick="cerrarOferta(@Model.IdOferta)">Cerrar oferta</button>
+                        }
+                        
+                    </td>
+
+                </tr>
+
+            </table>
+            <br />
+        </div>
+    </div>
+</div>
+
+<script>
+
+    function asignarUsuarioEmpresa(idOferta)
+    {
+        //Se obtiene el valor del combo:
+        var usuarioEmpresa = $('#UsuarioPropietarioEmpresa').val();
+        
+        $('#btnAsignarUsuario').text("Procesando ...");
+        $('#btnAsignarUsuario').css("disabled","disabled");
+
+        //Se crea el URL
+        var url = '@Url.Action("AsignarUsuario", "Oferta")' + "?idOferta="  + idOferta + '&usuario=' + usuarioEmpresa; //Se envía el IdOferta y el estado
+
+        $.get(url, function (data) {
+                           
+        }).error(function (err)  
+        {
+            alert("Ha ocurrido un error al asignar al usuario, por favor vuelta a intentarlo.");
+            //Se muestran los errores en la consola.
+            console.log(err);            
+        }).complete(function () {
+            $('#btnAsignarUsuario').css("enabled", "enabled");
+            $('#btnAsignarUsuario').text("Asignar usuario");
+        }).then(function () {
+            alert("El usuario ha sido asignado con éxito");
+        });
+    }
+
+    function cerrarOferta(idOferta) {
+       
+        if (confirm('¿Está seguro de cerrar la oferta?')) {
+
+            //Se muestra la etiqueta de procesando en el botón.
+            $('#btnCerrarOferta').text("Procesando ...");
+            $('#btnCerrarOferta').css("disabled", "disabled");
+
+            var url = '@Url.Action("FinalizarOferta", "Oferta")' + "?idOferta=" + idOferta + '&estado=OFERFI'; //Se envía el estado Fin de recepción de CV's.
+
+            $.get(url, function (data) {
+               
+                $('#btnCerrarOferta').attr("disabled", "disabled"); //Se deshabilita el botón.
+
+            }).error(function (err)  //Se muestran los errores en la consola.
+            {
+                console.log(err);
+                //alert(err);
+            }).complete(function () {
+                $('#btnCerrarOferta').text("Oferta cerrada");
+            }).then(function () {
+                alert("La oferta ha sido cerrada");
+            });;
+        }
+    }
+</script>

@@ -50,7 +50,17 @@
                 {
                     <div class="row">
                         <div class="col-md-12">
-                            <button type="button" id="BotonPostularAhora" class="btn btn-default color-paleta3" style="color:white">¡Postular ahora!</button>
+
+                            @if (Model.EstadoOferta == "OFERCV")
+                            {
+                                <button type="button" class="btn btn-default color-paleta3" disabled>La oferta ya no acepta postulaciones</button>
+                            }
+                            else
+                            {
+                                <button type="button" id="BotonPostularAhora" class="btn btn-default color-paleta3" style="color:white">¡Postular ahora!</button>
+                            }
+
+                            
 
                         </div>
                     </div>

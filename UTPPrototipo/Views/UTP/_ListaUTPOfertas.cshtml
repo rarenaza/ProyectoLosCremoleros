@@ -1,8 +1,10 @@
 ﻿@using UTPPrototipo.Common
+@using UTPPrototipo.Utiles
 
 @model IEnumerable<UTP.PortalEmpleabilidad.Modelo.OfertaUTP>
 
 @using UTP.PortalEmpleabilidad.Modelo
+
 @{
     <!--Se obtiene los datos para la paginación.-->
     Paginacion paginacion = (Paginacion)ViewBag.Paginacion;
@@ -67,6 +69,8 @@
             @Html.ActionLink(@item.CargoOfrecido, "VerDetalleOferta", new { id = item.IdOferta }, htmlAttributes: new { target = "_blank" })
             <br />
             @Html.ActionLink("Vista empresa", "Oferta", "Empresa", new { idOferta = item.IdOferta, pantalla = "UTP" }, htmlAttributes: new { target = "_blank" })
+            <br />
+            @Html.ActionLink(" ", "VerOferta", "Home", new { crypt = Helper.Encriptar(item.IdOferta.ToString()) }, htmlAttributes: new { @class = "fa fa-external-link", target = "_blank", title = "Link externo" })
         </div>
         <div class="col-sm-1">
             @item.NumeroVacantes
