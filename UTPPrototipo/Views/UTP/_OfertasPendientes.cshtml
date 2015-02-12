@@ -38,8 +38,8 @@
   
 }
 
-<div>
-    <!--Paginación-->
+@*<div>
+   
     <nav class="navbar-right">
         <ul class="pagination">
             @{
@@ -57,6 +57,110 @@
             }
         </ul>
     </nav>
-</div>
-        
+</div>*@
+        <nav class="navbar-right">
+    <ul class="pagination">
+
+
+        @{
+            //La paginación avanzada no existe para la búsqueda de oferta. Se deja el bloque de paginación avanzada para efectos de desarrollo futuro de esa funcionalidad.
+            if (paginacion.NroPaginaActual > 1)
+            {
+                int i1 = paginacion.NroPaginaActual - 5;
+                if (i1 < 1) { i1 = 1; }
+                <li>
+                    @if (ViewBag.TipoBusqueda == "Simple")
+                    {
+                        <a href="#" onclick="buscarOfertasPendientes('1');">
+                            <span aria-hidden="true" class="glyphicon glyphicon-step-backward"></span>
+                        </a>
+                    }
+                    else
+                    {
+                        <a href="#" onclick="buscarOfertasPendientesAvanzada('1');">
+                            <span aria-hidden="true" class="glyphicon glyphicon-step-backward"></span>
+                        </a>
+                    }
+                </li>
+                if (i1 > 1)
+                {
+                    <li>
+                        @if (ViewBag.TipoBusqueda == "Simple")
+                        {
+                            <a href="#" onclick="buscarOfertasPendientes('@i1');">
+                                <span aria-hidden="true" class="glyphicon glyphicon-backward"></span>
+                            </a>
+                        }
+                        else
+                        {
+                            <a href="#" onclick="buscarOfertasPendientesAvanzada('@i1');">
+                                <span aria-hidden="true" class="glyphicon glyphicon-backward"></span>
+                            </a>
+                        }
+                    </li>
+                }
+            }
+
+            for (int i = (paginacion.NroPaginaActual - 2); (i <= paginacion.TotalPaginas && i <= (paginacion.NroPaginaActual + 2)); i++)
+            {
+                if (i == paginacion.NroPaginaActual)
+                {
+                    <li class="active"><a href="#">@i <span class="sr-only"></span></a></li>
+                }
+                else
+                {
+                    if (i > 0)
+                    {
+                        if (ViewBag.TipoBusqueda == "Simple")
+                        {
+                            <li><a href="#" onclick="buscarOfertasPendientes('@i');">@i</a></li>
+                        }
+                        else
+                        {
+                            <li><a href="#" onclick="buscarOfertasPendientesAvanzada('@i');">@i</a></li>
+                        }
+                    }
+                }
+            }
+            if (paginacion.NroPaginaActual < paginacion.TotalPaginas)
+            {
+                int i2 = paginacion.NroPaginaActual + 5;
+                if (i2 > paginacion.TotalPaginas) { i2 = paginacion.TotalPaginas; }
+                if (i2 < paginacion.TotalPaginas)
+                {
+                    <li>
+                        @if (ViewBag.TipoBusqueda == "Simple")
+                        {
+                            <a href="#" onclick="buscarOfertasPendientes('@i2');">
+                                <span aria-hidden="true" class="glyphicon glyphicon-forward"></span>
+                            </a>
+                        }
+                        else
+                        {
+                            <a href="#" onclick="buscarOfertasPendientesAvanzada('@i2');">
+                                <span aria-hidden="true" class="glyphicon glyphicon-forward"></span>
+                            </a>
+                        }
+                    </li>
+                }
+                <li>
+                    @if (ViewBag.TipoBusqueda == "Simple")
+                    {
+                        <a href="#" onclick="buscarOfertasPendientes('@paginacion.TotalPaginas');">
+                            <span aria-hidden="true" class="glyphicon glyphicon-step-forward"></span>
+                        </a>
+                    }
+                    else
+                    {
+                        <a href="#" onclick="buscarOfertasPendientesAvanzada('@paginacion.TotalPaginas');">
+                            <span aria-hidden="true" class="glyphicon glyphicon-step-forward"></span>
+                        </a>
+                    }
+                </li>
+            }
+        }
+
+    </ul>
+
+</nav>
 <hr />
