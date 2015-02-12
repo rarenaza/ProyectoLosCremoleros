@@ -147,6 +147,7 @@ namespace UTPPrototipo.Controllers
                 lnOfertaEmpresa.Actualizar(oferta);
 
                 //1. Mostrar mensaje de éxito.
+                TempData["MsjExitoEditarOferta"] = "La oferta '" + oferta.CargoOfrecido + "' ha sido guardada con éxito.";
 
                 //2. Redireccionar a la lista.
                 return RedirectToAction("Publicacion");

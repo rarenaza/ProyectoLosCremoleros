@@ -39,9 +39,11 @@ namespace UTP.PortalEmpleabilidad.Modelo
         //[Required(ErrorMessage = "Falta el mes de inicio de estudio")]
         //[StringLength(2, MinimumLength = 1, ErrorMessage = "Este campo sólo maximo 2 digitos.")]
         public int FechaInicioMes { get; set; }
+        
         //[Required(ErrorMessage = "Falta el año de inicio de estudio")]
         //[StringLength(4, MinimumLength = 4, ErrorMessage = "Este campo sólo acepta 4 digitos.")]
         //[RegularExpression(@"[0-9]+", ErrorMessage = "Este campo sólo acepta años con 4 numeros.")]
+        
         public int FechaInicioAno { get; set; }
         public int? FechaFinMes { get; set; }
         //[StringLength(4, MinimumLength = 4, ErrorMessage = "Este campo sólo acepta 4 digitos.")]
