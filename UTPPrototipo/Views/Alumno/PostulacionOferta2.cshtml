@@ -40,7 +40,7 @@
                             <br /><span class="fuente-pequeña">
                                 @if (string.IsNullOrEmpty(Model.Oferta.SitioWeb) == false)
                                 {
-                            @Html.ActionLink(Model.Oferta.SitioWeb, null, null, "http", Model.Oferta.SitioWeb, null, null, null)
+                            <a href="@Model.Oferta.SitioWeb">@Model.Oferta.SitioWeb</a>
                                 }
 
 
