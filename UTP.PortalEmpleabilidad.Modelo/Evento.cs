@@ -78,9 +78,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
 
    public DateTime FechaModificacion{get;set;}
 
-   
-
-
+ 
    public string NombreComercial { get; set; }
 
    public DateTime FechaInscripcion { get; set; }
@@ -96,7 +94,9 @@ namespace UTP.PortalEmpleabilidad.Modelo
    public string ValorDireccionPais { get; set; }
    public int IdEventoAsistente { get; set; }
 
-
+   public string TextoDepartamento { get; set; }
+   public string TextoCiudad { get; set; }
+   public string TextDistrito { get; set; }
    public Evento()
    {
 

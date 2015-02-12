@@ -20,7 +20,9 @@
 
 {
     @Html.AntiForgeryToken()
-
+    @Html.HiddenFor(model => Model.TextoDepartamento)
+    @Html.HiddenFor(model => Model.TextoCiudad)
+    @Html.HiddenFor(model => Model.TextDistrito)
 
     <div class="row">
         <div class="col-sm-6" style="border-right:solid;border-color:rgb(220, 220, 220);border-width:1px;">
@@ -116,8 +118,8 @@
                     <div class="input-group">
                         <span class="input-group-addon">Departa-<br />mento</span>
                         @*<input type="text" class="form-control" placeholder="Departamento del Evento">*@
-                        @Html.TextBoxFor(model => model.DireccionRegion, new { @class = "form-control", rows = "3", @placeholder = "Departamento del Evento" })
-                        
+                       @* @Html.TextBoxFor(model => model.DireccionRegion, new { @class = "form-control", rows = "3", @placeholder = "Departamento del Evento" })*@
+                        @Html.DropDownList("DireccionRegion", ViewData["Departamento"] as List<SelectListItem>, "-Seleccione-", new { @class = "form-control", @id = "DireccionDepartamentoLocacion" })
                     </div>@Html.ValidationMessageFor(model => model.DireccionRegion, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -126,8 +128,8 @@
                     <div class="input-group">
                         <span class="input-group-addon">Ciudad</span>
                         @*<input type="text" class="form-control" placeholder="Ciudad del Evento">*@
-                        @Html.TextBoxFor(model => model.DireccionCiudad, new { @class = "form-control", rows = "3", @placeholder = "Ciudad del Evento" })
-                        
+                        @*@Html.TextBoxFor(model => model.DireccionCiudad, new { @class = "form-control", rows = "3", @placeholder = "Ciudad del Evento" })*@
+                        @Html.DropDownList("DireccionCiudad", new SelectList(string.Empty, "Value", "Text"), "-Seleccione-", new { @class = "form-control", @id = "DireccionCiudadLocacion" })
                     </div>@Html.ValidationMessageFor(model => model.DireccionCiudad, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -136,7 +138,8 @@
                     <div class="input-group">
                         <span class="input-group-addon">Distrito</span>
                         @*<input type="text" class="form-control" placeholder="Distrito del Evento">*@
-                        @Html.TextBoxFor(model => model.DireccionDistrito, new { @class = "form-control", rows = "3", @placeholder = "Distrito del Evento" })
+                        @Html.DropDownList("DireccionDistrito", new SelectList(string.Empty, "Value", "Text"), "-Seleccione-", new { @class = "form-control", @id = "DireccionDistritoLocacion" })
+                        @*@Html.TextBoxFor(model => model.DireccionDistrito, new { @class = "form-control", rows = "3", @placeholder = "Distrito del Evento" })*@
                         
                     </div>@Html.ValidationMessageFor(model => model.DireccionDistrito, "", new { @class = "text-danger" })
                 </div>
@@ -249,4 +252,133 @@
 </script>
 
 
+<script type="text/javascript">
+    $(document).ready(function () {
 
+        $("#DireccionDepartamentoLocacion").change(function () {
+            $("#DireccionCiudadLocacion").empty();
+
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetStateProvincia","Home")', // we are calling json method
+
+                dataType: 'json',
+
+                data: { IDListaValorPadre: $("#DireccionDepartamentoLocacion").val() },
+
+                // here we are get value of selected country and passing same value
+                //as inputto json method GetStates.
+
+                success: function (states) {
+                    // states contains the JSON formatted list
+                    // of states passed from the controller
+
+                    $("#DireccionCiudadLocacion").append('<option selected value="0">Seleccione</option>');
+
+                    //$("#Distrito").empty();
+                    //$("#Distrito").append('<option selected value="0">Seleccione</option>');
+
+                    $.each(states, function (i, state) {
+                        $("#DireccionCiudadLocacion").append('<option value="' + state.Value + '">' +
+                         state.Text + '</option>');
+                        // here we are adding option for States
+
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve states.' + ex);
+                }
+            });
+            return false;
+
+
+        })
+    });
+</script>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#DireccionCiudadLocacion").change(function () {
+            $("#DireccionDistritoLocacion").empty();
+
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetStateProvincia", "Home")', // we are calling json method
+
+                dataType: 'json',
+
+                data: { IDListaValorPadre: $("#DireccionCiudadLocacion").val() },
+
+                // here we are get value of selected country and passing same value
+                //as inputto json method GetStates.
+
+                success: function (states) {
+                    // states contains the JSON formatted list
+                    // of states passed from the controller
+
+                    $("#DireccionDistritoLocacion").append('<option selected value="0">Seleccione</option>');
+
+                    //$("#Distrito").empty();
+                    //$("#Distrito").append('<option selected value="0">Seleccione</option>');
+
+                    $.each(states, function (i, state) {
+                        $("#DireccionDistritoLocacion").append('<option value="' + state.Value + '">' +
+                         state.Text + '</option>');
+                        // here we are adding option for States
+
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve states.' + ex);
+                }
+            });
+            return false;
+
+
+        })
+    });
+</script>
+
+<script>
+    //Este bloque sólo debe ir una vez, esto quiere decir que todo lo de adentro se ejecuta cuando toda la pagina se renderiza o muestra al c liente.
+    $(document).ready(function () {
+
+        //Combo de departamento.
+        $('#DireccionDepartamentoLocacion').on('change', function () {
+
+            //Se obtiene el texto del combo.
+            var TextDepartamento = $("#DireccionDepartamentoLocacion option:selected").text();
+
+            //Se guarda el valor en el hidden TextoDepartamento.
+            $('#TextoDepartamento').val(TextDepartamento);
+        });
+
+
+
+        //Combo de provincia.
+        $('#DireccionCiudadLocacion').on('change', function () {
+
+            //Se obtiene el texto del combo.
+            var TextCiudad = $("#DireccionCiudadLocacion option:selected").text();
+
+            //Se guarda el valor en el hidden TextoDepartamento.
+            $('#TextoCiudad').val(TextCiudad);
+        });
+
+        //combo de distrito.
+        $('#DireccionDistritoLocacion').on('change', function () {
+
+            //Se obtiene el texto del combo.
+            var TextDistrito = $("#DireccionDistritoLocacion option:selected").text();
+
+            //Se guarda el valor en el hidden TextoDepartamento.
+            $('#TextDistrito').val(TextDistrito);
+        });
+
+    });
+
+</script>

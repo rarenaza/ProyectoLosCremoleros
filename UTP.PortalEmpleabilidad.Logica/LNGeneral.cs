@@ -35,7 +35,8 @@ namespace UTP.PortalEmpleabilidad.Logica
         {
             return adGeneral.Home_Departamento(IDLista);
         }
-    
+
+     
 
 
         public List<Hunting> EmpresaHuntingBuscarSimple(string nombre, int nroPagina, int filasPorPagina)

@@ -1218,10 +1218,11 @@ namespace UTPPrototipo.Controllers
             }
             ViewData["ListaEmpresa"] = empresa;
 
+            LNGeneral lnGeneral = new LNGeneral();
+
             Evento evento = new Evento();
-
-
-            DataTable dtResultado = lnEventos.EVENTO_OBTENERPORID(Convert.ToInt32(Id));
+                                        
+             DataTable dtResultado = lnEventos.EVENTO_OBTENERPORID(Convert.ToInt32(Id));
 
             if (dtResultado.Rows.Count > 0)
             {
@@ -1237,7 +1238,8 @@ namespace UTPPrototipo.Controllers
                 evento.DireccionCiudad      = Convert.ToString(dtResultado.Rows[0]["DireccionCiudad"]);
                 evento.DireccionDistrito    = Convert.ToString(dtResultado.Rows[0]["DireccionDistrito"]);
                 evento.DireccionEvento      = Convert.ToString(dtResultado.Rows[0]["DireccionEvento"]);
-                evento.AsistentesEsperados  = Convert.ToInt32(dtResultado.Rows[0]["AsistentesEsperados"]);
+
+                evento.AsistentesEsperados = Convert.ToInt32(dtResultado.Rows[0]["AsistentesEsperados"] == DBNull.Value ? 0 : dtResultado.Rows[0]["AsistentesEsperados"]);
                 evento.RegistraAlumnos      = Convert.ToBoolean(dtResultado.Rows[0]["RegistraAlumnos"]);
                 evento.RegistraUsuariosEmpresa = Convert.ToBoolean(dtResultado.Rows[0]["RegistraUsuariosEmpresa"] == DBNull.Value ? 0 : dtResultado.Rows[0]["RegistraUsuariosEmpresa"]);
                 evento.RegistraPublicoEnGeneral = Convert.ToBoolean(dtResultado.Rows[0]["RegistraPublicoEnGeneral"] == DBNull.Value ? 0 : dtResultado.Rows[0]["RegistraPublicoEnGeneral"]);
@@ -1253,7 +1255,17 @@ namespace UTPPrototipo.Controllers
                 
                 
             }
+            DataTable dtDepartamento = lnGeneral.Home_Departamento(Constantes.IDLISTA_Departamento);
+            List<SelectListItem> li = new List<SelectListItem>();
+            for (int i = 0; i <= dtDepartamento.Rows.Count - 1; i++)
+            {
+                string nombre = dtDepartamento.Rows[i]["Valor"].ToString();
+                string valor = dtDepartamento.Rows[i]["IdListaValor"].ToString();
+                SelectListItem item = new SelectListItem() { Text = nombre, Value = valor };
 
+                li.Add(item);
+            }
+            ViewData["Departamento"] = li;
                      
             return View(evento);
         }
@@ -1343,8 +1355,21 @@ namespace UTPPrototipo.Controllers
 
         }
 
-      
 
+        //public JsonResult GetStateProvincia(string IDListaValorPadre)
+        //{
+        //    LNGeneral lnGeneral = new LNGeneral();
+        //    DataTable dtProvincia = lnGeneral.Home_ListarDistritos(IDListaValorPadre);
+        //    List<SelectListItem> li = new List<SelectListItem>();
+        //    for (int i = 0; i <= dtProvincia.Rows.Count - 1; i++)
+        //    {
+        //        string nombre = dtProvincia.Rows[i]["Valor"].ToString();
+        //        string valor = dtProvincia.Rows[i]["IdListaValor"].ToString();
+        //        SelectListItem item = new SelectListItem() { Text = nombre, Value = valor };
+        //        li.Add(item);
+        //    }
+        //    return Json(new SelectList(li, "Value", "Text"));
+        //}
  
         public ActionResult Evento()
         {
@@ -1407,6 +1432,23 @@ namespace UTPPrototipo.Controllers
             ViewData["ListaEmpresa"] = empresa;
 
 
+            LNGeneral lnGeneral = new LNGeneral();
+
+            DataTable dtDepartamento = lnGeneral.Home_Departamento(Constantes.IDLISTA_Departamento);
+            List<SelectListItem> li = new List<SelectListItem>();
+            for (int i = 0; i <= dtDepartamento.Rows.Count - 1; i++)
+            {
+                string nombre = dtDepartamento.Rows[i]["Valor"].ToString();
+                string valor = dtDepartamento.Rows[i]["IdListaValor"].ToString();
+                SelectListItem item = new SelectListItem() { Text = nombre, Value = valor };
+
+                li.Add(item);
+            }
+            ViewData["Departamento"] = li;
+
+
+
+
 
             return View();
             
@@ -1425,7 +1467,9 @@ namespace UTPPrototipo.Controllers
 
             evento.CreadoPor = ticketUtp.Usuario;
 
-
+            evento.DireccionDistrito=evento.TextDistrito ;
+            evento.DireccionCiudad=evento.TextoCiudad ;
+            evento.DireccionRegion=evento.TextoDepartamento;
 
             if (lnEventos.Evento_insertar(evento) == true)
             {
@@ -1496,6 +1540,22 @@ namespace UTPPrototipo.Controllers
                 }
                 ViewData["ListaEmpresa"] = empresa;
 
+
+                LNGeneral lnGeneral = new LNGeneral();
+
+                //DataTable dtDepartamento = lnGeneral.Home_Departamento(Constantes.IDLISTA_Departamento);
+                //List<SelectListItem> li = new List<SelectListItem>();
+                //for (int i = 0; i <= dtDepartamento.Rows.Count - 1; i++)
+                //{
+                //    string nombre = dtDepartamento.Rows[i]["Valor"].ToString();
+                //    string valor = dtDepartamento.Rows[i]["IdListaValor"].ToString();
+                //    SelectListItem item = new SelectListItem() { Text = nombre, Value = valor };
+
+                //    li.Add(item);
+                //}
+                //ViewData["Departamento"] = li;
+
+                ViewBag.DireccionRegion = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_Departamento), "IdListaValor", "Valor", evento.DireccionRegion);
 
                 return View(evento);
                 //return PartialView(evento);
@@ -1623,8 +1683,8 @@ namespace UTPPrototipo.Controllers
                 vistaEvento.DireccionCiudad = Convert.ToString(dtResultado.Rows[0]["DireccionCiudad"]);
                 vistaEvento.DireccionDistrito = Convert.ToString(dtResultado.Rows[0]["DireccionDistrito"]);
                 vistaEvento.DireccionEvento = Convert.ToString(dtResultado.Rows[0]["DireccionEvento"]);
-                vistaEvento.AsistentesEsperados = Convert.ToInt32(dtResultado.Rows[0]["AsistentesEsperados"]);
-                vistaEvento.RegistraAlumnos = Convert.ToBoolean(dtResultado.Rows[0]["RegistraAlumnos"]);
+                vistaEvento.AsistentesEsperados = Convert.ToInt32(dtResultado.Rows[0]["AsistentesEsperados"] == DBNull.Value ? 0 : dtResultado.Rows[0]["AsistentesEsperados"]);
+                vistaEvento.RegistraAlumnos = Convert.ToBoolean(dtResultado.Rows[0]["RegistraAlumnos"] == DBNull.Value ? 0 : dtResultado.Rows[0]["RegistraAlumnos"]);
                 vistaEvento.RegistraUsuariosEmpresa = Convert.ToBoolean(dtResultado.Rows[0]["RegistraUsuariosEmpresa"] == DBNull.Value ? 0 : dtResultado.Rows[0]["RegistraUsuariosEmpresa"]);
                 vistaEvento.RegistraPublicoEnGeneral = Convert.ToBoolean(dtResultado.Rows[0]["RegistraPublicoEnGeneral"] == DBNull.Value ? 0 : dtResultado.Rows[0]["RegistraPublicoEnGeneral"]);
                 vistaEvento.EstadoEvento = Convert.ToString(dtResultado.Rows[0]["EstadoEvento"]);
@@ -1666,8 +1726,8 @@ namespace UTPPrototipo.Controllers
                 vistaEvento.DireccionCiudad = Convert.ToString(dtResultado.Rows[0]["DireccionCiudad"]);
                 vistaEvento.DireccionDistrito = Convert.ToString(dtResultado.Rows[0]["DireccionDistrito"]);
                 vistaEvento.DireccionEvento = Convert.ToString(dtResultado.Rows[0]["DireccionEvento"]);
-                vistaEvento.AsistentesEsperados = Convert.ToInt32(dtResultado.Rows[0]["AsistentesEsperados"]);
-                vistaEvento.RegistraAlumnos = Convert.ToBoolean(dtResultado.Rows[0]["RegistraAlumnos"]);
+                vistaEvento.AsistentesEsperados = Convert.ToInt32(dtResultado.Rows[0]["AsistentesEsperados"] == DBNull.Value ? 0 : dtResultado.Rows[0]["AsistentesEsperados"]);
+                vistaEvento.RegistraAlumnos = Convert.ToBoolean(dtResultado.Rows[0]["RegistraAlumnos"] == DBNull.Value ? 0 : dtResultado.Rows[0]["RegistraAlumnos"]);
                 vistaEvento.RegistraUsuariosEmpresa = Convert.ToBoolean(dtResultado.Rows[0]["RegistraUsuariosEmpresa"] == DBNull.Value ? 0 : dtResultado.Rows[0]["RegistraUsuariosEmpresa"]);
                 vistaEvento.RegistraPublicoEnGeneral = Convert.ToBoolean(dtResultado.Rows[0]["RegistraPublicoEnGeneral"] == DBNull.Value ? 0 : dtResultado.Rows[0]["RegistraPublicoEnGeneral"]);
                 vistaEvento.EstadoEvento = Convert.ToString(dtResultado.Rows[0]["EstadoEvento"]);
