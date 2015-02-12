@@ -18,6 +18,9 @@ namespace UTPPrototipo
             //Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("es-PE");
             //Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("es-PE");
 
+            ClientDataTypeModelValidatorProvider.ResourceClassKey = "Mensajes";
+            DefaultModelBinder.ResourceClassKey = "Mensajes";
+
             Thread.CurrentThread.CurrentCulture =  CultureInfo.CreateSpecificCulture("es-PE");
             Thread.CurrentThread.CurrentUICulture = new  CultureInfo("es-PE");
 
