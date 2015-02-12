@@ -292,7 +292,7 @@ namespace UTPPrototipo.Controllers
             if (residuo > 0) paginacion.TotalPaginas += 1;
 
             ViewBag.Paginacion = paginacion;
-
+            ViewBag.TipoBusqueda = "Simple";
             return PartialView("_ListaUtpEvento", listaEjemplo);
             //return View(listaEjemplo);
 
@@ -1043,7 +1043,7 @@ namespace UTPPrototipo.Controllers
             LNGeneral lngeneral = new LNGeneral();
             Convenio convenio = lnUtp.UTP_ObtenerConvenio(idconvenio);
             ViewBag.TipoTrabajo = new SelectList(lngeneral.ObtenerListaValor(29), "IdListaValor", "Valor",convenio.TipoTrabajo);
-            ViewBag.FuenteConvenio = new SelectList(lngeneral.ObtenerListaValor(51), "IdListaValor", "Valor",convenio.FuenteConvenio);
+            ViewBag.FuenteConvenio = new SelectList(lngeneral.ObtenerListaValor(41), "IdListaValor", "Valor",convenio.FuenteConvenio);
             ViewBag.IdExperienciaCargo = new SelectList(convenio.Experiencias, "IdExperienciaCargo", "Experiencia",convenio.IdExperienciaCargo);
             return View(convenio);
         }
@@ -1058,7 +1058,7 @@ namespace UTPPrototipo.Controllers
             lnUtp.UTP_ConvenioActualizar(convenio);
             Convenio convenioa = lnUtp.UTP_ObtenerConvenio(convenio.IdConvenio);
             ViewBag.TipoTrabajo = new SelectList(lngeneral.ObtenerListaValor(29), "IdListaValor", "Valor", convenioa.TipoTrabajo);
-            ViewBag.FuenteConvenio = new SelectList(lngeneral.ObtenerListaValor(51), "IdListaValor", "Valor", convenioa.FuenteConvenio);
+            ViewBag.FuenteConvenio = new SelectList(lngeneral.ObtenerListaValor(41), "IdListaValor", "Valor", convenioa.FuenteConvenio);
             
             ViewBag.IdExperienciaCargo = new SelectList(convenioa.Experiencias, "IdExperienciaCargo", "Experiencia", convenioa.IdExperienciaCargo);
             return View(convenioa);
@@ -1229,7 +1229,8 @@ namespace UTPPrototipo.Controllers
                 evento.IdEvento             = Convert.ToInt32(dtResultado.Rows[0]["IdEvento"]);
                 evento.NombreEvento         = Convert.ToString(dtResultado.Rows[0]["NombreEvento"]);
                 evento.DescripcionEvento    = Convert.ToString(dtResultado.Rows[0]["DescripcionEvento"]);
-                evento.FechaEvento          = Convert.ToDateTime(dtResultado.Rows[0]["FechaEvento"]);
+                evento.FechaEvento = Convert.ToDateTime(dtResultado.Rows[0]["FechaEvento"]);
+           
                 evento.FechaEventoTexto     = Convert.ToString(dtResultado.Rows[0]["FechaEventoTexto"]);
                 evento.LugarEvento          = Convert.ToString(dtResultado.Rows[0]["LugarEvento"]);
                 evento.DireccionRegion      = Convert.ToString(dtResultado.Rows[0]["DireccionRegion"]);
@@ -1249,7 +1250,7 @@ namespace UTPPrototipo.Controllers
                 evento.FechaCreacion = Convert.ToDateTime(dtResultado.Rows[0]["FechaCreacion"] == DBNull.Value ? null : dtResultado.Rows[0]["FechaCreacion"]);
                 evento.ModificadoPor = dtResultado.Rows[0]["ModificadoPor"].ToString();
                 evento.FechaModificacion = Convert.ToDateTime(dtResultado.Rows[0]["FechaModificacion"] == DBNull.Value ? null : dtResultado.Rows[0]["FechaModificacion"]);
-      
+                
                 
             }
 
@@ -1595,7 +1596,7 @@ namespace UTPPrototipo.Controllers
             if (residuo > 0) paginacion.TotalPaginas += 1;
 
             ViewBag.Paginacion = paginacion;
-
+            ViewBag.TipoBusqueda = "Simple";
             return PartialView("_OfertasPendientes", listaOfertasPendientes);
 
         }
@@ -1919,7 +1920,7 @@ namespace UTPPrototipo.Controllers
             if (residuo > 0) paginacion.TotalPaginas += 1;
 
             ViewBag.Paginacion = paginacion;
-
+            ViewBag.TipoBusqueda = "Simple";
 
             return PartialView("_EmpresasPendientes", listaEmpresasPendientes);
 

@@ -36,9 +36,12 @@ namespace UTP.PortalEmpleabilidad.Modelo
 
       //public byte []PosterMedianoEvento{get;set;}
       //public byte []PosterChicoEvento{get;set;}
-        [Required(ErrorMessage = "Seleccione Fecha de Evento")]
+        [Required(ErrorMessage = " Fecha de Evento")]
+      
+       //[DataType(DataType.Date)]
+       //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
       public DateTime  FechaEvento { get; set; }
-
+   
       public string FechaEventoTexto { get; set; }
 
        public string DireccionEvento { get; set; }
@@ -101,5 +104,12 @@ namespace UTP.PortalEmpleabilidad.Modelo
    public byte[] LogoEmpresa { get; set; }
    public string ValorDireccionPais { get; set; }
    public int IdEventoAsistente { get; set; }
+
+
+   public Evento()
+   {
+
+          
+        }
     }
 }

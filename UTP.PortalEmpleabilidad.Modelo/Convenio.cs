@@ -42,7 +42,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string CargoOfrecido { get; set; }
         public string AreaEmpresa { get; set; }
         public DateTime? FechaIngreso { get; set; }
-        [Required(ErrorMessage = "Selecciones la Fuente del Convenio")]
+        [Required(ErrorMessage = "Seleccione la Fuente del Convenio")]
         public string FuenteConvenio { get; set; }
         public string Observaciones { get; set; }
         public string CreadoPor { get; set; }
