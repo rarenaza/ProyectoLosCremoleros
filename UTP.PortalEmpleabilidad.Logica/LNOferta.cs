@@ -336,6 +336,10 @@ namespace UTP.PortalEmpleabilidad.Logica
                 oferta.TipoContrato.Valor = Convert.ToString(dsResultado.Tables[0].Rows[0]["TipoContratoDescripcion"]);
 
                 oferta.RemuneracionOfrecida = Convert.ToDecimal(dsResultado.Tables[0].Rows[0]["RemuneracionOfrecida"]);
+
+
+               
+
                 oferta.Horario = Convert.ToString(dsResultado.Tables[0].Rows[0]["Horario"]);
                 oferta.AreaEmpresa = Convert.ToString(dsResultado.Tables[0].Rows[0]["AreaEmpresa"]);
                 oferta.NumeroVacantes = Convert.ToInt32(dsResultado.Tables[0].Rows[0]["NumeroVacantes"]);
@@ -372,10 +376,10 @@ namespace UTP.PortalEmpleabilidad.Logica
             foreach (DataRow filaEstudio in dsResultado.Tables[1].Rows)
             {
                 OfertaEstudio estudio                   = new OfertaEstudio();
-                estudio.IdOfertaEstudio                 = Convert.ToInt32(filaEstudio["IdOfertaEstudio"]);
-                estudio.IdOferta                        = Convert.ToInt32(filaEstudio["IdOfertaEstudio"]);
-                estudio.CicloEstudio                    = Convert.ToInt32(filaEstudio["CicloEstudio"]);
-                estudio.Estudio                         = Convert.ToString(filaEstudio["Estudio"]);
+                estudio.IdOfertaEstudio = Convert.ToInt32(filaEstudio["IdOfertaEstudio"] == System.DBNull.Value ? null : filaEstudio["IdOfertaEstudio"]);
+                estudio.IdOferta = Convert.ToInt32(filaEstudio["IdOfertaEstudio"] == System.DBNull.Value ? null : filaEstudio["IdOfertaEstudio"]);
+                estudio.CicloEstudio = Convert.ToInt32(filaEstudio["CicloEstudio"] == System.DBNull.Value ? null : filaEstudio["CicloEstudio"]);
+                estudio.Estudio = Convert.ToString(filaEstudio["Estudio"] == System.DBNull.Value ? null : filaEstudio["Estudio"]);
                 estudio.TipoDeEstudio.Valor             = Convert.ToString(filaEstudio["TipoDeEstudioDescripcion"]);
                 estudio.EstadoDelEstudio.Valor          = Convert.ToString(filaEstudio["EstadoDelEstudioDescripcion"]);
                 estudio.EstadoOfertaEstudio.Valor       = Convert.ToString(filaEstudio["EstadoOfertaEstudioDescripcion"]);
