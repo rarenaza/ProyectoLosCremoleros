@@ -10,7 +10,7 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="input-group fuente-pequeña">
-                    <span class="input-group-addon">Tipo</span>
+                    <span class="input-group-addon">(*) Tipo</span>
                     @Html.DropDownListFor(m => m.TipoLocacionIdListaValor, null, "-- Especifique tipo Ubicación --", htmlAttributes: new { @class = "form-control" })
                     
                 </div>@Html.ValidationMessageFor(model => model.TipoLocacionIdListaValor, "", new { @class = "text-danger" })
@@ -20,7 +20,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="input-group">
-                    <span class="input-group-addon">Nombre</span>
+                    <span class="input-group-addon">(*) Nombre</span>
                     @*<input type="text" class="form-control" placeholder="Nombre de la Ubicación">*@
                     @Html.Raw(@Html.EditorFor(model => model.NombreLocacion).ToString().Replace("text-box single-line", "form-control"))
                     
@@ -50,7 +50,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="input-group">
-                    <span class="input-group-addon">Dirección</span>
+                    <span class="input-group-addon">(*)<br />Dirección</span>
                     @*<textarea class="form-control" placeholder="Calle y Número de la Ubicación, interior, depto, oficina, urbanización" rows="2"></textarea>*@
                     @Html.Raw(@Html.EditorFor(model => model.Direccion).ToString().Replace("text-box multi-line", "form-control"))
                     
@@ -61,14 +61,14 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="input-group fuente-pequeña">
-                    <span class="input-group-addon">Departa-<br />mento</span>
+                    <span class="input-group-addon">(*) Departa-<br />mento</span>
                     @Html.Raw(@Html.EditorFor(model => model.DireccionDepartamento).ToString().Replace("text-box single-line", "form-control"))
                     
                 </div>@Html.ValidationMessageFor(model => model.DireccionDepartamento, "", new { @class = "text-danger" })
             </div>
             <div class="col-sm-6">
                 <div class="input-group fuente-pequeña">
-                    <span class="input-group-addon">Ciudad</span>
+                    <span class="input-group-addon">(*) Ciudad</span>
                     @Html.Raw(@Html.EditorFor(model => model.DireccionCiudad).ToString().Replace("text-box single-line", "form-control"))
                     
                 </div>@Html.ValidationMessageFor(model => model.DireccionCiudad, "", new { @class = "text-danger" })
@@ -77,7 +77,7 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="input-group fuente-pequeña">
-                    <span class="input-group-addon">Distrito</span>
+                    <span class="input-group-addon">(*)<br />Distrito</span>
                     @Html.Raw(@Html.EditorFor(model => model.DireccionDistrito).ToString().Replace("text-box single-line", "form-control"))
                     
                 </div>@Html.ValidationMessageFor(model => model.DireccionDistrito, "", new { @class = "text-danger" })
@@ -86,7 +86,7 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="input-group fuente-pequeña">
-                    <span class="input-group-addon">Estado</span>
+                    <span class="input-group-addon">(*) Estado</span>
                     @Html.DropDownListFor(m => m.EstadoLocacionIdListaValor, null, "-- Especifique estado --", htmlAttributes: new { @class = "form-control" })
                     
                 </div>@Html.ValidationMessageFor(model => model.EstadoLocacionIdListaValor, "", new { @class = "text-danger" })
