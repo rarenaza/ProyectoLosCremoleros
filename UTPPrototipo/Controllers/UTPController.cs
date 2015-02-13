@@ -3241,7 +3241,29 @@ namespace UTPPrototipo.Controllers
 
 
             ViewBag.MensajeDeError = mensajeDeError;
-            return RedirectToAction("Empresas");
+            //return RedirectToAction("Empresas");
+
+
+
+            LNEmpresaUsuario lnEmpresaUsuario = new LNEmpresaUsuario();
+            List<EmpresaUsuario> lista = lnEmpresaUsuario.ObtenerUsuariosParaUTP(1, Constantes.FILAS_POR_PAGINA);
+
+            //Datos para la paginación.
+            int cantidadTotal = lista.Count() == 0 ? 0 : lista[0].CantidadTotal;
+
+            Paginacion paginacion = new Paginacion();
+            paginacion.NroPaginaActual = 1;
+            paginacion.CantidadTotalResultados = cantidadTotal;
+            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            if (residuo > 0) paginacion.TotalPaginas += 1;
+
+            ViewBag.Paginacion = paginacion;
+            ViewBag.TipoBusqueda = "Simple";
+
+
+            return PartialView("_ResultadoBusquedaEmpresas", lista);
         }
     }
 }

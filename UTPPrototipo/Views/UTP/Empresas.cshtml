@@ -15,8 +15,8 @@
             @{Html.RenderAction("VistaCabeceraUtp", "UTP");}
 
         </div>
-@using (Html.BeginForm())
-{
+@*@using (Html.BeginForm())
+{*@
         <div class="panel-group" id="CriterioBusquedaPostulacion" role="tablist" aria-multiselectable="true">
             <div class="panel panel-default">
                 <div class="panel-heading" role="tab" id="CabeceraColapsaBusqueda" style="padding: 2px 2px 2px 6px;">
@@ -155,9 +155,70 @@
             </div>
 
         </div>
-}
-        @{Html.RenderAction("_EmpresaNuevaModal", "UTP");}
+@*}*@
+
+
+
+
+
+
+      @*  @{Html.RenderAction("_EmpresaNuevaModal", "UTP");}*@
     </div>
+
+
+
+<!--Modal para crear usuario-->>
+<div class="modal" id="divModalConvenioUTPCrear" role="dialog" aria-labelledby="Nuevo Usuario" aria-hidden="true">
+
+    @using (Ajax.BeginForm("_EmpresaNuevaModal", "UTP", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divListaConvenioUTP", OnComplete = "cerrarModal" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="modal-dialog" id="divContenedorConveniosUTPCrear">
+
+        </div>
+    }
+
+</div>
+
+
+<script>
+
+    function EmpresaUTPCrear() {
+        //debugger;
+        //var url = "/UTP/_UsuariosUTPCrear"; //
+        var url = '@Url.Action("_EmpresaNuevaModal", "UTP")'
+
+        $.get(url, function (data) {
+            //alert(data);
+            $('#divContenedorConveniosUTPCrear').html(data);
+            $.validator.unobtrusive.parse('#divContenedorConveniosUTPCrear');
+
+            $('#divModalConvenioUTPCrear').modal('show');
+
+        }).error(function (err) {
+            console.log(err);
+            alert(err);
+        });
+    }
+
+
+    function cerrarModal() {
+
+        //alert('cerrarmodal');
+        //$('#divListaPadre').html('demo');
+        $('.modal.in').modal('hide');
+    }
+
+</script>
+
+
+
+
+
+
+
+
 
    
 @*<script src="~/Scripts/jquery-2.1.1.min.js"></script>*@
