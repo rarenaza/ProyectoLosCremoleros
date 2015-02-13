@@ -988,7 +988,8 @@ namespace UTPPrototipo.Controllers
                 listaEjemplo.Add(vista);
             }
 
-            return View("Convenios", listaEjemplo);
+            //return View("Convenios", listaEjemplo);
+            return PartialView("Convenios", listaEjemplo);
 
         }
         //[ValidateAntiForgeryToken]
