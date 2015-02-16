@@ -4,32 +4,35 @@
     ViewBag.Title = "Evento";
 }
 
-<link href="~/Content/font-awesome.css" rel="stylesheet" />
+@*<link href="~/Content/font-awesome.css" rel="stylesheet" />*@
 <div class="container fuente-pequeña" style="margin-top:2px;">
     <div class="panel-group" id="datos-cuenta" role="tablist" aria-multiselectable="true">
         @{Html.RenderAction("VistaCabeceraUtp", "UTP");}
     </div>
-    <h5>Evento: Feria de Empleos</h5>
+    <h5>Evento</h5>
     <br />
-    <script src="~/Scripts/jquery-ui-1.11.2.js"></script>
+    @*<script src="~/Scripts/jquery-ui-1.11.2.js"></script>
     <script src="~/Scripts/jquery.maskedinput.js"></script>
     <script src="~/Scripts/calendario.js"></script>
-    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>*@
 
 @using (Html.BeginForm())
 
 {
     @Html.AntiForgeryToken()
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
     @Html.HiddenFor(model => Model.TextoDepartamento)
     @Html.HiddenFor(model => Model.TextoCiudad)
     @Html.HiddenFor(model => Model.TextDistrito)
 
+    <span style="font-size:9px;">* Campos obligatorios</span>
     <div class="row">
         <div class="col-sm-6" style="border-right:solid;border-color:rgb(220, 220, 220);border-width:1px;">
             <div class="row">
                 <div class="col-sm-12">
                     <div class="input-group">
-                        <span class="input-group-addon">Nombre<br />Evento</span>
+                        <span class="input-group-addon">* Nombre<br />Evento</span>
                        
                       
                         @Html.TextBoxFor(model => model.NombreEvento, new { @class = "form-control", rows = "3", @placeholder = "Nombre del Evento" })
@@ -42,7 +45,7 @@
  
                 <div class="col-sm-6">
                     <div class="input-group">
-                        <span class="input-group-addon">Estado</span>
+                        <span class="input-group-addon">* Estado</span>
                         @Html.DropDownList("EstadoEvento", ViewData["ListaEstadoEvento"] as List<SelectListItem>, "- Seleccione Estado -", new { @class = "form-control" })
                     
                     </div>@Html.ValidationMessageFor(model => model.EstadoEvento, "", new { @class = "text-danger" })
@@ -53,7 +56,7 @@
 
                 <div class="col-sm-6">
                     <div class="input-group">
-                        <span class="input-group-addon">Tipo</span>
+                        <span class="input-group-addon">* Tipo</span>
                         @Html.DropDownList("TipoEvento", ViewData["ListaTipoEvento"] as List<SelectListItem>, "- Seleccione Tipo Evento -", new { @class = "form-control" })
                    
                      </div>@Html.ValidationMessageFor(model => model.TipoEvento, "", new { @class = "text-danger" })
@@ -86,17 +89,14 @@
                     <div class="input-group">
                         <span class="input-group-addon">Fecha <br />Inicio</span>
                         @*<input type="text" class="form-control" placeholder="Fecha de Inicio (dd/mm/aaaa)">*@
-                       @Html.TextBoxFor(model => model.FechaEvento, new { @class = "form-control", @placeholder = "Fecha de Inicio (dd/mm/aaaa)", @Value = System.DateTime.Now })
-
-                        
-                    </div>@Html.ValidationMessageFor(model => model.FechaEvento, "", new { @class = "text-danger" })
-                 
+                       @Html.TextBoxFor(model => model.FechaEvento, new { @class = "form-control", @placeholder = "Fecha de Inicio (dd/mm/aaaa)", @Value = System.DateTime.Now.ToString("d") })                        
+                    </div>@Html.ValidationMessageFor(model => model.FechaEvento, "", new { @class = "text-danger" })                 
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-12">
                     <div class="input-group">
-                        <span class="input-group-addon">Describa<br />Fecha</span>
+                        <span class="input-group-addon">* Describa<br />Fecha</span>
                         @*<input type="text" class="form-control" placeholder="Fecha del Evento. Ej: Lunes 27 de Enero del 2014, de 8 a 9 de la Noche">*@
                         @Html.TextBoxFor(model => model.FechaEventoTexto, new { @class = "form-control", rows = "3", @placeholder = "Fecha del Evento. Ej: Lunes 27 de Enero del 2014, de 8 a 9 de la Noche" })
                         
@@ -106,7 +106,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="input-group">
-                        <span class="input-group-addon">Lugar</span>
+                        <span class="input-group-addon">* Lugar</span>
                        @* <input type="text" class="form-control" placeholder="Describa el Lugar del Evento. Ej: Centro de Convenciones CLARO">*@
                         @Html.TextBoxFor(model => model.LugarEvento, new { @class = "form-control", rows = "3", @placeholder = "Describa el Lugar del Evento. Ej: Centro de Convenciones CLARO" })
                         
@@ -116,20 +116,22 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="input-group">
-                        <span class="input-group-addon">Departa-<br />mento</span>
+                        <span class="input-group-addon">* Departa-<br />mento</span>
                         @*<input type="text" class="form-control" placeholder="Departamento del Evento">*@
                        @* @Html.TextBoxFor(model => model.DireccionRegion, new { @class = "form-control", rows = "3", @placeholder = "Departamento del Evento" })*@
-                        @Html.DropDownList("DireccionRegion", ViewData["Departamento"] as List<SelectListItem>, "-Seleccione-", new { @class = "form-control", @id = "DireccionDepartamentoLocacion" })
+                        @*@Html.DropDownList("DireccionRegion", ViewData["Departamento"] as List<SelectListItem>, "-Seleccione-", new { @class = "form-control", @id = "DireccionDepartamentoLocacion" })*@                        
+                        @Html.DropDownListFor(m => m.DireccionRegion, null, "Seleccione", htmlAttributes: new { @class = "form-control", @id = "DireccionDepartamentoLocacion" })
                     </div>@Html.ValidationMessageFor(model => model.DireccionRegion, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-6">
                     <div class="input-group">
-                        <span class="input-group-addon">Ciudad</span>
+                        <span class="input-group-addon">* Ciudad</span>
                         @*<input type="text" class="form-control" placeholder="Ciudad del Evento">*@
                         @*@Html.TextBoxFor(model => model.DireccionCiudad, new { @class = "form-control", rows = "3", @placeholder = "Ciudad del Evento" })*@
-                        @Html.DropDownList("DireccionCiudad", new SelectList(string.Empty, "Value", "Text"), "-Seleccione-", new { @class = "form-control", @id = "DireccionCiudadLocacion" })
+                        @*@Html.DropDownList("DireccionCiudad", new SelectList(string.Empty, "Value", "Text"), "-Seleccione-", new { @class = "form-control", @id = "DireccionCiudadLocacion" })*@
+                        @Html.DropDownListFor(m => m.DireccionCiudad, null, "Seleccione", htmlAttributes: new { @class = "form-control", @id = "DireccionCiudadLocacion" })
                     </div>@Html.ValidationMessageFor(model => model.DireccionCiudad, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -205,6 +207,8 @@
                 </div>*@
                 <div class="col-sm-12" style="text-align:right;">
                     <button class="btn btn-default color-paleta5" type="submit"  value=" guardar" >Guardar</button>
+                    
+                    
                     @*<button class="btn btn-default color-paleta5" type="submit" onclick="mostrarMensaje();">Guardar</button>*@
                    
                 </div>
@@ -222,123 +226,84 @@
 }
 </div>
 
-        <script>
-
-            $(document).ready(function () {
-                $("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta3 color-paleta4 color-paleta6 color-paleta7 color-paleta8").addClass("color-paleta5");
-
-                checkSupportForInputTypeDate();
-                $("#FechaEvento").datepicker({ dateFormat: 'dd/mm/yy' });
-              
-            });
-
-
-        
-
-
-        </script>
-
-
-
-
-
 <script>
+
+    $(document).ready(function () {
+       
+        //Se coloca el estilo del tab.
+        $("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta3 color-paleta4 color-paleta6 color-paleta7 color-paleta8").addClass("color-paleta5");
+
+        //Se coloca el datepicker a la caja de fecha.
+        //checkSupportForInputTypeDate();
+        $("#FechaEvento").datepicker({ dateFormat: 'dd/mm/yy' });
+                      
+    });
+
+    
+
     function Exito() {
 
         alert('Grabado Correctamente');
-      
+
     }
-
 </script>
-
 
 <script type="text/javascript">
     $(document).ready(function () {
 
+        //Cambio en el combo departamento para cargar ciudades:
         $("#DireccionDepartamentoLocacion").change(function () {
-            $("#DireccionCiudadLocacion").empty();
 
+            //Se limpia ciudad y distrito.
+            $("#DireccionCiudadLocacion").empty();
+            $("#DireccionDistritoLocacion").empty();
 
             $.ajax({
                 type: 'POST',
                 url: '@Url.Action("GetStateProvincia","Home")', // we are calling json method
-
                 dataType: 'json',
-
-                data: { IDListaValorPadre: $("#DireccionDepartamentoLocacion").val() },
-
-                // here we are get value of selected country and passing same value
-                //as inputto json method GetStates.
+                data: { IDListaValorPadre: $("#DireccionDepartamentoLocacion").val() }, //Se pasa el valor del departamento.
 
                 success: function (states) {
-                    // states contains the JSON formatted list
-                    // of states passed from the controller
 
-                    $("#DireccionCiudadLocacion").append('<option selected value="0">Seleccione</option>');
-
-                    //$("#Distrito").empty();
-                    //$("#Distrito").append('<option selected value="0">Seleccione</option>');
-
+                    $("#DireccionCiudadLocacion").append('<option selected value>Seleccione</option>'); //Se establece la opción "Seleccione" sin valor.
+                    //Se recorre la lista de resultados para llenar el combo de ciudad.
                     $.each(states, function (i, state) {
                         $("#DireccionCiudadLocacion").append('<option value="' + state.Value + '">' +
                          state.Text + '</option>');
-                        // here we are adding option for States
-
                     });
                 },
                 error: function (ex) {
-                    alert('Failed to retrieve states.' + ex);
+                    alert('Ha habido un error al obtener las ciudades.' + ex);
                 }
             });
             return false;
+        });
 
-
-        })
-    });
-</script>
-
-
-<script type="text/javascript">
-    $(document).ready(function () {
-
+        //Cambio en el combo ciudad para cargar distritos.
         $("#DireccionCiudadLocacion").change(function () {
+
+            //Se limpian los distrito.
             $("#DireccionDistritoLocacion").empty();
 
-
+            //Llamada al servidor mediante ajax.
             $.ajax({
                 type: 'POST',
-                url: '@Url.Action("GetStateProvincia", "Home")', // we are calling json method
-
+                url: '@Url.Action("GetStateProvincia", "Home")',
                 dataType: 'json',
-
-                data: { IDListaValorPadre: $("#DireccionCiudadLocacion").val() },
-
-                // here we are get value of selected country and passing same value
-                //as inputto json method GetStates.
-
+                data: { IDListaValorPadre: $("#DireccionCiudadLocacion").val() }, //Se pasa el value de la ciudad como parámetro.
                 success: function (states) {
-                    // states contains the JSON formatted list
-                    // of states passed from the controller
-
-                    $("#DireccionDistritoLocacion").append('<option selected value="0">Seleccione</option>');
-
-                    //$("#Distrito").empty();
-                    //$("#Distrito").append('<option selected value="0">Seleccione</option>');
-
+                    $("#DireccionDistritoLocacion").append('<option selected value>Seleccione</option>');
                     $.each(states, function (i, state) {
                         $("#DireccionDistritoLocacion").append('<option value="' + state.Value + '">' +
                          state.Text + '</option>');
-                        // here we are adding option for States
-
                     });
                 },
                 error: function (ex) {
-                    alert('Failed to retrieve states.' + ex);
+                    alert('Ha habido un error al obtener las ciudades.' + ex);
                 }
             });
             return false;
-
-
         })
     });
 </script>

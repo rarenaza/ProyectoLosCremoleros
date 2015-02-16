@@ -1,5 +1,6 @@
 ﻿@using UTPPrototipo.Common
 @model  IEnumerable<UTPPrototipo.Models.ViewModels.Empresa.VistaNuevasPostulaciones>
+@using UTPPrototipo.Utiles
 
 <div class="col-md-12 fuente-pequeña" style="border-right:solid;border-color:rgb(220, 220, 220);border-width:1px;">
     <h5>Pendientes de Revisión</h5>
@@ -18,7 +19,7 @@
             </div>
             <div class="col-sm-3">
                 @*<a href="../Empresa/Oferta">@item.CargaOfrecido</a>*@
-                @Html.ActionLink(item.CargaOfrecido, "Oferta", "Empresa", new { idOferta = item.IdOferta, pantalla = "Empresa" }, htmlAttributes: new { target = "_blank" })
+                @Html.ActionLink(item.CargaOfrecido, "Oferta", "Empresa", new { idOfertaCrypt = Helper.Encriptar(item.IdOferta.ToString()), pantallaCrypt = Helper.Encriptar("Empresa") }, htmlAttributes: new { target = "_blank" })
             </div>
             <div class="col-sm-4">
                 @*<a href="../Empresa/Postulante"><strong>@item.AlumnoNombres @item.AlumnoApellidos</strong></a>*@

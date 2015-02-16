@@ -34,49 +34,50 @@ namespace UTP.PortalEmpleabilidad.Modelo
         [Required(ErrorMessage = " Fecha de Evento")]
       public string FechaEventoTexto { get; set; }
 
-    [Required(ErrorMessage = "Ingrese Lugar del Evento")]
-   public string LugarEvento { get; set; }
+        [Required(ErrorMessage = "Ingrese Lugar del Evento")]
+        public string LugarEvento { get; set; }
 
-       public string DireccionEvento { get; set; }
+        public string DireccionEvento { get; set; }
   
    
-      public string DireccionDistrito{get;set;}
-   
-  
-      public string DireccionCiudad{get;set;}
-      
-     
-       public string DireccionRegion{get;set;}
-      public string DireccionPais{get;set;}
+        public string DireccionDistrito{get;set;}
+
+        [Required(ErrorMessage = "Ingrese la ciudad")]
+        public string DireccionCiudad{get;set;}
+
+        [Required(ErrorMessage = "Ingrese el departamento")]
+        public string DireccionRegion{get;set;}
+
+        public string DireccionPais{get;set;}
      
     
-	 public int? AsistentesEsperados { get; set; }
+	    public int? AsistentesEsperados { get; set; }
 
-      public int AsistentesReales { get; set; }
+        public int AsistentesReales { get; set; }
       
-      public byte []ImagenEvento { get; set; }
+        public byte []ImagenEvento { get; set; }
 
-      public string ArchivoNombreOriginalImagenEvento { get; set; }
-      public string ArchivoMimeTypeImagenEvento { get; set; }
+        public string ArchivoNombreOriginalImagenEvento { get; set; }
+        public string ArchivoMimeTypeImagenEvento { get; set; }
 
-     public byte []ImagenTicket{get;set;}
+        public byte []ImagenTicket{get;set;}
 
-     public string ArchivoNombreOriginalImagenTicket { get; set; }
-     public string ArchivoMimeTypeImagenEventoTicket { get; set; }
+        public string ArchivoNombreOriginalImagenTicket { get; set; }
+        public string ArchivoMimeTypeImagenEventoTicket { get; set; }
 
 
-     public bool  RegistraAlumnos { get; set; }
+        public bool  RegistraAlumnos { get; set; }
 
-     public bool  RegistraUsuariosEmpresa { get; set; }
+        public bool  RegistraUsuariosEmpresa { get; set; }
 
-     public bool  RegistraPublicoEnGeneral { get; set; }
+        public bool  RegistraPublicoEnGeneral { get; set; }
 	
-   public string CreadoPor{get;set;}
-   public DateTime FechaCreacion{get;set;}
+        public string CreadoPor{get;set;}
+        public DateTime FechaCreacion{get;set;}
    
-   public string ModificadoPor{get;set;}
+        public string ModificadoPor{get;set;}
 
-   public DateTime FechaModificacion{get;set;}
+        public DateTime FechaModificacion{get;set;}
 
  
    public string NombreComercial { get; set; }
@@ -97,8 +98,13 @@ namespace UTP.PortalEmpleabilidad.Modelo
    public string TextoDepartamento { get; set; }
    public string TextoCiudad { get; set; }
    public string TextDistrito { get; set; }
-   public Evento()
-   {
+    
+        public string DireccionRegionCodigo { get; set; }
+        public string DireccionCiudadCodigo { get; set; }
+        public string DireccionDistritoCodigo { get; set; }
+            
+       public Evento()
+       {
 
           
         }

@@ -960,6 +960,9 @@
     <Content Include="Views\Empresa\MostrarAlumno.cshtml" />
     <Content Include="Views\Home\VerOferta.cshtml" />
     <Content Include="Views\Empresa\_VistaOfertaAdministracion.cshtml" />
+    <Content Include="Scripts\jquery.validate.min.js.map">
+      <DependentUpon>jquery.validate.min.js</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

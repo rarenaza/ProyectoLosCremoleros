@@ -24,7 +24,12 @@ namespace UTP.PortalEmpleabilidad.Logica
        }
        public bool Evento_insertar(Evento evento)
        {
-
+           //Se agrega las condiciones de los campos que pueden ser null.
+           if (evento.IdEmpresa == null) evento.IdEmpresa = 0;
+           if (evento.DescripcionEvento == null) evento.DescripcionEvento = "";
+           if (evento.DireccionEvento == null) evento.DireccionEvento = "";
+           if (evento.DireccionDistrito == null) evento.DireccionDistrito = "";
+           if (evento.AsistentesEsperados == null) evento.AsistentesEsperados = 0;
 
            if (ad.Evento_insertar(evento) == true)
            {
@@ -39,7 +44,12 @@ namespace UTP.PortalEmpleabilidad.Logica
 
        public bool Evento_Actualizar(Evento evento)
        {
-
+           //Se agrega las condiciones de los campos que pueden ser null.
+           if (evento.IdEmpresa == null) evento.IdEmpresa = 0;
+           if (evento.DescripcionEvento == null) evento.DescripcionEvento = "";
+           if (evento.DireccionEvento == null) evento.DireccionEvento = "";
+           if (evento.DireccionDistrito == null) evento.DireccionDistrito = "";
+           if (evento.AsistentesEsperados == null) evento.AsistentesEsperados = 0;
 
            if (ad.Evento_Actualizar(evento) == true)
            {
@@ -303,5 +313,7 @@ namespace UTP.PortalEmpleabilidad.Logica
 
            return asistentes;
        }
+
+      
     }
 }

@@ -1245,28 +1245,44 @@ namespace UTPPrototipo.Controllers
                 evento.RegistraPublicoEnGeneral = Convert.ToBoolean(dtResultado.Rows[0]["RegistraPublicoEnGeneral"] == DBNull.Value ? 0 : dtResultado.Rows[0]["RegistraPublicoEnGeneral"]);
                 evento.EstadoEvento         = Convert.ToString(dtResultado.Rows[0]["EstadoEvento"]);
                 evento.TipoEvento           = Convert.ToString(dtResultado.Rows[0]["TipoEvento"]);
-                evento.IdEmpresa            = Convert.ToInt32(dtResultado.Rows[0]["IdEmpresa"]);
+                evento.IdEmpresa            = Convert.ToInt32(dtResultado.Rows[0]["IdEmpresa"] == DBNull.Value ? 0 : dtResultado.Rows[0]["IdEmpresa"]);
 
 
                 evento.CreadoPor = dtResultado.Rows[0]["CreadoPor"].ToString();
                 evento.FechaCreacion = Convert.ToDateTime(dtResultado.Rows[0]["FechaCreacion"] == DBNull.Value ? null : dtResultado.Rows[0]["FechaCreacion"]);
                 evento.ModificadoPor = dtResultado.Rows[0]["ModificadoPor"].ToString();
                 evento.FechaModificacion = Convert.ToDateTime(dtResultado.Rows[0]["FechaModificacion"] == DBNull.Value ? null : dtResultado.Rows[0]["FechaModificacion"]);
-                
-                
-            }
-            DataTable dtDepartamento = lnGeneral.Home_Departamento(Constantes.IDLISTA_Departamento);
-            List<SelectListItem> li = new List<SelectListItem>();
-            for (int i = 0; i <= dtDepartamento.Rows.Count - 1; i++)
-            {
-                string nombre = dtDepartamento.Rows[i]["Valor"].ToString();
-                string valor = dtDepartamento.Rows[i]["IdListaValor"].ToString();
-                SelectListItem item = new SelectListItem() { Text = nombre, Value = valor };
 
-                li.Add(item);
+                //Estas variables se usan para setear los datos de los combos al cargar la vista Editar.
+                evento.TextoDepartamento = Convert.ToString(dtResultado.Rows[0]["DireccionRegion"]);
+                evento.TextoCiudad = Convert.ToString(dtResultado.Rows[0]["DireccionCiudad"]);
+                evento.TextDistrito = Convert.ToString(dtResultado.Rows[0]["DireccionDistrito"]);
+
+                //Se obtiene los códigos del ubigeo.
+                evento.DireccionRegionCodigo = Convert.ToString(dtResultado.Rows[0]["DireccionRegionCodigo"]);
+                evento.DireccionCiudadCodigo = Convert.ToString(dtResultado.Rows[0]["DireccionCiudadCodigo"]);
+                evento.DireccionDistritoCodigo = Convert.ToString(dtResultado.Rows[0]["DireccionDistritoCodigo"]);
+
             }
-            ViewData["Departamento"] = li;
-                     
+            //DataTable dtDepartamento = lnGeneral.Home_Departamento(Constantes.IDLISTA_Departamento);
+            //List<SelectListItem> li = new List<SelectListItem>();
+            //for (int i = 0; i <= dtDepartamento.Rows.Count - 1; i++)
+            //{
+            //    string nombre = dtDepartamento.Rows[i]["Valor"].ToString();
+            //    string valor = dtDepartamento.Rows[i]["IdListaValor"].ToString();
+            //    SelectListItem item = new SelectListItem() { Text = nombre, Value = valor };
+
+            //    li.Add(item);
+            //}
+            
+            //Se establece el valor del departamento en el combo
+            LNGeneral lngeneral = new LNGeneral();
+            ViewBag.DireccionRegion = new SelectList(lngeneral.ObtenerListaValor(47), "IdListaValor", "Valor", evento.DireccionRegionCodigo);
+            ViewBag.DireccionCiudad = ObtenerUbigeoPorCodigo(evento.DireccionRegionCodigo, evento.DireccionCiudadCodigo);
+            ViewBag.DireccionDistrito = ObtenerUbigeoPorCodigo(evento.DireccionCiudadCodigo, evento.DireccionDistritoCodigo);
+
+           // ViewData["Departamento"] = li;
+                       
             return View(evento);
         }
 
@@ -1446,7 +1462,8 @@ namespace UTPPrototipo.Controllers
             }
             ViewData["Departamento"] = li;
 
-
+            ViewBag.DireccionRegion = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_Departamento), "IdListaValor", "Valor");
+            ViewBag.DireccionCiudad = new SelectList(lnGeneral.ObtenerListaValor(-1), "IdListaValor", "Valor"); //Se envia -1 porque es vacío. Se llena por js.
 
 
 
@@ -1459,30 +1476,21 @@ namespace UTPPrototipo.Controllers
         [ValidateInput(false)]
         public ActionResult Evento([Bind(Include = "")] Evento evento)
         {
-
-            
-
             TicketUTP ticketUtp = (TicketUTP)Session["TicketUtp"];
 
-
             evento.CreadoPor = ticketUtp.Usuario;
-
             evento.DireccionDistrito=evento.TextDistrito ;
             evento.DireccionCiudad=evento.TextoCiudad ;
             evento.DireccionRegion=evento.TextoDepartamento;
 
             if (lnEventos.Evento_insertar(evento) == true)
             {
-            
-                ViewBag.Mensaje = "Registro Insertado Correctamente";
-
-            TempData["MsjExitoCrearEvento"] = "Evento  creado con éxito.";
-
+                //ViewBag.Mensaje = "Registro Insertado Correctamente";
+                TempData["MsjExitoCrearEvento"] = "El evento ha sido creado con éxito"; //Se establece el mensaje.
                 return RedirectToAction("Eventos");
             }
             else
             {
-
                 //Lista Estado Evento
                 DataTable dtresultadoEstadoEvento = lnUtp.Evento_ListaEstadoEvento();
 
@@ -1689,7 +1697,7 @@ namespace UTPPrototipo.Controllers
                 vistaEvento.RegistraPublicoEnGeneral = Convert.ToBoolean(dtResultado.Rows[0]["RegistraPublicoEnGeneral"] == DBNull.Value ? 0 : dtResultado.Rows[0]["RegistraPublicoEnGeneral"]);
                 vistaEvento.EstadoEvento = Convert.ToString(dtResultado.Rows[0]["EstadoEvento"]);
                 vistaEvento.TipoEvento = Convert.ToString(dtResultado.Rows[0]["TipoEvento"]);
-                vistaEvento.IdEmpresa = Convert.ToInt32(dtResultado.Rows[0]["IdEmpresa"]);
+                vistaEvento.IdEmpresa = Convert.ToInt32(dtResultado.Rows[0]["IdEmpresa"] == DBNull.Value ? 0 : dtResultado.Rows[0]["IdEmpresa"]);
                 vistaEvento.ImagenEvento = dtResultado.Rows[0]["ImagenEvento"] == DBNull.Value ? null : (byte[])dtResultado.Rows[0]["ImagenEvento"];
 
             }
@@ -1732,7 +1740,7 @@ namespace UTPPrototipo.Controllers
                 vistaEvento.RegistraPublicoEnGeneral = Convert.ToBoolean(dtResultado.Rows[0]["RegistraPublicoEnGeneral"] == DBNull.Value ? 0 : dtResultado.Rows[0]["RegistraPublicoEnGeneral"]);
                 vistaEvento.EstadoEvento = Convert.ToString(dtResultado.Rows[0]["EstadoEvento"]);
                 vistaEvento.TipoEvento = Convert.ToString(dtResultado.Rows[0]["TipoEvento"]);
-                vistaEvento.IdEmpresa = Convert.ToInt32(dtResultado.Rows[0]["IdEmpresa"]);
+                vistaEvento.IdEmpresa = Convert.ToInt32(dtResultado.Rows[0]["IdEmpresa"] == DBNull.Value ? 0 : dtResultado.Rows[0]["IdEmpresa"]);
                 vistaEvento.ImagenTicket = dtResultado.Rows[0]["ImagenTicket"] == DBNull.Value ? null : (byte[])dtResultado.Rows[0]["ImagenTicket"];
 
             }
@@ -3211,6 +3219,29 @@ namespace UTPPrototipo.Controllers
 
             ViewBag.MensajeDeError = mensajeDeError;
             return RedirectToAction("Empresas");
+        }
+
+        public SelectList ObtenerUbigeoPorCodigo(string codigoPadre, string codigoSeleccionado)
+        {
+            LNGeneral lnGeneral = new LNGeneral();
+            
+            DataTable dtProvincia = lnGeneral.Home_ListarDistritos(codigoPadre);
+            List<ListaValor> lista = new List<ListaValor>();
+            for (int i = 0; i <= dtProvincia.Rows.Count - 1; i++)
+            {
+                string nombre = dtProvincia.Rows[i]["Valor"].ToString();
+                string valor = dtProvincia.Rows[i]["IdListaValor"].ToString();
+                
+                //SelectListItem item = new SelectListItem() { Text = nombre, Value = valor };
+                ListaValor listaValor = new UTP.PortalEmpleabilidad.Modelo.ListaValor();
+                listaValor.IdListaValor = valor;
+                listaValor.Valor = nombre;
+
+                lista.Add(listaValor);
+            }
+
+            SelectList selectList = new SelectList(lista, "IdListaValor", "Valor", codigoSeleccionado);
+            return selectList;
         }
     }
 }

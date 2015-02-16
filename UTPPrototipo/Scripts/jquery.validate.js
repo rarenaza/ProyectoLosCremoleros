@@ -637,7 +637,7 @@ $.extend( $.validator, {
 					if ( this.settings.debug && window.console ) {
 						console.log( "Exception occurred when checking element " + element.id + ", check the '" + rule.method + "' method.", e );
 					}
-					throw ex;
+					throw e;
 				}
 			}
 			if ( dependencyMismatch ) {
@@ -1145,6 +1145,14 @@ $.extend( $.validator, {
 
 		// http://jqueryvalidation.org/date-method/
 		date: function( value, element ) {
+		    //if ($.browser.webkit) {
+		    //    ES - Chrome does not use the locale when new Date objects instantiated:
+		    //    var d = new Date();
+		    //    return this.optional(element) || !/Invalid|NaN/.test(new Date(d.toLocaleDateString(value)));
+		    //}
+		    //else {
+		    //    return this.optional(element) || !/Invalid|NaN/.test(new Date(value));
+		    //}
 			return this.optional( element ) || !/Invalid|NaN/.test( new Date( value ).toString() );
 		},
 

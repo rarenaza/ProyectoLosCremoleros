@@ -24,14 +24,18 @@
             {
                 @Html.AntiForgeryToken()
                 @Html.HiddenFor(model => model.IdEvento)
+                <!--Se pasan en hidden los valores de Departamento, Provincia y Distrito.-->
                 @Html.HiddenFor(model => Model.TextoDepartamento)
                 @Html.HiddenFor(model => Model.TextoCiudad)
                 @Html.HiddenFor(model => Model.TextDistrito)
+                @Html.Hidden("IdDireccionCiudad", Model.DireccionCiudad)
+                @Html.Hidden("IdDireccionDistrito", Model.DireccionDistrito)
 
+                <span style="font-size:9px;">* Campos obligatorios</span>
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="input-group">
-                            <span class="input-group-addon">Nombre<br />Evento</span>
+                            <span class="input-group-addon">* Nombre<br />Evento</span>
                             @*<input type="text" class="form-control" placeholder="Nombre del Evento">*@
 
                             @Html.TextBoxFor(model => model.NombreEvento, new { @class = "form-control", rows = "3", @placeholder = "Nombre del Evento" })
@@ -43,7 +47,7 @@
 
                     <div class="col-sm-6">
                         <div class="input-group">
-                            <span class="input-group-addon">Estado</span>
+                            <span class="input-group-addon">* Estado</span>
 
                             @Html.DropDownList("EstadoEvento", ViewData["ListaEstadoEvento"] as List<SelectListItem>, "- Seleccione Estado -", new { @class = "form-control" })
                         </div>
@@ -54,7 +58,7 @@
 
                     <div class="col-sm-6">
                         <div class="input-group">
-                            <span class="input-group-addon">Tipo</span>
+                            <span class="input-group-addon">* Tipo</span>
 
                             @Html.DropDownList("TipoEvento", ViewData["ListaTipoEvento"] as List<SelectListItem>, "- Seleccione Tipo Evento -", new { @class = "form-control" })
                         </div>
@@ -85,14 +89,16 @@
                         <div class="input-group">
                             <span class="input-group-addon">Fecha <br />Inicio</span>
                             @*<input type="text" class="form-control" placeholder="Fecha de Inicio (dd/mm/aaaa)">*@
-                            @Html.TextBoxFor(model => model.FechaEvento, new { @class = "form-control", rows = "3", @placeholder = "Fecha de Inicio (dd/mm/aaaa)",@id="FechaEvento" })
+                            @*@Html.TextBoxFor(model => model.FechaEvento, new { @class = "form-control", rows = "3", @placeholder = "Fecha de Inicio (dd/mm/aaaa)",@id="FechaEvento" })*@
+                            @Html.TextBoxFor(model => model.FechaEvento, new { @class = "form-control", @placeholder = "Fecha de Inicio (dd/mm/aaaa)", @Value = System.DateTime.Now.ToString("d") })
+                            
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="input-group">
-                            <span class="input-group-addon">Describa<br />Fecha</span>
+                            <span class="input-group-addon">* Describa<br />Fecha</span>
                             @*<input type="text" class="form-control" placeholder="Fecha del Evento. Ej: Lunes 27 de Enero del 2014, de 8 a 9 de la Noche">*@
                             @Html.TextBoxFor(model => model.FechaEventoTexto, new { @class = "form-control", rows = "3", @placeholder = "Fecha del Evento. Ej: Lunes 27 de Enero del 2014, de 8 a 9 de la Noche" })
                         </div>
@@ -101,7 +107,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="input-group">
-                            <span class="input-group-addon">Lugar</span>
+                            <span class="input-group-addon">* Lugar</span>
                             @* <input type="text" class="form-control" placeholder="Describa el Lugar del Evento. Ej: Centro de Convenciones CLARO">*@
                             @Html.TextBoxFor(model => model.LugarEvento, new { @class = "form-control", rows = "3", @placeholder = "Describa el Lugar del Evento. Ej: Centro de Convenciones CLARO" })
                         </div>
@@ -110,19 +116,23 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="input-group">
-                            <span class="input-group-addon">Departa-<br />mento</span>
+                            <span class="input-group-addon">* Departa-<br />mento</span>
                             @*<input type="text" class="form-control" placeholder="Departamento del Evento">*@
-                            @Html.TextBoxFor(model => model.DireccionRegion, new { @class = "form-control", rows = "3", @placeholder = "Departamento del Evento" })
+                            @*@Html.TextBoxFor(model => model.DireccionRegion, new { @class = "form-control", rows = "3", @placeholder = "Departamento del Evento" })*@
                             @*@Html.DropDownList("DireccionRegion", ViewData["Departamento"] as List<SelectListItem>, "-Seleccione-", new { @class = "form-control", @id = "DireccionDepartamentoLocacion" })*@
+                            @Html.DropDownListFor(m => m.DireccionRegion, null, "- Seleccionar -", htmlAttributes: new { @class = "form-control" })
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="input-group">
-                            <span class="input-group-addon">Ciudad</span>
+                            <span class="input-group-addon">* Ciudad</span>
                             @*<input type="text" class="form-control" placeholder="Ciudad del Evento">*@
-                            @Html.TextBoxFor(model => model.DireccionCiudad, new { @class = "form-control", rows = "3", @placeholder = "Ciudad del Evento" })
+                            @*@Html.DropDownList("DireccionCiudad", new SelectList(string.Empty, "Value", "Text"), "-Seleccione-", new { @class = "form-control", @id = "DireccionCiudadLocacion" })*@
+                            @*<select class="form-control" id="DireccionCiudad" name="DireccionCiudad" data-val="true" data-val_required="Falta la provincia" aria-required="true" aria-invalid="false" aria-describedby="DireccionCiudad-error"></select>*@
+                            @Html.DropDownListFor(m => m.DireccionCiudad, null, "- Seleccionar -", htmlAttributes: new { @class = "form-control" })
+                            @*@Html.TextBoxFor(model => model.DireccionCiudad, new { @class = "form-control", rows = "3", @placeholder = "Ciudad del Evento" })*@
                         </div>
                     </div>
                 </div>
@@ -131,7 +141,10 @@
                         <div class="input-group">
                             <span class="input-group-addon">Distrito</span>
                             @*<input type="text" class="form-control" placeholder="Distrito del Evento">*@
-                            @Html.TextBoxFor(model => model.DireccionDistrito, new { @class = "form-control", rows = "3", @placeholder = "Distrito del Evento" })
+                            @*@Html.TextBoxFor(model => model.DireccionDistrito, new { @class = "form-control", rows = "3", @placeholder = "Distrito del Evento" })*@
+                            @*@Html.DropDownList("DireccionDistrito", new SelectList(string.Empty, "Value", "Text"), "-Seleccione-", new { @class = "form-control", @id = "DireccionDistritoLocacion" })*@
+                            @*<select class="form-control" id="DireccionDistrito" name="DireccionDistrito" data-val="true" data-val_required="Falta el distrito"></select>*@
+                            @Html.DropDownListFor(m => m.DireccionDistrito, null, "- Seleccionar -", htmlAttributes: new { @class = "form-control" })
                         </div>
                     </div>
                 </div>
@@ -277,9 +290,9 @@
     //$("#FechaEvento").datepicker({ dateFormat: 'dd/mm/yy' });
     $(function () {
         $("#FechaEvento").datepicker();
-        $(".ui-state-default").live("mouseenter", function () {
-            $("h1").text($(this).text());
-        });
+        //$(".ui-state-default").live("mouseenter", function () {
+        //    $("h1").text($(this).text());
+        //});
     });
     </script>
     <div class="row">
@@ -313,3 +326,90 @@
         return ok;
     });
 </script>*@
+
+
+<script>
+    $(document).ready(function () {
+
+        InitialCombos($("#DireccionRegion").val());
+    });
+
+    $("#DireccionRegion").change(function () {
+        fillCombo("DireccionCiudad", $("#DireccionRegion").val());
+    });
+
+    $("#DireccionCiudad").change(function () {
+        fillCombo("DireccionDistrito", $("#DireccionCiudad").val());
+    });
+
+    function fillCombo(updateId, value) {
+        if (value != "" && value != null) {
+            $.getJSON('@Url.Action("ListarListaValor", "Alumno")'
+                + '/' + value,
+                function (data) {
+                    $("#" + updateId).empty();
+                    $("#" + updateId).append("<option value selected='true'>--Seleccionar--</option>");
+                    $.each(data, function (i, item) {
+                        $("#" + updateId).append("<option value='"
+                           + item.IdListaValor + "'>" + item.Valor
+                           + "</option>");
+                        $("#" + updateId).attr('disabled', false);
+                    });
+                });
+        } else {
+            $("#" + updateId).empty();
+            $("#" + updateId).trigger("change");
+            $("#" + updateId).attr('disabled', true);
+        }
+    }
+    function InitialCombos(value) {
+        var ListaValorPro = "";
+        if (value != "" && value != null) {
+            //Cargar combo de provincias
+            $.getJSON('@Url.Action("ListarListaValor", "Alumno")'
+                + '/' + value,
+                function (data) {
+                    $("#DireccionCiudad").empty();
+                    $("#DireccionCiudad").append("<option value selected='true'>--Seleccionar--</option>");
+                    $.each(data, function (i, item) {
+                        if (item.IdListaValor == $("#IdDireccionCiudad").val()) {
+                            $("#DireccionCiudad").append("<option selected value='"
+                                 + item.IdListaValor + "'>" + item.Valor
+                                 + "</option>");
+                        } else {
+                            $("#DireccionCiudad").append("<option value='"
+                               + item.IdListaValor + "'>" + item.Valor
+                               + "</option>");
+                        }
+                        $("#DireccionCiudad").attr('disabled', false);
+                    });
+                });
+            value = $("#IdDireccionCiudad").val()
+            if (value != "" && value != null) {
+                //Cargar combo de distrito
+                $.getJSON('@Url.Action("ListarListaValor", "Alumno")'
+                    + '/' + value,
+                    function (data) {
+                        $("#DireccionDistrito").empty();
+                        $("#DireccionDistrito").append("<option value selected='true'>--Seleccionar--</option>");
+                        $.each(data, function (i, item) {
+                            if (item.IdListaValor == $("#IdDireccionDistrito").val()) {
+                                $("#DireccionDistrito").append("<option selected value='"
+                                     + item.IdListaValor + "'>" + item.Valor
+                                     + "</option>");
+                            } else {
+                                $("#DireccionDistrito").append("<option value='"
+                                   + item.IdListaValor + "'>" + item.Valor
+                                   + "</option>");
+                            }
+                            $("#DireccionDistrito").attr('disabled', false);
+                        });
+                    });
+            }
+        }
+    }
+
+
+</script>
+
+    
