@@ -79,9 +79,9 @@ namespace UTP.PortalEmpleabilidad.Datos
             cnn.Conectar();
             cmd.Parameters.Add(new SqlParameter("@IdAlumno", SqlDbType.Int)).Value = alumno.IdAlumno;
             cmd.Parameters.Add(new SqlParameter("@Direccion", SqlDbType.VarChar, 300)).Value = alumno.Direccion;
-            cmd.Parameters.Add(new SqlParameter("@DireccionDistrito", SqlDbType.VarChar, 6)).Value = alumno.DireccionDistrito;
-            cmd.Parameters.Add(new SqlParameter("@DireccionCiudad", SqlDbType.VarChar, 6)).Value = alumno.DireccionCiudad;
-            cmd.Parameters.Add(new SqlParameter("@DireccionRegion", SqlDbType.VarChar, 6)).Value = alumno.DireccionRegion;
+            cmd.Parameters.Add(new SqlParameter("@DireccionDistritoId", SqlDbType.VarChar, 6)).Value = alumno.DireccionDistritoId;
+            cmd.Parameters.Add(new SqlParameter("@DireccionCiudadId", SqlDbType.VarChar, 6)).Value = alumno.DireccionCiudadId;
+            cmd.Parameters.Add(new SqlParameter("@DireccionRegionId", SqlDbType.VarChar, 6)).Value = alumno.DireccionRegionId;
             cmd.Parameters.Add(new SqlParameter("@CorreoElectronico2", SqlDbType.VarChar, 300)).Value = alumno.CorreoElectronico2 == null ? "" : alumno.CorreoElectronico2;
             cmd.Parameters.Add(new SqlParameter("@TelefonoFijoCasa", SqlDbType.VarChar, 40)).Value = alumno.TelefonoFijoCasa == null ? "" : alumno.TelefonoFijoCasa;
             cmd.Parameters.Add(new SqlParameter("@TelefonoCelular", SqlDbType.VarChar, 40)).Value = alumno.TelefonoCelular == null ? "" : alumno.TelefonoCelular;

@@ -32,6 +32,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
 
         [Required(ErrorMessage = "Falta Celular")]
         public string TelefonoCelular { get; set; }
+        [Required(ErrorMessage = "Falta Ubicación")]
         public EmpresaLocacion EmpresaLocacion { get; set; }
 
         [Required(ErrorMessage = "Falta Usuario")]

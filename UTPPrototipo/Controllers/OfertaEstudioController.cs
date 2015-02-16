@@ -43,7 +43,7 @@ namespace UTPPrototipo.Controllers
 
             ViewBag.TipoDeEstudioIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_DE_ESTUDIO), "IdListaValor", "Valor");
             ViewBag.EstadoDelEstudioIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_DEL_ESTUDIO), "IdListaValor", "Valor");
-            ViewBag.Estudio = new SelectList(lnGeneral.ObtenerListaValorPorIdPadre("TEUNIV"), "Valor","Valor");
+            ViewBag.Estudio = new SelectList(lnGeneral.ObtenerListaValorPorIdPadre(Constantes.TIPO_ESTUDIO_UNIVERSITARIO), "Valor","Valor");
             
             return PartialView("_OfertaEstudioCrear", ofertaEstudio);
         }
@@ -54,7 +54,7 @@ namespace UTPPrototipo.Controllers
         {
             //Aldo 09FEB: Si el tipo de estudio es distinto a universitario se reemplaza el campo EstudioTexto en Estudio
             //Si el campo TipoDeEstudioIdListaValor es TEUNIV entonces el dato de estudio sí se encuentra en ofertaEstudio.Estudio y no se necesita reemplazar.
-            if (ofertaEstudio.TipoDeEstudioIdListaValor != "TEUNIV")
+            if (ofertaEstudio.TipoDeEstudioIdListaValor != Constantes.TIPO_ESTUDIO_UNIVERSITARIO)
             {
                 ModelState.Remove("Estudio"); //Se quita el campo porque tiene null.
                 ofertaEstudio.Estudio = ofertaEstudio.EstudioTexto;
@@ -102,7 +102,7 @@ namespace UTPPrototipo.Controllers
 
             ViewBag.TipoDeEstudioIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_DE_ESTUDIO), "IdListaValor", "Valor", ofertaEstudio.TipoDeEstudioIdListaValor);
             ViewBag.EstadoDelEstudioIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_DEL_ESTUDIO), "IdListaValor", "Valor", ofertaEstudio.EstadoDelEstudioIdListaValor);
-            ViewBag.Estudio = new SelectList(lnGeneral.ObtenerListaValorPorIdPadre("TEUNIV"), "Valor","Valor",ofertaEstudio.Estudio);
+            ViewBag.Estudio = new SelectList(lnGeneral.ObtenerListaValorPorIdPadre(Constantes.TIPO_ESTUDIO_UNIVERSITARIO), "Valor","Valor",ofertaEstudio.Estudio);
 
             return PartialView("_OfertaEstudioEditar", ofertaEstudio);
         }

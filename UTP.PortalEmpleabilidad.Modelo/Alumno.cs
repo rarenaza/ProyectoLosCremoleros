@@ -21,7 +21,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         [EmailAddress(ErrorMessage="Email inválido")]
         public string CorreoElectronico2 { get; set; }
         public string TelefonoFijoCasa { get; set; }
-
+        [Required(ErrorMessage = "Falta el Teléfono Celular.")]
         public string TelefonoCelular { get; set; }
 
         public string Carrera { get; set; }
@@ -29,14 +29,20 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string TipoDocumentoIdListaValor { get; set; }
         public DateTime FechaNacimiento { get; set; }
         public string SexoIdListaValor { get; set; }
-        [Required(ErrorMessage = "Falta la dirección.")]
+        [Required(ErrorMessage = "Falta la Dirección.")]
         public string Direccion { get; set; }
-        [Required(ErrorMessage = "Falta el distrito.")]
+        [Required(ErrorMessage = "Falta el Distrito.")]
         public string DireccionDistrito { get; set; }
-        [Required(ErrorMessage = "Falta la provincia.")]
+        [Required(ErrorMessage = "Falta la Provincia.")]
         public string DireccionCiudad { get; set; }
-        [Required(ErrorMessage = "Falta el departamento.")]
+        [Required(ErrorMessage = "Falta el Departamento.")]
         public string DireccionRegion { get; set; }
+        [Required(ErrorMessage = "Falta el Distrito.")]
+        public string DireccionDistritoId { get; set; }
+        [Required(ErrorMessage = "Falta la Provincia.")]
+        public string DireccionCiudadId { get; set; }
+        [Required(ErrorMessage = "Falta el Departamento.")]
+        public string DireccionRegionId { get; set; }
         public string EstadoAlumno { get; set; }  
         public byte[] Foto { get; set; }
         public string EstadoAlumnoIdListaValor { get; set; }

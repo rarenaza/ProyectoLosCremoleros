@@ -69,6 +69,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 empresaUsuario.TelefonoAnexo = Convert.ToString(usuarioBD["TelefonoAnexo"]);
                 empresaUsuario.EstadoUsuarioIdListaValor = Convert.ToString(usuarioBD["Estado"]);
                 empresaUsuario.Contrasena = Convert.ToString(usuarioBD["Contrasena"]);
+                empresaUsuario.RepetirContrasena = Convert.ToString(usuarioBD["Contrasena"]);
 
                 break; //sólo hay uno.
             }

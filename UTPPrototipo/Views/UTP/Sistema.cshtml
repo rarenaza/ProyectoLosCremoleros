@@ -80,7 +80,7 @@
 
 </script>
 
-<!--Modal para crear usuario-->>
+<!--Modal para crear usuario-->
 <div class="modal" id="divModalUsuarioUTPCrear" role="dialog" aria-labelledby="Nuevo Usuario" aria-hidden="true">
 
     @using (Ajax.BeginForm("_UsuariosUTPCrear", "UTP", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divListaUsuariosUTP", OnComplete = "cerrarModal" }))
@@ -95,7 +95,7 @@
 </div>
 
 
-<!--Modal para editar usuario-->>
+<!--Modal para editar usuario-->
 <div class="modal fade" id="divModalUsuarioUTPEditar" role="dialog" aria-labelledby="Nuevo Usuario" aria-hidden="true">
 
     @using (Ajax.BeginForm("_UsuariosUTPEditar", "UTP", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divListaUsuariosUTP", OnComplete = "cerrarModal" }))

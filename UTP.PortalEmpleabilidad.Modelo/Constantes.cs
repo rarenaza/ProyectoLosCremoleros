@@ -114,5 +114,10 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public static string OFERTA_ESTADO_SUSPENDIDA = "OFERSU";
 
         #endregion
+
+        #region Tipos de Estudio
+        public static string TIPO_ESTUDIO_UNIVERSITARIO = "TEUNIV";
+
+        #endregion
     }
 }
