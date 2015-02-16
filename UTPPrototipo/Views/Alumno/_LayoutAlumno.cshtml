@@ -4,15 +4,28 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portal de Empleabilidad: Alumno - @ViewBag.Title</title>
-    @Styles.Render("/Content/themes/base/css","~/Content/css")
+    @*@Styles.Render("/Content/themes/base/css","~/Content/css")
     @Scripts.Render("~/bundles/modernizr")  
     @Scripts.Render("~/bundles/jquery") 
-    
-    
-
-    <script src="~/Scripts/carga.asincrona.js"></script>
-    @Scripts.Render("~/bundles/bootstrap")    
+    @Scripts.Render("~/bundles/bootstrap")   
     @RenderSection("scripts", required: false)
+
+    <script src="~/Scripts/carga.asincrona.js"></script>*@
+
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/animate.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />
+    <script src="~/Scripts/jsEmpresa.js"></script>
+     
+ 
 </head>
 <body class="cuerpo-zona-alumno">
 
@@ -53,6 +66,11 @@
                     <li>
                         <a href=@Url.Action("Index","Home") class="fui fa-2x menuOpcionesAd" style="padding: 2px 3px 0px 8px"><span class="color-icono-paleta2 ">%</span></a>
                     </li>
+
+
+
+
+
                     <li>
                         @*<a href="..\Home\Contacto" class="fui fa-2x" style=" padding:2px 3px 0px 8px;"><span class="color-icono-paleta2">:</span></a>*@
                         <a href=@Url.Action("Contacto", "Home", new { pantalla = UTP.PortalEmpleabilidad.Modelo.Constantes.MENSAJES_ALUMNO_CONTACTO }) class="fui fa-2x menuOpcionesAd" style="padding:2px 3px 0px 8px;"><span class="color-icono-paleta2">:</span></a>
