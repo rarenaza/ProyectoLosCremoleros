@@ -53,6 +53,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         [Required(ErrorMessage = "Falta el año de inicio del cargo")]
         //[StringLength(4, MinimumLength = 4, ErrorMessage = "Este campo sólo acepta 4 digitos.")] //ERROR
         [RegularExpression(@"[0-9]+", ErrorMessage = "Este campo sólo acepta años con 4 números.")]
+        [Range(1900, 2015, ErrorMessage = "El valor debe estar en el rango de {1} y {2}.")]
         public int FechaInicioCargoAno { get; set; }
         public int? FechaFinCargoMes { get; set; }
 
