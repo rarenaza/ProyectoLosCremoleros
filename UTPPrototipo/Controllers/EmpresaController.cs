@@ -936,7 +936,9 @@ namespace UTPPrototipo.Controllers
         }
       
 
-        [ValidateAntiForgeryToken] 
+        //[ValidateAntiForgeryToken]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public PartialViewResult _AdministrarNuevoUsuario(EmpresaUsuario empresaUsuario) 
         {
             if (ModelState.IsValid)
