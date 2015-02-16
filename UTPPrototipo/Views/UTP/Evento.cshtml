@@ -9,7 +9,8 @@
     <div class="panel-group" id="datos-cuenta" role="tablist" aria-multiselectable="true">
         @{Html.RenderAction("VistaCabeceraUtp", "UTP");}
     </div>
-    <h5>Evento: Feria de Empleos</h5>
+   @* <h5>Evento: Feria de Empleos</h5>*@
+    <h5>Eventos</h5>
     <br />
     <script src="~/Scripts/jquery-ui-1.11.2.js"></script>
     <script src="~/Scripts/jquery.maskedinput.js"></script>
@@ -97,9 +98,11 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="input-group">
-                        <span class="input-group-addon">(*)Describa<br />Fecha</span>
+                        @*<span class="input-group-addon">(*)Describa<br />Fecha</span>*@
+                        <span class="input-group-addon">(*)Fecha y<br />Hora</span>
                         @*<input type="text" class="form-control" placeholder="Fecha del Evento. Ej: Lunes 27 de Enero del 2014, de 8 a 9 de la Noche">*@
-                        @Html.TextBoxFor(model => model.FechaEventoTexto, new { @class = "form-control", rows = "3", @placeholder = "Fecha del Evento. Ej: Lunes 27 de Enero del 2014, de 8 a 9 de la Noche" })
+                        @*@Html.TextBoxFor(model => model.FechaEventoTexto, new { @class = "form-control", rows = "3", @placeholder = "Fecha del Evento. Ej: Lunes 27 de Enero del 2014, de 8 a 9 de la Noche" })*@
+                        @Html.TextBoxFor(model => model.FechaEventoTexto, new { @class = "form-control", rows = "3", @placeholder = "Fecha y Hora del Evento." })
                         
                     </div>@Html.ValidationMessageFor(model => model.FechaEventoTexto, "", new { @class = "text-danger" })
                 </div>
