@@ -58,8 +58,8 @@ namespace UTPPrototipo.Controllers
         public JsonResult ListarEstudio(string query)
         {
             LNGeneral lngeneral = new LNGeneral();
-            var resultado = lngeneral.ObtenerListaValor(Constantes.IDLISTA_DE_CARRERA);
-            var result = resultado.Where(s => s.Valor.ToLower().StartsWith(query.ToLower())).Select(c => new { Value = c.IdListaValor, Label = c.Valor }).ToList();
+            var resultado = lngeneral.ObtenerListaValorPorIdPadre(Constantes.TIPO_ESTUDIO_UNIVERSITARIO);
+            var result = resultado.Where(s => s.Valor.ToLower().Contains(query.ToLower())).Select(c => new { Value = c.IdListaValor, Label = c.Valor }).ToList();
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
