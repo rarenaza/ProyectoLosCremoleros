@@ -9,7 +9,9 @@
     <div class="panel-group" id="datos-cuenta" role="tablist" aria-multiselectable="true">
         @{Html.RenderAction("VistaCabeceraUtp", "UTP");}
     </div>
+
     <h5>Evento</h5>
+   @* <h5>Evento: Feria de Empleos</h5>*@
     <br />
     @*<script src="~/Scripts/jquery-ui-1.11.2.js"></script>
     <script src="~/Scripts/jquery.maskedinput.js"></script>
@@ -32,7 +34,8 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="input-group">
-                        <span class="input-group-addon">* Nombre<br />Evento</span>
+
+                        <span class="input-group-addon">(*)Nombre<br />Evento</span>
                        
                       
                         @Html.TextBoxFor(model => model.NombreEvento, new { @class = "form-control", rows = "3", @placeholder = "Nombre del Evento" })
@@ -45,7 +48,8 @@
  
                 <div class="col-sm-6">
                     <div class="input-group">
-                        <span class="input-group-addon">* Estado</span>
+
+                        <span class="input-group-addon">(*)Estado</span>
                         @Html.DropDownList("EstadoEvento", ViewData["ListaEstadoEvento"] as List<SelectListItem>, "- Seleccione Estado -", new { @class = "form-control" })
                     
                     </div>@Html.ValidationMessageFor(model => model.EstadoEvento, "", new { @class = "text-danger" })
@@ -56,7 +60,9 @@
 
                 <div class="col-sm-6">
                     <div class="input-group">
-                        <span class="input-group-addon">* Tipo</span>
+
+                        <span class="input-group-addon">(*)Tipo</span>
+
                         @Html.DropDownList("TipoEvento", ViewData["ListaTipoEvento"] as List<SelectListItem>, "- Seleccione Tipo Evento -", new { @class = "form-control" })
                    
                      </div>@Html.ValidationMessageFor(model => model.TipoEvento, "", new { @class = "text-danger" })
@@ -87,18 +93,24 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="input-group">
-                        <span class="input-group-addon">Fecha <br />Inicio</span>
+                        <span class="input-group-addon">(*)Fecha <br />Inicio</span>
                         @*<input type="text" class="form-control" placeholder="Fecha de Inicio (dd/mm/aaaa)">*@
+
                        @Html.TextBoxFor(model => model.FechaEvento, new { @class = "form-control", @placeholder = "Fecha de Inicio (dd/mm/aaaa)", @Value = System.DateTime.Now.ToString("d") })                        
                     </div>@Html.ValidationMessageFor(model => model.FechaEvento, "", new { @class = "text-danger" })                 
+
+                 
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-12">
                     <div class="input-group">
-                        <span class="input-group-addon">* Describa<br />Fecha</span>
+
+                        @*<span class="input-group-addon">(*)Describa<br />Fecha</span>*@
+                        <span class="input-group-addon">(*)Fecha y<br />Hora</span>
                         @*<input type="text" class="form-control" placeholder="Fecha del Evento. Ej: Lunes 27 de Enero del 2014, de 8 a 9 de la Noche">*@
-                        @Html.TextBoxFor(model => model.FechaEventoTexto, new { @class = "form-control", rows = "3", @placeholder = "Fecha del Evento. Ej: Lunes 27 de Enero del 2014, de 8 a 9 de la Noche" })
+                        @*@Html.TextBoxFor(model => model.FechaEventoTexto, new { @class = "form-control", rows = "3", @placeholder = "Fecha del Evento. Ej: Lunes 27 de Enero del 2014, de 8 a 9 de la Noche" })*@
+                        @Html.TextBoxFor(model => model.FechaEventoTexto, new { @class = "form-control", rows = "3", @placeholder = "Fecha y Hora del Evento." })
                         
                     </div>@Html.ValidationMessageFor(model => model.FechaEventoTexto, "", new { @class = "text-danger" })
                 </div>
@@ -106,7 +118,8 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="input-group">
-                        <span class="input-group-addon">* Lugar</span>
+
+                        <span class="input-group-addon">(*)Lugar</span>
                        @* <input type="text" class="form-control" placeholder="Describa el Lugar del Evento. Ej: Centro de Convenciones CLARO">*@
                         @Html.TextBoxFor(model => model.LugarEvento, new { @class = "form-control", rows = "3", @placeholder = "Describa el Lugar del Evento. Ej: Centro de Convenciones CLARO" })
                         

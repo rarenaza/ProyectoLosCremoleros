@@ -42,7 +42,7 @@
             <div class="col-md-12">
                 <div class="input-group fuente-pequeña">
                     <span class="input-group-addon">Estado</span>
-                    @Html.DropDownListFor(m => m.EstadoDelEstudioIdListaValor, null, "Seleccione", htmlAttributes: new { @class = "form-control" })
+                    @Html.DropDownListFor(m => m.EstadoDelEstudioIdListaValor, null, "- Seleccione Estado del Estudio -", htmlAttributes: new { @class = "form-control" })
                 </div>
                 @Html.ValidationMessageFor(m => m.EstadoDelEstudioIdListaValor, "", new { @class = "text-danger" })
             </div>

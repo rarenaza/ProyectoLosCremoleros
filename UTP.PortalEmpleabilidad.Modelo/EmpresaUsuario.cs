@@ -21,17 +21,18 @@ namespace UTP.PortalEmpleabilidad.Modelo
 
         public ListaValor Sexo { get; set; }
 
-        [Required(ErrorMessage = "Falta Fijo")]
+        //[Required(ErrorMessage = "Falta Fijo")]
         //[Range(0, 9, ErrorMessage = "El Rango debe ser de 0 -9 ")]
         [RegularExpression(@"[-0-9A-Z_a-z]+", ErrorMessage = "Este campo sólo acepta letras y numeros.")]
  
         public string TelefonoFijo { get; set; }
 
-        [Required(ErrorMessage = "Falta Anexo")]
+        //[Required(ErrorMessage = "Falta Anexo")]
         public string TelefonoAnexo { get; set; }
 
         [Required(ErrorMessage = "Falta Celular")]
         public string TelefonoCelular { get; set; }
+        [Required(ErrorMessage = "Falta Ubicación")]
         public EmpresaLocacion EmpresaLocacion { get; set; }
 
         [Required(ErrorMessage = "Falta Usuario")]
@@ -64,7 +65,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         [RegularExpression(@"^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$", ErrorMessage = "Contraseña no válida")]
         [Required(ErrorMessage = "Falta la Contraseña")]        
         public string Contrasena { get; set; }
-
+        [Compare("Contrasena", ErrorMessage = "Contraseña ingresada no coincide")]
         public string RepetirContrasena { get; set; }
 
         public int CantidadTotal { get; set; }      

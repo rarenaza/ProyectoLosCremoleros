@@ -14,7 +14,7 @@
             <div class="col-md-12">
                 <div class="input-group fuente-pequeña">
                     <span class="input-group-addon">Tipo</span>
-                    @Html.DropDownListFor(m => m.TipoConocimientoIdListaValor, null, "Seleccione", htmlAttributes: new { @class = "form-control" })
+                    @Html.DropDownListFor(m => m.TipoConocimientoIdListaValor, null, "- Seleccione Tipo de Conocimiento -", htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(m => m.TipoConocimientoIdListaValor, "", new { @class = "text-danger" })                  
                 </div>
             </div>
@@ -32,7 +32,7 @@
             <div class="col-sm-6">
                 <div class="input-group fuente-pequeña">
                     <span class="input-group-addon">Nivel</span>                   
-                    @Html.DropDownListFor(m => m.NivelConocimientoIdListaValor, null, "Seleccione", htmlAttributes: new { @class = "form-control" })
+                    @Html.DropDownListFor(m => m.NivelConocimientoIdListaValor, null, "- Seleccione Nivel de Conocimiento -", htmlAttributes: new { @class = "form-control" })
                     @Html.ValidationMessageFor(m => m.NivelConocimientoIdListaValor, "", new { @class = "text-danger" })
                 </div>
             </div>

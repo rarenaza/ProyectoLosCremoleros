@@ -29,7 +29,7 @@
                     <td class="celda-datos">
                         <table>
                             <tr>
-                                <td>@Html.DropDownListFor(m => m.EstadoOferta, null, "Seleccione", htmlAttributes: new { @class = "form-control" })</td>
+                                <td>@Html.DropDownListFor(m => m.EstadoOferta, null, "- Seleccione Estado -", htmlAttributes: new { @class = "form-control" })</td>
                                 <td>&nbsp;&nbsp;</td>
                                 <td><button id="btnCambiarEstadoOferta" class="btn btn-default color-paleta2" onclick="cambiarEstado(@Model.IdOferta)">Cambiar estado</button></td>
                             </tr>

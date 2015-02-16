@@ -56,10 +56,12 @@
 
         @{
             //La paginación avanzada no existe para la búsqueda de oferta. Se deja el bloque de paginación avanzada para efectos de desarrollo futuro de esa funcionalidad.
+            int i1 = paginacion.NroPaginaActual - 2;
+            if (paginacion.NroPaginaActual + 2 > paginacion.TotalPaginas) { i1 = paginacion.TotalPaginas - 5; }
+            if (i1 < 1) { i1 = 1; }
             if (paginacion.NroPaginaActual > 1)
             {
-                int i1 = paginacion.NroPaginaActual - 5;
-                if (i1 < 1) { i1 = 1; }
+
                 <li>
                     @if (ViewBag.TipoBusqueda == "Simple")
                     {
@@ -74,18 +76,18 @@
                         </a>
                     }
                 </li>
-                if (i1 > 1)
+                if (paginacion.NroPaginaActual - 5 >= 1)
                 {
                     <li>
                         @if (ViewBag.TipoBusqueda == "Simple")
                         {
-                            <a href="#" onclick="buscarEmpresasPendientes('@i1');">
+                            <a href="#" onclick="buscarEmpresasPendientes('@(paginacion.NroPaginaActual - 5)');">
                                 <span aria-hidden="true" class="glyphicon glyphicon-backward"></span>
                             </a>
                         }
                         else
                         {
-                            <a href="#" onclick="buscarEmpresasPendientesAvanzada('@i1');">
+                            <a href="#" onclick="buscarEmpresasPendientesAvanzada('@(paginacion.NroPaginaActual - 5)');">
                                 <span aria-hidden="true" class="glyphicon glyphicon-backward"></span>
                             </a>
                         }
@@ -93,7 +95,7 @@
                 }
             }
 
-            for (int i = (paginacion.NroPaginaActual - 2); (i <= paginacion.TotalPaginas && i <= (paginacion.NroPaginaActual + 2)); i++)
+            for (int i = i1; (i <= paginacion.TotalPaginas && i <= (i1 + 4)); i++)
             {
                 if (i == paginacion.NroPaginaActual)
                 {

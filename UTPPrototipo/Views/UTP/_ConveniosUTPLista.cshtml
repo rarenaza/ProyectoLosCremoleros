@@ -1,0 +1,65 @@
+﻿
+
+@model IEnumerable<UTP.PortalEmpleabilidad.Modelo.Vistas.Convenio.VistaUTPListaConvenio>
+
+<h5>Convenios Registrados</h5>
+<div class="row grilla1-cabecera color-paleta9">
+    <div class="col-sm-1">Id</div>
+    <div class="col-sm-2">Alumno</div>
+    <div class="col-sm-2">Carrera</div>
+    <div class="col-sm-2">Empresa</div>
+    <div class="col-sm-1">Tipo Trabajo</div>
+    <div class="col-sm-1">Duración</div>
+    <div class="col-sm-1">Salario</div>
+    <div class="col-sm-1">Área</div>
+    <div class="col-sm-1">Fecha Ingreso</div>
+
+
+</div>
+
+@foreach (var item in Model)
+{
+    <div class="row grilla1-linea">
+
+        <div class="col-sm-1">
+            @item.IdConvenio
+        </div>
+        <div class="col-sm-2">
+            @Html.ActionLink(item.Nombres + " " + item.Apellidos, "Convenio", new { idconvenio = item.IdConvenio })
+
+        </div>
+        <div class="col-sm-2">
+            @item.Carrera
+        </div>
+        <div class="col-sm-2">
+            @item.NombreComercial
+        </div>
+        <div class="col-sm-1">
+            @item.TipoTrabajo
+        </div>
+        <div class="col-sm-1">
+            @item.DuracionContrato
+        </div>
+        <div class="col-sm-1">
+            @item.SalarioOfrecido
+        </div>
+        <div class="col-sm-1">
+            @item.AreaEmpresa
+        </div>
+        <div class="col-sm-1">
+            @item.FechaIngreso
+        </div>
+
+    </div>
+}
+
+<!---Paginacion aqui-->
+
+<br />
+<div class="col-sm-12" style="text-align:right;">
+    
+    <button class="btn btn-default color-paleta8" onclick="ConvenioUTPCrear();">Nuevo Convenio</button>
+    <!--
+        data-toggle="modal" data-target="#Nuevo-usuario"
+    -->
+</div>

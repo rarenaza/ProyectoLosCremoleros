@@ -35,12 +35,10 @@
                     <div class="panel-body">
                         <div class="row">
 
-                            <div class="col-sm-3" style="text-align:right;">
+                            
+                            <div class="col-sm-3" style="border-right:solid;border-right-color:lightgray;border-right-width:1px;text-align:center;">
                                 <span>Defina como desea recibir notificaciones via correo electrónico, por cada Postulación.</span>
-                            </div>
-                            <div class="col-sm-3">
-                                @*<input type="checkbox" /><span> Recibir correos&nbsp;&nbsp;&nbsp;&nbsp;</span>*@
-                                @*Alertas: @Html.DropDownList("RecibeCorreosIdListaValor", null, htmlAttributes: new { @class = "form-control" })*@
+                                <br />
                                 <div class="input-group">
                                     <span class="input-group-addon">
                                         (*) Correos
@@ -50,32 +48,33 @@
                                 @Html.ValidationMessageFor(m => m.RecibeCorreosIdListaValor, "", new { @class = "text-danger" })
                             </div>
 
-                            <div class="col-sm-3" style="text-align:right;">
+                            <div class="col-sm-3" style="border-right:solid;border-right-color:lightgray;border-right-width:1px;text-align:center;">
                                 <span>Si ha finalizado la edición de su Oferta laboral, entonces Publíquela.</span>
-                            </div>
-                            <div class="col-sm-3">
-                                @*<button class="btn btn-default color-paleta2" style="margin-bottom:5px;">Publicar</button>*@
+                                <br />
+
                                 @Html.HiddenFor(m => m.EstadoOferta)
                                 @{
-                                    if (Model.EstadoOferta == "OFERCO") //Estado en construcción.
-                                    {
-                                        <label id="lblPublicarOferta" class="btn btn-default color-paleta2">Publicar</label>
-                                    }
-                                    else
-                                    {
-                                        <label>Oferta pendiente de activación</label>
-                                    }
+        if (Model.EstadoOferta == "OFERCO") //Estado en construcción.
+        {
+                        <span id="lblPublicarOferta" class="btn btn-default color-paleta2">Publicar</span>
+        }
+        else
+        {
+                        <span>Oferta pendiente de activación</span>
+        }
                                 }
                             </div>
-                        </div>
-                        <hr />
-                        <div class="row">
-                            <div class="col-sm-6"></div>
-                            <div class="col-sm-3" style="text-align:right;">
-                                <span>Si ha modificado la forma en que recibirá los Correos, la Descripción o Condiciones de la Oferta laboral, guarde sus cambios.</span>
+
+                            <div class="col-sm-3" style="border-right:solid;border-right-color:lightgray;border-right-width:1px;text-align:center;">
+                                <span>Visualice como los Postulantes verán su Oferta Laboral</span>
+                                <br />
+                                @Html.ActionLink("Vista Previa", "MostrarOferta", new { id = Model.IdOferta }, htmlAttributes: new { @class = "btn btn-default color-paleta2", @target = "_blank", @title = "Vista previa de la oferta" })
                             </div>
-                            <div class="col-sm-3">
-                                <button class="btn btn-default color-paleta2" style="margin-bottom:5px;">Guardar cambios</button>
+                         
+                            <div class="col-sm-3" style="border-right:solid;border-right-color:lightgray;border-right-width:1px;text-align:center;">
+                                <span>Guarde las modificaciones que ha realizado sobre su Oferta.</span>
+                                <br />
+                                <button class="btn btn-default color-paleta2" style="margin-bottom:5px;">Guardar</button>
 
                             </div>
                         </div>
@@ -166,18 +165,18 @@
                                 @Html.ValidationMessageFor(m => m.AreaEmpresa, "", new { @class = "text-danger" })
                                 <div class="input-group">
                                     <span class="input-group-addon">Tipo de<br />Cargo</span>
-                                    @Html.DropDownListFor(m => m.TipoCargoIdListaValor, null, "Seleccione", htmlAttributes: new { @class = "form-control" })
+                                    @Html.DropDownListFor(m => m.TipoCargoIdListaValor, null, "- Seleccione Tipo de Cargo -", htmlAttributes: new { @class = "form-control" })
                                 </div>
                                 @Html.ValidationMessageFor(m => m.TipoCargoIdListaValor, "", new { @class = "text-danger" })
                                 <div class="input-group">
                                     <span class="input-group-addon">(*) Tipo de<br />Trabajo</span>
-                                    @Html.DropDownListFor(m => m.TipoTrabajoIdListaValor, null, "Seleccione", htmlAttributes: new { @class = "form-control" })
+                                    @Html.DropDownListFor(m => m.TipoTrabajoIdListaValor, null, "- Seleccione Tipo de Trabajo -", htmlAttributes: new { @class = "form-control" })
                                 </div>
                                 @Html.ValidationMessageFor(m => m.TipoTrabajoIdListaValor, "", new { @class = "text-danger" })
 
                                 <div class="input-group">
                                     <span class="input-group-addon">Tipo de<br />Contrato</span>
-                                    @Html.DropDownListFor(m => m.TipoContratoIdListaValor, null, "Seleccione", htmlAttributes: new { @class = "form-control" })
+                                    @Html.DropDownListFor(m => m.TipoContratoIdListaValor, null, "- Seleccione Tipo de Contrato -", htmlAttributes: new { @class = "form-control" })
 
                                 </div>
                                 @Html.ValidationMessageFor(m => m.TipoContratoIdListaValor, "", new { @class = "text-danger" })
@@ -602,7 +601,7 @@
     }
 
     function alertTemporal() {
-        alert('Las fase se guardaron con éxito');
+        alert('Las Fases se guardaron con éxito');
     }
 
     function mostrarError(err)

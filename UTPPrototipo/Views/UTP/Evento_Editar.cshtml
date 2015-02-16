@@ -35,11 +35,13 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="input-group">
-                            <span class="input-group-addon">* Nombre<br />Evento</span>
+
+
+                            <span class="input-group-addon">(*)Nombre<br />Evento</span>
                             @*<input type="text" class="form-control" placeholder="Nombre del Evento">*@
 
                             @Html.TextBoxFor(model => model.NombreEvento, new { @class = "form-control", rows = "3", @placeholder = "Nombre del Evento" })
-                        </div>
+                        </div>@Html.ValidationMessageFor(model => model.NombreEvento, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
@@ -47,10 +49,11 @@
 
                     <div class="col-sm-6">
                         <div class="input-group">
-                            <span class="input-group-addon">* Estado</span>
+
+                            <span class="input-group-addon">(*)Estado</span>
 
                             @Html.DropDownList("EstadoEvento", ViewData["ListaEstadoEvento"] as List<SelectListItem>, "- Seleccione Estado -", new { @class = "form-control" })
-                        </div>
+                        </div>@Html.ValidationMessageFor(model => model.EstadoEvento, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
@@ -58,10 +61,11 @@
 
                     <div class="col-sm-6">
                         <div class="input-group">
-                            <span class="input-group-addon">* Tipo</span>
+
+                            <span class="input-group-addon">(*)Tipo</span>
 
                             @Html.DropDownList("TipoEvento", ViewData["ListaTipoEvento"] as List<SelectListItem>, "- Seleccione Tipo Evento -", new { @class = "form-control" })
-                        </div>
+                        </div>@Html.ValidationMessageFor(model => model.TipoEvento, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
@@ -93,24 +97,32 @@
                             @Html.TextBoxFor(model => model.FechaEvento, new { @class = "form-control", @placeholder = "Fecha de Inicio (dd/mm/aaaa)", @Value = System.DateTime.Now.ToString("d") })
                             
                         </div>
+
+                            @*@Html.TextBoxFor(model => model.FechaEvento, new { @class = "form-control", rows = "3", @placeholder = "Fecha de Inicio (dd/mm/aaaa)",@id="FechaEvento" })*@
+                        @Html.ValidationMessageFor(model => model.FechaEvento, "", new { @class = "text-danger" })
+
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="input-group">
-                            <span class="input-group-addon">* Describa<br />Fecha</span>
+
+                            <span class="input-group-addon">(*)Describa<br />Fecha</span>
+
                             @*<input type="text" class="form-control" placeholder="Fecha del Evento. Ej: Lunes 27 de Enero del 2014, de 8 a 9 de la Noche">*@
                             @Html.TextBoxFor(model => model.FechaEventoTexto, new { @class = "form-control", rows = "3", @placeholder = "Fecha del Evento. Ej: Lunes 27 de Enero del 2014, de 8 a 9 de la Noche" })
-                        </div>
+                        </div>@Html.ValidationMessageFor(model => model.FechaEventoTexto, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="input-group">
-                            <span class="input-group-addon">* Lugar</span>
+
+                            <span class="input-group-addon">(*)Lugar</span>
+
                             @* <input type="text" class="form-control" placeholder="Describa el Lugar del Evento. Ej: Centro de Convenciones CLARO">*@
                             @Html.TextBoxFor(model => model.LugarEvento, new { @class = "form-control", rows = "3", @placeholder = "Describa el Lugar del Evento. Ej: Centro de Convenciones CLARO" })
-                        </div>
+                        </div>@Html.ValidationMessageFor(model => model.LugarEvento, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="row">
@@ -262,7 +274,7 @@
         </div>
 
 
-        <div class="col-sm-6 ">
+    <div class="col-sm-6 ">
             <div class="row">
 
                 @*<div id="divAdministrarImagen" class="col-sm-4">

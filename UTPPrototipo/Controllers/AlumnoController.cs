@@ -1037,7 +1037,7 @@ namespace UTPPrototipo.Controllers
                     LNGeneral lngeneral = new LNGeneral();
                     ViewBag.TipoDocumentoIdListaValor = new SelectList(lngeneral.ObtenerListaValor(1), "IdListaValor", "Valor", alumno.TipoDocumentoIdListaValor);
                     ViewBag.SexoIdListaValor = new SelectList(lngeneral.ObtenerListaValor(2), "IdListaValor", "Valor", alumno.SexoIdListaValor);
-                    ViewBag.DireccionRegion = new SelectList(lngeneral.ObtenerListaValor(47), "IdListaValor", "Valor", alumno.DireccionRegion);
+                    ViewBag.DireccionRegionId = new SelectList(lngeneral.ObtenerListaValor(47), "IdListaValor", "Valor", alumno.DireccionRegionId);
                     ViewBag.EstadoAlumno = new SelectList(lngeneral.ObtenerListaValor(3), "IdListaValor", "Valor", alumno.EstadoAlumno);
                     return View(alumno);
                 }
@@ -1074,14 +1074,14 @@ namespace UTPPrototipo.Controllers
                 {
                     ViewBag.TipoDocumentoIdListaValor = new SelectList(lngeneral.ObtenerListaValor(1), "IdListaValor", "Valor", alumno.TipoDocumentoIdListaValor);
                     ViewBag.SexoIdListaValor = new SelectList(lngeneral.ObtenerListaValor(2), "IdListaValor", "Valor", alumno.SexoIdListaValor);
-                    ViewBag.DireccionRegion = new SelectList(lngeneral.ObtenerListaValor(47), "IdListaValor", "Valor", alumno.DireccionRegion);
+                    ViewBag.DireccionRegionId = new SelectList(lngeneral.ObtenerListaValor(47), "IdListaValor", "Valor", alumno.DireccionRegionId);
                     ViewBag.EstadoAlumno = new SelectList(lngeneral.ObtenerListaValor(3), "IdListaValor", "Valor", alumno.EstadoAlumno);
                 }
                 else
                 {
                     ViewBag.TipoDocumentoIdListaValor = new SelectList(lngeneral.ObtenerListaValor(1), "IdListaValor", "Valor", entidad.TipoDocumentoIdListaValor);
                     ViewBag.SexoIdListaValor = new SelectList(lngeneral.ObtenerListaValor(2), "IdListaValor", "Valor", entidad.SexoIdListaValor);
-                    ViewBag.DireccionRegion = new SelectList(lngeneral.ObtenerListaValor(47), "IdListaValor", "Valor", entidad.DireccionRegion);
+                    ViewBag.DireccionRegionId = new SelectList(lngeneral.ObtenerListaValor(47), "IdListaValor", "Valor", entidad.DireccionRegionId);
                     ViewBag.EstadoAlumno = new SelectList(lngeneral.ObtenerListaValor(3), "IdListaValor", "Valor", entidad.EstadoAlumno);
                 }
 
@@ -1093,7 +1093,7 @@ namespace UTPPrototipo.Controllers
                 //.ToList();
                 ViewBag.TipoDocumentoIdListaValor = new SelectList(lngeneral.ObtenerListaValor(1), "IdListaValor", "Valor", entidad.TipoDocumentoIdListaValor);
                 ViewBag.SexoIdListaValor = new SelectList(lngeneral.ObtenerListaValor(2), "IdListaValor", "Valor", entidad.SexoIdListaValor);
-                ViewBag.DireccionRegion = new SelectList(lngeneral.ObtenerListaValor(47), "IdListaValor", "Valor", entidad.DireccionRegion);
+                ViewBag.DireccionRegionId = new SelectList(lngeneral.ObtenerListaValor(47), "IdListaValor", "Valor", entidad.DireccionRegionId);
                 ViewBag.EstadoAlumno = new SelectList(lngeneral.ObtenerListaValor(3), "IdListaValor", "Valor", entidad.EstadoAlumno);
             }
 
@@ -1112,8 +1112,8 @@ namespace UTPPrototipo.Controllers
         public JsonResult ListarEstudio(string query)
         {
             LNGeneral lngeneral = new LNGeneral();
-            var resultado = lngeneral.ObtenerListaValor(Constantes.IDLISTA_DE_CARRERA);
-            var result = resultado.Where(s => s.Valor.ToLower().StartsWith(query.ToLower())).Select(c => new { Value = c.IdListaValor, Label = c.Valor }).ToList();
+            var resultado = lngeneral.ObtenerListaValorPorIdPadre(Constantes.TIPO_ESTUDIO_UNIVERSITARIO);
+            var result = resultado.Where(s => s.Valor.ToLower().Contains(query.ToLower())).Select(c => new { Value = c.IdListaValor, Label = c.Valor }).ToList();
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 

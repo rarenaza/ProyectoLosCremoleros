@@ -221,6 +221,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.Parameters.Add(new SqlParameter("@SectorEmpresarial1", empresa.SectorEmpresarial1IdListaValor));
                 cmd.Parameters.Add(new SqlParameter("@SectorEmpresarial2", empresa.SectorEmpresarial2IdListaValor));
                 cmd.Parameters.Add(new SqlParameter("@SectorEmpresarial3", empresa.SectorEmpresarial3IdListaValor));
+                cmd.Parameters.Add(new SqlParameter("@SitioWeb", empresa.SitioWeb));
                 cmd.Parameters.Add(new SqlParameter("@ModificadoPor", empresa.ModificadoPor));
                 cmd.ExecuteNonQuery();
 

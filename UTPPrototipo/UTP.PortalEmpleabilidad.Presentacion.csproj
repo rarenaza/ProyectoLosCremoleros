@@ -944,8 +944,6 @@
     <Content Include="Views\UTP\_NuevoValorEditar.cshtml" />
     <Content Include="Views\Empresa\_ResultadoBusquedaHunting.cshtml" />
     <Content Include="Views\Empresa\_ListaOfertas.cshtml" />
-    <Content Include="Views\UTP\Convenios.cshtml" />
-    <Content Include="Views\UTP\_VistaNuevoConvenio.cshtml" />
     <Content Include="Views\UTP\_ListaUTPOfertas.cshtml" />
     <Content Include="Views\UTP\Convenio.cshtml" />
     <Content Include="Views\UTP\_ListaUtpEvento.cshtml" />
@@ -963,6 +961,9 @@
     <Content Include="Scripts\jquery.validate.min.js.map">
       <DependentUpon>jquery.validate.min.js</DependentUpon>
     </Content>
+    <Content Include="Views\UTP\Convenios.cshtml" />
+    <Content Include="Views\UTP\_ConveniosUTPLista.cshtml" />
+    <Content Include="Views\UTP\_ConveniosUTPCrear.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

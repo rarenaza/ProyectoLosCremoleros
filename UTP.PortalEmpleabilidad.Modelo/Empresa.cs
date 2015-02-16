@@ -36,7 +36,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string LinkVideo { get; set; }
 
          [Range(1900, 2020, ErrorMessage = "El año debe ser mayor a 1900")]
-        public int AnoCreacion { get; set; }
+        public int? AnoCreacion { get; set; }
 
         public ListaValor NumeroEmpleados { get; set; }        
         public ListaValor EstadoEmpresa { get; set; }

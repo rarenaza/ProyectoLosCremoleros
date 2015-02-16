@@ -117,7 +117,8 @@ namespace UTP.PortalEmpleabilidad.Logica
             if (empresa.PaisIdListaValor == null) empresa.PaisIdListaValor = string.Empty;
             if (empresa.NumeroEmpleadosIdListaValor == null) empresa.NumeroEmpleadosIdListaValor = string.Empty;   
             if (empresa.SectorEmpresarial2IdListaValor == null) empresa.SectorEmpresarial2IdListaValor = string.Empty;
-            if (empresa.SectorEmpresarial3IdListaValor == null) empresa.SectorEmpresarial3IdListaValor = string.Empty;   
+            if (empresa.SectorEmpresarial3IdListaValor == null) empresa.SectorEmpresarial3IdListaValor = string.Empty;
+            if (empresa.SitioWeb == null) empresa.SitioWeb = string.Empty;
 
             adEmpresa.Actualizar(empresa);
         }
@@ -140,7 +141,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                     empresa.IdentificadorTributario = Convert.ToString(dsResultado.Tables[0].Rows[0]["IdentificadorTributario"]);
                     empresa.DescripcionEmpresa = Convert.ToString(dsResultado.Tables[0].Rows[0]["DescripcionEmpresa"]);
                     empresa.LinkVideo = Convert.ToString(dsResultado.Tables[0].Rows[0]["LinkVideo"]);
-                    empresa.AnoCreacion = Convert.ToInt32(dsResultado.Tables[0].Rows[0]["AnoCreacion"]);
+                    empresa.AnoCreacion = Convert.ToInt32(dsResultado.Tables[0].Rows[0]["AnoCreacion"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[0]["AnoCreacion"]);
                     empresa.NumeroEmpleados.Valor = Convert.ToString(dsResultado.Tables[0].Rows[0]["NumeroEmpleadosDescripcion"]);
                     empresa.EstadoEmpresa.Valor = Convert.ToString(dsResultado.Tables[0].Rows[0]["EstadoEmpresaDescripcion"]);
                     empresa.SectorEmpresarial.Valor = Convert.ToString(dsResultado.Tables[0].Rows[0]["SectorEmpresarialDescripcion"]);
@@ -151,6 +152,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                     empresa.SectorEmpresarial1IdListaValor = Convert.ToString(dsResultado.Tables[0].Rows[0]["SectorEmpresarial"]);
                     empresa.SectorEmpresarial2IdListaValor = Convert.ToString(dsResultado.Tables[0].Rows[0]["SectorEmpresarial2"]);
                     empresa.SectorEmpresarial3IdListaValor = Convert.ToString(dsResultado.Tables[0].Rows[0]["SectorEmpresarial3"]);
+                    empresa.SitioWeb = Convert.ToString(dsResultado.Tables[0].Rows[0]["SitioWeb"]);
                     empresa.Clasificacion = Convert.ToString(dsResultado.Tables[0].Rows[0]["Clasificación"]);
                     empresa.NivelDeRelacion = Convert.ToString(dsResultado.Tables[0].Rows[0]["NivelDeRelacion"]);
                     empresa.FacultadPrincipal = Convert.ToString(dsResultado.Tables[0].Rows[0]["FacultadPrincipal"]);

@@ -30,6 +30,9 @@ namespace UTP.PortalEmpleabilidad.Logica
                 alumno.CorreoElectronico1 = dtResultado.Rows[0]["CorreoElectronico"].ToString();
                 alumno.CorreoElectronico2 = dtResultado.Rows[0]["CorreoElectronico2"].ToString();
                 alumno.DireccionLinea1 = dtResultado.Rows[0]["Direccion"].ToString();
+                alumno.DireccionDistrito = dtResultado.Rows[0]["DireccionDistrito"].ToString();
+                alumno.DireccionCiudad = dtResultado.Rows[0]["DireccionCiudad"].ToString();
+                alumno.DireccionRegion = dtResultado.Rows[0]["DireccionRegion"].ToString();
                 alumno.TelefonoFijoCasa = dtResultado.Rows[0]["TelefonoFijoCasa"].ToString();
                 alumno.TelefonoCelular = dtResultado.Rows[0]["TelefonoCelular"].ToString();
                 alumno.Carrera = dtResultado.Rows[0]["Carrera"].ToString();
@@ -113,6 +116,9 @@ namespace UTP.PortalEmpleabilidad.Logica
                 alumno.DireccionRegion = Funciones.ToString(dtResultado.Rows[0]["DireccionRegion"]);
                 alumno.DireccionCiudad = Funciones.ToString(dtResultado.Rows[0]["DireccionCiudad"]);
                 alumno.DireccionDistrito = Funciones.ToString(dtResultado.Rows[0]["DireccionDistrito"]);
+                alumno.DireccionRegionId = Funciones.ToString(dtResultado.Rows[0]["DireccionRegionId"]);
+                alumno.DireccionCiudadId = Funciones.ToString(dtResultado.Rows[0]["DireccionCiudadId"]);
+                alumno.DireccionDistritoId = Funciones.ToString(dtResultado.Rows[0]["DireccionDistritoId"]);
                 alumno.CorreoElectronico1 = Funciones.ToString(dtResultado.Rows[0]["CorreoElectronico"]);
                 alumno.CorreoElectronico2 = Funciones.ToString(dtResultado.Rows[0]["CorreoElectronico2"]);
                 alumno.TelefonoCelular = Funciones.ToString(dtResultado.Rows[0]["TelefonoCelular"]);

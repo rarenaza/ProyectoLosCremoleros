@@ -17,6 +17,8 @@ namespace UTP.PortalEmpleabilidad.Modelo.Vistas.Convenio
         public int DuracionContrato { get; set; }
         public decimal SalarioOfrecido{ get; set; }
         public string AreaEmpresa { get; set; }
-        public DateTime FechaIngreso { get; set; }
+        //public DateTime FechaIngreso { get; set; }
+        public string FechaIngreso { get; set; }
+        public string PalabraClave { get; set; }
     }
 }

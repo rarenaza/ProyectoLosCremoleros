@@ -131,10 +131,12 @@
     <nav class="navbar-right">
         <ul class="pagination">
             @{
+                int i1 = paginacion.NroPaginaActual - 2;
+                if (paginacion.NroPaginaActual + 2 > paginacion.TotalPaginas) { i1 = paginacion.TotalPaginas - 5; }
+                if (i1 < 1) { i1 = 1; }
                 if (paginacion.NroPaginaActual > 1)
                 {
-                    int i1 = paginacion.NroPaginaActual - 5;
-                    if (i1 < 1) { i1 = 1; }
+                    
                     <li>
                         @if (ViewBag.TipoBusqueda == "Simple")
                         {
@@ -149,18 +151,18 @@
                             </a>
                         }
                     </li>
-                    if (i1 > 1)
+                    if (paginacion.NroPaginaActual - 5 >= 1)
                     {
                         <li>
                             @if (ViewBag.TipoBusqueda == "Simple")
                             {
-                                <a href="#" onclick="BusquedaSimpleEmpresasActivas('@i1');">
+                                <a href="#" onclick="BusquedaSimpleEmpresasActivas('@(paginacion.NroPaginaActual - 5)');">
                                     <span aria-hidden="true" class="glyphicon glyphicon-backward"></span>
                                 </a>
                             }
                             else
                             {
-                                <a href="#" onclick="BusquedaAvanzadaEmpresasActivas('@i1');">
+                                <a href="#" onclick="BusquedaAvanzadaEmpresasActivas('@(paginacion.NroPaginaActual - 5)');">
                                     <span aria-hidden="true" class="glyphicon glyphicon-backward"></span>
                                 </a>
                             }
@@ -168,7 +170,7 @@
                     }
                 }
 
-                for (int i = (paginacion.NroPaginaActual - 2); (i <= paginacion.TotalPaginas && i <= (paginacion.NroPaginaActual + 2)); i++)
+                for (int i = i1; (i <= paginacion.TotalPaginas && i <= (i1 + 4)); i++)
                 {
                     if (i == paginacion.NroPaginaActual)
                     {
@@ -229,6 +231,21 @@
         </ul>
 
     </nav>
+
+
+@*<div class="row">
+    <div class="col-sm-12" style="text-align:right;">
+        <button class="btn btn-default color-paleta2" data-toggle="modal" data-target="#nuevaEmpresa">Nueva Empresa</button>
+    </div>
+</div>*@
+
+<div class="col-sm-12">
+
+    <button class="btn btn-default color-paleta2" onclick="EmpresaUTPCrear();">Agregar Empresa</button>
+  
+</div>
+
+
     @*</div>*@
 
 
