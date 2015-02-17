@@ -874,7 +874,10 @@ namespace UTPPrototipo.Controllers
 
             ViewBag.TipoLocacionIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_LOCACION), "IdListaValor", "Valor", empresaLocacion.TipoLocacionIdListaValor);
             ViewBag.EstadoLocacionIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_LOCACION), "IdListaValor", "Valor", empresaLocacion.EstadoLocacionIdListaValor);
-
+            ViewBag.DireccionDepartamentoId = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_Departamento), "IdListaValor", "Valor", empresaLocacion.DireccionDepartamentoId);
+            ViewBag.DireccionCiudadId = new SelectList(lnGeneral.ObtenerListaValor(-1), "IdListaValor", "Valor", empresaLocacion.DireccionCiudadId);
+            ViewBag.DireccionDistritoId = new SelectList(lnGeneral.ObtenerListaValor(-1), "IdListaValor", "Valor", empresaLocacion.DireccionDistritoId);
+           
             return PartialView("_AdministrarUbicacionEditar", empresaLocacion);
         }
 
@@ -1317,6 +1320,12 @@ namespace UTPPrototipo.Controllers
             //}
            
             
+        }
+        public ActionResult ListarListaValor(string Id)
+        {
+            LNGeneral lngeneral = new LNGeneral();
+            var Data = lngeneral.ObtenerListaValorPorIdPadre(Id);
+            return Json(Data, JsonRequestBehavior.AllowGet);
         }
     }
 }
