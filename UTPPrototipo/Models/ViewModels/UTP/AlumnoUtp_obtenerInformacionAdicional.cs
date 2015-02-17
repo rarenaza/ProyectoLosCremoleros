@@ -13,6 +13,6 @@ namespace UTPPrototipo.Models.ViewModels.UTP
         public string Nivel { get; set; }
         public string FechaInicio { get; set; }
         public string FechaFin { get; set; }
-        public string AñosExperiencia { get; set; }
+        public string AnosExperiencia { get; set; }
     }
 }

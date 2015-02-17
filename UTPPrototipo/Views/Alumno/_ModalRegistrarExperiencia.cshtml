@@ -92,6 +92,7 @@
             <div class="col-sm-4">
                 <div class="input-group fuente-pequeña">
                     <span class="input-group-addon">(*)Año<br />Inicio</span>
+                    @if (Model.FechaInicioCargoAno == 0) { Model.FechaInicioCargoAno = null; }
                     @Html.TextBoxFor(m => m.FechaInicioCargoAno, htmlAttributes: new { @class = "form-control", @placeholder = "Año Inicio", @value = "" })
                 </div>
                 @Html.ValidationMessageFor(m => m.FechaInicioCargoAno, "", new { @class = "text-danger" })
@@ -110,6 +111,7 @@
             <div class="col-sm-4">
                 <div class="input-group fuente-pequeña">
                     <span class="input-group-addon">Año Fin</span>
+                    @if (Model.FechaFinCargoAno == 0) { Model.FechaFinCargoAno = null; }
                     @Html.TextBoxFor(m => m.FechaFinCargoAno, htmlAttributes: new { @class = "form-control", @placeholder = "Año Fin" })
                 </div>
                 @Html.ValidationMessageFor(m => m.FechaFinCargoAno, "", new { @class = "text-danger" })

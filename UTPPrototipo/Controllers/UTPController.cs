@@ -2809,7 +2809,7 @@ namespace UTPPrototipo.Controllers
                 alumno.NomPais = Convert.ToString(dtResultado.Rows[i]["PaisValor"] == System.DBNull.Value ? "" : dtResultado.Rows[i]["PaisValor"]);
                 alumno.Ciudad = Convert.ToString(dtResultado.Rows[i]["Ciudad"] == System.DBNull.Value ? "" : dtResultado.Rows[i]["Ciudad"]);
                 alumno.InstituciónDeEstudio = Convert.ToString(dtResultado.Rows[i]["InstituciónDeEstudio"] == System.DBNull.Value ? "" : dtResultado.Rows[i]["InstituciónDeEstudio"]);
-                alumno.AñosExperiencia = Convert.ToInt32(dtResultado.Rows[i]["AñosExperiencia"] == System.DBNull.Value ? null : dtResultado.Rows[i]["AñosExperiencia"]);
+                alumno.AnosExperiencia = Convert.ToInt32(dtResultado.Rows[i]["AñosExperiencia"] == System.DBNull.Value ? null : dtResultado.Rows[i]["AñosExperiencia"]);
                 alumno.Estado = Convert.ToString(dtResultado.Rows[i]["Estado"] == System.DBNull.Value ? "" : dtResultado.Rows[i]["Estado"]);
                 alumno.CreadoPor = Convert.ToString(dtResultado.Rows[i]["CreadoPor"]);
                 alumno.FechaCreacion = Convert.ToDateTime(dtResultado.Rows[i]["FechaCreacion"]);

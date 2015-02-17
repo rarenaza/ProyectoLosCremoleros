@@ -32,7 +32,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                     alumnoinformacionadicional.NomPais = Funciones.ToString(dtResultado.Rows[i]["NomPais"]);
                     alumnoinformacionadicional.Ciudad = Funciones.ToString(dtResultado.Rows[i]["Ciudad"]);
                     alumnoinformacionadicional.InstituciónDeEstudio = Funciones.ToString(dtResultado.Rows[i]["InstituciónDeEstudio"]);
-                    alumnoinformacionadicional.AñosExperiencia = Funciones.ToInt(dtResultado.Rows[i]["AñosExperiencia"]);
+                    alumnoinformacionadicional.AnosExperiencia = Funciones.ToInt(dtResultado.Rows[i]["AñosExperiencia"]);
                     listaAlumnoInformacionAdicional.Add(alumnoinformacionadicional);
                 }
             }
@@ -66,7 +66,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 alumnoinformacionadicional.PaisIdListaValor = Funciones.ToString(dtResultado.Rows[0]["Pais"]);
                 alumnoinformacionadicional.Ciudad = Funciones.ToString(dtResultado.Rows[0]["Ciudad"]);
                 alumnoinformacionadicional.InstituciónDeEstudio = Funciones.ToString(dtResultado.Rows[0]["InstituciónDeEstudio"]);
-                alumnoinformacionadicional.AñosExperiencia = Funciones.ToInt(dtResultado.Rows[0]["AñosExperiencia"]);
+                alumnoinformacionadicional.AnosExperiencia = Funciones.ToInt(dtResultado.Rows[0]["AñosExperiencia"]);
             }
             return alumnoinformacionadicional;
         }
