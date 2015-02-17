@@ -8,6 +8,9 @@
   
     <div class="modal-body">
         @Html.ValidationSummary(false, "", new { @class = "alert alert-danger" })
+        @Html.HiddenFor(model => Model.TextoDepartamento)
+        @Html.HiddenFor(model => Model.TextoCiudad)
+        @Html.HiddenFor(model => Model.TextDistrito)
         <div class="row">
             <div class="col-sm-6">
                 <div class="input-group fuente-pequeña">
@@ -63,14 +66,15 @@
             <div class="col-sm-6">
                 <div class="input-group fuente-pequeña">
                     <span class="input-group-addon">(*) Departa-<br />mento</span>
-                    @Html.Raw(@Html.EditorFor(model => model.DireccionDepartamento).ToString().Replace("text-box single-line", "form-control"))
-                    
+                    @*@Html.Raw(@Html.EditorFor(model => model.DireccionDepartamento).ToString().Replace("text-box single-line", "form-control"))*@
+                    @Html.DropDownListFor(m => m.DireccionDepartamento, null, "Seleccione", htmlAttributes: new { @class = "form-control", @id = "DireccionDepartamentoLocacion" })
                 </div>@Html.ValidationMessageFor(model => model.DireccionDepartamento, "", new { @class = "text-danger" })
             </div>
             <div class="col-sm-6">
                 <div class="input-group fuente-pequeña">
                     <span class="input-group-addon">(*) Ciudad</span>
-                    @Html.Raw(@Html.EditorFor(model => model.DireccionCiudad).ToString().Replace("text-box single-line", "form-control"))
+                    @Html.DropDownListFor(m => m.DireccionCiudad, null, "Seleccione", htmlAttributes: new { @class = "form-control", @id = "DireccionCiudadLocacion" })
+                    @*@Html.Raw(@Html.EditorFor(model => model.DireccionCiudad).ToString().Replace("text-box single-line", "form-control"))*@
                     
                 </div>@Html.ValidationMessageFor(model => model.DireccionCiudad, "", new { @class = "text-danger" })
             </div>
@@ -79,7 +83,8 @@
             <div class="col-sm-6">
                 <div class="input-group fuente-pequeña">
                     <span class="input-group-addon">(*)<br />Distrito</span>
-                    @Html.Raw(@Html.EditorFor(model => model.DireccionDistrito).ToString().Replace("text-box single-line", "form-control"))
+                    @Html.DropDownList("DireccionDistrito", new SelectList(string.Empty, "Value", "Text"), "-Seleccione-", new { @class = "form-control", @id = "DireccionDistritoLocacion" })
+                    @*@Html.Raw(@Html.EditorFor(model => model.DireccionDistrito).ToString().Replace("text-box single-line", "form-control"))*@
                     
                 </div>@Html.ValidationMessageFor(model => model.DireccionDistrito, "", new { @class = "text-danger" })
             </div>
@@ -106,3 +111,103 @@
     <div class="modal-footer">
     </div>
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        //Cambio en el combo departamento para cargar ciudades:
+        $("#DireccionDepartamentoLocacion").change(function () {
+
+            //Se limpia ciudad y distrito.
+            $("#DireccionCiudadLocacion").empty();
+            $("#DireccionDistritoLocacion").empty();
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetStateProvincia","Home")', // we are calling json method
+                dataType: 'json',
+                data: { IDListaValorPadre: $("#DireccionDepartamentoLocacion").val() }, //Se pasa el valor del departamento.
+
+                success: function (states) {
+
+                    $("#DireccionCiudadLocacion").append('<option selected value>Seleccione</option>'); //Se establece la opción "Seleccione" sin valor.
+                    //Se recorre la lista de resultados para llenar el combo de ciudad.
+                    $.each(states, function (i, state) {
+                        $("#DireccionCiudadLocacion").append('<option value="' + state.Value + '">' +
+                         state.Text + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    alert('Ha habido un error al obtener las ciudades.' + ex);
+                }
+            });
+            return false;
+        });
+
+        //Cambio en el combo ciudad para cargar distritos.
+        $("#DireccionCiudadLocacion").change(function () {
+
+            //Se limpian los distrito.
+            $("#DireccionDistritoLocacion").empty();
+
+            //Llamada al servidor mediante ajax.
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("GetStateProvincia", "Home")',
+                dataType: 'json',
+                data: { IDListaValorPadre: $("#DireccionCiudadLocacion").val() }, //Se pasa el value de la ciudad como parámetro.
+                success: function (states) {
+                    $("#DireccionDistritoLocacion").append('<option selected value>Seleccione</option>');
+                    $.each(states, function (i, state) {
+                        $("#DireccionDistritoLocacion").append('<option value="' + state.Value + '">' +
+                         state.Text + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    alert('Ha habido un error al obtener las ciudades.' + ex);
+                }
+            });
+            return false;
+        })
+    });
+</script>
+
+<script>
+    //Este bloque sólo debe ir una vez, esto quiere decir que todo lo de adentro se ejecuta cuando toda la pagina se renderiza o muestra al c liente.
+    $(document).ready(function () {
+
+        //Combo de departamento.
+        $('#DireccionDepartamentoLocacion').on('change', function () {
+
+            //Se obtiene el texto del combo.
+            var TextDepartamento = $("#DireccionDepartamentoLocacion option:selected").text();
+
+            //Se guarda el valor en el hidden TextoDepartamento.
+            $('#TextoDepartamento').val(TextDepartamento);
+        });
+
+
+
+        //Combo de provincia.
+        $('#DireccionCiudadLocacion').on('change', function () {
+
+            //Se obtiene el texto del combo.
+            var TextCiudad = $("#DireccionCiudadLocacion option:selected").text();
+
+            //Se guarda el valor en el hidden TextoDepartamento.
+            $('#TextoCiudad').val(TextCiudad);
+        });
+
+        //combo de distrito.
+        $('#DireccionDistritoLocacion').on('change', function () {
+
+            //Se obtiene el texto del combo.
+            var TextDistrito = $("#DireccionDistritoLocacion option:selected").text();
+
+            //Se guarda el valor en el hidden TextoDepartamento.
+            $('#TextDistrito').val(TextDistrito);
+        });
+
+    });
+
+</script>

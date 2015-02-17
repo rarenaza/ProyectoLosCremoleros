@@ -40,6 +40,13 @@ namespace UTP.PortalEmpleabilidad.Modelo
         [Required(ErrorMessage = "Falta Estado de Ubicación")]
         public string EstadoLocacionIdListaValor { get; set; }
 
+        public string TextoDepartamento { get; set; }
+        public string TextoCiudad { get; set; }
+        public string TextDistrito { get; set; }
+
+  
+
+
         public EmpresaLocacion() {
             TipoLocacion = new ListaValor();
             EstadoLocacion = new ListaValor();
