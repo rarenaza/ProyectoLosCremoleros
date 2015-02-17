@@ -833,8 +833,37 @@ namespace UTPPrototipo.Controllers
             
             ViewBag.TipoLocacionIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_LOCACION), "IdListaValor", "Valor");
             ViewBag.EstadoLocacionIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_LOCACION), "IdListaValor", "Valor");
-
+            ViewBag.DireccionDepartamento = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_Departamento), "IdListaValor", "Valor");
+            ViewBag.DireccionCiudad = new SelectList(lnGeneral.ObtenerListaValor(-1), "IdListaValor", "Valor"); //Se envia -1 porque es vacío. Se llena por js.
             return PartialView("_AdministrarNuevaUbicacion");
+        }
+
+        [ValidateAntiForgeryToken]
+        public PartialViewResult _AdministrarNuevaUbicacion(EmpresaLocacion empresaLocacion)
+        {
+            if (ModelState.IsValid)
+            {
+                TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];
+                empresaLocacion.IdEmpresa = ticket.IdEmpresa;
+                empresaLocacion.CreadoPor = ticket.Usuario;
+
+                empresaLocacion.DireccionDistrito = empresaLocacion.TextDistrito;
+                empresaLocacion.DireccionCiudad = empresaLocacion.TextoCiudad;
+                empresaLocacion.DireccionDepartamento = empresaLocacion.TextoDepartamento;
+
+
+
+
+                LNEmpresaLocacion lnEmpresaLocacion = new LNEmpresaLocacion();
+                lnEmpresaLocacion.Insertar(empresaLocacion);
+
+                var empresa = lnEmpresa.ObtenerDatosEmpresaPorId(ticket.IdEmpresa);
+
+                return PartialView("_AdministrarUbicaciones", empresa.Locaciones);
+
+            }
+
+            return PartialView("_AdministrarNuevaUbicacion", empresaLocacion);
         }
 
         [HttpGet] // esta acción devuelve la vista parcial con los datos para cargar el modal.
@@ -893,26 +922,7 @@ namespace UTPPrototipo.Controllers
             return PartialView("_AdministrarUsuarioEditar", empresaUsuario);
         }
 
-        [ValidateAntiForgeryToken] 
-        public PartialViewResult _AdministrarNuevaUbicacion(EmpresaLocacion empresaLocacion)
-        {
-            if (ModelState.IsValid)
-            {
-                TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];                
-                empresaLocacion.IdEmpresa = ticket.IdEmpresa;
-                empresaLocacion.CreadoPor = ticket.Usuario;
-                
-                LNEmpresaLocacion lnEmpresaLocacion = new LNEmpresaLocacion ();
-                lnEmpresaLocacion.Insertar(empresaLocacion);
-
-                var empresa = lnEmpresa.ObtenerDatosEmpresaPorId(ticket.IdEmpresa);
-
-                return PartialView("_AdministrarUbicaciones", empresa.Locaciones);
-                
-            }
-
-            return PartialView("_AdministrarNuevaUbicacion", empresaLocacion);
-        }
+    
 
         [ValidateAntiForgeryToken]
         public PartialViewResult _AdministrarUbicacionEditar(EmpresaLocacion empresaLocacion)
