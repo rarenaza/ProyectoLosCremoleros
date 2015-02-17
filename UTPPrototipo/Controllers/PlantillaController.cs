@@ -226,7 +226,6 @@ namespace UTPPrototipo.Controllers
                         //string pais = "pais"; //Convert.ToString(dtInfoAdicional.Rows[fila]["PaisDescripcion"]);
                         //string ciudad = "ciudad"; //Convert.ToString(dtInfoAdicional.Rows[fila]["Ciudad"]);
                         string institucionEstudio = Convert.ToString(dtInfoAdicional.Rows[fila]["InstituciónDeEstudio"]);
-                        //string aniosExperiencia = "aniosExperiencia"; //Convert.ToString(dtInfoAdicional.Rows[fila]["AñosExperiencia"]);
 
                         //Se arma la cadena de cada fila en la tabla de Información adicional.
                         StringBuilder infoAdicional = new StringBuilder();
@@ -477,7 +476,6 @@ namespace UTPPrototipo.Controllers
                         //string pais = "pais"; //Convert.ToString(dtInfoAdicional.Rows[fila]["PaisDescripcion"]);
                         //string ciudad = "ciudad"; //Convert.ToString(dtInfoAdicional.Rows[fila]["Ciudad"]);
                         string institucionEstudio = Convert.ToString(dtInfoAdicional.Rows[fila]["InstituciónDeEstudio"]);
-                        //string aniosExperiencia = "aniosExperiencia"; //Convert.ToString(dtInfoAdicional.Rows[fila]["AñosExperiencia"]);
 
                         //Se arma la cadena de cada fila en la tabla de Información adicional.
                         StringBuilder infoAdicional = new StringBuilder();

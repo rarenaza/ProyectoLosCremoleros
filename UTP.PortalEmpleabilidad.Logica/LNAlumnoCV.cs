@@ -112,7 +112,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                         alumnoinformacionadicional.NomPais = Funciones.ToString(dsResultado.Tables[3].Rows[n]["Pais"]);
                         alumnoinformacionadicional.Ciudad = Funciones.ToString(dsResultado.Tables[3].Rows[n]["Ciudad"]);
                         alumnoinformacionadicional.InstituciónDeEstudio = Funciones.ToString(dsResultado.Tables[3].Rows[n]["InstituciónDeEstudio"]);
-                        alumnoinformacionadicional.AñosExperiencia = Funciones.ToInt(dsResultado.Tables[3].Rows[n]["AñosExperiencia"]);
+                        alumnoinformacionadicional.AnosExperiencia = Funciones.ToInt(dsResultado.Tables[3].Rows[n]["AñosExperiencia"]);
                         alumnoinformacionadicional.Cumple = Funciones.ToInt(dsResultado.Tables[3].Rows[n]["Cumple"]);
                         
                         alumnoinformacionadicionalcv.Add(alumnoinformacionadicional);
@@ -387,7 +387,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                         alumnoinformacionadicional.NomPais = Funciones.ToString(dsResultado.Tables[3].Rows[n]["Pais"]);
                         alumnoinformacionadicional.Ciudad = Funciones.ToString(dsResultado.Tables[3].Rows[n]["Ciudad"]);
                         alumnoinformacionadicional.InstituciónDeEstudio = Funciones.ToString(dsResultado.Tables[3].Rows[n]["InstituciónDeEstudio"]);
-                        alumnoinformacionadicional.AñosExperiencia = Funciones.ToInt(dsResultado.Tables[3].Rows[n]["AñosExperiencia"]);
+                        alumnoinformacionadicional.AnosExperiencia = Funciones.ToInt(dsResultado.Tables[3].Rows[n]["AñosExperiencia"]);
                         alumnoinformacionadicional.Cumple = Funciones.ToInt(dsResultado.Tables[3].Rows[n]["Cumple"]);
 
                         alumnoinformacionadicionalcv.Add(alumnoinformacionadicional);

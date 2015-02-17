@@ -59,7 +59,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.Parameters.Add(new SqlParameter("@Pais", alumnoinformacionadicional.PaisIdListaValor));
                 cmd.Parameters.Add(new SqlParameter("@Ciudad", alumnoinformacionadicional.Ciudad));
                 cmd.Parameters.Add(new SqlParameter("@InstituciónDeEstudio", alumnoinformacionadicional.InstituciónDeEstudio));
-                cmd.Parameters.Add(new SqlParameter("@AñosExperiencia", alumnoinformacionadicional.AñosExperiencia));
+                cmd.Parameters.Add(new SqlParameter("@AnosExperiencia", alumnoinformacionadicional.AnosExperiencia));
                 cmd.Parameters.Add(new SqlParameter("@CreadoPor", alumnoinformacionadicional.Usuario));
                 cmd.ExecuteNonQuery();
                 conexion.Close();
@@ -116,7 +116,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                     cmd.Parameters.Add(new SqlParameter("@Pais", alumnoinformacionadicional.PaisIdListaValor));
                     cmd.Parameters.Add(new SqlParameter("@Ciudad", alumnoinformacionadicional.Ciudad));
                     cmd.Parameters.Add(new SqlParameter("@InstituciónDeEstudio", alumnoinformacionadicional.InstituciónDeEstudio));
-                    cmd.Parameters.Add(new SqlParameter("@AñosExperiencia", alumnoinformacionadicional.AñosExperiencia));
+                    cmd.Parameters.Add(new SqlParameter("@AnosExperiencia", alumnoinformacionadicional.AnosExperiencia));
                     cmd.Parameters.Add(new SqlParameter("@ModificadoPor", alumnoinformacionadicional.Usuario));
                     cmd.ExecuteNonQuery();
                     transaccion.Commit();

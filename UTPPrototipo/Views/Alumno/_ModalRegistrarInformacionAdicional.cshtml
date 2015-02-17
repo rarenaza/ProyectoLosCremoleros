@@ -44,6 +44,7 @@
                 <div class="col-sm-4">
                     <div class="input-group fuente-pequeña">
                         <span class="input-group-addon">Año Inicio</span>
+                        @if (Model.FechaConocimientoDesdeAno == 0) { Model.FechaConocimientoDesdeAno = null; }
                         @Html.TextBoxFor(m => m.FechaConocimientoDesdeAno, htmlAttributes: new { @class = "form-control", @placeholder = "Año Inicio" })
                     </div>
                     @Html.ValidationMessageFor(m => m.FechaConocimientoDesdeAno, "", new { @class = "text-danger" })
@@ -60,6 +61,7 @@
                 <div class="col-sm-4">
                     <div class="input-group fuente-pequeña">
                         <span class="input-group-addon">Año Fin</span>
+                        @if (Model.FechaConocimientoHastaAno == 0) { Model.FechaConocimientoHastaAno = null; }
                         @Html.TextBoxFor(m => m.FechaConocimientoHastaAno, htmlAttributes: new { @class = "form-control", @placeholder = "Año Fin" })
                     </div>
                 </div>
@@ -98,9 +100,10 @@
                 <div class="col-sm-4">
                     <div class="input-group fuente-pequeña">
                         <span class="input-group-addon">Experiencia</span>
-                        @Html.TextBoxFor(m => m.AñosExperiencia, htmlAttributes: new { @class = "form-control", @placeholder = "Años de experiencia" })
+                        @if (Model.AnosExperiencia == 0) { Model.AnosExperiencia = null; }
+                        @Html.TextBoxFor(m => m.AnosExperiencia, htmlAttributes: new { @class = "form-control", @placeholder = "Años de experiencia" })
                     </div>
-                    @Html.ValidationMessageFor(m => m.AñosExperiencia, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(m => m.AnosExperiencia, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="row">
