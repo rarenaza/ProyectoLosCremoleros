@@ -47,8 +47,8 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public static int IDLISTA_DISTRITO_PERU = 49;
         public static int IDLISTA_AREA_EMPRESA = 50;
         public static int IDLISTA_Departamento = 47;
-        public static int IDLISTA_Provincia = 48; 
-
+        public static int IDLISTA_Provincia = 48;
+        public static int IDLISTA_FUENTE_CONVENIO = 41;
         #endregion
 
         public const string MSJ_CAMPO_OBLIGATORIO = "Este campo es obligatorio";
@@ -120,5 +120,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public static string TIPO_ESTUDIO_UNIVERSITARIO = "TEUNIV";
 
         #endregion
+
+        
     }
 }

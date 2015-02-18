@@ -1015,8 +1015,8 @@ namespace UTPPrototipo.Controllers
             convenio.TipoTrabajo = "";
             convenio.FuenteConvenio = "";
 
-            ViewBag.TipoTrabajo = new SelectList(lngeneral.ObtenerListaValor(29), "IdListaValor", "Valor");
-            ViewBag.FuenteConvenio = new SelectList(lngeneral.ObtenerListaValor(51), "IdListaValor", "Valor");
+            ViewBag.TipoTrabajo = new SelectList(lngeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_TRABAJO), "IdListaValor", "Valor");
+            ViewBag.FuenteConvenio = new SelectList(lngeneral.ObtenerListaValor(Constantes.IDLISTA_FUENTE_CONVENIO), "IdListaValor", "Valor");
 
 
 
@@ -1038,7 +1038,7 @@ namespace UTPPrototipo.Controllers
             convenio.FuenteConvenio = "";
 
             //ViewBag.TipoTrabajo = new SelectList(lngeneral.ObtenerListaValor(29), "IdListaValor", "Valor");
-            //ViewBag.FuenteConvenio = new SelectList(lngeneral.ObtenerListaValor(51), "IdListaValor", "Valor");
+            //ViewBag.FuenteConvenio = new SelectList(lngeneral.ObtenerListaValor(Constantes.IDLISTA_FUENTE_CONVENIO), "IdListaValor", "Valor");
 
             List<VistaUTPListaConvenio> listaEjemplo = new List<VistaUTPListaConvenio>();
 
@@ -1075,8 +1075,8 @@ namespace UTPPrototipo.Controllers
         {
             LNGeneral lngeneral = new LNGeneral();
             Convenio convenio = lnUtp.UTP_ObtenerConvenio(idconvenio);
-            ViewBag.TipoTrabajo = new SelectList(lngeneral.ObtenerListaValor(29), "IdListaValor", "Valor",convenio.TipoTrabajo);
-            ViewBag.FuenteConvenio = new SelectList(lngeneral.ObtenerListaValor(41), "IdListaValor", "Valor",convenio.FuenteConvenio);
+            ViewBag.TipoTrabajo = new SelectList(lngeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_TRABAJO), "IdListaValor", "Valor", convenio.TipoTrabajo);
+            ViewBag.FuenteConvenio = new SelectList(lngeneral.ObtenerListaValor(Constantes.IDLISTA_FUENTE_CONVENIO), "IdListaValor", "Valor", convenio.FuenteConvenio);
             ViewBag.IdExperienciaCargo = new SelectList(convenio.Experiencias, "IdExperienciaCargo", "Experiencia",convenio.IdExperienciaCargo);
             return View(convenio);
         }
@@ -1090,8 +1090,8 @@ namespace UTPPrototipo.Controllers
             convenio.ModificadoPor = ticket.Usuario;
             lnUtp.UTP_ConvenioActualizar(convenio);
             Convenio convenioa = lnUtp.UTP_ObtenerConvenio(convenio.IdConvenio);
-            ViewBag.TipoTrabajo = new SelectList(lngeneral.ObtenerListaValor(29), "IdListaValor", "Valor", convenioa.TipoTrabajo);
-            ViewBag.FuenteConvenio = new SelectList(lngeneral.ObtenerListaValor(41), "IdListaValor", "Valor", convenioa.FuenteConvenio);
+            ViewBag.TipoTrabajo = new SelectList(lngeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_TRABAJO), "IdListaValor", "Valor", convenioa.TipoTrabajo);
+            ViewBag.FuenteConvenio = new SelectList(lngeneral.ObtenerListaValor(Constantes.IDLISTA_FUENTE_CONVENIO), "IdListaValor", "Valor", convenioa.FuenteConvenio);
             
             ViewBag.IdExperienciaCargo = new SelectList(convenioa.Experiencias, "IdExperienciaCargo", "Experiencia", convenioa.IdExperienciaCargo);
             return View(convenioa);
