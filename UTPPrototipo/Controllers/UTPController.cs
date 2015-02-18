@@ -22,6 +22,7 @@ using UTPPrototipo.Models;
 using UTPPrototipo.Models.ViewModels.Contenido;
 using UTPPrototipo.Models.ViewModels.Cuenta;
 using UTPPrototipo.Models.ViewModels.UTP;
+using UTPPrototipo.Utiles;
 
 namespace UTPPrototipo.Controllers
 {
@@ -1097,16 +1098,17 @@ namespace UTPPrototipo.Controllers
             return View(convenioa);
         }
 
-        public ActionResult VerDetalleEmpresa(int id)
+        public ActionResult VerDetalleEmpresa(string id)
         {
-            ViewBag.IdEmpresa = id;
+            int idEmpresa = Convert.ToInt32(Helper.Desencriptar(id));
+            ViewBag.IdEmpresa = idEmpresa;
 
             return View();
         }
 
         public PartialViewResult _VerDetalleEmpresaDatosGenerales(int id)
         {
-            int idEmpresa = id;
+            int idEmpresa = id; // Convert.ToInt32(Helper.Desencriptar(id));
             LNEmpresa lnEmpresa = new LNEmpresa();
             LNGeneral lnGeneral = new LNGeneral();
             LNUsuario lnUsuario = new LNUsuario();
