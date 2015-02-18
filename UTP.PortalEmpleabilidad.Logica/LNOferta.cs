@@ -449,6 +449,8 @@ namespace UTP.PortalEmpleabilidad.Logica
                 oferta.Postulantes.Add(postulante);
             }
 
+            //Tabla Index 5: fases de la oferta
+            oferta.OfertaFases = Obtener_OfertaFase(idOferta);
 
             return oferta;
         }

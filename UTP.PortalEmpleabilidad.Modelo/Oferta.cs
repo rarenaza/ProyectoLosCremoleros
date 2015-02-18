@@ -107,6 +107,8 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public int IdOfertaPostulante { get; set; }
 
         public int TotalRegistros { get; set; }
+
+        public virtual List<OfertaFase> OfertaFases { get; set; }
        public Oferta() {
 
            TipoCargo = new ListaValor();
@@ -116,6 +118,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
            ListaSectores = new List<OfertaSectorEmpresarial>();
            ListaInformacionAdicional = new List<OfertaInformacionAdicional>();
            Empresa = new Empresa();
+           OfertaFases = new List<OfertaFase>();
         }
     }
 }

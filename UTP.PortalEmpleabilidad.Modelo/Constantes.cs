@@ -112,6 +112,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public static string OFERTA_ESTADO_FINALIZADA = "OFERFI";
         public static string OFERTA_ESTADO_PENDIENTEACTIVACION = "OFERPR";
         public static string OFERTA_ESTADO_SUSPENDIDA = "OFERSU";
+        public static string OFERTA_ESTADO_BORRADOR = "OFERBO";
 
         #endregion
 

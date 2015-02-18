@@ -351,18 +351,18 @@ namespace UTP.PortalEmpleabilidad.Datos
                     cmd.CommandText = "Oferta_Insertar";
 
                     //Parámetros:
-                    cmd.Parameters.Add(new SqlParameter("@IdEmpresa", oferta.IdEmpresa));
-                    cmd.Parameters.Add(new SqlParameter("@Funciones", oferta.Funciones));
-                    cmd.Parameters.Add(new SqlParameter("@Competencias", oferta.Competencias));
-                    cmd.Parameters.Add(new SqlParameter("@UsuarioPropietarioEmpresa", oferta.UsuarioPropietarioEmpresa));
-                    cmd.Parameters.Add(new SqlParameter("@EstadoOferta", oferta.EstadoOferta));
+                    cmd.Parameters.Add(new SqlParameter("@IdEmpresa", oferta.IdEmpresa)); //
+                    cmd.Parameters.Add(new SqlParameter("@Funciones", oferta.Funciones)); //
+                    cmd.Parameters.Add(new SqlParameter("@Competencias", oferta.Competencias)); //
+                    cmd.Parameters.Add(new SqlParameter("@UsuarioPropietarioEmpresa", oferta.UsuarioPropietarioEmpresa)); //
+                    cmd.Parameters.Add(new SqlParameter("@EstadoOferta", oferta.EstadoOferta)); //
                     //cmd.Parameters.Add(new SqlParameter("@FechaPublicacion", oferta.FechaPublicacion));
-                    cmd.Parameters.Add(new SqlParameter("@FechaFinRecepcionCV", oferta.FechaFinRecepcionCV));
-                    cmd.Parameters.Add(new SqlParameter("@IdEmpresaLocacion", oferta.IdEmpresaLocacion));
-                    cmd.Parameters.Add(new SqlParameter("@TipoTrabajo", oferta.TipoTrabajoIdListaValor));
-                    cmd.Parameters.Add(new SqlParameter("@TipoContrato", oferta.TipoContratoIdListaValor));
+                    cmd.Parameters.Add(new SqlParameter("@FechaFinRecepcionCV", oferta.FechaFinRecepcionCV)); //
+                    cmd.Parameters.Add(new SqlParameter("@IdEmpresaLocacion", oferta.IdEmpresaLocacion)); //
+                    cmd.Parameters.Add(new SqlParameter("@TipoTrabajo", oferta.TipoTrabajoIdListaValor)); //
+                    cmd.Parameters.Add(new SqlParameter("@TipoContrato", oferta.TipoContratoIdListaValor)); //
                     cmd.Parameters.Add(new SqlParameter("@DuracionContrato", oferta.DuracionContrato));
-                    cmd.Parameters.Add(new SqlParameter("@TipoCargo", oferta.TipoCargoIdListaValor));
+                    cmd.Parameters.Add(new SqlParameter("@TipoCargo", oferta.TipoCargoIdListaValor)); //
                     cmd.Parameters.Add(new SqlParameter("@CargoOfrecido", oferta.CargoOfrecido));
                     cmd.Parameters.Add(new SqlParameter("@RemuneracionOfrecida", oferta.RemuneracionOfrecida));
                     cmd.Parameters.Add(new SqlParameter("@Horario", oferta.Horario));
@@ -445,6 +445,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                     cmd.Parameters.Add(new SqlParameter("@RequiereExperienciaLaboral", oferta.RequiereExperienciaLaboral));
                     cmd.Parameters.Add(new SqlParameter("@RecibeCorreos", oferta.RecibeCorreosIdListaValor));
                     cmd.Parameters.Add(new SqlParameter("@ModificadoPor", oferta.ModificadoPor));
+                    cmd.Parameters.Add(new SqlParameter("@EstadoOferta", oferta.EstadoOferta));
 
                     cmd.Connection = conexion;
                     conexion.Open();

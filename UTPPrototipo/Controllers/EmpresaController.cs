@@ -109,9 +109,11 @@ namespace UTPPrototipo.Controllers
         }
 
         
-        public ActionResult EditarOferta(int id)
+        public ActionResult OfertaLaboral(string id)
         {
-            int idOferta = id;
+            string idLegible = Utiles.Helper.Desencriptar(id);
+
+            int idOferta = Convert.ToInt32(idLegible);
 
             TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];
 
@@ -120,22 +122,21 @@ namespace UTPPrototipo.Controllers
             LNGeneral lnGeneral = new LNGeneral();
             LNEmpresaLocacion lnEmpresaLocacion = new LNEmpresaLocacion();
 
+            //Se cargan los combos:
             ViewBag.TipoCargoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_CARGO), "IdListaValor", "Valor", oferta.TipoCargoIdListaValor);
             ViewBag.TipoTrabajoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_TRABAJO), "IdListaValor", "Valor", oferta.TipoTrabajoIdListaValor);
             ViewBag.TipoContratoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_CONTRATO), "IdListaValor", "Valor", oferta.TipoContratoIdListaValor);
             ViewBag.IdEmpresaLocacion = new SelectList(lnEmpresaLocacion.ObtenerLocaciones(ticket.IdEmpresa), "IdEmpresaLocacion", "NombreLocacion", oferta.IdEmpresaLocacion);
             ViewBag.RecibeCorreosIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_OFERTA_RECIBECORREOS), "IdListaValor", "Valor", oferta.RecibeCorreosIdListaValor);
 
-            //ViewBag.ListaTipoCargo = lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_CARGO);
-            //ViewBag.ListaTipoTrabajo = lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_TRABAJO);
-            //ViewBag.ListaTipoContrato = lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_CONTRATO);
-            //ViewBag.ListaLocaciones = lnEmpresaLocacion.ObtenerLocaciones(ticket.IdEmpresa);
+            if (oferta.EstadoOferta == Constantes.OFERTA_ESTADO_BORRADOR) ViewBag.Visibility = "hidden";
+            else ViewBag.Visibility = "visible";
 
-            return View(oferta);
+            return View("OfertaLaboral", oferta);
         }
 
         [HttpPost, ValidateInput(false), ValidateAntiForgeryToken]        
-        public ActionResult EditarOferta(Oferta oferta)
+        public ActionResult OfertaLaboral(Oferta oferta)
         {
             TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];
 
@@ -144,10 +145,27 @@ namespace UTPPrototipo.Controllers
                 //oferta.UsuarioPropietarioEmpresa = "";
                 oferta.ModificadoPor = ticket.Usuario;
 
+                //12FEB: Si el estado actual es BORRADOR debe cambiar a EN CONSTRUCCION:
+                if (oferta.EstadoOferta == Constantes.OFERTA_ESTADO_BORRADOR) oferta.EstadoOferta = Constantes.OFERTA_ESTADO_ENCONSTRUCCION;
+
                 lnOfertaEmpresa.Actualizar(oferta);
 
+                //Se actualizan las fase de la oferta:
+                foreach (var item in oferta.OfertaFases)
+                {
+                    //Estos 3 registros siempre están activos.
+                    if (item.IdListaValor == "OFFAPR" || item.IdListaValor == "OFFACV" || item.IdListaValor == "OFFAFI")
+                    {
+                        item.Incluir = true;
+                    }
+
+                    item.ModificadoPor = ticket.Usuario;
+                }
+
+                lnOferta.ActualizarOfertaFase(oferta.OfertaFases);
+
                 //1. Mostrar mensaje de éxito.
-                TempData["MsjExitoEditarOferta"] = "La oferta '" + oferta.CargoOfrecido + "' ha sido guardada con éxito.";
+                TempData["MsjExitoEditarOferta"] = "La oferta '" + oferta.CargoOfrecido + "' ha sido actualizada con éxito.";
 
                 //2. Redireccionar a la lista.
                 return RedirectToAction("Publicacion");
@@ -199,31 +217,59 @@ namespace UTPPrototipo.Controllers
                 return RedirectToAction("Publicacion");
             }
             #endregion
-            
 
+            #region Funcionalidad 16FEB: Al crear una oferta se crea internamente y se muestra la pantalla de Ofertalaboral.cshtml
+
+            //Se obtiene el ticket de la sesión.
             TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];
 
-            //Se envían datos de prueba.
-            Oferta oferta = new Oferta();
-            oferta.IdEmpresa = ticket.IdEmpresa;
-            oferta.UsuarioPropietarioEmpresa = "";            
-            oferta.FechaPublicacion = DateTime.Now;                        
-            oferta.CreadoPor = ticket.Usuario;
-            oferta.FechaFinRecepcionCV = DateTime.Now; //Se establece la fecha actual para la nueva oferta.
+            //Se completa los datos de la oferta borrador y se inserta en la BD.
+            Oferta ofertaBorrador = new Oferta();
+            ofertaBorrador.IdEmpresa = ticket.IdEmpresa;
+            ofertaBorrador.UsuarioPropietarioEmpresa = ticket.Usuario; //Se guarda el usuario asignado.
+            ofertaBorrador.EstadoOferta = Constantes.OFERTA_ESTADO_BORRADOR; //Estado oferta en borrador
+            ofertaBorrador.CreadoPor = ticket.Usuario;
+            ofertaBorrador.FechaFinRecepcionCV = DateTime.Now;
+            ofertaBorrador.IdEmpresaLocacion = 0;
+            ofertaBorrador.TipoTrabajoIdListaValor = "";
+            ofertaBorrador.CargoOfrecido = "";
+            ofertaBorrador.RecibeCorreosIdListaValor = "";
 
-            LNGeneral lnGeneral = new LNGeneral();
-            LNEmpresaLocacion lnEmpresaLocacion = new LNEmpresaLocacion ();
+            int idOfertaGenerado = lnOfertaEmpresa.Insertar(ofertaBorrador);
 
-            //Se completan las listas:
+            if (idOfertaGenerado > 0)
+            {               
+                //Se redirecciona a la nueva oferta creada:
+                return RedirectToAction("OfertaLaboral", new { id = Utiles.Helper.Encriptar(idOfertaGenerado.ToString()) });
+            }
 
-            ViewBag.TipoCargoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_CARGO), "IdListaValor", "Valor");
-            ViewBag.TipoTrabajoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_TRABAJO), "IdListaValor", "Valor");
-            ViewBag.TipoContratoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_CONTRATO), "IdListaValor", "Valor");
-            ViewBag.IdEmpresaLocacion = new SelectList(lnEmpresaLocacion.ObtenerLocaciones(ticket.IdEmpresa), "IdEmpresaLocacion", "NombreLocacion"); 
-            ViewBag.RecibeCorreosIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_OFERTA_RECIBECORREOS), "IdListaValor", "Valor");
-            ViewBag.FasesOferta = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_FASE_OFERTA), "IdListaValor", "Valor");
+            #endregion
 
-            return View(oferta);
+            //TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];
+
+            ////Se envían datos de prueba.
+            //Oferta oferta = new Oferta();
+            //oferta.IdEmpresa = ticket.IdEmpresa;
+            //oferta.UsuarioPropietarioEmpresa = "";            
+            //oferta.FechaPublicacion = DateTime.Now;                        
+            //oferta.CreadoPor = ticket.Usuario;
+            //oferta.FechaFinRecepcionCV = DateTime.Now; //Se establece la fecha actual para la nueva oferta.
+
+            //LNGeneral lnGeneral = new LNGeneral();
+            //LNEmpresaLocacion lnEmpresaLocacion = new LNEmpresaLocacion ();
+
+            ////Se completan las listas:
+
+            //ViewBag.TipoCargoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_CARGO), "IdListaValor", "Valor");
+            //ViewBag.TipoTrabajoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_TRABAJO), "IdListaValor", "Valor");
+            //ViewBag.TipoContratoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_CONTRATO), "IdListaValor", "Valor");
+            //ViewBag.IdEmpresaLocacion = new SelectList(lnEmpresaLocacion.ObtenerLocaciones(ticket.IdEmpresa), "IdEmpresaLocacion", "NombreLocacion"); 
+            //ViewBag.RecibeCorreosIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_OFERTA_RECIBECORREOS), "IdListaValor", "Valor");
+            //ViewBag.FasesOferta = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_FASE_OFERTA), "IdListaValor", "Valor");
+
+            //return View(oferta);
+
+            return RedirectToAction("Publicacion");
         }
 
         [HttpPost, ValidateInput(false), ValidateAntiForgeryToken]        
@@ -1217,9 +1263,13 @@ namespace UTPPrototipo.Controllers
         /// </summary>
         /// <param name="id">idOferta</param>
         /// <returns></returns>
-        public ActionResult MostrarOferta(int id)
+        public ActionResult MostrarOferta(string id)
         {
-            if (id != null)
+            string idLegible = Utiles.Helper.Desencriptar(id);
+
+            int idOferta = Convert.ToInt32(idLegible);
+
+            if (idOferta != null)
             {
                 LNAlumno lnAlumno = new LNAlumno();
                 LNOferta lnOferta = new LNOferta();
@@ -1227,7 +1277,7 @@ namespace UTPPrototipo.Controllers
                 //Alumno alumno = new Alumno();
                 //TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
                 //alumno = lnAlumno.ObtenerAlumnoPorCodigo(ticket.CodAlumnoUTP);
-                vistaofertalumno = lnOferta.OfertaAlumnoPostulacion((int)id, -1); //Se manda -1 porque no existe alumno en esta vista.
+                vistaofertalumno = lnOferta.OfertaAlumnoPostulacion(idOferta, -1); //Se manda -1 porque no existe alumno en esta vista.
                 if (vistaofertalumno.Oferta != null && vistaofertalumno.Oferta.IdEmpresa > 0)
                 {
                     //Periodo Publicacion
