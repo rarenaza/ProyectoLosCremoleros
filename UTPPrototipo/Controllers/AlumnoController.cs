@@ -469,7 +469,7 @@ namespace UTPPrototipo.Controllers
 
             return panel;
         }
-        public ActionResult MiCV()
+        public ActionResult MiCV(int id)
         {
 
             VistaPanelAlumnoMiCV panel = new VistaPanelAlumnoMiCV();
@@ -1405,8 +1405,12 @@ namespace UTPPrototipo.Controllers
                 AlertasCvAlumno alumno = new AlertasCvAlumno();
                 alumno.NombreCV = Convert.ToString(dtResultado.Rows[i]["NombreCV"]);
                 alumno.PorcentajeCV = Convert.ToInt32(dtResultado.Rows[i]["PorcentajeCV"]);
+                alumno.IdCV = Convert.ToInt32(dtResultado.Rows[i]["IdCV"]);
                 lista.Add(alumno);
             }
+
+
+
 
             //return PartialView(alumno);
             return PartialView("AlertaCvAlumno", lista);
@@ -1470,6 +1474,138 @@ namespace UTPPrototipo.Controllers
         {
             return View();
         }
+
+
+        //[ValidateInput(false)]
+        //public ActionResult Portal_Editar_Buscar(int id)
+        //{
+        //    DataTable dtresultado = ln.ContenidoMenu_Mostrar();
+
+        //    List<SelectListItem> li = new List<SelectListItem>();
+
+        //    for (int i = 0; i <= dtresultado.Rows.Count - 1; i++)
+        //    {
+        //        string nombre = dtresultado.Rows[i]["Titulo"].ToString();
+        //        string valor = dtresultado.Rows[i]["IdMenu"].ToString();
+
+
+
+        //        SelectListItem item = new SelectListItem() { Text = nombre, Value = valor };
+
+        //        li.Add(item);
+
+        //    }
+        //    ViewData["ContenidoMenu"] = li;
+
+
+        //    ContenidoVista contenido = new ContenidoVista();
+
+
+        //    DataTable dtResultado = ln.ContenidoEDitar_Buscar(id);
+
+        //    if (dtResultado.Rows.Count > 0)
+        //    {
+        //        contenido.IdContenido = Convert.ToInt32(dtResultado.Rows[0]["IdContenido"]);
+        //        contenido.Menu = dtResultado.Rows[0]["CodMenu"].ToString();
+        //        contenido.Titulo = dtResultado.Rows[0]["Titulo"].ToString();
+        //        contenido.SubTitulo = dtResultado.Rows[0]["SubTitulo"].ToString();
+        //        contenido.Descripcion = dtResultado.Rows[0]["Descripcion"].ToString();
+        //        contenido.ModificadoPor = dtResultado.Rows[0]["ModificadoPor"] == null ? "" : dtResultado.Rows[0]["ModificadoPor"].ToString();
+        //        contenido.EnPantallaPrincipal = Convert.ToBoolean(dtResultado.Rows[0]["EnPantallaPrincipal"].ToString());
+        //        contenido.Activo = Convert.ToBoolean(dtResultado.Rows[0]["Activo"] == DBNull.Value ? 0 : dtResultado.Rows[0]["Activo"]);
+        //        contenido.ArchivoNombreOriginal = dtResultado.Rows[0]["ArchivoNombreOriginal"].ToString();
+        //        contenido.FechaCreacion = Convert.ToDateTime(dtResultado.Rows[0]["FechaCreacion"] == DBNull.Value ? null : dtResultado.Rows[0]["FechaCreacion"].ToString());
+        //        contenido.FechaModificacion = Convert.ToDateTime(dtResultado.Rows[0]["FechaModificacion"] == DBNull.Value ? null : dtResultado.Rows[0]["FechaModificacion"].ToString());
+        //        contenido.CreadoPor = dtResultado.Rows[0]["CreadoPor"] == null ? "" : dtResultado.Rows[0]["CreadoPor"].ToString();
+
+        //    }
+
+
+        //    return View(contenido);
+
+
+        //}
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //[ValidateInput(false)]
+        //public ActionResult Portal_Editar_Buscar([Bind(Include = "")] ContenidoVista contenidoHTML)
+        //{
+
+        //    Contenido contenido = new Contenido();
+
+        //    if (contenidoHTML.ImagenHtml != null)
+        //    {
+
+        //        byte[] uploadedFile = new byte[contenidoHTML.ImagenHtml.InputStream.Length];
+        //        contenidoHTML.ImagenHtml.InputStream.Read(uploadedFile, 0, Convert.ToInt32(contenidoHTML.ImagenHtml.InputStream.Length));
+        //        contenidoHTML.ArchivoNombreOriginal = contenidoHTML.ImagenHtml.FileName;
+        //        contenidoHTML.ArchivoMimeType = contenidoHTML.ImagenHtml.ContentType;
+        //        contenidoHTML.Imagen = uploadedFile;
+
+        //        contenido.ArchivoNombreOriginal = contenidoHTML.ArchivoNombreOriginal;
+
+        //    }
+
+        //    contenido.Titulo = contenidoHTML.Titulo;
+        //    contenido.SubTitulo = contenidoHTML.SubTitulo;
+        //    contenido.Descripcion = contenidoHTML.Descripcion;
+        //    contenido.Imagen = contenidoHTML.Imagen;
+        //    contenido.ArchivoMimeType = contenidoHTML.ArchivoMimeType;
+        //    contenido.ArchivoNombreOriginal = contenidoHTML.ArchivoNombreOriginal;
+
+        //    contenido.EnPantallaPrincipal = contenidoHTML.EnPantallaPrincipal;
+        //    contenido.Activo = contenidoHTML.Activo;
+
+        //    contenido.Menu = contenidoHTML.Menu;
+        //    contenido.CreadoPor = contenidoHTML.CreadoPor;
+        //    contenido.FechaCreacion = contenidoHTML.FechaCreacion;
+
+        //    TicketUTP ticketUtp = (TicketUTP)Session["TicketUtp"];
+
+        //    contenido.ModificadoPor = ticketUtp.Usuario;
+        //    //contenido.ModificadoPor = contenidoHTML.ModificadoPor;
+        //    contenido.IdContenido = contenidoHTML.IdContenido;
+
+        //    //if (ModelState.IsValid)
+        //    //{
+
+        //    if (ln.Contenido_Actualizar(contenido) == true)
+        //    {
+        //        ViewBag.Message = "Datos Actualizado";
+        //        return RedirectToAction("Portal");
+        //    }
+        //    else
+        //    {
+
+        //        DataTable dtresultado = ln.ContenidoMenu_Mostrar();
+
+        //        List<SelectListItem> li = new List<SelectListItem>();
+
+        //        for (int i = 0; i <= dtresultado.Rows.Count - 1; i++)
+        //        {
+        //            string nombre = dtresultado.Rows[i]["Titulo"].ToString();
+        //            string valor = dtresultado.Rows[i]["IdMenu"].ToString();
+
+
+
+        //            SelectListItem item = new SelectListItem() { Text = nombre, Value = valor };
+
+        //            li.Add(item);
+
+        //        }
+        //        ViewData["ContenidoMenu"] = li;
+
+        //        ViewBag.Message = "Error al Actualizar";
+        //        return View(contenidoHTML);
+        //    }
+
+        //    //}
+
+        //}
+
+
+
 
     }
 }
