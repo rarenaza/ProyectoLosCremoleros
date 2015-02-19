@@ -1258,9 +1258,9 @@ namespace UTPPrototipo.Controllers
             return Content("");
         }
 
-        public ActionResult MostrarAlumno(int id)
+        public ActionResult MostrarAlumno(string id)
         {
-            int idAlumno = id;
+            int idAlumno = Convert.ToInt32(Helper.Desencriptar(id));;
             VistaOfertaPostulante vistaofertapostulante = lnAlumnocv.ObtenerDatosCV(idAlumno);
             return View(vistaofertapostulante);            
         }

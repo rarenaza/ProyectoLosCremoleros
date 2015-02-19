@@ -14,6 +14,7 @@ using System.IO;
 using UTPPrototipo.Models.ViewModels.Cuenta;
 using System.Web.Security;
 using UTP.PortalEmpleabilidad.Modelo.Vistas.Alumno;
+using UTPPrototipo.Utiles;
 
 namespace UTPPrototipo.Controllers
 {
@@ -1027,11 +1028,11 @@ namespace UTPPrototipo.Controllers
         #endregion
 
         #region "Generales"
-        public ActionResult DatosAlumno(int? Id)
+        public ActionResult DatosAlumno(string Id)
         {
             if (Id != null)
             {
-                Alumno alumno = lnAlumno.ObtenerAlumnoPorIdAlumno((int)Id);
+                Alumno alumno = lnAlumno.ObtenerAlumnoPorIdAlumno(Convert.ToInt32(Helper.Desencriptar(Id)));
                 if (alumno != null && string.IsNullOrEmpty(alumno.Usuario) == false)
                 {
                     LNGeneral lngeneral = new LNGeneral();
@@ -1466,7 +1467,7 @@ namespace UTPPrototipo.Controllers
         {
             return View();
         }
-        public ActionResult Evento(int idEvento)
+        public ActionResult Evento(string idEvento)
         {
             return View();
         }
