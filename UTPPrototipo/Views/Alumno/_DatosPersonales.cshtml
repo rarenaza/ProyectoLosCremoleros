@@ -1,5 +1,5 @@
 ﻿@model UTP.PortalEmpleabilidad.Modelo.Alumno
-
+@using UTPPrototipo.Utiles
 <link href="~/Content/font-awesome.css" rel="stylesheet" />
 
 <div class="panel-group" id="datos-cuenta" role="tablist" aria-multiselectable="true">
@@ -58,7 +58,8 @@
                         <hr />
                         <div class="row">
                             <div class="col-sm-12" style="text-align:right;">
-                                @Html.ActionLink("Modificar Datos ...", "DatosAlumno", "Alumno", new { Id = Model.IdAlumno }, new { @class = "btn btn-default color-paleta1" })
+                                @*@Html.ActionLink("Modificar Datos ...", "DatosAlumno", "Alumno", new { Id = Model.IdAlumno }, new { @class = "btn btn-default color-paleta1" })*@
+                                @Html.ActionLink("Modificar Datos ...", "DatosAlumno", "Alumno",new { Id = Helper.Encriptar(Model.IdAlumno.ToString()) }, new { @class = "btn btn-default color-paleta1" })
                             </div>
                         </div>
                     </div>

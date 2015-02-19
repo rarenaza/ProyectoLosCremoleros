@@ -10,6 +10,7 @@ using UTP.PortalEmpleabilidad.Modelo;
 using UTPPrototipo.Common;
 using UTPPrototipo.Models.ViewModels.Cuenta;
 using UTPPrototipo.Models.ViewModels.Empresa;
+using UTPPrototipo.Utiles;
 
 namespace UTPPrototipo.Controllers
 {
@@ -38,21 +39,21 @@ namespace UTPPrototipo.Controllers
 
 
         //[ChildActionOnly]
-        public PartialViewResult _Evento(string Pantalla, int idEvento)
+        public PartialViewResult _Evento(string Pantalla, string idEvento)
         {
             ViewBag.Pantalla = Pantalla;
             if (Pantalla == "Alumno")
             {
                 TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
                 LNEvento lnEvento = new LNEvento();
-                Evento evento = lnEvento.EventoPorUsuario(idEvento, ticket.Usuario);
+                Evento evento = lnEvento.EventoPorUsuario(Convert.ToInt32(Helper.Desencriptar(idEvento)), ticket.Usuario);
                 return PartialView("_Evento", evento);
             }
             else
             {
                 TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];
                 LNEvento lnEvento = new LNEvento();
-                Evento evento = lnEvento.EventoPorUsuario(idEvento, ticket.Usuario);
+                Evento evento = lnEvento.EventoPorUsuario(Convert.ToInt32(Helper.Desencriptar(idEvento)), ticket.Usuario);
                 return PartialView("_Evento", evento);
             }
 
@@ -68,7 +69,7 @@ namespace UTPPrototipo.Controllers
             return View();
         }
 
-        public ActionResult InsertarEventoAsistente(int idEvento, string Pantalla)
+        public ActionResult InsertarEventoAsistente(string idEvento, string Pantalla)
         {
             string usuario;
             Evento evento = new Evento();
@@ -79,7 +80,7 @@ namespace UTPPrototipo.Controllers
                 TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
                 usuario = ticket.Usuario;
                 LNEvento lnEvento = new LNEvento();
-                lnEvento.InsertarEventoAsistente(idEvento, usuario, usuario);
+                lnEvento.InsertarEventoAsistente(Convert.ToInt32(Helper.Desencriptar(idEvento)), usuario, usuario);
                               
                 return RedirectToAction("Evento", "Alumno", new { idEvento = idEvento });
 
@@ -89,7 +90,7 @@ namespace UTPPrototipo.Controllers
                 TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];
                 usuario = ticket.Usuario;
                 LNEvento lnEvento = new LNEvento();
-                lnEvento.InsertarEventoAsistente(idEvento, usuario, usuario);
+                lnEvento.InsertarEventoAsistente(Convert.ToInt32(Helper.Desencriptar(idEvento)), usuario, usuario);
 
       
                 return RedirectToAction("Evento", "Empresa", new { idEvento = idEvento });

@@ -1,6 +1,6 @@
 ﻿@model List<UTP.PortalEmpleabilidad.Modelo.OfertaPostulante>
 @using UTPPrototipo.Models.ViewModels.Cuenta;
-
+@using UTPPrototipo.Utiles
 @{
     TicketEmpresa ticketEmpresa = (TicketEmpresa)Session["TicketEmpresa"];
 }
@@ -131,7 +131,8 @@
                         @Model[i].FechaPostulacion
                     </div>
                     <div class="col-sm-4">
-                        @Html.ActionLink(Model[i].Alumno.Apellidos + ", " + Model[i].Alumno.Nombres, "Postulante", "Empresa", new { id = Model[i].IdOfertaPostulante }, null)
+                        @*@Html.ActionLink(Model[i].Alumno.Apellidos + ", " + Model[i].Alumno.Nombres , "Postulante", "Empresa", new { id = Model[i].IdOfertaPostulante }, null)*@
+                        @Html.ActionLink(Model[i].Alumno.Apellidos + ", " + Model[i].Alumno.Nombres, "Postulante", "Empresa", new { id = Helper.Encriptar(Model[i].IdOfertaPostulante.ToString() )}, null)
                         @*<a href="../Empresa/Postulante">
                                 <strong>@Model[i].Alumno.Nombres @Model[i].Alumno.Apellidos</strong>
                             </a>*@

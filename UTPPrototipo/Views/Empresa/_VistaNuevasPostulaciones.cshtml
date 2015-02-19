@@ -23,7 +23,8 @@
             </div>
             <div class="col-sm-4">
                 @*<a href="../Empresa/Postulante"><strong>@item.AlumnoNombres @item.AlumnoApellidos</strong></a>*@
-                <strong> @Html.ActionLink(item.AlumnoNombres + " " + item.AlumnoApellidos, "Postulante", "Empresa", new { id = item.IdOfertaPostulante }, null)</strong>
+                <strong> @*@Html.ActionLink(item.AlumnoNombres + " " + item.AlumnoApellidos, "Postulante", "Empresa", new { id = item.IdOfertaPostulante }, null)*@</strong>
+                <strong>@Html.ActionLink(item.AlumnoNombres + " " + item.AlumnoApellidos, "Postulante", "Empresa", new { id = Helper.Encriptar(item.IdOfertaPostulante.ToString())}, htmlAttributes: new { target = "_blank" })</strong>
             </div>
             <div class="col-sm-2">
                 <div class="progress">

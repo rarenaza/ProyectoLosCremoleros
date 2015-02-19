@@ -14,6 +14,7 @@ using System.IO;
 using UTPPrototipo.Models.ViewModels.Cuenta;
 using System.Web.Security;
 using UTP.PortalEmpleabilidad.Modelo.Vistas.Alumno;
+using UTPPrototipo.Utiles;
 
 namespace UTPPrototipo.Controllers
 {
@@ -143,7 +144,7 @@ namespace UTPPrototipo.Controllers
             }
             return View();
         }
-        public ActionResult PostulacionOferta2(int? id)
+        public ActionResult PostulacionOferta2(string id)
         {
             if (id != null)
             {
@@ -151,7 +152,7 @@ namespace UTPPrototipo.Controllers
                 Alumno alumno = new Alumno();
                 TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
                 alumno = lnAlumno.ObtenerAlumnoPorCodigo(ticket.CodAlumnoUTP);
-                vistaofertalumno = lnoferta.OfertaAlumnoPostulacion((int)id, alumno.IdAlumno);
+                vistaofertalumno = lnoferta.OfertaAlumnoPostulacion(Convert.ToInt32(Helper.Desencriptar(id)), alumno.IdAlumno);
                 if (vistaofertalumno.Oferta != null && vistaofertalumno.Oferta.IdEmpresa > 0)
                 {
                     //Periodo Publicacion
@@ -1027,11 +1028,11 @@ namespace UTPPrototipo.Controllers
         #endregion
 
         #region "Generales"
-        public ActionResult DatosAlumno(int? Id)
+        public ActionResult DatosAlumno(string Id)
         {
             if (Id != null)
             {
-                Alumno alumno = lnAlumno.ObtenerAlumnoPorIdAlumno((int)Id);
+                Alumno alumno = lnAlumno.ObtenerAlumnoPorIdAlumno(Convert.ToInt32(Helper.Desencriptar(Id)));
                 if (alumno != null && string.IsNullOrEmpty(alumno.Usuario) == false)
                 {
                     LNGeneral lngeneral = new LNGeneral();
@@ -1470,7 +1471,7 @@ namespace UTPPrototipo.Controllers
         {
             return View();
         }
-        public ActionResult Evento(int idEvento)
+        public ActionResult Evento(string idEvento)
         {
             return View();
         }
