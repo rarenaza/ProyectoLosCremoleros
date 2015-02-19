@@ -492,8 +492,10 @@ namespace UTPPrototipo.Controllers
         {
             return View();
         }
-        public ActionResult Evento(int idEvento)
+        public ActionResult Evento(string idEvento)
         {
+            int id = Convert.ToInt32(Helper.Desencriptar(idEvento));
+            ViewBag.IdEmpresa = id;
             return View();
         }
 
@@ -511,18 +513,18 @@ namespace UTPPrototipo.Controllers
             return PartialView("_DatosUsuario", panel);
         }
 
-        public ActionResult Postulante(int? id)
+        public ActionResult Postulante(string id)
         {
             if (id != null)
             {
-            VistaOfertaPostulante vistaofertapostulante = lnAlumnocv.ObtenerPostulanteCV((int)id);
+            VistaOfertaPostulante vistaofertapostulante = lnAlumnocv.ObtenerPostulanteCV(Convert.ToInt32(Helper.Desencriptar(id)));
             
             //Se cargan las fases de la oferta.
             LNOferta lnOferta = new LNOferta();
             List<OfertaFase> listaFasesActivas = lnOferta.Obtener_OfertaFaseActivas(vistaofertapostulante.alumnocv.IdOferta);
             ViewBag.IdOfertaFase = new SelectList(listaFasesActivas, "IdListaValor", "FaseOferta", vistaofertapostulante.alumnocv.FaseOferta);
-            
-            ViewBag.IdOfertaPostulante = Convert.ToInt32(id);
+
+            ViewBag.IdOfertaPostulante = Convert.ToInt32(Helper.Desencriptar(id));
 
             return View(vistaofertapostulante);
             }
@@ -1320,9 +1322,9 @@ namespace UTPPrototipo.Controllers
             return Content("");
         }
 
-        public ActionResult MostrarAlumno(int id)
+        public ActionResult MostrarAlumno(string id)
         {
-            int idAlumno = id;
+            int idAlumno = Convert.ToInt32(Helper.Desencriptar(id));;
             VistaOfertaPostulante vistaofertapostulante = lnAlumnocv.ObtenerDatosCV(idAlumno);
             return View(vistaofertapostulante);            
         }

@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<UTP.PortalEmpleabilidad.Modelo.Lista>
-
+@using UTPPrototipo.Utiles
 @using UTPPrototipo.Common
 @using UTP.PortalEmpleabilidad.Modelo
 @{
@@ -23,7 +23,8 @@
     <div class="col-sm-1">@item.IDLista</div>
 
     <div class="col-sm-3">
-  @Html.ActionLink(@item.NombreLista, "Lista", new { id = item.IDLista })
+        @*@Html.ActionLink(@item.NombreLista, "Lista", new { id = item.IDLista })*@
+        @Html.ActionLink(@item.NombreLista, "Lista", new { id = Helper.Encriptar(item.IDLista.ToString()) })
 
     </div>
     <div class="col-sm-7">@item.DescripcionLista</div>

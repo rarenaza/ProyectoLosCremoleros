@@ -130,6 +130,7 @@ namespace UTPPrototipo.Controllers
 
                 mensaje.DeUsuario = ticketEmpresa.Usuario;
                 mensaje.DeUsuarioCorreoElectronico = ticketEmpresa.CorreoElectronico;
+                mensaje.DeUsuarioNombre = ticketEmpresa.Nombre;
             }
             else
                 if (pantalla == Constantes.MENSAJES_ALUMNO_CONTACTO)
@@ -138,6 +139,7 @@ namespace UTPPrototipo.Controllers
 
                     mensaje.DeUsuario = ticketAlumno.Usuario;
                     mensaje.DeUsuarioCorreoElectronico = ticketAlumno.CorreoElectronico;
+                    mensaje.DeUsuarioNombre = ticketAlumno.Nombre;
                 }
 
             ViewBag.Pantalla = pantalla;

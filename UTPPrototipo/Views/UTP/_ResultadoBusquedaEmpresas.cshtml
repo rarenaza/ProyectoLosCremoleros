@@ -3,6 +3,8 @@
 @using UTPPrototipo.Models.ViewModels.Cuenta;
 @using UTPPrototipo.Common
 @using UTP.PortalEmpleabilidad.Modelo
+@using UTPPrototipo.Utiles
+
 @{
 
 
@@ -65,7 +67,9 @@
             @*<a href="../UTP/Empresa">@item.NombreComercial</a>*@
             @if (@item.NombreComercial != "")
             {
-                @Html.ActionLink(@item.NombreComercial, "VerDetalleEmpresa", new { id = item.IdEmpresa })
+               
+                @*@Html.ActionLink(@item.NombreComercial, "VerDetalleEmpresa", new { id = item.IdEmpresa })*@
+                @Html.ActionLink(@item.NombreComercial, "VerDetalleEmpresa", new { id = Helper.Encriptar(item.IdEmpresa.ToString()) })
             }
             else
             {

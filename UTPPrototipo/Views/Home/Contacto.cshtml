@@ -48,6 +48,26 @@
                 <p>Envíenos un Mensaje</p>
             </div>
         </div>
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+            <div class="input-group ">
+                <span class="input-group-addon ">Su Nombre</span>
+
+                @if (Model.Pantalla == Constantes.MENSAJES_INICIO)
+                {
+                    <input type="text" name="DeUsuarioNombre" class="form-control fuente-pequeña" placeholder="Ingrese su Nombre">
+                }
+                else
+                {
+                   
+                    @Html.HiddenFor(m => m.DeUsuarioNombre)
+                    <input type="text" class="form-control fuente-pequeña" placeholder="Ingrese su Correo Electrónico" value="@Model.DeUsuarioNombre" disabled>
+                }
+
+            </div>
+        </div>
+    </div>
         <div class="row">
             <div class="col-sm-2"></div>
             <div class="col-sm-8">

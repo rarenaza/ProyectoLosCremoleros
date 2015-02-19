@@ -222,7 +222,12 @@
                     Modificado el
                 </td>
                 <td class="celda-datos">
-                    @Html.DisplayFor(m => m.FechaModificacion)
+                    @{
+                        if (Model.FechaModificacion.ToString("yyyyMMdd") != "19000101")
+                        {
+                            @Html.DisplayFor(m => m.FechaModificacion)
+                        }
+                    }
                 </td>
             </tr>
         </table>

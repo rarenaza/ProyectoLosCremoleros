@@ -487,6 +487,31 @@ namespace UTP.PortalEmpleabilidad.Datos
             return dsResultado;
         }
 
+        public DataSet ObtenerSeguimientoPorId(int idOferta)
+        {
+            DataSet dsResultado = new DataSet();
+
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Oferta_ObtenerSeguimientoPorId";
+                cmd.Parameters.Add(new SqlParameter("@IdOferta", idOferta));
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(dsResultado);
+
+                conexion.Close();
+            }
+
+            return dsResultado;
+        }
+
+
         /// <summary>
         /// Obtiene la lista de postulantes para todas las ofertas de la empresa.
         /// </summary>
