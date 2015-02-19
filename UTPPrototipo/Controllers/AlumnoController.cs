@@ -469,7 +469,7 @@ namespace UTPPrototipo.Controllers
 
             return panel;
         }
-        public ActionResult MiCV(int id)
+        public ActionResult MiCV()
         {
 
             VistaPanelAlumnoMiCV panel = new VistaPanelAlumnoMiCV();
