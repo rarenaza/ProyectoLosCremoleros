@@ -1,6 +1,13 @@
 ﻿@model UTP.PortalEmpleabilidad.Modelo.Oferta
 
-
+<script>
+    $(document).ready(function () {
+    if ("@ViewBag.MensajeGuardar" <> "")
+    {
+        alert("@ViewBag.MensajeGuardar");
+    }
+    });
+</script>
     <h5>Seguimiento</h5>
     @Html.HiddenFor(m => m.IdOferta)
     <div class="row">
