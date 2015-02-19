@@ -15,10 +15,8 @@
     <!-- Input demo:
     <input type="text" value="@ViewBag.IdOferta" />
     -->
-
     <h5>Empresa: @Model.Empresa.NombreComercial  - Oferta: @Model.CargoOfrecido</h5>
     <br />
-
     <div class="row">
         <div class="col-sm-6">
             <table>
@@ -178,7 +176,14 @@
                         Modificado Por
                     </td>
                     <td class="celda-datos">
-                        @Model.ModificadoPor
+                        @{
+                            if (Model.FechaModificacion.ToString("yyyyMMdd") != "19000101")
+                            {
+                                @Model.FechaModificacion
+                            }
+                        }
+
+
                     </td>
                 </tr>
                 <tr>
@@ -200,16 +205,17 @@
             </table>
         </div>
 
-        <div class="col-sm-6">
 
+
+        <div class="col-sm-6" id="divDatosOferta">
+            @using (Ajax.BeginForm("_VerDetalleOfertaEditar", "UTP", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", OnComplete = "mostrarMensaje", UpdateTargetId = "divDatosOferta" }))
+            {
+                @Html.AntiForgeryToken()
+
+                @Html.Action("_VerDetalleOferta", "UTP", new { id = ViewBag.IdOferta })
+            }
         </div>
-
-
     </div>
-
-
-
-
     <hr />
     <div class="row">
         <div class="col-sm-12">

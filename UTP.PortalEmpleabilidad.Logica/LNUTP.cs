@@ -451,6 +451,11 @@ namespace UTP.PortalEmpleabilidad.Logica
             return adUtp.EMPRESA_LISTAEMPRESA();
         }
 
+        public void UTP_ActualizaSeguimientoOferta(Oferta oferta)
+        {
+            adUtp.UTP_ActualizaSeguimientoOferta(oferta);
+        }
+
         #region Mantenimiento de Usuarios UTP
 
         //public List<UTPUsuario> ObtenerUsuariosUTP()

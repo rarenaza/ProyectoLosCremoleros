@@ -2038,9 +2038,30 @@ namespace UTPPrototipo.Controllers
 
             return View(oferta);
         }
+        public PartialViewResult _VerDetalleOferta(int id)
+        {
+            //Se obtiene los datos de la empresa.
+            Oferta oferta = lnoferta.ObtenerSeguimientoPorId(id);
+
+           
+
+            
+            return PartialView("_VerDetalleOferta", oferta);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
+        public PartialViewResult _VerDetalleOfertaEditar(Oferta oferta)
+        {
+            LNUTP lnUTP = new LNUTP();
 
 
+            lnUtp.UTP_ActualizaSeguimientoOferta(oferta);
 
+            Oferta ofertaActualizada = lnoferta.ObtenerSeguimientoPorId(oferta.IdOferta);
+            return PartialView("_VerDetalleOferta", ofertaActualizada);
+        }
 
 
 

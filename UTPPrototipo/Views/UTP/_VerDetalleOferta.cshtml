@@ -1,0 +1,104 @@
+﻿@model UTP.PortalEmpleabilidad.Modelo.Oferta
+
+
+    <h5>Seguimiento</h5>
+    @Html.HiddenFor(m => m.IdOferta)
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="input-group">
+                <span class="input-group-addon" style="width:100px;">
+                    Fecha de<br />Seguimiento
+                </span>
+                @Html.TextBoxFor(m => m.FechaSeguimiento, "", new { @class = "form-control", @value = Model.FechaSeguimiento.ToString("dd/MM/yyyy HH:mm:ss") })
+
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="input-group">
+                <span class="input-group-addon" style="width:100px;">
+                    # Invitados<br />a Entrevistas
+                </span>
+
+                @Html.TextBoxFor(m => m.NumeroInvitados, "", new { @class = "form-control" })
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="input-group">
+                <span class="input-group-addon" style="width:100px;">
+                    # Entrevistados
+                </span>
+
+                @Html.TextBoxFor(m => m.NumeroEntrevistados, "", new { @class = "form-control" })
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="input-group">
+                <span class="input-group-addon" style="width:100px;">
+                    # Contratados
+                </span>
+
+                @Html.TextBoxFor(m => m.NumeroContratados, "", new { @class = "form-control" })
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="input-group">
+                <span class="input-group-addon" style="width:100px;">
+                    ¿Convenio<br />Registrado?
+                </span>
+                <span class="form-control">
+                    @Html.CheckBoxFor(m => m.ConvenioRegistrado)
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="input-group">
+                <span class="input-group-addon" style="width:100px;">
+                    Contacto
+                </span>
+
+                @Html.TextBoxFor(m => m.Contacto, "", new { @class = "form-control" })
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="input-group">
+                <span class="input-group-addon" style="width:100px;">
+                    Datos de<br />Contacto
+                </span>
+
+                @Html.TextAreaFor(m => m.DatosContacto,  new { @class = "form-control" , @rows = "4"})
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="input-group">
+                <span class="input-group-addon" style="width:100px;">
+                    Medio de<br />Comunicación
+                </span>
+
+                @Html.TextBoxFor(m => m.MedioComunicacion, "", new { @class = "form-control" })
+
+            </div>
+        </div>
+    </div>
+
+    <br />
+    <div class="row">
+        <div class="col-sm-12" style="text-align:right;">
+            <button class="btn btn-default color-paleta2">Guardar</button>
+        </div>
+    </div>

@@ -11,8 +11,10 @@ namespace UTP.PortalEmpleabilidad.Modelo
     {
         public int IdMensaje { get; set; }
         public string DeUsuario { get; set; }
+        public string DeUsuarioNombre { get; set; }
         public string DeUsuarioCorreoElectronico { get; set; }
         public string ParaUsuario { get; set; }
+        public string ParaUsuarioNombre { get; set; }
         public string ParaUsuarioCorreoElectronico { get; set; }
         public int IdOferta { get; set; }
         public Oferta Oferta { get; set; }
