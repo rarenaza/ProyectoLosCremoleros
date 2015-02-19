@@ -44,8 +44,8 @@
                         @if (ViewBag.Pantalla == "Empresa") //Solo si es de empresa
                         { 
                             <span>
-                                &nbsp;&nbsp;&nbsp;  <!--espacios en blanco-->
-                                @if (Model.EstadoOferta == "OFERCV")
+                                &nbsp;&nbsp;&nbsp;  <!--espacios en blanco--> <!--Si la oferta está finalizada deshabilitar el botón.-->
+                                @if (Model.EstadoOferta == "OFERCV" || Model.EstadoOferta == "OFERFI")
                                 {
                                     <button class="btn btn-default btn-sm color-paleta2" style="font-size: 10px;" disabled >Postulaciones finalizadas</button>
                                 }

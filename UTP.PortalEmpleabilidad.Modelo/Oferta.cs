@@ -107,8 +107,13 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public int IdOfertaPostulante { get; set; }
 
         public int TotalRegistros { get; set; }
-
         public virtual List<OfertaFase> OfertaFases { get; set; }
+
+        public List<ListaValor> CarrerasDisponibles { get; set; }
+        public List<OfertaEstudio> CarrerasSeleccionadas { get; set; }
+
+        //Encuesta:
+
        public Oferta() {
 
            TipoCargo = new ListaValor();

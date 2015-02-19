@@ -72,7 +72,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 if (oferta.AreaEmpresa == null) oferta.AreaEmpresa = string.Empty;
                 if (oferta.TipoCargoIdListaValor == null) oferta.TipoCargoIdListaValor = string.Empty;
                 if (oferta.TipoContratoIdListaValor == null) oferta.TipoContratoIdListaValor = string.Empty;
-                if (oferta.Horario == null) oferta.Horario = string.Empty;
+                if (oferta.Horario == null) oferta.Horario = string.Empty;               
 
                 return adOferta.Actualizar(oferta);
             }

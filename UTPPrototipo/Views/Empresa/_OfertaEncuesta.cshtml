@@ -1,0 +1,58 @@
+﻿@model UTP.PortalEmpleabilidad.Modelo.OfertaEncuesta
+
+<!--Modal para la encuesta-->
+<div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="Estudio">Encuesta</h4>
+                </div>
+                <div class="modal-body">
+
+                    @Html.HiddenFor(m => m.IdOferta)
+                    @Html.HiddenFor(m => m.Estado)
+                    @Html.HiddenFor(m => m.ModificadoPor)
+                    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+                    <div class="form-group">
+                        <label>1.	¿Por favor califica los CVs recibidos?</label>
+                        <br />
+                        @*@Html.EditorFor(m => m.Calificacion)*@
+                        @Html.RadioButtonFor(m => m.Calificacion, 0, htmlAttributes: new { @class = "form-control" })
+                    </div>
+
+                    <div class="form-group">
+                        <label>2.	¿A cuántos postulantes se invitó a entrevista?</label>
+                        <br />
+                        @Html.EditorFor(m => m.NroPostulantes)
+                    </div>
+
+                    <div class="form-group">
+                        <label>3.	¿Cuántas personas contratadas son de la UTP?</label>
+                        <br />
+                        @Html.EditorFor(m => m.ContratadosUTP)
+                    </div>
+
+                    <div class="form-group">
+                        <label>4.	¿De qué otras universidades son las personas que se han contratado para este cargo?</label>
+                        <br />
+                        @Html.EditorFor(m => m.ContratadosOtros)
+
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col-md-12 text-right">
+                            <button type="submit" class="btn btn-default color-paleta2 fuente-pequeña" style="color: white; margin-bottom: 10px;">
+                                Cerrar oferta
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+

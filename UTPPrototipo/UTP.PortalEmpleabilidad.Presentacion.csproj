@@ -965,6 +965,7 @@
     <Content Include="Views\UTP\_ConveniosUTPLista.cshtml" />
     <Content Include="Views\UTP\_ConveniosUTPCrear.cshtml" />
     <Content Include="Views\Empresa\OfertaLaboral.cshtml" />
+    <Content Include="Views\Empresa\_OfertaEncuesta.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

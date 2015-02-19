@@ -7,26 +7,29 @@
 </div>
 <br />
 <div class="row">
-    <div class="col-sm-5">
-        <select id="CarrerasDisponibles" multiple style="width: 200px;height: 150px;">
-            <option>Carrera 1</option>
-            <option>Carrera 2</option>
+    <div class="col-sm-6">
+        <select id="CarrerasDisponibles" multiple style="width: 250px;height: 300px;">              
+            @*<option>Carrera 2</option>
             <option>Carrera 4</option>
-            <option>Carrera 6</option>
+            <option>Carrera 6</option>*@
+            @foreach (var item in (SelectList)TempData["ListaCarrerasDisponibles"])
+            {
+                <option style="font-size:8px;">@item.Text</option> 
+            }
         </select>
     </div>
-    <div class="col-sm-2" style="text-align:center;">
+    <div class="col-sm-1" style="text-align:center;">
         <br />
-        <span class="btn btn-default fa fa-arrow-right color-paleta2"></span>
+        <span class="btn btn-default btn-xs fa fa-arrow-right color-paleta2" onclick="agregarCarrera();"></span>
         <br />
-        <span class="btn btn-default fa fa-arrow-left color-paleta2"></span>
+        <span class="btn btn-default btn-xs fa fa-arrow-left color-paleta2"></span>
     </div>
     <div class="col-sm-5" style="text-align:right;">
-        <select id="CarrerasSeleccionada" multiple style="width: 200px;height: 150px;">
-            <option>Carrera 3</option>
-            <option>Carrera 5</option>
-            <option>Carrera 7</option>
-            <option>Carrera 8</option>
+        <select id="CarrerasSeleccionada" multiple style="width: 210px;height: 300px;">
+            @foreach (var item in (SelectList)TempData["ListaCarrerasUTP"])
+            {
+                <option style="font-size:8px;">@item.Text</option>
+            }
         </select>
     </div>
 
@@ -45,7 +48,7 @@
             </select>
         </div>
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-4">
         <div class="input-group">
             <div class="input-group-addon">
                 Ciclo<br />Mínimo
@@ -53,6 +56,7 @@
             <input class="form-control" placeholder="Ciclo mínimo de estadio">
         </div>
     </div>
+    
 </div>
 
 <hr />
@@ -116,4 +120,12 @@
         </label>
     </div>
 </div>
+
+<script>
+
+    function agregarCarrera()
+    {
+        alert('agregar carrera');
+    }
+</script>
 

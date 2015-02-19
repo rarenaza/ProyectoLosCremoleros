@@ -128,6 +128,7 @@ namespace UTPPrototipo.Controllers
             ViewBag.TipoContratoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_CONTRATO), "IdListaValor", "Valor", oferta.TipoContratoIdListaValor);
             ViewBag.IdEmpresaLocacion = new SelectList(lnEmpresaLocacion.ObtenerLocaciones(ticket.IdEmpresa), "IdEmpresaLocacion", "NombreLocacion", oferta.IdEmpresaLocacion);
             ViewBag.RecibeCorreosIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_OFERTA_RECIBECORREOS), "IdListaValor", "Valor", oferta.RecibeCorreosIdListaValor);
+            TempData["ListaCarrerasDisponibles"] = new SelectList(oferta.CarrerasDisponibles, "IdListaValor", "Valor");
 
             if (oferta.EstadoOferta == Constantes.OFERTA_ESTADO_BORRADOR) ViewBag.Visibility = "hidden";
             else ViewBag.Visibility = "visible";
@@ -151,18 +152,26 @@ namespace UTPPrototipo.Controllers
                 lnOfertaEmpresa.Actualizar(oferta);
 
                 //Se actualizan las fase de la oferta:
-                foreach (var item in oferta.OfertaFases)
-                {
-                    //Estos 3 registros siempre están activos.
-                    if (item.IdListaValor == "OFFAPR" || item.IdListaValor == "OFFACV" || item.IdListaValor == "OFFAFI")
-                    {
-                        item.Incluir = true;
-                    }
+                //foreach (var item in oferta.OfertaFases)
+                //{
+                //    //Estos 3 registros siempre están activos.
+                //    if (item.IdListaValor == "OFFAPR" || item.IdListaValor == "OFFACV" || item.IdListaValor == "OFFAFI")
+                //    {
+                //        item.Incluir = true;
+                //    }
 
-                    item.ModificadoPor = ticket.Usuario;
+                //    item.ModificadoPor = ticket.Usuario;
+                //}
+
+                //lnOferta.ActualizarOfertaFase(oferta.OfertaFases);
+
+                //Se guardan los estudios de la oferta.
+                //Primero hay que eliminar los estudios universitarios.
+                LNOfertaEstudio lnOfertaEstudio = new LNOfertaEstudio();
+                foreach (var ofertaEstudioUTP in oferta.CarrerasSeleccionadas)
+                {                    
+                    lnOfertaEstudio.Insertar(ofertaEstudioUTP);
                 }
-
-                lnOferta.ActualizarOfertaFase(oferta.OfertaFases);
 
                 //1. Mostrar mensaje de éxito.
                 TempData["MsjExitoEditarOferta"] = "La oferta '" + oferta.CargoOfrecido + "' ha sido actualizada con éxito.";
@@ -1376,6 +1385,34 @@ namespace UTPPrototipo.Controllers
             LNGeneral lngeneral = new LNGeneral();
             var Data = lngeneral.ObtenerListaValorPorIdPadre(Id);
             return Json(Data, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult CerrarOferta(int idOferta)
+        {
+            TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];
+
+            OfertaEncuesta encuesta = new OfertaEncuesta();
+            encuesta.IdOferta = idOferta;
+            encuesta.Estado = Constantes.OFERTA_ESTADO_FINALIZADA;
+            encuesta.ModificadoPor = ticket.Usuario;
+
+            //encuesta.Calificaciones = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_OFERTA_CALIFICACION_ENCUESTA), "IdListaValor", "Valor");
+            
+
+            return PartialView("_OfertaEncuesta", encuesta);
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public ActionResult CerrarOferta(OfertaEncuesta encuesta)
+        {
+            LNOferta lnOferta = new LNOferta();
+            lnOferta.CompletarEncuesta(encuesta);
+
+            TempData["MsjExitoCerrarOferta"] = "La oferta se ha cerrado con éxito";
+
+            //Se redirecciona a la lista de ofertas:
+            return RedirectToAction("Publicacion", "Empresa");
         }
     }
 }

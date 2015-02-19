@@ -140,3 +140,21 @@
         </script>
     }
 }
+
+@{
+    //Se valida que exista mensaje de éxito al crear una oferta
+    if (TempData["MsjExitoCerrarOferta"] != null)
+    {
+        <input id="MsjExitoCerrarOferta" type="hidden" value="@TempData["MsjExitoCerrarOferta"]" />
+        TempData["MsjExitoCerrarOferta"] = null; //Se establece el valor nuevamente en NULL.
+
+        //Se muestra el script
+        <script>
+
+            var msjExito = document.getElementById("MsjExitoCerrarOferta").value;
+            alert(msjExito);
+
+        </script>
+    }
+
+}

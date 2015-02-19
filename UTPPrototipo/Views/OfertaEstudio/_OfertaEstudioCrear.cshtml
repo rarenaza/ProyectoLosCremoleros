@@ -2,76 +2,76 @@
 
 
 <div class="modal-content">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="Estudio">Estudio específico</h4>
-    </div>
-    <div class="modal-body">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="Estudio">Estudio específico</h4>
+                </div>
+                <div class="modal-body">
 
-        @Html.HiddenFor(m => m.IdOferta)
-        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(m => m.IdOferta)
+                    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
 
-        <div class="row">
-            <div class="col-md-12">
-                <div class="input-group fuente-pequeña">
-                    <span class="input-group-addon">Tipo</span>
-                    @Html.DropDownListFor(m => m.TipoDeEstudioIdListaValor, null, "- Seleccione Tipo de Estudio -", htmlAttributes: new { @class = "form-control" })
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="input-group fuente-pequeña">
+                                <span class="input-group-addon">Tipo</span>
+                                @Html.DropDownListFor(m => m.TipoDeEstudioIdListaValor, null, "- Seleccione Tipo de Estudio -", htmlAttributes: new { @class = "form-control" })
+
+                            </div>
+                            @Html.ValidationMessageFor(m => m.TipoDeEstudioIdListaValor, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="row" id="TipoUniversitario">
+                        <div class="col-md-12">
+                            <div class="input-group fuente-pequeña">
+                                <span class="input-group-addon">Carrera</span>
+                                @Html.DropDownListFor(m => m.Estudio, null, "- Selecciones Carrera -", htmlAttributes: new { @class = "form-control", @id = "Estudio" })
+                            </div>
+                            @Html.ValidationMessageFor(m => m.Estudio, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="row" id="TipoOtrosEstudios" style="display:none;">
+                        <div class="col-md-12">
+                            <div class="input-group fuente-pequeña">
+                                <span class="input-group-addon">Estudio</span>
+                                @Html.TextBoxFor(m => m.EstudioTexto, new { @class = "form-control", @id = "EstudioTexto", @placeholder = "Nombre del estudio", @style = "z-index:150000;" })
+                            </div>
+                            @Html.ValidationMessageFor(m => m.EstudioTexto, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="input-group fuente-pequeña">
+                                <span class="input-group-addon">Estado</span>
+                                @Html.DropDownListFor(m => m.EstadoDelEstudioIdListaValor, null, "- Seleccione Estado del Estudio -", htmlAttributes: new { @class = "form-control" })
+
+                            </div>
+                            @Html.ValidationMessageFor(m => m.EstadoDelEstudioIdListaValor, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="input-group fuente-pequeña">
+                                <span class="input-group-addon">Ciclo<br />Mínimo</span>
+                                @*<input type="text" class="form-control" name="CicloEstudio" placeholder="Ciclo míninmo del Estudio">*@
+                                @Html.TextBoxFor(m => m.CicloEstudio, new { @class = "form-control", @placeholder = "Ciclo míninmo del Estudio" })
+                            </div>
+
+                        </div>
+                    </div>
 
                 </div>
-                @Html.ValidationMessageFor(m => m.TipoDeEstudioIdListaValor, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="row" id="TipoUniversitario">
-            <div class="col-md-12">
-                <div class="input-group fuente-pequeña">
-                    <span class="input-group-addon">Carrera</span>
-                   @Html.DropDownListFor(m => m.Estudio, null, "- Selecciones Carrera -", htmlAttributes: new { @class = "form-control", @id = "Estudio" })
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col-md-12 text-right">
+                            <button onclick="return validarEstudios();" type="submit" class="btn btn-default color-paleta2 fuente-pequeña" style="color: white; margin-bottom: 10px;">
+                                Guardar Estudio específico
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                @Html.ValidationMessageFor(m => m.Estudio, "", new { @class = "text-danger" })
             </div>
-        </div>
-        <div class="row" id="TipoOtrosEstudios" style="display:none;">
-            <div class="col-md-12">
-                <div class="input-group fuente-pequeña">
-                    <span class="input-group-addon">Estudio</span>
-                    @Html.TextBoxFor(m => m.EstudioTexto, new { @class = "form-control", @id = "EstudioTexto", @placeholder = "Nombre del estudio", @style = "z-index:150000;" })                    
-                </div>
-                @Html.ValidationMessageFor(m => m.EstudioTexto, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="input-group fuente-pequeña">
-                    <span class="input-group-addon">Estado</span>
-                    @Html.DropDownListFor(m => m.EstadoDelEstudioIdListaValor, null, "- Seleccione Estado del Estudio -", htmlAttributes: new { @class = "form-control" })
-
-                </div>
-                @Html.ValidationMessageFor(m => m.EstadoDelEstudioIdListaValor, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="input-group fuente-pequeña">
-                    <span class="input-group-addon">Ciclo<br />Mínimo</span>
-                    @*<input type="text" class="form-control" name="CicloEstudio" placeholder="Ciclo míninmo del Estudio">*@
-                    @Html.TextBoxFor(m => m.CicloEstudio, new { @class = "form-control", @placeholder = "Ciclo míninmo del Estudio" })
-                </div>
-                
-            </div>
-        </div>
-
-    </div>
-    <div class="modal-footer">
-        <div class="row">
-            <div class="col-md-12 text-right">
-                <button onclick="return validarEstudios();" type="submit" class="btn btn-default color-paleta2 fuente-pequeña" style="color: white; margin-bottom: 10px;">
-                    Guardar Estudio específico
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
 
 
 @*<script>
