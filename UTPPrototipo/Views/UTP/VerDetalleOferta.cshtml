@@ -208,7 +208,7 @@
 
 
         <div class="col-sm-6" id="divDatosOferta">
-            @using (Ajax.BeginForm("_VerDetalleOfertaEditar", "UTP", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", OnComplete = "mostrarMensaje", UpdateTargetId = "divDatosOferta" }))
+            @using (Ajax.BeginForm("_VerDetalleOfertaEditar", "UTP", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", OnComplete = "mostrarMensajeSegumiento", UpdateTargetId = "divDatosOferta" }))
             {
                 @Html.AntiForgeryToken()
 
@@ -551,6 +551,9 @@
             alert(err);
         });
     }
-
+    function mostrarMensajeSegumiento()
+    {
+        alert("Seguimiento fue actualizado con éxito");
+    }
 
 </script>

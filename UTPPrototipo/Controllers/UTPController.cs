@@ -2060,7 +2060,6 @@ namespace UTPPrototipo.Controllers
         public ActionResult _VerDetalleOfertaEditar(Oferta oferta)
         {
             lnUtp.UTP_ActualizaSeguimientoOferta(oferta);
-            ViewBag.MensajeGuardar = "La Información de Seguimiento se ha guardado con éxito";
             Oferta ofertaActualizada = lnoferta.ObtenerSeguimientoPorId(oferta.IdOferta);
             return PartialView("_VerDetalleOferta", ofertaActualizada);
         }
