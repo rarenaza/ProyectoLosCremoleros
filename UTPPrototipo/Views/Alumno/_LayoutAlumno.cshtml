@@ -54,8 +54,11 @@
 
 
                     <li>
-                        @Html.ActionLink("Mi CV", "MiCV", "Alumno", null, new { @class = "btn btn-default navbar-btn Boton_pestana color-paleta4", @style = "padding: 2px 0px 2px 0px; color: white;" })
-                    </li>
+                        @Html.ActionLink("Mi CV", "MiCV", "Alumno", new { id = 0 }, new { id = 0, @class = "btn btn-default navbar-btn Boton_pestana color-paleta4", @style = "padding: 2px 0px 2px 0px; color: white;" })
+                   
+                   
+                    
+                     </li>
                     <li>
                         @*<a class="btn btn-default navbar-btn Boton_pestana color-paleta5" href="..\Alumno\Index" style="padding: 2px 0px 2px 0px; color: white;">Eventos</a>*@
                         @Html.ActionLink("Eventos", "Eventos", "Alumno", null, new { @class = "btn btn-default navbar-btn Boton_pestana color-paleta5", @style = "padding: 2px 0px 2px 0px; color: white;" })

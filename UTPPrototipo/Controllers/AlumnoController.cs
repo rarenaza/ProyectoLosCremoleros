@@ -473,10 +473,11 @@ namespace UTPPrototipo.Controllers
         public ActionResult MiCV()
         {
 
+
             VistaPanelAlumnoMiCV panel = new VistaPanelAlumnoMiCV();
             TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
             panel.alumno = lnAlumno.ObtenerAlumnoPorCodigo(ticket.CodAlumnoUTP);
-
+          
             return View(panel);
         }
         public ActionResult OpcionesCV(VistaPanelAlumnoMiCV entidad)
@@ -1406,7 +1407,9 @@ namespace UTPPrototipo.Controllers
                 AlertasCvAlumno alumno = new AlertasCvAlumno();
                 alumno.NombreCV = Convert.ToString(dtResultado.Rows[i]["NombreCV"]);
                 alumno.PorcentajeCV = Convert.ToInt32(dtResultado.Rows[i]["PorcentajeCV"]);
+
                 alumno.IdCV = Convert.ToInt32(dtResultado.Rows[i]["IdCV"]);
+
                 lista.Add(alumno);
             }
 

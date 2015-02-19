@@ -9,8 +9,17 @@
   
       @*@Html.ActionLink( "¡Completa tu CV: '"+ @Html.DisplayFor(modelItem => item.NombreCV) + "' Ingresa Aquí", "MiCV", "Alumno", new { id = item.IdCV }, new { @class = "form-control" })*@
    
-     <div class="alert alert-danger" role="alert"><strong>¡Completa tu CV: '@Html.DisplayFor(modelItem => item.NombreCV)' está al @Html.DisplayFor(modelItem => item.PorcentajeCV)%! &nbsp;&nbsp;&nbsp;<a href="@Url.Action("MiCV", "Alumno", new { id = item.IdCV })">Ingrese aquí</a></strong></div>
-   
+     @*<div class="alert alert-danger" role="alert"><strong>¡Completa tu CV: '@Html.DisplayFor(modelItem => item.NombreCV)' está al @Html.DisplayFor(modelItem => item.PorcentajeCV)%! &nbsp;&nbsp;&nbsp;<a href="@Url.Action("MiCV", "Alumno", new { id = item.IdCV })">Ingrese aquí</a></strong></div>*@
+
+
+
+      
+            <div class="alert alert-danger" role="alert"><strong>¡Completa tu CV: '@Html.DisplayFor(modelItem => item.NombreCV)' está al @Html.DisplayFor(modelItem => item.PorcentajeCV)%! &nbsp;&nbsp;&nbsp;<a href="@Url.Action("MiCV", "Alumno", new { id = item.IdCV })">Ingrese aquí</a></strong></div>
+     
+
+
+
+
 
     }
 }
