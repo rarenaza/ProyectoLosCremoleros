@@ -1072,10 +1072,10 @@ namespace UTPPrototipo.Controllers
 
 
         [HttpGet]
-        public ActionResult Convenio(int idconvenio)
+        public ActionResult Convenio(string idconvenio)
         {
             LNGeneral lngeneral = new LNGeneral();
-            Convenio convenio = lnUtp.UTP_ObtenerConvenio(idconvenio);
+            Convenio convenio = lnUtp.UTP_ObtenerConvenio(Convert.ToInt32(Helper.Desencriptar(idconvenio)));
             ViewBag.TipoTrabajo = new SelectList(lngeneral.ObtenerListaValor(29), "IdListaValor", "Valor",convenio.TipoTrabajo);
             ViewBag.FuenteConvenio = new SelectList(lngeneral.ObtenerListaValor(41), "IdListaValor", "Valor",convenio.FuenteConvenio);
             ViewBag.IdExperienciaCargo = new SelectList(convenio.Experiencias, "IdExperienciaCargo", "Experiencia",convenio.IdExperienciaCargo);
@@ -1192,7 +1192,7 @@ namespace UTPPrototipo.Controllers
             return View();
         }
 
-        public ActionResult Evento_Editar(int? Id)
+        public ActionResult Evento_Editar(string Id)
         {
             //Lista Estado Evento
             DataTable dtresultadoEstadoEvento = lnUtp.Evento_ListaEstadoEvento();
@@ -1255,7 +1255,8 @@ namespace UTPPrototipo.Controllers
 
             Evento evento = new Evento();
                                         
-             DataTable dtResultado = lnEventos.EVENTO_OBTENERPORID(Convert.ToInt32(Id));
+             //DataTable dtResultado = lnEventos.EVENTO_OBTENERPORID(Convert.ToInt32(Id));
+            DataTable dtResultado = lnEventos.EVENTO_OBTENERPORID(Convert.ToInt32(Helper.Desencriptar(Id)));            
 
             if (dtResultado.Rows.Count > 0)
             {
@@ -2027,12 +2028,14 @@ namespace UTPPrototipo.Controllers
 
         }
 
-        public ActionResult VerDetalleOferta(int id)
+        public ActionResult VerDetalleOferta(string id)
         {
-            ViewBag.IdOferta = id;
-
+            //ViewBag.IdOferta = id;
+            int IdOferta = Convert.ToInt32(Helper.Desencriptar(id));
+         
+            //ViewBag.IdEmpresa = idEmpresa;
             //Se obtiene los datos de la empresa.
-            Oferta oferta = lnoferta.ObtenerPorId(id);
+            Oferta oferta = lnoferta.ObtenerPorId(IdOferta);
 
             LNGeneral lnGeneral = new LNGeneral();
 
@@ -2203,10 +2206,10 @@ namespace UTPPrototipo.Controllers
 
 
 
-        public ActionResult Lista(int? Id)
+        public ActionResult Lista(string Id)
         {
             Lista lista = new Lista();
-            DataTable dtResultado = lnUtp.UTP_BUSCARLISTAVALORPADRE(Convert.ToInt32(Id));
+            DataTable dtResultado = lnUtp.UTP_BUSCARLISTAVALORPADRE(Convert.ToInt32(Helper.Desencriptar(Id)));
             if (dtResultado.Rows.Count > 0)
             {
                 lista.IDLista = Convert.ToInt32(dtResultado.Rows[0]["IDLista"]);
@@ -2604,7 +2607,7 @@ namespace UTPPrototipo.Controllers
         }
 
 
-        public ActionResult VerDetalleAlumno(int? Id)
+        public ActionResult VerDetalleAlumno(string Id)
         {
 
 
@@ -2628,7 +2631,8 @@ namespace UTPPrototipo.Controllers
             UtpAlumnoDetalle alumno = new UtpAlumnoDetalle();
 
 
-            DataTable dtResultado = lnutpalumno.AlumnoUTP_ObtenerDatosPorCodigo(Convert.ToInt32(Id));
+            //DataTable dtResultado = lnutpalumno.AlumnoUTP_ObtenerDatosPorCodigo(Convert.ToInt32(Id));       
+            DataTable dtResultado = lnutpalumno.AlumnoUTP_ObtenerDatosPorCodigo(Convert.ToInt32(Helper.Desencriptar(Id)));
 
             if (dtResultado.Rows.Count > 0)
             {
