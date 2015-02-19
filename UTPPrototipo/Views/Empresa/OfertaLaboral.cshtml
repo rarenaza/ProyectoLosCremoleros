@@ -38,9 +38,9 @@
                     <div class="panel-body">
                         <div class="row">
 
-                            
+                            <!--Bloque 1: Correos-->
                             <div class="col-sm-3" style="border-right:solid;border-right-color:lightgray;border-right-width:1px;text-align:center;">
-                                <span>Defina como desea recibir notificaciones via correo electrónico, por cada Postulación.</span>
+                                <span>Defina cómo desea recibir los CVs de sus postulantes</span>
                                 <br />
                                 <div class="input-group">
                                     <span class="input-group-addon">
@@ -51,11 +51,25 @@
                                 @Html.ValidationMessageFor(m => m.RecibeCorreosIdListaValor, "", new { @class = "text-danger" })
                             </div>
 
+                            <!--Bloque 2: Guardar-->
+                            <div class="col-sm-3" style="border-right:solid;border-right-color:lightgray;border-right-width:1px;text-align:center;">
+                                <span>Guarde las modificaciones que ha realizado sobre su Oferta.</span>
+                                <br />
+                                <button class="btn btn-default color-paleta2" style="margin-bottom:5px;">Guardar</button>
+
+                            </div>
+
+                            <!--Bloque 3: Vista previa-->
+                            <div class="col-sm-3" style="border-right:solid;border-right-color:lightgray;border-right-width:1px;text-align:center; visibility: @ViewBag.Visibility;">
+                                <span>Visualice como los Postulantes verán su Oferta Laboral</span>
+                                <br />
+                                @Html.ActionLink("Vista Previa", "MostrarOferta", new { id = Helper.Encriptar(Model.IdOferta.ToString()) }, htmlAttributes: new { @class = "btn btn-default color-paleta2", @target = "_blank", @title = "Vista previa de la oferta" })
+                            </div>
+
+                            <!--Bloque 4: Publicación-->
                             <div class="col-sm-3" style="border-right:solid;border-right-color:lightgray;border-right-width:1px;text-align:center; visibility: @ViewBag.Visibility;">
                                 <span>Si ha finalizado la edición de su Oferta laboral, entonces Publíquela.</span>
                                 <br />
-
-                               
                                 @{
                                     if (Model.EstadoOferta == "OFERCO") //Estado en construcción.
                                     {
@@ -68,18 +82,6 @@
                                 }
                             </div>
 
-                            <div class="col-sm-3" style="border-right:solid;border-right-color:lightgray;border-right-width:1px;text-align:center; visibility: @ViewBag.Visibility;">
-                                <span>Visualice como los Postulantes verán su Oferta Laboral</span>
-                                <br />
-                                @Html.ActionLink("Vista Previa", "MostrarOferta", new { id = Helper.Encriptar(Model.IdOferta.ToString()) }, htmlAttributes: new { @class = "btn btn-default color-paleta2", @target = "_blank", @title = "Vista previa de la oferta" })
-                            </div>
-                         
-                            <div class="col-sm-3" style="border-right:solid;border-right-color:lightgray;border-right-width:1px;text-align:center;">
-                                <span>Guarde las modificaciones que ha realizado sobre su Oferta.</span>
-                                <br />
-                                <button class="btn btn-default color-paleta2" style="margin-bottom:5px;">Guardar</button>
-
-                            </div>
                         </div>
 
                     </div>

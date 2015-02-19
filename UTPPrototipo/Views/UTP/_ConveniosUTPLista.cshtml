@@ -1,7 +1,7 @@
 ﻿
 
 @model IEnumerable<UTP.PortalEmpleabilidad.Modelo.Vistas.Convenio.VistaUTPListaConvenio>
-
+@using UTPPrototipo.Utiles
 <h5>Convenios Registrados</h5>
 <div class="row grilla1-cabecera color-paleta9">
     <div class="col-sm-1">Id</div>
@@ -25,7 +25,8 @@
             @item.IdConvenio
         </div>
         <div class="col-sm-2">
-            @Html.ActionLink(item.Nombres + " " + item.Apellidos, "Convenio", new { idconvenio = item.IdConvenio })
+            @*@Html.ActionLink(item.Nombres + " " + item.Apellidos, "Convenio", new { idconvenio = item.IdConvenio })*@
+            @Html.ActionLink(item.Nombres + " " + item.Apellidos, "Convenio", new { idconvenio = Helper.Encriptar(item.IdConvenio.ToString()) })
 
         </div>
         <div class="col-sm-2">

@@ -107,6 +107,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public int IdOfertaPostulante { get; set; }
 
         public int TotalRegistros { get; set; }
+
         public DateTime FechaSeguimiento { get; set; }
         public int? NumeroInvitados { get; set; }
         public int? NumeroEntrevistados { get; set; }
@@ -117,6 +118,12 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string MedioComunicacion { get; set; }
 
         public virtual List<OfertaFase> OfertaFases { get; set; }
+
+        public List<ListaValor> CarrerasDisponibles { get; set; }
+        public List<OfertaEstudio> CarrerasSeleccionadas { get; set; }
+
+        //Encuesta:
+
        public Oferta() {
 
            TipoCargo = new ListaValor();

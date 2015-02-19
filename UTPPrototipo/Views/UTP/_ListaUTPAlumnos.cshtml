@@ -1,7 +1,7 @@
 ﻿
 
 @using UTPPrototipo.Common
-
+@using UTPPrototipo.Utiles
 @*@model IEnumerable<UTP.PortalEmpleabilidad.Modelo.Vistas.Alumno.VistaUTPListaAlumno>*@
 
 @model IEnumerable<UTP.PortalEmpleabilidad.Modelo.AlumnoUTP>
@@ -53,7 +53,8 @@
             @* <a href="../UTP/VerDetalleAlumno"> @item.Nombre</a>*@
 
 
-            @Html.ActionLink(@item.Nombre, "VerDetalleAlumno", new { id = item.idAlumno })
+           @* @Html.ActionLink(@item.Nombre, "VerDetalleAlumno", new { id = item.idAlumno })*@
+            @Html.ActionLink(@item.Nombre, "VerDetalleAlumno", new { id = Helper.Encriptar(item.idAlumno.ToString()) })
 
             @*@item.Nombre*@
         </div>

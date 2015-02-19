@@ -855,5 +855,37 @@ namespace UTP.PortalEmpleabilidad.Datos
 
             return dtResultado;
         }
+
+        public void CompletarEncuesta(OfertaEncuesta encuesta)
+        {
+            try
+            {
+                using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+                {
+                    SqlCommand cmd = new SqlCommand();
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = "Oferta_CompletarEncuesta";
+
+                    //Parámetros:
+                    cmd.Parameters.Add(new SqlParameter("@IdOferta", encuesta.IdOferta));
+                    cmd.Parameters.Add(new SqlParameter("@Calificacion", encuesta.Calificacion));
+                    cmd.Parameters.Add(new SqlParameter("@NroPostulantes", encuesta.NroPostulantes));
+                    cmd.Parameters.Add(new SqlParameter("@ContratadosUTP", encuesta.ContratadosUTP));
+                    cmd.Parameters.Add(new SqlParameter("@ContratadosOtros", encuesta.ContratadosOtros));
+                    cmd.Parameters.Add(new SqlParameter("@EstadoOferta", encuesta.Estado));
+                    cmd.Parameters.Add(new SqlParameter("@ModificadoPor", encuesta.ModificadoPor));
+                    
+                    cmd.Connection = conexion;
+                    conexion.Open();
+                    cmd.ExecuteNonQuery();
+                    conexion.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

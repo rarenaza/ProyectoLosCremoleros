@@ -1,6 +1,6 @@
 ﻿@using UTPPrototipo.Common
 @model IEnumerable<UTPPrototipo.Models.ViewModels.UTP.VistaEmpresasPendientes>
-
+@using UTPPrototipo.Utiles
 @using UTP.PortalEmpleabilidad.Modelo
 @{
     <!--Se obtiene los datos para la paginación.-->
@@ -26,7 +26,8 @@
         </div>
         <div class="col-sm-8">
             @*<a href="../UTP/RegistroEmpresa">@item.NombreComercial</a>*@            
-            @Html.ActionLink(@item.NombreComercial, "VerDetalleEmpresa", new { id = item.IdEmpresa })
+            @*@Html.ActionLink(@item.NombreComercial, "VerDetalleEmpresa", new { id = item.IdEmpresa })*@
+            @Html.ActionLink(@item.NombreComercial, "VerDetalleEmpresa", new { id = Helper.Encriptar(item.IdEmpresa.ToString()) })
         </div>
     </div>
 }
