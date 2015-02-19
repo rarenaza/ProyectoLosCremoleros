@@ -18,12 +18,17 @@ namespace UTP.PortalEmpleabilidad.Modelo
         [RegularExpression(@"[0-9A-ZÀ-ÿa-zÑñ., ]+", ErrorMessage = "Este campo sólo acepta letras y numeros.")]
         public string Conocimiento { get; set; }
         public int? FechaConocimientoDesdeMes { get; set; }
-        [Range(1900, 2015, ErrorMessage = "El valor debe estar en el rango de {1} y {2}.")]
+
+        [Range(1900, 3015, ErrorMessage = "El valor debe estar en el rango de {1} y {2}.")]
         [RegularExpression(@"[0-9]+", ErrorMessage = "Este campo sólo acepta años con 4 numeros.")]
         public int? FechaConocimientoDesdeAno { get; set; }
-        [StringLength(2, MinimumLength = 1, ErrorMessage = "Este campo sólo maximo 2 digitos.")]
+
+        //[StringLength(2, MinimumLength = 1, ErrorMessage = "Este campo sólo maximo 2 digitos.")]
         public int? FechaConocimientoHastaMes { get; set; }
-        [StringLength(4, MinimumLength = 4, ErrorMessage = "Este campo sólo acepta 4 digitos.")]
+
+        //[StringLength(4, MinimumLength = 4, ErrorMessage = "Este campo sólo acepta 4 digitos.")]
+        
+        [Range(1900, 3015, ErrorMessage = "El valor debe estar en el rango de {1} y {2}.")]
         [RegularExpression(@"[0-9]+", ErrorMessage = "Este campo sólo acepta años con 4 numeros.")]
         public int? FechaConocimientoHastaAno { get; set; }
         public string NomPais { get; set; }
@@ -34,7 +39,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         [RegularExpression(@"[0-9A-ZÀ-ÿa-zÑñ,. ]+", ErrorMessage = "Este campo sólo acepta letras y numeros.")]
         public string InstituciónDeEstudio { get; set; }
         [RegularExpression(@"[0-9]+", ErrorMessage = "Este campo sólo acepta numeros.")]
-        [StringLength(2, MinimumLength = 1, ErrorMessage = "Este campo sólo maximo 2 digitos.")]
+        //[StringLength(2, MinimumLength = 1, ErrorMessage = "Este campo sólo maximo 2 digitos.")]
         public int? AnosExperiencia { get; set; }
         public bool Incluir { get; set; }
         public List<ListaValor> ListaTipoConocimiento { get; set; }

@@ -72,7 +72,7 @@ namespace UTP.PortalEmpleabilidad.Logica
         }
         private Oferta ObtenerOfertasAlumnoPorID(int idOferta, int idAlumno)
         {
-            
+
             Oferta oferta = new Oferta();
             DataTable dtResultado = adOferta.ObtenerOfertasAlumnoPorID(idOferta, idAlumno);
             if (dtResultado.Rows.Count > 0)
@@ -118,16 +118,16 @@ namespace UTP.PortalEmpleabilidad.Logica
             return oferta;
         }
 
-        public VistaOfertaAlumno OfertaAlumnoPostulacion(int IdOferta,int IdAlumno)
+        public VistaOfertaAlumno OfertaAlumnoPostulacion(int IdOferta, int IdAlumno)
         {
             VistaOfertaAlumno vistaofertalumno = new VistaOfertaAlumno();
-            Alumno alumno=new Alumno();
+            Alumno alumno = new Alumno();
             vistaofertalumno.Oferta = ObtenerOfertasAlumnoPorID(IdOferta, IdAlumno);
             vistaofertalumno.ListaAlumnoCV = lnalumnocv.ObtenerAlumnoCVPorIdAlumnoCompleto(IdAlumno);
             vistaofertalumno.ListaOfertas = BuscarSimilaresOfertasAlumno(IdOferta);
             BuscarCumplimientoOfertasAlumno(ref vistaofertalumno);
 
-           
+
             return vistaofertalumno;
         }
         public List<Oferta> BuscarFiltroOfertasAlumno(int IdAlumno, string PalabraClave, int PagActual, int NumRegistros)
@@ -144,7 +144,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 oferta.FechaPublicacion = Funciones.ToDateTime(dtResultado.Rows[i]["FechaPublicacion"]);
                 oferta.NombreComercial = Funciones.ToString(dtResultado.Rows[i]["NombreComercial"]);
                 oferta.CargoOfrecido = Funciones.ToString(dtResultado.Rows[i]["CargoOfrecido"]);
-                
+
                 oferta.DesTipoTrabajo = Funciones.ToString(dtResultado.Rows[i]["DesTipoTrabajo"]);
                 oferta.Horario = Funciones.ToString(dtResultado.Rows[i]["Horario"]);
                 oferta.RemuneracionOfrecida = Funciones.ToDecimal(dtResultado.Rows[i]["RemuneracionOfrecida"]);
@@ -226,7 +226,7 @@ namespace UTP.PortalEmpleabilidad.Logica
             return listaOferta;
         }
 
-          
+
         public List<VistaOfertaAlumno> Oferta_Mostrar()
         {
             List<VistaOfertaAlumno> listaOferta = new List<VistaOfertaAlumno>();
@@ -241,7 +241,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 oferta.Empresa = dtResultado.Rows[i]["Empresa"].ToString();
 
                 oferta.CargoOfrecido = dtResultado.Rows[i]["CargoOfrecido"].ToString();
-                oferta.Horario = dtResultado.Rows[i]["Horario"].ToString ();
+                oferta.Horario = dtResultado.Rows[i]["Horario"].ToString();
 
                 oferta.RemuneracionOfrecida = Convert.ToDecimal(dtResultado.Rows[i]["RemuneracionOfrecida"]);
 
@@ -289,7 +289,7 @@ namespace UTP.PortalEmpleabilidad.Logica
 
             DataTable dtResultados = adOferta.Obtener_PanelEmpresa(idEmpresa, filtroBusqueda, rolIdListaValor, usuario, nroPaginaActual, filasPorPagina);
 
-            foreach(DataRow fila in dtResultados.Rows)
+            foreach (DataRow fila in dtResultados.Rows)
             {
                 VistaOfertaEmpresa vista = new VistaOfertaEmpresa();
                 vista.IdOferta = Convert.ToInt32(fila["IdOferta"]);
@@ -310,7 +310,7 @@ namespace UTP.PortalEmpleabilidad.Logica
 
             return lista;
         }
-     
+
         public Oferta ObtenerPorId(int idOferta)
         {
             Oferta oferta = null;
@@ -338,7 +338,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 oferta.RemuneracionOfrecida = Convert.ToDecimal(dsResultado.Tables[0].Rows[0]["RemuneracionOfrecida"]);
 
 
-               
+
 
                 oferta.Horario = Convert.ToString(dsResultado.Tables[0].Rows[0]["Horario"]);
                 oferta.AreaEmpresa = Convert.ToString(dsResultado.Tables[0].Rows[0]["AreaEmpresa"]);
@@ -375,18 +375,18 @@ namespace UTP.PortalEmpleabilidad.Logica
             oferta.ListaEstudios = new List<OfertaEstudio>();
             foreach (DataRow filaEstudio in dsResultado.Tables[1].Rows)
             {
-                OfertaEstudio estudio                   = new OfertaEstudio();
+                OfertaEstudio estudio = new OfertaEstudio();
                 estudio.IdOfertaEstudio = Convert.ToInt32(filaEstudio["IdOfertaEstudio"] == System.DBNull.Value ? null : filaEstudio["IdOfertaEstudio"]);
                 estudio.IdOferta = Convert.ToInt32(filaEstudio["IdOfertaEstudio"] == System.DBNull.Value ? null : filaEstudio["IdOfertaEstudio"]);
                 estudio.CicloEstudio = Convert.ToInt32(filaEstudio["CicloEstudio"] == System.DBNull.Value ? null : filaEstudio["CicloEstudio"]);
                 estudio.Estudio = Convert.ToString(filaEstudio["Estudio"] == System.DBNull.Value ? null : filaEstudio["Estudio"]);
-                estudio.TipoDeEstudio.Valor             = Convert.ToString(filaEstudio["TipoDeEstudioDescripcion"]);
-                estudio.EstadoDelEstudio.Valor          = Convert.ToString(filaEstudio["EstadoDelEstudioDescripcion"]);
-                estudio.EstadoOfertaEstudio.Valor       = Convert.ToString(filaEstudio["EstadoOfertaEstudioDescripcion"]);
-                estudio.CreadoPor                       = Convert.ToString(filaEstudio["CreadoPor"]);
-                estudio.ModificadoPor                   = Convert.ToString(filaEstudio["ModificadoPor"]);
-                estudio.FechaCreacion                   = Convert.ToDateTime(filaEstudio["FechaCreacion"]);
-                estudio.FechaModificacion               = Convert.ToDateTime(filaEstudio["FechaModificacion"]);
+                estudio.TipoDeEstudio.Valor = Convert.ToString(filaEstudio["TipoDeEstudioDescripcion"]);
+                estudio.EstadoDelEstudio.Valor = Convert.ToString(filaEstudio["EstadoDelEstudioDescripcion"]);
+                estudio.EstadoOfertaEstudio.Valor = Convert.ToString(filaEstudio["EstadoOfertaEstudioDescripcion"]);
+                estudio.CreadoPor = Convert.ToString(filaEstudio["CreadoPor"]);
+                estudio.ModificadoPor = Convert.ToString(filaEstudio["ModificadoPor"]);
+                estudio.FechaCreacion = Convert.ToDateTime(filaEstudio["FechaCreacion"]);
+                estudio.FechaModificacion = Convert.ToDateTime(filaEstudio["FechaModificacion"]);
 
                 oferta.ListaEstudios.Add(estudio);
             }
@@ -396,39 +396,39 @@ namespace UTP.PortalEmpleabilidad.Logica
             foreach (DataRow filaSector in dsResultado.Tables[2].Rows)
             {
                 OfertaSectorEmpresarial sector = new OfertaSectorEmpresarial();
-                sector.IdOfertaSectorEmpresarial    = Convert.ToInt32(filaSector["IdOfertaSectorEmpresarial"]);
-                sector.IdOferta                     = Convert.ToInt32(filaSector["IdOferta"]);
-                sector.SectorEmpresarial.Valor      = Convert.ToString(filaSector["SectorEmpresarialDescripcion"]);
+                sector.IdOfertaSectorEmpresarial = Convert.ToInt32(filaSector["IdOfertaSectorEmpresarial"]);
+                sector.IdOferta = Convert.ToInt32(filaSector["IdOferta"]);
+                sector.SectorEmpresarial.Valor = Convert.ToString(filaSector["SectorEmpresarialDescripcion"]);
                 sector.AniosTrabajados = Convert.ToInt32(filaSector["AniosTrabajados"] == System.DBNull.Value ? null : filaSector["AniosTrabajados"]);
-                sector.CreadoPor                    = Convert.ToString(filaSector["CreadoPor"]);
-                sector.ModificadoPor                = Convert.ToString(filaSector["ModificadoPor"]);
-                sector.FechaCreacion                = Convert.ToDateTime(filaSector["FechaCreacion"]);
-                sector.FechaModificacion            = Convert.ToDateTime(filaSector["FechaModificacion"]);
+                sector.CreadoPor = Convert.ToString(filaSector["CreadoPor"]);
+                sector.ModificadoPor = Convert.ToString(filaSector["ModificadoPor"]);
+                sector.FechaCreacion = Convert.ToDateTime(filaSector["FechaCreacion"]);
+                sector.FechaModificacion = Convert.ToDateTime(filaSector["FechaModificacion"]);
 
                 oferta.ListaSectores.Add(sector);
 
             }
 
             //Tabla Index 3: Lista de información adicional
-            oferta.ListaInformacionAdicional = new List<OfertaInformacionAdicional>();            
+            oferta.ListaInformacionAdicional = new List<OfertaInformacionAdicional>();
             foreach (DataRow filaInfoAdicional in dsResultado.Tables[3].Rows)
             {
                 OfertaInformacionAdicional infoAdicional = new OfertaInformacionAdicional();
-                infoAdicional.IdOfertaInformacionAdicional  = Convert.ToInt32(filaInfoAdicional["IdOfertaInformacionAdicional"]);
-                infoAdicional.IdOferta                      = Convert.ToInt32(filaInfoAdicional["IdOferta"]);
-                infoAdicional.TipoConocimiento.Valor        = Convert.ToString(filaInfoAdicional["TipoConocimientoDescripcion"]);
-                infoAdicional.Conocimiento                  = Convert.ToString(filaInfoAdicional["Conocimiento"]);
-                infoAdicional.NivelConocimiento.Valor       = Convert.ToString(filaInfoAdicional["NivelConocimientoDescripcion"]);
-                infoAdicional.AniosExperiencia              = Convert.ToInt32(filaInfoAdicional["AniosExperiencia"]);
-                infoAdicional.CreadoPor                     = Convert.ToString(filaInfoAdicional["CreadoPor"]);
-                infoAdicional.ModificadoPor                 = Convert.ToString(filaInfoAdicional["ModificadoPor"]);
-                infoAdicional.FechaCreacion                 = Convert.ToDateTime(filaInfoAdicional["FechaCreacion"]);
-                infoAdicional.FechaModificacion             = Convert.ToDateTime(filaInfoAdicional["FechaModificacion"]);
+                infoAdicional.IdOfertaInformacionAdicional = Convert.ToInt32(filaInfoAdicional["IdOfertaInformacionAdicional"]);
+                infoAdicional.IdOferta = Convert.ToInt32(filaInfoAdicional["IdOferta"]);
+                infoAdicional.TipoConocimiento.Valor = Convert.ToString(filaInfoAdicional["TipoConocimientoDescripcion"]);
+                infoAdicional.Conocimiento = Convert.ToString(filaInfoAdicional["Conocimiento"]);
+                infoAdicional.NivelConocimiento.Valor = Convert.ToString(filaInfoAdicional["NivelConocimientoDescripcion"]);
+                infoAdicional.AniosExperiencia = Convert.ToInt32(filaInfoAdicional["AniosExperiencia"]);
+                infoAdicional.CreadoPor = Convert.ToString(filaInfoAdicional["CreadoPor"]);
+                infoAdicional.ModificadoPor = Convert.ToString(filaInfoAdicional["ModificadoPor"]);
+                infoAdicional.FechaCreacion = Convert.ToDateTime(filaInfoAdicional["FechaCreacion"]);
+                infoAdicional.FechaModificacion = Convert.ToDateTime(filaInfoAdicional["FechaModificacion"]);
 
                 oferta.ListaInformacionAdicional.Add(infoAdicional);
             }
 
-            
+
             //Tabla Index 4: Lista de Postulantes
             oferta.Postulantes = new List<OfertaPostulante>();
             foreach (DataRow filaPostulante in dsResultado.Tables[4].Rows)
@@ -449,10 +449,38 @@ namespace UTP.PortalEmpleabilidad.Logica
                 oferta.Postulantes.Add(postulante);
             }
 
+            //Tabla Index 5: fases de la oferta
+            oferta.OfertaFases = Obtener_OfertaFase(idOferta);
 
             return oferta;
         }
-       
+
+        public Oferta ObtenerSeguimientoPorId(int idOferta)
+        {
+            Oferta oferta = null;
+
+            DataSet dsResultado = adOferta.ObtenerSeguimientoPorId(idOferta);
+
+            //Tabla Index 0: Datos de la oferta.
+            if (dsResultado.Tables[0].Rows.Count > 0)
+            {
+                oferta = new Oferta();
+
+                oferta.IdOferta = Convert.ToInt32(dsResultado.Tables[0].Rows[0]["IdOferta"]);
+                oferta.FechaSeguimiento = Convert.ToDateTime(dsResultado.Tables[0].Rows[0]["FechaSeguimiento"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[0]["FechaSeguimiento"]);
+                oferta.NumeroInvitados = Convert.ToInt32(dsResultado.Tables[0].Rows[0]["NumeroInvitados"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[0]["NumeroInvitados"]);
+                oferta.NumeroEntrevistados = Convert.ToInt32(dsResultado.Tables[0].Rows[0]["NumeroEntrevistados"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[0]["NumeroEntrevistados"]);
+                oferta.NumeroContratados = Convert.ToInt32(dsResultado.Tables[0].Rows[0]["NumeroContratados"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[0]["NumeroContratados"]);
+                oferta.ConvenioRegistrado = Convert.ToBoolean(dsResultado.Tables[0].Rows[0]["ConvenioRegistrado"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[0]["ConvenioRegistrado"]);
+                oferta.Contacto = Convert.ToString(dsResultado.Tables[0].Rows[0]["Contacto"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[0]["Contacto"]);
+                oferta.DatosContacto = Convert.ToString(dsResultado.Tables[0].Rows[0]["DatosContacto"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[0]["DatosContacto"]);
+                oferta.MedioComunicacion = Convert.ToString(dsResultado.Tables[0].Rows[0]["MedioComunicacion"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[0]["MedioComunicacion"]);
+
+            }
+            return oferta;
+        }
+
+
         public DataTable ObtenerPostulacionesPorEmpresa(int idEmpresa)
         {
             return adOferta.ObtenerPostulacionesPorEmpresa(idEmpresa);
@@ -498,13 +526,13 @@ namespace UTP.PortalEmpleabilidad.Logica
                 oFase.IdListaValor = Convert.ToString(fila["IdListaValor"]);
                 oFase.FaseOferta = Convert.ToString(fila["FaseOferta"]);
 
-                listaOfertaFase.Add(oFase);                
+                listaOfertaFase.Add(oFase);
             }
 
             //ListaOfertaFase listaRetorno = new ListaOfertaFase();
             //listaRetorno.ListaFasesDeLaOferta = listaOfertaFase;
 
-            return listaOfertaFase; 
+            return listaOfertaFase;
         }
 
         public void ActualizarOfertaFase(List<OfertaFase> listaOfertaFase)
@@ -521,7 +549,7 @@ namespace UTP.PortalEmpleabilidad.Logica
             foreach (DataRow fila in dtResultado.Rows)
             {
                 if (Convert.ToBoolean(fila["Incluir"]))
-                {                                 
+                {
                     OfertaFase oFase = new OfertaFase();
                     oFase.IdOfertaFase = Convert.ToInt32(fila["IdOfertaFase"]);
                     oFase.IdOferta = Convert.ToInt32(fila["IdOfertaFase"]);
@@ -532,7 +560,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                     listaOfertaFase.Add(oFase);
                 }
             }
-          
+
             return listaOfertaFase;
         }
 
@@ -569,7 +597,7 @@ namespace UTP.PortalEmpleabilidad.Logica
 
                 vista.UsuarioPropietarioEmpresa = Convert.ToString(fila["UsuarioPropietarioEmpresa"]);
                 vista.UsuarioPropietarioEmpresaCorreo = Convert.ToString(fila["UsuarioPropietarioEmpresaCorreo"]);
-               
+
                 lista.Add(vista);
             }
 

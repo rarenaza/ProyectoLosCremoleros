@@ -15,7 +15,7 @@
             <div class="col-sm-6">
                 <div class="input-group fuente-pequeña">
                     <span class="input-group-addon">(*) Tipo</span>
-                    @Html.DropDownListFor(m => m.TipoLocacionIdListaValor, null, "-- Especifique tipo Ubicación --", htmlAttributes: new { @class = "form-control" })
+                    @Html.DropDownListFor(m => m.TipoLocacionIdListaValor, null, "- Seleccione Tipo de Ubicación -", htmlAttributes: new { @class = "form-control" })
                     
                 </div>@Html.ValidationMessageFor(model => model.TipoLocacionIdListaValor, "", new { @class = "text-danger" })
             </div>
@@ -24,10 +24,11 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="input-group">
-                    <span class="input-group-addon">(*) Nombre</span>
+                    <span class="input-group-addon">(*)<br />Nombre</span>
                     @*<input type="text" class="form-control" placeholder="Nombre de la Ubicación">*@
-                    @Html.Raw(@Html.EditorFor(model => model.NombreLocacion).ToString().Replace("text-box single-line", "form-control"))
-                    
+                    @*@Html.Raw(@Html.EditorFor(model => model.NombreLocacion, new {@placeholder = "Nombre de la Ubicación" }).ToString().Replace("text-box single-line", "form-control"))*@
+                    @Html.TextBoxFor(model => model.NombreLocacion,"", new { @class="form-control", @placeholder = "Nombre de la Ubicación"})
+
                 </div>@Html.ValidationMessageFor(model => model.NombreLocacion, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -36,9 +37,10 @@
                 <div class="input-group">
                     <span class="input-group-addon">E-Mail</span>
                     @*<input type="text" class="form-control" placeholder="Dirección electrónica para la Ubicación">*@
-                    @Html.Raw(@Html.EditorFor(model => model.CorreoElectronico).ToString().Replace("text-box single-line", "form-control"))
+                    @Html.TextBoxFor(model => model.CorreoElectronico, "", new { @class = "form-control", @placeholder = "Dirección electrónica para la Ubicación" })
                     
                 </div>@Html.ValidationMessageFor(model => model.CorreoElectronico, "", new { @class = "text-danger" })
+                
             </div>
         </div>
         <div class="row">
@@ -46,7 +48,7 @@
                 <div class="input-group">
                     <span class="input-group-addon">Teléfono</span>
                     @*<input type="text" class="form-control" placeholder="Teléfono de la Ubicación">*@
-                    @Html.Raw(@Html.EditorFor(model => model.TelefonoFijo).ToString().Replace("text-box single-line", "form-control"))
+                    @Html.TextBoxFor(model => model.TelefonoFijo, "", new { @class = "form-control", @placeholder = "Teléfono de la Ubicación" })
                     
                 </div>@Html.ValidationMessageFor(model => model.TelefonoFijo, "", new { @class = "text-danger" })
             </div>
@@ -56,7 +58,7 @@
                 <div class="input-group">
                     <span class="input-group-addon">(*)<br />Dirección</span>
                     @*<textarea class="form-control" placeholder="Calle y Número de la Ubicación, interior, depto, oficina, urbanización" rows="2"></textarea>*@
-                    @Html.Raw(@Html.EditorFor(model => model.Direccion).ToString().Replace("text-box multi-line", "form-control"))
+                    @Html.TextAreaFor(model => model.Direccion, new { @class = "form-control", @placeholder = "Calle y Número de la Ubicación, interior, depto, oficina, urbanización" })
                     
                 </div>@Html.ValidationMessageFor(model => model.Direccion, "", new { @class = "text-danger" })
             </div>
@@ -65,15 +67,15 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="input-group fuente-pequeña">
-                    <span class="input-group-addon">(*) Departa-<br />mento</span>
+                    <span class="input-group-addon">(*) Depar-<br />tamento</span>
                     @*@Html.Raw(@Html.EditorFor(model => model.DireccionDepartamento).ToString().Replace("text-box single-line", "form-control"))*@
-                    @Html.DropDownListFor(m => m.DireccionDepartamento, null, "Seleccione", htmlAttributes: new { @class = "form-control", @id = "DireccionDepartamentoLocacion" })
+                    @Html.DropDownListFor(m => m.DireccionDepartamento, null, "- Seleccione Departamento -", htmlAttributes: new { @class = "form-control", @id = "DireccionDepartamentoLocacion" })
                 </div>@Html.ValidationMessageFor(model => model.DireccionDepartamento, "", new { @class = "text-danger" })
             </div>
             <div class="col-sm-6">
                 <div class="input-group fuente-pequeña">
                     <span class="input-group-addon">(*) Ciudad</span>
-                    @Html.DropDownListFor(m => m.DireccionCiudad, null, "Seleccione", htmlAttributes: new { @class = "form-control", @id = "DireccionCiudadLocacion" })
+                    @Html.DropDownListFor(m => m.DireccionCiudad, null, "- Seleccione Ciudad -", htmlAttributes: new { @class = "form-control", @id = "DireccionCiudadLocacion" })
                     @*@Html.Raw(@Html.EditorFor(model => model.DireccionCiudad).ToString().Replace("text-box single-line", "form-control"))*@
                     
                 </div>@Html.ValidationMessageFor(model => model.DireccionCiudad, "", new { @class = "text-danger" })
@@ -83,7 +85,7 @@
             <div class="col-sm-6">
                 <div class="input-group fuente-pequeña">
                     <span class="input-group-addon">(*)<br />Distrito</span>
-                    @Html.DropDownList("DireccionDistrito", new SelectList(string.Empty, "Value", "Text"), "-Seleccione-", new { @class = "form-control", @id = "DireccionDistritoLocacion" })
+                    @Html.DropDownList("DireccionDistrito", new SelectList(string.Empty, "Value", "Text"), "- Seleccione Distrito -", new { @class = "form-control", @id = "DireccionDistritoLocacion" })
                     @*@Html.Raw(@Html.EditorFor(model => model.DireccionDistrito).ToString().Replace("text-box single-line", "form-control"))*@
                     
                 </div>@Html.ValidationMessageFor(model => model.DireccionDistrito, "", new { @class = "text-danger" })
@@ -93,7 +95,7 @@
             <div class="col-sm-6">
                 <div class="input-group fuente-pequeña">
                     <span class="input-group-addon">(*) Estado</span>
-                    @Html.DropDownListFor(m => m.EstadoLocacionIdListaValor, null, "-- Especifique estado --", htmlAttributes: new { @class = "form-control" })
+                    @Html.DropDownListFor(m => m.EstadoLocacionIdListaValor, null, "- Seleccione Estado -", htmlAttributes: new { @class = "form-control" })
                     
                 </div>@Html.ValidationMessageFor(model => model.EstadoLocacionIdListaValor, "", new { @class = "text-danger" })
             </div>

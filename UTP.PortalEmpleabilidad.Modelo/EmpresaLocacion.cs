@@ -44,6 +44,15 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string TextoCiudad { get; set; }
         public string TextDistrito { get; set; }
 
+        [Required(ErrorMessage = "Falta Departamento")]
+        public string DireccionDepartamentoId { get; set; }
+
+        [Required(ErrorMessage = "Falta Ciudad")]
+        public string DireccionCiudadId { get; set; }
+
+        [Required(ErrorMessage = "Falta Distrito")]
+        public string DireccionDistritoId { get; set; }
+
   
 
 

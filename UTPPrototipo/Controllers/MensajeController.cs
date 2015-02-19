@@ -188,6 +188,7 @@ namespace UTPPrototipo.Controllers
                 mensaje.DeUsuario = ticket.Usuario;
                 mensaje.DeUsuarioCorreoElectronico = ticket.CorreoElectronico;
                 mensaje.CreadoPor = ticket.Usuario;
+                mensaje.DeUsuarioNombre = ticket.Nombre;
             }
             else
                 if (mensaje.Pantalla == Constantes.MENSAJES_ALUMNO_INDEX || mensaje.Pantalla == Constantes.MENSAJES_ALUMNO_OFERTA 
@@ -197,6 +198,7 @@ namespace UTPPrototipo.Controllers
                 mensaje.DeUsuario = ticketAlumno.Usuario;
                 mensaje.DeUsuarioCorreoElectronico = ticketAlumno.CorreoElectronico;
                 mensaje.CreadoPor = ticketAlumno.Usuario;
+                mensaje.DeUsuarioNombre = ticketAlumno.Nombre;
             }
             else
             if (mensaje.Pantalla == Constantes.MENSAJES_UTP_INDEX || mensaje.Pantalla == Constantes.MENSAJES_UTP_ALUMNO ||
@@ -206,6 +208,7 @@ namespace UTPPrototipo.Controllers
                 mensaje.DeUsuario = ticketUtp.Usuario;
                 mensaje.DeUsuarioCorreoElectronico = ticketUtp.CorreoElectronico;
                 mensaje.CreadoPor = ticketUtp.Usuario;
+                mensaje.DeUsuarioNombre = ticketUtp.Nombre;
             }
            
           
@@ -220,6 +223,7 @@ namespace UTPPrototipo.Controllers
                 mensaje.DeUsuario = ticket.Usuario;
                 mensaje.DeUsuarioCorreoElectronico = ticket.CorreoElectronico;
                 mensaje.CreadoPor = ticket.Usuario;
+                mensaje.DeUsuarioNombre = ticket.Nombre;
                 lnMensaje.InsertarHunting(mensaje);
             }
             else

@@ -66,14 +66,14 @@
             if ((ticketEmpresa.Rol == "ROLEAD" || ticketEmpresa.Rol == "ROLEUS") &&
                 (item.EstadoOfertaIdListaValor == "OFERPR" || item.EstadoOfertaIdListaValor == "OFERCO"))
             {
-                @Html.ActionLink(" ", "EditarOferta", new { id = item.IdOferta }, new { @class = "btn btn-xs fa fa-pencil color-paleta2", @tooltip = "Editar oferta" })
+                @Html.ActionLink(" ", "OfertaLaboral", new { id = Helper.Encriptar(item.IdOferta.ToString()) }, new { @class = "btn btn-xs fa fa-pencil color-paleta2", @tooltip = "Editar oferta", @target = "_blank" })
             }
             else
             {
-                @Html.ActionLink(" ", "EditarOferta", new { id = item.IdOferta }, new { @class = "btn btn-xs fa fa-pencil color-paleta2", @disabled = "disabled", @title = "No tiene permisos para ejecutar esta acción." })
+                @Html.ActionLink(" ", "OfertaLaboral", new { id = item.IdOferta }, new { @class = "btn btn-xs fa fa-pencil color-paleta2", @disabled = "disabled", @title = "No tiene permisos para ejecutar esta acción." })
             }
                     }
-                    @Html.ActionLink(" ", "MostrarOferta", new { id = item.IdOferta }, htmlAttributes: new { @class = "btn btn-xs fa fa-file-o color-paleta2", @target = "_blank", @title = "Vista previa de la oferta" })
+                    @Html.ActionLink(" ", "MostrarOferta", new { id = Helper.Encriptar(item.IdOferta.ToString()) }, htmlAttributes: new { @class = "btn btn-xs fa fa-file-o color-paleta2", @target = "_blank", @title = "Vista previa de la oferta" })
                 </div>
             </div>
         }

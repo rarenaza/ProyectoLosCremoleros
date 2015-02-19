@@ -13,7 +13,7 @@
                 <div class="col-sm-2">
                     <div class="input-group fuente-pequeña">
                         <span class="input-group-addon">CV</span>
-                        @Html.DropDownListFor(m => m.IdCV, new SelectList(ViewBag.ListaAlumnoCV, "Value", "Text"), new { @class = "form-control" })
+                        @Html.DropDownListFor(m => m.IdCV, new SelectList(ViewBag.ListaAlumnoCV, "Value", "Text"), new {@class = "form-control" })
                     </div>
                 </div>
                 <div class="col-sm-2">
@@ -49,11 +49,28 @@
         </div>
     </div>
 </div>
+
+@*@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            var id =@ViewContext.RouteData.Values["id"];
+            alert(id);
+        });
+    </script>
+}*@
+
 <script>
+
+
+
+
     $(document).ready(function () {
         var vistacv = {
             IdAlumno: $('#IdAlumno').val(),
             IdCV: $('#IdCV').val()
+
         };
         $("#HIIdCV").attr("value", $('#IdCV').val());
         CargarPOST("alumno-datos-generales",'@Url.Action("AlumnoDatosGenerales", "Alumno")', vistacv);
@@ -66,6 +83,7 @@
 
     $("#IdCV").change(function () {
         var Id = $(this).val();
+
         $("#HIIdCV").attr("value", $('#IdCV').val());
         var vistacv = {
             IdAlumno: $('#IdAlumno').val(),
@@ -109,7 +127,7 @@
             conocimientos.push({ IdInformacionAdicional: Id });
         });
         var cv = {
-            IdCV: $("#IdCV").val(),
+            //IdCV: $("#IdCV").val(),
             IdPlantillaCV: $("#IdPlantillaCV").val(),
             IdAlumno: $("#IdAlumno").val(),
             IncluirCorreoElectronico1: $("#IncluirCorreoElectronico2").is(':checked'),

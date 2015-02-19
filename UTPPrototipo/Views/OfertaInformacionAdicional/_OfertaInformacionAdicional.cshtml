@@ -39,9 +39,9 @@
     </div>*@    
 
     <div class="col-sm-5">
-        <button class="btn btn-default fa fa-pencil color-paleta2" onclick="editarInfoAdicional(@item.IdOfertaInformacionAdicional);"></button>
+        <label class="btn btn-default fa fa-pencil color-paleta2" onclick="editarInfoAdicional(@item.IdOfertaInformacionAdicional);"></label>
         &nbsp;&nbsp;
-        <button class="btn btn-default fa fa-remove color-paleta2" onclick="eliminarInfoAdicional(@item.IdOfertaInformacionAdicional);"></button>
+        <label class="btn btn-default fa fa-remove color-paleta2" onclick="eliminarInfoAdicional(@item.IdOfertaInformacionAdicional);"></label>
     </div>
 
 
@@ -51,9 +51,9 @@
 
 <div class="row">
     <div class="col-sm-12" style="text-align:right;">
-        <button  class="btn btn-default color-paleta2" onclick="crearInfoAdicional(@ViewBag.IdOferta)">
+        <label  class="btn btn-default color-paleta2" onclick="crearInfoAdicional(@ViewBag.IdOferta)">
             Agregar Información Adicional
-        </button>
+        </label>
         <!--id="btnNuevaInfoAdicional" data-toggle="modal" data-target="#divModalInfoAdicional"-->
     </div>
 </div>

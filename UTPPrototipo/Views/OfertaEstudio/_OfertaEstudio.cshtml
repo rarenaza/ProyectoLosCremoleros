@@ -98,9 +98,9 @@
                 <button class="btn btn-danger btn-sm"  onclick="eliminarEstudio(@item.IdOfertaEstudio);" data-id="@item.IdOfertaEstudio">Eliminar</button>
             </div>*@
         <div class="col-sm-5">
-            <button class="btn btn-default fa fa-pencil color-paleta2" onclick="editarEstudio(@item.IdOfertaEstudio);" data-id="@item.IdOfertaEstudio"></button>
+            <label class="btn btn-default fa fa-pencil color-paleta2" onclick="editarEstudio(@item.IdOfertaEstudio);" data-id="@item.IdOfertaEstudio"></label>
             &nbsp;&nbsp;
-            <button class="btn btn-default fa fa-remove color-paleta2" onclick="eliminarEstudio(@item.IdOfertaEstudio);" data-id="@item.IdOfertaEstudio"></button>
+            <label class="btn btn-default fa fa-remove color-paleta2" onclick="eliminarEstudio(@item.IdOfertaEstudio);" data-id="@item.IdOfertaEstudio"></label>
         </div>
     </div>
     <br />
@@ -108,9 +108,12 @@
 
 <div class="row">
     <div class="col-sm-12" style="text-align:right;">
-        <button id="btnNuevoEstudio" data-toggle="modal" data-target="#divModalEstudio" onclick="crearEstudio(@ViewBag.IdOferta)" class=" btn btn-default color-paleta2">
+        @*<button id="btnNuevoEstudio" data-toggle="modal" data-target="#divModalEstudio" onclick="crearEstudio(@ViewBag.IdOferta)" class=" btn btn-default color-paleta2">
             Agregar Estudio específico
-        </button>
+        </button>*@
+        <label id="btnNuevoEstudio" data-toggle="modal" data-target="#divModalEstudio" onclick="crearEstudio(@ViewBag.IdOferta)" class=" btn btn-default color-paleta2">
+            Agregar Estudio específico
+        </label>
     </div>
 </div>
 

@@ -409,6 +409,40 @@ namespace UTP.PortalEmpleabilidad.Datos
             return dtResultado;
         }
 
+        public void UTP_ActualizaSeguimientoOferta(Oferta oferta)
+        {
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Oferta_ActualizaSeguimiento";
+
+                //Parámetros:
+                cmd.Parameters.Add(new SqlParameter("@IdOferta", oferta.IdOferta));
+                if (oferta.FechaSeguimiento.ToString("yyyyMMdd") != "19000101")
+                {
+                    cmd.Parameters.Add(new SqlParameter("@FechaSeguimiento", oferta.FechaSeguimiento));
+                }
+                cmd.Parameters.Add(new SqlParameter("@NumeroInvitados", oferta.NumeroInvitados));
+                cmd.Parameters.Add(new SqlParameter("@NumeroEntrevistados", oferta.NumeroEntrevistados));
+                cmd.Parameters.Add(new SqlParameter("@NumeroContratados", oferta.NumeroContratados));
+                cmd.Parameters.Add(new SqlParameter("@ConvenioRegistrado", oferta.ConvenioRegistrado));
+                cmd.Parameters.Add(new SqlParameter("@Contacto", oferta.Contacto));
+                cmd.Parameters.Add(new SqlParameter("@DatosContacto", oferta.DatosContacto));
+                cmd.Parameters.Add(new SqlParameter("@MedioComunicacion", oferta.MedioComunicacion));
+
+
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                cmd.ExecuteNonQuery();
+
+                conexion.Close();
+            }
+        }
+
         #region Mantenimiento de Usuarios UTP
 
         //public DataTable ObtenerUsuariosUTP()

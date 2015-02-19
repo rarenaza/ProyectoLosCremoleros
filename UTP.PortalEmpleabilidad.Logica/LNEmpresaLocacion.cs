@@ -27,8 +27,8 @@ namespace UTP.PortalEmpleabilidad.Logica
                 locacion.IdEmpresa = Convert.ToInt32(fila["IdEmpresa"]);
                 locacion.TipoLocacion.Valor = Convert.ToString(fila["TipoLocacion"]);
                 locacion.NombreLocacion = Convert.ToString(fila["NombreLocacion"]);
-                locacion.CorreoElectronico = Convert.ToString(fila["CorreoElectronico"]);
-                locacion.TelefonoFijo = Convert.ToString(fila["TelefonoFijo"]);
+                locacion.CorreoElectronico = Convert.ToString(fila["CorreoElectronico"] == System.DBNull.Value ? null : fila["CorreoElectronico"]);
+                locacion.TelefonoFijo = Convert.ToString(fila["TelefonoFijo"] == System.DBNull.Value ? null : fila["TelefonoFijo"]);
                 locacion.Direccion = Convert.ToString(fila["Direccion"]);                
                 locacion.DireccionDistrito = Convert.ToString(fila["DireccionDistrito"]);
                 locacion.DireccionCiudad = Convert.ToString(fila["DireccionCiudad"]);
@@ -53,12 +53,15 @@ namespace UTP.PortalEmpleabilidad.Logica
                 locacion.IdEmpresa = Convert.ToInt32(fila["IdEmpresa"]);
                 locacion.TipoLocacionIdListaValor = Convert.ToString(fila["TipoLocacion"]);
                 locacion.NombreLocacion = Convert.ToString(fila["NombreLocacion"]);
-                locacion.CorreoElectronico = Convert.ToString(fila["CorreoElectronico"]);
-                locacion.TelefonoFijo = Convert.ToString(fila["TelefonoFijo"]);
+                locacion.CorreoElectronico = Convert.ToString(fila["CorreoElectronico"] == System.DBNull.Value ? null : fila["CorreoElectronico"]);
+                locacion.TelefonoFijo = Convert.ToString(fila["TelefonoFijo"] == System.DBNull.Value ? null : fila["TelefonoFijo"]);
                 locacion.Direccion = Convert.ToString(fila["Direccion"]);
                 locacion.DireccionDistrito = Convert.ToString(fila["DireccionDistrito"]);
                 locacion.DireccionCiudad = Convert.ToString(fila["DireccionCiudad"]);
                 locacion.DireccionDepartamento = Convert.ToString(fila["DireccionDepartamento"]);
+                locacion.DireccionDistritoId = Convert.ToString(fila["DireccionDistritoId"]);
+                locacion.DireccionCiudadId = Convert.ToString(fila["DireccionCiudadId"]);
+                locacion.DireccionDepartamentoId = Convert.ToString(fila["DireccionDepartamentoId"]);
                 locacion.EstadoLocacionIdListaValor = Convert.ToString(fila["EstadoLocacion"]);
 
                 break; //Sólo existe un registro.
@@ -69,16 +72,16 @@ namespace UTP.PortalEmpleabilidad.Logica
 
         public void Insertar(EmpresaLocacion empresaLocacion)
         {
-            if (empresaLocacion.CorreoElectronico == null) empresaLocacion.CorreoElectronico = "";
-            if (empresaLocacion.TelefonoFijo == null) empresaLocacion.TelefonoFijo = "";
+            //if (empresaLocacion.CorreoElectronico == null) empresaLocacion.CorreoElectronico = "";
+            //if (empresaLocacion.TelefonoFijo == null) empresaLocacion.TelefonoFijo = "";
 
             adEmpresaLocacion.Insertar(empresaLocacion);
         }
 
         public void Actualizar(EmpresaLocacion empresaLocacion)
         {
-            if (empresaLocacion.CorreoElectronico == null) empresaLocacion.CorreoElectronico = "";
-            if (empresaLocacion.TelefonoFijo == null) empresaLocacion.TelefonoFijo = "";
+            //if (empresaLocacion.CorreoElectronico == null) empresaLocacion.CorreoElectronico = "";
+            //if (empresaLocacion.TelefonoFijo == null) empresaLocacion.TelefonoFijo = "";
 
             adEmpresaLocacion.Actualizar(empresaLocacion);
         }

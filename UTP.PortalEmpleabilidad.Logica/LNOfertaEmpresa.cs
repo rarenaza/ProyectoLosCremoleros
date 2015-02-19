@@ -37,7 +37,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                     nuevaOfertaFase.IdListaValor = item.IdListaValor;
                     nuevaOfertaFase.IdOferta = 0;
 
-                    //Al realizar las inserciones existen 3 fases que van obligatoriamente.
+                    //Al realizar las inserciones existen 4 fases que van obligatoriamente.
                     if (item.IdListaValor == "OFFAPR" || item.IdListaValor == "OFFACV" || item.IdListaValor == "OFFAFI" || item.IdListaValor == "OFFADE")
                     {
                         nuevaOfertaFase.Incluir = true;

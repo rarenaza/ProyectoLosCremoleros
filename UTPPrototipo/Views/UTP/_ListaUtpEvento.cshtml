@@ -38,8 +38,8 @@
         <div class="col-sm-2">
             @*@item.NombreEvento*@
 
-            @Html.ActionLink(@item.NombreEvento, "Evento_Editar", new { id = item.IdEvento })
-            @*@Html.ActionLink(@item.NombreEvento, "Evento_Editar", new { id = Helper.Encriptar(item.IdEvento.ToString()) })*@
+            @*@Html.ActionLink(@item.NombreEvento, "Evento_Editar", new { id = item.IdEvento })*@
+            @Html.ActionLink(@item.NombreEvento, "Evento_Editar", new { id = Helper.Encriptar(item.IdEvento.ToString()) })
         </div>
         <div class="col-sm-2">
             @item.LugarEvento
