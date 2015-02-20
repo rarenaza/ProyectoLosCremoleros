@@ -150,7 +150,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 oferta.RemuneracionOfrecida = Funciones.ToDecimal(dtResultado.Rows[i]["RemuneracionOfrecida"]);
                 oferta.Mensaje = Funciones.ToInt(dtResultado.Rows[i]["Mensajes"]);
                 oferta.IdEmpresa = Funciones.ToInt(dtResultado.Rows[i]["IdEmpresa"]);
-                oferta.MaxPagina = Funciones.ToInt(dtResultado.Rows[i]["MaxPagina"]);
+                //oferta.MaxPagina = Funciones.ToInt(dtResultado.Rows[i]["MaxPagina"]);
 
                 listaOferta.Add(oferta);
             }
