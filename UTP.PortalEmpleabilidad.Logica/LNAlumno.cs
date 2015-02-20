@@ -24,6 +24,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 alumno.IdAlumno = int.Parse( dtResultado.Rows[0]["IdAlumno"].ToString());
                 alumno.CodAlumnoUTP = dtResultado.Rows[0]["CodAlumnoUTP"].ToString();
                 alumno.Usuario = dtResultado.Rows[0]["Usuario"].ToString();
+                alumno.TipoDocumentoValor = dtResultado.Rows[0]["TipoDocumentoValor"].ToString();
                 alumno.NumeroDocumento = dtResultado.Rows[0]["NumeroDocumento"].ToString();
                 alumno.Nombres = dtResultado.Rows[0]["Nombres"].ToString();
                 alumno.Apellidos = dtResultado.Rows[0]["Apellidos"].ToString();

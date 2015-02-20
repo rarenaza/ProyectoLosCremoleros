@@ -13,6 +13,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public int IdAlumno { get; set; }
         public string CodAlumnoUTP { get; set; }
         public string Usuario { get; set; }
+        public string TipoDocumentoValor { get; set; }
         public string NumeroDocumento { get; set; }
         public string Nombres { get; set; }
         public string Apellidos { get; set; }

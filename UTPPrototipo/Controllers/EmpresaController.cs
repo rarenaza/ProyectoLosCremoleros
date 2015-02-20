@@ -94,7 +94,7 @@ namespace UTPPrototipo.Controllers
         }
 
 
-        public ActionResult Oferta(string idOfertaCrypt, string pantallaCrypt = "")
+        public ActionResult Oferta(string idOfertaCrypt, string pantallaCrypt)
         {
             //int idOferta = id;
             int idOferta = Convert.ToInt32(Helper.Desencriptar(idOfertaCrypt));
