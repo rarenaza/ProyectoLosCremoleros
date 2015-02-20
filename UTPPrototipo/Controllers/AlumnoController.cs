@@ -364,7 +364,9 @@ namespace UTPPrototipo.Controllers
             entidad.ListaOfertas = lnoferta.BuscarAvanzadoOfertasAlumno(entidad);
             if (entidad.ListaOfertas.Count > 0)
             {
-                entidad.MaxPagina = entidad.ListaOfertas[0].MaxPagina;
+                entidad.MaxPagina = entidad.ListaOfertas[0].TotalRegistros / Constantes.FILAS_POR_PAGINA;
+                int residuo = entidad.MaxPagina % Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+                if (residuo > 0) entidad.MaxPagina += 1;
             }
 
             Paginacion paginacion = new Paginacion();
@@ -387,7 +389,9 @@ namespace UTPPrototipo.Controllers
             entidad.ListaOfertas = lnoferta.BuscarFiltroOfertasAlumno(entidad.IdAlumno, entidad.PalabraClave == null ? "" : entidad.PalabraClave, entidad.PaginaActual, entidad.NumeroRegistros);
             if (entidad.ListaOfertas.Count > 0)
             {
-                entidad.MaxPagina = entidad.ListaOfertas[0].MaxPagina;
+                entidad.MaxPagina = entidad.ListaOfertas[0].TotalRegistros / Constantes.FILAS_POR_PAGINA;
+                int residuo = entidad.MaxPagina % Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+                if (residuo > 0) entidad.MaxPagina += 1;
             }
 
             //Actualización para las paginaciones, se completa el objeto Paginación.

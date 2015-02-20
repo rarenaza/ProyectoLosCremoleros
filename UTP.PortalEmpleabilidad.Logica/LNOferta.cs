@@ -150,7 +150,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 oferta.RemuneracionOfrecida = Funciones.ToDecimal(dtResultado.Rows[i]["RemuneracionOfrecida"]);
                 oferta.Mensaje = Funciones.ToInt(dtResultado.Rows[i]["Mensajes"]);
                 oferta.IdEmpresa = Funciones.ToInt(dtResultado.Rows[i]["IdEmpresa"]);
-                oferta.MaxPagina = Funciones.ToInt(dtResultado.Rows[i]["MaxPagina"]);
+                oferta.TotalRegistros = Funciones.ToInt(dtResultado.Rows[i]["CantidadTotal"]);
 
                 listaOferta.Add(oferta);
             }
@@ -197,7 +197,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 oferta.RemuneracionOfrecida = Funciones.ToDecimal(dtResultado.Rows[i]["RemuneracionOfrecida"]);
                 oferta.Mensaje = Funciones.ToInt(dtResultado.Rows[i]["Mensajes"]);
                 oferta.IdEmpresa = Funciones.ToInt(dtResultado.Rows[i]["IdEmpresa"]);
-                oferta.MaxPagina = Funciones.ToInt(dtResultado.Rows[i]["MaxPagina"]);
+                oferta.TotalRegistros = Funciones.ToInt(dtResultado.Rows[i]["CantidadTotal"]);
                 listaOferta.Add(oferta);
             }
             return listaOferta;
