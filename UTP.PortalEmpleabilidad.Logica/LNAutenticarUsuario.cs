@@ -14,10 +14,10 @@ namespace UTP.PortalEmpleabilidad.Logica
      ADAutenticar ad = new ADAutenticar();
 
 
-     public DataSet Autenticar_Usuario(string Usuario, string Contraseña)
+     public DataSet Autenticar_Usuario(string Usuario)
      {
 
-         return ad.Autenticar_Usuario(Usuario, Contraseña);
+         return ad.Autenticar_Usuario(Usuario);
      }
      public VistaPanelCabeceraUTP ObtenerPanelCabeceraUTP(string usuarioUTP)
      {
