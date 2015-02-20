@@ -1254,9 +1254,9 @@ namespace UTPPrototipo.Controllers
             LNGeneral lnGeneral = new LNGeneral();
 
             Evento evento = new Evento();
-                                        
-             //DataTable dtResultado = lnEventos.EVENTO_OBTENERPORID(Convert.ToInt32(Id));
-            DataTable dtResultado = lnEventos.EVENTO_OBTENERPORID(Convert.ToInt32(Helper.Desencriptar(Id)));            
+
+            DataTable dtResultado = lnEventos.EVENTO_OBTENERPORID(Convert.ToInt32(Id));
+            //DataTable dtResultado = lnEventos.EVENTO_OBTENERPORID(Convert.ToInt32(Helper.Desencriptar(Id)));            
 
             if (dtResultado.Rows.Count > 0)
             {
@@ -1264,7 +1264,7 @@ namespace UTPPrototipo.Controllers
                 evento.IdEvento             = Convert.ToInt32(dtResultado.Rows[0]["IdEvento"]);
                 evento.NombreEvento         = Convert.ToString(dtResultado.Rows[0]["NombreEvento"]);
                 evento.DescripcionEvento    = Convert.ToString(dtResultado.Rows[0]["DescripcionEvento"]);
-                evento.FechaEvento = Convert.ToDateTime(dtResultado.Rows[0]["FechaEvento"]);
+                evento.FechaEvento = Convert.ToString(dtResultado.Rows[0]["FechaEvento"]);
            
                 evento.FechaEventoTexto     = Convert.ToString(dtResultado.Rows[0]["FechaEventoTexto"]);
                 evento.LugarEvento          = Convert.ToString(dtResultado.Rows[0]["LugarEvento"]);

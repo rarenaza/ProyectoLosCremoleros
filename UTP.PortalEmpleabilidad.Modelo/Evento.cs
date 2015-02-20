@@ -30,7 +30,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
       public int? IdEmpresa { get; set; }
       public string DescripcionEvento { get; set; }
         [Required(ErrorMessage = " Fecha de Evento")]
-      public DateTime  FechaEvento { get; set; }
+      public string    FechaEvento { get; set; }
         [Required(ErrorMessage = " Fecha de Evento")]
       public string FechaEventoTexto { get; set; }
 

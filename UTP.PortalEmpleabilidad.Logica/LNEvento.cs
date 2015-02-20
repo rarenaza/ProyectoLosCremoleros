@@ -162,7 +162,7 @@ namespace UTP.PortalEmpleabilidad.Logica
            for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
            {
                Evento listaEvento = new Evento();
-               listaEvento.FechaEvento = Convert.ToDateTime(dtResultado.Rows[i]["FechaEvento"].ToString());
+               listaEvento.FechaEvento = Convert.ToString(dtResultado.Rows[i]["FechaEvento"].ToString());
                listaEvento.NombreEvento = dtResultado.Rows[i]["NombreEvento"].ToString();        
                listaEvento.DireccionEvento = dtResultado.Rows[i]["DireccionEvento"].ToString();
                listaEvento.AsistentesEsperados = Convert.ToInt32(dtResultado.Rows[i]["AsistentesEsperados"]);
@@ -256,7 +256,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                eventoporusuario.IdEmpresa = Funciones.ToInt(dsResultado.Tables[0].Rows[0]["IdEmpresa"]);
                eventoporusuario.NombreComercial = Funciones.ToString(dsResultado.Tables[0].Rows[0]["NombreComercial"]);
                eventoporusuario.DescripcionEvento = Funciones.ToString(dsResultado.Tables[0].Rows[0]["DescripcionEvento"]);
-               eventoporusuario.FechaEvento = Funciones.ToDateTime(dsResultado.Tables[0].Rows[0]["FechaEvento"]);
+               eventoporusuario.FechaEvento = Funciones.ToString(dsResultado.Tables[0].Rows[0]["FechaEvento"]);
                eventoporusuario.FechaEventoTexto = Funciones.ToString(dsResultado.Tables[0].Rows[0]["FechaEventoTexto"]);
                eventoporusuario.LugarEvento = Funciones.ToString(dsResultado.Tables[0].Rows[0]["LugarEvento"]);
                eventoporusuario.DireccionEvento = Funciones.ToString(dsResultado.Tables[0].Rows[0]["DescripcionEvento"]);
