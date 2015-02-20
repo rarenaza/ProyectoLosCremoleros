@@ -13,7 +13,8 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public int IdOferta { get; set; }
 
         public List<ListaValor> Calificaciones { get; set; }
-        
+
+        [Required]
         public string Calificacion { get; set; }
 
         [Required]

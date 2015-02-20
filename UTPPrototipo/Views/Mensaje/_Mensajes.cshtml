@@ -251,13 +251,13 @@
     <!--Modal para nuevos mensajes -->
     <div class="modal" id="divModalMensajeNuevo" tabindex="-1" role="dialog">
 
-        @using (Ajax.BeginForm("_MensajesNuevo", "Mensaje", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", OnComplete = "cerrarModal", UpdateTargetId = "divListaMensajes", OnBegin = "AjaxBegin" }))
+    @using (Ajax.BeginForm("_MensajesNuevo", "Mensaje", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", OnComplete = "cerrarModal", UpdateTargetId = "divListaMensajes", OnBegin = "AjaxBegin" }))
     {
-    @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken()
 
-    <div class="modal-dialog" id="divMensajeNuevoContenedorInterno">
+        <div class="modal-dialog" id="divMensajeNuevoContenedorInterno">
 
-    </div>
+        </div>
     }
     </div><!-- /.modal -->
     <!--Modal para ver un mensaje -->
@@ -395,6 +395,11 @@
         $('.modal-backdrop').remove();
         $('.modal.in').modal('hide');
 
+        //Se limpian los html de los modales:
+        $('#divMensajeNuevoContenedorInterno').html("");
+        $('#divMensajeVerContenedorInterno').html(""); 
+        $('#divMensajeResponderContenedorInterno').html("");
+
         $("#btnEnviarMensaje").removeAttr('disabled');
         $("#btnEnviarMensaje").text('Enviar');
 
@@ -410,6 +415,11 @@
 
         $('.modal-backdrop').remove();
         $('.modal.in').modal('hide');
+
+        //Se limpian los html de los modales:
+        $('#divMensajeNuevoContenedorInterno').html("");
+        $('#divMensajeVerContenedorInterno').html("");
+        $('#divMensajeResponderContenedorInterno').html("");
 
         $("#btnResponderMensaje").removeAttr('disabled');
         $("#btnResponderMensaje").text('Enviar');

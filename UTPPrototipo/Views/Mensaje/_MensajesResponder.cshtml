@@ -3,7 +3,7 @@
 
 <div class="modal-content">
     <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <button type="button" class="close" onclick="cerrarModal();" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title">Responder Mensaje</h4>
     </div>
     <div class="modal-body">
@@ -124,18 +124,18 @@
 
     function validarDatosResponder() {
         var destinatarioCombos = $('#slcDestinatarios').val();
-        var destinatario = $('#inpUsuarioPara').val();
+        var destinatario = $('#ParaUsuarioCorreoElectronico').val();
         var oferta = $('#IdOfertaMensaje').val();
         var asunto = $('#Asunto').val();
         var mensaje = $('#MensajeTexto').val();
 
         var mensajeError = "";
-
+        //debugger;
         if (destinatarioCombos == "") mensajeError += "No ha ingresado el destinatario. \r";
-        if (destinatario == "") mensajeError += "No ha ingresado el destinatario. \r";
-        if (oferta == "") mensajeError += "No ha ingresado la oferta. \r";
-        if (asunto == "") mensajeError += "No ha ingresado el asunto. \r";       
-        if (mensaje == "") mensajeError += "No ha ingresado mensaje. \r";
+        if (destinatario == "" || typeof destinatario == "undefined") mensajeError += "No ha ingresado el destinatario. \r";
+        //if (oferta == "") mensajeError += "No ha ingresado la oferta. \r";
+        if (asunto == "" || typeof asunto == "undefined") mensajeError += "No ha ingresado el asunto. \r";
+        if (mensaje == "" || typeof mensaje == "undefined") mensajeError += "No ha ingresado mensaje. \r";
 
         if (mensajeError == "") {
             return true;
