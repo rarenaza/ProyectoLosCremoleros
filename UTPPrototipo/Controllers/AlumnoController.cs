@@ -470,6 +470,20 @@ namespace UTPPrototipo.Controllers
 
             return panel;
         }
+
+        public ActionResult VistaPorcentajeCVAlumno()
+        {
+            VistaPanelAlumnoMiCV panel = new VistaPanelAlumnoMiCV();
+            TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
+            panel.alumno = lnAlumno.ObtenerAlumnoPorCodigo(ticket.CodAlumnoUTP);
+           
+
+            return PartialView("VistaPorcentajeCVAlumno", panel);
+
+        }
+
+
+
         public ActionResult MiCV()
         {
 
@@ -478,6 +492,14 @@ namespace UTPPrototipo.Controllers
             panel.alumno = lnAlumno.ObtenerAlumnoPorCodigo(ticket.CodAlumnoUTP);
           
             return View(panel);
+        }
+
+        public ActionResult VerDetalleEmpresa(string id)
+        {
+            int idEmpresa = Convert.ToInt32(Helper.Desencriptar(id));
+            ViewBag.IdEmpresa = idEmpresa;
+
+            return View();
         }
         public ActionResult OpcionesCV(VistaPanelAlumnoMiCV entidad)
         {
