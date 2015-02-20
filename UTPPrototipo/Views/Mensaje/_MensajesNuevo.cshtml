@@ -3,7 +3,8 @@
 
 <div class="modal-content">
     <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <!--Se agrega el método "cerrarModal" para eliminar todos los html del modal. Esto evita que haya elementos html con el mismo nombre. -->
+        <button type="button" class="close" onclick="cerrarModal();" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title">Nuevo Mensaje</h4>
     </div>
     <div class="modal-body">
@@ -22,7 +23,8 @@
 
         @if (ViewBag.Pantalla == Constantes.MENSAJES_ALUMNO_INDEX || ViewBag.Pantalla == Constantes.MENSAJES_UTP_INDEX || ViewBag.Pantalla == Constantes.MENSAJES_UTP_ALUMNO
             || ViewBag.Pantalla == Constantes.MENSAJES_EMPRESA_EVENTO || ViewBag.Pantalla == Constantes.MENSAJES_ALUMNO_EVENTO
-            || ViewBag.Pantalla == Constantes.MENSAJES_EMPRESA_HUNTING)
+            || ViewBag.Pantalla == Constantes.MENSAJES_EMPRESA_HUNTING || ViewBag.Pantalla == Constantes.MENSAJES_ALUMNO_OFERTA
+            || ViewBag.Pantalla == Constantes.MENSAJES_UTP_EMPRESA)
         {
             <div class="row">
                 <div class="col-sm-12">
@@ -59,7 +61,8 @@
 
         @if (ViewBag.Pantalla == Constantes.MENSAJES_EMPRESA_INDEX || ViewBag.Pantalla == Constantes.MENSAJES_ALUMNO_INDEX
             || ViewBag.Pantalla == Constantes.MENSAJES_EMPRESA_OFERTA || ViewBag.Pantalla == Constantes.MENSAJES_UTP_ALUMNO
-            || ViewBag.Pantalla == Constantes.MENSAJES_UTP_OFERTA || ViewBag.Pantalla == Constantes.MENSAJES_EMPRESA_HUNTING)
+            || ViewBag.Pantalla == Constantes.MENSAJES_UTP_OFERTA || ViewBag.Pantalla == Constantes.MENSAJES_EMPRESA_HUNTING
+            || ViewBag.Pantalla == Constantes.MENSAJES_ALUMNO_OFERTA)
         {
             <div class="row">
                 <div class="col-sm-12">
@@ -109,10 +112,10 @@
         {
             @Html.HiddenFor(m => m.IdEvento)
             @*<div class="row">
-                <div class="col-sm-12">
-                    @Model.Evento.NombreEvento
-                </div>
-            </div>*@
+                    <div class="col-sm-12">
+                        @Model.Evento.NombreEvento
+                    </div>
+                </div>*@
 
         }
 
@@ -133,20 +136,21 @@
 <script>
 
     function validarDatos()
-    {        
+    {
         var destinatarioCombos = $('#slcDestinatarios').val();
-        var destinatario = $('#inpUsuarioPara').val();
+        var destinatario = $('#ParaUsuarioCorreoElectronico').val();
         var oferta = $('#IdOfertaMensaje').val();
         var asunto = $('#Asunto').val();
         var mensaje = $('#MensajeTexto').val();
 
+        //debugger;
         var mensajeError = "";
 
         if (destinatarioCombos == "") mensajeError += "No ha ingresado el destinatario. \r";
-        if (destinatario == "") mensajeError += "No ha ingresado el destinatario. \r";
+        if (destinatario == "" || typeof destinatario == "undefined") mensajeError += "No ha ingresado el destinatario. \r";
         //if (oferta == "") mensajeError += "No ha ingresado la oferta. \r";
-        if (asunto == "") mensajeError += "No ha ingresado el asunto. \r";
-        if (mensaje == "") mensajeError += "No ha ingresado mensaje. \r";
+        if (asunto == "" || typeof asunto == "undefined") mensajeError += "No ha ingresado el asunto. \r";
+        if (mensaje == "" || typeof mensaje == "undefined") mensajeError += "No ha ingresado mensaje. \r";
 
         if (mensajeError == "")
         {
@@ -162,6 +166,22 @@
     $(document).ready(function () {
 
         var pantalla = $('#Pantalla').val();
+
+        if (pantalla == '@Constantes.MENSAJES_UTP_EMPRESA')
+        {                            
+            $('#inpUsuarioPara').attr("readonly","readonly");
+            return false;
+        }
+
+        //Se establece el valor del combo de ofertas y se deshabilita del campo:
+        if (pantalla == '@Constantes.MENSAJES_ALUMNO_OFERTA')
+        {
+            var idOferta = @ViewBag.IdOfertaGeneral
+            $('#IdOfertaMensaje').val(idOferta);
+            $('#IdOfertaMensaje').attr("disabled","disabled");
+            $('#inpUsuarioPara').attr("readonly","readonly");
+            return false;
+        }
 
         if (pantalla == '@Constantes.MENSAJES_EMPRESA_OFERTA') {
             var idOferta = @ViewBag.IdOfertaGeneral
@@ -181,7 +201,7 @@
 
         if (pantalla == '@Constantes.MENSAJES_UTP_EVENTO') {
 
-            var idEvento = @ViewBag.IdEventoGeneral;
+            var idEvento = @ViewBag.IdEventoGeneral
 
             //Llamada al controlador para cargar a los postulantes del evento seleccionado.
             var url = '@Url.Action("ObtenerAsistentesPorEvento", "Mensaje")' + '?idEvento=' + idEvento;
@@ -197,17 +217,33 @@
 
         $('#IdOfertaMensaje').on('change', function () {
 
+
             if (pantalla == '@Constantes.MENSAJES_UTP_ALUMNO') {
                 return false;
             }
+
+            if (pantalla == '@Constantes.MENSAJES_ALUMNO_OFERTA')
+            {
+                return false;
+            }
+
             //debugger;
             //console.log('IfOfertaChange');
 
             var idOfertaSeleccionada = this.value;
             var optionValueOferta = $('#IdOfertaMensaje').val();
-            if (optionValueOferta == '') 
+            //debugger;
+            if (optionValueOferta == '' || optionValueOferta == 0)
             {
+                //Se limpian los datos
+                $('#slcDestinatarios option[value!="0"]').remove();
+                $("#slcDestinatarios").val(0);
                 $("#Asunto").val('');
+                $("#inpUsuarioPara").val('');
+                $("#inpUsuarioPara").removeAttr("readonly"); //Se quita la propiedad de readonly para que el campo esté disponible para edición
+                //Las siguientes dos variables son internas, sirve para almacenar el usuario y correo del destinatario.
+                $('#ParaUsuario').val('');
+                $('#ParaUsuarioCorreoElectronico').val('');
             }
             else
             {
@@ -215,13 +251,13 @@
                 console.log(cargoOfrecidoSeleccionado);
                 $("#Asunto").val(cargoOfrecidoSeleccionado);
             }
-            
+
 
             var pantalla = $('#Pantalla').val();
 
             //debugger;
 
-            
+
 
             if (pantalla == '@Constantes.MENSAJES_EMPRESA_INDEX' || pantalla == '@Constantes.MENSAJES_EMPRESA_OFERTA') {
                 var url = '@Url.Action("ObtenerPostulantesPorOferta", "Mensaje")' + '?IdOferta=' + idOfertaSeleccionada;
@@ -263,11 +299,11 @@
         }
 
         function cargarDatosUsuarioPara(data) {
-            console.log(data);
+            //console.log(data);
             //Se setea el campo:
             $("#inpUsuarioPara").val(data.UsuarioPropietarioEmpresa);
-
-            //$("#inpUsuarioPara").attr('disabled', disabled)
+            //Se bloquea el campo:
+            $("#inpUsuarioPara").attr('readonly', 'readonly')
 
             //Se guardan los datos del usuario Para:
             $('#ParaUsuario').val(data.UsuarioPropietarioEmpresa);

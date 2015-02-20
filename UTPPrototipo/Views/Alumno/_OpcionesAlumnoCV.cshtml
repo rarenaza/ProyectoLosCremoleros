@@ -50,16 +50,7 @@
     </div>
 </div>
 
-@*@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-    <script type="text/javascript">
 
-        $(document).ready(function () {
-            var id =@ViewContext.RouteData.Values["id"];
-            alert(id);
-        });
-    </script>
-}*@
 
 <script>
 
@@ -106,7 +97,7 @@
         $.get(url, function (data) {
             $('#Modal-Nuevo-CV').html(data);
             $.validator.unobtrusive.parse('#Modal-Nuevo-CV');
-            document.location.href = document.location.href;
+        
             $('#Modal-cv').modal("show");
         });
     }

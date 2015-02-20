@@ -152,6 +152,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 oferta.IdEmpresa = Funciones.ToInt(dtResultado.Rows[i]["IdEmpresa"]);
                 oferta.TotalRegistros = Funciones.ToInt(dtResultado.Rows[i]["CantidadTotal"]);
 
+
                 listaOferta.Add(oferta);
             }
             return listaOferta;
@@ -390,14 +391,14 @@ namespace UTP.PortalEmpleabilidad.Logica
                 estudio.FechaCreacion                   = Convert.ToDateTime(filaEstudio["FechaCreacion"]);
                 estudio.FechaModificacion               = Convert.ToDateTime(filaEstudio["FechaModificacion"]);
 
-                if (estudio.TipoDeEstudio.IdListaValor == "TEUNIV") //Tipo de Estudio Universitario de UTP.
-                {
-                    oferta.CarrerasSeleccionadas.Add(estudio);
-                }
-                else //Otros estudios.
-                { 
-                    oferta.ListaEstudios.Add(estudio);
-                }
+                //if (estudio.TipoDeEstudio.IdListaValor == "TEUNIV") //Tipo de Estudio Universitario de UTP.
+                //{
+                //    oferta.CarrerasSeleccionadas.Add(estudio);
+                //}
+                //else //Otros estudios.
+                //{ 
+                //    oferta.ListaEstudios.Add(estudio);
+                //}
             }
 
             //Tabla Index 2: Lista de experiencia por sector
