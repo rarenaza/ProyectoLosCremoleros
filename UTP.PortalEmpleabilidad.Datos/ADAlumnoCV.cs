@@ -9,7 +9,7 @@ using UTP.PortalEmpleabilidad.Modelo;
 
 namespace UTP.PortalEmpleabilidad.Datos
 {
-    public class ADAlumnoCV
+    public class ADAlumnoCV:ADBase
     {
         ADConexion cnn = new ADConexion();
         SqlCommand cmd = new SqlCommand();
@@ -17,7 +17,7 @@ namespace UTP.PortalEmpleabilidad.Datos
         {
             DataTable dtResultado = new DataTable();
 
-            using (SqlConnection conexion = new SqlConnection(cnn.Conexion()))
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
             {
                 SqlCommand cmd = new SqlCommand();
 

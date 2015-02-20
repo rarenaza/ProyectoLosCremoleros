@@ -381,7 +381,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 estudio.IdOferta                        = Convert.ToInt32(filaEstudio["IdOfertaEstudio"] == System.DBNull.Value ? null : filaEstudio["IdOfertaEstudio"]);
                 estudio.CicloEstudio                    = Convert.ToInt32(filaEstudio["CicloEstudio"] == System.DBNull.Value ? null : filaEstudio["CicloEstudio"]);
                 estudio.Estudio                         = Convert.ToString(filaEstudio["Estudio"] == System.DBNull.Value ? null : filaEstudio["Estudio"]);
-                estudio.TipoDeEstudio.IdListaValor      = Convert.ToString(filaEstudio["TipoDeEstudio"]);
+                estudio.TipoDeEstudio.IdListaValor = Convert.ToString(filaEstudio["TipoDeEstudio"] == System.DBNull.Value ? null : filaEstudio["TipoDeEstudio"]);
                 estudio.TipoDeEstudio.Valor             = Convert.ToString(filaEstudio["TipoDeEstudioDescripcion"]);
                 estudio.EstadoDelEstudio.Valor          = Convert.ToString(filaEstudio["EstadoDelEstudioDescripcion"]);
                 estudio.EstadoOfertaEstudio.Valor       = Convert.ToString(filaEstudio["EstadoOfertaEstudioDescripcion"]);

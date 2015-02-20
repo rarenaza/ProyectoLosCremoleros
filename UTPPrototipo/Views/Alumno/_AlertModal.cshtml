@@ -12,18 +12,29 @@
             </div>
             <!-- dialog buttons -->
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+                <button id="miboton" type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
 
             </div>
         </div>
     </div>
 @*</div>*@
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#miboton').click(function () {
+            // Recargo la página
+            //location.reload();
+            setTimeout("location.reload()", 1000);
+        });
+    });
+</script>
 <script>
 
     $("#myModal").on("show", function () {    // wire up the OK button to dismiss the modal when shown
         $("#myModal btn").on("click", function (e) {
             console.log("button pressed");   // just as an example...
             $("#myModal").modal('hide');     // dismiss the dialog
+        
         });
     });
 

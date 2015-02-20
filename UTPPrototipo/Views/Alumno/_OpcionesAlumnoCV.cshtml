@@ -40,7 +40,7 @@
                 </div>
                 <div class="col-sm-2">
                     <div class="progress">
-                        <div class="progress-bar color-paleta4" role="progressbar" aria-valuenow="@(Model.PorcentajeCV)" aria-valuemin="0" aria-valuemax="100" style="width: @Model.PorcentajeCV%;">
+                        <div class="progress-bar color-paleta4" role="progressbar" aria-valuenow="@Model.PorcentajeCV" aria-valuemin="0" aria-valuemax="100" style="width: @Model.PorcentajeCV%;">
                             <span>@Model.PorcentajeCV%</span>
                         </div>
                     </div>
@@ -106,6 +106,7 @@
         $.get(url, function (data) {
             $('#Modal-Nuevo-CV').html(data);
             $.validator.unobtrusive.parse('#Modal-Nuevo-CV');
+            document.location.href = document.location.href;
             $('#Modal-cv').modal("show");
         });
     }
