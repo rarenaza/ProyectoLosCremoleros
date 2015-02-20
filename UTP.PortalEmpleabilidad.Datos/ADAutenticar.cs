@@ -13,7 +13,7 @@ namespace UTP.PortalEmpleabilidad.Datos
         ADConexion cnn = new ADConexion();
         SqlCommand cmd = new SqlCommand();
 
-        public DataSet Autenticar_Usuario(string Usuario, string Contraseña)
+        public DataSet Autenticar_Usuario(string Usuario)
         {
             DataSet ds = new DataSet();
 
@@ -24,11 +24,10 @@ namespace UTP.PortalEmpleabilidad.Datos
                     SqlCommand cmd = new SqlCommand();
 
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "Autenticar_Usuario";
+                    cmd.CommandText = "Autenticar_Usuario2";
                     cmd.Connection = conexion;
                     conexion.Open();
                     cmd.Parameters.Add(new SqlParameter("@Usuario", SqlDbType.VarChar, 100)).Value = Usuario;
-                    cmd.Parameters.Add(new SqlParameter("@Pass", SqlDbType.VarChar, 100)).Value = Contraseña;
                     SqlDataAdapter da = new SqlDataAdapter(cmd);
 
                     da.Fill(ds);
