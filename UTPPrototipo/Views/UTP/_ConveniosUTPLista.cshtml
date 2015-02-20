@@ -26,7 +26,7 @@
         </div>
         <div class="col-sm-2">
             @*@Html.ActionLink(item.Nombres + " " + item.Apellidos, "Convenio", new { idconvenio = item.IdConvenio })*@
-            @Html.ActionLink(item.Nombres + " " + item.Apellidos, "Convenio", new { idconvenio = Helper.Encriptar(item.IdConvenio.ToString()) })
+            @Html.ActionLink(item.Nombres + " " + item.Apellidos, "Convenio", new { idconvenio = Helper.Encriptar(item.IdConvenio.ToString()) }, htmlAttributes: new { target = "_blank" })
 
         </div>
         <div class="col-sm-2">

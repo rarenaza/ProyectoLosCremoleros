@@ -69,7 +69,7 @@
             {
                
                 @*@Html.ActionLink(@item.NombreComercial, "VerDetalleEmpresa", new { id = item.IdEmpresa })*@
-                @Html.ActionLink(@item.NombreComercial, "VerDetalleEmpresa", new { id = Helper.Encriptar(item.IdEmpresa.ToString()) })
+                @Html.ActionLink(@item.NombreComercial, "VerDetalleEmpresa", new { id = Helper.Encriptar(item.IdEmpresa.ToString()) }, htmlAttributes: new { target = "_blank" })
             }
             else
             {

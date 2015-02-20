@@ -1,5 +1,5 @@
 ﻿@model   IEnumerable<UTP.PortalEmpleabilidad.Modelo.Vistas.Alumno.AlertasCvAlumno>
-
+@using UTPPrototipo.Utiles
 @foreach (var item in Model)
 {
     if (item.PorcentajeCV < 100)
@@ -14,12 +14,12 @@
 
 
       
-            <div class="alert alert-danger" role="alert"><strong>¡Completa tu CV: '@Html.DisplayFor(modelItem => item.NombreCV)' está al @Html.DisplayFor(modelItem => item.PorcentajeCV)%! &nbsp;&nbsp;&nbsp;<a href="@Url.Action("MiCV", "Alumno", new { id = item.IdCV })">Ingrese aquí</a></strong></div>
-     
-
-
-
-
-
+            <div class="alert alert-danger" role="alert">
+                <strong>
+                ¡Completa tu CV: '@Html.DisplayFor(modelItem => item.NombreCV)' está al @Html.DisplayFor(modelItem => item.PorcentajeCV)%! &nbsp;&nbsp;&nbsp;
+                    <a href="@Url.Action("MiCV", "Alumno", new { id = item.IdCV })">Ingrese aquí</a>
+                    @*<a href="@Url.Action("MiCV", "Alumno", new { id = Helper.Encriptar(item.IdCV.ToString()) })">Ingrese aquí</a>*@
+                </strong>
+            </div>
     }
 }
