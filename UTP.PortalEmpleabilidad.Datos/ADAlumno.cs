@@ -134,6 +134,33 @@ namespace UTP.PortalEmpleabilidad.Datos
 
             return dtResultado;
         }
+
+        public DataTable ObtenerCompletitudCV(int idCV)
+        {
+            DataTable dtResultado = new DataTable();
+
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "AlumnoCV_ObtenerCompletitud";
+                cmd.Parameters.Add(new SqlParameter("@IdCV", idCV));
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+                dtResultado = new DataTable();
+
+                da.Fill(dtResultado);
+
+                conexion.Close();
+            }
+
+            return dtResultado;
+        }
        
     }
 }

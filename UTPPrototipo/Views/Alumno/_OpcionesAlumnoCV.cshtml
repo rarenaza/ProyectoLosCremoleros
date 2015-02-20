@@ -38,20 +38,8 @@
                     <button type="button" class="btn btn-default fuente-pequeña color-paleta4" style="color:white;" onclick="crearCV()">Crear Nuevo</button>
 
                 </div>
-
-                                           
-          
-                   
-                 
-                @{Html.RenderAction("VistaPorcentajeCVAlumno", "Alumno");}
-
-
-                <div class="col-sm-2">
-                    <div class="progress">
-                        <div class="progress-bar color-paleta4" role="progressbar" aria-valuenow="@Model.PorcentajeCV" aria-valuemin="0" aria-valuemax="100" style="width: @Model.PorcentajeCV%;">
-                            <span>@Model.PorcentajeCV%</span>
-                        </div>
-                    </div>
+                <div id="vistaPorcentajeCV">
+                    @{Html.RenderAction("VistaPorcentajeCVAlumno", "Alumno", new { IdCV = Model.IdCV });}
                 </div>
 
             </div>
@@ -73,11 +61,11 @@
 
         };
         $("#HIIdCV").attr("value", $('#IdCV').val());
-        CargarPOST("alumno-datos-generales",'@Url.Action("AlumnoDatosGenerales", "Alumno")', vistacv);
+        CargarPOST("alumno-datos-generales", '@Url.Action("AlumnoDatosGenerales", "Alumno")', vistacv);
+
         CargarPOST("mi-cv-educacion", '@Url.Action("AlumnoEstudiosCV", "Alumno")', vistacv);
-        
-        CargarPOST("mi-cv-experiencia-laboral",'@Url.Action("AlumnoExperienciaCV", "Alumno")', vistacv);
-        CargarPOST("mi-cv-informacion-adicional",'@Url.Action("AlumnoInformacionAdicionalCV", "Alumno")', vistacv);
+        CargarPOST("mi-cv-experiencia-laboral", '@Url.Action("AlumnoExperienciaCV", "Alumno")', vistacv);
+        CargarPOST("mi-cv-informacion-adicional", '@Url.Action("AlumnoInformacionAdicionalCV", "Alumno")', vistacv);
 
     });
 
@@ -89,13 +77,14 @@
             IdAlumno: $('#IdAlumno').val(),
             IdCV: Id
         };
-        CargarPOST("mi-cv-opciones",'@Url.Action("OpcionesCV", "Alumno")', vistacv);
-        CargarPOST("alumno-datos-generales",'@Url.Action("AlumnoDatosGenerales", "Alumno")', vistacv);
+        CargarPOST("mi-cv-opciones", '@Url.Action("OpcionesCV", "Alumno")', vistacv);
+        CargarPOST("alumno-datos-generales", '@Url.Action("AlumnoDatosGenerales", "Alumno")', vistacv);
+
         CargarPOST("mi-cv-educacion", '@Url.Action("AlumnoEstudiosCV", "Alumno")', vistacv);
-        
-        
-        CargarPOST("mi-cv-experiencia-laboral",'@Url.Action("AlumnoExperienciaCV", "Alumno")', vistacv);
-        CargarPOST("mi-cv-informacion-adicional",'@Url.Action("AlumnoInformacionAdicionalCV", "Alumno")', vistacv);
+
+
+        CargarPOST("mi-cv-experiencia-laboral", '@Url.Action("AlumnoExperienciaCV", "Alumno")', vistacv);
+        CargarPOST("mi-cv-informacion-adicional", '@Url.Action("AlumnoInformacionAdicionalCV", "Alumno")', vistacv);
     });
 
     function crearCV() {
@@ -106,7 +95,7 @@
         $.get(url, function (data) {
             $('#Modal-Nuevo-CV').html(data);
             $.validator.unobtrusive.parse('#Modal-Nuevo-CV');
-        
+
             $('#Modal-cv').modal("show");
         });
     }
@@ -145,6 +134,7 @@
             Conocimientos: conocimientos
         }
         CargarPOST("myModal", '@Url.Action("RegistrarInfoCV", "Alumno")', cv);
+        CargarPOST("vistaPorcentajeCV", '@Url.Action("VistaPorcentajeCVAlumno", "Alumno")', cv);
     }
 
 </script>

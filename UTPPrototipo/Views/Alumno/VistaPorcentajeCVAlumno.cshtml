@@ -1,12 +1,9 @@
 ﻿
 
-
-@model  UTPPrototipo.Models.ViewModels.VistaPanelAlumnoMiCV
-
 <div class="col-sm-2">
     <div class="progress">
-        <div class="progress-bar color-paleta4" role="progressbar" aria-valuenow="@Model.PorcentajeCV" aria-valuemin="0" aria-valuemax="100" style="width: @Model.PorcentajeCV%;">
-            <span>@Model.PorcentajeCV%</span>
+        <div class="progress-bar color-paleta4" role="progressbar" aria-valuenow="@ViewBag.PorcentajeCV" aria-valuemin="0" aria-valuemax="100" style="width: @ViewBag.PorcentajeCV%;">
+            <span>@ViewBag.PorcentajeCV%</span>
         </div>
     </div>
 </div>

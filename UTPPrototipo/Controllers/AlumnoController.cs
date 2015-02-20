@@ -475,14 +475,12 @@ namespace UTPPrototipo.Controllers
             return panel;
         }
 
-        public ActionResult VistaPorcentajeCVAlumno()
+        public ActionResult VistaPorcentajeCVAlumno(VistaPanelAlumnoMiCV entidad)
         {
-            VistaPanelAlumnoMiCV panel = new VistaPanelAlumnoMiCV();
-            TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
-            panel.alumno = lnAlumno.ObtenerAlumnoPorCodigo(ticket.CodAlumnoUTP);
-           
+            int PorcentajeCV = lnAlumno.ObtenerCompletitudCV(entidad.IdCV);
 
-            return PartialView("VistaPorcentajeCVAlumno", panel);
+            ViewBag.PorcentajeCV = PorcentajeCV;
+            return PartialView("VistaPorcentajeCVAlumno");
 
         }
 

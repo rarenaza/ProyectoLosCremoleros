@@ -141,6 +141,20 @@ namespace UTP.PortalEmpleabilidad.Logica
             return ad.Utp_BuscarDatosListaEmpresas(idempresa);
         }
 
+        public int ObtenerCompletitudCV(int idCV)
+        {
+           
+            DataTable dtResultado = ad.ObtenerCompletitudCV(idCV);
+            int PorcentajeCV = 0;
+            if (dtResultado.Rows.Count > 0)
+            {
+
+                PorcentajeCV = Funciones.ToInt(dtResultado.Rows[0]["PorcentajeCV"]);
+            }
+
+            return PorcentajeCV;
+        }
+
 
     }
 }
