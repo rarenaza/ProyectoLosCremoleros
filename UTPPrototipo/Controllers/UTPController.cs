@@ -1311,9 +1311,11 @@ namespace UTPPrototipo.Controllers
             
             //Se establece el valor del departamento en el combo
             LNGeneral lngeneral = new LNGeneral();
-            ViewBag.DireccionRegion = new SelectList(lngeneral.ObtenerListaValor(47), "IdListaValor", "Valor", evento.DireccionRegionCodigo);
-            ViewBag.DireccionCiudad = ObtenerUbigeoPorCodigo(evento.DireccionRegionCodigo, evento.DireccionCiudadCodigo);
-            ViewBag.DireccionDistrito = ObtenerUbigeoPorCodigo(evento.DireccionCiudadCodigo, evento.DireccionDistritoCodigo);
+            ViewBag.DireccionRegion = new SelectList(lngeneral.ObtenerListaValor(47), "IdListaValor", "Valor", evento.TextoDepartamento);
+            //ViewBag.DireccionCiudad = ObtenerUbigeoPorCodigo(evento.DireccionRegionCodigo, evento.TextoCiudad);
+            //ViewBag.DireccionDistrito = ObtenerUbigeoPorCodigo(evento.DireccionCiudadCodigo, evento.TextDistrito);
+            ViewBag.DireccionCiudad = new SelectList(lngeneral.ObtenerListaValor(48), "IdListaValor", "Valor", evento.TextoCiudad);
+            ViewBag.DireccionDistrito = new SelectList(lngeneral.ObtenerListaValor(49), "IdListaValor", "Valor", evento.TextDistrito);
 
            // ViewData["Departamento"] = li;
                        
