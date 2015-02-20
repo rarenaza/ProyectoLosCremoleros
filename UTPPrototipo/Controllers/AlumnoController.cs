@@ -473,7 +473,6 @@ namespace UTPPrototipo.Controllers
         public ActionResult MiCV()
         {
 
-
             VistaPanelAlumnoMiCV panel = new VistaPanelAlumnoMiCV();
             TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
             panel.alumno = lnAlumno.ObtenerAlumnoPorCodigo(ticket.CodAlumnoUTP);

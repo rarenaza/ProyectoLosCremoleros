@@ -27,7 +27,7 @@
         <div class="col-sm-8">
             @*<a href="../UTP/RegistroEmpresa">@item.NombreComercial</a>*@            
             @*@Html.ActionLink(@item.NombreComercial, "VerDetalleEmpresa", new { id = item.IdEmpresa })*@
-            @Html.ActionLink(@item.NombreComercial, "VerDetalleEmpresa", new { id = Helper.Encriptar(item.IdEmpresa.ToString()) })
+            @Html.ActionLink(@item.NombreComercial, "VerDetalleEmpresa", new { id = Helper.Encriptar(item.IdEmpresa.ToString()) }, htmlAttributes: new { target = "_blank" })
         </div>
     </div>
 }
