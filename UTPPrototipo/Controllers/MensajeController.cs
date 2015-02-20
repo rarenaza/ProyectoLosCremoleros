@@ -136,7 +136,7 @@ namespace UTPPrototipo.Controllers
                     break;
 
                 case Constantes.MENSAJES_ALUMNO_OFERTA:
-                    vistaMensajeNuevo = mensajeAlumnoIndexNuevo(pantalla);
+                    vistaMensajeNuevo = mensajeAlumnoOfertaNuevo(pantalla);
                     break;
 
                 case Constantes.MENSAJES_UTP_INDEX:
@@ -202,7 +202,8 @@ namespace UTPPrototipo.Controllers
             }
             else
             if (mensaje.Pantalla == Constantes.MENSAJES_UTP_INDEX || mensaje.Pantalla == Constantes.MENSAJES_UTP_ALUMNO ||
-                mensaje.Pantalla == Constantes.MENSAJES_UTP_OFERTA || mensaje.Pantalla == Constantes.MENSAJES_UTP_EVENTO)
+                mensaje.Pantalla == Constantes.MENSAJES_UTP_OFERTA || mensaje.Pantalla == Constantes.MENSAJES_UTP_EVENTO ||
+                mensaje.Pantalla == Constantes.MENSAJES_UTP_EMPRESA)
             {
                 TicketUTP ticketUtp = (TicketUTP)Session["TicketUtp"];
                 mensaje.DeUsuario = ticketUtp.Usuario;
@@ -255,8 +256,29 @@ namespace UTPPrototipo.Controllers
             Mensaje mensaje = lnMensaje.ObtenerPorIdMensaje(idMensaje);
             mensaje.Pantalla = pantalla;
 
-            //Se actualiza el estado del mensaje:
-            lnMensaje.ActualizarEstadoMensaje(idMensaje, "MSJLEI");  //Se actualiza a mensaje a leído.
+            //Se obtiene al remitente del mensaje:
+            string remitente = mensaje.DeUsuario;
+
+            //Se obtiene al usuario que está autenticado:
+            TicketEmpresa ticketEmpresa = (TicketEmpresa)Session["TicketEmpresa"];
+            TicketAlumno ticketAlumno = (TicketAlumno)Session["TicketAlumno"];
+            TicketUTP ticketUTP = (TicketUTP)Session["TicketUtp"];
+
+            string usuarioAutenticado = "";
+            if (ticketEmpresa != null) usuarioAutenticado = ticketEmpresa.Usuario; //usuario de empresa
+            else if (ticketAlumno != null) usuarioAutenticado = ticketAlumno.Usuario; //usuario alumno
+            else if (ticketUTP != null) usuarioAutenticado = ticketUTP.Usuario; //usuario utp
+
+            ViewBag.BotonContestar = "";            
+            if (remitente == usuarioAutenticado)
+            {
+                ViewBag.BotonContestar = "disabled";
+            }
+            else
+            {
+                //Se actualiza el estado del mensaje, sólo si el remitente es distinto al usuario autenticado.
+                lnMensaje.ActualizarEstadoMensaje(idMensaje, "MSJLEI");  //Se actualiza a mensaje a leído.
+            }
 
             return PartialView("_MensajesVer", mensaje);
         }
@@ -297,7 +319,10 @@ namespace UTPPrototipo.Controllers
                     ViewBag.usuarioActual = ticketUTP.Usuario;
                     break;
                 case Constantes.MENSAJES_UTP_EMPRESA:
-                    lista = lnMensaje.ObtenerPorIdEmpresaIdOferta(IdEmpresaParametro, 0);
+                    //No se puede obtener mensajes solo de una empresa. La tabla Mensajes no tiene idEmpresa.
+                    //19FEB: Se comenta esta línea y se obtienen todos los mensajes del usuario.
+                    //lista = lnMensaje.ObtenerPorIdEmpresaIdOferta(IdEmpresaParametro, 0);                    
+                    lista = lnMensaje.ObtenerPorUsuario(ticketUTP.Usuario);
                     ViewBag.usuarioActual = ticketUTP.Usuario;
                     break;
                 case Constantes.MENSAJES_UTP_ALUMNO:
@@ -551,6 +576,36 @@ namespace UTPPrototipo.Controllers
             //Se cargan en el ViewBag para ser consumidas desde el html.
             ViewBag.IdOfertaMensaje = new SelectList(listaOfertas, "IdOferta", "CargoOfrecido");
 
+            return PartialView("_MensajesNuevo", mensaje);
+        }
+
+        private PartialViewResult mensajeAlumnoOfertaNuevo(string pantalla)
+        {
+            ViewBag.Pantalla = pantalla;
+            
+            //1. Obtener ofertas activas de la empresa.
+            LNOferta lnOferta = new LNOferta();
+
+            //Se obtiene el IdEmpresa de la oferta.
+            int idEmpresa = lnMensaje.ObtenerIdEmpresaPorIdOferta(IdOferta);
+
+            //Se obtiene las ofertas de la empresa y se selecciona sólo la oferta enviada como parámetro.
+            List<VistaEmpresaOferta> listaOfertas = lnOferta.ObtenerOfertasPorIdEmpresa(idEmpresa).Where(m => m.IdOferta == IdOferta).ToList();
+
+            //Se cargan en el ViewBag para ser consumidas desde el html. Se establece el valor del IdOferta.
+            ViewBag.IdOfertaMensaje = new SelectList(listaOfertas, "IdOferta", "CargoOfrecido", IdOferta);
+
+            ViewBag.IdOfertaGeneral = IdOferta;
+
+            Mensaje mensaje = new Mensaje();
+            mensaje.Pantalla = pantalla;
+
+            VistaEmpresaOferta ofertaSeleccionada = listaOfertas.Where(m => m.IdOferta == IdOferta).FirstOrDefault();
+            mensaje.Asunto = ofertaSeleccionada == null ? "" : ofertaSeleccionada.CargoOfrecido;
+            mensaje.ParaUsuario = ofertaSeleccionada.UsuarioPropietarioEmpresa;
+            mensaje.ParaUsuarioCorreoElectronico = ofertaSeleccionada.UsuarioPropietarioEmpresaCorreo;
+
+           
             return PartialView("_MensajesNuevo", mensaje);
         }
 

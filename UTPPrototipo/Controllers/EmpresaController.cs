@@ -1398,10 +1398,8 @@ namespace UTPPrototipo.Controllers
             encuesta.IdOferta = idOferta;
             encuesta.Estado = Constantes.OFERTA_ESTADO_FINALIZADA;
             encuesta.ModificadoPor = ticket.Usuario;
-
-            //encuesta.Calificaciones = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_OFERTA_CALIFICACION_ENCUESTA), "IdListaValor", "Valor");
+            encuesta.Calificaciones = lnGeneral.ObtenerListaValor(Constantes.IDLISTA_OFERTA_CALIFICACION_ENCUESTA).OrderBy(p => p.Peso).ToList();
             
-
             return PartialView("_OfertaEncuesta", encuesta);
         }
 
