@@ -93,8 +93,8 @@
                         <div class="input-group">
                             <span class="input-group-addon">Fecha <br />Inicio</span>
                             @*<input type="text" class="form-control" placeholder="Fecha de Inicio (dd/mm/aaaa)">*@
-                            @*@Html.TextBoxFor(model => model.FechaEvento, new { @class = "form-control", rows = "3", @placeholder = "Fecha de Inicio (dd/mm/aaaa)",@id="FechaEvento" })*@
-                            @Html.TextBoxFor(model => model.FechaEvento, new { @class = "form-control", @placeholder = "Fecha de Inicio (dd/mm/aaaa)", @Value = System.DateTime.Now.ToString("d") })
+                            @Html.TextBoxFor(model => model.FechaEvento, new { @class = "form-control", @placeholder = "Fecha de Inicio (dd/mm/aaaa)",@id="FechaEvento" })
+                            @*@Html.TextBoxFor(model => model.FechaEvento, new { @class = "form-control", @placeholder = "Fecha de Inicio (dd/mm/aaaa)", @Value = System.DateTime.Now.ToString("d") })*@
                             
                         </div>
 
@@ -302,9 +302,9 @@
     //$("#FechaEvento").datepicker({ dateFormat: 'dd/mm/yy' });
     $(function () {
         $("#FechaEvento").datepicker();
-        //$(".ui-state-default").live("mouseenter", function () {
-        //    $("h1").text($(this).text());
-        //});
+        $(".ui-state-default").live("mouseenter", function () {
+            $("h1").text($(this).text());
+        });
     });
     </script>
     <div class="row">
