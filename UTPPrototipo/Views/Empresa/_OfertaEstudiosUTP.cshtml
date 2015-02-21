@@ -1,0 +1,68 @@
+﻿@using UTP.PortalEmpleabilidad.Modelo
+
+@{
+    List<ListaValor> carrerasDisponibles = (List<ListaValor>)Session["CarrerasDisponibles"];
+    List<OfertaEstudio> carrerasSeleccionadas = (List<OfertaEstudio>)(Session["CarrerasSeleccionadas"]);
+    
+}
+
+
+<div class="row">
+    <div class="col-md-12">
+        <strong class="sub-titulo-seccion">Carreras</strong>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="col-sm-6">
+        <select id="selectCarrerasDisponibles" multiple style="width: 250px;height: 300px;">
+            <!--foreach (var item in (SelectList)TempData["ListaCarrerasDisponibles"]-->
+            @foreach (var item in carrerasDisponibles)
+            {
+                <option style="font-size:8px;" value="@item.IdListaValor">@item.Valor</option>
+            }
+        </select>
+    </div>
+    <div class="col-sm-1" style="text-align:center;">
+        <br />
+        <span class="btn btn-default btn-xs fa fa-arrow-right color-paleta2" onclick="agregarCarrera();"></span>
+        <br />
+        <span class="btn btn-default btn-xs fa fa-arrow-left color-paleta2" onclick="quitarCarrera();"></span>
+    </div>
+    <div class="col-sm-5" style="text-align:right;">
+        <select id="selectCarrerasSeleccionadas" multiple style="width: 210px;height: 300px;">
+            <!--foreach (var item in (SelectList)TempData["ListaCarrerasUTP"]-->
+            @foreach (var item in carrerasSeleccionadas)
+            {
+                <option style="font-size:8px;" value="@item.CodigoCarrera">@item.Estudio</option>
+            }
+        </select>
+    </div>
+
+</div>
+@*<div class="row">
+    <div class="col-sm-6">
+        <div class="input-group">
+            <div class="input-group-addon">
+                (*) Estado
+            </div>
+            <select class="form-control">
+                <option>Estado 1</option>
+                <option>Estado 2</option>
+                <option>Estado 3</option>
+                <option>Estado 4</option>
+            </select>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="input-group">
+            <div class="input-group-addon">
+                Ciclo<br />Mínimo
+            </div>
+            <input class="form-control" placeholder="Ciclo mínimo de estadio">
+        </div>
+    </div>
+
+</div>*@
+
+

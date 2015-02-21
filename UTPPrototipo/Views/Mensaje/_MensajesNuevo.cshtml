@@ -24,7 +24,7 @@
         @if (ViewBag.Pantalla == Constantes.MENSAJES_ALUMNO_INDEX || ViewBag.Pantalla == Constantes.MENSAJES_UTP_INDEX || ViewBag.Pantalla == Constantes.MENSAJES_UTP_ALUMNO
             || ViewBag.Pantalla == Constantes.MENSAJES_EMPRESA_EVENTO || ViewBag.Pantalla == Constantes.MENSAJES_ALUMNO_EVENTO
             || ViewBag.Pantalla == Constantes.MENSAJES_EMPRESA_HUNTING || ViewBag.Pantalla == Constantes.MENSAJES_ALUMNO_OFERTA
-            || ViewBag.Pantalla == Constantes.MENSAJES_UTP_EMPRESA)
+            || ViewBag.Pantalla == Constantes.MENSAJES_UTP_EMPRESA || ViewBag.Pantalla == Constantes.MENSAJES_UTP_OFERTA)
         {
             <div class="row">
                 <div class="col-sm-12">
@@ -73,6 +73,10 @@
                     </div>
                 </div>
             </div>
+        }
+        @if (ViewBag.Pantalla == Constantes.MENSAJES_ALUMNO_OFERTA || ViewBag.Pantalla == Constantes.MENSAJES_UTP_OFERTA)
+        {
+            @Html.HiddenFor(m => m.IdOfertaMensaje)
         }
         <!--, onchange = "democambio(this.value)"-->
         @*@if (ViewBag.Pantalla == "")
@@ -168,13 +172,13 @@
         var pantalla = $('#Pantalla').val();
 
         if (pantalla == '@Constantes.MENSAJES_UTP_EMPRESA')
-        {                            
+        {
             $('#inpUsuarioPara').attr("readonly","readonly");
             return false;
         }
 
         //Se establece el valor del combo de ofertas y se deshabilita del campo:
-        if (pantalla == '@Constantes.MENSAJES_ALUMNO_OFERTA')
+        if (pantalla == '@Constantes.MENSAJES_ALUMNO_OFERTA' || pantalla == '@Constantes.MENSAJES_UTP_OFERTA')
         {
             var idOferta = @ViewBag.IdOfertaGeneral
             $('#IdOfertaMensaje').val(idOferta);

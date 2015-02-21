@@ -241,6 +241,7 @@ namespace UTPPrototipo.Controllers
             List<Mensaje> lista = ObtenerListaMensajes(mensaje.Pantalla);
 
             ViewBag.IdOfertaMensaje = mensaje.IdOfertaMensaje;
+            ViewBag.IdOferta = mensaje.IdOfertaMensaje;
             ViewBag.IdEvento = mensaje.IdEvento;            
             ViewBag.UsuarioAlumno = mensaje.ParaUsuario; //Este valor contiene el dato del usuario alumno en las pantallas UTP - Alumno.
 
@@ -690,6 +691,7 @@ namespace UTPPrototipo.Controllers
             mensaje.Asunto = ofertaSeleccionada == null ? "" : ofertaSeleccionada.CargoOfrecido;
             mensaje.ParaUsuario = ofertaSeleccionada.UsuarioPropietarioEmpresa;
             mensaje.ParaUsuarioCorreoElectronico = ofertaSeleccionada.UsuarioPropietarioEmpresaCorreo;
+            mensaje.IdOfertaMensaje = IdOferta; //Se establece el IdOferta enviado como parámetro
 
             //Hay que llenar el combo de destinatarios con los postulantes y el usuario empresa de la oferta.
 

@@ -316,6 +316,11 @@ namespace UTP.PortalEmpleabilidad.Logica
         {
             Oferta oferta = null;
 
+            //18FEB: Se obtiene las carreras de UTP y se quitan las ya seleccionadas.
+            LNGeneral lnGeneral = new LNGeneral();
+            List<ListaValor> listaCarrerasUTP = lnGeneral.ObtenerListaValor(Constantes.IDLISTA_DE_CARRERA).Where(m => m.IdListaValorPadre == "TEUNIV").ToList(); //Se obtienen todas las carreras
+
+
             DataSet dsResultado = adOferta.ObtenerPorId(idOferta);
 
             //Tabla Index 0: Datos de la oferta.
@@ -370,10 +375,17 @@ namespace UTP.PortalEmpleabilidad.Logica
                 oferta.EstadoOferta = Convert.ToString(dsResultado.Tables[0].Rows[0]["EstadoOferta"]);
                 oferta.UsuarioPropietarioEmpresa = Convert.ToString(dsResultado.Tables[0].Rows[0]["UsuarioPropietarioEmpresa"]);
                 oferta.FechaPublicacion = Convert.ToDateTime(dsResultado.Tables[0].Rows[0]["FechaPublicacion"]);
+
+                oferta.CicloMinimoCarreraUTP = Convert.ToInt32(dsResultado.Tables[0].Rows[0]["CicloMinimoCarreraUTP"]);
+                oferta.EstadoCarreraUTP = Convert.ToString(dsResultado.Tables[0].Rows[0]["EstadoCarreraUTP"]);
+                oferta.ExperienciaGeneral = Convert.ToInt32(dsResultado.Tables[0].Rows[0]["MesesExperienciaTotal"]);
+                oferta.ExperienciaPosicionesSimilares = Convert.ToInt32(dsResultado.Tables[0].Rows[0]["MesesExperienciaTipoTrabajo"]);
             }
 
             //Tabla Index 1: Lista de estudios.
+            //Se instancia las listas:
             oferta.ListaEstudios = new List<OfertaEstudio>();
+            oferta.CarrerasSeleccionadas = new List<OfertaEstudio>();
             foreach (DataRow filaEstudio in dsResultado.Tables[1].Rows)
             {
 
@@ -382,7 +394,8 @@ namespace UTP.PortalEmpleabilidad.Logica
                 estudio.IdOferta                        = Convert.ToInt32(filaEstudio["IdOfertaEstudio"] == System.DBNull.Value ? null : filaEstudio["IdOfertaEstudio"]);
                 estudio.CicloEstudio                    = Convert.ToInt32(filaEstudio["CicloEstudio"] == System.DBNull.Value ? null : filaEstudio["CicloEstudio"]);
                 estudio.Estudio                         = Convert.ToString(filaEstudio["Estudio"] == System.DBNull.Value ? null : filaEstudio["Estudio"]);
-                estudio.TipoDeEstudio.IdListaValor = Convert.ToString(filaEstudio["TipoDeEstudio"] == System.DBNull.Value ? null : filaEstudio["TipoDeEstudio"]);
+                estudio.TipoDeEstudio.IdListaValor =    Convert.ToString(filaEstudio["TipoDeEstudio"] == System.DBNull.Value ? null : filaEstudio["TipoDeEstudio"]);
+                estudio.TipoDeEstudioIdListaValor =     Convert.ToString(filaEstudio["TipoDeEstudio"] == System.DBNull.Value ? null : filaEstudio["TipoDeEstudio"]);
                 estudio.TipoDeEstudio.Valor             = Convert.ToString(filaEstudio["TipoDeEstudioDescripcion"]);
                 estudio.EstadoDelEstudio.Valor          = Convert.ToString(filaEstudio["EstadoDelEstudioDescripcion"]);
                 estudio.EstadoOfertaEstudio.Valor       = Convert.ToString(filaEstudio["EstadoOfertaEstudioDescripcion"]);
@@ -391,14 +404,15 @@ namespace UTP.PortalEmpleabilidad.Logica
                 estudio.FechaCreacion                   = Convert.ToDateTime(filaEstudio["FechaCreacion"]);
                 estudio.FechaModificacion               = Convert.ToDateTime(filaEstudio["FechaModificacion"]);
 
-                //if (estudio.TipoDeEstudio.IdListaValor == "TEUNIV") //Tipo de Estudio Universitario de UTP.
-                //{
-                //    oferta.CarrerasSeleccionadas.Add(estudio);
-                //}
-                //else //Otros estudios.
-                //{ 
-                //    oferta.ListaEstudios.Add(estudio);
-                //}
+                if (estudio.TipoDeEstudio.IdListaValor == "TEUNIV") //Tipo de Estudio Universitario de UTP.
+                {
+                    estudio.CodigoCarrera = listaCarrerasUTP.Where(m => m.Valor == estudio.Estudio).First().IdListaValor; //Se guarda el código de la carrera.
+                    oferta.CarrerasSeleccionadas.Add(estudio);
+                }
+                else //Otros estudios.
+                {
+                    oferta.ListaEstudios.Add(estudio);
+                }
             }
 
             //Tabla Index 2: Lista de experiencia por sector
@@ -462,20 +476,19 @@ namespace UTP.PortalEmpleabilidad.Logica
             //Fases de la oferta
             oferta.OfertaFases = Obtener_OfertaFase(idOferta);
                         
-            //18FEB: Se obtiene las carreras de UTP y se quitan las ya seleccionadas.
-            LNGeneral lnGeneral = new LNGeneral();
-            List<ListaValor> listaCarrerasUTP = lnGeneral.ObtenerListaValor(Constantes.IDLISTA_DE_CARRERA); //Se obtienen todas las carreras
-
+            
+            //Se instancia la lista:
+            oferta.CarrerasDisponibles = new List<ListaValor>(); //Esta lista va al lado izquierdo
             //Se recorren las carreras.
-            //foreach (var carreraUTP in listaCarrerasUTP)
-            //{
-            //    //Si la carreraUTP ya está seleccionada entonces NO se agrega. Si la búsqueda es null => no está, por lo tanto, sí se agrega.
-            //    if (oferta.CarrerasSeleccionadas.Where(m => m.Estudio == carreraUTP.Valor).FirstOrDefault() == null)
-            //    { 
-            //        ListaValor carreraDisponible = copiarListaValor(carreraUTP);
-            //        oferta.CarrerasDisponibles.Add(carreraDisponible);
-            //    }
-            //}
+            foreach (var carreraUTP in listaCarrerasUTP)
+            {
+                //Si la carreraUTP ya está seleccionada entonces NO se agrega. Si la búsqueda es null => no está, por lo tanto, sí se agrega.
+                if (oferta.CarrerasSeleccionadas.Where(m => m.Estudio == carreraUTP.Valor).FirstOrDefault() == null)
+                { 
+                    ListaValor carreraDisponible = copiarListaValor(carreraUTP);
+                    oferta.CarrerasDisponibles.Add(carreraDisponible);
+                }
+            }
 
             return oferta;
         }

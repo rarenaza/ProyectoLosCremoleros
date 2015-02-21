@@ -128,10 +128,16 @@ namespace UTPPrototipo.Controllers
             ViewBag.TipoContratoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_CONTRATO), "IdListaValor", "Valor", oferta.TipoContratoIdListaValor);
             ViewBag.IdEmpresaLocacion = new SelectList(lnEmpresaLocacion.ObtenerLocaciones(ticket.IdEmpresa), "IdEmpresaLocacion", "NombreLocacion", oferta.IdEmpresaLocacion);
             ViewBag.RecibeCorreosIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_OFERTA_RECIBECORREOS), "IdListaValor", "Valor", oferta.RecibeCorreosIdListaValor);
-            TempData["ListaCarrerasDisponibles"] = new SelectList(oferta.CarrerasDisponibles, "IdListaValor", "Valor");
+            //TempData["ListaCarrerasDisponibles"] = new SelectList(oferta.CarrerasDisponibles, "IdListaValor", "Valor");
 
             if (oferta.EstadoOferta == Constantes.OFERTA_ESTADO_BORRADOR) ViewBag.Visibility = "hidden";
             else ViewBag.Visibility = "visible";
+
+            //Se agrega el estado del estudio para las carreras:
+            ViewBag.EstadoCarreraUTP = new SelectList(lnGeneral.ObtenerListaValorOfertaEstudiosUTP(Constantes.IDLISTA_ESTADO_DEL_ESTUDIO), "IdListaValor", "Valor");
+
+            Session["CarrerasDisponibles"] = oferta.CarrerasDisponibles;
+            Session["CarrerasSeleccionadas"] = oferta.CarrerasSeleccionadas; //Se agrega a sesión las carreras seleccionadas.
 
             return View("OfertaLaboral", oferta);
         }
@@ -149,8 +155,6 @@ namespace UTPPrototipo.Controllers
                 //12FEB: Si el estado actual es BORRADOR debe cambiar a EN CONSTRUCCION:
                 if (oferta.EstadoOferta == Constantes.OFERTA_ESTADO_BORRADOR) oferta.EstadoOferta = Constantes.OFERTA_ESTADO_ENCONSTRUCCION;
 
-                lnOfertaEmpresa.Actualizar(oferta);
-
                 //Se actualizan las fase de la oferta:
                 //foreach (var item in oferta.OfertaFases)
                 //{
@@ -162,16 +166,21 @@ namespace UTPPrototipo.Controllers
 
                 //    item.ModificadoPor = ticket.Usuario;
                 //}
-
+                
+                //Se obtiene los datos de sesión.
+                oferta.CarrerasSeleccionadas = (List<OfertaEstudio>)(Session["CarrerasSeleccionadas"]);
+                //Método general para actualizar la oferta.
+                lnOfertaEmpresa.Actualizar(oferta, ticket.Usuario);
+               
                 //lnOferta.ActualizarOfertaFase(oferta.OfertaFases);
 
                 //Se guardan los estudios de la oferta.
                 //Primero hay que eliminar los estudios universitarios.
-                LNOfertaEstudio lnOfertaEstudio = new LNOfertaEstudio();
-                foreach (var ofertaEstudioUTP in oferta.CarrerasSeleccionadas)
-                {                    
-                    lnOfertaEstudio.Insertar(ofertaEstudioUTP);
-                }
+                //LNOfertaEstudio lnOfertaEstudio = new LNOfertaEstudio();
+                //foreach (var ofertaEstudioUTP in oferta.CarrerasSeleccionadas)
+                //{                    
+                //    lnOfertaEstudio.Insertar(ofertaEstudioUTP);
+                //}
 
                 //1. Mostrar mensaje de éxito.
                 TempData["MsjExitoEditarOferta"] = "La oferta '" + oferta.CargoOfrecido + "' ha sido actualizada con éxito.";
@@ -196,6 +205,8 @@ namespace UTPPrototipo.Controllers
             ViewBag.TipoContratoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_CONTRATO), "IdListaValor", "Valor", oferta.TipoContratoIdListaValor);
             ViewBag.IdEmpresaLocacion = new SelectList(lnEmpresaLocacion.ObtenerLocaciones(ticket.IdEmpresa), "IdEmpresaLocacion", "NombreLocacion", oferta.IdEmpresaLocacion);
             ViewBag.RecibeCorreosIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_OFERTA_RECIBECORREOS), "IdListaValor", "Valor", oferta.RecibeCorreosIdListaValor);
+
+           
 
             return View(oferta);
         }
@@ -1413,6 +1424,73 @@ namespace UTPPrototipo.Controllers
 
             //Se redirecciona a la lista de ofertas:
             return RedirectToAction("Publicacion", "Empresa");
+        }
+
+        public ActionResult _OfertaEstudiosUTP()
+        {
+            return PartialView("_OfertaEstudiosUTP");
+        }
+
+        public ActionResult AgregarCarreras(string codigos)
+        {
+            LNGeneral lnGeneral = new LNGeneral();
+            List<ListaValor> listaCarrerasUTP = lnGeneral.ObtenerListaValor(Constantes.IDLISTA_DE_CARRERA).Where(m => m.IdListaValorPadre == "TEUNIV").ToList();
+
+            //Se obtiene la lista actual:
+            List<OfertaEstudio> listaSeleccionados = (List<OfertaEstudio>)(Session["CarrerasSeleccionadas"]);
+            List<ListaValor> listaDisponibles = (List<ListaValor>)(Session["CarrerasDisponibles"]);
+
+            string[] listaCodigos = codigos.Split('-');
+
+            for (int i = 0; i < listaCodigos.Length-1; i++)
+            { 
+                //Se busca en la lista de la BD:
+                ListaValor carrera = listaCarrerasUTP.Where(m => m.IdListaValor == listaCodigos[i]).FirstOrDefault();
+                OfertaEstudio ofertaEstudio = new OfertaEstudio ();
+                ofertaEstudio.TipoDeEstudioIdListaValor = "TEUNIV"; // listaCodigos[i]; //aca buscar y traer la lista de la BD.
+                ofertaEstudio.CodigoCarrera = listaCodigos[i]; //Este código sirve para tenerlo como clave de la lista. Es el código de la carrera.
+                ofertaEstudio.Estudio = carrera.Valor;
+                listaSeleccionados.Add(ofertaEstudio);
+
+                //Se quita el codigo de la lista disponible:
+                listaDisponibles.RemoveAll(m => m.IdListaValor == listaCodigos[i]);
+            }
+
+            //Se vuelve a cargar la lista y se retorna la vista parcial para que se carguen nuevamente los valores.
+            Session["CarrerasSeleccionadas"] = listaSeleccionados;
+            Session["CarrerasDisponibles"] = listaDisponibles;
+            
+
+            return PartialView("_OfertaEstudiosUTP");
+        }
+
+        public ActionResult QuitarCarreras(string codigos)
+        {
+            LNGeneral lnGeneral = new LNGeneral();
+            List<ListaValor> listaCarrerasUTP = lnGeneral.ObtenerListaValor(Constantes.IDLISTA_DE_CARRERA).Where(m => m.IdListaValorPadre == "TEUNIV").ToList();
+
+            List<OfertaEstudio> listaSeleccionados = (List<OfertaEstudio>)(Session["CarrerasSeleccionadas"]);
+            List<ListaValor> listaDisponibles = (List<ListaValor>)(Session["CarrerasDisponibles"]);
+
+            string[] listaCodigos = codigos.Split('-');
+
+            //Se recorre la lista para quitar los códigos.
+            for (int i = 0; i < listaCodigos.Length - 1; i++)
+            {
+                listaSeleccionados.RemoveAll(m => m.CodigoCarrera == listaCodigos[i]);
+
+                //Se agrega el item en la lista de disponibles:
+                ListaValor itemDisponible = new ListaValor();
+                itemDisponible.IdListaValor = listaCodigos[i];
+                itemDisponible.Valor = listaCarrerasUTP.Where(m => m.IdListaValor == listaCodigos[i]).FirstOrDefault().Valor;
+
+                listaDisponibles.Add(itemDisponible);
+            }
+
+            Session["CarrerasSeleccionadas"] = listaSeleccionados;
+            Session["CarrerasDisponibles"] = listaDisponibles;
+
+            return PartialView("_OfertaEstudiosUTP");
         }
     }
 }
