@@ -54,6 +54,7 @@
 
 @foreach (var item in Model)
 {
+
     <div class="row grilla1-linea">
         <div class="col-sm-1">
             @Html.FormatoFrecuencia(@item.FechaPublicacion)
@@ -64,10 +65,13 @@
         <div class="col-sm-1">
             @item.Clasificación
         </div>
+
         <div class="col-sm-1">
             @*<a href="../UTP/RegistroOferta">@item.CargoOfrecido</a>*@
             @*@Html.ActionLink(@item.CargoOfrecido, "VerDetalleOferta", new { id = item.IdOferta }, htmlAttributes: new { target = "_blank" })*@
             @Html.ActionLink(@item.CargoOfrecido, "VerDetalleOferta", new { id = Helper.Encriptar(item.IdOferta.ToString()) }, htmlAttributes: new { target = "_blank" })
+            
+            @*@Html.ActionLink(@item.CargoOfrecido, "VerDetalleOferta", new { id = Helper.Encriptar(item.IdOferta.ToString()) })*@
             <br />
             @*@Html.ActionLink("Vista empresa", "Oferta", "Empresa", new { idOferta = item.IdOferta, pantalla = "UTP" }, htmlAttributes: new { target = "_blank" })*@
             @Html.ActionLink("Vista empresa", "Oferta", "Empresa", new { idOfertaCrypt = Helper.Encriptar(item.IdOferta.ToString()), pantallaCrypt = Helper.Encriptar("UTP") }, htmlAttributes: new { target = "_blank" })
