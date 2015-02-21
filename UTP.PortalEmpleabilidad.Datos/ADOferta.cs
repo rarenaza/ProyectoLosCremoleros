@@ -408,7 +408,7 @@ namespace UTP.PortalEmpleabilidad.Datos
         }
 
         /// <summary>
-        /// Se actualiza la oferta.
+        /// Se actualiza la oferta, las fases de la oferta y los estudios (carreras).
         /// </summary>
         /// <param name="oferta"></param>
         /// <returns></returns>
@@ -420,39 +420,103 @@ namespace UTP.PortalEmpleabilidad.Datos
             {
                 using (SqlConnection conexion = new SqlConnection(cadenaConexion))
                 {
-                    SqlCommand cmd = new SqlCommand();
+                    conexion.Open();
 
+                    SqlCommand cmd = new SqlCommand();
+                    SqlTransaction transaccion;
+                    transaccion = conexion.BeginTransaction("ActualizarOferta");
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "Oferta_Actualizar";
-
-                    //Parámetros:
-                    cmd.Parameters.Add(new SqlParameter("@IdOferta", oferta.IdOferta));
-                    cmd.Parameters.Add(new SqlParameter("@IdEmpresa", oferta.IdEmpresa));
-                    cmd.Parameters.Add(new SqlParameter("@Funciones", oferta.Funciones));
-                    cmd.Parameters.Add(new SqlParameter("@Competencias", oferta.Competencias));
-                    cmd.Parameters.Add(new SqlParameter("@UsuarioPropietarioEmpresa", oferta.UsuarioPropietarioEmpresa));
-                    cmd.Parameters.Add(new SqlParameter("@FechaFinRecepcionCV", oferta.FechaFinRecepcionCV));
-                    cmd.Parameters.Add(new SqlParameter("@IdEmpresaLocacion", oferta.IdEmpresaLocacion));                    
-                    cmd.Parameters.Add(new SqlParameter("@TipoTrabajo", oferta.TipoTrabajoIdListaValor));
-                    cmd.Parameters.Add(new SqlParameter("@TipoContrato", oferta.TipoContratoIdListaValor));
-                    cmd.Parameters.Add(new SqlParameter("@DuracionContrato", oferta.DuracionContrato));
-                    cmd.Parameters.Add(new SqlParameter("@TipoCargo", oferta.TipoCargoIdListaValor));
-                    cmd.Parameters.Add(new SqlParameter("@CargoOfrecido", oferta.CargoOfrecido));
-                    cmd.Parameters.Add(new SqlParameter("@RemuneracionOfrecida", oferta.RemuneracionOfrecida));
-                    cmd.Parameters.Add(new SqlParameter("@Horario", oferta.Horario));
-                    cmd.Parameters.Add(new SqlParameter("@AreaEmpresa", oferta.AreaEmpresa));
-                    cmd.Parameters.Add(new SqlParameter("@NumeroVacantes", oferta.NumeroVacantes));
-                    cmd.Parameters.Add(new SqlParameter("@RequiereExperienciaLaboral", oferta.RequiereExperienciaLaboral));
-                    cmd.Parameters.Add(new SqlParameter("@RecibeCorreos", oferta.RecibeCorreosIdListaValor));
-                    cmd.Parameters.Add(new SqlParameter("@ModificadoPor", oferta.ModificadoPor));
-                    cmd.Parameters.Add(new SqlParameter("@EstadoOferta", oferta.EstadoOferta));
-
+                    cmd.Transaction = transaccion;
                     cmd.Connection = conexion;
-                    conexion.Open();
-                    cmd.ExecuteNonQuery();
-                    conexion.Close();
+                    
+                    try
+                    {
+                        //1. Se actualiza la oferta.
+                        //Parámetros:
+                        cmd.Parameters.Add(new SqlParameter("@IdOferta", oferta.IdOferta));
+                        cmd.Parameters.Add(new SqlParameter("@IdEmpresa", oferta.IdEmpresa));
+                        cmd.Parameters.Add(new SqlParameter("@Funciones", oferta.Funciones));
+                        cmd.Parameters.Add(new SqlParameter("@Competencias", oferta.Competencias));
+                        cmd.Parameters.Add(new SqlParameter("@UsuarioPropietarioEmpresa", oferta.UsuarioPropietarioEmpresa));
+                        cmd.Parameters.Add(new SqlParameter("@FechaFinRecepcionCV", oferta.FechaFinRecepcionCV));
+                        cmd.Parameters.Add(new SqlParameter("@IdEmpresaLocacion", oferta.IdEmpresaLocacion));
+                        cmd.Parameters.Add(new SqlParameter("@TipoTrabajo", oferta.TipoTrabajoIdListaValor));
+                        cmd.Parameters.Add(new SqlParameter("@TipoContrato", oferta.TipoContratoIdListaValor));
+                        cmd.Parameters.Add(new SqlParameter("@DuracionContrato", oferta.DuracionContrato));
+                        cmd.Parameters.Add(new SqlParameter("@TipoCargo", oferta.TipoCargoIdListaValor));
+                        cmd.Parameters.Add(new SqlParameter("@CargoOfrecido", oferta.CargoOfrecido));
+                        cmd.Parameters.Add(new SqlParameter("@RemuneracionOfrecida", oferta.RemuneracionOfrecida));
+                        cmd.Parameters.Add(new SqlParameter("@Horario", oferta.Horario));
+                        cmd.Parameters.Add(new SqlParameter("@AreaEmpresa", oferta.AreaEmpresa));
+                        cmd.Parameters.Add(new SqlParameter("@NumeroVacantes", oferta.NumeroVacantes));
+                        cmd.Parameters.Add(new SqlParameter("@RequiereExperienciaLaboral", oferta.RequiereExperienciaLaboral));
+                        cmd.Parameters.Add(new SqlParameter("@RecibeCorreos", oferta.RecibeCorreosIdListaValor));
+                        cmd.Parameters.Add(new SqlParameter("@ModificadoPor", oferta.ModificadoPor));
+                        cmd.Parameters.Add(new SqlParameter("@EstadoOferta", oferta.EstadoOferta));
+                        cmd.Parameters.Add(new SqlParameter("@EstadoCarreraUTP", oferta.EstadoCarreraUTP));
+                        cmd.Parameters.Add(new SqlParameter("@CicloMinimoCarreraUTP", oferta.CicloMinimoCarreraUTP));
+                        cmd.Parameters.Add(new SqlParameter("@MesesExperienciaTotal", oferta.ExperienciaGeneral));
+                        cmd.Parameters.Add(new SqlParameter("@MesesExperienciaTipoTrabajo", oferta.ExperienciaPosicionesSimilares));
+                       
+                        cmd.ExecuteNonQuery();
 
-                    procesoExitoso = true;
+                        cmd.Parameters.Clear();
+                        //2. Se actualizan las fases:
+                        foreach (var item in oferta.OfertaFases)
+                        {
+                            //cmd = new SqlCommand();
+                            //cmd.Transaction = transaccion;
+                            cmd.Parameters.Clear();
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.CommandText = "OfertaFase_Actualizar";
+
+                            cmd.Parameters.Add(new SqlParameter("@IdOfertaFase", item.IdOfertaFase));
+                            cmd.Parameters.Add(new SqlParameter("@Incluir", item.Incluir));
+                            cmd.Parameters.Add(new SqlParameter("@ModificadoPor", item.ModificadoPor));
+
+                            //cmd.Connection = conexion;
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        //3. Se eliminan las carreras universitarias actuales:
+                        cmd.Parameters.Clear();
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.CommandText = "OfertaEstudio_EliminarCarrerasUTP";
+                        cmd.Parameters.Add(new SqlParameter("@IdOferta", oferta.IdOferta));
+                        cmd.ExecuteNonQuery();
+
+                        //4. Se agregan las nuevas carreras:
+                        cmd.Parameters.Clear();
+                        foreach (var item in oferta.CarrerasSeleccionadas)
+                        {                            
+                            cmd.Parameters.Clear();
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.CommandText = "OfertaEstudio_Insertar";
+
+                            cmd.Parameters.Add(new SqlParameter("@IdOferta", oferta.IdOferta));
+                            cmd.Parameters.Add(new SqlParameter("@CicloEstudio", oferta.CicloMinimoCarreraUTP));
+                            cmd.Parameters.Add(new SqlParameter("@Estudio", item.Estudio));
+                            cmd.Parameters.Add(new SqlParameter("@TipoDeEstudio", item.TipoDeEstudioIdListaValor));
+                            cmd.Parameters.Add(new SqlParameter("@EstadoDelEstudio", oferta.EstadoCarreraUTP));
+                            cmd.Parameters.Add(new SqlParameter("@EstadoOfertaEstudio", "OFESAC")); //Estado activo
+                            cmd.Parameters.Add(new SqlParameter("@CreadoPor", oferta.ModificadoPor));
+
+                            //cmd.Connection = conexion;
+                            cmd.ExecuteNonQuery();
+                        }
+
+                        transaccion.Commit();
+
+                        conexion.Close();
+
+                        procesoExitoso = true;
+                    }
+                    catch (Exception exTransaccion)
+                    {
+                        transaccion.Rollback();
+                        throw exTransaccion;
+                    }
                 }
             }
             catch (Exception ex)

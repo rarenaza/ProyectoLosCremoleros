@@ -23,7 +23,7 @@ namespace UTPPrototipo.Controllers
             //Se guarda el Id de la oferta
             ViewBag.IdOferta = idOferta;
 
-            List<OfertaEstudio> lista = lnOfertaEstudio.ObtenerEstudios(idOferta, idOfertaEstudiosTodos);
+            List<OfertaEstudio> lista = lnOfertaEstudio.ObtenerEstudiosNoUniversitarios(idOferta, idOfertaEstudiosTodos);
 
             return PartialView("_OfertaEstudio", lista);
         }
@@ -75,7 +75,7 @@ namespace UTPPrototipo.Controllers
                 LNOfertaEstudio lnOfertaEstudio = new LNOfertaEstudio();                
                 lnOfertaEstudio.Insertar(ofertaEstudio);
 
-                List<OfertaEstudio> lista = lnOfertaEstudio.ObtenerEstudios(ofertaEstudio.IdOferta, idOfertaEstudiosTodos);
+                List<OfertaEstudio> lista = lnOfertaEstudio.ObtenerEstudiosNoUniversitarios(ofertaEstudio.IdOferta, idOfertaEstudiosTodos);
 
                 ViewBag.IdOferta = ofertaEstudio.IdOferta;
 
@@ -131,7 +131,7 @@ namespace UTPPrototipo.Controllers
 
                 lnOfertaEstudio.Actualizar(ofertaEstudio);
 
-                List<OfertaEstudio> lista = lnOfertaEstudio.ObtenerEstudios(ofertaEstudio.IdOferta, idOfertaEstudiosTodos);  //TODO: Obtener el Id de la oferta.
+                List<OfertaEstudio> lista = lnOfertaEstudio.ObtenerEstudiosNoUniversitarios(ofertaEstudio.IdOferta, idOfertaEstudiosTodos);  //TODO: Obtener el Id de la oferta.
 
                 ViewBag.IdOferta = ofertaEstudio.IdOferta;
                 return PartialView("_OfertaEstudio", lista);              
@@ -150,7 +150,7 @@ namespace UTPPrototipo.Controllers
 
             lnOfertaEstudio.Eliminar(id);
 
-            List<OfertaEstudio> lista = lnOfertaEstudio.ObtenerEstudios(ofertaEstudio.IdOferta, idOfertaEstudiosTodos);  //TODO: Obtener el Id de la oferta.
+            List<OfertaEstudio> lista = lnOfertaEstudio.ObtenerEstudiosNoUniversitarios(ofertaEstudio.IdOferta, idOfertaEstudiosTodos);  //TODO: Obtener el Id de la oferta.
 
             ViewBag.IdOferta = ofertaEstudio.IdOferta;
 

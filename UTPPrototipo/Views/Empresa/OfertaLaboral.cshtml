@@ -244,113 +244,171 @@
             </div>
         </div>
     
-    <div class="row">
+        <div class="row">
 
-        <div id="ofertaRequisitos" class="col-sm-6">
-            <div class="panel-group" id="oferta-requisito" role="tablist" aria-multiselectable="true">
-                <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingRequisito" style="padding: 2px 2px 2px 6px;">
-                        <h5 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#oferta-requisito" href="#collapseRequisito" aria-expanded="true" aria-controls="collapseRequisito" class="fuente-seccion">
-                                Requisitos de la Oferta
-                            </a>
-                        </h5>
-                    </div>
-                    <div id="collapseRequisito" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingRequisito">
-                        <div class="panel-body fuente-pequeña">
-                            <div id="divListaEstudios">
-                                @Html.Action("ObtenerEstudios", "OfertaEstudio", new { idOferta = Model.IdOferta })
-                            </div>
-                            <hr />
-
-                            <div id="divListaSectores">
-                                @Html.Action("ObtenerSectoresEmpresariales", "OfertaSectorEmpresarial", new { idOferta = Model.IdOferta })
-                            </div>
-                            <hr />
-
-                            <div id="divListaInfoAdicional">
-                                @Html.Action("ObtenerInformacionAdicional", "OfertaInformacionAdicional", new { idOferta = Model.IdOferta })
-                            </div>
-                            <br />
+            <div id="ofertaRequisitos" class="col-sm-6">
+                <div class="panel-group" id="oferta-requisito" role="tablist" aria-multiselectable="true">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingRequisito" style="padding: 2px 2px 2px 6px;">
+                            <h5 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#oferta-requisito" href="#collapseRequisito" aria-expanded="true" aria-controls="collapseRequisito" class="fuente-seccion">
+                                    Requisitos de la Oferta
+                                </a>
+                            </h5>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div id="divOfertaFases" class="col-sm-6">
-           
-            <!--Se agrega el panel de fase de la oferta. Ahora la Oferta contiene una propiedad Lista de Fases que se utiliza para mostrar -->
-            <div class="panel-group" id="oferta-fases" role="tablist" aria-multiselectable="true">
-                <div id="divContenedorFases" class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingFases" style="padding: 2px 2px 2px 6px;">
-                        <h5 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#oferta-fases" href="#collapseFases" aria-expanded="true" aria-controls="collapseFases" class="fuente-seccion">
-                                Fases de la Oferta
-                            </a>
-                        </h5>
-                    </div>
+                        <div id="collapseRequisito" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingRequisito">
+                            <div class="panel-body fuente-pequeña">
+                                <div id="divListaEstudiosCarrerasUTP">
+                                    
+                                    @Html.Partial("_OfertaEstudiosUTP")
 
-                    <div id="collapseFases" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFases">
-                        <div class="panel-body fuente-pequeña">
-                            <p>Seleccionar Fases para esta Oferta</p>
-
-                            @for (int i = 0; i < Model.OfertaFases.Count(); i++)
-                            {
-                                <!--Se realiza la distinción de los Id que no se deben modificar.-->
-                                if (Model.OfertaFases[i].IdListaValor == "OFFAPR" || Model.OfertaFases[i].IdListaValor == "OFFACV" || Model.OfertaFases[i].IdListaValor == "OFFAFI" || Model.OfertaFases[i].IdListaValor == "OFFADE")
-                                {
-                                    <p>
-                                        <span>
-                                            @*@Html.CheckBoxFor(m => m[i].Incluir, new { @disabled = "disabled", @checked = "checked" })*@
-                                            <input type="checkbox" checked="checked" disabled title="Fases obligatorias">
-                                            @*@Html.CheckBoxFor(m => m[i].Incluir)*@
-                                        </span>@Model.OfertaFases[i].FaseOferta
-                                    </p>
-                                }
-                                else
-                                {
-                                    <p>
-                                        <span>
-                                            @Html.CheckBoxFor(m => m.OfertaFases[i].Incluir)
-                                        </span>@Model.OfertaFases[i].FaseOferta
-                                    </p>
-                                }
-                                <!--Se guardan en Hidden los valores que se van a necesitar al devolver la lista.-->
-                                @Html.HiddenFor(m => m.OfertaFases[i].IdOfertaFase)
-                                @Html.HiddenFor(m => m.OfertaFases[i].IdOferta)
-                                @Html.HiddenFor(m => m.OfertaFases[i].IdListaValor)
-                                @Html.HiddenFor(m => m.OfertaFases[i].Incluir)
-                                @Html.HiddenFor(m => m.OfertaFases[i].FaseOferta)
-                                @Html.HiddenFor(m => m.OfertaFases[i].CreadoPor)
-                                @Html.HiddenFor(m => m.OfertaFases[i].ModificadoPor)
-                            }
-                            @*<div class="row">
-                                <div class="col-sm-12 " style="text-align:right;">
-                                    <button class="btn btn-default color-paleta2" style="margin-bottom:5px;">
-                                        Guardar cambios
-                                    </button>
+                                    
                                 </div>
-                            </div>*@
+                                <div id="divDatosEstudiosUTP">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="input-group">
+                                                <div class="input-group-addon">
+                                                    (*) Estado
+                                                </div>
+                                                @Html.DropDownListFor(m => m.EstadoCarreraUTP, null, "- Seleccione -", htmlAttributes: new { @class = "form-control" })
+                                            </div>
+                                            @Html.ValidationMessageFor(m => m.EstadoCarreraUTP, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="input-group">
+                                                <div class="input-group-addon">
+                                                    Ciclo<br />Mínimo
+                                                </div>
+                                                @*<input class="form-control" placeholder="Ciclo mínimo de estadio">*@
+                                                @Html.TextBoxFor(m => m.CicloMinimoCarreraUTP, new { @class = "form-control" })
+                                            </div>
+                                        </div>
 
+                                    </div>
+                                </div>
+                                <hr />
+                                <div id="divListaEstudios">
+                                    @Html.Action("ObtenerEstudios", "OfertaEstudio", new { idOferta = Model.IdOferta })
+                                </div>
+                                <hr />
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <strong class="sub-titulo-seccion">Experiencia</strong>
+                                    </div>
+                                </div>
+                                <br />
+                                <div id="divDatosExperiencia">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="input-group">
+                                                <div class="input-group-addon">
+                                                    General
+                                                </div>
+                                               
+                                                @Html.TextBoxFor(m => m.ExperienciaGeneral, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="input-group">
+                                                <div class="input-group-addon">
+                                                    En posiciones<br />similares
+                                                </div>
+                                                
+                                                @Html.TextBoxFor(m => m.ExperienciaPosicionesSimilares, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr />
+                                <div id="divListaSectores">
+                                    @Html.Action("ObtenerSectoresEmpresariales", "OfertaSectorEmpresarial", new { idOferta = Model.IdOferta })
+                                </div>
+                                <hr />
+
+                                <div id="divListaInfoAdicional">
+                                    @Html.Action("ObtenerInformacionAdicional", "OfertaInformacionAdicional", new { idOferta = Model.IdOferta })
+                                </div>
+                                <br />
+                            </div>
                         </div>
                     </div>
-
-
                 </div>
             </div>
-            @*@using (Ajax.BeginForm("_OfertaFaseEditar", "Empresa", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divFases", OnComplete = "alertTemporal" }))
-            {
-                @Html.AntiForgeryToken()
+        
+            <div id="divOfertaFases" class="col-sm-6">
+           
+                <!--Se agrega el panel de fase de la oferta. Ahora la Oferta contiene una propiedad Lista de Fases que se utiliza para mostrar -->
+                <div class="panel-group" id="oferta-fases" role="tablist" aria-multiselectable="true">
+                    <div id="divContenedorFases" class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingFases" style="padding: 2px 2px 2px 6px;">
+                            <h5 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#oferta-fases" href="#collapseFases" aria-expanded="true" aria-controls="collapseFases" class="fuente-seccion">
+                                    Fases de la Oferta
+                                </a>
+                            </h5>
+                        </div>
 
-                <div id="divFases">
-                    @Html.Action("ObtenerOfertaFase", "Empresa", new { idOferta = Model.IdOferta })
+                        <div id="collapseFases" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFases">
+                            <div class="panel-body fuente-pequeña">
+                                <p>Seleccionar Fases para esta Oferta</p>
+
+                                @for (int i = 0; i < Model.OfertaFases.Count(); i++)
+                                {
+                                    <!--Se realiza la distinción de los Id que no se deben modificar.-->
+                                    if (Model.OfertaFases[i].IdListaValor == "OFFAPR" || Model.OfertaFases[i].IdListaValor == "OFFACV" || Model.OfertaFases[i].IdListaValor == "OFFAFI" || Model.OfertaFases[i].IdListaValor == "OFFADE")
+                                    {
+                                        <p>
+                                            <span>
+                                                @*@Html.CheckBoxFor(m => m[i].Incluir, new { @disabled = "disabled", @checked = "checked" })*@
+                                                <input type="checkbox" checked="checked" disabled title="Fases obligatorias">
+                                                @*@Html.CheckBoxFor(m => m[i].Incluir)*@
+                                            </span>@Model.OfertaFases[i].FaseOferta
+                                        </p>
+                                    }
+                                    else
+                                    {
+                                        <p>
+                                            <span>
+                                                @Html.CheckBoxFor(m => m.OfertaFases[i].Incluir)
+                                            </span>@Model.OfertaFases[i].FaseOferta
+                                        </p>
+                                    }
+                                    <!--Se guardan en Hidden los valores que se van a necesitar al devolver la lista.-->
+                                    @Html.HiddenFor(m => m.OfertaFases[i].IdOfertaFase)
+                                    @Html.HiddenFor(m => m.OfertaFases[i].IdOferta)
+                                    @Html.HiddenFor(m => m.OfertaFases[i].IdListaValor)
+                                    @Html.HiddenFor(m => m.OfertaFases[i].Incluir)
+                                    @Html.HiddenFor(m => m.OfertaFases[i].FaseOferta)
+                                    @Html.HiddenFor(m => m.OfertaFases[i].CreadoPor)
+                                    @Html.HiddenFor(m => m.OfertaFases[i].ModificadoPor)
+                                }
+                                @*<div class="row">
+                                    <div class="col-sm-12 " style="text-align:right;">
+                                        <button class="btn btn-default color-paleta2" style="margin-bottom:5px;">
+                                            Guardar cambios
+                                        </button>
+                                    </div>
+                                </div>*@
+
+                            </div>
+                        </div>
+
+
+                    </div>
                 </div>
-            }*@
+                @*@using (Ajax.BeginForm("_OfertaFaseEditar", "Empresa", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divFases", OnComplete = "alertTemporal" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div id="divFases">
+                        @Html.Action("ObtenerOfertaFase", "Empresa", new { idOferta = Model.IdOferta })
+                    </div>
+                }*@
+
+            </div>
 
         </div>
-
-    </div>
     }
 </div>
 
@@ -655,7 +713,60 @@
         console.log(err);
     }
 
+    
+
 </script>
+
+<script>
+
+    //Agrega los estudios de carrera UTP a la lista de seleccionados:
+    function agregarCarrera() {
+
+        var codigos = "";
+
+        //var arreglo = [];
+        $('#selectCarrerasDisponibles :selected').each(function (i, selected) {
+            console.log($(selected));
+            //arreglo[i] = $(selected).val();
+
+            //Validar si existe. Se recorre toda la lista de carreras seleccionadas para ver si el item ya esta agregado.
+            var encontrado = false;
+            $("#selectCarrerasSeleccionadas > option").each(function (a, item) {
+                if ($(selected).val() == $(item).val())
+                    encontrado = true;
+            });
+
+            //Si no existe se agrega al select.
+            if (encontrado == false)
+            {
+                codigos += $(selected).val() + '-'; //se concatena los codigos para pasarlos como parámetro al url
+                //$("#selectCarrerasSeleccionadas").append('<option value=' + $(selected).val() + ' >' + $(selected).text() + '</option>');
+            }
+        });
+
+        var url = '@Url.Action("AgregarCarreras", "Empresa")' + "?codigos=" + codigos;
+        $.get(url, function (data) {
+            $('#divListaEstudiosCarrerasUTP').html(data); //la llamada al ajax devuelve el partial que se agrega al div 'divListaEstudiosCarrerasUTP'
+        }).error(function (err) { console.log(err); alert(err); });
+    }
+
+    function quitarCarrera()
+    {
+        var codigos = "";
+        //Se obtiene las opciones seleccionadas del lado derecho
+        $('#selectCarrerasSeleccionadas :selected').each(function (i, selected) {
+
+            codigos += $(selected).val() + '-'; //se concatena los codigos para pasarlos como parámetro al url
+        });
+
+        var url = '@Url.Action("QuitarCarreras", "Empresa")' + "?codigos=" + codigos;
+        $.get(url, function (data) {
+            $('#divListaEstudiosCarrerasUTP').html(data); //la llamada al ajax devuelve el partial que se agrega al div 'divListaEstudiosCarrerasUTP'
+        }).error(function (err) { console.log(err); alert(err); });
+    }
+
+</script>
+
 
 @{
     //Se valida que exista mensaje de éxito al crear una oferta

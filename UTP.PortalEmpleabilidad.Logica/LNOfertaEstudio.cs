@@ -41,6 +41,33 @@ namespace UTP.PortalEmpleabilidad.Logica
             return lista;
         }
 
+        public List<OfertaEstudio> ObtenerEstudiosNoUniversitarios(int idOferta, int idOfertaEstudio)
+        {
+            List<OfertaEstudio> lista = new List<OfertaEstudio>();
+
+            DataTable dtResultado = adOfertaEstudio.ObtenerEstudios(idOferta, idOfertaEstudio);
+
+            foreach (DataRow fila in dtResultado.Rows)
+            {
+                OfertaEstudio estudio = new OfertaEstudio();
+                estudio.IdOfertaEstudio = Convert.ToInt32(fila["IdOfertaEstudio"]);
+                estudio.IdOferta = Convert.ToInt32(fila["IdOferta"]);
+                estudio.CicloEstudio = Convert.ToInt32(fila["CicloEstudio"] == System.DBNull.Value ? null : fila["CicloEstudio"]);
+                estudio.Estudio = Convert.ToString(fila["Estudio"]);
+                estudio.EstudioTexto = Convert.ToString(fila["Estudio"]);
+                estudio.TipoDeEstudio.Valor = Convert.ToString(fila["TipoDeEstudioDescripcion"]);
+                estudio.TipoDeEstudioIdListaValor = Convert.ToString(fila["TipoDeEstudio"]);
+                estudio.EstadoDelEstudio.Valor = Convert.ToString(fila["EstadoDelEstudioDescripcion"]);
+                estudio.EstadoDelEstudioIdListaValor = Convert.ToString(fila["EstadoDelEstudio"]);
+                estudio.EstadoOfertaEstudio.Valor = Convert.ToString(fila["EstadoOfertaEstudioDescripcion"]);
+                estudio.CreadoPor = Convert.ToString(fila["CreadoPor"]);
+
+                lista.Add(estudio);
+            }
+
+            return lista.Where(m => m.TipoDeEstudioIdListaValor != "TEUNIV").ToList();;
+        }
+
         public void Insertar(OfertaEstudio ofertaEstudio)
         {
 

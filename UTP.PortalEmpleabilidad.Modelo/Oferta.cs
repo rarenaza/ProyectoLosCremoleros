@@ -122,7 +122,12 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public List<ListaValor> CarrerasDisponibles { get; set; }
         public List<OfertaEstudio> CarrerasSeleccionadas { get; set; }
 
-        //Encuesta:
+        //Datos para agregar carreras de UTP:
+        [Required(ErrorMessage = Constantes.MSJ_CAMPO_OBLIGATORIO)]
+        public string EstadoCarreraUTP { get; set; }
+        public int? CicloMinimoCarreraUTP { get; set; }
+        public int ExperienciaGeneral { get; set; }
+        public int ExperienciaPosicionesSimilares { get; set; }
 
        public Oferta() {
 

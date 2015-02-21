@@ -63,7 +63,7 @@ namespace UTP.PortalEmpleabilidad.Logica
             
         }
 
-        public bool Actualizar(Oferta oferta)
+        public bool Actualizar(Oferta oferta, string usuario)
         {
             try
             {
@@ -72,7 +72,20 @@ namespace UTP.PortalEmpleabilidad.Logica
                 if (oferta.AreaEmpresa == null) oferta.AreaEmpresa = string.Empty;
                 if (oferta.TipoCargoIdListaValor == null) oferta.TipoCargoIdListaValor = string.Empty;
                 if (oferta.TipoContratoIdListaValor == null) oferta.TipoContratoIdListaValor = string.Empty;
-                if (oferta.Horario == null) oferta.Horario = string.Empty;               
+                if (oferta.Horario == null) oferta.Horario = string.Empty;
+                if (oferta.CicloMinimoCarreraUTP == null) oferta.CicloMinimoCarreraUTP = 0;
+
+                //Se actualizan las fase de la oferta:
+                foreach (var item in oferta.OfertaFases)
+                {
+                    //Estos 3 registros siempre están activos.
+                    if (item.IdListaValor == "OFFAPR" || item.IdListaValor == "OFFACV" || item.IdListaValor == "OFFAFI")
+                    {
+                        item.Incluir = true;
+                    }
+
+                    item.ModificadoPor = usuario;
+                }
 
                 return adOferta.Actualizar(oferta);
             }
