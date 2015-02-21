@@ -217,5 +217,8 @@
             $('#perfilContador').html(text_remaining + '/' + text_max);
         });
     });
-
+    $(":enabled").focus(function () {
+        $("#boton-guardar-cv").attr('disabled', false);
+        return false;
+    });
     </script>

@@ -595,7 +595,7 @@ namespace UTPPrototipo.Controllers
             LNOferta lnOferta = new LNOferta();
             List<VistaNuevasPostulaciones> lista = new List<VistaNuevasPostulaciones>();
 
-            DataTable dtResultado = lnOferta.ObtenerPostulacionesPorEmpresa(ticket.IdEmpresa);
+            DataTable dtResultado = lnOferta.ObtenerPostulacionesPorEmpresa(ticket.IdEmpresa, ticket.Usuario);
             
             //Se realiza el FOR en esta porque se está utilizando una vista modelo de presentación.
             foreach (DataRow fila in dtResultado.Rows)

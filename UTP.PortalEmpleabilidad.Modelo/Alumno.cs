@@ -32,11 +32,11 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string SexoIdListaValor { get; set; }
         [Required(ErrorMessage = "Falta la Dirección.")]
         public string Direccion { get; set; }
-        [Required(ErrorMessage = "Falta el Distrito.")]
+        //[Required(ErrorMessage = "Falta el Distrito.")]
         public string DireccionDistrito { get; set; }
-        [Required(ErrorMessage = "Falta la Provincia.")]
+        //[Required(ErrorMessage = "Falta la Provincia.")]
         public string DireccionCiudad { get; set; }
-        [Required(ErrorMessage = "Falta el Departamento.")]
+        //[Required(ErrorMessage = "Falta el Departamento.")]
         public string DireccionRegion { get; set; }
         [Required(ErrorMessage = "Falta el Distrito.")]
         public string DireccionDistritoId { get; set; }

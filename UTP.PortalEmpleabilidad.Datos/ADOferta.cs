@@ -581,7 +581,7 @@ namespace UTP.PortalEmpleabilidad.Datos
         /// </summary>
         /// <param name="idEmpresa"></param>
         /// <returns></returns>
-        public DataTable ObtenerPostulacionesPorEmpresa(int idEmpresa)
+        public DataTable ObtenerPostulacionesPorEmpresa(int idEmpresa, string usuario)
         {
             DataTable dtResultado = new DataTable();
 
@@ -592,6 +592,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "OfertaPostulaciones_ObtenerNuevasPostulaciones";
                 cmd.Parameters.Add(new SqlParameter("@IdEmpresa", idEmpresa));
+                cmd.Parameters.Add(new SqlParameter("@Usuario", usuario));
                 cmd.Connection = conexion;
 
                 conexion.Open();

@@ -1101,6 +1101,7 @@ namespace UTPPrototipo.Controllers
                     ViewBag.SexoIdListaValor = new SelectList(lngeneral.ObtenerListaValor(2), "IdListaValor", "Valor", alumno.SexoIdListaValor);
                     ViewBag.DireccionRegionId = new SelectList(lngeneral.ObtenerListaValor(47), "IdListaValor", "Valor", alumno.DireccionRegionId);
                     ViewBag.EstadoAlumno = new SelectList(lngeneral.ObtenerListaValor(3), "IdListaValor", "Valor", alumno.EstadoAlumno);
+                    entidad = alumno;
                 }
                 else
                 {

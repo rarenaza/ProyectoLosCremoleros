@@ -519,9 +519,9 @@ namespace UTP.PortalEmpleabilidad.Logica
         }
 
 
-        public DataTable ObtenerPostulacionesPorEmpresa(int idEmpresa)
+        public DataTable ObtenerPostulacionesPorEmpresa(int idEmpresa, string usuario)
         {
-            return adOferta.ObtenerPostulacionesPorEmpresa(idEmpresa);
+            return adOferta.ObtenerPostulacionesPorEmpresa(idEmpresa, usuario);
         }
 
         public List<OfertaPostulante> ObtenerPostulantesPorIdOferta(int idOferta)

@@ -23,9 +23,10 @@
                     </div>
                 </div>
 
-                <div class="col-sm-2">
+                <div class="col-sm-2" style="text-align:center;">
                     <span>
-                        <button type="submit" class="btn btn-default fuente-pequeña color-paleta4" style="color:white;" onclick="GuardarCV();">Guardar cambios</button>
+                        <button type="submit" class="btn btn-default fuente-pequeña color-paleta4" style="color:white;" onclick="GuardarCV();" disabled id="boton-guardar-cv">
+                    Guardar</button>
                     </span>
                 </div>
                 <div class="col-sm-1">
@@ -136,5 +137,8 @@
         CargarPOST("myModal", '@Url.Action("RegistrarInfoCV", "Alumno")', cv);
         CargarPOST("vistaPorcentajeCV", '@Url.Action("VistaPorcentajeCVAlumno", "Alumno")', cv);
     }
-
+    $(":enabled").focus(function () {
+        $("#boton-guardar-cv").attr('disabled', false);
+        return false;
+    });
 </script>

@@ -130,5 +130,8 @@
         });
     }
 
-
+    $(":enabled").focus(function () {
+        $("#boton-guardar-cv").attr('disabled', false);
+        return false;
+    });
 </script>
