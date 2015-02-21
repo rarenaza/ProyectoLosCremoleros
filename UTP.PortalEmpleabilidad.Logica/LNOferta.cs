@@ -404,15 +404,18 @@ namespace UTP.PortalEmpleabilidad.Logica
                 estudio.FechaCreacion                   = Convert.ToDateTime(filaEstudio["FechaCreacion"]);
                 estudio.FechaModificacion               = Convert.ToDateTime(filaEstudio["FechaModificacion"]);
 
-                if (estudio.TipoDeEstudio.IdListaValor == "TEUNIV") //Tipo de Estudio Universitario de UTP.
-                {
-                    estudio.CodigoCarrera = listaCarrerasUTP.Where(m => m.Valor == estudio.Estudio).First().IdListaValor; //Se guarda el código de la carrera.
-                    oferta.CarrerasSeleccionadas.Add(estudio);
-                }
-                else //Otros estudios.
-                {
-                    oferta.ListaEstudios.Add(estudio);
-                }
+                #region Si se descomenta sale error
+                //if (estudio.TipoDeEstudio.IdListaValor == "TEUNIV") //Tipo de Estudio Universitario de UTP.
+                //{
+                //    estudio.CodigoCarrera = listaCarrerasUTP.Where(m => m.Valor == estudio.Estudio).First().IdListaValor; //Se guarda el código de la carrera.
+                //    oferta.CarrerasSeleccionadas.Add(estudio);
+                //}
+                //else //Otros estudios.
+                //{
+                //    oferta.ListaEstudios.Add(estudio);
+                //}
+                #endregion
+
             }
 
             //Tabla Index 2: Lista de experiencia por sector
