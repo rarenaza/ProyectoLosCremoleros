@@ -12,8 +12,9 @@ namespace UTP.PortalEmpleabilidad.Datos
 {
     public class ADUTPAlumnos : ADBase
     {
-        public void InsertarDatosDeAlumno(Alumno alumno, Usuario usuario, AlumnoEstudio alumnoEstudio)
+        public Int32 InsertarDatosDeAlumno(Alumno alumno, Usuario usuario, List <AlumnoEstudio> alumnoEstudio)
         {
+            int idAlumno = 0;
             using (SqlConnection conexion = new SqlConnection(cadenaConexion))
             {
                 SqlCommand cmd = new SqlCommand();
@@ -64,30 +65,34 @@ namespace UTP.PortalEmpleabilidad.Datos
                     cmd.Parameters.Add(new SqlParameter("@CreadoPor", alumno.CreadoPor));
 
                     object resultadoIdAlumno = cmd.ExecuteScalar();
-                    int idAlumno = 0;
+                    
                     if (resultadoIdAlumno != null) idAlumno = Convert.ToInt32(resultadoIdAlumno);
 
-                    //Alumno estudio:
-                    cmd.Parameters.Clear();
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "AlumnoEstudio_Insertar";
 
-                    //Parámetros:
-                    cmd.Parameters.Add(new SqlParameter("@IdAlumno", idAlumno));
-                    cmd.Parameters.Add(new SqlParameter("@Institucion", alumnoEstudio.Institucion));
-                    cmd.Parameters.Add(new SqlParameter("@Estudio", alumnoEstudio.Estudio));
-                    cmd.Parameters.Add(new SqlParameter("@TipoDeEstudio", alumnoEstudio.TipoDeEstudio));
-                    cmd.Parameters.Add(new SqlParameter("@EstadoDelEstudio", alumnoEstudio.EstadoDelEstudio));
-                    cmd.Parameters.Add(new SqlParameter("@Observacion", alumnoEstudio.Observacion));
-                    cmd.Parameters.Add(new SqlParameter("@FechaInicioMes", alumnoEstudio.FechaInicioMes));
-                    cmd.Parameters.Add(new SqlParameter("@FechaInicioAno", alumnoEstudio.FechaInicioAno));
-                    cmd.Parameters.Add(new SqlParameter("@FechaFinMes", alumnoEstudio.FechaFinMes));
-                    cmd.Parameters.Add(new SqlParameter("@FechaFinAno", alumnoEstudio.FechaFinAno));
-                    cmd.Parameters.Add(new SqlParameter("@CicloEquivalente", alumnoEstudio.CicloEquivalente));
-                    cmd.Parameters.Add(new SqlParameter("@DatoUTP", alumnoEstudio.DatoUTP));
-                    cmd.Parameters.Add(new SqlParameter("@CreadoPor", alumnoEstudio.CreadoPor));
+                    foreach (AlumnoEstudio alumnoEst in alumnoEstudio)
+                    {
+                        //Alumno estudio:
+                        cmd.Parameters.Clear();
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.CommandText = "AlumnoEstudio_Insertar";
 
-                    cmd.ExecuteNonQuery();
+                        //Parámetros:
+                        cmd.Parameters.Add(new SqlParameter("@IdAlumno", idAlumno));
+                        cmd.Parameters.Add(new SqlParameter("@Institucion", alumnoEst.Institucion));
+                        cmd.Parameters.Add(new SqlParameter("@Estudio", alumnoEst.Estudio));
+                        cmd.Parameters.Add(new SqlParameter("@TipoDeEstudio", alumnoEst.TipoDeEstudio));
+                        cmd.Parameters.Add(new SqlParameter("@EstadoDelEstudio", alumnoEst.EstadoDelEstudio));
+                        cmd.Parameters.Add(new SqlParameter("@Observacion", alumnoEst.Observacion));
+                        cmd.Parameters.Add(new SqlParameter("@FechaInicioMes", alumnoEst.FechaInicioMes));
+                        cmd.Parameters.Add(new SqlParameter("@FechaInicioAno", alumnoEst.FechaInicioAno));
+                        cmd.Parameters.Add(new SqlParameter("@FechaFinMes", alumnoEst.FechaFinMes));
+                        cmd.Parameters.Add(new SqlParameter("@FechaFinAno", alumnoEst.FechaFinAno));
+                        cmd.Parameters.Add(new SqlParameter("@CicloEquivalente", alumnoEst.CicloEquivalente));
+                        cmd.Parameters.Add(new SqlParameter("@DatoUTP", alumnoEst.DatoUTP));
+                        cmd.Parameters.Add(new SqlParameter("@CreadoPor", alumnoEst.CreadoPor));
+
+                        cmd.ExecuteNonQuery();
+                    }
 
                     //Se actualiza la columna PrimerInicioDeSesion de la tabla UTPAlumnos
                     cmd.Parameters.Clear();
@@ -106,6 +111,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                     throw ex;
                 }
             }
+            return idAlumno;
         }
 
         //public void Actualizar(Empresa empresa)

@@ -47,7 +47,7 @@ namespace UTPPrototipo.Controllers
                     
                     // 3. Si está activo Validar su Contraseña
                     string tipoUsuario = Convert.ToString(dsResultado.Tables[0].Rows[0]["TipoUsuario"]);
-                    string contrasenaDecodificada = Convert.ToString(dsResultado.Tables[0].Rows[0]["Contrasena"]); //AGRAGAR PROCESO DE DESEMCRIPTAMIENTO
+                    string contrasenaDecodificada = Convert.ToString(dsResultado.Tables[0].Rows[0]["Contrasena"]); //AGREGAR PROCESO DE DESEMCRIPTAMIENTO
                     bool contrasenaValida = false;
                     if (tipoUsuario == "USERUT" || tipoUsuario == "USERAL")
                     {
@@ -178,21 +178,23 @@ namespace UTPPrototipo.Controllers
                     {
                         //2. Leer el campo PrimerInicioDeSesion. Si es nulo entonces insertar la información en Usuario, Alumno y AlumnoEstudio.
                         //3. Actualizar el campo PrimerInicioDeSesion a 1.
+                        int idAlumno = 0;
                         if (dsDatosAlumno.Tables[0].Rows[0]["PrimerInicioDeSesion"] == DBNull.Value)
                         {
                             //Insertar en [Usuario]
-                            lnUTPAlumnos.InsertarDatosDeAlumno(dsDatosAlumno);
+                            idAlumno = lnUTPAlumnos.InsertarDatosDeAlumno(dsDatosAlumno);
+                            
                         }
 
                         TicketAlumno ticketAlumno = new TicketAlumno();
                         ticketAlumno.Usuario = Convert.ToString(dsDatosAlumno.Tables[0].Rows[0]["Codigo"]);
-                        ticketAlumno.Nombre = Convert.ToString(dsDatosAlumno.Tables[0].Rows[0]["Nombres"]);
+                        ticketAlumno.Nombre = Convert.ToString(dsDatosAlumno.Tables[0].Rows[0]["Nombres"]) + " " + Convert.ToString(dsDatosAlumno.Tables[0].Rows[0]["Apellidos"]);
                         ticketAlumno.DNI = Convert.ToString(dsDatosAlumno.Tables[0].Rows[0]["NumeroDocumento"]);
                         ticketAlumno.CorreoElectronico = Convert.ToString(dsDatosAlumno.Tables[0].Rows[0]["CorreoInstitucional"]);
                         ticketAlumno.TelefonoCelular = Convert.ToString(dsDatosAlumno.Tables[0].Rows[0]["Celular"]);
                         ticketAlumno.TipoUsuario = "USERAL";
                         ticketAlumno.CodAlumnoUTP = Convert.ToString(dsDatosAlumno.Tables[0].Rows[0]["Codigo"]);
-                        ticketAlumno.IdAlumno = Convert.ToInt32(dsDatosAlumno.Tables[0].Rows[0]["IdAlumno"]);
+                        ticketAlumno.IdAlumno = idAlumno;
 
                         Session["TicketAlumno"] = ticketAlumno;
 

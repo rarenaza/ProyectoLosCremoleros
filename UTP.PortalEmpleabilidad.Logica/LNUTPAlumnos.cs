@@ -18,11 +18,11 @@ namespace UTP.PortalEmpleabilidad.Logica
             return adUTPAlumnos.ObtenerDatosPorCodigo(codigo);
         }
 
-        public void InsertarDatosDeAlumno(DataSet dsDatosAlumno)
+        public int InsertarDatosDeAlumno(DataSet dsDatosAlumno)
         {
             Alumno alumno = new Alumno();
             Usuario usuario = new Usuario();
-            AlumnoEstudio alumnoEstudio = new AlumnoEstudio();
+            List< AlumnoEstudio> alumnoEstudio = new List< AlumnoEstudio>();
 
 
             //Tabla 0 = Datos del alumno y usuario
@@ -36,7 +36,7 @@ namespace UTP.PortalEmpleabilidad.Logica
             alumno.CodAlumnoUTP = Convert.ToString(dsDatosAlumno.Tables[0].Rows[0]["Codigo"]);
             alumno.Nombres = Convert.ToString(dsDatosAlumno.Tables[0].Rows[0]["Nombres"]);
             alumno.Apellidos = Convert.ToString(dsDatosAlumno.Tables[0].Rows[0]["Apellidos"]);
-            alumno.TipoDocumentoIdListaValor = Convert.ToString(dsDatosAlumno.Tables[0].Rows[0]["TipoDocumento"]);
+            alumno.TipoDocumentoIdListaValor = Convert.ToString(dsDatosAlumno.Tables[0].Rows[0]["TipoDocumento"]).Substring(0,10);
             alumno.NumeroDocumento = Convert.ToString(dsDatosAlumno.Tables[0].Rows[0]["NumeroDocumento"]);            
             alumno.FechaNacimiento = ConvertirFecha(Convert.ToString(dsDatosAlumno.Tables[0].Rows[0]["FechaNacimiento"]));
             alumno.SexoIdListaValor = Convert.ToString(dsDatosAlumno.Tables[0].Rows[0]["Sexo"]);
@@ -54,22 +54,53 @@ namespace UTP.PortalEmpleabilidad.Logica
             alumno.EstadoAlumnoIdListaValor = "ALACT"; //Estado del alumno ACTIVO.
             alumno.CreadoPor = "sistema";
 
-            
+            string EstudioGrado = "";
             //Tabla 1 = Datos del estudio
-            alumnoEstudio.Institucion = "UTP";
-            alumnoEstudio.Estudio = Convert.ToString(dsDatosAlumno.Tables[1].Rows[0]["CarreraEgreso"]);
-            alumnoEstudio.TipoDeEstudio = "TEUNIV"; //Realizar función de conversión.
-            alumnoEstudio.EstadoDelEstudio = "EDETIT"; //Realizar función de conversión.
-            alumnoEstudio.Observacion = "demo de observación";
-            alumnoEstudio.FechaInicioAno = ConvertirFecha(Convert.ToString(dsDatosAlumno.Tables[1].Rows[0]["FechaInicio"])).Year;
-            alumnoEstudio.FechaInicioMes = ConvertirFecha(Convert.ToString(dsDatosAlumno.Tables[1].Rows[0]["FechaInicio"])).Month;
-            alumnoEstudio.FechaFinAno = ConvertirFecha(Convert.ToString(dsDatosAlumno.Tables[1].Rows[0]["FechaFinal"])).Year;
-            alumnoEstudio.FechaFinMes = ConvertirFecha(Convert.ToString(dsDatosAlumno.Tables[1].Rows[0]["FechaFinal"])).Month;
+            for (int i = 0; i <= dsDatosAlumno.Tables[1].Rows.Count - 1; i++)
+            {
+                AlumnoEstudio alumnoEstudioItem = new AlumnoEstudio();
+                alumnoEstudioItem.Institucion = Constantes.NOMBRE_UTP;
+                alumnoEstudioItem.Estudio = Convert.ToString(dsDatosAlumno.Tables[1].Rows[i]["CarreraEgreso"]);
 
-            alumnoEstudio.CicloEquivalente = 0; //falta traer este dato.
-            alumnoEstudio.CreadoPor = "sistema"; //modificar campo
+                alumnoEstudioItem.TipoDeEstudio = "TEUNIV"; //Realizar función de conversión.
+                EstudioGrado = Convert.ToString(dsDatosAlumno.Tables[1].Rows[i]["Grado"]).Substring(0,6);
+                switch (EstudioGrado)
+                {
+                    case "NO tie":
+                        alumnoEstudioItem.EstadoDelEstudio = "EDEEGR";
+                        break;
+                    case "TITULA":
+                        alumnoEstudioItem.EstadoDelEstudio = "EDETIT";
+                        break;
+                    case "NO es":
+                        alumnoEstudioItem.EstadoDelEstudio = "EDEBAC";
+                        break;
+                    case "EGRESA":
+                        alumnoEstudioItem.EstadoDelEstudio = "EDEEGR";
+                        break;
+                    case "BACHIL":
+                        alumnoEstudioItem.EstadoDelEstudio = "EDEBAC";
+                        break;
+                    case "Estudi":
+                        alumnoEstudioItem.EstadoDelEstudio = "EDEEST";
+                        break;
+                    default:
+                        alumnoEstudioItem.EstadoDelEstudio = "EDEEST";
+                        break;
+                }
+                alumnoEstudioItem.Observacion = "";
+                alumnoEstudioItem.FechaInicioAno = ConvertirFecha(Convert.ToString(dsDatosAlumno.Tables[1].Rows[i]["FechaInicio"])).Year;
+                alumnoEstudioItem.FechaInicioMes = ConvertirFecha(Convert.ToString(dsDatosAlumno.Tables[1].Rows[i]["FechaInicio"])).Month;
+                alumnoEstudioItem.FechaFinAno = ConvertirFecha(Convert.ToString(dsDatosAlumno.Tables[1].Rows[i]["FechaFinal"])).Year;
+                alumnoEstudioItem.FechaFinMes = ConvertirFecha(Convert.ToString(dsDatosAlumno.Tables[1].Rows[i]["FechaFinal"])).Month;
 
-            adUTPAlumnos.InsertarDatosDeAlumno(alumno, usuario, alumnoEstudio);
+                alumnoEstudioItem.CicloEquivalente = Convert.ToInt32(dsDatosAlumno.Tables[1].Rows[i]["Ciclo"]);
+                alumnoEstudioItem.DatoUTP = true;
+                alumnoEstudioItem.CreadoPor = "sistema";
+                alumnoEstudio.Add(alumnoEstudioItem);
+            }
+            int idAlumno = adUTPAlumnos.InsertarDatosDeAlumno(alumno, usuario, alumnoEstudio);
+            return idAlumno;
         }
 
         public DateTime ConvertirFecha(string fechaCadena)
