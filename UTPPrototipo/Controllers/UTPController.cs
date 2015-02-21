@@ -1515,9 +1515,9 @@ namespace UTPPrototipo.Controllers
             TicketUTP ticketUtp = (TicketUTP)Session["TicketUtp"];
 
             evento.CreadoPor = ticketUtp.Usuario;
-            evento.DireccionDistrito=evento.TextDistrito ;
-            evento.DireccionCiudad=evento.TextoCiudad ;
-            evento.DireccionRegion=evento.TextoDepartamento;
+            //evento.DireccionDistrito=evento.TextDistrito ;
+            //evento.DireccionCiudad=evento.TextoCiudad ;
+            //evento.DireccionRegion=evento.TextoDepartamento;
 
             if (lnEventos.Evento_insertar(evento) == true)
             {
