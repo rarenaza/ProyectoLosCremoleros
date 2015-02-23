@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<UTP.PortalEmpleabilidad.Modelo.AlumnoExperienciaCargo>
-
+@using UTPPrototipo.Utiles
 
 <h6>Experiencia</h6>
 <div class="row grilla1-cabecera color-paleta3">
@@ -35,7 +35,7 @@
 {
 <div class="row grilla1-linea">
     <div class="col-sm-1">
-        @Html.ActionLink(item.NombreComercial, "VerDetalleEmpresa", new { id = item.IdEmpresa }) (@item.Pais-@item.Ciudad)
+        @Html.ActionLink(item.NombreComercial, "VerDetalleEmpresa", new { id = Helper.Encriptar(item.IdEmpresa.ToString()) }, htmlAttributes: new { target = "_blank" }) (@item.Pais-@item.Ciudad)
     </div>
     <div class="col-sm-2">
         @item.SectorEmpresarial, @item.SectorEmpresarial2, @item.SectorEmpresarial3
