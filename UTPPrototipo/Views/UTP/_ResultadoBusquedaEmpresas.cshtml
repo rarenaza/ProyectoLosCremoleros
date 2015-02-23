@@ -14,31 +14,20 @@
 <br />
 <div class="row grilla1-cabecera color-paleta2">
 
-    <div class="col-sm-1">
+    <div class="col-sm-2">
         Nombre
     </div>
-    <div class="col-sm-1">
+    <div class="col-sm-2">
         Razón Social
     </div>
-    @*<div class="col-sm-1">
-            RUC
-        </div>*@
-    <div class="col-sm-1">
+    <div class="col-sm-2">
         Sector
     </div>
-
-    <div class="col-sm-1">
-        Ejecutivo UTP asignado
-    </div>
-
     <div class="col-sm-1">
         Estado
     </div>
     <div class="col-sm-1">
-        Nivel de Facturación
-    </div>
-    <div class="col-sm-1">
-        Posición en sector
+        Ejecutivo UTP asignado
     </div>
     <div class="col-sm-1">
         Clasificación
@@ -48,9 +37,6 @@
     </div>
     <div class="col-sm-1">
         Fac 1
-    </div>
-    <div class="col-sm-1">
-        Fac 2
     </div>
     <div class="col-sm-1">
         Comentarios
@@ -63,7 +49,7 @@
 {
     <div class="row grilla1-linea">
 
-        <div class="col-sm-1">
+        <div class="col-sm-2">
             @*<a href="../UTP/Empresa">@item.NombreComercial</a>*@
             @if (@item.NombreComercial != "")
             {
@@ -76,29 +62,21 @@
                 @Html.ActionLink("-- SIN NOMBRE --", "VerDetalleEmpresa", new { id = item.IdEmpresa })
             }
         </div>
-        <div class="col-sm-1">
+        <div class="col-sm-2">
             @item.RazonSocial
         </div>
         @*<div class="col-sm-1">
                 @item.RUC
             </div>*@
-        <div class="col-sm-1">
+        <div class="col-sm-2">
             @item.SectorEmpresarial
         </div>
-
-        <div class="col-sm-1">
-            @item.EjecutivoUTP
-
-        </div>
-
         <div class="col-sm-1">
             @item.Estado
         </div>
         <div class="col-sm-1">
-            @item.NivelDeFacturacion
-        </div>
-        <div class="col-sm-1">
-            @item.PosicionEnSector
+            @item.EjecutivoUTP
+
         </div>
         <div class="col-sm-1">
             @item.Clasificacion
@@ -110,16 +88,8 @@
             @item.FacultadPrincipal
         </div>
         <div class="col-sm-1">
-            @item.FacultadSecundaria
-        </div>
-        <div class="col-sm-1">
             @item.TieneComentarios
         </div>
-
-        @*<div class="col-sm-2">
-                @item.Ofertas
-            </div>*@
-
     </div>
 }
 @if (Model.Count() == 0)
