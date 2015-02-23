@@ -242,6 +242,26 @@ namespace UTPPrototipo.Controllers
 
             //Se obtiene el ticket de la sesión.
             TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];
+            
+            //Se obtiene las locaciones de la empresa y se guarda la primera encontrada:
+            LNEmpresaLocacion empresaLocacion = new LNEmpresaLocacion();
+            List<VistaEmpresaLocacion> locaciones = empresaLocacion.ObtenerLocacionesPorIdEmpresa(ticket.IdEmpresa);
+
+            int idEmpresaLocacion = 0;
+            if (locaciones.Count > 0)
+                idEmpresaLocacion = locaciones[0].IdEmpresaLocacion;
+            else
+            { 
+                //Si no tiene locaciones entonces no se muestra un error y la oferta no se crea:
+                StringBuilder msjAlUsuario = new StringBuilder();
+                msjAlUsuario.Append("La empresa no cuenta con locaciones disponibles, cree una e intente nuevamente.");
+                
+                //En el vista Publicacion.html se lee este TempData y se muestra el mensaje al usuario.
+                TempData["msjOfertasNoLocacion"] = msjAlUsuario.ToString();
+
+                //Se redirecciona a la lista de ofertas.
+                return RedirectToAction("Publicacion");
+            }
 
             //Se completa los datos de la oferta borrador y se inserta en la BD.
             Oferta ofertaBorrador = new Oferta();
@@ -250,7 +270,7 @@ namespace UTPPrototipo.Controllers
             ofertaBorrador.EstadoOferta = Constantes.OFERTA_ESTADO_BORRADOR; //Estado oferta en borrador
             ofertaBorrador.CreadoPor = ticket.Usuario;
             ofertaBorrador.FechaFinRecepcionCV = DateTime.Now;
-            ofertaBorrador.IdEmpresaLocacion = 0;
+            ofertaBorrador.IdEmpresaLocacion = idEmpresaLocacion;
             ofertaBorrador.TipoTrabajoIdListaValor = "";
             ofertaBorrador.CargoOfrecido = "";
             ofertaBorrador.RecibeCorreosIdListaValor = "";

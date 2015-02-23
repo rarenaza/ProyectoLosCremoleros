@@ -158,3 +158,20 @@
     }
 
 }
+
+@{   
+    if (TempData["msjOfertasNoLocacion"] != null)
+    {
+        <input id="msjOfertasNoLocacion" type="hidden" value="@TempData["msjOfertasNoLocacion"]" />
+        TempData["msjOfertasNoLocacion"] = null; //Se establece el valor nuevamente en NULL.
+
+        //Se muestra el script
+        <script>
+
+            var msjExito = document.getElementById("msjOfertasNoLocacion").value;
+            alert(msjExito);
+
+        </script>
+    }
+
+}
