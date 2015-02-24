@@ -381,7 +381,39 @@
         });
     }
 
-   
+    function AutoCompleteTextBuscarDescripcion(inputsearch, urlsearch, inputtext) {
+        $(inputsearch).autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: urlsearch,
+                    data: "{ 'query': '" + request.term + "' }",
+                    dataType: "json",
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    dataFilter: function (data) { return data; },
+                    success: function (data) {
+                        response($.map(data, function (item) {
+                            //console.log(data);
+
+                            return {
+                                value: item.Label,
+                                id: item.Value
+                            }
+                        }))
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert(textStatus);
+                    }
+                });
+            },
+            minLength: 1,
+            select: function (even, ui) {
+                $(inputtext).val(ui.item.value);
+                cargarDescripcion(ui.item.id);
+                console.log('seleccionado = ' + ui.item.id);
+            }
+        });
+    }
 
 </script>
 

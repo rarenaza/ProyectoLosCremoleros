@@ -99,6 +99,7 @@ namespace UTP.PortalEmpleabilidad.Logica
             return adGeneral.Home_ListarDistritos(IDListaValorPadre);
         }
 
+
         public List<ListaValor> ObtenerListaValor(int idLista)
         {
             List<ListaValor> lista = new List<ListaValor>();

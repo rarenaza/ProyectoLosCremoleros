@@ -228,6 +228,8 @@ namespace UTP.PortalEmpleabilidad.Datos
             return dtResultado;
         }
 
+       
+
         public void InsertarLog(Error error)
         {
             using (SqlConnection conexion = new SqlConnection(cadenaConexion))

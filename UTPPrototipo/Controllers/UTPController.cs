@@ -3321,5 +3321,64 @@ namespace UTPPrototipo.Controllers
             SelectList selectList = new SelectList(lista, "IdListaValor", "Valor", codigoSeleccionado);
             return selectList;
         }
+
+
+
+        public PartialViewResult _UsuariosEmpresaUTPCrear()
+        {
+
+            LNGeneral lnGeneral = new LNGeneral();
+
+            //UTPUsuario utpUsuario = new UTPUsuario();
+
+            ////Sexo, Roles y Estado
+            //ViewBag.SexoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_SEXO), "IdListaValor", "Valor");
+            //ViewBag.RolIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ROL_USUARIO), "IdListaValor", "Valor");
+            ////ViewBag.EstadoUsuarioIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_USUARIO), "IdListaValor", "Valor");
+
+            //return PartialView("_UsuariosEmpresaUTPCrear", utpUsuario);
+
+            EmpresaUsuario empresaUsuario = new EmpresaUsuario();
+            LNEmpresaLocacion lnEmpresaLocacion = new LNEmpresaLocacion();
+
+            //ViewBag.IdEmpresaLocacion = new SelectList(lnEmpresaLocacion.ObtenerLocaciones(ticket.IdEmpresa), "IdEmpresaLocacion", "NombreLocacion");
+            ViewBag.SexoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_SEXO), "IdListaValor", "Valor");
+            ViewBag.TipoDocumentoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_DOCUMENTO), "IdListaValor", "Valor");
+
+            //Obtiene todos registros que contengan la palabra "empresa".
+            ViewBag.RolIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ROL_USUARIO, "ROLE"), "IdListaValor", "Valor");
+
+            ViewBag.EstadoUsuarioIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_USUARIO, "USEM"), "IdListaValor", "Valor");
+            //ViewBag.IdEmpresa = ticket.IdEmpresa;
+
+            return PartialView("_UsuariosEmpresaUTP_Crear", empresaUsuario);
+
+        }
+
+        public ActionResult BuscarDatosEmpresasUTP(int idempresa)
+        {
+            //string descripocn = "";
+
+            LNAlumno lnAlumno = new LNAlumno();
+            EmpresaUsuario vista = new EmpresaUsuario();
+
+            DataTable dtResultado = lnAlumno.Utp_BuscarDatosListaEmpresas(idempresa);
+
+            if (dtResultado.Rows.Count > 0)
+            {
+                vista.idEmpresa = Convert.ToInt32(dtResultado.Rows[0]["IdEmpresa"]);
+                //vista.Empresa = dtResultado.Rows[0]["NombreComercial"].ToString();
+                //vista.RazonSocial = dtResultado.Rows[0]["RazonSocial"].ToString();
+                vista.Nombres = dtResultado.Rows[0]["DescripcionEmpresa"].ToString();
+                //vista.SectorEmpresarial = dtResultado.Rows[0]["SectorEmpresarial"].ToString();
+                //vista.SectorEmpresarial2 = dtResultado.Rows[0]["SectorEmpresarial2"].ToString();
+                //vista.SectorEmpresarial3 = dtResultado.Rows[0]["SectorEmpresarial3"].ToString();
+                //vista.Pais = dtResultado.Rows[0]["Pais"].ToString();
+                //vista.ValorSectorEmpresarial = dtResultado.Rows[0]["ValorSectorEmpresarial"].ToString();
+            }
+
+            return Json(vista, JsonRequestBehavior.AllowGet);
+
+        }
     }
 }

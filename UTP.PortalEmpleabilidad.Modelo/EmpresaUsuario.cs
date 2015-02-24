@@ -69,8 +69,11 @@ namespace UTP.PortalEmpleabilidad.Modelo
         [DataType(DataType.Password)]
         public string RepetirContrasena { get; set; }
 
-        public int CantidadTotal { get; set; }      
+        public int CantidadTotal { get; set; }
 
+
+        public int idEmpresa { get; set; }
+        public string NombreEmpresa { get; set; }
         public EmpresaUsuario() 
         {
             Empresa = new Empresa();

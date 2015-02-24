@@ -126,7 +126,38 @@
 </div>
 
 
+<div class="modal" id="divModalUsuarioEmpresaUTPCrear" role="dialog" aria-labelledby="Nuevo Usuario" aria-hidden="true">
+
+    @using (Ajax.BeginForm("_UsuariosEmpresaUTPCrear", "UTP", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divListaUsuariosUTP", OnComplete = "cerrarModal" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="modal-dialog" id="divContenedorUsuarioEmpresaUTPCrear">
+
+        </div>
+    }
+
+</div>
+
 <script>
+
+    function UsuarioEmpresaUTPCrear() {
+        //debugger;
+        //var url = "/UTP/_UsuariosUTPCrear"; //
+        var url = '@Url.Action("_UsuariosEmpresaUTPCrear", "UTP")'
+
+        $.get(url, function (data) {
+            //alert(data);
+            $('#divContenedorUsuarioEmpresaUTPCrear').html(data);
+            $.validator.unobtrusive.parse('#divContenedorUsuarioEmpresaUTPCrear');
+
+            $('#divModalUsuarioEmpresaUTPCrear').modal('show');
+
+        }).error(function (err) {
+            console.log(err);
+            alert(err);
+        });
+    }
 
     function UsuarioUTPCrear() {
         //debugger;
