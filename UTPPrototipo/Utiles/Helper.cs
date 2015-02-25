@@ -42,11 +42,12 @@ namespace UTPPrototipo.Utiles
             ICryptoTransform cTransform = tripleDES.CreateEncryptor();
             byte[] resultArray = cTransform.TransformFinalBlock(inputArray, 0, inputArray.Length);
             tripleDES.Clear();
-            return Convert.ToBase64String(resultArray, 0, resultArray.Length);
+            return Convert.ToBase64String(resultArray, 0, resultArray.Length).Replace('+', '-').Replace('/', '_').Replace('=', ','); ;
         }
 
         public static string Desencriptar(string input)
         {
+            input = input.Replace('-', '+').Replace('_', '/').Replace(',', '=');
             System.Text.UTF8Encoding UTF8 = new System.Text.UTF8Encoding();
             MD5CryptoServiceProvider HashProvider = new MD5CryptoServiceProvider();
             byte[] TDESKey = HashProvider.ComputeHash(UTF8.GetBytes(key));
