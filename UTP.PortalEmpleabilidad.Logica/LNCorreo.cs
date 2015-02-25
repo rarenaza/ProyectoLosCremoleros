@@ -12,7 +12,7 @@ namespace UTP.PortalEmpleabilidad.Logica
 {
     public static class LNCorreo
     {
-        public static void EnviarCorreo(Mensaje mensaje)
+        public static async Task<bool> EnviarCorreo(Mensaje mensaje)
         {
             try
             {
@@ -54,11 +54,15 @@ namespace UTP.PortalEmpleabilidad.Logica
                 client.EnableSsl = enableSSL;
                 client.Credentials = new NetworkCredential(usuario, contrasena);  //Cuenta en criteria para el envío de correos.
                 client.Send(Message);
+                await Task.Yield();
+                
+                //await client.SendAsync(Message, "token");
+                return true;
             }
             catch (Exception ex)
             {
-
                 int a = 0;
+                return false;
             }
         }
 
