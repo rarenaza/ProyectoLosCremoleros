@@ -24,6 +24,7 @@ namespace UTP.PortalEmpleabilidad.Logica
             {
                 EmpresaLocacion locacion = new EmpresaLocacion();
                 locacion.IdEmpresaLocacion = Convert.ToInt32(fila["IdEmpresaLocacion"]);
+             
                 locacion.IdEmpresa = Convert.ToInt32(fila["IdEmpresa"]);
                 locacion.TipoLocacion.Valor = Convert.ToString(fila["TipoLocacion"]);
                 locacion.NombreLocacion = Convert.ToString(fila["NombreLocacion"]);

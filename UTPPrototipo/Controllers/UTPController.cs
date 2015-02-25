@@ -3329,19 +3329,12 @@ namespace UTPPrototipo.Controllers
 
             LNGeneral lnGeneral = new LNGeneral();
 
-            //UTPUsuario utpUsuario = new UTPUsuario();
-
-            ////Sexo, Roles y Estado
-            //ViewBag.SexoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_SEXO), "IdListaValor", "Valor");
-            //ViewBag.RolIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ROL_USUARIO), "IdListaValor", "Valor");
-            ////ViewBag.EstadoUsuarioIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_USUARIO), "IdListaValor", "Valor");
-
-            //return PartialView("_UsuariosEmpresaUTPCrear", utpUsuario);
 
             EmpresaUsuario empresaUsuario = new EmpresaUsuario();
             LNEmpresaLocacion lnEmpresaLocacion = new LNEmpresaLocacion();
 
-            //ViewBag.IdEmpresaLocacion = new SelectList(lnEmpresaLocacion.ObtenerLocaciones(ticket.IdEmpresa), "IdEmpresaLocacion", "NombreLocacion");
+
+            ViewBag.ListaUbicaciones = new SelectList(lnEmpresaLocacion.ObtenerLocaciones(0), "IdEmpresaLocacion", "NombreLocacion");
             ViewBag.SexoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_SEXO), "IdListaValor", "Valor");
             ViewBag.TipoDocumentoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_DOCUMENTO), "IdListaValor", "Valor");
 
@@ -3349,33 +3342,73 @@ namespace UTPPrototipo.Controllers
             ViewBag.RolIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ROL_USUARIO, "ROLE"), "IdListaValor", "Valor");
 
             ViewBag.EstadoUsuarioIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_USUARIO, "USEM"), "IdListaValor", "Valor");
-            //ViewBag.IdEmpresa = ticket.IdEmpresa;
+        
 
             return PartialView("_UsuariosEmpresaUTP_Crear", empresaUsuario);
 
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public PartialViewResult _UsuariosEmpresaUTPCrear(EmpresaUsuario empresaUsuario)
+        {
+            //if (ModelState.IsValid)
+            //{
+            TicketUTP ticket = (TicketUTP)Session["TicketUTP"];
+
+               
+                empresaUsuario.CreadoPor = ticket.Usuario;
+                empresaUsuario.Empresa.IdEmpresa = Convert.ToInt32(empresaUsuario.CodigoEmpresa);
+                empresaUsuario.IdEmpresaLocacion = Convert.ToInt32(empresaUsuario.ListaUbicaciones);
+
+                
+                LNEmpresaUsuario lnEmpresaUsuario = new LNEmpresaUsuario();
+                lnEmpresaUsuario.Insertar(empresaUsuario);
+
+            
+                List<EmpresaUsuario> lista = lnEmpresaUsuario.ObtenerUsuariosParaUTP(1, Constantes.FILAS_POR_PAGINA);
+
+                //Datos para la paginación.
+                int cantidadTotal = lista.Count() == 0 ? 0 : lista[0].CantidadTotal;
+
+                Paginacion paginacion = new Paginacion();
+                paginacion.NroPaginaActual = 1;
+                paginacion.CantidadTotalResultados = cantidadTotal;
+                paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+                paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+                int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+                if (residuo > 0) paginacion.TotalPaginas += 1;
+
+                ViewBag.Paginacion = paginacion;
+                ViewBag.TipoBusqueda = "Simple";
+
+                return PartialView("_UsuariosEmpresaLista", lista);
+
+                //return PartialView("_UsuariosEmpresaLista", empresaUsuario);
+        }
+
+        
 
         public ActionResult BuscarDatosEmpresasUTP(int idempresa)
         {
             //string descripocn = "";
-
+           
             LNAlumno lnAlumno = new LNAlumno();
             EmpresaUsuario vista = new EmpresaUsuario();
-
+            LNEmpresaLocacion lnEmpresaLocacion = new LNEmpresaLocacion();
+          
             DataTable dtResultado = lnAlumno.Utp_BuscarDatosListaEmpresas(idempresa);
 
             if (dtResultado.Rows.Count > 0)
             {
-                vista.idEmpresa = Convert.ToInt32(dtResultado.Rows[0]["IdEmpresa"]);
-                //vista.Empresa = dtResultado.Rows[0]["NombreComercial"].ToString();
-                //vista.RazonSocial = dtResultado.Rows[0]["RazonSocial"].ToString();
-                vista.Nombres = dtResultado.Rows[0]["DescripcionEmpresa"].ToString();
-                //vista.SectorEmpresarial = dtResultado.Rows[0]["SectorEmpresarial"].ToString();
-                //vista.SectorEmpresarial2 = dtResultado.Rows[0]["SectorEmpresarial2"].ToString();
-                //vista.SectorEmpresarial3 = dtResultado.Rows[0]["SectorEmpresarial3"].ToString();
-                //vista.Pais = dtResultado.Rows[0]["Pais"].ToString();
-                //vista.ValorSectorEmpresarial = dtResultado.Rows[0]["ValorSectorEmpresarial"].ToString();
+
+                //vista.idEmpresa =Convert.ToInt32 (dtResultado.Rows[0]["IdEmpresa"]);
+
+                vista.CodigoEmpresa = dtResultado.Rows[0]["IdEmpresa"].ToString();
+                
+                vista.ListaUbicaciones = dtResultado.Rows[0]["IdEmpresaLocacion"].ToString();
+              
             }
+           
 
             return Json(vista, JsonRequestBehavior.AllowGet);
 

@@ -30,6 +30,8 @@ namespace UTP.PortalEmpleabilidad.Modelo
         //[Required(ErrorMessage = "Falta Anexo")]
         public string TelefonoAnexo { get; set; }
 
+        public string CodigoEmpresa { get; set; }
+
         [Required(ErrorMessage = "Falta Celular")]
         public string TelefonoCelular { get; set; }
         [Required(ErrorMessage = "Falta Ubicación")]
@@ -74,6 +76,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
 
         public int idEmpresa { get; set; }
         public string NombreEmpresa { get; set; }
+        public string ListaUbicaciones { get; set; }
         public EmpresaUsuario() 
         {
             Empresa = new Empresa();
