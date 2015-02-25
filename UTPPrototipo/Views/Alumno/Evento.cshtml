@@ -1,15 +1,15 @@
-﻿@*@model UTP.PortalEmpleabilidad.Modelo.VistaPanelAlumno*@
+﻿@model UTP.PortalEmpleabilidad.Modelo.VistaPanelAlumno
 @{
     Layout = "~/Views/Alumno/_LayoutAlumno.cshtml";
     ViewBag.Title = "Eventos";
 }
 
 <div class="container fuente-pequeña" style="margin-top:2px;">
-    @*@Html.Partial("_DatosPersonales", Model.Alumno)*@
+    @{Html.RenderAction("VistaCabecera", "Alumno", new { colapsaDatos = " " });}
     @Html.Action("_Evento", "Evento", new { Pantalla = "Alumno" })
 </div>
 <script>
     $(document).ready(function () {
-        $("#divFinalCabeceraEmpresa").removeClass("color-paleta1 color-paleta2 color-paleta3 color-paleta4").addClass("color-paleta5");
+        $("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta3 color-paleta4").addClass("color-paleta5");
     });
 </script>

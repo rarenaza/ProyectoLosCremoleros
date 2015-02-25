@@ -60,12 +60,12 @@ namespace UTPPrototipo.Controllers
 
         }
 
-        public ActionResult PaginaTicket(int idEvento, int idEventoAsistente, string nombres, string apellidos, string valorTipoDocumento, string numeroDocumento)
+        public ActionResult PaginaTicket(string idEvento, string idEventoAsistente, string nombres, string apellidos, string valorTipoDocumento, string numeroDocumento)
         {
-            ViewBag.idEvento = idEvento;
-            ViewBag.idEventoAsistente = idEventoAsistente;
-            ViewBag.nombre = nombres + " " + apellidos;
-            ViewBag.documentoIdentidad = valorTipoDocumento + " " + numeroDocumento;
+            ViewBag.idEvento = Convert.ToInt32(Helper.Desencriptar(idEvento));
+            ViewBag.idEventoAsistente = Convert.ToInt32(Helper.Desencriptar(idEventoAsistente));
+            ViewBag.nombre = Helper.Desencriptar(nombres) + " " + Helper.Desencriptar(apellidos);
+            ViewBag.documentoIdentidad = Helper.Desencriptar(valorTipoDocumento) + " " + Helper.Desencriptar(numeroDocumento);
             return View();
         }
 
@@ -75,29 +75,29 @@ namespace UTPPrototipo.Controllers
             Evento evento = new Evento();
             ViewBag.Pantalla = Pantalla;
 
-            if (Pantalla == "Alumno")
+            if (Helper.Desencriptar(Pantalla) == "Alumno")
             {
                 TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
                 usuario = ticket.Usuario;
                 LNEvento lnEvento = new LNEvento();
                 lnEvento.InsertarEventoAsistente(Convert.ToInt32(Helper.Desencriptar(idEvento)), usuario, usuario);
-                              
+
                 return RedirectToAction("Evento", "Alumno", new { idEvento = idEvento });
 
             }
-            if (Pantalla == "Empresa")
+            if (Helper.Desencriptar(Pantalla) == "Empresa")
             {
                 TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];
                 usuario = ticket.Usuario;
                 LNEvento lnEvento = new LNEvento();
                 lnEvento.InsertarEventoAsistente(Convert.ToInt32(Helper.Desencriptar(idEvento)), usuario, usuario);
 
-      
+
                 return RedirectToAction("Evento", "Empresa", new { idEvento = idEvento });
             }
 
             return PartialView("_Evento", evento);
         }
-        
+
     }
 }

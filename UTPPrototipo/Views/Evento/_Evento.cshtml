@@ -1,5 +1,6 @@
 ﻿@model UTP.PortalEmpleabilidad.Modelo.Evento
 @using UTP.PortalEmpleabilidad.Modelo
+@using UTPPrototipo.Utiles
 
 <div class="row">
 
@@ -76,7 +77,7 @@
                         <strong>¡ Imprima Ticket de Registro !</strong> <br />Haga clic en el boton abajo para ver e imprimir su Tiket de acceso al Evento.
                     </div>
                     <br />
-                    @Html.ActionLink("Ver Ticket de Acceso", "PaginaTicket", "Evento", new { idEvento = Model.IdEvento, idEventoAsistente = Model.IdEventoAsistente, nombres = Model.Nombres, apellidos = Model.Apellidos, valorTipoDocumento = Model.ValorTipoDocumento, numeroDocumento = Model.NumeroDocumento}, new { @class = "btn btn-default color-paleta5", @target = "_blank" })
+                    @Html.ActionLink("Ver Ticket de Acceso", "PaginaTicket", "Evento", new { idEvento = Helper.Encriptar(Model.IdEvento.ToString()), idEventoAsistente = Helper.Encriptar(Model.IdEventoAsistente.ToString()), nombres = Helper.Encriptar(Model.Nombres), apellidos = Helper.Encriptar(Model.Apellidos), valorTipoDocumento = Helper.Encriptar(Model.ValorTipoDocumento), numeroDocumento = Helper.Encriptar(Model.NumeroDocumento)}, new { @class = "btn btn-default color-paleta5", @target = "_blank" })
                 }
             }
             else
@@ -113,13 +114,13 @@
                 <div class="panel-body">
                    @if (ViewBag.Pantalla == "Empresa")
                    {
-                    @Html.Action("_Mensajes", "Mensaje", new { pantalla = Constantes.MENSAJES_EMPRESA_EVENTO, idEvento = @Model.IdEvento })
+                    @Html.Action("_Mensajes", "Mensaje", new { pantalla = Constantes.MENSAJES_EMPRESA_EVENTO, idEvento = Helper.Encriptar(Model.IdEvento.ToString()) })
                    }
                    else
                    {
                        if (ViewBag.Pantalla == "Alumno")
                        {
-                        @Html.Action("_Mensajes", "Mensaje", new { pantalla = Constantes.MENSAJES_ALUMNO_EVENTO, idEvento = @Model.IdEvento })
+                        @Html.Action("_Mensajes", "Mensaje", new { pantalla = Constantes.MENSAJES_ALUMNO_EVENTO, idEvento = Helper.Encriptar(Model.IdEvento.ToString()) })
                        }
 
                    }
@@ -146,7 +147,7 @@
             </div>
             <div class="modal-footer fuente-pequeña">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                @Html.ActionLink("Aceptar Inscripción","InsertarEventoAsistente","Evento", new {idEvento = Model.IdEvento, Pantalla = ViewBag.Pantalla}, new {@class="btn btn-default color-paleta5" })
+                @Html.ActionLink("Aceptar Inscripción","InsertarEventoAsistente","Evento", new {idEvento = Helper.Encriptar(Model.IdEvento.ToString()), Pantalla = Helper.Encriptar(ViewBag.Pantalla)}, new {@class="btn btn-default color-paleta5" })
                 @*<button type="button" id="btnInscribirPostulante" class="btn btn-default color-paleta5">Aceptar Inscripción</button>*@
             </div>
         </div><!-- /.modal-content -->
