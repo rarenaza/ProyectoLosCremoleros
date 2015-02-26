@@ -50,7 +50,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public static int IDLISTA_Provincia = 48;
         public static int IDLISTA_FUENTE_CONVENIO = 41;
 
-        public static int IDLISTA_OFERTA_CALIFICACION_ENCUESTA = 56;
+        public static int IDLISTA_OFERTA_CALIFICACION_ENCUESTA = 51; //Verificar este nro en bd de UTP Producción.
         #endregion
 
         public const string MSJ_CAMPO_OBLIGATORIO = "Este campo es obligatorio";

@@ -31,7 +31,7 @@
         <div class="form-group">
             <label>2.	¿A cuántos postulantes se invitó a entrevista?</label>
             <br />
-            @Html.EditorFor(m => m.NroPostulantes)
+            @Html.TextBoxFor(m => m.NroPostulantes, new { @class = "form-control", style = "width: 80px;" })
             @Html.ValidationMessageFor(m => m.NroPostulantes, "", new { @class = "text-danger" })
         </div>
 
@@ -39,14 +39,14 @@
         <div class="form-group">
             <label>3.	¿Cuántas personas contratadas son de la UTP?</label>
             <br />
-            @Html.EditorFor(m => m.ContratadosUTP)
+            @Html.TextBoxFor(m => m.ContratadosUTP, new { @class = "form-control", style = "width: 80px;" })
             @Html.ValidationMessageFor(m => m.ContratadosUTP, "", new { @class = "text-danger" })
         </div>
 
         <div class="form-group">
             <label>4.	¿De qué otras universidades son las personas que se han contratado para este cargo?</label>
             <br />
-            @Html.EditorFor(m => m.ContratadosOtros)
+            @Html.TextBoxFor(m => m.ContratadosOtros, new { @class = "form-control", style = "width: 80px;" })
             @Html.ValidationMessageFor(m => m.ContratadosOtros, "", new { @class = "text-danger" })
 
         </div>

@@ -356,8 +356,8 @@ namespace UTP.PortalEmpleabilidad.Datos
                     cmd.Parameters.Add(new SqlParameter("@Competencias", oferta.Competencias)); //
                     cmd.Parameters.Add(new SqlParameter("@UsuarioPropietarioEmpresa", oferta.UsuarioPropietarioEmpresa)); //
                     cmd.Parameters.Add(new SqlParameter("@EstadoOferta", oferta.EstadoOferta)); //
-                    //cmd.Parameters.Add(new SqlParameter("@FechaPublicacion", oferta.FechaPublicacion));
                     cmd.Parameters.Add(new SqlParameter("@FechaFinRecepcionCV", oferta.FechaFinRecepcionCV)); //
+                    cmd.Parameters.Add(new SqlParameter("@FechaFinProceso", oferta.FechaFinProceso)); //
                     cmd.Parameters.Add(new SqlParameter("@IdEmpresaLocacion", oferta.IdEmpresaLocacion)); //
                     cmd.Parameters.Add(new SqlParameter("@TipoTrabajo", oferta.TipoTrabajoIdListaValor)); //
                     cmd.Parameters.Add(new SqlParameter("@TipoContrato", oferta.TipoContratoIdListaValor)); //
@@ -439,6 +439,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                         cmd.Parameters.Add(new SqlParameter("@Funciones", oferta.Funciones));
                         cmd.Parameters.Add(new SqlParameter("@Competencias", oferta.Competencias));
                         cmd.Parameters.Add(new SqlParameter("@UsuarioPropietarioEmpresa", oferta.UsuarioPropietarioEmpresa));
+                        cmd.Parameters.Add(new SqlParameter("@FechaFinProceso", oferta.FechaFinProceso));
                         cmd.Parameters.Add(new SqlParameter("@FechaFinRecepcionCV", oferta.FechaFinRecepcionCV));
                         cmd.Parameters.Add(new SqlParameter("@IdEmpresaLocacion", oferta.IdEmpresaLocacion));
                         cmd.Parameters.Add(new SqlParameter("@TipoTrabajo", oferta.TipoTrabajoIdListaValor));

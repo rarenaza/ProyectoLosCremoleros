@@ -252,7 +252,8 @@ namespace UTPPrototipo.Controllers
                 idEmpresaLocacion = locaciones[0].IdEmpresaLocacion;
             else
             { 
-                //Si no tiene locaciones entonces no se muestra un error y la oferta no se crea:
+                //Si no tiene locaciones entonces no se muestra un error y la oferta no se crea, por regla todas las empresas
+                //tienen al menos 1 locación y no debería entrar. Se coloca la condición por si existe data migrada errónea.
                 StringBuilder msjAlUsuario = new StringBuilder();
                 msjAlUsuario.Append("La empresa no cuenta con locaciones disponibles, cree una e intente nuevamente.");
                 
@@ -270,6 +271,7 @@ namespace UTPPrototipo.Controllers
             ofertaBorrador.EstadoOferta = Constantes.OFERTA_ESTADO_BORRADOR; //Estado oferta en borrador
             ofertaBorrador.CreadoPor = ticket.Usuario;
             ofertaBorrador.FechaFinRecepcionCV = DateTime.Now;
+            ofertaBorrador.FechaFinProceso = DateTime.Now;
             ofertaBorrador.IdEmpresaLocacion = idEmpresaLocacion;
             ofertaBorrador.TipoTrabajoIdListaValor = "";
             ofertaBorrador.CargoOfrecido = "";
