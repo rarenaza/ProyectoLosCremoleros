@@ -1255,8 +1255,8 @@ namespace UTPPrototipo.Controllers
 
             Evento evento = new Evento();
 
-            DataTable dtResultado = lnEventos.EVENTO_OBTENERPORID(Convert.ToInt32(Id));
-            //DataTable dtResultado = lnEventos.EVENTO_OBTENERPORID(Convert.ToInt32(Helper.Desencriptar(Id)));            
+            //DataTable dtResultado = lnEventos.EVENTO_OBTENERPORID(Convert.ToInt32(Id));
+            DataTable dtResultado = lnEventos.EVENTO_OBTENERPORID(Convert.ToInt32(Helper.Desencriptar(Id)));            
 
             if (dtResultado.Rows.Count > 0)
             {
@@ -2290,11 +2290,11 @@ namespace UTPPrototipo.Controllers
                 lista.DescripcionLista = Convert.ToString(dtResultado.Rows[0]["DescripcionLista"]);
                 lista.Modificable = Convert.ToBoolean(dtResultado.Rows[0]["Modificable"]);
                 lista.Creadopor = Convert.ToString(dtResultado.Rows[0]["Creadopor"]);
-                lista.FechaCreacion = Convert.ToDateTime(dtResultado.Rows[0]["FechaCreacion"]);
+                lista.FechaCreacion = Convert.ToString(dtResultado.Rows[0]["FechaCreacion"] == null ? "" : dtResultado.Rows[0]["FechaCreacion"]);
                 lista.Modificadopor = Convert.ToString(dtResultado.Rows[0]["Modificadopor"]);
-                lista.FechaModificacion = Convert.ToDateTime(dtResultado.Rows[0]["FechaModificacion"] == DBNull.Value ? null : dtResultado.Rows[0]["FechaModificacion"]);
+                lista.FechaModificacion = Convert.ToString(dtResultado.Rows[0]["FechaModificacion"] == null ?"" : dtResultado.Rows[0]["FechaModificacion"]);
             }
-
+            
             return PartialView("Vista_DatosdeListaValorPadre", lista);
         }
 
@@ -2313,25 +2313,41 @@ namespace UTPPrototipo.Controllers
             lnUtp.UTPACTUALIZAR_LISTAVALORPADRE(objlista);
 
 
-            ////recorro los datos para mostrar en el partial
+            //////recorro los datos para mostrar en el partial
 
-            //Lista coleccionDeLista = new Lista();
+            ////Lista coleccionDeLista = new Lista();
 
-            //DataTable dtResultado = lnUtp.UTP_LISTAVALORPADRE(1, 10);
+            ////DataTable dtResultado = lnUtp.UTP_LISTAVALORPADRE(1, 10);
 
-            //if (dtResultado.Rows.Count > 0)
-            //{
-            //    coleccionDeLista.IDLista = Convert.ToInt32(dtResultado.Rows[0]["IDLista"]);
-            //    coleccionDeLista.NombreLista = Convert.ToString(dtResultado.Rows[0]["NombreLista"]);
-            //    coleccionDeLista.DescripcionLista = Convert.ToString(dtResultado.Rows[0]["DescripcionLista"]);
-            //    coleccionDeLista.Modificable = Convert.ToBoolean(dtResultado.Rows[0]["Modificable"]);
-            //    coleccionDeLista.Creadopor = Convert.ToString(dtResultado.Rows[0]["Creadopor"]);
-            //    coleccionDeLista.FechaCreacion = Convert.ToDateTime(dtResultado.Rows[0]["FechaCreacion"]);
-            //    coleccionDeLista.Modificadopor = Convert.ToString(dtResultado.Rows[0]["Modificadopor"]);
-            //    coleccionDeLista.FechaModificacion = Convert.ToDateTime(dtResultado.Rows[0]["FechaModificacion"] == DBNull.Value ? null : dtResultado.Rows[0]["FechaModificacion"]);
-            //}
+            ////if (dtResultado.Rows.Count > 0)
+            ////{
+            ////    coleccionDeLista.IDLista = Convert.ToInt32(dtResultado.Rows[0]["IDLista"]);
+            ////    coleccionDeLista.NombreLista = Convert.ToString(dtResultado.Rows[0]["NombreLista"]);
+            ////    coleccionDeLista.DescripcionLista = Convert.ToString(dtResultado.Rows[0]["DescripcionLista"]);
+            ////    coleccionDeLista.Modificable = Convert.ToBoolean(dtResultado.Rows[0]["Modificable"]);
+            ////    coleccionDeLista.Creadopor = Convert.ToString(dtResultado.Rows[0]["Creadopor"]);
+            ////    coleccionDeLista.FechaCreacion = Convert.ToDateTime(dtResultado.Rows[0]["FechaCreacion"]);
+            ////    coleccionDeLista.Modificadopor = Convert.ToString(dtResultado.Rows[0]["Modificadopor"]);
+            ////    coleccionDeLista.FechaModificacion = Convert.ToDateTime(dtResultado.Rows[0]["FechaModificacion"] == DBNull.Value ? null : dtResultado.Rows[0]["FechaModificacion"]);
+            ////}
 
-            return PartialView("Vista_DatosdeListaValorPadre", objlista);
+            //return PartialView("Vista_DatosdeListaValorPadre", objlista);
+
+            Lista lista = new Lista();
+            DataTable dtResultado = lnUtp.UTP_BUSCARLISTAVALORPADRE(Convert.ToInt32(objlista.IDLista));
+            if (dtResultado.Rows.Count > 0)
+            {
+                lista.IDLista = Convert.ToInt32(dtResultado.Rows[0]["IDLista"]);
+                lista.NombreLista = Convert.ToString(dtResultado.Rows[0]["NombreLista"]);
+                lista.DescripcionLista = Convert.ToString(dtResultado.Rows[0]["DescripcionLista"]);
+                lista.Modificable = Convert.ToBoolean(dtResultado.Rows[0]["Modificable"]);
+                lista.Creadopor = Convert.ToString(dtResultado.Rows[0]["Creadopor"]);
+                lista.FechaCreacion = Convert.ToString(dtResultado.Rows[0]["FechaCreacion"] == null ? "" : dtResultado.Rows[0]["FechaCreacion"]);
+                lista.Modificadopor = Convert.ToString(dtResultado.Rows[0]["Modificadopor"]);
+                lista.FechaModificacion = Convert.ToString(dtResultado.Rows[0]["FechaModificacion"] == null ? "" : dtResultado.Rows[0]["FechaModificacion"]);
+            }
+
+            return PartialView("Vista_DatosdeListaValorPadre", lista);
 
         }
 
@@ -2378,9 +2394,9 @@ namespace UTPPrototipo.Controllers
                 nuevalista.DescripcionLista = Convert.ToString(fila["DescripcionLista"]);
                 nuevalista.Modificable = Convert.ToBoolean(fila["Modificable"]);
                 nuevalista.Creadopor = Convert.ToString(fila["Creadopor"]);
-                nuevalista.FechaCreacion = Convert.ToDateTime(fila["FechaCreacion"]);
+                nuevalista.FechaCreacion = Convert.ToString(dtResultado.Rows[0]["FechaCreacion"] == null ? "" : dtResultado.Rows[0]["FechaCreacion"]);
                 nuevalista.Modificadopor = Convert.ToString(fila["Modificadopor"]);
-                nuevalista.FechaModificacion = Convert.ToDateTime(fila["FechaModificacion"] == DBNull.Value ? null : fila["FechaModificacion"]);
+                nuevalista.FechaModificacion = Convert.ToString(fila["FechaModificacion"] == null ? "" : fila["FechaModificacion"]);
                 nuevalista.CantidadTotal = Convert.ToInt32(fila["CantidadTotal"]);
                 coleccionDeLista.Add(nuevalista);
             }

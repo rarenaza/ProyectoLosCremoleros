@@ -21,9 +21,9 @@ namespace UTP.PortalEmpleabilidad.Modelo
        public bool Modificable { get; set; }
 
        public string  Creadopor { get; set; }
-       public DateTime  FechaCreacion { get; set; }
+       public string   FechaCreacion { get; set; }
        public string Modificadopor { get; set; }
-       public DateTime FechaModificacion { get; set; }
+       public string FechaModificacion { get; set; }
 
        public int CantidadTotal { get; set; }
 
