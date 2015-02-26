@@ -68,8 +68,8 @@ namespace UTPPrototipo.Controllers
             
 
             //No debe retornar vistas.
-            //return Content("");
-            return RedirectToAction("Publicacion","Empresa");
+            return Content("");
+    
         }
 
         [HttpGet]
