@@ -24,7 +24,7 @@
         @Html.HiddenFor(model => model.CreadoPor)
         @Html.HiddenFor(model => model.UsuarioPropietarioEmpresa)
         @Html.HiddenFor(m => m.EstadoOferta)
-        
+
         <div class="panel-group" id="oferta-cabecera" role="tablist" aria-multiselectable="true">
             <div class="panel panel-default fuente-pequeña">
                 <div class="panel-heading" role="tab" id="headingOfertaCabecera" style="padding: 2px 2px 2px 6px;">
@@ -71,14 +71,14 @@
                                 <span>Si ha finalizado la edición de su Oferta laboral, entonces Publíquela.</span>
                                 <br />
                                 @{
-                                    if (Model.EstadoOferta == "OFERCO") //Estado en construcción.
-                                    {
-                                        <span id="lblPublicarOferta" class="btn btn-default color-paleta2">Publicar</span>
-                                    }
-                                    else
-                                    {
-                                        <span>Oferta pendiente de activación</span>
-                                    }
+        if (Model.EstadoOferta == "OFERCO") //Estado en construcción.
+        {
+            <span id="lblPublicarOferta" class="btn btn-default color-paleta2">Publicar</span>
+        }
+        else
+        {
+            <span>Oferta pendiente de activación</span>
+        }
                                 }
                             </div>
 
@@ -108,7 +108,7 @@
                                 <div class="input-group">
                                     <span class="input-group-addon">(*) Cargo</span>
                                     @*<input id="CargoOfrecido" data-val="true" data-val-required="No ha ingresado el campo" name="CargoOfrecido" type="text" class="form-control" placeholder="Nombre del cargo a publicar" value="@Model.CargoOfrecido">*@
-                                    @Html.TextBoxFor(m => m.CargoOfrecido, new { @class = "form-control",@id = "Cargo", @placeholder = "Nombre del cargo a publicar" })
+                                    @Html.TextBoxFor(m => m.CargoOfrecido, new { @class = "form-control", @id = "Cargo", @placeholder = "Nombre del cargo a publicar" })
 
                                     @*<input class="text-box single-line" id="CargoOfrecido" name="CargoOfrecido" type="text" value="">*@
                                     @*@Html.EditorFor(model => model.CargoOfrecido, new { @class = "form-control" })*@
@@ -162,10 +162,15 @@
                                 </div>
                                 @Html.ValidationMessageFor(m => m.FechaFinRecepcionCV, "", new { @class = "text-danger" })
                                 <div class="input-group">
+                                    <span class="input-group-addon">Fin de<br />la oferta</span>                                    
+                                    @Html.TextBoxFor(m => m.FechaFinProceso, new { @class = "form-control", @placeholder = "Fecha fin de la oferta", @Value = Model.FechaFinProceso.ToString("d") })
+                                </div>
+                                @Html.ValidationMessageFor(m => m.FechaFinProceso, "", new { @class = "text-danger" })
+                                <div class="input-group">
                                     <span class="input-group-addon">Área</span>
                                     @*<input id="AreaEmpresa" name="AreaEmpresa" type="text" class="form-control" placeholder="Área o división de la empresa" value="@Model.AreaEmpresa">*@
 
-                                    @Html.TextBoxFor(m => m.AreaEmpresa, new { @class = "form-control", @placeholder = "Área o división de la empresa", @id="AreaEmpresa"})
+                                    @Html.TextBoxFor(m => m.AreaEmpresa, new { @class = "form-control", @placeholder = "Área o división de la empresa", @id = "AreaEmpresa" })
                                 </div>
                                 @Html.ValidationMessageFor(m => m.AreaEmpresa, "", new { @class = "text-danger" })
                                 <div class="input-group">
@@ -218,8 +223,8 @@
                                         @Html.ValidationMessageFor(m => m.NumeroVacantes, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
-                                
-                                
+
+
 
                                 <div class="row">
                                     <div class="col-sm-12">
@@ -243,7 +248,7 @@
 
             </div>
         </div>
-    
+
         <div class="row">
 
             <div id="ofertaRequisitos" class="col-sm-6">
@@ -259,10 +264,10 @@
                         <div id="collapseRequisito" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingRequisito">
                             <div class="panel-body fuente-pequeña">
                                 <div id="divListaEstudiosCarrerasUTP">
-                                    
+
                                     @Html.Partial("_OfertaEstudiosUTP")
 
-                                    
+
                                 </div>
                                 <div id="divDatosEstudiosUTP">
                                     <div class="row">
@@ -303,18 +308,18 @@
                                         <div class="col-md-6">
                                             <div class="input-group">
                                                 <div class="input-group-addon">
-                                                    General
+                                                    General<br />(meses)
                                                 </div>
-                                               
+
                                                 @Html.TextBoxFor(m => m.ExperienciaGeneral, new { @class = "form-control" })
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="input-group">
                                                 <div class="input-group-addon">
-                                                    En posiciones<br />similares
+                                                    En posiciones<br />similares (meses)<br />
                                                 </div>
-                                                
+
                                                 @Html.TextBoxFor(m => m.ExperienciaPosicionesSimilares, new { @class = "form-control" })
                                             </div>
                                         </div>
@@ -335,9 +340,9 @@
                     </div>
                 </div>
             </div>
-        
+
             <div id="divOfertaFases" class="col-sm-6">
-           
+
                 <!--Se agrega el panel de fase de la oferta. Ahora la Oferta contiene una propiedad Lista de Fases que se utiliza para mostrar -->
                 <div class="panel-group" id="oferta-fases" role="tablist" aria-multiselectable="true">
                     <div id="divContenedorFases" class="panel panel-default">
@@ -384,12 +389,12 @@
                                     @Html.HiddenFor(m => m.OfertaFases[i].ModificadoPor)
                                 }
                                 @*<div class="row">
-                                    <div class="col-sm-12 " style="text-align:right;">
-                                        <button class="btn btn-default color-paleta2" style="margin-bottom:5px;">
-                                            Guardar cambios
-                                        </button>
-                                    </div>
-                                </div>*@
+                                        <div class="col-sm-12 " style="text-align:right;">
+                                            <button class="btn btn-default color-paleta2" style="margin-bottom:5px;">
+                                                Guardar cambios
+                                            </button>
+                                        </div>
+                                    </div>*@
 
                             </div>
                         </div>
@@ -398,13 +403,13 @@
                     </div>
                 </div>
                 @*@using (Ajax.BeginForm("_OfertaFaseEditar", "Empresa", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divFases", OnComplete = "alertTemporal" }))
-                {
-                    @Html.AntiForgeryToken()
+                    {
+                        @Html.AntiForgeryToken()
 
-                    <div id="divFases">
-                        @Html.Action("ObtenerOfertaFase", "Empresa", new { idOferta = Model.IdOferta })
-                    </div>
-                }*@
+                        <div id="divFases">
+                            @Html.Action("ObtenerOfertaFase", "Empresa", new { idOferta = Model.IdOferta })
+                        </div>
+                    }*@
 
             </div>
 
@@ -499,7 +504,7 @@
 <script>
 
     $(document).ready(function () {
-        $("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta4 color-paleta5").addClass("color-paleta3"); 
+        $("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta4 color-paleta5").addClass("color-paleta3");
         AutoCompleteText('#Cargo', '@Url.Action("ListarCargo", "Empresa")', '#Cargo');
         AutoCompleteText('#AreaEmpresa', '@Url.Action("ListarAreasEmpresa", "Alumno")', '#AreaEmpresa');
     });
@@ -541,7 +546,7 @@
 
         //checkSupportForInputTypeDate();
         $("#FechaFinRecepcionCV").datepicker({ dateFormat: 'dd/mm/yy' });
-
+        $("#FechaFinProceso").datepicker({ dateFormat: 'dd/mm/yy' });
 
     });
 
@@ -634,7 +639,7 @@
             $('#divEditarEstudioContenedor').html(data);
             $.validator.unobtrusive.parse('#divEditarEstudioContenedor');
             $('#divEditarModalEstudio').modal('show');
-        }).error(function (err) { console.log(err); } );
+        }).error(function (err) { console.log(err); });
     };
 
     function editarSector(id) {
@@ -708,12 +713,11 @@
         alert('Las Fases se guardaron con éxito');
     }
 
-    function mostrarError(err)
-    {
+    function mostrarError(err) {
         console.log(err);
     }
 
-    
+
 
 </script>
 
@@ -737,8 +741,7 @@
             });
 
             //Si no existe se agrega al select.
-            if (encontrado == false)
-            {
+            if (encontrado == false) {
                 codigos += $(selected).val() + '-'; //se concatena los codigos para pasarlos como parámetro al url
                 //$("#selectCarrerasSeleccionadas").append('<option value=' + $(selected).val() + ' >' + $(selected).text() + '</option>');
             }
@@ -750,8 +753,7 @@
         }).error(function (err) { console.log(err); alert(err); });
     }
 
-    function quitarCarrera()
-    {
+    function quitarCarrera() {
         var codigos = "";
         //Se obtiene las opciones seleccionadas del lado derecho
         $('#selectCarrerasSeleccionadas :selected').each(function (i, selected) {

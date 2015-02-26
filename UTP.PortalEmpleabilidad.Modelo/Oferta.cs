@@ -9,7 +9,7 @@ using System.Web;
 
 namespace UTP.PortalEmpleabilidad.Modelo
 {
-    public partial class Oferta
+    public partial class Oferta 
     {
         public int IdOferta { get; set; }
         public int IdAlumno { get; set; }
@@ -34,6 +34,11 @@ namespace UTP.PortalEmpleabilidad.Modelo
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime FechaFinRecepcionCV { get; set; }
+
+        [Required(ErrorMessage = Constantes.MSJ_CAMPO_OBLIGATORIO)]
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+       
         public DateTime FechaFinProceso { get; set; }
 
         [Required(ErrorMessage = Constantes.MSJ_CAMPO_OBLIGATORIO)]
@@ -140,5 +145,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
            Empresa = new Empresa();
            OfertaFases = new List<OfertaFase>();
         }
+
+       
     }
 }

@@ -247,8 +247,8 @@ namespace UTP.PortalEmpleabilidad.Logica
             foreach (string id in arrayIds)
             {
                 DataTable dt = adMensaje.ObtenerDatosBasicosPorIdAlumno(Convert.ToInt32(id));
-                string usuario = Convert.ToString(dt.Rows[0]["Usuario"]);
-                usuarios.Append(usuario);
+                string usuario = Convert.ToString(dt.Rows[0]["Apellidos"]) + " " + Convert.ToString(dt.Rows[0]["Nombres"]);
+                usuarios.Append(usuario); 
                 usuarios.Append(", ");
             }
 

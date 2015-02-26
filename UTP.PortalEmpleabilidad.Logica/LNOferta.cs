@@ -333,23 +333,19 @@ namespace UTP.PortalEmpleabilidad.Logica
                 oferta.CargoOfrecido = Convert.ToString(dsResultado.Tables[0].Rows[0]["CargoOfrecido"]);
                 oferta.Funciones = Convert.ToString(dsResultado.Tables[0].Rows[0]["Funciones"]);
                 oferta.Competencias = Convert.ToString(dsResultado.Tables[0].Rows[0]["Competencias"]);
-
+                
                 oferta.TipoTrabajoIdListaValor = Convert.ToString(dsResultado.Tables[0].Rows[0]["TipoTrabajo"]);
                 oferta.TipoTrabajo.Valor = Convert.ToString(dsResultado.Tables[0].Rows[0]["TipoTrabajoDescripcion"]);
                 oferta.TipoCargoIdListaValor = Convert.ToString(dsResultado.Tables[0].Rows[0]["TipoCargo"]);
                 oferta.TipoCargo.Valor = Convert.ToString(dsResultado.Tables[0].Rows[0]["TipoCargoDescripcion"]);
                 oferta.TipoContratoIdListaValor = Convert.ToString(dsResultado.Tables[0].Rows[0]["TipoContrato"]);
                 oferta.TipoContrato.Valor = Convert.ToString(dsResultado.Tables[0].Rows[0]["TipoContratoDescripcion"]);
-
+                
+                
                 oferta.RemuneracionOfrecida = Convert.ToDecimal(dsResultado.Tables[0].Rows[0]["RemuneracionOfrecida"]);
-
-
-
-
                 oferta.Horario = Convert.ToString(dsResultado.Tables[0].Rows[0]["Horario"]);
                 oferta.AreaEmpresa = Convert.ToString(dsResultado.Tables[0].Rows[0]["AreaEmpresa"]);
                 oferta.NumeroVacantes = Convert.ToInt32(dsResultado.Tables[0].Rows[0]["NumeroVacantes"]);
-
                 oferta.IdEmpresaLocacion = Convert.ToInt32(dsResultado.Tables[0].Rows[0]["IdEmpresaLocacion"]);
                 oferta.RecibeCorreosIdListaValor = Convert.ToString(dsResultado.Tables[0].Rows[0]["RecibeCorreos"]);
                 oferta.FechaFinRecepcionCV = Convert.ToDateTime(dsResultado.Tables[0].Rows[0]["FechaFinRecepcionCV"]);
@@ -380,6 +376,8 @@ namespace UTP.PortalEmpleabilidad.Logica
                 oferta.EstadoCarreraUTP = Convert.ToString(dsResultado.Tables[0].Rows[0]["EstadoCarreraUTP"]);
                 oferta.ExperienciaGeneral = Convert.ToInt32(dsResultado.Tables[0].Rows[0]["MesesExperienciaTotal"]);
                 oferta.ExperienciaPosicionesSimilares = Convert.ToInt32(dsResultado.Tables[0].Rows[0]["MesesExperienciaTipoTrabajo"]);
+
+                oferta.FechaFinProceso = Convert.ToDateTime(dsResultado.Tables[0].Rows[0]["FechaFinProceso"]);
             }
 
             //Tabla Index 1: Lista de estudios.

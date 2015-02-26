@@ -8,6 +8,7 @@ using UTP.PortalEmpleabilidad.Logica;
 using UTP.PortalEmpleabilidad.Modelo;
 using UTPPrototipo.Common;
 using UTPPrototipo.Models.ViewModels.Cuenta;
+using CaptchaMvc.HtmlHelpers; 
 
 namespace UTPPrototipo.Controllers
 {
@@ -31,7 +32,12 @@ namespace UTPPrototipo.Controllers
         [HttpPost,ValidateAntiForgeryToken]
         public ActionResult Autenticar(Usuario usuario)
         {
-              
+            if (!this.IsCaptchaValid("El texto no coincide con la imagen"))  
+            {
+                TempData["UsuarioNoExitoso"] = "El texto no coincide con la imagen";
+                return RedirectToAction("Index", "Home");
+            }
+
             List<Usuario> lista = new List<Usuario>();
 
             

@@ -14,16 +14,16 @@ namespace UTP.PortalEmpleabilidad.Modelo
 
         public List<ListaValor> Calificaciones { get; set; }
 
-        [Required]
+        [Required(ErrorMessage=Constantes.MSJ_CAMPO_OBLIGATORIO)]
         public string Calificacion { get; set; }
 
-        [Required]
+        [Required(ErrorMessage=Constantes.MSJ_CAMPO_OBLIGATORIO)]
         public int NroPostulantes { get; set; }
 
-        [Required]
+        [Required(ErrorMessage=Constantes.MSJ_CAMPO_OBLIGATORIO)]
         public int ContratadosUTP { get; set; }
 
-        [Required]
+        [Required(ErrorMessage=Constantes.MSJ_CAMPO_OBLIGATORIO)]
         public int ContratadosOtros { get; set; }
 
         public string Estado { get; set; }

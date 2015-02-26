@@ -1,5 +1,7 @@
 ﻿@model UTP.PortalEmpleabilidad.Modelo.Usuario
-
+@using CaptchaMvc.HtmlHelpers
+@using CaptchaMvc;
+  
 @using (Ajax.BeginForm("Autenticar", "Cuenta", new AjaxOptions()))
 {
     @Html.AntiForgeryToken()
@@ -36,12 +38,16 @@
 
                    
                 </div>@Html.ValidationMessageFor(m => m.Contrasena, "", new { @class = "text-danger" })
-                <br />
-                <div class="grupo-ingreso" style="text-align:center;">
+
+                <div class="grupo-ingreso fuente-pequeña" style="text-align:center;">
+                    @Html.Captcha("Refrescar", "", 3, "No se ha ingresado el texto", true, null)
+                </div>
+                
+                @*<div class="grupo-ingreso" style="text-align:center;">
                     <input type="checkbox">
                     <span class="label-sistema"> No Cerrar mi Sesión </span>
-                </div>
-                <br />
+                </div>*@
+                @*<br />*@
                 <div class="text-center" style="width: 100%;">
                     <input id="btnAutenticar" type="submit" value="Ingresar" class="btn btn-default" />
                 </div>
