@@ -24,7 +24,8 @@
 
     <div class="col-sm-3">
         @*@Html.ActionLink(@item.NombreLista, "Lista", new { id = item.IDLista })*@
-        @Html.ActionLink(@item.NombreLista, "Lista", new { id = Helper.Encriptar(item.IDLista.ToString()) }, htmlAttributes: new { target = "_blank" })
+        @*@Html.ActionLink(@item.NombreLista, "Lista", new { id = Helper.Encriptar(item.IDLista.ToString()) }, htmlAttributes: new { target = "_blank" })*@
+        @Html.ActionLink(@item.NombreLista, "Lista", new { id = Helper.Encriptar(item.IDLista.ToString()) })
 
     </div>
     <div class="col-sm-7">@item.DescripcionLista</div>

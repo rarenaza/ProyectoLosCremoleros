@@ -2,7 +2,7 @@
 @model UTP.PortalEmpleabilidad.Modelo.Lista
 
 
-    @using (Ajax.BeginForm("Vista_DatosdeListaValorPadre", "UTP", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", OnComplete = "mostrarMensaje", UpdateTargetId = "divDatosGenerales" }))
+    @using (Ajax.BeginForm("Vista_DatosdeListaValorPadre", "UTP", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", OnComplete = "mostrarMensaje", UpdateTargetId = "divListapadree" }))
     {
         <div id="divDatosGenerales">
             @*@using (Html.BeginForm())

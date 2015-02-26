@@ -66,7 +66,8 @@
             if ((ticketEmpresa.Rol == "ROLEAD" || ticketEmpresa.Rol == "ROLEUS") &&
                 (item.EstadoOfertaIdListaValor == "OFERPR" || item.EstadoOfertaIdListaValor == "OFERCO"))
             {
-                @Html.ActionLink(" ", "OfertaLaboral", new { id = Helper.Encriptar(item.IdOferta.ToString()) }, new { @class = "btn btn-xs fa fa-pencil color-paleta2", @tooltip = "Editar oferta", @target = "_blank" })
+                @*@Html.ActionLink(" ", "OfertaLaboral", new { id = Helper.Encriptar(item.IdOferta.ToString()) }, new { @class = "btn btn-xs fa fa-pencil color-paleta2", @tooltip = "Editar oferta", @target = "_blank" })*@
+    @Html.ActionLink(" ", "OfertaLaboral", new { id = Helper.Encriptar(item.IdOferta.ToString()) }, new { @class = "btn btn-xs fa fa-pencil color-paleta2", @tooltip = "Editar oferta" })
             }
             else
             {
