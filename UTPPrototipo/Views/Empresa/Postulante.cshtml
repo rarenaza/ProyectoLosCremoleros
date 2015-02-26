@@ -1,4 +1,6 @@
 ﻿@model UTP.PortalEmpleabilidad.Modelo.VistaOfertaPostulante
+@using UTPPrototipo.Utiles
+
 @{
     Layout = "~/Views/Empresa/_LayoutEmpresa.cshtml";
     ViewBag.Title = "Postulante";
@@ -382,11 +384,11 @@
                                 <div class="col-sm-12">
                                     <h6>
                                         @*<a href="../Empresa/Oferta"><strong>Gerente de Proyectos en Desarrollo de Software</strong></a>*@
-                                        @Html.ActionLink(Model.alumnocv.CargoOfrecido, "Oferta", new { id = Model.alumnocv.IdOferta })
+                                        @Html.ActionLink(Model.alumnocv.CargoOfrecido, "Oferta", new { id = Helper.Encriptar(Model.alumnocv.IdOferta.ToString()) })
                                     </h6>
                                     <p>Postuló el <strong>@Model.alumnocv.FechaPostulacion</strong></p>
                                     @*<a href="#">Descargar CV </a>*@
-                                    @Html.ActionLink("Descargar CV", "DescargarDesdeBD", "Plantilla", new { idOfertaPostulante = Model.alumnocv.IdOfertaPostulante }, null)
+                                    @Html.ActionLink("Descargar CV", "DescargarDesdeBD", "Plantilla", new { idOfertaPostulante = Helper.Encriptar(Model.alumnocv.IdOfertaPostulante.ToString()) }, null)
                                 </div>
                             </div>
                             <hr />
@@ -453,7 +455,7 @@
                                 {
                                     <div class="row">
                                         <div class="col-sm-12">
-                                            @Html.ActionLink(item.CargoOfrecido, "Oferta", new { id = item.IdOferta })
+                                            @Html.ActionLink(item.CargoOfrecido, "Oferta", new { id = Helper.Encriptar(item.IdOferta.ToString()) })
 
                                             <p>Postuló el @item.FechaPostulacion</p>
                                         </div>
