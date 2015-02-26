@@ -46,6 +46,7 @@ namespace UTPPrototipo.Controllers
                 mensaje.MensajeTexto = "La empresa "+ nombreEmpresa + " ha creado la oferta "+ nombreOferta + " que está pendiente de activación.";
                 mensaje.Asunto = nombreOferta + " - Oferta pendiente de activación.";
                 LNCorreo.EnviarCorreo(mensaje);
+               
             }
             else
                 //De UTP a la empresa.
@@ -67,7 +68,8 @@ namespace UTPPrototipo.Controllers
             
 
             //No debe retornar vistas.
-            return Content("");
+            //return Content("");
+            return RedirectToAction("Publicacion","Empresa");
         }
 
         [HttpGet]
