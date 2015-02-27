@@ -206,6 +206,8 @@ namespace UTPPrototipo.Controllers
             ViewBag.IdEmpresaLocacion = new SelectList(lnEmpresaLocacion.ObtenerLocaciones(ticket.IdEmpresa), "IdEmpresaLocacion", "NombreLocacion", oferta.IdEmpresaLocacion);
             ViewBag.RecibeCorreosIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_OFERTA_RECIBECORREOS), "IdListaValor", "Valor", oferta.RecibeCorreosIdListaValor);
 
+            //Se agrega el estado del estudio para las carreras:
+            ViewBag.EstadoCarreraUTP = new SelectList(lnGeneral.ObtenerListaValorOfertaEstudiosUTP(Constantes.IDLISTA_ESTADO_DEL_ESTUDIO), "IdListaValor", "Valor");
            
 
             return View(oferta);
