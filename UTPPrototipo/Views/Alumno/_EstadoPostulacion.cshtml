@@ -1,4 +1,6 @@
 ﻿@using UTPPrototipo.Common
+@using UTPPrototipo.Utiles
+
 @model UTP.PortalEmpleabilidad.Modelo.Oferta
 <div class="panel panel-default">
     <div class="panel-heading" role="tab" id="headingPostulacion" style="padding: 2px 2px 2px 6px;">
@@ -35,7 +37,7 @@
                                 <td class="celda-datos">
                                     <strong>@Model.NombreCV </strong>&nbsp;&nbsp;
                                     @*<a href="#" id="idDescargaCV">descargar</a>*@
-                                    @Html.ActionLink("Descargar", "DescargarDesdeBD", "Plantilla", new { idOfertaPostulante = Model.IdOfertaPostulante }, null)
+                                    @Html.ActionLink("Descargar", "DescargarDesdeBD", "Plantilla", new { idOfertaPostulante = Helper.Encriptar(Model.IdOfertaPostulante.ToString()) }, null)
                                 </td>
                             </tr>
                         </table>

@@ -94,11 +94,14 @@ namespace UTPPrototipo.Controllers
         }
 
 
-        public ActionResult Oferta(string idOfertaCrypt, string pantallaCrypt)
+        public ActionResult Oferta(string idOfertaCrypt, string pantallaCrypt = "")
         {
             //int idOferta = id;
             int idOferta = Convert.ToInt32(Helper.Desencriptar(idOfertaCrypt));
-            string pantalla = Helper.Desencriptar(pantallaCrypt);
+
+            //El parámetro pantallaCrypt tiene valor "" por defecto. Existen llamadas que no envían este dato y no se debe desencriptar.
+            string pantalla = pantallaCrypt == "" ? "" : Helper.Desencriptar(pantallaCrypt); 
+            
             ViewBag.Pantalla = pantalla;
 
             Oferta oferta = lnOferta.ObtenerPorId(idOferta);
@@ -659,7 +662,7 @@ namespace UTPPrototipo.Controllers
             return PartialView("_VistaOfertaAnuncio", oferta);
         }
 
-        public ActionResult VistaOfertaPostulantes(int id, string estado, string columna, string orden)
+        public ActionResult VistaOfertaPostulantes(int id, string estado, string columna, string orden, string pantalla = "")
         {
             LNOferta lnOferta = new LNOferta ();
 
@@ -723,6 +726,7 @@ namespace UTPPrototipo.Controllers
             //Se envían datos para mostrar el orden de la grilla. Se valida si es NULL para la primera vez que cargue el bloque.
             ViewBag.Columna = columna == null ? "Fecha" : columna;
             ViewBag.Orden = orden == null ? "ASC" : orden;
+            ViewBag.Pantalla = pantalla;
 
             return PartialView("_VistaOfertaPostulantes", postulantes);
         }
@@ -1135,7 +1139,7 @@ namespace UTPPrototipo.Controllers
 
         [AcceptVerbs(HttpVerbs.Post)]
         [ValidateAntiForgeryToken] // this action takes the viewModel from the modal
-        public PartialViewResult _OfertaPostulanteMoverDeFase(List<OfertaPostulante> listaOfertaPostulante, string IdOfertaFase) //Este es como el submit
+        public PartialViewResult _OfertaPostulanteMoverDeFase(List<OfertaPostulante> listaOfertaPostulante, string IdOfertaFase, string pantalla = "") //Este es como el submit
         {
             //Se establece el campo ModificadoPor
             TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];
@@ -1157,6 +1161,7 @@ namespace UTPPrototipo.Controllers
             List<OfertaFase> listaFasesActivas = lnOferta.Obtener_OfertaFaseActivas(idOferta);
 
             ViewBag.IdOfertaFase = new SelectList(listaFasesActivas, "IdListaValor", "FaseOferta");
+            ViewBag.Pantalla = pantalla;
 
             //return PartialView("_OfertaFase", lista);
             return PartialView("_VistaOfertaPostulantes", postulantes);

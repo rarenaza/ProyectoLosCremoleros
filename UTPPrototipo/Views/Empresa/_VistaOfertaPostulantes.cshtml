@@ -8,6 +8,7 @@
 <input id="hddEstadoOfertaIdListaValor" type="hidden" value="@ViewBag.EstadoOfertaIdListaValor" />
 
 <!--Se guarda la columna  -->
+<input id="pantalla" name="pantalla" type="hidden" value="@ViewBag.Pantalla" />
 <input id="hddColumnaActual" type="hidden" value="@ViewBag.Columna" />
 <input id="hddOrdenActual" type="hidden" value="@ViewBag.Orden" />
 
@@ -38,7 +39,8 @@
                     @{
                         if (ViewBag.Pantalla == "Empresa")
                         { 
-                            if ((ticketEmpresa.Rol == "ROLEAD" || ticketEmpresa.Rol == "ROLEUS") && (ViewBag.EstadoOfertaIdListaValor == "OFERAC")) //Si es Administrador o Supervisor.
+                            <!--&& (ViewBag.EstadoOfertaIdListaValor == "OFERAC") Se quita esta validación de oferta activa porque al mover postulantes el botón sale deshabilitado-->
+                            if ((ticketEmpresa.Rol == "ROLEAD" || ticketEmpresa.Rol == "ROLEUS")) //Si es Administrador o Supervisor.
                             {
                                 <span>&nbsp;&nbsp;<button class="btn btn-default color-paleta2" onclick="return validar();">Mover</button></span>
                             }

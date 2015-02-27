@@ -11,6 +11,7 @@ using UTP.PortalEmpleabilidad.Logica;
 using System.Data;
 using System.Text;
 using UTPPrototipo.Common;
+using UTPPrototipo.Utiles;
 
 namespace UTPPrototipo.Controllers
 {
@@ -517,11 +518,12 @@ namespace UTPPrototipo.Controllers
         }
 
 
-        public FileResult DescargarDesdeBD(int idOfertaPostulante)
+        public FileResult DescargarDesdeBD(string idOfertaPostulante)
         {
+            int idOfertaPostulanteEntero = Convert.ToInt32(Helper.Desencriptar(idOfertaPostulante));
             LNPlantillaCV lnPlantilla = new LNPlantillaCV();
 
-            DataTable dtResultado = lnPlantilla.ObtenerDocumentoCV(idOfertaPostulante);
+            DataTable dtResultado = lnPlantilla.ObtenerDocumentoCV(idOfertaPostulanteEntero);
 
             byte[] arrayCV = (byte[])dtResultado.Rows[0]["DocumentoCV"];
             string codigoAlumno = Convert.ToString(dtResultado.Rows[0]["CodAlumnoUtp"]);
