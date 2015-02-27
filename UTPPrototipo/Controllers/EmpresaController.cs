@@ -186,7 +186,9 @@ namespace UTPPrototipo.Controllers
                 TempData["MsjExitoEditarOferta"] = "La oferta '" + oferta.CargoOfrecido + "' ha sido actualizada con éxito.";
 
                 //2. Redireccionar a la lista.
-                return RedirectToAction("Publicacion");
+                //return RedirectToAction("Publicacion");
+
+            
             }
             else
             {
