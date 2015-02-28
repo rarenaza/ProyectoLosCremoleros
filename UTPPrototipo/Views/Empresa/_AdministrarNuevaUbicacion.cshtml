@@ -8,9 +8,9 @@
   
     <div class="modal-body">
         @Html.ValidationSummary(false, "", new { @class = "alert alert-danger" })
-        @Html.HiddenFor(model => Model.TextoDepartamento)
-        @Html.HiddenFor(model => Model.TextoCiudad)
-        @Html.HiddenFor(model => Model.TextDistrito)
+        @*@Html.Hidden("DireccionDepartamento", Model.DireccionDepartamento)
+        @Html.Hidden("DireccionCiudad", Model.DireccionCiudad)
+        @Html.Hidden("DireccionDistrito", Model.DireccionDistrito)*@
         <div class="row">
             <div class="col-sm-6">
                 <div class="input-group fuente-pequeña">
@@ -69,26 +69,26 @@
                 <div class="input-group fuente-pequeña">
                     <span class="input-group-addon">(*) Depar-<br />tamento</span>
                     @*@Html.Raw(@Html.EditorFor(model => model.DireccionDepartamento).ToString().Replace("text-box single-line", "form-control"))*@
-                    @Html.DropDownListFor(m => m.DireccionDepartamento, null, "- Seleccione Departamento -", htmlAttributes: new { @class = "form-control", @id = "DireccionDepartamentoLocacion" })
-                </div>@Html.ValidationMessageFor(model => model.DireccionDepartamento, "", new { @class = "text-danger" })
+                    @Html.DropDownListFor(m => m.DireccionDepartamentoId, null, "- Seleccione Departamento -", htmlAttributes: new { @class = "form-control", @id = "DireccionDepartamentoId2" })
+                </div>@Html.ValidationMessageFor(model => model.DireccionDepartamentoId, "", new { @class = "text-danger" })
             </div>
             <div class="col-sm-6">
                 <div class="input-group fuente-pequeña">
                     <span class="input-group-addon">(*) Ciudad</span>
-                    @Html.DropDownListFor(m => m.DireccionCiudad, null, "- Seleccione Ciudad -", htmlAttributes: new { @class = "form-control", @id = "DireccionCiudadLocacion" })
+                    @Html.DropDownListFor(m => m.DireccionCiudadId, null, "- Seleccione Ciudad -", htmlAttributes: new { @class = "form-control", @id = "DireccionCiudadId2" })
                     @*@Html.Raw(@Html.EditorFor(model => model.DireccionCiudad).ToString().Replace("text-box single-line", "form-control"))*@
                     
-                </div>@Html.ValidationMessageFor(model => model.DireccionCiudad, "", new { @class = "text-danger" })
+                </div>@Html.ValidationMessageFor(model => model.DireccionCiudadId, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="row">
             <div class="col-sm-6">
                 <div class="input-group fuente-pequeña">
                     <span class="input-group-addon">(*)<br />Distrito</span>
-                    @Html.DropDownList("DireccionDistrito", new SelectList(string.Empty, "Value", "Text"), "- Seleccione Distrito -", new { @class = "form-control", @id = "DireccionDistritoLocacion" })
+                    @Html.DropDownList("DireccionDistritoId", new SelectList(string.Empty, "Value", "Text"), "- Seleccione Distrito -", new { @class = "form-control", @id = "DireccionDistritoId2" })
                     @*@Html.Raw(@Html.EditorFor(model => model.DireccionDistrito).ToString().Replace("text-box single-line", "form-control"))*@
                     
-                </div>@Html.ValidationMessageFor(model => model.DireccionDistrito, "", new { @class = "text-danger" })
+                </div>@Html.ValidationMessageFor(model => model.DireccionDistritoId, "", new { @class = "text-danger" })
             </div>
         </div>
         <div class="row">
@@ -115,14 +115,14 @@
 </div>
 
 <script type="text/javascript">
-    $(document).ready(function () {
+    @*$(document).ready(function () {
 
         //Cambio en el combo departamento para cargar ciudades:
-        $("#DireccionDepartamentoLocacion").change(function () {
+        $("#DireccionDepartamentoId").change(function () {
 
             //Se limpia ciudad y distrito.
-            $("#DireccionCiudadLocacion").empty();
-            $("#DireccionDistritoLocacion").empty();
+            $("#DireccionCiudadId").empty();
+            $("#DireccionDistritoId").empty();
 
             $.ajax({
                 type: 'POST',
@@ -191,10 +191,10 @@
 
 
         //Combo de provincia.
-        $('#DireccionCiudadLocacion').on('change', function () {
+        $('#DireccionCiudadId').on('change', function () {
 
             //Se obtiene el texto del combo.
-            var TextCiudad = $("#DireccionCiudadLocacion option:selected").text();
+            var TextCiudad = $("#DireccionCiudadId option:selected").text();
 
             //Se guarda el valor en el hidden TextoDepartamento.
             $('#TextoCiudad').val(TextCiudad);
@@ -210,6 +210,35 @@
             $('#TextDistrito').val(TextDistrito);
         });
 
+    });*@
+
+
+    $("#DireccionDepartamentoId2").change(function () {
+
+        fillCombo2("DireccionCiudadId2", $("#DireccionDepartamentoId2").val());
+    });
+    $("#DireccionCiudadId2").change(function () {
+        fillCombo2("DireccionDistritoId2", $("#DireccionCiudadId2").val());
     });
 
+    function fillCombo2(updateId, value) {
+        if (value != "" && value != null) {
+            $.getJSON('@Url.Action("ListarListaValor", "Empresa")'
+                + '/' + value,
+                function (data) {
+                    $("#" + updateId).empty();
+                    $("#" + updateId).append("<option value selected='true'>- Seleccion -</option>");
+                    $.each(data, function (i, item) {
+                        $("#" + updateId).append("<option value='"
+                           + item.IdListaValor + "'>" + item.Valor
+                           + "</option>");
+                        $("#" + updateId).attr('disabled', false);
+                    });
+                });
+        } else {
+            $("#" + updateId).empty();
+            $("#" + updateId).trigger("change");
+            $("#" + updateId).attr('disabled', true);
+        }
+    }
 </script>

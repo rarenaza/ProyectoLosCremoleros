@@ -1906,7 +1906,7 @@ namespace UTPPrototipo.Controllers
             {
                 ViewBag.Message = "Datos Actualizado";
 
-                return RedirectToAction("Evento_Editar", "UTP", new { id =evento.IdEvento });
+                return RedirectToAction("Evento_Editar", "UTP", new { id =Helper.Encriptar(evento.IdEvento.ToString()) });
             }
             else
             {
@@ -1947,7 +1947,7 @@ namespace UTPPrototipo.Controllers
             {
                 ViewBag.Message = "Datos Actualizado";
 
-                return RedirectToAction("Evento_Editar", "UTP", new { id = evento.IdEvento });
+                return RedirectToAction("Evento_Editar", "UTP", new { id = Helper.Encriptar(evento.IdEvento.ToString()) });
             }
             else
             {

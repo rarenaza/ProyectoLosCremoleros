@@ -313,6 +313,7 @@
 
                                                 @Html.TextBoxFor(m => m.ExperienciaGeneral, new { @class = "form-control" })
                                             </div>
+                                            @Html.ValidationMessageFor(m => m.ExperienciaGeneral, "", new { @class = "text-danger" })
                                         </div>
                                         <div class="col-md-6">
                                             <div class="input-group">
@@ -322,6 +323,7 @@
 
                                                 @Html.TextBoxFor(m => m.ExperienciaPosicionesSimilares, new { @class = "form-control" })
                                             </div>
+                                            @Html.ValidationMessageFor(m => m.ExperienciaPosicionesSimilares, "", new { @class = "text-danger" })
                                         </div>
                                     </div>
                                 </div>

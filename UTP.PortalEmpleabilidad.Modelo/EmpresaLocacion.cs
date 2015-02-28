@@ -21,13 +21,13 @@ namespace UTP.PortalEmpleabilidad.Modelo
         [DataType(DataType.MultilineText)]
         public string Direccion { get; set; }
 
-        [Required(ErrorMessage = "Falta Distrito")]
+        //[Required(ErrorMessage = "Falta Distrito")]
         public string DireccionDistrito { get; set; }
 
-        [Required(ErrorMessage = "Falta Ciudad")]
+        //[Required(ErrorMessage = "Falta Ciudad")]
         public string DireccionCiudad { get; set; }
 
-        [Required(ErrorMessage = "Falta Departamento")]
+        //[Required(ErrorMessage = "Falta Departamento")]
         public string DireccionDepartamento { get; set; }
         public ListaValor EstadoLocacion { get; set; }
 

@@ -131,7 +131,9 @@ namespace UTP.PortalEmpleabilidad.Modelo
         [Required(ErrorMessage = Constantes.MSJ_CAMPO_OBLIGATORIO)]
         public string EstadoCarreraUTP { get; set; }
         public int? CicloMinimoCarreraUTP { get; set; }
+        [RegularExpression(@"[0-9]*\.?[0-9]+", ErrorMessage = "Este campo sólo acepta números.")]
         public int ExperienciaGeneral { get; set; }
+        [RegularExpression(@"[0-9]*\.?[0-9]+", ErrorMessage = "Este campo sólo acepta números.")]
         public int ExperienciaPosicionesSimilares { get; set; }
 
        public Oferta() {
