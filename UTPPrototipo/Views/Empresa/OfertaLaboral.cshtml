@@ -529,7 +529,7 @@
             //Se envía una confirmación.
             if (confirm('¿Está seguro de publicar la oferta?')) {
                 var url = '@Url.Action("FinalizarOferta", "Oferta")' + "?idOferta=" + idOferta + '&estado=OFERPR' + '&pantalla=' + pantalla; //Se envía el estado Pendiente de Activación.
-
+                window.history.go(-1);
                 $.get(url, function (data) {
                     alert("La oferta ha sido publicada y está pendiente de activación por UTP");
              

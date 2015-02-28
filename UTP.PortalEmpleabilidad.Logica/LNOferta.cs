@@ -403,15 +403,20 @@ namespace UTP.PortalEmpleabilidad.Logica
                 estudio.FechaModificacion               = Convert.ToDateTime(filaEstudio["FechaModificacion"]);
 
                 #region Si se descomenta sale error
-                //if (estudio.TipoDeEstudio.IdListaValor == "TEUNIV") //Tipo de Estudio Universitario de UTP.
-                //{
-                //    estudio.CodigoCarrera = listaCarrerasUTP.Where(m => m.Valor == estudio.Estudio).First().IdListaValor; //Se guarda el código de la carrera.
-                //    oferta.CarrerasSeleccionadas.Add(estudio);
-                //}
-                //else //Otros estudios.
-                //{
-                //    oferta.ListaEstudios.Add(estudio);
-                //}
+                if (estudio.TipoDeEstudio.IdListaValor == "TEUNIV") //Tipo de Estudio Universitario de UTP.
+                {
+                    var carreraEncontrada = listaCarrerasUTP.Where(m => m.Valor == estudio.Estudio).FirstOrDefault();
+
+                    if (carreraEncontrada != null)
+                    {
+                        estudio.CodigoCarrera = carreraEncontrada.IdListaValor; //Se guarda el código de la carrera.
+                        oferta.CarrerasSeleccionadas.Add(estudio);
+                    }
+                }
+                else //Otros estudios.
+                {
+                    oferta.ListaEstudios.Add(estudio);
+                }
                 #endregion
 
             }

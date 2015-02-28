@@ -384,7 +384,7 @@
                                 <div class="col-sm-12">
                                     <h6>
                                         @*<a href="../Empresa/Oferta"><strong>Gerente de Proyectos en Desarrollo de Software</strong></a>*@
-                                        @Html.ActionLink(Model.alumnocv.CargoOfrecido, "Oferta", new { id = Helper.Encriptar(Model.alumnocv.IdOferta.ToString()) })
+                                        @Html.ActionLink(Model.alumnocv.CargoOfrecido, "Oferta", new { idOfertaCrypt = Helper.Encriptar(Model.alumnocv.IdOferta.ToString()), pantallaCrypt = Helper.Encriptar("Empresa") })
                                     </h6>
                                     <p>Postuló el <strong>@Model.alumnocv.FechaPostulacion</strong></p>
                                     @*<a href="#">Descargar CV </a>*@
@@ -444,7 +444,7 @@
 
                             <hr />
                             <div>
-                                <button id="btnDescartarPostulante" class="btn btn-danger">Descartar Potulante</button>
+                                <button id="btnDescartarPostulante" class="btn btn-danger">Descartar Postulante</button>
                             </div>
 
                             @if (Model.alumnopostulacionesdata != null && Model.alumnopostulacionesdata.Count > 0)
@@ -455,7 +455,7 @@
                                 {
                                     <div class="row">
                                         <div class="col-sm-12">
-                                            @Html.ActionLink(item.CargoOfrecido, "Oferta", new { id = Helper.Encriptar(item.IdOferta.ToString()) })
+                                            @Html.ActionLink(item.CargoOfrecido, "Oferta", new { idOfertaCrypt = Helper.Encriptar(item.IdOferta.ToString()), pantallaCrypt = Helper.Encriptar("Empresa") })
 
                                             <p>Postuló el @item.FechaPostulacion</p>
                                         </div>

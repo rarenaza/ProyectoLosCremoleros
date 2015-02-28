@@ -44,7 +44,7 @@
                     @Html.AntiForgeryToken()
 
                     <div id="divActualizarPostulantes">
-                        @Html.Action("VistaOfertaPostulantes", "Empresa", new { id = @Model.IdOferta, estado = @Model.EstadoOferta })
+                        @Html.Action("VistaOfertaPostulantes", "Empresa", new { id = @Model.IdOferta, estado = @Model.EstadoOferta, pantalla = @ViewBag.Pantalla })
                     </div>
                 }
             </div>
