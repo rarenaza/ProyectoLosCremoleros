@@ -64,11 +64,11 @@
     <div class="col-sm-6">
         <div class="row">
             <div class="col-sm-12">
-                <h6>Te has inscrito en estos Eventos</h6>
-                <hr />
 
                 @if (Model.usuarioeventoactivo != null && Model.usuarioeventoactivo.Count > 0)
                 {
+                    <h6>Te has inscrito en estos Eventos</h6>
+                    <hr />
                     <div class="row grilla1-cabecera color-paleta5">
                         <div class="col-sm-2">
                             Evento
@@ -123,12 +123,18 @@
                     }
                     <hr />
                 }
+                else
+                {
+                    <h6>No te has inscrito en ningún Evento</h6>
+                    <hr />
+                }
 
-                <h6>Participaste en estos Eventos</h6>
-                <hr />
+                
 
                 @if (Model.usuarioeventopasado != null && Model.usuarioeventopasado.Count > 0)
                 {
+                    <h6>Participaste en estos Eventos</h6>
+                    <hr />
                     <div class="row grilla1-cabecera color-paleta5">
                         <div class="col-sm-2">
                             Evento
@@ -181,6 +187,11 @@
                             </div>
                         </div>
                     }
+                    <hr />
+                }
+                else
+                {
+                    <h6>No has participado en ningún Evento</h6>
                     <hr />
                 }
             </div>
