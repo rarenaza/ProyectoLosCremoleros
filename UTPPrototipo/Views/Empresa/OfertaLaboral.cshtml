@@ -60,25 +60,39 @@
                             </div>
 
                             <!--Bloque 3: Vista previa-->
-                            <div class="col-sm-3" style="border-right:solid;border-right-color:lightgray;border-right-width:1px;text-align:center; visibility: @ViewBag.Visibility;">
+                            <div class="col-sm-3" style="border-right:solid;border-right-color:lightgray;border-right-width:1px;text-align:center;">
                                 <span>Visualice como los Postulantes verán su Oferta Laboral</span>
                                 <br />
-                                @Html.ActionLink("Vista Previa", "MostrarOferta", new { id = Helper.Encriptar(Model.IdOferta.ToString()) }, htmlAttributes: new { @class = "btn btn-default color-paleta2", @target = "_blank", @title = "Vista previa de la oferta" })
+                                @{
+                                    if (Model.EstadoOferta == "OFERBO") //Estado en borrador.
+                                    {
+                                        @Html.ActionLink("Vista Previa", "MostrarOferta", new { id = Helper.Encriptar(Model.IdOferta.ToString()) }, htmlAttributes: new { @class = "btn btn-default color-paleta2", @target = "_blank", @title = "Vista previa de la oferta", disabled = "disabled" })
+                                    }
+                                    else
+                                    {
+                                        @Html.ActionLink("Vista Previa", "MostrarOferta", new { id = Helper.Encriptar(Model.IdOferta.ToString()) }, htmlAttributes: new { @class = "btn btn-default color-paleta2", @target = "_blank", @title = "Vista previa de la oferta" })
+                                    }
+                                }                              
                             </div>
 
                             <!--Bloque 4: Publicación-->
-                            <div class="col-sm-3" style="border-right:solid;border-right-color:lightgray;border-right-width:1px;text-align:center; visibility: @ViewBag.Visibility;">
+                            <div class="col-sm-3" style="border-right:solid;border-right-color:lightgray;border-right-width:1px;text-align:center;">
                                 <span>Si ha finalizado la edición de su Oferta laboral, entonces Publíquela.</span>
                                 <br />
                                 @{
-        if (Model.EstadoOferta == "OFERCO") //Estado en construcción.
-        {
-            <span id="lblPublicarOferta" class="btn btn-default color-paleta2">Publicar</span>
-        }
-        else
-        {
-            <span>Oferta pendiente de activación</span>
-        }
+                                if (Model.EstadoOferta == "OFERCO") //Estado en construcción.
+                                {
+                                    <span id="lblPublicarOferta" class="btn btn-default color-paleta2">Publicar</span>
+                                }
+                                else
+                                    if (Model.EstadoOferta == "OFERBO") //Estado en borrador.
+                                    {
+                                        <span id="lblPublicarOferta" class="btn btn-default color-paleta2" disabled>Publicar</span>
+                                    }
+                                    else
+                                    {
+                                        <span>Oferta pendiente de activación</span>
+                                    }
                                 }
                             </div>
 
@@ -162,7 +176,7 @@
                                 </div>
                                 @Html.ValidationMessageFor(m => m.FechaFinRecepcionCV, "", new { @class = "text-danger" })
                                 <div class="input-group">
-                                    <span class="input-group-addon">Fin de<br />la oferta</span>                                    
+                                    <span class="input-group-addon">Fin de<br />la oferta</span>
                                     @Html.TextBoxFor(m => m.FechaFinProceso, new { @class = "form-control", @placeholder = "Fecha fin de la oferta", @Value = Model.FechaFinProceso.ToString("d") })
                                 </div>
                                 @Html.ValidationMessageFor(m => m.FechaFinProceso, "", new { @class = "text-danger" })
@@ -532,7 +546,7 @@
                 window.history.go(-1);
                 $.get(url, function (data) {
                     alert("La oferta ha sido publicada y está pendiente de activación por UTP");
-             
+
                     $('#lblPublicarOferta').html("Oferta publicada")
                     $('#lblPublicarOferta').attr("disabled", "disabled"); //Se deshabilita el botón.
 
@@ -774,18 +788,18 @@
 
 @{
     //Se valida que exista mensaje de éxito al crear una oferta
-    if (TempData["MsjExitoCrearOferta"] != null)
-    {
-        <input id="msjExitoCrearOferta" type="hidden" value="@TempData["MsjExitoCrearOferta"]" />
-        TempData["MsjExitoCrearOferta"] = null; //Se establece el valor nuevamente en NULL.
+    @*if (TempData["MsjExitoCrearOferta"] != null)
+        {
+            <input id="msjExitoCrearOferta" type="hidden" value="@TempData["MsjExitoCrearOferta"]" />
+            TempData["MsjExitoCrearOferta"] = null; //Se establece el valor nuevamente en NULL.
 
-        //Se muestra el script
-        <script>
+            //Se muestra el script
+            <script>
 
-            var msjExito = document.getElementById("msjExitoCrearOferta").value;
-            alert(msjExito);
+                var msjExito = document.getElementById("msjExitoCrearOferta").value;
+                alert(msjExito);
 
-        </script>
-    }
+            </script>
+        }*@
 
 }
