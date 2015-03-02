@@ -133,8 +133,8 @@ namespace UTPPrototipo.Controllers
             ViewBag.RecibeCorreosIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_OFERTA_RECIBECORREOS), "IdListaValor", "Valor", oferta.RecibeCorreosIdListaValor);
             //TempData["ListaCarrerasDisponibles"] = new SelectList(oferta.CarrerasDisponibles, "IdListaValor", "Valor");
 
-            if (oferta.EstadoOferta == Constantes.OFERTA_ESTADO_BORRADOR) ViewBag.Visibility = "hidden";
-            else ViewBag.Visibility = "visible";
+            if (oferta.EstadoOferta == Constantes.OFERTA_ESTADO_BORRADOR) ViewBag.Disabled = "disabled";
+            else ViewBag.Disabled = "";
 
             //Se agrega el estado del estudio para las carreras:
             ViewBag.EstadoCarreraUTP = new SelectList(lnGeneral.ObtenerListaValorOfertaEstudiosUTP(Constantes.IDLISTA_ESTADO_DEL_ESTUDIO), "IdListaValor", "Valor");
