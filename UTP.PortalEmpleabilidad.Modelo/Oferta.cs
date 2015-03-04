@@ -135,6 +135,8 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public int ExperienciaGeneral { get; set; }
         [RegularExpression(@"[0-9]*\.?[0-9]+", ErrorMessage = "Este campo sólo acepta números.")]
         public int ExperienciaPosicionesSimilares { get; set; }
+        public bool CumpleExperienciaGeneral { get; set; }
+        public bool CumpleExperienciaPosicionesSimilares { get; set; }
 
        public Oferta() {
 

@@ -12,7 +12,46 @@
         <div class="panel-body fuente-pequeña">
             <div class="row">
                 <div class="col-md-12">
-                    <strong class="sub-titulo-seccion">Estudios</strong>
+                    <strong class="sub-titulo-seccion">Carreras</strong>
+                </div>
+            </div>
+            <br />
+            @{
+                int ControlCicloyEstado = 1;
+            }
+            @foreach (var itemCarrera in Model.CarrerasSeleccionadas)
+            {
+                if (ControlCicloyEstado == 1)
+                {
+                    ControlCicloyEstado = 0;
+                    <table class="fuente-pequeña">
+                        <tr>
+                            <td class="celda-nombre">Estado</td>
+                            <td class="celda-datos">@itemCarrera.EstadoDelEstudio.Valor</td>
+                        </tr>
+                        <tr>
+                            <td class="celda-nombre">Ciclo mínimo</td>
+                            <td class="celda-datos">@itemCarrera.CicloEstudio</td>
+                        </tr>
+                    </table>
+                    <br />
+                    
+                }
+                <table class="fuente-pequeña">
+
+                    <tr>
+                        <td class="celda-nombre">Carrera</td>
+                        <td class="celda-datos">@itemCarrera.Estudio</td>
+                    </tr>
+
+                </table>
+
+            }
+            <br />
+            <hr />
+            <div class="row">
+                <div class="col-md-12">
+                    <strong class="sub-titulo-seccion">Otros Estudios</strong>
                 </div>
             </div>
             <br />
@@ -35,11 +74,28 @@
                     <tr>
                         <td class="celda-nombre">Ciclo mínimo</td>
                         <td class="celda-datos">@itemEstudio.CicloEstudio</td>
-                    </tr>                    
+                    </tr>
                 </table>
                 <br />
             }
-                        
+
+            <hr />
+            <div class="row">
+                <div class="col-md-12">
+                    <strong class="sub-titulo-seccion">Experiencia</strong>
+                </div>
+            </div>
+            <br />
+            <table class="fuente-pequeña">
+                <tr>
+                    <td class="celda-nombre">General (meses)</td>
+                    <td class="celda-datos">@Model.ExperienciaGeneral</td>
+                </tr>
+                <tr>
+                    <td class="celda-nombre">En posiciones similares (meses)</td>
+                    <td class="celda-datos">@Model.ExperienciaPosicionesSimilares</td>
+                </tr>
+            </table>
             <hr />
             <div class="row">
                 <div class="col-md-12">
@@ -65,7 +121,7 @@
                 </table>
                 <br />
             }
-                      
+
             <hr />
             <div class="row">
                 <div class="col-md-12">
@@ -98,3 +154,4 @@
         </div>
     </div>
 </div>
+

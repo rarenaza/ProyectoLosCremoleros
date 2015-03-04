@@ -113,6 +113,10 @@ namespace UTP.PortalEmpleabilidad.Logica
                 oferta.RecibeCorreosIdListaValor = Funciones.ToString(dtResultado.Rows[0]["RecibeCorreos"]);
                 oferta.CorreoElectronicoUsuarioEmpresa = Funciones.ToString(dtResultado.Rows[0]["CorreoElectronicoUsuarioEmpresa"]);
                 oferta.EstadoOferta = Funciones.ToString(dtResultado.Rows[0]["EstadoOferta"]);
+                oferta.ExperienciaGeneral = Funciones.ToInt(dtResultado.Rows[0]["MesesExperienciaTotal"]);
+                oferta.ExperienciaPosicionesSimilares = Funciones.ToInt(dtResultado.Rows[0]["MesesExperienciaTipoTrabajo"]);
+                oferta.CumpleExperienciaGeneral = Funciones.ToBoolean(dtResultado.Rows[0]["CumpleMesesExperienciaTotal"]);
+                oferta.CumpleExperienciaPosicionesSimilares = Funciones.ToBoolean(dtResultado.Rows[0]["CumpleMesesExperienciaTipoTrabajo"]);
             }
 
             return oferta;

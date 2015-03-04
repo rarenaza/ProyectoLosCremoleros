@@ -141,19 +141,19 @@ input[type="checkbox"].input-validation-error {
 }
 
 .BannerSuperTitulo {
-    font-size: 50px;
+    font-size: 70px;
     font-family: GothamRnd-Bold;
-    color:rgb(220, 220, 220);
+    color:white;
 }
 
 .BannerTitulo {
-    font-size: 35px;
+    font-size: 30px;
     font-family: GothamRnd-Bold;
     color:rgb(220, 220, 220);
 }
 
 .BannerSubTitulo {
-    font-size: 25px;
+    font-size: 20px;
     font-family: GothamRnd-Book;
     color:rgb(220, 220, 220);
 }

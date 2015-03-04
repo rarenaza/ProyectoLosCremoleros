@@ -59,7 +59,8 @@ namespace UTP.PortalEmpleabilidad.Modelo.Vistas.Ofertas
         public int PaginaActual { get; set; }
         public int NumeroRegistros { get; set; }
         public int MaxPagina { get; set; }
-
+        //public int ExperienciaGeneral { get; set; }
+        //public int ExperienciaPosicionesSimilares { get; set; }
         public List<Oferta> ListadoEstudios { get; set; }
         public List<Oferta> ListadoSectorEmpresarial { get; set; }
         public List<Oferta> ListadoInformacionAdicional { get; set; }
