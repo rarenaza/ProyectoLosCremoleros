@@ -66,7 +66,7 @@
                                 @{
                                     if (Model.EstadoOferta == "OFERBO") //Estado en borrador.
                                     {
-                                        @Html.ActionLink("Vista Previa", "MostrarOferta", new { id = Helper.Encriptar(Model.IdOferta.ToString()) }, htmlAttributes: new { @class = "btn btn-default color-paleta2", @target = "_blank", @title = "Vista previa de la oferta", disabled = "disabled" })
+                                        @Html.ActionLink("Vista Previa", "MostrarOferta", new { id = Helper.Encriptar(Model.IdOferta.ToString()) }, htmlAttributes: new { @class = "btn btn-default color-paleta2", @target = "_blank", @title = "Vista previa de la oferta", @disabled = "disabled", @style = "color:grey;" })
                                     }
                                     else
                                     {
@@ -88,7 +88,9 @@
                                 else
                                     if (Model.EstadoOferta == "OFERBO") //Estado en borrador.
                                     {
-                                        <span id="lblPublicarOferta" class="btn btn-default color-paleta2" disabled>Publicar</span>
+                                        <span>Si ha finalizado la edición de su Oferta laboral, entonces Publíquela.</span>
+                                        <br />
+                                        <span id="lblPublicarOferta" class="btn btn-default color-paleta2" style="color:grey;" disabled>Publicar</span>
                                     }
                                     else
                                     {
@@ -121,14 +123,15 @@
                         </div>
                         <div id="collapseOferta" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOferta">
                             <div class="panel-body fuente-pequeña">
-                                <div class="input-group">
-                                    <span class="input-group-addon">(*) Cargo</span>
+                                <div class="input-group rubberBand animated animated3">
+                                    <span class="input-group-addon"><strong class="tada animated animated5">(*) Cargo</strong></span>
                                     @*<input id="CargoOfrecido" data-val="true" data-val-required="No ha ingresado el campo" name="CargoOfrecido" type="text" class="form-control" placeholder="Nombre del cargo a publicar" value="@Model.CargoOfrecido">*@
                                     @Html.TextBoxFor(m => m.CargoOfrecido, new { @class = "form-control", @id = "Cargo", @placeholder = "Nombre del cargo a publicar" })
 
                                     @*<input class="text-box single-line" id="CargoOfrecido" name="CargoOfrecido" type="text" value="">*@
                                     @*@Html.EditorFor(model => model.CargoOfrecido, new { @class = "form-control" })*@
                                 </div>
+                                <br />
                                 @Html.ValidationMessageFor(m => m.CargoOfrecido, "", new { @class = "text-danger" })
                                 <div class="input-group">
                                     <span class="input-group-addon">(*)<br />Funciones</span>
@@ -304,6 +307,7 @@
                                                 @*<input class="form-control" placeholder="Ciclo mínimo de estadio">*@
                                                 @Html.TextBoxFor(m => m.CicloMinimoCarreraUTP, new { @class = "form-control" })
                                             </div>
+                                            @Html.ValidationMessageFor(m => m.CicloMinimoCarreraUTP, "", new { @class = "text-danger" })
                                         </div>
 
                                     </div>

@@ -15,7 +15,7 @@
 <br />
 <div class="row">
     <div class="col-sm-6">
-        <select id="selectCarrerasDisponibles" multiple style="width: 250px;height: 300px;">
+        <select id="selectCarrerasDisponibles" multiple style="width: 100%;height: 300px;border-radius: 5px 5px 5px 5px;">
             <!--foreach (var item in (SelectList)TempData["ListaCarrerasDisponibles"]-->
             @foreach (var item in carrerasDisponibles)
             {
@@ -30,7 +30,7 @@
         <span class="btn btn-default btn-xs fa fa-arrow-left color-paleta2" onclick="quitarCarrera();"></span>
     </div>
     <div class="col-sm-5" style="text-align:right;">
-        <select id="selectCarrerasSeleccionadas" multiple style="width: 210px;height: 300px;">
+        <select id="selectCarrerasSeleccionadas" multiple style="width: 100%;height: 300px;border-radius: 5px 5px 5px 5px;">
             <!--foreach (var item in (SelectList)TempData["ListaCarrerasUTP"]-->
             @foreach (var item in carrerasSeleccionadas)
             {
