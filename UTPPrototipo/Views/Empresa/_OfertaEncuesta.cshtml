@@ -46,7 +46,7 @@
         <div class="form-group">
             <label>4.	¿De qué otras universidades son las personas que se han contratado para este cargo?</label>
             <br />
-            @Html.TextBoxFor(m => m.ContratadosOtros, new { @class = "form-control", style = "width: 80px;" })
+            @Html.TextBoxFor(m => m.ContratadosOtros, new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.ContratadosOtros, "", new { @class = "text-danger" })
 
         </div>

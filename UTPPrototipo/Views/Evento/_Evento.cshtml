@@ -114,13 +114,13 @@
                 <div class="panel-body">
                    @if (ViewBag.Pantalla == "Empresa")
                    {
-                    @Html.Action("_Mensajes", "Mensaje", new { pantalla = Constantes.MENSAJES_EMPRESA_EVENTO, idEvento = Helper.Encriptar(Model.IdEvento.ToString()) })
+                    @Html.Action("_Mensajes", "Mensaje", new { pantalla = Constantes.MENSAJES_EMPRESA_EVENTO, idEvento = Model.IdEvento })
                    }
                    else
                    {
                        if (ViewBag.Pantalla == "Alumno")
                        {
-                        @Html.Action("_Mensajes", "Mensaje", new { pantalla = Constantes.MENSAJES_ALUMNO_EVENTO, idEvento = Helper.Encriptar(Model.IdEvento.ToString()) })
+                        @Html.Action("_Mensajes", "Mensaje", new { pantalla = Constantes.MENSAJES_ALUMNO_EVENTO, idEvento = Model.IdEvento })
                        }
 
                    }

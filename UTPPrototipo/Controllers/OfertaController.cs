@@ -47,6 +47,9 @@ namespace UTPPrototipo.Controllers
                 mensaje.Asunto = nombreOferta + " - Oferta pendiente de activación.";
                 LNCorreo.EnviarCorreo(mensaje);
                
+                //04MAR: Al publicar la oferta se debe redireccionar a la lista de ofertas.
+                RedirectToAction("Publicacion", "Empresa");
+
             }
             else
                 //De UTP a la empresa.

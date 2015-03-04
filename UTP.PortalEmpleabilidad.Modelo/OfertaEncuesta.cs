@@ -22,9 +22,8 @@ namespace UTP.PortalEmpleabilidad.Modelo
 
         [Required(ErrorMessage=Constantes.MSJ_CAMPO_OBLIGATORIO)]
         public int ContratadosUTP { get; set; }
-
-        [Required(ErrorMessage=Constantes.MSJ_CAMPO_OBLIGATORIO)]
-        public int ContratadosOtros { get; set; }
+       
+        public string ContratadosOtros { get; set; }
 
         public string Estado { get; set; }
         public string ModificadoPor { get; set; }

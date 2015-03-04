@@ -77,11 +77,12 @@
 
                             <!--Bloque 4: Publicación-->
                             <div class="col-sm-3" style="border-right:solid;border-right-color:lightgray;border-right-width:1px;text-align:center;">
-                                <span>Si ha finalizado la edición de su Oferta laboral, entonces Publíquela.</span>
-                                <br />
+                                
                                 @{
                                 if (Model.EstadoOferta == "OFERCO") //Estado en construcción.
                                 {
+                                    <span>Si ha finalizado la edición de su Oferta laboral, entonces Publíquela.</span>
+                                    <br />
                                     <span id="lblPublicarOferta" class="btn btn-default color-paleta2">Publicar</span>
                                 }
                                 else
@@ -91,6 +92,7 @@
                                     }
                                     else
                                     {
+                                        <br />                                       
                                         <span>Oferta pendiente de activación</span>
                                     }
                                 }
@@ -537,21 +539,40 @@
         //Click para publicar una oferta:
         $('#lblPublicarOferta').on('click', function () {
 
+            
+
             //Se obtiene el valor de IdOferta
             var idOferta = document.getElementById('IdOferta').value;
             var pantalla = '@Constantes.MENSAJES_EMPRESA_OFERTA';
+
             //Se envía una confirmación.
             if (confirm('¿Está seguro de publicar la oferta?')) {
+
+                //Se deshabilita el botón de publicar.
+                $('#lblPublicarOferta').text('Publicando ...');
+                $('#lblPublicarOferta').css('backgroundColor', '#838381');
+                $('#lblPublicarOferta').attr('disabled', 'disabled');
+
                 var url = '@Url.Action("FinalizarOferta", "Oferta")' + "?idOferta=" + idOferta + '&estado=OFERPR' + '&pantalla=' + pantalla; //Se envía el estado Pendiente de Activación.
-                window.history.go(-1);
+                //window.history.go(-1);
                 $.get(url, function (data) {
                     alert("La oferta ha sido publicada y está pendiente de activación por UTP");
+                    
+                    //Se redirecciona a la lista de ofertas.
+                    window.location.href = '@Url.Action("Publicacion","Empresa")';
 
-                    $('#lblPublicarOferta').html("Oferta publicada")
-                    $('#lblPublicarOferta').attr("disabled", "disabled"); //Se deshabilita el botón.
+                    //$('#lblPublicarOferta').html("Oferta publicada")
+                    //$('#lblPublicarOferta').attr("disabled", "disabled"); //Se deshabilita el botón.
 
                 }).error(function (err)  //Se muestran los errores en la consola.
                 {
+                    //Se habilitan nuevamente los controles si ha existido un error.
+                    $('#lblPublicarOferta').attr('disabled', '');
+                    $('#lblPublicarOferta').css('backgroundColor', 'white');
+                    $('#lblPublicarOferta').text('Publicar');
+
+                    alert ('Ha ocurrido un error, por favor vuelva a intentarlo.')                    
+                    
                     console.log(err);
                     //alert(err);
                 });

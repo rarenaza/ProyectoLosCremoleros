@@ -715,10 +715,14 @@ namespace UTPPrototipo.Controllers
             mensaje.Evento.NombreEvento = Convert.ToString(dtEvento.Rows[0]["NombreEvento"]);
             mensaje.IdEvento = Convert.ToInt32(dtEvento.Rows[0]["IdEvento"]);
 
-            //Se manda el correo al administrador de la UPT. No existe funcionalidad de asignar usuario UTP al evento.
-            DataTable dtUsuarioUTPAdmin = lnMensaje.ObtenerUsuarioAdministradorUTP(); //--se obtiene, la información y se completan los campos.
-            mensaje.ParaUsuario = Convert.ToString(dtUsuarioUTPAdmin.Rows[0]["Usuario"]);
-            mensaje.ParaUsuarioCorreoElectronico = Convert.ToString(dtUsuarioUTPAdmin.Rows[0]["CorreoElectronico"]);                        
+            //Se manda el correo al administrador de la UPT. No existe funcionalidad de asignar usuario UTP al evento.            
+            //DataTable dtUsuarioUTPAdmin = lnMensaje.ObtenerUsuarioAdministradorUTP(); //--se obtiene, la información y se completan los campos.
+            //mensaje.ParaUsuario = Convert.ToString(dtUsuarioUTPAdmin.Rows[0]["Usuario"]);
+            //mensaje.ParaUsuarioCorreoElectronico = Convert.ToString(dtUsuarioUTPAdmin.Rows[0]["CorreoElectronico"]);
+
+            //04MAR15: Se coloca el usuario y correo del que ha creado el evento.
+            mensaje.ParaUsuario = Convert.ToString(dtEvento.Rows[0]["CreadoPor"]);
+            mensaje.ParaUsuarioCorreoElectronico = Convert.ToString(dtEvento.Rows[0]["CorreoUsuarioCreacion"]);
             
             return PartialView("_MensajesNuevo", mensaje);
         }
@@ -738,10 +742,14 @@ namespace UTPPrototipo.Controllers
             mensaje.Asunto = Convert.ToString(dtEvento.Rows[0]["NombreEvento"]);
 
             //Se manda el correo al administrador de la UPT. No existe funcionalidad de asignar usuario UTP al evento.
-            DataTable dtUsuarioUTPAdmin = lnMensaje.ObtenerUsuarioAdministradorUTP(); //--se obtiene, la información y se completan los campos.
-            mensaje.ParaUsuario = Convert.ToString(dtUsuarioUTPAdmin.Rows[0]["Usuario"]);
-            mensaje.ParaUsuarioCorreoElectronico = Convert.ToString(dtUsuarioUTPAdmin.Rows[0]["CorreoElectronico"]);
-            
+            //DataTable dtUsuarioUTPAdmin = lnMensaje.ObtenerUsuarioAdministradorUTP(); //--se obtiene, la información y se completan los campos.
+            //mensaje.ParaUsuario = Convert.ToString(dtUsuarioUTPAdmin.Rows[0]["Usuario"]);
+            //mensaje.ParaUsuarioCorreoElectronico = Convert.ToString(dtUsuarioUTPAdmin.Rows[0]["CorreoElectronico"]);
+
+            //04MAR15: Se coloca el usuario y correo del que ha creado el evento.
+            mensaje.ParaUsuario = Convert.ToString(dtEvento.Rows[0]["CreadoPor"]);
+            mensaje.ParaUsuarioCorreoElectronico = Convert.ToString(dtEvento.Rows[0]["CorreoUsuarioCreacion"]);
+
             return PartialView("_MensajesNuevo", mensaje);
         }
 
