@@ -280,8 +280,39 @@ namespace UTP.PortalEmpleabilidad.Logica
                 item.ValorUTP = Convert.ToString(fila["ValorUTP"]); ;
                 item.EstadoValor = Convert.ToString(fila["EstadoValor"]); ;
 
+                //EDEEST = estudiante, EDEEGR = egresado, EDEBAC = Bachiller, EDETIT = Titulado.
                 if (item.IdListaValor == "EDEEST" || item.IdListaValor == "EDEEGR" || item.IdListaValor == "EDEBAC" || item.IdListaValor == "EDETIT")
                 { 
+                    lista.Add(item);
+                }
+            }
+
+            return lista.OrderBy(m => m.Peso).ToList();
+        }
+
+        public List<ListaValor> ObtenerListaValorOfertaTipoEstudiosEspecificos(int idLista)
+        {
+            List<ListaValor> lista = new List<ListaValor>();
+
+            DataTable dtResultado = adGeneral.ObtenerListaValor(idLista);
+
+            foreach (DataRow fila in dtResultado.Rows)
+            {
+                ListaValor item = new ListaValor();
+                item.IdLista = Convert.ToInt32(fila["IDLista"]);
+                item.IdListaValor = Convert.ToString(fila["IDListaValor"]);
+                item.IdListaValorPadre = Convert.ToString(fila["IDListaValorPadre"]); ;
+                item.Valor = Convert.ToString(fila["Valor"]); ;
+                item.DescripcionValor = Convert.ToString(fila["DescripcionValor"]); ;
+                item.Icono = Convert.ToString(fila["Icono"]); ;
+                item.Peso = Convert.ToInt32(fila["Peso"] == DBNull.Value ? 0 : fila["Peso"]); ;
+                item.ValorUTP = Convert.ToString(fila["ValorUTP"]); ;
+                item.EstadoValor = Convert.ToString(fila["EstadoValor"]); ;
+
+                //TEDOCT = Doctorado, TEESCO = Escolar, TEPOST = Post-Grado, TETECN = Técnico, TEUNIV = Grado Universitario
+                //Sólo se agregan los tipos de estudio que son distintos a Escolar y Universitario.
+                if (item.IdListaValor != "TEESCO" && item.IdListaValor == "TEUNIV")
+                {
                     lista.Add(item);
                 }
             }

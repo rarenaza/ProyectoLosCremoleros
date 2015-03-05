@@ -160,7 +160,7 @@
                                 @if (Model.ListadoEstudios != null && Model.ListadoEstudios.Count > 0)
                                 {
                                     <tr>
-                                        <td class="celda-nombre">
+                                         <td >
                                             <strong class="sub-titulo-seccion">Estudios</strong>
                                         </td>
                                         <td class="celda-datos"></td>
@@ -200,11 +200,43 @@
                                     }
                                 }
                                 <tr><td><br /></td></tr>
-
+                                <tr>
+                                    <td>
+                                        <strong class="sub-titulo-seccion">Experiencia</strong>
+                                    </td>
+                                    <td class="celda-datos"></td>
+                                </tr>
+                                <tr>
+                                    <td class="celda-nombre">
+                                        <strong class="sub-titulo-seccion">General: @Model.Oferta.ExperienciaGeneral meses </strong>
+                                    </td>
+                                    <td class="celda-datos">
+                                        @*@if (Model.Oferta.CumpleExperienciaGeneral)
+                                        {
+                                            <span class="valor-palabra si-cumple">Si cumple</span><span class="valor-icono2 si-cumple">g</span>
+                                        }*@
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="celda-nombre">
+                                        <strong class="sub-titulo-seccion">En posiciones similares: @Model.Oferta.ExperienciaPosicionesSimilares meses</strong>
+                                    </td>
+                                    <td class="celda-datos">
+                                        @*@if (Model.Oferta.CumpleExperienciaPosicionesSimilares)
+                                        {
+                                            <span class="valor-palabra si-cumple">Si cumple</span><span class="valor-icono2 si-cumple">g</span>
+                                        }*@
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <br />
+                                    </td>
+                                </tr>
                                 @if (Model.ListadoSectorEmpresarial != null && Model.ListadoSectorEmpresarial.Count > 0)
                                 {
                                     <tr>
-                                        <td class="celda-nombre">
+                                        <td>
                                             <strong class="sub-titulo-seccion">Experiencia por Sector</strong>
                                         </td>
                                         <td class="celda-datos"></td>
@@ -248,7 +280,7 @@
                                 @if (Model.ListadoInformacionAdicional != null && Model.ListadoInformacionAdicional.Count > 0)
                                 {
                                     <tr>
-                                        <td class="celda-nombre">
+                                        <td>
                                             <strong class="sub-titulo-seccion">Conocimientos</strong>
                                         </td>
                                         <td class="celda-datos"></td>

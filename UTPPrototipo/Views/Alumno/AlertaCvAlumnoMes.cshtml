@@ -2,12 +2,13 @@
 
 @foreach (var item in Model)
 {
-    if (item.MesesSinTrabajo > 0)
+    if (item.MesesSinTrabajo > 1)
     {
 
        
-    <div class="alert alert-warning" role="alert"><strong>¡Sin Trabajo hace @Html.DisplayFor(modelItem => item.MesesSinTrabajo) mes(es)!</strong></div>
+    @*<div class="alert alert-warning" role="alert"><strong>¡Sin Trabajo hace @Html.DisplayFor(modelItem => item.MesesSinTrabajo) mes(es)!</strong></div>*@
 
+    <div class="alert alert-warning" role="alert"><strong>¡Tu última actualización de CV fue hace @Html.DisplayFor(modelItem => item.MesesSinTrabajo) meses!</strong></div>
     }
 
 }
