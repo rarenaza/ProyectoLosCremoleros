@@ -33,7 +33,8 @@
                 <div class="col-sm-2 linea-destacada"><a href="#">@Html.ActionLink(item.NombreComercial, "DetalleEmpresa", "Alumno", new { IdEmpresa = item.IdEmpresa }, new { @class = "popup-empresa" })</a></div>
                 <div class="col-sm-2 linea-destacada">
                     @*@Html.ActionLink(item.CargoOfrecido, "postulacionOferta2", "Alumno", new { id = item.IdOferta }, null)*@
-                    @Html.ActionLink(item.CargoOfrecido, "postulacionOferta2", "Alumno", new { id = Helper.Encriptar(item.IdOferta.ToString()) }, htmlAttributes: new { target = "_blank" })
+                    @*@Html.ActionLink(item.CargoOfrecido, "postulacionOferta2", "Alumno", new { id = Helper.Encriptar(item.IdOferta.ToString()) }, htmlAttributes: new { target = "_blank" })*@
+                    @Html.ActionLink(item.CargoOfrecido, "postulacionOferta2", "Alumno", new { id = Helper.Encriptar(item.IdOferta.ToString()) })
                 </div>
                 @*id = Helper.Encriptar(item.IdEmpresa.ToString())*@
                 <div class="col-sm-1"><span class="valor-palabra">@item.DesTipoTrabajo</span><span class="valor-icono2">I</span></div>
@@ -57,7 +58,8 @@
 
                     </div>
                 </div>
-                <div class="col-sm-1">@Html.ActionLink("Ver más", "postulacionOferta2", "Alumno", new { id = Helper.Encriptar(item.IdOferta.ToString()) }, htmlAttributes: new { target = "_blank" })</div>
+                @*<div class="col-sm-1">@Html.ActionLink("Ver más", "postulacionOferta2", "Alumno", new { id = Helper.Encriptar(item.IdOferta.ToString()) }, htmlAttributes: new { target = "_blank" })</div>*@
+                <div class="col-sm-1">@Html.ActionLink("Ver más", "postulacionOferta2", "Alumno", new { id = Helper.Encriptar(item.IdOferta.ToString()) })</div>
             </div>
         }
     }

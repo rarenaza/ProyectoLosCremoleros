@@ -31,9 +31,8 @@
             @item.NombreComercial
         </div>
         <div class="col-sm-5">
-            @*<a href="../UTP/RegistroOferta">@item.CargoOfrecido</a>*@
-            @*@Html.ActionLink(@item.CargoOfrecido, "VerDetalleOferta", new { id = item.IdOferta })*@
-            @Html.ActionLink(@item.CargoOfrecido, "VerDetalleOferta", new { id = Helper.Encriptar(item.IdOferta.ToString()) }, htmlAttributes: new { target = "_blank" })
+            @*@Html.ActionLink(@item.CargoOfrecido, "VerDetalleOferta", new { id = Helper.Encriptar(item.IdOferta.ToString()) }, htmlAttributes: new { target = "_blank" })*@
+            @Html.ActionLink(@item.CargoOfrecido, "VerDetalleOferta", new { id = Helper.Encriptar(item.IdOferta.ToString()) })
         </div>
     </div>
 

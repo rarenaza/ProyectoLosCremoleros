@@ -199,7 +199,8 @@
                         Link externo
                     </td>
                     <td class="celda-datos">
-                        @Html.ActionLink(" ", "VerOferta", "Home", new { crypt = Helper.Encriptar(Model.IdOferta.ToString()) }, htmlAttributes: new { @class = "fa fa-external-link", target = "_blank", title = "Link externo" })
+                        @*@Html.ActionLink(" ", "VerOferta", "Home", new { crypt = Helper.Encriptar(Model.IdOferta.ToString()) }, htmlAttributes: new { @class = "fa fa-external-link", target = "_blank", title = "Link externo" })*@
+                        @Html.ActionLink(" ", "VerOferta", "Home", new { crypt = Helper.Encriptar(Model.IdOferta.ToString()) }, htmlAttributes: new { @class = "fa fa-external-link", title = "Link externo" })
                     </td>
                 </tr>
             </table>

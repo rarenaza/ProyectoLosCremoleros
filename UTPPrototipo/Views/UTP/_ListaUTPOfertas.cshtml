@@ -67,16 +67,14 @@
         </div>
 
         <div class="col-sm-1">
-            @*<a href="../UTP/RegistroOferta">@item.CargoOfrecido</a>*@
-            @*@Html.ActionLink(@item.CargoOfrecido, "VerDetalleOferta", new { id = item.IdOferta }, htmlAttributes: new { target = "_blank" })*@
-            @Html.ActionLink(@item.CargoOfrecido, "VerDetalleOferta", new { id = Helper.Encriptar(item.IdOferta.ToString()) }, htmlAttributes: new { target = "_blank" })
-            
-            @*@Html.ActionLink(@item.CargoOfrecido, "VerDetalleOferta", new { id = Helper.Encriptar(item.IdOferta.ToString()) })*@
+            @*@Html.ActionLink(@item.CargoOfrecido, "VerDetalleOferta", new { id = Helper.Encriptar(item.IdOferta.ToString()) }, htmlAttributes: new { target = "_blank" })*@
+            @Html.ActionLink(@item.CargoOfrecido, "VerDetalleOferta", new { id = Helper.Encriptar(item.IdOferta.ToString()) })
             <br />
-            @*@Html.ActionLink("Vista empresa", "Oferta", "Empresa", new { idOferta = item.IdOferta, pantalla = "UTP" }, htmlAttributes: new { target = "_blank" })*@
-            @Html.ActionLink("Vista empresa", "Oferta", "Empresa", new { idOfertaCrypt = Helper.Encriptar(item.IdOferta.ToString()), pantallaCrypt = Helper.Encriptar("UTP") }, htmlAttributes: new { target = "_blank" })
+            @*@Html.ActionLink("Vista empresa", "Oferta", "Empresa", new { idOfertaCrypt = Helper.Encriptar(item.IdOferta.ToString()), pantallaCrypt = Helper.Encriptar("UTP") }, htmlAttributes: new { target = "_blank" })*@
+            @Html.ActionLink("Vista empresa", "Oferta", "Empresa", new { idOfertaCrypt = Helper.Encriptar(item.IdOferta.ToString()), pantallaCrypt = Helper.Encriptar("UTP") })
             <br />
-            @Html.ActionLink(" ", "VerOferta", "Home", new { crypt = Helper.Encriptar(item.IdOferta.ToString()) }, htmlAttributes: new { @class = "fa fa-external-link", target = "_blank", title = "Link externo" })
+            @*@Html.ActionLink(" ", "VerOferta", "Home", new { crypt = Helper.Encriptar(item.IdOferta.ToString()) }, htmlAttributes: new { @class = "fa fa-external-link", target = "_blank", title = "Link externo" })*@
+            @Html.ActionLink(" ", "VerOferta", "Home", new { crypt = Helper.Encriptar(item.IdOferta.ToString()) }, htmlAttributes: new { @class = "fa fa-external-link", title = "Link externo" })
         </div>
         <div class="col-sm-1">
             @item.NumeroVacantes

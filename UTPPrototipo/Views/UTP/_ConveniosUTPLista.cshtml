@@ -26,8 +26,8 @@
         </div>
         <div class="col-sm-2">
             @*@Html.ActionLink(item.Nombres + " " + item.Apellidos, "Convenio", new { idconvenio = item.IdConvenio })*@
-            @Html.ActionLink(item.Nombres + " " + item.Apellidos, "Convenio", new { idconvenio = Helper.Encriptar(item.IdConvenio.ToString()) }, htmlAttributes: new { target = "_blank" })
-
+            @*@Html.ActionLink(item.Nombres + " " + item.Apellidos, "Convenio", new { idconvenio = Helper.Encriptar(item.IdConvenio.ToString()) }, htmlAttributes: new { target = "_blank" })*@
+            @Html.ActionLink(item.Nombres + " " + item.Apellidos, "Convenio", new { idconvenio = Helper.Encriptar(item.IdConvenio.ToString()) })
         </div>
         <div class="col-sm-2">
             @item.Carrera

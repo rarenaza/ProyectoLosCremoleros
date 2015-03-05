@@ -17,7 +17,8 @@
             }
             <br />
             <strong>
-            @Html.ActionLink(item.CargoOfrecido, "postulacionOferta2", "Alumno", new { id = Helper.Encriptar(item.IdOferta.ToString()) }, htmlAttributes: new { target = "_blank" })
+                @*@Html.ActionLink(item.CargoOfrecido, "postulacionOferta2", "Alumno", new { id = Helper.Encriptar(item.IdOferta.ToString()) }, htmlAttributes: new { target = "_blank" })*@
+                @Html.ActionLink(item.CargoOfrecido, "postulacionOferta2", "Alumno", new { id = Helper.Encriptar(item.IdOferta.ToString()) })
             </strong>
             <br />@Html.FormatoFrecuencia(item.FechaPublicacion)
             <br />

@@ -44,7 +44,8 @@
             //Sólo se muestra el link cuando la oferta está ACTIVA o FINALIZADA o FIN DE RECEPECION DE CVs
             if (item.EstadoOfertaIdListaValor == "OFERAC" || item.EstadoOfertaIdListaValor == "OFERFI" || item.EstadoOfertaIdListaValor == "OFERCV")
             {
-                <strong>@Html.ActionLink(item.Cargo, "Oferta", new { idOfertaCrypt = Helper.Encriptar(item.IdOferta.ToString()), pantallaCrypt = Helper.Encriptar("Empresa") }, new { target = "_blank" })</strong>
+                @*<strong>@Html.ActionLink(item.Cargo, "Oferta", new { idOfertaCrypt = Helper.Encriptar(item.IdOferta.ToString()), pantallaCrypt = Helper.Encriptar("Empresa") }, new { target = "_blank" })</strong>*@
+    <strong>@Html.ActionLink(item.Cargo, "Oferta", new { idOfertaCrypt = Helper.Encriptar(item.IdOferta.ToString()), pantallaCrypt = Helper.Encriptar("Empresa") })</strong>
             }
             else
             {
@@ -74,7 +75,8 @@
                 @Html.ActionLink(" ", "OfertaLaboral", new { id = item.IdOferta }, new { @class = "btn btn-xs fa fa-pencil color-paleta2", @disabled = "disabled", @title = "No tiene permisos para ejecutar esta acción." })
             }
                     }
-                    @Html.ActionLink(" ", "MostrarOferta", new { id = Helper.Encriptar(item.IdOferta.ToString()) }, htmlAttributes: new { @class = "btn btn-xs fa fa-file-o color-paleta2", @target = "_blank", @title = "Vista previa de la oferta" })
+                    @*@Html.ActionLink(" ", "MostrarOferta", new { id = Helper.Encriptar(item.IdOferta.ToString()) }, htmlAttributes: new { @class = "btn btn-xs fa fa-file-o color-paleta2", @target = "_blank", @title = "Vista previa de la oferta" })*@
+                    @Html.ActionLink(" ", "MostrarOferta", new { id = Helper.Encriptar(item.IdOferta.ToString()) }, htmlAttributes: new { @class = "btn btn-xs fa fa-file-o color-paleta2", @title = "Vista previa de la oferta" })
                 </div>
             </div>
         }

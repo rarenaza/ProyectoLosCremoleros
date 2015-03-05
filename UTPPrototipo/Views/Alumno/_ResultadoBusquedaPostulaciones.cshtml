@@ -32,7 +32,8 @@
             <div class="col-sm-2 linea-destacada">@Html.ActionLink(item.Empresa, "DetalleEmpresa", "Alumno", new { IdEmpresa = item.IdEmpresa }, new { @class = "popup-empresa" })</div>
             <div class="col-sm-2 linea-destacada">
                 @*@Html.ActionLink(item.CargoOfrecido, "postulacionOferta2", "Alumno", new { id = item.IdOferta }, null)*@
-                @Html.ActionLink(item.CargoOfrecido, "postulacionOferta2", "Alumno", new { id = Helper.Encriptar(item.IdOferta.ToString()) }, htmlAttributes: new { target = "_blank" })
+                @*@Html.ActionLink(item.CargoOfrecido, "postulacionOferta2", "Alumno", new { id = Helper.Encriptar(item.IdOferta.ToString()) }, htmlAttributes: new { target = "_blank" })*@
+                @Html.ActionLink(item.CargoOfrecido, "postulacionOferta2", "Alumno", new { id = Helper.Encriptar(item.IdOferta.ToString()) })
             </div>
             <div class="col-sm-1"><span class="valor-palabra">@item.TipoTrabajo</span><span class="valor-icono2">I</span></div>
             <div class="col-sm-1"><span>@item.Horario</span></div>
@@ -49,7 +50,8 @@
             </div>
             <div class="col-sm-1"><span class="fui fa-2x valor-icono">h</span>&nbsp;&nbsp;<span>@item.Mensajes</span></div>
             <div class="col-sm-1"><span class="valor-palabra">@item.EstadoOferta</span><span class="valor-icono2">D</span></div>
-            <div class="col-sm-1">@Html.ActionLink("Ver más", "postulacionOferta2", "Alumno", new { id = Helper.Encriptar(item.IdOferta.ToString()) }, htmlAttributes: new { target = "_blank" })</div>
+            @*<div class="col-sm-1">@Html.ActionLink("Ver más", "postulacionOferta2", "Alumno", new { id = Helper.Encriptar(item.IdOferta.ToString()) }, htmlAttributes: new { target = "_blank" })</div>*@
+            <div class="col-sm-1">@Html.ActionLink("Ver más", "postulacionOferta2", "Alumno", new { id = Helper.Encriptar(item.IdOferta.ToString()) })</div>
         </div>
     }
 }
