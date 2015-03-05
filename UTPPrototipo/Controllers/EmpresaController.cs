@@ -149,8 +149,8 @@ namespace UTPPrototipo.Controllers
         public ActionResult OfertaLaboral(Oferta oferta)
         {
             TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];
-
-            if (ModelState.IsValid)
+            var cantidadCarreras = ((List<OfertaEstudio>)(Session["CarrerasSeleccionadas"])).Count; //Se contabilizan la cantidad de carreras seleccionadas.
+            if (ModelState.IsValid && cantidadCarreras > 0)
             {
                 //oferta.UsuarioPropietarioEmpresa = "";
                 oferta.ModificadoPor = ticket.Usuario;
@@ -213,7 +213,15 @@ namespace UTPPrototipo.Controllers
 
             //Se agrega el estado del estudio para las carreras:
             ViewBag.EstadoCarreraUTP = new SelectList(lnGeneral.ObtenerListaValorOfertaEstudiosUTP(Constantes.IDLISTA_ESTADO_DEL_ESTUDIO), "IdListaValor", "Valor");
-           
+
+            if (cantidadCarreras == 0)
+            {
+                ViewBag.MensajeCarrerasSeleccionadas = "Debe seleccionar al menos una carrera";
+            }
+            else
+            {
+                ViewBag.MensajeCarrerasSeleccionadas = "";
+            }
 
             return View(oferta);
         }

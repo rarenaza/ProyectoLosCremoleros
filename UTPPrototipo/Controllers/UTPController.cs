@@ -1797,8 +1797,8 @@ namespace UTPPrototipo.Controllers
 
         public FileResult GetImagenEvento(int id)
         {
-            
-            const string alternativePicturePath = @"/img/sinimagen.jpg";
+            //04MAR: Se comenta porque se utiliza Server.MapPath directamente.
+            //const string alternativePicturePath = @"/img/sinimagen.jpg";            
                   
             VistaEvento vistaEvento = new VistaEvento();
 
@@ -1824,7 +1824,7 @@ namespace UTPPrototipo.Controllers
             {
                 stream = new MemoryStream();
 
-                var path = Server.MapPath(alternativePicturePath);
+                var path = Server.MapPath("/img") + "\\sinimagen.jpg";  //Server.MapPath(alternativePicturePath);
                 var image = new System.Drawing.Bitmap(path);
 
                 image.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
@@ -1836,8 +1836,8 @@ namespace UTPPrototipo.Controllers
 
         public FileResult GetImagenEventoTickect(int id)
         {
-
-            const string alternativePicturePath = @"/img/sinimagen.jpg";
+            //04MAR: Se comenta porque se utiliza Server.MapPath directamente.
+            //const string alternativePicturePath = @"/img/sinimagen.jpg";
 
 
             VistaEvento vistaEvento = new VistaEvento();
@@ -1864,7 +1864,7 @@ namespace UTPPrototipo.Controllers
             {
                 stream = new MemoryStream();
 
-                var path = Server.MapPath(alternativePicturePath);
+                var path = Server.MapPath("/img") + "\\sinimagen.jpg";  //var path = Server.MapPath(alternativePicturePath);
                 var image = new System.Drawing.Bitmap(path);
 
                 image.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
