@@ -45,7 +45,7 @@
             if (item.EstadoOfertaIdListaValor == "OFERAC" || item.EstadoOfertaIdListaValor == "OFERFI" || item.EstadoOfertaIdListaValor == "OFERCV")
             {
                 @*<strong>@Html.ActionLink(item.Cargo, "Oferta", new { idOfertaCrypt = Helper.Encriptar(item.IdOferta.ToString()), pantallaCrypt = Helper.Encriptar("Empresa") }, new { target = "_blank" })</strong>*@
-    <strong>@Html.ActionLink(item.Cargo, "Oferta", new { idOfertaCrypt = Helper.Encriptar(item.IdOferta.ToString()), pantallaCrypt = Helper.Encriptar("Empresa") })</strong>
+    <strong>@Html.ActionLink(item.Cargo, "Oferta", new { idOfertaCrypt = Helper.Encriptar(item.IdOferta.ToString()), pantallaCrypt = Helper.Encriptar("Empresa") }, null)</strong>
             }
             else
             {
@@ -68,7 +68,7 @@
                 (item.EstadoOfertaIdListaValor == "OFERPR" || item.EstadoOfertaIdListaValor == "OFERCO"))
             {
                 @*@Html.ActionLink(" ", "OfertaLaboral", new { id = Helper.Encriptar(item.IdOferta.ToString()) }, new { @class = "btn btn-xs fa fa-pencil color-paleta2", @tooltip = "Editar oferta", @target = "_blank" })*@
-    @Html.ActionLink(" ", "OfertaLaboral", new { id = Helper.Encriptar(item.IdOferta.ToString()) }, new { @class = "btn btn-xs fa fa-pencil color-paleta2", @tooltip = "Editar oferta" })
+                @Html.ActionLink(" ", "OfertaLaboral", new { id = Helper.Encriptar(item.IdOferta.ToString()) }, new { @class = "btn btn-xs fa fa-pencil color-paleta2", @tooltip = "Editar oferta" })
             }
             else
             {

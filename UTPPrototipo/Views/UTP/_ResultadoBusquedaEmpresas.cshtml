@@ -54,7 +54,7 @@
             @if (@item.NombreComercial != "")
             {
                 @*@Html.ActionLink(@item.NombreComercial, "VerDetalleEmpresa", new { id = Helper.Encriptar(item.IdEmpresa.ToString()) }, htmlAttributes: new { target = "_blank" })*@
-                @Html.ActionLink(@item.NombreComercial, "VerDetalleEmpresa", new { id = Helper.Encriptar(item.IdEmpresa.ToString()) })
+                @Html.ActionLink(@item.NombreComercial, "VerDetalleEmpresa", new { id = Helper.Encriptar(item.IdEmpresa.ToString()) }, null)
             }
             else
             {

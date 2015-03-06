@@ -28,7 +28,15 @@
             </tr>
             <tr>
                 <td class="celda-nombre">Años de experiencia</td>
-                <td class="celda-datos">@item.AniosExperiencia</td>
+                
+                    @if (item.AniosExperiencia == 0 || item.AniosExperiencia == null) 
+                    {
+                         <td class="celda-datos"></td>
+                    }
+                    else
+                    {
+                        <td class="celda-datos">@item.AniosExperiencia</td>
+                    }                            
             </tr>           
         </table>
     </div>

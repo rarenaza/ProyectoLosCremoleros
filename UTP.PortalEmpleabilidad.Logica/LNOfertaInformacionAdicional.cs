@@ -30,7 +30,8 @@ namespace UTP.PortalEmpleabilidad.Logica
                 infoAdicional.TipoConocimiento.Valor = Convert.ToString(fila["TipoConocimientoDescripcion"]);
                 infoAdicional.NivelConocimiento.IdListaValor = Convert.ToString(fila["NivelConocimiento"]);
                 infoAdicional.NivelConocimiento.Valor = Convert.ToString(fila["NivelConocimientoDescripcion"]);
-                infoAdicional.AniosExperiencia = Convert.ToInt32(fila["AniosExperiencia"]);
+                infoAdicional.AniosExperiencia = Convert.ToInt32(fila["AniosExperiencia"] == System.DBNull.Value ? null : fila["AniosExperiencia"]);
+                if (infoAdicional.AniosExperiencia == 0) infoAdicional.AniosExperiencia = null;
                 infoAdicional.EstadoOfertaInformacionAdicional.IdListaValor = Convert.ToString(fila["EstadoOfertaInformacionAdicional"]);
                 infoAdicional.EstadoOfertaInformacionAdicional.Valor = Convert.ToString(fila["EstadoOfertaInformacionAdicionalDescripcion"]);
                 infoAdicional.CreadoPor = Convert.ToString(fila["CreadoPor"]);

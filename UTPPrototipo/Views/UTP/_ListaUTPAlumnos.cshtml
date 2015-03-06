@@ -55,7 +55,7 @@
 
            @* @Html.ActionLink(@item.Nombre, "VerDetalleAlumno", new { id = item.idAlumno })*@
             @*@Html.ActionLink(@item.Nombre, "VerDetalleAlumno", new { id = Helper.Encriptar(item.idAlumno.ToString()) }, htmlAttributes: new { target = "_blank" })*@
-            @Html.ActionLink(@item.Nombre, "VerDetalleAlumno", new { id = Helper.Encriptar(item.idAlumno.ToString()) })
+            @Html.ActionLink(@item.Nombre, "VerDetalleAlumno", new { id = Helper.Encriptar(item.idAlumno.ToString()) }, null)
             @*@item.Nombre*@
         </div>
         <div class="col-sm-2">

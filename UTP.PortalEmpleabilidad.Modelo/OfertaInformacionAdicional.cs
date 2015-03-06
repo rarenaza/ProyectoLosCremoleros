@@ -20,7 +20,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string Conocimiento { get; set; }
         public string NivelConocimientoIdListaValor { get; set; }
         public virtual ListaValor NivelConocimiento { get; set; }
-        public int AniosExperiencia { get; set; }
+        public int? AniosExperiencia { get; set; }
         public ListaValor EstadoOfertaInformacionAdicional { get; set; }
         public string CreadoPor { get; set; }
         public string ModificadoPor { get; set; }

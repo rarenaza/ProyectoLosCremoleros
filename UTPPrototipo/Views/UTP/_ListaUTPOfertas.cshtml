@@ -68,10 +68,10 @@
 
         <div class="col-sm-1">
             @*@Html.ActionLink(@item.CargoOfrecido, "VerDetalleOferta", new { id = Helper.Encriptar(item.IdOferta.ToString()) }, htmlAttributes: new { target = "_blank" })*@
-            @Html.ActionLink(@item.CargoOfrecido, "VerDetalleOferta", new { id = Helper.Encriptar(item.IdOferta.ToString()) })
+            @Html.ActionLink(@item.CargoOfrecido, "VerDetalleOferta", new { id = Helper.Encriptar(item.IdOferta.ToString()) }, null)
             <br />
             @*@Html.ActionLink("Vista empresa", "Oferta", "Empresa", new { idOfertaCrypt = Helper.Encriptar(item.IdOferta.ToString()), pantallaCrypt = Helper.Encriptar("UTP") }, htmlAttributes: new { target = "_blank" })*@
-            @Html.ActionLink("Vista empresa", "Oferta", "Empresa", new { idOfertaCrypt = Helper.Encriptar(item.IdOferta.ToString()), pantallaCrypt = Helper.Encriptar("UTP") })
+            @Html.ActionLink("Vista empresa", "Oferta", "Empresa", new { idOfertaCrypt = Helper.Encriptar(item.IdOferta.ToString()), pantallaCrypt = Helper.Encriptar("UTP") }, null)
             <br />
             @*@Html.ActionLink(" ", "VerOferta", "Home", new { crypt = Helper.Encriptar(item.IdOferta.ToString()) }, htmlAttributes: new { @class = "fa fa-external-link", target = "_blank", title = "Link externo" })*@
             @Html.ActionLink(" ", "VerOferta", "Home", new { crypt = Helper.Encriptar(item.IdOferta.ToString()) }, htmlAttributes: new { @class = "fa fa-external-link", title = "Link externo" })

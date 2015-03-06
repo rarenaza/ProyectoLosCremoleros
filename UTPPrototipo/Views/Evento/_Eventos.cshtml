@@ -35,13 +35,13 @@
                                 {
                                     @*@Html.ActionLink(item.NombreEvento, "Evento", "Empresa", new { idEvento = item.IdEvento }, null)*@                             
                                     @*@Html.ActionLink(item.NombreEvento, "Evento", "Empresa", new { idEvento = Helper.Encriptar(item.IdEvento.ToString()), pantallaCrypt = Helper.Encriptar("Empresa") }, htmlAttributes: new { target = "_blank" })*@
-                                    @Html.ActionLink(item.NombreEvento, "Evento", "Empresa", new { idEvento = Helper.Encriptar(item.IdEvento.ToString()), pantallaCrypt = Helper.Encriptar("Empresa") })
+                                    @Html.ActionLink(item.NombreEvento, "Evento", "Empresa", new { idEvento = Helper.Encriptar(item.IdEvento.ToString()), pantallaCrypt = Helper.Encriptar("Empresa") }, null)
                                 }
                                 else
                                 {
                                     @*@Html.ActionLink(item.NombreEvento, "Evento", "Alumno", new { idEvento = item.IdEvento }, null)*@
                                     @*@Html.ActionLink(item.NombreEvento, "Evento", "Alumno", new { idEvento = Helper.Encriptar(item.IdEvento.ToString()), pantallaCrypt = Helper.Encriptar("Alumno") }, htmlAttributes: new { target = "_blank" })*@
-                                    @Html.ActionLink(item.NombreEvento, "Evento", "Alumno", new { idEvento = Helper.Encriptar(item.IdEvento.ToString()), pantallaCrypt = Helper.Encriptar("Alumno") }, htmlAttributes: new { target = "_blank" })
+                                    @Html.ActionLink(item.NombreEvento, "Evento", "Alumno", new { idEvento = Helper.Encriptar(item.IdEvento.ToString()), pantallaCrypt = Helper.Encriptar("Alumno") }, null)
                                 }
                             </div>
                             <div class="col-sm-2">
@@ -99,13 +99,13 @@
                                 {
                                     @*@Html.ActionLink(item.NombreEvento, "Evento", "Empresa", new { idEvento = item.IdEvento }, null)*@
     @*@Html.ActionLink(item.NombreEvento, "Evento", "Empresa", new { idEvento = Helper.Encriptar(item.IdEvento.ToString()), pantallaCrypt = Helper.Encriptar("Empresa") }, htmlAttributes: new { target = "_blank" })*@
-    @Html.ActionLink(item.NombreEvento, "Evento", "Empresa", new { idEvento = Helper.Encriptar(item.IdEvento.ToString()), pantallaCrypt = Helper.Encriptar("Empresa") })
+    @Html.ActionLink(item.NombreEvento, "Evento", "Empresa", new { idEvento = Helper.Encriptar(item.IdEvento.ToString()), pantallaCrypt = Helper.Encriptar("Empresa") }, null)
                                 }
                                 else
                                 {
                                     @*@Html.ActionLink(item.NombreEvento, "Evento", "Alumno", new { idEvento = item.IdEvento }, null)*@
     @*@Html.ActionLink(item.NombreEvento, "Evento", "Alumno", new { idEvento = Helper.Encriptar(item.IdEvento.ToString()), pantallaCrypt = Helper.Encriptar("Alumno") }, htmlAttributes: new { target = "_blank" })*@
-    @Html.ActionLink(item.NombreEvento, "Evento", "Alumno", new { idEvento = Helper.Encriptar(item.IdEvento.ToString()), pantallaCrypt = Helper.Encriptar("Alumno") })
+    @Html.ActionLink(item.NombreEvento, "Evento", "Alumno", new { idEvento = Helper.Encriptar(item.IdEvento.ToString()), pantallaCrypt = Helper.Encriptar("Alumno") }, null)
                                 }
                             </div>
                             <div class="col-sm-2">

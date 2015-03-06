@@ -453,7 +453,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 infoAdicional.TipoConocimiento.Valor = Convert.ToString(filaInfoAdicional["TipoConocimientoDescripcion"]);
                 infoAdicional.Conocimiento = Convert.ToString(filaInfoAdicional["Conocimiento"]);
                 infoAdicional.NivelConocimiento.Valor = Convert.ToString(filaInfoAdicional["NivelConocimientoDescripcion"]);
-                infoAdicional.AniosExperiencia = Convert.ToInt32(filaInfoAdicional["AniosExperiencia"]);
+                infoAdicional.AniosExperiencia = Convert.ToInt32(filaInfoAdicional["AniosExperiencia"] == System.DBNull.Value ? null : filaInfoAdicional["AniosExperiencia"]);
                 infoAdicional.CreadoPor = Convert.ToString(filaInfoAdicional["CreadoPor"]);
                 infoAdicional.ModificadoPor = Convert.ToString(filaInfoAdicional["ModificadoPor"]);
                 infoAdicional.FechaCreacion = Convert.ToDateTime(filaInfoAdicional["FechaCreacion"]);
