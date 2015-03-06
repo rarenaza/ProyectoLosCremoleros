@@ -65,6 +65,9 @@ namespace UTP.PortalEmpleabilidad.Modelo.Vistas.Ofertas
         public List<Oferta> ListadoSectorEmpresarial { get; set; }
         public List<Oferta> ListadoInformacionAdicional { get; set; }
 
+        //06MAR15: Se agregan estas dos propiedades para obtener el lista de estudios de UTP y otros estudios.
+        public List<OfertaEstudio> ListaEstudiosOtros { get; set; }
+        public List<OfertaEstudio> ListaEstudiosUTP { get; set; }
 
     }
 }

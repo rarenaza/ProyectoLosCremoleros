@@ -26,12 +26,12 @@
 
                             @if (Model.Oferta.LogoEmpresa != null && string.IsNullOrEmpty(Model.Oferta.ArchivoMimeType) == false)
                             {
-                            <img src="@Url.Action("GetImageEmpresa", "Alumno", new { Model.Oferta.IdEmpresa })" class="logo-empresa" />
+                                <img src="@Url.Action("GetImageEmpresa", "Alumno", new { Model.Oferta.IdEmpresa })" class="logo-empresa" />
 
                             }
                             else
                             {
-                            <img class="logo-empresa" src="~/img/sinimagen.jpg" />
+                                <img class="logo-empresa" src="~/img/sinimagen.jpg" />
                             }
                         </td>
                         <td style="vertical-align:top;">
@@ -83,59 +83,59 @@
             </div>
 
             @*<div class="panel-group" id="oferta-mensaje" role="tablist" aria-multiselectable="true">
-                <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingMensaje" style="padding: 2px 2px 2px 6px;">
-                        <h5 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseMensaje" aria-expanded="true" aria-controls="collapseMensaje" class="fuente-seccion">
-                                Ofertas similares
-                            </a>
-                        </h5>
-                    </div>
-                    <div id="collapseMensaje" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingMensaje">
-                        <div class="panel-body fuente-pequeña">
-                            <div class="row" style="margin-bottom:10px;">
-                                @foreach (var item in Model.ListaOfertas)
-                                {
-                                    <div class="col-sm-4">
-                                        <div style="height:90px;">
-                                            @if (item.LogoEmpresa != null && string.IsNullOrEmpty(item.ArchivoMimeType) == false)
-                                            {
-                                                <img src="@Url.Action("GetImageEmpresa", "Alumno", new { item.IdEmpresa })" class="logo-empresa2" />
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingMensaje" style="padding: 2px 2px 2px 6px;">
+                            <h5 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseMensaje" aria-expanded="true" aria-controls="collapseMensaje" class="fuente-seccion">
+                                    Ofertas similares
+                                </a>
+                            </h5>
+                        </div>
+                        <div id="collapseMensaje" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingMensaje">
+                            <div class="panel-body fuente-pequeña">
+                                <div class="row" style="margin-bottom:10px;">
+                                    @foreach (var item in Model.ListaOfertas)
+                                    {
+                                        <div class="col-sm-4">
+                                            <div style="height:90px;">
+                                                @if (item.LogoEmpresa != null && string.IsNullOrEmpty(item.ArchivoMimeType) == false)
+                                                {
+                                                    <img src="@Url.Action("GetImageEmpresa", "Alumno", new { item.IdEmpresa })" class="logo-empresa2" />
 
-                                            }
-                                            else
-                                            {
-                                                <img src="~/img/sinimagen.jpg" class="logo-empresa2" />
-                                            }
+                                                }
+                                                else
+                                                {
+                                                    <img src="~/img/sinimagen.jpg" class="logo-empresa2" />
+                                                }
 
 
+                                            </div>
+                                            @*<div style="height:90px;"><img src="~/img/logos/logoCriteria.jpg" class="logo-empresa2" /></div>
+
+                                            <div>
+                                            </div>
                                         </div>
-                                        @*<div style="height:90px;"><img src="~/img/logos/logoCriteria.jpg" class="logo-empresa2" /></div>
+                                    }
 
-                                        <div>
-                                        </div>
-                                    </div>
-                                }
 
+                                </div>
 
                             </div>
-
                         </div>
                     </div>
                 </div>
-            </div>
-            <div id="oferta-mensaje2222" aria-multiselectable="true">
+                <div id="oferta-mensaje2222" aria-multiselectable="true">
 
-                @Html.Action("_Mensajes", "Mensaje", new { pantalla = Constantes.MENSAJES_ALUMNO_OFERTA, idOferta = Model.Oferta.IdOferta })
-            </div>*@
+                    @Html.Action("_Mensajes", "Mensaje", new { pantalla = Constantes.MENSAJES_ALUMNO_OFERTA, idOferta = Model.Oferta.IdOferta })
+                </div>*@
 
         </div>
         <div class="col-md-5">
 
 
             @*<div class="panel-group" id="oferta-postulacion" role="tablist" aria-multiselectable="true">
-                @Html.Partial("_EstadoPostulacion", Model.Oferta)
-            </div>*@
+                    @Html.Partial("_EstadoPostulacion", Model.Oferta)
+                </div>*@
 
 
             <div class="panel-group" id="oferta-requisito" role="tablist" aria-multiselectable="true">
@@ -148,57 +148,102 @@
 
                         </h5>
                         @*<div class="progress" style="background-color:white;margin:5px 10px 5px 10px;">
-                            @Html.Raw(Html.CompatibilidaOferta((int)Model.Oferta.Compatible))
+                                @Html.Raw(Html.CompatibilidaOferta((int)Model.Oferta.Compatible))
 
 
-                        </div>*@
+                            </div>*@
                     </div>
                     <div id="collapseRequisito" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingRequisito">
                         <div class="panel-body fuente-pequeña">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <strong class="sub-titulo-seccion">Carreras</strong>
+                                </div>
+                            </div>
+                            <table class="fuente-pequeña">
+                                <tr>
+                                    <td class="celda-nombre">Estado</td>
+                                    <td class="celda-datos">@Model.Oferta.EstadoCarreraUTPDescripcion</td>
+                                </tr>
+                                <tr>
+                                    <td class="celda-nombre">Ciclo mínimo</td>
+                                    <td class="celda-datos">@Model.Oferta.CicloMinimoCarreraUTP</td>
+                                </tr>
+                            </table>
+                            <br />                          
+                                @foreach (var itemCarrera in Model.ListaEstudiosUTP)
+                                {
+                                    <table class="fuente-pequeña">
+                                        <tr>
+                                            <td class="celda-nombre">Carrera</td>
+                                            <td class="celda-datos">@itemCarrera.Estudio</td>
+                                        </tr>
+                                    </table>
+                                }                                                     
+                            <br />
+                            <hr />
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <strong class="sub-titulo-seccion">Otros Estudios</strong>
+                                </div>
+                            </div>
+                            <br />
+
+                            @foreach (var itemEstudio in Model.ListaEstudiosOtros)
+                            {
+                                <table class="fuente-pequeña">
+                                    <tr>
+                                        <td class="celda-nombre">Tipo</td>
+                                        <td class="celda-datos">@itemEstudio.TipoDeEstudio.Valor</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="celda-nombre">Estudio</td>
+                                        <td class="celda-datos">@itemEstudio.Estudio</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="celda-nombre">Estado</td>
+                                        <td class="celda-datos">@itemEstudio.EstadoDelEstudio.Valor</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="celda-nombre">Ciclo mínimo</td>
+                                        <td class="celda-datos">@itemEstudio.CicloEstudio</td>
+                                    </tr>
+                                </table>
+                                <br />
+                            }
+
                             <table class="fuente-pequeña">
 
-                                @if (Model.ListadoEstudios != null && Model.ListadoEstudios.Count > 0)
-                                {
-                                    <tr>
-                                         <td >
-                                            <strong class="sub-titulo-seccion">Estudios</strong>
-                                        </td>
-                                        <td class="celda-datos"></td>
-                                    </tr>
-                                    foreach (var item in Model.ListadoEstudios)
+                                @*@if (Model.ListadoEstudios != null && Model.ListadoEstudios.Count > 0)
                                     {
-                                        if (item.Tipo == 0)
+                                        <tr>
+                                             <td >
+                                                <strong class="sub-titulo-seccion">Estudios</strong>
+                                            </td>
+                                            <td class="celda-datos"></td>
+                                        </tr>
+                                        foreach (var item in Model.ListadoEstudios)
                                         {
-                                            <tr>
-                                                <td class="celda-nombre">
-                                                    <strong>@item.Requisito</strong>
-                                                </td>
-                                                <td class="celda-datos">
-                                                    @*@if (item.Line == 1)
-                                                    {
-                                                        if (item.Cumplimiento == 1)
-                                                        {
-                                                            <span class="valor-palabra si-cumple">Si cumple</span><span class="valor-icono2 si-cumple">g</span>
-                                                        }
-                                                        else
-                                                        {
-                                                            <span class="valor-palabra no-cumple"><strong>No cumple</strong></span><span class="valor-icono2 no-cumple">l</span>
-                                                        }
-                                                    }*@
+                                            if (item.Tipo == 0)
+                                            {
+                                                <tr>
+                                                    <td class="celda-nombre">
+                                                        <strong>@item.Requisito</strong>
+                                                    </td>
+                                                    <td class="celda-datos">
+                                                    </td>
+                                                </tr>
+                                            }
+                                            else
+                                            {
+                                                <tr>
+                                                    <td colspan="2"><div class="linea_raya"></div></td>
+                                                </tr>
+                                            }
 
-                                                </td>
-                                            </tr>
+
                                         }
-                                        else
-                                        {
-                                            <tr>
-                                                <td colspan="2"><div class="linea_raya"></div></td>
-                                            </tr>
-                                        }
-
-
-                                    }
-                                }
+                                    }*@
                                 <tr><td><br /></td></tr>
                                 <tr>
                                     <td>
@@ -212,9 +257,9 @@
                                     </td>
                                     <td class="celda-datos">
                                         @*@if (Model.Oferta.CumpleExperienciaGeneral)
-                                        {
-                                            <span class="valor-palabra si-cumple">Si cumple</span><span class="valor-icono2 si-cumple">g</span>
-                                        }*@
+                                            {
+                                                <span class="valor-palabra si-cumple">Si cumple</span><span class="valor-icono2 si-cumple">g</span>
+                                            }*@
                                     </td>
                                 </tr>
                                 <tr>
@@ -223,9 +268,9 @@
                                     </td>
                                     <td class="celda-datos">
                                         @*@if (Model.Oferta.CumpleExperienciaPosicionesSimilares)
-                                        {
-                                            <span class="valor-palabra si-cumple">Si cumple</span><span class="valor-icono2 si-cumple">g</span>
-                                        }*@
+                                            {
+                                                <span class="valor-palabra si-cumple">Si cumple</span><span class="valor-icono2 si-cumple">g</span>
+                                            }*@
                                     </td>
                                 </tr>
                                 <tr>
@@ -251,16 +296,16 @@
                                                 </td>
                                                 <td class="celda-datos">
                                                     @*@if (item.Line == 1)
-                                                    {
-                                                        if (item.Cumplimiento == 1)
                                                         {
-                                                            <span class="valor-palabra si-cumple">Si cumple</span><span class="valor-icono2 si-cumple">g</span>
-                                                        }
-                                                        else
-                                                        {
-                                                            <span class="valor-palabra no-cumple"><strong>No cumple</strong></span><span class="valor-icono2 no-cumple">l</span>
-                                                        }
-                                                    }*@
+                                                            if (item.Cumplimiento == 1)
+                                                            {
+                                                                <span class="valor-palabra si-cumple">Si cumple</span><span class="valor-icono2 si-cumple">g</span>
+                                                            }
+                                                            else
+                                                            {
+                                                                <span class="valor-palabra no-cumple"><strong>No cumple</strong></span><span class="valor-icono2 no-cumple">l</span>
+                                                            }
+                                                        }*@
 
                                                 </td>
                                             </tr>
@@ -295,16 +340,16 @@
                                                 </td>
                                                 <td class="celda-datos">
                                                     @*@if (item.Line == 1)
-                                                    {
-                                                        if (item.Cumplimiento == 1)
                                                         {
-                                                            <span class="valor-palabra si-cumple">Si cumple</span><span class="valor-icono2 si-cumple">g</span>
-                                                        }
-                                                        else
-                                                        {
-                                                            <span class="valor-palabra no-cumple"><strong>No cumple</strong></span><span class="valor-icono2 no-cumple">l</span>
-                                                        }
-                                                    }*@
+                                                            if (item.Cumplimiento == 1)
+                                                            {
+                                                                <span class="valor-palabra si-cumple">Si cumple</span><span class="valor-icono2 si-cumple">g</span>
+                                                            }
+                                                            else
+                                                            {
+                                                                <span class="valor-palabra no-cumple"><strong>No cumple</strong></span><span class="valor-icono2 no-cumple">l</span>
+                                                            }
+                                                        }*@
 
                                                 </td>
                                             </tr>

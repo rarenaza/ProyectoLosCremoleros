@@ -31,7 +31,8 @@
                     <div class="input-group">
                         <span class="input-group-addon">Destina-<br />tario</span>
                         @*<input id="inpUsuarioPara" name="ParaUsuario" class="form-control" placeholder="Usuario Destinatario" value="@Model.ParaUsuario" />*@
-                        <input id="inpUsuarioPara" name="ParaUsuario" class="form-control" placeholder="Ingrese Código del Alumno o selecciona Oferta" value="@Model.ParaUsuario" />
+                        <input id="inpUsuarioParaNombre" class="form-control" value="@Model.ParaUsuarioNombre" />
+                        <input id="inpUsuarioPara" name="ParaUsuario" type="hidden" class="form-control" placeholder="Ingrese Código del Alumno o selecciona Oferta" value="@Model.ParaUsuario" />
                     </div>
                 </div>
             </div>
@@ -158,9 +159,9 @@
         //Si la pantalla es UTP - Index entonces se valida que el control inpUsuarioPara esté completo.
         if (pantalla == '@Constantes.MENSAJES_UTP_INDEX' )
         {
-            if (destinatarioCajaTexto == "" || typeof destinatarioCajaTexto == "undefined") 
+            if (destinatarioCajaTexto == "" || typeof destinatarioCajaTexto == "undefined")
             {
-                mensajeError += "No ha ingresado el destinatario. \r"; 
+                mensajeError += "No ha ingresado el destinatario. \r";
             }
         }
         else //Caso contratio se valida el control hidden.
@@ -187,9 +188,9 @@
 
         var pantalla = $('#Pantalla').val();
 
-        if (pantalla == '@Constantes.MENSAJES_UTP_EMPRESA')
+        if (pantalla == '@Constantes.MENSAJES_UTP_EMPRESA' || pantalla == '@Constantes.MENSAJES_EMPRESA_EVENTO')
         {
-            $('#inpUsuarioPara').attr("readonly","readonly");
+            $('#inpUsuarioParaNombre').attr("readonly","readonly");
             return false;
         }
 
@@ -199,7 +200,7 @@
             var idOferta = @ViewBag.IdOfertaGeneral
             $('#IdOfertaMensaje').val(idOferta);
             $('#IdOfertaMensaje').attr("readonly","readonly");
-            $('#inpUsuarioPara').attr("readonly","readonly");
+            $('#inpUsuarioParaNombre').attr("readonly","readonly");
             return false;
         }
 
@@ -218,7 +219,7 @@
 
             //$('#IdOfertaMensaje').attr('disabled','disabled'); //Se deshabilita el combo de ofertas.
         }
-        
+
         if (pantalla == '@Constantes.MENSAJES_UTP_EVENTO') {
 
             var idEvento = @ViewBag.IdEventoGeneral

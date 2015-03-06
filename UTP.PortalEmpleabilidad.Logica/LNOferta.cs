@@ -117,6 +117,9 @@ namespace UTP.PortalEmpleabilidad.Logica
                 oferta.ExperienciaPosicionesSimilares = Funciones.ToInt(dtResultado.Rows[0]["MesesExperienciaTipoTrabajo"]);
                 oferta.CumpleExperienciaGeneral = Funciones.ToBoolean(dtResultado.Rows[0]["CumpleMesesExperienciaTotal"]);
                 oferta.CumpleExperienciaPosicionesSimilares = Funciones.ToBoolean(dtResultado.Rows[0]["CumpleMesesExperienciaTipoTrabajo"]);
+                //06MAR15: Se agregan los campos EstadoCarreaUTP y CicloMinimoUTP
+                oferta.EstadoCarreraUTPDescripcion = Funciones.ToString(dtResultado.Rows[0]["EstadoCarreraUTPDescripcion"]);
+                oferta.CicloMinimoCarreraUTP = Funciones.ToInt(dtResultado.Rows[0]["MesesExperienciaTotal"]);
             }
 
             return oferta;
@@ -131,6 +134,10 @@ namespace UTP.PortalEmpleabilidad.Logica
             vistaofertalumno.ListaOfertas = BuscarSimilaresOfertasAlumno(IdOferta);
             BuscarCumplimientoOfertasAlumno(ref vistaofertalumno);
 
+            //06MAR15: Se agrega el listado de carreras UTP y otros estudios
+            Oferta oferta = ObtenerPorId(IdOferta);
+            vistaofertalumno.ListaEstudiosOtros = oferta.ListaEstudios;
+            vistaofertalumno.ListaEstudiosUTP = oferta.CarrerasSeleccionadas;
 
             return vistaofertalumno;
         }
@@ -407,7 +414,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 estudio.FechaCreacion                   = Convert.ToDateTime(filaEstudio["FechaCreacion"]);
                 estudio.FechaModificacion               = Convert.ToDateTime(filaEstudio["FechaModificacion"]);
 
-                #region Si se descomenta sale error
+                #region Se separan las carrearas universitarias UTP.
                 if (estudio.TipoDeEstudio.IdListaValor == "TEUNIV") //Tipo de Estudio Universitario de UTP.
                 {
                     var carreraEncontrada = listaCarrerasUTP.Where(m => m.Valor == estudio.Estudio).FirstOrDefault();

@@ -722,6 +722,7 @@ namespace UTPPrototipo.Controllers
 
             //04MAR15: Se coloca el usuario y correo del que ha creado el evento.
             mensaje.ParaUsuario = Convert.ToString(dtEvento.Rows[0]["CreadoPor"]);
+            mensaje.ParaUsuarioNombre = Convert.ToString(dtEvento.Rows[0]["NombresUsuarioCreacion"]) + " " + Convert.ToString(dtEvento.Rows[0]["ApellidosUsuarioCreacion"]);
             mensaje.ParaUsuarioCorreoElectronico = Convert.ToString(dtEvento.Rows[0]["CorreoUsuarioCreacion"]);
             
             return PartialView("_MensajesNuevo", mensaje);

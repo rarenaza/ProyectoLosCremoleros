@@ -138,6 +138,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public int ExperienciaPosicionesSimilares { get; set; }
         public bool CumpleExperienciaGeneral { get; set; }
         public bool CumpleExperienciaPosicionesSimilares { get; set; }
+        public string EstadoCarreraUTPDescripcion { get; set; }
 
        public Oferta() {
 
