@@ -125,8 +125,8 @@
                         </div>
                         <div id="collapseOferta" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOferta">
                             <div class="panel-body fuente-pequeña">
-                                <div class="input-group rubberBand animated animated3">
-                                    <span class="input-group-addon"><strong class="tada animated animated5">(*) Cargo</strong></span>
+                                <div class="input-group rubberBand">
+                                    <span class="input-group-addon"><strong>(*) Cargo</strong></span>
                                     @*<input id="CargoOfrecido" data-val="true" data-val-required="No ha ingresado el campo" name="CargoOfrecido" type="text" class="form-control" placeholder="Nombre del cargo a publicar" value="@Model.CargoOfrecido">*@
                                     @Html.TextBoxFor(m => m.CargoOfrecido, new { @class = "form-control", @id = "Cargo", @placeholder = "Nombre del cargo a publicar" })
 
@@ -303,7 +303,7 @@
                                         <div class="col-sm-4">
                                             <div class="input-group">
                                                 <div class="input-group-addon">
-                                                    Ciclo<br />Mínimo
+                                                    (*) Ciclo<br />Mínimo
                                                 </div>
                                                 @*<input class="form-control" placeholder="Ciclo mínimo de estadio">*@
                                                 @Html.TextBoxFor(m => m.CicloMinimoCarreraUTP, new { @class = "form-control" })
@@ -329,7 +329,7 @@
                                         <div class="col-md-6">
                                             <div class="input-group">
                                                 <div class="input-group-addon">
-                                                    General<br />(meses)
+                                                    (*) General<br />(meses)
                                                 </div>
 
                                                 @Html.TextBoxFor(m => m.ExperienciaGeneral, new { @class = "form-control" })
@@ -339,7 +339,7 @@
                                         <div class="col-md-6">
                                             <div class="input-group">
                                                 <div class="input-group-addon">
-                                                    En posiciones<br />similares (meses)<br />
+                                                    (*)En posiciones<br />similares (meses)<br />
                                                 </div>
 
                                                 @Html.TextBoxFor(m => m.ExperienciaPosicionesSimilares, new { @class = "form-control" })
