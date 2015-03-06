@@ -28,12 +28,12 @@
 
                             @if (Model.Oferta.LogoEmpresa != null && string.IsNullOrEmpty(Model.Oferta.ArchivoMimeType) == false)
                             {
-                            <img src="@Url.Action("GetImageEmpresa", "Alumno", new { Model.Oferta.IdEmpresa })" class="logo-empresa" />
+                                <img src="@Url.Action("GetImageEmpresa", "Alumno", new { Model.Oferta.IdEmpresa })" class="logo-empresa" />
 
                             }
                             else
                             {
-                            <img class="logo-empresa" src="~/img/sinimagen.jpg" />
+                                <img class="logo-empresa" src="~/img/sinimagen.jpg" />
                             }
                         </td>
                         <td style="vertical-align:top;">
@@ -41,8 +41,8 @@
                             <br /><span class="fuente-pequeña">
                                 @if (string.IsNullOrEmpty(Model.Oferta.SitioWeb) == false)
                                 {
-                                    <a href="http://@Model.Oferta.SitioWeb" target="_blank"> @Model.Oferta.SitioWeb </a>                                    
-                                }                                            
+                                    <a href="http://@Model.Oferta.SitioWeb" target="_blank"> @Model.Oferta.SitioWeb </a>
+                                }
                             </span>
                             <br /><span class="fuente-pequeña">
                                 RUC. @Model.Oferta.IdentificadorTributario
@@ -66,7 +66,7 @@
                     <div class="panel-heading" role="tab" id="headingOferta" style="padding: 2px 2px 2px 6px;">
                         <h5 class="panel-title">
                             <a data-toggle="collapse" data-parent="#accordion" href="#collapseOferta" aria-expanded="true" aria-controls="collapseOferta" class="fuente-seccion">
-                                @Model.Oferta.CargoOfrecido 
+                                @Model.Oferta.CargoOfrecido
                             </a>
                         </h5>
                     </div>
@@ -149,7 +149,7 @@
                     </div>
                 </div>
                 <!--FIN-->
-                
+
             </div>
 
         </div>
@@ -195,83 +195,31 @@
                                 </tr>
                             </table>
                             <br />
-                            @foreach (var itemCarrera in Model.ListaEstudiosUTP)
-                                {
-                                <table class="fuente-pequeña">
-                                    <tr>
-                                        <td class="celda-nombre">Carrera</td>
-                                        <td class="celda-datos">@itemCarrera.Estudio</td>
-                                        @if (itemCarrera.Cumplimiento == 1) //Solo se muestra si el cumplimiento existe.
-                                        { 
-                                            <td class="celda-datos">@itemCarrera.Cumplimiento</td>
-                                        }
-                                    </tr>
-                                </table>
-                                }
-                            <br />
-                            <hr />
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <strong class="sub-titulo-seccion">Otros Estudios</strong>
-                                </div>
-                            </div>
-                            <br />
-
-                            @foreach (var itemEstudio in Model.ListaEstudiosOtros)
-                            {
-                                <table class="fuente-pequeña">
-                                    <tr>
-                                        <td class="celda-nombre">Tipo</td>
-                                        <td class="celda-datos">@itemEstudio.TipoDeEstudio.Valor</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="celda-nombre">Estudio</td>
-                                        <td class="celda-datos">@itemEstudio.Estudio</td>
-                                        @if (itemEstudio.Cumplimiento == 1) //Solo se muestra si el cumplimiento existe.
-                                        {
-                                            <td class="celda-datos">@itemEstudio.Cumplimiento</td>    
-                                        }
-                                    </tr>
-                                    <tr>
-                                        <td class="celda-nombre">Estado</td>
-                                        <td class="celda-datos">@itemEstudio.EstadoDelEstudio.Valor</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="celda-nombre">Ciclo mínimo</td>
-                                        <td class="celda-datos">@itemEstudio.CicloEstudio</td>
-                                    </tr>
-                                </table>
-                                <br />
-                            }
 
                             <table class="fuente-pequeña">
-
-                                @*@if (Model.ListadoEstudios != null && Model.ListadoEstudios.Count > 0)
+                                @if (Model.ListadoEstudios != null && Model.ListadoEstudios.Count > 0)
                                 {
-                                    <tr>
-                                        <td >
-                                            <strong class="sub-titulo-seccion">Estudios</strong>
-                                        </td>
-                                        <td class="celda-datos"></td>
-                                    </tr>
-                                    foreach (var item in Model.ListadoEstudios)
+                                        <!--Carreras UTP-->
+                                    for (int i = 0; i <= Model.ListadoEstudios.Count - 3; i++)
                                     {
-                                        if (item.Tipo == 0)
+
+                                        if (Model.ListadoEstudios[i].Tipo == 0 && Model.ListadoEstudios[i].Requisito == "Grado Universitario" && Model.ListadoEstudios[i].Line == 1)
                                         {
-                                            <tr>
+                                            <tr>                                                
                                                 <td class="celda-nombre">
-                                                    <strong>@item.Requisito</strong>
+                                                    <!--Se muestra el siguiente en la lista-->
+                                                    <strong>@Model.ListadoEstudios[i + 1].Requisito.Split('-')[0]</strong>
                                                 </td>
                                                 <td class="celda-datos">
-                                                    @if (item.Line == 1)
+                                                    @if (Model.ListadoEstudios[i].Line == 1)
                                                     {
-                                                        if (item.Cumplimiento == 1)
+                                                        if (Model.ListadoEstudios[i].Cumplimiento == 1)
                                                         {
                                                             <span class="valor-palabra si-cumple">Si cumple</span><span class="valor-icono2 si-cumple">g</span>
                                                         }
-                                                        @*else
+                                                        else
                                                         {
-                                                            <span class="valor-palabra no-cumple"><strong>No cumple</strong></span><span class="valor-icono2 no-cumple">l</span>
+                                                            <!--<span class="valor-palabra no-cumple"><strong>No cumple</strong></span><span class="valor-icono2 no-cumple">l</span>-->
                                                         }
                                                     }
 
@@ -284,9 +232,94 @@
                                                 <td colspan="2"><div class="linea_raya"></div></td>
                                             </tr>
                                         }
+                                        
+                                            i = i + 3;
+                                        
                                     }
-                                }*@
+                                }
 
+                            </table>
+
+
+
+                            <br />
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <strong class="sub-titulo-seccion">Otros Estudios</strong>
+                                </div>
+                            </div>
+                            <br />
+
+                            <table class="fuente-pequeña">
+                                @{
+                                    string cicloMinimo = "";
+                                }
+                                @if (Model.ListadoEstudios != null && Model.ListadoEstudios.Count > 0)
+                                {
+                                        <!--Carreras UTP-->
+                                    for (int i = 0; i <= Model.ListadoEstudios.Count - 1; i++)
+                                    {
+                                        if (Model.ListadoEstudios[i].Tipo == 0 && Model.ListadoEstudios[i].Requisito == "Grado Universitario")
+                                        {
+                                            i = i + 3;
+                                        }
+
+                                        if (Model.ListadoEstudios[i].Tipo == 1 && cicloMinimo != "")
+                                        {
+                                            <tr>
+                                                <td class="celda-nombre">
+                                                    @cicloMinimo
+
+                                                    <!--Se establece el ciclo mínimo nuevamente vacío.-->
+                                                    @{
+                                            cicloMinimo = "";
+                                                    }
+                                                </td>
+
+                                                <td></td>
+                                            </tr>
+                                        }
+                                        
+                                        if (Model.ListadoEstudios[i].Tipo == 0 && Model.ListadoEstudios[i].Requisito != "Grado Universitario")
+                                        {
+                                            <tr>
+                                                <td class="celda-nombre">
+                                                    <!--Se muestra el siguiente en la lista-->
+                                                    <strong>@Model.ListadoEstudios[i].Requisito.Split('-')[0]</strong>
+                                                    @{
+                                                        if (Model.ListadoEstudios[i].Requisito.Split('-').Length > 1)
+                                                        {
+                                                            cicloMinimo = Model.ListadoEstudios[i].Requisito.Split('-')[1].Split(':')[1];                                                            
+                                                        }
+                                                    }
+                                                </td>
+                                                <td class="celda-datos">
+                                                    @if (Model.ListadoEstudios[i].Line == 1)
+                                                    {
+                                                        if (Model.ListadoEstudios[i].Cumplimiento == 1)
+                                                        {
+                                                            <span class="valor-palabra si-cumple">Si cumple</span><span class="valor-icono2 si-cumple">g</span>
+                                                        }
+                                                        else
+                                                        {
+                                                            <!--<span class="valor-palabra no-cumple"><strong>No cumple</strong></span><span class="valor-icono2 no-cumple">l</span>-->
+                                                        }
+                                                    }
+                                                </td>
+                                            </tr>
+                                        }
+                                        else
+                                        {
+                                            <tr>
+                                                <td colspan="2"><div class="linea_raya"></div></td>
+                                            </tr>
+                                        }
+                                        
+                                        
+
+                                    }
+                                }
                                 <tr>
                                     <td>
                                         <br />
@@ -305,7 +338,7 @@
                                     <td class="celda-datos">
                                         @if (Model.Oferta.CumpleExperienciaGeneral)
                                         {
-                                        <span class="valor-palabra si-cumple">Si cumple</span><span class="valor-icono2 si-cumple">g</span>
+                                            <span class="valor-palabra si-cumple">Si cumple</span><span class="valor-icono2 si-cumple">g</span>
                                         }
                                     </td>
                                 </tr>
@@ -316,7 +349,7 @@
                                     <td class="celda-datos">
                                         @if (Model.Oferta.CumpleExperienciaPosicionesSimilares)
                                         {
-                                        <span class="valor-palabra si-cumple">Si cumple</span><span class="valor-icono2 si-cumple">g</span>
+                                            <span class="valor-palabra si-cumple">Si cumple</span><span class="valor-icono2 si-cumple">g</span>
                                         }
                                     </td>
                                 </tr>
@@ -349,9 +382,9 @@
                                                             <span class="valor-palabra si-cumple">Si cumple</span><span class="valor-icono2 si-cumple">g</span>
                                                         }
                                                         @*else
-                                                        {
-                                                            <span class="valor-palabra no-cumple"><strong>No cumple</strong></span><span class="valor-icono2 no-cumple">l</span>
-                                                        }*@
+                                    {
+                                        <span class="valor-palabra no-cumple"><strong>No cumple</strong></span><span class="valor-icono2 no-cumple">l</span>
+                                    }*@
                                                     }
 
                                                 </td>
@@ -393,9 +426,9 @@
                                                             <span class="valor-palabra si-cumple">Si cumple</span><span class="valor-icono2 si-cumple">g</span>
                                                         }
                                                         @*else
-                                                        {
-                                                            <span class="valor-palabra no-cumple"><strong>No cumple</strong></span><span class="valor-icono2 no-cumple">l</span>
-                                                        }*@
+                                    {
+                                        <span class="valor-palabra no-cumple"><strong>No cumple</strong></span><span class="valor-icono2 no-cumple">l</span>
+                                    }*@
                                                     }
 
                                                 </td>
@@ -417,6 +450,13 @@
 
 
                             </table>
+
+
+
+
+
+
+
                             <br />
 
                         </div>
