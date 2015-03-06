@@ -139,6 +139,37 @@ namespace UTP.PortalEmpleabilidad.Logica
             vistaofertalumno.ListaEstudiosOtros = oferta.ListaEstudios;
             vistaofertalumno.ListaEstudiosUTP = oferta.CarrerasSeleccionadas;
 
+            //06MAR15: Se establece el campo Cumplimiento para los estudios.
+            //Armar pares de datos: Estudio  y TipoEstudio
+            if (vistaofertalumno.ListadoEstudios.Count > 0)
+            { 
+                //Se recorre la lista de estudios con el dato de cumplimiento:
+                for (int i = 0; i < vistaofertalumno.ListadoEstudios.Count-3; i++)
+                {
+                    //Se obtiene los datos de la fila:
+                    string tipoEstudio = vistaofertalumno.ListadoEstudios[i].Requisito;
+                    int cumplimiento = vistaofertalumno.ListadoEstudios[i].Cumplimiento;
+                    string estudio = vistaofertalumno.ListadoEstudios[i+1].Requisito;
+
+                    //Se avanza en bloques de 4 porque la lista agrupa TipoEstudio(0), Carrera(1), EstadoEstudio(2), Línea vacía(3).
+                    i = i + 4;
+
+                    //Se busca la oferta en a listaEstudiosUTP
+                    var estudioOfertaUTP = vistaofertalumno.ListaEstudiosUTP.Where(m => m.TipoDeEstudio.Valor == tipoEstudio && m.Estudio == estudio).FirstOrDefault();
+                    if (estudioOfertaUTP != null)
+                    {
+                        estudioOfertaUTP.Cumplimiento = cumplimiento;
+                    }
+
+                    //Se busca la oferta en a listaEstudiosOtros
+                    var estudioOfertaOtros = vistaofertalumno.ListaEstudiosOtros.Where(m => m.TipoDeEstudio.Valor == tipoEstudio && m.Estudio == estudio).FirstOrDefault();
+                    if (estudioOfertaOtros != null)
+                    {
+                        estudioOfertaOtros.Cumplimiento = cumplimiento;
+                    }
+                }
+            }
+
             return vistaofertalumno;
         }
         public List<Oferta> BuscarFiltroOfertasAlumno(int IdAlumno, string PalabraClave, int PagActual, int NumRegistros)

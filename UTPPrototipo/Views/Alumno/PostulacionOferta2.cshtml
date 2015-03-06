@@ -178,9 +178,75 @@
                     </div>
                     <div id="collapseRequisito" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingRequisito">
                         <div class="panel-body fuente-pequeña">
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <strong class="sub-titulo-seccion">Carreras</strong>
+                                </div>
+                            </div>
+                            <table class="fuente-pequeña">
+                                <tr>
+                                    <td class="celda-nombre">Estado</td>
+                                    <td class="celda-datos">@Model.Oferta.EstadoCarreraUTPDescripcion</td>
+                                </tr>
+                                <tr>
+                                    <td class="celda-nombre">Ciclo mínimo</td>
+                                    <td class="celda-datos">@Model.Oferta.CicloMinimoCarreraUTP</td>
+                                </tr>
+                            </table>
+                            <br />
+                            @foreach (var itemCarrera in Model.ListaEstudiosUTP)
+                                {
+                                <table class="fuente-pequeña">
+                                    <tr>
+                                        <td class="celda-nombre">Carrera</td>
+                                        <td class="celda-datos">@itemCarrera.Estudio</td>
+                                        @if (itemCarrera.Cumplimiento == 1) //Solo se muestra si el cumplimiento existe.
+                                        { 
+                                            <td class="celda-datos">@itemCarrera.Cumplimiento</td>
+                                        }
+                                    </tr>
+                                </table>
+                                }
+                            <br />
+                            <hr />
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <strong class="sub-titulo-seccion">Otros Estudios</strong>
+                                </div>
+                            </div>
+                            <br />
+
+                            @foreach (var itemEstudio in Model.ListaEstudiosOtros)
+                            {
+                                <table class="fuente-pequeña">
+                                    <tr>
+                                        <td class="celda-nombre">Tipo</td>
+                                        <td class="celda-datos">@itemEstudio.TipoDeEstudio.Valor</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="celda-nombre">Estudio</td>
+                                        <td class="celda-datos">@itemEstudio.Estudio</td>
+                                        @if (itemEstudio.Cumplimiento == 1) //Solo se muestra si el cumplimiento existe.
+                                        {
+                                            <td class="celda-datos">@itemEstudio.Cumplimiento</td>    
+                                        }
+                                    </tr>
+                                    <tr>
+                                        <td class="celda-nombre">Estado</td>
+                                        <td class="celda-datos">@itemEstudio.EstadoDelEstudio.Valor</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="celda-nombre">Ciclo mínimo</td>
+                                        <td class="celda-datos">@itemEstudio.CicloEstudio</td>
+                                    </tr>
+                                </table>
+                                <br />
+                            }
+
                             <table class="fuente-pequeña">
 
-                                @if (Model.ListadoEstudios != null && Model.ListadoEstudios.Count > 0)
+                                @*@if (Model.ListadoEstudios != null && Model.ListadoEstudios.Count > 0)
                                 {
                                     <tr>
                                         <td >
@@ -206,7 +272,7 @@
                                                         @*else
                                                         {
                                                             <span class="valor-palabra no-cumple"><strong>No cumple</strong></span><span class="valor-icono2 no-cumple">l</span>
-                                                        }*@
+                                                        }
                                                     }
 
                                                 </td>
@@ -218,10 +284,9 @@
                                                 <td colspan="2"><div class="linea_raya"></div></td>
                                             </tr>
                                         }
-
-
                                     }
-                                }
+                                }*@
+
                                 <tr>
                                     <td>
                                         <br />

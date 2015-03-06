@@ -39,6 +39,9 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public DateTime FechaModificacion { get; set; }
 
         public string CodigoCarrera { get; set; } //Guarda el código de la carrera UTP. Por ejemplo: 02CAA3, 02CAA9.
+
+        public int Cumplimiento { get; set; } //Se agrega el cumplimiento para establecer si el estudio cumple los requisitos de la oferta
+
         public OfertaEstudio()
         {
             TipoDeEstudio = new ListaValor();
