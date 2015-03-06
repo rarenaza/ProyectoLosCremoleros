@@ -28,7 +28,7 @@
             @*<strong>@item.Nombres @item.Apellidos</strong>*@            
             @*@Html.ActionLink(item.Nombres + "" + @item.Apellidos, "MostrarAlumno", new { id = item.IdAlumno }, htmlAttributes: new { @target = "_blank", @title = "Ver CV alumno" })*@
             @*@Html.ActionLink(item.Nombres + "" + @item.Apellidos, "MostrarAlumno", new { id = Helper.Encriptar(item.IdAlumno.ToString()) }, htmlAttributes: new { @target = "_blank", @title = "Ver CV alumno" })*@
-            @Html.ActionLink(item.Nombres + " " + @item.Apellidos, "MostrarAlumno", new { id = Helper.Encriptar(item.IdAlumno.ToString()) }, htmlAttributes: new { @title = "Ver CV alumno" })
+            @Html.ActionLink(item.Nombres + "" + @item.Apellidos, "MostrarAlumno", new { id = Helper.Encriptar(item.IdAlumno.ToString()) }, htmlAttributes: new { @title = "Ver CV alumno" })
         </div>
         <div class="col-sm-3">@item.Estudios</div>
         <div class="col-sm-2">@item.ValorEstadoEstudio</div>
