@@ -41,7 +41,7 @@ namespace UTPPrototipo.Controllers
             OfertaEstudio ofertaEstudio = new OfertaEstudio();
             ofertaEstudio.IdOferta = id;
 
-            ViewBag.TipoDeEstudioIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_DE_ESTUDIO), "IdListaValor", "Valor");
+            ViewBag.TipoDeEstudioIdListaValor = new SelectList(lnGeneral.ObtenerListaValorOfertaTipoEstudiosEspecificos(Constantes.IDLISTA_TIPO_DE_ESTUDIO), "IdListaValor", "Valor");
             ViewBag.EstadoDelEstudioIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_DEL_ESTUDIO), "IdListaValor", "Valor");
             ViewBag.Estudio = new SelectList(lnGeneral.ObtenerListaValorPorIdPadre(Constantes.TIPO_ESTUDIO_UNIVERSITARIO), "Valor","Valor");
             
@@ -100,7 +100,7 @@ namespace UTPPrototipo.Controllers
 
             OfertaEstudio ofertaEstudio = lista[0];
 
-            ViewBag.TipoDeEstudioIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_DE_ESTUDIO), "IdListaValor", "Valor", ofertaEstudio.TipoDeEstudioIdListaValor);
+            ViewBag.TipoDeEstudioIdListaValor = new SelectList(lnGeneral.ObtenerListaValorOfertaTipoEstudiosEspecificos(Constantes.IDLISTA_TIPO_DE_ESTUDIO), "IdListaValor", "Valor", ofertaEstudio.TipoDeEstudioIdListaValor);
             ViewBag.EstadoDelEstudioIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_DEL_ESTUDIO), "IdListaValor", "Valor", ofertaEstudio.EstadoDelEstudioIdListaValor);
             ViewBag.Estudio = new SelectList(lnGeneral.ObtenerListaValorPorIdPadre(Constantes.TIPO_ESTUDIO_UNIVERSITARIO), "Valor","Valor",ofertaEstudio.Estudio);
 

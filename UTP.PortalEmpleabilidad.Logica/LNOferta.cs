@@ -381,7 +381,8 @@ namespace UTP.PortalEmpleabilidad.Logica
                 oferta.ExperienciaGeneral = Convert.ToInt32(dsResultado.Tables[0].Rows[0]["MesesExperienciaTotal"]);
                 oferta.ExperienciaPosicionesSimilares = Convert.ToInt32(dsResultado.Tables[0].Rows[0]["MesesExperienciaTipoTrabajo"]);
 
-                oferta.FechaFinProceso = Convert.ToDateTime(dsResultado.Tables[0].Rows[0]["FechaFinProceso"]);
+                //05MAR15: Para las nuevas ofertas este campo siempre está con data. Se agrega la validación para compatibilidad con ofertas anteriores.
+                oferta.FechaFinProceso = Convert.ToDateTime(dsResultado.Tables[0].Rows[0]["FechaFinProceso"] == System.DBNull.Value ? new DateTime(1, 1, 1900) : dsResultado.Tables[0].Rows[0]["FechaFinProceso"]);
             }
 
             //Tabla Index 1: Lista de estudios.
