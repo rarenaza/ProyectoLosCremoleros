@@ -63,7 +63,7 @@
                             <div class="col-sm-3" style="border-right:solid;border-right-color:lightgray;border-right-width:1px;text-align:center;">
                                 <span>Visualice como los Postulantes verán su Oferta Laboral</span>
                                 <br />
-                                @*@{
+                                @{
                                     if (Model.EstadoOferta == "OFERBO") //Estado en borrador.
                                     {
                                         @Html.ActionLink("Vista Previa", "MostrarOferta", new { id = Helper.Encriptar(Model.IdOferta.ToString()) }, htmlAttributes: new { @class = "btn btn-default color-paleta2", @target = "_blank", @title = "Vista previa de la oferta", @disabled = "disabled", @style = "color:grey;" })
@@ -72,9 +72,9 @@
                                     {
                                         @Html.ActionLink("Vista Previa", "MostrarOferta", new { id = Helper.Encriptar(Model.IdOferta.ToString()) }, htmlAttributes: new { @class = "btn btn-default color-paleta2", @target = "_blank", @title = "Vista previa de la oferta" })
                                     }
-                                }*@  
+                                }  
                                 @*@Html.ActionLink("Vista Previa", "MostrarOferta", new { id = Helper.Encriptar(Model.IdOferta.ToString()) }, htmlAttributes: new { @class = "btn btn-default color-paleta2", @target = "_blank", @title = "Vista previa de la oferta" })*@
-                                @Html.ActionLink("Vista Previa", "MostrarOferta", new { id = Helper.Encriptar(Model.IdOferta.ToString()) }, htmlAttributes: new { @class = "btn btn-default color-paleta2", @title = "Vista previa de la oferta" })
+                                @*@Html.ActionLink("Vista Previa", "MostrarOferta", new { id = Helper.Encriptar(Model.IdOferta.ToString()) }, htmlAttributes: new { @class = "btn btn-default color-paleta2", @title = "Vista previa de la oferta" })*@
                             </div>
 
                             <!--Bloque 4: Publicación-->
