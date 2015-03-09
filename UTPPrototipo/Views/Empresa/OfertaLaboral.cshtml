@@ -8,7 +8,6 @@
     ViewBag.Title = "Nueva Oferta Laboral";
 }
 
-
 <div class="container fuente-pequeña" style="margin-top:2px;">
 
     @{Html.RenderAction("VistaCabecera", "Empresa");}
@@ -287,8 +286,10 @@
                                 <div id="divListaEstudiosCarrerasUTP">
 
                                     @Html.Partial("_OfertaEstudiosUTP")
-                                    <label class="text-danger">@ViewBag.MensajeCarrerasSeleccionadas</label>
-                                </div>
+                                    <a id="aMensajeCarreras" href="#"></a>                                  
+                                        <label id="lblMensajeCarreras" class="text-danger">@ViewBag.MensajeCarrerasSeleccionadas</label>
+                                  
+                                    </div>
                                 <div id="divDatosEstudiosUTP">
                                     <div class="row">
                                         <div class="col-sm-6">
@@ -814,18 +815,22 @@
 
 @{
     //Se valida que exista mensaje de éxito al crear una oferta
-    @*if (TempData["MsjExitoCrearOferta"] != null)
-        {
-            <input id="msjExitoCrearOferta" type="hidden" value="@TempData["MsjExitoCrearOferta"]" />
-            TempData["MsjExitoCrearOferta"] = null; //Se establece el valor nuevamente en NULL.
+    if (TempData["MsjErrorNoCarreras"] != null)
+    {
+        <input id="MsjErrorNoCarreras" type="hidden" value="@TempData["MsjErrorNoCarreras"]"  />
+        TempData["MsjErrorNoCarreras"] = null; //Se establece el valor nuevamente en NULL.
 
-            //Se muestra el script
+        //Se muestra el script
             <script>
 
-                var msjExito = document.getElementById("msjExitoCrearOferta").value;
-                alert(msjExito);
+                var msjError = document.getElementById("MsjErrorNoCarreras").value;
 
+                if (msjError == "error")
+                {
+                    window.location = document.getElementById('aMensajeCarreras').href;
+                }
+                
             </script>
-        }*@
+        }
 
 }

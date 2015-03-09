@@ -217,6 +217,7 @@ namespace UTPPrototipo.Controllers
             if (cantidadCarreras == 0)
             {
                 ViewBag.MensajeCarrerasSeleccionadas = "Debe seleccionar al menos una carrera";
+                TempData["MsjErrorNoCarreras"] = "error";
             }
             else
             {
@@ -1407,7 +1408,7 @@ namespace UTPPrototipo.Controllers
             LNOferta lnOferta = new LNOferta();
             
             //Se buscan la ofertas de la empresa que se encuentran en estado OFERCV (Fin de recepción de CVs)
-            List<VistaEmpresaOferta> lista = lnOferta.ObtenerOfertasPorIdEmpresa(ticket.IdEmpresa).Where(p => p.NombreEstado == Constantes.OFERTA_ESTADO_FINRECEPCIONCVS).ToList();
+            List<VistaEmpresaOferta> lista = lnOferta.ObtenerOfertasPorIdEmpresa(ticket.IdEmpresa).Where(p => (p.NombreEstado == Constantes.OFERTA_ESTADO_FINRECEPCIONCVS || p.NombreEstado == Constantes.OFERTA_ESTADO_ACTIVA) && p.FechaFinOferta < DateTime.Now).ToList();
 
             return lista;
 

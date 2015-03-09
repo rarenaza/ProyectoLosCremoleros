@@ -18,5 +18,6 @@ namespace UTP.PortalEmpleabilidad.Modelo.Vistas.Empresa
 
         public string UsuarioPropietarioEmpresa { get; set; }
         public string UsuarioPropietarioEmpresaCorreo { get; set; }
+        public DateTime FechaFinOferta { get; set; }
     }
 }
