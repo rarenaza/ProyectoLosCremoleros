@@ -283,12 +283,9 @@
                         </div>
                         <div id="collapseRequisito" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingRequisito">
                             <div class="panel-body fuente-pequeña">
-                                <div id="divListaEstudiosCarrerasUTP">
-
-                                    @Html.Partial("_OfertaEstudiosUTP")
-                                    <a id="aMensajeCarreras" href="#"></a>                                  
-                                        <label id="lblMensajeCarreras" class="text-danger">@ViewBag.MensajeCarrerasSeleccionadas</label>
-                                  
+                                <label id="lblMensajeCarreras" class="text-danger">@ViewBag.MensajeCarrerasSeleccionadas</label>
+                                <div id="divListaEstudiosCarrerasUTP">                                    
+                                    @Html.Partial("_OfertaEstudiosUTP")                                                                                                                                            
                                     </div>
                                 <div id="divDatosEstudiosUTP">
                                     <div class="row">
@@ -319,6 +316,7 @@
                                     @Html.Action("ObtenerEstudios", "OfertaEstudio", new { idOferta = Model.IdOferta })
                                 </div>
                                 <hr />
+                                
                                 <div class="row">
                                     <div class="col-md-12">
                                         <strong class="sub-titulo-seccion">Experiencia</strong>
@@ -350,6 +348,7 @@
                                     </div>
                                 </div>
                                 <hr />
+                                <a id="aMensajeCarreras" href="#"></a>   
                                 <div id="divListaSectores">
                                     @Html.Action("ObtenerSectoresEmpresariales", "OfertaSectorEmpresarial", new { idOferta = Model.IdOferta })
                                 </div>
