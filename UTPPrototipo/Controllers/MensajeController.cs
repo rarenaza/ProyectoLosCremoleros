@@ -604,6 +604,7 @@ namespace UTPPrototipo.Controllers
             VistaEmpresaOferta ofertaSeleccionada = listaOfertas.Where(m => m.IdOferta == IdOferta).FirstOrDefault();
             mensaje.Asunto = ofertaSeleccionada == null ? "" : ofertaSeleccionada.CargoOfrecido;
             mensaje.ParaUsuario = ofertaSeleccionada.UsuarioPropietarioEmpresa;
+            mensaje.ParaUsuarioNombre = ofertaSeleccionada.UsuarioPropietarioEmpresa;
             mensaje.ParaUsuarioCorreoElectronico = ofertaSeleccionada.UsuarioPropietarioEmpresaCorreo;
 
            
@@ -633,6 +634,7 @@ namespace UTPPrototipo.Controllers
             mensaje.DeUsuario = ticketUtp.Usuario;
             mensaje.DeUsuarioCorreoElectronico = ticketUtp.CorreoElectronico;
             mensaje.ParaUsuario = Convert.ToString(dt.Rows[0]["Usuario"]);
+            mensaje.ParaUsuarioNombre = Convert.ToString(dt.Rows[0]["Usuario"]);
             mensaje.ParaUsuarioCorreoElectronico = Convert.ToString(dt.Rows[0]["CorreoElectronico"]);
             mensaje.CreadoPor = ticketUtp.Usuario;
             mensaje.Pantalla = pantalla;
@@ -650,6 +652,7 @@ namespace UTPPrototipo.Controllers
             mensaje.DeUsuario = ticketUtp.Usuario;
             mensaje.DeUsuarioCorreoElectronico = ticketUtp.CorreoElectronico;
             mensaje.ParaUsuario = usuarioAlumno;
+            mensaje.ParaUsuarioNombre = usuarioAlumno;
             mensaje.ParaUsuarioCorreoElectronico = alumno.CorreoElectronico1;
             mensaje.CreadoPor = ticketUtp.Usuario;
             mensaje.Pantalla = pantalla;
@@ -690,6 +693,7 @@ namespace UTPPrototipo.Controllers
             VistaEmpresaOferta ofertaSeleccionada = listaOfertas.Where(m => m.IdOferta == IdOferta).FirstOrDefault();
             mensaje.Asunto = ofertaSeleccionada == null ? "" : ofertaSeleccionada.CargoOfrecido;
             mensaje.ParaUsuario = ofertaSeleccionada.UsuarioPropietarioEmpresa;
+            mensaje.ParaUsuarioNombre = ofertaSeleccionada.UsuarioPropietarioEmpresa;
             mensaje.ParaUsuarioCorreoElectronico = ofertaSeleccionada.UsuarioPropietarioEmpresaCorreo;
             mensaje.IdOfertaMensaje = IdOferta; //Se establece el IdOferta enviado como parámetro
 
@@ -749,6 +753,7 @@ namespace UTPPrototipo.Controllers
 
             //04MAR15: Se coloca el usuario y correo del que ha creado el evento.
             mensaje.ParaUsuario = Convert.ToString(dtEvento.Rows[0]["CreadoPor"]);
+            mensaje.ParaUsuarioNombre = Convert.ToString(dtEvento.Rows[0]["NombresUsuarioCreacion"]) + " " + Convert.ToString(dtEvento.Rows[0]["ApellidosUsuarioCreacion"]);
             mensaje.ParaUsuarioCorreoElectronico = Convert.ToString(dtEvento.Rows[0]["CorreoUsuarioCreacion"]);
 
             return PartialView("_MensajesNuevo", mensaje);
@@ -790,6 +795,7 @@ namespace UTPPrototipo.Controllers
             mensaje.DeUsuario = ticketEmpresa.Usuario;
             mensaje.DeUsuarioCorreoElectronico = ticketEmpresa.CorreoElectronico;
             mensaje.ParaUsuario = lnMensaje.ObtenerListaAlumnosHunting(listaIdAlumnos); //Se guarda la lista de ids en esta propiedad.
+            mensaje.ParaUsuarioNombre = lnMensaje.ObtenerListaAlumnosHunting(listaIdAlumnos); //Se guarda la lista de ids en esta propiedad.
             mensaje.ParaUsuarioCorreoElectronico = listaIdAlumnos;
             mensaje.Pantalla = pantalla;            
             mensaje.CreadoPor = ticketEmpresa.Usuario;

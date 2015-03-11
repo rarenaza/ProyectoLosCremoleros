@@ -31,7 +31,7 @@
                     <div class="input-group">
                         <span class="input-group-addon">Destina-<br />tario</span>
                         @*<input id="inpUsuarioPara" name="ParaUsuario" class="form-control" placeholder="Usuario Destinatario" value="@Model.ParaUsuario" />*@
-                        <input id="inpUsuarioParaNombre" class="form-control" value="@Model.ParaUsuarioNombre" />
+                        <input id="inpUsuarioParaNombre" name="ParaUsuarioNombre" class="form-control" value="@Model.ParaUsuarioNombre" />
                         <input id="inpUsuarioPara" name="ParaUsuario" type="hidden" class="form-control" placeholder="Ingrese Código del Alumno o selecciona Oferta" value="@Model.ParaUsuario" />
                     </div>
                 </div>
@@ -185,13 +185,15 @@
     }
 
     $(document).ready(function () {
-
+        debugger;
         var pantalla = $('#Pantalla').val();
 
-        if (pantalla == '@Constantes.MENSAJES_UTP_EMPRESA' || pantalla == '@Constantes.MENSAJES_EMPRESA_EVENTO')
+        if (pantalla == '@Constantes.MENSAJES_ALUMNO_INDEX' || pantalla == '@Constantes.MENSAJES_UTP_INDEX' || pantalla == '@Constantes.MENSAJES_UTP_ALUMNO'
+            || pantalla == '@Constantes.MENSAJES_EMPRESA_EVENTO' || pantalla == '@Constantes.MENSAJES_ALUMNO_EVENTO' || pantalla == '@Constantes.MENSAJES_EMPRESA_HUNTING'
+            || pantalla == '@Constantes.MENSAJES_ALUMNO_OFERTA' || pantalla == '@Constantes.MENSAJES_UTP_EMPRESA' || pantalla == '@Constantes.MENSAJES_UTP_OFERTA')
         {
-            $('#inpUsuarioParaNombre').attr("readonly","readonly");
-            return false;
+            //$('#inpUsuarioParaNombre').attr("readonly","readonly");
+            //return false;
         }
 
         //Se establece el valor del combo de ofertas y se deshabilita del campo:
@@ -323,11 +325,13 @@
             //console.log(data);
             //Se setea el campo:
             $("#inpUsuarioPara").val(data.UsuarioPropietarioEmpresa);
+            $("#inpUsuarioParaNombre").val(data.UsuarioPropietarioEmpresa);
             //Se bloquea el campo:
             $("#inpUsuarioPara").attr('readonly', 'readonly')
 
             //Se guardan los datos del usuario Para:
             $('#ParaUsuario').val(data.UsuarioPropietarioEmpresa);
+            $('#ParaUsuarioNombre').val(data.UsuarioPropietarioEmpresa);
             $('#ParaUsuarioCorreoElectronico').val(data.UsuarioPropietarioEmpresaCorreo);
         }
 
@@ -363,6 +367,7 @@
             var nombreUsuario = $(this).find(':selected').data('usuario');
 
             $('#ParaUsuario').val(nombreUsuario);
+            $('#ParaUsuarioNombre').val(nombreUsuario);
             $('#ParaUsuarioCorreoElectronico').val(correoElectronico);
 
             //console.log(correoElectronico);

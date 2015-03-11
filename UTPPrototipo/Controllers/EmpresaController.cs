@@ -16,6 +16,7 @@ using UTPPrototipo.Common;
 using UTPPrototipo.Models.ViewModels.Cuenta;
 using UTPPrototipo.Models.ViewModels.Empresa;
 using UTPPrototipo.Utiles;
+//using Microsoft.Reporting.WebForms;
 
 namespace UTPPrototipo.Controllers
 {
@@ -1533,5 +1534,56 @@ namespace UTPPrototipo.Controllers
 
             return PartialView("_OfertaEstudiosUTP");
         }
+
+        //public ActionResult MostrarReporte()
+        //{
+        //    LocalReport lr = new LocalReport();
+        //    string path = Path.Combine(Server.MapPath("~/Reportes"), "ReporteOfertasDemo.rdlc");
+        //    if (System.IO.File.Exists(path))
+        //    {
+        //        lr.ReportPath = path;
+        //    }
+        //    else
+        //    {
+        //        return View("Index");
+        //    }
+
+        //    LNOferta lnOferta = new LNOferta();
+        //    List<VistaEmpresaOferta> lista = lnOferta.ObtenerOfertasPorIdEmpresa(3687).Where(m => m.NombreEstado != "OFERBO").ToList();
+
+        //    ReportDataSource rd = new ReportDataSource("DataSet1", lista);
+        //    lr.DataSources.Add(rd);
+        //    string reportType = "PDF";
+        //    string mimeType;
+        //    string encoding;
+        //    string fileNameExtension;
+
+        //    string deviceInfo =
+
+        //    "<DeviceInfo>" +
+        //    " <OutputFormat>" + "PDF" + "</OutputFormat>" +
+        //    " <PageWidth>21cm</PageWidth>" +
+        //    " <PageHeight>29.7cm</PageHeight>" +
+        //     " <MarginTop>0.5cm</MarginTop>" +
+        //    " <MarginLeft>0.5cm</MarginLeft>" +
+        //    " <MarginRight>0.5cm</MarginRight>" +
+        //    " <MarginBottom>0.5cm</MarginBottom>" +
+        //    "</DeviceInfo>";
+
+        //    Warning[] warnings;
+        //    string[] streams;
+        //    byte[] renderedBytes;
+
+        //    renderedBytes = lr.Render(
+        //    reportType,
+        //    deviceInfo,
+        //    out mimeType,
+        //    out encoding,
+        //     out fileNameExtension,
+        //    out streams,
+        //    out warnings);
+
+        //    return File(renderedBytes, mimeType);
+        //}
     }
 }
