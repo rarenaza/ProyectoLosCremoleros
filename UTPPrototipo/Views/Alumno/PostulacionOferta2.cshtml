@@ -182,21 +182,23 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <strong class="sub-titulo-seccion">Carreras</strong>
+                                    <br />
                                 </div>
                             </div>
-                            <table class="fuente-pequeña">
+                            <br />
+                            <table class="fuente-pequeña" style="width:100%;">
                                 <tr>
-                                    <td class="celda-nombre">Estado</td>
-                                    <td class="celda-datos">@Model.Oferta.EstadoCarreraUTPDescripcion</td>
+                                    <td class="celda-nombre" style="width:70%;">Estado: <strong>@Model.Oferta.EstadoCarreraUTPDescripcion</strong></td>
+                                    <td class="celda-datos"></td>
                                 </tr>
                                 <tr>
-                                    <td class="celda-nombre">Ciclo mínimo</td>
-                                    <td class="celda-datos">@Model.Oferta.CicloMinimoCarreraUTP</td>
+                                    <td class="celda-nombre" style="width:70%;">Ciclo mínimo: <strong>@Model.Oferta.CicloMinimoCarreraUTP</strong></td>
+                                    <td class="celda-datos"></td>
                                 </tr>
                             </table>
                             <br />
 
-                            <table class="fuente-pequeña">
+                            <table class="fuente-pequeña" style="width:100%;">
                                 @if (Model.ListadoEstudios != null && Model.ListadoEstudios.Count > 0)
                                 {
                                         <!--Carreras UTP-->
@@ -205,8 +207,8 @@
 
                                         if (Model.ListadoEstudios[i].Tipo == 0 && Model.ListadoEstudios[i].Requisito == "Grado Universitario" && Model.ListadoEstudios[i].Line == 1)
                                         {
-                                            <tr>                                                
-                                                <td class="celda-nombre">
+                                            <tr>
+                                                <td class="celda-nombre" style="width:70%;">
                                                     <!--Se muestra el siguiente en la lista-->
                                                     <strong>@Model.ListadoEstudios[i + 1].Requisito.Split('-')[0]</strong>
                                                 </td>
@@ -226,24 +228,20 @@
                                                 </td>
                                             </tr>
                                         }
-                                        else
+                                        @*else
                                         {
                                             <tr>
                                                 <td colspan="2"><div class="linea_raya"></div></td>
                                             </tr>
-                                        }
-                                        
-                                            i = i + 3;
-                                        
+                                        }*@
+
+                                        i = i + 3;
+
                                     }
                                 }
 
                             </table>
-
-
-
-                            <br />
-
+                            <hr />
                             <div class="row">
                                 <div class="col-md-12">
                                     <strong class="sub-titulo-seccion">Otros Estudios</strong>
@@ -251,7 +249,7 @@
                             </div>
                             <br />
 
-                            <table class="fuente-pequeña">
+                            <table class="fuente-pequeña" style="width:100%;">
                                 @{
                                     string cicloMinimo = "";
                                 }
@@ -269,7 +267,7 @@
                                         {
                                             <tr>
                                                 <td class="celda-nombre">
-                                                    @cicloMinimo
+                                                    Ciclo mínimo: @cicloMinimo
 
                                                     <!--Se establece el ciclo mínimo nuevamente vacío.-->
                                                     @{
@@ -280,18 +278,18 @@
                                                 <td></td>
                                             </tr>
                                         }
-                                        
+
                                         if (Model.ListadoEstudios[i].Tipo == 0 && Model.ListadoEstudios[i].Requisito != "Grado Universitario")
                                         {
                                             <tr>
-                                                <td class="celda-nombre">
+                                                <td class="celda-nombre" style="width:70%;">
                                                     <!--Se muestra el siguiente en la lista-->
                                                     <strong>@Model.ListadoEstudios[i].Requisito.Split('-')[0]</strong>
                                                     @{
-                                                        if (Model.ListadoEstudios[i].Requisito.Split('-').Length > 1)
-                                                        {
-                                                            cicloMinimo = Model.ListadoEstudios[i].Requisito.Split('-')[1].Split(':')[1];                                                            
-                                                        }
+                                            if (Model.ListadoEstudios[i].Requisito.Split('-').Length > 1)
+                                            {
+                                                cicloMinimo = Model.ListadoEstudios[i].Requisito.Split('-')[1].Split(':')[1];
+                                            }
                                                     }
                                                 </td>
                                                 <td class="celda-datos">
@@ -309,30 +307,37 @@
                                                 </td>
                                             </tr>
                                         }
-                                        else
+                                        @*else
                                         {
                                             <tr>
                                                 <td colspan="2"><div class="linea_raya"></div></td>
                                             </tr>
-                                        }
-                                        
-                                        
+                                        }*@
+
+
 
                                     }
                                 }
                                 <tr>
                                     <td>
-                                        <br />
+                                        <hr />
+                                    </td>
+                                    <td>
+                                        <hr />
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
                                         <strong class="sub-titulo-seccion">Experiencia</strong>
                                     </td>
-                                    <td class="celda-datos"></td>
                                 </tr>
                                 <tr>
-                                    <td class="celda-nombre">
+                                    <td>
+                                        <br />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="celda-nombre" style="width:70%;">
                                         <strong class="sub-titulo-seccion">General: @Model.Oferta.ExperienciaGeneral meses </strong>
                                     </td>
                                     <td class="celda-datos">
@@ -343,7 +348,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="celda-nombre">
+                                    <td class="celda-nombre" style="width:70%;">
                                         <strong class="sub-titulo-seccion">En posiciones similares: @Model.Oferta.ExperienciaPosicionesSimilares meses</strong>
                                     </td>
                                     <td class="celda-datos">
@@ -355,7 +360,10 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <br />
+                                        <hr />
+                                    </td>
+                                    <td>
+                                        <hr />
                                     </td>
                                 </tr>
                                 @if (Model.ListadoSectorEmpresarial != null && Model.ListadoSectorEmpresarial.Count > 0)
@@ -366,12 +374,17 @@
                                         </td>
                                         <td class="celda-datos"></td>
                                     </tr>
+                                    <tr>
+                                        <td>
+                                            <br />
+                                        </td>
+                                    </tr>
                                     foreach (var item in Model.ListadoSectorEmpresarial)
                                     {
                                         if (item.Tipo == 0)
                                         {
                                             <tr>
-                                                <td class="celda-nombre">
+                                                <td class="celda-nombre" style="width:70%;">
                                                     <strong>@item.Requisito</strong>
                                                 </td>
                                                 <td class="celda-datos">
@@ -390,32 +403,45 @@
                                                 </td>
                                             </tr>
                                         }
-                                        else
+                                        @*else
                                         {
                                             <tr>
                                                 <td colspan="2"><div class="linea_raya"></div></td>
                                             </tr>
-                                        }
+                                        }*@
 
 
                                     }
                                 }
-                                <tr><td><br /></td></tr>
+                                <tr>
+                                    <td>
+                                        <hr />
+                                    </td>
+                                    <td>
+                                        <hr />
+                                    </td>
+                                </tr>
 
                                 @if (Model.ListadoInformacionAdicional != null && Model.ListadoInformacionAdicional.Count > 0)
                                 {
                                     <tr>
                                         <td>
                                             <strong class="sub-titulo-seccion">Conocimientos</strong>
+                                            <br />
                                         </td>
                                         <td class="celda-datos"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <br />
+                                        </td>
                                     </tr>
                                     foreach (var item in Model.ListadoInformacionAdicional)
                                     {
                                         if (item.Tipo == 0)
                                         {
                                             <tr>
-                                                <td class="celda-nombre">
+                                                <td class="celda-nombre" style="width:70%;">
                                                     <strong>@item.Requisito</strong>
                                                 </td>
                                                 <td class="celda-datos">
@@ -434,29 +460,18 @@
                                                 </td>
                                             </tr>
                                         }
-                                        else
+                                        @*else
                                         {
                                             <tr>
                                                 <td colspan="2"><div class="linea_raya"></div></td>
                                             </tr>
-                                        }
+                                        }*@
 
 
                                     }
                                 }
 
-                                <tr><td><br /></td></tr>
-
-
-
                             </table>
-
-
-
-
-
-
-
                             <br />
 
                         </div>
