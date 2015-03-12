@@ -420,7 +420,11 @@ namespace UTP.PortalEmpleabilidad.Datos
 
                 //Parámetros:
                 cmd.Parameters.Add(new SqlParameter("@IdOferta", oferta.IdOferta));
-                if (oferta.FechaSeguimiento.ToString("yyyyMMdd") != "19000101")
+                //if (oferta.FechaSeguimiento.ToString("yyyyMMdd") != "19000101")
+                //{
+                //    cmd.Parameters.Add(new SqlParameter("@FechaSeguimiento", oferta.FechaSeguimiento));
+                //}
+                if (oferta.FechaSeguimiento != new DateTime(1,1,1))
                 {
                     cmd.Parameters.Add(new SqlParameter("@FechaSeguimiento", oferta.FechaSeguimiento));
                 }

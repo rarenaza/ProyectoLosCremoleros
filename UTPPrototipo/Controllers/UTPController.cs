@@ -2041,7 +2041,8 @@ namespace UTPPrototipo.Controllers
 
             LNGeneral lnGeneral = new LNGeneral();
 
-            ViewBag.EstadoOferta = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_OFERTA), "IdListaValor", "Valor", oferta.EstadoOferta);
+            //Se quitan las opciones de oferta borrador y oferta fin de recepción de CV's.
+            ViewBag.EstadoOferta = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_OFERTA).Where(a => a.IdListaValor != "OFERBO" && a.IdListaValor != "OFERCV"), "IdListaValor", "Valor", oferta.EstadoOferta);
 
             return View(oferta);
         }
@@ -2063,6 +2064,7 @@ namespace UTPPrototipo.Controllers
         {
             lnUtp.UTP_ActualizaSeguimientoOferta(oferta);
             Oferta ofertaActualizada = lnoferta.ObtenerSeguimientoPorId(oferta.IdOferta);
+            
             return PartialView("_VerDetalleOferta", ofertaActualizada);
         }
 

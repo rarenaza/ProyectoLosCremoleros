@@ -555,6 +555,9 @@
     function mostrarMensajeSegumiento()
     {
         alert("Seguimiento fue actualizado con éxito");
+
+        //Incidencia 302: Se redirecciona a la página de ofertas        
+        window.location.href = '@Url.Action("Ofertas","UTP")';        
     }
 
 </script>
