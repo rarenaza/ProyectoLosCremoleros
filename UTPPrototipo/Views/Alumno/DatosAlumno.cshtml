@@ -147,14 +147,18 @@
             <div class="col-sm-4">
                 <div class="input-group">
                     <span class="input-group-addon">Provincia</span>
-                    <select class="form-control" id="DireccionCiudadId" name="DireccionCiudadId" data-val="true" data-val_required="Falta la provincia" aria-required="true" aria-invalid="false" aria-describedby="DireccionCiudad-error"></select>
+                    @*<select class="form-control" id="DireccionCiudadId" name="DireccionCiudadId" data-val="true" data-val_required="Falta la provincia" aria-required="true" aria-invalid="false" aria-describedby="DireccionCiudad-error"></select>*@
+                    <!--Se envía el SelectList vacío porque se carga por javascript.-->
+                    @Html.DropDownListFor(m => m.DireccionCiudadId, new SelectList(string.Empty, "Value", "Text"), "- Seleccionar -", htmlAttributes: new { @class = "form-control" })
                 </div>
                 @Html.ValidationMessageFor(m => m.DireccionCiudadId, "", new { @class = "text-danger" })
             </div>
             <div class="col-sm-4">
                 <div class="input-group">
                     <span class="input-group-addon">Distrito</span>
-                    <select class="form-control" id="DireccionDistritoId" name="DireccionDistritoId" data-val="true" data-val_required="Falta el distrito"></select>
+                    <!--Se envía el SelectList vacío porque se carga por javascript.-->
+                    @Html.DropDownListFor(m => m.DireccionDistritoId, new SelectList(string.Empty, "Value", "Text"), "- Seleccionar -", htmlAttributes: new { @class = "form-control" })
+                    @*<select class="form-control" id="DireccionDistritoId" name="DireccionDistritoId" data-val="true" data-val_required="Falta el distrito"></select>*@
                 </div>
                 @Html.ValidationMessageFor(m => m.DireccionDistritoId, "", new { @class = "text-danger" })
             </div>
@@ -226,32 +230,71 @@
     $("#IdCambiarImagen").click(function () {
         $("#fileUpload").trigger("click");
     });
+    
+    //Cambio del combo de departamento:
     $("#DireccionRegionId").change(function () {
-
+                
+        //* Se carga el combo de departamentos:
         fillCombo("DireccionCiudadId", $("#DireccionRegionId").val());
+        
+        limpiarProvincia();
+        limpiarDistrito();
+        
     });
+
+    //Cambio del combo de provincia:
     $("#DireccionCiudadId").change(function () {
+
+        //Se carga el combo de distritos:
         fillCombo("DireccionDistritoId", $("#DireccionCiudadId").val());
+
+        limpiarDistrito();
     });
+
+    function limpiarDistrito() {
+        //* Se limpia el combo del distrito:
+        $("#DireccionDistritoId").empty();
+
+        //* Se establece el valor de --Seleccione--
+        $("#DireccionDistritoId").append("<option selected value>- Seleccionar -</option>");
+    }
+
+    function limpiarProvincia() {
+        //* Se limpia el combo del distrito:
+        $("#DireccionCiudadId").empty();
+
+        //* Se establece el valor de --Seleccione--
+        $("#DireccionCiudadId").append("<option selected value>- Seleccionar -</option>");
+    }
 
     function fillCombo(updateId, value) {
-        if (value != "" && value != null) {
+
+        if (value != "" && value != null)
+        {
             $.getJSON('@Url.Action("ListarListaValor", "Alumno")'
                 + '/' + value,
                 function (data) {
+
+                    //Se limpia el combo:
                     $("#" + updateId).empty();
-                    $("#" + updateId).append("<option value selected='true'>- Seleccion -</option>");
+
+                    //Se ingresa la opción - Seleccionar -
+                    $("#" + updateId).append("<option value selected>- Seleccionar -</option>");
+
+                    //Se recorre la lista de resultados:
                     $.each(data, function (i, item) {
+
+                        //Se van agregando las opciones del combo.
                         $("#" + updateId).append("<option value='"
                            + item.IdListaValor + "'>" + item.Valor
                            + "</option>");
-                        $("#" + updateId).attr('disabled', false);
+                        //$("#" + updateId).attr('disabled', false);
                     });
                 });
         } else {
-            $("#" + updateId).empty();
-            $("#" + updateId).trigger("change");
-            $("#" + updateId).attr('disabled', true);
+            //$("#" + updateId).empty(); //Si está vacío se debe dejar con la palabra Seleccionar.
+            //$("#" + updateId).trigger("change");
+            //$("#" + updateId).attr('disabled', true);
         }
     }
     function InitialCombos(value) {
@@ -262,7 +305,7 @@
                 + '/' + value,
                 function (data) {
                     $("#DireccionCiudadId").empty();
-                    $("#DireccionCiudadId").append("<option value selected='true'>- Seleccione Ciudad -</option>");
+                    $("#DireccionCiudadId").append("<option value selected>- Seleccionar -</option>");
                     $.each(data, function (i, item) {
                         if (item.IdListaValor == $("#IdDireccionCiudad").val()) {
                             $("#DireccionCiudadId").append("<option selected value='"
@@ -283,7 +326,7 @@
                     + '/' + value,
                     function (data) {
                         $("#DireccionDistritoId").empty();
-                        $("#DireccionDistritoId").append("<option value selected='true'>- Seleccione Distrito -</option>");
+                        $("#DireccionDistritoId").append("<option value selected>- Seleccionar -</option>");
                         $.each(data, function (i, item) {
                             if (item.IdListaValor == $("#IdDireccionDistrito").val()) {
                                 $("#DireccionDistritoId").append("<option selected value='"

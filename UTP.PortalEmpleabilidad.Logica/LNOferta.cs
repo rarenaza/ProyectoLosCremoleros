@@ -582,6 +582,7 @@ namespace UTP.PortalEmpleabilidad.Logica
             foreach (DataRow fila in dtResultado.Rows)
             {
                 OfertaPostulante postulante = new OfertaPostulante();
+                postulante.IdAlumno = Convert.ToInt32(fila["IdAlumno"]);
                 postulante.IdOferta = Convert.ToInt32(fila["IdOferta"]);
                 postulante.IdOfertaPostulante = Convert.ToInt32(fila["IdOfertaPostulante"]);
                 postulante.FaseOferta.Valor = Convert.ToString(fila["FaseOfertaDescripcion"]);

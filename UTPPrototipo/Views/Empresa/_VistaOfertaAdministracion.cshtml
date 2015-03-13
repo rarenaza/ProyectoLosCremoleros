@@ -49,13 +49,17 @@
                     <td style="width:10px; border-right: 1px solid #DDDDDD;"></td>
                     <td style="width:20px;"></td>
                     <td style="vertical-align:top;">
-                        @if (Model.EstadoOferta == "OFERFI")
-                        {
-                            <button class="btn btn-default color-paleta2" style="font-size: 12px;" disabled>Oferta cerrada</button>
-                        }
-                        else
-                        {
-                            <button id="btnCerrarOferta" class="btn btn-default color-paleta2" style="font-size: 12px;" onclick="mostrarEncuesta(@Model.IdOferta)">Cerrar oferta</button>
+
+                        @if (ViewBag.Pantalla == "Empresa")
+                        { 
+                            if (Model.EstadoOferta == "OFERFI")
+                            {
+                                <button class="btn btn-default color-paleta2" style="font-size: 12px;" disabled>Oferta cerrada</button>
+                            }
+                            else
+                            {
+                                <button id="btnCerrarOferta" class="btn btn-default color-paleta2" style="font-size: 12px;" onclick="mostrarEncuesta(@Model.IdOferta)">Cerrar oferta</button>
+                            }                            
                         }
                         @*data-toggle="modal" data-target="#divModalEncuesta"*@  
                     </td>

@@ -69,11 +69,13 @@
                 <ul class="nav navbar-nav">
                     <li>
                         @*<a class="btn btn-default navbar-btn Boton_pestana color-paleta1" href="..\UTP\Index" style="padding: 2px 0px 2px 0px;color:white;">Mi Portal</a>*@
-                        @Html.ActionLink("Mi Portal", "Index", null, new { @class = "btn btn-default navbar-btn Boton_pestana color-paleta1", @style = "padding: 2px 0px 2px 0px; color: white;" })
+                        @*@Html.ActionLink("Mi Portal", "Index", null, new { @class = "btn btn-default navbar-btn Boton_pestana color-paleta1", @style = "padding: 2px 0px 2px 0px; color: white;" })*@
+                        <a class="btn btn-default navbar-btn Boton_pestana color-paleta1" href=@Url.Action("Index", "UTP") style="padding: 2px 0px 2px 0px; color: white;">Mi Portal</a>
                     </li>
                     <li>
                         @*<a class="btn btn-default navbar-btn Boton_pestana color-paleta2" href="..\UTP\Empresas" style="padding: 2px 0px 2px 0px;color:white;">Empresas</a>*@
-                        @Html.ActionLink("Empresas", "Empresas", null, new { @class = "btn btn-default navbar-btn Boton_pestana color-paleta2", @style = "padding: 2px 0px 2px 0px; color: white;" })
+                        @*@Html.ActionLink("Empresas", "Empresas", null, new { @class = "btn btn-default navbar-btn Boton_pestana color-paleta2", @style = "padding: 2px 0px 2px 0px; color: white;" })*@
+                        <a class="btn btn-default navbar-btn Boton_pestana color-paleta2" href=@Url.Action("Empresas", "UTP") style="padding: 2px 0px 2px 0px; color: white;">Empresas</a>
                     </li>
                     <li>
                         @*<a class="btn btn-default navbar-btn Boton_pestana color-paleta3" href="..\UTP\Alumnos" style="padding: 2px 0px 2px 0px;color:white;">Alumnos</a>*@
@@ -89,8 +91,8 @@
                     </li>
                     <li>
 
-                        @Html.ActionLink("Eventos", "Eventos", null, new { @class = "btn btn-default navbar-btn Boton_pestana color-paleta5", @style = "padding: 2px 0px 2px 0px; color: white;" })
-
+                        @*@Html.ActionLink("Eventos", "Eventos", null, new { @class = "btn btn-default navbar-btn Boton_pestana color-paleta5", @style = "padding: 2px 0px 2px 0px; color: white;" })*@
+                        <a class="btn btn-default navbar-btn Boton_pestana color-paleta5" href=@Url.Action("Eventos", "UTP") style="padding: 2px 0px 2px 0px; color: white;">Eventos</a>
                     </li>
                     <li>
                         <a class="btn btn-default navbar-btn Boton_pestana color-paleta6" href=@Url.Action("Reportes", "UTP") style="padding: 2px 0px 2px 0px; color: white;">Reportes</a>

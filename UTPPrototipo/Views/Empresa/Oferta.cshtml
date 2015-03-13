@@ -30,7 +30,7 @@
             Html.RenderAction("VistaCabecera", "Empresa");
         }
     }
-    
+
     <div class="row">
         <div class="col-md-7">
 
@@ -70,31 +70,31 @@
                 if (ViewBag.Pantalla == "Empresa")
                 {
                     <!--INICIO-->
-            <div class="panel-group" id="grupoMensajes" role="tablist" aria-multiselectable="true">
-                <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingOne2" style="padding: 2px 2px 2px 6px;">
-                        <h5 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#grupoMensajes" href="#collapseMensajes" aria-expanded="true" aria-controls="collapseOne2" class="fuente-seccion">
-                                Mensajes
-                            </a>
-                        </h5>
-                    </div>
-                    <div id="collapseMensajes" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne2">
-                        <div class="panel-body">
-                            @Html.Action("_Mensajes", "Mensaje", new { pantalla = Constantes.MENSAJES_EMPRESA_OFERTA, idOferta = Model.IdOferta })
+                    <div class="panel-group" id="grupoMensajes" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="headingOne2" style="padding: 2px 2px 2px 6px;">
+                                <h5 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#grupoMensajes" href="#collapseMensajes" aria-expanded="true" aria-controls="collapseOne2" class="fuente-seccion">
+                                        Mensajes
+                                    </a>
+                                </h5>
+                            </div>
+                            <div id="collapseMensajes" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne2">
+                                <div class="panel-body">
+                                    @Html.Action("_Mensajes", "Mensaje", new { pantalla = Constantes.MENSAJES_EMPRESA_OFERTA, idOferta = Model.IdOferta })
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
                     <!--FIN-->
-                
+
                     <div class="panel-group" role="tablist" aria-multiselectable="true" id="divListaMensajes">
                         <!--Se envía el parámetro para distinguir el funcionamiento de cada página. [{MODULO}_{PAGINA}]-->
-                       
+
                     </div>
                 }
             }
-            
+
         </div>
     </div>
 </div>
@@ -102,13 +102,14 @@
 <!--Modal para la encuesta-->
 <div class="modal" id="divModalEncuesta" tabindex="-1" role="dialog" aria-labelledby="Encuesta" aria-hidden="true">
 
-    @*using (Ajax.BeginForm("CerrarOferta", "Empresa", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", OnComplete = "cerrarModal" }))*@
-    @using (Html.BeginForm("CerrarOferta", "Empresa", FormMethod.Post ))
+    @*using (Ajax.BeginForm("
+        Oferta", "Empresa", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", OnComplete = "cerrarModal" }))*@
+    @using (Html.BeginForm("CerrarOferta", "Empresa", FormMethod.Post))
     {
         @Html.AntiForgeryToken()
 
         <div id="divCrearEncuestaContenedor" class="modal-dialog">
-          
+
         </div>
     }
 </div>
@@ -120,17 +121,15 @@
     $(document).ready(function () {
 
         //Se condiciona la cabecera:
-        if ('@ViewBag.Pantalla' == "Empresa")
-        {
+        if ('@ViewBag.Pantalla' == "Empresa") {
             $("#divFinalCabeceraEmpresa").removeClass("color-paleta1 color-paleta3 color-paleta4 color-paleta5").addClass("color-paleta2");
         }
-        else         
-            if ('@ViewBag.Pantalla' == "UTP")
-            {
+        else
+            if ('@ViewBag.Pantalla' == "UTP") {
                 //alert("ingreso al if");
                 $("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta3 color-paleta5 color-paleta6 color-paleta7 color-paleta8 color-paleta9").addClass("color-paleta4")
-        }
-        
+            }
+
 
         //Ordenamiento por fecha.
         $('#colFecha').on('click', function () {
@@ -160,9 +159,9 @@
     }
 
     function mostrarEncuesta(idOferta) {
-                
+
         var url = '@Url.Action("CerrarOferta", "Empresa")' + "?idOferta=" + idOferta;
-        
+
         $.get(url, function (data) {
 
             $('#divCrearEncuestaContenedor').html(data);

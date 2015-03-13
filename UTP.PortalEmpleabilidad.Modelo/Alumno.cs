@@ -38,12 +38,16 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string DireccionCiudad { get; set; }
         //[Required(ErrorMessage = "Falta el Departamento.")]
         public string DireccionRegion { get; set; }
-        [Required(ErrorMessage = "Falta el Distrito.")]
-        public string DireccionDistritoId { get; set; }
-        [Required(ErrorMessage = "Falta la Provincia.")]
-        public string DireccionCiudadId { get; set; }
+
         [Required(ErrorMessage = "Falta el Departamento.")]
         public string DireccionRegionId { get; set; }
+
+        [Required(ErrorMessage = "Falta la Provincia.")]
+        public string DireccionCiudadId { get; set; }
+
+        [Required(ErrorMessage = "Falta el Distrito.")]
+        public string DireccionDistritoId { get; set; }
+                       
         public string EstadoAlumno { get; set; }  
         public byte[] Foto { get; set; }
         public string EstadoAlumnoIdListaValor { get; set; }

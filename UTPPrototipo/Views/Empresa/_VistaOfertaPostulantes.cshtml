@@ -26,7 +26,7 @@
                 <div class="col-md-12 fuente-seccion"><strong class="sub-titulo-seccion"></strong></div>
             </div>
             <br />
-            
+
             <div class="row">
                 <div class="col-sm-7">
                     <div class="input-group">
@@ -38,7 +38,7 @@
                 <div class="col-sm-2">
                     @{
                         if (ViewBag.Pantalla == "Empresa")
-                        { 
+                        {
                             <!--&& (ViewBag.EstadoOfertaIdListaValor == "OFERAC") Se quita esta validación de oferta activa porque al mover postulantes el botón sale deshabilitado-->
                             if ((ticketEmpresa.Rol == "ROLEAD" || ticketEmpresa.Rol == "ROLEUS")) //Si es Administrador o Supervisor.
                             {
@@ -52,7 +52,7 @@
                     }
                 </div>
             </div>
-            
+
 
             <!--Cabecera-->
             <label id="lblCargando" style="visibility:hidden;">Cargando, por favor espere.</label>
@@ -135,7 +135,20 @@
                     <div class="col-sm-4">
                         @*@Html.ActionLink(Model[i].Alumno.Apellidos + ", " + Model[i].Alumno.Nombres , "Postulante", "Empresa", new { id = Model[i].IdOfertaPostulante }, null)*@
                         @*@Html.ActionLink(Model[i].Alumno.Apellidos + ", " + Model[i].Alumno.Nombres, "Postulante", "Empresa", new { id = Helper.Encriptar(Model[i].IdOfertaPostulante.ToString()) }, htmlAttributes: new { target = "_blank" })*@
-                        @Html.ActionLink(Model[i].Alumno.Apellidos + ", " + Model[i].Alumno.Nombres, "Postulante", "Empresa", new { id = Helper.Encriptar(Model[i].IdOfertaPostulante.ToString()) }, null)
+
+                        <!--13MAR: Según la pantalla enviada se cambia el link-->
+                        @if (ViewBag.Pantalla == "Empresa")
+                        {
+                            @Html.ActionLink(Model[i].Alumno.Apellidos + ", " + Model[i].Alumno.Nombres, "Postulante", "Empresa", new { id = Helper.Encriptar(Model[i].IdOfertaPostulante.ToString()) }, null)
+                        }
+                        else
+                        {
+                            if (ViewBag.Pantalla == "UTP")
+                            { 
+                                @Html.ActionLink(Model[i].Alumno.Apellidos + ", " + Model[i].Alumno.Nombres, "VerDetalleAlumno", "UTP", new { id = Helper.Encriptar(Model[i].IdAlumno.ToString()) }, null)
+                            }
+                        }
+
                         @*<a href="../Empresa/Postulante">
                                 <strong>@Model[i].Alumno.Nombres @Model[i].Alumno.Apellidos</strong>
                             </a>*@
@@ -224,7 +237,7 @@
 
         function OrdenarPostulantes(columna) {
             //Se obtiene el Id y el estado:
-            $('#lblCargando').css('visibility','visible')
+            $('#lblCargando').css('visibility', 'visible')
 
             var idOferta = $('#hddIdOferta').val();
             var estadoOferta = $('#hddEstadoOfertaIdListaValor').val();
