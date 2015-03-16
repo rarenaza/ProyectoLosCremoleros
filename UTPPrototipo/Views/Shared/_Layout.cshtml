@@ -65,7 +65,7 @@
                     <ul class="nav navbar-nav navbar-right" style="padding-right: 15px; ">
                         <li>
                             <!--data-toggle="modal" data-target="#Modal-ingresar"-->
-                            <a href="#" style="padding: 11px 10px 0px 10px;" data-toggle="modal" data-target="#Modal-ingresar" id="LinkIngresar">
+                            <a href="#" style="padding: 11px 10px 0px 10px;" data-toggle="modal" data-target="#Modal-ingresar" id="LinkIngresar" onclick="abrirPantallaLogin();">
                                 <span class="menuOpcionesAd">INGRESAR</span>
                             </a>
                         </li>
@@ -120,6 +120,9 @@
                     @Html.Action("Autenticar", "Cuenta")
                 }
 
+                <div id="divAutenticar">
+
+                </div>
             </div>
         </div>
     </div>
@@ -158,4 +161,21 @@
         });
     }*@
 
+    //Solo se usa este método cuando existe un error al validar la página de registro.
+    function abrirPantallaLogin()
+    {
+        var mensajeError = '@ViewBag.MensajeDeError';
+
+        if (mensajeError != null && mensajeError != '' )
+        {
+            var url = '@Url.Action("Autenticar", "Cuenta")';
+
+            $.get(url, function (data) {
+                $('#divAutenticar').html(data);
+                $.validator.unobtrusive.parse('#divAutenticar');
+                $('#Modal-ingresar').modal('show');
+            });
+
+        }
+    }
 </script>
