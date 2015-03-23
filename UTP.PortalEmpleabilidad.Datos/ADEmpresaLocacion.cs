@@ -77,9 +77,9 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.Parameters.Add(new SqlParameter("@CorreoElectronico", empresaLocacion.CorreoElectronico));
                 cmd.Parameters.Add(new SqlParameter("@TelefonoFijo", empresaLocacion.TelefonoFijo));
                 cmd.Parameters.Add(new SqlParameter("@Direccion", empresaLocacion.Direccion));
-                cmd.Parameters.Add(new SqlParameter("@DireccionDistritoId", empresaLocacion.DireccionDistritoId));
-                cmd.Parameters.Add(new SqlParameter("@DireccionCiudadId", empresaLocacion.DireccionCiudadId));
-                cmd.Parameters.Add(new SqlParameter("@DireccionDepartamentoId", empresaLocacion.DireccionDepartamentoId));
+                cmd.Parameters.Add(new SqlParameter("@DireccionDistrito", empresaLocacion.TextDistrito));
+                cmd.Parameters.Add(new SqlParameter("@DireccionCiudad", empresaLocacion.TextoCiudad));
+                cmd.Parameters.Add(new SqlParameter("@DireccionDepartamento", empresaLocacion.TextoDepartamento));
                 cmd.Parameters.Add(new SqlParameter("@EstadoLocacion", empresaLocacion.EstadoLocacionIdListaValor));
                 cmd.Parameters.Add(new SqlParameter("@CreadoPor", empresaLocacion.CreadoPor));
 

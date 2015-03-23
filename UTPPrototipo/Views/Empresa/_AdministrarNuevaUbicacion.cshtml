@@ -8,6 +8,10 @@
   
     <div class="modal-body">
         @Html.ValidationSummary(false, "", new { @class = "alert alert-danger" })
+        @Html.HiddenFor(model => Model.TextoDepartamento)
+        @Html.HiddenFor(model => Model.TextoCiudad)
+        @Html.HiddenFor(model => Model.TextDistrito)
+
         @*@Html.Hidden("DireccionDepartamento", Model.DireccionDepartamento)
         @Html.Hidden("DireccionCiudad", Model.DireccionCiudad)
         @Html.Hidden("DireccionDistrito", Model.DireccionDistrito)*@
@@ -212,6 +216,35 @@
 
     });*@
 
+    //Combo de departamento.
+    $('#DireccionDepartamentoId2').on('change', function () {
+
+        //Se obtiene el texto del combo.
+        var TextDepartamento = $("#DireccionDepartamentoId2 option:selected").text();
+
+        //Se guarda el valor en el hidden TextoDepartamento.
+        $('#TextoDepartamento').val(TextDepartamento);
+    });
+
+    //Combo de provincia.
+    $('#DireccionCiudadId2').on('change', function () {
+
+        //Se obtiene el texto del combo.
+        var TextCiudad = $("#DireccionCiudadId2 option:selected").text();
+
+        //Se guarda el valor en el hidden TextoDepartamento.
+        $('#TextoCiudad').val(TextCiudad);
+    });
+
+    //combo de distrito.
+    $('#DireccionDistritoId2').on('change', function () {
+
+        //Se obtiene el texto del combo.
+        var TextDistrito = $("#DireccionDistritoId2 option:selected").text();
+
+        //Se guarda el valor en el hidden TextoDepartamento.
+        $('#TextDistrito').val(TextDistrito);
+    });
 
     $("#DireccionDepartamentoId2").change(function () {
 

@@ -956,12 +956,9 @@ namespace UTPPrototipo.Controllers
                 empresaLocacion.IdEmpresa = ticket.IdEmpresa;
                 empresaLocacion.CreadoPor = ticket.Usuario;
 
-                empresaLocacion.DireccionDistrito = empresaLocacion.TextDistrito;
-                empresaLocacion.DireccionCiudad = empresaLocacion.TextoCiudad;
-                empresaLocacion.DireccionDepartamento = empresaLocacion.TextoDepartamento;
-
-
-
+                //empresaLocacion.DireccionDistrito = empresaLocacion.TextDistrito;
+                //empresaLocacion.DireccionCiudad = empresaLocacion.TextoCiudad;
+                //empresaLocacion.DireccionDepartamento = empresaLocacion.TextoDepartamento;
 
                 LNEmpresaLocacion lnEmpresaLocacion = new LNEmpresaLocacion();
                 lnEmpresaLocacion.Insertar(empresaLocacion);
