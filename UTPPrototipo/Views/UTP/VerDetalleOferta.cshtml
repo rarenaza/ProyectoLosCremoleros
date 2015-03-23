@@ -29,7 +29,7 @@
                             <tr>
                                 <td>@Html.DropDownListFor(m => m.EstadoOferta, null, "- Seleccione Estado -", htmlAttributes: new { @class = "form-control" })</td>
                                 <td>&nbsp;&nbsp;</td>
-                                <td><button id="btnCambiarEstadoOferta" class="btn btn-default color-paleta2" onclick="cambiarEstado(@Model.IdOferta)">Cambiar estado</button></td>
+                                <td><button id="btnCambiarEstadoOferta" class="btn btn-default color-paleta2" onclick="return cambiarEstado(@Model.IdOferta)">Cambiar estado</button></td>
                             </tr>
                         </table>
                     </td>
@@ -466,7 +466,7 @@
                 <div class="row grilla1-linea">
                     <div class="col-sm-3">
                         @*<a href="../UTP/Alumno">Mario José Alvarado Peña</a>*@
-                        @Html.ActionLink(item.Alumno.Nombres + ' ' + item.Alumno.Apellidos, "VerDetalleAlumno", new { id = item.Alumno.IdAlumno })
+                        @Html.ActionLink(item.Alumno.Nombres + ' ' + item.Alumno.Apellidos, "VerDetalleAlumno", new { id = Helper.Encriptar(item.Alumno.IdAlumno.ToString()) })
                     </div>
                     <div class="col-sm-2">
                         @item.FechaPostulacion
@@ -537,6 +537,15 @@
     function cambiarEstado(idOferta)
     {
         var itemSeleccionado = $('#EstadoOferta').val();
+       
+        //Validación al seleccionar el estado de la oferta:
+        if (itemSeleccionado == null || itemSeleccionado == "" || itemSeleccionado == 'undefined')
+        {
+            //Se muestra el mensaje de error y la función retorna falso para que no se ejecute.
+            alert('Debe seleccionar un estado para continuar');
+            return false;
+        }
+
         //alert('IdOferta: ' + idOferta + ' Estado Seleccionado: ' + itemSeleccionado);
         var pantalla = '@Constantes.MENSAJES_UTP_OFERTA';
 

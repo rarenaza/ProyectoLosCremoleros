@@ -64,7 +64,8 @@
                     </ul>
                     <ul class="nav navbar-nav navbar-right" style="padding-right: 15px; ">
                         <li>
-                            <a href="#" style="padding: 11px 10px 0px 10px;" data-toggle="modal" data-target="#Modal-ingresar" id="LinkIngresar">
+                            <!--data-toggle="modal" data-target="#Modal-ingresar"-->
+                            <a href="#" style="padding: 11px 10px 0px 10px;" data-toggle="modal" data-target="#Modal-ingresar" id="LinkIngresar" onclick="abrirPantallaLogin();">
                                 <span class="menuOpcionesAd">INGRESAR</span>
                             </a>
                         </li>
@@ -105,7 +106,6 @@
         </footer>
     </div>
 
-
     <!-- Modal -->
     <div class="modal" id="Modal-ingresar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -119,6 +119,10 @@
                 { 
                     @Html.Action("Autenticar", "Cuenta")
                 }
+
+                <div id="divAutenticar">
+
+                </div>
             </div>
         </div>
     </div>
@@ -132,12 +136,46 @@
 {
     <script>
         document.getElementById("LinkIngresar").click();
-        
+       
     </script>
+    
     TempData["UsuarioNoExitoso"] = null;
 }
 <script>
     $("#Modal-ingresar").click(function cierraError() {
-        document.getElementById("boton-login-cierra-error").click();
+
+        if (document.getElementById("boton-login-cierra-error") != null)
+        { 
+            document.getElementById("boton-login-cierra-error").click();
+        }
     });
+
+    @*function abrirPantallaLogin()
+    {
+        var url = '@Url.Action("Autenticar", "Cuenta")';
+
+        $.get(url, function (data) {
+            $('#divAutenticar').html(data);
+            $.validator.unobtrusive.parse('#divAutenticar');
+            $('#Modal-ingresar').modal('show');
+        });
+    }*@
+
+    //Solo se usa este método cuando existe un error al validar la página de registro.
+    function abrirPantallaLogin()
+    {
+        var mensajeError = '@ViewBag.MensajeDeError';
+
+        if (mensajeError != null && mensajeError != '' )
+        {
+            var url = '@Url.Action("Autenticar", "Cuenta")';
+
+            $.get(url, function (data) {
+                $('#divAutenticar').html(data);
+                $.validator.unobtrusive.parse('#divAutenticar');
+                $('#Modal-ingresar').modal('show');
+            });
+
+        }
+    }
 </script>
