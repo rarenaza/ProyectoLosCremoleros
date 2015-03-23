@@ -2,10 +2,6 @@
 @using UTPPrototipo.Models.ViewModels.Cuenta;
 @using UTP.PortalEmpleabilidad.Modelo;
 
-@{
-    //Se obtiena la variable de sesión del ticket.
-    TicketEmpresa ticketEmpresa = (TicketEmpresa)Session["TicketEmpresa"];
-}
 
 <div class="modal-content">
     <div class="modal-header">
@@ -116,20 +112,8 @@
             <div class="col-sm-12">
                 <div class="input-group">
                     <span class="input-group-addon">Rol *</span>
-
-                    @{
-                        if (ticketEmpresa.Rol == "ROLEAD") //Rol Administrador de Empresa.
-                        {
-                            @Html.DropDownListFor(m => m.RolIdListaValor, null, "-- Especifique el Rol --", htmlAttributes: new { @class = "form-control" })
-                        }
-                        else
-                        {                        
-                            @Html.DropDownListFor(m => m.RolIdListaValor, null, null, htmlAttributes: new { @class = "form-control", @disabled = "disabled" })                                                            
-                            @Html.HiddenFor(m => m.RolIdListaValor) 
-                    <!--//Se crea un hidden que contiene el valor del Rol.-->
-                        }
-                    }
-
+                    @Html.DropDownListFor(m => m.RolIdListaValor, null, "-- Especifique el Rol --", htmlAttributes: new { @class = "form-control" })
+                    
                 </div>
                 @Html.ValidationMessageFor(model => model.RolIdListaValor, "", new { @class = "text-danger" })
             </div>
@@ -138,18 +122,7 @@
             <div class="col-sm-12">
                 <div class="input-group">
                     <span class="input-group-addon">Estado *</span>
-                    
-                    @{
-                        if (ticketEmpresa.Rol == "ROLEAD") //Rol Administrador de Empresa.
-                        {
-                            @Html.DropDownListFor(m => m.EstadoUsuarioIdListaValor, null, "-- Especifique el estado --", htmlAttributes: new { @class = "form-control" })
-                        }
-                        else
-                        {
-                            @Html.DropDownListFor(m => m.EstadoUsuarioIdListaValor, null, "-- Especifique el estado --", htmlAttributes: new { @class = "form-control", @disabled = "disabled" })
-                            @Html.HiddenFor(m => m.EstadoUsuarioIdListaValor) //Se crea un hidden que contiene el valor del Estado.
-                        }
-                    }
+                    @Html.DropDownListFor(m => m.EstadoUsuarioIdListaValor, null, "-- Especifique el estado --", htmlAttributes: new { @class = "form-control" })                   
                 </div>
                 @Html.ValidationMessageFor(model => model.EstadoUsuarioIdListaValor, "", new { @class = "text-danger" })
             </div>
