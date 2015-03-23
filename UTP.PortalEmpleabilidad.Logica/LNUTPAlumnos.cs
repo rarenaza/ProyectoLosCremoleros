@@ -36,7 +36,7 @@ namespace UTP.PortalEmpleabilidad.Logica
             alumno.CodAlumnoUTP = Convert.ToString(dsDatosAlumno.Tables[0].Rows[0]["Codigo"]);
             alumno.Nombres = Convert.ToString(dsDatosAlumno.Tables[0].Rows[0]["Nombres"]);
             alumno.Apellidos = Convert.ToString(dsDatosAlumno.Tables[0].Rows[0]["Apellidos"]);
-            alumno.TipoDocumentoIdListaValor = Convert.ToString(dsDatosAlumno.Tables[0].Rows[0]["TipoDocumento"]).Substring(0,10);
+            alumno.TipoDocumentoIdListaValor = Convert.ToString(dsDatosAlumno.Tables[0].Rows[0]["TipoDocumento"]).Substring(0,2);
             alumno.NumeroDocumento = Convert.ToString(dsDatosAlumno.Tables[0].Rows[0]["NumeroDocumento"]);            
             alumno.FechaNacimiento = ConvertirFecha(Convert.ToString(dsDatosAlumno.Tables[0].Rows[0]["FechaNacimiento"]));
             alumno.SexoIdListaValor = Convert.ToString(dsDatosAlumno.Tables[0].Rows[0]["Sexo"]);
