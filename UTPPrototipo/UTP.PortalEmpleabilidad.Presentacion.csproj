@@ -954,7 +954,7 @@
     <Content Include="Views\UTP\_ListaUTPContenido.cshtml" />
     <Content Include="Views\UTP\_UsuariosUTPLista.cshtml" />
     <Content Include="Views\UTP\_AdministrarNuevoUsuario.cshtml" />
-    <Content Include="Views\UTP\_AdministrarUsuarioEditar.cshtml" />
+    <Content Include="Views\UTP\_UsuariosEmpresaUTP_Editar.cshtml" />
     <Content Include="Views\UTP\AlumnoUtp_obtenerCV.cshtml" />
     <Content Include="Views\UTP\_EmpresaNuevaModal.cshtml" />
     <Content Include="Views\Empresa\MostrarOferta.cshtml" />

@@ -94,7 +94,9 @@ namespace UTP.PortalEmpleabilidad.Logica
                 alumnoEstudioItem.FechaFinAno = ConvertirFecha(Convert.ToString(dsDatosAlumno.Tables[1].Rows[i]["FechaFinal"])).Year;
                 alumnoEstudioItem.FechaFinMes = ConvertirFecha(Convert.ToString(dsDatosAlumno.Tables[1].Rows[i]["FechaFinal"])).Month;
 
-                alumnoEstudioItem.CicloEquivalente = Convert.ToInt32(dsDatosAlumno.Tables[1].Rows[i]["Ciclo"]);
+                if (dsDatosAlumno.Tables[1].Rows[i]["Ciclo"] != null)
+                    alumnoEstudioItem.CicloEquivalente = Convert.ToInt32(dsDatosAlumno.Tables[1].Rows[i]["Ciclo"]);
+
                 alumnoEstudioItem.DatoUTP = true;
                 alumnoEstudioItem.CreadoPor = "sistema";
                 alumnoEstudio.Add(alumnoEstudioItem);

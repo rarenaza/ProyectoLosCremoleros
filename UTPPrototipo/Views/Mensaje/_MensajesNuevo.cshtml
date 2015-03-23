@@ -142,10 +142,12 @@
 
     function validarDatos()
     {
+        //debugger;
         var pantalla = $('#Pantalla').val();
 
         var destinatarioCombos = $('#slcDestinatarios').val();
-        var destinatarioCajaTexto = $('#inpUsuarioPara').val();  //Este campo es la caja de texto que se muestra al usuario.
+        var destinatarioCajaTexto = $('#inpUsuarioPara').val();  //Este campo es la caja de texto que está oculta.
+        var destinatarioCajaTextoNombre = $('#inpUsuarioParaNombre').val();  //Este campo es la caja de texto que se muestra al usuario.
         var destinatario = $('#ParaUsuarioCorreoElectronico').val(); //Este campo es oculto y se carga cuando se selecciona un item del combo de destinatarios.
         var oferta = $('#IdOfertaMensaje').val();
         var asunto = $('#Asunto').val();
@@ -154,14 +156,19 @@
         //debugger;
         var mensajeError = "";
 
-        if (destinatarioCombos == "") mensajeError += "No ha ingresado el destinatario. \r";
+        if (destinatarioCombos != 'undefined' &&  destinatarioCombos == "") mensajeError += "No ha ingresado el destinatario. \r";
 
         //Si la pantalla es UTP - Index entonces se valida que el control inpUsuarioPara esté completo.
         if (pantalla == '@Constantes.MENSAJES_UTP_INDEX' )
         {
-            if (destinatarioCajaTexto == "" || typeof destinatarioCajaTexto == "undefined")
+            if (destinatarioCajaTextoNombre == "" || typeof destinatarioCajaTextoNombre == "undefined")
             {
                 mensajeError += "No ha ingresado el destinatario. \r";
+            }
+            else
+            {
+                //Se establece el valor para:
+                $('#inpUsuarioPara').val(destinatarioCajaTextoNombre);
             }
         }
         else //Caso contratio se valida el control hidden.

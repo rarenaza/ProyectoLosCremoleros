@@ -139,6 +139,19 @@
 
 </div>
 
+<div class="modal" id="divModalUsuarioEmpresaUTPEditar" role="dialog" aria-labelledby="Editar Usuario" aria-hidden="true">
+
+    @using (Ajax.BeginForm("_UsuariosEmpresaUTPEditar", "UTP", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divListaUsuariosUTP", OnComplete = "cerrarModal" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="modal-dialog" id="divContenedorUsuarioEmpresaUTPEditar">
+
+        </div>
+    }
+
+</div>
+
 <script>
 
     function UsuarioEmpresaUTPCrear() {
@@ -152,6 +165,24 @@
             $.validator.unobtrusive.parse('#divContenedorUsuarioEmpresaUTPCrear');
 
             $('#divModalUsuarioEmpresaUTPCrear').modal('show');
+
+        }).error(function (err) {
+            console.log(err);
+            alert(err);
+        });
+    }
+
+    function UsuarioEmpresaUTPEditar(idEmpresaUsuario) {
+        //debugger;
+        //var url = "/UTP/_UsuariosUTPCrear"; //
+        var url = '@Url.Action("_UsuariosEmpresaUTPEditar", "UTP")' + '/' + idEmpresaUsuario;
+
+        $.get(url, function (data) {
+            //alert(data);
+            $('#divContenedorUsuarioEmpresaUTPEditar').html(data);
+            $.validator.unobtrusive.parse('#divContenedorUsuarioEmpresaUTPEditar');
+
+            $('#divModalUsuarioEmpresaUTPEditar').modal('show');
 
         }).error(function (err) {
             console.log(err);
@@ -210,12 +241,10 @@
 
     }
 
-    function cargarUsuarios(combo)
-    {  
+    function cargarUsuarios(combo) {
         //alert(combo.value);
 
-        if (combo.value == "empresa")
-        {
+        if (combo.value == "empresa") {
             var url = '@Url.Action("_UsuariosEmpresaLista", "UTP", new { nroPaginaActual = 1 })';
             $.get(url, function (data) {
                 console.log(data);
@@ -231,8 +260,7 @@
         }
     }
 
-    function buscarPaginacion(nroPaginaActual)
-    {
+    function buscarPaginacion(nroPaginaActual) {
         var url = '@Url.Action("_UsuariosEmpresaLista", "UTP")' + '?nroPaginaActual=' + nroPaginaActual;
         $.get(url, function (data) {
             console.log(data);
