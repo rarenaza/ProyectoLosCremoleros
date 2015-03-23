@@ -23,7 +23,8 @@
                 <div class="input-group">
                     <span class="input-group-addon">Convenio</span>
 
-                    <span class="form-control" readonly>@Model.IdConvenio</span>
+                    @*<span class="form-control" readonly>@Model.IdConvenio</span>*@
+                    <input class="form-control" readonly value="@Model.IdConvenio" />
                 </div>
             </div>
         </div>
@@ -201,7 +202,7 @@
                 @Html.ValidationMessageFor(m => m.Observaciones, "", new { @class = "text-danger" })
             </div>
         </div>
-        <div class="row">
+        @*<div class="row">
             <div class="col-sm-4">
                 <div class="input-group">
                     <span class="input-group-addon">Cargo</span>
@@ -223,7 +224,7 @@
                 </div>
                 @Html.ValidationMessageFor(m => m.FuenteConvenio, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
         <div class="row">
             <div class="col-sm-12">
                 <div class="input-group">

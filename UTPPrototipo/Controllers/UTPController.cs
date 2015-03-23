@@ -1072,10 +1072,10 @@ namespace UTPPrototipo.Controllers
 
 
         [HttpGet]
-        public ActionResult Convenio(string idconvenio)
+        public ActionResult Convenio(string id)
         {
             LNGeneral lngeneral = new LNGeneral();
-            Convenio convenio = lnUtp.UTP_ObtenerConvenio(Convert.ToInt32(Helper.Desencriptar(idconvenio)));
+            Convenio convenio = lnUtp.UTP_ObtenerConvenio(Convert.ToInt32(Helper.Desencriptar(id)));
             ViewBag.TipoTrabajo = new SelectList(lngeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_TRABAJO), "IdListaValor", "Valor",convenio.TipoTrabajo);
             ViewBag.FuenteConvenio = new SelectList(lngeneral.ObtenerListaValor(Constantes.IDLISTA_FUENTE_CONVENIO), "IdListaValor", "Valor", convenio.FuenteConvenio);
             ViewBag.IdExperienciaCargo = new SelectList(convenio.Experiencias, "IdExperienciaCargo", "Experiencia",convenio.IdExperienciaCargo);

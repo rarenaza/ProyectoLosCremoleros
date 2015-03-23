@@ -5,11 +5,20 @@
 <link href="~/Content/font-awesome.css" rel="stylesheet" />
 
 <div class="container" style="margin-top:2px;">
-
-    <select id="selectUusuarios" onchange="cargarUsuarios(this);">
-        <option value="utp">Usuarios UTP</option>
-        <option value="empresa">Usuarios Empresa</option>
-    </select>
+    <table style="margin-bottom:7px;">
+        <tr>
+            <td style="width:27px;">
+                <label class="fuente-pequeña">Ver</label>
+            </td>
+            <td>
+                <select id="selectUusuarios" class="form-control" style="width: 150px;" onchange="cargarUsuarios(this);">
+                    <option value="utp">Usuarios UTP</option>
+                    <option value="empresa">Usuarios Empresa</option>
+                </select>
+            </td>
+        </tr>
+    </table>    
+    
     <div id="divListaUsuariosUTP">
         @Html.Action("_UsuariosUTPLista", "UTP")
     </div>
@@ -297,7 +306,7 @@
     }
     function cerrarModal() {
 
-        //alert('cerrarmodal');
+        alert('Los datos se guardaron con éxito.');
         //$('#divListaPadre').html('demo');
         $('.modal.in').modal('hide');
     }
