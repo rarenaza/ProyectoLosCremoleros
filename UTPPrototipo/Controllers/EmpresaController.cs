@@ -1178,7 +1178,7 @@ namespace UTPPrototipo.Controllers
 
         public FileResult ObtenerImagenEmpresa(int id)
         {
-            const string alternativePicturePath = @"/img/sinimagen.jpg";
+            //const string alternativePicturePath = @"/img/sinimagen.jpg";
                
 
             TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];
@@ -1212,7 +1212,8 @@ namespace UTPPrototipo.Controllers
                 
                 stream = new MemoryStream();
 
-                var path = Server.MapPath(alternativePicturePath);
+                //var path = Server.MapPath(alternativePicturePath);
+                var path = Server.MapPath("/img") + "\\sinimagen.jpg";  //Server.MapPath(alternativePicturePath);
                 var image = new System.Drawing.Bitmap(path);
 
                 image.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);

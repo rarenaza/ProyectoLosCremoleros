@@ -100,7 +100,7 @@ namespace UTPPrototipo.Controllers
           
         public FileResult Imagen(int id)
         {
-            const string alternativePicturePath = @"/img/sinimagen.jpg";
+            //const string alternativePicturePath = @"/img/sinimagen.jpg";
 
             List<Contenido> lista = new List<Contenido>();
 
@@ -136,7 +136,8 @@ namespace UTPPrototipo.Controllers
             {
                 stream = new MemoryStream();
 
-                var path = Server.MapPath(alternativePicturePath);
+                //var path = Server.MapPath(alternativePicturePath);
+                var path = Server.MapPath("/img") + "\\sinimagen.jpg";  //Server.MapPath(alternativePicturePath);
                 var image = new System.Drawing.Bitmap(path);
 
                 image.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
@@ -2897,7 +2898,7 @@ namespace UTPPrototipo.Controllers
         public FileResult GetImagenLogoEmpresa(int id)
         {
 
-            const string alternativePicturePath = @"/img/sinimagen.jpg";
+            //const string alternativePicturePath = @"/img/sinimagen.jpg";
             LNEmpresa lnEmpresa = new LNEmpresa();
             Empresa empresa = lnEmpresa.ObtenerDatosEmpresaPorId(id);
            
@@ -2912,7 +2913,8 @@ namespace UTPPrototipo.Controllers
             {
                 stream = new MemoryStream();
 
-                var path = Server.MapPath(alternativePicturePath);
+                //var path = Server.MapPath(alternativePicturePath);
+                var path = Server.MapPath("/img") + "\\sinimagen.jpg";  //Server.MapPath(alternativePicturePath);
                 var image = new System.Drawing.Bitmap(path);
 
                 image.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
@@ -2927,7 +2929,7 @@ namespace UTPPrototipo.Controllers
             Alumno registroAlumno = new Alumno();
             registroAlumno = lnalumno.Alumno_ObtenerFoto(idAlumno);
             string MimeTypeCadena = registroAlumno.ArchivoMimeType;
-            const string alternativePicturePath = @"/img/sinimagen.jpg";
+            //const string alternativePicturePath = @"/img/sinimagen.jpg";
             
             MemoryStream stream;
 
@@ -2939,7 +2941,8 @@ namespace UTPPrototipo.Controllers
             {
                 stream = new MemoryStream();
 
-                var path = Server.MapPath(alternativePicturePath);
+                //var path = Server.MapPath(alternativePicturePath);
+                var path = Server.MapPath("/img") + "\\sinimagen.jpg";  //Server.MapPath(alternativePicturePath);
                 var image = new System.Drawing.Bitmap(path);
 
                 image.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
