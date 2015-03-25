@@ -1213,7 +1213,7 @@ namespace UTPPrototipo.Controllers
                 stream = new MemoryStream();
 
                 //var path = Server.MapPath(alternativePicturePath);
-                var path = Server.MapPath("/img") + "\\sinimagen.jpg";  //Server.MapPath(alternativePicturePath);
+                var path = System.Web.HttpContext.Current.Server.MapPath(@"~/img/sinimagen.jpg");
                 var image = new System.Drawing.Bitmap(path);
 
                 image.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
