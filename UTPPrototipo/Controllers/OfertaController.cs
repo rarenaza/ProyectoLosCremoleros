@@ -35,18 +35,23 @@ namespace UTPPrototipo.Controllers
             {
                 //Si el estado es pendiente de activación se debe mandar un aviso al ejecutivo de cuenta de UTP.
                 DataTable dtDatos = lnOferta.ObtenerDatosParaMensaje(Convert.ToInt32(idOferta));
-                string para = Convert.ToString(dtDatos.Rows[0]["CorreoUTP"]);
-                string nombreEmpresa = Convert.ToString(dtDatos.Rows[0]["NombreEmpresa"]);
-                string nombreOferta = Convert.ToString(dtDatos.Rows[0]["NombreOferta"]);
-                TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];
 
-                Mensaje mensaje = new Mensaje();
-                mensaje.DeUsuarioCorreoElectronico = ticket.CorreoElectronico;
-                mensaje.ParaUsuarioCorreoElectronico = para;
-                mensaje.MensajeTexto = "La empresa "+ nombreEmpresa + " ha creado la oferta "+ nombreOferta + " que está pendiente de activación.";
-                mensaje.Asunto = nombreOferta + " - Oferta pendiente de activación.";
-                LNCorreo.EnviarCorreo(mensaje);
-               
+                //Validación de que la tabla contenga datos.
+                if (dtDatos.Rows.Count > 0)
+                { 
+                    string para = Convert.ToString(dtDatos.Rows[0]["CorreoUTP"]);
+                    string nombreEmpresa = Convert.ToString(dtDatos.Rows[0]["NombreEmpresa"]);
+                    string nombreOferta = Convert.ToString(dtDatos.Rows[0]["NombreOferta"]);
+                    TicketEmpresa ticket = (TicketEmpresa)Session["TicketEmpresa"];
+
+                    Mensaje mensaje = new Mensaje();
+                    mensaje.DeUsuarioCorreoElectronico = ticket.CorreoElectronico;
+                    mensaje.ParaUsuarioCorreoElectronico = para;
+                    mensaje.MensajeTexto = "La empresa "+ nombreEmpresa + " ha creado la oferta "+ nombreOferta + " que está pendiente de activación.";
+                    mensaje.Asunto = nombreOferta + " - Oferta pendiente de activación.";
+                    LNCorreo.EnviarCorreo(mensaje);
+                }
+
                 //04MAR: Al publicar la oferta se debe redireccionar a la lista de ofertas.
                 RedirectToAction("Publicacion", "Empresa");
 
@@ -57,16 +62,20 @@ namespace UTPPrototipo.Controllers
                 {
                     TicketUTP ticket = (TicketUTP)Session["TicketUtp"];
                     DataTable dtDatos = lnOferta.ObtenerDatosParaMensaje(Convert.ToInt32(idOferta));
-                    string para = Convert.ToString(dtDatos.Rows[0]["CorreoUsuarioEmpresa"]);
-                    string nombreEmpresa = Convert.ToString(dtDatos.Rows[0]["NombreEmpresa"]);
-                    string nombreOferta = Convert.ToString(dtDatos.Rows[0]["NombreOferta"]);
 
-                    Mensaje mensaje = new Mensaje();
-                    mensaje.DeUsuarioCorreoElectronico = ticket.CorreoElectronico;
-                    mensaje.ParaUsuarioCorreoElectronico = para;
-                    mensaje.MensajeTexto = "La oferta " + nombreOferta + " ha sido activada con éxito.";
-                    mensaje.Asunto = nombreOferta + " - Oferta activada";
-                    LNCorreo.EnviarCorreo(mensaje);
+                    if (dtDatos.Rows.Count > 0)
+                    {
+                        string para = Convert.ToString(dtDatos.Rows[0]["CorreoUsuarioEmpresa"]);
+                        string nombreEmpresa = Convert.ToString(dtDatos.Rows[0]["NombreEmpresa"]);
+                        string nombreOferta = Convert.ToString(dtDatos.Rows[0]["NombreOferta"]);
+
+                        Mensaje mensaje = new Mensaje();
+                        mensaje.DeUsuarioCorreoElectronico = ticket.CorreoElectronico;
+                        mensaje.ParaUsuarioCorreoElectronico = para;
+                        mensaje.MensajeTexto = "La oferta " + nombreOferta + " ha sido activada con éxito.";
+                        mensaje.Asunto = nombreOferta + " - Oferta activada";
+                        LNCorreo.EnviarCorreo(mensaje);
+                    }
                 }
             
 

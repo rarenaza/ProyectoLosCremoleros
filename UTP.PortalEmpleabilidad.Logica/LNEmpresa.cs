@@ -176,6 +176,8 @@ namespace UTP.PortalEmpleabilidad.Logica
                     empresa.ModificadoPor = Convert.ToString(dsResultado.Tables[0].Rows[0]["ModificadoPor"]);
                     empresa.EstadoIdListaValor = Convert.ToString(dsResultado.Tables[0].Rows[0]["EstadoEmpresa"]);
                     empresa.UsuarioEC = Convert.ToString(dsResultado.Tables[0].Rows[0]["UsuarioEC"]);
+
+                    empresa.PosicionEnSector = Convert.ToString(dsResultado.Tables[0].Rows[0]["PosicionEnSector"]);
                 }
             }
 

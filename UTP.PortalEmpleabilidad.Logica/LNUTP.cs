@@ -283,13 +283,16 @@ namespace UTP.PortalEmpleabilidad.Logica
             LNMensaje lnMensaje = new LNMensaje();
             DataTable dt = lnMensaje.ObtenerUsuarioEmpresaPorIdEmpresa(empresa.IdEmpresa);
 
-            Mensaje mensaje = new Mensaje();
-            mensaje.DeUsuarioCorreoElectronico = correoUTPDe; // empresa.Usuario; //Contiene el ticket del usuario UTP.
-            mensaje.ParaUsuarioCorreoElectronico = Convert.ToString(dt.Rows[0]["CorreoElectronico"]);
-            mensaje.Asunto = "Empresa actualizada";            
-            mensaje.MensajeTexto = "El estado de la empresa '" + empresa.NombreComercial + "' ha sido actualizado a: " + estado + "'";
+            if (dt.Rows.Count > 0)
+            { 
+                Mensaje mensaje = new Mensaje();
+                mensaje.DeUsuarioCorreoElectronico = correoUTPDe; // empresa.Usuario; //Contiene el ticket del usuario UTP.
+                mensaje.ParaUsuarioCorreoElectronico = Convert.ToString(dt.Rows[0]["CorreoElectronico"]);
+                mensaje.Asunto = "Empresa actualizada";            
+                mensaje.MensajeTexto = "El estado de la empresa '" + empresa.NombreComercial + "' ha sido actualizado a: " + estado + "'";
 
-            LNCorreo.EnviarCorreo(mensaje);
+                LNCorreo.EnviarCorreo(mensaje);
+            }
             #endregion
            
         }

@@ -563,12 +563,15 @@ namespace UTPPrototipo.Controllers
                 LNMensaje lnMensaje = new LNMensaje();
                 DataTable dtUsuarioUTPAdmin = lnMensaje.ObtenerUsuarioAdministradorUTP();
 
-                Mensaje mensaje = new Mensaje();
-                mensaje.DeUsuarioCorreoElectronico = empresa.EmailUsuario;
-                mensaje.ParaUsuarioCorreoElectronico = Convert.ToString(dtUsuarioUTPAdmin.Rows[0]["CorreoElectronico"]); //Administrador UTP
-                mensaje.Asunto = empresa.NombreComercial + " Empresa registrada en el Portal:";
-                mensaje.MensajeTexto = "La empresa '" + empresa.NombreComercial + "' se ha registrado en el portal y está a la espera de activación";
-                LNCorreo.EnviarCorreo(mensaje);
+                if (dtUsuarioUTPAdmin.Rows.Count > 0)
+                { 
+                    Mensaje mensaje = new Mensaje();
+                    mensaje.DeUsuarioCorreoElectronico = empresa.EmailUsuario;
+                    mensaje.ParaUsuarioCorreoElectronico = Convert.ToString(dtUsuarioUTPAdmin.Rows[0]["CorreoElectronico"]); //Administrador UTP
+                    mensaje.Asunto = empresa.NombreComercial + " Empresa registrada en el Portal:";
+                    mensaje.MensajeTexto = "La empresa '" + empresa.NombreComercial + "' se ha registrado en el portal y está a la espera de activación";
+                    LNCorreo.EnviarCorreo(mensaje);
+                }
 
                 //Si el registro fue exitoso redireccionar a página de resultado.
                 TempData["GuardaRegistroExitoso"] = "Estimado(a) <strong>" + empresa.NombresUsuario + " " + empresa.ApellidosUsuario
