@@ -119,7 +119,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 oferta.CumpleExperienciaPosicionesSimilares = Funciones.ToBoolean(dtResultado.Rows[0]["CumpleMesesExperienciaTipoTrabajo"]);
                 //06MAR15: Se agregan los campos EstadoCarreaUTP y CicloMinimoUTP
                 oferta.EstadoCarreraUTPDescripcion = Funciones.ToString(dtResultado.Rows[0]["EstadoCarreraUTPDescripcion"]);
-                oferta.CicloMinimoCarreraUTP = Funciones.ToInt(dtResultado.Rows[0]["MesesExperienciaTotal"]);
+                oferta.CicloMinimoCarreraUTP = Funciones.ToInt(dtResultado.Rows[0]["CicloMinimoCarreraUTP"]);
             }
 
             return oferta;

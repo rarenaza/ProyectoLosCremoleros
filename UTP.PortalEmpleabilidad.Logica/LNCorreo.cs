@@ -51,8 +51,10 @@ namespace UTP.PortalEmpleabilidad.Logica
                 client.Port = puerto;
                 client.UseDefaultCredentials = false;
                 client.DeliveryMethod = SmtpDeliveryMethod.Network;
-                client.EnableSsl = enableSSL;
-                client.Credentials = new NetworkCredential(usuario, contrasena);  //Cuenta en criteria para el envío de correos.
+                //27MAR15: Comentado en desarrollo para homolgar con UTP.
+                //Notar que en desarrollo el correo NO se envía al estar comentada estas dos líneas.
+                //client.EnableSsl = enableSSL;
+                //client.Credentials = new NetworkCredential(usuario, contrasena);  //Cuenta en criteria para el envío de correos.
                 client.Send(Message);
                 await Task.Yield();
                 
