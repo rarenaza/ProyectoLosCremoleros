@@ -54,5 +54,8 @@ namespace UTPPrototipo.Models.ViewModels.UTP
         //Paginación:
         public int CantidadTotal { get; set; }
 
+        public List<ListaValor> ListaEstadoOferta { get; set; }
+        public string IdEstadoOferta { get; set; }
+
     }
 }

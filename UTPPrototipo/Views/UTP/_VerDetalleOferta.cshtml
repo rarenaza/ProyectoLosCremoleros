@@ -93,6 +93,55 @@
             </div>
         </div>
     </div>
+   
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="input-group">
+                <span class="input-group-addon" style="width:100px;">
+                  Calificación
+                </span>
+
+                @Html.TextBoxFor(m => m.Calificacion, "", new { @class = "form-control" })
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="input-group">
+                <span class="input-group-addon" style="width:100px;">
+                    Nro Postulantes
+                </span>
+
+                @Html.TextBoxFor(m => m.NroPostulantes, "", new { @class = "form-control" })
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="input-group">
+                <span class="input-group-addon" style="width:100px;">
+                    Contratados<br />UTP
+                </span>
+
+                @Html.TextBoxFor(m => m.ContratadosUTP, "", new { @class = "form-control" })
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="input-group">
+                <span class="input-group-addon" style="width:100px;">
+                    Contratados<br />otros
+                </span>
+
+                @Html.TextBoxFor(m => m.ContratadosOtros, "", new { @class = "form-control" })
+            </div>
+        </div>
+    </div>
+    
 
     <br />
     <div class="row">

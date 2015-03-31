@@ -148,7 +148,13 @@
                                 @*@Html.DropDownListFor(model => model.IdPeriodoRegistro, new SelectList(ViewBag.PeridoRegistro, "Value", "Text"), "- Seleccionar -", new { @class = "form-control", @Id = "IdPeriodoRegistro" })*@
 
                             </div>
-                            <br />
+
+                            <div class="input-group">
+                                <span class="input-group-addon">Completitud</span>
+                                @Html.TextBoxFor(model => model.completitud, new { @class = "form-control", @placeholder = "Ciclo de Estudio" })
+                            </div>
+
+                         
                             <span class="btn btn-default color-paleta3 fa fa-search" id="buscaravanzada"></span>
                         </div>
                     </div>
@@ -217,7 +223,7 @@
             SectorEmpresarial: $('#SectorEmpresarial').val(),
             Conocimientos: $('#Conocimientos').val(),
             EstadoEstudio: $('#EstadoEstudio').val(),
-            
+            completitud: $('#completitud').val(),
             nroPaginaActual: 1,
 
         };
@@ -272,6 +278,7 @@
             SectorEmpresarial: $('#SectorEmpresarial').val(),
             Conocimiento: $('#Conocimiento').val(),
             EstadoEstudio: $('#EstadoEstudio').val(),
+            completitud: $('#completitud').val(),
             nroPaginaActual: nroPagina,
 
         };

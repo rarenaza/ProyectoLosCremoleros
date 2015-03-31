@@ -195,7 +195,7 @@ namespace UTPPrototipo.Controllers
         {
 
             List<EmpresaListaEmpresa> lista = lnUtp.Empresa_ObtenerPorNombre(entidad.PalabraClave == null ? "" : entidad.PalabraClave,
-                                                            entidad.nroPaginaActual, Constantes.FILAS_POR_PAGINA);
+                                                            entidad.nroPaginaActual, Constantes.FILAS_POR_PAGINA_UTP);
 
             //Datos para la paginación.
             //Una ves traido la info de la bd, se llenan estos campos del objeto Paginacion
@@ -205,9 +205,9 @@ namespace UTPPrototipo.Controllers
             Paginacion paginacion = new Paginacion();
             paginacion.NroPaginaActual = entidad.nroPaginaActual;
             paginacion.CantidadTotalResultados = cantidadTotal;
-            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA;
-            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA;
-            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA;
+            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA_UTP;
+            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA_UTP;
+            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA_UTP;
             if (residuo > 0) paginacion.TotalPaginas += 1;
 
             ViewBag.Paginacion = paginacion;
@@ -229,7 +229,7 @@ namespace UTPPrototipo.Controllers
                                                                             entidad.NroOferta,
                                                                             entidad.NroPostulante, 
                                                                             entidad.nroPaginaActual,
-                                                                            Constantes.FILAS_POR_PAGINA);
+                                                                            Constantes.FILAS_POR_PAGINA_UTP);
 
 
 
@@ -239,9 +239,9 @@ namespace UTPPrototipo.Controllers
             Paginacion paginacion = new Paginacion();
             paginacion.NroPaginaActual = entidad.nroPaginaActual;
             paginacion.CantidadTotalResultados = cantidadTotal;
-            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
-            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
-            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA_UTP; // Constantes.FILAS_POR_PAGINA_UTP;
+            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA_UTP; // Constantes.FILAS_POR_PAGINA_UTP;
+            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA_UTP; // Constantes.FILAS_POR_PAGINA_UTP;
             if (residuo > 0) paginacion.TotalPaginas += 1;
 
             ViewBag.Paginacion = paginacion;
@@ -262,7 +262,7 @@ namespace UTPPrototipo.Controllers
             string palabraClave = SearchString == null ? "" : SearchString;
             List<VistaObtenerEventosUTP> listaEjemplo = new List<VistaObtenerEventosUTP>();
 
-            DataTable dtResultado = lnUtp.UTP_ObtenerEventosObtenerBuscar(palabraClave, nroPaginaActual, Constantes.FILAS_POR_PAGINA);
+            DataTable dtResultado = lnUtp.UTP_ObtenerEventosObtenerBuscar(palabraClave, nroPaginaActual, Constantes.FILAS_POR_PAGINA_UTP);
             //DataTable dtResultado = lnUtp.UTP_ObtenerEventosObtenerBuscar(palabraClave);
 
             foreach (DataRow fila in dtResultado.Rows)
@@ -288,9 +288,9 @@ namespace UTPPrototipo.Controllers
             Paginacion paginacion = new Paginacion();
             paginacion.NroPaginaActual = nroPaginaActual;
             paginacion.CantidadTotalResultados = cantidadTotal;
-            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA;
-            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA;
-            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA;
+            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA_UTP;
+            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA_UTP;
+            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA_UTP;
             if (residuo > 0) paginacion.TotalPaginas += 1;
 
             ViewBag.Paginacion = paginacion;
@@ -389,7 +389,7 @@ namespace UTPPrototipo.Controllers
         public ActionResult BusquedaAlumnos(VistaAlumno entidad)
         {
                    
-            List<AlumnoUTP> lista = lnUtp.UTP_ObtenerUltimosAlumnos(entidad.PalabraClave == null ? "" : entidad.PalabraClave, entidad.nroPaginaActual, Constantes.FILAS_POR_PAGINA);
+            List<AlumnoUTP> lista = lnUtp.UTP_ObtenerUltimosAlumnos(entidad.PalabraClave == null ? "" : entidad.PalabraClave, entidad.nroPaginaActual, Constantes.FILAS_POR_PAGINA_UTP);
                       
             
             //Datos para la paginación.
@@ -399,9 +399,9 @@ namespace UTPPrototipo.Controllers
             Paginacion paginacion = new Paginacion();
             paginacion.NroPaginaActual = entidad.nroPaginaActual;
             paginacion.CantidadTotalResultados = cantidadTotal;
-            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA;
-            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA;
-            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA;
+            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA_UTP;
+            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA_UTP;
+            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA_UTP;
             if (residuo > 0) paginacion.TotalPaginas += 1;
 
             ViewBag.Paginacion = paginacion;            
@@ -424,8 +424,9 @@ namespace UTPPrototipo.Controllers
                                                                             entidad.TipoEstudio == null ? "" : entidad.TipoEstudio,
                                                                             entidad.Conocimientos == null ? "" : entidad.Conocimientos,
                                                                             entidad.EstadoEstudio == null ? "" : entidad.EstadoEstudio,
+                                                                            entidad.completitud,
                                                                             entidad.nroPaginaActual, 
-                                                                            Constantes.FILAS_POR_PAGINA);
+                                                                            Constantes.FILAS_POR_PAGINA_UTP);
 
 
             //Datos para la paginación.
@@ -435,9 +436,9 @@ namespace UTPPrototipo.Controllers
             Paginacion paginacion = new Paginacion();
             paginacion.NroPaginaActual = entidad.nroPaginaActual;
             paginacion.CantidadTotalResultados = cantidadTotal;
-            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA;
-            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA;
-            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA;
+            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA_UTP;
+            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA_UTP;
+            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA_UTP;
             if (residuo > 0) paginacion.TotalPaginas += 1;
 
             ViewBag.Paginacion = paginacion;
@@ -516,6 +517,21 @@ namespace UTPPrototipo.Controllers
             }
 
 
+            //Se agrega el parámetro de Estado de la oferta:
+            oferta.ListaEstadoOferta = lngeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_OFERTA);
+            List<SelectListItem> listItemEstadoOferta = new List<SelectListItem>();
+            foreach (ListaValor entidad in oferta.ListaEstadoOferta)
+            {
+                //Se quitan los estados Borrador y Fin de Recepeción de CVs
+                if (entidad.IdListaValor != Constantes.OFERTA_ESTADO_BORRADOR && entidad.IdListaValor != Constantes.OFERTA_ESTADO_FINRECEPCIONCVS)
+                { 
+                    SelectListItem item = new SelectListItem();
+                    item.Text = entidad.Valor;
+                    item.Value = entidad.IdListaValor.ToString();
+                    listItemEstadoOferta.Add(item);
+                }
+            }
+
             //Lista de Combos
 
             ViewBag.ListaTipoCargo = listItemsTipoCargo;
@@ -523,6 +539,8 @@ namespace UTPPrototipo.Controllers
             ViewBag.ListaTipoContrato = listItemTipoContrato;
             ViewBag.ListaTipoEstudio = listItemTipoEstudio;
             ViewBag.ListaInformacionAdicional = listItemTipoInformacionAdicional;
+            ViewBag.ListaEstadoOferta = listItemEstadoOferta;
+
             return View(oferta);
 
         }
@@ -530,7 +548,7 @@ namespace UTPPrototipo.Controllers
         public ActionResult BuscarOfertas(VistaOferta entidad)
         {
 
-            List<OfertaUTP> lista = lnUtp.UTP_ObtenerOfertasporActivar(entidad.PalabraClave == null ? "" : entidad.PalabraClave, entidad.nroPaginaActual, Constantes.FILAS_POR_PAGINA);
+            List<OfertaUTP> lista = lnUtp.UTP_ObtenerOfertasporActivar(entidad.PalabraClave == null ? "" : entidad.PalabraClave, entidad.nroPaginaActual, Constantes.FILAS_POR_PAGINA_UTP);
 
             //Datos para la paginación.
             int cantidadTotal = lista.Count() == 0 ? 0 : lista[0].CantidadTotal;
@@ -538,9 +556,9 @@ namespace UTPPrototipo.Controllers
             Paginacion paginacion = new Paginacion();
             paginacion.NroPaginaActual = entidad.nroPaginaActual;
             paginacion.CantidadTotalResultados = cantidadTotal;
-            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
-            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
-            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA_UTP; // Constantes.FILAS_POR_PAGINA_UTP;
+            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA_UTP; // Constantes.FILAS_POR_PAGINA_UTP;
+            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA_UTP; // Constantes.FILAS_POR_PAGINA_UTP;
             if (residuo > 0) paginacion.TotalPaginas += 1;
 
             ViewBag.Paginacion = paginacion;
@@ -552,17 +570,19 @@ namespace UTPPrototipo.Controllers
         {
 
             List<OfertaUTP> lista = lnUtp.UTP_ObtenerofertasAvanzada(entidad.CargoOfrecido == null ? "" : entidad.CargoOfrecido,
-                                                                     entidad.NombreComercial == null ? "" : entidad.NombreComercial,
-                                                                      entidad.IdTipoCargoutp == null ? "" : entidad.IdTipoCargoutp,
-                                                                      entidad.IdSectorutp == null ? "" : entidad.IdSectorutp,
-                                                                      entidad.IdTipoContratoutp == null ? "" : entidad.IdTipoContratoutp,
-                                                                      entidad.AExperiencia,
-                                                                      entidad.RemuneracionOfrecida,
-                                                                      entidad.IdTipoEstudioutp == null ? "" : entidad.IdTipoEstudioutp,
-                                                                      entidad.Conocimientos == null ? "" : entidad.Conocimientos,
-                                                                      entidad.NumeroPostulante,
-                                                                     entidad.nroPaginaActual,
-                                                                     Constantes.FILAS_POR_PAGINA);
+                                                                        entidad.NombreComercial == null ? "" : entidad.NombreComercial,
+                                                                        entidad.IdTipoCargoutp == null ? "" : entidad.IdTipoCargoutp,
+                                                                        entidad.IdSectorutp == null ? "" : entidad.IdSectorutp,
+                                                                        entidad.IdTipoContratoutp == null ? "" : entidad.IdTipoContratoutp,
+                                                                        entidad.AExperiencia,
+                                                                        entidad.RemuneracionOfrecida,
+                                                                        entidad.IdTipoEstudioutp == null ? "" : entidad.IdTipoEstudioutp,
+                                                                        entidad.Conocimientos == null ? "" : entidad.Conocimientos,
+                                                                        entidad.NumeroPostulante,
+                                                                        entidad.IdEstadoOferta == null ? "" : entidad.IdEstadoOferta,
+                                                                        entidad.InformacionAdicional == null ? "" : entidad.InformacionAdicional,
+                                                                        entidad.nroPaginaActual,                                                                     
+                                                                        Constantes.FILAS_POR_PAGINA_UTP);
 
 
             //Datos para la paginación.
@@ -571,9 +591,9 @@ namespace UTPPrototipo.Controllers
             Paginacion paginacion = new Paginacion();
             paginacion.NroPaginaActual = entidad.nroPaginaActual;
             paginacion.CantidadTotalResultados = cantidadTotal;
-            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
-            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
-            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA_UTP; // Constantes.FILAS_POR_PAGINA_UTP;
+            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA_UTP; // Constantes.FILAS_POR_PAGINA_UTP;
+            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA_UTP; // Constantes.FILAS_POR_PAGINA_UTP;
             if (residuo > 0) paginacion.TotalPaginas += 1;
 
             ViewBag.Paginacion = paginacion;
@@ -1670,7 +1690,7 @@ namespace UTPPrototipo.Controllers
             return PartialView("_DatosUtpPortal", panel);
         }
 
-        public ActionResult VistaOfertasPendientes(int nroPaginaActual, int filasPorPagina = Constantes.FILAS_POR_PAGINA)
+        public ActionResult VistaOfertasPendientes(int nroPaginaActual, int filasPorPagina = Constantes.FILAS_POR_PAGINA_UTP)
         {
             List<VistaOfertasPendientes> listaOfertasPendientes = new List<VistaOfertasPendientes>();
 
@@ -1695,9 +1715,9 @@ namespace UTPPrototipo.Controllers
             Paginacion paginacion = new Paginacion();
             paginacion.NroPaginaActual = nroPaginaActual;
             paginacion.CantidadTotalResultados = cantidadTotal;
-            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
-            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
-            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA_UTP; // Constantes.FILAS_POR_PAGINA_UTP;
+            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA_UTP; // Constantes.FILAS_POR_PAGINA_UTP;
+            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA_UTP; // Constantes.FILAS_POR_PAGINA_UTP;
             if (residuo > 0) paginacion.TotalPaginas += 1;
 
             ViewBag.Paginacion = paginacion;
@@ -1963,7 +1983,7 @@ namespace UTPPrototipo.Controllers
         {
             List<VistaOfertasPendientes> listaOfertasPendientes = new List<VistaOfertasPendientes>();
 
-            DataTable dtResultado = lnUtp.OfertasObtenerPendientes(nroPaginaActual, Constantes.FILAS_POR_PAGINA);
+            DataTable dtResultado = lnUtp.OfertasObtenerPendientes(nroPaginaActual, Constantes.FILAS_POR_PAGINA_UTP);
 
             foreach (DataRow fila in dtResultado.Rows)
             {
@@ -1983,9 +2003,9 @@ namespace UTPPrototipo.Controllers
             Paginacion paginacion = new Paginacion();
             paginacion.NroPaginaActual = nroPaginaActual;
             paginacion.CantidadTotalResultados = cantidadTotal;
-            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
-            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
-            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA_UTP; // Constantes.FILAS_POR_PAGINA_UTP;
+            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA_UTP; // Constantes.FILAS_POR_PAGINA_UTP;
+            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA_UTP; // Constantes.FILAS_POR_PAGINA_UTP;
             if (residuo > 0) paginacion.TotalPaginas += 1;
 
             ViewBag.Paginacion = paginacion;
@@ -1998,7 +2018,7 @@ namespace UTPPrototipo.Controllers
         {
             List<VistaEmpresasPendientes> listaEmpresasPendientes = new List<VistaEmpresasPendientes>();
 
-            DataTable dtResultado = lnUtp.EmpresaObtenerPendientes(nroPaginaActual, Constantes.FILAS_POR_PAGINA);
+            DataTable dtResultado = lnUtp.EmpresaObtenerPendientes(nroPaginaActual, Constantes.FILAS_POR_PAGINA_UTP);
 
             foreach (DataRow fila in dtResultado.Rows)
             {
@@ -2019,9 +2039,9 @@ namespace UTPPrototipo.Controllers
             Paginacion paginacion = new Paginacion();
             paginacion.NroPaginaActual = nroPaginaActual;
             paginacion.CantidadTotalResultados = cantidadTotal;
-            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
-            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
-            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA_UTP; // Constantes.FILAS_POR_PAGINA_UTP;
+            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA_UTP; // Constantes.FILAS_POR_PAGINA_UTP;
+            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA_UTP; // Constantes.FILAS_POR_PAGINA_UTP;
             if (residuo > 0) paginacion.TotalPaginas += 1;
 
             ViewBag.Paginacion = paginacion;
@@ -2054,7 +2074,13 @@ namespace UTPPrototipo.Controllers
          
             //ViewBag.IdEmpresa = idEmpresa;
             //Se obtiene los datos de la empresa.
+          
             Oferta oferta = lnoferta.ObtenerSeguimientoPorId(IdOferta);
+
+            LNGeneral lnGeneral = new LNGeneral();
+            //Se cargan los datos para la clasificación.
+            ViewBag.Calificacion = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_OFERTA), "IdListaValor", "Valor", oferta.Calificacion);
+
 
            return PartialView(oferta);
         }
@@ -2146,7 +2172,7 @@ namespace UTPPrototipo.Controllers
         //    //return PartialView("_UsuariosUTPLista");
         //}
 
-        public PartialViewResult _UsuariosUTPLista(int nroPaginaActual = 1, int filasPorPagina = Constantes.FILAS_POR_PAGINA)
+        public PartialViewResult _UsuariosUTPLista(int nroPaginaActual = 1, int filasPorPagina = Constantes.FILAS_POR_PAGINA_UTP)
         {
          
             List<UTPUsuario> lista = new List<UTPUsuario>();
@@ -2175,9 +2201,9 @@ namespace UTPPrototipo.Controllers
             Paginacion paginacion = new Paginacion();
             paginacion.NroPaginaActual = nroPaginaActual;
             paginacion.CantidadTotalResultados = cantidadTotal;
-            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
-            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
-            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA_UTP; // Constantes.FILAS_POR_PAGINA_UTP;
+            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA_UTP; // Constantes.FILAS_POR_PAGINA_UTP;
+            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA_UTP; // Constantes.FILAS_POR_PAGINA_UTP;
             if (residuo > 0) paginacion.TotalPaginas += 1;
 
             ViewBag.Paginacion = paginacion;
@@ -2188,7 +2214,7 @@ namespace UTPPrototipo.Controllers
     
         }
 
-        public PartialViewResult _ListavalorPadre(int nroPaginaActual=1, int filasPorPagina = Constantes.FILAS_POR_PAGINA)
+        public PartialViewResult _ListavalorPadre(int nroPaginaActual=1, int filasPorPagina = Constantes.FILAS_POR_PAGINA_UTP)
         {
             List<Lista> lista = new List<Lista>();
 
@@ -2213,9 +2239,9 @@ namespace UTPPrototipo.Controllers
             Paginacion paginacion = new Paginacion();
             paginacion.NroPaginaActual = nroPaginaActual;
             paginacion.CantidadTotalResultados = cantidadTotal;
-            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
-            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
-            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA_UTP; // Constantes.FILAS_POR_PAGINA_UTP;
+            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA_UTP; // Constantes.FILAS_POR_PAGINA_UTP;
+            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA_UTP; // Constantes.FILAS_POR_PAGINA_UTP;
             if (residuo > 0) paginacion.TotalPaginas += 1;
 
             ViewBag.Paginacion = paginacion;
@@ -2243,7 +2269,7 @@ namespace UTPPrototipo.Controllers
         }
 
 
-        public ActionResult Vista_ListaValorHijo(int? Id, int nroPaginaActual = 1, int filasPorPagina = Constantes.FILAS_POR_PAGINA)
+        public ActionResult Vista_ListaValorHijo(int? Id, int nroPaginaActual = 1, int filasPorPagina = Constantes.FILAS_POR_PAGINA_UTP)
         {
             List<ListaValor> lista = new List<ListaValor>();
 
@@ -2272,9 +2298,9 @@ namespace UTPPrototipo.Controllers
             Paginacion paginacion = new Paginacion();
             paginacion.NroPaginaActual = nroPaginaActual;
             paginacion.CantidadTotalResultados = cantidadTotal;
-            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
-            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
-            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA_UTP; // Constantes.FILAS_POR_PAGINA_UTP;
+            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA_UTP; // Constantes.FILAS_POR_PAGINA_UTP;
+            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA_UTP; // Constantes.FILAS_POR_PAGINA_UTP;
             if (residuo > 0) paginacion.TotalPaginas += 1;
 
             ViewBag.Paginacion = paginacion;
@@ -2410,9 +2436,9 @@ namespace UTPPrototipo.Controllers
             Paginacion paginacion = new Paginacion();
             paginacion.NroPaginaActual = 1;
             paginacion.CantidadTotalResultados = cantidadTotal;
-            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
-            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
-            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA_UTP; // Constantes.FILAS_POR_PAGINA_UTP;
+            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA_UTP; // Constantes.FILAS_POR_PAGINA_UTP;
+            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA_UTP; // Constantes.FILAS_POR_PAGINA_UTP;
             if (residuo > 0) paginacion.TotalPaginas += 1;
 
             ViewBag.Paginacion = paginacion;
@@ -2477,9 +2503,9 @@ namespace UTPPrototipo.Controllers
                 Paginacion paginacion = new Paginacion();
                 paginacion.NroPaginaActual = 1;
                 paginacion.CantidadTotalResultados = cantidadTotal;
-                paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
-                paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
-                int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+                paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA_UTP; // Constantes.FILAS_POR_PAGINA_UTP;
+                paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA_UTP; // Constantes.FILAS_POR_PAGINA_UTP;
+                int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA_UTP; // Constantes.FILAS_POR_PAGINA_UTP;
                 if (residuo > 0) paginacion.TotalPaginas += 1;
 
                 ViewBag.Paginacion = paginacion;
@@ -2579,9 +2605,9 @@ namespace UTPPrototipo.Controllers
                 Paginacion paginacion = new Paginacion();
                 paginacion.NroPaginaActual = objlista.idcod;
                 paginacion.CantidadTotalResultados = cantidadTotal;
-                paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
-                paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
-                int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+                paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA_UTP; // Constantes.FILAS_POR_PAGINA_UTP;
+                paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA_UTP; // Constantes.FILAS_POR_PAGINA_UTP;
+                int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA_UTP; // Constantes.FILAS_POR_PAGINA_UTP;
                 if (residuo > 0) paginacion.TotalPaginas += 1;
 
                 ViewBag.Paginacion = paginacion;
@@ -2631,9 +2657,9 @@ namespace UTPPrototipo.Controllers
             Paginacion paginacion = new Paginacion();
             paginacion.NroPaginaActual = 1;
             paginacion.CantidadTotalResultados = cantidadTotal;
-            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
-            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
-            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA_UTP; // Constantes.FILAS_POR_PAGINA_UTP;
+            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA_UTP; // Constantes.FILAS_POR_PAGINA_UTP;
+            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA_UTP; // Constantes.FILAS_POR_PAGINA_UTP;
             if (residuo > 0) paginacion.TotalPaginas += 1;
 
             ViewBag.Paginacion = paginacion;
@@ -3057,9 +3083,9 @@ namespace UTPPrototipo.Controllers
             Paginacion paginacion = new Paginacion();
             paginacion.NroPaginaActual = 1;
             paginacion.CantidadTotalResultados = cantidadTotal;
-            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
-            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
-            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA_UTP; // Constantes.FILAS_POR_PAGINA_UTP;
+            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA_UTP; // Constantes.FILAS_POR_PAGINA_UTP;
+            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA_UTP; // Constantes.FILAS_POR_PAGINA_UTP;
             if (residuo > 0) paginacion.TotalPaginas += 1;
 
             ViewBag.Paginacion = paginacion;
@@ -3136,9 +3162,9 @@ namespace UTPPrototipo.Controllers
             //paginacion.NroPaginaActual = 1;
             paginacion.NroPaginaActual = utpUsuario.idcod;
             paginacion.CantidadTotalResultados = cantidadTotal;
-            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
-            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
-            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA_UTP; // Constantes.FILAS_POR_PAGINA_UTP;
+            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA_UTP; // Constantes.FILAS_POR_PAGINA_UTP;
+            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA_UTP; // Constantes.FILAS_POR_PAGINA_UTP;
             if (residuo > 0) paginacion.TotalPaginas += 1;
 
             ViewBag.Paginacion = paginacion;
@@ -3214,7 +3240,7 @@ namespace UTPPrototipo.Controllers
         public ActionResult _UsuariosEmpresaLista(int nroPaginaActual)
         {
             LNEmpresaUsuario lnEmpresaUsuario = new LNEmpresaUsuario ();
-            List<EmpresaUsuario> lista = lnEmpresaUsuario.ObtenerUsuariosParaUTP(nroPaginaActual, Constantes.FILAS_POR_PAGINA);
+            List<EmpresaUsuario> lista = lnEmpresaUsuario.ObtenerUsuariosParaUTP(nroPaginaActual, Constantes.FILAS_POR_PAGINA_UTP);
 
             //Datos para la paginación.
             int cantidadTotal = lista.Count() == 0 ? 0 : lista[0].CantidadTotal;
@@ -3222,9 +3248,9 @@ namespace UTPPrototipo.Controllers
             Paginacion paginacion = new Paginacion();
             paginacion.NroPaginaActual = nroPaginaActual;
             paginacion.CantidadTotalResultados = cantidadTotal;
-            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
-            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
-            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA_UTP; // Constantes.FILAS_POR_PAGINA_UTP;
+            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA_UTP; // Constantes.FILAS_POR_PAGINA_UTP;
+            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA_UTP; // Constantes.FILAS_POR_PAGINA_UTP;
             if (residuo > 0) paginacion.TotalPaginas += 1;
 
             ViewBag.Paginacion = paginacion;
@@ -3300,7 +3326,7 @@ namespace UTPPrototipo.Controllers
 
 
             LNEmpresaUsuario lnEmpresaUsuario = new LNEmpresaUsuario();
-            List<EmpresaUsuario> lista = lnEmpresaUsuario.ObtenerUsuariosParaUTP(1, Constantes.FILAS_POR_PAGINA);
+            List<EmpresaUsuario> lista = lnEmpresaUsuario.ObtenerUsuariosParaUTP(1, Constantes.FILAS_POR_PAGINA_UTP);
 
             //Datos para la paginación.
             int cantidadTotal = lista.Count() == 0 ? 0 : lista[0].CantidadTotal;
@@ -3308,9 +3334,9 @@ namespace UTPPrototipo.Controllers
             Paginacion paginacion = new Paginacion();
             paginacion.NroPaginaActual = 1;
             paginacion.CantidadTotalResultados = cantidadTotal;
-            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
-            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
-            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA_UTP; // Constantes.FILAS_POR_PAGINA_UTP;
+            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA_UTP; // Constantes.FILAS_POR_PAGINA_UTP;
+            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA_UTP; // Constantes.FILAS_POR_PAGINA_UTP;
             if (residuo > 0) paginacion.TotalPaginas += 1;
 
             ViewBag.Paginacion = paginacion;
@@ -3379,7 +3405,7 @@ namespace UTPPrototipo.Controllers
                 LNEmpresaUsuario lnEmpresaUsuario = new LNEmpresaUsuario();
                 lnEmpresaUsuario.Insertar(empresaUsuario);
             
-                List<EmpresaUsuario> lista = lnEmpresaUsuario.ObtenerUsuariosParaUTP(1, Constantes.FILAS_POR_PAGINA);
+                List<EmpresaUsuario> lista = lnEmpresaUsuario.ObtenerUsuariosParaUTP(1, Constantes.FILAS_POR_PAGINA_UTP);
 
                 //Datos para la paginación.
                 int cantidadTotal = lista.Count() == 0 ? 0 : lista[0].CantidadTotal;
@@ -3387,9 +3413,9 @@ namespace UTPPrototipo.Controllers
                 Paginacion paginacion = new Paginacion();
                 paginacion.NroPaginaActual = 1;
                 paginacion.CantidadTotalResultados = cantidadTotal;
-                paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
-                paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
-                int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+                paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA_UTP; // Constantes.FILAS_POR_PAGINA_UTP;
+                paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA_UTP; // Constantes.FILAS_POR_PAGINA_UTP;
+                int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA_UTP; // Constantes.FILAS_POR_PAGINA_UTP;
                 if (residuo > 0) paginacion.TotalPaginas += 1;
 
                 ViewBag.Paginacion = paginacion;
@@ -3433,7 +3459,7 @@ namespace UTPPrototipo.Controllers
                 lnEmpresaUsuario.Actualizar(empresaUsuario);
 
                 //Se actualiza la lista de usuarios de la empresa.
-                List<EmpresaUsuario> lista = lnEmpresaUsuario.ObtenerUsuariosParaUTP(1, Constantes.FILAS_POR_PAGINA);
+                List<EmpresaUsuario> lista = lnEmpresaUsuario.ObtenerUsuariosParaUTP(1, Constantes.FILAS_POR_PAGINA_UTP);
 
                 //Datos para la paginación.
                 int cantidadTotal = lista.Count() == 0 ? 0 : lista[0].CantidadTotal;
@@ -3441,9 +3467,9 @@ namespace UTPPrototipo.Controllers
                 Paginacion paginacion = new Paginacion();
                 paginacion.NroPaginaActual = 1;
                 paginacion.CantidadTotalResultados = cantidadTotal;
-                paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
-                paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
-                int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
+                paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA_UTP; // Constantes.FILAS_POR_PAGINA_UTP;
+                paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA_UTP; // Constantes.FILAS_POR_PAGINA_UTP;
+                int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA_UTP; // Constantes.FILAS_POR_PAGINA_UTP;
                 if (residuo > 0) paginacion.TotalPaginas += 1;
 
                 ViewBag.Paginacion = paginacion;

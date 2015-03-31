@@ -103,6 +103,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         //Por defecto la paginacion de toda la aplicaicon es de 10 en 10, asi que se usa una constante, si existe una pagina que sea diferente entonces
         //ya no se usa este campo y se utiliza el que  sea necesario.
         public const int FILAS_POR_PAGINA = 10;
+        public const int FILAS_POR_PAGINA_UTP = 20; //Paginación utilizada para el Módulo Administrador UTP.
 
         #endregion
 
