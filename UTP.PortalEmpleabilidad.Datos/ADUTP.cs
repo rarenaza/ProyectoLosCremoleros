@@ -1129,6 +1129,100 @@ namespace UTP.PortalEmpleabilidad.Datos
 
         #endregion
 
+        public DataSet Reporte_AlumnosActivos()
+        {
+            DataSet dsResultado = new DataSet();
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Reporte_Alumnos_Activos";
+                cmd.Connection = conexion;
+                conexion.Open();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                dsResultado = new DataSet();
+                da.Fill(dsResultado);
+                conexion.Close();
+            }
+            return dsResultado;
+        }
 
+        public DataSet Reporte_EmpresasActivas()
+        {
+            DataSet dsResultado = new DataSet();
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Reporte_Empresas_Activas";
+                cmd.Connection = conexion;
+                conexion.Open();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                dsResultado = new DataSet();
+                da.Fill(dsResultado);
+                conexion.Close();
+            }
+            return dsResultado;
+        }
+
+        public DataTable Reporte_EmpresasSegunClasificacion(int? ano, int? mes)
+        {
+            DataTable dtResultado = new DataTable();
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Reporte_Empresas_Segun_Clasificacion";
+                cmd.Parameters.Add(new SqlParameter("@Ano", ano));
+                cmd.Parameters.Add(new SqlParameter("@Mes", mes));
+                cmd.Connection = conexion;
+                conexion.Open();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                dtResultado = new DataTable();
+                da.Fill(dtResultado);
+                conexion.Close();
+            }
+            return dtResultado;
+        }
+
+        public DataTable Reporte_OfertasSegunClasificacion(int? ano, int? mes)
+        {
+            DataTable dtResultado = new DataTable();
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Reporte_Ofertas_Segun_Clasificacion";
+                cmd.Parameters.Add(new SqlParameter("@Ano", ano));
+                cmd.Parameters.Add(new SqlParameter("@Mes", mes));
+                cmd.Connection = conexion;
+                conexion.Open();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                dtResultado = new DataTable();
+                da.Fill(dtResultado);
+                conexion.Close();
+            }
+            return dtResultado;
+        }
+
+        public DataSet Reporte_OfertasSegunTipoTrabajoUTP(int? ano, int? mes)
+        {
+            DataSet dtResultado = new DataSet();
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Reporte_Ofertas_Segun_Tipo_Trabajo_UTP";
+                cmd.Parameters.Add(new SqlParameter("@Ano", ano));
+                cmd.Parameters.Add(new SqlParameter("@Mes", mes));
+                cmd.Connection = conexion;
+                conexion.Open();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                dtResultado = new DataSet();
+                da.Fill(dtResultado);
+                conexion.Close();
+            }
+            return dtResultado;
+        }
     }
 }
