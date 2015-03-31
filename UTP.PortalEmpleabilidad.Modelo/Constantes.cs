@@ -123,6 +123,27 @@ namespace UTP.PortalEmpleabilidad.Modelo
 
         #endregion
 
+        #region Colores Pie
+        public static ColorPie ColorAmarillo = new ColorPie { Color = "#FFFF00", Highlight = "#FFF9AA" };
+        public static ColorPie ColorAzul = new ColorPie { Color = "#0065FF", Highlight = "#32B0FF" };
+        public static ColorPie ColorRojo = new ColorPie { Color = "#FF0000", Highlight = "#FF7200" };
+        public static ColorPie ColorCeleste = new ColorPie { Color = "#82F0FF", Highlight = "#CCFFF8" };
+        public static ColorPie ColorNaranja = new ColorPie { Color = "#FFC900", Highlight = "#FFEF68" };
+        public static ColorPie ColorCrema = new ColorPie { Color = "#FFF9A7", Highlight = "#FFF6ED" };
+        public static ColorPie ColorVerde = new ColorPie { Color = "#4CFF00", Highlight = "#CBFF72" };
+        public static ColorPie ColorTurquesa = new ColorPie { Color = "#60FCDC", Highlight = "#B6F9E6" };
+        public static ColorPie ColorVino = new ColorPie { Color = "#B10400", Highlight = "#F3010A" };
+        public static ColorPie ColorRosado = new ColorPie { Color = "#FF4CDC", Highlight = "#FF4CDC" };
+        public static ColorPie ColorPlomo = new ColorPie { Color = "#A0A0A0", Highlight = "#C0C0C0" };
+        public static ColorPie ColorMorado = new ColorPie { Color = "#B200FF", Highlight = "#D468FF" };
+        public static ColorPie ColorVerdeClaro = new ColorPie { Color = "#A8FFA8", Highlight = "#DBFFD6" };
+        public static ColorPie ColorPiel = new ColorPie { Color = "#FF9572", Highlight = "#FFD1B7" };
+        public static ColorPie ColorMarron = new ColorPie { Color = "#9B6749", Highlight = "#998280" };
+        public static List<ColorPie> COLORES_PIE = new List<ColorPie> {ColorAmarillo, ColorAzul,ColorRojo,ColorCeleste,ColorNaranja,ColorCrema,ColorVerde,ColorTurquesa,ColorVino,ColorRosado,ColorPlomo,ColorMorado,ColorVerdeClaro,ColorPiel,ColorMarron};
+        
+
+        #endregion
+
         public static string NOMBRE_UTP = "Universidad Tecnológica del Perú-UTP";
         
     }

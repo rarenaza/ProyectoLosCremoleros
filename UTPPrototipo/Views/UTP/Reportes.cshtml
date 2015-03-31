@@ -2,7 +2,7 @@
     Layout = "~/Views/UTP/_LayoutUTP.cshtml";
     ViewBag.Title = "Reportes";
 }
-<link href="~/Content/font-awesome.css" rel="stylesheet" />
+
 <script src="~/Scripts/Chart.js"></script>
 
 <div class="container fuente-pequeña" style="margin-top:2px;">
@@ -11,190 +11,401 @@
         @{Html.RenderAction("VistaCabeceraUtp", "UTP");}
 
     </div>
+    <br />
     <div class="row">
         <div class="col-sm-6">
-            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-                <div class="panel panel-default fuente-pequeña">
-                    <div class="panel-heading" role="tab" id="headingAlumnosActivos" style="padding: 2px 2px 2px 6px;">
-                        <h4 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseAlumnosActivos" aria-expanded="true" aria-controls="collapseAlumnosActivos" class="fuente-seccion">
-                                Alumnos Activos
-                            </a>
-                        </h4>
+            <div class="panel panel-default" style="text-align:center;">
+                <h5>Alumnos activos</h5>
+                <canvas id="chartAlumnosActivos" width="480" height="400"></canvas>
+                <div style="text-align:center;">
+                    <h6>Alumnos activos: <strong><span id="alumnosActivos"></span></strong></h6>
+                    <h6>Alumnos con CV completo: <strong><span id="alumnosCVCompleto"></span></strong></h6>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-sm-6">
+            <div class="panel panel-default" style="text-align:center;">
+                <h5>Empresas activas</h5>
+                <canvas id="chartEmpresasActivas" width="400" height="400"></canvas>
+                <div style="text-align:center;">
+                    <h6>Empresas activas: <strong><span id="empresasActivas"></span></strong></h6>
+                    <h6>Ofertas Publicadas: <strong><span id="ofertasPublicadas"></span></strong></h6>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="panel panel-default" style="text-align:center;">
+                <h5>Empresas según Clasificación</h5>
+                <canvas id="chartEmpresasSegunClasificacion" width="480" height="400"></canvas>
+
+            </div>
+
+        </div>
+        <div class="col-sm-6">
+            <div class="panel panel-default" style="text-align:center;">
+                <h5>Ofertas según Clasificación</h5>
+                <canvas id="chartOfertasSegunClasificacion" width="400" height="400"></canvas>
+
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="panel panel-default" style="text-align:center;">
+                <h5>Empresas según Clasificación por Mes </h5>
+                <div class="row">
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-4">
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                Año
+                            </div>
+                            <input class="form-control" id="empresasSegunClasificacionPorMes_Ano" />
+                        </div>
+
                     </div>
-                    <div id="collapseAlumnosActivos" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingAlumnosActivos">
-                        <div class="panel-body">
-                            <canvas id="chartAlumnosActivos" width="400" height="400"></canvas>
-                            <script>
-                                Chart.defaults.global = {
-                                    // Boolean - Whether to animate the chart
-                                    animation: true,
+                    <div class="col-sm-3">
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                Mes
+                            </div>
+                            <input class="form-control" id="empresasSegunClasificacionPorMes_Mes" />
 
-                                    // Number - Number of animation steps
-                                    animationSteps: 60,
-
-                                    // String - Animation easing effect
-                                    animationEasing: "easeOutQuart",
-
-                                    // Boolean - If we should show the scale at all
-                                    showScale: true,
-
-                                    // Boolean - If we want to override with a hard coded scale
-                                    scaleOverride: false,
-
-                                    // ** Required if scaleOverride is true **
-                                    // Number - The number of steps in a hard coded scale
-                                    scaleSteps: null,
-                                    // Number - The value jump in the hard coded scale
-                                    scaleStepWidth: null,
-                                    // Number - The scale starting value
-                                    scaleStartValue: null,
-
-                                    // String - Colour of the scale line
-                                    scaleLineColor: "rgba(0,0,0,.1)",
-
-                                    // Number - Pixel width of the scale line
-                                    scaleLineWidth: 1,
-
-                                    // Boolean - Whether to show labels on the scale
-                                    scaleShowLabels: true,
-
-                                    // Interpolated JS string - can access value
-                                    scaleLabel: "<%=value%>",
-
-                                    // Boolean - Whether the scale should stick to integers, not floats even if drawing space is there
-                                    scaleIntegersOnly: true,
-
-                                    // Boolean - Whether the scale should start at zero, or an order of magnitude down from the lowest value
-                                    scaleBeginAtZero: false,
-
-                                    // String - Scale label font declaration for the scale label
-                                    scaleFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
-
-                                    // Number - Scale label font size in pixels
-                                    scaleFontSize: 12,
-
-                                    // String - Scale label font weight style
-                                    scaleFontStyle: "normal",
-
-                                    // String - Scale label font colour
-                                    scaleFontColor: "#666",
-
-                                    // Boolean - whether or not the chart should be responsive and resize when the browser does.
-                                    responsive: false,
-
-                                    // Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
-                                    maintainAspectRatio: true,
-
-                                    // Boolean - Determines whether to draw tooltips on the canvas or not
-                                    showTooltips: true,
-
-                                    // Function - Determines whether to execute the customTooltips function instead of drawing the built in tooltips (See [Advanced - External Tooltips](#advanced-usage-custom-tooltips))
-                                    customTooltips: false,
-
-                                    // Array - Array of string names to attach tooltip events
-                                    tooltipEvents: ["mousemove", "touchstart", "touchmove"],
-
-                                    // String - Tooltip background colour
-                                    tooltipFillColor: "rgba(0,0,0,0.8)",
-
-                                    // String - Tooltip label font declaration for the scale label
-                                    tooltipFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
-
-                                    // Number - Tooltip label font size in pixels
-                                    tooltipFontSize: 14,
-
-                                    // String - Tooltip font weight style
-                                    tooltipFontStyle: "normal",
-
-                                    // String - Tooltip label font colour
-                                    tooltipFontColor: "#fff",
-
-                                    // String - Tooltip title font declaration for the scale label
-                                    tooltipTitleFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
-
-                                    // Number - Tooltip title font size in pixels
-                                    tooltipTitleFontSize: 14,
-
-                                    // String - Tooltip title font weight style
-                                    tooltipTitleFontStyle: "bold",
-
-                                    // String - Tooltip title font colour
-                                    tooltipTitleFontColor: "#fff",
-
-                                    // Number - pixel width of padding around tooltip text
-                                    tooltipYPadding: 6,
-
-                                    // Number - pixel width of padding around tooltip text
-                                    tooltipXPadding: 6,
-
-                                    // Number - Size of the caret on the tooltip
-                                    tooltipCaretSize: 8,
-
-                                    // Number - Pixel radius of the tooltip border
-                                    tooltipCornerRadius: 6,
-
-                                    // Number - Pixel offset from point x to tooltip edge
-                                    tooltipXOffset: 10,
-
-                                    // String - Template string for single tooltips
-                                    tooltipTemplate: "<%if (label){%><%=label%>: <%}%><%= value %>",
-
-                                    // String - Template string for multiple tooltips
-                                    multiTooltipTemplate: "<%= value %>",
-
-                                    // Function - Will fire on animation progression.
-                                    onAnimationProgress: function () { },
-
-                                    // Function - Will fire on animation completion.
-                                    onAnimationComplete: function () { }
-                                }
-    debugger;
-    //window.onLoad = function () {
-    //    init();
-    //};
-
-    //function init() {
-    
-
-    var data = {
-        labels: ["January", "February", "March", "April", "May", "June", "July"],
-        datasets: [
-            {
-                fillColor: "rgba(220,220,220,0.5)",
-                strokeColor: "rgba(220,220,220,1)",
-                pointColor: "rgba(220,220,220,1)",
-                pointStrokeColor: "#fff",
-                data: [65, 59, 90, 81, 56, 55, 40]
-            },
-            {
-                fillColor: "rgba(151,187,205,0.5)",
-                strokeColor: "rgba(151,187,205,1)",
-                pointColor: "rgba(151,187,205,1)",
-                pointStrokeColor: "#fff",
-                data: [28, 48, 40, 19, 96, 27, 100]
-            }
-        ]
-    }
-
-    var ctx = document.getElementById("myChart").getContext("2d");
-    var myNewChart = new Chart(ctx).PolarArea(data);
-    //}
-                            </script>
                         </div>
                     </div>
+                    <div class="col-sm-4">
+                        <div class="btn btn-default color-paleta6" onclick="cargaEmpresasSegunClasificacionMes();">
+                            Mostrar
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <p id="msgEmpresasSegunClasificacionMes"></p>
+                <canvas id="chartEmpresasSegunClasificacionMes" width="480" height="400"></canvas>
+
+            </div>
+
+        </div>
+        <div class="col-sm-6">
+            <div class="panel panel-default" style="text-align:center;">
+                <h5>Ofertas según Clasificación por Mes</h5>
+                <div class="row">
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-4">
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                Año
+                            </div>
+                            <input class="form-control" id="ofertasSegunClasificacionPorMes_Ano" />
+                        </div>
+
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                Mes
+                            </div>
+                            <input class="form-control" id="ofertasSegunClasificacionPorMes_Mes" />
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="btn btn-default color-paleta6" onclick="cargaOfertasSegunClasificacionMes();">
+                            Mostrar
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <p id="msgOfertasSegunClasificacionMes"></p>
+                <canvas id="chartOfertasSegunClasificacionMes" width="400" height="400"></canvas>
+
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+        
+        </div>
+        <div class="col-sm-6">
+            <div class="panel panel-default" style="text-align:center;">
+                <h5>Ofertas según Tipo de Trabajo</h5>
+                <div class="row">
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-4">
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                Año
+                            </div>
+                            <input class="form-control" id="ofertasSegunTipoTrabajoUTP_Ano" />
+                        </div>
+
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                Mes
+                            </div>
+                            <input class="form-control" id="ofertasSegunTipoTrabajoUTP_Mes" />
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="btn btn-default color-paleta6" onclick="cargaOfertasSegunTipoTrabajoUTP();">
+                            Mostrar
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <p id="msgOfertasSegunTipoTrabajoUTP"></p>
+                <canvas id="chartOfertasSegunTipoTrabajoUTP" width="400" height="400"></canvas>
+                <div style="text-align:center;" id="ofertasTargetDiv">
+                    <h6>Ofertas Target <strong><span id="ofertasTarget"></span></strong></h6>
                 </div>
             </div>
         </div>
     </div>
 
+    <div class="row">
+        
+        <div class="col-sm-6">
+            <div class="panel panel-default" style="text-align:center;">
+                <h5>Carreras sin Ofertas de Prácticas</h5>
+                <div class="row">
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-4">
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                Año
+                            </div>
+                            <input class="form-control" id="zzzofertasSegunTipoTrabajoUTP_Ano" />
+                        </div>
+
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                Mes
+                            </div>
+                            <input class="form-control" id="xxofertasSegunTipoTrabajoUTP_Mes" />
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="btn btn-default color-paleta6" onclick="cargaOfertasSegunTipoTrabajoUTP();">
+                            Mostrar
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <p id="msgOfertzzasSegunTipoTrabajoUTP"></p>
+                <canvas id="chartOfertasSegunTipoTrabajoUTPzzz" width="400" height="400"></canvas>
+
+            </div>
+        </div>
+    </div>
 
 </div>
 
+
+           
 <script>
     $(document).ready(function () {
         $("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta3 color-paleta4 color-paleta5 color-paleta7 color-paleta8 color-paleta9").addClass("color-paleta6")
-    });
-</script>
 
+        cargaAlumnosActivos();
+        function cargaAlumnosActivos() {
+            var url = '@Url.Action("ReporteAlumnosActivos", "UTP")';
+            $.get(url, function (datos) {
+                var data = {
+                    labels: datos[0],
+                    datasets: [
+                        {
+                            label: "Alumnos Activos",
+                            fillColor: "rgba(220,220,220,0.5)",
+                            strokeColor: "rgba(220,220,220,0.8)",
+                            highlightFill: "rgba(220,220,220,0.75)",
+                            highlightStroke: "rgba(220,220,220,1)",
+                            data: datos[1]
+                        },
+                        {
+                            label: "Alumnos con CV completo",
+                            fillColor: "rgba(151,187,205,0.5)",
+                            strokeColor: "rgba(151,187,205,0.8)",
+                            highlightFill: "rgba(151,187,205,0.75)",
+                            highlightStroke: "rgba(151,187,205,1)",
+                            data: datos[2]
+                        }
+                    ]
+                };
+                var ctx = document.getElementById("chartAlumnosActivos").getContext("2d");
+                var myNewChart = new Chart(ctx).Bar(data);
+                $("#alumnosActivos").html(datos[3]);
+                $("#alumnosCVCompleto").html(datos[4]);
+            });
+        }
+
+        cargaEmpresasActivas();
+        function cargaEmpresasActivas() {
+            var url = '@Url.Action("ReporteEmpresasActivas", "UTP")';
+            $.get(url, function (datos) {
+                var data = {
+                    labels: datos[0],
+                    datasets: [
+                        {
+                            label: "Empresas activas",
+                            fillColor: "rgba(220,220,220,0.5)",
+                            strokeColor: "rgba(220,220,220,0.8)",
+                            highlightFill: "rgba(220,220,220,0.75)",
+                            highlightStroke: "rgba(220,220,220,1)",
+                            data: datos[1]
+                        },
+                        {
+                            label: "Ofertas publicadas",
+                            fillColor: "rgba(151,187,205,0.5)",
+                            strokeColor: "rgba(151,187,205,0.8)",
+                            highlightFill: "rgba(151,187,205,0.75)",
+                            highlightStroke: "rgba(151,187,205,1)",
+                            data: datos[2]
+                        }
+                    ]
+                };
+                var ctx = document.getElementById("chartEmpresasActivas").getContext("2d");
+                var myNewChart = new Chart(ctx).Bar(data);
+                $("#empresasActivas").html(datos[3]);
+                $("#ofertasPublicadas").html(datos[4]);
+            });
+        }
+
+        cargaEmpresasSegunClasificacion();
+        function cargaEmpresasSegunClasificacion() {
+            var url = '@Url.Action("ReporteEmpresasSegunClasificacion", "UTP")';
+            $.get(url, function (datosPie) {
+                var data = [];
+                $.each(datosPie, function (index, value) {
+                    var itemdata =
+                        {
+                            value: eval(value.PieValue),
+                            color: value.PieColor,
+                            highlight: value.PieHighlight,
+                            label: value.PieLabel
+                        };
+                    data.push(itemdata);
+                })
+                var ctx = document.getElementById("chartEmpresasSegunClasificacion").getContext("2d");
+                var myPieChart = new Chart(ctx).Pie(data);
+            });
+        }
+
+        cargaOfertasSegunClasificacion();
+        function cargaOfertasSegunClasificacion() {
+            var url = '@Url.Action("ReporteOfertasSegunClasificacion", "UTP")';
+            $.get(url, function (datosPie) {
+                var data = [];
+                $.each(datosPie, function (index, value) {
+                    var itemdata =
+                        {
+                            value: eval(value.PieValue),
+                            color: value.PieColor,
+                            highlight: value.PieHighlight,
+                            label: value.PieLabel
+                        };
+                    data.push(itemdata);
+                })
+                var ctx = document.getElementById("chartOfertasSegunClasificacion").getContext("2d");
+                var myPieChart = new Chart(ctx).Pie(data);
+            });
+        }
+
+
+    });
+
+    function cargaEmpresasSegunClasificacionMes() {
+        var url = '@Url.Action("ReporteEmpresasSegunClasificacion", "UTP")' + '?ano=' + document.getElementById("empresasSegunClasificacionPorMes_Ano").value + '&mes=' + document.getElementById("empresasSegunClasificacionPorMes_Mes").value;
+        $("#texto1").html("Cargando...");
+        $.get(url, function (datosPie) {
+            if (datosPie.length > 0) {
+                $("#chartEmpresasSegunClasificacionMes").css("visibility", "visible");
+                $("#msgEmpresasSegunClasificacionMes").html("");
+                var data = [];
+                $.each(datosPie, function (index, value) {
+                    var itemdata =
+                        {
+                            value: eval(value.PieValue),
+                            color: value.PieColor,
+                            highlight: value.PieHighlight,
+                            label: value.PieLabel
+                        };
+                    data.push(itemdata);
+                })
+                var ctx = document.getElementById("chartEmpresasSegunClasificacionMes").getContext("2d");
+                var myPieChart = new Chart(ctx).Pie(data);
+            }
+            else {
+                $("#msgEmpresasSegunClasificacionMes").html("No se encontraron resultados");
+                $("#chartEmpresasSegunClasificacionMes").css("visibility", "hidden");
+            }
+        });
+    }
+
+    function cargaOfertasSegunClasificacionMes() {
+        var url = '@Url.Action("ReporteOfertasSegunClasificacion", "UTP")' + '?ano=' + document.getElementById("empresasSegunClasificacionPorMes_Ano").value + '&mes=' + document.getElementById("empresasSegunClasificacionPorMes_Mes").value;
+        $("#texto1").html("Cargando...");
+        $.get(url, function (datosPie) {
+            if (datosPie.length > 0) {
+                $("#chartOfertasSegunClasificacionMes").css("visibility", "visible");
+                $("#msgOfertasSegunClasificacionMes").html("");
+                var data = [];
+                $.each(datosPie, function (index, value) {
+                    var itemdata =
+                        {
+                            value: eval(value.PieValue),
+                            color: value.PieColor,
+                            highlight: value.PieHighlight,
+                            label: value.PieLabel
+                        };
+                    data.push(itemdata);
+                })
+                var ctx = document.getElementById("chartOfertasSegunClasificacionMes").getContext("2d");
+                var myPieChart = new Chart(ctx).Pie(data);
+            }
+            else {
+                $("#msgOfertasSegunClasificacionMes").html("No se encontraron resultados");
+                $("#chartOfertasSegunClasificacionMes").css("visibility", "hidden");
+            }
+        });
+    }
+
+    function cargaOfertasSegunTipoTrabajoUTP() {
+        var url = '@Url.Action("ReporteOfertasSegunTipoTrabajoUTP", "UTP")' + '?ano=' + document.getElementById("ofertasSegunTipoTrabajoUTP_Ano").value + '&mes=' + document.getElementById("ofertasSegunTipoTrabajoUTP_Mes").value;
+        $("#texto1").html("Cargando...");
+        $.get(url, function (datosPie) {
+            if (datosPie[0].length > 0) {
+                $("#chartOfertasSegunTipoTrabajoUTP").css("visibility", "visible");
+                $("#ofertasTargetDiv").css("visibility", "visible");
+                $("#msgOfertasSegunTipoTrabajoUTP").html("");
+                var data = [];
+                $.each(datosPie[0], function (index, value) {
+                    var itemdata =
+                        {
+                            value: eval(value.PieValue),
+                            color: value.PieColor,
+                            highlight: value.PieHighlight,
+                            label: value.PieLabel
+                        };
+                    data.push(itemdata);
+                })
+                var ctx = document.getElementById("chartOfertasSegunTipoTrabajoUTP").getContext("2d");
+                var myPieChart = new Chart(ctx).Pie(data);
+                $("#ofertasTarget").html(datosPie[1]);
+
+            }
+            else {
+                $("#msgOfertasSegunTipoTrabajoUTP").html("No se encontraron resultados");
+                $("#chartOfertasSegunTipoTrabajoUTP").css("visibility", "hidden");
+                $("#ofertasTargetDiv").css("visibility", "hidden");
+            }
+        });
+    }
+</script>
 

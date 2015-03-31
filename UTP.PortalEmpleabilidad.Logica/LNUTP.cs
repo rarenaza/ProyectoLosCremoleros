@@ -579,5 +579,32 @@ namespace UTP.PortalEmpleabilidad.Logica
         }
 
         #endregion
+        public DataSet Reporte_AlumnosActivos()
+        {
+
+            return adUtp.Reporte_AlumnosActivos();
+        }
+        public DataSet Reporte_EmpresasActivas()
+        {
+
+            return adUtp.Reporte_EmpresasActivas();
+        }
+
+        public DataTable Reporte_EmpresasSegunClasificacion(int? ano, int? mes)
+        {
+
+            return adUtp.Reporte_EmpresasSegunClasificacion(ano, mes);
+        }
+
+        public DataTable Reporte_OfertasSegunClasificacion(int? ano, int? mes)
+        {
+
+            return adUtp.Reporte_OfertasSegunClasificacion(ano, mes);
+        }
+        public DataSet Reporte_OfertasSegunTipoTrabajoUTP(int? ano, int? mes)
+        {
+
+            return adUtp.Reporte_OfertasSegunTipoTrabajoUTP(ano, mes);
+        }
     }
 }

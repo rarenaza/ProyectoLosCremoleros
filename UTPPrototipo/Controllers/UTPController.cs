@@ -1193,6 +1193,119 @@ namespace UTPPrototipo.Controllers
             return View();
         }
 
+        public ActionResult ReporteAlumnosActivos()
+        {
+            DataSet dsAlumnosActivos = lnUtp.Reporte_AlumnosActivos();
+
+
+            List<string> meses = new List<string>();
+            List<string> alumnosActivos = new List<string>();
+            List<string> cvActivos = new List<string>();
+            for (int i = 0; i <= dsAlumnosActivos.Tables[0].Rows.Count - 1; i++)
+            {
+                string reporteAno = dsAlumnosActivos.Tables[0].Rows[i]["ReporteAno"].ToString();
+                string reporteMes = dsAlumnosActivos.Tables[0].Rows[i]["ReporteMes"].ToString();
+                string datoAlumnosActivos = dsAlumnosActivos.Tables[0].Rows[i]["DatoAlumnosActivos"].ToString();
+                string datoAlumnosCVCompleto = dsAlumnosActivos.Tables[0].Rows[i]["DatoAlumnosCVCompleto"].ToString();
+                string mes = dsAlumnosActivos.Tables[0].Rows[i]["Mes"].ToString();
+
+                meses.Add(mes + " " + reporteAno);
+                alumnosActivos.Add(datoAlumnosActivos);
+                cvActivos.Add(datoAlumnosCVCompleto);
+            }
+            
+            List<object> datos = new List<object>();
+            datos.Add(meses);
+            datos.Add(alumnosActivos);
+            datos.Add(cvActivos);
+            datos.Add(dsAlumnosActivos.Tables[1].Rows[0]["NumeroAlumnosActivos"].ToString());
+            datos.Add(dsAlumnosActivos.Tables[2].Rows[0]["NumeroAlumnosCVCompleto"].ToString());
+            return Json(datos, JsonRequestBehavior.AllowGet);
+        }
+
+
+        public ActionResult ReporteEmpresasActivas()
+        {
+            DataSet dsAlumnosActivos = lnUtp.Reporte_EmpresasActivas();
+
+
+            List<string> meses = new List<string>();
+            List<string> empresasActivas = new List<string>();
+            List<string> ofertasPublicadas = new List<string>();
+            for (int i = 0; i <= dsAlumnosActivos.Tables[0].Rows.Count - 1; i++)
+            {
+                string reporteAno = dsAlumnosActivos.Tables[0].Rows[i]["ReporteAno"].ToString();
+                string reporteMes = dsAlumnosActivos.Tables[0].Rows[i]["ReporteMes"].ToString();
+                string datoEmpresasActivas = dsAlumnosActivos.Tables[0].Rows[i]["EmpresasActivas"].ToString();
+                string datoOfertasPublicadas = dsAlumnosActivos.Tables[0].Rows[i]["OfertasPublicadas"].ToString();
+                string mes = dsAlumnosActivos.Tables[0].Rows[i]["Mes"].ToString();
+
+                meses.Add(mes + " " + reporteAno);
+                empresasActivas.Add(datoEmpresasActivas);
+                ofertasPublicadas.Add(datoOfertasPublicadas);
+            }
+
+            List<object> datos = new List<object>();
+            datos.Add(meses);
+            datos.Add(empresasActivas);
+            datos.Add(ofertasPublicadas);
+            datos.Add(dsAlumnosActivos.Tables[1].Rows[0]["NumeroEmpresasRegistradas"].ToString());
+            datos.Add(dsAlumnosActivos.Tables[2].Rows[0]["NumeroOfertasPublicadas"].ToString());
+            return Json(datos, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult ReporteEmpresasSegunClasificacion(int? ano, int? mes)
+        {
+            DataTable dsEmpresasSegunClasificacion = lnUtp.Reporte_EmpresasSegunClasificacion(ano, mes);
+            List<DatosPie> datosPie = new List<DatosPie>();
+            for (int i = 0; i <= dsEmpresasSegunClasificacion.Rows.Count - 1; i++)
+            {
+                DatosPie item = new DatosPie();
+                item.PieValue = dsEmpresasSegunClasificacion.Rows[i]["Empresas"].ToString();
+                item.PieLabel = dsEmpresasSegunClasificacion.Rows[i]["Clasificacion"].ToString();
+                item.PieColor = Constantes.COLORES_PIE[i].Color;
+                item.PieHighlight = Constantes.COLORES_PIE[i].Highlight;
+                datosPie.Add(item);
+            }
+            return Json(datosPie, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult ReporteOfertasSegunClasificacion(int? ano, int? mes)
+        {
+            DataTable dsOfertasSegunClasificacion = lnUtp.Reporte_OfertasSegunClasificacion(ano, mes);
+            List<DatosPie> datosPie = new List<DatosPie>();
+            for (int i = 0; i <= dsOfertasSegunClasificacion.Rows.Count - 1; i++)
+            {
+                DatosPie item = new DatosPie();
+                item.PieValue = dsOfertasSegunClasificacion.Rows[i]["Ofertas"].ToString();
+                item.PieLabel = dsOfertasSegunClasificacion.Rows[i]["Clasificacion"].ToString();
+                item.PieColor = Constantes.COLORES_PIE[i].Color;
+                item.PieHighlight = Constantes.COLORES_PIE[i].Highlight;
+                datosPie.Add(item);
+            }
+            return Json(datosPie, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult ReporteOfertasSegunTipoTrabajoUTP(int? ano, int? mes)
+        {
+            DataSet dsOfertasSegunTipoTrabajoUTP = lnUtp.Reporte_OfertasSegunTipoTrabajoUTP(ano, mes);
+            
+            List<DatosPie> datosPie = new List<DatosPie>();
+            for (int i = 0; i <= dsOfertasSegunTipoTrabajoUTP.Tables[0].Rows.Count - 1; i++)
+            {
+                DatosPie item = new DatosPie();
+                item.PieValue = dsOfertasSegunTipoTrabajoUTP.Tables[0].Rows[i]["Ofertas"].ToString();
+                item.PieLabel = dsOfertasSegunTipoTrabajoUTP.Tables[0].Rows[i]["TipoTrabajoUTP"].ToString();
+                item.PieColor = Constantes.COLORES_PIE[i].Color;
+                item.PieHighlight = Constantes.COLORES_PIE[i].Highlight;
+                datosPie.Add(item);
+            }
+            List<object> datos = new List<object>();
+            datos.Add(datosPie);
+            datos.Add(dsOfertasSegunTipoTrabajoUTP.Tables[1].Rows[0]["OfertasTarget"].ToString());
+            return Json(datos, JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult Evento_Editar(string Id)
         {
             //Lista Estado Evento
@@ -3487,5 +3600,6 @@ namespace UTPPrototipo.Controllers
             return Json(vista, JsonRequestBehavior.AllowGet);
 
         }
+
     }
 }
