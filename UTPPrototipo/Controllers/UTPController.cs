@@ -2192,8 +2192,7 @@ namespace UTPPrototipo.Controllers
 
             LNGeneral lnGeneral = new LNGeneral();
             //Se cargan los datos para la clasificación.
-            ViewBag.Calificacion = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_OFERTA), "IdListaValor", "Valor", oferta.Calificacion);
-
+            ViewBag.Calificacion = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_OFERTA_CALIFICACION_ENCUESTA), "IdListaValor", "Valor", oferta.Calificacion);
 
            return PartialView(oferta);
         }
@@ -2204,7 +2203,12 @@ namespace UTPPrototipo.Controllers
         {
             lnUtp.UTP_ActualizaSeguimientoOferta(oferta);
             Oferta ofertaActualizada = lnoferta.ObtenerSeguimientoPorId(oferta.IdOferta);
-            
+
+            LNGeneral lnGeneral = new LNGeneral();
+            //Se cargan los datos para la clasificación.
+            ViewBag.Calificacion = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_OFERTA_CALIFICACION_ENCUESTA), "IdListaValor", "Valor", oferta.Calificacion);
+
+
             return PartialView("_VerDetalleOferta", ofertaActualizada);
         }
 

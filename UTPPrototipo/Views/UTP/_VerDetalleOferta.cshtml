@@ -34,7 +34,8 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <!--Este campo ya no se utilizará-->
+    @*<div class="row">
         <div class="col-sm-12">
             <div class="input-group">
                 <span class="input-group-addon" style="width:100px;">
@@ -44,7 +45,7 @@
                 @Html.TextBoxFor(m => m.NumeroContratados, "", new { @class = "form-control" })
             </div>
         </div>
-    </div>
+    </div>*@
     <div class="row">
         <div class="col-sm-12">
             <div class="input-group">
@@ -100,8 +101,8 @@
                 <span class="input-group-addon" style="width:100px;">
                   Calificación
                 </span>
-
-                @Html.TextBoxFor(m => m.Calificacion, "", new { @class = "form-control" })
+                @Html.DropDownListFor(m => m.Calificacion, null, "- Seleccione -", htmlAttributes: new { @class = "form-control" })
+                @*@Html.TextBoxFor(m => m.Calificacion, "", new { @class = "form-control" })*@
             </div>
         </div>
     </div>
