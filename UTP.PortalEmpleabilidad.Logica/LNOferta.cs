@@ -562,7 +562,11 @@ namespace UTP.PortalEmpleabilidad.Logica
                 oferta.Contacto = Convert.ToString(dsResultado.Tables[0].Rows[0]["Contacto"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[0]["Contacto"]);
                 oferta.DatosContacto = Convert.ToString(dsResultado.Tables[0].Rows[0]["DatosContacto"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[0]["DatosContacto"]);
                 oferta.MedioComunicacion = Convert.ToString(dsResultado.Tables[0].Rows[0]["MedioComunicacion"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[0]["MedioComunicacion"]);
-
+                //Encuesta:
+                oferta.Calificacion = Convert.ToString(dsResultado.Tables[0].Rows[0]["EncuestaCalificacion"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[0]["EncuestaCalificacion"]);
+                oferta.NroPostulantes = Convert.ToInt32(dsResultado.Tables[0].Rows[0]["EncuestaNroPostulantes"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[0]["EncuestaNroPostulantes"]);
+                oferta.ContratadosUTP = Convert.ToInt32(dsResultado.Tables[0].Rows[0]["EncuestaContratadosUTP"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[0]["EncuestaContratadosUTP"]);
+                oferta.ContratadosOtros = Convert.ToString(dsResultado.Tables[0].Rows[0]["EncuestaContratadosOtros"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[0]["EncuestaContratadosOtros"]);
             }
             return oferta;
         }

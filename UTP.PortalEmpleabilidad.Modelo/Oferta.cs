@@ -140,6 +140,15 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public bool CumpleExperienciaPosicionesSimilares { get; set; }
         public string EstadoCarreraUTPDescripcion { get; set; }
 
+        //Campos para la encuesta:
+        public string Calificacion { get; set; }
+
+        public int NroPostulantes { get; set; }
+
+        public int ContratadosUTP { get; set; }
+
+        public string ContratadosOtros { get; set; }
+
        public Oferta() {
 
            TipoCargo = new ListaValor();
