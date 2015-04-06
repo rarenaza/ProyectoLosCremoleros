@@ -606,42 +606,5 @@ namespace UTP.PortalEmpleabilidad.Logica
 
             return adUtp.Reporte_OfertasSegunTipoTrabajoUTP(ano, mes);
         }
-        public DataTable Reporte_CarrerasSinOfertasDePracticas() 
-        {
-
-            return adUtp.Reporte_CarrerasSinOfertasDePracticas();
-        }
-        public DataTable Reporte_CarrerasSinOfertasDeEmpleo()
-        {
-            return adUtp.Reporte_CarrerasSinOfertasDeEmpleo();
-        }
-        public DataTable Reporte_VacantesOfrecidas()
-        {
-            return adUtp.Reporte_VacantesOfrecidas();
-        }
-        public DataTable Reporte_PostulacionesAOfertasDeEmpresasTarget()
-        {
-            return adUtp.Reporte_PostulacionesAOfertasDeEmpresasTarget();
-        }
-        public DataTable Reporte_OfertasConProcesosCerrados()
-        {
-            return adUtp.Reporte_OfertasConProcesosCerrados();
-        }
-        public DataTable Reporte_ClasificacionDeCvRecibidos(int? ano, int? mes)
-        {
-            return adUtp.Reporte_ClasificacionDeCvRecibidos(ano, mes);
-        }
-        public DataSet Reporte_Contrataciones()
-        {
-            return adUtp.Reporte_Contrataciones();
-        }
-        public DataTable Reporte_AlumnosActivosSegunCarrera()
-        {
-            return adUtp.Reporte_AlumnosActivosSegunCarrera();
-        }
-        public DataTable Reporte_Top10CarrerasMasDemandadas()
-        {
-            return adUtp.Reporte_Top10CarrerasMasDemandadas();
-        }
     }
 }
