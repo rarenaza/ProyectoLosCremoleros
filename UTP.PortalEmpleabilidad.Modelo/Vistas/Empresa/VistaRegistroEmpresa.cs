@@ -95,6 +95,7 @@ namespace UTP.PortalEmpleabilidad.Modelo.Vistas.Empresa
         //public string TelefonoFijoUsuario { get; set; }
         //public string AnexoUsuario { get; set; }
         [Required(ErrorMessage = "Falta el Número Celular del Contacto")]
+        [StringLength(15, ErrorMessage = "Este campo solo acepta 15 dígitos")]
         public string CelularUsuario { get; set; }
 
         [Required(ErrorMessage = "Falta el Correo electrónico del Contacto")]

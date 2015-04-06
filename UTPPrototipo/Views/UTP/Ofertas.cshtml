@@ -146,9 +146,13 @@
                             </div>
                             <div class="input-group">
                                 <span class="input-group-addon">Conoci-<br />miento</span>
-                                @Html.TextBoxFor(model => model.Conocimientos, new { @class = "form-control fuente-pequeña", @placeholder = "Conocmiento específico: ej. SAP", @Id = "Conocimientos" })
+                                @Html.TextBoxFor(model => model.Conocimientos, new { @class = "form-control", @placeholder = "Conocmiento específico: ej. SAP", @Id = "Conocimientos" })
                                 @*@Html.DropDownListFor(model => model.IdPeriodoRegistro, new SelectList(ViewBag.PeridoRegistro, "Value", "Text"), "- Seleccionar -", new { @class = "form-control", @Id = "IdPeriodoRegistro" })*@
 
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon">Estado</span>                                
+                                @Html.DropDownListFor(model => model.IdEstadoOferta, new SelectList(ViewBag.ListaEstadoOferta, "Value", "Text"), "- Seleccionar -", new { @class = "form-control" })
                             </div>
                             <br />
                             <button class="btn btn-default color-paleta4 fa fa-search" id="buscaravanzada"></button>
@@ -216,9 +220,9 @@
             IdTipoEstudioutp: $('#IdTipoEstudioutp').val(),
             Conocimientos: $('#Conocimientos').val(),
             NumeroPostulante: $('#NumeroPostulante').val(),
-            
+            IdEstadoOferta: $('#IdEstadoOferta').val(),
+            InformacionAdicional: $('#TipoConocimientoIdListaValor').val(),            
             nroPaginaActual: 1,
-
         };
         //debugger;
 
@@ -271,6 +275,8 @@
             IdTipoEstudioutp: $('#IdTipoEstudioutp').val(),
             Conocimientos: $('#Conocimientos').val(),
             NumeroPostulante: $('#NumeroPostulante').val(),
+            IdEstadoOferta: $('#IdEstadoOferta').val(),
+            InformacionAdicional: $('#TipoConocimientoIdListaValor').val(),
             nroPaginaActual: nroPagina,
 
         };
