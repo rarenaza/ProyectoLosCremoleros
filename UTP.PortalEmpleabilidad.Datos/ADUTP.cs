@@ -435,7 +435,11 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.Parameters.Add(new SqlParameter("@Contacto", oferta.Contacto));
                 cmd.Parameters.Add(new SqlParameter("@DatosContacto", oferta.DatosContacto));
                 cmd.Parameters.Add(new SqlParameter("@MedioComunicacion", oferta.MedioComunicacion));
-
+                //Datos de la encuesta:
+                cmd.Parameters.Add(new SqlParameter("@EncuestaCalificacion", oferta.Calificacion));
+                cmd.Parameters.Add(new SqlParameter("@EncuestaNroPostulantes", oferta.NroPostulantes));
+                cmd.Parameters.Add(new SqlParameter("@EncuestaContratadosUTP", oferta.ContratadosUTP));
+                cmd.Parameters.Add(new SqlParameter("@EncuestaContratadosOtros", oferta.ContratadosOtros));
 
                 cmd.Connection = conexion;
 
@@ -897,7 +901,7 @@ namespace UTP.PortalEmpleabilidad.Datos
             return dtResultado;
         }
 
-        public DataTable UTP_ObtenerofertasAvanzada(string CargoOfrecido, string NombreComercial, string TipoCargo, string sector, string Contrato, int AExperiencia, int Remuneracion, string TipoEstudio, string Conocimiento, int NroPostulante, int nroPagina, int filasPorPagina)
+        public DataTable UTP_ObtenerofertasAvanzada(string CargoOfrecido, string NombreComercial, string TipoCargo, string sector, string Contrato, int AExperiencia, int Remuneracion, string TipoEstudio, string Conocimiento, int NroPostulante, string EstadoOferta, string TipoInformacionAdicional, int nroPagina, int filasPorPagina)
         {
             DataTable dtResultado = new DataTable();
 
@@ -917,6 +921,8 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.Parameters.Add(new SqlParameter("@TipoDeEstudio", TipoEstudio));
                 cmd.Parameters.Add(new SqlParameter("@Conocimiento", Conocimiento));
                 cmd.Parameters.Add(new SqlParameter("@NroPostulante", NroPostulante));
+                cmd.Parameters.Add(new SqlParameter("@EstadoOferta", EstadoOferta));
+                cmd.Parameters.Add(new SqlParameter("@TipoInformacionAdicional", TipoInformacionAdicional));
                 //Paginación:
                 cmd.Parameters.Add(new SqlParameter("@NroPaginaActual", nroPagina));
                 cmd.Parameters.Add(new SqlParameter("@FilasPorPagina", filasPorPagina));
@@ -999,7 +1005,7 @@ namespace UTP.PortalEmpleabilidad.Datos
         }
 
         public DataTable UTP_ObtenerUltimosAlumnosAvanzada(string Estudio, string Ciclo, string Sector, string Dato, string Sexo,
-                                                           string Distrito, string TipoEstudio, string Conocimiento, string EstadoEstudio, int nroPagina, int filasPorPagina)
+                                                           string Distrito, string TipoEstudio, string Conocimiento, string EstadoEstudio, int Completitud, int nroPagina, int filasPorPagina)
         {
             DataTable dtResultado = new DataTable();
 
@@ -1018,6 +1024,8 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.Parameters.Add(new SqlParameter("@TipoEstudio", TipoEstudio));
                 cmd.Parameters.Add(new SqlParameter("@Conocimiento", Conocimiento));
                 cmd.Parameters.Add(new SqlParameter("@EstadoEstudio", EstadoEstudio));
+                cmd.Parameters.Add(new SqlParameter("@Completitud", Completitud));
+
                 //Paginación:
                 cmd.Parameters.Add(new SqlParameter("@NroPaginaActual", nroPagina));
                 cmd.Parameters.Add(new SqlParameter("@FilasPorPagina", filasPorPagina));
