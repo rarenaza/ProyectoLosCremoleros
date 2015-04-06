@@ -127,7 +127,7 @@
     </div>
     <div class="row">
         <div class="col-sm-6">
-        
+
         </div>
         <div class="col-sm-6">
             <div class="panel panel-default" style="text-align:center;">
@@ -168,7 +168,7 @@
     </div>
 
     <div class="row">
-        
+
         <div class="col-sm-6">
             <div class="panel panel-default" style="text-align:center;">
                 <h5>Carreras sin Ofertas de Prácticas</h5>
@@ -205,10 +205,110 @@
         </div>
     </div>
 
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="panel panel-default" style="text-align:center;">
+                <h5>Vacantes Ofrecidas</h5>
+                <canvas id="chartVacantesOfrecidas" width="480" height="400"></canvas>
+                <div style="text-align:center;">
+                    <h6>Vacantes Ofrecidas: <strong><span id="vacantesOfrecidas"></span></strong></h6>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-sm-6">
+            <div class="panel panel-default" style="text-align:center;">
+                <h5>Postulaciones a Ofertas de Empresas Target</h5>
+                <canvas id="chartEmpresasTarget" width="400" height="400"></canvas>
+                <div style="text-align:center;">
+                    <h6>Vacantes Ofrecidas: <strong><span id="postulantesEmpresas"></span></strong></h6>
+                    <h6>Ratio Promedio Postulantes: <strong><span id="ratioPostulantes"></span></strong></h6>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="panel panel-default" style="text-align:center;">
+                <h5>Ofertas con Procesos Cerrados</h5>
+                <canvas id="chartProcesosCerrados" width="480" height="400"></canvas>
+                <div style="text-align:center;">
+                    <h6>Ofertas con Procesos Cerrados: <strong><span id="procesosCerrados"></span></strong></h6>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-sm-6">
+            <div class="panel panel-default" style="text-align:center;">
+                <h5>Clasificación de CV's Recibidos</h5>
+                <div class="row">
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-4">
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                Año
+                            </div>
+                            <input class="form-control" id="clasificacionCVsRecibidosPorMes_Ano" />
+                        </div>
+
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                Mes
+                            </div>
+                            <input class="form-control" id="clasificacionCVsRecibidosPorMes_Mes" />
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="btn btn-default color-paleta6" onclick="cargaClasificacionCVsRecibidos();">
+                            Mostrar
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <p id="msgClasificacionCvsRecibidosMes"></p>
+                <canvas id="chartClasificacionCvsRecibidosMes" width="400" height="400"></canvas>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="panel panel-default" style="text-align:center;">
+            <h5>Contrataciones</h5>
+            <canvas id="chartContrataciones" width="480" height="400"></canvas>
+            <div style="text-align:center;">
+                <h6>Contratos Acumulados: <strong><span id="ContratosAcumulados"></span></strong></h6>
+                <h6>Contratos Target: <strong><span id="ContratosTarget"></span></strong></h6>
+                <h6>Ratio Entrevistados Target: <strong><span id="RatioEntrevistados"></span></strong></h6>
+                <h6>Convenios Del Mes: <strong><span id="ConveniosDelMes"></span></strong></h6>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="panel panel-default" style="text-align:center;">
+                <h5>Alumnos Activos Segun Carrera</h5>
+                <canvas id="chartAlumnosSegunCarrera" width="480" height="400"></canvas>
+            </div>
+
+        </div>
+        <div class="col-sm-6">
+            <div class="panel panel-default" style="text-align:center;">
+                <h5>Top 10 Carreras mas Demandadas</h5>
+                <canvas id="chartTop10CarrerasMasDemandadas" width="400" height="400"></canvas>
+            </div>
+        </div>
+    </div>
 </div>
 
 
-           
+
 <script>
     $(document).ready(function () {
         $("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta3 color-paleta4 color-paleta5 color-paleta7 color-paleta8 color-paleta9").addClass("color-paleta6")
@@ -317,7 +417,151 @@
             });
         }
 
+        CargaVacantesOfrecida();
+        function CargaVacantesOfrecida() {
+            var url = '@Url.Action("ReporteVacantesOfrecidas", "UTP")';
+            $.get(url, function (datos) {
+                var data = {
+                    labels: datos[0],
+                    datasets: [
+                        {
+                            label: "Vacantes Ofrecidas",
+                            fillColor: "rgba(220,220,220,0.5)",
+                            strokeColor: "rgba(220,220,220,0.8)",
+                            highlightFill: "rgba(220,220,220,0.75)",
+                            highlightStroke: "rgba(220,220,220,1)",
+                            data: datos[1]
+                        }
+                    ]
+                };
+                var ctx = document.getElementById("chartVacantesOfrecidas").getContext("2d");
+                var myNewChart = new Chart(ctx).Bar(data);
+                $("#vacantesOfrecidas").html(datos[2]);
+            });
+        }
 
+        CargaEmpresasTarget();
+        function CargaEmpresasTarget() {
+            var url = '@Url.Action("ReportePostulacionesAOfertasDeEmpresasTarget", "UTP")';
+            $.get(url, function (datos) {
+                var data = {
+                    labels: datos[0],
+                    datasets: [
+                        {
+                            label: "Empresas Target",
+                            fillColor: "rgba(220,220,220,0.5)",
+                            strokeColor: "rgba(220,220,220,0.8)",
+                            highlightFill: "rgba(220,220,220,0.75)",
+                            highlightStroke: "rgba(220,220,220,1)",
+                            data: datos[1]
+                        }
+                    ]
+                };
+                var ctx = document.getElementById("chartEmpresasTarget").getContext("2d");
+                var myNewChart = new Chart(ctx).Bar(data);
+                $("#postulantesEmpresas").html(datos[2]);
+                $("#ratioPostulantes").html(datos[3]);
+            });
+        }
+
+        CargaProcesosCerrados();
+        function CargaProcesosCerrados() {
+            var url = '@Url.Action("ReporteOfertasConProcesosCerrados", "UTP")';
+            $.get(url, function (datos) {
+                var data = {
+                    labels: datos[0],
+                    datasets: [
+                        {
+                            label: "Procesos Cerrados",
+                            fillColor: "rgba(220,220,220,0.5)",
+                            strokeColor: "rgba(220,220,220,0.8)",
+                            highlightFill: "rgba(220,220,220,0.75)",
+                            highlightStroke: "rgba(220,220,220,1)",
+                            data: datos[1]
+                        }
+                    ]
+                };
+                var ctx = document.getElementById("chartProcesosCerrados").getContext("2d");
+                var myNewChart = new Chart(ctx).Bar(data);
+                $("#procesosCerrados").html(datos[2]);
+            });
+        }
+
+        CargaContrataciones();
+        function CargaContrataciones() {
+            var url = '@Url.Action("ReporteContrataciones", "UTP")';
+            $.get(url, function (datos) {
+                var data = {
+                    labels: datos[0],
+                    datasets: [
+                        {
+                            label: "Contrataciones Total",
+                            fillColor: "rgba(220,220,220,0.5)",
+                            strokeColor: "rgba(220,220,220,0.8)",
+                            highlightFill: "rgba(220,220,220,0.75)",
+                            highlightStroke: "rgba(220,220,220,1)",
+                            data: datos[1]
+                        },
+                        {
+                            label: "Contrataciones Target",
+                            fillColor: "rgba(151,187,205,0.5)",
+                            strokeColor: "rgba(151,187,205,0.8)",
+                            highlightFill: "rgba(151,187,205,0.75)",
+                            highlightStroke: "rgba(151,187,205,1)",
+                            data: datos[2]
+                        }
+                    ]
+                };
+                var ctx = document.getElementById("chartContrataciones").getContext("2d");
+                var myNewChart = new Chart(ctx).Bar(data);
+                $("#ContratosAcumulados").html(datos[3]);
+                $("#ContratosTarget").html(datos[4]);
+                $("#RatioEntrevistados").html(datos[5]);
+                $("#ConveniosDelMes").html(datos[6]);
+            });
+        }
+
+        CargaActivosSegunCarrera();
+        function CargaActivosSegunCarrera() {
+            var url = '@Url.Action("ReporteAlumnosActivosSegunCarrera", "UTP")';
+            $.get(url, function (datos) {
+                var data = {
+                    labels: datos[0],
+                    datasets: [
+                        {
+                            label: "Alumnos ACtivos Segun Carrera",
+                            fillColor: "rgba(220,220,220,0.5)",
+                            strokeColor: "rgba(220,220,220,0.8)",
+                            highlightFill: "rgba(220,220,220,0.75)",
+                            highlightStroke: "rgba(220,220,220,1)",
+                            data: datos[1]
+                        }
+                    ]
+                };
+                var ctx = document.getElementById("chartAlumnosSegunCarrera").getContext("2d");
+                var myNewChart = new Chart(ctx).Bar(data);
+            });
+        }
+
+        cargaTop10Carreras();
+        function cargaTop10Carreras() {
+            var url = '@Url.Action("ReporteTop10CarrerasMasDemandadas", "UTP")';
+            $.get(url, function (datosPie) {
+                var data = [];
+                $.each(datosPie, function (index, value) {
+                    var itemdata =
+                        {
+                            value: eval(value.PieValue),
+                            color: value.PieColor,
+                            highlight: value.PieHighlight,
+                            label: value.PieLabel
+                        };
+                    data.push(itemdata);
+                })
+                var ctx = document.getElementById("chartTop10CarrerasMasDemandadas").getContext("2d");
+                var myPieChart = new Chart(ctx).Pie(data);
+            });
+        }
     });
 
     function cargaEmpresasSegunClasificacionMes() {
@@ -372,6 +616,34 @@
             else {
                 $("#msgOfertasSegunClasificacionMes").html("No se encontraron resultados");
                 $("#chartOfertasSegunClasificacionMes").css("visibility", "hidden");
+            }
+        });
+    }
+
+    function cargaClasificacionCVsRecibidos() {
+        var url = '@Url.Action("ReporteClasificacionDeCvRecibidos", "UTP")' + '?ano=' + document.getElementById("clasificacionCVsRecibidosPorMes_Ano").value + '&mes=' + document.getElementById("clasificacionCVsRecibidosPorMes_Mes").value;
+        $("#texto1").html("Cargando...");
+        $.get(url, function (datosPie) {
+            if (datosPie.length > 0) {
+                $("#chartClasificacionCvsRecibidosMes").css("visibility", "visible");
+                $("#msgClasificacionCvsRecibidosMes").html("");
+                var data = [];
+                $.each(datosPie, function (index, value) {
+                    var itemdata =
+                        {
+                            value: eval(value.PieValue),
+                            color: value.PieColor,
+                            highlight: value.PieHighlight,
+                            label: value.PieLabel
+                        };
+                    data.push(itemdata);
+                })
+                var ctx = document.getElementById("chartClasificacionCvsRecibidosMes").getContext("2d");
+                var myPieChart = new Chart(ctx).Pie(data);
+            }
+            else {
+                $("#msgClasificacionCvsRecibidosMes").html("No se encontraron resultados");
+                $("#chartClasificacionCvsRecibidosMes").css("visibility", "hidden");
             }
         });
     }

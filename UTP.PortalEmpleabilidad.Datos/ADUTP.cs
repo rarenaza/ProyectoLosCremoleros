@@ -424,7 +424,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                 //{
                 //    cmd.Parameters.Add(new SqlParameter("@FechaSeguimiento", oferta.FechaSeguimiento));
                 //}
-                if (oferta.FechaSeguimiento != new DateTime(1,1,1))
+                if (oferta.FechaSeguimiento != new DateTime(1, 1, 1))
                 {
                     cmd.Parameters.Add(new SqlParameter("@FechaSeguimiento", oferta.FechaSeguimiento));
                 }
@@ -757,7 +757,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.Parameters.Add(new SqlParameter("@EstadoValor", lista.EstadoValor));
                 cmd.Parameters.Add(new SqlParameter("@ModificadoPor", lista.Modificadopor == null ? System.Data.SqlTypes.SqlString.Null : lista.Modificadopor));
                 cmd.Parameters.Add(new SqlParameter("@IdListaValorPadre", lista.IdListaValorPadre == null ? System.Data.SqlTypes.SqlString.Null : lista.IdListaValorPadre));
-                
+
                 cmd.Connection = conexion;
 
                 conexion.Open();
@@ -793,7 +793,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.ExecuteNonQuery();
 
                 conexion.Close();
-               
+
             }
         }
 
@@ -897,7 +897,7 @@ namespace UTP.PortalEmpleabilidad.Datos
             return dtResultado;
         }
 
-        public DataTable UTP_ObtenerofertasAvanzada(string CargoOfrecido, string NombreComercial, string TipoCargo, string sector, string Contrato, int AExperiencia, int Remuneracion, string TipoEstudio, string Conocimiento,int NroPostulante, int nroPagina, int filasPorPagina)
+        public DataTable UTP_ObtenerofertasAvanzada(string CargoOfrecido, string NombreComercial, string TipoCargo, string sector, string Contrato, int AExperiencia, int Remuneracion, string TipoEstudio, string Conocimiento, int NroPostulante, int nroPagina, int filasPorPagina)
         {
             DataTable dtResultado = new DataTable();
 
@@ -998,8 +998,8 @@ namespace UTP.PortalEmpleabilidad.Datos
             return dtResultado;
         }
 
-        public DataTable UTP_ObtenerUltimosAlumnosAvanzada(string Estudio, string Ciclo, string Sector,string Dato,string Sexo,
-                                                           string Distrito,string TipoEstudio,string Conocimiento,string EstadoEstudio, int nroPagina, int filasPorPagina)
+        public DataTable UTP_ObtenerUltimosAlumnosAvanzada(string Estudio, string Ciclo, string Sector, string Dato, string Sexo,
+                                                           string Distrito, string TipoEstudio, string Conocimiento, string EstadoEstudio, int nroPagina, int filasPorPagina)
         {
             DataTable dtResultado = new DataTable();
 
@@ -1010,7 +1010,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "UTP_ObtenerUltimosAlumnosAvanzada";
                 cmd.Parameters.Add(new SqlParameter("@Estudio", Estudio));
-                cmd.Parameters.Add(new SqlParameter("@Ciclo", Ciclo ));
+                cmd.Parameters.Add(new SqlParameter("@Ciclo", Ciclo));
                 cmd.Parameters.Add(new SqlParameter("@Sector", Sector));
                 cmd.Parameters.Add(new SqlParameter("@Dato", Dato));
                 cmd.Parameters.Add(new SqlParameter("@Sexo", Sexo));
@@ -1216,5 +1216,161 @@ namespace UTP.PortalEmpleabilidad.Datos
             }
             return dtResultado;
         }
+        public DataTable Reporte_CarrerasSinOfertasDePracticas()
+        {
+            DataTable dtResultado = new DataTable();
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Reporte_Carreras_Sin_Ofertas_de_Practicas";
+                cmd.Connection = conexion;
+                conexion.Open();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                dtResultado = new DataTable();
+                da.Fill(dtResultado);
+                conexion.Close();
+            }
+            return dtResultado;
+        }
+        public DataTable Reporte_CarrerasSinOfertasDeEmpleo()
+        {
+            DataTable dtResultado = new DataTable();
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Reporte_Carreras_Sin_Ofertas_de_Empleo";
+                cmd.Connection = conexion;
+                conexion.Open();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                dtResultado = new DataTable();
+                da.Fill(dtResultado);
+                conexion.Close();
+            }
+            return dtResultado;
+        }
+        public DataTable Reporte_VacantesOfrecidas()
+        {
+            DataTable dtResultado = new DataTable();
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Reporte_Vacantes_Ofrecidas";
+                cmd.Connection = conexion;
+                conexion.Open();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                dtResultado = new DataTable();
+                da.Fill(dtResultado);
+                conexion.Close();
+            }
+            return dtResultado;
+        }
+        public DataTable Reporte_PostulacionesAOfertasDeEmpresasTarget()
+        {
+            DataTable dtResultado = new DataTable();
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Reporte_Postulaciones_A_Ofertas_De_Empresas_Target";
+                cmd.Connection = conexion;
+                conexion.Open();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                dtResultado = new DataTable();
+                da.Fill(dtResultado);
+                conexion.Close();
+            }
+            return dtResultado;
+        }
+        public DataTable Reporte_OfertasConProcesosCerrados()
+        {
+            DataTable dtResultado = new DataTable();
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Reporte_Ofertas_Con_Procesos_Cerrados";
+                cmd.Connection = conexion;
+                conexion.Open();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                dtResultado = new DataTable();
+                da.Fill(dtResultado);
+                conexion.Close();
+            }
+            return dtResultado;
+        }
+        public DataTable Reporte_ClasificacionDeCvRecibidos(int? ano, int? mes)
+        {
+            DataTable dtResultado = new DataTable();
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Reporte_Clasificacion_CVs_Recibidos";
+                cmd.Parameters.Add(new SqlParameter("@Ano", ano));
+                cmd.Parameters.Add(new SqlParameter("@Mes", mes));
+                cmd.Connection = conexion;
+                conexion.Open();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                dtResultado = new DataTable();
+                da.Fill(dtResultado);
+                conexion.Close();
+            }
+            return dtResultado;
+        }
+        public DataSet Reporte_Contrataciones()
+        {
+            DataSet dtResultado = new DataSet();
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Reporte_Contrataciones";
+                cmd.Connection = conexion;
+                conexion.Open();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                dtResultado = new DataSet();
+                da.Fill(dtResultado);
+                conexion.Close();
+            }
+            return dtResultado;
+        }
+        public DataTable Reporte_AlumnosActivosSegunCarrera()
+        {
+            DataTable dtResultado = new DataTable();
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Reporte_Alumnos_Por_Carrera";
+                cmd.Connection = conexion;
+                conexion.Open();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                dtResultado = new DataTable();
+                da.Fill(dtResultado);
+                conexion.Close();
+            }
+            return dtResultado;
+        }
+        public DataTable Reporte_Top10CarrerasMasDemandadas()
+        {
+            DataTable dtResultado = new DataTable();
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Reporte_Carreras_Mas_Demandadas_Top10";
+                cmd.Connection = conexion;
+                conexion.Open();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                dtResultado = new DataTable();
+                da.Fill(dtResultado);
+                conexion.Close();
+            }
+            return dtResultado;
+        }
+
     }
 }
