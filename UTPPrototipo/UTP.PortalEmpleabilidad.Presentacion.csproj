@@ -285,6 +285,7 @@
     <Compile Include="Models\ViewModels\Empresa\EmpresaVista.cs" />
     <Compile Include="Models\ViewModels\Empresa\VistaNuevasPostulaciones.cs" />
     <Compile Include="Models\ViewModels\UTP\AlumnoUtp_obtenerInformacionAdicional.cs" />
+    <Compile Include="Models\ViewModels\UTP\ReportesSinOfertas.cs" />
     <Compile Include="Models\ViewModels\UTP\VistaAlumno.cs" />
     <Compile Include="Models\ViewModels\UTP\VistaAlumnoUtp_obtenerExperiencia.cs" />
     <Compile Include="Models\ViewModels\UTP\VistaEmpresaListaOpciones.cs" />
@@ -1046,6 +1047,7 @@
     <Content Include="Views\Empresa\_OfertaEstudiosUTP.cshtml" />
     <Content Include="Views\UTP\_UsuariosEmpresaUTP_Crear.cshtml" />
     <Content Include="Views\Alumno\_AlumnoCalendario.cshtml" />
+    <Content Include="Views\UTP\_PartialReporte.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

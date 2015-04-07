@@ -606,20 +606,20 @@ namespace UTP.PortalEmpleabilidad.Logica
 
             return adUtp.Reporte_OfertasSegunTipoTrabajoUTP(ano, mes);
         }
-        public DataTable Reporte_CarrerasSinOfertasDePracticas() 
+        public DataTable Reporte_CarrerasSinOfertasDePracticas(int? ano, int? mes) 
         {
 
-            return adUtp.Reporte_CarrerasSinOfertasDePracticas();
+            return adUtp.Reporte_CarrerasSinOfertasDePracticas(ano, mes);
         }
-        public DataTable Reporte_CarrerasSinOfertasDeEmpleo()
+        public DataTable Reporte_CarrerasSinOfertasDeEmpleo(int? ano, int? mes)
         {
-            return adUtp.Reporte_CarrerasSinOfertasDeEmpleo();
+            return adUtp.Reporte_CarrerasSinOfertasDeEmpleo(ano, mes);
         }
         public DataTable Reporte_VacantesOfrecidas()
         {
             return adUtp.Reporte_VacantesOfrecidas();
         }
-        public DataTable Reporte_PostulacionesAOfertasDeEmpresasTarget()
+        public DataSet Reporte_PostulacionesAOfertasDeEmpresasTarget()
         {
             return adUtp.Reporte_PostulacionesAOfertasDeEmpresasTarget();
         }

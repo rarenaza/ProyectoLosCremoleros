@@ -1224,7 +1224,7 @@ namespace UTP.PortalEmpleabilidad.Datos
             }
             return dtResultado;
         }
-        public DataTable Reporte_CarrerasSinOfertasDePracticas()
+        public DataTable Reporte_CarrerasSinOfertasDePracticas(int? ano, int? mes)
         {
             DataTable dtResultado = new DataTable();
             using (SqlConnection conexion = new SqlConnection(cadenaConexion))
@@ -1232,6 +1232,8 @@ namespace UTP.PortalEmpleabilidad.Datos
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "Reporte_Carreras_Sin_Ofertas_de_Practicas";
+                cmd.Parameters.Add(new SqlParameter("@Ano", ano));
+                cmd.Parameters.Add(new SqlParameter("@Mes", mes));
                 cmd.Connection = conexion;
                 conexion.Open();
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -1241,7 +1243,7 @@ namespace UTP.PortalEmpleabilidad.Datos
             }
             return dtResultado;
         }
-        public DataTable Reporte_CarrerasSinOfertasDeEmpleo()
+        public DataTable Reporte_CarrerasSinOfertasDeEmpleo(int? ano, int? mes)
         {
             DataTable dtResultado = new DataTable();
             using (SqlConnection conexion = new SqlConnection(cadenaConexion))
@@ -1249,6 +1251,8 @@ namespace UTP.PortalEmpleabilidad.Datos
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "Reporte_Carreras_Sin_Ofertas_de_Empleo";
+                cmd.Parameters.Add(new SqlParameter("@Ano", ano));
+                cmd.Parameters.Add(new SqlParameter("@Mes", mes));
                 cmd.Connection = conexion;
                 conexion.Open();
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -1275,9 +1279,9 @@ namespace UTP.PortalEmpleabilidad.Datos
             }
             return dtResultado;
         }
-        public DataTable Reporte_PostulacionesAOfertasDeEmpresasTarget()
+        public DataSet Reporte_PostulacionesAOfertasDeEmpresasTarget()
         {
-            DataTable dtResultado = new DataTable();
+            DataSet dtResultado = new DataSet();
             using (SqlConnection conexion = new SqlConnection(cadenaConexion))
             {
                 SqlCommand cmd = new SqlCommand();
@@ -1286,7 +1290,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.Connection = conexion;
                 conexion.Open();
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
-                dtResultado = new DataTable();
+                dtResultado = new DataSet();
                 da.Fill(dtResultado);
                 conexion.Close();
             }

@@ -179,7 +179,7 @@
                             <div class="input-group-addon">
                                 Año
                             </div>
-                            <input class="form-control" id="zzzofertasSegunTipoTrabajoUTP_Ano" />
+                            <input class="form-control" id="CarrerasSinOfertasDePracticas_Ano" />
                         </div>
 
                     </div>
@@ -188,22 +188,55 @@
                             <div class="input-group-addon">
                                 Mes
                             </div>
-                            <input class="form-control" id="xxofertasSegunTipoTrabajoUTP_Mes" />
+                            <input class="form-control" id="CarrerasSinOfertasDePracticas_Mes" />
                         </div>
                     </div>
                     <div class="col-sm-4">
-                        <div class="btn btn-default color-paleta6" onclick="cargaOfertasSegunTipoTrabajoUTP();">
+                        <div class="btn btn-default color-paleta6" onclick="cargaCarrerasSinOfertasDePracticas();">
                             Mostrar
                         </div>
                     </div>
                 </div>
+                <div id="CarrerasSinOfertasDePracticas"> </div>                
                 <br />
-                <p id="msgOfertzzasSegunTipoTrabajoUTP"></p>
-                <canvas id="chartOfertasSegunTipoTrabajoUTPzzz" width="400" height="400"></canvas>
+                
+                </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="panel panel-default" style="text-align:center;">
+                <h5>Carreras sin Ofertas de Empleo</h5>
+                <div class="row">
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-4">
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                Año
+                            </div>
+                            <input class="form-control" id="CarrerasSinOfertasDeEmpleo_Ano" />
+                        </div>
 
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                Mes
+                            </div>
+                            <input class="form-control" id="CarrerasSinOfertasDeEmpleo_Mes" />
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="btn btn-default color-paleta6" onclick="cargaCarrerasSinOfertasDeEmpleo();">
+                            Mostrar
+                        </div>
+                    </div>
+                </div>               
+                <div id="CarrerasSinOfertasDeEmpleo"> </div>
+                <br />
             </div>
         </div>
     </div>
+
+    
 
     <div class="row">
         <div class="col-sm-6">
@@ -417,6 +450,78 @@
             });
         }
 
+        cargaTop10Carreras();
+        function cargaTop10Carreras() {
+
+            var url = '@Url.Action("ReporteTop10CarrerasMasDemandadas", "UTP")';
+            $.get(url, function (datosPie) {
+                
+                var data = [];
+                $.each(datosPie, function (index, value) {
+                    var itemdata =
+                        {
+                            value: eval(value.PieValue),
+                            color: value.PieColor,
+                            highlight: value.PieHighlight,
+                            label: value.PieLabel
+                            
+                        };
+                    data.push(itemdata);
+                })
+                
+                //var ctx = document.getElementById("chartTop10CarrerasMasDemandadas").getContext("2d");
+                //var myPieChart = new Chart(ctx).Pie(data);
+                var helpers = Chart.helpers;
+
+                var canvas = document.getElementById("chartTop10CarrerasMasDemandadas");
+                var moduleDoughnut = new Chart(canvas.getContext('2d')).Pie(data, { tooltipTemplate: "<%if (label){%><%=label%>: <%}%><%= value %>kb", animation: false });
+                // 
+                var legendHolder = document.createElement('div');
+                legendHolder.innerHTML = moduleDoughnut.generateLegend();
+                // Include a html legend template after the module doughnut itself
+                helpers.each(legendHolder.firstChild.childNodes, function (legendNode, index) {
+                    helpers.addEvent(legendNode, 'mouseover', function () {
+                        var activeSegment = moduleDoughnut.segments[index];
+                        activeSegment.save();
+                        activeSegment.fillColor = activeSegment.highlightColor;
+                        moduleDoughnut.showTooltip([activeSegment]);
+                        activeSegment.restore();
+                    });
+                });
+                helpers.addEvent(legendHolder.firstChild, 'mouseout', function () {
+                    moduleDoughnut.draw();
+                });
+                canvas.parentNode.parentNode.appendChild(legendHolder.firstChild);
+
+
+
+
+                //var myPieChart = new Chart(document.getElementById("chartTop10CarrerasMasDemandadas").getContext("2d")).Pie(data, {
+                //    tooltipTemplate: "<%if (label){%><%=label%>: <%}%><%= value %>%",
+                //    animateRotate: true
+                //});
+                //var legendHolder = document.createElement('div');
+                //legendHolder.innerHTML = myPieChart.generateLegend();
+
+                //// Include a html legend template after the module doughnut itself
+                //helpers.each(legendHolder.firstChild.childNodes, function (legendNode, index) {
+                //    helpers.addEvent(legendNode, 'mouseover', function () {
+                //        var activeSegment = myPieChart.segments[index];
+                //        activeSegment.save();
+                        
+                //        myPieChart.showTooltip([activeSegment]);
+                //        activeSegment.restore();
+                //    });
+                //});
+                //helpers.addEvent(legendHolder.firstChild, 'mouseout', function () {
+                //    myPieChart.draw();
+                //});
+
+                //myPieChart.chart.canvas.parentNode.parentNode.appendChild(legendHolder.firstChild);
+                                
+            });
+        }
+
         CargaVacantesOfrecida();
         function CargaVacantesOfrecida() {
             var url = '@Url.Action("ReporteVacantesOfrecidas", "UTP")';
@@ -442,7 +547,7 @@
 
         CargaEmpresasTarget();
         function CargaEmpresasTarget() {
-            var url = '@Url.Action("ReportePostulacionesAOfertasDeEmpresasTarget", "UTP")';
+            var url = '@Url.Action("ReporteEmpresasTarget", "UTP")';
             $.get(url, function (datos) {
                 var data = {
                     labels: datos[0],
@@ -543,25 +648,7 @@
             });
         }
 
-        cargaTop10Carreras();
-        function cargaTop10Carreras() {
-            var url = '@Url.Action("ReporteTop10CarrerasMasDemandadas", "UTP")';
-            $.get(url, function (datosPie) {
-                var data = [];
-                $.each(datosPie, function (index, value) {
-                    var itemdata =
-                        {
-                            value: eval(value.PieValue),
-                            color: value.PieColor,
-                            highlight: value.PieHighlight,
-                            label: value.PieLabel
-                        };
-                    data.push(itemdata);
-                })
-                var ctx = document.getElementById("chartTop10CarrerasMasDemandadas").getContext("2d");
-                var myPieChart = new Chart(ctx).Pie(data);
-            });
-        }
+       
     });
 
     function cargaEmpresasSegunClasificacionMes() {
@@ -679,5 +766,27 @@
             }
         });
     }
+
+    function cargaCarrerasSinOfertasDePracticas() {
+        var url = '@Url.Action("ReporteCarrerasSinOfertasDePracticas", "UTP")' + '?ano=' + document.getElementById("CarrerasSinOfertasDePracticas_Ano").value + '&mes=' + document.getElementById("CarrerasSinOfertasDePracticas_Mes").value;
+        
+        $.get(url, function (data) {
+
+            $('#CarrerasSinOfertasDePracticas').html(data);
+            
+        });
+    }
+
+    function cargaCarrerasSinOfertasDeEmpleo() {
+        var url = '@Url.Action("ReporteCarrerasSinOfertasDeEmpleo", "UTP")' + '?ano=' + document.getElementById("CarrerasSinOfertasDeEmpleo_Ano").value + '&mes=' + document.getElementById("CarrerasSinOfertasDeEmpleo_Mes").value;
+
+        $.get(url, function (data) {
+
+            $('#CarrerasSinOfertasDeEmpleo').html(data);
+
+        });
+    }
+
+    
 </script>
 

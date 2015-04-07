@@ -1,0 +1,13 @@
+﻿@model List<UTPPrototipo.Models.ViewModels.ReportesSinOfertas>
+<br />
+@*@if (Model != null)
+{*@
+    @foreach (var item in Model)
+    {
+        <div class="row">
+        <div class="col-sm-12">
+            @Html.DisplayFor(modelItem => item.Carrera)
+        </div>
+    </div>
+    }
+@*}*@

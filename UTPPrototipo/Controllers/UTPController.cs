@@ -23,6 +23,7 @@ using UTPPrototipo.Models.ViewModels.Contenido;
 using UTPPrototipo.Models.ViewModels.Cuenta;
 using UTPPrototipo.Models.ViewModels.UTP;
 using UTPPrototipo.Utiles;
+using UTPPrototipo.Models.ViewModels;
 
 namespace UTPPrototipo.Controllers
 {
@@ -1324,6 +1325,40 @@ namespace UTPPrototipo.Controllers
             datos.Add(dsOfertasSegunTipoTrabajoUTP.Tables[1].Rows[0]["OfertasTarget"].ToString());
             return Json(datos, JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult ReporteCarrerasSinOfertasDePracticas(int? ano, int? mes)
+        {
+            DataTable dsCarrerasPracticas = lnUtp.Reporte_CarrerasSinOfertasDePracticas(ano, mes);
+
+            List<ReportesSinOfertas> reportesSinOfertas = new List<ReportesSinOfertas>();
+            
+            for (int i = 0; i <= dsCarrerasPracticas.Rows.Count - 1; i++)
+            {
+                string carrera = dsCarrerasPracticas.Rows[i]["Carrera"].ToString();                
+                ReportesSinOfertas item = new ReportesSinOfertas() { Carrera = carrera};
+                reportesSinOfertas.Add(item);              
+            }
+            return PartialView("_PartialReporte", reportesSinOfertas);
+           
+        }
+
+
+        public ActionResult ReporteCarrerasSinOfertasDeEmpleo(int? ano, int? mes)
+        {
+            DataTable dsCarrerasPracticas = lnUtp.Reporte_CarrerasSinOfertasDeEmpleo(ano, mes);
+
+            List<ReportesSinOfertas> reportesSinOfertas = new List<ReportesSinOfertas>();
+
+            for (int i = 0; i <= dsCarrerasPracticas.Rows.Count - 1; i++)
+            {
+                string carrera = dsCarrerasPracticas.Rows[i]["Carrera"].ToString();
+                ReportesSinOfertas item = new ReportesSinOfertas() { Carrera = carrera };
+                reportesSinOfertas.Add(item);
+            }
+            return PartialView("_PartialReporte", reportesSinOfertas);
+            
+        }
+
         public ActionResult ReporteVacantesOfrecidas()
         {
             DataTable dsVacantesOfrecidas = lnUtp.Reporte_VacantesOfrecidas();
@@ -1349,16 +1384,16 @@ namespace UTPPrototipo.Controllers
 
         public ActionResult ReporteEmpresasTarget()
         {
-            DataTable dsEmpresasTarget = lnUtp.Reporte_PostulacionesAOfertasDeEmpresasTarget();
+            DataSet dsEmpresasTarget = lnUtp.Reporte_PostulacionesAOfertasDeEmpresasTarget();
 
 
             List<string> meses = new List<string>();
             List<string> VOfertas = new List<string>();
-            for (int i = 0; i <= dsEmpresasTarget.Rows.Count - 1; i++)
+            for (int i = 0; i <= dsEmpresasTarget.Tables[0].Rows.Count - 1; i++)
             {
-                string reporteAno = dsEmpresasTarget.Rows[i]["Ano"].ToString();
-                string Ofertas = dsEmpresasTarget.Rows[i]["Postulantes"].ToString();
-                string mes = dsEmpresasTarget.Rows[i]["Mes"].ToString();
+                string reporteAno = dsEmpresasTarget.Tables[0].Rows[i]["Ano"].ToString();
+                string Ofertas = dsEmpresasTarget.Tables[0].Rows[i]["Postulantes"].ToString();
+                string mes = dsEmpresasTarget.Tables[0].Rows[i]["Mes"].ToString();
 
                 meses.Add(mes + " " + reporteAno);
                 VOfertas.Add(Ofertas);
@@ -1367,7 +1402,8 @@ namespace UTPPrototipo.Controllers
             List<object> datos = new List<object>();
             datos.Add(meses);
             datos.Add(VOfertas);
-            datos.Add(dsEmpresasTarget.Rows[0]["Postulantes"].ToString());
+            datos.Add(dsEmpresasTarget.Tables[1].Rows[0]["TotalPostulantes"].ToString());
+            datos.Add(dsEmpresasTarget.Tables[2].Rows[0]["RatioPromedio"].ToString());
             return Json(datos, JsonRequestBehavior.AllowGet);
         }
 
@@ -1473,8 +1509,8 @@ namespace UTPPrototipo.Controllers
             for (int i = 0; i <= dsTop10CarrerasMasDemandadas.Rows.Count - 1; i++)
             {
                 DatosPie item = new DatosPie();
-                item.PieValue = dsTop10CarrerasMasDemandadas.Rows[i]["Estudio"].ToString();
-                item.PieLabel = dsTop10CarrerasMasDemandadas.Rows[i]["Ofertas"].ToString();
+                item.PieValue = dsTop10CarrerasMasDemandadas.Rows[i]["Ofertas"].ToString();
+                item.PieLabel = dsTop10CarrerasMasDemandadas.Rows[i]["Estudio"].ToString();
                 item.PieColor = Constantes.COLORES_PIE[i].Color;
                 item.PieHighlight = Constantes.COLORES_PIE[i].Highlight;
                 datosPie.Add(item);
