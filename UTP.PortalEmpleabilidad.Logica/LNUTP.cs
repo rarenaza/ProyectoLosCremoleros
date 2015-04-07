@@ -627,7 +627,7 @@ namespace UTP.PortalEmpleabilidad.Logica
         {
             return adUtp.Reporte_OfertasConProcesosCerrados();
         }
-        public DataTable Reporte_ClasificacionDeCvRecibidos(int? ano, int? mes)
+        public DataSet Reporte_ClasificacionDeCvRecibidos(int? ano, int? mes)
         {
             return adUtp.Reporte_ClasificacionDeCvRecibidos(ano, mes);
         }

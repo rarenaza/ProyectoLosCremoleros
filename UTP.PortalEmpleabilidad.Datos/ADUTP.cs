@@ -1313,9 +1313,9 @@ namespace UTP.PortalEmpleabilidad.Datos
             }
             return dtResultado;
         }
-        public DataTable Reporte_ClasificacionDeCvRecibidos(int? ano, int? mes)
+        public DataSet Reporte_ClasificacionDeCvRecibidos(int? ano, int? mes)
         {
-            DataTable dtResultado = new DataTable();
+            DataSet dtResultado = new DataSet();
             using (SqlConnection conexion = new SqlConnection(cadenaConexion))
             {
                 SqlCommand cmd = new SqlCommand();
@@ -1326,7 +1326,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.Connection = conexion;
                 conexion.Open();
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
-                dtResultado = new DataTable();
+                dtResultado = new DataSet();
                 da.Fill(dtResultado);
                 conexion.Close();
             }

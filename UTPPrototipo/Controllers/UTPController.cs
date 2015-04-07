@@ -1433,18 +1433,26 @@ namespace UTPPrototipo.Controllers
 
         public ActionResult ReporteClasificacionDeCvRecibidos(int? ano, int? mes)
         {
-            DataTable dsClasificacionDeCvRecibidos = lnUtp.Reporte_ClasificacionDeCvRecibidos(ano, mes);
-            List<DatosPie> datosPie = new List<DatosPie>();
-            for (int i = 0; i <= dsClasificacionDeCvRecibidos.Rows.Count - 1; i++)
+            DataSet dsCVsRecbidos = lnUtp.Reporte_ClasificacionDeCvRecibidos(ano, mes);
+
+
+            List<string> meses = new List<string>();
+            List<string> VOfertas = new List<string>();
+            for (int i = 0; i <= dsCVsRecbidos.Tables[0].Rows.Count - 1; i++)
             {
-                DatosPie item = new DatosPie();
-                item.PieValue = dsClasificacionDeCvRecibidos.Rows[i]["Valor"].ToString();
-                item.PieLabel = dsClasificacionDeCvRecibidos.Rows[i]["CVs"].ToString();
-                item.PieColor = Constantes.COLORES_PIE[i].Color;
-                item.PieHighlight = Constantes.COLORES_PIE[i].Highlight;
-                datosPie.Add(item);
+
+                string Ofertas = dsCVsRecbidos.Tables[0].Rows[i]["CVs"].ToString();
+                string valor = dsCVsRecbidos.Tables[0].Rows[i]["Valor"].ToString();
+
+                meses.Add(valor);
+                VOfertas.Add(Ofertas);
             }
-            return Json(datosPie, JsonRequestBehavior.AllowGet);
+
+            List<object> datos = new List<object>();
+            datos.Add(meses);
+            datos.Add(VOfertas);
+            datos.Add(dsCVsRecbidos.Tables[1].Rows[0]["CVs"].ToString());
+            return Json(datos, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult ReporteContrataciones()
