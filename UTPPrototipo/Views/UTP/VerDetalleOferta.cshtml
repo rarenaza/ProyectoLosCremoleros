@@ -220,6 +220,84 @@
     <hr />
     <div class="row">
         <div class="col-sm-12">
+            <h5>Carreras Requeridas</h5>
+
+            <div class="row grilla1-cabecera color-paleta2">
+                <div class="col-sm-3">
+                    Estudio
+                </div>
+                <div class="col-sm-1">
+                    Tipo
+                </div>
+                <div class="col-sm-2">
+                    Estado
+                </div>
+                <div class="col-sm-1">
+                    Ciclo
+                </div>
+                <div class="col-sm-1">
+                    Estado
+                </div>
+                <div class="col-sm-1">
+                    Creado Por
+                </div>
+                <div class="col-sm-1">
+                    Fecha C
+                </div>
+                <div class="col-sm-1">
+                    Mod. Por
+                </div>
+                <div class="col-sm-1">
+                    Fecha M
+                </div>
+
+            </div>
+
+            @foreach (var item in Model.CarrerasSeleccionadas)
+            {
+                <div class="row grilla1-linea">
+                    <div class="col-sm-3">
+                        @item.Estudio
+                    </div>
+                    <div class="col-sm-1">
+                        @item.TipoDeEstudio.Valor
+                    </div>
+                    <div class="col-sm-2">
+                        @item.EstadoDelEstudio.Valor
+                    </div>
+                    <div class="col-sm-1">
+                        @item.CicloEstudio
+                    </div>
+                    <div class="col-sm-1">
+                        @item.EstadoOfertaEstudio.Valor
+                    </div>
+                    <div class="col-sm-1">
+                        @item.CreadoPor
+                    </div>
+                    <div class="col-sm-1">
+                        @item.FechaCreacion
+                    </div>
+                    <div class="col-sm-1">
+                        @item.ModificadoPor
+                    </div>
+                    <div class="col-sm-1">
+                        @{
+                if (item.FechaModificacion.ToString("yyyyMMdd") != "19000101")
+                {
+                    @item.FechaModificacion
+                }
+                        }
+
+                    </div>
+                </div>
+            }
+
+
+        </div>
+    </div>
+<hr />
+    <div class="row">
+        <div class="col-sm-12">
             <h5>Estudios Requeridos</h5>
 
             <div class="row grilla1-cabecera color-paleta2">

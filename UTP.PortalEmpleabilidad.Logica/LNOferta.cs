@@ -444,7 +444,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 estudio.ModificadoPor                   = Convert.ToString(filaEstudio["ModificadoPor"]);
                 estudio.FechaCreacion                   = Convert.ToDateTime(filaEstudio["FechaCreacion"]);
                 estudio.FechaModificacion               = Convert.ToDateTime(filaEstudio["FechaModificacion"]);
-
+                 
                 #region Se separan las carrearas universitarias UTP.
                 if (estudio.TipoDeEstudio.IdListaValor == "TEUNIV") //Tipo de Estudio Universitario de UTP.
                 {
