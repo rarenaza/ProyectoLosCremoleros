@@ -365,20 +365,20 @@
                             <div class="input-group-addon">
                                 Mes
                             </div>
-                            <select class="form-control" id="clasificacionCvsRecibidos_Mes" >
-                            <option value="">- Seleccione Mes -</option>
-                            <option value="1">Enero</option>
-                            <option value="2">Febrero</option>
-                            <option value="3">Marzo</option>
-                            <option value="4">Abril</option>
-                            <option value="5">Mayo</option>
-                            <option value="6">Junio</option>
-                            <option value="7">Julio</option>
-                            <option value="8">Agosto</option>
-                            <option value="9">Setiembre</option>
-                            <option value="10">Octubre</option>
-                            <option value="11">Noviembre</option>
-                            <option value="12">Diciembre</option>
+                            <select class="form-control" id="clasificacionCvsRecibidos_Mes">
+                                <option value="">- Seleccione Mes -</option>
+                                <option value="1">Enero</option>
+                                <option value="2">Febrero</option>
+                                <option value="3">Marzo</option>
+                                <option value="4">Abril</option>
+                                <option value="5">Mayo</option>
+                                <option value="6">Junio</option>
+                                <option value="7">Julio</option>
+                                <option value="8">Agosto</option>
+                                <option value="9">Setiembre</option>
+                                <option value="10">Octubre</option>
+                                <option value="11">Noviembre</option>
+                                <option value="12">Diciembre</option>
                             </select>
                         </div>
                     </div>
@@ -868,17 +868,163 @@
             var url = '@Url.Action("ReporteCarrerasSinOfertasDeEmpleo", "UTP")' + '?ano=' + document.getElementById("carrerasSinOfertasDeEmpleo_Ano").value + '&mes=' + document.getElementById("carrerasSinOfertasDeEmpleo_Mes").value;
 
             $.get(url, function (data) {
-
-                $('#carrerasSinOfertasDeEmpleo').html(data);
+                if (data.length > 0) {
+                    $('#carrerasSinOfertasDeEmpleo').html(data);
+                    $("#carrerasSinOfertasDeEmpleo").css("visibility", "visible");
+                    $("#msgcarrerasSinOfertasDeEmpleo").html("");
+                }
+                else {
+                    $("#msgcarrerasSinOfertasDeEmpleo").html("No se encontraron resultados");
+                    $("#carrerasSinOfertasDeEmpleo").css("visibility", "hidden");
+                }
 
             });
         }
 
     });
 
+    function cargaEmpresasSegunClasificacionMes() {
+        var url = '@Url.Action("ReporteEmpresasSegunClasificacion", "UTP")' + '?ano=' + document.getElementById("empresasSegunClasificacionPorMes_Ano").value + '&mes=' + document.getElementById("empresasSegunClasificacionPorMes_Mes").value;
+        $("#texto1").html("Cargando...");
+        $.get(url, function (datosPie) {
+            if (datosPie.length > 0) {
+                $("#chartEmpresasSegunClasificacionMes").css("visibility", "visible");
+                $("#msgEmpresasSegunClasificacionMes").html("");
+                var data = [];
+                $.each(datosPie, function (index, value) {
+                    var itemdata =
+                        {
+                            value: eval(value.PieValue),
+                            color: value.PieColor,
+                            highlight: value.PieHighlight,
+                            label: value.PieLabel
+                        };
+                    data.push(itemdata);
+                })
+                var ctx = document.getElementById("chartEmpresasSegunClasificacionMes").getContext("2d");
+                var myPieChart = new Chart(ctx).Pie(data);
+            }
+            else {
+                $("#msgEmpresasSegunClasificacionMes").html("No se encontraron resultados");
+                $("#chartEmpresasSegunClasificacionMes").css("visibility", "hidden");
+            }
+        });
+    }
+    function cargaOfertasSegunClasificacionMes() {
+        var url = '@Url.Action("ReporteOfertasSegunClasificacion", "UTP")' + '?ano=' + document.getElementById("ofertasSegunClasificacionPorMes_Ano").value + '&mes=' + document.getElementById("ofertasSegunClasificacionPorMes_Mes").value;
+        $("#texto1").html("Cargando...");
+        $.get(url, function (datosPie) {
+            if (datosPie.length > 0) {
+                $("#chartOfertasSegunClasificacionMes").css("visibility", "visible");
+                $("#msgOfertasSegunClasificacionMes").html("");
+                var data = [];
+                $.each(datosPie, function (index, value) {
+                    var itemdata =
+                        {
+                            value: eval(value.PieValue),
+                            color: value.PieColor,
+                            highlight: value.PieHighlight,
+                            label: value.PieLabel
+                        };
+                    data.push(itemdata);
+                })
+                var ctx = document.getElementById("chartOfertasSegunClasificacionMes").getContext("2d");
+                var myPieChart = new Chart(ctx).Pie(data);
+            }
+            else {
+                $("#msgOfertasSegunClasificacionMes").html("No se encontraron resultados");
+                $("#chartOfertasSegunClasificacionMes").css("visibility", "hidden");
+            }
+        });
+    }
 
+    function cargaOfertasSegunTipoTrabajoUTP() {
+        var url = '@Url.Action("ReporteOfertasSegunTipoTrabajoUTP", "UTP")' + '?ano=' + document.getElementById("ofertasSegunTipoTrabajoUTP_Ano").value + '&mes=' + document.getElementById("ofertasSegunTipoTrabajoUTP_Mes").value;
+        $("#texto1").html("Cargando...");
+        $.get(url, function (datosPie) {
+            if (datosPie[0].length > 0) {
+                $("#chartOfertasSegunTipoTrabajoUTP").css("visibility", "visible");
+                $("#ofertasTargetDiv").css("visibility", "visible");
+                $("#msgOfertasSegunTipoTrabajoUTP").html("");
+                var data = [];
+                $.each(datosPie[0], function (index, value) {
+                    var itemdata =
+                        {
+                            value: eval(value.PieValue),
+                            color: value.PieColor,
+                            highlight: value.PieHighlight,
+                            label: value.PieLabel
+                        };
+                    data.push(itemdata);
+                })
+                var ctx = document.getElementById("chartOfertasSegunTipoTrabajoUTP").getContext("2d");
+                var myPieChart = new Chart(ctx).Pie(data);
+                $("#ofertasTarget").html(datosPie[1]);
 
+            }
+            else {
+                $("#msgOfertasSegunTipoTrabajoUTP").html("No se encontraron resultados");
+                $("#chartOfertasSegunTipoTrabajoUTP").css("visibility", "hidden");
+                $("#ofertasTargetDiv").css("visibility", "hidden");
+            }
+        });
+    }
 
+    function cargaCarrerasSinOfertasDePracticas() {
+        var url = '@Url.Action("ReporteCarrerasSinOfertasDePracticas", "UTP")' + '?ano=' + document.getElementById("carrerasSinOfertasDePracticas_Ano").value + '&mes=' + document.getElementById("carrerasSinOfertasDePracticas_Mes").value;
+
+        $.get(url, function (data) {
+
+            if (data.length > 0) {
+                $('#carrerasSinOfertasDePracticas').html(data);
+                $("#carrerasSinOfertasDePracticas").css("visibility", "visible");
+                $("#msgCarrerasSinOfertasDePracticas").html("");
+            }
+            else {
+                $("#msgCarrerasSinOfertasDePracticas").html("No se encontraron resultados");
+                $("#carrerasSinOfertasDePracticas").css("visibility", "hidden");
+            }
+        });
+    }
+    cargaCarrerasSinOfertasDeEmpleo();
+    function cargaCarrerasSinOfertasDeEmpleo() {
+        var url = '@Url.Action("ReporteCarrerasSinOfertasDeEmpleo", "UTP")' + '?ano=' + document.getElementById("carrerasSinOfertasDeEmpleo_Ano").value + '&mes=' + document.getElementById("carrerasSinOfertasDeEmpleo_Mes").value;
+
+        $.get(url, function (data) {
+            if (data.length > 0) {
+                $('#carrerasSinOfertasDeEmpleo').html(data);
+                $("#carrerasSinOfertasDeEmpleo").css("visibility", "visible");
+                $("#msgcarrerasSinOfertasDeEmpleo").html("");
+            }
+            else {
+                $("#msgcarrerasSinOfertasDeEmpleo").html("No se encontraron resultados");
+                $("#carrerasSinOfertasDeEmpleo").css("visibility", "hidden");
+            }
+
+        });
+    }
+    function cargaClasificacionCVsRecibidos() {
+        var url = '@Url.Action("ReporteClasificacionDeCvRecibidos", "UTP")' + '?ano=' + document.getElementById("clasificacionCvsRecibidos_Ano").value + '&mes=' + document.getElementById("clasificacionCvsRecibidos_Mes").value;
+        $("#texto1").html("Cargando...");
+        var options = { scaleShowVerticalLines: true };
+        $.get(url, function (datos) {
+            var data = {
+                labels: datos[0],
+                datasets: [
+                    {
+                        label: "Cvs Recibidos",
+                        fillColor: "rgba(220,220,220,0.5)",
+                        strokeColor: "rgba(220,220,220,0.8)",
+                        highlightFill: "rgba(220,220,220,0.75)",
+                        highlightStroke: "rgba(220,220,220,1)",
+                        data: datos[1]
+                    }
+                ]
+            };
+            var ctx = document.getElementById("chartClasificacionCvsRecibidos").getContext("2d");
+            var myNewChart = new Chart(ctx).Bar(data, options);
+            $("#cvsRecibidos").html(datos[2]);
+        });
+    }
 
 </script>
-
