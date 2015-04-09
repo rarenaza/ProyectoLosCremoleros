@@ -1361,15 +1361,15 @@ namespace UTPPrototipo.Controllers
 
         public ActionResult ReporteVacantesOfrecidas()
         {
-            DataTable dsVacantesOfrecidas = lnUtp.Reporte_VacantesOfrecidas();
+            DataSet dsVacantesOfrecidas = lnUtp.Reporte_VacantesOfrecidas();
 
             List<string> meses = new List<string>();
             List<string> VOfertas = new List<string>();
-            for (int i = 0; i <= dsVacantesOfrecidas.Rows.Count - 1; i++)
+            for (int i = 0; i <= dsVacantesOfrecidas.Tables[0].Rows.Count - 1; i++)
             {
-                string reporteAno = dsVacantesOfrecidas.Rows[i]["Ano"].ToString();
-                string Ofertas = dsVacantesOfrecidas.Rows[i]["Vacantes"].ToString();
-                string mes = dsVacantesOfrecidas.Rows[i]["Mes"].ToString();
+                string reporteAno = dsVacantesOfrecidas.Tables[0].Rows[i]["Ano"].ToString();
+                string Ofertas = dsVacantesOfrecidas.Tables[0].Rows[i]["Vacantes"].ToString();
+                string mes = dsVacantesOfrecidas.Tables[0].Rows[i]["Mes"].ToString();
 
                 meses.Add(mes + " " + reporteAno);
                 VOfertas.Add(Ofertas);
@@ -1378,7 +1378,7 @@ namespace UTPPrototipo.Controllers
             List<object> datos = new List<object>();
             datos.Add(meses);
             datos.Add(VOfertas);
-            datos.Add(dsVacantesOfrecidas.Rows[0]["Vacantes"].ToString());
+            datos.Add(dsVacantesOfrecidas.Tables[1].Rows[0]["TotalVacantes"].ToString());
             return Json(datos, JsonRequestBehavior.AllowGet);
         }
 

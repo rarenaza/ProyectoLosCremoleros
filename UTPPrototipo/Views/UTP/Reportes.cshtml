@@ -15,22 +15,22 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="panel panel-default" style="text-align:center;">
-                <h5>Alumnos activos</h5>
+                <h5>Alumnos activos (mensual)</h5>
                 <canvas id="chartAlumnosActivos" width="480" height="400"></canvas>
                 <div style="text-align:center;">
-                    <h6>Alumnos activos: <strong><span id="alumnosActivos"></span></strong></h6>
-                    <h6>Alumnos con CV completo: <strong><span id="alumnosCVCompleto"></span></strong></h6>
+                    <h6># de alumnos activos (acumulado): <strong><span id="alumnosActivos"></span></strong></h6>
+                    <h6># de alumnos con CV completo (acumulado): <strong><span id="alumnosCVCompleto"></span></strong></h6>
                 </div>
             </div>
 
         </div>
         <div class="col-sm-6">
             <div class="panel panel-default" style="text-align:center;">
-                <h5>Empresas activas</h5>
+                <h5>Empresas activas (mensual)</h5>
                 <canvas id="chartEmpresasActivas" width="400" height="400"></canvas>
                 <div style="text-align:center;">
-                    <h6>Empresas activas: <strong><span id="empresasActivas"></span></strong></h6>
-                    <h6>Ofertas Publicadas: <strong><span id="ofertasPublicadas"></span></strong></h6>
+                    <h6># de empresas activas (acumulado): <strong><span id="empresasActivas"></span></strong></h6>
+                    <h6># de ofertas publicadas (acumulado): <strong><span id="ofertasPublicadas"></span></strong></h6>
                 </div>
             </div>
         </div>
@@ -39,7 +39,7 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="panel panel-default" style="text-align:center;">
-                <h5>Empresas según Clasificación</h5>
+                <h5>Empresas según clasificación (acumulado)</h5>
                 <canvas id="chartEmpresasSegunClasificacion" width="480" height="400"></canvas>
 
             </div>
@@ -47,7 +47,7 @@
         </div>
         <div class="col-sm-6">
             <div class="panel panel-default" style="text-align:center;">
-                <h5>Ofertas según Clasificación</h5>
+                <h5>Ofertas según clasificación (acumulado)</h5>
                 <canvas id="chartOfertasSegunClasificacion" width="400" height="400"></canvas>
             </div>
         </div>
@@ -55,10 +55,10 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="panel panel-default" style="text-align:center;">
-                <h5>Empresas según Clasificación por Mes </h5>
+                <h5>Empresas según clasificación (mensual)</h5>
                 <div class="row">
                     <div class="col-sm-1"></div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <div class="input-group">
                             <div class="input-group-addon">
                                 Año
@@ -67,12 +67,26 @@
                         </div>
 
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
                         <div class="input-group">
                             <div class="input-group-addon">
                                 Mes
                             </div>
-                            <input class="form-control" id="empresasSegunClasificacionPorMes_Mes" />
+                            <select class="form-control" id="empresasSegunClasificacionPorMes_Mes">
+                                <option value="">- Seleccione Mes -</option>
+                                <option value="1">Enero</option>
+                                <option value="2">Febrero</option>
+                                <option value="3">Marzo</option>
+                                <option value="4">Abril</option>
+                                <option value="5">Mayo</option>
+                                <option value="6">Junio</option>
+                                <option value="7">Julio</option>
+                                <option value="8">Agosto</option>
+                                <option value="9">Setiembre</option>
+                                <option value="10">Octubre</option>
+                                <option value="11">Noviembre</option>
+                                <option value="12">Diciembre</option>
+                            </select>
 
                         </div>
                     </div>
@@ -91,10 +105,10 @@
         </div>
         <div class="col-sm-6">
             <div class="panel panel-default" style="text-align:center;">
-                <h5>Ofertas según Clasificación por Mes</h5>
+                <h5>Ofertas según clasificación (mensual)</h5>
                 <div class="row">
                     <div class="col-sm-1"></div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <div class="input-group">
                             <div class="input-group-addon">
                                 Año
@@ -103,12 +117,26 @@
                         </div>
 
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
                         <div class="input-group">
                             <div class="input-group-addon">
                                 Mes
                             </div>
-                            <input class="form-control" id="ofertasSegunClasificacionPorMes_Mes" />
+                            <select class="form-control" id="ofertasSegunClasificacionPorMes_Mes">
+                                <option value="">- Seleccione Mes -</option>
+                                <option value="1">Enero</option>
+                                <option value="2">Febrero</option>
+                                <option value="3">Marzo</option>
+                                <option value="4">Abril</option>
+                                <option value="5">Mayo</option>
+                                <option value="6">Junio</option>
+                                <option value="7">Julio</option>
+                                <option value="8">Agosto</option>
+                                <option value="9">Setiembre</option>
+                                <option value="10">Octubre</option>
+                                <option value="11">Noviembre</option>
+                                <option value="12">Diciembre</option>
+                            </select>
                         </div>
                     </div>
                     <div class="col-sm-4">
@@ -126,14 +154,17 @@
     </div>
     <div class="row">
         <div class="col-sm-6">
-
+            <div class="panel panel-default" style="text-align:center;">
+                <h5>Top 10 carreras más demandadas</h5>
+                <canvas id="chartTop10CarrerasMasDemandadas" width="400" height="460"></canvas>
+            </div>
         </div>
         <div class="col-sm-6">
             <div class="panel panel-default" style="text-align:center;">
-                <h5>Ofertas según Tipo de Trabajo</h5>
+                <h5>Ofertas target según tipo de trabajo (mensual)</h5>
                 <div class="row">
                     <div class="col-sm-1"></div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <div class="input-group">
                             <div class="input-group-addon">
                                 Año
@@ -142,12 +173,26 @@
                         </div>
 
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
                         <div class="input-group">
                             <div class="input-group-addon">
                                 Mes
                             </div>
-                            <input class="form-control" id="ofertasSegunTipoTrabajoUTP_Mes" />
+                            <select class="form-control" id="ofertasSegunTipoTrabajoUTP_Mes">
+                                <option value="">- Seleccione Mes -</option>
+                                <option value="1">Enero</option>
+                                <option value="2">Febrero</option>
+                                <option value="3">Marzo</option>
+                                <option value="4">Abril</option>
+                                <option value="5">Mayo</option>
+                                <option value="6">Junio</option>
+                                <option value="7">Julio</option>
+                                <option value="8">Agosto</option>
+                                <option value="9">Setiembre</option>
+                                <option value="10">Octubre</option>
+                                <option value="11">Noviembre</option>
+                                <option value="12">Diciembre</option>
+                            </select>
                         </div>
                     </div>
                     <div class="col-sm-4">
@@ -160,7 +205,7 @@
                 <p id="msgOfertasSegunTipoTrabajoUTP"></p>
                 <canvas id="chartOfertasSegunTipoTrabajoUTP" width="400" height="400"></canvas>
                 <div style="text-align:center;" id="ofertasTargetDiv">
-                    <h6>Ofertas Target <strong><span id="ofertasTarget"></span></strong></h6>
+                    <h6># de ofertas target según tipo de trabajo (acumulado): <strong><span id="ofertasTarget"></span></strong></h6>
                 </div>
             </div>
         </div>
@@ -170,10 +215,10 @@
 
         <div class="col-sm-6">
             <div class="panel panel-default" style="text-align:center;">
-                <h5>Carreras sin Ofertas de Prácticas</h5>
+                <h5>Carreras sin ofertas de prácticas (mensual)</h5>
                 <div class="row">
                     <div class="col-sm-1"></div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <div class="input-group">
                             <div class="input-group-addon">
                                 Año
@@ -182,12 +227,26 @@
                         </div>
 
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
                         <div class="input-group">
                             <div class="input-group-addon">
                                 Mes
                             </div>
-                            <input class="form-control" id="carrerasSinOfertasDePracticas_Mes" />
+                            <select class="form-control" id="carrerasSinOfertasDePracticas_Mes">
+                                <option value="">- Seleccione Mes -</option>
+                                <option value="1">Enero</option>
+                                <option value="2">Febrero</option>
+                                <option value="3">Marzo</option>
+                                <option value="4">Abril</option>
+                                <option value="5">Mayo</option>
+                                <option value="6">Junio</option>
+                                <option value="7">Julio</option>
+                                <option value="8">Agosto</option>
+                                <option value="9">Setiembre</option>
+                                <option value="10">Octubre</option>
+                                <option value="11">Noviembre</option>
+                                <option value="12">Diciembre</option>
+                            </select>
                         </div>
                     </div>
                     <div class="col-sm-4">
@@ -199,15 +258,15 @@
                 <br />
                 <p id="msgCarrerasSinOfertasDePracticas"></p>
                 <div style="text-align:left; margin-left:45px" id="carrerasSinOfertasDePracticas"> </div>
-                <br /> 
-                </div>
+                <br />
+            </div>
         </div>
         <div class="col-sm-6">
             <div class="panel panel-default" style="text-align:center;">
-                <h5>Carreras sin Ofertas de Empleo</h5>
+                <h5>Carreras sin ofertas de empleo (mensual)</h5>
                 <div class="row">
                     <div class="col-sm-1"></div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <div class="input-group">
                             <div class="input-group-addon">
                                 Año
@@ -216,12 +275,26 @@
                         </div>
 
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
                         <div class="input-group">
                             <div class="input-group-addon">
                                 Mes
                             </div>
-                            <input class="form-control" id="carrerasSinOfertasDeEmpleo_Mes" />
+                            <select class="form-control" id="carrerasSinOfertasDeEmpleo_Mes">
+                                <option value="">- Seleccione Mes -</option>
+                                <option value="1">Enero</option>
+                                <option value="2">Febrero</option>
+                                <option value="3">Marzo</option>
+                                <option value="4">Abril</option>
+                                <option value="5">Mayo</option>
+                                <option value="6">Junio</option>
+                                <option value="7">Julio</option>
+                                <option value="8">Agosto</option>
+                                <option value="9">Setiembre</option>
+                                <option value="10">Octubre</option>
+                                <option value="11">Noviembre</option>
+                                <option value="12">Diciembre</option>
+                            </select>
                         </div>
                     </div>
                     <div class="col-sm-4">
@@ -229,34 +302,34 @@
                             Mostrar
                         </div>
                     </div>
-                </div>             
+                </div>
                 <br />
-                <p id="msgCarrerasSinOfertasDeEmpleo"></p>  
+                <p id="msgCarrerasSinOfertasDeEmpleo"></p>
                 <div style="text-align:left; margin-left:45px" id="carrerasSinOfertasDeEmpleo"> </div>
                 <br />
             </div>
         </div>
     </div>
 
-    
+
     <div class="row">
         <div class="col-sm-6">
             <div class="panel panel-default" style="text-align:center;">
-                <h5>Vacantes Ofrecidas</h5>
+                <h5>Vacantes ofrecidas (mensual)</h5>
                 <canvas id="chartVacantesOfrecidas" width="480" height="400"></canvas>
                 <div style="text-align:center;">
-                    <h6>Vacantes Ofrecidas: <strong><span id="vacantesOfrecidas"></span></strong></h6>
+                    <h6># de vacantes ofrecidas (acumulado): <strong><span id="vacantesOfrecidas"></span></strong></h6>
                 </div>
             </div>
 
         </div>
         <div class="col-sm-6">
             <div class="panel panel-default" style="text-align:center;">
-                <h5>Postulaciones a Ofertas de Empresas Target</h5>
+                <h5>Postulaciones a ofertas de empresas target (mensual)</h5>
                 <canvas id="chartEmpresasTarget" width="400" height="400"></canvas>
                 <div style="text-align:center;">
-                    <h6>Vacantes Ofrecidas: <strong><span id="postulantesEmpresas"></span></strong></h6>
-                    <h6>Ratio Promedio Postulantes: <strong><span id="ratioPostulantes"></span></strong></h6>
+                    <h6># postulaciones a empresas target (acumulado): <strong><span id="postulantesEmpresas"></span></strong></h6>
+                    <h6>Ratio promedio de postulantes citados a entrevista: <strong><span id="ratioPostulantes"></span></strong></h6>
                 </div>
             </div>
         </div>
@@ -265,20 +338,20 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="panel panel-default" style="text-align:center;">
-                <h5>Ofertas con Procesos Cerrados</h5>
+                <h5>Ofertas con procesos cerrados (mensual)</h5>
                 <canvas id="chartProcesosCerrados" width="480" height="400"></canvas>
                 <div style="text-align:center;">
-                    <h6>Ofertas con Procesos Cerrados: <strong><span id="procesosCerrados"></span></strong></h6>
+                    <h6># de ofertas con procesos cerrados (acumulado): <strong><span id="procesosCerrados"></span></strong></h6>
                 </div>
             </div>
 
-        </div>        
+        </div>
         <div class="col-sm-6">
             <div class="panel panel-default" style="text-align:center;">
-                <h5>Clasificación CV's Recibidos</h5>
+                <h5>Clasificación de CV's Recibidos</h5>
                 <div class="row">
                     <div class="col-sm-1"></div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
                         <div class="input-group">
                             <div class="input-group-addon">
                                 Año
@@ -287,12 +360,26 @@
                         </div>
 
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
                         <div class="input-group">
                             <div class="input-group-addon">
                                 Mes
                             </div>
-                            <input class="form-control" id="clasificacionCvsRecibidos_Mes" />
+                            <select class="form-control" id="clasificacionCvsRecibidos_Mes" >
+                            <option value="">- Seleccione Mes -</option>
+                            <option value="1">Enero</option>
+                            <option value="2">Febrero</option>
+                            <option value="3">Marzo</option>
+                            <option value="4">Abril</option>
+                            <option value="5">Mayo</option>
+                            <option value="6">Junio</option>
+                            <option value="7">Julio</option>
+                            <option value="8">Agosto</option>
+                            <option value="9">Setiembre</option>
+                            <option value="10">Octubre</option>
+                            <option value="11">Noviembre</option>
+                            <option value="12">Diciembre</option>
+                            </select>
                         </div>
                     </div>
                     <div class="col-sm-4">
@@ -305,40 +392,33 @@
                 <p id="msgClasificacionCvsRecibidos"></p>
                 <canvas id="chartClasificacionCvsRecibidos" width="400" height="400"></canvas>
                 <div style="text-align:center;">
-                    <h6>Clasificación Total de CV's: <strong><span id="cvsRecibidos"></span></strong></h6>
+                    <h6># clasificación total de CV´s (acumulado): <strong><span id="cvsRecibidos"></span></strong></h6>
                 </div>
             </div>
         </div>
-        
-    </div>
-     
-    <div class="row">
-
-        <div class="panel panel-default" style="text-align:center;">
-            <h5>Contrataciones</h5>
-            <canvas id="chartContrataciones" width="480" height="400"></canvas>
-            <div style="text-align:center;">
-                <h6>Contratos Acumulados: <strong><span id="contratosAcumulados"></span></strong></h6>
-                <h6>Contratos Target: <strong><span id="contratosTarget"></span></strong></h6>
-                <h6>Ratio Entrevistados Target: <strong><span id="ratioEntrevistados"></span></strong></h6>
-                <h6>Convenios Del Mes: <strong><span id="conveniosDelMes"></span></strong></h6>
-            </div>
-        </div>
 
     </div>
 
     <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-12">
             <div class="panel panel-default" style="text-align:center;">
-                <h5>Alumnos Activos Segun Carrera</h5>
-                <canvas id="chartAlumnosSegunCarrera" width="480" height="400"></canvas>
+                <h5>Contrataciones (mensual)</h5>
+                <canvas id="chartContrataciones" width="880" height="400"></canvas>
+                <div style="text-align:center;">
+                    <h6># de contratos (acumulados): <strong><span id="contratosAcumulados"></span></strong></h6>
+                    <h6># de contratos target: <strong><span id="contratosTarget"></span></strong></h6>
+                    <h6>Ratio de invitados a entrevista: <strong><span id="ratioEntrevistados"></span></strong></h6>
+                    <h6># de convenios registrados (mes actual): <strong><span id="conveniosDelMes"></span></strong></h6>
+                </div>
             </div>
-
         </div>
-        <div class="col-sm-6">
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
             <div class="panel panel-default" style="text-align:center;">
-                <h5>Top 10 Carreras mas Demandadas</h5>
-                <canvas id="chartTop10CarrerasMasDemandadas" width="400" height="460"></canvas>
+                <h5>Alumnos activos según carrera</h5>
+                <canvas id="chartAlumnosSegunCarrera" width="880" height="500"></canvas>
             </div>
         </div>
     </div>
@@ -596,7 +676,7 @@
             });
         }
 
-        
+
         CargaContrataciones();
         function CargaContrataciones() {
             var url = '@Url.Action("ReporteContrataciones", "UTP")';
@@ -652,71 +732,85 @@
                 var myNewChart = new Chart(ctx).Bar(data);
             });
         }
+        cargaCarrerasSinOfertasDePracticas();
+        function cargaCarrerasSinOfertasDePracticas() {
+            var url = '@Url.Action("ReporteCarrerasSinOfertasDePracticas", "UTP")' + '?ano=' + document.getElementById("carrerasSinOfertasDePracticas_Ano").value + '&mes=' + document.getElementById("carrerasSinOfertasDePracticas_Mes").value;
 
-
-    });
-
-    function cargaEmpresasSegunClasificacionMes() {
-        var url = '@Url.Action("ReporteEmpresasSegunClasificacion", "UTP")' + '?ano=' + document.getElementById("empresasSegunClasificacionPorMes_Ano").value + '&mes=' + document.getElementById("empresasSegunClasificacionPorMes_Mes").value;
-        $("#texto1").html("Cargando...");
-        $.get(url, function (datosPie) {
-            if (datosPie.length > 0) {
-                $("#chartEmpresasSegunClasificacionMes").css("visibility", "visible");
-                $("#msgEmpresasSegunClasificacionMes").html("");
-                var data = [];
-                $.each(datosPie, function (index, value) {
-                    var itemdata =
-                        {
-                            value: eval(value.PieValue),
-                            color: value.PieColor,
-                            highlight: value.PieHighlight,
-                            label: value.PieLabel
-                        };
-                    data.push(itemdata);
-                })
-                var ctx = document.getElementById("chartEmpresasSegunClasificacionMes").getContext("2d");
-                var myPieChart = new Chart(ctx).Pie(data);
-            }
-            else {
-                $("#msgEmpresasSegunClasificacionMes").html("No se encontraron resultados");
-                $("#chartEmpresasSegunClasificacionMes").css("visibility", "hidden");
-            }
-        });
-    }
-
-    function cargaOfertasSegunClasificacionMes() {
-        var url = '@Url.Action("ReporteOfertasSegunClasificacion", "UTP")' + '?ano=' + document.getElementById("ofertasSegunClasificacionPorMes_Ano").value + '&mes=' + document.getElementById("ofertasSegunClasificacionPorMes_Mes").value;
-        $("#texto1").html("Cargando...");
-        $.get(url, function (datosPie) {
-            if (datosPie.length > 0) {
-                $("#chartOfertasSegunClasificacionMes").css("visibility", "visible");
-                $("#msgOfertasSegunClasificacionMes").html("");
-                var data = [];
-                $.each(datosPie, function (index, value) {
-                    var itemdata =
-                        {
-                            value: eval(value.PieValue),
-                            color: value.PieColor,
-                            highlight: value.PieHighlight,
-                            label: value.PieLabel
-                        };
-                    data.push(itemdata);
-                })
-                var ctx = document.getElementById("chartOfertasSegunClasificacionMes").getContext("2d");
-                var myPieChart = new Chart(ctx).Pie(data);
-            }
-            else {
-                $("#msgOfertasSegunClasificacionMes").html("No se encontraron resultados");
-                $("#chartOfertasSegunClasificacionMes").css("visibility", "hidden");
-            }
-        });
-    }
-
-    function cargaClasificacionCVsRecibidos() {
-        var url = '@Url.Action("ReporteClasificacionDeCvRecibidos", "UTP")' + '?ano=' + document.getElementById("clasificacionCvsRecibidos_Ano").value + '&mes=' + document.getElementById("clasificacionCvsRecibidos_Mes").value;
-        $("#texto1").html("Cargando...");
-        var options = { scaleShowVerticalLines: true };
-        $.get(url, function (datos) {
+            $.get(url, function (data) {
+                debugger;
+                if (data.length > 0) {
+                    $('#carrerasSinOfertasDePracticas').html(data);
+                    $("#carrerasSinOfertasDePracticas").css("visibility", "visible");
+                    $("#msgCarrerasSinOfertasDePracticas").html("");
+                }
+                else {
+                    $("#msgCarrerasSinOfertasDePracticas").html("No se encontraron resultados");
+                    $("#carrerasSinOfertasDePracticas").css("visibility", "hidden");
+                }
+            });
+        }
+        cargaEmpresasSegunClasificacionMes();
+        function cargaEmpresasSegunClasificacionMes() {
+            var url = '@Url.Action("ReporteEmpresasSegunClasificacion", "UTP")' + '?ano=' + document.getElementById("empresasSegunClasificacionPorMes_Ano").value + '&mes=' + document.getElementById("empresasSegunClasificacionPorMes_Mes").value;
+            $("#texto1").html("Cargando...");
+            $.get(url, function (datosPie) {
+                if (datosPie.length > 0) {
+                    $("#chartEmpresasSegunClasificacionMes").css("visibility", "visible");
+                    $("#msgEmpresasSegunClasificacionMes").html("");
+                    var data = [];
+                    $.each(datosPie, function (index, value) {
+                        var itemdata =
+                            {
+                                value: eval(value.PieValue),
+                                color: value.PieColor,
+                                highlight: value.PieHighlight,
+                                label: value.PieLabel
+                            };
+                        data.push(itemdata);
+                    })
+                    var ctx = document.getElementById("chartEmpresasSegunClasificacionMes").getContext("2d");
+                    var myPieChart = new Chart(ctx).Pie(data);
+                }
+                else {
+                    $("#msgEmpresasSegunClasificacionMes").html("No se encontraron resultados");
+                    $("#chartEmpresasSegunClasificacionMes").css("visibility", "hidden");
+                }
+            });
+        }
+        cargaOfertasSegunClasificacionMes();
+        function cargaOfertasSegunClasificacionMes() {
+            var url = '@Url.Action("ReporteOfertasSegunClasificacion", "UTP")' + '?ano=' + document.getElementById("ofertasSegunClasificacionPorMes_Ano").value + '&mes=' + document.getElementById("ofertasSegunClasificacionPorMes_Mes").value;
+            $("#texto1").html("Cargando...");
+            $.get(url, function (datosPie) {
+                if (datosPie.length > 0) {
+                    $("#chartOfertasSegunClasificacionMes").css("visibility", "visible");
+                    $("#msgOfertasSegunClasificacionMes").html("");
+                    var data = [];
+                    $.each(datosPie, function (index, value) {
+                        var itemdata =
+                            {
+                                value: eval(value.PieValue),
+                                color: value.PieColor,
+                                highlight: value.PieHighlight,
+                                label: value.PieLabel
+                            };
+                        data.push(itemdata);
+                    })
+                    var ctx = document.getElementById("chartOfertasSegunClasificacionMes").getContext("2d");
+                    var myPieChart = new Chart(ctx).Pie(data);
+                }
+                else {
+                    $("#msgOfertasSegunClasificacionMes").html("No se encontraron resultados");
+                    $("#chartOfertasSegunClasificacionMes").css("visibility", "hidden");
+                }
+            });
+        }
+        cargaClasificacionCVsRecibidos();
+        function cargaClasificacionCVsRecibidos() {
+            var url = '@Url.Action("ReporteClasificacionDeCvRecibidos", "UTP")' + '?ano=' + document.getElementById("clasificacionCvsRecibidos_Ano").value + '&mes=' + document.getElementById("clasificacionCvsRecibidos_Mes").value;
+            $("#texto1").html("Cargando...");
+            var options = { scaleShowVerticalLines: true };
+            $.get(url, function (datos) {
                 var data = {
                     labels: datos[0],
                     datasets: [
@@ -734,66 +828,56 @@
                 var myNewChart = new Chart(ctx).Bar(data, options);
                 $("#cvsRecibidos").html(datos[2]);
             });
-    }
+        }
+        cargaOfertasSegunTipoTrabajoUTP();
+        function cargaOfertasSegunTipoTrabajoUTP() {
+            var url = '@Url.Action("ReporteOfertasSegunTipoTrabajoUTP", "UTP")' + '?ano=' + document.getElementById("ofertasSegunTipoTrabajoUTP_Ano").value + '&mes=' + document.getElementById("ofertasSegunTipoTrabajoUTP_Mes").value;
+            $("#texto1").html("Cargando...");
+            $.get(url, function (datosPie) {
+                if (datosPie[0].length > 0) {
+                    $("#chartOfertasSegunTipoTrabajoUTP").css("visibility", "visible");
+                    $("#ofertasTargetDiv").css("visibility", "visible");
+                    $("#msgOfertasSegunTipoTrabajoUTP").html("");
+                    var data = [];
+                    $.each(datosPie[0], function (index, value) {
+                        var itemdata =
+                            {
+                                value: eval(value.PieValue),
+                                color: value.PieColor,
+                                highlight: value.PieHighlight,
+                                label: value.PieLabel
+                            };
+                        data.push(itemdata);
+                    })
+                    var ctx = document.getElementById("chartOfertasSegunTipoTrabajoUTP").getContext("2d");
+                    var myPieChart = new Chart(ctx).Pie(data);
+                    $("#ofertasTarget").html(datosPie[1]);
 
-    function cargaOfertasSegunTipoTrabajoUTP() {
-        var url = '@Url.Action("ReporteOfertasSegunTipoTrabajoUTP", "UTP")' + '?ano=' + document.getElementById("ofertasSegunTipoTrabajoUTP_Ano").value + '&mes=' + document.getElementById("ofertasSegunTipoTrabajoUTP_Mes").value;
-        $("#texto1").html("Cargando...");
-        $.get(url, function (datosPie) {
-            if (datosPie[0].length > 0) {
-                $("#chartOfertasSegunTipoTrabajoUTP").css("visibility", "visible");
-                $("#ofertasTargetDiv").css("visibility", "visible");
-                $("#msgOfertasSegunTipoTrabajoUTP").html("");
-                var data = [];
-                $.each(datosPie[0], function (index, value) {
-                    var itemdata =
-                        {
-                            value: eval(value.PieValue),
-                            color: value.PieColor,
-                            highlight: value.PieHighlight,
-                            label: value.PieLabel
-                        };
-                    data.push(itemdata);
-                })
-                var ctx = document.getElementById("chartOfertasSegunTipoTrabajoUTP").getContext("2d");
-                var myPieChart = new Chart(ctx).Pie(data);
-                $("#ofertasTarget").html(datosPie[1]);
+                }
+                else {
+                    $("#msgOfertasSegunTipoTrabajoUTP").html("No se encontraron resultados");
+                    $("#chartOfertasSegunTipoTrabajoUTP").css("visibility", "hidden");
+                    $("#ofertasTargetDiv").css("visibility", "hidden");
+                }
+            });
+        }
 
-            }
-            else {
-                $("#msgOfertasSegunTipoTrabajoUTP").html("No se encontraron resultados");
-                $("#chartOfertasSegunTipoTrabajoUTP").css("visibility", "hidden");
-                $("#ofertasTargetDiv").css("visibility", "hidden");
-            }
-        });
-    }
 
-    function cargaCarrerasSinOfertasDePracticas() {
-        var url = '@Url.Action("ReporteCarrerasSinOfertasDePracticas", "UTP")' + '?ano=' + document.getElementById("carrerasSinOfertasDePracticas_Ano").value + '&mes=' + document.getElementById("carrerasSinOfertasDePracticas_Mes").value;
+        cargaCarrerasSinOfertasDeEmpleo();
+        function cargaCarrerasSinOfertasDeEmpleo() {
+            var url = '@Url.Action("ReporteCarrerasSinOfertasDeEmpleo", "UTP")' + '?ano=' + document.getElementById("carrerasSinOfertasDeEmpleo_Ano").value + '&mes=' + document.getElementById("carrerasSinOfertasDeEmpleo_Mes").value;
 
-        $.get(url, function (data) {
-            debugger;
-            if (data.length > 0) {
-                $('#carrerasSinOfertasDePracticas').html(data);
-                $("#carrerasSinOfertasDePracticas").css("visibility", "visible");
-                $("#msgCarrerasSinOfertasDePracticas").html("");
-            }
-            else {
-                $("#msgCarrerasSinOfertasDePracticas").html("No se encontraron resultados");
-                $("#carrerasSinOfertasDePracticas").css("visibility", "hidden");
-            }
-        });
-    }
+            $.get(url, function (data) {
 
-    function cargaCarrerasSinOfertasDeEmpleo() {
-        var url = '@Url.Action("ReporteCarrerasSinOfertasDeEmpleo", "UTP")' + '?ano=' + document.getElementById("carrerasSinOfertasDeEmpleo_Ano").value + '&mes=' + document.getElementById("carrerasSinOfertasDeEmpleo_Mes").value;
+                $('#carrerasSinOfertasDeEmpleo').html(data);
 
-        $.get(url, function (data) {
+            });
+        }
 
-            $('#carrerasSinOfertasDeEmpleo').html(data);
+    });
 
-        });
-    }
+
+
 
 
 </script>

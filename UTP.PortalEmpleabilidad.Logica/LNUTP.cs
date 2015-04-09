@@ -615,7 +615,7 @@ namespace UTP.PortalEmpleabilidad.Logica
         {
             return adUtp.Reporte_CarrerasSinOfertasDeEmpleo(ano, mes);
         }
-        public DataTable Reporte_VacantesOfrecidas()
+        public DataSet Reporte_VacantesOfrecidas()
         {
             return adUtp.Reporte_VacantesOfrecidas();
         }
