@@ -817,3 +817,53 @@ a.Boton_pestana:hover {
 
 /*Se cambia el tamaño de las letras del datepicker.*/
 .ui-datepicker {font-size:11px;}
+
+/*****************************************************
+ *  FOOTER STYLES                                    *
+ *****************************************************/
+footer {
+	background-color:#222121;
+	background-image: url(../img/bg-footer.gif);
+	background-repeat: repeat-x;
+	font-size: 12px;
+	color: #ffffff;
+	height: 9em;
+	overflow: hidden;
+	width: 100%;
+    margin-top: 17px;
+    padding-top: 11px;
+}
+
+/* Sticky footer*/
+.push {
+    height: 9em; /* Very important */
+}
+#footer .copyright {
+    float: right;
+    padding-top:60px;
+    margin-right:5%;    
+}
+
+.footer_emails{
+    float: left;
+    padding-top:60px;
+    margin-right:5%;    
+}
+
+footer .container .row {
+    padding-top: 50px;
+}
+
+footer #footer_left {
+    overflow-y : auto;
+    max-height:50px;
+    padding: 5px;
+}
+
+footer #footer_right {
+    float: right;
+}
+
+#footer_right #admin_name, #footer_right #software_name{
+    text-align:right;
+}

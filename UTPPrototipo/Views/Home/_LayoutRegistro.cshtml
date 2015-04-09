@@ -63,21 +63,40 @@
 
     @RenderBody()
     <div>
-        <footer style="background-color:rgb(131, 131, 129);">
-            <br />
+        <footer>
+            <!-- start of #footer section -->
+            <style>
+                footer {
+                    height: auto;
+                    overflow: auto;
+                }
+
+                    footer .row:last-child {
+                        padding-top: 0;
+                    }
+            </style>
             <div class="container">
-                <p style="text-align:center;color:white;font-size:16px;">
-                    Universidad Tecnológica del Perú
-                </p>
-                <p style="text-align:center;color:white;font-size:10px;padding-bottom:0px;padding-top:0px;">
-                    Esquina Av. 28 de Julio y Av. Pettit Thouars, Lima Perú | teléfono: 315-9600 e-mail: admision@utp.edu.pe
-                </p>
-                <p style="text-align:center;color:white;font-size:10px;">
-                    Campus Chiclayo: Esquina Prol. Augusto B. Leguía con Av. Herman Meiner | teléfono: (074) 622121 | Informes: Calle San José 720 - teléfono: (074) 624 998 | e-mail: admisionchiclayo@utp.edu.pe
-                </p>
-                <p style="text-align:center;color:white;font-size:14px;">
-                    2014 UTP &copy; - <a href="../Home/TerminosDeUso" style="color:white;">Términos de Uso</a> - <a href="../Home/PoliticasDePrivacidad" style="color:white;">Política de Privacidad</a> - <a href="../Home/FAQ" style="color:white;">FAQ</a> - <a href="../Home/Contacto" style="color:white;">Contáctenos</a>
-                </p>
+                <div class="row">
+                    <div id="footer_left" class="span4">
+                    </div>
+                    <div id="footer_center" class="span4">
+                        &nbsp;
+                    </div>
+                </div>                
+                <div class="row">
+                    <div class="span7" style="padding-left:5px;">
+                        <div>Dirección de empleabilidad | Email: <a href="mailto:empleabilidad@utp.edu.pe">empleabilidad@utp.edu.pe</a> | </div>
+                        <div>Teléfono: (+51) 315-9600 Anexo 1438 | Web: <a href="http://dta.utp.edu.pe/" target="_blank">empleabilidad.utp.edu.pe</a></div>
+                        <div>Mesa de Ayuda | Email: <a href="mailto:mesadeayuda@utp.edu.pe">mesadeayuda@utp.edu.pe</a> | Teléfono: (+51) 315-9606 | Web: <a href="http://mesadeayuda.utp.edu.pe/" target="_blank">mesadeayuda.utp.edu.pe</a></div>
+                        <div>Universidad Tecnológica del Perú | <a href="/docs/PoliticaDePrivacidad.pdf" target="_blank">Política de Privacidad</a> | <a href="/docs/TerminosDeUso.pdf" target="_blank">Términos y Condiciones</a> | <a href="/docs/TerminosDeUso.pdf" target="_blank">FAQ</a> | <a href="/docs/TerminosDeUso.pdf" target="_blank">Contáctenos</a></div>
+                        &nbsp;
+                    </div>
+
+                    <div id="footer_right" class="span4">
+
+
+                    </div>
+                </div>
             </div>
         </footer>
     </div>
