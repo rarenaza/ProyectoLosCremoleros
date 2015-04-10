@@ -1,0 +1,32 @@
+﻿@model IEnumerable<O365_Empleabilidad.Models.CalendarEvent>
+
+@if (ViewBag.O365ServiceOperationFailed == true)
+{
+    <h6>¡Error! Servicio Outlook no pudo ejecutar la operación</h6>
+
+}
+
+@if (ViewBag.O365ServiceOperationFailed == false)
+{
+        string FechaActual = "";
+        foreach (var item in Model)
+        {
+            string Fecha = item.StartDate.Day.ToString() + "/" + item.StartDate.Month.ToString() + "/" + item.StartDate.Year.ToString();
+            if (Fecha != FechaActual)
+            {
+                FechaActual = item.StartDate.Day.ToString() + "/" + item.StartDate.Month.ToString() + "/" + item.StartDate.Year.ToString(); ;
+                <div style="background-color:rgb(240, 240, 240);padding: 0px 5px 0px 5px;">
+                    <strong style="font-size:smaller">@FechaActual</strong><br />
+                </div>
+                <hr style="margin: 4px 0px 4px 0px;" />
+            }
+            <div style="padding: 0px 5px 0px 5px;">
+                <strong style="font-size:smaller">@item.StartDate.Hour:@item.StartDate.Minute - @item.EndDate.Hour:@item.EndDate.Minute</strong><br />
+                <span>&nbsp;@item.Subject</span>
+            </div>
+            <hr style="margin: 4px 0px 4px 0px;" />
+                
+        }
+   
+}
+   

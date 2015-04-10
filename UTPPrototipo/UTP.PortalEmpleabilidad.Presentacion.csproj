@@ -76,7 +76,7 @@
       <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.0\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Azure.ActiveDirectory.GraphClient">
-      <HintPath>..\packages\Microsoft.Azure.ActiveDirectory.GraphClient.2.0.6\lib\portable-net40+wp8+win8+MonoAndroid10+MonoTouch10+WindowsPhoneApp81\Microsoft.Azure.ActiveDirectory.GraphClient.dll</HintPath>
+      <HintPath>..\packages\Microsoft.Azure.ActiveDirectory.GraphClient.1.0.22\lib\portable-net40+wp8+win8+MonoAndroid10+MonoTouch10+WindowsPhoneApp81\Microsoft.Azure.ActiveDirectory.GraphClient.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Data.Edm, Version=5.6.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -98,25 +98,22 @@
       <HintPath>..\packages\Microsoft.IdentityModel.Clients.ActiveDirectory.2.14.201151115\lib\net45\Microsoft.IdentityModel.Clients.ActiveDirectory.WindowsForms.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.IdentityModel.Protocol.Extensions">
-      <HintPath>..\packages\Microsoft.IdentityModel.Protocol.Extensions.1.0.2.202250711\lib\net45\Microsoft.IdentityModel.Protocol.Extensions.dll</HintPath>
+      <HintPath>..\packages\Microsoft.IdentityModel.Protocol.Extensions.1.0.0\lib\net45\Microsoft.IdentityModel.Protocol.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.OData.Client">
-      <HintPath>..\packages\Microsoft.OData.Client.6.11.0\lib\net40\Microsoft.OData.Client.dll</HintPath>
+      <HintPath>..\packages\Microsoft.OData.Client.6.8.1\lib\net40\Microsoft.OData.Client.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.OData.Core">
-      <HintPath>..\packages\Microsoft.OData.Core.6.11.0\lib\portable-net40+sl5+wp8+win8+wpa\Microsoft.OData.Core.dll</HintPath>
+      <HintPath>..\packages\Microsoft.OData.Core.6.8.1\lib\portable-net40+sl5+wp8+win8+wpa\Microsoft.OData.Core.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.OData.Edm">
-      <HintPath>..\packages\Microsoft.OData.Edm.6.11.0\lib\portable-net40+sl5+wp8+win8+wpa\Microsoft.OData.Edm.dll</HintPath>
+      <HintPath>..\packages\Microsoft.OData.Edm.6.8.1\lib\portable-net40+sl5+wp8+win8+wpa\Microsoft.OData.Edm.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Office365.Discovery">
       <HintPath>..\packages\Microsoft.Office365.Discovery.1.0.22\lib\portable-net40+sl5+wp8+win8+MonoAndroid10+MonoTouch10+WindowsPhoneApp81\Microsoft.Office365.Discovery.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Office365.OutlookServices">
       <HintPath>..\packages\Microsoft.Office365.OutlookServices.1.0.22\lib\net40\Microsoft.Office365.OutlookServices.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Office365.SharePoint">
-      <HintPath>..\packages\Microsoft.Office365.SharePoint.1.0.22\lib\net40\Microsoft.Office365.SharePoint.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -153,7 +150,7 @@
       <HintPath>..\packages\Microsoft.Owin.Security.Twitter.3.0.1\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Spatial">
-      <HintPath>..\packages\Microsoft.Spatial.6.11.0\lib\portable-net40+sl5+wp8+win8+wpa\Microsoft.Spatial.dll</HintPath>
+      <HintPath>..\packages\Microsoft.Spatial.6.8.1\lib\portable-net40+sl5+wp8+win8+wpa\Microsoft.Spatial.dll</HintPath>
     </Reference>
     <Reference Include="NetOffice">
       <HintPath>..\packages\NetOffice.Core.Net45.1.7.2.0\lib\net45\NetOffice.dll</HintPath>
@@ -161,7 +158,7 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.5\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="OfficeApi">
       <HintPath>..\packages\NetOffice.Core.Net45.1.7.2.0\lib\net45\OfficeApi.dll</HintPath>
@@ -172,7 +169,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.IdentityModel" />
     <Reference Include="System.IdentityModel.Tokens.Jwt">
-      <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.4.0.2.202250711\lib\net45\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+      <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.4.0.0\lib\net45\System.IdentityModel.Tokens.Jwt.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Spatial, Version=5.6.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -257,6 +254,7 @@
     <Compile Include="Common\FormatHelper.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AlumnoController.cs" />
+    <Compile Include="Controllers\CalendarController.cs" />
     <Compile Include="Controllers\ContenidoController.cs" />
     <Compile Include="Controllers\CuentaController.cs" />
     <Compile Include="Controllers\EmpresaController.cs" />
@@ -274,7 +272,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\AuthenticationHelper.cs" />
+    <Compile Include="Helpers\CalendarOperations.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ADALTokenCache.cs" />
+    <Compile Include="Models\ApplicationDbContext.cs" />
+    <Compile Include="Models\ViewModels\Calendar\CalendarEvent.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Temporal.cs" />
     <Compile Include="Models\ViewModels\Alumno\VistaPanelAlumnoMiCV.cs" />
@@ -297,6 +300,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Utiles\Helper.cs" />
+    <Compile Include="Utiles\SettingsHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\animate.css" />
@@ -1048,6 +1052,7 @@
     <Content Include="Views\UTP\_UsuariosEmpresaUTP_Crear.cshtml" />
     <Content Include="Views\Alumno\_AlumnoCalendario.cshtml" />
     <Content Include="Views\UTP\_PartialReporte.cshtml" />
+    <Content Include="Views\Calendar\CalendarioOutlook.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
