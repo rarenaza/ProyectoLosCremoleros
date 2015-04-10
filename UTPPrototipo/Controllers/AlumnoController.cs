@@ -15,17 +15,6 @@ using UTPPrototipo.Models.ViewModels.Cuenta;
 using System.Web.Security;
 using UTP.PortalEmpleabilidad.Modelo.Vistas.Alumno;
 using UTPPrototipo.Utiles;
-using System.Configuration;
-using O365_Empleabilidad.Helpers;
-using Microsoft.IdentityModel.Clients.ActiveDirectory;
-using System.Threading.Tasks;
-
-using Microsoft.Office365.OutlookServices;
-using model = O365_Empleabilidad.Models;
-using Microsoft.Owin.Security;
-using Microsoft.Owin.Security.OpenIdConnect;
-
-
 
 namespace UTPPrototipo.Controllers
 {
@@ -59,39 +48,7 @@ namespace UTPPrototipo.Controllers
             VistaPanelAlumno panel = lnAlumno.ObtenerPanel(ticket.CodAlumnoUTP);
 
 
-            
-
-            // Código para calendario Office 365
-
-            //if (ConfigurationManager.AppSettings["ida:ClientID"] == null)
-            //{
-            //    ViewBag.DidNotAddConnectedServices = true;
-            //}
-            //else
-            //{
-            //    ViewBag.DidNotAddConnectedServices = false;
-            //}
-
-            //string tenantID = ConfigurationManager.AppSettings["ida:TenantID"] ?? "";
-            //Guid resultGuid;
-
-            //try
-            //{
-            //    resultGuid = Guid.ParseExact(tenantID, "D");
-            //    ViewBag.TenantIDIsNull = false;
-            //}
-            //catch (ArgumentNullException)
-            //{
-            //    ViewBag.TenantIDIsNull = true;
-            //}
-            //catch (FormatException)
-            //{
-            //    ViewBag.TenantIDIsNull = true;
-            //}
-
-            //Fin Código para Calendario Office 365
             return View(panel);
-
         }
         //public ActionResult Postulacion() 
         //{
@@ -1674,6 +1631,9 @@ namespace UTPPrototipo.Controllers
         //    //}
 
         //}
+
+
+
 
     }
 }

@@ -25,56 +25,7 @@
 
 
     <div class="row">
-        <div class="col-md-3 fuente-pequeña" style="border-right:solid;border-color:rgb(220, 220, 220);border-width:1px;">
-
-            @*Inicio Control Calendario*@
-
-             
-            
-
-            @*<div class="panel panel-info">
-                <div class="panel-heading" role="tab" id="headingCalendario">
-                    <div class="row">
-                        <div class="col-xs-12">
-
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseCalendario" aria-expanded="true" aria-controls="collapseCalendario">
-                                <strong>Calendario</strong>
-                            </a>
-
-                        </div>
-
-                    </div>
-                </div>
-                <div id="collapseCalendario" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingCalendario">
-                    <div class="panel-body" style="padding: 10px 5px 10px 5px;">
-                        @if (ViewBag.DidNotAddConnectedServices == true)
-                        {
-                            <h5>¡Error! No hay un servicio conectado</h5>
-                            <br />
-                        }
-
-                        @if (ViewBag.TenantIDIsNull == true)
-                        {
-                            <h5>¡Error! No existe un Tenant ID</h5>
-                            <br />
-                        }
-
-                        @if ((ViewBag.DidNotAddConnectedServices == false) && (ViewBag.TenantIDIsNull == false))
-                        {
-                            <div id="divCalendario"></div>
-                            //Html.Action("CargaCalendario", "Calendar");
-                        }
-                    </div>
-                </div>
-            </div>*@
-            
-            
-            
-            
-
-            @*Fin Control Calendario*@
-
-
+        <div class="col-md-2 fuente-pequeña" style="border-right:solid;border-color:rgb(220, 220, 220);border-width:1px;">
             <h5>Ofertas que pueden interesarte</h5>
             @Html.Partial("_AlumnoUltimasOfertas", Model.ListaOfertas)
 
@@ -135,17 +86,6 @@
 
     $(document).ready(function () {
         $("#divFinalCabecera").removeClass("color-paleta2 color-paleta3 color-paleta4 color-paleta5 color-paleta6 color-paleta7 color-paleta8").addClass("color-paleta1");
-        @*mostrarCalendario();
-        function mostrarCalendario() {
-
-            var url = '@Url.Action("CalendarioOutlook", "Calendar")';
-
-            $.get(url, function (data) {
-
-                $('#divCalendario').html(data);
-            })
-            //.error(function (err) { console.log(err); alert(err); });
-        };*@
     });
 
 
