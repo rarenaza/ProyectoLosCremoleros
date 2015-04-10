@@ -40,15 +40,23 @@
         <div class="col-sm-6">
             <div class="panel panel-default" style="text-align:center;">
                 <h5>Empresas según clasificación (acumulado)</h5>
-                <canvas id="chartEmpresasSegunClasificacion" width="480" height="400"></canvas>
-
+                <br />
+                <div class="row">
+                    <div class="col-sm-8">
+                        <canvas id="chartEmpresasSegunClasificacion" width="380" height="320"></canvas>
+                    </div>
+                </div>
             </div>
-
         </div>
         <div class="col-sm-6">
             <div class="panel panel-default" style="text-align:center;">
                 <h5>Ofertas según clasificación (acumulado)</h5>
-                <canvas id="chartOfertasSegunClasificacion" width="400" height="400"></canvas>
+                <br />
+                <div class="row">
+                    <div class="col-sm-8">
+                        <canvas id="chartOfertasSegunClasificacion" width="300" height="320"></canvas>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -97,9 +105,13 @@
                     </div>
                 </div>
                 <br />
-                <p id="msgEmpresasSegunClasificacionMes"></p>
-                <canvas id="chartEmpresasSegunClasificacionMes" width="480" height="400"></canvas>
-
+                <p id="msgEmpresasSegunClasificacionMes">
+                </p>
+                <div class="row">
+                    <div class="col-sm-8">
+                        <canvas id="chartEmpresasSegunClasificacionMes" width="380" height="300"></canvas>
+                    </div>
+                </div>
             </div>
 
         </div>
@@ -147,8 +159,11 @@
                 </div>
                 <br />
                 <p id="msgOfertasSegunClasificacionMes"></p>
-                <canvas id="chartOfertasSegunClasificacionMes" width="400" height="400"></canvas>
-
+                <div class="row">
+                    <div class="col-sm-8">
+                        <canvas id="chartOfertasSegunClasificacionMes" width="300" height="300"></canvas>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -156,7 +171,12 @@
         <div class="col-sm-6">
             <div class="panel panel-default" style="text-align:center;">
                 <h5>Top 10 carreras más demandadas</h5>
-                <canvas id="chartTop10CarrerasMasDemandadas" width="400" height="460"></canvas>
+                <br />
+                <div class="row">
+                    <div class="col-sm-8">
+                        <canvas id="chartTop10CarrerasMasDemandadas" width="300" height="320"></canvas>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="col-sm-6">
@@ -203,7 +223,12 @@
                 </div>
                 <br />
                 <p id="msgOfertasSegunTipoTrabajoUTP"></p>
-                <canvas id="chartOfertasSegunTipoTrabajoUTP" width="400" height="400"></canvas>
+                <div class="row">
+                    <div class="col-sm-8">
+                        <canvas id="chartOfertasSegunTipoTrabajoUTP" width="300" height="300"></canvas>
+                        
+                    </div>
+                </div>
                 <div style="text-align:center;" id="ofertasTargetDiv">
                     <h6># de ofertas target según tipo de trabajo (acumulado): <strong><span id="ofertasTarget"></span></strong></h6>
                 </div>
@@ -391,7 +416,7 @@
                 <br />
                 <p id="msgClasificacionCvsRecibidos"></p>
                 <canvas id="chartClasificacionCvsRecibidos" width="400" height="400"></canvas>
-                <div style="text-align:center;">
+                <div style="text-align:center;" id="cvsRecibidosDiv">
                     <h6># clasificación total de CV´s (acumulado): <strong><span id="cvsRecibidos"></span></strong></h6>
                 </div>
             </div>
@@ -509,8 +534,28 @@
                         };
                     data.push(itemdata);
                 })
-                var ctx = document.getElementById("chartEmpresasSegunClasificacion").getContext("2d");
-                var myPieChart = new Chart(ctx).Pie(data);
+
+                var helpers = Chart.helpers;
+                var canvas = document.getElementById("chartEmpresasSegunClasificacion");
+                var moduleDoughnut = new Chart(canvas.getContext('2d')).Pie(data, { legendTemplate: "<ul class=\"col-sm-4\"><% for (var i=0; i<segments.length; i++){%><li class=\"li-legend\"><span class=\"pie-legend\" style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>", tooltipTemplate: "<%if (label){%><%=label%>: <%}%><%= value %>", animation: false });
+                //
+                var legendHolder = document.createElement('div');
+                legendHolder.innerHTML = moduleDoughnut.generateLegend();
+                // Include a html legend template after the module doughnut itself
+                helpers.each(legendHolder.firstChild.childNodes, function (legendNode, index) {
+                    helpers.addEvent(legendNode, 'mouseover', function () {
+                        var activeSegment = moduleDoughnut.segments[index];
+                        activeSegment.save();
+                        activeSegment.fillColor = activeSegment.highlightColor;
+                        moduleDoughnut.showTooltip([activeSegment]);
+                        activeSegment.restore();
+                    });
+                });
+                helpers.addEvent(legendHolder.firstChild, 'mouseout', function () {
+                    moduleDoughnut.draw();
+                });
+                canvas.parentNode.parentNode.appendChild(legendHolder.firstChild);
+
             });
         }
 
@@ -529,8 +574,28 @@
                         };
                     data.push(itemdata);
                 })
-                var ctx = document.getElementById("chartOfertasSegunClasificacion").getContext("2d");
-                var myPieChart = new Chart(ctx).Pie(data);
+
+                var helpers = Chart.helpers;
+                var canvas = document.getElementById("chartOfertasSegunClasificacion");
+                var moduleDoughnut = new Chart(canvas.getContext('2d')).Pie(data, { legendTemplate: "<ul class=\"col-sm-4\"><% for (var i=0; i<segments.length; i++){%><li class=\"li-legend\"><span class=\"pie-legend\" style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>", tooltipTemplate: "<%if (label){%><%=label%>: <%}%><%= value %>", animation: false });
+                //
+                var legendHolder = document.createElement('div');
+                legendHolder.innerHTML = moduleDoughnut.generateLegend();
+                // Include a html legend template after the module doughnut itself
+                helpers.each(legendHolder.firstChild.childNodes, function (legendNode, index) {
+                    helpers.addEvent(legendNode, 'mouseover', function () {
+                        var activeSegment = moduleDoughnut.segments[index];
+                        activeSegment.save();
+                        activeSegment.fillColor = activeSegment.highlightColor;
+                        moduleDoughnut.showTooltip([activeSegment]);
+                        activeSegment.restore();
+                    });
+                });
+                helpers.addEvent(legendHolder.firstChild, 'mouseout', function () {
+                    moduleDoughnut.draw();
+                });
+                canvas.parentNode.parentNode.appendChild(legendHolder.firstChild);
+
             });
         }
 
@@ -553,12 +618,9 @@
                     data.push(itemdata);
                 })
 
-                //var ctx = document.getElementById("chartTop10CarrerasMasDemandadas").getContext("2d");
-                //var myPieChart = new Chart(ctx).Pie(data);
                 var helpers = Chart.helpers;
-
                 var canvas = document.getElementById("chartTop10CarrerasMasDemandadas");
-                var moduleDoughnut = new Chart(canvas.getContext('2d')).Pie(data, { tooltipTemplate: "<%if (label){%><%=label%>: <%}%><%= value %>", animation: false });
+                var moduleDoughnut = new Chart(canvas.getContext('2d')).Pie(data, { legendTemplate: "<ul class=\"col-sm-4\"><% for (var i=0; i<segments.length; i++){%><li class=\"li-legend\"><span class=\"pie-legend\" style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>", tooltipTemplate: "<%if (label){%><%=label%>: <%}%><%= value %>", animation: false });
                 //
                 var legendHolder = document.createElement('div');
                 legendHolder.innerHTML = moduleDoughnut.generateLegend();
@@ -576,32 +638,6 @@
                     moduleDoughnut.draw();
                 });
                 canvas.parentNode.parentNode.appendChild(legendHolder.firstChild);
-
-
-
-
-                //var myPieChart = new Chart(document.getElementById("chartTop10CarrerasMasDemandadas").getContext("2d")).Pie(data, {
-                //    tooltipTemplate: "<%if (label){%><%=label%>: <%}%><%= value %>%",
-                //    animateRotate: true
-                //});
-                //var legendHolder = document.createElement('div');
-                //legendHolder.innerHTML = myPieChart.generateLegend();
-
-                //// Include a html legend template after the module doughnut itself
-                //helpers.each(legendHolder.firstChild.childNodes, function (legendNode, index) {
-                //    helpers.addEvent(legendNode, 'mouseover', function () {
-                //        var activeSegment = myPieChart.segments[index];
-                //        activeSegment.save();
-
-                //        myPieChart.showTooltip([activeSegment]);
-                //        activeSegment.restore();
-                //    });
-                //});
-                //helpers.addEvent(legendHolder.firstChild, 'mouseout', function () {
-                //    myPieChart.draw();
-                //});
-
-                //myPieChart.chart.canvas.parentNode.parentNode.appendChild(legendHolder.firstChild);
 
             });
         }
@@ -737,7 +773,7 @@
             var url = '@Url.Action("ReporteCarrerasSinOfertasDePracticas", "UTP")' + '?ano=' + document.getElementById("carrerasSinOfertasDePracticas_Ano").value + '&mes=' + document.getElementById("carrerasSinOfertasDePracticas_Mes").value;
 
             $.get(url, function (data) {
-                debugger;
+
                 if (data.length > 0) {
                     $('#carrerasSinOfertasDePracticas').html(data);
                     $("#carrerasSinOfertasDePracticas").css("visibility", "visible");
@@ -750,67 +786,220 @@
             });
         }
         cargaEmpresasSegunClasificacionMes();
-        function cargaEmpresasSegunClasificacionMes() {
-            var url = '@Url.Action("ReporteEmpresasSegunClasificacion", "UTP")' + '?ano=' + document.getElementById("empresasSegunClasificacionPorMes_Ano").value + '&mes=' + document.getElementById("empresasSegunClasificacionPorMes_Mes").value;
-            $("#texto1").html("Cargando...");
-            $.get(url, function (datosPie) {
-                if (datosPie.length > 0) {
-                    $("#chartEmpresasSegunClasificacionMes").css("visibility", "visible");
-                    $("#msgEmpresasSegunClasificacionMes").html("");
-                    var data = [];
-                    $.each(datosPie, function (index, value) {
-                        var itemdata =
-                            {
-                                value: eval(value.PieValue),
-                                color: value.PieColor,
-                                highlight: value.PieHighlight,
-                                label: value.PieLabel
-                            };
-                        data.push(itemdata);
-                    })
-                    var ctx = document.getElementById("chartEmpresasSegunClasificacionMes").getContext("2d");
-                    var myPieChart = new Chart(ctx).Pie(data);
-                }
-                else {
-                    $("#msgEmpresasSegunClasificacionMes").html("No se encontraron resultados");
-                    $("#chartEmpresasSegunClasificacionMes").css("visibility", "hidden");
-                }
-            });
-        }
+
         cargaOfertasSegunClasificacionMes();
-        function cargaOfertasSegunClasificacionMes() {
-            var url = '@Url.Action("ReporteOfertasSegunClasificacion", "UTP")' + '?ano=' + document.getElementById("ofertasSegunClasificacionPorMes_Ano").value + '&mes=' + document.getElementById("ofertasSegunClasificacionPorMes_Mes").value;
-            $("#texto1").html("Cargando...");
-            $.get(url, function (datosPie) {
-                if (datosPie.length > 0) {
-                    $("#chartOfertasSegunClasificacionMes").css("visibility", "visible");
-                    $("#msgOfertasSegunClasificacionMes").html("");
-                    var data = [];
-                    $.each(datosPie, function (index, value) {
-                        var itemdata =
-                            {
-                                value: eval(value.PieValue),
-                                color: value.PieColor,
-                                highlight: value.PieHighlight,
-                                label: value.PieLabel
-                            };
-                        data.push(itemdata);
-                    })
-                    var ctx = document.getElementById("chartOfertasSegunClasificacionMes").getContext("2d");
-                    var myPieChart = new Chart(ctx).Pie(data);
-                }
-                else {
-                    $("#msgOfertasSegunClasificacionMes").html("No se encontraron resultados");
-                    $("#chartOfertasSegunClasificacionMes").css("visibility", "hidden");
-                }
-            });
-        }
+
         cargaClasificacionCVsRecibidos();
-        function cargaClasificacionCVsRecibidos() {
-            var url = '@Url.Action("ReporteClasificacionDeCvRecibidos", "UTP")' + '?ano=' + document.getElementById("clasificacionCvsRecibidos_Ano").value + '&mes=' + document.getElementById("clasificacionCvsRecibidos_Mes").value;
-            $("#texto1").html("Cargando...");
-            var options = { scaleShowVerticalLines: true };
-            $.get(url, function (datos) {
+
+        cargaOfertasSegunTipoTrabajoUTP();
+
+        cargaCarrerasSinOfertasDeEmpleo();
+        
+
+    });
+
+    function cargaEmpresasSegunClasificacionMes() {
+        var url = '@Url.Action("ReporteEmpresasSegunClasificacion", "UTP")' + '?ano=' + document.getElementById("empresasSegunClasificacionPorMes_Ano").value + '&mes=' + document.getElementById("empresasSegunClasificacionPorMes_Mes").value;
+        $("#texto1").html("Cargando...");
+        $.get(url, function (datosPie) {
+            if (datosPie.length > 0) {
+                $("#chartEmpresasSegunClasificacionMes").css("visibility", "visible");
+                $("#msgEmpresasSegunClasificacionMes").html("");
+                $("#legendEmpresas").remove();
+
+                var data = [];
+                $.each(datosPie, function (index, value) {
+                    var itemdata =
+                        {
+                            value: eval(value.PieValue),
+                            color: value.PieColor,
+                            highlight: value.PieHighlight,
+                            label: value.PieLabel
+                        };
+                    data.push(itemdata);
+                })
+
+                var helpers = Chart.helpers;
+                var canvas = document.getElementById("chartEmpresasSegunClasificacionMes");
+                var moduleDoughnut = new Chart(canvas.getContext('2d')).Pie(data, { legendTemplate: "<ul id=\"legendEmpresas\" class=\"col-sm-4\"><% for (var i=0; i<segments.length; i++){%><li class=\"li-legend\"><span class=\"pie-legend\" style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>", tooltipTemplate: "<%if (label){%><%=label%>: <%}%><%= value %>", animation: false });
+                //
+                var legendHolder = document.createElement('div');
+                legendHolder.innerHTML = moduleDoughnut.generateLegend();
+                // Include a html legend template after the module doughnut itself
+                helpers.each(legendHolder.firstChild.childNodes, function (legendNode, index) {
+                    helpers.addEvent(legendNode, 'mouseover', function () {
+                        var activeSegment = moduleDoughnut.segments[index];
+                        activeSegment.save();
+                        activeSegment.fillColor = activeSegment.highlightColor;
+                        moduleDoughnut.showTooltip([activeSegment]);
+                        activeSegment.restore();
+                    });
+                });
+                helpers.addEvent(legendHolder.firstChild, 'mouseout', function () {
+                    moduleDoughnut.draw();
+
+                });
+                canvas.parentNode.parentNode.appendChild(legendHolder.firstChild);
+
+            }
+            else {
+
+                $("#msgEmpresasSegunClasificacionMes").html("No se encontraron resultados");
+                $("#legendEmpresas").css("visibility", "hidden");
+                $("#chartEmpresasSegunClasificacionMes").css("visibility", "hidden");
+            }
+        });
+    }
+    function cargaOfertasSegunClasificacionMes() {
+        var url = '@Url.Action("ReporteOfertasSegunClasificacion", "UTP")' + '?ano=' + document.getElementById("ofertasSegunClasificacionPorMes_Ano").value + '&mes=' + document.getElementById("ofertasSegunClasificacionPorMes_Mes").value;
+        $("#texto1").html("Cargando...");
+        $.get(url, function (datosPie) {
+            if (datosPie.length > 0) {
+                $("#chartOfertasSegunClasificacionMes").css("visibility", "visible");
+                $("#msgOfertasSegunClasificacionMes").html("");
+                $("#legendOfertas").remove();
+
+                var data = [];
+                $.each(datosPie, function (index, value) {
+                    var itemdata =
+                        {
+                            value: eval(value.PieValue),
+                            color: value.PieColor,
+                            highlight: value.PieHighlight,
+                            label: value.PieLabel
+                        };
+                    data.push(itemdata);
+                })
+
+                var helpers = Chart.helpers;
+                var canvas = document.getElementById("chartOfertasSegunClasificacionMes");
+                var moduleDoughnut = new Chart(canvas.getContext('2d')).Pie(data, { legendTemplate: "<ul id=\"legendOfertas\" class=\"col-sm-4\"><% for (var i=0; i<segments.length; i++){%><li class=\"li-legend\"><span class=\"pie-legend\" style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>", tooltipTemplate: "<%if (label){%><%=label%>: <%}%><%= value %>", animation: false });
+                //
+                var legendHolder = document.createElement('div');
+                legendHolder.innerHTML = moduleDoughnut.generateLegend();
+                // Include a html legend template after the module doughnut itself
+                helpers.each(legendHolder.firstChild.childNodes, function (legendNode, index) {
+                    helpers.addEvent(legendNode, 'mouseover', function () {
+                        var activeSegment = moduleDoughnut.segments[index];
+                        activeSegment.save();
+                        activeSegment.fillColor = activeSegment.highlightColor;
+                        moduleDoughnut.showTooltip([activeSegment]);
+                        activeSegment.restore();
+                    });
+                });
+                helpers.addEvent(legendHolder.firstChild, 'mouseout', function () {
+                    moduleDoughnut.draw();
+
+                });
+                canvas.parentNode.parentNode.appendChild(legendHolder.firstChild);
+
+
+            }
+            else {
+                $("#msgOfertasSegunClasificacionMes").html("No se encontraron resultados");
+                $("#legendOfertas").css("visibility", "hidden");
+                $("#chartOfertasSegunClasificacionMes").css("visibility", "hidden");
+            }
+        });
+    }
+
+    function cargaOfertasSegunTipoTrabajoUTP() {
+        var url = '@Url.Action("ReporteOfertasSegunTipoTrabajoUTP", "UTP")' + '?ano=' + document.getElementById("ofertasSegunTipoTrabajoUTP_Ano").value + '&mes=' + document.getElementById("ofertasSegunTipoTrabajoUTP_Mes").value;
+        $("#texto1").html("Cargando...");
+        $.get(url, function (datosPie) {
+            if (datosPie[0].length > 0) {
+                $("#chartOfertasSegunTipoTrabajoUTP").css("visibility", "visible");
+                $("#ofertasTargetDiv").css("visibility", "visible");
+                $("#msgOfertasSegunTipoTrabajoUTP").html("");
+                $("#legendTarget").remove();
+                var data = [];
+                $.each(datosPie[0], function (index, value) {
+                    var itemdata =
+                        {
+                            value: eval(value.PieValue),
+                            color: value.PieColor,
+                            highlight: value.PieHighlight,
+                            label: value.PieLabel
+                        };
+                    data.push(itemdata);
+                })
+
+                var helpers = Chart.helpers;
+                var canvas = document.getElementById("chartOfertasSegunTipoTrabajoUTP");
+                var moduleDoughnut = new Chart(canvas.getContext('2d')).Pie(data, { legendTemplate: "<ul id=\"legendTarget\" class=\"col-sm-4\"><% for (var i=0; i<segments.length; i++){%><li class=\"li-legend\"><span class=\"pie-legend\" style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>", tooltipTemplate: "<%if (label){%><%=label%>: <%}%><%= value %>", animation: false });
+                //
+                var legendHolder = document.createElement('div');
+                legendHolder.innerHTML = moduleDoughnut.generateLegend();
+                // Include a html legend template after the module doughnut itself
+                helpers.each(legendHolder.firstChild.childNodes, function (legendNode, index) {
+                    helpers.addEvent(legendNode, 'mouseover', function () {
+                        var activeSegment = moduleDoughnut.segments[index];
+                        activeSegment.save();
+                        activeSegment.fillColor = activeSegment.highlightColor;
+                        moduleDoughnut.showTooltip([activeSegment]);
+                        activeSegment.restore();
+                    });
+                });
+                helpers.addEvent(legendHolder.firstChild, 'mouseout', function () {
+                    moduleDoughnut.draw();
+
+                });
+                canvas.parentNode.parentNode.appendChild(legendHolder.firstChild);
+                                
+                $("#ofertasTarget").html(datosPie[1]);
+
+            }
+            else {
+                $("#msgOfertasSegunTipoTrabajoUTP").html("No se encontraron resultados");
+                $("#legendTarget").css("visibility", "hidden");
+                $("#chartOfertasSegunTipoTrabajoUTP").css("visibility", "hidden");
+                $("#ofertasTargetDiv").css("visibility", "hidden");
+            }
+        });
+    }
+
+    function cargaCarrerasSinOfertasDePracticas() {
+        var url = '@Url.Action("ReporteCarrerasSinOfertasDePracticas", "UTP")' + '?ano=' + document.getElementById("carrerasSinOfertasDePracticas_Ano").value + '&mes=' + document.getElementById("carrerasSinOfertasDePracticas_Mes").value;
+
+        $.get(url, function (data) {
+
+            if (data.length > 12) {
+                $('#carrerasSinOfertasDePracticas').html(data);
+                $("#carrerasSinOfertasDePracticas").css("visibility", "visible");
+                $("#msgCarrerasSinOfertasDePracticas").html("");
+            }
+            else {
+                $("#msgCarrerasSinOfertasDePracticas").html("No se encontraron resultados");
+                $("#carrerasSinOfertasDePracticas").css("visibility", "hidden");
+            }
+        });
+    }
+
+    function cargaCarrerasSinOfertasDeEmpleo() {
+        var url = '@Url.Action("ReporteCarrerasSinOfertasDeEmpleo", "UTP")' + '?ano=' + document.getElementById("carrerasSinOfertasDeEmpleo_Ano").value + '&mes=' + document.getElementById("carrerasSinOfertasDeEmpleo_Mes").value;
+
+        $.get(url, function (data) {
+            if (data.length > 12) {
+                $('#carrerasSinOfertasDeEmpleo').html(data);
+                $("#carrerasSinOfertasDeEmpleo").css("visibility", "visible");
+                $("#msgcarrerasSinOfertasDeEmpleo").html("");
+            }
+            else {
+                $("#msgcarrerasSinOfertasDeEmpleo").html("No se encontraron resultados");
+                $("#carrerasSinOfertasDeEmpleo").css("visibility", "hidden");
+            }
+        });
+    }
+    function cargaClasificacionCVsRecibidos() {
+        var url = '@Url.Action("ReporteClasificacionDeCvRecibidos", "UTP")' + '?ano=' + document.getElementById("clasificacionCvsRecibidos_Ano").value + '&mes=' + document.getElementById("clasificacionCvsRecibidos_Mes").value;
+        $("#texto1").html("Cargando...");
+        
+        $.get(url, function (datos) {
+            if (datos[0].length > 0) {
+                $("#chartClasificacionCvsRecibidos").html(datos);
+                $("#chartClasificacionCvsRecibidos").css("visibility", "visible");
+                $("#msgClasificacionCvsRecibidos").html("");
+                
                 var data = {
                     labels: datos[0],
                     datasets: [
@@ -825,205 +1014,15 @@
                     ]
                 };
                 var ctx = document.getElementById("chartClasificacionCvsRecibidos").getContext("2d");
-                var myNewChart = new Chart(ctx).Bar(data, options);
+                var myNewChart = new Chart(ctx).Bar(data);
                 $("#cvsRecibidos").html(datos[2]);
-            });
-        }
-        cargaOfertasSegunTipoTrabajoUTP();
-        function cargaOfertasSegunTipoTrabajoUTP() {
-            var url = '@Url.Action("ReporteOfertasSegunTipoTrabajoUTP", "UTP")' + '?ano=' + document.getElementById("ofertasSegunTipoTrabajoUTP_Ano").value + '&mes=' + document.getElementById("ofertasSegunTipoTrabajoUTP_Mes").value;
-            $("#texto1").html("Cargando...");
-            $.get(url, function (datosPie) {
-                if (datosPie[0].length > 0) {
-                    $("#chartOfertasSegunTipoTrabajoUTP").css("visibility", "visible");
-                    $("#ofertasTargetDiv").css("visibility", "visible");
-                    $("#msgOfertasSegunTipoTrabajoUTP").html("");
-                    var data = [];
-                    $.each(datosPie[0], function (index, value) {
-                        var itemdata =
-                            {
-                                value: eval(value.PieValue),
-                                color: value.PieColor,
-                                highlight: value.PieHighlight,
-                                label: value.PieLabel
-                            };
-                        data.push(itemdata);
-                    })
-                    var ctx = document.getElementById("chartOfertasSegunTipoTrabajoUTP").getContext("2d");
-                    var myPieChart = new Chart(ctx).Pie(data);
-                    $("#ofertasTarget").html(datosPie[1]);
-
-                }
-                else {
-                    $("#msgOfertasSegunTipoTrabajoUTP").html("No se encontraron resultados");
-                    $("#chartOfertasSegunTipoTrabajoUTP").css("visibility", "hidden");
-                    $("#ofertasTargetDiv").css("visibility", "hidden");
-                }
-            });
-        }
-
-
-        cargaCarrerasSinOfertasDeEmpleo();
-        function cargaCarrerasSinOfertasDeEmpleo() {
-            var url = '@Url.Action("ReporteCarrerasSinOfertasDeEmpleo", "UTP")' + '?ano=' + document.getElementById("carrerasSinOfertasDeEmpleo_Ano").value + '&mes=' + document.getElementById("carrerasSinOfertasDeEmpleo_Mes").value;
-
-            $.get(url, function (data) {
-                if (data.length > 0) {
-                    $('#carrerasSinOfertasDeEmpleo').html(data);
-                    $("#carrerasSinOfertasDeEmpleo").css("visibility", "visible");
-                    $("#msgcarrerasSinOfertasDeEmpleo").html("");
-                }
-                else {
-                    $("#msgcarrerasSinOfertasDeEmpleo").html("No se encontraron resultados");
-                    $("#carrerasSinOfertasDeEmpleo").css("visibility", "hidden");
-                }
-
-            });
-        }
-
-    });
-
-    function cargaEmpresasSegunClasificacionMes() {
-        var url = '@Url.Action("ReporteEmpresasSegunClasificacion", "UTP")' + '?ano=' + document.getElementById("empresasSegunClasificacionPorMes_Ano").value + '&mes=' + document.getElementById("empresasSegunClasificacionPorMes_Mes").value;
-        $("#texto1").html("Cargando...");
-        $.get(url, function (datosPie) {
-            if (datosPie.length > 0) {
-                $("#chartEmpresasSegunClasificacionMes").css("visibility", "visible");
-                $("#msgEmpresasSegunClasificacionMes").html("");
-                var data = [];
-                $.each(datosPie, function (index, value) {
-                    var itemdata =
-                        {
-                            value: eval(value.PieValue),
-                            color: value.PieColor,
-                            highlight: value.PieHighlight,
-                            label: value.PieLabel
-                        };
-                    data.push(itemdata);
-                })
-                var ctx = document.getElementById("chartEmpresasSegunClasificacionMes").getContext("2d");
-                var myPieChart = new Chart(ctx).Pie(data);
             }
             else {
-                $("#msgEmpresasSegunClasificacionMes").html("No se encontraron resultados");
-                $("#chartEmpresasSegunClasificacionMes").css("visibility", "hidden");
+                $("#msgClasificacionCvsRecibidos").html("No se encontraron resultados");
+                $("#chartClasificacionCvsRecibidos").css("visibility", "hidden");
+                $("#cvsRecibidosDiv").css("visibility", "hidden");
             }
-        });
-    }
-    function cargaOfertasSegunClasificacionMes() {
-        var url = '@Url.Action("ReporteOfertasSegunClasificacion", "UTP")' + '?ano=' + document.getElementById("ofertasSegunClasificacionPorMes_Ano").value + '&mes=' + document.getElementById("ofertasSegunClasificacionPorMes_Mes").value;
-        $("#texto1").html("Cargando...");
-        $.get(url, function (datosPie) {
-            if (datosPie.length > 0) {
-                $("#chartOfertasSegunClasificacionMes").css("visibility", "visible");
-                $("#msgOfertasSegunClasificacionMes").html("");
-                var data = [];
-                $.each(datosPie, function (index, value) {
-                    var itemdata =
-                        {
-                            value: eval(value.PieValue),
-                            color: value.PieColor,
-                            highlight: value.PieHighlight,
-                            label: value.PieLabel
-                        };
-                    data.push(itemdata);
-                })
-                var ctx = document.getElementById("chartOfertasSegunClasificacionMes").getContext("2d");
-                var myPieChart = new Chart(ctx).Pie(data);
-            }
-            else {
-                $("#msgOfertasSegunClasificacionMes").html("No se encontraron resultados");
-                $("#chartOfertasSegunClasificacionMes").css("visibility", "hidden");
-            }
-        });
-    }
-
-    function cargaOfertasSegunTipoTrabajoUTP() {
-        var url = '@Url.Action("ReporteOfertasSegunTipoTrabajoUTP", "UTP")' + '?ano=' + document.getElementById("ofertasSegunTipoTrabajoUTP_Ano").value + '&mes=' + document.getElementById("ofertasSegunTipoTrabajoUTP_Mes").value;
-        $("#texto1").html("Cargando...");
-        $.get(url, function (datosPie) {
-            if (datosPie[0].length > 0) {
-                $("#chartOfertasSegunTipoTrabajoUTP").css("visibility", "visible");
-                $("#ofertasTargetDiv").css("visibility", "visible");
-                $("#msgOfertasSegunTipoTrabajoUTP").html("");
-                var data = [];
-                $.each(datosPie[0], function (index, value) {
-                    var itemdata =
-                        {
-                            value: eval(value.PieValue),
-                            color: value.PieColor,
-                            highlight: value.PieHighlight,
-                            label: value.PieLabel
-                        };
-                    data.push(itemdata);
-                })
-                var ctx = document.getElementById("chartOfertasSegunTipoTrabajoUTP").getContext("2d");
-                var myPieChart = new Chart(ctx).Pie(data);
-                $("#ofertasTarget").html(datosPie[1]);
-
-            }
-            else {
-                $("#msgOfertasSegunTipoTrabajoUTP").html("No se encontraron resultados");
-                $("#chartOfertasSegunTipoTrabajoUTP").css("visibility", "hidden");
-                $("#ofertasTargetDiv").css("visibility", "hidden");
-            }
-        });
-    }
-
-    function cargaCarrerasSinOfertasDePracticas() {
-        var url = '@Url.Action("ReporteCarrerasSinOfertasDePracticas", "UTP")' + '?ano=' + document.getElementById("carrerasSinOfertasDePracticas_Ano").value + '&mes=' + document.getElementById("carrerasSinOfertasDePracticas_Mes").value;
-
-        $.get(url, function (data) {
-
-            if (data.length > 0) {
-                $('#carrerasSinOfertasDePracticas').html(data);
-                $("#carrerasSinOfertasDePracticas").css("visibility", "visible");
-                $("#msgCarrerasSinOfertasDePracticas").html("");
-            }
-            else {
-                $("#msgCarrerasSinOfertasDePracticas").html("No se encontraron resultados");
-                $("#carrerasSinOfertasDePracticas").css("visibility", "hidden");
-            }
-        });
-    }
-    cargaCarrerasSinOfertasDeEmpleo();
-    function cargaCarrerasSinOfertasDeEmpleo() {
-        var url = '@Url.Action("ReporteCarrerasSinOfertasDeEmpleo", "UTP")' + '?ano=' + document.getElementById("carrerasSinOfertasDeEmpleo_Ano").value + '&mes=' + document.getElementById("carrerasSinOfertasDeEmpleo_Mes").value;
-
-        $.get(url, function (data) {
-            if (data.length > 0) {
-                $('#carrerasSinOfertasDeEmpleo').html(data);
-                $("#carrerasSinOfertasDeEmpleo").css("visibility", "visible");
-                $("#msgcarrerasSinOfertasDeEmpleo").html("");
-            }
-            else {
-                $("#msgcarrerasSinOfertasDeEmpleo").html("No se encontraron resultados");
-                $("#carrerasSinOfertasDeEmpleo").css("visibility", "hidden");
-            }
-
-        });
-    }
-    function cargaClasificacionCVsRecibidos() {
-        var url = '@Url.Action("ReporteClasificacionDeCvRecibidos", "UTP")' + '?ano=' + document.getElementById("clasificacionCvsRecibidos_Ano").value + '&mes=' + document.getElementById("clasificacionCvsRecibidos_Mes").value;
-        $("#texto1").html("Cargando...");
-        var options = { scaleShowVerticalLines: true };
-        $.get(url, function (datos) {
-            var data = {
-                labels: datos[0],
-                datasets: [
-                    {
-                        label: "Cvs Recibidos",
-                        fillColor: "rgba(220,220,220,0.5)",
-                        strokeColor: "rgba(220,220,220,0.8)",
-                        highlightFill: "rgba(220,220,220,0.75)",
-                        highlightStroke: "rgba(220,220,220,1)",
-                        data: datos[1]
-                    }
-                ]
-            };
-            var ctx = document.getElementById("chartClasificacionCvsRecibidos").getContext("2d");
-            var myNewChart = new Chart(ctx).Bar(data, options);
-            $("#cvsRecibidos").html(datos[2]);
+            
         });
     }
 

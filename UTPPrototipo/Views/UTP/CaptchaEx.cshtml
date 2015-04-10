@@ -1,0 +1,14 @@
+﻿@*form specific fields*@
+Index.cshtml
+@model UTPPrototipo.Models.ViewModels.Cuenta.TicketUTP
+           
+<div class="editor-label">
+    @Html.LabelFor(Model => Model.Captcha)
+    <a href="@Url.Action("Index")">
+        <img alt="Captcha" src="@Url.Action("CaptchaImage")" style="" />
+    </a>
+</div>
+<div class="editor-field">
+    @Html.EditorFor(Model => Model.Captcha)
+    @Html.ValidationMessageFor(Model => Model.Captcha)
+</div>

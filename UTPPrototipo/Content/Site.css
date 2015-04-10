@@ -867,3 +867,21 @@ footer #footer_right {
 #footer_right #admin_name, #footer_right #software_name{
     text-align:right;
 }
+
+
+.pie-legend {
+    position:absolute;
+    left:-5px;    
+    width:16px;
+    height:12px;    
+    border-radius: 5px;
+}
+.canvas-holder {
+    padding: 4px 0;
+    margin: 20px 0;
+    position: relative;
+}
+.li-legend{
+    text-align:left; 
+    padding-top:10px;
+}
