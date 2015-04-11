@@ -40,7 +40,20 @@
                 </div>@Html.ValidationMessageFor(m => m.Contrasena, "", new { @class = "text-danger" })
 
                 <div class="grupo-ingreso fuente-pequeña" style="text-align:center;">
-                    @Html.Captcha("Refrescar", "", 6, "No se ha ingresado el texto", true, null)
+                    @*@Html.Captcha("Refrescar", "", 6, "No se ha ingresado el texto", true, null)*@
+                    <div class="editor-label">
+                        @*@Html.LabelFor(model => model.Captcha)*@
+                        <a href="#" onclick="cargaCaptcha();">
+                            <img id="imgCaptcha" alt="Captcha" src="@Url.Action("CaptchaImage")" style="" />
+                            <br />
+                            <span style="text-align: left; margin-top: 10px;">Dar clic en imagen para generar otra</span>
+                        </a>                        
+                    </div>
+                    <br />
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.Captcha)
+                        @Html.ValidationMessageFor(model => model.Captcha)
+                    </div>
                 </div>
                 
                 @*<div class="grupo-ingreso" style="text-align:center;">
@@ -70,11 +83,14 @@
 </div>
 
 <script>
-
-
+    
+    function cargaCaptcha()
+    {
+        $("#imgCaptcha").attr("src","/cuenta/captchaimage");    
+    }
     //$(document).ready(function () {
 
-    //    $('#btnAutenticar').on('click', function () {
+   //    $('#btnAutenticar').on('click', function () {
 
     //        var url = 'Cuenta/Autenticar';
 

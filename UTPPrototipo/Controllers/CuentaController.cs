@@ -12,7 +12,8 @@ using CaptchaMvc.HtmlHelpers;
 using System.IO;
 using System.Drawing;
 using System.Drawing.Text;
-using System.Drawing.Drawing2D; 
+using System.Drawing.Drawing2D;
+using System.Text;
 
 namespace UTPPrototipo.Controllers
 {
@@ -36,85 +37,126 @@ namespace UTPPrototipo.Controllers
 
         public ActionResult CaptchaImage(string prefix, bool noisy = true)
         {
-            var rand = new Random((int)DateTime.Now.Ticks);
-            //generate new question 
-            int a = rand.Next(10, 99);
-            int b = rand.Next(0, 9);
-            var captcha = string.Format("{0} + {1} = ?", a, b);
-
+            StringBuilder captcha = new StringBuilder();
+            for (int i = 0; i < 6; i++)
+            {
+                captcha.Append(generarCaracterAzar());
+                captcha.Append(" ");
+            }
             //store answer 
-            Session["Captcha" + prefix] = a + b;
+            string sb = captcha.ToString().Replace(" ", "");
+            Session["Captcha" + prefix] = sb.ToLower();
 
             //image stream 
             FileContentResult img = null;
 
-            using (var mem = new MemoryStream())
-            using (var bmp = new Bitmap(130, 30))
-            using (var gfx = Graphics.FromImage((Image)bmp))
+            Bitmap bmp = new Bitmap(238, 90);
+            Graphics grafico = Graphics.FromImage(bmp);
+
+            Brush brush = (Brush)new SolidBrush(ColorTranslator.FromHtml("#000000"));
+            Brush brush2 = (Brush)new SolidBrush(ColorTranslator.FromHtml("#FFF"));
+
+            grafico.Clear(Color.Gray);
+
+            Pen p = new Pen(Color.White, 1);
+
+            int[] x_ini = new int[10];
+            x_ini[0] = new Random().Next(0, 100);
+            x_ini[1] = new Random(x_ini[0]).Next(0, 100);
+            x_ini[2] = new Random(x_ini[1]).Next(0, 100);
+            x_ini[3] = new Random(x_ini[2]).Next(0, 100);
+            x_ini[4] = new Random(x_ini[3]).Next(0, 100);
+            x_ini[5] = new Random(x_ini[4]).Next(0, 100);
+            x_ini[6] = new Random(x_ini[5]).Next(0, 100);
+            x_ini[7] = new Random(x_ini[6]).Next(0, 100);
+            x_ini[8] = new Random(x_ini[7]).Next(0, 100);
+            x_ini[9] = new Random(x_ini[8]).Next(0, 100);
+
+            int[] y_ini = new int[10];
+            y_ini[0] = new Random(10).Next(0, 90);
+            y_ini[1] = new Random(y_ini[0]).Next(0, 90);
+            y_ini[2] = new Random(y_ini[1]).Next(0, 90);
+            y_ini[3] = new Random(y_ini[2]).Next(0, 90);
+            y_ini[4] = new Random(y_ini[3]).Next(0, 90);
+            y_ini[5] = new Random(y_ini[4]).Next(0, 90);
+            y_ini[6] = new Random(y_ini[5]).Next(0, 90);
+            y_ini[7] = new Random(y_ini[6]).Next(0, 90);
+            y_ini[8] = new Random(y_ini[7]).Next(0, 90);
+            y_ini[9] = new Random(y_ini[8]).Next(0, 90);
+
+
+            int[] x_fin = new int[10];
+            x_fin[0] = new Random().Next(0, 100);
+            x_fin[1] = new Random(x_fin[0]).Next(150, 238);
+            x_fin[2] = new Random(x_fin[1]).Next(150, 238);
+            x_fin[3] = new Random(x_fin[2]).Next(150, 238);
+            x_fin[4] = new Random(x_fin[3]).Next(150, 238);
+            x_fin[5] = new Random(x_fin[4]).Next(150, 238);
+            x_fin[6] = new Random(x_fin[5]).Next(150, 238);
+            x_fin[7] = new Random(x_fin[6]).Next(150, 238);
+            x_fin[8] = new Random(x_fin[7]).Next(150, 238);
+            x_fin[9] = new Random(x_fin[8]).Next(150, 238);
+
+            int[] y_fin = new int[10];
+            y_fin[0] = new Random(50).Next(0, 90);
+            y_fin[1] = new Random(y_fin[0]).Next(0, 90);
+            y_fin[2] = new Random(y_fin[1]).Next(0, 90);
+            y_fin[3] = new Random(y_fin[2]).Next(0, 90);
+            y_fin[4] = new Random(y_fin[3]).Next(0, 90);
+            y_fin[5] = new Random(y_fin[4]).Next(0, 90);
+            y_fin[6] = new Random(y_fin[5]).Next(0, 90);
+            y_fin[7] = new Random(y_fin[6]).Next(0, 90);
+            y_fin[8] = new Random(y_fin[7]).Next(0, 90);
+            y_fin[9] = new Random(y_fin[8]).Next(0, 90);
+
+
+
+            grafico.DrawLine(p, new Point(x_ini[0], y_ini[0]), new Point(x_fin[0], y_fin[0]));
+            grafico.DrawLine(p, new Point(x_ini[1], y_ini[1]), new Point(x_fin[1], y_fin[1]));
+            grafico.DrawLine(p, new Point(x_ini[2], y_ini[2]), new Point(x_fin[2], y_fin[2]));
+            grafico.DrawLine(p, new Point(x_ini[3], y_ini[3]), new Point(x_fin[3], y_fin[3]));
+            grafico.DrawLine(p, new Point(x_ini[4], y_ini[4]), new Point(x_fin[4], y_fin[4]));
+
+            grafico.DrawEllipse(p, x_ini[5], y_ini[5], 20, 20);
+            grafico.DrawEllipse(p, x_fin[6], y_fin[6], 10, 10);
+            grafico.DrawEllipse(p, x_ini[7], y_ini[7], 30, 30);
+
+            StringFormat drawFormat = new StringFormat();
+            drawFormat.LineAlignment = StringAlignment.Center;
+            drawFormat.Alignment = StringAlignment.Center;
+            grafico.DrawString(captcha.ToString(), new Font("Arial", 20, FontStyle.Bold), Brushes.Black, 100, 12 * (new Random().Next(2, 6)), drawFormat);
+            //captcha = sb.ToString().Replace(" ", "");
+            using (MemoryStream ms = new MemoryStream())
             {
-                gfx.TextRenderingHint = TextRenderingHint.ClearTypeGridFit;
-                gfx.SmoothingMode = SmoothingMode.AntiAlias;
-                gfx.FillRectangle(Brushes.White, new Rectangle(0, 0, bmp.Width, bmp.Height));
-
-                //add noise 
-                if (noisy)
-                {
-                    int i, r, x, y;
-                    var pen = new Pen(Color.Yellow);
-                    for (i = 1; i < 10; i++)
-                    {
-                        pen.Color = Color.FromArgb(
-                        (rand.Next(0, 255)),
-                        (rand.Next(0, 255)),
-                        (rand.Next(0, 255)));
-
-                        r = rand.Next(0, (130 / 3));
-                        x = rand.Next(0, 130);
-                        y = rand.Next(0, 30);
-                        int gg = x - r;
-                        int ff = y - r;
-                        gfx.DrawEllipse(pen, gg, ff, r, r);
-                    }
-                }
-
-                //add question 
-                gfx.DrawString(captcha, new Font("Tahoma", 15), Brushes.Gray, 2, 3);
-
-                //render as Jpeg 
-                bmp.Save(mem, System.Drawing.Imaging.ImageFormat.Jpeg);
-                img = this.File(mem.GetBuffer(), "image/Jpeg");
+                bmp.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                img = this.File(ms.GetBuffer(), "image/Jpeg");
             }
 
             return img;
-
         }
 
-        [HttpPost]
-        public ActionResult Index(TicketUTP model)
+        private object generarCaracterAzar()
         {
-            //validate captcha 
-            if (Session["Captcha"] == null || Session["Captcha"].ToString() != model.Captcha)
-            {
-                ModelState.AddModelError("Captcha", "Wrong value of sum, please try again.");
-                //dispay error and generate a new captcha 
-                return View(model);
-            }
-            return RedirectToAction("ThankYouPage");
-        } 
-
+            Random oAzar = new Random();
+            int n = oAzar.Next(26) + 65;
+            System.Threading.Thread.Sleep(15);
+            return ((char)n);
+        }
+        
         //------
-        [HttpPost,ValidateAntiForgeryToken]
+        [HttpPost, ValidateAntiForgeryToken]
         public ActionResult Autenticar(Usuario usuario)
         {
-            if (!this.IsCaptchaValid("El texto no coincide con la imagen"))  
+            if (Session["Captcha"] == null || Session["Captcha"].ToString() != usuario.Captcha)
             {
                 TempData["UsuarioNoExitoso"] = "El texto no coincide con la imagen";
+                //ModelState.AddModelError("Captcha", "Wrong value of sum, please try again.");
                 return RedirectToAction("Index", "Home");
             }
 
             List<Usuario> lista = new List<Usuario>();
 
-            
+
             //1. Recuperar datos de Usuario
             DataSet dsResultado = ln.Autenticar_Usuario(usuario.NombreUsuario);
             //2. Si el Usuario existe en el Portal validar que está activo
@@ -124,7 +166,7 @@ namespace UTPPrototipo.Controllers
 
                 if (estadoUsuario == "USEMAC")
                 {
-                    
+
                     // 3. Si está activo Validar su Contraseña
                     string tipoUsuario = Convert.ToString(dsResultado.Tables[0].Rows[0]["TipoUsuario"]);
                     string contrasenaDecodificada = Convert.ToString(dsResultado.Tables[0].Rows[0]["Contrasena"]); //AGREGAR PROCESO DE DESEMCRIPTAMIENTO
@@ -229,7 +271,7 @@ namespace UTPPrototipo.Controllers
                     }
 
                 }
-                else 
+                else
                 {
                     //Mensaje de error de Usuario no activo
                     if (estadoUsuario == "USEMFI") TempData["UsuarioNoExitoso"] = "Usuario Deshabilitado, comuníquese con su Administrador";
@@ -263,7 +305,7 @@ namespace UTPPrototipo.Controllers
                         {
                             //Insertar en [Usuario]
                             idAlumno = lnUTPAlumnos.InsertarDatosDeAlumno(dsDatosAlumno);
-                            
+
                         }
 
                         TicketAlumno ticketAlumno = new TicketAlumno();
@@ -287,28 +329,28 @@ namespace UTPPrototipo.Controllers
                         TempData["UsuarioNoExitoso"] = "Contraseña inválida";
                     }
 
-                      
+
                 }
                 else
                 {
                     //Mensaje de error de contraseña
                     TempData["UsuarioNoExitoso"] = "Usuario o Contraseña inválida";
                 }
-                   
+
                 //ViewBag.Message = "Registrese";
                 //return RedirectToAction("Autenticar", "Cuenta");
                 //return JavaScript("OnFailure();");
 
             }
-            
 
-               
+
+
             //return PartialView("_Login", usuario);
             //TempData["UsuarioNoExitoso"] = usuario.NombreUsuario;
             //Aquí debería enviarse un correo
-            return RedirectToAction("Index","Home");
+            return RedirectToAction("Index", "Home");
 
-            
-        }        
-	}
+
+        }
+    }
 }

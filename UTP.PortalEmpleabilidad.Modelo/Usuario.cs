@@ -33,6 +33,6 @@ namespace UTP.PortalEmpleabilidad.Modelo
             EstadoUsuario = new ListaValor();
             Rol = new ListaValor();
         }
-
+        public string Captcha { get; set; }
     }
 }

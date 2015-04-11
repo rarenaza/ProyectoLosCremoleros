@@ -14,6 +14,5 @@ namespace UTPPrototipo.Models.ViewModels.Cuenta
         public string TipoUsuario { get; set; }
         public string Rol { get; set; }
 
-        public string Captcha { get; set; }
     }
 }
