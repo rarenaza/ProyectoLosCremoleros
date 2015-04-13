@@ -1165,7 +1165,7 @@ namespace UTP.PortalEmpleabilidad.Datos
             return dsResultado;
         }
 
-        public DataTable Reporte_EmpresasSegunClasificacion(int? ano, int? mes)
+        public DataTable Reporte_EmpresasSegunClasificacion()
         {
             DataTable dtResultado = new DataTable();
             using (SqlConnection conexion = new SqlConnection(cadenaConexion))
@@ -1173,6 +1173,42 @@ namespace UTP.PortalEmpleabilidad.Datos
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "Reporte_Empresas_Segun_Clasificacion";
+                cmd.Connection = conexion;
+                conexion.Open();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                dtResultado = new DataTable();
+                da.Fill(dtResultado);
+                conexion.Close();
+            }
+            return dtResultado;
+        }
+
+        public DataTable Reporte_OfertasSegunClasificacion()
+        {
+            DataTable dtResultado = new DataTable();
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Reporte_Ofertas_Segun_Clasificacion";
+                cmd.Connection = conexion;
+                conexion.Open();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                dtResultado = new DataTable();
+                da.Fill(dtResultado);
+                conexion.Close();
+            }
+            return dtResultado;
+        }
+
+        public DataTable Reporte_EmpresasSegunClasificacionMensual(int? ano, int? mes)
+        {
+            DataTable dtResultado = new DataTable();
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Reporte_Empresas_Segun_Clasificacion_Mensual";
                 cmd.Parameters.Add(new SqlParameter("@Ano", ano));
                 cmd.Parameters.Add(new SqlParameter("@Mes", mes));
                 cmd.Connection = conexion;
@@ -1185,14 +1221,14 @@ namespace UTP.PortalEmpleabilidad.Datos
             return dtResultado;
         }
 
-        public DataTable Reporte_OfertasSegunClasificacion(int? ano, int? mes)
+        public DataTable Reporte_OfertasSegunClasificacionMensual(int? ano, int? mes)
         {
             DataTable dtResultado = new DataTable();
             using (SqlConnection conexion = new SqlConnection(cadenaConexion))
             {
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "Reporte_Ofertas_Segun_Clasificacion";
+                cmd.CommandText = "Reporte_Ofertas_Segun_Clasificacion_Mensual";
                 cmd.Parameters.Add(new SqlParameter("@Ano", ano));
                 cmd.Parameters.Add(new SqlParameter("@Mes", mes));
                 cmd.Connection = conexion;

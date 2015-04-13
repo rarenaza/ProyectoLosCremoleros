@@ -1274,9 +1274,24 @@ namespace UTPPrototipo.Controllers
             return Json(datos, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult ReporteEmpresasSegunClasificacion(int? ano, int? mes)
+        public ActionResult ReporteEmpresasSegunClasificacion()
         {
-            DataTable dsEmpresasSegunClasificacion = lnUtp.Reporte_EmpresasSegunClasificacion(ano, mes);
+            DataTable dsEmpresasSegunClasificacion = lnUtp.Reporte_EmpresasSegunClasificacion();
+            List<DatosPie> datosPie = new List<DatosPie>();
+            for (int i = 0; i <= dsEmpresasSegunClasificacion.Rows.Count - 1; i++)
+            {
+                DatosPie item = new DatosPie();
+                item.PieValue = dsEmpresasSegunClasificacion.Rows[i]["Empresas"].ToString();
+                item.PieLabel = dsEmpresasSegunClasificacion.Rows[i]["Clasificacion"].ToString();
+                item.PieColor = Constantes.COLORES_PIE[i].Color;
+                item.PieHighlight = Constantes.COLORES_PIE[i].Highlight;
+                datosPie.Add(item);
+            }
+            return Json(datosPie, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult ReporteEmpresasSegunClasificacionMensual(int? ano, int? mes)
+        {
+            DataTable dsEmpresasSegunClasificacion = lnUtp.Reporte_EmpresasSegunClasificacionMensual(ano, mes);
             List<DatosPie> datosPie = new List<DatosPie>();
             for (int i = 0; i <= dsEmpresasSegunClasificacion.Rows.Count - 1; i++)
             {
@@ -1290,9 +1305,25 @@ namespace UTPPrototipo.Controllers
             return Json(datosPie, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult ReporteOfertasSegunClasificacion(int? ano, int? mes)
+        public ActionResult ReporteOfertasSegunClasificacion()
         {
-            DataTable dsOfertasSegunClasificacion = lnUtp.Reporte_OfertasSegunClasificacion(ano, mes);
+            DataTable dsOfertasSegunClasificacion = lnUtp.Reporte_OfertasSegunClasificacion();
+            List<DatosPie> datosPie = new List<DatosPie>();
+            for (int i = 0; i <= dsOfertasSegunClasificacion.Rows.Count - 1; i++)
+            {
+                DatosPie item = new DatosPie();
+                item.PieValue = dsOfertasSegunClasificacion.Rows[i]["Ofertas"].ToString();
+                item.PieLabel = dsOfertasSegunClasificacion.Rows[i]["Clasificacion"].ToString();
+                item.PieColor = Constantes.COLORES_PIE[i].Color;
+                item.PieHighlight = Constantes.COLORES_PIE[i].Highlight;
+                datosPie.Add(item);
+            }
+            return Json(datosPie, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult ReporteOfertasSegunClasificacionMensual(int? ano, int? mes)
+        {
+            DataTable dsOfertasSegunClasificacion = lnUtp.Reporte_OfertasSegunClasificacionMensual(ano, mes);
             List<DatosPie> datosPie = new List<DatosPie>();
             for (int i = 0; i <= dsOfertasSegunClasificacion.Rows.Count - 1; i++)
             {
