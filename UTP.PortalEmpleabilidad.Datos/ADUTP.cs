@@ -440,6 +440,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.Parameters.Add(new SqlParameter("@EncuestaNroPostulantes", oferta.NroPostulantes));
                 cmd.Parameters.Add(new SqlParameter("@EncuestaContratadosUTP", oferta.ContratadosUTP));
                 cmd.Parameters.Add(new SqlParameter("@EncuestaContratadosOtros", oferta.ContratadosOtros));
+                cmd.Parameters.Add(new SqlParameter("@TipoTrabajoUTP", oferta.TipoTrabajoUTP));
 
                 cmd.Connection = conexion;
 

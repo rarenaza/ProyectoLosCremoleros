@@ -161,6 +161,6 @@ namespace UTP.PortalEmpleabilidad.Modelo
            OfertaFases = new List<OfertaFase>();
         }
 
-       
+       public string TipoTrabajoUTP { get; set;}
     }
 }

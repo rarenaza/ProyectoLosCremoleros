@@ -143,6 +143,17 @@
         </div>
     </div>
     
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="input-group">
+                <span class="input-group-addon" style="width:100px;">
+                    Tipo Trabajo<br />UTP
+                </span>
+                @Html.DropDownListFor(m => m.TipoTrabajoUTP, null, "- Seleccione -", htmlAttributes: new { @class = "form-control" })
+                @*@Html.TextBoxFor(m => m.TipoTrabajoUTP, "", new { @class = "form-control" })*@
+            </div>
+        </div>
+    </div>
 
     <br />
     <div class="row">

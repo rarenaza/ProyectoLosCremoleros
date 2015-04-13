@@ -567,6 +567,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 oferta.NroPostulantes = Convert.ToInt32(dsResultado.Tables[0].Rows[0]["EncuestaNroPostulantes"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[0]["EncuestaNroPostulantes"]);
                 oferta.ContratadosUTP = Convert.ToInt32(dsResultado.Tables[0].Rows[0]["EncuestaContratadosUTP"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[0]["EncuestaContratadosUTP"]);
                 oferta.ContratadosOtros = Convert.ToString(dsResultado.Tables[0].Rows[0]["EncuestaContratadosOtros"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[0]["EncuestaContratadosOtros"]);
+                oferta.TipoTrabajoUTP = Convert.ToString(dsResultado.Tables[0].Rows[0]["TipoTrabajoUTP"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[0]["TipoTrabajoUTP"]);
             }
             return oferta;
         }

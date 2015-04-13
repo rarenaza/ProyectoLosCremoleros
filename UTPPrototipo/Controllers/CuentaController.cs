@@ -147,7 +147,7 @@ namespace UTPPrototipo.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult Autenticar(Usuario usuario)
         {
-            if (Session["Captcha"] == null || Session["Captcha"].ToString() != usuario.Captcha)
+            if (Session["Captcha"] == null || Session["Captcha"].ToString() != usuario.Captcha.ToLower())
             {
                 TempData["UsuarioNoExitoso"] = "El texto no coincide con la imagen";
                 //ModelState.AddModelError("Captcha", "Wrong value of sum, please try again.");
