@@ -590,16 +590,28 @@ namespace UTP.PortalEmpleabilidad.Logica
             return adUtp.Reporte_EmpresasActivas();
         }
 
-        public DataTable Reporte_EmpresasSegunClasificacion(int? ano, int? mes)
+        public DataTable Reporte_EmpresasSegunClasificacion()
         {
 
-            return adUtp.Reporte_EmpresasSegunClasificacion(ano, mes);
+            return adUtp.Reporte_EmpresasSegunClasificacion();
         }
 
-        public DataTable Reporte_OfertasSegunClasificacion(int? ano, int? mes)
+        public DataTable Reporte_OfertasSegunClasificacion()
         {
 
-            return adUtp.Reporte_OfertasSegunClasificacion(ano, mes);
+            return adUtp.Reporte_OfertasSegunClasificacion();
+        }
+
+        public DataTable Reporte_EmpresasSegunClasificacionMensual(int? ano, int? mes)
+        {
+
+            return adUtp.Reporte_EmpresasSegunClasificacionMensual(ano, mes);
+        }
+
+        public DataTable Reporte_OfertasSegunClasificacionMensual(int? ano, int? mes)
+        {
+
+            return adUtp.Reporte_OfertasSegunClasificacionMensual(ano, mes);
         }
         public DataSet Reporte_OfertasSegunTipoTrabajoUTP(int? ano, int? mes)
         {

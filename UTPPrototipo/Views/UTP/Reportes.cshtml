@@ -599,6 +599,7 @@
             });
         }
 
+
         cargaTop10Carreras();
         function cargaTop10Carreras() {
 
@@ -799,7 +800,7 @@
     });
 
     function cargaEmpresasSegunClasificacionMes() {
-        var url = '@Url.Action("ReporteEmpresasSegunClasificacion", "UTP")' + '?ano=' + document.getElementById("empresasSegunClasificacionPorMes_Ano").value + '&mes=' + document.getElementById("empresasSegunClasificacionPorMes_Mes").value;
+        var url = '@Url.Action("ReporteEmpresasSegunClasificacionMensual", "UTP")' + '?ano=' + document.getElementById("empresasSegunClasificacionPorMes_Ano").value + '&mes=' + document.getElementById("empresasSegunClasificacionPorMes_Mes").value;
         $("#texto1").html("Cargando...");
         $.get(url, function (datosPie) {
             if (datosPie.length > 0) {
@@ -851,7 +852,7 @@
         });
     }
     function cargaOfertasSegunClasificacionMes() {
-        var url = '@Url.Action("ReporteOfertasSegunClasificacion", "UTP")' + '?ano=' + document.getElementById("ofertasSegunClasificacionPorMes_Ano").value + '&mes=' + document.getElementById("ofertasSegunClasificacionPorMes_Mes").value;
+        var url = '@Url.Action("ReporteOfertasSegunClasificacionMensual", "UTP")' + '?ano=' + document.getElementById("ofertasSegunClasificacionPorMes_Ano").value + '&mes=' + document.getElementById("ofertasSegunClasificacionPorMes_Mes").value;
         $("#texto1").html("Cargando...");
         $.get(url, function (datosPie) {
             if (datosPie.length > 0) {
