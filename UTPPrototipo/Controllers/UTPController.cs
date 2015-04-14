@@ -166,7 +166,7 @@ namespace UTPPrototipo.Controllers
             foreach (ListaValor entidad in utp.ListaEstado)
             {
                 SelectListItem item = new SelectListItem();
-                item.Text = entidad.Valor.ToUpper();
+                item.Text = entidad.Valor;
                 item.Value = entidad.IdListaValor.ToString();
                 listItemsEstado.Add(item);
             }
@@ -176,7 +176,7 @@ namespace UTPPrototipo.Controllers
             foreach (ListaValor entidad in utp.Listasector)
             {
                 SelectListItem item = new SelectListItem();
-                item.Text = entidad.Valor.ToUpper();
+                item.Text = entidad.Valor;
                 item.Value = entidad.IdListaValor.ToString();
                 listItemSector.Add(item);
             }
