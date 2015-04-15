@@ -71,8 +71,8 @@
                     <td class="celda-nombre">
                         Recibir CVs hasta el
                     </td>
-                    <td class="celda-datos">
-                        @Model.FechaFinRecepcionCV
+                    <td class="celda-datos">                        
+                        @Html.DisplayFor(model => model.FechaFinRecepcionCV)                        
                     </td>
                 </tr>
                 <tr>
@@ -298,7 +298,7 @@
 <hr />
     <div class="row">
         <div class="col-sm-12">
-            <h5>Estudios Requeridos</h5>
+            <h5>Otros estudios requeridos</h5>
 
             <div class="row grilla1-cabecera color-paleta2">
                 <div class="col-sm-3">
@@ -440,7 +440,7 @@
     <hr />
     <div class="row">
         <div class="col-sm-12">
-            <h5>Otros Conocimientos Requeridos</h5>
+            <h5>Información adicional requerida</h5>
 
             <div class="row grilla1-cabecera color-paleta2">
                 <div class="col-sm-4">
