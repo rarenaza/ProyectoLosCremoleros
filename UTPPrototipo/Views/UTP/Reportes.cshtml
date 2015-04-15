@@ -16,7 +16,13 @@
         <div class="col-sm-6">
             <div class="panel panel-default" style="text-align:center;">
                 <h5>Alumnos activos (mensual)</h5>
-                <canvas id="chartAlumnosActivos" width="480" height="400"></canvas>
+                <div class="row">
+                    <div class="col-sm-9">
+                        <canvas id="chartAlumnosActivos" width="380" height="300"></canvas>
+                    </div>
+                    <div class="col-sm-3" id="idLengedAlumnosActivos">
+                    </div>
+                </div>
                 <div style="text-align:center;">
                     <h6># de alumnos activos (acumulado): <strong><span id="alumnosActivos"></span></strong></h6>
                     <h6># de alumnos con CV completo (acumulado): <strong><span id="alumnosCVCompleto"></span></strong></h6>
@@ -27,7 +33,13 @@
         <div class="col-sm-6">
             <div class="panel panel-default" style="text-align:center;">
                 <h5>Empresas activas (mensual)</h5>
-                <canvas id="chartEmpresasActivas" width="400" height="400"></canvas>
+                <div class="row">
+                    <div class="col-sm-9">
+                        <canvas id="chartEmpresasActivas" width="300" height="300"></canvas>
+                    </div>
+                    <div class="col-sm-3" id="idLengedEmpresasActivas">
+                    </div>
+                </div>
                 <div style="text-align:center;">
                     <h6># de empresas activas (acumulado): <strong><span id="empresasActivas"></span></strong></h6>
                     <h6># de ofertas publicadas (acumulado): <strong><span id="ofertasPublicadas"></span></strong></h6>
@@ -226,7 +238,7 @@
                 <div class="row">
                     <div class="col-sm-8">
                         <canvas id="chartOfertasSegunTipoTrabajoUTP" width="300" height="300"></canvas>
-                        
+
                     </div>
                 </div>
                 <div style="text-align:center;" id="ofertasTargetDiv">
@@ -428,7 +440,13 @@
         <div class="col-sm-12">
             <div class="panel panel-default" style="text-align:center;">
                 <h5>Contrataciones (mensual)</h5>
-                <canvas id="chartContrataciones" width="880" height="400"></canvas>
+                <div class="row">
+                    <div class="col-sm-9">
+                        <canvas id="chartContrataciones" width="780" height="400"></canvas>
+                    </div>
+                    <div class="col-sm-3" id="idLengedContrataciones">
+                    </div>
+                </div>
                 <div style="text-align:center;">
                     <h6># de contratos (acumulados): <strong><span id="contratosAcumulados"></span></strong></h6>
                     <h6># de contratos target: <strong><span id="contratosTarget"></span></strong></h6>
@@ -464,7 +482,7 @@
                     datasets: [
                         {
                             label: "Alumnos Activos",
-                            fillColor: "rgba(220,220,220,0.5)",
+                            fillColor: "rgba(220,220,220,1)",
                             strokeColor: "rgba(220,220,220,0.8)",
                             highlightFill: "rgba(220,220,220,0.75)",
                             highlightStroke: "rgba(220,220,220,1)",
@@ -472,7 +490,7 @@
                         },
                         {
                             label: "Alumnos con CV completo",
-                            fillColor: "rgba(151,187,205,0.5)",
+                            fillColor: "rgba(151,187,205,1)",
                             strokeColor: "rgba(151,187,205,0.8)",
                             highlightFill: "rgba(151,187,205,0.75)",
                             highlightStroke: "rgba(151,187,205,1)",
@@ -480,8 +498,10 @@
                         }
                     ]
                 };
-                var ctx = document.getElementById("chartAlumnosActivos").getContext("2d");
-                var myNewChart = new Chart(ctx).Bar(data);
+
+                var myLineChart = new Chart(document.getElementById("chartAlumnosActivos").getContext("2d")).Bar(data, { legendTemplate: "<ul class=\"bar-legend\"><% for (var i=0; i<datasets.length; i++){%><li class=\"li-legend\"><span class=\"pie-legend\" style=\"background-color:<%=datasets[i].fillColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>" });
+                document.getElementById("idLengedAlumnosActivos").innerHTML = myLineChart.generateLegend();
+
                 $("#alumnosActivos").html(datos[3]);
                 $("#alumnosCVCompleto").html(datos[4]);
             });
@@ -496,7 +516,7 @@
                     datasets: [
                         {
                             label: "Empresas activas",
-                            fillColor: "rgba(220,220,220,0.5)",
+                            fillColor: "rgba(220,220,220,1)",
                             strokeColor: "rgba(220,220,220,0.8)",
                             highlightFill: "rgba(220,220,220,0.75)",
                             highlightStroke: "rgba(220,220,220,1)",
@@ -504,7 +524,7 @@
                         },
                         {
                             label: "Ofertas publicadas",
-                            fillColor: "rgba(151,187,205,0.5)",
+                            fillColor: "rgba(151,187,205,1)",
                             strokeColor: "rgba(151,187,205,0.8)",
                             highlightFill: "rgba(151,187,205,0.75)",
                             highlightStroke: "rgba(151,187,205,1)",
@@ -512,8 +532,9 @@
                         }
                     ]
                 };
-                var ctx = document.getElementById("chartEmpresasActivas").getContext("2d");
-                var myNewChart = new Chart(ctx).Bar(data);
+
+                var myLineChart = new Chart(document.getElementById("chartEmpresasActivas").getContext("2d")).Bar(data, { legendTemplate: "<ul class=\"bar-legend\"><% for (var i=0; i<datasets.length; i++){%><li class=\"li-legend\"><span class=\"pie-legend\" style=\"background-color:<%=datasets[i].fillColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>" });
+                document.getElementById("idLengedEmpresasActivas").innerHTML = myLineChart.generateLegend();
                 $("#empresasActivas").html(datos[3]);
                 $("#ofertasPublicadas").html(datos[4]);
             });
@@ -722,8 +743,8 @@
                     labels: datos[0],
                     datasets: [
                         {
-                            label: "Contrataciones Total",
-                            fillColor: "rgba(220,220,220,0.5)",
+                            label: "Total Contrataciones",
+                            fillColor: "rgba(220,220,220,1)",
                             strokeColor: "rgba(220,220,220,0.8)",
                             highlightFill: "rgba(220,220,220,0.75)",
                             highlightStroke: "rgba(220,220,220,1)",
@@ -731,7 +752,7 @@
                         },
                         {
                             label: "Contrataciones Target",
-                            fillColor: "rgba(151,187,205,0.5)",
+                            fillColor: "rgba(151,187,205,1)",
                             strokeColor: "rgba(151,187,205,0.8)",
                             highlightFill: "rgba(151,187,205,0.75)",
                             highlightStroke: "rgba(151,187,205,1)",
@@ -739,8 +760,9 @@
                         }
                     ]
                 };
-                var ctx = document.getElementById("chartContrataciones").getContext("2d");
-                var myNewChart = new Chart(ctx).Bar(data);
+
+                var myLineChart = new Chart(document.getElementById("chartContrataciones").getContext("2d")).Bar(data, { legendTemplate: "<ul class=\"bar-legend\"><% for (var i=0; i<datasets.length; i++){%><li class=\"li-legend\"><span class=\"pie-legend\" style=\"background-color:<%=datasets[i].fillColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>" });
+                document.getElementById("idLengedContrataciones").innerHTML = myLineChart.generateLegend();
                 $("#contratosAcumulados").html(datos[3]);
                 $("#contratosTarget").html(datos[4]);
                 $("#ratioEntrevistados").html(datos[5]);
@@ -795,7 +817,7 @@
         cargaOfertasSegunTipoTrabajoUTP();
 
         cargaCarrerasSinOfertasDeEmpleo();
-        
+
 
     });
 
@@ -946,7 +968,7 @@
 
                 });
                 canvas.parentNode.parentNode.appendChild(legendHolder.firstChild);
-                                
+
                 $("#ofertasTarget").html(datosPie[1]);
 
             }
@@ -994,13 +1016,13 @@
     function cargaClasificacionCVsRecibidos() {
         var url = '@Url.Action("ReporteClasificacionDeCvRecibidos", "UTP")' + '?ano=' + document.getElementById("clasificacionCvsRecibidos_Ano").value + '&mes=' + document.getElementById("clasificacionCvsRecibidos_Mes").value;
         $("#texto1").html("Cargando...");
-        
+
         $.get(url, function (datos) {
             if (datos[0].length > 0) {
                 $("#chartClasificacionCvsRecibidos").html(datos);
                 $("#chartClasificacionCvsRecibidos").css("visibility", "visible");
                 $("#msgClasificacionCvsRecibidos").html("");
-                
+
                 var data = {
                     labels: datos[0],
                     datasets: [
@@ -1023,7 +1045,7 @@
                 $("#chartClasificacionCvsRecibidos").css("visibility", "hidden");
                 $("#cvsRecibidosDiv").css("visibility", "hidden");
             }
-            
+
         });
     }
 
