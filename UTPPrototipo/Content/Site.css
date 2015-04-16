@@ -885,3 +885,6 @@ footer #footer_right {
     text-align:left; 
     padding-top:10px;
 }
+.bar-legend {
+    margin-left:-38px;
+}

@@ -25,7 +25,8 @@
 
 
     <div class="row">
-        <div class="col-md-2 fuente-pequeña" style="border-right:solid;border-color:rgb(220, 220, 220);border-width:1px;">
+        <div class="col-md-3 fuente-pequeña" style="border-right:solid;border-color:rgb(220, 220, 220);border-width:1px;">
+            @Html.Action("VistaCalendario", "Calendario")
             <h5>Ofertas que pueden interesarte</h5>
             @Html.Partial("_AlumnoUltimasOfertas", Model.ListaOfertas)
 

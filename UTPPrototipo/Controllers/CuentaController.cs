@@ -14,6 +14,7 @@ using System.Drawing;
 using System.Drawing.Text;
 using System.Drawing.Drawing2D;
 using System.Text;
+using Microsoft.Exchange.WebServices.Data;
 
 namespace UTPPrototipo.Controllers
 {
@@ -142,7 +143,17 @@ namespace UTPPrototipo.Controllers
             System.Threading.Thread.Sleep(15);
             return ((char)n);
         }
-        
+
+        static bool RedirectionUrlValidationCallback(String redirectionUrl)
+        {
+            bool redirectionValidated = false;
+            if (redirectionUrl.Equals(
+                "https://autodiscover-s.outlook.com/autodiscover/autodiscover.xml"))
+                redirectionValidated = true;
+
+            return redirectionValidated;
+        }
+
         //------
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult Autenticar(Usuario usuario)
@@ -153,6 +164,13 @@ namespace UTPPrototipo.Controllers
                 //ModelState.AddModelError("Captcha", "Wrong value of sum, please try again.");
                 return RedirectToAction("Index", "Home");
             }
+
+            ExchangeService service = new ExchangeService(ExchangeVersion.Exchange2010_SP1);
+            service.Credentials = new WebCredentials(usuario.NombreUsuario, usuario.Contrasena);
+            service.AutodiscoverUrl(usuario.NombreUsuario, RedirectionUrlValidationCallback);
+            service.UseDefaultCredentials = false;
+
+            Session["Office365"] = service;
 
             List<Usuario> lista = new List<Usuario>();
 

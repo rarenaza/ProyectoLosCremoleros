@@ -1,0 +1,172 @@
+﻿@using UTPPrototipo.Common
+@model UTP.PortalEmpleabilidad.Modelo.Calendario
+@using UTP.PortalEmpleabilidad.Modelo
+@using UTPPrototipo.Utiles
+
+<div class="panel panel-info">
+    <div class="panel-heading" role="tab" id="headingCalendario">
+        <div class="row">
+            <div class="col-xs-6">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseCalendario" aria-expanded="true" aria-controls="collapseCalendario">
+                    <strong>Calendario</strong>
+                </a>
+            </div>
+            <div class="col-xs-6" style="text-align:right; font-weight:bold">
+                <a target="_blank" href="https://outlook.office365.com/owa/#path=/calendar">Office 365</a>
+            </div>
+        </div>
+    </div>
+    <div id="collapseCalendario" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingCalendario">
+        <div class="panel-body" style="padding: 10px 5px 10px 5px;">
+            @if (Model.ListaItemCalendario.Count > 0 && Model.ListaItemCalendario != null)
+            {
+                var i = 0;
+                string fechaActual = "";
+                foreach (var item in Model.ListaItemCalendario)
+                {
+                    if (fechaActual != item.FechaHoraDesde.ToString().Substring(0, 10))
+                    {
+                        fechaActual = item.FechaHoraDesde.ToString().Substring(0, 10);
+
+
+                        <div style="background-color:rgb(240, 240, 240);padding: 0px 5px 0px 5px;">
+                            <strong style="font-size:smaller">@fechaActual</strong><br />
+                        </div>
+
+                    }
+                    
+                            <a data-toggle="collapse" data-parent="#datos-mas-experiencia_@(i)" href="#collapseMasExperiencia_@(i)" aria-expanded="true" aria-controls="collapseMasExperiencia" class="fuente-seccion">
+                                <hr style="margin: 4px 0px 4px 0px;" />
+                                <div style="padding: 0px 5px 0px 5px;">
+                                    <strong style="font-size:smaller">
+                                        @if (item.FechaHoraDesde.ToShortTimeString().Equals("12:00 a.m.") && item.FechaHoraHasta.ToShortTimeString().Equals("12:00 a.m."))
+                                        {
+                                            <span>&nbsp;Todo el dia</span>
+                                        }
+                                        else
+                                        {
+                                            <span>&nbsp;@item.FechaHoraDesde.ToShortTimeString() - @item.FechaHoraHasta.ToShortTimeString()</span>
+                                        }
+                                    </strong><br />
+                                    @if (item.Asunto.Length > 35)
+                                    {
+                                        <span>&nbsp;@item.Asunto.Substring(0, 35) ...</span>
+                                    }
+                                    else
+                                    {<span>&nbsp;@item.Asunto</span>}
+                                </div>
+                            </a>                       
+                    
+                            <div class="panel-group" id="datos-mas-experiencia_@(i)" role="tablist" aria-multiselectable="true">
+                                <div class="panel " style="border-width:0px;">
+                                    <div id="collapseMasExperiencia_@(i)" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingMasExperiencia_@(i)">
+                                        <div class="panel-body" style="border-width:0px">
+
+                                           Lugar: <strong> @item.Ubicacion</strong>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                    </div>
+
+                    @*<div class="col-sm-12" style="text-align:right;">
+                            <a data-toggle="collapse" data-parent="#datos-mas-experiencia" href="#collapseMasExperiencia_@(i)" aria-expanded="true" aria-controls="collapseMasExperiencia" class="fuente-seccion">
+
+                                    <hr style="margin: 4px 0px 4px 0px;" />
+                                    <div style="padding: 0px 5px 0px 5px;">
+                                        <strong style="font-size:smaller">
+                                            @if (item.FechaHoraDesde.ToShortTimeString().Equals("12:00 a.m.") && item.FechaHoraHasta.ToShortTimeString().Equals("12:00 a.m."))
+                                            {
+                                                <span>&nbsp;Todo el dia</span>
+                                            }
+                                            else
+                                            {
+                                                <span>&nbsp;@item.FechaHoraDesde.ToShortTimeString() - @item.FechaHoraHasta.ToShortTimeString()</span>
+                                            }
+                                        </strong><br />
+                                        @if (item.Asunto.Length > 35)
+                                        {
+                                            <span>&nbsp;@item.Asunto.Substring(0, 35) ...</span>
+                                        }
+                                        else
+                                        {<span>&nbsp;@item.Asunto</span>}
+                                    </div>
+
+                            </a>
+                        </div>
+
+                        <div class="panel-group" id="datos-mas-experiencia" role="tablist" aria-multiselectable="true">
+                            <div class="panel " style="border-width:0px; width:259px; margin-left:15px">
+                                <div id="collapseMasExperiencia_@(i)" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingMasExperiencia">
+                                    <div class="panel-body" style="border-width:0px;">
+
+                                        @item.Ubicacion
+                                    </div>
+                                </div>
+                            </div>
+                        </div>*@
+                                    i++;
+
+                }
+            }
+            @*<div id="collapseCalendario" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingCalendario">
+                    <div class="panel-body" style="padding: 10px 5px 10px 5px;">
+                        @if (Model.ListaItemCalendario.Count > 0 && Model.ListaItemCalendario != null)
+                        {
+                            var i = 0;
+                            var j = 0;
+                            string fechaActual = "";
+                            foreach (var item in Model.ListaItemCalendario)
+                            {
+                                <div class="panel panel-info">
+                                    @if (fechaActual != item.FechaHoraDesde.ToString().Substring(0, 10))
+                                    {
+                                        <div class="panel-heading" role="tab" id="headingCitas_@(i)">
+                                            <div class="row">
+                                                <div class="col-xs-12">
+                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseCitas_@(i)" aria-expanded="true" aria-controls="collapseCitas_@(i)">
+
+                                                        @{fechaActual = item.FechaHoraDesde.ToString().Substring(0, 10);}
+                                                        <div style="background-color:rgb(240, 240, 240);padding: 0px 5px 0px 5px;">
+                                                            <strong style="font-size:smaller">@fechaActual</strong><br />
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                                        i++;
+                                    }
+                                    else { j--; }
+
+                                    <div id="collapseCitas_@(j)" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingCitas_@(j)">
+                                        <div class="panel-body" style="padding: 10px 5px 10px 5px;">
+                                            <hr style="margin: 4px 0px 4px 0px;" />
+                                            <div style="padding: 0px 5px 0px 5px;">
+                                                <strong style="font-size:smaller">
+                                                    @if (item.FechaHoraDesde.ToShortTimeString().Equals("12:00 a.m.") && item.FechaHoraHasta.ToShortTimeString().Equals("12:00 a.m."))
+                                                    {
+                                                        <span>&nbsp;Todo el dia</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span>&nbsp;@item.FechaHoraDesde.ToShortTimeString() - @item.FechaHoraHasta.ToShortTimeString()</span>
+                                                    }
+                                                </strong><br />
+                                                @if (item.Asunto.Length > 35)
+                                                {
+                                                    <span>&nbsp;@item.Asunto.Substring(0, 35) ...</span>
+                                                }
+                                                else
+                                                {<span>&nbsp;@item.Asunto</span>}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>j++;
+                            }
+                        }
+                    </div>
+                </div>*@
+        </div>
+    </div>
+</div>

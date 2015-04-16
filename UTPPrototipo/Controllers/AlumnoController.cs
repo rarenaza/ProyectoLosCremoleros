@@ -16,6 +16,8 @@ using System.Web.Security;
 using UTP.PortalEmpleabilidad.Modelo.Vistas.Alumno;
 using UTPPrototipo.Utiles;
 
+
+
 namespace UTPPrototipo.Controllers
 {
     [VerificarSesion, LogPortal]
@@ -41,8 +43,7 @@ namespace UTPPrototipo.Controllers
 
         public ActionResult Index()
         {
-
-
+            
 
             TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
             VistaPanelAlumno panel = lnAlumno.ObtenerPanel(ticket.CodAlumnoUTP);
@@ -50,6 +51,8 @@ namespace UTPPrototipo.Controllers
 
             return View(panel);
         }
+
+        
         //public ActionResult Postulacion() 
         //{
         //    VistaPanelAlumnoPostulaciones panel = lnAlumno.ObtenerPanelPostulaciones(codigoAlumno);
