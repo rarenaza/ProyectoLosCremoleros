@@ -54,12 +54,14 @@
     <Compile Include="AlumnoInformacionAdicional.cs" />
     <Compile Include="AlumnoPostulaciones.cs" />
     <Compile Include="AlumnoUTP.cs" />
+    <Compile Include="Calendario.cs" />
     <Compile Include="DatosPie.cs" />
     <Compile Include="ConvenioListaAlumnosNombreyCodigo.cs" />
     <Compile Include="Convenio.cs" />
     <Compile Include="Error.cs" />
     <Compile Include="EventoAsistente.cs" />
     <Compile Include="Hunting.cs" />
+    <Compile Include="ItemCalendario.cs" />
     <Compile Include="OfertaEncuesta.cs" />
     <Compile Include="OfertaUTP.cs" />
     <Compile Include="Paginacion.cs" />
