@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Exchange.WebServices.Data;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
@@ -73,6 +74,8 @@ namespace UTPPrototipo.Controllers
         {
             string usuario;
             Evento evento = new Evento();
+
+
             ViewBag.Pantalla = Pantalla;
 
             if (Helper.Desencriptar(Pantalla) == "Alumno")
@@ -81,7 +84,9 @@ namespace UTPPrototipo.Controllers
                 usuario = ticket.Usuario;
                 LNEvento lnEvento = new LNEvento();
                 lnEvento.InsertarEventoAsistente(Convert.ToInt32(Helper.Desencriptar(idEvento)), usuario, usuario);
-
+                evento = lnEvento.EventoPorUsuario(Convert.ToInt32(Helper.Desencriptar(idEvento)), ticket.Usuario);
+                ExchangeService service = (ExchangeService)Session["Office365"];
+                CreateAppointment(service, evento.FechaEvento, evento.LugarEvento, evento.NombreEvento);
                 return RedirectToAction("Evento", "Alumno", new { idEvento = idEvento });
 
             }
@@ -91,12 +96,23 @@ namespace UTPPrototipo.Controllers
                 usuario = ticket.Usuario;
                 LNEvento lnEvento = new LNEvento();
                 lnEvento.InsertarEventoAsistente(Convert.ToInt32(Helper.Desencriptar(idEvento)), usuario, usuario);
-
-
                 return RedirectToAction("Evento", "Empresa", new { idEvento = idEvento });
             }
 
             return PartialView("_Evento", evento);
+        }
+        public static void CreateAppointment(ExchangeService service, string fecha, string lugar, string nombre)
+        {            
+            Appointment app = new Appointment(service);
+            app.Subject = nombre;
+           // app.Body = "You need to meet George";
+            app.Location = lugar;
+            app.Start = Convert.ToDateTime(fecha);
+            app.End = Convert.ToDateTime(fecha).AddHours(1);
+            app.IsReminderSet = true;
+            app.ReminderMinutesBeforeStart = 15;
+            //app.RequiredAttendees.Add(new Attendee(userEmail));
+            app.Save(SendInvitationsMode.SendToAllAndSaveCopy);
         }
 
     }
