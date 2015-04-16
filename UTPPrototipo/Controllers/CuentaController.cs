@@ -166,8 +166,8 @@ namespace UTPPrototipo.Controllers
             }
 
             ExchangeService service = new ExchangeService(ExchangeVersion.Exchange2010_SP1);
-            service.Credentials = new WebCredentials(usuario.NombreUsuario, usuario.Contrasena);
-            service.AutodiscoverUrl(usuario.NombreUsuario, RedirectionUrlValidationCallback);
+            service.Credentials = new WebCredentials(usuario.NombreUsuario + "@utp.edu.pe", usuario.Contrasena);
+            service.AutodiscoverUrl(usuario.NombreUsuario+"@utp.edu.pe", RedirectionUrlValidationCallback);
             service.UseDefaultCredentials = false;
 
             Session["Office365"] = service;
