@@ -15,6 +15,7 @@ using System.Drawing.Text;
 using System.Drawing.Drawing2D;
 using System.Text;
 using Microsoft.Exchange.WebServices.Data;
+using System.Configuration;
 
 namespace UTPPrototipo.Controllers
 {
@@ -165,9 +166,20 @@ namespace UTPPrototipo.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
+            bool enableExchange = Convert.ToBoolean(ConfigurationManager.AppSettings["LogeoProduccion"]);
+
             ExchangeService service = new ExchangeService(ExchangeVersion.Exchange2010_SP1);
-            service.Credentials = new WebCredentials(usuario.NombreUsuario + "@utp.edu.pe", usuario.Contrasena);
-            service.AutodiscoverUrl(usuario.NombreUsuario+"@utp.edu.pe", RedirectionUrlValidationCallback);
+            if (enableExchange == false)
+            {
+                service.Credentials = new WebCredentials("criteriaitdev01@criteriait.onmicrosoft.com", "Cr1ter14_2015");
+                service.AutodiscoverUrl("criteriaitdev01@criteriait.onmicrosoft.com", RedirectionUrlValidationCallback);
+            }
+            else
+            {
+                service.Credentials = new WebCredentials(usuario.NombreUsuario + "@utp.edu.pe", usuario.Contrasena);
+                service.AutodiscoverUrl(usuario.NombreUsuario + "@utp.edu.pe", RedirectionUrlValidationCallback);
+            }
+
             service.UseDefaultCredentials = false;
 
             Session["Office365"] = service;

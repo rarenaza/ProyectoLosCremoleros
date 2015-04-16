@@ -19,6 +19,7 @@ namespace UTPPrototipo.Controllers
             //service.Credentials = new WebCredentials("criteriaitdev01@criteriait.onmicrosoft.com", "Cr1ter14_2015");
             //service.AutodiscoverUrl("criteriaitdev01@criteriait.onmicrosoft.com", RedirectionUrlValidationCallback);
 
+
             ExchangeService service = (ExchangeService)Session["Office365"];
             FindItemsResults<Appointment> foundAppointments =
         service.FindAppointments(WellKnownFolderName.Calendar,
