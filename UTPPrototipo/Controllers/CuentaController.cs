@@ -169,15 +169,31 @@ namespace UTPPrototipo.Controllers
             bool enableExchange = Convert.ToBoolean(ConfigurationManager.AppSettings["LogeoProduccion"]);
 
             ExchangeService service = new ExchangeService(ExchangeVersion.Exchange2010_SP1);
+            TempData["MensajeCalendario"] = "";
             if (enableExchange == false)
             {
-                service.Credentials = new WebCredentials("criteriaitdev01@criteriait.onmicrosoft.com", "Cr1ter14_2015");
-                service.AutodiscoverUrl("criteriaitdev01@criteriait.onmicrosoft.com", RedirectionUrlValidationCallback);
+                try
+                {
+                    service.Credentials = new WebCredentials("criteriaitdev01@criteriait.onmicrosoft.com", "Cr1ter14_2015");
+                    service.AutodiscoverUrl("criteriaitdev01@criteriait.onmicrosoft.com", RedirectionUrlValidationCallback);
+                }
+                catch (Exception)
+                {
+                    TempData["MensajeCalendario"] = "No se pudo conectar al Office 365";                    
+                }
+
             }
             else
             {
-                service.Credentials = new WebCredentials(usuario.NombreUsuario + "@utp.edu.pe", usuario.Contrasena);
-                service.AutodiscoverUrl(usuario.NombreUsuario + "@utp.edu.pe", RedirectionUrlValidationCallback);
+                try
+                {
+                    service.Credentials = new WebCredentials(usuario.NombreUsuario + "@utp.edu.pe", usuario.Contrasena);
+                    service.AutodiscoverUrl(usuario.NombreUsuario + "@utp.edu.pe", RedirectionUrlValidationCallback);
+                }
+                catch (Exception)
+                {
+                    TempData["MensajeCalendario"] = "No se pudo conectar al Office 365";
+                }
             }
 
             service.UseDefaultCredentials = false;

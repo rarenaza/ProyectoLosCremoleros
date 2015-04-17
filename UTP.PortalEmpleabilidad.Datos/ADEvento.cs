@@ -407,5 +407,33 @@ namespace UTP.PortalEmpleabilidad.Datos
 
             return dtResultado;
         }
+        public void ActualizaEstadoTicket(int idEventoAsistente, string estadoTicket)
+        {
+            try
+            {
+                using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+                {
+                    SqlCommand cmd = new SqlCommand();
+
+                    conexion.Open();
+                    cmd = new SqlCommand();
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.CommandText = "Evento_ActualizaEstadoTicket";
+
+                    cmd.Parameters.Add(new SqlParameter("@IdEventoAsistente", idEventoAsistente));
+                    cmd.Parameters.Add(new SqlParameter("@EstadoTicket", estadoTicket));
+
+                    cmd.Connection = conexion;
+                    cmd.ExecuteNonQuery();
+                    conexion.Close();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

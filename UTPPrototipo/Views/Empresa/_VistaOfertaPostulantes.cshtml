@@ -135,10 +135,10 @@
                     <div class="col-sm-4">
                         @*@Html.ActionLink(Model[i].Alumno.Apellidos + ", " + Model[i].Alumno.Nombres , "Postulante", "Empresa", new { id = Model[i].IdOfertaPostulante }, null)*@
                         @*@Html.ActionLink(Model[i].Alumno.Apellidos + ", " + Model[i].Alumno.Nombres, "Postulante", "Empresa", new { id = Helper.Encriptar(Model[i].IdOfertaPostulante.ToString()) }, htmlAttributes: new { target = "_blank" })*@
-
+                        
                         <!--13MAR: Según la pantalla enviada se cambia el link-->
                         @if (ViewBag.Pantalla == "Empresa")
-                        {
+                        {                            
                             @Html.ActionLink(Model[i].Alumno.Apellidos + ", " + Model[i].Alumno.Nombres, "Postulante", "Empresa", new { id = Helper.Encriptar(Model[i].IdOfertaPostulante.ToString()) }, null)
                         }
                         else
@@ -224,6 +224,8 @@
         });
 
         $('#colNombre').on('click', function () {
+
+            debugger;
             OrdenarPostulantes('Nombre');
         });
 
@@ -243,11 +245,12 @@
             var estadoOferta = $('#hddEstadoOfertaIdListaValor').val();
             var columnActual = $('#hddColumnaActual').val();
             var ordenActual = $('#hddOrdenActual').val();
-
+            var pantalla = $('#pantalla').val();
+            debugger;
             var orden = ordenActual == 'ASC' ? 'DESC' : 'ASC';  //Se cambia el orden actual
 
             //Se llama al controlador pasando los parámetros para ordenar las columnas.
-            var url = '@Url.Action("VistaOfertaPostulantes", "Empresa")' + '?id=' + idOferta + '&columna=' + columna + '&orden=' + orden + '&estado=' + estadoOferta;
+            var url = '@Url.Action("VistaOfertaPostulantes", "Empresa")' + '?id=' + idOferta + '&columna=' + columna + '&orden=' + orden + '&estado=' + estadoOferta + '&pantalla=' + pantalla;
             $.get(url, function (data) {
                 $('#divActualizarPostulantes').html(data);
             }).then(function () {

@@ -293,6 +293,11 @@ namespace UTP.PortalEmpleabilidad.Logica
            ad.InsertarEventoAsistente(idEvento, usuario, creadoPor );
        }
 
+       public void ActualizaEstadoTicket(int idEventoAsistente, string estadoTicket)
+       {
+           ad.ActualizaEstadoTicket(idEventoAsistente, estadoTicket);
+       }
+
        public List<VistaAsistente> ObtenerAsistentes(int idEvento, string tipoAsistente)
        {
            List<VistaAsistente> asistentes = new List<VistaAsistente>();

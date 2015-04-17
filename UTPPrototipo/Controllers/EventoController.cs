@@ -63,6 +63,8 @@ namespace UTPPrototipo.Controllers
 
         public ActionResult PaginaTicket(string idEvento, string idEventoAsistente, string nombres, string apellidos, string valorTipoDocumento, string numeroDocumento)
         {
+            LNEvento evento = new LNEvento();
+            evento.ActualizaEstadoTicket(Convert.ToInt32(Helper.Desencriptar(idEventoAsistente)), Constantes.TICKET_EMITIDO);
             ViewBag.idEvento = Convert.ToInt32(Helper.Desencriptar(idEvento));
             ViewBag.idEventoAsistente = Convert.ToInt32(Helper.Desencriptar(idEventoAsistente));
             ViewBag.nombre = Helper.Desencriptar(nombres) + " " + Helper.Desencriptar(apellidos);

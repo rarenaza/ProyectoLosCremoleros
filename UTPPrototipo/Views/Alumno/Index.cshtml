@@ -8,7 +8,7 @@
 
 <link href="~/Content/font-awesome.css" rel="stylesheet" />
 <div class="container" style="margin-top:2px;">
-
+    
     @{ViewBag.ColapsaDatos = " in";}
     @Html.Partial("_DatosPersonales", Model.Alumno)
 
@@ -26,7 +26,14 @@
 
     <div class="row">
         <div class="col-md-3 fuente-pequeña" style="border-right:solid;border-color:rgb(220, 220, 220);border-width:1px;">
-            @Html.Action("VistaCalendario", "Calendario")
+            @if (TempData["MensajeCalendario"] == "")
+            {
+                @Html.Action("VistaCalendario", "Calendario")
+            }
+            else
+            {
+                <div class="alert alert-danger" role="alert">@TempData["MensajeCalendario"]</div>                
+            }            
             <h5>Ofertas que pueden interesarte</h5>
             @Html.Partial("_AlumnoUltimasOfertas", Model.ListaOfertas)
 

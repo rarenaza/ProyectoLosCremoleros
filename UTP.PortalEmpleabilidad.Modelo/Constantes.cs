@@ -147,6 +147,8 @@ namespace UTP.PortalEmpleabilidad.Modelo
         #endregion
 
         public static string NOMBRE_UTP = "Universidad Tecnológica del Perú-UTP";
+
+        public const string TICKET_EMITIDO = "EVTKEM";
         
     }
 }
