@@ -35,6 +35,24 @@ namespace UTPPrototipo.Controllers
 
             return PartialView("_Login");
         }
+        //public ActionResult Restablecer()
+        //{
+
+        //    return PartialView("_RecuperarClave");
+        //}
+
+        //public ActionResult Token() 
+        //{
+        //    var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        //    var random = new Random();
+        //    var result = new string(
+        //        Enumerable.Repeat(chars, 8)
+        //                  .Select(s => s[random.Next(s.Length)])
+        //                  .ToArray());
+
+        //    Session["Token"] = result;
+        //    return View();
+        //}
         //-----
 
         public ActionResult CaptchaImage(string prefix, bool noisy = true)
@@ -169,7 +187,8 @@ namespace UTPPrototipo.Controllers
             bool enableExchange = Convert.ToBoolean(ConfigurationManager.AppSettings["LogeoProduccion"]);
 
             ExchangeService service = new ExchangeService(ExchangeVersion.Exchange2010_SP1);
-            TempData["MensajeCalendario"] = "";
+                        
+            Session["ResultadoLogeo"] = "";
             if (enableExchange == false)
             {
                 try
@@ -179,7 +198,7 @@ namespace UTPPrototipo.Controllers
                 }
                 catch (Exception)
                 {
-                    TempData["MensajeCalendario"] = "No se pudo conectar al Office 365";                    
+                    Session["ResultadoLogeo"] = "No se pudo conectar al Office 365";                    
                 }
 
             }
@@ -192,7 +211,7 @@ namespace UTPPrototipo.Controllers
                 }
                 catch (Exception)
                 {
-                    TempData["MensajeCalendario"] = "No se pudo conectar al Office 365";
+                    Session["ResultadoLogeo"] = "No se pudo conectar al Office 365";
                 }
             }
 
