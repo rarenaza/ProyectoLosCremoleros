@@ -26,13 +26,13 @@
 
     <div class="row">
         <div class="col-md-3 fuente-pequeña" style="border-right:solid;border-color:rgb(220, 220, 220);border-width:1px;">
-            @if (TempData["MensajeCalendario"] == "")
+            @if (Session["ResultadoLogeo"].ToString().Equals(""))
             {
                 @Html.Action("VistaCalendario", "Calendario")
             }
             else
             {
-                <div class="alert alert-danger" role="alert">@TempData["MensajeCalendario"]</div>                
+                <div class="alert alert-danger" role="alert">@Session["ResultadoLogeo"]</div>
             }            
             <h5>Ofertas que pueden interesarte</h5>
             @Html.Partial("_AlumnoUltimasOfertas", Model.ListaOfertas)

@@ -160,7 +160,7 @@ namespace UTPPrototipo.Controllers
             bool enableExchange = Convert.ToBoolean(ConfigurationManager.AppSettings["LogeoProduccion"]);
 
             ExchangeService service = new ExchangeService(ExchangeVersion.Exchange2010_SP1);
-            TempData["MensajeCalendario"] = "";
+            Session["ResultadoLogeo"] = "";
             if (enableExchange == false)
             {
                 try
@@ -170,7 +170,7 @@ namespace UTPPrototipo.Controllers
                 }
                 catch (Exception)
                 {
-                    TempData["MensajeCalendario"] = "No se pudo conectar al Office 365";
+                    Session["ResultadoLogeo"] = "No se pudo conectar al Office 365";
                 }
 
             }
@@ -183,7 +183,7 @@ namespace UTPPrototipo.Controllers
                 }
                 catch (Exception)
                 {
-                    TempData["MensajeCalendario"] = "No se pudo conectar al Office 365";
+                    Session["ResultadoLogeo"] = "No se pudo conectar al Office 365";
                 }
             }
 
