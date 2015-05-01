@@ -37,6 +37,20 @@ namespace UTP.PortalEmpleabilidad.Logica
         {
             return adUsuario.ValidarExistenciaEmpresa(empresaPais, empresaRUC);
         }
+
+        public void InsertarToken(string token, string usuario, DateTime fechaExpira, DateTime fechaSolicito, string ip)
+        {
+            adUsuario.InsertarToken(token, usuario, fechaExpira, fechaSolicito, ip);
+        }
+
+        public string ObtenerToken(string usuario)
+        {
+            Usuario user = new Usuario();
+            DataTable dtResultado = adUsuario.ObtenerToken(usuario);
+            user.Token = dtResultado.Rows[0]["IdToken"].ToString();
+
+            return user.Token.ToString();
+        }
         
         public List<Usuario> ObtenerUsuariosPorTipo(string tipoUsuario)
         {

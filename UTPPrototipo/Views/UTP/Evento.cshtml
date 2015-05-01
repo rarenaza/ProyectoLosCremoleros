@@ -17,7 +17,9 @@
     <script src="~/Scripts/jquery.maskedinput.js"></script>
     <script src="~/Scripts/calendario.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>*@
-
+    <script src="~/Scripts/moment.js"></script>
+    <script src="~/Scripts/bootstrap-datetimepicker.js"></script>
+    <link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
 @using (Html.BeginForm())
 
 {
@@ -101,6 +103,7 @@
 
                  
                 </div>
+                
             </div>
             <div class="row">
                 <div class="col-sm-12">
@@ -248,8 +251,8 @@
 
         //Se coloca el datepicker a la caja de fecha.
         //checkSupportForInputTypeDate();
-        $("#FechaEvento").datepicker({ dateFormat: 'dd/mm/yy' });
-                      
+        $("#FechaEvento").datetimepicker({format: "DD/MM/YYYY HH:mm"});
+        
     });
 
     

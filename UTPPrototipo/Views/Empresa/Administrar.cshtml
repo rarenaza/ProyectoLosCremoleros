@@ -237,12 +237,13 @@
 
 <script>
 
-    function validar(idEmpresa, idEmpresaUsuario) {
+    function validar(idEmpresa, idEmpresaUsuario, tipo) {
         //console.log(idEmpresa + ' - ' + idEmpresaUsuario);
         var validacionNroDocumento = false;
         var validacionUsuario = false;
-        var nroDocumento = $('#NumeroDocumento').val();
-        var usuario = $('#NombreUsuario').val();
+        var $nroDocumentoInput = $('#NumeroDocumento');
+        var $usuarioInput = $('#NombreUsuario');
+        tipo = tipo | 'agregar';
 
         if (nroDocumento != '' && usuario != '') {
 
@@ -276,21 +277,26 @@
             var urlUsuario = '@Url.Action("ValidarUsuario", "Empresa")' + '?usuario=' + usuario + '&idEmpresa=' + idEmpresa + '&idEmpresaUsuario=' + idEmpresaUsuario;
 
             //Validación de usuario
-            jQuery.ajax({
-                url: urlUsuario,
-                success: function (data) {
-                    if (eval(data) == 0) {
-                        //console.log('if ' + data);
-                        validacionUsuario = true;
-                    }
-                    else {
-                        //console.log('else ' + data);
-                        alert('El nombre de usuario "' + usuario + '" ya existe.');
-                        validacionUsuario = false;
-                    }
-                },
-                async: false //se cambia esta propiedad para que la llamada del ajax sea síncrona. Por defecto es asíncrona.
-            });
+            validacionUsuario = true;
+
+            if (tipo == 'agregar') {
+                jQuery.ajax({
+                    url: urlUsuario,
+                    success: function (data) {
+                        if (eval(data) == 0) {
+                            //console.log('if ' + data);
+                            validacionUsuario = true;
+                        }
+                        else {
+                            //console.log('else ' + data);
+                            alert('El nombre de usuario "' + usuario + '" ya existe.');
+                            validacionUsuario = false;
+                        }
+                    },
+                    async: false //se cambia esta propiedad para que la llamada del ajax sea síncrona. Por defecto es asíncrona.
+                });
+            }
+            
             return validacionUsuario;
         }   
         else {

@@ -15,9 +15,9 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public int IdAlumno { get; set; }
         public int IdEstudio { get; set; }
 
-        //[Required(ErrorMessage = "Falta la empresa")]
-        //[StringLength(100, ErrorMessage = "Este campo sólo acepta máximo 100 caracteres.")]
-        //[RegularExpression(@"[0-9A-ZÀ-ÿa-zÑñ ,.]+", ErrorMessage = "Este campo sólo acepta letras, números, coma y punto.")]           
+        [Required(ErrorMessage = "Falta la empresa")]
+        [StringLength(100, ErrorMessage = "Este campo sólo acepta máximo 100 caracteres.")]
+        [RegularExpression(@"[0-9A-ZÀ-ÿa-zÑñ ():,.]+", ErrorMessage = "Este campo sólo acepta letras, números, coma y punto.")]           
         public string Empresa { get; set; }
         
         [Required(ErrorMessage = "Falta la descripción de la empresa")]

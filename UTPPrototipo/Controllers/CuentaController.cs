@@ -16,6 +16,10 @@ using System.Drawing.Drawing2D;
 using System.Text;
 using Microsoft.Exchange.WebServices.Data;
 using System.Configuration;
+using System.Net;
+using System.Net.Sockets;
+using UTP.PortalEmpleabilidad.Modelo.Vistas.Empresa;
+using System.Security.Cryptography;
 
 namespace UTPPrototipo.Controllers
 {
@@ -31,28 +35,97 @@ namespace UTPPrototipo.Controllers
         }
 
         public ActionResult Autenticar()
-        {
-
+        {            
             return PartialView("_Login");
+        }        
+        public ActionResult Restablecer()
+        {
+            return PartialView("RecuperarClave");
         }
-        //public ActionResult Restablecer()
-        //{
 
-        //    return PartialView("_RecuperarClave");
-        //}
+        private string Ip()
+        {
+            IPHostEntry host;
+            string localIP = "";
+            host = Dns.GetHostEntry(Dns.GetHostName());
+            foreach (IPAddress ip in host.AddressList)
+            {
+                if (ip.AddressFamily == AddressFamily.InterNetwork)
+                {
+                    localIP = ip.ToString();
+                    break;
+                }
+            }
+            return localIP;
+        }
+        public ActionResult CambiarClave(string contrasena, string user) 
+        {
+            LNEmpresaUsuario lnEmpresaUsuario = new LNEmpresaUsuario();
+            byte[] bytes = Encoding.Default.GetBytes(contrasena);
+            SHA1 sha = new SHA1CryptoServiceProvider();
+            byte[] password = sha.ComputeHash(bytes);
+            String spassword = Encoding.Default.GetString(password);
+            lnEmpresaUsuario.ActualizarContrasena(spassword, user);            
+            return RedirectToAction("Index", "Home");
+        }
+        public ActionResult RecuperarClave()
+        {
+            return View();        
+        }
+        
+        public ActionResult GenerarToken(string usuario, string submitButton, string token)
+        {
+            LNUsuario lnUsuario = new LNUsuario();
+            DataSet dsResultado = ln.Autenticar_Usuario(usuario);
+            switch (submitButton)
+            {
+                case "mail":
 
-        //public ActionResult Token() 
-        //{
-        //    var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-        //    var random = new Random();
-        //    var result = new string(
-        //        Enumerable.Repeat(chars, 8)
-        //                  .Select(s => s[random.Next(s.Length)])
-        //                  .ToArray());
+                    var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+                    var random = new Random();
+                    var result = new string(
+                        Enumerable.Repeat(chars, 8)
+                                  .Select(s => s[random.Next(s.Length)])
+                                  .ToArray());
 
-        //    Session["Token"] = result;
-        //    return View();
-        //}
+                    string ip = Ip();
+                    lnUsuario.InsertarToken(result, usuario, DateTime.Now.AddHours(1), DateTime.Now, ip);
+                    
+                    Mensaje mensaje = new Mensaje();
+                    mensaje.DeUsuarioCorreoElectronico = "utpempleabilidad@utp.edu.pe";
+                    mensaje.ParaUsuarioCorreoElectronico = Convert.ToString(dsResultado.Tables[2].Rows[0]["CorreoElectronico"]); //Administrador UTP
+                    mensaje.Asunto = "Cambio de Contraseña";
+                    mensaje.MensajeTexto = "Estimado(a):" + usuario  +"\r\n\r\n" +
+                        "Es grato comunicarnos con usted para informarle que debido la confidencialidad de la información que contiene su cuenta, le hemos generado un token para que valide su información en nuestra intranet.\r\n\r\n" +
+                        "-Token: " + result + "\r\n\r\n" +
+                        /*"http://localhost/#Token"+*/
+                        "Cordialmente \r\n\r\n" +
+                        "Area de TI";
+                    LNCorreo.EnviarCorreo(mensaje);
+                    TempData["CorreoExitoso"] = "Se envio el TOKEN a las siguientes cuentas: "+mensaje.ParaUsuarioCorreoElectronico;
+                    return RedirectToAction("Index", "Home");
+
+                case "Ingresar":
+
+                    Session["Token"] = lnUsuario.ObtenerToken(usuario);
+                    int id = Convert.ToInt32(dsResultado.Tables[2].Rows[0]["IdEmpresa"]);
+                    LNEmpresaUsuario lnEmpresaUsuario = new LNEmpresaUsuario();
+                    List<VistaEmpresaUsuario> list = lnEmpresaUsuario.ObtenerUsuariosPorIdEmpresa(id);
+                   
+                    EmpresaUsuario empresaUsuario = lnEmpresaUsuario.ObtenerPorIdEmpresaUsuario(Convert.ToInt32(list[0].IdEmpresaUsuario));
+
+                    if (Session["Token"] == null || Session["Token"].ToString() != token)
+                    {
+                        TempData["TokenNoExitoso"] = "El Token no es correcto.";
+                        return RedirectToAction("Index", "Home");
+                    }
+                    return Json(empresaUsuario);
+                    //return PartialView("CambiarClave", empresaUsuario);
+
+                default:
+                    return null;
+            }
+        }
         //-----
 
         public ActionResult CaptchaImage(string prefix, bool noisy = true)
@@ -177,7 +250,7 @@ namespace UTPPrototipo.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult Autenticar(Usuario usuario)
         {
-            if (Session["Captcha"] == null || Session["Captcha"].ToString() != usuario.Captcha.ToLower())
+            if ( Session["Captcha"] == null || Session["Captcha"].ToString() != usuario.Captcha.ToLower())
             {
                 TempData["UsuarioNoExitoso"] = "El texto no coincide con la imagen";
                 //ModelState.AddModelError("Captcha", "Wrong value of sum, please try again.");
@@ -187,7 +260,7 @@ namespace UTPPrototipo.Controllers
             bool enableExchange = Convert.ToBoolean(ConfigurationManager.AppSettings["LogeoProduccion"]);
 
             ExchangeService service = new ExchangeService(ExchangeVersion.Exchange2010_SP1);
-                        
+
             Session["ResultadoLogeo"] = "";
             if (enableExchange == false)
             {
@@ -198,7 +271,7 @@ namespace UTPPrototipo.Controllers
                 }
                 catch (Exception)
                 {
-                    Session["ResultadoLogeo"] = "No se pudo conectar al Office 365";                    
+                    Session["ResultadoLogeo"] = "No se pudo conectar al Office 365";
                 }
 
             }
@@ -244,7 +317,12 @@ namespace UTPPrototipo.Controllers
                     }
                     else
                     {
-                        if (usuario.Contrasena == contrasenaDecodificada) contrasenaValida = true;
+                        byte[] bytes = Encoding.Default.GetBytes(usuario.Contrasena);
+                        SHA1 sha = new SHA1CryptoServiceProvider();
+                        byte[] password = sha.ComputeHash(bytes);
+                        String spassword = Encoding.Default.GetString(password);
+                        // This is one implementation of the abstract class SHA1.
+                        if (contrasenaDecodificada == spassword) contrasenaValida = true;
                     }
                     //Si la contraseña es válida, recupera los datos del Usuario de acuerdo al tipo, y contruye la session
                     if (contrasenaValida)

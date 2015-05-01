@@ -1,27 +1,22 @@
 ﻿@model UTP.PortalEmpleabilidad.Modelo.Usuario
 @using CaptchaMvc.HtmlHelpers
 @using CaptchaMvc;
-  
+
 @using (Ajax.BeginForm("Autenticar", "Cuenta", new AjaxOptions()))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
-    
 
     <div class="modal-body">
         @if (TempData["UsuarioNoExitoso"] != null && TempData["UsuarioNoExitoso"] != "_ClickAqui")
         {
             <div class="alert alert-danger alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close" ><span aria-hidden="true" id="boton-login-cierra-error">&times;</span></button>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true" id="boton-login-cierra-error">&times;</span></button>
                 <strong>@TempData["UsuarioNoExitoso"]</strong>
             </div>
-        
-        
             TempData["UsuarioNoExitoso"] = "_ClickAqui";
-       
-            
         }
-        
+
         <form>
 
 
@@ -29,46 +24,46 @@
                 <span class="input-group-addon nombre-campo">Usuario</span>
                 @*<input type="text" class="form-control" placeholder="Usuario" style="width:100%;">*@
                 @Html.TextBoxFor(m => m.NombreUsuario, new { @class = "form-control" })
-             </div>@Html.ValidationMessageFor(m => m.NombreUsuario, "", new { @class = "text-danger" })
-                  <div class="input-group grupo-ingreso">
-                    <span class="input-group-addon nombre-campo">Clave</span>
-                    @*<input type="password" class="form-control" placeholder="Clave">*@
-                    @*@Html.TextBoxFor(m => m.Contrasena, new { @class = "form-control" })*@
-                    @Html.PasswordFor(m => m.Contrasena, new { @class = "form-control" })
+            </div>@Html.ValidationMessageFor(m => m.NombreUsuario, "", new { @class = "text-danger" })
+            <div class="input-group grupo-ingreso">
+                <span class="input-group-addon nombre-campo">Clave</span>
+                @*<input type="password" class="form-control" placeholder="Clave">*@
+                @*@Html.TextBoxFor(m => m.Contrasena, new { @class = "form-control" })*@
+                @Html.PasswordFor(m => m.Contrasena, new { @class = "form-control" })
 
-                   
-                </div>@Html.ValidationMessageFor(m => m.Contrasena, "", new { @class = "text-danger" })
 
-                <div class="grupo-ingreso fuente-pequeña" style="text-align:center;">
-                    @*@Html.Captcha("Refrescar", "", 6, "No se ha ingresado el texto", true, null)*@
-                    <div class="editor-label">
-                        @*@Html.LabelFor(model => model.Captcha)*@
-                        <a href="#" onclick="cargaCaptcha();">
-                            <img id="imgCaptcha" alt="Captcha" src="@Url.Action("CaptchaImage")" style="" />
-                            <br />
-                            <span style="text-align: left; margin-top: 10px;">Dar clic en imagen para generar otra</span>
-                        </a>                        
-                    </div>
-                    <br />
-                    <div class="editor-field">
-                        @Html.EditorFor(model => model.Captcha)
-                        @Html.ValidationMessageFor(model => model.Captcha)
-                    </div>
+            </div>@Html.ValidationMessageFor(m => m.Contrasena, "", new { @class = "text-danger" })
+
+            <div class="grupo-ingreso fuente-pequeña" style="text-align:center;">
+                @*@Html.Captcha("Refrescar", "", 6, "No se ha ingresado el texto", true, null)*@
+                <div class="editor-label">
+                    @*@Html.LabelFor(model => model.Captcha)*@
+                    <a href="#" onclick="cargaCaptcha();">
+                        <img id="imgCaptcha" alt="Captcha" src="@Url.Action("CaptchaImage")" style="" />
+                        <br />
+                        <span style="text-align: left; margin-top: 10px;">Dar clic en imagen para generar otra</span>
+                    </a>
                 </div>
-                
-                @*<div class="grupo-ingreso" style="text-align:center;">
+                <br />
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.Captcha)
+                    @Html.ValidationMessageFor(model => model.Captcha)
+                </div>
+            </div>
+
+            @*<div class="grupo-ingreso" style="text-align:center;">
                     <input type="checkbox">
                     <span class="label-sistema"> No Cerrar mi Sesión </span>
                 </div>*@
-                @*<br />*@
-                <div class="text-center" style="width: 100%;">
-                    <input id="btnAutenticar" type="submit" value="Ingresar" class="btn btn-default" />
-                </div>
+            @*<br />*@
+            <div class="text-center" style="width: 100%;">
+                <input id="btnAutenticar" type="submit" value="Ingresar" class="btn btn-default" />
+            </div>
 
-</form>
-       <div id="divMsjRespuestaError">
+        </form>
+        <div id="divMsjRespuestaError">
 
-       </div>
+        </div>
 
     </div>
 }
@@ -77,20 +72,23 @@
         <div class="col-sm-12" style="text-align:left;">Si no estás registrado/no tienes cuenta, crea una cuenta o registrate @Html.ActionLink("Aquí", "Registro", "Home")</div>@*@Html.ActionLink("Registrarse", "Registro", "Home")*@
     </div>
     <br />
-    @*<div class="row">
-        <div class="col-sm-12" style="text-align:left;">Recuperar Clave</div>
-    </div>*@
+    <div class="row">
+        <a href="#" style="padding: 11px 10px 0px 10px;" data-toggle="modal" data-target="#Modal-recuperar-clave" id="LinkRecuperarClave" onclick="abrirPantallaClave();">
+            ¿Olvidó su Contraseña?
+        </a>
+    </div>
 </div>
+<!-- Modal -->
+
 
 <script>
-    
-    function cargaCaptcha()
-    {
-        $("#imgCaptcha").attr("src","/cuenta/captchaimage");    
+
+    function cargaCaptcha() {
+        $("#imgCaptcha").attr("src", "/cuenta/captchaimage");
     }
     //$(document).ready(function () {
 
-   //    $('#btnAutenticar').on('click', function () {
+    //    $('#btnAutenticar').on('click', function () {
 
     //        var url = 'Cuenta/Autenticar';
 
@@ -102,13 +100,15 @@
     //    });
     //});
 
-
+    function abrirPantallaClave() {
+        $('#Modal-ingresar').modal('hide');
+    }
 
     //$('#btnAutenticar').click(function () {
     //    $(this).after(
-    //        '<div class="alert alert-danger">' +
+    //        '<div class=" -danger">' +
     //            '<button type="button" class="close" ' +
-    //                    'data-dismiss="alert" aria-hidden="true">' +
+    //                    'data-dismiss="" aria-hidden="true">' +
     //                '&times;' +
     //            '</button>' +
     //            'Password Changed' +

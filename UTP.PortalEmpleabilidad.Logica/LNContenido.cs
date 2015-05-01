@@ -96,8 +96,9 @@ namespace UTP.PortalEmpleabilidad.Logica
                 contenido.SubTitulo     = dtResultado.Rows[i]["SubTitulo"].ToString();
                 contenido.Descripcion   = dtResultado.Rows[i]["Descripcion"].ToString();
 
-                contenido.Imagen = Encoding.UTF8.GetBytes (dtResultado.Rows[i]["Imagen"].ToString());
-                //contenido.Imagen        = dtResultado.Rows[i]["Imagen"].ToString();
+                //contenido.Imagen = Encoding.UTF8.GetBytes (dtResultado.Rows[i]["Imagen"].ToString());
+                //contenido.Imagen        = dtResultado.Rows[i]["Imagen"];
+                contenido.Imagen = dtResultado.Rows[i]["Imagen"] == DBNull.Value ? null : (byte[])dtResultado.Rows[i]["Imagen"];
 
                 contenido.IdContenido   = Convert.ToInt32 (dtResultado.Rows[i]["IdContenido"]);
 

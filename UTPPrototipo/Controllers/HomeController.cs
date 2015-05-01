@@ -229,7 +229,8 @@ namespace UTPPrototipo.Controllers
 
             List<Contenido> contenido = new List<Contenido>();
             string x = "5";
-            contenido = ln.Contenido_BuscarNoticiasEventosOtros(x);
+            //contenido = ln.Contenido_BuscarNoticiasEventosOtros(x);
+            contenido = ln.Contenido_BuscarIndex(x);
 
             Contenido producto = contenido.Where(k => k.IdContenido == id).FirstOrDefault();
 
@@ -331,8 +332,8 @@ namespace UTPPrototipo.Controllers
 
             List<Contenido> Noticia = new List<Contenido>();
             string x = "4";
-            Noticia = ln.Contenido_BuscarNoticiasEventosOtros(x);
-
+            //Noticia = ln.Contenido_BuscarNoticiasEventosOtros(x);
+            Noticia = ln.Contenido_BuscarIndex(x);
             Contenido producto = Noticia.Where(k => k.IdContenido == id).FirstOrDefault();
 
             MemoryStream stream;
@@ -361,8 +362,8 @@ namespace UTPPrototipo.Controllers
 
             List<Contenido> Evento = new List<Contenido>();
             string x = "7";
-            Evento = ln.Contenido_BuscarNoticiasEventosOtros(x);
-
+            //Evento = ln.Contenido_BuscarNoticiasEventosOtros(x);
+            Evento = ln.Contenido_BuscarIndex(x);
             Contenido producto = Evento .Where(k => k.IdContenido == id).FirstOrDefault();
 
             MemoryStream stream;

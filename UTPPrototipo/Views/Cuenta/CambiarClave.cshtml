@@ -1,0 +1,68 @@
+﻿@model UTP.PortalEmpleabilidad.Modelo.EmpresaUsuario
+
+@using UTPPrototipo.Models.ViewModels.Cuenta;
+@using UTP.PortalEmpleabilidad.Modelo;
+
+@{
+    //Se obtiena la variable de sesión del ticket.
+    TicketEmpresa ticketEmpresa = (TicketEmpresa)Session["TicketEmpresa"];
+}
+
+@using (Ajax.BeginForm("CambiarClave", "Cuenta", new AjaxOptions()))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="modal-content" id="modalCambiarClave">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title" id="NuevoUsuario">Usuario: @Model.NombreUsuario</h4>
+        </div>
+        <div class="modal-body">
+            @Html.HiddenFor(m => m.IdEmpresaUsuario)
+            @Html.HiddenFor(model => model.NombreUsuario)
+            @Html.HiddenFor(model => model.Usuario)
+
+            @if (TempData["ClaveExitosa"] != null)
+            {
+                <script>
+
+                $(document).ready(function () {
+
+                    alert('@TempData["ClaveExitosa"]');
+
+                });
+
+                </script>
+            }
+            <!--Si se desea mostrar los errores en un resumen se utiliza este helper-->
+            @Html.ValidationSummary(false, "", new { @class = "alert alert-danger" })
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <span class="input-group-addon">(*)<br />Contraseña</span>
+                        @Html.PasswordFor(m => m.Contrasena, new { @class = "form-control" })
+                    </div>@Html.ValidationMessageFor(m => m.Contrasena, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-6 fuente-pequeña">
+                    <p>Ingrese una contraseña con al menos 8 caracteres utilizando al menos una letra mayúscula, una minúscula y un dígito.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <span class="input-group-addon">(*) Repita<br />Contraseña</span>
+                        @Html.PasswordFor(m => m.RepetirContrasena, new { @class = "form-control" })
+                    </div>@Html.ValidationMessageFor(m => m.RepetirContrasena, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12" style="text-align:right;">
+                    @*<button type="button" class="btn btn-default color-paleta4 fuente-pequeña" style="color: white; margin-bottom: 10px;">Guardar</button>*@
+
+                    <button type="submit" class="btn btn-default color-paleta4 fuente-pequeña">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}

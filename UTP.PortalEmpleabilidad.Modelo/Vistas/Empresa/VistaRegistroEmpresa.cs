@@ -75,6 +75,7 @@ namespace UTP.PortalEmpleabilidad.Modelo.Vistas.Empresa
         public string ApellidosUsuario { get; set; }
 
         [Required(ErrorMessage = "Falta el Nombre de Usuario del Contacto")]
+        [RegularExpression(@"/[a-zA-Z0-9]/", ErrorMessage = "Usuario no válido")]
         public string CuentaUsuario { get; set; }
 
         [RegularExpression(@"^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$", ErrorMessage = "Password no válido")]

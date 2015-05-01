@@ -89,5 +89,63 @@ namespace UTP.PortalEmpleabilidad.Datos
 
             return dtResultado;
         }
+
+        public void InsertarToken(string token, string usuario, DateTime fechaExpira, DateTime fechaSolicito, string ip)
+        {
+            try
+            {
+                using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+                {
+                    SqlCommand cmd = new SqlCommand();
+
+                    conexion.Open();
+                    cmd = new SqlCommand();
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.CommandText = "Token_Empresa_Insertar";
+
+                    cmd.Parameters.Add(new SqlParameter("@IdToken", token));
+                    cmd.Parameters.Add(new SqlParameter("@Usuario", usuario));
+                    cmd.Parameters.Add(new SqlParameter("@FechaExpira", fechaExpira));
+                    cmd.Parameters.Add(new SqlParameter("@FechaSolicito", fechaSolicito));
+                    cmd.Parameters.Add(new SqlParameter("@Ip", ip));
+                    cmd.Connection = conexion;
+                    cmd.ExecuteNonQuery();
+                    conexion.Close();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public DataTable ObtenerToken(string usuario)
+        {
+            DataTable dtResultado = new DataTable();
+
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Token_Empresa_Obtener";
+                cmd.Parameters.Add(new SqlParameter("@Usuario", usuario));
+
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                dtResultado = new DataTable();
+
+                da.Fill(dtResultado);
+
+                conexion.Close();
+            }
+
+            return dtResultado;
+        }
     }
 }

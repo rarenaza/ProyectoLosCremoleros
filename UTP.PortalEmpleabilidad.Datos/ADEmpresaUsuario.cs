@@ -73,8 +73,30 @@ namespace UTP.PortalEmpleabilidad.Datos
                 conexion.Close();
             }
         }
+        public void ActualizarContrasena(string contrasena, string user)
+        {
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
 
-        public void Actualizar(EmpresaUsuario empresaUsuario)
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "EmpresaUsuario_Contrasena";
+
+                //Parámetros:
+                
+                cmd.Parameters.Add(new SqlParameter("@Usuario", user));
+                cmd.Parameters.Add(new SqlParameter("@Contrasena", contrasena));
+                
+                cmd.Connection = conexion;
+                conexion.Open();
+
+                cmd.ExecuteNonQuery();
+
+                conexion.Close();
+            }
+        
+        }
+        public void Actualizar(EmpresaUsuario empresaUsuario, String password)
         {
             using (SqlConnection conexion = new SqlConnection(cadenaConexion))
             {
@@ -98,7 +120,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.Parameters.Add(new SqlParameter("@TelefonoCelular", empresaUsuario.TelefonoCelular));
                 cmd.Parameters.Add(new SqlParameter("@Rol", empresaUsuario.RolIdListaValor));
                 cmd.Parameters.Add(new SqlParameter("@EstadoUsuario", empresaUsuario.EstadoUsuarioIdListaValor));
-                cmd.Parameters.Add(new SqlParameter("@Contrasena", empresaUsuario.Contrasena));
+                cmd.Parameters.Add(new SqlParameter("@Contrasena", password));
                 cmd.Parameters.Add(new SqlParameter("@ModificadoPor", empresaUsuario.ModificadoPor));
 
                 cmd.Connection = conexion;

@@ -34,5 +34,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
             Rol = new ListaValor();
         }
         public string Captcha { get; set; }
+
+        public string Token { get; set; }
     }
 }

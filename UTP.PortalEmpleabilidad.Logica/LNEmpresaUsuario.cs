@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using UTP.PortalEmpleabilidad.Datos;
@@ -26,6 +27,10 @@ namespace UTP.PortalEmpleabilidad.Logica
             adEmpresaUsuario.Insertar(empresaUsuario);        
         }
 
+        public void ActualizarContrasena(string contrasena, string user)
+        {
+            adEmpresaUsuario.ActualizarContrasena(contrasena,user);
+        }
         public void Actualizar(EmpresaUsuario empresaUsuario)
         {
             if (empresaUsuario.TipoDocumentoIdListaValor == null) empresaUsuario.TipoDocumentoIdListaValor = "";
@@ -34,8 +39,11 @@ namespace UTP.PortalEmpleabilidad.Logica
             if (empresaUsuario.TelefonoFijo == null) empresaUsuario.TelefonoFijo = "";
             if (empresaUsuario.TelefonoAnexo == null) empresaUsuario.TelefonoAnexo = "";
             if (empresaUsuario.TelefonoCelular == null) empresaUsuario.TelefonoCelular = "";
-
-            adEmpresaUsuario.Actualizar(empresaUsuario);
+            byte[] bytes = Encoding.Default.GetBytes(empresaUsuario.Contrasena);
+            SHA1 sha = new SHA1CryptoServiceProvider();
+            byte[] password = sha.ComputeHash(bytes);
+            String spassword = Encoding.Default.GetString(password);
+            adEmpresaUsuario.Actualizar(empresaUsuario, spassword);
         }
 
         public EmpresaUsuario ObtenerPorIdEmpresaUsuario(int idEmpresaUsuario)

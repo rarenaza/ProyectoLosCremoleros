@@ -26,32 +26,33 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public int IdAlumno { get; set; }
         [Required(ErrorMessage = "Falta la institución de estudio")]
         [StringLength(100, ErrorMessage = "Este campo sólo acepta máximo 100 caracteres.")]
-        [RegularExpression(@"[0-9A-ZÀ-ÿa-zÑñ,. ]+", ErrorMessage = "Este campo sólo acepta letras y numeros.")]
+        [RegularExpression(@"[0-9A-ZÀ-ÿa-zÑñ,. ]+", ErrorMessage = "Este campo sólo acepta letras y numeros")]
         public string Institucion { get; set; }
         [Required(ErrorMessage = "Falta el estudio")]
         [StringLength(100, ErrorMessage = "Este campo sólo acepta máximo 100 caracteres.")]
-        [RegularExpression(@"[0-9A-ZÀ-ÿa-zÑñ,. ]+", ErrorMessage = "Este campo sólo acepta letras y numeros.")]
+        [RegularExpression(@"[0-9A-ZÀ-ÿa-zÑñ,. ]+", ErrorMessage = "Este campo sólo acepta letras y numeros")]
         public string Estudio { get; set; }
         [Required(ErrorMessage = "Falta el tipo estudio")]
         public string TipoDeEstudio { get; set; }
         [Required(ErrorMessage = "Falta el estado del estudio")]
         public string EstadoDelEstudio { get; set; }
-        //[Required(ErrorMessage = "Falta el mes de inicio de estudio")]
-        //[StringLength(2, MinimumLength = 1, ErrorMessage = "Este campo sólo maximo 2 digitos.")]
+        [Required(ErrorMessage = "Falta el mes de inicio de estudio")]
+        
         public int FechaInicioMes { get; set; }
+
+        [Required(ErrorMessage = "Falta el año de inicio de estudio")]
         
-        //[Required(ErrorMessage = "Falta el año de inicio de estudio")]
-        //[StringLength(4, MinimumLength = 4, ErrorMessage = "Este campo sólo acepta 4 digitos.")]
-        //[RegularExpression(@"[0-9]+", ErrorMessage = "Este campo sólo acepta años con 4 numeros.")]
+        [Range(1900,2100, ErrorMessage = "Coloque un valor entre 1900 y 2100")]
+        [RegularExpression(@"[0-9]+", ErrorMessage = "Este campo sólo acepta años con 4 numeros")]
         
-        public int? FechaInicioAno { get; set; }
+        public int FechaInicioAno { get; set; }
         public int? FechaFinMes { get; set; }
-        //[StringLength(4, MinimumLength = 4, ErrorMessage = "Este campo sólo acepta 4 digitos.")]
-        //[RegularExpression(@"[0-9]+", ErrorMessage = "Este campo sólo acepta años con 4 numeros.")]
+        [Range(1900, 2100, ErrorMessage = "Coloque un valor entre 1900 y 2100")]
+        [RegularExpression(@"[0-9]+", ErrorMessage = "Este campo sólo acepta años con 4 numeros.")]
         public int? FechaFinAno { get; set; }
         //[Required(ErrorMessage = "Falta el ciclo de estudio")]
-        //[RegularExpression(@"[0-9]+", ErrorMessage = "Este campo sólo acepta numeros.")]
-        //[StringLength(2, MinimumLength = 1, ErrorMessage = "Este campo sólo maximo 2 digitos.")]
+        [RegularExpression(@"[0-9]+", ErrorMessage = "Este campo sólo acepta numeros.")]
+        [Range(0, 99, ErrorMessage = "Este campo sólo maximo 2 digitos.")]
         public int? CicloEquivalente { get; set; }
         public string Observacion { get; set; }
         public bool DatoUTP { get; set; }
