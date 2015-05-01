@@ -246,17 +246,8 @@ namespace UTPPrototipo.Controllers
             return redirectionValidated;
         }
 
-        //------
-        [HttpPost, ValidateAntiForgeryToken]
-        public ActionResult Autenticar(Usuario usuario)
+        private void autenticarExchange(Usuario usuario)
         {
-            if ( Session["Captcha"] == null || Session["Captcha"].ToString() != usuario.Captcha.ToLower())
-            {
-                TempData["UsuarioNoExitoso"] = "El texto no coincide con la imagen";
-                //ModelState.AddModelError("Captcha", "Wrong value of sum, please try again.");
-                return RedirectToAction("Index", "Home");
-            }
-
             bool enableExchange = Convert.ToBoolean(ConfigurationManager.AppSettings["LogeoProduccion"]);
 
             ExchangeService service = new ExchangeService(ExchangeVersion.Exchange2010_SP1);
@@ -291,9 +282,20 @@ namespace UTPPrototipo.Controllers
             service.UseDefaultCredentials = false;
 
             Session["Office365"] = service;
+        }
 
+        //------
+        [HttpPost, ValidateAntiForgeryToken]
+        public ActionResult Autenticar(Usuario usuario)
+        {
+            if (Session["Captcha"] == null || Session["Captcha"].ToString() != usuario.Captcha.ToLower())
+            {
+                TempData["UsuarioNoExitoso"] = "El texto no coincide con la imagen";
+                //ModelState.AddModelError("Captcha", "Wrong value of sum, please try again.");
+                return RedirectToAction("Index", "Home");
+            }
+            
             List<Usuario> lista = new List<Usuario>();
-
 
             //1. Recuperar datos de Usuario
             DataSet dsResultado = ln.Autenticar_Usuario(usuario.NombreUsuario);
@@ -311,6 +313,8 @@ namespace UTPPrototipo.Controllers
                     bool contrasenaValida = false;
                     if (tipoUsuario == "USERUT" || tipoUsuario == "USERAL")
                     {
+                        if (tipoUsuario == "USERAL")
+                               autenticarExchange(usuario);
                         //4. Si es Alumno o Usuario UTP Validar contra el AD
                         //bool ContrasenaValida = callWebServiceADUTP(usuario.Contrasena) 
                         contrasenaValida = true;
@@ -463,6 +467,7 @@ namespace UTPPrototipo.Controllers
 
                         Session["TicketAlumno"] = ticketAlumno;
 
+                        autenticarExchange(usuario);
                         //Si tiene acceso se redirecciona al portal principal del alumno.
                         return RedirectToAction("Index", "Alumno");
                     }
