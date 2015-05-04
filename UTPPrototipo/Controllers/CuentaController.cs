@@ -73,10 +73,10 @@ namespace UTPPrototipo.Controllers
             return View();        
         }
         
-        public ActionResult GenerarToken(string usuario, string submitButton, string token)
+        public ActionResult GenerarToken(string NombreUsuario, string submitButton, string token)
         {
             LNUsuario lnUsuario = new LNUsuario();
-            DataSet dsResultado = ln.Autenticar_Usuario(usuario);
+            DataSet dsResultado = ln.Autenticar_Usuario(NombreUsuario);
             switch (submitButton)
             {
                 case "mail":
@@ -89,13 +89,13 @@ namespace UTPPrototipo.Controllers
                                   .ToArray());
 
                     string ip = Ip();
-                    lnUsuario.InsertarToken(result, usuario, DateTime.Now.AddHours(1), DateTime.Now, ip);
+                    lnUsuario.InsertarToken(result, NombreUsuario, DateTime.Now.AddHours(1), DateTime.Now, ip);
                     
                     Mensaje mensaje = new Mensaje();
                     mensaje.DeUsuarioCorreoElectronico = "utpempleabilidad@utp.edu.pe";
                     mensaje.ParaUsuarioCorreoElectronico = Convert.ToString(dsResultado.Tables[2].Rows[0]["CorreoElectronico"]); //Administrador UTP
                     mensaje.Asunto = "Cambio de Contraseña";
-                    mensaje.MensajeTexto = "Estimado(a):" + usuario  +"\r\n\r\n" +
+                    mensaje.MensajeTexto = "Estimado(a):" + NombreUsuario + "\r\n\r\n" +
                         "Es grato comunicarnos con usted para informarle que debido la confidencialidad de la información que contiene su cuenta, le hemos generado un token para que valide su información en nuestra intranet.\r\n\r\n" +
                         "-Token: " + result + "\r\n\r\n" +
                         /*"http://localhost/#Token"+*/
@@ -107,7 +107,7 @@ namespace UTPPrototipo.Controllers
 
                 case "Ingresar":
 
-                    Session["Token"] = lnUsuario.ObtenerToken(usuario);
+                    Session["Token"] = lnUsuario.ObtenerToken(NombreUsuario);
                     int id = Convert.ToInt32(dsResultado.Tables[2].Rows[0]["IdEmpresa"]);
                     LNEmpresaUsuario lnEmpresaUsuario = new LNEmpresaUsuario();
                     List<VistaEmpresaUsuario> list = lnEmpresaUsuario.ObtenerUsuariosPorIdEmpresa(id);
