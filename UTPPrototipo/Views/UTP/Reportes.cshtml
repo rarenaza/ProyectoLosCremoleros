@@ -83,7 +83,7 @@
                             <div class="input-group-addon">
                                 Año
                             </div>
-                            <input class="form-control" id="empresasSegunClasificacionPorMes_Ano" />
+                            <input class="form-control" id="empresasSegunClasificacionPorMes_Ano" value="@(DateTime.Today.Year)" />
                         </div>
 
                     </div>
@@ -94,18 +94,18 @@
                             </div>
                             <select class="form-control" id="empresasSegunClasificacionPorMes_Mes">
                                 <option value="">- Seleccione Mes -</option>
-                                <option value="1">Enero</option>
-                                <option value="2">Febrero</option>
-                                <option value="3">Marzo</option>
-                                <option value="4">Abril</option>
-                                <option value="5">Mayo</option>
-                                <option value="6">Junio</option>
-                                <option value="7">Julio</option>
-                                <option value="8">Agosto</option>
-                                <option value="9">Setiembre</option>
-                                <option value="10">Octubre</option>
-                                <option value="11">Noviembre</option>
-                                <option value="12">Diciembre</option>
+                                <option value="1" @(DateTime.Today.Month == 1 ? "selected" : "")>Enero</option>
+                                <option value="2" @(DateTime.Today.Month == 2 ? "selected" : "")>Febrero</option>
+                                <option value="3" @(DateTime.Today.Month == 3 ? "selected" : "")>Marzo</option>
+                                <option value="4" @(DateTime.Today.Month == 4 ? "selected" : "")>Abril</option>
+                                <option value="5" @(DateTime.Today.Month == 5 ? "selected" : "")>Mayo</option>
+                                <option value="6" @(DateTime.Today.Month == 6 ? "selected" : "")>Junio</option>
+                                <option value="7" @(DateTime.Today.Month == 7 ? "selected" : "")>Julio</option>
+                                <option value="8" @(DateTime.Today.Month == 8 ? "selected" : "")>Agosto</option>
+                                <option value="9" @(DateTime.Today.Month == 9 ? "selected" : "")>Setiembre</option>
+                                <option value="10" @(DateTime.Today.Month == 10 ? "selected" : "")>Octubre</option>
+                                <option value="11" @(DateTime.Today.Month == 11 ? "selected" : "")>Noviembre</option>
+                                <option value="12" @(DateTime.Today.Month == 12 ? "selected" : "")>Diciembre</option>
                             </select>
 
                         </div>
@@ -137,7 +137,7 @@
                             <div class="input-group-addon">
                                 Año
                             </div>
-                            <input class="form-control" id="ofertasSegunClasificacionPorMes_Ano" />
+                            <input class="form-control" id="ofertasSegunClasificacionPorMes_Ano" value="@(DateTime.Today.Year)" />
                         </div>
 
                     </div>
@@ -148,18 +148,18 @@
                             </div>
                             <select class="form-control" id="ofertasSegunClasificacionPorMes_Mes">
                                 <option value="">- Seleccione Mes -</option>
-                                <option value="1">Enero</option>
-                                <option value="2">Febrero</option>
-                                <option value="3">Marzo</option>
-                                <option value="4">Abril</option>
-                                <option value="5">Mayo</option>
-                                <option value="6">Junio</option>
-                                <option value="7">Julio</option>
-                                <option value="8">Agosto</option>
-                                <option value="9">Setiembre</option>
-                                <option value="10">Octubre</option>
-                                <option value="11">Noviembre</option>
-                                <option value="12">Diciembre</option>
+                                <option value="1" @(DateTime.Today.Month == 1 ? "selected" : "")>Enero</option>
+                                <option value="2" @(DateTime.Today.Month == 2 ? "selected" : "")>Febrero</option>
+                                <option value="3" @(DateTime.Today.Month == 3 ? "selected" : "")>Marzo</option>
+                                <option value="4" @(DateTime.Today.Month == 4 ? "selected" : "")>Abril</option>
+                                <option value="5" @(DateTime.Today.Month == 5 ? "selected" : "")>Mayo</option>
+                                <option value="6" @(DateTime.Today.Month == 6 ? "selected" : "")>Junio</option>
+                                <option value="7" @(DateTime.Today.Month == 7 ? "selected" : "")>Julio</option>
+                                <option value="8" @(DateTime.Today.Month == 8 ? "selected" : "")>Agosto</option>
+                                <option value="9" @(DateTime.Today.Month == 9 ? "selected" : "")>Setiembre</option>
+                                <option value="10" @(DateTime.Today.Month == 10 ? "selected" : "")>Octubre</option>
+                                <option value="11" @(DateTime.Today.Month == 11 ? "selected" : "")>Noviembre</option>
+                                <option value="12" @(DateTime.Today.Month == 12 ? "selected" : "")>Diciembre</option>
                             </select>
                         </div>
                     </div>
@@ -201,7 +201,7 @@
                             <div class="input-group-addon">
                                 Año
                             </div>
-                            <input class="form-control" id="ofertasSegunTipoTrabajoUTP_Ano" />
+                            <input class="form-control" id="ofertasSegunTipoTrabajoUTP_Ano" value="@(DateTime.Today.Year)" />
                         </div>
 
                     </div>
@@ -212,18 +212,18 @@
                             </div>
                             <select class="form-control" id="ofertasSegunTipoTrabajoUTP_Mes">
                                 <option value="">- Seleccione Mes -</option>
-                                <option value="1">Enero</option>
-                                <option value="2">Febrero</option>
-                                <option value="3">Marzo</option>
-                                <option value="4">Abril</option>
-                                <option value="5">Mayo</option>
-                                <option value="6">Junio</option>
-                                <option value="7">Julio</option>
-                                <option value="8">Agosto</option>
-                                <option value="9">Setiembre</option>
-                                <option value="10">Octubre</option>
-                                <option value="11">Noviembre</option>
-                                <option value="12">Diciembre</option>
+                                <option value="1" @(DateTime.Today.Month == 1 ? "selected" : "")>Enero</option>
+                                <option value="2" @(DateTime.Today.Month == 2 ? "selected" : "")>Febrero</option>
+                                <option value="3" @(DateTime.Today.Month == 3 ? "selected" : "")>Marzo</option>
+                                <option value="4" @(DateTime.Today.Month == 4 ? "selected" : "")>Abril</option>
+                                <option value="5" @(DateTime.Today.Month == 5 ? "selected" : "")>Mayo</option>
+                                <option value="6" @(DateTime.Today.Month == 6 ? "selected" : "")>Junio</option>
+                                <option value="7" @(DateTime.Today.Month == 7 ? "selected" : "")>Julio</option>
+                                <option value="8" @(DateTime.Today.Month == 8 ? "selected" : "")>Agosto</option>
+                                <option value="9" @(DateTime.Today.Month == 9 ? "selected" : "")>Setiembre</option>
+                                <option value="10" @(DateTime.Today.Month == 10 ? "selected" : "")>Octubre</option>
+                                <option value="11" @(DateTime.Today.Month == 11 ? "selected" : "")>Noviembre</option>
+                                <option value="12" @(DateTime.Today.Month == 12 ? "selected" : "")>Diciembre</option>
                             </select>
                         </div>
                     </div>
@@ -260,7 +260,7 @@
                             <div class="input-group-addon">
                                 Año
                             </div>
-                            <input class="form-control" id="carrerasSinOfertasDePracticas_Ano" />
+                            <input class="form-control" id="carrerasSinOfertasDePracticas_Ano" value="@(DateTime.Today.Year)" />
                         </div>
 
                     </div>
@@ -271,18 +271,18 @@
                             </div>
                             <select class="form-control" id="carrerasSinOfertasDePracticas_Mes">
                                 <option value="">- Seleccione Mes -</option>
-                                <option value="1">Enero</option>
-                                <option value="2">Febrero</option>
-                                <option value="3">Marzo</option>
-                                <option value="4">Abril</option>
-                                <option value="5">Mayo</option>
-                                <option value="6">Junio</option>
-                                <option value="7">Julio</option>
-                                <option value="8">Agosto</option>
-                                <option value="9">Setiembre</option>
-                                <option value="10">Octubre</option>
-                                <option value="11">Noviembre</option>
-                                <option value="12">Diciembre</option>
+                                <option value="1" @(DateTime.Today.Month == 1 ? "selected" : "")>Enero</option>
+                                <option value="2" @(DateTime.Today.Month == 2 ? "selected" : "")>Febrero</option>
+                                <option value="3" @(DateTime.Today.Month == 3 ? "selected" : "")>Marzo</option>
+                                <option value="4" @(DateTime.Today.Month == 4 ? "selected" : "")>Abril</option>
+                                <option value="5" @(DateTime.Today.Month == 5 ? "selected" : "")>Mayo</option>
+                                <option value="6" @(DateTime.Today.Month == 6 ? "selected" : "")>Junio</option>
+                                <option value="7" @(DateTime.Today.Month == 7 ? "selected" : "")>Julio</option>
+                                <option value="8" @(DateTime.Today.Month == 8 ? "selected" : "")>Agosto</option>
+                                <option value="9" @(DateTime.Today.Month == 9 ? "selected" : "")>Setiembre</option>
+                                <option value="10" @(DateTime.Today.Month == 10 ? "selected" : "")>Octubre</option>
+                                <option value="11" @(DateTime.Today.Month == 11 ? "selected" : "")>Noviembre</option>
+                                <option value="12" @(DateTime.Today.Month == 12 ? "selected" : "")>Diciembre</option>
                             </select>
                         </div>
                     </div>
@@ -308,7 +308,7 @@
                             <div class="input-group-addon">
                                 Año
                             </div>
-                            <input class="form-control" id="carrerasSinOfertasDeEmpleo_Ano" />
+                            <input class="form-control" id="carrerasSinOfertasDeEmpleo_Ano" value="@(DateTime.Today.Year)" />
                         </div>
 
                     </div>
@@ -319,18 +319,18 @@
                             </div>
                             <select class="form-control" id="carrerasSinOfertasDeEmpleo_Mes">
                                 <option value="">- Seleccione Mes -</option>
-                                <option value="1">Enero</option>
-                                <option value="2">Febrero</option>
-                                <option value="3">Marzo</option>
-                                <option value="4">Abril</option>
-                                <option value="5">Mayo</option>
-                                <option value="6">Junio</option>
-                                <option value="7">Julio</option>
-                                <option value="8">Agosto</option>
-                                <option value="9">Setiembre</option>
-                                <option value="10">Octubre</option>
-                                <option value="11">Noviembre</option>
-                                <option value="12">Diciembre</option>
+                                <option value="1" @(DateTime.Today.Month == 1 ? "selected" : "")>Enero</option>
+                                <option value="2" @(DateTime.Today.Month == 2 ? "selected" : "")>Febrero</option>
+                                <option value="3" @(DateTime.Today.Month == 3 ? "selected" : "")>Marzo</option>
+                                <option value="4" @(DateTime.Today.Month == 4 ? "selected" : "")>Abril</option>
+                                <option value="5" @(DateTime.Today.Month == 5 ? "selected" : "")>Mayo</option>
+                                <option value="6" @(DateTime.Today.Month == 6 ? "selected" : "")>Junio</option>
+                                <option value="7" @(DateTime.Today.Month == 7 ? "selected" : "")>Julio</option>
+                                <option value="8" @(DateTime.Today.Month == 8 ? "selected" : "")>Agosto</option>
+                                <option value="9" @(DateTime.Today.Month == 9 ? "selected" : "")>Setiembre</option>
+                                <option value="10" @(DateTime.Today.Month == 10 ? "selected" : "")>Octubre</option>
+                                <option value="11" @(DateTime.Today.Month == 11 ? "selected" : "")>Noviembre</option>
+                                <option value="12" @(DateTime.Today.Month == 12 ? "selected" : "")>Diciembre</option>
                             </select>
                         </div>
                     </div>
@@ -393,7 +393,7 @@
                             <div class="input-group-addon">
                                 Año
                             </div>
-                            <input class="form-control" id="clasificacionCvsRecibidos_Ano" />
+                            <input class="form-control" id="clasificacionCvsRecibidos_Ano" value="@(DateTime.Today.Year)" />
                         </div>
 
                     </div>
@@ -404,18 +404,18 @@
                             </div>
                             <select class="form-control" id="clasificacionCvsRecibidos_Mes">
                                 <option value="">- Seleccione Mes -</option>
-                                <option value="1">Enero</option>
-                                <option value="2">Febrero</option>
-                                <option value="3">Marzo</option>
-                                <option value="4">Abril</option>
-                                <option value="5">Mayo</option>
-                                <option value="6">Junio</option>
-                                <option value="7">Julio</option>
-                                <option value="8">Agosto</option>
-                                <option value="9">Setiembre</option>
-                                <option value="10">Octubre</option>
-                                <option value="11">Noviembre</option>
-                                <option value="12">Diciembre</option>
+                                <option value="1" @(DateTime.Today.Month == 1 ? "selected" : "")>Enero</option>
+                                <option value="2" @(DateTime.Today.Month == 2 ? "selected" : "")>Febrero</option>
+                                <option value="3" @(DateTime.Today.Month == 3 ? "selected" : "")>Marzo</option>
+                                <option value="4" @(DateTime.Today.Month == 4 ? "selected" : "")>Abril</option>
+                                <option value="5" @(DateTime.Today.Month == 5 ? "selected" : "")>Mayo</option>
+                                <option value="6" @(DateTime.Today.Month == 6 ? "selected" : "")>Junio</option>
+                                <option value="7" @(DateTime.Today.Month == 7 ? "selected" : "")>Julio</option>
+                                <option value="8" @(DateTime.Today.Month == 8 ? "selected" : "")>Agosto</option>
+                                <option value="9" @(DateTime.Today.Month == 9 ? "selected" : "")>Setiembre</option>
+                                <option value="10" @(DateTime.Today.Month == 10 ? "selected" : "")>Octubre</option>
+                                <option value="11" @(DateTime.Today.Month == 11 ? "selected" : "")>Noviembre</option>
+                                <option value="12" @(DateTime.Today.Month == 12 ? "selected" : "")>Diciembre</option>
                             </select>
                         </div>
                     </div>
@@ -470,7 +470,7 @@
 
 
 <script>
-    $(document).ready(function () {
+    $(document).ready(function () {      
         $("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta3 color-paleta4 color-paleta5 color-paleta7 color-paleta8 color-paleta9").addClass("color-paleta6")
 
         cargaAlumnosActivos();
@@ -660,7 +660,6 @@
                     moduleDoughnut.draw();
                 });
                 canvas.parentNode.parentNode.appendChild(legendHolder.firstChild);
-
             });
         }
 
@@ -808,17 +807,13 @@
                 }
             });
         }
+
+
         cargaEmpresasSegunClasificacionMes();
-
         cargaOfertasSegunClasificacionMes();
-
         cargaClasificacionCVsRecibidos();
-
         cargaOfertasSegunTipoTrabajoUTP();
-
         cargaCarrerasSinOfertasDeEmpleo();
-
-
     });
 
     function cargaEmpresasSegunClasificacionMes() {
