@@ -80,8 +80,6 @@
             $passwordInput = $('#contrasena-text'),
             $repeatPasswordInput = $('#repiteContrasena-text');
 
-        console.log($recoverPasswordModalButton);
-
         $singinButton.click(function () {
             var usuario = $('#Nusuario').val();
             var token = $('#token').val();
@@ -90,7 +88,7 @@
             $.ajax({
                 url: 'Cuenta/GenerarToken',
                 method: 'POST',
-                data: { usuario: usuario, submitButton: 'Ingresar', token: token }
+                data: { NombreUsuario: usuario, submitButton: 'Ingresar', token: token }
             })
                 .done(function (data) {
                     console.log(data);
