@@ -33,16 +33,21 @@ namespace UTP.PortalEmpleabilidad.Logica
         }
         public void Actualizar(EmpresaUsuario empresaUsuario)
         {
+            String spassword = null;
             if (empresaUsuario.TipoDocumentoIdListaValor == null) empresaUsuario.TipoDocumentoIdListaValor = "";
             if (empresaUsuario.NumeroDocumento == null) empresaUsuario.NumeroDocumento = "";
             if (empresaUsuario.SexoIdListaValor == null) empresaUsuario.SexoIdListaValor = "";
             if (empresaUsuario.TelefonoFijo == null) empresaUsuario.TelefonoFijo = "";
             if (empresaUsuario.TelefonoAnexo == null) empresaUsuario.TelefonoAnexo = "";
             if (empresaUsuario.TelefonoCelular == null) empresaUsuario.TelefonoCelular = "";
-            byte[] bytes = Encoding.Default.GetBytes(empresaUsuario.Contrasena);
-            SHA1 sha = new SHA1CryptoServiceProvider();
-            byte[] password = sha.ComputeHash(bytes);
-            String spassword = Encoding.Default.GetString(password);
+            if (empresaUsuario.Contrasena != null)
+            {
+                byte[] bytes = Encoding.Default.GetBytes(empresaUsuario.Contrasena);
+                SHA1 sha = new SHA1CryptoServiceProvider();
+                byte[] password = sha.ComputeHash(bytes);
+                spassword = Encoding.Default.GetString(password);
+            }
+            
             adEmpresaUsuario.Actualizar(empresaUsuario, spassword);
         }
 

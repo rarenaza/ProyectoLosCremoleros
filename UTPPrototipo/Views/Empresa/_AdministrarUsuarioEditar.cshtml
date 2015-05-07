@@ -156,8 +156,8 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="input-group">
-                    <span class="input-group-addon">(*)<br />Contraseña</span>
-                    @Html.PasswordFor(m => m.Contrasena, new { @class = "form-control", @value = Model.Contrasena})
+                    <span class="input-group-addon"><br />Contraseña</span>
+                    @Html.PasswordFor(m => m.Contrasena, new { @class = "form-control"/*, @value = Model.Contrasena*/})
                 </div>@Html.ValidationMessageFor(m => m.Contrasena, "", new { @class = "text-danger" })
             </div>
             <div class="col-sm-6 fuente-pequeña">
@@ -167,8 +167,8 @@
         <div class="row">
             <div class="col-sm-6">
                 <div class="input-group">
-                    <span class="input-group-addon">(*) Repita<br />Contraseña</span>
-                    @Html.PasswordFor(m => m.RepetirContrasena, new { @class = "form-control", @value = Model.RepetirContrasena})
+                    <span class="input-group-addon">Repita<br />Contraseña</span>
+                    @Html.PasswordFor(m => m.RepetirContrasena, new { @class = "form-control"/*, @value = Model.RepetirContrasena*/})
                 </div>@Html.ValidationMessageFor(m => m.RepetirContrasena, "", new { @class = "text-danger" })
             </div>
         </div>

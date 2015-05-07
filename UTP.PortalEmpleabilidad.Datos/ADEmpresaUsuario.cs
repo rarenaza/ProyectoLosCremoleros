@@ -104,7 +104,7 @@ namespace UTP.PortalEmpleabilidad.Datos
 
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "EmpresaUsuario_Actualizar";
-
+                
                 //Parámetros:
                 cmd.Parameters.Add(new SqlParameter("@IdEmpresaUsuario", empresaUsuario.IdEmpresaUsuario));                
                 cmd.Parameters.Add(new SqlParameter("@Usuario", empresaUsuario.NombreUsuario));
@@ -119,8 +119,15 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.Parameters.Add(new SqlParameter("@TelefonoAnexo", empresaUsuario.TelefonoAnexo));
                 cmd.Parameters.Add(new SqlParameter("@TelefonoCelular", empresaUsuario.TelefonoCelular));
                 cmd.Parameters.Add(new SqlParameter("@Rol", empresaUsuario.RolIdListaValor));
-                cmd.Parameters.Add(new SqlParameter("@EstadoUsuario", empresaUsuario.EstadoUsuarioIdListaValor));
-                cmd.Parameters.Add(new SqlParameter("@Contrasena", password));
+                cmd.Parameters.Add(new SqlParameter("@EstadoUsuario", empresaUsuario.EstadoUsuarioIdListaValor));                
+                if (password != null) 
+                {
+                    cmd.Parameters.Add(new SqlParameter("@Contrasena", password));
+                }
+                else
+                {
+                    cmd.Parameters.Add(new SqlParameter("@Contrasena", ""));
+                }
                 cmd.Parameters.Add(new SqlParameter("@ModificadoPor", empresaUsuario.ModificadoPor));
 
                 cmd.Connection = conexion;
