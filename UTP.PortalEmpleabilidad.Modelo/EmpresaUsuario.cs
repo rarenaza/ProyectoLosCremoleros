@@ -65,7 +65,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string EstadoUsuarioIdListaValor { get; set; }
         [DataType(DataType.Password)]
         [RegularExpression(@"^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$", ErrorMessage = "Contraseña no válida")]
-        [Required(ErrorMessage = "Falta la Contraseña")]        
+        //[Required(ErrorMessage = "Falta la Contraseña")]        
         public string Contrasena { get; set; }
         [Compare("Contrasena", ErrorMessage = "Contraseña ingresada no coincide")]
         [DataType(DataType.Password)]
