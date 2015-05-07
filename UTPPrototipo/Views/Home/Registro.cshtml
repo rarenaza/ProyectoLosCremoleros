@@ -257,7 +257,7 @@
                     <div class="input-group fuente-pequeña">
                         <span class="input-group-addon fuente-pequeña">(*)<br />Usuario</span>
                         @*<input type="text" class="form-control fuente-pequeña" placeholder="Ingrese un nombre de Usuario, con no menos de 8, y máximo 40 caracteres">*@
-                        @Html.TextBoxFor(model => model.CuentaUsuario, new { @class = "form-control", @placeholder = "Ingrese un nombre de Usuario, con no menos de 8, y máximo 40 caracteres" })
+                        @Html.TextBoxFor(model => model.CuentaUsuario, new { @class = "form-control", @placeholder = "Ingrese un nombre de Usuario, con no menos de 8, y máximo 50 caracteres" })
                     </div>@Html.ValidationMessageFor(model => model.CuentaUsuario, "", new { @class = "text-danger" })
                 </div>
             </div>

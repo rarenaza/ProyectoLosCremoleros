@@ -74,8 +74,9 @@ namespace UTP.PortalEmpleabilidad.Modelo.Vistas.Empresa
         [Required(ErrorMessage = "Falta el Apellidos del Contacto")]
         public string ApellidosUsuario { get; set; }
 
+        [RegularExpression(@"[0-9A-Za-z]+", ErrorMessage = "Usuario no válido")]
         [Required(ErrorMessage = "Falta el Nombre de Usuario del Contacto")]
-        [RegularExpression(@"/[a-zA-Z0-9]/", ErrorMessage = "Usuario no válido")]
+        [StringLength(50, ErrorMessage = "Este campo solo acepta 50 caracteres")]
         public string CuentaUsuario { get; set; }
 
         [RegularExpression(@"^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*$", ErrorMessage = "Password no válido")]
