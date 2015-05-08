@@ -719,7 +719,7 @@ namespace UTPPrototipo.Controllers
         [ValidateInput(false)]
         public ActionResult Portal_insertar()
         {
-
+            LNGeneral lngeneral = new LNGeneral();
             DataTable dtresultado = ln.ContenidoMenu_Mostrar();
 
             List<SelectListItem> li = new List<SelectListItem>();
@@ -735,6 +735,19 @@ namespace UTPPrototipo.Controllers
 
             }
             ViewData["ContenidoMenu"] = li;
+
+            DataTable dtPresentacion = lngeneral.Modo_Presentacion(Constantes.IDLISTA_MODO_PRESENTACION);
+            List<SelectListItem> lis = new List<SelectListItem>();
+            for (int i = 0; i <= dtPresentacion.Rows.Count - 1; i++)
+            {
+                string nombre = dtPresentacion.Rows[i]["Valor"].ToString();
+                string valor = dtPresentacion.Rows[i]["IdListaValor"].ToString();
+                SelectListItem item = new SelectListItem() { Text = nombre, Value = valor };
+
+                lis.Add(item);
+            }
+            ViewData["ContenidoPestana"] = lis;
+
             return View();
 
         }
@@ -771,7 +784,7 @@ namespace UTPPrototipo.Controllers
             contenido.EnPantallaPrincipal = contenidoHTML.EnPantallaPrincipal;
             contenido.Activo = contenidoHTML.Activo;
             contenido.Menu = contenidoHTML.Menu;
-
+            contenido.Pestana = contenidoHTML.Pestana;
 
             TicketUTP ticketUtp = (TicketUTP)Session["TicketUtp"];
 
@@ -788,7 +801,7 @@ namespace UTPPrototipo.Controllers
             }
             else
             {
-
+                LNGeneral lngeneral = new LNGeneral();
                 DataTable dtresultado = ln.ContenidoMenu_Mostrar();
 
                 List<SelectListItem> li = new List<SelectListItem>();
@@ -806,6 +819,18 @@ namespace UTPPrototipo.Controllers
 
                 }
                 ViewData["ContenidoMenu"] = li;
+
+                DataTable dtPresentacion = lngeneral.Modo_Presentacion(Constantes.IDLISTA_MODO_PRESENTACION);
+                List<SelectListItem> lis = new List<SelectListItem>();
+                for (int i = 0; i <= dtPresentacion.Rows.Count - 1; i++)
+                {
+                    string nombre = dtPresentacion.Rows[i]["Valor"].ToString();
+                    string valor = dtPresentacion.Rows[i]["IdListaValor"].ToString();
+                    SelectListItem item = new SelectListItem() { Text = nombre, Value = valor };
+
+                    lis.Add(item);
+                }
+                ViewData["ContenidoPestana"] = lis;
 
                 ViewBag.Message = "Error al Guardar la informacion";
                 return View(contenidoHTML);
@@ -833,6 +858,7 @@ namespace UTPPrototipo.Controllers
         [ValidateInput(false)]
         public ActionResult Portal_Editar_Buscar(int id)
         {
+            LNGeneral lngeneral = new LNGeneral();
             DataTable dtresultado = ln.ContenidoMenu_Mostrar();
 
             List<SelectListItem> li = new List<SelectListItem>();
@@ -851,8 +877,19 @@ namespace UTPPrototipo.Controllers
             }
             ViewData["ContenidoMenu"] = li;
 
+            DataTable dtPresentacion = lngeneral.Modo_Presentacion(Constantes.IDLISTA_MODO_PRESENTACION);
+            List<SelectListItem> lis = new List<SelectListItem>();
+            for (int i = 0; i <= dtPresentacion.Rows.Count - 1; i++)
+            {
+                string nombre = dtPresentacion.Rows[i]["Valor"].ToString();
+                string valor = dtPresentacion.Rows[i]["IdListaValor"].ToString();
+                SelectListItem item = new SelectListItem() { Text = nombre, Value = valor };
 
-            ContenidoVista contenido = new ContenidoVista();
+                lis.Add(item);
+            }
+            ViewData["ContenidoPestana"] = lis;
+
+             ContenidoVista contenido = new ContenidoVista();
 
 
             DataTable dtResultado = ln.ContenidoEDitar_Buscar(id);
@@ -861,6 +898,7 @@ namespace UTPPrototipo.Controllers
             {
                 contenido.IdContenido = Convert.ToInt32(dtResultado.Rows[0]["IdContenido"]);
                 contenido.Menu = dtResultado.Rows[0]["CodMenu"].ToString();
+                contenido.Pestana = dtResultado.Rows[0]["CodPestana"].ToString();
                 contenido.Titulo = dtResultado.Rows[0]["Titulo"].ToString();
                 contenido.SubTitulo = dtResultado.Rows[0]["SubTitulo"].ToString();
                 contenido.Descripcion = dtResultado.Rows[0]["Descripcion"].ToString();
@@ -912,6 +950,7 @@ namespace UTPPrototipo.Controllers
             contenido.Activo = contenidoHTML.Activo;
 
             contenido.Menu = contenidoHTML.Menu;
+            contenido.Pestana = contenidoHTML.Pestana;
             contenido.CreadoPor = contenidoHTML.CreadoPor;
             contenido.FechaCreacion = contenidoHTML.FechaCreacion;
 
@@ -931,7 +970,7 @@ namespace UTPPrototipo.Controllers
             }
             else
             {
-
+                LNGeneral lngeneral = new LNGeneral();
                 DataTable dtresultado = ln.ContenidoMenu_Mostrar();
 
                 List<SelectListItem> li = new List<SelectListItem>();
@@ -950,6 +989,18 @@ namespace UTPPrototipo.Controllers
                 }
                 ViewData["ContenidoMenu"] = li;
 
+                DataTable dtPresentacion= lngeneral.Modo_Presentacion(Constantes.IDLISTA_MODO_PRESENTACION);
+                List<SelectListItem> lis = new List<SelectListItem>();
+                for (int i = 0; i <= dtPresentacion.Rows.Count - 1; i++)
+                {
+                    string nombre = dtPresentacion.Rows[i]["Valor"].ToString();
+                    string valor = dtPresentacion.Rows[i]["IdListaValor"].ToString();
+                    SelectListItem item = new SelectListItem() { Text = nombre, Value = valor };
+
+                    lis.Add(item);
+                }
+                ViewData["ContenidoPestana"] = lis;
+                
                 ViewBag.Message = "Error al Actualizar";
                 return View(contenidoHTML);
             }
