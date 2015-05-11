@@ -58,6 +58,12 @@ namespace UTP.PortalEmpleabilidad.Logica
             return ad.ContenidoMenu_Mostrar();
         }
 
+        public DataTable ContenidoPestana_Mostrar()
+        {
+            return ad.ContenidoPestana_Mostrar();
+        }
+      
+
         public bool Contenido_insertar(Contenido  contenido)
         {
 
@@ -141,7 +147,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 //contenido.Imagen = Encoding.UTF8.GetBytes(dtResultado.Rows[i]["Imagen"].ToString());
 
                 contenido.IdContenido = Convert.ToInt32(dtResultado.Rows[i]["IdContenido"]);
-   
+                contenido.Pestana = dtResultado.Rows[i]["CodPestana"].ToString();
 
                 lista.Add(contenido);
 

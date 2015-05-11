@@ -85,57 +85,11 @@ namespace UTPPrototipo.Controllers
         {
             return View();        
         }
-<<<<<<< HEAD
-        
-=======
-
->>>>>>> pr/8
         public ActionResult GenerarToken(string NombreUsuario, string submitButton, string token)
         {
             LNUsuario lnUsuario = new LNUsuario();
             DataSet dsResultado = ln.Autenticar_Usuario(NombreUsuario);
-<<<<<<< HEAD
-            switch (submitButton)
-            {
-                case "mail":
 
-                    var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-                    var random = new Random();
-                    var result = new string(
-                        Enumerable.Repeat(chars, 8)
-                                  .Select(s => s[random.Next(s.Length)])
-                                  .ToArray());
-
-                    string ip = Ip();
-                    lnUsuario.InsertarToken(result, NombreUsuario, DateTime.Now.AddHours(1), DateTime.Now, ip);
-                    
-                    Mensaje mensaje = new Mensaje();
-                    mensaje.DeUsuarioCorreoElectronico = "utpempleabilidad@utp.edu.pe";
-                    mensaje.ParaUsuarioCorreoElectronico = Convert.ToString(dsResultado.Tables[2].Rows[0]["CorreoElectronico"]); //Administrador UTP
-                    mensaje.Asunto = "Cambio de Contraseña";
-                    mensaje.MensajeTexto = "Estimado(a):" + NombreUsuario + "\r\n\r\n" +
-                        "Es grato comunicarnos con usted para informarle que debido la confidencialidad de la información que contiene su cuenta, le hemos generado un token para que valide su información en nuestra intranet.\r\n\r\n" +
-                        "-Token: " + result + "\r\n\r\n" +
-                        /*"http://localhost/#Token"+*/
-                        "Cordialmente \r\n\r\n" +
-                        "Area de TI";
-                    LNCorreo.EnviarCorreo(mensaje);
-                    TempData["CorreoExitoso"] = "Se envio el TOKEN a las siguientes cuentas: "+mensaje.ParaUsuarioCorreoElectronico;
-                    return RedirectToAction("Index", "Home");
-
-                case "Ingresar":
-
-                    Session["Token"] = lnUsuario.ObtenerToken(NombreUsuario);
-                    int id = Convert.ToInt32(dsResultado.Tables[2].Rows[0]["IdEmpresa"]);
-                    LNEmpresaUsuario lnEmpresaUsuario = new LNEmpresaUsuario();
-                    List<VistaEmpresaUsuario> list = lnEmpresaUsuario.ObtenerUsuariosPorIdEmpresa(id);
-                   
-                    EmpresaUsuario empresaUsuario = lnEmpresaUsuario.ObtenerPorIdEmpresaUsuario(Convert.ToInt32(list[0].IdEmpresaUsuario));
-
-                    if (Session["Token"] == null || Session["Token"].ToString() != token)
-                    {
-                        TempData["TokenNoExitoso"] = "El Token no es correcto.";
-=======
             string tipoUsuario = Convert.ToString(dsResultado.Tables[0].Rows[0]["TipoUsuario"]);
 
             if (tipoUsuario == "USEREM") {
@@ -162,7 +116,7 @@ namespace UTPPrototipo.Controllers
                             "Area de TI";
                         LNCorreo.EnviarCorreo(mensaje);
                         TempData["CorreoExitoso"] = "Se envio el TOKEN a las siguientes cuentas: "+mensaje.ParaUsuarioCorreoElectronico;
->>>>>>> pr/8
+
                         return RedirectToAction("Index", "Home");
 
                     case "Ingresar":

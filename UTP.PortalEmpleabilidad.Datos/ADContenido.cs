@@ -91,6 +91,26 @@ namespace UTP.PortalEmpleabilidad.Datos
 
             return dt;
         }
+
+        public DataTable ContenidoPestana_Mostrar()
+        {
+            ADConexion cnn = new ADConexion();
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "ContenidoPestana_Mostrar";
+            cmd.Connection = cnn.cn;
+            cnn.Conectar();
+
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+
+            da.Fill(dt);
+
+            cnn.Desconectar();
+
+            return dt;
+        }
         public bool Contenido_Insertar(Contenido contenido)
         {
             ADConexion cnn = new ADConexion();
@@ -128,6 +148,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                 //cmd.Parameters.Add(new SqlParameter("@ArchivoMimeType", SqlDbType.VarChar, 50)).Value = contenido.ArchivoMimeType;
                 cmd.Parameters.Add(new SqlParameter("@EnPantallaPrincipal", SqlDbType.Bit)).Value = contenido.EnPantallaPrincipal;
                 cmd.Parameters.Add(new SqlParameter("@CodMenu", SqlDbType.VarChar,50)).Value = contenido.Menu;
+                cmd.Parameters.Add(new SqlParameter("@CodPestana", SqlDbType.VarChar, 50)).Value = (contenido.Pestana == null ? "" : contenido.Pestana);
                 cmd.Parameters.Add(new SqlParameter("@CreadoPor", SqlDbType.VarChar, 50)).Value = contenido.CreadoPor;
 
                 cnn.Conectar();
@@ -251,6 +272,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.Parameters.Add(new SqlParameter("@Imagen", SqlDbType.Image)).Value = (contenido.Imagen == null ? new byte[] { } : contenido.Imagen);
                 
                 cmd.Parameters.Add(new SqlParameter("@CodMenu", SqlDbType.VarChar, 50)).Value = contenido.Menu;
+                cmd.Parameters.Add(new SqlParameter("@CodPestana", SqlDbType.VarChar, 50)).Value = (contenido.Pestana == null ? "" : contenido.Pestana);
                 cmd.Parameters.Add(new SqlParameter("@EnPantallaPrincipal", SqlDbType.Bit)).Value = contenido.EnPantallaPrincipal;
                 cmd.Parameters.Add(new SqlParameter("@Activo", SqlDbType.Bit)).Value = contenido.Activo;
                 cmd.Parameters.Add(new SqlParameter("@ArchivoNombreOriginal", SqlDbType.VarChar, 100)).Value = (contenido.ArchivoNombreOriginal == null ? "" : contenido.ArchivoNombreOriginal);

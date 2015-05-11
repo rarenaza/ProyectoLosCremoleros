@@ -36,7 +36,10 @@ namespace UTP.PortalEmpleabilidad.Logica
             return adGeneral.Home_Departamento(IDLista);
         }
 
-     
+        public DataTable Modo_Presentacion(int IDLista)
+        {
+            return adGeneral.ObtenerListaValor(IDLista);
+        }
 
 
         public List<Hunting> EmpresaHuntingBuscarSimple(string nombre, int nroPagina, int filasPorPagina)
