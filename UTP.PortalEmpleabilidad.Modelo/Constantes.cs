@@ -127,22 +127,35 @@ namespace UTP.PortalEmpleabilidad.Modelo
         #endregion
 
         #region Colores Pie
-        public static ColorPie ColorAmarillo = new ColorPie { Color = "#FFFF00", Highlight = "#FFF9AA" };
-        public static ColorPie ColorAzul = new ColorPie { Color = "#0065FF", Highlight = "#32B0FF" };
+
+        public static ColorPie ColorVino = new ColorPie { Color = "#B10400", Highlight = "#F3010A" };
+
+        public static ColorPie ColorAzulPastel = new ColorPie { Color = "#3CACC9", Highlight = "#0065FF" };
+        public static ColorPie ColorNaranja = new ColorPie { Color = "#E99522", Highlight = "#FFC900" };
+        public static ColorPie ColorVerdeAgua = new ColorPie { Color = "#008000", Highlight = "#8FBC8F" };
+        public static ColorPie ColorVerdeAmarillo = new ColorPie { Color = "#C0BA00", Highlight = "#9ACD32" };
+        public static ColorPie ColorGris = new ColorPie { Color = "#818286", Highlight = "#A9A9A9" };
+        public static ColorPie ColorAzulOscuro = new ColorPie { Color = "#2B56B1", Highlight = "#6495ED" };
+
+        public static ColorPie ColorPiel = new ColorPie { Color = "#FF9572", Highlight = "#FFD1B7" };
+        public static ColorPie ColorMarron = new ColorPie { Color = "#9B6749", Highlight = "#998280" };
+
+        public static ColorPie ColorAzul = new ColorPie { Color = "#191970", Highlight = "#0065FF" };
         public static ColorPie ColorRojo = new ColorPie { Color = "#FF0000", Highlight = "#FF7200" };
         public static ColorPie ColorCeleste = new ColorPie { Color = "#82F0FF", Highlight = "#CCFFF8" };
-        public static ColorPie ColorNaranja = new ColorPie { Color = "#FFC900", Highlight = "#FFEF68" };
+        
         public static ColorPie ColorCrema = new ColorPie { Color = "#FFF9A7", Highlight = "#FFF6ED" };
         public static ColorPie ColorVerde = new ColorPie { Color = "#4CFF00", Highlight = "#CBFF72" };
         public static ColorPie ColorTurquesa = new ColorPie { Color = "#60FCDC", Highlight = "#B6F9E6" };
-        public static ColorPie ColorVino = new ColorPie { Color = "#B10400", Highlight = "#F3010A" };
+        
+        public static ColorPie ColorMorado = new ColorPie { Color = "#B200FF", Highlight = "#D468FF" };
         public static ColorPie ColorRosado = new ColorPie { Color = "#FF4CDC", Highlight = "#FF4CDC" };
         public static ColorPie ColorPlomo = new ColorPie { Color = "#A0A0A0", Highlight = "#C0C0C0" };
-        public static ColorPie ColorMorado = new ColorPie { Color = "#B200FF", Highlight = "#D468FF" };
+        public static ColorPie ColorAmarillo = new ColorPie { Color = "#FFFF00", Highlight = "#FFF9AA" };
+        
         public static ColorPie ColorVerdeClaro = new ColorPie { Color = "#A8FFA8", Highlight = "#DBFFD6" };
-        public static ColorPie ColorPiel = new ColorPie { Color = "#FF9572", Highlight = "#FFD1B7" };
-        public static ColorPie ColorMarron = new ColorPie { Color = "#9B6749", Highlight = "#998280" };
-        public static List<ColorPie> COLORES_PIE = new List<ColorPie> {ColorAmarillo, ColorAzul,ColorRojo,ColorCeleste,ColorNaranja,ColorCrema,ColorVerde,ColorTurquesa,ColorVino,ColorRosado,ColorPlomo,ColorMorado,ColorVerdeClaro,ColorPiel,ColorMarron};
+
+        public static List<ColorPie> COLORES_PIE = new List<ColorPie> { ColorVino, ColorAzulPastel, ColorNaranja, ColorVerdeAgua, ColorVerdeAmarillo, ColorGris, ColorAzulOscuro, ColorPiel, ColorMarron, ColorAzul, ColorRojo, ColorCeleste, ColorCrema, ColorVerde, ColorTurquesa, ColorVino, ColorRosado, ColorPlomo, ColorMorado,ColorAmarillo, ColorVerdeClaro };
         
 
         #endregion
