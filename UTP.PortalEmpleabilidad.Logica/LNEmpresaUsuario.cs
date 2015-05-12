@@ -40,14 +40,17 @@ namespace UTP.PortalEmpleabilidad.Logica
             if (empresaUsuario.TelefonoFijo == null) empresaUsuario.TelefonoFijo = "";
             if (empresaUsuario.TelefonoAnexo == null) empresaUsuario.TelefonoAnexo = "";
             if (empresaUsuario.TelefonoCelular == null) empresaUsuario.TelefonoCelular = "";
-            if (empresaUsuario.Contrasena != null)
+
+            LNAutenticarUsuario ln = new LNAutenticarUsuario();
+            DataSet dsResultado = ln.Autenticar_Usuario(empresaUsuario.NombreUsuario);
+            string contrasenaDecodificada = Convert.ToString(dsResultado.Tables[0].Rows[0]["Contrasena"]);
+            if (empresaUsuario.Contrasena != contrasenaDecodificada)
             {
                 byte[] bytes = Encoding.Default.GetBytes(empresaUsuario.Contrasena);
                 SHA1 sha = new SHA1CryptoServiceProvider();
                 byte[] password = sha.ComputeHash(bytes);
                 spassword = Encoding.Default.GetString(password);
             }
-            
             adEmpresaUsuario.Actualizar(empresaUsuario, spassword);
         }
 
