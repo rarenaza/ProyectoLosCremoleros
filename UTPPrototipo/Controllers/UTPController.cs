@@ -1681,7 +1681,8 @@ namespace UTPPrototipo.Controllers
                 evento.NombreEvento = Convert.ToString(dtResultado.Rows[0]["NombreEvento"]);
                 evento.DescripcionEvento = Convert.ToString(dtResultado.Rows[0]["DescripcionEvento"]);
                 evento.FechaEvento = Convert.ToString(dtResultado.Rows[0]["FechaEvento"]);
-
+                evento.FechaEventoFin = Convert.ToString(dtResultado.Rows[0]["FechaEventoFin"]);
+                evento.DiasEvento = Convert.ToString(dtResultado.Rows[0]["DiasEvento"]);
                 evento.FechaEventoTexto = Convert.ToString(dtResultado.Rows[0]["FechaEventoTexto"]);
                 evento.LugarEvento = Convert.ToString(dtResultado.Rows[0]["LugarEvento"]);
                 evento.DireccionRegion = Convert.ToString(dtResultado.Rows[0]["DireccionRegion"]);

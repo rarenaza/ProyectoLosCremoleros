@@ -257,6 +257,8 @@ namespace UTP.PortalEmpleabilidad.Logica
                eventoporusuario.NombreComercial = Funciones.ToString(dsResultado.Tables[0].Rows[0]["NombreComercial"]);
                eventoporusuario.DescripcionEvento = Funciones.ToString(dsResultado.Tables[0].Rows[0]["DescripcionEvento"]);
                eventoporusuario.FechaEvento = Funciones.ToString(dsResultado.Tables[0].Rows[0]["FechaEvento"]);
+               eventoporusuario.FechaEventoFin = Funciones.ToString(dsResultado.Tables[0].Rows[0]["FechaEventoFin"]);
+               eventoporusuario.DiasEvento = Funciones.ToString(dsResultado.Tables[0].Rows[0]["DiasEvento"]);
                eventoporusuario.FechaEventoTexto = Funciones.ToString(dsResultado.Tables[0].Rows[0]["FechaEventoTexto"]);
                eventoporusuario.LugarEvento = Funciones.ToString(dsResultado.Tables[0].Rows[0]["LugarEvento"]);
                eventoporusuario.DireccionEvento = Funciones.ToString(dsResultado.Tables[0].Rows[0]["DescripcionEvento"]);

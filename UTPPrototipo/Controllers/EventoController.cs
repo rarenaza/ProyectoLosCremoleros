@@ -88,7 +88,7 @@ namespace UTPPrototipo.Controllers
                 lnEvento.InsertarEventoAsistente(Convert.ToInt32(Helper.Desencriptar(idEvento)), usuario, usuario);
                 evento = lnEvento.EventoPorUsuario(Convert.ToInt32(Helper.Desencriptar(idEvento)), ticket.Usuario);
                 ExchangeService service = (ExchangeService)Session["Office365"];
-                CreateAppointment(service, evento.FechaEvento, evento.LugarEvento, evento.NombreEvento);
+                CreateAppointment(service, evento.FechaEvento, evento.FechaEventoFin, evento.LugarEvento, evento.NombreEvento , evento.DiasEvento);
                 return RedirectToAction("Evento", "Alumno", new { idEvento = idEvento });
 
             }
@@ -103,19 +103,67 @@ namespace UTPPrototipo.Controllers
 
             return PartialView("_Evento", evento);
         }
-        public static void CreateAppointment(ExchangeService service, string fecha, string lugar, string nombre)
-        {            
+        public static void CreateAppointment(ExchangeService service, string fechaInicio, string fechaFin, string lugar, string nombre, string dias)
+        {
             Appointment app = new Appointment(service);
             app.Subject = nombre;
-           // app.Body = "You need to meet George";
             app.Location = lugar;
-            app.Start = Convert.ToDateTime(fecha);
-            app.End = Convert.ToDateTime(fecha).AddHours(1);
+
+            DateTime dateInicio = Convert.ToDateTime(fechaInicio);
+            DateTime dateFin = Convert.ToDateTime(fechaFin);
+            TimeSpan timeSpan = dateFin.Subtract(dateInicio);
+            string timeFor = timeSpan.ToString(@"hh\:mm\:ss");
+            var time = TimeSpan.Parse(timeFor);
+            app.Start = dateInicio;
+            app.End = dateInicio.Add(time);
+            //-----
+            if (dias != null)
+            {
+                DayOfTheWeek[] days = stringToDays(dias);
+                app.Recurrence = new Recurrence.WeeklyPattern(app.Start.Date, 1, days);
+                app.Recurrence.StartDate = app.Start.Date;
+                app.Recurrence.EndDate = dateFin;
+            }
+
             app.IsReminderSet = true;
-            app.ReminderMinutesBeforeStart = 15;
-            //app.RequiredAttendees.Add(new Attendee(userEmail));
+            app.ReminderMinutesBeforeStart = 15;            
             app.Save(SendInvitationsMode.SendToAllAndSaveCopy);
         }
+        private static DayOfTheWeek[] stringToDays(string dias)
+        {
+            List<DayOfTheWeek> days = new List<DayOfTheWeek>();
+            string[] dia = dias.Split(',');
 
+            for (int i = 0; i < dia.Count(); i++)
+            {
+                switch (dia[i])
+                {
+                    case "1":
+                        days.Add(DayOfTheWeek.Monday);
+                        break;
+                    case "2":
+                        days.Add(DayOfTheWeek.Tuesday);
+                        break;
+                    case "3":
+                        days.Add(DayOfTheWeek.Wednesday);
+                        break;
+                    case "4":
+                        days.Add(DayOfTheWeek.Thursday);
+                        break;
+                    case "5":
+                        days.Add(DayOfTheWeek.Friday);
+                        break;
+                    case "6":
+                        days.Add(DayOfTheWeek.Saturday);
+                        break;
+                    case "7":
+                        days.Add(DayOfTheWeek.Sunday);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            return days.ToArray();
+        }
     }
 }
