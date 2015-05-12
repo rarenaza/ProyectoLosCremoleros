@@ -83,7 +83,8 @@ namespace UTPPrototipo.Controllers
                 SubTitulo = item.SubTitulo,
                 Descripcion = item.Descripcion,
                 Imagen = item.Imagen,
-                IdContenido = item.IdContenido
+                IdContenido = item.IdContenido,
+                Pestana = item.Pestana,
 
             }).ToList();
             return View(contentModel);

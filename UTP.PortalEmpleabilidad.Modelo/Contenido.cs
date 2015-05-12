@@ -21,7 +21,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
 
          [Required(ErrorMessage = Constantes.MSJ_CAMPO_OBLIGATORIO)]
         public string Menu { get; set; }
-   
+         public string Pestana { get; set; }
         public string CreadoPor { get; set; }
         public DateTime FechaCreacion { get; set; }
         public string ModificadoPor { get; set; }
