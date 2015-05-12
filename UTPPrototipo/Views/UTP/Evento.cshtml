@@ -99,11 +99,54 @@
                         @*<input type="text" class="form-control" placeholder="Fecha de Inicio (dd/mm/aaaa)">*@
 
                        @Html.TextBoxFor(model => model.FechaEvento, new { @class = "form-control", @placeholder = "Fecha de Inicio (dd/mm/aaaa)", @Value = System.DateTime.Now.ToString("d") })                        
-                    </div>@Html.ValidationMessageFor(model => model.FechaEvento, "", new { @class = "text-danger" })                 
-
+                    </div>@Html.ValidationMessageFor(model => model.FechaEvento, "", new { @class = "text-danger" }) 
                  
                 </div>
                 
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <span class="input-group-addon">(*)Fecha <br />Fin</span>
+                        @*<input type="text" class="form-control" placeholder="Fecha de Inicio (dd/mm/aaaa)">*@
+
+                        @Html.TextBoxFor(model => model.FechaEventoFin, new { @class = "form-control", @placeholder = "Fecha de Fin (dd/mm/aaaa)", @Value = System.DateTime.Now.ToString("d") })
+                    </div>@Html.ValidationMessageFor(model => model.FechaEventoFin, "", new { @class = "text-danger" })
+
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="input-group">
+                        <span class="input-group-addon">Dias de<br />Evento</span>
+                        <table class="table table-bordered" style="margin-bottom: 0;">
+                            <thead>
+                                <tr>
+                                    <td style="text-align: center;">Lu</td>
+                                    <td style="text-align: center;">Ma</td>
+                                    <td style="text-align: center;">Mi</td>
+                                    <td style="text-align: center;">Ju</td>
+                                    <td style="text-align: center;">Vi</td>
+                                    <td style="text-align: center;">Sa</td>
+                                    <td style="text-align: center;">Do</td>
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <td style="text-align: center; padding: 4px;"><input type="checkbox" name="weeks[lunes]" value="1" /></td>
+                                    <td style="text-align: center; padding: 4px;"><input type="checkbox" name="weeks[martes]" value="2" /></td>
+                                    <td style="text-align: center; padding: 4px;"><input type="checkbox" name="weeks[miercoles]" value="3" /></td>
+                                    <td style="text-align: center; padding: 4px;"><input type="checkbox" name="weeks[jueves]" value="4" /></td>
+                                    <td style="text-align: center; padding: 4px;"><input type="checkbox" name="weeks[viernes]" value="5" /></td>
+                                    <td style="text-align: center; padding: 4px;"><input type="checkbox" name="weeks[sabado]" value="6" /></td>
+                                    <td style="text-align: center; padding: 4px;"><input type="checkbox" name="weeks[domingo]" value="7" /></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                        @Html.HiddenFor(model => Model.DiasEvento)
+                    </div>
+                </div>
             </div>
             <div class="row">
                 <div class="col-sm-12">
@@ -252,7 +295,20 @@
         //Se coloca el datepicker a la caja de fecha.
         //checkSupportForInputTypeDate();
         $("#FechaEvento").datetimepicker({format: "DD/MM/YYYY HH:mm"});
-        
+        $("#FechaEventoFin").datetimepicker({ format: "DD/MM/YYYY HH:mm" });
+        var $weeks = $('[name^=week]'),
+            $weeksHidden = $('#DiasEvento');
+
+        $weeks.change(function () {
+            var $weeksChecked = $('[name^=week]:checked'),
+                weeksChecked = $weeksChecked
+                    .map(function () { return $(this).val(); })
+                    .get()
+                    .join(',');
+
+            $weeksHidden.val(weeksChecked);
+
+        });
     });
 
     
