@@ -112,6 +112,7 @@ namespace UTPPrototipo.Controllers
                         mensaje.MensajeTexto = "Estimado(a):" + NombreUsuario + "\r\n\r\n" +
                             "Es grato comunicarnos con usted para informarle que debido la confidencialidad de la información que contiene su cuenta, le hemos generado un token para que valide su información en nuestra intranet.\r\n\r\n" +
                             "-Token: " + result + "\r\n\r\n" +
+                            Request.Url.GetLeftPart(UriPartial.Authority)+"/#Token"+
                             "Cordialmente \r\n\r\n" +
                             "Area de TI";
                         LNCorreo.EnviarCorreo(mensaje);
