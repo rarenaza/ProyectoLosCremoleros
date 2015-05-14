@@ -1,4 +1,19 @@
 ﻿@model IEnumerable< UTP.PortalEmpleabilidad.Modelo.Evento>
+<<<<<<< HEAD
+<div class="col-sm">   
+    @foreach (var item in Model)
+    {
+        <div class="row grilla1-linea fuente-pequeña">
+            <div class="col-sm-10">
+                @*@Html.ActionLink(item.NombreEvento, "Eventos", "Alumno", new { id = item.IdEvento }, htmlAttributes: new { target = "_blank" })*@
+                @Html.ActionLink(item.NombreEvento, "Eventos", "Alumno", new { id = item.IdEvento }, null)
+            </div>
+            <div class="col-sm-10">
+                @Html.DisplayFor(modelItem => item.FechaEventoTexto)
+            </div>
+            <div class="col-sm-10">
+               @Html.DisplayFor(modelItem => item.LugarEvento)
+=======
 
     @foreach (var item in Model)
     {
@@ -12,6 +27,7 @@
             </div>
             <div class="col-sm">
                 @Html.DisplayFor(modelItem => item.LugarEvento)
+>>>>>>> pr/24
             </div>
         </div>
         <hr />

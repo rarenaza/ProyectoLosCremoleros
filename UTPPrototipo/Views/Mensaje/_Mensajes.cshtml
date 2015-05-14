@@ -216,7 +216,12 @@
                             <!--Acción para redactar nuevos mensajes.-->
                             <div class="col-sm-6">
                                 @*<button class="btn btn-default color-paleta1" data-toggle="modal" data-target="#divModalMensajeRedactar">Redactar</button>*@
-                                <button id="btnMensajeNuevo" class="btn btn-default color-paleta-msg-btn" onclick="mensajeNuevo('@ViewBag.Pantalla','@ViewBag.IdOferta', '@ViewBag.UsuarioAlumno', '@ViewBag.IdEvento', '@ViewBag.IdEmpresa');">Redactar</button>
+                                @{//20150508 a petición de Beatriz
+                                    if (@ViewBag.Pantalla != Constantes.MENSAJES_ALUMNO_INDEX)
+                                    { 
+                                        <button id="btnMensajeNuevo" class="btn btn-default color-paleta-msg-btn" onclick="mensajeNuevo('@ViewBag.Pantalla','@ViewBag.IdOferta', '@ViewBag.UsuarioAlumno', '@ViewBag.IdEvento', '@ViewBag.IdEmpresa');">Redactar</button>
+                                    }
+                                }
                                 <br />
                                 <label id="lblCargando" style="font-size:xx-small"></label>
                             </div>
