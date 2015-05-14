@@ -40,17 +40,11 @@
                 <span class="input-group-addon nombre-campo">Usuario</span>            
                 @Html.TextBoxFor(m => m.NombreUsuario, new { @class = "form-control",  @id = "Nusuario"})  
                 <span class="input-group-btn">
-<<<<<<< HEAD
-                    <button type="submit" class="btn" value="mail" name="submitButton">&nbsp;Enviar&nbsp;&nbsp;</button>
-                </span>
-            </div>
-            @Html.ValidationMessageFor(m => m.NombreUsuario, "", new { @class = "text-danger" })
-=======
                     <button type="button" id="btnGenerarToken" class="btn" value="mail" name="submitButton" onclick="generarTokenUsuario(); return false;">&nbsp;Enviar&nbsp;&nbsp;</button>
                 </span>
             </div>
             @Html.ValidationMessageFor(m => m.NombreUsuario, "", new { @class = "text-danger" })           
->>>>>>> pr/24
+
             <hr />
             <p>Paso 2:</p>
             <p>Revise su correo, ingrese su clave token y haga click en Ingresar. Si la ventana se cierra, deberá volver a generar la clave token.</p>
@@ -64,18 +58,10 @@
            
 
                 <span class="input-group-btn">
-<<<<<<< HEAD
-                    <button id="btnIngresar" type="button" class="btn">Ingresar</button>
-                </span>
-             </div>
-            @Html.ValidationMessageFor(m => m.Token, "", new { @class = "text-danger" })
-           
-=======
                     <button type="button" id="btnIngresar" class="btn" value="ingresar" name="submitButton" onclick="verificarTokenUsuario(); return false;">Ingresar</button>
                 </span>
              </div>
             @Html.ValidationMessageFor(m => m.Token, "", new { @class = "text-danger" })          
->>>>>>> pr/24
         </form>
     </div>
 }
