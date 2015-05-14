@@ -47,9 +47,13 @@ namespace UTP.PortalEmpleabilidad.Logica
         {
             Usuario user = new Usuario();
             DataTable dtResultado = adUsuario.ObtenerToken(usuario);
-            user.Token = dtResultado.Rows[0]["IdToken"].ToString();
 
-            return user.Token.ToString();
+            if (dtResultado != null && dtResultado.Rows.Count > 0)
+                user.Token = dtResultado.Rows[0]["IdToken"].ToString();
+            else
+                user.Token = null;
+
+            return user.Token;
         }
         
         public List<Usuario> ObtenerUsuariosPorTipo(string tipoUsuario)

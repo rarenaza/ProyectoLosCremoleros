@@ -294,8 +294,20 @@
 
         //Se coloca el datepicker a la caja de fecha.
         //checkSupportForInputTypeDate();
-        $("#FechaEvento").datetimepicker({format: "DD/MM/YYYY HH:mm"});
-        $("#FechaEventoFin").datetimepicker({ format: "DD/MM/YYYY HH:mm" });
+        var $eventStartDate = $("#FechaEvento"),
+            $eventEndDate = $("#FechaEventoFin");
+
+        $eventStartDate.datetimepicker({ format: "DD/MM/YYYY HH:mm" });
+        $eventEndDate.datetimepicker({ format: "DD/MM/YYYY HH:mm" });
+
+        $eventStartDate.on('dp.change', function (e) {
+            $eventEndDate.data("DateTimePicker").minDate(e.date);
+        });
+
+        $eventEndDate.on('dp.change', function (e) {
+            $eventStartDate.data("DateTimePicker").maxDate(e.date);
+        });
+
         var $weeks = $('[name^=week]'),
             $weeksHidden = $('#DiasEvento');
 

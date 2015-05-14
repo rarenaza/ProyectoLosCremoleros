@@ -5,16 +5,196 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Globalization;
-using Novacode;
 using System.Drawing;
-using UTP.PortalEmpleabilidad.Logica;
 using System.Data;
 using System.Text;
+using System.Text.RegularExpressions;
+
+using UTP.PortalEmpleabilidad.Logica;
 using UTPPrototipo.Common;
 using UTPPrototipo.Utiles;
 
+using Novacode;
+using Mustache;
+
 namespace UTPPrototipo.Controllers
 {
+    class Mustache
+    {
+        private string template;
+        private string pattern = @"{{([\s\S]+?)}}";
+        private string filter = String.Empty;
+
+        public Mustache Compile(string template)
+        {
+            string[] source = Regex.Replace(template, this.pattern, "$1").Split('|');
+
+            this.template = "{{" + source[0].Trim() + "}}";
+            this.filter = String.Empty;
+
+            if (source.Count() > 1)
+            {
+                this.filter = source[1];
+            }
+
+            return this;
+        }
+
+        public string Render(object context)
+        {
+            FormatCompiler compiler = new FormatCompiler();
+            Generator generator = compiler.Compile(this.template);
+            string result;
+            try
+            {
+                result = generator.Render(context).Trim();
+            }
+            catch (Exception e)
+            {
+                result = this.template;
+            }
+
+            if (this.filter != String.Empty)
+            {
+                result = this.FilterCompile(result, this.filter);
+            }
+
+            return result;
+        }
+
+        private string FilterCompile(string text, string filter)
+        {
+            string output = "";
+            string[] filterProperties = filter.Split(':');
+            string filterName = filterProperties[0].Trim();
+            string filterValue = filterProperties[1];
+
+            switch (filterName)
+            {
+                case "prefix":
+                    output = (text != String.Empty ? Regex.Unescape(filterValue) + text : "");
+                    break;
+                case "suffix":
+                    output = (text != String.Empty ? text + Regex.Unescape(filterValue) : "");
+                    break;
+                case "default":
+                    output = (text == String.Empty ? Regex.Unescape(filterValue) : text);
+                    break;
+            }
+
+            return output;
+        }
+    }
+
+    class Template
+    {
+        private string Source;
+        private string Pattern;
+        private string ModelPattern;
+        private string PointerPattern;
+        private System.Text.RegularExpressions.RegexOptions REGEX = System.Text.RegularExpressions.RegexOptions.ECMAScript;
+        private MemoryStream Stream;
+
+        public Template(string Source, string Pattern = @"{{<regex>}}")
+        {
+            this.Source = Source;
+            this.Pattern = Pattern;
+            this.ModelPattern = Pattern
+                .Replace("<regex>", @"<model>\.([\s\S]+?)");
+            this.PointerPattern = Pattern
+                .Replace("<regex>", @"><model>");
+        }
+
+        public Template Build()
+        {
+            this.Stream = new MemoryStream();
+
+            using (FileStream Document = File.OpenRead(this.Source))
+            {
+                this.Stream.SetLength(Document.Length);
+                Document.Read(this.Stream.GetBuffer(), 0, (int)Document.Length);
+            }
+
+            return this;
+        }
+
+        public object Compile()
+        {
+            object person;
+            object education;
+            object experience;
+            object aditionalInformation;
+
+            using (DocX word = DocX.Load(this.Stream))
+            {
+                person = Tagify(word, "person");
+                education = Tagify(word, "education");
+                experience = Tagify(word, "experience");
+                aditionalInformation = Tagify(word, "aditionalInformation");
+
+                word.Save();
+            }
+
+            return new
+            {
+                person = person,
+                education = education,
+                experience = experience,
+                aditionalInformation = aditionalInformation
+            };
+        }
+
+        public object Tagify(DocX word, string model)
+        {
+            // Patterns
+            string inlinePattern = this.ModelPattern.Replace("<model>", model);
+            string blockPattern = this.PointerPattern.Replace("<model>", model);
+
+            // Get inline templates 
+            List<string> inlineTemplates = word.FindUniqueByPattern(inlinePattern, this.REGEX);
+
+            // Get block templates
+            List<Table> blockTemplates;
+
+            try
+            {
+                Table blockTemplatesWrapper = word
+                    .Tables
+                    .Where(e => e.Paragraphs[0].Text.Contains(blockPattern))
+                    .ToList()[0];
+
+                blockTemplates = this.CascadeBlock(blockTemplatesWrapper, new List<Table>());
+            }
+            catch (Exception e)
+            {
+                blockTemplates = new List<Table>();
+            }
+
+            return new
+            {
+                name = model,
+                inlines = inlineTemplates,
+                blocks = blockTemplates
+            };
+        }
+
+        public List<Table> CascadeBlock(Table block, List<Table> blocks)
+        {
+            blocks.Add(block);
+
+            try
+            {
+                block = block.Rows[1].Tables[0];
+
+                return this.CascadeBlock(block, blocks);
+            }
+            catch (Exception e)
+            {
+                return blocks;
+            }
+        }
+    }
+
     [LogPortal]
     public class PlantillaController : Controller
     {
@@ -26,245 +206,230 @@ namespace UTPPrototipo.Controllers
 
         public FileResult GenerarCV(int idCV)
         {
-            //1. Obtener información del alumno.
-            //int idCV = 3; //Demo
-
             LNPlantillaCV lnPlantilla = new LNPlantillaCV();
-            DataSet dsResultado = lnPlantilla.ObtenerDatosParaPlantilla(idCV);
+            DataSet Result = lnPlantilla.ObtenerDatosParaPlantilla(idCV);
+            DataTable Person = Result.Tables[0];
+            DataTable Education = Result.Tables[1];
+            DataTable Experience = Result.Tables[2];
+            DataTable AditionalInformation = Result.Tables[3];
 
             MemoryStream stream = new MemoryStream();
 
-            using (FileStream fileStream = System.IO.File.OpenRead(Server.MapPath("~/Plantillas/PlantillaVER3.docx")))
+            string filePath = Server.MapPath("~/Plantillas/template.docx");
+            Mustache mustache = new Mustache();
+            string blockPattern = @"{{><model>}}";
+
+            using (FileStream fileStream = System.IO.File.OpenRead(filePath))
             {
                 stream.SetLength(fileStream.Length);
                 fileStream.Read(stream.GetBuffer(), 0, (int)fileStream.Length);
             }
 
-            //MemoryStream stream = new MemoryStream();
-
             using (DocX doc = DocX.Load(stream))
             {
-                //Pruebas de escritura:
-                //Paragraph par = doc.InsertParagraph();
-                //par.Append("Esto es una prueba").Font(new FontFamily("Times New Roman")).FontSize(32).Color(Color.Blue).Bold();
+                dynamic template = new Template(filePath)
+                    .Build()
+                    .Compile();
 
-                doc.ReplaceText("<NOMBRES>", Convert.ToString(dsResultado.Tables[0].Rows[0]["Nombres"]));
-                doc.ReplaceText("<APELLIDOS>", " " + Convert.ToString(dsResultado.Tables[0].Rows[0]["Apellidos"]));
-                doc.ReplaceText("<Direccion>", " " + Convert.ToString(dsResultado.Tables[0].Rows[0]["Direccion"]));
-                doc.ReplaceText("<DireccionDistrito>", " " + Convert.ToString(dsResultado.Tables[0].Rows[0]["DireccionDistrito"]));
-                doc.ReplaceText("<TelefonoCelular>", " | " + Convert.ToString(dsResultado.Tables[0].Rows[0]["TelefonoCelular"]));
-                doc.ReplaceText("<CorreoElectronico>", " | " + Convert.ToString(dsResultado.Tables[0].Rows[0]["CorreoElectronico"]));
-                doc.ReplaceText("<CorreoElectronico2>", " | " + Convert.ToString(dsResultado.Tables[0].Rows[0]["CorreoElectronico2"]));
-                                
-                doc.ReplaceText("<Perfil>", Convert.ToString(dsResultado.Tables[0].Rows[0]["Perfil"]));
+                #region person
 
-                //Estudios
-
-                //Se obtiene las tablas que vienen en el dataset.
-                DataTable dtEstudios = dsResultado.Tables[1]; //SQL
-                DataTable dtExperiencia = dsResultado.Tables[2]; //SQL
-                DataTable dtInfoAdicional = dsResultado.Tables[3]; //SQL
-
-                //1. Se completa la información de estudios. Se guarda en temporal para obtener el diseño en el Word y no se pierda el orden de las tablas al insertar filas en éstas.
-                Table tblTempEstudios = doc.Tables[1]; //Plantilla Word
-                Table tblTempExperiencia = doc.Tables[2]; //Plantilla Word
-                Table tblTempInfoAdicional = doc.Tables[3]; //Plantilla Word
-
-                Table tblEstudios = tblTempEstudios.InsertTableAfterSelf(dtEstudios.Rows.Count, 2);
-                Table tblExperiencia = tblTempExperiencia.InsertTableAfterSelf(dtExperiencia.Rows.Count, 2);
-                Table tblInfoAdicional = tblTempInfoAdicional.InsertTableAfterSelf(dtInfoAdicional.Rows.Count, 1); //Se inserta las filas y columnas.
-
-                //Se pasa el diseño del word a la nueva tabla.
-                tblEstudios.Design = tblTempEstudios.Design;
-                tblExperiencia.Design = tblTempEstudios.Design;
-                tblInfoAdicional.Design = tblTempInfoAdicional.Design;
-                //tblEstudios.AutoFit = AutoFit.ColumnWidth;
-
-                //Se recorre la tabla de estudios y se completa la data:
-                #region Se recorre la tabla de estudios y se completa la data:
-                for (int fila = 0; fila <= tblEstudios.RowCount - 1; fila++)
-                {                    
-                    for (int celda = 0; celda <= tblEstudios.Rows[fila].Cells.Count - 1; celda++)
-                    {
-                        Paragraph cell_paragraph = tblEstudios.Rows[fila].Cells[celda].Paragraphs[0];
-
-                        string institucion = Convert.ToString(dtEstudios.Rows[fila]["Institucion"]);
-                        string estudio = Convert.ToString(dtEstudios.Rows[fila]["Estudio"]);
-                        int fechaInicioMes = Convert.ToInt32(dtEstudios.Rows[fila]["FechaInicioMes"]);
-                        int fechaInicioAno = Convert.ToInt32(dtEstudios.Rows[fila]["FechaInicioAno"]);
-                        int fechaFinMes = 0;
-                        if (dtEstudios.Rows[fila]["FechaFinMes"] != DBNull.Value)
-                        {
-                            fechaFinMes = Convert.ToInt32(dtEstudios.Rows[fila]["FechaFinMes"]);
-                        }
-                        int fechaFinAno = 0;
-                        if (dtEstudios.Rows[fila]["FechaFinAno"] != DBNull.Value)
-                        {
-                            fechaFinAno = Convert.ToInt32(dtEstudios.Rows[fila]["FechaFinAno"]);
-                        }
-                        string periodo = ConvertirMes(fechaInicioMes) + fechaInicioAno.ToString().Substring(2, 2);
-                        if (fechaFinMes > 0 && fechaFinAno > 0)
-                        {
-                            periodo = periodo + " - " + ConvertirMes(fechaFinMes) + fechaFinAno.ToString().Substring(2, 2);  
-                        }
-                        if (celda == 0)
-                        {
-                            tblEstudios.Rows[fila].Cells[celda].Width = 120;
-                            cell_paragraph.Append(periodo);
-                            cell_paragraph.Font(new FontFamily("Arial")).FontSize(9);
-                        }
-                        else
-                            if (celda == 1)
-                            {
-                                tblEstudios.Rows[fila].Cells[celda].Width = 400;
-                                //cell_paragraph.InsertText(institucion + "\r" + estudio + "\r", false);                                
-                                cell_paragraph.Append(institucion);
-                                cell_paragraph.Font(new FontFamily("Arial")).FontSize(9).Bold();
-                                cell_paragraph.AppendLine(estudio);
-                                cell_paragraph.Font(new FontFamily("Arial")).FontSize(9);
-                                cell_paragraph.AppendLine();
-                            }
-                            else
-                                cell_paragraph.InsertText("no existen datos", false);
-                    }
-                }
-                #endregion
-
-                #region Se recorre la tabla de experiencia (WORD) y se completa los datos:
-
-                for (int fila = 0; fila <= tblExperiencia.RowCount - 1; fila++)
+                object person = new
                 {
-                    for (int celda = 0; celda <= tblExperiencia.Rows[fila].Cells.Count - 1; celda++)
-                    {
-                        Paragraph cell_paragraph = tblExperiencia.Rows[fila].Cells[celda].Paragraphs[0];
+                    // Informacion basica
+                    firstname = Convert.ToString(Person.Rows[0]["Nombres"]).ToUpper(),
+                    lastname = Convert.ToString(Person.Rows[0]["Apellidos"]).ToUpper(),
+                    address = Convert.ToString(Person.Rows[0]["Direccion"]),
+                    district = Convert.ToString(Person.Rows[0]["DireccionDistrito"]),
+                    celphone = Convert.ToString(Person.Rows[0]["TelefonoCelular"]),
+                    email = Convert.ToString(Person.Rows[0]["CorreoElectronico"]),
+                    emailAlternative = Convert.ToString(Person.Rows[0]["CorreoElectronico2"]),
+                    profile = Convert.ToString(Person.Rows[0]["Perfil"])
+                };
 
-                        if (fila == 0) //Se agrega un salto de línea en cada celda de la fila.
-                        {
-                            cell_paragraph.AppendLine();
-                        }
-
-                        //Si es la primera celda de la fila =>
-                        if (celda == 0)
-                        {
-                            int fechaInicioMes = Convert.ToInt32(dtExperiencia.Rows[fila]["FechaInicioCargoMes"]);
-                            int fechaInicioAno = Convert.ToInt32(dtExperiencia.Rows[fila]["FechaInicioCargoAno"]);
-                            //int fechaFinMes = Convert.ToInt32(dtExperiencia.Rows[fila]["FechaFinCargoMes"]);
-                            //int fechaFinAno = Convert.ToInt32(dtExperiencia.Rows[fila]["FechaFinCargoAno"]);
-
-                            ////Se arma el texto del periodo.
-                            //string periodo = ConvertirMes(fechaInicioMes) + fechaInicioAno.ToString().Substring(2, 2) + " - " + ConvertirMes(fechaFinMes) + fechaFinAno.ToString().Substring(2, 2);
-                            int fechaFinMes = 0;
-                            if (dtExperiencia.Rows[fila]["FechaFinCargoMes"] != DBNull.Value)
-                            {
-                                fechaFinMes = Convert.ToInt32(dtExperiencia.Rows[fila]["FechaFinCargoMes"]);
-                            }
-                            int fechaFinAno = 0;
-                            if (dtExperiencia.Rows[fila]["FechaFinCargoAno"] != DBNull.Value)
-                            {
-                                fechaFinAno = Convert.ToInt32(dtExperiencia.Rows[fila]["FechaFinCargoAno"]);
-                            }
-                            string periodo = ConvertirMes(fechaInicioMes) + fechaInicioAno.ToString().Substring(2, 2);
-                            if (fechaFinMes > 0 && fechaFinAno > 0)
-                            {
-                                periodo = periodo + " - " + ConvertirMes(fechaFinMes) + fechaFinAno.ToString().Substring(2, 2);
-                            }
-                            else 
-                            {
-                                periodo = periodo + " - Act";
-                            }
-
-
-                            tblExperiencia.Rows[fila].Cells[celda].Width = 120;  //Se coloca el ancho de la celda.
-                            cell_paragraph.Append(periodo); //Se indica el valor.
-                            cell_paragraph.Font(new FontFamily("Arial")).FontSize(9); //Se establece el formato de la celda.
-                        }
-                        else
-                            if (celda == 1)
-                            {
-                                string empresa = Convert.ToString(dtExperiencia.Rows[fila]["Empresa"]);
-                                string descripcionEmpresa = Convert.ToString(dtExperiencia.Rows[fila]["DescripcionEmpresa"]);
-                                string ciudad = Convert.ToString(dtExperiencia.Rows[fila]["Ciudad"]);
-                                string pais = Convert.ToString(dtExperiencia.Rows[fila]["PaisDescripcion"]);
-                                string cargo = Convert.ToString(dtExperiencia.Rows[fila]["NombreCargo"]);
-                                string descripcionCargo = Convert.ToString(dtExperiencia.Rows[fila]["DescripcionCargo"]);
-
-                                tblExperiencia.Rows[fila].Cells[celda].Width = 500; //Se coloca el ancho.                                
-                                cell_paragraph.Append(empresa + " (" + ciudad + " - " + pais + ")");
-                                cell_paragraph.Font(new FontFamily("Arial")).FontSize(9).Bold();
-
-                                cell_paragraph.AppendLine(descripcionEmpresa);
-                                cell_paragraph.Font(new FontFamily("Arial")).FontSize(9);
-
-                                cell_paragraph.AppendLine(cargo);
-                                cell_paragraph.Font(new FontFamily("Arial")).FontSize(9);
-
-                                cell_paragraph.AppendLine(descripcionCargo);
-                                cell_paragraph.Font(new FontFamily("Arial")).FontSize(9);
-
-                                cell_paragraph.AppendLine(); //Salto de línea para separar los cargos.
-                            }
-                            //else
-                            //    cell_paragraph.InsertText("no existen datos", false);
-                    }
-                }
-
-                #endregion
-
-                #region Se recorre la tabla de informacion adicional y se completa los datos:
-                for (int fila = 0; fila <= tblInfoAdicional.RowCount - 1; fila++)
+                if (Convert.ToBoolean(template.person.inlines.Count))
                 {
-                    //Actualmente sólo va a haber una columna en esta tabla. Este for sólo va a recorrer una vez.
-                    for (int celda = 0; celda <= tblInfoAdicional.Rows[fila].Cells.Count - 1; celda++)
+                    foreach (string i in template.person.inlines)
                     {
-                        Paragraph cell_paragraph = tblInfoAdicional.Rows[fila].Cells[celda].Paragraphs[0];
-
-                        //Se obtiene la data de la tabla que viene de la BD.
-                        //string tipoConocimiento = "tipoConocimiento"; // Convert.ToString(dtInfoAdicional.Rows[fila]["TipoConocimientoDescripcion"]);
-                        string conocimiento = Convert.ToString(dtInfoAdicional.Rows[fila]["Conocimiento"]);
-                        string nivelConocimientoDescripcion = Convert.ToString(dtInfoAdicional.Rows[fila]["NivelConocimientoDescripcion"]);
-                        string fechaDesde = Convert.ToString(dtInfoAdicional.Rows[fila]["FechaConocimientoDesdeAno"]);
-                        string fechaHasta = Convert.ToString(dtInfoAdicional.Rows[fila]["FechaConocimientoHastaAno"]);
-                        //string pais = "pais"; //Convert.ToString(dtInfoAdicional.Rows[fila]["PaisDescripcion"]);
-                        //string ciudad = "ciudad"; //Convert.ToString(dtInfoAdicional.Rows[fila]["Ciudad"]);
-                        string institucionEstudio = Convert.ToString(dtInfoAdicional.Rows[fila]["InstituciónDeEstudio"]);
-
-                        //Se arma la cadena de cada fila en la tabla de Información adicional.
-                        StringBuilder infoAdicional = new StringBuilder();
-                        infoAdicional.Append(conocimiento + " ");
-                        infoAdicional.Append(nivelConocimientoDescripcion + ", ");                        
-                        infoAdicional.Append(institucionEstudio + ", ");
-                        infoAdicional.Append(fechaDesde + "-");
-                        infoAdicional.Append(fechaHasta + ". ");
-
-                        tblInfoAdicional.Rows[fila].Cells[celda].Width = 600;                        
-                        cell_paragraph.AppendLine(infoAdicional.ToString());
-                        cell_paragraph.Font(new FontFamily("Arial")).FontSize(9); //Se da formato a la nueva fila.
-
-                        //cell_paragraph.AppendLine(nivelConocimientoDescripcion);
-                        //cell_paragraph.Font(new FontFamily("Arial")).FontSize(9);
-                        //cell_paragraph.AppendLine(fechaDesde);
-                        //cell_paragraph.Font(new FontFamily("Arial")).FontSize(9);
-                        //cell_paragraph.AppendLine(fechaHasta);
-                        //cell_paragraph.Font(new FontFamily("Arial")).FontSize(9);
-                        //cell_paragraph.AppendLine(institucionEstudio);
-                        //cell_paragraph.Font(new FontFamily("Arial")).FontSize(9);
-                      
-                        cell_paragraph.AppendLine();
+                        doc.ReplaceText(i, mustache.Compile(i).Render(new { person = person }));
                     }
                 }
+
                 #endregion
-                //Se recorre la tabla de informacion adicional y se completa los datos:
+
+                #region education
                 
-                //Se eliminal las tablas temporales:
-                tblTempEstudios.Remove();
-                tblTempExperiencia.Remove();
-                tblTempInfoAdicional.Remove();
+                 object education;
+                 string educationPattern = blockPattern.Replace("<model>", "education");
+                 Table educationWrapper;
+
+                try
+                {
+                    educationWrapper = doc
+                        .Tables
+                        .Where(e => e.Paragraphs[0].Text.Contains(educationPattern))
+                        .ToList()[0];
+
+                    // Clean reference template
+                    educationWrapper.Rows[1].Remove();
+
+                    foreach (DataRow data in Education.Rows) 
+                    {
+                        educationWrapper.InsertTableAfterSelf(template.education.blocks[1]);
+
+                        education = new
+                        {
+                            institute = Convert.ToString(data["Institucion"]),
+                            study = Convert.ToString(data["Estudio"]),
+                            period = ConvertirMes(Convert.ToInt32(data["FechaInicioMes"])) + Convert.ToString(data["FechaInicioAno"]).Substring(2, 2) + 
+                                "-" + (data["FechaFinMes"] == DBNull.Value && data["FechaFinAno"] == DBNull.Value 
+                                    ? "Cont"
+                                    : ConvertirMes(Convert.ToInt32(data["FechaFinMes"])) + Convert.ToString(data["FechaFinAno"]).Substring(2, 2)) 
+                        };
+
+                        foreach (string i in template.education.inlines)
+                        {
+                            doc.ReplaceText(i, mustache.Compile(i).Render(new { education = education }));
+                        }
+                    }
+
+                    // Clean reference pointer
+                    educationWrapper.Rows[0].Remove();
+                }
+                catch (Exception e) { }
+
+                #endregion
+
+                #region experience
+
+                string experiencePattern = blockPattern.Replace("<model>", "experience");
+                Table experienceWrapper;
+
+                Dictionary<string, string> enterprises = new Dictionary<string, string>();
+                Dictionary<string, List<object>> experiences = new Dictionary<string, List<object>>();
+
+                DataTable Enterprises = Experience.DefaultView.ToTable(true, "Empresa", "DescripcionEmpresa");
+                foreach (DataRow enterprise in Enterprises.Rows)
+                {
+                    enterprises.Add(Convert.ToString(enterprise["Empresa"]), Convert.ToString(enterprise["DescripcionEmpresa"]));
+
+                    List<object> aux = new List<object>();
+
+                    DataTable experiencesOfEnterprise = Experience.Select("Empresa = '" + Convert.ToString(enterprise["Empresa"]) + "'").CopyToDataTable();
+                    foreach (DataRow data in experiencesOfEnterprise.Rows)
+                    {
+                        aux.Add(new
+                        {
+                            period = ConvertirMes(Convert.ToInt32(data["FechaInicioCargoMes"])) + Convert.ToString(data["FechaInicioCargoAno"]).Substring(2, 2) +
+                            "-" + (data["FechaFinCargoMes"] == DBNull.Value && data["FechaFinCargoAno"] == DBNull.Value
+                                ? "Cont"
+                                : ConvertirMes(Convert.ToInt32(data["FechaFinCargoMes"])) + Convert.ToString(data["FechaFinCargoAno"]).Substring(2, 2)),
+                            office = Convert.ToString(data["NombreCargo"]),
+                            officeDescription = Convert.ToString(data["DescripcionCargo"])
+                        });
+                    }
+
+                    experiences.Add(Convert.ToString(enterprise["Empresa"]), aux);
+                }
+
+                try
+                {
+                    experienceWrapper = doc
+                        .Tables
+                        .Where(e => e.Paragraphs[0].Text.Contains(experiencePattern))
+                        .ToList()[0];
+
+                    // Clean reference template
+                    experienceWrapper.Rows[1].Remove();
+
+                    foreach (var data in enterprises)
+                    {
+                        Table enterpriseWrapper = experienceWrapper.InsertTableAfterSelf(template.experience.blocks[1]);
+
+                        // Render enterprise info
+                        for (int i = 0; i < 2; i++)
+                        {
+                            doc.ReplaceText(
+                                template.experience.inlines[i],
+                                mustache
+                                    .Compile(template.experience.inlines[i])
+                                    .Render(new
+                                    {
+                                        experience = new
+                                        {
+                                            enterprise = data.Key,
+                                            enterpriseDescription = enterprises[data.Key]
+                                        }
+                                    })
+                            );
+                        }
+
+                        Table enterpriseExperienceWrapper = enterpriseWrapper.Rows[1].Tables[0];
+                        foreach (object experience in experiences[data.Key])
+                        {
+                            enterpriseExperienceWrapper.InsertTableAfterSelf(template.experience.blocks[2]);
+
+                            foreach (string i in template.experience.inlines)
+                            {
+                                doc.ReplaceText(i, mustache.Compile(i).Render(new { experience = experience }));
+                            }
+                        }
+
+                        enterpriseExperienceWrapper.Rows[0].Remove();
+                    }
+
+                    // Clean reference pointer
+                    experienceWrapper.Rows[0].Remove();
+                }
+                catch (Exception e) {}
+
+                #endregion
+
+                #region aditional information
+
+                object aditionalInformation;
+                string aditionalInformationPattern = blockPattern.Replace("<model>", "aditionalInformation");
+                Table aditionalInformationWrapper;
+
+                try
+                {
+                    aditionalInformationWrapper = doc
+                        .Tables
+                        .Where(e => e.Paragraphs[0].Text.Contains(aditionalInformationPattern))
+                        .ToList()[0];
+
+                    // Clean reference template
+                    aditionalInformationWrapper.Rows[1].Remove();
+
+                    foreach (DataRow data in AditionalInformation.Rows)
+                    {
+                        aditionalInformationWrapper.InsertTableAfterSelf(template.aditionalInformation.blocks[1]);
+
+                        aditionalInformation = new
+                        {
+                            knowledge = Convert.ToString(data["Conocimiento"]),
+                            level = Convert.ToString(data["NivelConocimientoDescripcion"]),
+                            institute = Convert.ToString(data["InstituciónDeEstudio"]),
+                            date = Convert.ToString(data["FechaConocimientoHastaAno"])
+                        };
+
+                        foreach (string i in template.aditionalInformation.inlines)
+                        {
+                            doc.ReplaceText(i, mustache.Compile(i).Render(new { aditionalInformation = aditionalInformation }));
+                        }
+                    }
+
+                    // Clean reference pointer
+                    aditionalInformationWrapper.Rows[0].Remove();
+                }
+                catch (Exception e) { }
+
+                #endregion
                                             
                doc.Save();               
             
             }
       
-            string codigoAlumno = Convert.ToString(dsResultado.Tables[0].Rows[0]["CodAlumnoUtp"]);
+            string codigoAlumno = Convert.ToString(Person.Rows[0]["CodAlumnoUtp"]);
 
             return File(stream.ToArray(), "application/octet-stream", codigoAlumno + ".docx");            
         }
@@ -276,11 +441,18 @@ namespace UTPPrototipo.Controllers
         /// <param name="rutaPlantilla"></param>
         /// <returns></returns>
         public MemoryStream CrearCurriculum(int idCV, string rutaPlantilla)
-        {            
+        {
             LNPlantillaCV lnPlantilla = new LNPlantillaCV();
-            DataSet dsResultado = lnPlantilla.ObtenerDatosParaPlantilla(idCV);
+            DataSet Result = lnPlantilla.ObtenerDatosParaPlantilla(idCV);
+            DataTable Person = Result.Tables[0];
+            DataTable Education = Result.Tables[1];
+            DataTable Experience = Result.Tables[2];
+            DataTable AditionalInformation = Result.Tables[3];
 
             MemoryStream stream = new MemoryStream();
+
+            Mustache mustache = new Mustache();
+            string blockPattern = @"{{><model>}}";
 
             using (FileStream fileStream = System.IO.File.OpenRead(rutaPlantilla))
             {
@@ -288,227 +460,205 @@ namespace UTPPrototipo.Controllers
                 fileStream.Read(stream.GetBuffer(), 0, (int)fileStream.Length);
             }
 
-            //MemoryStream stream = new MemoryStream();
-
             using (DocX doc = DocX.Load(stream))
             {
-                //Pruebas de escritura:
-                //Paragraph par = doc.InsertParagraph();
-                //par.Append("Esto es una prueba").Font(new FontFamily("Times New Roman")).FontSize(32).Color(Color.Blue).Bold();
+                dynamic template = new Template(rutaPlantilla)
+                    .Build()
+                    .Compile();
 
-                doc.ReplaceText("<NOMBRES>", Convert.ToString(dsResultado.Tables[0].Rows[0]["Nombres"]));
-                doc.ReplaceText("<APELLIDOS>", " " + Convert.ToString(dsResultado.Tables[0].Rows[0]["Apellidos"]));
-                doc.ReplaceText("<Direccion>", " " + Convert.ToString(dsResultado.Tables[0].Rows[0]["Direccion"]));
-                doc.ReplaceText("<DireccionDistrito>", " " + Convert.ToString(dsResultado.Tables[0].Rows[0]["DireccionDistrito"]));
-                doc.ReplaceText("<TelefonoCelular>", " | " + Convert.ToString(dsResultado.Tables[0].Rows[0]["TelefonoCelular"]));
-                doc.ReplaceText("<CorreoElectronico>", " | " + Convert.ToString(dsResultado.Tables[0].Rows[0]["CorreoElectronico"]));
-                doc.ReplaceText("<CorreoElectronico2>", " | " + Convert.ToString(dsResultado.Tables[0].Rows[0]["CorreoElectronico2"]));
+                #region person
 
-                doc.ReplaceText("<Perfil>", Convert.ToString(dsResultado.Tables[0].Rows[0]["Perfil"]));
-
-                //Estudios
-
-                //Se obtiene las tablas que vienen en el dataset.
-                DataTable dtEstudios = dsResultado.Tables[1]; //SQL
-                DataTable dtExperiencia = dsResultado.Tables[2]; //SQL
-                DataTable dtInfoAdicional = dsResultado.Tables[3]; //SQL
-
-                //1. Se completa la información de estudios. Se guarda en temporal para obtener el diseño en el Word y no se pierda el orden de las tablas al insertar filas en éstas.
-                Table tblTempEstudios = doc.Tables[1]; //Plantilla Word
-                Table tblTempExperiencia = doc.Tables[2]; //Plantilla Word
-                Table tblTempInfoAdicional = doc.Tables[3]; //Plantilla Word
-
-                Table tblEstudios = tblTempEstudios.InsertTableAfterSelf(dtEstudios.Rows.Count, 2);
-                Table tblExperiencia = tblTempExperiencia.InsertTableAfterSelf(dtExperiencia.Rows.Count, 2);
-                Table tblInfoAdicional = tblTempInfoAdicional.InsertTableAfterSelf(dtInfoAdicional.Rows.Count, 1); //Se inserta las filas y columnas.
-
-                //Se pasa el diseño del word a la nueva tabla.
-                tblEstudios.Design = tblTempEstudios.Design;
-                tblExperiencia.Design = tblTempEstudios.Design;
-                tblInfoAdicional.Design = tblTempInfoAdicional.Design;
-                //tblEstudios.AutoFit = AutoFit.ColumnWidth;
-
-                //Se recorre la tabla de estudios y se completa la data:
-                #region Se recorre la tabla de estudios y se completa la data:
-                for (int fila = 0; fila <= tblEstudios.RowCount - 1; fila++)
+                object person = new
                 {
-                    for (int celda = 0; celda <= tblEstudios.Rows[fila].Cells.Count - 1; celda++)
-                    {
-                        Paragraph cell_paragraph = tblEstudios.Rows[fila].Cells[celda].Paragraphs[0];
+                    // Informacion basica
+                    firstname = Convert.ToString(Person.Rows[0]["Nombres"]).ToUpper(),
+                    lastname = Convert.ToString(Person.Rows[0]["Apellidos"]).ToUpper(),
+                    address = Convert.ToString(Person.Rows[0]["Direccion"]),
+                    district = Convert.ToString(Person.Rows[0]["DireccionDistrito"]),
+                    celphone = Convert.ToString(Person.Rows[0]["TelefonoCelular"]),
+                    email = Convert.ToString(Person.Rows[0]["CorreoElectronico"]),
+                    emailAlternative = Convert.ToString(Person.Rows[0]["CorreoElectronico2"]),
+                    profile = Convert.ToString(Person.Rows[0]["Perfil"])
+                };
 
-                        string institucion = Convert.ToString(dtEstudios.Rows[fila]["Institucion"]);
-                        string estudio = Convert.ToString(dtEstudios.Rows[fila]["Estudio"]);
-                        int fechaInicioMes = Convert.ToInt32(dtEstudios.Rows[fila]["FechaInicioMes"]);
-                        int fechaInicioAno = Convert.ToInt32(dtEstudios.Rows[fila]["FechaInicioAno"]);
-                        int fechaFinMes = 0;
-                        if (dtEstudios.Rows[fila]["FechaFinMes"] != DBNull.Value)
-                        {
-                            fechaFinMes = Convert.ToInt32(dtEstudios.Rows[fila]["FechaFinMes"]);
-                        }
-                        int fechaFinAno = 0;
-                        if (dtEstudios.Rows[fila]["FechaFinAno"] != DBNull.Value)
-                        {
-                            fechaFinAno = Convert.ToInt32(dtEstudios.Rows[fila]["FechaFinAno"]);
-                        }
-                        string periodo = ConvertirMes(fechaInicioMes) + fechaInicioAno.ToString().Substring(2, 2);
-                        if (fechaFinMes > 0 && fechaFinAno > 0)
-                        {
-                            periodo = periodo + " - " + ConvertirMes(fechaFinMes) + fechaFinAno.ToString().Substring(2, 2);
-                        }
-                        if (celda == 0)
-                        {
-                            tblEstudios.Rows[fila].Cells[celda].Width = 120;
-                            cell_paragraph.Append(periodo);
-                            cell_paragraph.Font(new FontFamily("Arial")).FontSize(9);
-                        }
-                        else
-                            if (celda == 1)
-                            {
-                                tblEstudios.Rows[fila].Cells[celda].Width = 400;
-                                //cell_paragraph.InsertText(institucion + "\r" + estudio + "\r", false);                                
-                                cell_paragraph.Append(institucion);
-                                cell_paragraph.Font(new FontFamily("Arial")).FontSize(9).Bold();
-                                cell_paragraph.AppendLine(estudio);
-                                cell_paragraph.Font(new FontFamily("Arial")).FontSize(9);
-                                cell_paragraph.AppendLine();
-                            }
-                            else
-                                cell_paragraph.InsertText("no existen datos", false);
-                    }
-                }
-                #endregion
-
-                #region Se recorre la tabla de experiencia (WORD) y se completa los datos:
-
-                for (int fila = 0; fila <= tblExperiencia.RowCount - 1; fila++)
+                if (Convert.ToBoolean(template.person.inlines.Count))
                 {
-                    for (int celda = 0; celda <= tblExperiencia.Rows[fila].Cells.Count - 1; celda++)
+                    foreach (string i in template.person.inlines)
                     {
-                        Paragraph cell_paragraph = tblExperiencia.Rows[fila].Cells[celda].Paragraphs[0];
-
-                        if (fila == 0) //Se agrega un salto de línea en cada celda de la fila.
-                        {
-                            cell_paragraph.AppendLine();
-                        }
-
-                        //Si es la primera celda de la fila =>
-                        if (celda == 0)
-                        {
-                            int fechaInicioMes = Convert.ToInt32(dtExperiencia.Rows[fila]["FechaInicioCargoMes"]);
-                            int fechaInicioAno = Convert.ToInt32(dtExperiencia.Rows[fila]["FechaInicioCargoAno"]);
-                            //int fechaFinMes = Convert.ToInt32(dtExperiencia.Rows[fila]["FechaFinCargoMes"]);
-                            //int fechaFinAno = Convert.ToInt32(dtExperiencia.Rows[fila]["FechaFinCargoAno"]);
-
-                            ////Se arma el texto del periodo.
-                            //string periodo = ConvertirMes(fechaInicioMes) + fechaInicioAno.ToString().Substring(2, 2) + " - " + ConvertirMes(fechaFinMes) + fechaFinAno.ToString().Substring(2, 2);
-                            ////Se arma el texto del periodo.
-                            //string periodo = ConvertirMes(fechaInicioMes) + fechaInicioAno.ToString().Substring(2, 2) + " - " + ConvertirMes(fechaFinMes) + fechaFinAno.ToString().Substring(2, 2);
-                            int fechaFinMes = 0;
-                            if (dtExperiencia.Rows[fila]["FechaFinCargoMes"] != DBNull.Value)
-                            {
-                                fechaFinMes = Convert.ToInt32(dtExperiencia.Rows[fila]["FechaFinCargoMes"]);
-                            }
-                            int fechaFinAno = 0;
-                            if (dtExperiencia.Rows[fila]["FechaFinCargoAno"] != DBNull.Value)
-                            {
-                                fechaFinAno = Convert.ToInt32(dtExperiencia.Rows[fila]["FechaFinCargoAno"]);
-                            }
-                            string periodo = ConvertirMes(fechaInicioMes) + fechaInicioAno.ToString().Substring(2, 2);
-                            if (fechaFinMes > 0 && fechaFinAno > 0)
-                            {
-                                periodo = periodo + " - " + ConvertirMes(fechaFinMes) + fechaFinAno.ToString().Substring(2, 2);
-                            }
-                            else
-                            {
-                                periodo = periodo + " - Act";
-                            }
-
-
-                            tblExperiencia.Rows[fila].Cells[celda].Width = 120;  //Se coloca el ancho de la celda.
-                            cell_paragraph.Append(periodo); //Se indica el valor.
-                            cell_paragraph.Font(new FontFamily("Arial")).FontSize(9); //Se establece el formato de la celda.
-                        }
-                        else
-                            if (celda == 1)
-                            {
-                                string empresa = Convert.ToString(dtExperiencia.Rows[fila]["Empresa"]);
-                                string descripcionEmpresa = Convert.ToString(dtExperiencia.Rows[fila]["DescripcionEmpresa"]);
-                                string ciudad = Convert.ToString(dtExperiencia.Rows[fila]["Ciudad"]);
-                                string pais = Convert.ToString(dtExperiencia.Rows[fila]["PaisDescripcion"]);
-                                string cargo = Convert.ToString(dtExperiencia.Rows[fila]["NombreCargo"]);
-                                string descripcionCargo = Convert.ToString(dtExperiencia.Rows[fila]["DescripcionCargo"]);
-
-                                tblExperiencia.Rows[fila].Cells[celda].Width = 500; //Se coloca el ancho.                                
-                                cell_paragraph.Append(empresa + " (" + ciudad + " - " + pais + ")");
-                                cell_paragraph.Font(new FontFamily("Arial")).FontSize(9).Bold();
-
-                                cell_paragraph.AppendLine(descripcionEmpresa);
-                                cell_paragraph.Font(new FontFamily("Arial")).FontSize(9);
-
-                                cell_paragraph.AppendLine(cargo);
-                                cell_paragraph.Font(new FontFamily("Arial")).FontSize(9);
-
-                                cell_paragraph.AppendLine(descripcionCargo);
-                                cell_paragraph.Font(new FontFamily("Arial")).FontSize(9);
-
-                                cell_paragraph.AppendLine(); //Salto de línea para separar los cargos.
-                            }
-                        //else
-                        //    cell_paragraph.InsertText("no existen datos", false);
+                        doc.ReplaceText(i, mustache.Compile(i).Render(new { person = person }));
                     }
                 }
 
                 #endregion
 
-                #region Se recorre la tabla de informacion adicional y se completa los datos:
-                for (int fila = 0; fila <= tblInfoAdicional.RowCount - 1; fila++)
+                #region education
+
+                object education;
+                string educationPattern = blockPattern.Replace("<model>", "education");
+                Table educationWrapper;
+
+                try
                 {
-                    //Actualmente sólo va a haber una columna en esta tabla. Este for sólo va a recorrer una vez.
-                    for (int celda = 0; celda <= tblInfoAdicional.Rows[fila].Cells.Count - 1; celda++)
+                    educationWrapper = doc
+                        .Tables
+                        .Where(e => e.Paragraphs[0].Text.Contains(educationPattern))
+                        .ToList()[0];
+
+                    // Clean reference template
+                    educationWrapper.Rows[1].Remove();
+
+                    foreach (DataRow data in Education.Rows)
                     {
-                        Paragraph cell_paragraph = tblInfoAdicional.Rows[fila].Cells[celda].Paragraphs[0];
+                        educationWrapper.InsertTableAfterSelf(template.education.blocks[1]);
 
-                        //Se obtiene la data de la tabla que viene de la BD.
-                        //string tipoConocimiento = "tipoConocimiento"; // Convert.ToString(dtInfoAdicional.Rows[fila]["TipoConocimientoDescripcion"]);
-                        string conocimiento = Convert.ToString(dtInfoAdicional.Rows[fila]["Conocimiento"]);
-                        string nivelConocimientoDescripcion = Convert.ToString(dtInfoAdicional.Rows[fila]["NivelConocimientoDescripcion"]);
-                        string fechaDesde = Convert.ToString(dtInfoAdicional.Rows[fila]["FechaConocimientoDesdeAno"]);
-                        string fechaHasta = Convert.ToString(dtInfoAdicional.Rows[fila]["FechaConocimientoHastaAno"]);
-                        //string pais = "pais"; //Convert.ToString(dtInfoAdicional.Rows[fila]["PaisDescripcion"]);
-                        //string ciudad = "ciudad"; //Convert.ToString(dtInfoAdicional.Rows[fila]["Ciudad"]);
-                        string institucionEstudio = Convert.ToString(dtInfoAdicional.Rows[fila]["InstituciónDeEstudio"]);
+                        education = new
+                        {
+                            institute = Convert.ToString(data["Institucion"]),
+                            study = Convert.ToString(data["Estudio"]),
+                            period = ConvertirMes(Convert.ToInt32(data["FechaInicioMes"])) + Convert.ToString(data["FechaInicioAno"]).Substring(2, 2) +
+                                "-" + (data["FechaFinMes"] == DBNull.Value && data["FechaFinAno"] == DBNull.Value
+                                    ? "Cont"
+                                    : ConvertirMes(Convert.ToInt32(data["FechaFinMes"])) + Convert.ToString(data["FechaFinAno"]).Substring(2, 2))
+                        };
 
-                        //Se arma la cadena de cada fila en la tabla de Información adicional.
-                        StringBuilder infoAdicional = new StringBuilder();
-                        infoAdicional.Append(conocimiento + " ");
-                        infoAdicional.Append(nivelConocimientoDescripcion + ", ");
-                        infoAdicional.Append(institucionEstudio + ", ");
-                        infoAdicional.Append(fechaDesde + "-");
-                        infoAdicional.Append(fechaHasta + ". ");
-
-                        tblInfoAdicional.Rows[fila].Cells[celda].Width = 600;
-                        cell_paragraph.AppendLine(infoAdicional.ToString());
-                        cell_paragraph.Font(new FontFamily("Arial")).FontSize(9); //Se da formato a la nueva fila.
-
-                        //cell_paragraph.AppendLine(nivelConocimientoDescripcion);
-                        //cell_paragraph.Font(new FontFamily("Arial")).FontSize(9);
-                        //cell_paragraph.AppendLine(fechaDesde);
-                        //cell_paragraph.Font(new FontFamily("Arial")).FontSize(9);
-                        //cell_paragraph.AppendLine(fechaHasta);
-                        //cell_paragraph.Font(new FontFamily("Arial")).FontSize(9);
-                        //cell_paragraph.AppendLine(institucionEstudio);
-                        //cell_paragraph.Font(new FontFamily("Arial")).FontSize(9);
-
-                        cell_paragraph.AppendLine();
+                        foreach (string i in template.education.inlines)
+                        {
+                            doc.ReplaceText(i, mustache.Compile(i).Render(new { education = education }));
+                        }
                     }
-                }
-                #endregion
-                //Se recorre la tabla de informacion adicional y se completa los datos:
 
-                //Se eliminal las tablas temporales:
-                tblTempEstudios.Remove();
-                tblTempExperiencia.Remove();
-                tblTempInfoAdicional.Remove();
+                    // Clean reference pointer
+                    educationWrapper.Rows[0].Remove();
+                }
+                catch (Exception e) { }
+
+                #endregion
+
+                #region experience
+
+                string experiencePattern = blockPattern.Replace("<model>", "experience");
+                Table experienceWrapper;
+
+                Dictionary<string, string> enterprises = new Dictionary<string, string>();
+                Dictionary<string, List<object>> experiences = new Dictionary<string, List<object>>();
+
+                DataTable Enterprises = Experience.DefaultView.ToTable(true, "Empresa", "DescripcionEmpresa");
+                foreach (DataRow enterprise in Enterprises.Rows)
+                {
+                    enterprises.Add(Convert.ToString(enterprise["Empresa"]), Convert.ToString(enterprise["DescripcionEmpresa"]));
+
+                    List<object> aux = new List<object>();
+
+                    DataTable experiencesOfEnterprise = Experience.Select("Empresa = '" + Convert.ToString(enterprise["Empresa"]) + "'").CopyToDataTable();
+                    foreach (DataRow data in experiencesOfEnterprise.Rows)
+                    {
+                        aux.Add(new
+                        {
+                            period = ConvertirMes(Convert.ToInt32(data["FechaInicioCargoMes"])) + Convert.ToString(data["FechaInicioCargoAno"]).Substring(2, 2) +
+                            "-" + (data["FechaFinCargoMes"] == DBNull.Value && data["FechaFinCargoAno"] == DBNull.Value
+                                ? "Cont"
+                                : ConvertirMes(Convert.ToInt32(data["FechaFinCargoMes"])) + Convert.ToString(data["FechaFinCargoAno"]).Substring(2, 2)),
+                            office = Convert.ToString(data["NombreCargo"]),
+                            officeDescription = Convert.ToString(data["DescripcionCargo"])
+                        });
+                    }
+
+                    experiences.Add(Convert.ToString(enterprise["Empresa"]), aux);
+                }
+
+                try
+                {
+                    experienceWrapper = doc
+                        .Tables
+                        .Where(e => e.Paragraphs[0].Text.Contains(experiencePattern))
+                        .ToList()[0];
+
+                    // Clean reference template
+                    experienceWrapper.Rows[1].Remove();
+
+                    foreach (var data in enterprises)
+                    {
+                        Table enterpriseWrapper = experienceWrapper.InsertTableAfterSelf(template.experience.blocks[1]);
+
+                        // Render enterprise info
+                        for (int i = 0; i < 2; i++)
+                        {
+                            doc.ReplaceText(
+                                template.experience.inlines[i],
+                                mustache
+                                    .Compile(template.experience.inlines[i])
+                                    .Render(new
+                                    {
+                                        experience = new
+                                        {
+                                            enterprise = data.Key,
+                                            enterpriseDescription = enterprises[data.Key]
+                                        }
+                                    })
+                            );
+                        }
+
+                        Table enterpriseExperienceWrapper = enterpriseWrapper.Rows[1].Tables[0];
+                        foreach (object experience in experiences[data.Key])
+                        {
+                            enterpriseExperienceWrapper.InsertTableAfterSelf(template.experience.blocks[2]);
+
+                            foreach (string i in template.experience.inlines)
+                            {
+                                doc.ReplaceText(i, mustache.Compile(i).Render(new { experience = experience }));
+                            }
+                        }
+
+                        enterpriseExperienceWrapper.Rows[0].Remove();
+                    }
+
+                    // Clean reference pointer
+                    experienceWrapper.Rows[0].Remove();
+                }
+                catch (Exception e) { }
+
+                #endregion
+
+                #region aditional information
+
+                object aditionalInformation;
+                string aditionalInformationPattern = blockPattern.Replace("<model>", "aditionalInformation");
+                Table aditionalInformationWrapper;
+
+                try
+                {
+                    aditionalInformationWrapper = doc
+                        .Tables
+                        .Where(e => e.Paragraphs[0].Text.Contains(aditionalInformationPattern))
+                        .ToList()[0];
+
+                    // Clean reference template
+                    aditionalInformationWrapper.Rows[1].Remove();
+
+                    foreach (DataRow data in AditionalInformation.Rows)
+                    {
+                        aditionalInformationWrapper.InsertTableAfterSelf(template.aditionalInformation.blocks[1]);
+
+                        aditionalInformation = new
+                        {
+                            knowledge = Convert.ToString(data["Conocimiento"]),
+                            level = Convert.ToString(data["NivelConocimientoDescripcion"]),
+                            institute = Convert.ToString(data["InstituciónDeEstudio"]),
+                            date = Convert.ToString(data["FechaConocimientoHastaAno"])
+                        };
+
+                        foreach (string i in template.aditionalInformation.inlines)
+                        {
+                            doc.ReplaceText(i, mustache.Compile(i).Render(new { aditionalInformation = aditionalInformation }));
+                        }
+                    }
+
+                    // Clean reference pointer
+                    aditionalInformationWrapper.Rows[0].Remove();
+                }
+                catch (Exception e) { }
+
+                #endregion
 
                 doc.Save();
 

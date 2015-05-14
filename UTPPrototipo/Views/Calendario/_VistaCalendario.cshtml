@@ -3,8 +3,8 @@
 @using UTP.PortalEmpleabilidad.Modelo
 @using UTPPrototipo.Utiles
 
-<div class="panel panel-info">
-    <div class="panel-heading" role="tab" id="headingCalendario">
+<div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingCalendario" style="padding: 5px 2px 2px 6px;">
         <div class="row">
             <div class="col-xs-6">
                 <a data-toggle="collapse" data-parent="#accordion" href="#collapseCalendario" aria-expanded="true" aria-controls="collapseCalendario">
@@ -34,40 +34,40 @@
                         </div>
 
                     }
-                    
-                            <a data-toggle="collapse" data-parent="#datos-mas-experiencia_@(i)" href="#collapseMasExperiencia_@(i)" aria-expanded="true" aria-controls="collapseMasExperiencia" class="fuente-seccion">
-                                <hr style="margin: 4px 0px 4px 0px;" />
-                                <div style="padding: 0px 5px 0px 5px;">
-                                    <strong style="font-size:smaller">
-                                        @if (item.FechaHoraDesde.ToShortTimeString().Equals("12:00 a.m.") && item.FechaHoraHasta.ToShortTimeString().Equals("12:00 a.m."))
-                                        {
-                                            <span>&nbsp;Todo el dia</span>
-                                        }
-                                        else
-                                        {
-                                            <span>&nbsp;@item.FechaHoraDesde.ToShortTimeString() - @item.FechaHoraHasta.ToShortTimeString()</span>
-                                        }
-                                    </strong><br />
-                                    @if (item.Asunto.Length > 35)
-                                    {
-                                        <span>&nbsp;@item.Asunto.Substring(0, 35) ...</span>
-                                    }
-                                    else
-                                    {<span>&nbsp;@item.Asunto</span>}
-                                </div>
-                            </a>                       
-                    
-                            <div class="panel-group" id="datos-mas-experiencia_@(i)" role="tablist" aria-multiselectable="true">
-                                <div class="panel " style="border-width:0px;">
-                                    <div id="collapseMasExperiencia_@(i)" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingMasExperiencia_@(i)">
-                                        <div class="panel-body" style="border-width:0px">
 
-                                           Lugar: <strong> @item.Ubicacion</strong>
+                    <a data-toggle="collapse" data-parent="#datos-mas-experiencia_@(i)" href="#collapseMasExperiencia_@(i)" aria-expanded="true" aria-controls="collapseMasExperiencia" class="fuente-seccion">
+                        <hr style="margin: 4px 0px 4px 0px;" />
+                        <div style="padding: 0px 5px 0px 5px;">
+                            <strong style="font-size:smaller">
+                                @if (item.FechaHoraDesde.ToShortTimeString().Equals("12:00 a.m.") && item.FechaHoraHasta.ToShortTimeString().Equals("12:00 a.m."))
+                                {
+                                    <span>&nbsp;Todo el dia</span>
+                                }
+                                else
+                                {
+                                    <span>&nbsp;@item.FechaHoraDesde.ToShortTimeString() - @item.FechaHoraHasta.ToShortTimeString()</span>
+                                }
+                            </strong><br />
+                            @if (item.Asunto.Length > 35)
+                            {
+                                <span>&nbsp;@item.Asunto.Substring(0, 35) ...</span>
+                            }
+                            else
+                            {<span>&nbsp;@item.Asunto</span>}
+                        </div>
+                    </a>
 
-                                        </div>
-                                    </div>
+                    <div class="panel-group" id="datos-mas-experiencia_@(i)" role="tablist" aria-multiselectable="true">
+                        <div class="panel " style="border-width:0px;">
+                            <div id="collapseMasExperiencia_@(i)" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingMasExperiencia_@(i)">
+                                <div class="panel-body" style="border-width:0px">
+
+                                    Lugar: <strong> @item.Ubicacion</strong>
+
                                 </div>
-                            
+                            </div>
+                        </div>
+
                     </div>
 
                     @*<div class="col-sm-12" style="text-align:right;">
@@ -106,7 +106,7 @@
                                 </div>
                             </div>
                         </div>*@
-                                    i++;
+                            i++;
 
                 }
             }
@@ -170,3 +170,4 @@
         </div>
     </div>
 </div>
+

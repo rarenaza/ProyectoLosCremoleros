@@ -355,8 +355,10 @@
     <Content Include="Content\Site.css" />
     <Content Include="Icon.png" />
     <Content Include="img\Alumna.png" />
+    <Content Include="img\bg-footer.gif" />
     <Content Include="img\cargando.gif" />
     <Content Include="img\demo.bmp" />
+    <Content Include="img\empleabilidad\firmaBeatriz.png" />
     <Content Include="img\empleabilidad\PlanoDirEmpleabilidad.jpg" />
     <Content Include="img\intercorp.jpg" />
     <Content Include="img\intercorp.png" />

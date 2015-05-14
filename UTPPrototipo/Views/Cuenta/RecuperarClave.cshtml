@@ -40,10 +40,17 @@
                 <span class="input-group-addon nombre-campo">Usuario</span>            
                 @Html.TextBoxFor(m => m.NombreUsuario, new { @class = "form-control",  @id = "Nusuario"})  
                 <span class="input-group-btn">
+<<<<<<< HEAD
                     <button type="submit" class="btn" value="mail" name="submitButton">&nbsp;Enviar&nbsp;&nbsp;</button>
                 </span>
             </div>
             @Html.ValidationMessageFor(m => m.NombreUsuario, "", new { @class = "text-danger" })
+=======
+                    <button type="button" id="btnGenerarToken" class="btn" value="mail" name="submitButton" onclick="generarTokenUsuario(); return false;">&nbsp;Enviar&nbsp;&nbsp;</button>
+                </span>
+            </div>
+            @Html.ValidationMessageFor(m => m.NombreUsuario, "", new { @class = "text-danger" })           
+>>>>>>> pr/24
             <hr />
             <p>Paso 2:</p>
             <p>Revise su correo, ingrese su clave token y haga click en Ingresar. Si la ventana se cierra, deberá volver a generar la clave token.</p>
@@ -57,46 +64,30 @@
            
 
                 <span class="input-group-btn">
+<<<<<<< HEAD
                     <button id="btnIngresar" type="button" class="btn">Ingresar</button>
                 </span>
              </div>
             @Html.ValidationMessageFor(m => m.Token, "", new { @class = "text-danger" })
            
+=======
+                    <button type="button" id="btnIngresar" class="btn" value="ingresar" name="submitButton" onclick="verificarTokenUsuario(); return false;">Ingresar</button>
+                </span>
+             </div>
+            @Html.ValidationMessageFor(m => m.Token, "", new { @class = "text-danger" })          
+>>>>>>> pr/24
         </form>
     </div>
 }
 <script>
 
+
     $(document).ready(function () {
         var $singinButton = $('#btnIngresar');
         var $recoverPasswordModal = $('#Modal-cambiar-clave'),
-            $recoverPasswordModalButton = $recoverPasswordModal.find('button'),
+            $recoverPasswordModalButton = $recoverPasswordModal.find('#btnCambiarClave'),
             $passwordInput = $('#contrasena-text'),
             $repeatPasswordInput = $('#repiteContrasena-text');
-
-        $singinButton.click(function () {
-            var usuario = $('#Nusuario').val();
-            var token = $('#token').val();
-            var $currentModal = $('.modal.in');
-
-            $.ajax({
-                url: 'Cuenta/GenerarToken',
-                method: 'POST',
-                data: { NombreUsuario: usuario, submitButton: 'Ingresar', token: token }
-            })
-                .done(function (data) {
-                    console.log(data);
-                    var $title = $recoverPasswordModal.find('.modal-title span'),
-                        $usuario = $recoverPasswordModal.find('input.hidden');
-
-                    $title.text(data.NombreUsuario);
-                    $usuario.val(data.NombreUsuario);
-
-                    $currentModal.modal('hide');
-                    $recoverPasswordModal.modal('show');
-                })
-                .fail(function (xhr, error) { });
-        });
 
         $recoverPasswordModalButton.click(function (e) {
             var valid = true;
@@ -123,5 +114,77 @@
         });
 
     });
+
+    function generarTokenUsuario() {
+        var usuario = $('#Nusuario').val();
+        var $currentModal = $('.modal.in');
+
+        $.ajax({
+            url: '@Url.Action("generarTokenUsuario", "Cuenta")',
+            method: 'POST',
+            data: { NombreUsuario: usuario, submitButton: 'Ingresar', token: '' }
+        })
+            .done(function (data) {
+                console.log(data);
+                var valueAlert;
+                //var //$title = $recoverPasswordModal.find('.modal-title span'),
+                //$usuario = $recoverPasswordModal.find('input.hidden');
+
+                //$title.text(data.NombreUsuario);
+                //$usuario.val(data.NombreUsuario);
+
+                valueAlert = JSON.stringify(data)
+                if (valueAlert != "")
+                    alert(valueAlert);
+                else {
+                    alert('Ha ocurrido un error, intentelo mas tarde.');
+                }
+                //$currentModal.modal('hide');
+                //$recoverPasswordModal.modal('show');
+            })
+            .fail(function (xhr, error) { });
+
+        return false;
+    };
+
+    function verificarTokenUsuario() {
+        var usuario = $('#Nusuario').val();
+        var token = $('#token').val();
+        var $currentModal = $('.modal.in');
+        var $recoverPasswordModal = $('#Modal-cambiar-clave');
+
+        $.ajax({
+            url: '@Url.Action("verificarTokenUsuario", "Cuenta")',
+            method: 'POST',
+            data: { NombreUsuario: usuario, submitButton: 'ingresar', token: token }
+        })
+            .done(function (data) {
+
+                var $title;
+                var $usuario;
+                var valueAlert;
+
+                valueAlert = JSON.stringify(data);
+
+                if (valueAlert.trim() == '""') {
+                    $title = $recoverPasswordModal.find('.modal-title span');
+                    $usuario = $recoverPasswordModal.find('input.hidden');
+
+                    $title.text(usuario);
+                    $usuario.val(usuario);
+
+                    $currentModal.modal('hide');
+                    $recoverPasswordModal.modal('show');
+                }
+                else {
+                    alert(valueAlert);
+                }
+
+            })
+            .fail(function (xhr, error) { });
+
+        return false;
+    };
+
 
 </script>
