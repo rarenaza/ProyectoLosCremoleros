@@ -11,18 +11,9 @@
     
     @{ViewBag.ColapsaDatos = " in";}
     @Html.Partial("_DatosPersonales", Model.Alumno)
-
-
     @{Html.RenderAction("AlertaCvAlumno", "Alumno");}
-   @*@{Html.RenderAction("AlertaCvAlumno", "Alumno", new { id = Model .IdCV });}*@
-    
     @{Html.RenderAction("AlertaCvAlumnoDia", "Alumno");}
-
-    
-
-
     @{Html.RenderAction("AlertaCvAlumnoMes", "Alumno");}
-
 
     <div class="row">
         <div class="col-md-3 fuente-pequeña" style="border-right:solid;border-color:rgb(220, 220, 220);border-width:1px;">
@@ -79,9 +70,6 @@
             </div>
             <!--FIN-->
         </div>
-
-<<<<<<< HEAD
-=======
         <div class="col-md-3 fuente-pequeña" style="border-right:solid;border-color:rgb(220, 220, 220);border-width:1px;">
             <!--INICIO-->
             <div class="panel-group" id="grupoEventos" role="tablist" aria-multiselectable="true">
@@ -101,11 +89,7 @@
                 </div>
             </div>
             <!--FIN-->
-
-
         </div>
->>>>>>> pr/24
-        
     </div>
     <hr />
     <div class="row">
