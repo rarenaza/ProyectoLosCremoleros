@@ -72,13 +72,13 @@ namespace UTPPrototipo.Controllers
             switch (filterName)
             {
                 case "prefix":
-                    output = (text != String.Empty ? filterValue + text : "");
+                    output = (text != String.Empty ? Regex.Unescape(filterValue) + text : "");
                     break;
                 case "suffix":
-                    output = (text != String.Empty ? text + filterValue : "");
+                    output = (text != String.Empty ? text + Regex.Unescape(filterValue) : "");
                     break;
                 case "default":
-                    output = (text == String.Empty ? filterValue : text);
+                    output = (text == String.Empty ? Regex.Unescape(filterValue) : text);
                     break;
             }
 
