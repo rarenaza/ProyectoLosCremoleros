@@ -1,23 +1,21 @@
 ﻿@model IEnumerable< UTP.PortalEmpleabilidad.Modelo.Evento>
-<div class="col-sm-3">
-    <h5>Eventos</h5>
-    <hr />
+
     @foreach (var item in Model)
     {
         <div class="row grilla1-linea fuente-pequeña">
-            <div class="col-sm-4">
+            <div class="col-sm">
                 @*@Html.ActionLink(item.NombreEvento, "Eventos", "Alumno", new { id = item.IdEvento }, htmlAttributes: new { target = "_blank" })*@
                 @Html.ActionLink(item.NombreEvento, "Eventos", "Alumno", new { id = item.IdEvento }, null)
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm">
                 @Html.DisplayFor(modelItem => item.FechaEventoTexto)
             </div>
-            <div class="col-sm-4">
-               @Html.DisplayFor(modelItem => item.LugarEvento)
+            <div class="col-sm">
+                @Html.DisplayFor(modelItem => item.LugarEvento)
             </div>
         </div>
         <hr />
 
     }
 
-</div>
+
