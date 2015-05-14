@@ -85,6 +85,7 @@ namespace UTPPrototipo.Controllers
         {
             return View();        
         }
+
         public ActionResult GenerarToken(string NombreUsuario, string submitButton, string token)
         {
             LNUsuario lnUsuario = new LNUsuario();
@@ -106,18 +107,16 @@ namespace UTPPrototipo.Controllers
                         lnUsuario.InsertarToken(result, NombreUsuario, DateTime.Now.AddHours(1), DateTime.Now, ip);
                         
                         Mensaje mensaje = new Mensaje();
-                        mensaje.DeUsuarioCorreoElectronico = "utpempleabilidad@utp.edu.pe";
+                        mensaje.DeUsuarioCorreoElectronico = "empleabilidad@utp.edu.pe";
                         mensaje.ParaUsuarioCorreoElectronico = Convert.ToString(dsResultado.Tables[2].Rows[0]["CorreoElectronico"]); //Administrador UTP
                         mensaje.Asunto = "Cambio de Contraseña";
                         mensaje.MensajeTexto = "Estimado(a):" + NombreUsuario + "\r\n\r\n" +
                             "Es grato comunicarnos con usted para informarle que debido la confidencialidad de la información que contiene su cuenta, le hemos generado un token para que valide su información en nuestra intranet.\r\n\r\n" +
                             "-Token: " + result + "\r\n\r\n" +
-                            Request.Url.GetLeftPart(UriPartial.Authority)+"/#Token"+
                             "Cordialmente \r\n\r\n" +
                             "Area de TI";
                         LNCorreo.EnviarCorreo(mensaje);
                         TempData["CorreoExitoso"] = "Se envio el TOKEN a las siguientes cuentas: "+mensaje.ParaUsuarioCorreoElectronico;
-
                         return RedirectToAction("Index", "Home");
 
                     case "Ingresar":
@@ -144,6 +143,90 @@ namespace UTPPrototipo.Controllers
             return RedirectToAction("Index", "Home");
         }
         //-----
+
+        public JsonResult verificarTokenUsuario(string NombreUsuario, string submitButton, string token)
+        {
+            String strMensaje = "";
+            String tipoUsuario = "";
+            LNUsuario lnUsuario = new LNUsuario();
+            DataSet dsResultado = ln.Autenticar_Usuario(NombreUsuario);
+
+            if ((dsResultado != null) && dsResultado.Tables.Count > 0 && dsResultado.Tables[0].Rows.Count > 0)
+                tipoUsuario = Convert.ToString(dsResultado.Tables[0].Rows[0]["TipoUsuario"]);
+
+            if (String.IsNullOrEmpty(tipoUsuario))
+            {
+                strMensaje = "El usuario ingresado no es válido";
+            }
+            if (tipoUsuario == "USEREM")
+            {           
+                Session["Token"] = lnUsuario.ObtenerToken(NombreUsuario);
+                int id = Convert.ToInt32(dsResultado.Tables[2].Rows[0]["IdEmpresa"]);
+
+                LNEmpresaUsuario lnEmpresaUsuario = new LNEmpresaUsuario();
+                List<VistaEmpresaUsuario> list = lnEmpresaUsuario.ObtenerUsuariosPorIdEmpresa(id);
+
+                EmpresaUsuario empresaUsuario = lnEmpresaUsuario.ObtenerPorIdEmpresaUsuario(Convert.ToInt32(list[0].IdEmpresaUsuario));
+
+                if (Session["Token"] == null || Session["Token"].ToString() != token)
+                {
+                    strMensaje = "El Token no es correcto.";                
+                }
+            }
+            if (tipoUsuario != "USEREM" && !String.IsNullOrEmpty(tipoUsuario))
+            {
+                strMensaje = "Esta funcionalidad es solo para empresas";
+            }
+            return Json(strMensaje);           
+        }
+
+        public JsonResult generarTokenUsuario(string NombreUsuario, string submitButton, string token)
+        {
+            String strMensaje = "";
+            String tipoUsuario = "";
+            LNUsuario lnUsuario = new LNUsuario();
+            DataSet dsResultado = ln.Autenticar_Usuario(NombreUsuario);            
+
+            if ((dsResultado != null) && dsResultado.Tables.Count>0 && dsResultado.Tables[0].Rows.Count>0)
+                tipoUsuario = Convert.ToString(dsResultado.Tables[0].Rows[0]["TipoUsuario"]);
+
+            if (String.IsNullOrEmpty(tipoUsuario))
+            {
+                strMensaje = "El usuario ingresado no es válido";
+            }       
+            if (tipoUsuario == "USEREM")
+            {
+
+                var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+                var random = new Random();
+                var result = new string(
+                    Enumerable.Repeat(chars, 8)
+                              .Select(s => s[random.Next(s.Length)])
+                              .ToArray());
+
+                string ip = Ip();
+                lnUsuario.InsertarToken(result, NombreUsuario, DateTime.Now.AddHours(1), DateTime.Now, ip);
+
+                Mensaje mensaje = new Mensaje();
+                mensaje.DeUsuarioCorreoElectronico = "utpempleabilidad@utp.edu.pe";
+                mensaje.ParaUsuarioCorreoElectronico = Convert.ToString(dsResultado.Tables[2].Rows[0]["CorreoElectronico"]); //Administrador UTP
+                mensaje.Asunto = "Cambio de Contraseña";
+                mensaje.MensajeTexto = "Estimado(a):" + NombreUsuario + "\r\n\r\n" +
+                    "Es grato comunicarnos con usted para informarle que debido la confidencialidad de la información que contiene su cuenta, le hemos generado un token para que valide su información en nuestra intranet.\r\n\r\n" +
+                    "-Token: " + result + "\r\n\r\n" +
+                    "Cordialmente \r\n\r\n" +
+                    "Area de TI";
+                LNCorreo.EnviarCorreo(mensaje);
+                //strMensaje = "Se envio el TOKEN a las siguientes cuentas: " + mensaje.ParaUsuarioCorreoElectronico;                        
+                strMensaje = "El token ha sido enviado a su correo electrónico.";               
+            }
+            if (tipoUsuario != "USEREM" && !String.IsNullOrEmpty(tipoUsuario))
+            {
+                strMensaje = "Esta funcionalidad es solo para empresas";
+            }
+          
+            return Json(strMensaje);
+        }
 
         public ActionResult CaptchaImage(string prefix, bool noisy = true)
         {
@@ -305,7 +388,7 @@ namespace UTPPrototipo.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult Autenticar(Usuario usuario)
         {
-            if (Session["Captcha"] == null || Session["Captcha"].ToString() != usuario.Captcha.ToLower())
+            if (Session["Captcha"] == null || usuario.Captcha ==null || Convert.ToString(Session["Captcha"]) != Convert.ToString(usuario.Captcha).ToLower())
             {
                 TempData["UsuarioNoExitoso"] = "El texto no coincide con la imagen";
                 //ModelState.AddModelError("Captcha", "Wrong value of sum, please try again.");

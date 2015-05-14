@@ -8,20 +8,21 @@
     TicketEmpresa ticketEmpresa = (TicketEmpresa)Session["TicketEmpresa"];
 }
 
+<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 @using (Ajax.BeginForm("CambiarClave", "Cuenta", new AjaxOptions()))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
-    <div class="modal-content" id="modalCambiarClave">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            <h4 class="modal-title" id="NuevoUsuario">Usuario: @Model.NombreUsuario</h4>
-        </div>
+    <div class="modal-content" id="modalCambiarClave">     
         <div class="modal-body">
+            <div class="modal-header">           
+                <h4 class="modal-title" id="NuevoUsuario">Usuario: @Model.NombreUsuario</h4>
+            </div>
             @Html.HiddenFor(m => m.IdEmpresaUsuario)
             @Html.HiddenFor(model => model.NombreUsuario)
             @Html.HiddenFor(model => model.Usuario)
+            
 
             @if (TempData["ClaveExitosa"] != null)
             {
