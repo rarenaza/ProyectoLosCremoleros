@@ -1250,6 +1250,7 @@ namespace UTPPrototipo.Controllers
                 VistaPanelCabecera panel = new VistaPanelCabecera();
                
                 ViewBag.IdEmpresa = ticket.IdEmpresa;
+                ViewBag.EstiloPanel = " in";
                 //Se cargan los datos del empresaUsuario autenticado:
                 panel = lnEmpresa.ObtenerPanelCabecera(ticket.Usuario);
 
