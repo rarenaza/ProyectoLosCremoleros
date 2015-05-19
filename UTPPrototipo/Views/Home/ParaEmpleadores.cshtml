@@ -4,6 +4,7 @@
 @{
     ViewBag.Title = "Para Empleadores";
     int contador = 1;
+    int cont = 1;
 }
 
 @foreach (var item in Model)
@@ -18,19 +19,7 @@
             </div>
         </div>
     }
-    else if (item.Pestana == "3")
-    {
-        <div class="row row-contenido1">
-                <div class="container">
-                    <div class="col-md-12">
-                        <h3 style="color:rgb(180,34,30)"><strong>@Html.Raw(@item.Titulo)</strong></h3>
-                        <h6>@Html.Raw(@item.SubTitulo)</h6>
-                        <p>@Html.Raw(@item.Descripcion)</p>
-                    </div>
-                </div>
-            </div>
-    }
-    else    
+    else if (item.Pestana == "1")
     {
         if (contador % 2 == 0)
         {
@@ -70,12 +59,41 @@
         }
 
         contador++;
+    }
+    else if (item.SubTitulo.ToString() != "imagen")
+    {
+        <div class="row row-contenido1">
+            <div class="container">
+                <div class="col-md-12">
+                    <h3 style="color:rgb(180,34,30)"><strong>@Html.Raw(@item.Titulo)</strong></h3>
+                    <h6>@Html.Raw(@item.SubTitulo)</h6>
+                    <p>@Html.Raw(@item.Descripcion)</p>
+                </div>
+            </div>
+        </div>       
 
     }
 }
+@{int conts = 1;}
+<div class="row row-contenido1">
+    <div class="container">
+        @foreach (var item in Model)
+        {
+            if (item.SubTitulo.ToString() == "imagen")
+            {
+                <div class="col-md-6">
+                    <h3 style="color:rgb(180,34,30)"><strong>@Html.Raw(@item.Titulo)</strong></h3>
 
+                    <img alt="" usemap="imagemap@(conts)" class="imagen-portal1" src='@Url.Action("Imagen_ParaEmpleadores", "Home", new { id = @item.IdContenido})' />
+                    @Html.Raw(@item.Descripcion)
 
+                </div>
+                conts++;
+            }
 
+        }
+    </div>
+</div>
 
 @*<div class="row row-contenido2">
         <div class="container">
@@ -129,5 +147,23 @@
         $("#OpcionMenuParaEmpleadores").addClass("opcion-seleccionada");
     });
 
+    $('#imagemap1 area')
+        .tooltip({ animation: false })
+        .on('shown.bs.tooltip', function () {
+            $('.tooltip').css({
+                top: $(this).data('y'),
+                left: $(this).data('x')
+
+            });
+        });
+    $('#imagemap2 area')
+        .tooltip({ animation: false })
+        .on('shown.bs.tooltip', function () {
+            $('.tooltip').css({
+                top: $(this).data('y'),
+                left: $(this).data('x')
+
+            });
+        });
 
 </script>
