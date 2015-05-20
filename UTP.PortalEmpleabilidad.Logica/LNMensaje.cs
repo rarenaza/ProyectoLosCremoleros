@@ -151,7 +151,8 @@ namespace UTP.PortalEmpleabilidad.Logica
             List<Mensaje> lista = new List<Mensaje>();
 
             DataTable dtResultado = adMensaje.ObtenerPorUsuario(usuarioAlumno);
-
+            ADAlumno ad = new ADAlumno();
+            
             foreach (DataRow fila in dtResultado.Rows)
             {
                 Mensaje mensaje = new Mensaje();
@@ -167,6 +168,29 @@ namespace UTP.PortalEmpleabilidad.Logica
                 mensaje.IdMensaje = Convert.ToInt32(fila["IdMensaje"]);
                 mensaje.EstadoMensaje = Convert.ToString(fila["EstadoMensaje"]);
                 mensaje.IdEvento = Convert.ToInt32(fila["IdEvento"]);
+                                
+                    try
+                    {
+                    DataTable dtResultadoAlu = ad.ObtenerAlumnoPorCodigo(mensaje.ParaUsuario);
+                    string Nombres = dtResultadoAlu.Rows[0]["Nombres"].ToString();
+                    string Apellidos = dtResultadoAlu.Rows[0]["Apellidos"].ToString();
+                    mensaje.ParaUsuarioNombre = Nombres + " " + Apellidos;
+                    }
+                    catch 
+                    {
+                        mensaje.ParaUsuarioNombre = mensaje.ParaUsuario;                        
+                    }
+                                    
+                    try
+                    {
+                    DataTable dtResultadoAlu = ad.ObtenerAlumnoPorCodigo(mensaje.DeUsuario);
+                    string Nombres = dtResultadoAlu.Rows[0]["Nombres"].ToString();
+                    string Apellidos = dtResultadoAlu.Rows[0]["Apellidos"].ToString();
+                    mensaje.DeUsuario = Nombres + " " + Apellidos;                    
+                    }
+                    catch
+                    {                        
+                    }                
 
                 lista.Add(mensaje);
             }
