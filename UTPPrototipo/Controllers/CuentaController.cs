@@ -20,6 +20,7 @@ using System.Net;
 using System.Net.Sockets;
 using UTP.PortalEmpleabilidad.Modelo.Vistas.Empresa;
 using System.Security.Cryptography;
+using LibCryptoUTP;
 
 namespace UTPPrototipo.Controllers
 {
@@ -385,6 +386,64 @@ namespace UTPPrototipo.Controllers
             Session["Office365"] = service;
         }
 
+        /// <summary>
+        /// Valida si es empleado UTP.
+        /// </summary>
+        /// <param name="usuario">Usuario a validar contra el AD</param>
+        /// <param name="contrasenia">Contraseña AD</param>
+        /// <returns></returns>
+        public bool ValidadADEmpleado(string usuario, string contrasenia)
+        {
+            int intResult;
+            string contraseniaEnc;
+
+            EncriptaUTP oEncriptaUTP = new EncriptaUTP();
+
+            contraseniaEnc = oEncriptaUTP.EncriptaAES128(contrasenia.ToString(), System.Configuration.ConfigurationManager.AppSettings["KEY_ENCRYPT"]);
+
+            //ServiceReference.ServiceADSoapClient ws = new ServiceReference.ServiceADSoapClient();
+
+            intResult = 1;//ws.validaUsuarioAD(usuario, contraseniaEnc, System.Configuration.ConfigurationManager.AppSettings["strParam"]);
+
+            if (intResult == 1)
+                return true;
+            else
+                return false;
+        }
+
+        /// <summary>
+        /// Valida al alumno contra el AD. Adicionalmente, valida si es egresado o matriculado
+        /// </summary>
+        /// <param name="usuario">Usuario del AD</param>
+        /// <param name="contrasenia">Contraseña del AD</param>
+        /// <returns></returns>
+        public bool ValidadADAlumno(string usuario, string contrasenia)
+        {
+
+            int intResult;
+            string contraseniaEnc;
+
+            EncriptaUTP oEncriptaUTP = new EncriptaUTP();
+
+            contraseniaEnc = oEncriptaUTP.EncriptaAES128(contrasenia.ToString(), System.Configuration.ConfigurationManager.AppSettings["KEY_ENCRYPT"]);
+
+            //ServiceReference.ServiceADSoapClient ws = new ServiceReference.ServiceADSoapClient();
+
+            intResult = 1;//ws.validaUsuarioAD(usuario, contraseniaEnc, System.Configuration.ConfigurationManager.AppSettings["strParam"]);
+
+            if (intResult == 1)
+            {
+                DataTable dtResultado = ln.ValidarAlumno(usuario);
+
+                if (dtResultado.Rows[0]["CANTIDAD"].ToString() == "1")
+                    return true;
+                else
+                    return false;
+            }
+            else
+                return false;
+        }
+
         //------
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult Autenticar(Usuario usuario)
@@ -412,13 +471,18 @@ namespace UTPPrototipo.Controllers
                     string tipoUsuario = Convert.ToString(dsResultado.Tables[0].Rows[0]["TipoUsuario"]);
                     string contrasenaDecodificada = Convert.ToString(dsResultado.Tables[0].Rows[0]["Contrasena"]); //AGREGAR PROCESO DE DESEMCRIPTAMIENTO
                     bool contrasenaValida = false;
+                    //4. Si es Alumno o Usuario UTP Validar contra el AD
                     if (tipoUsuario == "USERUT" || tipoUsuario == "USERAL")
                     {
+                        if (tipoUsuario == "USERUT")
+                            if (ValidadADEmpleado(usuario.NombreUsuario, usuario.Contrasena))
+                                contrasenaValida = true;
                         if (tipoUsuario == "USERAL")
-                               autenticarExchange(usuario);
-                        //4. Si es Alumno o Usuario UTP Validar contra el AD
-                        //bool ContrasenaValida = callWebServiceADUTP(usuario.Contrasena) 
-                        contrasenaValida = true;
+                            if (ValidadADAlumno(usuario.NombreUsuario, usuario.Contrasena))
+                            {
+                                contrasenaValida = true;
+                                autenticarExchange(usuario);
+                            }
                     }
                     else
                     {

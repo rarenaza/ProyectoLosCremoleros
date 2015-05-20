@@ -11,18 +11,9 @@
     
     @{ViewBag.ColapsaDatos = " in";}
     @Html.Partial("_DatosPersonales", Model.Alumno)
-
-
     @{Html.RenderAction("AlertaCvAlumno", "Alumno");}
-   @*@{Html.RenderAction("AlertaCvAlumno", "Alumno", new { id = Model .IdCV });}*@
-    
     @{Html.RenderAction("AlertaCvAlumnoDia", "Alumno");}
-
-    
-
-
     @{Html.RenderAction("AlertaCvAlumnoMes", "Alumno");}
-
 
     <div class="row">
         <div class="col-md-3 fuente-pequeña" style="border-right:solid;border-color:rgb(220, 220, 220);border-width:1px;">
@@ -58,8 +49,7 @@
             </div>
             <!--FIN-->
         </div>
-        
-        <div class="col-md-3 fuente-pequeña" style="border-right:solid;border-color:rgb(220, 220, 220);border-width:1px;">
+        <div class="col-md-3 fuente-pequeña">
             <!--INICIO-->
             <div class="panel-group" id="grupoEventos" role="tablist" aria-multiselectable="true">
                 <div class="panel panel-default">
@@ -78,16 +68,11 @@
                 </div>
             </div>
             <!--FIN-->
-
-
-        </div>
-        
+        </div>        
     </div>
     <hr />
     <div class="row">
-        <div class="col-sm-1">
-
-        </div>
+        <div class="col-sm-1"></div>
         <div class="col-sm-2" style="text-align:center;">
             <a href="http://aptitus.com/" target="_blank"><img src="~/img/logos/aptitus.jpg" /></a>
             <hr />
@@ -104,17 +89,12 @@
         <div class="col-sm-2" style="text-align:center;">
             <a href="http://www.trabajando.pe/" target="_blank"><img src="~/img/logos/trabajando.jpg" /></a><hr />
         </div>
-        <div class="col-sm-1">
-
-        </div>
+        <div class="col-sm-1"></div>
     </div>
     <br />
 </div>
 <script>
-
     $(document).ready(function () {
         $("#divFinalCabecera").removeClass("color-paleta2 color-paleta3 color-paleta4 color-paleta5 color-paleta6 color-paleta7 color-paleta8").addClass("color-paleta1");
     });
-
-
 </script>
