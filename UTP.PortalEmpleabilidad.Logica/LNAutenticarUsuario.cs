@@ -54,6 +54,14 @@ namespace UTP.PortalEmpleabilidad.Logica
          return ticketUtp;
      }
 
-
+     /// <summary>
+     /// Método para validar si el alumno esta matriculado o es egresado
+     /// </summary>
+     /// <param name="nombreUsuario">Nombre del usuario</param>
+     /// <returns></returns>
+     public DataTable ValidarAlumno(string Usuario)
+     {
+         return ad.ValidarAlumno(Usuario);
+     }
     }
 }

@@ -62,10 +62,32 @@ namespace UTP.PortalEmpleabilidad.Datos
             return dt;
         }
 
+        /// <summary>
+        /// Método para validar si el alumno esta matriculado o es egresado
+        /// </summary>
+        /// <param name="nombreUsuario">Nombre del usuario</param>
+        /// <returns></returns>
+        public DataTable ValidarAlumno(string nombreUsuario)
+        {
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "SP_GL_ALUMNO_MATRICULADO";
+            cmd.Connection = cnn.cn;
+            cnn.Conectar();
+            cmd.Parameters.Add(new SqlParameter("@Usuario", SqlDbType.VarChar)).Value = nombreUsuario;
 
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+
+            da.Fill(dt);
+
+            cnn.Desconectar();
+
+            return dt;
+        }
       
 
-        }
-
     }
+
+}
 
