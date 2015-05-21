@@ -238,6 +238,8 @@ namespace UTPPrototipo.Controllers
                     // Informacion basica
                     firstname = Convert.ToString(Person.Rows[0]["Nombres"]).ToUpper(),
                     lastname = Convert.ToString(Person.Rows[0]["Apellidos"]).ToUpper(),
+                    document = Convert.ToString(Person.Rows[0]["NumeroDocumento"]),
+                    documentType = Convert.ToString(Person.Rows[0]["TipoDocumento"]),
                     address = Convert.ToString(Person.Rows[0]["Direccion"]),
                     district = Convert.ToString(Person.Rows[0]["DireccionDistrito"]),
                     celphone = Convert.ToString(Person.Rows[0]["TelefonoCelular"]),
@@ -473,6 +475,8 @@ namespace UTPPrototipo.Controllers
                     // Informacion basica
                     firstname = Convert.ToString(Person.Rows[0]["Nombres"]).ToUpper(),
                     lastname = Convert.ToString(Person.Rows[0]["Apellidos"]).ToUpper(),
+                    document = Convert.ToString(Person.Rows[0]["NumeroDocumento"]),
+                    documentType = Convert.ToString(Person.Rows[0]["TipoDocumento"]),
                     address = Convert.ToString(Person.Rows[0]["Direccion"]),
                     district = Convert.ToString(Person.Rows[0]["DireccionDistrito"]),
                     celphone = Convert.ToString(Person.Rows[0]["TelefonoCelular"]),
