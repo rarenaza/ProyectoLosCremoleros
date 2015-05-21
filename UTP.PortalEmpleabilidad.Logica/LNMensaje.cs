@@ -18,7 +18,7 @@ namespace UTP.PortalEmpleabilidad.Logica
         public List<Mensaje> ObtenerPorIdEmpresaIdOferta(int idEmpresa, int idOferta)
         {
             List<Mensaje> lista = new List<Mensaje>();
-
+            ADAlumno ad = new ADAlumno();
             DataTable dtResultado = adMensaje.ObtenerPorIdEmpresa(idEmpresa, idOferta);
 
             foreach (DataRow fila in dtResultado.Rows)
@@ -33,6 +33,29 @@ namespace UTP.PortalEmpleabilidad.Logica
                 mensaje.ParaUsuarioCorreoElectronico = Convert.ToString(fila["ParaUsuarioCorreoElectronico"]);
                 mensaje.Oferta.CargoOfrecido = Convert.ToString(fila["CargoOfrecido"]);
                 mensaje.IdMensaje = Convert.ToInt32(fila["IdMensaje"]);
+
+                try
+                {
+                    DataTable dtResultadoAlu = ad.ObtenerAlumnoPorCodigo(mensaje.ParaUsuario);
+                    string Nombres = dtResultadoAlu.Rows[0]["Nombres"].ToString();
+                    string Apellidos = dtResultadoAlu.Rows[0]["Apellidos"].ToString();
+                    mensaje.ParaUsuarioNombre = Nombres + " " + Apellidos;
+                }
+                catch
+                {
+                    mensaje.ParaUsuarioNombre = mensaje.ParaUsuario;
+                }
+
+                try
+                {
+                    DataTable dtResultadoAlu = ad.ObtenerAlumnoPorCodigo(mensaje.DeUsuario);
+                    string Nombres = dtResultadoAlu.Rows[0]["Nombres"].ToString();
+                    string Apellidos = dtResultadoAlu.Rows[0]["Apellidos"].ToString();
+                    mensaje.DeUsuario = Nombres + " " + Apellidos;
+                }
+                catch
+                {
+                }
 
                 lista.Add(mensaje);                    
             }

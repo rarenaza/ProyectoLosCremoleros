@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
@@ -559,6 +560,11 @@ namespace UTPPrototipo.Controllers
                 //Usuario
                 empresa.RolIdListaValor = "ROLEAD"; //La cuenta es creada como Rol: "Administrador de Empresa"
                 empresa.EstadoUsuarioIdListaValor = "USEUTP"; //El usuario también se encuenta pendiente de activación. Se debe activar al momento que UTP active la cuenta.
+                byte[] bytes = Encoding.Default.GetBytes(empresa.Contrasena);
+                SHA1 sha = new SHA1CryptoServiceProvider();
+                byte[] password = sha.ComputeHash(bytes);
+                String spassword = Encoding.Default.GetString(password);
+                empresa.Contrasena = spassword;
                 lnEmpresa.Insertar(empresa);
 
                 //Enviar mensaje de correo:
