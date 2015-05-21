@@ -433,12 +433,12 @@ namespace UTPPrototipo.Controllers
 
             if (intResult == 1)
             {
-                DataTable dtResultado = ln.ValidarAlumno(usuario);
+                //DataTable dtResultado = ln.ValidarAlumno(usuario);
 
-                if (dtResultado.Rows[0]["CANTIDAD"].ToString() == "1")
+                //if (dtResultado.Rows[0]["CANTIDAD"].ToString() == "1")
                     return true;
-                else
-                    return false;
+                //else
+                //    return false;
             }
             else
                 return false;
