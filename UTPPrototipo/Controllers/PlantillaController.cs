@@ -27,7 +27,7 @@ namespace UTPPrototipo.Controllers
 
         public Mustache Compile(string template)
         {
-            string[] source = Regex.Replace(template, this.pattern, "$1").Split('|');
+            string[] source = Regex.Replace(template, this.pattern, "$1").Split('!');
 
             this.template = "{{" + source[0].Trim() + "}}";
             this.filter = String.Empty;
@@ -245,7 +245,8 @@ namespace UTPPrototipo.Controllers
                     celphone = Convert.ToString(Person.Rows[0]["TelefonoCelular"]),
                     email = Convert.ToString(Person.Rows[0]["CorreoElectronico"]),
                     emailAlternative = Convert.ToString(Person.Rows[0]["CorreoElectronico2"]),
-                    profile = Convert.ToString(Person.Rows[0]["Perfil"])
+                    profile = Convert.ToString(Person.Rows[0]["Perfil"]),
+                    birthdate = Convert.ToString(Person.Rows[0]["FechaNacimiento"])
                 };
 
                 if (Convert.ToBoolean(template.person.inlines.Count))
@@ -482,7 +483,8 @@ namespace UTPPrototipo.Controllers
                     celphone = Convert.ToString(Person.Rows[0]["TelefonoCelular"]),
                     email = Convert.ToString(Person.Rows[0]["CorreoElectronico"]),
                     emailAlternative = Convert.ToString(Person.Rows[0]["CorreoElectronico2"]),
-                    profile = Convert.ToString(Person.Rows[0]["Perfil"])
+                    profile = Convert.ToString(Person.Rows[0]["Perfil"]),
+                    birthdate = Convert.ToString(Person.Rows[0]["FechaNacimiento"])
                 };
 
                 if (Convert.ToBoolean(template.person.inlines.Count))
