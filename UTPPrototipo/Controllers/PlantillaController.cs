@@ -24,12 +24,27 @@ namespace UTPPrototipo.Controllers
         private string template;
         private string pattern = @"{{([\s\S]+?)}}";
         private string filter = String.Empty;
+        private dynamic DELIMITER = new
+        {
+            Expression = new 
+            { 
+                Open = "{{", 
+                Close = "}}" 
+            },
+            Filter = new {
+                Pointer = "||",
+                Value = ":"
+            }
+        };
 
         public Mustache Compile(string template)
         {
-            string[] source = Regex.Replace(template, this.pattern, "$1").Split('!');
+            string[] source = Regex.Replace(template, this.pattern, "$1").Split(
+                new string[] { this.DELIMITER.Filter.Pointer },
+                StringSplitOptions.None
+            );
 
-            this.template = "{{" + source[0].Trim() + "}}";
+            this.template = this.DELIMITER.Expression.Open + source[0].Trim() + this.DELIMITER.Expression.Close;
             this.filter = String.Empty;
 
             if (source.Count() > 1)
@@ -64,18 +79,21 @@ namespace UTPPrototipo.Controllers
 
         private string FilterCompile(string text, string filter)
         {
-            string output = "";
-            string[] filterProperties = filter.Split(':');
+            string output = String.Empty;
+            string[] filterProperties = filter.Split(
+                new string[] { this.DELIMITER.Filter.Value },
+                StringSplitOptions.None
+            );
             string filterName = filterProperties[0].Trim();
             string filterValue = filterProperties[1];
 
             switch (filterName)
             {
                 case "prefix":
-                    output = (text != String.Empty ? Regex.Unescape(filterValue) + text : "");
+                    output = (text != String.Empty ? Regex.Unescape(filterValue) + text : String.Empty);
                     break;
                 case "suffix":
-                    output = (text != String.Empty ? text + Regex.Unescape(filterValue) : "");
+                    output = (text != String.Empty ? text + Regex.Unescape(filterValue) : String.Empty);
                     break;
                 case "default":
                     output = (text == String.Empty ? Regex.Unescape(filterValue) : text);
@@ -322,6 +340,8 @@ namespace UTPPrototipo.Controllers
                     {
                         aux.Add(new
                         {
+                            country = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Convert.ToString(data["PaisDescripcion"])),
+                            city = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Convert.ToString(data["Ciudad"])),
                             period = ConvertirMes(Convert.ToInt32(data["FechaInicioCargoMes"])) + Convert.ToString(data["FechaInicioCargoAno"]).Substring(2, 2) +
                             "-" + (data["FechaFinCargoMes"] == DBNull.Value && data["FechaFinCargoAno"] == DBNull.Value
                                 ? "Cont"
