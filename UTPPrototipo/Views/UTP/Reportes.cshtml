@@ -15,58 +15,52 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="panel panel-default" style="text-align:center;">
-                <h5>Alumnos activos (mensual)</h5>
-                <div class="row">
-                    <div class="col-sm-9">
-                        <canvas id="chartAlumnosActivos" width="380" height="300"></canvas>
-                    </div>
-                    <div class="col-sm-3" id="idLengedAlumnosActivos">
-                    </div>
-                </div>
-                <div style="text-align:center;">
-                    <h6># de alumnos activos (acumulado): <strong><span id="alumnosActivos"></span></strong></h6>
-                    <h6># de alumnos con CV completo (acumulado): <strong><span id="alumnosCVCompleto"></span></strong></h6>
-                </div>
-            </div>
-
-        </div>
-        <div class="col-sm-6">
-            <div class="panel panel-default" style="text-align:center;">
-                <h5>Empresas activas (mensual)</h5>
-                <div class="row">
-                    <div class="col-sm-9">
-                        <canvas id="chartEmpresasActivas" width="300" height="300"></canvas>
-                    </div>
-                    <div class="col-sm-3" id="idLengedEmpresasActivas">
+                <div class="panel-heading" role="tab" id="heading1">
+                    <div class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-expanded="false" aria-controls="collapse1">
+                            <h5>Alumnos activos (mensual)</h5>
+                        </a>
                     </div>
                 </div>
-                <div style="text-align:center;">
-                    <h6># de empresas activas (acumulado): <strong><span id="empresasActivas"></span></strong></h6>
-                    <h6># de ofertas publicadas (acumulado): <strong><span id="ofertasPublicadas"></span></strong></h6>
-                </div>
-            </div>
-        </div>
-    </div>
-    <br />
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="panel panel-default" style="text-align:center;">
-                <h5>Empresas según clasificación (acumulado)</h5>
-                <br />
-                <div class="row">
-                    <div class="col-sm-8">
-                        <canvas id="chartEmpresasSegunClasificacion" width="380" height="320"></canvas>
+                <div id="collapse1" class="panel-collapse collapsing" role="tabpanel" aria-labelledby="heading1">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-9">
+                                <canvas id="chartAlumnosActivos" width="380" height="300"></canvas>
+                            </div>
+                            <div class="col-sm-3" id="idLengedAlumnosActivos">
+                            </div>
+                        </div>
+                        <div style="text-align:center;">
+                            <h6># de alumnos activos (acumulado): <strong><span id="alumnosActivos"></span></strong></h6>
+                            <h6># de alumnos con CV completo (acumulado): <strong><span id="alumnosCVCompleto"></span></strong></h6>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-sm-6">
             <div class="panel panel-default" style="text-align:center;">
-                <h5>Ofertas según clasificación (acumulado)</h5>
-                <br />
-                <div class="row">
-                    <div class="col-sm-8">
-                        <canvas id="chartOfertasSegunClasificacion" width="300" height="320"></canvas>
+                <div class="panel-heading" role="tab" id="heading2">
+                    <div class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                            <h5>Empresas activas (mensual)</h5>
+                        </a>
+                    </div>
+                </div>
+                <div id="collapse2" class="panel-collapse collapsing" role="tab" aria-labelledby="heading2">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-9">
+                                <canvas id="chartEmpresasActivas" width="300" height="300"></canvas>
+                            </div>
+                            <div class="col-sm-3" id="idLengedEmpresasActivas">
+                            </div>
+                        </div>
+                        <div style="text-align:center;">
+                            <h6># de empresas activas (acumulado): <strong><span id="empresasActivas"></span></strong></h6>
+                            <h6># de ofertas publicadas (acumulado): <strong><span id="ofertasPublicadas"></span></strong></h6>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -75,105 +69,40 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="panel panel-default" style="text-align:center;">
-                <h5>Empresas según clasificación (mensual)</h5>
-                <div class="row">
-                    <div class="col-sm-1"></div>
-                    <div class="col-sm-3">
-                        <div class="input-group">
-                            <div class="input-group-addon">
-                                Año
-                            </div>
-                            <input class="form-control" id="empresasSegunClasificacionPorMes_Ano" value="@(DateTime.Today.Year)" />
-                        </div>
-
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="input-group">
-                            <div class="input-group-addon">
-                                Mes
-                            </div>
-                            <select class="form-control" id="empresasSegunClasificacionPorMes_Mes">
-                                <option value="">- Seleccione Mes -</option>
-                                <option value="1" @(DateTime.Today.Month == 1 ? "selected" : "")>Enero</option>
-                                <option value="2" @(DateTime.Today.Month == 2 ? "selected" : "")>Febrero</option>
-                                <option value="3" @(DateTime.Today.Month == 3 ? "selected" : "")>Marzo</option>
-                                <option value="4" @(DateTime.Today.Month == 4 ? "selected" : "")>Abril</option>
-                                <option value="5" @(DateTime.Today.Month == 5 ? "selected" : "")>Mayo</option>
-                                <option value="6" @(DateTime.Today.Month == 6 ? "selected" : "")>Junio</option>
-                                <option value="7" @(DateTime.Today.Month == 7 ? "selected" : "")>Julio</option>
-                                <option value="8" @(DateTime.Today.Month == 8 ? "selected" : "")>Agosto</option>
-                                <option value="9" @(DateTime.Today.Month == 9 ? "selected" : "")>Setiembre</option>
-                                <option value="10" @(DateTime.Today.Month == 10 ? "selected" : "")>Octubre</option>
-                                <option value="11" @(DateTime.Today.Month == 11 ? "selected" : "")>Noviembre</option>
-                                <option value="12" @(DateTime.Today.Month == 12 ? "selected" : "")>Diciembre</option>
-                            </select>
-
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="btn btn-default color-paleta6" onclick="cargaEmpresasSegunClasificacionMes();">
-                            Mostrar
-                        </div>
+                <div class="panel-heading" role="tab" id="heading3">
+                    <div class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                            <h5>Empresas según clasificación (acumulado)</h5>
+                        </a>
                     </div>
                 </div>
-                <br />
-                <p id="msgEmpresasSegunClasificacionMes">
-                </p>
-                <div class="row">
-                    <div class="col-sm-8">
-                        <canvas id="chartEmpresasSegunClasificacionMes" width="380" height="300"></canvas>
+                <div id="collapse3" class="panel-collapse collapsing" role="tab" aria-labelledby="heading3">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <canvas id="chartEmpresasSegunClasificacion" width="320" height="320"></canvas>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-
         </div>
         <div class="col-sm-6">
             <div class="panel panel-default" style="text-align:center;">
-                <h5>Ofertas según clasificación (mensual)</h5>
-                <div class="row">
-                    <div class="col-sm-1"></div>
-                    <div class="col-sm-3">
-                        <div class="input-group">
-                            <div class="input-group-addon">
-                                Año
-                            </div>
-                            <input class="form-control" id="ofertasSegunClasificacionPorMes_Ano" value="@(DateTime.Today.Year)" />
-                        </div>
-
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="input-group">
-                            <div class="input-group-addon">
-                                Mes
-                            </div>
-                            <select class="form-control" id="ofertasSegunClasificacionPorMes_Mes">
-                                <option value="">- Seleccione Mes -</option>
-                                <option value="1" @(DateTime.Today.Month == 1 ? "selected" : "")>Enero</option>
-                                <option value="2" @(DateTime.Today.Month == 2 ? "selected" : "")>Febrero</option>
-                                <option value="3" @(DateTime.Today.Month == 3 ? "selected" : "")>Marzo</option>
-                                <option value="4" @(DateTime.Today.Month == 4 ? "selected" : "")>Abril</option>
-                                <option value="5" @(DateTime.Today.Month == 5 ? "selected" : "")>Mayo</option>
-                                <option value="6" @(DateTime.Today.Month == 6 ? "selected" : "")>Junio</option>
-                                <option value="7" @(DateTime.Today.Month == 7 ? "selected" : "")>Julio</option>
-                                <option value="8" @(DateTime.Today.Month == 8 ? "selected" : "")>Agosto</option>
-                                <option value="9" @(DateTime.Today.Month == 9 ? "selected" : "")>Setiembre</option>
-                                <option value="10" @(DateTime.Today.Month == 10 ? "selected" : "")>Octubre</option>
-                                <option value="11" @(DateTime.Today.Month == 11 ? "selected" : "")>Noviembre</option>
-                                <option value="12" @(DateTime.Today.Month == 12 ? "selected" : "")>Diciembre</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="btn btn-default color-paleta6" onclick="cargaOfertasSegunClasificacionMes();">
-                            Mostrar
-                        </div>
+                <div class="panel-heading" role="tab" id="heading4">
+                    <div class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse4" aria-expanded="false" aria-controls="collapse4">
+                            <h5>Ofertas según clasificación (acumulado)</h5>
+                        </a>
                     </div>
                 </div>
-                <br />
-                <p id="msgOfertasSegunClasificacionMes"></p>
-                <div class="row">
-                    <div class="col-sm-8">
-                        <canvas id="chartOfertasSegunClasificacionMes" width="300" height="300"></canvas>
+                <div id="collapse4" class="panel-collapse collapsing" role="tab" aria-labelledby="heading4">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <canvas id="chartOfertasSegunClasificacion" width="300" height="320"></canvas>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -182,191 +111,368 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="panel panel-default" style="text-align:center;">
-                <h5>Top 10 carreras más demandadas</h5>
-                <br />
-                <div class="row">
-                    <div class="col-sm-8">
-                        <canvas id="chartTop10CarrerasMasDemandadas" width="300" height="320"></canvas>
+                <div class="panel-heading" role="tab" id="heading5">
+                    <div class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse5" aria-expanded="false" aria-controls="collapse5">
+                            <h5>Empresas según clasificación (mensual)</h5>
+                        </a>
+                    </div>
+                </div>
+                <div id="collapse5" class="panel-collapse collapsing" role="tab" aria-labelledby="heading5">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-3">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        Año
+                                    </div>
+                                    <input class="form-control" id="empresasSegunClasificacionPorMes_Ano" value="@(DateTime.Today.Year)" />
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        Mes
+                                    </div>
+                                    <select class="form-control" id="empresasSegunClasificacionPorMes_Mes">
+                                        <option value="">- Seleccione Mes -</option>
+                                        <option value="1" @(DateTime.Today.Month == 1 ? "selected" : "")>Enero</option>
+                                        <option value="2" @(DateTime.Today.Month == 2 ? "selected" : "")>Febrero</option>
+                                        <option value="3" @(DateTime.Today.Month == 3 ? "selected" : "")>Marzo</option>
+                                        <option value="4" @(DateTime.Today.Month == 4 ? "selected" : "")>Abril</option>
+                                        <option value="5" @(DateTime.Today.Month == 5 ? "selected" : "")>Mayo</option>
+                                        <option value="6" @(DateTime.Today.Month == 6 ? "selected" : "")>Junio</option>
+                                        <option value="7" @(DateTime.Today.Month == 7 ? "selected" : "")>Julio</option>
+                                        <option value="8" @(DateTime.Today.Month == 8 ? "selected" : "")>Agosto</option>
+                                        <option value="9" @(DateTime.Today.Month == 9 ? "selected" : "")>Setiembre</option>
+                                        <option value="10" @(DateTime.Today.Month == 10 ? "selected" : "")>Octubre</option>
+                                        <option value="11" @(DateTime.Today.Month == 11 ? "selected" : "")>Noviembre</option>
+                                        <option value="12" @(DateTime.Today.Month == 12 ? "selected" : "")>Diciembre</option>
+                                    </select>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="btn btn-default color-paleta6" onclick="cargaEmpresasSegunClasificacionMes();">
+                                    Mostrar
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <p id="msgEmpresasSegunClasificacionMes">
+                        </p>
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <canvas id="chartEmpresasSegunClasificacionMes" width="380" height="300"></canvas>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-sm-6">
             <div class="panel panel-default" style="text-align:center;">
-                <h5>Ofertas target según tipo de trabajo (mensual)</h5>
-                <div class="row">
-                    <div class="col-sm-1"></div>
-                    <div class="col-sm-3">
-                        <div class="input-group">
-                            <div class="input-group-addon">
-                                Año
-                            </div>
-                            <input class="form-control" id="ofertasSegunTipoTrabajoUTP_Ano" value="@(DateTime.Today.Year)" />
-                        </div>
-
+                <div class="panel-heading" role="tab" id="heading6">
+                    <div class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse6" aria-expanded="false" aria-controls="collapse6">
+                            <h5>Ofertas según clasificación (mensual)</h5>
+                        </a>
                     </div>
-                    <div class="col-sm-4">
-                        <div class="input-group">
-                            <div class="input-group-addon">
-                                Mes
+                </div>
+                <div id="collapse6" class="panel-collapse collapsing" role="tab" aria-labelledby="heading6">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-3">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        Año
+                                    </div>
+                                    <input class="form-control" id="ofertasSegunClasificacionPorMes_Ano" value="@(DateTime.Today.Year)" />
+                                </div>
                             </div>
-                            <select class="form-control" id="ofertasSegunTipoTrabajoUTP_Mes">
-                                <option value="">- Seleccione Mes -</option>
-                                <option value="1" @(DateTime.Today.Month == 1 ? "selected" : "")>Enero</option>
-                                <option value="2" @(DateTime.Today.Month == 2 ? "selected" : "")>Febrero</option>
-                                <option value="3" @(DateTime.Today.Month == 3 ? "selected" : "")>Marzo</option>
-                                <option value="4" @(DateTime.Today.Month == 4 ? "selected" : "")>Abril</option>
-                                <option value="5" @(DateTime.Today.Month == 5 ? "selected" : "")>Mayo</option>
-                                <option value="6" @(DateTime.Today.Month == 6 ? "selected" : "")>Junio</option>
-                                <option value="7" @(DateTime.Today.Month == 7 ? "selected" : "")>Julio</option>
-                                <option value="8" @(DateTime.Today.Month == 8 ? "selected" : "")>Agosto</option>
-                                <option value="9" @(DateTime.Today.Month == 9 ? "selected" : "")>Setiembre</option>
-                                <option value="10" @(DateTime.Today.Month == 10 ? "selected" : "")>Octubre</option>
-                                <option value="11" @(DateTime.Today.Month == 11 ? "selected" : "")>Noviembre</option>
-                                <option value="12" @(DateTime.Today.Month == 12 ? "selected" : "")>Diciembre</option>
-                            </select>
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        Mes
+                                    </div>
+                                    <select class="form-control" id="ofertasSegunClasificacionPorMes_Mes">
+                                        <option value="">- Seleccione Mes -</option>
+                                        <option value="1" @(DateTime.Today.Month == 1 ? "selected" : "")>Enero</option>
+                                        <option value="2" @(DateTime.Today.Month == 2 ? "selected" : "")>Febrero</option>
+                                        <option value="3" @(DateTime.Today.Month == 3 ? "selected" : "")>Marzo</option>
+                                        <option value="4" @(DateTime.Today.Month == 4 ? "selected" : "")>Abril</option>
+                                        <option value="5" @(DateTime.Today.Month == 5 ? "selected" : "")>Mayo</option>
+                                        <option value="6" @(DateTime.Today.Month == 6 ? "selected" : "")>Junio</option>
+                                        <option value="7" @(DateTime.Today.Month == 7 ? "selected" : "")>Julio</option>
+                                        <option value="8" @(DateTime.Today.Month == 8 ? "selected" : "")>Agosto</option>
+                                        <option value="9" @(DateTime.Today.Month == 9 ? "selected" : "")>Setiembre</option>
+                                        <option value="10" @(DateTime.Today.Month == 10 ? "selected" : "")>Octubre</option>
+                                        <option value="11" @(DateTime.Today.Month == 11 ? "selected" : "")>Noviembre</option>
+                                        <option value="12" @(DateTime.Today.Month == 12 ? "selected" : "")>Diciembre</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="btn btn-default color-paleta6" onclick="cargaOfertasSegunClasificacionMes();">
+                                    Mostrar
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="btn btn-default color-paleta6" onclick="cargaOfertasSegunTipoTrabajoUTP();">
-                            Mostrar
+                        <br />
+                        <p id="msgOfertasSegunClasificacionMes"></p>
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <canvas id="chartOfertasSegunClasificacionMes" width="300" height="300"></canvas>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <br />
-                <p id="msgOfertasSegunTipoTrabajoUTP"></p>
-                <div class="row">
-                    <div class="col-sm-8">
-                        <canvas id="chartOfertasSegunTipoTrabajoUTP" width="300" height="300"></canvas>
-
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="panel panel-default" style="text-align:center;">
+                <div class="panel-heading" role="tab" id="heading7">
+                    <div class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse7" aria-expanded="false" aria-controls="collapse7">
+                            <h5>Top 10 carreras más demandadas</h5>
+                        </a>
                     </div>
                 </div>
-                <div style="text-align:center;" id="ofertasTargetDiv">
-                    <h6># de ofertas target según tipo de trabajo (acumulado): <strong><span id="ofertasTarget"></span></strong></h6>
+                <div id="collapse7" class="panel-collapse collapsing" role="tab" aria-labelledby="heading7">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <canvas id="chartTop10CarrerasMasDemandadas" width="300" height="320"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="panel panel-default" style="text-align:center;">
+                <div class="panel-heading" role="tab" id="heading8">
+                    <div class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse8" aria-expanded="false" aria-controls="collapse8">
+                            <h5>Ofertas target según tipo de trabajo (mensual)</h5>
+                        </a>
+                    </div>
+                </div>
+                <div id="collapse8" class="panel-collapse collapsing" role="tab" aria-labelledby="heading8">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-3">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        Año
+                                    </div>
+                                    <input class="form-control" id="ofertasSegunTipoTrabajoUTP_Ano" value="@(DateTime.Today.Year)" />
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        Mes
+                                    </div>
+                                    <select class="form-control" id="ofertasSegunTipoTrabajoUTP_Mes">
+                                        <option value="">- Seleccione Mes -</option>
+                                        <option value="1" @(DateTime.Today.Month == 1 ? "selected" : "")>Enero</option>
+                                        <option value="2" @(DateTime.Today.Month == 2 ? "selected" : "")>Febrero</option>
+                                        <option value="3" @(DateTime.Today.Month == 3 ? "selected" : "")>Marzo</option>
+                                        <option value="4" @(DateTime.Today.Month == 4 ? "selected" : "")>Abril</option>
+                                        <option value="5" @(DateTime.Today.Month == 5 ? "selected" : "")>Mayo</option>
+                                        <option value="6" @(DateTime.Today.Month == 6 ? "selected" : "")>Junio</option>
+                                        <option value="7" @(DateTime.Today.Month == 7 ? "selected" : "")>Julio</option>
+                                        <option value="8" @(DateTime.Today.Month == 8 ? "selected" : "")>Agosto</option>
+                                        <option value="9" @(DateTime.Today.Month == 9 ? "selected" : "")>Setiembre</option>
+                                        <option value="10" @(DateTime.Today.Month == 10 ? "selected" : "")>Octubre</option>
+                                        <option value="11" @(DateTime.Today.Month == 11 ? "selected" : "")>Noviembre</option>
+                                        <option value="12" @(DateTime.Today.Month == 12 ? "selected" : "")>Diciembre</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="btn btn-default color-paleta6" onclick="cargaOfertasSegunTipoTrabajoUTP();">
+                                    Mostrar
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <p id="msgOfertasSegunTipoTrabajoUTP"></p>
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <canvas id="chartOfertasSegunTipoTrabajoUTP" width="300" height="300"></canvas>
+                            </div>
+                        </div>
+                        <div style="text-align:center;" id="ofertasTargetDiv">
+                            <h6># de ofertas target según tipo de trabajo (acumulado): <strong><span id="ofertasTarget"></span></strong></h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="panel panel-default" style="text-align:center;">
+                <div class="panel-heading" role="tab" id="heading9">
+                    <div class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse9" aria-expanded="false" aria-controls="collapse9">
+                            <h5>Carreras sin ofertas de prácticas (mensual)</h5>
+                        </a>
+                    </div>
+                </div>
+                <div id="collapse9" class="panel-collapse collapsing" role="tab" aria-labelledby="heading9">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-3">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        Año
+                                    </div>
+                                    <input class="form-control" id="carrerasSinOfertasDePracticas_Ano" value="@(DateTime.Today.Year)" />
+                                </div>
+
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        Mes
+                                    </div>
+                                    <select class="form-control" id="carrerasSinOfertasDePracticas_Mes">
+                                        <option value="">- Seleccione Mes -</option>
+                                        <option value="1" @(DateTime.Today.Month == 1 ? "selected" : "")>Enero</option>
+                                        <option value="2" @(DateTime.Today.Month == 2 ? "selected" : "")>Febrero</option>
+                                        <option value="3" @(DateTime.Today.Month == 3 ? "selected" : "")>Marzo</option>
+                                        <option value="4" @(DateTime.Today.Month == 4 ? "selected" : "")>Abril</option>
+                                        <option value="5" @(DateTime.Today.Month == 5 ? "selected" : "")>Mayo</option>
+                                        <option value="6" @(DateTime.Today.Month == 6 ? "selected" : "")>Junio</option>
+                                        <option value="7" @(DateTime.Today.Month == 7 ? "selected" : "")>Julio</option>
+                                        <option value="8" @(DateTime.Today.Month == 8 ? "selected" : "")>Agosto</option>
+                                        <option value="9" @(DateTime.Today.Month == 9 ? "selected" : "")>Setiembre</option>
+                                        <option value="10" @(DateTime.Today.Month == 10 ? "selected" : "")>Octubre</option>
+                                        <option value="11" @(DateTime.Today.Month == 11 ? "selected" : "")>Noviembre</option>
+                                        <option value="12" @(DateTime.Today.Month == 12 ? "selected" : "")>Diciembre</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="btn btn-default color-paleta6" onclick="cargaCarrerasSinOfertasDePracticas();">
+                                    Mostrar
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <p id="msgCarrerasSinOfertasDePracticas"></p>
+                        <div style="text-align:left; margin-left:45px" id="carrerasSinOfertasDePracticas"> </div>
+                        <br />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="panel panel-default" style="text-align:center;">
+                <div class="panel-heading" role="tab" id="heading10">
+                    <div class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse10" aria-expanded="false" aria-controls="collapse10">
+                            <h5>Carreras sin ofertas de empleo (mensual)</h5>
+                        </a>
+                    </div>
+                </div>
+                <div id="collapse10" class="panel-collapse collapsing" role="tab" aria-labelledby="heading10">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-3">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        Año
+                                    </div>
+                                    <input class="form-control" id="carrerasSinOfertasDeEmpleo_Ano" value="@(DateTime.Today.Year)" />
+                                </div>
+
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        Mes
+                                    </div>
+                                    <select class="form-control" id="carrerasSinOfertasDeEmpleo_Mes">
+                                        <option value="">- Seleccione Mes -</option>
+                                        <option value="1" @(DateTime.Today.Month == 1 ? "selected" : "")>Enero</option>
+                                        <option value="2" @(DateTime.Today.Month == 2 ? "selected" : "")>Febrero</option>
+                                        <option value="3" @(DateTime.Today.Month == 3 ? "selected" : "")>Marzo</option>
+                                        <option value="4" @(DateTime.Today.Month == 4 ? "selected" : "")>Abril</option>
+                                        <option value="5" @(DateTime.Today.Month == 5 ? "selected" : "")>Mayo</option>
+                                        <option value="6" @(DateTime.Today.Month == 6 ? "selected" : "")>Junio</option>
+                                        <option value="7" @(DateTime.Today.Month == 7 ? "selected" : "")>Julio</option>
+                                        <option value="8" @(DateTime.Today.Month == 8 ? "selected" : "")>Agosto</option>
+                                        <option value="9" @(DateTime.Today.Month == 9 ? "selected" : "")>Setiembre</option>
+                                        <option value="10" @(DateTime.Today.Month == 10 ? "selected" : "")>Octubre</option>
+                                        <option value="11" @(DateTime.Today.Month == 11 ? "selected" : "")>Noviembre</option>
+                                        <option value="12" @(DateTime.Today.Month == 12 ? "selected" : "")>Diciembre</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="btn btn-default color-paleta6" onclick="cargaCarrerasSinOfertasDeEmpleo();">
+                                    Mostrar
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <p id="msgCarrerasSinOfertasDeEmpleo"></p>
+                        <div style="text-align:left; margin-left:45px" id="carrerasSinOfertasDeEmpleo"> </div>
+                        <br />
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="row">
-
         <div class="col-sm-6">
             <div class="panel panel-default" style="text-align:center;">
-                <h5>Carreras sin ofertas de prácticas (mensual)</h5>
-                <div class="row">
-                    <div class="col-sm-1"></div>
-                    <div class="col-sm-3">
-                        <div class="input-group">
-                            <div class="input-group-addon">
-                                Año
-                            </div>
-                            <input class="form-control" id="carrerasSinOfertasDePracticas_Ano" value="@(DateTime.Today.Year)" />
-                        </div>
-
+                <div class="panel-heading" role="tab" id="heading11">
+                    <div class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse11" aria-expanded="false" aria-controls="collapse11">
+                            <h5>Vacantes ofrecidas (mensual)</h5>
+                        </a>
                     </div>
-                    <div class="col-sm-4">
-                        <div class="input-group">
-                            <div class="input-group-addon">
-                                Mes
-                            </div>
-                            <select class="form-control" id="carrerasSinOfertasDePracticas_Mes">
-                                <option value="">- Seleccione Mes -</option>
-                                <option value="1" @(DateTime.Today.Month == 1 ? "selected" : "")>Enero</option>
-                                <option value="2" @(DateTime.Today.Month == 2 ? "selected" : "")>Febrero</option>
-                                <option value="3" @(DateTime.Today.Month == 3 ? "selected" : "")>Marzo</option>
-                                <option value="4" @(DateTime.Today.Month == 4 ? "selected" : "")>Abril</option>
-                                <option value="5" @(DateTime.Today.Month == 5 ? "selected" : "")>Mayo</option>
-                                <option value="6" @(DateTime.Today.Month == 6 ? "selected" : "")>Junio</option>
-                                <option value="7" @(DateTime.Today.Month == 7 ? "selected" : "")>Julio</option>
-                                <option value="8" @(DateTime.Today.Month == 8 ? "selected" : "")>Agosto</option>
-                                <option value="9" @(DateTime.Today.Month == 9 ? "selected" : "")>Setiembre</option>
-                                <option value="10" @(DateTime.Today.Month == 10 ? "selected" : "")>Octubre</option>
-                                <option value="11" @(DateTime.Today.Month == 11 ? "selected" : "")>Noviembre</option>
-                                <option value="12" @(DateTime.Today.Month == 12 ? "selected" : "")>Diciembre</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="btn btn-default color-paleta6" onclick="cargaCarrerasSinOfertasDePracticas();">
-                            Mostrar
+                </div>
+                <div id="collapse11" class="panel-collapse collapsing" role="tab" aria-labelledby="heading11">
+                    <div class="panel-body">
+                        <canvas id="chartVacantesOfrecidas" width="480" height="400"></canvas>
+                        <div style="text-align:center;">
+                            <h6># de vacantes ofrecidas (acumulado): <strong><span id="vacantesOfrecidas"></span></strong></h6>
                         </div>
                     </div>
                 </div>
-                <br />
-                <p id="msgCarrerasSinOfertasDePracticas"></p>
-                <div style="text-align:left; margin-left:45px" id="carrerasSinOfertasDePracticas"> </div>
-                <br />
             </div>
         </div>
         <div class="col-sm-6">
             <div class="panel panel-default" style="text-align:center;">
-                <h5>Carreras sin ofertas de empleo (mensual)</h5>
-                <div class="row">
-                    <div class="col-sm-1"></div>
-                    <div class="col-sm-3">
-                        <div class="input-group">
-                            <div class="input-group-addon">
-                                Año
-                            </div>
-                            <input class="form-control" id="carrerasSinOfertasDeEmpleo_Ano" value="@(DateTime.Today.Year)" />
-                        </div>
-
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="input-group">
-                            <div class="input-group-addon">
-                                Mes
-                            </div>
-                            <select class="form-control" id="carrerasSinOfertasDeEmpleo_Mes">
-                                <option value="">- Seleccione Mes -</option>
-                                <option value="1" @(DateTime.Today.Month == 1 ? "selected" : "")>Enero</option>
-                                <option value="2" @(DateTime.Today.Month == 2 ? "selected" : "")>Febrero</option>
-                                <option value="3" @(DateTime.Today.Month == 3 ? "selected" : "")>Marzo</option>
-                                <option value="4" @(DateTime.Today.Month == 4 ? "selected" : "")>Abril</option>
-                                <option value="5" @(DateTime.Today.Month == 5 ? "selected" : "")>Mayo</option>
-                                <option value="6" @(DateTime.Today.Month == 6 ? "selected" : "")>Junio</option>
-                                <option value="7" @(DateTime.Today.Month == 7 ? "selected" : "")>Julio</option>
-                                <option value="8" @(DateTime.Today.Month == 8 ? "selected" : "")>Agosto</option>
-                                <option value="9" @(DateTime.Today.Month == 9 ? "selected" : "")>Setiembre</option>
-                                <option value="10" @(DateTime.Today.Month == 10 ? "selected" : "")>Octubre</option>
-                                <option value="11" @(DateTime.Today.Month == 11 ? "selected" : "")>Noviembre</option>
-                                <option value="12" @(DateTime.Today.Month == 12 ? "selected" : "")>Diciembre</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="btn btn-default color-paleta6" onclick="cargaCarrerasSinOfertasDeEmpleo();">
-                            Mostrar
-                        </div>
+                <div class="panel-heading" role="tab" id="heading12">
+                    <div class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse12" aria-expanded="false" aria-controls="collapse12">
+                            <h5>Postulaciones a ofertas de empresas target (mensual)</h5>
+                        </a>
                     </div>
                 </div>
-                <br />
-                <p id="msgCarrerasSinOfertasDeEmpleo"></p>
-                <div style="text-align:left; margin-left:45px" id="carrerasSinOfertasDeEmpleo"> </div>
-                <br />
-            </div>
-        </div>
-    </div>
-
-
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="panel panel-default" style="text-align:center;">
-                <h5>Vacantes ofrecidas (mensual)</h5>
-                <canvas id="chartVacantesOfrecidas" width="480" height="400"></canvas>
-                <div style="text-align:center;">
-                    <h6># de vacantes ofrecidas (acumulado): <strong><span id="vacantesOfrecidas"></span></strong></h6>
-                </div>
-            </div>
-
-        </div>
-        <div class="col-sm-6">
-            <div class="panel panel-default" style="text-align:center;">
-                <h5>Postulaciones a ofertas de empresas target (mensual)</h5>
-                <canvas id="chartEmpresasTarget" width="400" height="400"></canvas>
-                <div style="text-align:center;">
-                    <h6># postulaciones a empresas target (acumulado): <strong><span id="postulantesEmpresas"></span></strong></h6>
-                    <h6>Ratio promedio de postulantes citados a entrevista: <strong><span id="ratioPostulantes"></span></strong></h6>
+                <div id="collapse12" class="panel-collapse collapsing" role="tab" aria-labelledby="heading12">
+                    <div class="panel-body">
+                        <canvas id="chartEmpresasTarget" width="400" height="400"></canvas>
+                        <div style="text-align:center;">
+                            <h6># postulaciones a empresas target (acumulado): <strong><span id="postulantesEmpresas"></span></strong></h6>
+                            <h6>Ratio promedio de postulantes citados a entrevista: <strong><span id="ratioPostulantes"></span></strong></h6>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -375,61 +481,80 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="panel panel-default" style="text-align:center;">
-                <h5>Ofertas con procesos cerrados (mensual)</h5>
-                <canvas id="chartProcesosCerrados" width="480" height="400"></canvas>
-                <div style="text-align:center;">
-                    <h6># de ofertas con procesos cerrados (acumulado): <strong><span id="procesosCerrados"></span></strong></h6>
+                <div class="panel-heading" role="tab" id="heading13">
+                    <div class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse13" aria-expanded="false" aria-controls="collapse13">
+                            <h5>Ofertas con procesos cerrados (mensual)</h5>
+                        </a>
+                    </div>
+                </div>
+                <div id="collapse13" class="panel-collapse collapsing" role="tab" aria-labelledby="heading13">
+                    <div class="panel-body">
+                        <canvas id="chartProcesosCerrados" width="480" height="400"></canvas>
+                        <div style="text-align:center;">
+                            <h6># de ofertas con procesos cerrados (acumulado): <strong><span id="procesosCerrados"></span></strong></h6>
+                        </div>
+                    </div>
                 </div>
             </div>
-
         </div>
         <div class="col-sm-6">
             <div class="panel panel-default" style="text-align:center;">
-                <h5>Clasificación de CV's Recibidos</h5>
-                <div class="row">
-                    <div class="col-sm-1"></div>
-                    <div class="col-sm-3">
-                        <div class="input-group">
-                            <div class="input-group-addon">
-                                Año
-                            </div>
-                            <input class="form-control" id="clasificacionCvsRecibidos_Ano" value="@(DateTime.Today.Year)" />
-                        </div>
-
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="input-group">
-                            <div class="input-group-addon">
-                                Mes
-                            </div>
-                            <select class="form-control" id="clasificacionCvsRecibidos_Mes">
-                                <option value="">- Seleccione Mes -</option>
-                                <option value="1" @(DateTime.Today.Month == 1 ? "selected" : "")>Enero</option>
-                                <option value="2" @(DateTime.Today.Month == 2 ? "selected" : "")>Febrero</option>
-                                <option value="3" @(DateTime.Today.Month == 3 ? "selected" : "")>Marzo</option>
-                                <option value="4" @(DateTime.Today.Month == 4 ? "selected" : "")>Abril</option>
-                                <option value="5" @(DateTime.Today.Month == 5 ? "selected" : "")>Mayo</option>
-                                <option value="6" @(DateTime.Today.Month == 6 ? "selected" : "")>Junio</option>
-                                <option value="7" @(DateTime.Today.Month == 7 ? "selected" : "")>Julio</option>
-                                <option value="8" @(DateTime.Today.Month == 8 ? "selected" : "")>Agosto</option>
-                                <option value="9" @(DateTime.Today.Month == 9 ? "selected" : "")>Setiembre</option>
-                                <option value="10" @(DateTime.Today.Month == 10 ? "selected" : "")>Octubre</option>
-                                <option value="11" @(DateTime.Today.Month == 11 ? "selected" : "")>Noviembre</option>
-                                <option value="12" @(DateTime.Today.Month == 12 ? "selected" : "")>Diciembre</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="btn btn-default color-paleta6" onclick="cargaClasificacionCVsRecibidos();">
-                            Mostrar
-                        </div>
+                <div class="panel-heading" role="tab" id="heading14">
+                    <div class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse14" aria-expanded="false" aria-controls="collapse14">
+                            <h5>Clasificación de CV's Recibidos</h5>
+                        </a>
                     </div>
                 </div>
-                <br />
-                <p id="msgClasificacionCvsRecibidos"></p>
-                <canvas id="chartClasificacionCvsRecibidos" width="400" height="400"></canvas>
-                <div style="text-align:center;" id="cvsRecibidosDiv">
-                    <h6># clasificación total de CV´s (acumulado): <strong><span id="cvsRecibidos"></span></strong></h6>
+                <div id="collapse14" class="panel-collapse collapsing" role="tab" aria-labelledby="heading14">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-3">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        Año
+                                    </div>
+                                    <input class="form-control" id="clasificacionCvsRecibidos_Ano" value="@(DateTime.Today.Year)" />
+                                </div>
+
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        Mes
+                                    </div>
+                                    <select class="form-control" id="clasificacionCvsRecibidos_Mes">
+                                        <option value="">- Seleccione Mes -</option>
+                                        <option value="1" @(DateTime.Today.Month == 1 ? "selected" : "")>Enero</option>
+                                        <option value="2" @(DateTime.Today.Month == 2 ? "selected" : "")>Febrero</option>
+                                        <option value="3" @(DateTime.Today.Month == 3 ? "selected" : "")>Marzo</option>
+                                        <option value="4" @(DateTime.Today.Month == 4 ? "selected" : "")>Abril</option>
+                                        <option value="5" @(DateTime.Today.Month == 5 ? "selected" : "")>Mayo</option>
+                                        <option value="6" @(DateTime.Today.Month == 6 ? "selected" : "")>Junio</option>
+                                        <option value="7" @(DateTime.Today.Month == 7 ? "selected" : "")>Julio</option>
+                                        <option value="8" @(DateTime.Today.Month == 8 ? "selected" : "")>Agosto</option>
+                                        <option value="9" @(DateTime.Today.Month == 9 ? "selected" : "")>Setiembre</option>
+                                        <option value="10" @(DateTime.Today.Month == 10 ? "selected" : "")>Octubre</option>
+                                        <option value="11" @(DateTime.Today.Month == 11 ? "selected" : "")>Noviembre</option>
+                                        <option value="12" @(DateTime.Today.Month == 12 ? "selected" : "")>Diciembre</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="btn btn-default color-paleta6" onclick="cargaClasificacionCVsRecibidos();">
+                                    Mostrar
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <p id="msgClasificacionCvsRecibidos"></p>
+                        <canvas id="chartClasificacionCvsRecibidos" width="400" height="400"></canvas>
+                        <div style="text-align:center;" id="cvsRecibidosDiv">
+                            <h6># clasificación total de CV´s (acumulado): <strong><span id="cvsRecibidos"></span></strong></h6>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -439,19 +564,29 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="panel panel-default" style="text-align:center;">
-                <h5>Contrataciones (mensual)</h5>
-                <div class="row">
-                    <div class="col-sm-9">
-                        <canvas id="chartContrataciones" width="780" height="400"></canvas>
-                    </div>
-                    <div class="col-sm-3" id="idLengedContrataciones">
+                <div class="panel-heading" role="tab" id="heading15">
+                    <div class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse15" aria-expanded="false" aria-controls="collapse15">
+                            <h5>Contrataciones (mensual)</h5>
+                        </a>
                     </div>
                 </div>
-                <div style="text-align:center;">
-                    <h6># de contratos (acumulados): <strong><span id="contratosAcumulados"></span></strong></h6>
-                    <h6># de contratos target: <strong><span id="contratosTarget"></span></strong></h6>
-                    <h6>Ratio de invitados a entrevista: <strong><span id="ratioEntrevistados"></span></strong></h6>
-                    <h6># de convenios registrados (mes actual): <strong><span id="conveniosDelMes"></span></strong></h6>
+                <div id="collapse15" class="panel-collapse collapsing" role="tab" aria-labelledby="heading15">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-9">
+                                <canvas id="chartContrataciones" width="780" height="400"></canvas>
+                            </div>
+                            <div class="col-sm-3" id="idLengedContrataciones">
+                            </div>
+                        </div>
+                        <div style="text-align:center;">
+                            <h6># de contratos (acumulados): <strong><span id="contratosAcumulados"></span></strong></h6>
+                            <h6># de contratos target: <strong><span id="contratosTarget"></span></strong></h6>
+                            <h6>Ratio de invitados a entrevista: <strong><span id="ratioEntrevistados"></span></strong></h6>
+                            <h6># de convenios registrados (mes actual): <strong><span id="conveniosDelMes"></span></strong></h6>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -460,17 +595,25 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="panel panel-default" style="text-align:center;">
-                <h5>Alumnos activos según carrera</h5>
-                <canvas id="chartAlumnosSegunCarrera" width="880" height="500"></canvas>
+                <div class="panel-heading" role="tab" id="heading16">
+                    <div class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse16" aria-expanded="false" aria-controls="collapse16">
+                            <h5>Alumnos activos según carrera</h5>
+                        </a>
+                    </div>
+                </div>
+                <div id="collapse16" class="panel-collapse collapsing" role="tab" aria-labelledby="heading16">
+                    <div class="panel-body">
+                        <canvas id="chartAlumnosSegunCarrera" width="880" height="500"></canvas>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-
-
 <script>
-    $(document).ready(function () {      
+    $(document).ready(function () {
         $("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta3 color-paleta4 color-paleta5 color-paleta7 color-paleta8 color-paleta9").addClass("color-paleta6")
 
         cargaAlumnosActivos();
