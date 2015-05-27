@@ -259,7 +259,7 @@ namespace UTPPrototipo.Controllers
                     document = Convert.ToString(Person.Rows[0]["NumeroDocumento"]),
                     documentType = Convert.ToString(Person.Rows[0]["TipoDocumento"]),
                     address = Convert.ToString(Person.Rows[0]["Direccion"]),
-                    district = Convert.ToString(Person.Rows[0]["DireccionDistrito"]),
+                    district = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Convert.ToString(Person.Rows[0]["DireccionDistrito"])),
                     celphone = Convert.ToString(Person.Rows[0]["TelefonoCelular"]),
                     email = Convert.ToString(Person.Rows[0]["CorreoElectronico"]),
                     emailAlternative = Convert.ToString(Person.Rows[0]["CorreoElectronico2"]),
@@ -325,32 +325,60 @@ namespace UTPPrototipo.Controllers
                 string experiencePattern = blockPattern.Replace("<model>", "experience");
                 Table experienceWrapper;
 
-                Dictionary<string, string> enterprises = new Dictionary<string, string>();
+                Dictionary<string, dynamic> enterprises = new Dictionary<string, dynamic>();
                 Dictionary<string, List<object>> experiences = new Dictionary<string, List<object>>();
+                string[] enterpriseFields = new string[] { "Ciudad", "DescripcionEmpresa", "PaisDescripcion", "Empresa" };
 
-                DataTable Enterprises = Experience.DefaultView.ToTable(true, "Empresa", "DescripcionEmpresa");
+                DataTable Enterprises = Experience.DefaultView.ToTable(true, enterpriseFields);
                 foreach (DataRow enterprise in Enterprises.Rows)
                 {
-                    enterprises.Add(Convert.ToString(enterprise["Empresa"]), Convert.ToString(enterprise["DescripcionEmpresa"]));
-
                     List<object> aux = new List<object>();
+                    int timeOfExperience = 0;
 
                     DataTable experiencesOfEnterprise = Experience.Select("Empresa = '" + Convert.ToString(enterprise["Empresa"]) + "'").CopyToDataTable();
                     foreach (DataRow data in experiencesOfEnterprise.Rows)
                     {
+                        string period = String.Empty;
+                        string periodStart = String.Empty;
+                        string periodEnd = String.Empty;
+
+                        periodStart = ConvertirMes(Convert.ToInt32(data["FechaInicioCargoMes"])) + 
+                            Convert.ToString(data["FechaInicioCargoAno"]).Substring(2, 2);
+
+                        periodEnd = (data["FechaFinCargoMes"] == DBNull.Value && data["FechaFinCargoAno"] == DBNull.Value)
+                            ? "Cont"
+                            : ConvertirMes(Convert.ToInt32(data["FechaFinCargoMes"])) + 
+                                Convert.ToString(data["FechaFinCargoAno"]).Substring(2, 2);
+
+                        period = String.Format("{0}-{1}", periodStart, periodEnd);
+
                         aux.Add(new
                         {
-                            country = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Convert.ToString(data["PaisDescripcion"])),
-                            city = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Convert.ToString(data["Ciudad"])),
-                            period = ConvertirMes(Convert.ToInt32(data["FechaInicioCargoMes"])) + Convert.ToString(data["FechaInicioCargoAno"]).Substring(2, 2) +
-                            "-" + (data["FechaFinCargoMes"] == DBNull.Value && data["FechaFinCargoAno"] == DBNull.Value
-                                ? "Cont"
-                                : ConvertirMes(Convert.ToInt32(data["FechaFinCargoMes"])) + Convert.ToString(data["FechaFinCargoAno"]).Substring(2, 2)),
+                            period =  period,
                             office = Convert.ToString(data["NombreCargo"]),
                             officeDescription = Convert.ToString(data["DescripcionCargo"])
                         });
-                    }
 
+                        int yearStart = Convert.ToInt32(data["FechaInicioCargoAno"]);
+                        int monthStart = Convert.ToInt32(data["FechaInicioCargoMes"]);
+                        int yearEnd = (data["FechaFinCargoAno"] == DBNull.Value)
+                            ? DateTime.Now.Year
+                            : Convert.ToInt32(data["FechaFinCargoAno"]);
+                        int monthEnd = (data["FechaFinCargoMes"] == DBNull.Value)
+                            ? DateTime.Now.Month
+                            : Convert.ToInt32(data["FechaFinCargoMes"]);
+
+                        timeOfExperience += (yearEnd - yearStart) * 12 + monthEnd - monthStart;
+                     }
+
+                    enterprises.Add(Convert.ToString(enterprise["Empresa"]), new 
+                    {
+                        enterprise = Convert.ToString(enterprise["Empresa"]),
+                        enterpriseDescription = Convert.ToString(enterprise["DescripcionEmpresa"]),
+                        enterpriseTimeOfExperience = String.Format("({0} años, {1} meses)", Math.Truncate(timeOfExperience / 12.0), timeOfExperience % 12),
+                        enterpriseCountry = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Convert.ToString(enterprise["PaisDescripcion"])),
+                        enterpriseCity = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Convert.ToString(enterprise["Ciudad"]))
+                    });
                     experiences.Add(Convert.ToString(enterprise["Empresa"]), aux);
                 }
 
@@ -369,7 +397,7 @@ namespace UTPPrototipo.Controllers
                         Table enterpriseWrapper = experienceWrapper.InsertTableAfterSelf(template.experience.blocks[1]);
 
                         // Render enterprise info
-                        for (int i = 0; i < 2; i++)
+                        for (int i = 0; i < enterpriseFields.Count() + 1; i++)
                         {
                             doc.ReplaceText(
                                 template.experience.inlines[i],
@@ -377,11 +405,7 @@ namespace UTPPrototipo.Controllers
                                     .Compile(template.experience.inlines[i])
                                     .Render(new
                                     {
-                                        experience = new
-                                        {
-                                            enterprise = data.Key,
-                                            enterpriseDescription = enterprises[data.Key]
-                                        }
+                                        experience = enterprises[data.Key]
                                     })
                             );
                         }
@@ -486,8 +510,8 @@ namespace UTPPrototipo.Controllers
             using (DocX doc = DocX.Load(stream))
             {
                 dynamic template = new Template(rutaPlantilla)
-                    .Build()
-                    .Compile();
+                   .Build()
+                   .Compile();
 
                 #region person
 
@@ -499,7 +523,7 @@ namespace UTPPrototipo.Controllers
                     document = Convert.ToString(Person.Rows[0]["NumeroDocumento"]),
                     documentType = Convert.ToString(Person.Rows[0]["TipoDocumento"]),
                     address = Convert.ToString(Person.Rows[0]["Direccion"]),
-                    district = Convert.ToString(Person.Rows[0]["DireccionDistrito"]),
+                    district = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Convert.ToString(Person.Rows[0]["DireccionDistrito"])),
                     celphone = Convert.ToString(Person.Rows[0]["TelefonoCelular"]),
                     email = Convert.ToString(Person.Rows[0]["CorreoElectronico"]),
                     emailAlternative = Convert.ToString(Person.Rows[0]["CorreoElectronico2"]),
@@ -565,30 +589,60 @@ namespace UTPPrototipo.Controllers
                 string experiencePattern = blockPattern.Replace("<model>", "experience");
                 Table experienceWrapper;
 
-                Dictionary<string, string> enterprises = new Dictionary<string, string>();
+                Dictionary<string, dynamic> enterprises = new Dictionary<string, dynamic>();
                 Dictionary<string, List<object>> experiences = new Dictionary<string, List<object>>();
+                string[] enterpriseFields = new string[] { "Ciudad", "DescripcionEmpresa", "PaisDescripcion", "Empresa" };
 
-                DataTable Enterprises = Experience.DefaultView.ToTable(true, "Empresa", "DescripcionEmpresa");
+                DataTable Enterprises = Experience.DefaultView.ToTable(true, enterpriseFields);
                 foreach (DataRow enterprise in Enterprises.Rows)
                 {
-                    enterprises.Add(Convert.ToString(enterprise["Empresa"]), Convert.ToString(enterprise["DescripcionEmpresa"]));
-
                     List<object> aux = new List<object>();
+                    int timeOfExperience = 0;
 
                     DataTable experiencesOfEnterprise = Experience.Select("Empresa = '" + Convert.ToString(enterprise["Empresa"]) + "'").CopyToDataTable();
                     foreach (DataRow data in experiencesOfEnterprise.Rows)
                     {
+                        string period = String.Empty;
+                        string periodStart = String.Empty;
+                        string periodEnd = String.Empty;
+
+                        periodStart = ConvertirMes(Convert.ToInt32(data["FechaInicioCargoMes"])) +
+                            Convert.ToString(data["FechaInicioCargoAno"]).Substring(2, 2);
+
+                        periodEnd = (data["FechaFinCargoMes"] == DBNull.Value && data["FechaFinCargoAno"] == DBNull.Value)
+                            ? "Cont"
+                            : ConvertirMes(Convert.ToInt32(data["FechaFinCargoMes"])) +
+                                Convert.ToString(data["FechaFinCargoAno"]).Substring(2, 2);
+
+                        period = String.Format("{0}-{1}", periodStart, periodEnd);
+
                         aux.Add(new
                         {
-                            period = ConvertirMes(Convert.ToInt32(data["FechaInicioCargoMes"])) + Convert.ToString(data["FechaInicioCargoAno"]).Substring(2, 2) +
-                            "-" + (data["FechaFinCargoMes"] == DBNull.Value && data["FechaFinCargoAno"] == DBNull.Value
-                                ? "Cont"
-                                : ConvertirMes(Convert.ToInt32(data["FechaFinCargoMes"])) + Convert.ToString(data["FechaFinCargoAno"]).Substring(2, 2)),
+                            period = period,
                             office = Convert.ToString(data["NombreCargo"]),
                             officeDescription = Convert.ToString(data["DescripcionCargo"])
                         });
+
+                        int yearStart = Convert.ToInt32(data["FechaInicioCargoAno"]);
+                        int monthStart = Convert.ToInt32(data["FechaInicioCargoMes"]);
+                        int yearEnd = (data["FechaFinCargoAno"] == DBNull.Value)
+                            ? DateTime.Now.Year
+                            : Convert.ToInt32(data["FechaFinCargoAno"]);
+                        int monthEnd = (data["FechaFinCargoMes"] == DBNull.Value)
+                            ? DateTime.Now.Month
+                            : Convert.ToInt32(data["FechaFinCargoMes"]);
+
+                        timeOfExperience += (yearEnd - yearStart) * 12 + monthEnd - monthStart;
                     }
 
+                    enterprises.Add(Convert.ToString(enterprise["Empresa"]), new
+                    {
+                        enterprise = Convert.ToString(enterprise["Empresa"]),
+                        enterpriseDescription = Convert.ToString(enterprise["DescripcionEmpresa"]),
+                        enterpriseTimeOfExperience = String.Format("({0} años, {1} meses)", Math.Truncate(timeOfExperience / 12.0), timeOfExperience % 12),
+                        enterpriseCountry = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Convert.ToString(enterprise["PaisDescripcion"])),
+                        enterpriseCity = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Convert.ToString(enterprise["Ciudad"]))
+                    });
                     experiences.Add(Convert.ToString(enterprise["Empresa"]), aux);
                 }
 
@@ -607,7 +661,7 @@ namespace UTPPrototipo.Controllers
                         Table enterpriseWrapper = experienceWrapper.InsertTableAfterSelf(template.experience.blocks[1]);
 
                         // Render enterprise info
-                        for (int i = 0; i < 2; i++)
+                        for (int i = 0; i < enterpriseFields.Count() + 1; i++)
                         {
                             doc.ReplaceText(
                                 template.experience.inlines[i],
@@ -615,11 +669,7 @@ namespace UTPPrototipo.Controllers
                                     .Compile(template.experience.inlines[i])
                                     .Render(new
                                     {
-                                        experience = new
-                                        {
-                                            enterprise = data.Key,
-                                            enterpriseDescription = enterprises[data.Key]
-                                        }
+                                        experience = enterprises[data.Key]
                                     })
                             );
                         }
@@ -686,7 +736,7 @@ namespace UTPPrototipo.Controllers
 
                 #endregion
 
-                doc.Save();
+                doc.Save();     
 
             }
 
