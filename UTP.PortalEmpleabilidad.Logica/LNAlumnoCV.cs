@@ -239,12 +239,12 @@ namespace UTP.PortalEmpleabilidad.Logica
             return listaAlumnoCV;
 
         }
-        public void UpdateInfo(AlumnoCV alumnocv)
+        public void UpdateInfo(AlumnoCV alumnocv, int PorcentajeCV)
         {
             ADAlumnoCVEstudio acve = new ADAlumnoCVEstudio();
             ADAlumnoCVExperienciaCargo acvs = new ADAlumnoCVExperienciaCargo();
             ADAlumnoCVInformacionAdicional acvc = new ADAlumnoCVInformacionAdicional();
-            acv.Update(alumnocv);
+            acv.Update(alumnocv, PorcentajeCV);
             acve.DesactivarPorCV(alumnocv.IdCV);
             acvs.DesactivarPorCV(alumnocv.IdCV);
             acvc.DesactivarPorCV(alumnocv.IdCV);

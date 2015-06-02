@@ -178,12 +178,12 @@
                                     <span class="input-group-addon">Recibir<br />CVs hasta</span>
                                     @*@Html.TextBoxFor(m => m.FechaFinRecepcionCV, new { @class = "form-control", @placeholder = "Fecha final de Recepcion de CVs" })*@
                                     @*@Html.Raw(@Html.EditorFor(m => m.FechaFinRecepcionCV).ToString().Replace("text-box single-line", "form-control"))*@
-                                    @Html.TextBoxFor(m => m.FechaFinRecepcionCV, new { @class = "form-control", @placeholder = "Fecha de fin de publicación", @Value = Model.FechaFinRecepcionCV.ToString("d") })
+                                    @Html.TextBoxFor(m => m.FechaFinRecepcionCV, new { @class = "form-control", @placeholder = "Fecha de fin de publicación", @Value = (Model.FechaFinRecepcionCV.ToString("d") == DateTime.Now.ToShortDateString() ? "" : Model.FechaFinRecepcionCV.ToString("d")) })
                                 </div>
                                 @Html.ValidationMessageFor(m => m.FechaFinRecepcionCV, "", new { @class = "text-danger" })
                                 <div class="input-group">
                                     <span class="input-group-addon">Fin de<br />la oferta</span>
-                                    @Html.TextBoxFor(m => m.FechaFinProceso, new { @class = "form-control", @placeholder = "Fecha fin de la oferta", @Value = Model.FechaFinProceso.ToString("d") })
+                                    @Html.TextBoxFor(m => m.FechaFinProceso, new { @class = "form-control", @placeholder = "Fecha fin de la oferta", @Value = (Model.FechaFinProceso.ToString("d") == DateTime.Now.ToShortDateString() ? "" : Model.FechaFinProceso.ToString("d")) })
                                 </div>
                                 @Html.ValidationMessageFor(m => m.FechaFinProceso, "", new { @class = "text-danger" })
                                 <div class="input-group">

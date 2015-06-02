@@ -635,7 +635,7 @@ namespace UTP.PortalEmpleabilidad.Logica
         {
             return adUtp.Reporte_PostulacionesAOfertasDeEmpresasTarget();
         }
-        public DataTable Reporte_OfertasConProcesosCerrados()
+        public DataSet Reporte_OfertasConProcesosCerrados()
         {
             return adUtp.Reporte_OfertasConProcesosCerrados();
         }
@@ -650,6 +650,10 @@ namespace UTP.PortalEmpleabilidad.Logica
         public DataTable Reporte_AlumnosActivosSegunCarrera()
         {
             return adUtp.Reporte_AlumnosActivosSegunCarrera();
+        }
+        public DataTable Reporte_CvCompletosSegunCarrera()
+        {
+            return adUtp.Reporte_CvCompletosSegunCarrera();
         }
         public DataTable Reporte_Top10CarrerasMasDemandadas()
         {

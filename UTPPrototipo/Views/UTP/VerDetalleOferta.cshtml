@@ -65,14 +65,21 @@
                     <td class="celda-datos">
                         @Model.FechaPublicacion
                     </td>
-                </tr>
-
+                </tr>                
                 <tr>
                     <td class="celda-nombre">
                         Recibir CVs hasta el
                     </td>
                     <td class="celda-datos">                        
                         @Html.DisplayFor(model => model.FechaFinRecepcionCV)                        
+                    </td>
+                </tr>
+                <tr>
+                    <td class="celda-nombre">
+                        Fin de Oferta
+                    </td>
+                    <td class="celda-datos">
+                        @Html.DisplayFor(model => model.FechaFinProceso)
                     </td>
                 </tr>
                 <tr>

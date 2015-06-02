@@ -117,7 +117,7 @@ namespace UTPPrototipo.Controllers
             app.Start = dateInicio;
             app.End = dateInicio.Add(time);
             //-----
-            if (dias != null)
+            if (dias != "")
             {
                 DayOfTheWeek[] days = stringToDays(dias);
                 app.Recurrence = new Recurrence.WeeklyPattern(app.Start.Date, 1, days);

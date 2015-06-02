@@ -359,8 +359,8 @@ namespace UTPPrototipo.Controllers
             {
                 try
                 {
-                    service.Credentials = new WebCredentials("criteriaitdev01@criteriait.onmicrosoft.com", "Cr1ter14_2015");
-                    service.AutodiscoverUrl("criteriaitdev01@criteriait.onmicrosoft.com", RedirectionUrlValidationCallback);
+                    service.Credentials = new WebCredentials("criteriaitdev02@criteriait1.onmicrosoft.com", "Cr1ter14_2015");
+                    service.AutodiscoverUrl("criteriaitdev02@criteriait1.onmicrosoft.com", RedirectionUrlValidationCallback);
                 }
                 catch (Exception)
                 {

@@ -98,7 +98,7 @@ namespace UTP.PortalEmpleabilidad.Datos
             cmd.ExecuteNonQuery();
             cnn.Desconectar();
         }
-        public void Update(AlumnoCV alumnocv)
+        public void Update(AlumnoCV alumnocv, int PorcentajeCV)
         {
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = "AlumnoCV_Update";
@@ -117,7 +117,9 @@ namespace UTP.PortalEmpleabilidad.Datos
             cmd.Parameters.Add(new SqlParameter("@IncluirNombre4", SqlDbType.Bit)).Value = alumnocv.IncluirNombre4;
             cmd.Parameters.Add(new SqlParameter("@ModificadoPor", SqlDbType.VarChar, 50)).Value = alumnocv.Usuario;
             cmd.Parameters.Add(new SqlParameter("@IncluirDireccion", SqlDbType.Bit)).Value = alumnocv.IncluirDireccion;
-
+            cmd.Parameters.Add(new SqlParameter("@FechaCvCompleto", SqlDbType.DateTime)).Value = (PorcentajeCV == 100) ? (object)DateTime.Now : DBNull.Value;
+            
+               
             cmd.ExecuteNonQuery();
             cnn.Desconectar();
         }
