@@ -132,7 +132,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
 
         public static ColorPie ColorAzulPastel = new ColorPie { Color = "#3CACC9", Highlight = "#0065FF" };
         public static ColorPie ColorNaranja = new ColorPie { Color = "#E99522", Highlight = "#FFC900" };
-        public static ColorPie ColorVerdeAgua = new ColorPie { Color = "#008000", Highlight = "#8FBC8F" };
+        public static ColorPie ColorVerdeAgua = new ColorPie { Color = "#0E9E95", Highlight = "#8FBC8F" };
         public static ColorPie ColorVerdeAmarillo = new ColorPie { Color = "#C0BA00", Highlight = "#9ACD32" };
         public static ColorPie ColorGris = new ColorPie { Color = "#818286", Highlight = "#A9A9A9" };
         public static ColorPie ColorAzulOscuro = new ColorPie { Color = "#2B56B1", Highlight = "#6495ED" };
