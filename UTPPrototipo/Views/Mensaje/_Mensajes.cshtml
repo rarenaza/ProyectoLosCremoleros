@@ -219,7 +219,7 @@
                                 @{//20150508 a petición de Beatriz
                                     if (@ViewBag.Pantalla != Constantes.MENSAJES_ALUMNO_INDEX)
                                     { 
-                                        <button id="btnMensajeNuevo" class="btn btn-default color-paleta-msg-btn" onclick="mensajeNuevo('@ViewBag.Pantalla','@ViewBag.IdOferta', '@ViewBag.UsuarioAlumno', '@ViewBag.IdEvento', '@ViewBag.IdEmpresa');">Redactar</button>
+                                        <button id="btnMensajeNuevo" class="btn btn-default color-paleta-msg-btn" @ViewBag.BotonRedactar onclick="mensajeNuevo('@ViewBag.Pantalla','@ViewBag.IdOferta', '@ViewBag.UsuarioAlumno', '@ViewBag.IdEvento', '@ViewBag.IdEmpresa');">Redactar</button>
                                     }
                                 }
                                 <br />
