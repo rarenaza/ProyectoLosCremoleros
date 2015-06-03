@@ -365,7 +365,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                     cmd.Parameters.Add(new SqlParameter("@NivelDeFacturacion", empresa.NivelDeFacturacion));
                     cmd.Parameters.Add(new SqlParameter("@PosicionEnSector", empresa.PosicionEnSector == null ? "" : empresa.PosicionEnSector));
 
-
+                    cmd.Parameters.Add(new SqlParameter("@FechaActivacion", empresa.EstadoIdListaValor == "EMPRAC" ? (object)DateTime.Now : DBNull.Value));
 
                     cmd.Parameters.Add(new SqlParameter("@NuevoComentario", empresa.NuevoComentario == null ? "" : empresa.NuevoComentario));
 
