@@ -9,11 +9,13 @@ using System.Drawing;
 using System.Data;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Runtime.InteropServices;
 
 using UTP.PortalEmpleabilidad.Logica;
 using UTPPrototipo.Common;
 using UTPPrototipo.Utiles;
 
+using Microsoft.Office.Interop.Word;
 using Novacode;
 using Mustache;
 
@@ -172,20 +174,20 @@ namespace UTPPrototipo.Controllers
             List<string> inlineTemplates = word.FindUniqueByPattern(inlinePattern, this.REGEX);
 
             // Get block templates
-            List<Table> blockTemplates;
+            List<Novacode.Table> blockTemplates;
 
             try
             {
-                Table blockTemplatesWrapper = word
+                Novacode.Table blockTemplatesWrapper = word
                     .Tables
                     .Where(e => e.Paragraphs[0].Text.Contains(blockPattern))
                     .ToList()[0];
 
-                blockTemplates = this.CascadeBlock(blockTemplatesWrapper, new List<Table>());
+                blockTemplates = this.CascadeBlock(blockTemplatesWrapper, new List<Novacode.Table>());
             }
             catch (Exception e)
             {
-                blockTemplates = new List<Table>();
+                blockTemplates = new List<Novacode.Table>();
             }
 
             return new
@@ -196,7 +198,7 @@ namespace UTPPrototipo.Controllers
             };
         }
 
-        public List<Table> CascadeBlock(Table block, List<Table> blocks)
+        public List<Novacode.Table> CascadeBlock(Novacode.Table block, List<Novacode.Table> blocks)
         {
             blocks.Add(block);
 
@@ -222,263 +224,61 @@ namespace UTPPrototipo.Controllers
             return View();
         }
 
-        public FileResult GenerarCV(int idCV)
+        public FileResult GenerarWord(int idCV)
         {
             LNPlantillaCV lnPlantilla = new LNPlantillaCV();
-            DataSet Result = lnPlantilla.ObtenerDatosParaPlantilla(idCV);
-            DataTable Person = Result.Tables[0];
-            DataTable Education = Result.Tables[1];
-            DataTable Experience = Result.Tables[2];
-            DataTable AditionalInformation = Result.Tables[3];
-
-            MemoryStream stream = new MemoryStream();
-
+            string code = Convert.ToString(lnPlantilla.ObtenerDatosParaPlantilla(idCV).Tables[0].Rows[0]["CodAlumnoUtp"]);
             string filePath = Server.MapPath("~/Plantillas/template.docx");
-            Mustache mustache = new Mustache();
-            string blockPattern = @"{{><model>}}";
 
-            using (FileStream fileStream = System.IO.File.OpenRead(filePath))
+            return File(this.CrearCurriculum(idCV, filePath).ToArray(), "application/octet-stream", code + ".docx");
+        }
+
+        public FileResult GenerarPDF(int idCV)
+        {
+            LNPlantillaCV lnPlantilla = new LNPlantillaCV();
+            string code = Convert.ToString(lnPlantilla.ObtenerDatosParaPlantilla(idCV).Tables[0].Rows[0]["CodAlumnoUtp"]);
+            string fileSourcePath = Server.MapPath("~/Plantillas/template.docx");
+
+            return File(this.Word2PDF(this.CrearCurriculum(idCV, fileSourcePath).ToArray()), "application/octet-stream", code + ".pdf");
+        }
+
+        public byte[] Word2PDF(byte[] file)
+        {
+            string dir = AppDomain.CurrentDomain.BaseDirectory + "tmp\\";
+            string word = dir + System.Guid.NewGuid() + ".docx";
+            string pdf = word.Replace("docx", "pdf");
+            byte[] output;
+
+            try
             {
-                stream.SetLength(fileStream.Length);
-                fileStream.Read(stream.GetBuffer(), 0, (int)fileStream.Length);
+                if (!System.IO.Directory.Exists(dir)) 
+                {
+                    System.IO.Directory.CreateDirectory(dir);
+                }
+
+                using (FileStream fs = System.IO.File.Create(word))
+                {
+                    fs.Write(file, 0, file.Length);
+                    fs.Close();
+                }
+
+                Microsoft.Office.Interop.Word.Application app = new Microsoft.Office.Interop.Word.Application();
+                app.Documents.Open(word).SaveAs2(pdf, WdExportFormat.wdExportFormatPDF);
+                app.Documents.Close();
+                app.Quit();
+
+                output = System.IO.File.ReadAllBytes(pdf);
+
+                // Clean temporal files
+                System.IO.File.Delete(word);
+                System.IO.File.Delete(pdf);
+            }
+            catch(Exception e)
+            {
+                output = new byte[] { };
             }
 
-            using (DocX doc = DocX.Load(stream))
-            {
-                dynamic template = new Template(filePath)
-                    .Build()
-                    .Compile();
-
-                #region person
-
-                object person = new
-                {
-                    // Informacion basica
-                    firstname = Convert.ToString(Person.Rows[0]["Nombres"]).ToUpper(),
-                    lastname = Convert.ToString(Person.Rows[0]["Apellidos"]).ToUpper(),
-                    document = Convert.ToString(Person.Rows[0]["NumeroDocumento"]),
-                    documentType = Convert.ToString(Person.Rows[0]["TipoDocumento"]),
-                    address = Convert.ToString(Person.Rows[0]["Direccion"]),
-                    district = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Convert.ToString(Person.Rows[0]["DireccionDistrito"])),
-                    celphone = Convert.ToString(Person.Rows[0]["TelefonoCelular"]),
-                    email = Convert.ToString(Person.Rows[0]["CorreoElectronico"]),
-                    emailAlternative = Convert.ToString(Person.Rows[0]["CorreoElectronico2"]),
-                    profile = Convert.ToString(Person.Rows[0]["Perfil"]),
-                    birthdate = Convert.ToString(Person.Rows[0]["FechaNacimiento"])
-                };
-
-                if (Convert.ToBoolean(template.person.inlines.Count))
-                {
-                    foreach (string i in template.person.inlines)
-                    {
-                        doc.ReplaceText(i, mustache.Compile(i).Render(new { person = person }));
-                    }
-                }
-
-                #endregion
-
-                #region education
-                
-                 object education;
-                 string educationPattern = blockPattern.Replace("<model>", "education");
-                 Table educationWrapper;
-
-                try
-                {
-                    educationWrapper = doc
-                        .Tables
-                        .Where(e => e.Paragraphs[0].Text.Contains(educationPattern))
-                        .ToList()[0];
-
-                    // Clean reference template
-                    educationWrapper.Rows[1].Remove();
-
-                    foreach (DataRow data in Education.Rows) 
-                    {
-                        educationWrapper.InsertTableAfterSelf(template.education.blocks[1]);
-
-                        education = new
-                        {
-                            institute = Convert.ToString(data["Institucion"]),
-                            study = Convert.ToString(data["Estudio"]),
-                            period = ConvertirMes(Convert.ToInt32(data["FechaInicioMes"])) + Convert.ToString(data["FechaInicioAno"]).Substring(2, 2) + 
-                                "-" + (data["FechaFinMes"] == DBNull.Value && data["FechaFinAno"] == DBNull.Value 
-                                    ? "Cont"
-                                    : ConvertirMes(Convert.ToInt32(data["FechaFinMes"])) + Convert.ToString(data["FechaFinAno"]).Substring(2, 2)) 
-                        };
-
-                        foreach (string i in template.education.inlines)
-                        {
-                            doc.ReplaceText(i, mustache.Compile(i).Render(new { education = education }));
-                        }
-                    }
-
-                    // Clean reference pointer
-                    educationWrapper.Rows[0].Remove();
-                }
-                catch (Exception e) { }
-
-                #endregion
-
-                #region experience
-
-                string experiencePattern = blockPattern.Replace("<model>", "experience");
-                Table experienceWrapper;
-
-                Dictionary<string, dynamic> enterprises = new Dictionary<string, dynamic>();
-                Dictionary<string, List<object>> experiences = new Dictionary<string, List<object>>();
-                string[] enterpriseFields = new string[] { "Ciudad", "DescripcionEmpresa", "PaisDescripcion", "Empresa" };
-
-                DataTable Enterprises = Experience.DefaultView.ToTable(true, enterpriseFields);
-                foreach (DataRow enterprise in Enterprises.Rows)
-                {
-                    List<object> aux = new List<object>();
-                    int timeOfExperience = 0;
-
-                    DataTable experiencesOfEnterprise = Experience.Select("Empresa = '" + Convert.ToString(enterprise["Empresa"]) + "'").CopyToDataTable();
-                    foreach (DataRow data in experiencesOfEnterprise.Rows)
-                    {
-                        string period = String.Empty;
-                        string periodStart = String.Empty;
-                        string periodEnd = String.Empty;
-
-                        periodStart = ConvertirMes(Convert.ToInt32(data["FechaInicioCargoMes"])) + 
-                            Convert.ToString(data["FechaInicioCargoAno"]).Substring(2, 2);
-
-                        periodEnd = (data["FechaFinCargoMes"] == DBNull.Value && data["FechaFinCargoAno"] == DBNull.Value)
-                            ? "Cont"
-                            : ConvertirMes(Convert.ToInt32(data["FechaFinCargoMes"])) + 
-                                Convert.ToString(data["FechaFinCargoAno"]).Substring(2, 2);
-
-                        period = String.Format("{0}-{1}", periodStart, periodEnd);
-
-                        aux.Add(new
-                        {
-                            period =  period,
-                            office = Convert.ToString(data["NombreCargo"]),
-                            officeDescription = Convert.ToString(data["DescripcionCargo"])
-                        });
-
-                        int yearStart = Convert.ToInt32(data["FechaInicioCargoAno"]);
-                        int monthStart = Convert.ToInt32(data["FechaInicioCargoMes"]);
-                        int yearEnd = (data["FechaFinCargoAno"] == DBNull.Value)
-                            ? DateTime.Now.Year
-                            : Convert.ToInt32(data["FechaFinCargoAno"]);
-                        int monthEnd = (data["FechaFinCargoMes"] == DBNull.Value)
-                            ? DateTime.Now.Month
-                            : Convert.ToInt32(data["FechaFinCargoMes"]);
-
-                        timeOfExperience += (yearEnd - yearStart) * 12 + monthEnd - monthStart;
-                     }
-
-                    enterprises.Add(Convert.ToString(enterprise["Empresa"]), new 
-                    {
-                        enterprise = Convert.ToString(enterprise["Empresa"]),
-                        enterpriseDescription = Convert.ToString(enterprise["DescripcionEmpresa"]),
-                        enterpriseTimeOfExperience = String.Format("({0} años, {1} meses)", Math.Truncate(timeOfExperience / 12.0), timeOfExperience % 12),
-                        enterpriseCountry = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Convert.ToString(enterprise["PaisDescripcion"])),
-                        enterpriseCity = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Convert.ToString(enterprise["Ciudad"]))
-                    });
-                    experiences.Add(Convert.ToString(enterprise["Empresa"]), aux);
-                }
-
-                try
-                {
-                    experienceWrapper = doc
-                        .Tables
-                        .Where(e => e.Paragraphs[0].Text.Contains(experiencePattern))
-                        .ToList()[0];
-
-                    // Clean reference template
-                    experienceWrapper.Rows[1].Remove();
-
-                    foreach (var data in enterprises)
-                    {
-                        Table enterpriseWrapper = experienceWrapper.InsertTableAfterSelf(template.experience.blocks[1]);
-
-                        // Render enterprise info
-                        for (int i = 0; i < enterpriseFields.Count() + 1; i++)
-                        {
-                            doc.ReplaceText(
-                                template.experience.inlines[i],
-                                mustache
-                                    .Compile(template.experience.inlines[i])
-                                    .Render(new
-                                    {
-                                        experience = enterprises[data.Key]
-                                    })
-                            );
-                        }
-
-                        Table enterpriseExperienceWrapper = enterpriseWrapper.Rows[1].Tables[0];
-                        foreach (object experience in experiences[data.Key])
-                        {
-                            enterpriseExperienceWrapper.InsertTableAfterSelf(template.experience.blocks[2]);
-
-                            foreach (string i in template.experience.inlines)
-                            {
-                                doc.ReplaceText(i, mustache.Compile(i).Render(new { experience = experience }));
-                            }
-                        }
-
-                        enterpriseExperienceWrapper.Rows[0].Remove();
-                    }
-
-                    // Clean reference pointer
-                    experienceWrapper.Rows[0].Remove();
-                }
-                catch (Exception e) {}
-
-                #endregion
-
-                #region aditional information
-
-                object aditionalInformation;
-                string aditionalInformationPattern = blockPattern.Replace("<model>", "aditionalInformation");
-                Table aditionalInformationWrapper;
-
-                try
-                {
-                    aditionalInformationWrapper = doc
-                        .Tables
-                        .Where(e => e.Paragraphs[0].Text.Contains(aditionalInformationPattern))
-                        .ToList()[0];
-
-                    // Clean reference template
-                    aditionalInformationWrapper.Rows[1].Remove();
-
-                    foreach (DataRow data in AditionalInformation.Rows)
-                    {
-                        aditionalInformationWrapper.InsertTableAfterSelf(template.aditionalInformation.blocks[1]);
-
-                        aditionalInformation = new
-                        {
-                            knowledge = Convert.ToString(data["Conocimiento"]),
-                            level = Convert.ToString(data["NivelConocimientoDescripcion"]),
-                            institute = Convert.ToString(data["InstituciónDeEstudio"]),
-                            date = Convert.ToString(data["FechaConocimientoHastaAno"])
-                        };
-
-                        foreach (string i in template.aditionalInformation.inlines)
-                        {
-                            doc.ReplaceText(i, mustache.Compile(i).Render(new { aditionalInformation = aditionalInformation }));
-                        }
-                    }
-
-                    // Clean reference pointer
-                    aditionalInformationWrapper.Rows[0].Remove();
-                }
-                catch (Exception e) { }
-
-                #endregion
-                                            
-               doc.Save();               
-            
-            }
-      
-            string codigoAlumno = Convert.ToString(Person.Rows[0]["CodAlumnoUtp"]);
-
-            return File(stream.ToArray(), "application/octet-stream", codigoAlumno + ".docx");            
+            return output;
         }
 
         /// <summary>
@@ -491,10 +291,10 @@ namespace UTPPrototipo.Controllers
         {
             LNPlantillaCV lnPlantilla = new LNPlantillaCV();
             DataSet Result = lnPlantilla.ObtenerDatosParaPlantilla(idCV);
-            DataTable Person = Result.Tables[0];
-            DataTable Education = Result.Tables[1];
-            DataTable Experience = Result.Tables[2];
-            DataTable AditionalInformation = Result.Tables[3];
+            System.Data.DataTable Person = Result.Tables[0];
+            System.Data.DataTable Education = Result.Tables[1];
+            System.Data.DataTable Experience = Result.Tables[2];
+            System.Data.DataTable AditionalInformation = Result.Tables[3];
 
             MemoryStream stream = new MemoryStream();
 
@@ -545,7 +345,7 @@ namespace UTPPrototipo.Controllers
 
                 object education;
                 string educationPattern = blockPattern.Replace("<model>", "education");
-                Table educationWrapper;
+                Novacode.Table educationWrapper;
 
                 try
                 {
@@ -587,19 +387,19 @@ namespace UTPPrototipo.Controllers
                 #region experience
 
                 string experiencePattern = blockPattern.Replace("<model>", "experience");
-                Table experienceWrapper;
+                Novacode.Table experienceWrapper;
 
                 Dictionary<string, dynamic> enterprises = new Dictionary<string, dynamic>();
                 Dictionary<string, List<object>> experiences = new Dictionary<string, List<object>>();
                 string[] enterpriseFields = new string[] { "Ciudad", "DescripcionEmpresa", "PaisDescripcion", "Empresa" };
 
-                DataTable Enterprises = Experience.DefaultView.ToTable(true, enterpriseFields);
+                System.Data.DataTable Enterprises = Experience.DefaultView.ToTable(true, enterpriseFields);
                 foreach (DataRow enterprise in Enterprises.Rows)
                 {
                     List<object> aux = new List<object>();
                     int timeOfExperience = 0;
 
-                    DataTable experiencesOfEnterprise = Experience.Select("Empresa = '" + Convert.ToString(enterprise["Empresa"]) + "'").CopyToDataTable();
+                    System.Data.DataTable experiencesOfEnterprise = Experience.Select("Empresa = '" + Convert.ToString(enterprise["Empresa"]) + "'").CopyToDataTable();
                     foreach (DataRow data in experiencesOfEnterprise.Rows)
                     {
                         string period = String.Empty;
@@ -658,7 +458,7 @@ namespace UTPPrototipo.Controllers
 
                     foreach (var data in enterprises)
                     {
-                        Table enterpriseWrapper = experienceWrapper.InsertTableAfterSelf(template.experience.blocks[1]);
+                        Novacode.Table enterpriseWrapper = experienceWrapper.InsertTableAfterSelf(template.experience.blocks[1]);
 
                         // Render enterprise info
                         for (int i = 0; i < enterpriseFields.Count() + 1; i++)
@@ -674,7 +474,7 @@ namespace UTPPrototipo.Controllers
                             );
                         }
 
-                        Table enterpriseExperienceWrapper = enterpriseWrapper.Rows[1].Tables[0];
+                        Novacode.Table enterpriseExperienceWrapper = enterpriseWrapper.Rows[1].Tables[0];
                         foreach (object experience in experiences[data.Key])
                         {
                             enterpriseExperienceWrapper.InsertTableAfterSelf(template.experience.blocks[2]);
@@ -699,7 +499,7 @@ namespace UTPPrototipo.Controllers
 
                 object aditionalInformation;
                 string aditionalInformationPattern = blockPattern.Replace("<model>", "aditionalInformation");
-                Table aditionalInformationWrapper;
+                Novacode.Table aditionalInformationWrapper;
 
                 try
                 {
@@ -743,41 +543,24 @@ namespace UTPPrototipo.Controllers
             return stream;
         }
 
-
         public FileResult DescargarDesdeBD(string idOfertaPostulante)
         {
             int idOfertaPostulanteEntero = Convert.ToInt32(Helper.Desencriptar(idOfertaPostulante));
             LNPlantillaCV lnPlantilla = new LNPlantillaCV();
 
-            DataTable dtResultado = lnPlantilla.ObtenerDocumentoCV(idOfertaPostulanteEntero);
+            System.Data.DataTable dtResultado = lnPlantilla.ObtenerDocumentoCV(idOfertaPostulanteEntero);
 
             byte[] arrayCV = (byte[])dtResultado.Rows[0]["DocumentoCV"];
             string codigoAlumno = Convert.ToString(dtResultado.Rows[0]["CodAlumnoUtp"]);
 
-            return File(arrayCV, "application/octet-stream", codigoAlumno + ".docx");       
+            return File(arrayCV, "application/octet-stream", codigoAlumno + ".pdf");       
         }
 
         public string ConvertirMes(int nroMes)
         {
-            string mes = "";
+            string[] mes = new string[] { "Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Set", "Oct", "Nov", "Dic" };
 
-            switch (nroMes)
-            {
-                case 1: mes = "Ene"; break;
-                case 2: mes = "Feb"; break;
-                case 3: mes = "Mar"; break;
-                case 4: mes = "Abr"; break;
-                case 5: mes = "May"; break;
-                case 6: mes = "Jun"; break;
-                case 7: mes = "Jul"; break;
-                case 8: mes = "Ago"; break;
-                case 9: mes = "Set"; break;
-                case 10: mes = "Oct"; break;
-                case 11: mes = "Nov"; break;
-                case 12: mes = "Dic"; break;
-            }
-
-            return mes;
+            return mes[nroMes - 1];
         }
     }
 

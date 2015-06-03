@@ -48,56 +48,50 @@ namespace UTPPrototipo.Controllers
             TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
             VistaPanelAlumno panel = lnAlumno.ObtenerPanel(ticket.CodAlumnoUTP);
 
-
             return View(panel);
         }
 
-        
-        //public ActionResult Postulacion() 
-        //{
-        //    VistaPanelAlumnoPostulaciones panel = lnAlumno.ObtenerPanelPostulaciones(codigoAlumno);
-
-        //    return View(panel);
-        //}
 
         public ActionResult Postulacion()
         {
-            //List<VistaPostulacionAlumno> lista = new List<VistaPostulacionAlumno>();
-
-            //lista = lnoferta.ObtenerPostulantes();
-
-            //return View(lista);
             return View();
         }
 
         public FileContentResult GetImageEmpresa(int IdEmpresa)
         {
             Empresa empresa = lnempresa.ObtenerDetalleEmpresaPorId(IdEmpresa);
-            if (empresa.LogoEmpresa != null && string.IsNullOrEmpty(empresa.ArchivoMimeType) == false) return File(empresa.LogoEmpresa, empresa.ArchivoMimeType);
-            //if (empresa.LogoEmpresa != null) return File(empresa.LogoEmpresa, empresa.ArchivoMimeType);
-
-            else return null;
+            if (empresa.LogoEmpresa != null && string.IsNullOrEmpty(empresa.ArchivoMimeType) == false)
+            {
+                return File(empresa.LogoEmpresa, empresa.ArchivoMimeType);
+            }
+            else 
+            {
+                return null;
+            }
         }
 
         public FileContentResult GetImageAlumno(int IdAlumno)
         {
             Alumno alumno= lnAlumno.ObtenerAlumnoPorIdAlumno(IdAlumno);
-            if (alumno.Foto != null && string.IsNullOrEmpty(alumno.ArchivoMimeType) == false) return File(alumno.Foto, alumno.ArchivoMimeType);
-            //if (empresa.LogoEmpresa != null) return File(empresa.LogoEmpresa, empresa.ArchivoMimeType);
-
-            else return null;
+            if (alumno.Foto != null && string.IsNullOrEmpty(alumno.ArchivoMimeType) == false)
+            {
+                return File(alumno.Foto, alumno.ArchivoMimeType);
+            }
+            else
+            {
+                return null;
+            }
         }
-
-
 
         public ActionResult PostulacionOferta()
         {
-
             return View();
         }
+
         public ActionResult BusquedaSimplePostulacionOferta(VistaPostulacionAlumno entidad)
         {
             entidad.ListaPostulacionesOfertas = lnofertapostulante.ObtenerPostulantesPorIDAlumno(entidad.IdAlumno, entidad.PalabraClave == null ? "" : entidad.PalabraClave, entidad.PaginaActual, Constantes.FILAS_POR_PAGINA);
+            
             if (entidad.ListaPostulacionesOfertas.Count > 0)
             {
                 entidad.MaxPagina = entidad.ListaPostulacionesOfertas[0].MaxPagina;
@@ -107,46 +101,47 @@ namespace UTPPrototipo.Controllers
 
             Paginacion paginacion = new Paginacion();
             paginacion.NroPaginaActual = entidad.PaginaActual;
-            //paginacion.CantidadTotalResultados = cantidadTotal;
             paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
             paginacion.TotalPaginas = entidad.MaxPagina; //cantidadTotal / Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
-            //int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
-            //if (residuo > 0) paginacion.TotalPaginas += 1;
+
 
             ViewBag.Paginacion = paginacion;
-
             ViewBag.TipoBusqueda = "Simple";
 
             return PartialView("_ResultadoBusquedaPostulaciones", entidad);
         }
+
         public ActionResult DetalleEmpresa(int IdEmpresa)
         {
             Empresa empresa = new Empresa();
             empresa = lnempresa.ObtenerDetalleEmpresaPorId(IdEmpresa);
+
             return PartialView("_ModalDetalleEmpresa", empresa);
         }
 
         public ActionResult PostularOferta(OfertaPostulante entidad)
         {
             ViewBag.MensajePostulacion = "";
+
             if (entidad.IdCV > 0)
             {
                 TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
                 entidad.CreadoPor = ticket.Usuario;
 
                 //Se crea el CV en formato Word.
-                string rutaPlantilla = Server.MapPath("~/Plantillas/PlantillaVER3.docx");
+                string rutaPlantilla = AppDomain.CurrentDomain.BaseDirectory + "Plantillas\\template.docx";
                 PlantillaController plantilla = new PlantillaController();
-                MemoryStream streamCurriculum = plantilla.CrearCurriculum(entidad.IdCV, rutaPlantilla);
-                entidad.DocumentoCV = streamCurriculum.ToArray();
+                entidad.DocumentoCV = plantilla.Word2PDF(plantilla.CrearCurriculum(entidad.IdCV, rutaPlantilla).ToArray());
                 lnofertapostulante.Insertar(entidad);
             }
             else
             {
                 ViewBag.MensajePostulacion = "XXX";
             }
+
             return View();
         }
+
         public ActionResult PostulacionOferta2(string id)
         {
             if (id != null)
@@ -179,14 +174,13 @@ namespace UTPPrototipo.Controllers
                 {
                     return RedirectToAction("BusquedaOferta");
                 }
-
             }
             else
             {
                 return RedirectToAction("BusquedaOferta");
             }
-
         }
+
         public ActionResult EstadoPostulacionOferta(int? id)
         {
             if (id != null)
@@ -225,13 +219,14 @@ namespace UTPPrototipo.Controllers
             {
                 return RedirectToAction("BusquedaOferta");
             }
-
         }
+
         [HttpPost]
         public ActionResult DescargarCV(OfertaPostulante entidad)
         {
 
             byte[] cv = lnofertapostulante.OfertaPostulante_DescaragarCV(entidad.IdAlumno, entidad.IdOferta);
+
             using (System.IO.MemoryStream stream = new System.IO.MemoryStream())
             {
                 stream.Write(cv, 0, cv.Length);
@@ -241,8 +236,8 @@ namespace UTPPrototipo.Controllers
                 Response.AppendHeader("Content-Disposition", "attachment; filename=imagen.bmp");
                 Response.BinaryWrite(cv);
             }
+
             Response.End();
-            //return new DescargaResult("Descarga", cv);
 
             return View();
         }
@@ -260,8 +255,6 @@ namespace UTPPrototipo.Controllers
             listaperiodopublicacion.Add(30, "Hace un mes");
             listaperiodopublicacion.Add(31, "Hace más de un mes");
 
-
-            // oferta.ListaOfertas = lnoferta.Oferta_Mostrar();
             oferta.ListaEstudios = lngeneral.ObtenerListaValor(5);
             oferta.ListaEstadoEstudio = lngeneral.ObtenerListaValor(43);
             oferta.ListaSectorEmpresarial = lngeneral.ObtenerListaValor(8);
@@ -269,7 +262,6 @@ namespace UTPPrototipo.Controllers
             oferta.ListaContrato = lngeneral.ObtenerListaValor(30);
             oferta.ListaTipoCargo = lngeneral.ObtenerListaValor(9);
             oferta.PeriodoPublicacion = listaperiodopublicacion;
-
 
             //Declara Lista
             //Periodo Publicacion
@@ -281,7 +273,6 @@ namespace UTPPrototipo.Controllers
                 item.Value = entidad.Key.ToString();
                 listItemsPublicacion.Add(item);
             }
-
 
             //Carreras y Estudios
             List<SelectListItem> listItemsCarrera = new List<SelectListItem>();
@@ -304,6 +295,7 @@ namespace UTPPrototipo.Controllers
                 item.Value = entidad.IdListaValor.ToString();
                 listItemsEstadoEstudio.Add(item);
             }
+
             //Sector Empresarial
             List<SelectListItem> listItemsSectorEmpresarial = new List<SelectListItem>();
             foreach (ListaValor entidad in oferta.ListaSectorEmpresarial)
@@ -314,6 +306,7 @@ namespace UTPPrototipo.Controllers
                 item.Value = entidad.IdListaValor.ToString();
                 listItemsSectorEmpresarial.Add(item);
             }
+
             //Tipo Trabajo
             List<SelectListItem> listItemsTipoTrabajo = new List<SelectListItem>();
             foreach (ListaValor entidad in oferta.ListaTipoTrabajo)
@@ -324,6 +317,7 @@ namespace UTPPrototipo.Controllers
                 item.Value = entidad.IdListaValor.ToString();
                 listItemsTipoTrabajo.Add(item);
             }
+
             //Contrato
             List<SelectListItem> listItemsContrato = new List<SelectListItem>();
             foreach (ListaValor entidad in oferta.ListaContrato)
@@ -334,6 +328,7 @@ namespace UTPPrototipo.Controllers
                 item.Value = entidad.IdListaValor.ToString();
                 listItemsContrato.Add(item);
             }
+
             //Tipo Cargo
             List<SelectListItem> listItemsTipoCargo = new List<SelectListItem>();
             foreach (ListaValor entidad in oferta.ListaTipoCargo)
@@ -345,7 +340,6 @@ namespace UTPPrototipo.Controllers
                 listItemsTipoCargo.Add(item);
             }
 
-
             //Lista de Combos
             ViewBag.PeriodoPublicacion = listItemsPublicacion;
             ViewBag.ListaEstudios = listItemsCarrera;
@@ -356,11 +350,7 @@ namespace UTPPrototipo.Controllers
             ViewBag.ListaTipoCargo = listItemsTipoCargo;
 
             return View(oferta);
-
-
         }
-
-
 
         public ActionResult BusquedaAvanzadaOferta(VistaOfertaAlumno entidad)
         {
@@ -374,14 +364,12 @@ namespace UTPPrototipo.Controllers
 
             Paginacion paginacion = new Paginacion();
             paginacion.NroPaginaActual = entidad.PaginaActual;
-            //paginacion.CantidadTotalResultados = cantidadTotal;
             paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
             paginacion.TotalPaginas = entidad.MaxPagina; // cantidadTotal / Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
             //int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA; // Constantes.FILAS_POR_PAGINA;
             //if (residuo > 0) paginacion.TotalPaginas += 1;
 
             ViewBag.Paginacion = paginacion;
-
             ViewBag.TipoBusqueda = "Avanzada";
 
             return PartialView("_ResultadoBusquedaOfertas", entidad);
@@ -408,19 +396,12 @@ namespace UTPPrototipo.Controllers
             //if (residuo > 0) paginacion.TotalPaginas += 1;
 
             ViewBag.Paginacion = paginacion;
-
             ViewBag.TipoBusqueda = "Simple";
 
             return PartialView("_ResultadoBusquedaOfertas", entidad);
         }
 
-
-
-
-
-
         #region "Mi Portal"
-
         #endregion
         #region "Postulaciones"
 
@@ -470,10 +451,8 @@ namespace UTPPrototipo.Controllers
                 panel.PorcentajeCV = panel.ListaAlumnoCV[0].PorcentajeCV;
             }
 
-
             //Lista las plantilla de curriculo
             panel.ListaPlantillaCV = lnPlantillaCV.MostrarPlantillaCV();
-
 
             return panel;
         }
@@ -487,11 +466,8 @@ namespace UTPPrototipo.Controllers
 
         }
 
-
-
         public ActionResult MiCV()
         {
-
             VistaPanelAlumnoMiCV panel = new VistaPanelAlumnoMiCV();
             TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
             panel.alumno = lnAlumno.ObtenerAlumnoPorCodigo(ticket.CodAlumnoUTP);
@@ -506,13 +482,13 @@ namespace UTPPrototipo.Controllers
 
             return View();
         }
+
         public ActionResult OpcionesCV(VistaPanelAlumnoMiCV entidad)
         {
             VistaPanelAlumnoMiCV panel = new VistaPanelAlumnoMiCV();
             panel = VistaMICV(entidad.IdAlumno, entidad.IdCV);
-
-
             List<SelectListItem> listItems = new List<SelectListItem>();
+
             foreach (AlumnoCV modelo in panel.ListaAlumnoCV)
             {
                 SelectListItem item = new SelectListItem();
@@ -520,7 +496,9 @@ namespace UTPPrototipo.Controllers
                 item.Value = modelo.IdCV.ToString();
                 listItems.Add(item);
             }
+
             List<SelectListItem> listItemsPlantillaCV = new List<SelectListItem>();
+
             foreach (PlantillaCV modelo in panel.ListaPlantillaCV)
             {
                 SelectListItem item = new SelectListItem();
@@ -528,6 +506,7 @@ namespace UTPPrototipo.Controllers
                 item.Value = modelo.IdPlantillaCV.ToString();
                 listItemsPlantillaCV.Add(item);
             }
+
             ViewBag.ListaAlumnoCV = listItems;
             ViewBag.ListaPlantillaCV = listItemsPlantillaCV;
 
@@ -536,11 +515,11 @@ namespace UTPPrototipo.Controllers
 
         public ActionResult AlumnoDatosGenerales(VistaPanelAlumnoMiCV entidad)
         {
-
             Alumno alumno = new Alumno();
             AlumnoCV alumnocv = new AlumnoCV();
             TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
             alumno = lnAlumno.ObtenerAlumnoPorCodigo(ticket.CodAlumnoUTP);
+
             if (alumno != null)
             {
                 alumnocv = lnAlumnoCV.ObtenerAlumnoCVPorIdAlumnoYIdCV(alumno.IdAlumno, entidad.IdCV);
@@ -559,12 +538,8 @@ namespace UTPPrototipo.Controllers
             return PartialView("_AlumnoDatosGenerales", alumno);
         }
 
-
         public ActionResult BuscarDatosEmpresas(int idempresa)
         {
-            //string descripocn = "";
-            
-
             AlumnoExperiencia vista = new AlumnoExperiencia();
 
             DataTable dtResultado = lnAlumno.Utp_BuscarDatosListaEmpresas(idempresa);
@@ -583,23 +558,7 @@ namespace UTPPrototipo.Controllers
             }
 
             return Json(vista, JsonRequestBehavior.AllowGet);
-
         }
-
-
-        //public JsonResult Utp_BuscarDatosListaEmpresas(string query)
-        //{
-        //    LNGeneral lngeneral = new LNGeneral();
-        //    var resultado = lngeneral.ObtenerListaValor(Constantes.IDLISTA_DISTRITO_PERU);
-        //    var result = resultado.Where(s => s.Valor.ToLower().StartsWith(query.ToLower())).Select(c => new { Value = c.IdListaValor, Label = c.Valor }).ToList();
-        //    return Json(result, JsonRequestBehavior.AllowGet);
-        //}
-
-
-
-
-
-
 
         public ActionResult AlumnoEstudiosCV(VistaPanelAlumnoMiCV entidad)
         {
@@ -607,10 +566,12 @@ namespace UTPPrototipo.Controllers
             Alumno alumno = new Alumno();
             List<AlumnoEstudio> listaalumnoestudio = new List<AlumnoEstudio>();
             listaalumnoestudio = lnAlumnoEstudio.ObtenerAlumnoEstudioPorIdAlumno(entidad.IdAlumno);
+
             if (alumno != null && listaalumnoestudio.Count > 0)
             {
                 listaalumnoestudio = lnAlumnoCVEstudio.ObtenerAlumnoCVEstudioPorIdCVYIdEstudio(entidad.IdCV, listaalumnoestudio);
             }
+
             return PartialView("_AlumnoEstudiosCV", listaalumnoestudio);
         }
 
@@ -620,27 +581,25 @@ namespace UTPPrototipo.Controllers
             Alumno alumno = new Alumno();
             List<AlumnoExperienciaCargo> listaalumnoexperienciacargo = new List<AlumnoExperienciaCargo>();
 
-
             listaalumnoexperienciacargo = lnalumnoexperienciacargo.ObtenerAlumnoExperienciaCargoPorIdAlumno(entidad.IdAlumno);
             if (alumno != null && listaalumnoexperienciacargo.Count > 0)
             {
                 listaalumnoexperienciacargo = lnalumnocvexperienciacargo.ObtenerAlumnoCVExperienciaCargoPorIdCV(entidad.IdCV, listaalumnoexperienciacargo);
             }
+
             return PartialView("_AlumnoExperienciaCV", listaalumnoexperienciacargo);
         }
 
         public ActionResult AlumnoInformacionAdicionalCV(VistaPanelAlumnoMiCV entidad)
         {
-
-
             List<AlumnoInformacionAdicional> listaalumnoinformacionadicional = new List<AlumnoInformacionAdicional>();
-
-
             listaalumnoinformacionadicional = lnalumnoinformacionadicional.ObtenerAlumnoInformacionAdicionalPorIdAlumno(entidad.IdAlumno);
+
             if (listaalumnoinformacionadicional.Count > 0)
             {
                 listaalumnoinformacionadicional = lnalumnocvinformacionadicional.ObtenerAlumnoCVInformacionAdicionalPorIdCV(entidad.IdCV, listaalumnoinformacionadicional);
             }
+
             return PartialView("_AlumnoInformacionAdicionalCV", listaalumnoinformacionadicional);
         }
 
@@ -670,12 +629,12 @@ namespace UTPPrototipo.Controllers
             ViewBag.EstadoDelEstudio = new SelectList(lngeneral.ObtenerListaValor(43), "IdListaValor", "Valor");
             ViewBag.Observacion = new SelectList(lngeneral.ObtenerListaValor(44), "IdListaValor", "Valor");
             alumnoestudio.Movimiento = 1;
+
             return PartialView("_ModalRegistroEstudio", alumnoestudio);
         }
 
         public PartialViewResult ModalModificarEstudio(int IdEstudio, int IdAlumno, int IdCV)
         {
-
             LNGeneral lngeneral = new LNGeneral();
             AlumnoEstudio alumnoestudio = new AlumnoEstudio();
             alumnoestudio = lnAlumnoEstudio.ObtenerAlumnoEstudioPorId(IdEstudio);
@@ -708,7 +667,6 @@ namespace UTPPrototipo.Controllers
             {
                 return PartialView();
             }
-
         }
 
         public PartialViewResult ModalRegistroExperiencia(int IdAlumno, int IdCV)
@@ -734,7 +692,6 @@ namespace UTPPrototipo.Controllers
             meses.Add(12, "Diciembre");
             ViewBag.meses = meses;
 
-
             ViewBag.SectorEmpresarial = new SelectList(lngeneral.ObtenerListaValor(8), "IdListaValor", "Valor");
             ViewBag.Pais = new SelectList(lngeneral.ObtenerListaValor(17), "IdListaValor", "Valor");
             ViewBag.TipoCargo = new SelectList(lngeneral.ObtenerListaValor(9), "IdListaValor", "Valor");
@@ -742,13 +699,11 @@ namespace UTPPrototipo.Controllers
             ViewBag.SectorEmpresarial3 = ViewBag.SectorEmpresarial;
             alumnoexperiencia.Movimiento = 1;
 
-
             return PartialView("_ModalRegistrarExperiencia", alumnoexperiencia);
         }
 
         public PartialViewResult ModalModificarExperiencia(int IdExperienciaCargo, int IdAlumno, int IdCV)
         {
-
             LNGeneral lngeneral = new LNGeneral();
             AlumnoExperiencia alumnoexperiencia = new AlumnoExperiencia();
             alumnoexperiencia = lnalumnoexperienciacargo.ObtenerAlumnoExperienciaCargoPorId(IdExperienciaCargo);
@@ -781,21 +736,18 @@ namespace UTPPrototipo.Controllers
                 ViewBag.TipoCargo = new SelectList(lngeneral.ObtenerListaValor(9), "IdListaValor", "Valor", alumnoexperiencia.TipoCargo);
                 alumnoexperiencia.Movimiento = 2;
 
-
                 return PartialView("_ModalRegistrarExperiencia", alumnoexperiencia);
             }
             else
             {
                 return PartialView();
             }
-
         }
 
 
 
         public PartialViewResult ModalRegistroInformacionAdicional(int IdAlumno, int IdCV)
         {
-
             AlumnoInformacionAdicional alumnoinformacionadicional = new AlumnoInformacionAdicional();
             LNGeneral lngeneral = new LNGeneral();
 
@@ -860,14 +812,13 @@ namespace UTPPrototipo.Controllers
             {
                 return PartialView();
             }
-
         }
 
         public PartialViewResult ModalRegistroCV(int IdAlumno)
         {
-
             AlumnoCV alumnocv = new AlumnoCV();
             alumnocv.IdAlumno = IdAlumno;
+
             return PartialView("_ModalRegistroCV", alumnocv);
 
         }
@@ -876,6 +827,7 @@ namespace UTPPrototipo.Controllers
         {
             TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
             alumnoestudio.CreadoPor = ticket.Usuario;
+
             if (alumnoestudio.Movimiento == 1)
             {
                 lnAlumnoEstudio.Insertar(alumnoestudio);
@@ -888,13 +840,13 @@ namespace UTPPrototipo.Controllers
 
             Alumno alumno = new Alumno();
             List<AlumnoEstudio> listaalumnoestudio = new List<AlumnoEstudio>();
-
-
             listaalumnoestudio = lnAlumnoEstudio.ObtenerAlumnoEstudioPorIdAlumno(alumnoestudio.IdAlumno);
+
             if (alumno != null && listaalumnoestudio.Count > 0)
             {
                 listaalumnoestudio = lnAlumnoCVEstudio.ObtenerAlumnoCVEstudioPorIdCVYIdEstudio(alumnoestudio.IdCV, listaalumnoestudio);
             }
+
             return PartialView("_AlumnoEstudiosCV", listaalumnoestudio);
         }
 
@@ -913,15 +865,14 @@ namespace UTPPrototipo.Controllers
                 lnalumnoexperienciacargo.Update(alumnoexperiencia);
             }
 
-
             List<AlumnoExperienciaCargo> listaalumnoexperienciacargo = new List<AlumnoExperienciaCargo>();
-
-
             listaalumnoexperienciacargo = lnalumnoexperienciacargo.ObtenerAlumnoExperienciaCargoPorIdAlumno(alumnoexperiencia.IdAlumno);
+
             if (listaalumnoexperienciacargo.Count > 0)
             {
                 listaalumnoexperienciacargo = lnalumnocvexperienciacargo.ObtenerAlumnoCVExperienciaCargoPorIdCV(alumnoexperiencia.IdCV, listaalumnoexperienciacargo);
             }
+
             return PartialView("_AlumnoExperienciaCV", listaalumnoexperienciacargo);
 
         }
@@ -931,6 +882,7 @@ namespace UTPPrototipo.Controllers
         {
             TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
             alumnoinformacionadicional.Usuario = ticket.Usuario;
+
             if (alumnoinformacionadicional.Movimiento == 1)
             {
                 lnalumnoinformacionadicional.Registrar(alumnoinformacionadicional);
@@ -941,13 +893,13 @@ namespace UTPPrototipo.Controllers
             }
 
             List<AlumnoInformacionAdicional> listaalumnoinformacionadicional = new List<AlumnoInformacionAdicional>();
-
-
             listaalumnoinformacionadicional = lnalumnoinformacionadicional.ObtenerAlumnoInformacionAdicionalPorIdAlumno(alumnoinformacionadicional.IdAlumno);
+
             if (listaalumnoinformacionadicional.Count > 0)
             {
                 listaalumnoinformacionadicional = lnalumnocvinformacionadicional.ObtenerAlumnoCVInformacionAdicionalPorIdCV(alumnoinformacionadicional.IdCV, listaalumnoinformacionadicional);
             }
+
             return PartialView("_AlumnoInformacionAdicionalCV", listaalumnoinformacionadicional);
         }
         public PartialViewResult _RegistrarCV(AlumnoCV entidad)
@@ -956,6 +908,7 @@ namespace UTPPrototipo.Controllers
             entidad.Usuario = ticket.Usuario;
             entidad.IdPlantillaCV = int.Parse(Util.ObtenerSettings("IdPlantillaCV"));
             ViewBag.Mensaje = "";
+
             if (lnAlumnoCV.RegistrarCV(ref entidad))
             {
                 ViewBag.Mensaje = "Se registro el CV.";
@@ -964,11 +917,11 @@ namespace UTPPrototipo.Controllers
             {
                 ViewBag.Mensaje = "No se registro el CV.";
             }
+
             VistaPanelAlumnoMiCV panel = new VistaPanelAlumnoMiCV();
             panel = VistaMICV(entidad.IdAlumno, entidad.IdCV);
-
-
             List<SelectListItem> listItems = new List<SelectListItem>();
+
             foreach (AlumnoCV modelo in panel.ListaAlumnoCV)
             {
                 SelectListItem item = new SelectListItem();
@@ -976,7 +929,9 @@ namespace UTPPrototipo.Controllers
                 item.Value = modelo.IdCV.ToString();
                 listItems.Add(item);
             }
+
             List<SelectListItem> listItemsPlantillaCV = new List<SelectListItem>();
+
             foreach (PlantillaCV modelo in panel.ListaPlantillaCV)
             {
                 SelectListItem item = new SelectListItem();
@@ -984,73 +939,65 @@ namespace UTPPrototipo.Controllers
                 item.Value = modelo.IdPlantillaCV.ToString();
                 listItemsPlantillaCV.Add(item);
             }
+
             ViewBag.ListaAlumnoCV = listItems;
             ViewBag.ListaPlantillaCV = listItemsPlantillaCV;
 
             return PartialView("_OpcionesAlumnoCV", panel);
-
-
-
         }
+
         public PartialViewResult RegistrarInfoCV(AlumnoCV entidad)
         {
             TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
             entidad.Usuario = ticket.Usuario;
             lnAlumnoCV.UpdateInfo(entidad);
             ViewBag.Mensaje = "Se registro la información del CV.";
+
             return PartialView("_AlertModal");
         }
 
         public PartialViewResult DesactivarEstudioAlumno(int IdAlumno, int IdCV, int IdEstudio)
         {
             TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
-            //entidad.Usuario = ticket.CodAlumnoUTP;
             lnAlumnoEstudio.Desactivar(IdEstudio, ticket.Usuario);
             Alumno alumno = new Alumno();
             List<AlumnoEstudio> listaalumnoestudio = new List<AlumnoEstudio>();
-
-
             listaalumnoestudio = lnAlumnoEstudio.ObtenerAlumnoEstudioPorIdAlumno(IdAlumno);
+
             if (alumno != null && listaalumnoestudio.Count > 0)
             {
                 listaalumnoestudio = lnAlumnoCVEstudio.ObtenerAlumnoCVEstudioPorIdCVYIdEstudio(IdCV, listaalumnoestudio);
             }
+
             return PartialView("_AlumnoEstudiosCV", listaalumnoestudio);
         }
         public PartialViewResult DesactivarExperienciaAlumno(int IdAlumno, int IdCV, int IdExperienciaCargo)
         {
             TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
-            //entidad.Usuario = ticket.CodAlumnoUTP;
             lnalumnoexperienciacargo.Desactivar(IdExperienciaCargo, ticket.Usuario);
             List<AlumnoExperienciaCargo> listaalumnoexperienciacargo = new List<AlumnoExperienciaCargo>();
-
-
             listaalumnoexperienciacargo = lnalumnoexperienciacargo.ObtenerAlumnoExperienciaCargoPorIdAlumno(IdAlumno);
+
             if (listaalumnoexperienciacargo.Count > 0)
             {
                 listaalumnoexperienciacargo = lnalumnocvexperienciacargo.ObtenerAlumnoCVExperienciaCargoPorIdCV(IdCV, listaalumnoexperienciacargo);
             }
+
             return PartialView("_AlumnoExperienciaCV", listaalumnoexperienciacargo);
         }
         public PartialViewResult DesactivarInformacionAdicionalAlumno(int IdAlumno, int IdCV, int IdInformacionAdicional)
         {
             TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
-            //entidad.Usuario = ticket.CodAla en utumnoUTP;
             lnalumnoinformacionadicional.Desactivar(IdInformacionAdicional, ticket.Usuario);
             List<AlumnoInformacionAdicional> listaalumnoinformacionadicional = new List<AlumnoInformacionAdicional>();
-
-
             listaalumnoinformacionadicional = lnalumnoinformacionadicional.ObtenerAlumnoInformacionAdicionalPorIdAlumno(IdAlumno);
             if (listaalumnoinformacionadicional.Count > 0)
             {
                 listaalumnoinformacionadicional = lnalumnocvinformacionadicional.ObtenerAlumnoCVInformacionAdicionalPorIdCV(IdCV, listaalumnoinformacionadicional);
             }
+
             return PartialView("_AlumnoInformacionAdicionalCV", listaalumnoinformacionadicional);
         }
-
-
-
-
 
         #endregion
 
@@ -1180,22 +1127,13 @@ namespace UTPPrototipo.Controllers
 
         #endregion
 
-
-
-
-
-
-
-
-
-
-
-        //vista cabeceraa Oferta
+        //vista cabecera Oferta
         public ActionResult VistaCabecera(string colapsaDatos)
         {
             TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
             VistaPanelAlumno panel = lnAlumno.ObtenerPanel(ticket.CodAlumnoUTP);
             ViewBag.ColapsaDatos = colapsaDatos;
+
             return PartialView("_DatosPersonales", panel.Alumno);
         }
         public ActionResult DatosAlumnoOferta()
@@ -1203,6 +1141,7 @@ namespace UTPPrototipo.Controllers
 
             TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
             VistaPanelAlumno panel = lnAlumno.ObtenerPanel(ticket.CodAlumnoUTP);
+
             return PartialView("_CabeceraOfertaAlumno", panel.Alumno);
         }
 
@@ -1211,9 +1150,7 @@ namespace UTPPrototipo.Controllers
         public ActionResult ObtenerLista_Cargo()
         {
             const int id = 9;
-
             DataTable dtprueba = lnoferta.ObtenerLista_ListaValor(id);
-
             List<SelectListItem> li = new List<SelectListItem>();
 
             for (int i = 0; i <= dtprueba.Rows.Count - 1; i++)
@@ -1228,6 +1165,7 @@ namespace UTPPrototipo.Controllers
             }
 
             ViewData["ListaValor"] = li;
+
             return View();
 
         }
@@ -1236,9 +1174,7 @@ namespace UTPPrototipo.Controllers
         public ActionResult ObtenerLista_TipodeTrabajo()
         {
             const int id = 29;
-
             DataTable dtprueba = lnoferta.ObtenerLista_ListaValor(id);
-
             List<SelectListItem> li = new List<SelectListItem>();
 
             for (int i = 0; i <= dtprueba.Rows.Count - 1; i++)
@@ -1253,6 +1189,7 @@ namespace UTPPrototipo.Controllers
             }
 
             ViewData["ListaValor"] = li;
+
             return View();
 
         }
@@ -1261,9 +1198,7 @@ namespace UTPPrototipo.Controllers
         public ActionResult ObtenerLista_Contrato()
         {
             const int id = 30;
-
             DataTable dtprueba = lnoferta.ObtenerLista_ListaValor(id);
-
             List<SelectListItem> li = new List<SelectListItem>();
 
             for (int i = 0; i <= dtprueba.Rows.Count - 1; i++)
@@ -1278,6 +1213,7 @@ namespace UTPPrototipo.Controllers
             }
 
             ViewData["ListaValor"] = li;
+
             return View();
 
         }
@@ -1286,9 +1222,7 @@ namespace UTPPrototipo.Controllers
         public ActionResult ObtenerLista_SectorEmpresarial()
         {
             const int id = 8;
-
             DataTable dtprueba = lnoferta.ObtenerLista_ListaValor(id);
-
             List<SelectListItem> li = new List<SelectListItem>();
 
             for (int i = 0; i <= dtprueba.Rows.Count - 1; i++)
@@ -1312,9 +1246,7 @@ namespace UTPPrototipo.Controllers
         {
             //Busca  en la tabla lista a  Tipo de Estudio
             const int id = 7;
-
             DataTable dtprueba = lnoferta.ObtenerLista_ListaValor(id);
-
             List<SelectListItem> li = new List<SelectListItem>();
 
             for (int i = 0; i <= dtprueba.Rows.Count - 1; i++)
@@ -1329,6 +1261,7 @@ namespace UTPPrototipo.Controllers
             }
 
             ViewData["ListaValor"] = li;
+
             return View();
 
         }
@@ -1338,9 +1271,7 @@ namespace UTPPrototipo.Controllers
         {
             //Busca  en la tabla lista a carrera profesional
             const int id = 5;
-
             DataTable dtprueba = lnoferta.ObtenerLista_ListaValor(id);
-
             List<SelectListItem> li = new List<SelectListItem>();
 
             for (int i = 0; i <= dtprueba.Rows.Count - 1; i++)
@@ -1355,7 +1286,6 @@ namespace UTPPrototipo.Controllers
             }
 
             ViewData["ListaValor"] = li;
-
 
             return View();
 
@@ -1369,7 +1299,6 @@ namespace UTPPrototipo.Controllers
 
             DataTable dtprueba = lnoferta.ObtenerLista_ListaValor(id);
             VistaComboAlumno vista = new VistaComboAlumno();
-
             List<SelectListItem> listitem2 = new List<SelectListItem>();
 
             for (int i = 0; i <= dtprueba.Rows.Count - 1; i++)
@@ -1377,10 +1306,7 @@ namespace UTPPrototipo.Controllers
                 vista.Cargo = dtprueba.Rows[i]["DescripcionValor"].ToString();
                 vista.IDListaValor = dtprueba.Rows[i]["IDListaValor"].ToString();
 
-
                 listitem2.Add(new SelectListItem() { Value = vista.Cargo, Text = vista.IDListaValor.ToString() });
-
-
             }
 
 
@@ -1400,13 +1326,8 @@ namespace UTPPrototipo.Controllers
             {
                 vista7.Cargo = dtprueba7.Rows[i7]["DescripcionValor"].ToString();
                 vista7.IDListaValor = dtprueba7.Rows[i7]["IDListaValor"].ToString();
-
-
                 listitem7.Add(new SelectListItem() { Value = vista7.Cargo, Text = vista7.IDListaValor.ToString() });
-
-
             }
-
 
             ViewBag.DropDownValues7 = new SelectList(listitem7, "Text", "Value");
 
@@ -1415,14 +1336,10 @@ namespace UTPPrototipo.Controllers
 
         public ActionResult LogOut()
         {
-            //FormsAuthentication.SignOut();
             Session["TicketAlumno"] = null;
+
             return RedirectToAction("Index", "Home");
         }
-        //public ActionResult DatosAlumno()
-        //{
-        //    return View();
-        //}
 
         public ActionResult AlertaCvAlumno()
         {
@@ -1440,10 +1357,6 @@ namespace UTPPrototipo.Controllers
                 lista.Add(alumno);
             }
 
-
-
-
-            //return PartialView(alumno);
             return PartialView("AlertaCvAlumno", lista);
         }
 
@@ -1451,10 +1364,7 @@ namespace UTPPrototipo.Controllers
         {
 
             List<AlertasCvAlumno> lista = new List<AlertasCvAlumno>();
-
-
             TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
-
             DataTable dtResultado = lnoferta.AlertaCvAlumnoDia(ticket.Usuario);
 
             if (dtResultado.Rows.Count > 0)
@@ -1468,8 +1378,6 @@ namespace UTPPrototipo.Controllers
                 }
             }
 
-
-            //return PartialView(alumno);
             return PartialView("AlertaCvAlumnoDia", lista);
         }
 
@@ -1477,12 +1385,8 @@ namespace UTPPrototipo.Controllers
         {
 
             List<AlertasCvAlumno> lista = new List<AlertasCvAlumno>();
-
-
             TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
-
             DataTable dtResultado = lnoferta.AlertaCvAlumnoMes(ticket.Usuario);
-
 
             for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
             {
@@ -1490,153 +1394,20 @@ namespace UTPPrototipo.Controllers
 
                 //31DIC14 - Aldo Chocos: Se valida que no sea nulo
                 alumno.MesesSinTrabajo = Convert.ToInt32(dtResultado.Rows[i]["MesesSinTrabajo"] == DBNull.Value ? 0 : dtResultado.Rows[i]["MesesSinTrabajo"]);
-
                 lista.Add(alumno);
             }
 
-            //return PartialView(alumno);
             return PartialView("AlertaCvAlumnoMes", lista);
         }
+
         public ActionResult Eventos()
         {
             return View();
         }
+
         public ActionResult Evento(string idEvento)
         {
             return View();
         }
-
-
-        //[ValidateInput(false)]
-        //public ActionResult Portal_Editar_Buscar(int id)
-        //{
-        //    DataTable dtresultado = ln.ContenidoMenu_Mostrar();
-
-        //    List<SelectListItem> li = new List<SelectListItem>();
-
-        //    for (int i = 0; i <= dtresultado.Rows.Count - 1; i++)
-        //    {
-        //        string nombre = dtresultado.Rows[i]["Titulo"].ToString();
-        //        string valor = dtresultado.Rows[i]["IdMenu"].ToString();
-
-
-
-        //        SelectListItem item = new SelectListItem() { Text = nombre, Value = valor };
-
-        //        li.Add(item);
-
-        //    }
-        //    ViewData["ContenidoMenu"] = li;
-
-
-        //    ContenidoVista contenido = new ContenidoVista();
-
-
-        //    DataTable dtResultado = ln.ContenidoEDitar_Buscar(id);
-
-        //    if (dtResultado.Rows.Count > 0)
-        //    {
-        //        contenido.IdContenido = Convert.ToInt32(dtResultado.Rows[0]["IdContenido"]);
-        //        contenido.Menu = dtResultado.Rows[0]["CodMenu"].ToString();
-        //        contenido.Titulo = dtResultado.Rows[0]["Titulo"].ToString();
-        //        contenido.SubTitulo = dtResultado.Rows[0]["SubTitulo"].ToString();
-        //        contenido.Descripcion = dtResultado.Rows[0]["Descripcion"].ToString();
-        //        contenido.ModificadoPor = dtResultado.Rows[0]["ModificadoPor"] == null ? "" : dtResultado.Rows[0]["ModificadoPor"].ToString();
-        //        contenido.EnPantallaPrincipal = Convert.ToBoolean(dtResultado.Rows[0]["EnPantallaPrincipal"].ToString());
-        //        contenido.Activo = Convert.ToBoolean(dtResultado.Rows[0]["Activo"] == DBNull.Value ? 0 : dtResultado.Rows[0]["Activo"]);
-        //        contenido.ArchivoNombreOriginal = dtResultado.Rows[0]["ArchivoNombreOriginal"].ToString();
-        //        contenido.FechaCreacion = Convert.ToDateTime(dtResultado.Rows[0]["FechaCreacion"] == DBNull.Value ? null : dtResultado.Rows[0]["FechaCreacion"].ToString());
-        //        contenido.FechaModificacion = Convert.ToDateTime(dtResultado.Rows[0]["FechaModificacion"] == DBNull.Value ? null : dtResultado.Rows[0]["FechaModificacion"].ToString());
-        //        contenido.CreadoPor = dtResultado.Rows[0]["CreadoPor"] == null ? "" : dtResultado.Rows[0]["CreadoPor"].ToString();
-
-        //    }
-
-
-        //    return View(contenido);
-
-
-        //}
-
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //[ValidateInput(false)]
-        //public ActionResult Portal_Editar_Buscar([Bind(Include = "")] ContenidoVista contenidoHTML)
-        //{
-
-        //    Contenido contenido = new Contenido();
-
-        //    if (contenidoHTML.ImagenHtml != null)
-        //    {
-
-        //        byte[] uploadedFile = new byte[contenidoHTML.ImagenHtml.InputStream.Length];
-        //        contenidoHTML.ImagenHtml.InputStream.Read(uploadedFile, 0, Convert.ToInt32(contenidoHTML.ImagenHtml.InputStream.Length));
-        //        contenidoHTML.ArchivoNombreOriginal = contenidoHTML.ImagenHtml.FileName;
-        //        contenidoHTML.ArchivoMimeType = contenidoHTML.ImagenHtml.ContentType;
-        //        contenidoHTML.Imagen = uploadedFile;
-
-        //        contenido.ArchivoNombreOriginal = contenidoHTML.ArchivoNombreOriginal;
-
-        //    }
-
-        //    contenido.Titulo = contenidoHTML.Titulo;
-        //    contenido.SubTitulo = contenidoHTML.SubTitulo;
-        //    contenido.Descripcion = contenidoHTML.Descripcion;
-        //    contenido.Imagen = contenidoHTML.Imagen;
-        //    contenido.ArchivoMimeType = contenidoHTML.ArchivoMimeType;
-        //    contenido.ArchivoNombreOriginal = contenidoHTML.ArchivoNombreOriginal;
-
-        //    contenido.EnPantallaPrincipal = contenidoHTML.EnPantallaPrincipal;
-        //    contenido.Activo = contenidoHTML.Activo;
-
-        //    contenido.Menu = contenidoHTML.Menu;
-        //    contenido.CreadoPor = contenidoHTML.CreadoPor;
-        //    contenido.FechaCreacion = contenidoHTML.FechaCreacion;
-
-        //    TicketUTP ticketUtp = (TicketUTP)Session["TicketUtp"];
-
-        //    contenido.ModificadoPor = ticketUtp.Usuario;
-        //    //contenido.ModificadoPor = contenidoHTML.ModificadoPor;
-        //    contenido.IdContenido = contenidoHTML.IdContenido;
-
-        //    //if (ModelState.IsValid)
-        //    //{
-
-        //    if (ln.Contenido_Actualizar(contenido) == true)
-        //    {
-        //        ViewBag.Message = "Datos Actualizado";
-        //        return RedirectToAction("Portal");
-        //    }
-        //    else
-        //    {
-
-        //        DataTable dtresultado = ln.ContenidoMenu_Mostrar();
-
-        //        List<SelectListItem> li = new List<SelectListItem>();
-
-        //        for (int i = 0; i <= dtresultado.Rows.Count - 1; i++)
-        //        {
-        //            string nombre = dtresultado.Rows[i]["Titulo"].ToString();
-        //            string valor = dtresultado.Rows[i]["IdMenu"].ToString();
-
-
-
-        //            SelectListItem item = new SelectListItem() { Text = nombre, Value = valor };
-
-        //            li.Add(item);
-
-        //        }
-        //        ViewData["ContenidoMenu"] = li;
-
-        //        ViewBag.Message = "Error al Actualizar";
-        //        return View(contenidoHTML);
-        //    }
-
-        //    //}
-
-        //}
-
-
-
-
     }
 }
