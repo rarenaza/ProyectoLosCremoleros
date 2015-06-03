@@ -670,7 +670,7 @@
                 Chart.Column(
                   {
                       container: 'chartAlumnosActivos',
-                      color: '#1abc9c',
+                      color: '#E99522',
                       legend: {
                           align: 'right',
                           valign: 'middle',
@@ -678,8 +678,9 @@
                           values: [
                             { text: 'Alumnos activos', color: '#E99522' },
                             { text: 'Alumnos con CV completo', color: '#C0BA00' }
-                          ]
-                      },
+                          ],                          
+                          toggle:false
+                      }, 
                       padding: { bottom: 70 }
                   }, [
                     {
@@ -692,7 +693,7 @@
                     {
                         view: 'bar',
                         value: "#inactive#",
-                        color: '#ddd',
+                        color: '#C0BA00',
                         label: function (o) { return o.inactive; },
                     },
                     {
@@ -721,7 +722,7 @@
                 Chart.Column(
                   {
                       container: 'chartEmpresasActivas',
-                      color: '#1abc9c',
+                      color: '#3CACC9',
                       legend: {
                           align: 'right',
                           valign: 'middle',
@@ -729,7 +730,8 @@
                           values: [
                             { text: 'Empresas activas', color: '#3CACC9' },
                             { text: 'Ofertas publicadas', color: '#0E9E95' }
-                          ]
+                          ],
+                          toggle: false
                       },
                       padding: { bottom: 70 }
                   }, [
@@ -743,7 +745,7 @@
                     {
                         view: 'bar',
                         value: "#inactive#",
-                        color: '#ddd',
+                        color: '#0E9E95',
                         label: function (o) { return o.inactive; },
                     },
                     {
