@@ -950,7 +950,8 @@ namespace UTPPrototipo.Controllers
         {
             TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
             entidad.Usuario = ticket.Usuario;
-            lnAlumnoCV.UpdateInfo(entidad);
+            int PorcentajeCV = lnAlumno.ObtenerCompletitudCV(entidad.IdCV);
+            lnAlumnoCV.UpdateInfo(entidad, PorcentajeCV);
             ViewBag.Mensaje = "Se registro la información del CV.";
 
             return PartialView("_AlertModal");

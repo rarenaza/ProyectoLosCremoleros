@@ -95,7 +95,7 @@ namespace UTPPrototipo.Controllers
             ViewBag.IdEvento = idEvento;
             ViewBag.IdEmpresa = idEmpresa;
             ViewBag.UsuarioAlumno = usuarioAlumno;
-
+            ViewBag.BotonRedactar = (pantalla == "EMPRESA_OFERTA") ? "disabled" : "";
             this.IdOferta = idOferta;
             this.IdEventoParametro = idEvento;
             this.UsuarioAlumno = usuarioAlumno;

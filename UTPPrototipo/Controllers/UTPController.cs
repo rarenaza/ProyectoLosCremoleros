@@ -303,7 +303,6 @@ namespace UTPPrototipo.Controllers
 
         public ActionResult Alumnos()
         {
-
             VistaAlumno utpAlumno = new VistaAlumno();
 
             LNGeneral lngeneral = new LNGeneral();
@@ -1491,16 +1490,16 @@ namespace UTPPrototipo.Controllers
 
         public ActionResult ReporteOfertasConProcesosCerrados()
         {
-            DataTable dsProcesosCerrados = lnUtp.Reporte_OfertasConProcesosCerrados();
+            DataSet dsProcesosCerrados = lnUtp.Reporte_OfertasConProcesosCerrados();
 
 
             List<string> meses = new List<string>();
             List<string> VOfertas = new List<string>();
-            for (int i = 0; i <= dsProcesosCerrados.Rows.Count - 1; i++)
+            for (int i = 0; i <= dsProcesosCerrados.Tables[0].Rows.Count - 1; i++)
             {
-                string reporteAno = dsProcesosCerrados.Rows[i]["Ano"].ToString();
-                string Ofertas = dsProcesosCerrados.Rows[i]["OfertasCerradas"].ToString();
-                string mes = dsProcesosCerrados.Rows[i]["Mes"].ToString();
+                string reporteAno = dsProcesosCerrados.Tables[0].Rows[i]["Ano"].ToString();
+                string Ofertas = dsProcesosCerrados.Tables[0].Rows[i]["OfertasCerradas"].ToString();
+                string mes = dsProcesosCerrados.Tables[0].Rows[i]["Mes"].ToString();
 
                 meses.Add(mes + " " + reporteAno);
                 VOfertas.Add(Ofertas);
@@ -1509,7 +1508,7 @@ namespace UTPPrototipo.Controllers
             List<object> datos = new List<object>();
             datos.Add(meses);
             datos.Add(VOfertas);
-            datos.Add(dsProcesosCerrados.Rows[0]["OfertasCerradas"].ToString());
+            datos.Add(dsProcesosCerrados.Tables[1].Rows[0]["TotalOfertasCerradas"].ToString());
             return Json(datos, JsonRequestBehavior.AllowGet);
         }
 
@@ -1571,8 +1570,7 @@ namespace UTPPrototipo.Controllers
         public ActionResult ReporteAlumnosActivosSegunCarrera()
         {
             DataTable dsAlumnosActivosSegunCarrera = lnUtp.Reporte_AlumnosActivosSegunCarrera();
-
-
+            
             List<string> meses = new List<string>();
             List<string> VOfertas = new List<string>();
             for (int i = 0; i <= dsAlumnosActivosSegunCarrera.Rows.Count - 1; i++)
@@ -1589,6 +1587,27 @@ namespace UTPPrototipo.Controllers
             datos.Add(meses);
             datos.Add(VOfertas);
             //datos.Add(dsAlumnosActivosSegunCarrera.Rows[0]["Estudio"].ToString());
+            return Json(datos, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult ReporteCvCompletosSegunCarrera() 
+        {
+            DataTable dtCvCompletosSegunCarrera = lnUtp.Reporte_CvCompletosSegunCarrera();
+
+            List<string> Carreras = new List<string>();
+            List<string> Cvs = new List<string>();
+            for (int i = 0; i <= dtCvCompletosSegunCarrera.Rows.Count - 1; i++)
+            {
+
+                string cv = dtCvCompletosSegunCarrera.Rows[i]["CvCompletos"].ToString();
+                string carrera = dtCvCompletosSegunCarrera.Rows[i]["Estudio"].ToString();
+
+                Carreras.Add(carrera);
+                Cvs.Add(cv);
+            }
+
+            List<object> datos = new List<object>();
+            datos.Add(Carreras);
+            datos.Add(Cvs);
             return Json(datos, JsonRequestBehavior.AllowGet);
         }
 

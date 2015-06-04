@@ -4,7 +4,17 @@
 }
 
 <script src="~/Scripts/Chart.js"></script>
+<script src="~/Scripts/bundle.js"></script>
+<link href="~/Content/reports.css" rel="stylesheet" />
+<style>
+    #chartAlumnosActivos .dhx_axis_item_x {
+        top: 308px !important;
+    }
 
+    #chartEmpresasActivas .dhx_axis_item_x {
+        top: 308px !important;
+    }
+</style>
 <div class="container fuente-pequeña" style="margin-top:2px;">
     <div class="panel-group" id="datos-cuenta" role="tablist" aria-multiselectable="true">
 
@@ -15,58 +25,50 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="panel panel-default" style="text-align:center;">
-                <h5>Alumnos activos (mensual)</h5>
-                <div class="row">
-                    <div class="col-sm-9">
-                        <canvas id="chartAlumnosActivos" width="380" height="300"></canvas>
-                    </div>
-                    <div class="col-sm-3" id="idLengedAlumnosActivos">
-                    </div>
-                </div>
-                <div style="text-align:center;">
-                    <h6># de alumnos activos (acumulado): <strong><span id="alumnosActivos"></span></strong></h6>
-                    <h6># de alumnos con CV completo (acumulado): <strong><span id="alumnosCVCompleto"></span></strong></h6>
-                </div>
-            </div>
-
-        </div>
-        <div class="col-sm-6">
-            <div class="panel panel-default" style="text-align:center;">
-                <h5>Empresas activas (mensual)</h5>
-                <div class="row">
-                    <div class="col-sm-9">
-                        <canvas id="chartEmpresasActivas" width="300" height="300"></canvas>
-                    </div>
-                    <div class="col-sm-3" id="idLengedEmpresasActivas">
+                <div class="panel-heading" role="tab" id="heading1">
+                    <div class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-expanded="false" aria-controls="collapse1">
+                            <h5>Alumnos activos (mensual)</h5>
+                        </a>
                     </div>
                 </div>
-                <div style="text-align:center;">
-                    <h6># de empresas activas (acumulado): <strong><span id="empresasActivas"></span></strong></h6>
-                    <h6># de ofertas publicadas (acumulado): <strong><span id="ofertasPublicadas"></span></strong></h6>
-                </div>
-            </div>
-        </div>
-    </div>
-    <br />
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="panel panel-default" style="text-align:center;">
-                <h5>Empresas según clasificación (acumulado)</h5>
-                <br />
-                <div class="row">
-                    <div class="col-sm-8">
-                        <canvas id="chartEmpresasSegunClasificacion" width="380" height="320"></canvas>
+                <div id="collapse1" class="panel-collapse collapsing" role="tabpanel" aria-labelledby="heading1">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div id="chartAlumnosActivos" style="height:350px"></div>
+                            </div>
+                        </div>
+                        <br />
+                        <div style="text-align:center;">
+                            <h6># de alumnos activos (acumulado): <strong><span id="alumnosActivos"></span></strong></h6>
+                            <h6># de alumnos con CV completo (acumulado): <strong><span id="alumnosCVCompleto"></span></strong></h6>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-sm-6">
             <div class="panel panel-default" style="text-align:center;">
-                <h5>Ofertas según clasificación (acumulado)</h5>
-                <br />
-                <div class="row">
-                    <div class="col-sm-8">
-                        <canvas id="chartOfertasSegunClasificacion" width="300" height="320"></canvas>
+                <div class="panel-heading" role="tab" id="heading2">
+                    <div class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                            <h5>Empresas activas (mensual)</h5>
+                        </a>
+                    </div>
+                </div>
+                <div id="collapse2" class="panel-collapse collapsing" role="tab" aria-labelledby="heading2">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div id="chartEmpresasActivas" style="height:350px"></div>
+                            </div>
+                        </div>
+                        <br />
+                        <div style="text-align:center;">
+                            <h6># de empresas activas (acumulado): <strong><span id="empresasActivas"></span></strong></h6>
+                            <h6># de ofertas publicadas (acumulado): <strong><span id="ofertasPublicadas"></span></strong></h6>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -75,105 +77,48 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="panel panel-default" style="text-align:center;">
-                <h5>Empresas según clasificación (mensual)</h5>
-                <div class="row">
-                    <div class="col-sm-1"></div>
-                    <div class="col-sm-3">
-                        <div class="input-group">
-                            <div class="input-group-addon">
-                                Año
-                            </div>
-                            <input class="form-control" id="empresasSegunClasificacionPorMes_Ano" value="@(DateTime.Today.Year)" />
-                        </div>
-
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="input-group">
-                            <div class="input-group-addon">
-                                Mes
-                            </div>
-                            <select class="form-control" id="empresasSegunClasificacionPorMes_Mes">
-                                <option value="">- Seleccione Mes -</option>
-                                <option value="1" @(DateTime.Today.Month == 1 ? "selected" : "")>Enero</option>
-                                <option value="2" @(DateTime.Today.Month == 2 ? "selected" : "")>Febrero</option>
-                                <option value="3" @(DateTime.Today.Month == 3 ? "selected" : "")>Marzo</option>
-                                <option value="4" @(DateTime.Today.Month == 4 ? "selected" : "")>Abril</option>
-                                <option value="5" @(DateTime.Today.Month == 5 ? "selected" : "")>Mayo</option>
-                                <option value="6" @(DateTime.Today.Month == 6 ? "selected" : "")>Junio</option>
-                                <option value="7" @(DateTime.Today.Month == 7 ? "selected" : "")>Julio</option>
-                                <option value="8" @(DateTime.Today.Month == 8 ? "selected" : "")>Agosto</option>
-                                <option value="9" @(DateTime.Today.Month == 9 ? "selected" : "")>Setiembre</option>
-                                <option value="10" @(DateTime.Today.Month == 10 ? "selected" : "")>Octubre</option>
-                                <option value="11" @(DateTime.Today.Month == 11 ? "selected" : "")>Noviembre</option>
-                                <option value="12" @(DateTime.Today.Month == 12 ? "selected" : "")>Diciembre</option>
-                            </select>
-
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="btn btn-default color-paleta6" onclick="cargaEmpresasSegunClasificacionMes();">
-                            Mostrar
-                        </div>
+                <div class="panel-heading" role="tab" id="heading3">
+                    <div class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3" aria-expanded="false" aria-controls="collapse3">
+                            <h5>Empresas según clasificación (acumulado)</h5>
+                        </a>
                     </div>
                 </div>
-                <br />
-                <p id="msgEmpresasSegunClasificacionMes">
-                </p>
-                <div class="row">
-                    <div class="col-sm-8">
-                        <canvas id="chartEmpresasSegunClasificacionMes" width="380" height="300"></canvas>
+                <div id="collapse3" class="panel-collapse collapsing" role="tab" aria-labelledby="heading3">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div id="chartEmpresasSegunClasificacion" style="height:300px"></div>
+                            </div>
+                        </div>
+                        <br />
+                        <div style="text-align:center;">
+                            <h6># de empresas activas (acumulado): <strong><span id="empresasSegunClasificacionAcumulado"></span></strong></h6>
+                        </div>
                     </div>
                 </div>
             </div>
-
         </div>
         <div class="col-sm-6">
             <div class="panel panel-default" style="text-align:center;">
-                <h5>Ofertas según clasificación (mensual)</h5>
-                <div class="row">
-                    <div class="col-sm-1"></div>
-                    <div class="col-sm-3">
-                        <div class="input-group">
-                            <div class="input-group-addon">
-                                Año
-                            </div>
-                            <input class="form-control" id="ofertasSegunClasificacionPorMes_Ano" value="@(DateTime.Today.Year)" />
-                        </div>
-
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="input-group">
-                            <div class="input-group-addon">
-                                Mes
-                            </div>
-                            <select class="form-control" id="ofertasSegunClasificacionPorMes_Mes">
-                                <option value="">- Seleccione Mes -</option>
-                                <option value="1" @(DateTime.Today.Month == 1 ? "selected" : "")>Enero</option>
-                                <option value="2" @(DateTime.Today.Month == 2 ? "selected" : "")>Febrero</option>
-                                <option value="3" @(DateTime.Today.Month == 3 ? "selected" : "")>Marzo</option>
-                                <option value="4" @(DateTime.Today.Month == 4 ? "selected" : "")>Abril</option>
-                                <option value="5" @(DateTime.Today.Month == 5 ? "selected" : "")>Mayo</option>
-                                <option value="6" @(DateTime.Today.Month == 6 ? "selected" : "")>Junio</option>
-                                <option value="7" @(DateTime.Today.Month == 7 ? "selected" : "")>Julio</option>
-                                <option value="8" @(DateTime.Today.Month == 8 ? "selected" : "")>Agosto</option>
-                                <option value="9" @(DateTime.Today.Month == 9 ? "selected" : "")>Setiembre</option>
-                                <option value="10" @(DateTime.Today.Month == 10 ? "selected" : "")>Octubre</option>
-                                <option value="11" @(DateTime.Today.Month == 11 ? "selected" : "")>Noviembre</option>
-                                <option value="12" @(DateTime.Today.Month == 12 ? "selected" : "")>Diciembre</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="btn btn-default color-paleta6" onclick="cargaOfertasSegunClasificacionMes();">
-                            Mostrar
-                        </div>
+                <div class="panel-heading" role="tab" id="heading4">
+                    <div class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse4" aria-expanded="false" aria-controls="collapse4">
+                            <h5>Ofertas según clasificación (acumulado)</h5>
+                        </a>
                     </div>
                 </div>
-                <br />
-                <p id="msgOfertasSegunClasificacionMes"></p>
-                <div class="row">
-                    <div class="col-sm-8">
-                        <canvas id="chartOfertasSegunClasificacionMes" width="300" height="300"></canvas>
+                <div id="collapse4" class="panel-collapse collapsing" role="tab" aria-labelledby="heading4">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div id="chartOfertasSegunClasificacion" style="height:300px"></div>
+                            </div>
+                        </div>
+                        <br />
+                        <div style="text-align:center;">
+                            <h6># de ofertas publicadas (acumulado): <strong><span id="ofertasSegunClasificacionAcumulado"></span></strong></h6>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -182,191 +127,377 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="panel panel-default" style="text-align:center;">
-                <h5>Top 10 carreras más demandadas</h5>
-                <br />
-                <div class="row">
-                    <div class="col-sm-8">
-                        <canvas id="chartTop10CarrerasMasDemandadas" width="300" height="320"></canvas>
+                <div class="panel-heading" role="tab" id="heading5">
+                    <div class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse5" aria-expanded="false" aria-controls="collapse5">
+                            <h5>Empresas según clasificación (mensual)</h5>
+                        </a>
+                    </div>
+                </div>
+                <div id="collapse5" class="panel-collapse collapsing" role="tab" aria-labelledby="heading5">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-3">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        Año
+                                    </div>
+                                    <input class="form-control" id="empresasSegunClasificacionPorMes_Ano" value="@(DateTime.Today.Year)" />
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        Mes
+                                    </div>
+                                    <select class="form-control" id="empresasSegunClasificacionPorMes_Mes">
+                                        <option value="">- Seleccione Mes -</option>
+                                        <option value="1" @(DateTime.Today.Month == 1 ? "selected" : "")>Enero</option>
+                                        <option value="2" @(DateTime.Today.Month == 2 ? "selected" : "")>Febrero</option>
+                                        <option value="3" @(DateTime.Today.Month == 3 ? "selected" : "")>Marzo</option>
+                                        <option value="4" @(DateTime.Today.Month == 4 ? "selected" : "")>Abril</option>
+                                        <option value="5" @(DateTime.Today.Month == 5 ? "selected" : "")>Mayo</option>
+                                        <option value="6" @(DateTime.Today.Month == 6 ? "selected" : "")>Junio</option>
+                                        <option value="7" @(DateTime.Today.Month == 7 ? "selected" : "")>Julio</option>
+                                        <option value="8" @(DateTime.Today.Month == 8 ? "selected" : "")>Agosto</option>
+                                        <option value="9" @(DateTime.Today.Month == 9 ? "selected" : "")>Setiembre</option>
+                                        <option value="10" @(DateTime.Today.Month == 10 ? "selected" : "")>Octubre</option>
+                                        <option value="11" @(DateTime.Today.Month == 11 ? "selected" : "")>Noviembre</option>
+                                        <option value="12" @(DateTime.Today.Month == 12 ? "selected" : "")>Diciembre</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="btn btn-default color-paleta6" onclick="cargaEmpresasSegunClasificacionMes();">
+                                    Mostrar
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <p id="msgEmpresasSegunClasificacionMes">
+                        </p>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div id="chartEmpresasSegunClasificacionMes" style="height:300px"></div>
+                            </div>
+                        </div>
+                        <br />
+                        <div style="text-align:center;" id="divEmpresasSegunClasificacionMensual">
+                            <h6># de empresas activas (mensual): <strong><span id="empresasSegunClasificacionMensual"></span></strong></h6>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-sm-6">
             <div class="panel panel-default" style="text-align:center;">
-                <h5>Ofertas target según tipo de trabajo (mensual)</h5>
-                <div class="row">
-                    <div class="col-sm-1"></div>
-                    <div class="col-sm-3">
-                        <div class="input-group">
-                            <div class="input-group-addon">
-                                Año
-                            </div>
-                            <input class="form-control" id="ofertasSegunTipoTrabajoUTP_Ano" value="@(DateTime.Today.Year)" />
-                        </div>
-
+                <div class="panel-heading" role="tab" id="heading6">
+                    <div class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse6" aria-expanded="false" aria-controls="collapse6">
+                            <h5>Ofertas según clasificación (mensual)</h5>
+                        </a>
                     </div>
-                    <div class="col-sm-4">
-                        <div class="input-group">
-                            <div class="input-group-addon">
-                                Mes
+                </div>
+                <div id="collapse6" class="panel-collapse collapsing" role="tab" aria-labelledby="heading6">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-3">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        Año
+                                    </div>
+                                    <input class="form-control" id="ofertasSegunClasificacionPorMes_Ano" value="@(DateTime.Today.Year)" />
+                                </div>
                             </div>
-                            <select class="form-control" id="ofertasSegunTipoTrabajoUTP_Mes">
-                                <option value="">- Seleccione Mes -</option>
-                                <option value="1" @(DateTime.Today.Month == 1 ? "selected" : "")>Enero</option>
-                                <option value="2" @(DateTime.Today.Month == 2 ? "selected" : "")>Febrero</option>
-                                <option value="3" @(DateTime.Today.Month == 3 ? "selected" : "")>Marzo</option>
-                                <option value="4" @(DateTime.Today.Month == 4 ? "selected" : "")>Abril</option>
-                                <option value="5" @(DateTime.Today.Month == 5 ? "selected" : "")>Mayo</option>
-                                <option value="6" @(DateTime.Today.Month == 6 ? "selected" : "")>Junio</option>
-                                <option value="7" @(DateTime.Today.Month == 7 ? "selected" : "")>Julio</option>
-                                <option value="8" @(DateTime.Today.Month == 8 ? "selected" : "")>Agosto</option>
-                                <option value="9" @(DateTime.Today.Month == 9 ? "selected" : "")>Setiembre</option>
-                                <option value="10" @(DateTime.Today.Month == 10 ? "selected" : "")>Octubre</option>
-                                <option value="11" @(DateTime.Today.Month == 11 ? "selected" : "")>Noviembre</option>
-                                <option value="12" @(DateTime.Today.Month == 12 ? "selected" : "")>Diciembre</option>
-                            </select>
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        Mes
+                                    </div>
+                                    <select class="form-control" id="ofertasSegunClasificacionPorMes_Mes">
+                                        <option value="">- Seleccione Mes -</option>
+                                        <option value="1" @(DateTime.Today.Month == 1 ? "selected" : "")>Enero</option>
+                                        <option value="2" @(DateTime.Today.Month == 2 ? "selected" : "")>Febrero</option>
+                                        <option value="3" @(DateTime.Today.Month == 3 ? "selected" : "")>Marzo</option>
+                                        <option value="4" @(DateTime.Today.Month == 4 ? "selected" : "")>Abril</option>
+                                        <option value="5" @(DateTime.Today.Month == 5 ? "selected" : "")>Mayo</option>
+                                        <option value="6" @(DateTime.Today.Month == 6 ? "selected" : "")>Junio</option>
+                                        <option value="7" @(DateTime.Today.Month == 7 ? "selected" : "")>Julio</option>
+                                        <option value="8" @(DateTime.Today.Month == 8 ? "selected" : "")>Agosto</option>
+                                        <option value="9" @(DateTime.Today.Month == 9 ? "selected" : "")>Setiembre</option>
+                                        <option value="10" @(DateTime.Today.Month == 10 ? "selected" : "")>Octubre</option>
+                                        <option value="11" @(DateTime.Today.Month == 11 ? "selected" : "")>Noviembre</option>
+                                        <option value="12" @(DateTime.Today.Month == 12 ? "selected" : "")>Diciembre</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="btn btn-default color-paleta6" onclick="cargaOfertasSegunClasificacionMes();">
+                                    Mostrar
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="btn btn-default color-paleta6" onclick="cargaOfertasSegunTipoTrabajoUTP();">
-                            Mostrar
+                        <br />
+                        <p id="msgOfertasSegunClasificacionMes"></p>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div id="chartOfertasSegunClasificacionMes" style="height:300px"></div>
+                            </div>
+                        </div>
+                        <br />
+                        <div style="text-align:center;" id="divOfertasSegunClasificacionMensual">
+                            <h6># de ofertas publicadas (mensual): <strong><span id="ofertasSegunClasificacionMensual"></span></strong></h6>
                         </div>
                     </div>
                 </div>
-                <br />
-                <p id="msgOfertasSegunTipoTrabajoUTP"></p>
-                <div class="row">
-                    <div class="col-sm-8">
-                        <canvas id="chartOfertasSegunTipoTrabajoUTP" width="300" height="300"></canvas>
-
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="panel panel-default" style="text-align:center;">
+                <div class="panel-heading" role="tab" id="heading7">
+                    <div class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse7" aria-expanded="false" aria-controls="collapse7">
+                            <h5>Top 10 carreras más demandadas</h5>
+                        </a>
                     </div>
                 </div>
-                <div style="text-align:center;" id="ofertasTargetDiv">
-                    <h6># de ofertas target según tipo de trabajo (acumulado): <strong><span id="ofertasTarget"></span></strong></h6>
+                <div id="collapse7" class="panel-collapse collapsing" role="tab" aria-labelledby="heading7">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div id="chartTop10CarrerasMasDemandadas" data-template=" " style="height:360px"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="panel panel-default" style="text-align:center;">
+                <div class="panel-heading" role="tab" id="heading8">
+                    <div class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse8" aria-expanded="false" aria-controls="collapse8">
+                            <h5>Ofertas target según tipo de trabajo (mensual)</h5>
+                        </a>
+                    </div>
+                </div>
+                <div id="collapse8" class="panel-collapse collapsing" role="tab" aria-labelledby="heading8">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-3">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        Año
+                                    </div>
+                                    <input class="form-control" id="ofertasSegunTipoTrabajoUTP_Ano" value="@(DateTime.Today.Year)" />
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        Mes
+                                    </div>
+                                    <select class="form-control" id="ofertasSegunTipoTrabajoUTP_Mes">
+                                        <option value="">- Seleccione Mes -</option>
+                                        <option value="1" @(DateTime.Today.Month == 1 ? "selected" : "")>Enero</option>
+                                        <option value="2" @(DateTime.Today.Month == 2 ? "selected" : "")>Febrero</option>
+                                        <option value="3" @(DateTime.Today.Month == 3 ? "selected" : "")>Marzo</option>
+                                        <option value="4" @(DateTime.Today.Month == 4 ? "selected" : "")>Abril</option>
+                                        <option value="5" @(DateTime.Today.Month == 5 ? "selected" : "")>Mayo</option>
+                                        <option value="6" @(DateTime.Today.Month == 6 ? "selected" : "")>Junio</option>
+                                        <option value="7" @(DateTime.Today.Month == 7 ? "selected" : "")>Julio</option>
+                                        <option value="8" @(DateTime.Today.Month == 8 ? "selected" : "")>Agosto</option>
+                                        <option value="9" @(DateTime.Today.Month == 9 ? "selected" : "")>Setiembre</option>
+                                        <option value="10" @(DateTime.Today.Month == 10 ? "selected" : "")>Octubre</option>
+                                        <option value="11" @(DateTime.Today.Month == 11 ? "selected" : "")>Noviembre</option>
+                                        <option value="12" @(DateTime.Today.Month == 12 ? "selected" : "")>Diciembre</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="btn btn-default color-paleta6" onclick="cargaOfertasSegunTipoTrabajoUTP();">
+                                    Mostrar
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <p id="msgOfertasSegunTipoTrabajoUTP"></p>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div id="chartOfertasSegunTipoTrabajoUTP" style="height:300px"></div>
+                            </div>
+                        </div>
+                        <div style="text-align:center;" id="ofertasTargetDiv">
+                            <h6># de ofertas target según tipo de trabajo (acumulado): <strong><span id="ofertasTarget"></span></strong></h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="panel panel-default" style="text-align:center;">
+                <div class="panel-heading" role="tab" id="heading9">
+                    <div class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse9" aria-expanded="false" aria-controls="collapse9">
+                            <h5>Carreras sin ofertas de prácticas (mensual)</h5>
+                        </a>
+                    </div>
+                </div>
+                <div id="collapse9" class="panel-collapse collapsing" role="tab" aria-labelledby="heading9">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-3">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        Año
+                                    </div>
+                                    <input class="form-control" id="carrerasSinOfertasDePracticas_Ano" value="@(DateTime.Today.Year)" />
+                                </div>
+
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        Mes
+                                    </div>
+                                    <select class="form-control" id="carrerasSinOfertasDePracticas_Mes">
+                                        <option value="">- Seleccione Mes -</option>
+                                        <option value="1" @(DateTime.Today.Month == 1 ? "selected" : "")>Enero</option>
+                                        <option value="2" @(DateTime.Today.Month == 2 ? "selected" : "")>Febrero</option>
+                                        <option value="3" @(DateTime.Today.Month == 3 ? "selected" : "")>Marzo</option>
+                                        <option value="4" @(DateTime.Today.Month == 4 ? "selected" : "")>Abril</option>
+                                        <option value="5" @(DateTime.Today.Month == 5 ? "selected" : "")>Mayo</option>
+                                        <option value="6" @(DateTime.Today.Month == 6 ? "selected" : "")>Junio</option>
+                                        <option value="7" @(DateTime.Today.Month == 7 ? "selected" : "")>Julio</option>
+                                        <option value="8" @(DateTime.Today.Month == 8 ? "selected" : "")>Agosto</option>
+                                        <option value="9" @(DateTime.Today.Month == 9 ? "selected" : "")>Setiembre</option>
+                                        <option value="10" @(DateTime.Today.Month == 10 ? "selected" : "")>Octubre</option>
+                                        <option value="11" @(DateTime.Today.Month == 11 ? "selected" : "")>Noviembre</option>
+                                        <option value="12" @(DateTime.Today.Month == 12 ? "selected" : "")>Diciembre</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="btn btn-default color-paleta6" onclick="cargaCarrerasSinOfertasDePracticas();">
+                                    Mostrar
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <p id="msgCarrerasSinOfertasDePracticas"></p>
+                        <div style="text-align:left; margin-left:45px" id="carrerasSinOfertasDePracticas"> </div>
+                        <br />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="panel panel-default" style="text-align:center;">
+                <div class="panel-heading" role="tab" id="heading10">
+                    <div class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse10" aria-expanded="false" aria-controls="collapse10">
+                            <h5>Carreras sin ofertas de empleo (mensual)</h5>
+                        </a>
+                    </div>
+                </div>
+                <div id="collapse10" class="panel-collapse collapsing" role="tab" aria-labelledby="heading10">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-3">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        Año
+                                    </div>
+                                    <input class="form-control" id="carrerasSinOfertasDeEmpleo_Ano" value="@(DateTime.Today.Year)" />
+                                </div>
+
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        Mes
+                                    </div>
+                                    <select class="form-control" id="carrerasSinOfertasDeEmpleo_Mes">
+                                        <option value="">- Seleccione Mes -</option>
+                                        <option value="1" @(DateTime.Today.Month == 1 ? "selected" : "")>Enero</option>
+                                        <option value="2" @(DateTime.Today.Month == 2 ? "selected" : "")>Febrero</option>
+                                        <option value="3" @(DateTime.Today.Month == 3 ? "selected" : "")>Marzo</option>
+                                        <option value="4" @(DateTime.Today.Month == 4 ? "selected" : "")>Abril</option>
+                                        <option value="5" @(DateTime.Today.Month == 5 ? "selected" : "")>Mayo</option>
+                                        <option value="6" @(DateTime.Today.Month == 6 ? "selected" : "")>Junio</option>
+                                        <option value="7" @(DateTime.Today.Month == 7 ? "selected" : "")>Julio</option>
+                                        <option value="8" @(DateTime.Today.Month == 8 ? "selected" : "")>Agosto</option>
+                                        <option value="9" @(DateTime.Today.Month == 9 ? "selected" : "")>Setiembre</option>
+                                        <option value="10" @(DateTime.Today.Month == 10 ? "selected" : "")>Octubre</option>
+                                        <option value="11" @(DateTime.Today.Month == 11 ? "selected" : "")>Noviembre</option>
+                                        <option value="12" @(DateTime.Today.Month == 12 ? "selected" : "")>Diciembre</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="btn btn-default color-paleta6" onclick="cargaCarrerasSinOfertasDeEmpleo();">
+                                    Mostrar
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <p id="msgCarrerasSinOfertasDeEmpleo"></p>
+                        <div style="text-align:left; margin-left:45px" id="carrerasSinOfertasDeEmpleo"> </div>
+                        <br />
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="row">
-
         <div class="col-sm-6">
             <div class="panel panel-default" style="text-align:center;">
-                <h5>Carreras sin ofertas de prácticas (mensual)</h5>
-                <div class="row">
-                    <div class="col-sm-1"></div>
-                    <div class="col-sm-3">
-                        <div class="input-group">
-                            <div class="input-group-addon">
-                                Año
-                            </div>
-                            <input class="form-control" id="carrerasSinOfertasDePracticas_Ano" value="@(DateTime.Today.Year)" />
-                        </div>
-
+                <div class="panel-heading" role="tab" id="heading11">
+                    <div class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse11" aria-expanded="false" aria-controls="collapse11">
+                            <h5>Vacantes ofrecidas (mensual)</h5>
+                        </a>
                     </div>
-                    <div class="col-sm-4">
-                        <div class="input-group">
-                            <div class="input-group-addon">
-                                Mes
-                            </div>
-                            <select class="form-control" id="carrerasSinOfertasDePracticas_Mes">
-                                <option value="">- Seleccione Mes -</option>
-                                <option value="1" @(DateTime.Today.Month == 1 ? "selected" : "")>Enero</option>
-                                <option value="2" @(DateTime.Today.Month == 2 ? "selected" : "")>Febrero</option>
-                                <option value="3" @(DateTime.Today.Month == 3 ? "selected" : "")>Marzo</option>
-                                <option value="4" @(DateTime.Today.Month == 4 ? "selected" : "")>Abril</option>
-                                <option value="5" @(DateTime.Today.Month == 5 ? "selected" : "")>Mayo</option>
-                                <option value="6" @(DateTime.Today.Month == 6 ? "selected" : "")>Junio</option>
-                                <option value="7" @(DateTime.Today.Month == 7 ? "selected" : "")>Julio</option>
-                                <option value="8" @(DateTime.Today.Month == 8 ? "selected" : "")>Agosto</option>
-                                <option value="9" @(DateTime.Today.Month == 9 ? "selected" : "")>Setiembre</option>
-                                <option value="10" @(DateTime.Today.Month == 10 ? "selected" : "")>Octubre</option>
-                                <option value="11" @(DateTime.Today.Month == 11 ? "selected" : "")>Noviembre</option>
-                                <option value="12" @(DateTime.Today.Month == 12 ? "selected" : "")>Diciembre</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="btn btn-default color-paleta6" onclick="cargaCarrerasSinOfertasDePracticas();">
-                            Mostrar
+                </div>
+                <div id="collapse11" class="panel-collapse collapsing" role="tab" aria-labelledby="heading11">
+                    <div class="panel-body">
+                        <div id="chartVacantesOfrecidas" style="height:400px"></div>
+                        <br />
+                        <div style="text-align:center;">
+                            <h6># de vacantes ofrecidas (acumulado): <strong><span id="vacantesOfrecidas"></span></strong></h6>
                         </div>
                     </div>
                 </div>
-                <br />
-                <p id="msgCarrerasSinOfertasDePracticas"></p>
-                <div style="text-align:left; margin-left:45px" id="carrerasSinOfertasDePracticas"> </div>
-                <br />
             </div>
         </div>
         <div class="col-sm-6">
             <div class="panel panel-default" style="text-align:center;">
-                <h5>Carreras sin ofertas de empleo (mensual)</h5>
-                <div class="row">
-                    <div class="col-sm-1"></div>
-                    <div class="col-sm-3">
-                        <div class="input-group">
-                            <div class="input-group-addon">
-                                Año
-                            </div>
-                            <input class="form-control" id="carrerasSinOfertasDeEmpleo_Ano" value="@(DateTime.Today.Year)" />
-                        </div>
-
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="input-group">
-                            <div class="input-group-addon">
-                                Mes
-                            </div>
-                            <select class="form-control" id="carrerasSinOfertasDeEmpleo_Mes">
-                                <option value="">- Seleccione Mes -</option>
-                                <option value="1" @(DateTime.Today.Month == 1 ? "selected" : "")>Enero</option>
-                                <option value="2" @(DateTime.Today.Month == 2 ? "selected" : "")>Febrero</option>
-                                <option value="3" @(DateTime.Today.Month == 3 ? "selected" : "")>Marzo</option>
-                                <option value="4" @(DateTime.Today.Month == 4 ? "selected" : "")>Abril</option>
-                                <option value="5" @(DateTime.Today.Month == 5 ? "selected" : "")>Mayo</option>
-                                <option value="6" @(DateTime.Today.Month == 6 ? "selected" : "")>Junio</option>
-                                <option value="7" @(DateTime.Today.Month == 7 ? "selected" : "")>Julio</option>
-                                <option value="8" @(DateTime.Today.Month == 8 ? "selected" : "")>Agosto</option>
-                                <option value="9" @(DateTime.Today.Month == 9 ? "selected" : "")>Setiembre</option>
-                                <option value="10" @(DateTime.Today.Month == 10 ? "selected" : "")>Octubre</option>
-                                <option value="11" @(DateTime.Today.Month == 11 ? "selected" : "")>Noviembre</option>
-                                <option value="12" @(DateTime.Today.Month == 12 ? "selected" : "")>Diciembre</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="btn btn-default color-paleta6" onclick="cargaCarrerasSinOfertasDeEmpleo();">
-                            Mostrar
-                        </div>
+                <div class="panel-heading" role="tab" id="heading12">
+                    <div class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse12" aria-expanded="false" aria-controls="collapse12">
+                            <h5>Postulaciones a ofertas de empresas target (mensual)</h5>
+                        </a>
                     </div>
                 </div>
-                <br />
-                <p id="msgCarrerasSinOfertasDeEmpleo"></p>
-                <div style="text-align:left; margin-left:45px" id="carrerasSinOfertasDeEmpleo"> </div>
-                <br />
-            </div>
-        </div>
-    </div>
-
-
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="panel panel-default" style="text-align:center;">
-                <h5>Vacantes ofrecidas (mensual)</h5>
-                <canvas id="chartVacantesOfrecidas" width="480" height="400"></canvas>
-                <div style="text-align:center;">
-                    <h6># de vacantes ofrecidas (acumulado): <strong><span id="vacantesOfrecidas"></span></strong></h6>
-                </div>
-            </div>
-
-        </div>
-        <div class="col-sm-6">
-            <div class="panel panel-default" style="text-align:center;">
-                <h5>Postulaciones a ofertas de empresas target (mensual)</h5>
-                <canvas id="chartEmpresasTarget" width="400" height="400"></canvas>
-                <div style="text-align:center;">
-                    <h6># postulaciones a empresas target (acumulado): <strong><span id="postulantesEmpresas"></span></strong></h6>
-                    <h6>Ratio promedio de postulantes citados a entrevista: <strong><span id="ratioPostulantes"></span></strong></h6>
+                <div id="collapse12" class="panel-collapse collapsing" role="tab" aria-labelledby="heading12">
+                    <div class="panel-body">
+                        <div id="chartEmpresasTarget" style="height:400px"></div>
+                        <br />
+                        <div style="text-align:center;">
+                            <h6># postulaciones a empresas target (acumulado): <strong><span id="postulantesEmpresas"></span></strong></h6>
+                            <h6>Ratio promedio de postulantes citados a entrevista: <strong><span id="ratioPostulantes"></span></strong></h6>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -375,61 +506,81 @@
     <div class="row">
         <div class="col-sm-6">
             <div class="panel panel-default" style="text-align:center;">
-                <h5>Ofertas con procesos cerrados (mensual)</h5>
-                <canvas id="chartProcesosCerrados" width="480" height="400"></canvas>
-                <div style="text-align:center;">
-                    <h6># de ofertas con procesos cerrados (acumulado): <strong><span id="procesosCerrados"></span></strong></h6>
+                <div class="panel-heading" role="tab" id="heading13">
+                    <div class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse13" aria-expanded="false" aria-controls="collapse13">
+                            <h5>Ofertas con procesos cerrados (mensual)</h5>
+                        </a>
+                    </div>
+                </div>
+                <div id="collapse13" class="panel-collapse collapsing" role="tab" aria-labelledby="heading13">
+                    <div class="panel-body">
+                        <div id="chartProcesosCerrados" style="height:400px"></div>
+                        <br />
+                        <div style="text-align:center;">
+                            <h6># de ofertas con procesos cerrados (acumulado): <strong><span id="procesosCerrados"></span></strong></h6>
+                        </div>
+                    </div>
                 </div>
             </div>
-
         </div>
         <div class="col-sm-6">
             <div class="panel panel-default" style="text-align:center;">
-                <h5>Clasificación de CV's Recibidos</h5>
-                <div class="row">
-                    <div class="col-sm-1"></div>
-                    <div class="col-sm-3">
-                        <div class="input-group">
-                            <div class="input-group-addon">
-                                Año
-                            </div>
-                            <input class="form-control" id="clasificacionCvsRecibidos_Ano" value="@(DateTime.Today.Year)" />
-                        </div>
-
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="input-group">
-                            <div class="input-group-addon">
-                                Mes
-                            </div>
-                            <select class="form-control" id="clasificacionCvsRecibidos_Mes">
-                                <option value="">- Seleccione Mes -</option>
-                                <option value="1" @(DateTime.Today.Month == 1 ? "selected" : "")>Enero</option>
-                                <option value="2" @(DateTime.Today.Month == 2 ? "selected" : "")>Febrero</option>
-                                <option value="3" @(DateTime.Today.Month == 3 ? "selected" : "")>Marzo</option>
-                                <option value="4" @(DateTime.Today.Month == 4 ? "selected" : "")>Abril</option>
-                                <option value="5" @(DateTime.Today.Month == 5 ? "selected" : "")>Mayo</option>
-                                <option value="6" @(DateTime.Today.Month == 6 ? "selected" : "")>Junio</option>
-                                <option value="7" @(DateTime.Today.Month == 7 ? "selected" : "")>Julio</option>
-                                <option value="8" @(DateTime.Today.Month == 8 ? "selected" : "")>Agosto</option>
-                                <option value="9" @(DateTime.Today.Month == 9 ? "selected" : "")>Setiembre</option>
-                                <option value="10" @(DateTime.Today.Month == 10 ? "selected" : "")>Octubre</option>
-                                <option value="11" @(DateTime.Today.Month == 11 ? "selected" : "")>Noviembre</option>
-                                <option value="12" @(DateTime.Today.Month == 12 ? "selected" : "")>Diciembre</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="btn btn-default color-paleta6" onclick="cargaClasificacionCVsRecibidos();">
-                            Mostrar
-                        </div>
+                <div class="panel-heading" role="tab" id="heading14">
+                    <div class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse14" aria-expanded="false" aria-controls="collapse14">
+                            <h5>Clasificación de CV's Recibidos</h5>
+                        </a>
                     </div>
                 </div>
-                <br />
-                <p id="msgClasificacionCvsRecibidos"></p>
-                <canvas id="chartClasificacionCvsRecibidos" width="400" height="400"></canvas>
-                <div style="text-align:center;" id="cvsRecibidosDiv">
-                    <h6># clasificación total de CV´s (acumulado): <strong><span id="cvsRecibidos"></span></strong></h6>
+                <div id="collapse14" class="panel-collapse collapsing" role="tab" aria-labelledby="heading14">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-3">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        Año
+                                    </div>
+                                    <input class="form-control" id="clasificacionCvsRecibidos_Ano" value="@(DateTime.Today.Year)" />
+                                </div>
+
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        Mes
+                                    </div>
+                                    <select class="form-control" id="clasificacionCvsRecibidos_Mes">
+                                        <option value="">- Seleccione Mes -</option>
+                                        <option value="1" @(DateTime.Today.Month == 1 ? "selected" : "")>Enero</option>
+                                        <option value="2" @(DateTime.Today.Month == 2 ? "selected" : "")>Febrero</option>
+                                        <option value="3" @(DateTime.Today.Month == 3 ? "selected" : "")>Marzo</option>
+                                        <option value="4" @(DateTime.Today.Month == 4 ? "selected" : "")>Abril</option>
+                                        <option value="5" @(DateTime.Today.Month == 5 ? "selected" : "")>Mayo</option>
+                                        <option value="6" @(DateTime.Today.Month == 6 ? "selected" : "")>Junio</option>
+                                        <option value="7" @(DateTime.Today.Month == 7 ? "selected" : "")>Julio</option>
+                                        <option value="8" @(DateTime.Today.Month == 8 ? "selected" : "")>Agosto</option>
+                                        <option value="9" @(DateTime.Today.Month == 9 ? "selected" : "")>Setiembre</option>
+                                        <option value="10" @(DateTime.Today.Month == 10 ? "selected" : "")>Octubre</option>
+                                        <option value="11" @(DateTime.Today.Month == 11 ? "selected" : "")>Noviembre</option>
+                                        <option value="12" @(DateTime.Today.Month == 12 ? "selected" : "")>Diciembre</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="btn btn-default color-paleta6" onclick="cargaClasificacionCVsRecibidos();">
+                                    Mostrar
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <p id="msgClasificacionCvsRecibidos"></p>
+                        <div id="chartClasificacionCvsRecibidos" style="height:400px"></div>
+                        <div style="text-align:center;" id="cvsRecibidosDiv">
+                            <h6># clasificación total de CV´s (acumulado): <strong><span id="cvsRecibidos"></span></strong></h6>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -439,19 +590,28 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="panel panel-default" style="text-align:center;">
-                <h5>Contrataciones (mensual)</h5>
-                <div class="row">
-                    <div class="col-sm-9">
-                        <canvas id="chartContrataciones" width="780" height="400"></canvas>
-                    </div>
-                    <div class="col-sm-3" id="idLengedContrataciones">
+                <div class="panel-heading" role="tab" id="heading15">
+                    <div class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse15" aria-expanded="false" aria-controls="collapse15">
+                            <h5>Contrataciones (mensual)</h5>
+                        </a>
                     </div>
                 </div>
-                <div style="text-align:center;">
-                    <h6># de contratos (acumulados): <strong><span id="contratosAcumulados"></span></strong></h6>
-                    <h6># de contratos target: <strong><span id="contratosTarget"></span></strong></h6>
-                    <h6>Ratio de invitados a entrevista: <strong><span id="ratioEntrevistados"></span></strong></h6>
-                    <h6># de convenios registrados (mes actual): <strong><span id="conveniosDelMes"></span></strong></h6>
+                <div id="collapse15" class="panel-collapse collapsing" role="tab" aria-labelledby="heading15">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div id="chartContrataciones" style="height:400px"></div>
+                            </div>
+                        </div>
+                        <br />
+                        <div style="text-align:center;">
+                            <h6># de contratos (acumulados): <strong><span id="contratosAcumulados"></span></strong></h6>
+                            <h6># de contratos target: <strong><span id="contratosTarget"></span></strong></h6>
+                            <h6>Ratio de invitados a entrevista: <strong><span id="ratioEntrevistados"></span></strong></h6>
+                            <h6># de convenios registrados (mes actual): <strong><span id="conveniosDelMes"></span></strong></h6>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -460,48 +620,92 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="panel panel-default" style="text-align:center;">
-                <h5>Alumnos activos según carrera</h5>
-                <canvas id="chartAlumnosSegunCarrera" width="880" height="500"></canvas>
+                <div class="panel-heading" role="tab" id="heading16">
+                    <div class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse16" aria-expanded="false" aria-controls="collapse16">
+                            <h5>Alumnos activos según carrera</h5>
+                        </a>
+                    </div>
+                </div>
+                <div id="collapse16" class="panel-collapse collapsing" role="tab" aria-labelledby="heading16">
+                    <div class="panel-body">
+                        <div id="chartAlumnosSegunCarrera" style="height:500px"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-default" style="text-align:center;" >
+                <div class="panel-heading" role="tab" id="heading17">
+                    <div class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse17" aria-expanded="false" aria-controls="collapse17">
+                            <h5>Alumnos con CV completo al 100% según carrera</h5>
+                        </a>
+                    </div>
+                </div>
+                <div id="collapse17" class="panel-collapse collapsing" role="tab" aria-labelledby="heading17">
+                    <div class="panel-body">
+                        <div id="chartCvCompletoSegunCarrera" style="height:350px"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-
-
 <script>
-    $(document).ready(function () {      
+    $(document).ready(function () {
         $("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta3 color-paleta4 color-paleta5 color-paleta7 color-paleta8 color-paleta9").addClass("color-paleta6")
 
         cargaAlumnosActivos();
         function cargaAlumnosActivos() {
             var url = '@Url.Action("ReporteAlumnosActivos", "UTP")';
             $.get(url, function (datos) {
-                var data = {
-                    labels: datos[0],
-                    datasets: [
-                        {
-                            label: "Alumnos Activos",
-                            fillColor: "rgba(220,220,220,1)",
-                            strokeColor: "rgba(220,220,220,0.8)",
-                            highlightFill: "rgba(220,220,220,0.75)",
-                            highlightStroke: "rgba(220,220,220,1)",
-                            data: datos[1]
-                        },
-                        {
-                            label: "Alumnos con CV completo",
-                            fillColor: "rgba(151,187,205,1)",
-                            strokeColor: "rgba(151,187,205,0.8)",
-                            highlightFill: "rgba(151,187,205,0.75)",
-                            highlightStroke: "rgba(151,187,205,1)",
-                            data: datos[2]
-                        }
-                    ]
-                };
-
-                var myLineChart = new Chart(document.getElementById("chartAlumnosActivos").getContext("2d")).Bar(data, { legendTemplate: "<ul class=\"bar-legend\"><% for (var i=0; i<datasets.length; i++){%><li class=\"li-legend\"><span class=\"pie-legend\" style=\"background-color:<%=datasets[i].fillColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>" });
-                document.getElementById("idLengedAlumnosActivos").innerHTML = myLineChart.generateLegend();
-
+                var data = [], i = 0;
+                for (; i < datos[0].length; i++) {
+                    data.push(_.zipObject(['label', 'value', 'inactive'], [datos[0][i], datos[1][i] == 0 ? "" : datos[1][i], datos[2][i] == 0 ? "" : datos[2][i]]));
+                }
+                Chart.Column(
+                  {
+                      container: 'chartAlumnosActivos',
+                      color: '#E99522',
+                      legend: {
+                          align: 'right',
+                          valign: 'middle',
+                          marker: { radius: 0 },
+                          values: [
+                            { text: 'Alumnos activos', color: '#E99522' },
+                            { text: 'Alumnos con CV completo', color: '#C0BA00' }
+                          ],                          
+                          toggle:false
+                      }, 
+                      padding: { bottom: 70 }
+                  }, [
+                    {
+                        view: 'line',
+                        value: "#value#",
+                        line: { color: '#333' },
+                        label: false,
+                        item: { radius: 0 }
+                    },
+                    {
+                        view: 'bar',
+                        value: "#inactive#",
+                        color: '#C0BA00',
+                        label: function (o) { return o.inactive; },
+                    },
+                    {
+                        view: 'line',
+                        value: "#inactive#",
+                        line: { color: 'red' },
+                        label: false,
+                        item: { radius: 0 }
+                    }
+                  ]
+                )
+                  .draw(data);
                 $("#alumnosActivos").html(datos[3]);
                 $("#alumnosCVCompleto").html(datos[4]);
             });
@@ -511,30 +715,49 @@
         function cargaEmpresasActivas() {
             var url = '@Url.Action("ReporteEmpresasActivas", "UTP")';
             $.get(url, function (datos) {
-                var data = {
-                    labels: datos[0],
-                    datasets: [
-                        {
-                            label: "Empresas activas",
-                            fillColor: "rgba(220,220,220,1)",
-                            strokeColor: "rgba(220,220,220,0.8)",
-                            highlightFill: "rgba(220,220,220,0.75)",
-                            highlightStroke: "rgba(220,220,220,1)",
-                            data: datos[1]
-                        },
-                        {
-                            label: "Ofertas publicadas",
-                            fillColor: "rgba(151,187,205,1)",
-                            strokeColor: "rgba(151,187,205,0.8)",
-                            highlightFill: "rgba(151,187,205,0.75)",
-                            highlightStroke: "rgba(151,187,205,1)",
-                            data: datos[2]
-                        }
-                    ]
-                };
-
-                var myLineChart = new Chart(document.getElementById("chartEmpresasActivas").getContext("2d")).Bar(data, { legendTemplate: "<ul class=\"bar-legend\"><% for (var i=0; i<datasets.length; i++){%><li class=\"li-legend\"><span class=\"pie-legend\" style=\"background-color:<%=datasets[i].fillColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>" });
-                document.getElementById("idLengedEmpresasActivas").innerHTML = myLineChart.generateLegend();
+                var data = [], i = 0;
+                for (; i < datos[0].length; i++) {
+                    data.push(_.zipObject(['label', 'value', 'inactive'], [datos[0][i], datos[1][i] == 0 ? "" : datos[1][i], datos[2][i] == 0 ? "" : datos[2][i]]));
+                }
+                Chart.Column(
+                  {
+                      container: 'chartEmpresasActivas',
+                      color: '#3CACC9',
+                      legend: {
+                          align: 'right',
+                          valign: 'middle',
+                          marker: { radius: 0 },
+                          values: [
+                            { text: 'Empresas activas', color: '#3CACC9' },
+                            { text: 'Ofertas publicadas', color: '#0E9E95' }
+                          ],
+                          toggle: false
+                      },
+                      padding: { bottom: 70 }
+                  }, [
+                    {
+                        view: 'line',
+                        value: "#value#",
+                        line: { color: '#333' },
+                        label: false,
+                        item: { radius: 0 }
+                    },
+                    {
+                        view: 'bar',
+                        value: "#inactive#",
+                        color: '#0E9E95',
+                        label: function (o) { return o.inactive; },
+                    },
+                    {
+                        view: 'line',
+                        value: "#inactive#",
+                        line: { color: 'red' },
+                        label: false,
+                        item: { radius: 0 }
+                    }
+                  ]
+                )
+                  .draw(data);
                 $("#empresasActivas").html(datos[3]);
                 $("#ofertasPublicadas").html(datos[4]);
             });
@@ -544,39 +767,19 @@
         function cargaEmpresasSegunClasificacion() {
             var url = '@Url.Action("ReporteEmpresasSegunClasificacion", "UTP")';
             $.get(url, function (datosPie) {
-                var data = [];
+                var data = [], i = 0;
                 $.each(datosPie, function (index, value) {
                     var itemdata =
                         {
+                            label: value.PieLabel,
                             value: eval(value.PieValue),
-                            color: value.PieColor,
-                            highlight: value.PieHighlight,
-                            label: value.PieLabel
+                            color: value.PieColor
                         };
                     data.push(itemdata);
+                    i += eval(value.PieValue);
                 })
-
-                var helpers = Chart.helpers;
-                var canvas = document.getElementById("chartEmpresasSegunClasificacion");
-                var moduleDoughnut = new Chart(canvas.getContext('2d')).Pie(data, { legendTemplate: "<ul class=\"col-sm-4\"><% for (var i=0; i<segments.length; i++){%><li class=\"li-legend\"><span class=\"pie-legend\" style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>", tooltipTemplate: "<%if (label){%><%=label%>: <%}%><%= value %>", animation: false });
-                //
-                var legendHolder = document.createElement('div');
-                legendHolder.innerHTML = moduleDoughnut.generateLegend();
-                // Include a html legend template after the module doughnut itself
-                helpers.each(legendHolder.firstChild.childNodes, function (legendNode, index) {
-                    helpers.addEvent(legendNode, 'mouseover', function () {
-                        var activeSegment = moduleDoughnut.segments[index];
-                        activeSegment.save();
-                        activeSegment.fillColor = activeSegment.highlightColor;
-                        moduleDoughnut.showTooltip([activeSegment]);
-                        activeSegment.restore();
-                    });
-                });
-                helpers.addEvent(legendHolder.firstChild, 'mouseout', function () {
-                    moduleDoughnut.draw();
-                });
-                canvas.parentNode.parentNode.appendChild(legendHolder.firstChild);
-
+                Chart.Pie({ container: 'chartEmpresasSegunClasificacion' }).draw(data);
+                $("#empresasSegunClasificacionAcumulado").html(i);
             });
         }
 
@@ -584,82 +787,48 @@
         function cargaOfertasSegunClasificacion() {
             var url = '@Url.Action("ReporteOfertasSegunClasificacion", "UTP")';
             $.get(url, function (datosPie) {
-                var data = [];
+                var data = [], i = 0;
                 $.each(datosPie, function (index, value) {
                     var itemdata =
                         {
+                            label: value.PieLabel,
                             value: eval(value.PieValue),
-                            color: value.PieColor,
-                            highlight: value.PieHighlight,
-                            label: value.PieLabel
+                            color: value.PieColor
                         };
                     data.push(itemdata);
+                    i += eval(value.PieValue);
                 })
-
-                var helpers = Chart.helpers;
-                var canvas = document.getElementById("chartOfertasSegunClasificacion");
-                var moduleDoughnut = new Chart(canvas.getContext('2d')).Pie(data, { legendTemplate: "<ul class=\"col-sm-4\"><% for (var i=0; i<segments.length; i++){%><li class=\"li-legend\"><span class=\"pie-legend\" style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>", tooltipTemplate: "<%if (label){%><%=label%>: <%}%><%= value %>", animation: false });
-                //
-                var legendHolder = document.createElement('div');
-                legendHolder.innerHTML = moduleDoughnut.generateLegend();
-                // Include a html legend template after the module doughnut itself
-                helpers.each(legendHolder.firstChild.childNodes, function (legendNode, index) {
-                    helpers.addEvent(legendNode, 'mouseover', function () {
-                        var activeSegment = moduleDoughnut.segments[index];
-                        activeSegment.save();
-                        activeSegment.fillColor = activeSegment.highlightColor;
-                        moduleDoughnut.showTooltip([activeSegment]);
-                        activeSegment.restore();
-                    });
-                });
-                helpers.addEvent(legendHolder.firstChild, 'mouseout', function () {
-                    moduleDoughnut.draw();
-                });
-                canvas.parentNode.parentNode.appendChild(legendHolder.firstChild);
-
+                Chart.Pie({ container: 'chartOfertasSegunClasificacion' }).draw(data);
+                $("#ofertasSegunClasificacionAcumulado").html(i);
             });
         }
 
 
         cargaTop10Carreras();
         function cargaTop10Carreras() {
-
             var url = '@Url.Action("ReporteTop10CarrerasMasDemandadas", "UTP")';
             $.get(url, function (datosPie) {
-
                 var data = [];
                 $.each(datosPie, function (index, value) {
                     var itemdata =
                         {
+                            label: value.PieLabel,
                             value: eval(value.PieValue),
-                            color: value.PieColor,
-                            highlight: value.PieHighlight,
-                            label: value.PieLabel
-
+                            color: value.PieColor
                         };
                     data.push(itemdata);
                 })
-
-                var helpers = Chart.helpers;
-                var canvas = document.getElementById("chartTop10CarrerasMasDemandadas");
-                var moduleDoughnut = new Chart(canvas.getContext('2d')).Pie(data, { legendTemplate: "<ul class=\"col-sm-4\"><% for (var i=0; i<segments.length; i++){%><li class=\"li-legend\"><span class=\"pie-legend\" style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>", tooltipTemplate: "<%if (label){%><%=label%>: <%}%><%= value %>", animation: false });
-                //
-                var legendHolder = document.createElement('div');
-                legendHolder.innerHTML = moduleDoughnut.generateLegend();
-                // Include a html legend template after the module doughnut itself
-                helpers.each(legendHolder.firstChild.childNodes, function (legendNode, index) {
-                    helpers.addEvent(legendNode, 'mouseover', function () {
-                        var activeSegment = moduleDoughnut.segments[index];
-                        activeSegment.save();
-                        activeSegment.fillColor = activeSegment.highlightColor;
-                        moduleDoughnut.showTooltip([activeSegment]);
-                        activeSegment.restore();
-                    });
-                });
-                helpers.addEvent(legendHolder.firstChild, 'mouseout', function () {
-                    moduleDoughnut.draw();
-                });
-                canvas.parentNode.parentNode.appendChild(legendHolder.firstChild);
+                Chart.Pie({
+                    container: 'chartTop10CarrerasMasDemandadas',
+                    legend: {
+                        align: 'center',
+                        valign: 'bottom',
+                        template: '#label#',
+                        marker: { radius: 0 },
+                        layout: 'x'
+                    },
+                    pieInnerText: '<b>#value#</b>'
+                }).draw(data);
             });
         }
 
@@ -667,21 +836,28 @@
         function CargaVacantesOfrecida() {
             var url = '@Url.Action("ReporteVacantesOfrecidas", "UTP")';
             $.get(url, function (datos) {
-                var data = {
-                    labels: datos[0],
-                    datasets: [
-                        {
-                            label: "Vacantes Ofrecidas",
-                            fillColor: "rgba(220,220,220,0.5)",
-                            strokeColor: "rgba(220,220,220,0.8)",
-                            highlightFill: "rgba(220,220,220,0.75)",
-                            highlightStroke: "rgba(220,220,220,1)",
-                            data: datos[1]
-                        }
-                    ]
+                var data = [], i = 0;
+                for (; i < datos[0].length; i++) {
+                    data.push(_.zipObject(['label', 'value', 'inactive'], [datos[0][i], datos[1][i] == 0 ? "" : datos[1][i], 0]));
                 };
-                var ctx = document.getElementById("chartVacantesOfrecidas").getContext("2d");
-                var myNewChart = new Chart(ctx).Bar(data);
+                Chart.Column(
+                  {
+                      container: 'chartVacantesOfrecidas',
+                      color: function (o) { return o.value ? '#2ecc71' : '#eeeeee'; },
+                      legend: {
+                          align: 'right',
+                          valign: 'middle',
+                          template: '#label#',
+                          marker: { radius: 0 }
+                      }, padding: { bottom: 70 }
+                  }, [{
+                      view: 'line',
+                      value: "#value#",
+                      line: { color: '#333' },
+                      label: false,
+                      item: { radius: 0 }
+                  }]
+                ).draw(data);
                 $("#vacantesOfrecidas").html(datos[2]);
             });
         }
@@ -690,21 +866,28 @@
         function CargaEmpresasTarget() {
             var url = '@Url.Action("ReporteEmpresasTarget", "UTP")';
             $.get(url, function (datos) {
-                var data = {
-                    labels: datos[0],
-                    datasets: [
-                        {
-                            label: "Empresas Target",
-                            fillColor: "rgba(220,220,220,0.5)",
-                            strokeColor: "rgba(220,220,220,0.8)",
-                            highlightFill: "rgba(220,220,220,0.75)",
-                            highlightStroke: "rgba(220,220,220,1)",
-                            data: datos[1]
-                        }
-                    ]
+                var data = [], i = 0;
+                for (; i < datos[0].length; i++) {
+                    data.push(_.zipObject(['label', 'value', 'inactive'], [datos[0][i], datos[1][i] == 0 ? "" : datos[1][i], 0]));
                 };
-                var ctx = document.getElementById("chartEmpresasTarget").getContext("2d");
-                var myNewChart = new Chart(ctx).Bar(data);
+                Chart.Column(
+                    {
+                        container: 'chartEmpresasTarget',
+                        color: function (o) { return o.value ? '#2ecc71' : '#eeeeee'; },
+                        legend: {
+                            align: 'right',
+                            valign: 'middle',
+                            template: '#label#',
+                            marker: { radius: 0 }
+                        }, padding: { bottom: 70 }
+                    }, [{
+                        view: 'line',
+                        value: "#value#",
+                        line: { color: '#333' },
+                        label: false,
+                        item: { radius: 0 }
+                    }]
+                ).draw(data);
                 $("#postulantesEmpresas").html(datos[2]);
                 $("#ratioPostulantes").html(datos[3]);
             });
@@ -714,21 +897,28 @@
         function CargaProcesosCerrados() {
             var url = '@Url.Action("ReporteOfertasConProcesosCerrados", "UTP")';
             $.get(url, function (datos) {
-                var data = {
-                    labels: datos[0],
-                    datasets: [
-                        {
-                            label: "Procesos Cerrados",
-                            fillColor: "rgba(220,220,220,0.5)",
-                            strokeColor: "rgba(220,220,220,0.8)",
-                            highlightFill: "rgba(220,220,220,0.75)",
-                            highlightStroke: "rgba(220,220,220,1)",
-                            data: datos[1]
-                        }
-                    ]
+                var data = [], i = 0;
+                for (; i < datos[0].length; i++) {
+                    data.push(_.zipObject(['label', 'value', 'inactive'], [datos[0][i], datos[1][i] == 0 ? "" : datos[1][i], 0]));
                 };
-                var ctx = document.getElementById("chartProcesosCerrados").getContext("2d");
-                var myNewChart = new Chart(ctx).Bar(data);
+                Chart.Column(
+                    {
+                        container: 'chartProcesosCerrados',
+                        color: function (o) { return o.value ? '#2ecc71' : '#eeeeee'; },
+                        legend: {
+                            align: 'right',
+                            valign: 'middle',
+                            template: '#label#',
+                            marker: { radius: 0 }
+                        }, padding: { bottom: 70 }
+                    }, [{
+                        view: 'line',
+                        value: "#value#",
+                        line: { color: '#333' },
+                        label: false,
+                        item: { radius: 0 }
+                    }]
+                ).draw(data);
                 $("#procesosCerrados").html(datos[2]);
             });
         }
@@ -738,30 +928,48 @@
         function CargaContrataciones() {
             var url = '@Url.Action("ReporteContrataciones", "UTP")';
             $.get(url, function (datos) {
-                var data = {
-                    labels: datos[0],
-                    datasets: [
+                var data = [], i = 0;
+                for (; i < datos[0].length; i++) {
+                    data.push(_.zipObject(['label', 'value', 'inactive'], [datos[0][i], datos[1][i] == 0 ? "" : datos[1][i], datos[2][i] == 0 ? "" : datos[2][i]]));
+                }
+                Chart.Column(
+                      {
+                          container: 'chartContrataciones',
+                          color: '#1abc9c',
+                          legend: {
+                              align: 'right',
+                              valign: 'middle',
+                              marker: { radius: 0 },
+                              values: [
+                                { text: 'Total Contrataciones', color: '#1abc9c' },
+                                { text: 'Contrataciones Target', color: '#dddddd' }
+                              ]
+                          }, padding: {bottom : 70}
+                      }, [
                         {
-                            label: "Total Contrataciones",
-                            fillColor: "rgba(220,220,220,1)",
-                            strokeColor: "rgba(220,220,220,0.8)",
-                            highlightFill: "rgba(220,220,220,0.75)",
-                            highlightStroke: "rgba(220,220,220,1)",
-                            data: datos[1]
+                            view: 'line',
+                            value: "#value#",
+                            line: { color: '#333' },
+                            label: false,
+                            item: { radius: 0 }
                         },
                         {
-                            label: "Contrataciones Target",
-                            fillColor: "rgba(151,187,205,1)",
-                            strokeColor: "rgba(151,187,205,0.8)",
-                            highlightFill: "rgba(151,187,205,0.75)",
-                            highlightStroke: "rgba(151,187,205,1)",
-                            data: datos[2]
+                            view: 'bar',
+                            value: "#inactive#",
+                            color: '#ddd',
+                            label: function (o) { return o.inactive; },
+                        },
+                        {
+                            view: 'line',
+                            value: "#inactive#",
+                            line: { color: 'red' },
+                            label: false,
+                            item: { radius: 0 }
                         }
-                    ]
-                };
+                      ]
+                    )
+                      .draw(data);
 
-                var myLineChart = new Chart(document.getElementById("chartContrataciones").getContext("2d")).Bar(data, { legendTemplate: "<ul class=\"bar-legend\"><% for (var i=0; i<datasets.length; i++){%><li class=\"li-legend\"><span class=\"pie-legend\" style=\"background-color:<%=datasets[i].fillColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>" });
-                document.getElementById("idLengedContrataciones").innerHTML = myLineChart.generateLegend();
                 $("#contratosAcumulados").html(datos[3]);
                 $("#contratosTarget").html(datos[4]);
                 $("#ratioEntrevistados").html(datos[5]);
@@ -773,47 +981,41 @@
         function CargaActivosSegunCarrera() {
             var url = '@Url.Action("ReporteAlumnosActivosSegunCarrera", "UTP")';
             $.get(url, function (datos) {
-                var data = {
-                    labels: datos[0],
-                    datasets: [
-                        {
-                            label: "Alumnos ACtivos Segun Carrera",
-                            fillColor: "rgba(220,220,220,0.5)",
-                            strokeColor: "rgba(220,220,220,0.8)",
-                            highlightFill: "rgba(220,220,220,0.75)",
-                            highlightStroke: "rgba(220,220,220,1)",
-                            data: datos[1]
-                        }
-                    ]
+                var data = [], i = 0;
+                for (; i < datos[0].length; i++) {
+                    data.push(_.zipObject(['label', 'value'], [datos[0][i], datos[1][i]]));
                 };
-                var ctx = document.getElementById("chartAlumnosSegunCarrera").getContext("2d");
-                var myNewChart = new Chart(ctx).Bar(data);
+                Chart.Bar({
+                    container: 'chartAlumnosSegunCarrera',
+                    padding: { left: 200, bottom: 60 },
+                    xAxis: { lines: false }
+                })
+                  .draw(data);
             });
         }
-        cargaCarrerasSinOfertasDePracticas();
-        function cargaCarrerasSinOfertasDePracticas() {
-            var url = '@Url.Action("ReporteCarrerasSinOfertasDePracticas", "UTP")' + '?ano=' + document.getElementById("carrerasSinOfertasDePracticas_Ano").value + '&mes=' + document.getElementById("carrerasSinOfertasDePracticas_Mes").value;
-
-            $.get(url, function (data) {
-
-                if (data.length > 0) {
-                    $('#carrerasSinOfertasDePracticas').html(data);
-                    $("#carrerasSinOfertasDePracticas").css("visibility", "visible");
-                    $("#msgCarrerasSinOfertasDePracticas").html("");
-                }
-                else {
-                    $("#msgCarrerasSinOfertasDePracticas").html("No se encontraron resultados");
-                    $("#carrerasSinOfertasDePracticas").css("visibility", "hidden");
-                }
+        CargaCvCompletosSegunCarrera();
+        function CargaCvCompletosSegunCarrera() {
+            var url = '@Url.Action("ReporteCvCompletosSegunCarrera", "UTP")';
+            $.get(url, function (datos) {
+                var data = [], i = 0;
+                for (; i < datos[0].length; i++) {
+                    data.push(_.zipObject(['label', 'value'], [datos[0][i], datos[1][i]]));
+                };
+                Chart.Bar({
+                    container: 'chartCvCompletoSegunCarrera',
+                    padding: { left: 200, bottom: 50 },
+                    xAxis: { lines: false }
+                })
+                  .draw(data);
             });
         }
-
 
         cargaEmpresasSegunClasificacionMes();
         cargaOfertasSegunClasificacionMes();
         cargaClasificacionCVsRecibidos();
         cargaOfertasSegunTipoTrabajoUTP();
         cargaCarrerasSinOfertasDeEmpleo();
+        cargaCarrerasSinOfertasDePracticas();
     });
 
     function cargaEmpresasSegunClasificacionMes() {
@@ -822,49 +1024,28 @@
         $.get(url, function (datosPie) {
             if (datosPie.length > 0) {
                 $("#chartEmpresasSegunClasificacionMes").css("visibility", "visible");
+                $("#chartEmpresasSegunClasificacionMes").html("");
                 $("#msgEmpresasSegunClasificacionMes").html("");
-                $("#legendEmpresas").remove();
-
-                var data = [];
+                $("#divEmpresasSegunClasificacionMensual").css("visibility", "visible");
+                var data = [], i = 0;
                 $.each(datosPie, function (index, value) {
                     var itemdata =
                         {
+                            label: value.PieLabel,
                             value: eval(value.PieValue),
-                            color: value.PieColor,
-                            highlight: value.PieHighlight,
-                            label: value.PieLabel
+                            color: value.PieColor
                         };
                     data.push(itemdata);
+                    i += eval(value.PieValue);
                 })
-
-                var helpers = Chart.helpers;
-                var canvas = document.getElementById("chartEmpresasSegunClasificacionMes");
-                var moduleDoughnut = new Chart(canvas.getContext('2d')).Pie(data, { legendTemplate: "<ul id=\"legendEmpresas\" class=\"col-sm-4\"><% for (var i=0; i<segments.length; i++){%><li class=\"li-legend\"><span class=\"pie-legend\" style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>", tooltipTemplate: "<%if (label){%><%=label%>: <%}%><%= value %>", animation: false });
-                //
-                var legendHolder = document.createElement('div');
-                legendHolder.innerHTML = moduleDoughnut.generateLegend();
-                // Include a html legend template after the module doughnut itself
-                helpers.each(legendHolder.firstChild.childNodes, function (legendNode, index) {
-                    helpers.addEvent(legendNode, 'mouseover', function () {
-                        var activeSegment = moduleDoughnut.segments[index];
-                        activeSegment.save();
-                        activeSegment.fillColor = activeSegment.highlightColor;
-                        moduleDoughnut.showTooltip([activeSegment]);
-                        activeSegment.restore();
-                    });
-                });
-                helpers.addEvent(legendHolder.firstChild, 'mouseout', function () {
-                    moduleDoughnut.draw();
-
-                });
-                canvas.parentNode.parentNode.appendChild(legendHolder.firstChild);
-
+                Chart.Pie({ container: 'chartEmpresasSegunClasificacionMes' }).draw(data);
+                $("#empresasSegunClasificacionMensual").html(i);
             }
             else {
 
                 $("#msgEmpresasSegunClasificacionMes").html("No se encontraron resultados");
-                $("#legendEmpresas").css("visibility", "hidden");
-                $("#chartEmpresasSegunClasificacionMes").css("visibility", "hidden");
+                $("#chartEmpresasSegunClasificacionMes").html("");
+                $("#divEmpresasSegunClasificacionMensual").css("visibility", "hidden");
             }
         });
     }
@@ -874,49 +1055,27 @@
         $.get(url, function (datosPie) {
             if (datosPie.length > 0) {
                 $("#chartOfertasSegunClasificacionMes").css("visibility", "visible");
+                $("#chartOfertasSegunClasificacionMes").html("");
                 $("#msgOfertasSegunClasificacionMes").html("");
-                $("#legendOfertas").remove();
-
-                var data = [];
+                $("#divOfertasSegunClasificacionMensual").css("visibility", "visible");
+                var data = [], i = 0;
                 $.each(datosPie, function (index, value) {
                     var itemdata =
                         {
+                            label: value.PieLabel,
                             value: eval(value.PieValue),
-                            color: value.PieColor,
-                            highlight: value.PieHighlight,
-                            label: value.PieLabel
+                            color: value.PieColor
                         };
                     data.push(itemdata);
+                    i += eval(value.PieValue);
                 })
-
-                var helpers = Chart.helpers;
-                var canvas = document.getElementById("chartOfertasSegunClasificacionMes");
-                var moduleDoughnut = new Chart(canvas.getContext('2d')).Pie(data, { legendTemplate: "<ul id=\"legendOfertas\" class=\"col-sm-4\"><% for (var i=0; i<segments.length; i++){%><li class=\"li-legend\"><span class=\"pie-legend\" style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>", tooltipTemplate: "<%if (label){%><%=label%>: <%}%><%= value %>", animation: false });
-                //
-                var legendHolder = document.createElement('div');
-                legendHolder.innerHTML = moduleDoughnut.generateLegend();
-                // Include a html legend template after the module doughnut itself
-                helpers.each(legendHolder.firstChild.childNodes, function (legendNode, index) {
-                    helpers.addEvent(legendNode, 'mouseover', function () {
-                        var activeSegment = moduleDoughnut.segments[index];
-                        activeSegment.save();
-                        activeSegment.fillColor = activeSegment.highlightColor;
-                        moduleDoughnut.showTooltip([activeSegment]);
-                        activeSegment.restore();
-                    });
-                });
-                helpers.addEvent(legendHolder.firstChild, 'mouseout', function () {
-                    moduleDoughnut.draw();
-
-                });
-                canvas.parentNode.parentNode.appendChild(legendHolder.firstChild);
-
-
+                Chart.Pie({ container: 'chartOfertasSegunClasificacionMes' }).draw(data);
+                $("#ofertasSegunClasificacionMensual").html(i);
             }
             else {
                 $("#msgOfertasSegunClasificacionMes").html("No se encontraron resultados");
-                $("#legendOfertas").css("visibility", "hidden");
-                $("#chartOfertasSegunClasificacionMes").css("visibility", "hidden");
+                $("#chartOfertasSegunClasificacionMes").html("");
+                $("#divOfertasSegunClasificacionMensual").css("visibility", "hidden");
             }
         });
     }
@@ -927,50 +1086,35 @@
         $.get(url, function (datosPie) {
             if (datosPie[0].length > 0) {
                 $("#chartOfertasSegunTipoTrabajoUTP").css("visibility", "visible");
+                $("#chartOfertasSegunTipoTrabajoUTP").html("");
                 $("#ofertasTargetDiv").css("visibility", "visible");
                 $("#msgOfertasSegunTipoTrabajoUTP").html("");
-                $("#legendTarget").remove();
                 var data = [];
                 $.each(datosPie[0], function (index, value) {
                     var itemdata =
                         {
+                            label: value.PieLabel,
                             value: eval(value.PieValue),
-                            color: value.PieColor,
-                            highlight: value.PieHighlight,
-                            label: value.PieLabel
+                            color: value.PieColor
                         };
                     data.push(itemdata);
                 })
-
-                var helpers = Chart.helpers;
-                var canvas = document.getElementById("chartOfertasSegunTipoTrabajoUTP");
-                var moduleDoughnut = new Chart(canvas.getContext('2d')).Pie(data, { legendTemplate: "<ul id=\"legendTarget\" class=\"col-sm-4\"><% for (var i=0; i<segments.length; i++){%><li class=\"li-legend\"><span class=\"pie-legend\" style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>", tooltipTemplate: "<%if (label){%><%=label%>: <%}%><%= value %>", animation: false });
-                //
-                var legendHolder = document.createElement('div');
-                legendHolder.innerHTML = moduleDoughnut.generateLegend();
-                // Include a html legend template after the module doughnut itself
-                helpers.each(legendHolder.firstChild.childNodes, function (legendNode, index) {
-                    helpers.addEvent(legendNode, 'mouseover', function () {
-                        var activeSegment = moduleDoughnut.segments[index];
-                        activeSegment.save();
-                        activeSegment.fillColor = activeSegment.highlightColor;
-                        moduleDoughnut.showTooltip([activeSegment]);
-                        activeSegment.restore();
-                    });
-                });
-                helpers.addEvent(legendHolder.firstChild, 'mouseout', function () {
-                    moduleDoughnut.draw();
-
-                });
-                canvas.parentNode.parentNode.appendChild(legendHolder.firstChild);
+                Chart.Pie({
+                    container: 'chartOfertasSegunTipoTrabajoUTP',
+                    legend: {
+                        align: 'right',
+                        valign: 'middle',
+                        template: '#label#',
+                        marker: { radius: 0 }
+                    }
+                }).draw(data);
 
                 $("#ofertasTarget").html(datosPie[1]);
 
             }
             else {
                 $("#msgOfertasSegunTipoTrabajoUTP").html("No se encontraron resultados");
-                $("#legendTarget").css("visibility", "hidden");
-                $("#chartOfertasSegunTipoTrabajoUTP").css("visibility", "hidden");
+                $("#chartOfertasSegunTipoTrabajoUTP").html("");
                 $("#ofertasTargetDiv").css("visibility", "hidden");
             }
         });
@@ -1014,30 +1158,28 @@
 
         $.get(url, function (datos) {
             if (datos[0].length > 0) {
-                $("#chartClasificacionCvsRecibidos").html(datos);
+                
                 $("#chartClasificacionCvsRecibidos").css("visibility", "visible");
+                $("#chartClasificacionCvsRecibidos").html("");
                 $("#msgClasificacionCvsRecibidos").html("");
+                $("#cvsRecibidosDiv").css("visibility", "visible");
 
-                var data = {
-                    labels: datos[0],
-                    datasets: [
-                        {
-                            label: "Cvs Recibidos",
-                            fillColor: "rgba(220,220,220,0.5)",
-                            strokeColor: "rgba(220,220,220,0.8)",
-                            highlightFill: "rgba(220,220,220,0.75)",
-                            highlightStroke: "rgba(220,220,220,1)",
-                            data: datos[1]
-                        }
-                    ]
+                var data = [], i = 0;
+                for (; i < datos[0].length; i++) {
+                    data.push(_.zipObject(['label', 'value'], [datos[0][i], datos[1][i]]));
                 };
-                var ctx = document.getElementById("chartClasificacionCvsRecibidos").getContext("2d");
-                var myNewChart = new Chart(ctx).Bar(data);
+
+                Chart.Bar({
+                    container: 'chartClasificacionCvsRecibidos',
+                    padding: { left: 75 },
+                    xAxis: { template: false, lines: false }
+                })
+                  .draw(data);
                 $("#cvsRecibidos").html(datos[2]);
             }
             else {
                 $("#msgClasificacionCvsRecibidos").html("No se encontraron resultados");
-                $("#chartClasificacionCvsRecibidos").css("visibility", "hidden");
+                $("#chartClasificacionCvsRecibidos").html("");
                 $("#cvsRecibidosDiv").css("visibility", "hidden");
             }
 

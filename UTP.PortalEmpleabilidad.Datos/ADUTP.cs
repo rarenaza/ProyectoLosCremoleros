@@ -365,7 +365,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                     cmd.Parameters.Add(new SqlParameter("@NivelDeFacturacion", empresa.NivelDeFacturacion));
                     cmd.Parameters.Add(new SqlParameter("@PosicionEnSector", empresa.PosicionEnSector == null ? "" : empresa.PosicionEnSector));
 
-
+                    cmd.Parameters.Add(new SqlParameter("@FechaActivacion", empresa.EstadoIdListaValor == "EMPRAC" ? (object)DateTime.Now : DBNull.Value));
 
                     cmd.Parameters.Add(new SqlParameter("@NuevoComentario", empresa.NuevoComentario == null ? "" : empresa.NuevoComentario));
 
@@ -1333,9 +1333,9 @@ namespace UTP.PortalEmpleabilidad.Datos
             }
             return dtResultado;
         }
-        public DataTable Reporte_OfertasConProcesosCerrados()
+        public DataSet Reporte_OfertasConProcesosCerrados()
         {
-            DataTable dtResultado = new DataTable();
+            DataSet dtResultado = new DataSet();
             using (SqlConnection conexion = new SqlConnection(cadenaConexion))
             {
                 SqlCommand cmd = new SqlCommand();
@@ -1344,7 +1344,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.Connection = conexion;
                 conexion.Open();
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
-                dtResultado = new DataTable();
+                dtResultado = new DataSet();
                 da.Fill(dtResultado);
                 conexion.Close();
             }
@@ -1403,6 +1403,23 @@ namespace UTP.PortalEmpleabilidad.Datos
             }
             return dtResultado;
         }
+        public DataTable Reporte_CvCompletosSegunCarrera()
+        {
+            DataTable dtResultado = new DataTable();
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Reporte_Cv_Completo_Por_Carrera";
+                cmd.Connection = conexion;
+                conexion.Open();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                dtResultado = new DataTable();
+                da.Fill(dtResultado);
+                conexion.Close();
+            }
+            return dtResultado;
+        }        
         public DataTable Reporte_Top10CarrerasMasDemandadas()
         {
             DataTable dtResultado = new DataTable();
