@@ -422,7 +422,7 @@
                         @item.AniosTrabajados
                     </div>
                     <div class="col-sm-1">
-                        @item.ExperienciaExcluyente
+                         @(@item.ExperienciaExcluyente == true ? "SI" : "NO")                       
                     </div>
                     <div class="col-sm-1">
                         @item.EstadoOfertaSectorEmpresarial.Valor

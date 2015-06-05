@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using UTP.PortalEmpleabilidad.Logica;
@@ -534,6 +535,14 @@ namespace UTPPrototipo.Controllers
             {
                 mensajeDeError.Append("La Empresa ya se encuentra registrada, por favor comuníquese con nosotros<br />");
             }
+            Regex rgx = new Regex(@"^\d{8}$");
+            if (empresa.TipoDocumentoIdListaValor == "TDDNI")
+	        {
+                if (!rgx.IsMatch(empresa.NumeroDocumento))
+                {
+                    mensajeDeError.Append("El Numero de Documento es inválido<br />");
+                }
+	        }
             if (ModelState.IsValid && mensajeDeError.ToString() == "")
             {
                 LNEmpresa lnEmpresa = new LNEmpresa();

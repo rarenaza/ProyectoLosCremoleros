@@ -310,5 +310,18 @@
         //$('#divListaPadre').html('demo');
         $('.modal.in').modal('hide');
     }
-
+    function validar(idEmpresa, idEmpresaUsuario, tipo) {
+        //console.log(idEmpresa + ' - ' + idEmpresaUsuario);
+        var nDocumento = $('#NumeroDocumento').val();
+        var tipoDocumento = $('#TipoDocumentoIdListaValor').val();
+        console.log(nDocumento);
+        console.log(tipoDocumento);
+        var regex = /^\d{8}$/
+        if (tipoDocumento == "TDDNI") {
+            if (!(regex.test(nDocumento))) {
+                document.getElementById("alertDocumento").style.display = "block";
+                return false;
+            } else { document.getElementById("alertDocumento").style.display = "none"; }
+        }
+    }
 </script>

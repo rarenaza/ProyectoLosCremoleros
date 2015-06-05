@@ -18,7 +18,7 @@
 
         <!--Si se desea mostrar los errores en un resumen se utiliza este helper-->
         @Html.ValidationSummary(false, "", new { @class = "alert alert-danger" })
-
+        <div id="alertDocumento" style="display:none" class="alert alert-danger">El Número de Documento es inválido</div>
         <div class="row">
             <div class="col-sm-12">
                 <div class="input-group">

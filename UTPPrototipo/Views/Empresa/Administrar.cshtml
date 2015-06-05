@@ -239,6 +239,16 @@
 
     function validar(idEmpresa, idEmpresaUsuario, tipo) {
         //console.log(idEmpresa + ' - ' + idEmpresaUsuario);
+        var nDocumento = $('#NumeroDocumento').val();
+        var tipoDocumento = $('#TipoDocumentoIdListaValor').val();
+        var regex = /^\d{8}$/
+        if (tipoDocumento == "TDDNI") {
+            if (!(regex.test(nDocumento))) {
+                document.getElementById("alertDocumento").style.display = "block";
+                return false;
+            } else { document.getElementById("alertDocumento").style.display = "none"; }
+        }
+
         var validacionNroDocumento = false;
         var validacionUsuario = false;
         var $nroDocumentoInput = $('#NumeroDocumento');
