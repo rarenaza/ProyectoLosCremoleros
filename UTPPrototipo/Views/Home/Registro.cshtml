@@ -15,11 +15,11 @@
     <div class="container fuente-pequeña">
         <h5 style="text-align:center;"><strong>Registro</strong></h5>
         <hr />
-        <h5><strong>Alumnos o Exalumnos UTP</strong></h5>
-        <p>Para acceder al portal de Empleabilidad de la UTP, solo necesitas ingresar con tu Usuario y Clave de Correo. Haz <a href="#" data-toggle="modal" data-target="#Modal-ingresar">Clic aquí</a> para ingresar. En caso de presentarse algún inconveniente con su ingreso al portal,  por favor comunicarse con la Mesa de Ayuda del Grupo UTP al 3159600 Anexo 1444 o al correo mesadeayuda@utp.edu.pe</p>
+        <h4><strong>Alumnos o Egresados UTP</strong></h4>
+        <p>Para acceder tu cuenta de Empleabilidad de la UTP, solo necesitas ingresar con tu Usuario y Clave de Correo. Haz <a href="#" data-toggle="modal" data-target="#Modal-ingresar">clic aquí</a> para ingresar. En caso de presentarse algún inconveniente con tu ingreso,  por favor comunicarse con Mesa de Ayuda del Grupo UTP al 315-9600 Anexo 1444 o al correo <a href="mailto:mesadeayuda@utp.edu.pe">mesadeayuda@utp.edu.pe</a>.</p>
         <hr />
-        <h5><strong>Empresas</strong></h5>
-        <p>Si desea incribir una empresa en nuestro Portal, por favor complete los datos a continuación.</p>
+        <h4><strong>Empresas</strong></h4>
+        <p>Si desea registrar su empresa en nuestro Portal, por favor complete los datos a continuación.</p>
         <br />
         @*<div class="alert alert-danger" role="alert">Faltan Datos</div>*@
         @Html.ValidationSummary(false, "", new { @class = "alert alert-danger" })
@@ -199,14 +199,14 @@
                     <div class="input-group fuente-pequeña">
                         <span class="input-group-addon fuente-pequeña">(*)<br />Nombres</span>
                         @*<input type="text" class="form-control fuente-pequeña" placeholder="Ingrese sus nombres">*@
-                        @Html.TextBoxFor(model => model.NombresUsuario, new { @class = "form-control", @placeholder = "Ingrese su(s) nombre(s)" })
+                        @Html.TextBoxFor(model => model.NombresUsuario, new { @class = "form-control", @placeholder = "Ingrese su(s) Nombre(s)" })
                     </div>@Html.ValidationMessageFor(model => model.NombresUsuario, "", new { @class = "text-danger" })
                 </div>
                 <div class="col-sm-6">
                     <div class="input-group fuente-pequeña">
                         <span class="input-group-addon fuente-pequeña">(*)<br />Apellidos</span>
                         @*<input type="text" class="form-control fuente-pequeña" placeholder="Ingrese sus apellidos">*@
-                        @Html.TextBoxFor(model => model.ApellidosUsuario, new { @class = "form-control", @placeholder = "Ingrese sus apellidos" })
+                        @Html.TextBoxFor(model => model.ApellidosUsuario, new { @class = "form-control", @placeholder = "Ingrese su(s) Apellidos" })
                     </div>@Html.ValidationMessageFor(model => model.ApellidosUsuario, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -215,7 +215,7 @@
                 <div class="col-sm-4">
                     <div class="input-group fuente-pequeña">
                         <span class="input-group-addon fuente-pequeña">(*) Tipo <br />Document.</span>
-                        @Html.DropDownListFor(m => m.TipoDocumentoIdListaValor, null, "- Seleccione tipo de Documento -", htmlAttributes: new { @class = "form-control" })
+                        @Html.DropDownListFor(m => m.TipoDocumentoIdListaValor, null, "- Seleccione Tipo de Documento -", htmlAttributes: new { @class = "form-control" })
 
                         @*<select class="form-control fuente-pequeña">
                                 <option value="">-- Elija Tipo Documento de Identificación--</option>
@@ -245,7 +245,7 @@
             <div class="row">
                 <div class="col-sm-8">
                     <div class="input-group">
-                        <span class="input-group-addon">(*) e-Mail</span>
+                        <span class="input-group-addon">(*) Email</span>
                         @*<input type="text" class="form-control" placeholder="e-Mail del Usuario">*@
                         @Html.TextBoxFor(model => model.EmailUsuario, new { @class = "form-control", @placeholder = "Correo electrónico de contacto" })
                     </div>@Html.ValidationMessageFor(model => model.EmailUsuario, "", new { @class = "text-danger" })
@@ -253,12 +253,15 @@
             </div>
             <br />
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                     <div class="input-group fuente-pequeña">
                         <span class="input-group-addon fuente-pequeña">(*)<br />Usuario</span>
                         @*<input type="text" class="form-control fuente-pequeña" placeholder="Ingrese un nombre de Usuario, con no menos de 8, y máximo 40 caracteres">*@
-                        @Html.TextBoxFor(model => model.CuentaUsuario, new { @class = "form-control", @placeholder = "Ingrese un nombre de Usuario, con no menos de 8, y máximo 50 caracteres" })
+                        @Html.TextBoxFor(model => model.CuentaUsuario, new { @class = "form-control" })
                     </div>@Html.ValidationMessageFor(model => model.CuentaUsuario, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-4">
+                    <p>Ingrese un nombre de Usuario, con no menos de 8, y máximo 50 caracteres.</p>
                 </div>
             </div>
             <div class="row">
@@ -283,6 +286,7 @@
                         @Html.PasswordFor(m => m.ContrasenaValidador, new { @class = "form-control" })
                     </div>@Html.ValidationMessageFor(model => model.ContrasenaValidador, "", new { @class = "text-danger" })
                 </div>
+
             </div>
             <hr />
             <div class="row">
