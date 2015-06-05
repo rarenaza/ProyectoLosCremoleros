@@ -255,20 +255,18 @@ namespace UTPPrototipo.Controllers
                 {
                     System.IO.Directory.CreateDirectory(dir);
                 }
-
                 using (FileStream fs = System.IO.File.Create(word))
                 {
                     fs.Write(file, 0, file.Length);
                     fs.Close();
                 }
-
                 Microsoft.Office.Interop.Word.Application app = new Microsoft.Office.Interop.Word.Application();
+
+                app.Visible = false;
                 app.Documents.Open(word).SaveAs2(pdf, WdExportFormat.wdExportFormatPDF);
                 app.Documents.Close();
                 app.Quit();
-
                 output = System.IO.File.ReadAllBytes(pdf);
-
                 // Clean temporal files
                 System.IO.File.Delete(word);
                 System.IO.File.Delete(pdf);
@@ -432,7 +430,7 @@ namespace UTPPrototipo.Controllers
                             ? DateTime.Now.Month
                             : Convert.ToInt32(data["FechaFinCargoMes"]);
 
-                        timeOfExperience += (yearEnd - yearStart) * 12 + monthEnd - monthStart;
+                        timeOfExperience += (yearEnd - yearStart) * 12 + monthEnd +1 - monthStart;
                     }
 
                     enterprises.Add(Convert.ToString(enterprise["Empresa"]), new

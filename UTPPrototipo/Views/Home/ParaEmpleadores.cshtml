@@ -7,6 +7,44 @@
     int cont = 1;
 }
 
+@*  Tipo pestaña:
+    1. Ambos
+    2. Solo imagen
+    3. Solo texto
+
+    Bloque 1
+    Si solo imagen y subtitulo = "arriba"
+
+    Bloque 2
+    Ambos
+
+    Bloque 3
+    Solo texto y subtitulo !=  "imagen"
+
+    Bloque 4
+    Cualquier valor que posea subtitulo == "imagen"
+
+    Bloque 5
+    Si solo imagen y subtitulo = "abajo"
+
+*@
+
+@Html.Raw(string.Format("</div>"))
+@Html.Raw(string.Format("</div>"))
+
+@foreach (var item in Model)
+{
+    if (item.Pestana == "2" && (item.SubTitulo.ToString() == "arriba"))
+    {
+        <div class="row row-contenido1">
+            <div class="container">
+                <div class="col-md-12">
+                    <img alt="" class="imagen-portal1" src='@Url.Action("Imagen_ParaEmpleadores", "Home", new { id = @item.IdContenido})' />
+                </div>
+            </div>
+        </div>
+    }
+}
 
 
 @foreach (var item in Model)
@@ -95,7 +133,7 @@
 
 @foreach (var item in Model)
 {
-    if (item.Pestana == "2")
+    if (item.Pestana == "2" && (item.SubTitulo.ToString() == "abajo"))
     {
         <div class="row row-contenido1">
             <div class="container">

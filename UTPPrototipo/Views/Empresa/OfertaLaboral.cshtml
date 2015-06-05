@@ -29,7 +29,7 @@
                 <div class="panel-heading" role="tab" id="headingOfertaCabecera" style="padding: 2px 2px 2px 6px;">
                     <h5 class="panel-title">
                         <a data-toggle="collapse" data-parent="#accordion" href="#collapseOfertaCabecera" aria-expanded="true" aria-controls="collapseOfertaCabecera" class="fuente-seccion">
-                            Edición de Oferta Laboral
+                            Edición de la Oferta
                         </a>
                     </h5>
                 </div>
@@ -45,14 +45,14 @@
                                     <span class="input-group-addon">
                                         (*) Correos
                                     </span>
-                                    @Html.DropDownListFor(m => m.RecibeCorreosIdListaValor, null, "- Seleccione forma de Notificación -", htmlAttributes: new { @class = "form-control" })
+                                    @Html.DropDownListFor(m => m.RecibeCorreosIdListaValor, null, "- Seleccione Forma de Notificación -", htmlAttributes: new { @class = "form-control" })
                                 </div>
                                 @Html.ValidationMessageFor(m => m.RecibeCorreosIdListaValor, "", new { @class = "text-danger" })
                             </div>
 
                             <!--Bloque 2: Guardar-->
                             <div class="col-sm-3" style="border-right:solid;border-right-color:lightgray;border-right-width:1px;text-align:center;">
-                                <span>Guarde las modificaciones que ha realizado sobre su Oferta.</span>
+                                <span>Guarde las modificaciones que ha realizado sobre su oferta</span>
                                 <br />
                                 <button class="btn btn-default color-paleta2" style="margin-bottom:5px;">Guardar</button>
 
@@ -60,7 +60,7 @@
 
                             <!--Bloque 3: Vista previa-->
                             <div class="col-sm-3" style="border-right:solid;border-right-color:lightgray;border-right-width:1px;text-align:center;">
-                                <span>Visualice como los Postulantes verán su Oferta Laboral</span>
+                                <span>Visualice como los postulantes verán su oferta</span>
                                 <br />
                                 @{
                                     if (Model.EstadoOferta == "OFERBO") //Estado en borrador.
@@ -82,14 +82,14 @@
                                 @{
                                 if (Model.EstadoOferta == "OFERCO") //Estado en construcción.
                                 {
-                                    <span>Si ha finalizado la edición de su Oferta laboral, entonces Publíquela.</span>
+                                    <span>Si ha finalizado la edición de su oferta, entonces puede publicarla</span>
                                     <br />
                                     <span id="lblPublicarOferta" class="btn btn-default color-paleta2">Publicar</span>
                                 }
                                 else
                                     if (Model.EstadoOferta == "OFERBO") //Estado en borrador.
                                     {
-                                        <span>Si ha finalizado la edición de su Oferta laboral, entonces Publíquela.</span>
+                                        <span>Si ha finalizado la edición de su oferta, entonces puede publicarla</span>
                                         <br />
                                         <span id="lblPublicarOferta" class="btn btn-default color-paleta2" style="color:grey;" disabled>Publicar</span>
                                     }
@@ -127,7 +127,7 @@
                                 <div class="input-group rubberBand">
                                     <span class="input-group-addon"><strong>(*) Cargo</strong></span>
                                     @*<input id="CargoOfrecido" data-val="true" data-val-required="No ha ingresado el campo" name="CargoOfrecido" type="text" class="form-control" placeholder="Nombre del cargo a publicar" value="@Model.CargoOfrecido">*@
-                                    @Html.TextBoxFor(m => m.CargoOfrecido, new { @class = "form-control", @id = "Cargo", @placeholder = "Nombre del cargo a publicar" })
+                                    @Html.TextBoxFor(m => m.CargoOfrecido, new { @class = "form-control", @id = "Cargo", @placeholder = "Nombre del cargo" })
 
                                     @*<input class="text-box single-line" id="CargoOfrecido" name="CargoOfrecido" type="text" value="">*@
                                     @*@Html.EditorFor(model => model.CargoOfrecido, new { @class = "form-control" })*@
@@ -175,14 +175,14 @@
                         <div id="collapseDetalle" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingDetalle">
                             <div class="panel-body fuente-pequeña">
                                 <div class="input-group">
-                                    <span class="input-group-addon">Recibir<br />CVs hasta</span>
+                                    <span class="input-group-addon">(*) Recibir<br />CVs hasta</span>
                                     @*@Html.TextBoxFor(m => m.FechaFinRecepcionCV, new { @class = "form-control", @placeholder = "Fecha final de Recepcion de CVs" })*@
                                     @*@Html.Raw(@Html.EditorFor(m => m.FechaFinRecepcionCV).ToString().Replace("text-box single-line", "form-control"))*@
-                                    @Html.TextBoxFor(m => m.FechaFinRecepcionCV, new { @class = "form-control", @placeholder = "Fecha de fin de publicación", @Value = (Model.FechaFinRecepcionCV.ToString("d") == DateTime.Now.ToShortDateString() ? "" : Model.FechaFinRecepcionCV.ToString("d")) })
+                                    @Html.TextBoxFor(m => m.FechaFinRecepcionCV, new { @class = "form-control", @placeholder = "Fecha fin recepción de CVs", @Value = (Model.FechaFinRecepcionCV.ToString("d") == DateTime.Now.ToShortDateString() ? "" : Model.FechaFinRecepcionCV.ToString("d")) })
                                 </div>
                                 @Html.ValidationMessageFor(m => m.FechaFinRecepcionCV, "", new { @class = "text-danger" })
                                 <div class="input-group">
-                                    <span class="input-group-addon">Fin de<br />la oferta</span>
+                                    <span class="input-group-addon">(*) Fin de<br />la oferta</span>
                                     @Html.TextBoxFor(m => m.FechaFinProceso, new { @class = "form-control", @placeholder = "Fecha fin de la oferta", @Value = (Model.FechaFinProceso.ToString("d") == DateTime.Now.ToShortDateString() ? "" : Model.FechaFinProceso.ToString("d")) })
                                 </div>
                                 @Html.ValidationMessageFor(m => m.FechaFinProceso, "", new { @class = "text-danger" })
@@ -379,7 +379,7 @@
 
                         <div id="collapseFases" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFases">
                             <div class="panel-body fuente-pequeña">
-                                <p>Seleccionar Fases para esta Oferta</p>
+                                <p>Seleccionar fases para esta Oferta</p>
 
                                 @for (int i = 0; i < Model.OfertaFases.Count(); i++)
                                 {

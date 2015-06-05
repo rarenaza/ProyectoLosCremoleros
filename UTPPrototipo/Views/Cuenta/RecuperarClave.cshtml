@@ -34,8 +34,9 @@
             </script>
         }
         <form>
-            <p>Paso 1:</p>
-            <p>Ingrese su Usuario y haga click en Enviar. Le enviaremos una clave token a su cuenta de correo registrada.</p>
+            <p><strong>Paso 1:</strong></p>
+            <p>Ingrese su Usuario y haga click en Enviar.</p>
+            <p>Le enviaremos una clave token a su cuenta de correo registrada.</p>
             <div class="input-group grupo-ingreso">
                 <span class="input-group-addon nombre-campo">Usuario</span>            
                 @Html.TextBoxFor(m => m.NombreUsuario, new { @class = "form-control",  @id = "Nusuario"})  
@@ -46,8 +47,9 @@
             @Html.ValidationMessageFor(m => m.NombreUsuario, "", new { @class = "text-danger" })           
 
             <hr />
-            <p>Paso 2:</p>
-            <p>Revise su correo, ingrese su clave token y haga click en Ingresar. Si la ventana se cierra, deberá volver a generar la clave token.</p>
+            <p><strong>Paso 2:</strong></p>
+            <p>Revise su correo, ingrese su clave token y haga clic en Ingresar.</p>
+            <p> Si la ventana se cierra, deberá volver a generar la clave token.</p>
             <div class="input-group grupo-ingreso">
               
                 <span class=" input-group-addon nombre-campo">Token</span>

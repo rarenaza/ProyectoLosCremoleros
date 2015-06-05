@@ -210,7 +210,7 @@ namespace UTPPrototipo.Controllers
                 lnUsuario.InsertarToken(result, NombreUsuario, DateTime.Now.AddHours(1), DateTime.Now, ip);
 
                 Mensaje mensaje = new Mensaje();
-                mensaje.DeUsuarioCorreoElectronico = "utpempleabilidad@utp.edu.pe";
+                mensaje.DeUsuarioCorreoElectronico = "empleabilidad@utp.edu.pe";
                 mensaje.ParaUsuarioCorreoElectronico = Convert.ToString(dsResultado.Tables[2].Rows[0]["CorreoElectronico"]); //Administrador UTP
                 mensaje.Asunto = "Cambio de Contraseña";
                 mensaje.MensajeTexto = "Estimado(a):" + NombreUsuario + "\r\n\r\n" +
