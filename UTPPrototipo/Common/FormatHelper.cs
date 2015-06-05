@@ -39,7 +39,7 @@ namespace UTPPrototipo.Common
                         }
                         else
                         {
-                            if (ts.Days <= 30)
+                            if (ts.Days <= 7)
                             {
                                 fechatexto = "Hace " + ts.Days + " dias";
                             }

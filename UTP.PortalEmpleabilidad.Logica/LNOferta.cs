@@ -473,6 +473,8 @@ namespace UTP.PortalEmpleabilidad.Logica
                 sector.IdOferta = Convert.ToInt32(filaSector["IdOferta"]);
                 sector.SectorEmpresarial.Valor = Convert.ToString(filaSector["SectorEmpresarialDescripcion"]);
                 sector.AniosTrabajados = Convert.ToInt32(filaSector["AniosTrabajados"] == System.DBNull.Value ? null : filaSector["AniosTrabajados"]);
+                sector.ExperienciaExcluyente = Convert.ToBoolean(filaSector["ExperienciaExcluyente"]);
+                sector.EstadoOfertaSectorEmpresarial.Valor = Convert.ToString(filaSector["EstadoOfertaSectorEmpresarialDescripcion"]);
                 sector.CreadoPor = Convert.ToString(filaSector["CreadoPor"]);
                 sector.ModificadoPor = Convert.ToString(filaSector["ModificadoPor"]);
                 sector.FechaCreacion = Convert.ToDateTime(filaSector["FechaCreacion"]);
@@ -493,6 +495,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 infoAdicional.Conocimiento = Convert.ToString(filaInfoAdicional["Conocimiento"]);
                 infoAdicional.NivelConocimiento.Valor = Convert.ToString(filaInfoAdicional["NivelConocimientoDescripcion"]);
                 infoAdicional.AniosExperiencia = Convert.ToInt32(filaInfoAdicional["AniosExperiencia"] == System.DBNull.Value ? null : filaInfoAdicional["AniosExperiencia"]);
+                infoAdicional.EstadoOfertaInformacionAdicional.Valor = Convert.ToString(filaInfoAdicional["EstadoOfertaInformacionAdicionalDescripcion"]);
                 infoAdicional.CreadoPor = Convert.ToString(filaInfoAdicional["CreadoPor"]);
                 infoAdicional.ModificadoPor = Convert.ToString(filaInfoAdicional["ModificadoPor"]);
                 infoAdicional.FechaCreacion = Convert.ToDateTime(filaInfoAdicional["FechaCreacion"]);
