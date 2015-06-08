@@ -230,7 +230,7 @@ namespace UTP.PortalEmpleabilidad.Datos
             return cantidad;
         }
 
-        public DataTable ObtenerUsuariosParaUTP(int nroPaginActual, int filasPorPagina)
+        public DataTable ObtenerUsuariosParaUTP(int nroPaginActual, int filasPorPagina, string nombre)
         {
             DataTable dtResultado = new DataTable();
 
@@ -242,6 +242,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.CommandText = "EmpresaUsuario_ObtenerListaParaUTP";
                 cmd.Parameters.Add(new SqlParameter("@NroPaginaActual", nroPaginActual));
                 cmd.Parameters.Add(new SqlParameter("@FilasPorPagina", filasPorPagina));
+                cmd.Parameters.Add(new SqlParameter("@Nombre", nombre));
 
                 cmd.Connection = conexion;
 
