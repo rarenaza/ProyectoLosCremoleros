@@ -6,18 +6,18 @@
     <h5>Postulantes Pendientes de Revisión</h5>
 
     <div class="row grilla1-cabecera color-paleta1">
-        <div class="col-sm-3"><strong>Fecha de <br />Postulación</strong></div>
-        <div class="col-sm-3"><strong>Oferta</strong></div>
+        <div class="col-sm-2"><strong>Fecha de <br />Postulación</strong></div>
+        <div class="col-sm-4"><strong>Oferta</strong></div>
         <div class="col-sm-4"><strong>Postulante</strong></div>
         <div class="col-sm-2"><strong>Cumplimiento de Oferta</strong></div>
     </div>
     @foreach (var item in Model)
     {
         <div class="row grilla1-linea">
-            <div class="col-sm-3">
+            <div class="col-sm-2">
                 @Html.FormatoFrecuencia(item.FechaPostulacion)
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-4">
                 @*<a href="../Empresa/Oferta">@item.CargaOfrecido</a>*@
                 @*@Html.ActionLink(item.CargaOfrecido, "Oferta", "Empresa", new { idOfertaCrypt = Helper.Encriptar(item.IdOferta.ToString()), pantallaCrypt = Helper.Encriptar("Empresa") }, htmlAttributes: new { target = "_blank" })*@
                 @Html.ActionLink(item.CargaOfrecido, "Oferta", "Empresa", new { idOfertaCrypt = Helper.Encriptar(item.IdOferta.ToString()), pantallaCrypt = Helper.Encriptar("Empresa") }, null)
