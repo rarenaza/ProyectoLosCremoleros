@@ -1,4 +1,5 @@
-﻿@{
+﻿@model UTP.PortalEmpleabilidad.Modelo.Vistas.Ofertas.VistaEmpresListarOfertas
+@{
     Layout = "~/Views/UTP/_LayoutUTP.cshtml";
     ViewBag.Title = "Sistema";
 }
@@ -15,6 +16,18 @@
                     <option value="utp">Usuarios UTP</option>
                     <option value="empresa">Usuarios Empresa</option>
                 </select>
+            </td>
+            <td style="width:500px; padding-bottom:4px">
+                <div class="input-group fuente-pequeña" id="textEmp" style="visibility:hidden; margin-left:10px">
+                    <span class="input-group-addon fuente-pequeña">Palabra Clave</span>
+                    @Html.TextBoxFor(model => model.PalabraClave, new { @class = "form-control", @placeholder = "Búsqueda Por Nombre, Apellido, Usuario o Nombre de Empresa" })
+
+                </div>
+            </td>
+            <td style="text-align:right; visibility:hidden" id="btnEmp">
+                <span class="col-md-6 btn-group">
+                <span class="btn btn-default fa fa-search color-paleta8" id="buscar"></span>
+                </span>
             </td>
         </tr>
     </table>    
@@ -254,23 +267,61 @@
         //alert(combo.value);
 
         if (combo.value == "empresa") {
-            var url = '@Url.Action("_UsuariosEmpresaLista", "UTP", new { nroPaginaActual = 1 })';
+            var url = '@Url.Action("_UsuariosEmpresaLista", "UTP")' + '?nroPaginaActual=' + 1 + '&nombre=' + "";
+             
             $.get(url, function (data) {
-                console.log(data);
+                //console.log(data);
                 $('#divListaUsuariosUTP').html(data);
             });
+            $('#textEmp').css("visibility", "visible");
+            $('#btnEmp').css("visibility", "visible");
         }
         else if (combo.value == "utp") {
             var url = '@Url.Action("_UsuariosUTPLista", "UTP")';
             $.get(url, function (data) {
-                console.log(data);
+                //console.log(data);
                 $('#divListaUsuariosUTP').html(data);
             });
+            $('#textEmp').css("visibility", "hidden");
+            $('#btnEmp').css("visibility", "hidden");
         }
     }
 
+    $('#buscar').click(function () {
+        var empresa = {
+            PalabraClave: $('#PalabraClave').val(),
+            nroPaginaActual: 1,
+        };
+        console.log(empresa);
+        //Cargar("resultadobusqueda", "/UTP/BusquedaSimpleEmpresasActivas", empresa);
+
+        Cargar("divListaUsuariosUTP", '@Url.Action("_UsuariosEmpresaLista", "UTP")' + '?nroPaginaActual=' + 1 + '&nombre=' + empresa.PalabraClave,empresa);
+    });
+
+    function Cargar(id, link, entidad) {
+        //debugger;
+        $.ajax({
+            url: link,
+            contentType: 'application/json; charset=utf-8',
+            type: 'POST',
+            data: JSON.stringify(entidad),
+            dataType: 'html'
+        })
+        .success(function (result) {
+            $("#" + id).html(result);
+            //alert(result);
+            //console.log(result);
+        })
+        .error(function (xhr, status) {
+            console.log(xhr);
+            console.log(status);
+            alert('error');
+        })
+    }
+
     function buscarPaginacion(nroPaginaActual) {
-        var url = '@Url.Action("_UsuariosEmpresaLista", "UTP")' + '?nroPaginaActual=' + nroPaginaActual;
+        var PalabraClave = $('#PalabraClave').val();
+        var url = '@Url.Action("_UsuariosEmpresaLista", "UTP")' + '?nroPaginaActual=' + nroPaginaActual + '&nombre=' + PalabraClave;
         $.get(url, function (data) {
             console.log(data);
             $('#divListaUsuariosUTP').html(data);

@@ -171,11 +171,11 @@ namespace UTP.PortalEmpleabilidad.Logica
             return adEmpresaUsuario.ValidarUsuario(idEmpresa, usuario, idEmpresaUsuario);
         }
 
-        public List<EmpresaUsuario> ObtenerUsuariosParaUTP(int nroPaginActual, int filasPorPagina)
+        public List<EmpresaUsuario> ObtenerUsuariosParaUTP(int nroPaginActual, int filasPorPagina, string nombre)
         {
             List<EmpresaUsuario> lista = new List<EmpresaUsuario>();
 
-            DataTable dtResultado = adEmpresaUsuario.ObtenerUsuariosParaUTP(nroPaginActual, filasPorPagina);
+            DataTable dtResultado = adEmpresaUsuario.ObtenerUsuariosParaUTP(nroPaginActual, filasPorPagina, nombre);
 
             //Usuarios>
             foreach (DataRow usuarioBD in dtResultado.Rows)

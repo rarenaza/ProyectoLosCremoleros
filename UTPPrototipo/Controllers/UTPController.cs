@@ -3656,10 +3656,10 @@ namespace UTPPrototipo.Controllers
 
 
 
-        public ActionResult _UsuariosEmpresaLista(int nroPaginaActual)
+        public ActionResult _UsuariosEmpresaLista(int nroPaginaActual, string nombre)
         {
             LNEmpresaUsuario lnEmpresaUsuario = new LNEmpresaUsuario();
-            List<EmpresaUsuario> lista = lnEmpresaUsuario.ObtenerUsuariosParaUTP(nroPaginaActual, Constantes.FILAS_POR_PAGINA_UTP);
+            List<EmpresaUsuario> lista = lnEmpresaUsuario.ObtenerUsuariosParaUTP(nroPaginaActual, Constantes.FILAS_POR_PAGINA_UTP, nombre);
 
             //Datos para la paginación.
             int cantidadTotal = lista.Count() == 0 ? 0 : lista[0].CantidadTotal;
@@ -3745,7 +3745,7 @@ namespace UTPPrototipo.Controllers
 
 
             LNEmpresaUsuario lnEmpresaUsuario = new LNEmpresaUsuario();
-            List<EmpresaUsuario> lista = lnEmpresaUsuario.ObtenerUsuariosParaUTP(1, Constantes.FILAS_POR_PAGINA_UTP);
+            List<EmpresaUsuario> lista = lnEmpresaUsuario.ObtenerUsuariosParaUTP(1, Constantes.FILAS_POR_PAGINA_UTP, "");
 
             //Datos para la paginación.
             int cantidadTotal = lista.Count() == 0 ? 0 : lista[0].CantidadTotal;
@@ -3824,7 +3824,7 @@ namespace UTPPrototipo.Controllers
             LNEmpresaUsuario lnEmpresaUsuario = new LNEmpresaUsuario();
             lnEmpresaUsuario.Insertar(empresaUsuario);
 
-            List<EmpresaUsuario> lista = lnEmpresaUsuario.ObtenerUsuariosParaUTP(1, Constantes.FILAS_POR_PAGINA_UTP);
+            List<EmpresaUsuario> lista = lnEmpresaUsuario.ObtenerUsuariosParaUTP(1, Constantes.FILAS_POR_PAGINA_UTP, "");
 
             //Datos para la paginación.
             int cantidadTotal = lista.Count() == 0 ? 0 : lista[0].CantidadTotal;
@@ -3878,7 +3878,7 @@ namespace UTPPrototipo.Controllers
             lnEmpresaUsuario.Actualizar(empresaUsuario);
 
             //Se actualiza la lista de usuarios de la empresa.
-            List<EmpresaUsuario> lista = lnEmpresaUsuario.ObtenerUsuariosParaUTP(1, Constantes.FILAS_POR_PAGINA_UTP);
+            List<EmpresaUsuario> lista = lnEmpresaUsuario.ObtenerUsuariosParaUTP(1, Constantes.FILAS_POR_PAGINA_UTP, "");
 
             //Datos para la paginación.
             int cantidadTotal = lista.Count() == 0 ? 0 : lista[0].CantidadTotal;
