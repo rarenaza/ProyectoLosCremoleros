@@ -38,16 +38,13 @@ namespace UTP.PortalEmpleabilidad.Logica
 
         public int UsuarioSistemaUTP_Exitencia(string Usuario)
         {
-            
           return adUtp.UsuarioSistemaUTP_Exitencia(Usuario);
-
         }
        
 
         public List<EmpresaListaEmpresa> Utp_ListaEmpresas()
         {
             List<EmpresaListaEmpresa> listaEjemplo = new List<EmpresaListaEmpresa>();
-
 
             DataTable dtResultado = adUtp.Utp_ListaEmpresas();
 
@@ -130,12 +127,10 @@ namespace UTP.PortalEmpleabilidad.Logica
 
             return listaEjemplo;
         }
-        //public List<EmpresaListaEmpresa> EmpresaBusquedaAvanzada(string NombreComercial, string IdEstadoEmpresa, string IdSector, string RazonSocial, string IdentificadorTributario, string NroOferta, string NroPostulante, int nroPaginaActual, int filasPorPagina)
+
         public List<EmpresaListaEmpresa> EmpresaBusquedaAvanzada(string NombreComercial, string IdEstadoEmpresa, string IdSector, string RazonSocial, string IdentificadorTributario, int NroOferta, int NroPostulante, int nroPaginaActual, int filasPorPagina)
         {
             List<EmpresaListaEmpresa> listaEjemplo = new List<EmpresaListaEmpresa>();
-
-
 
             DataTable dtResultado = adUtp.Empresa_BusquedaAvanzada(NombreComercial, IdEstadoEmpresa, IdSector, RazonSocial, IdentificadorTributario, NroOferta, NroPostulante, nroPaginaActual, filasPorPagina);
 
@@ -170,15 +165,23 @@ namespace UTP.PortalEmpleabilidad.Logica
             return listaEjemplo;
         }
 
-       
-
-
+        public DataTable EmpresaBusquedaExcel(
+            string NombreComercial = "", 
+            string IdEstadoEmpresa = "", 
+            string IdSector = "", 
+            string RazonSocial = "", 
+            string IdentificadorTributario = "", 
+            int NroOferta = 0, 
+            int NroPostulante = 0) 
+        {
+            return adUtp.Excel_ObtenerEmpresas(NombreComercial, IdEstadoEmpresa, IdSector, RazonSocial, IdentificadorTributario, NroOferta, NroPostulante);
+        }
   
         public DataTable UTP_ObtenerUltimosConvenios(string Dato)
         {
-
             return adUtp.UTP_ObtenerUltimosConvenios(Dato);
         }
+
         public Convenio UTP_ObtenerConvenio(int idConvenio)
         {
             DataSet dsResultado = adUtp.UTP_ObtenerConvenio(idConvenio);
@@ -352,7 +355,20 @@ namespace UTP.PortalEmpleabilidad.Logica
             return listaEjemplo;
         }
 
-    
+        public DataTable AlumnosBusquedaExcel(
+            string Estudio = "", 
+            string Ciclo = "", 
+            string Sector = "", 
+            string Dato = "", 
+            string Sexo = "",
+            string Distrito = "", 
+            string TipoEstudio = "", 
+            string Conocimiento = "", 
+            string EstadoEstudio = "", 
+            int Completitud = 0)
+        {
+            return  adUtp.Excel_ObtenerAlumnos(Estudio, Ciclo, Sector, Dato, Sexo, Distrito, TipoEstudio, Conocimiento, EstadoEstudio, Completitud);
+        }
 
         public List<OfertaUTP> UTP_ObtenerOfertasporActivar(string Oferta, int nroPagina, int filasPorPagina)
         {
@@ -389,10 +405,10 @@ namespace UTP.PortalEmpleabilidad.Logica
 
             return listaEjemplo;
         }
+
         public List<OfertaUTP> UTP_ObtenerofertasAvanzada(string CargoOfrecido, string NombreComercial, string TipoCargo, string Sector, string Contrato, int AExperiencia, int Remuneracion, string TipoEstudio, string Conocimiento, int NroPostulante, string EstadoOferta, string TipoInformacionAdicional, int nroPagina, int filasPorPagina)
         {
             List<OfertaUTP> listaEjemplo = new List<OfertaUTP>();
-
 
             DataTable dtResultado = adUtp.UTP_ObtenerofertasAvanzada(CargoOfrecido, NombreComercial, TipoCargo, Sector, Contrato, AExperiencia, Remuneracion, TipoEstudio, Conocimiento, NroPostulante, EstadoOferta, TipoInformacionAdicional, nroPagina, filasPorPagina);
 
@@ -423,34 +439,44 @@ namespace UTP.PortalEmpleabilidad.Logica
             }
 
             return listaEjemplo;
-        }         
+        }
 
-        
-
+        public DataTable OfertaBusquedaExcel(
+            string CargoOfrecido = "", 
+            string NombreComercial = "", 
+            string TipoCargo = "", 
+            string Sector = "", 
+            string Contrato = "", 
+            int AExperiencia = 0, 
+            int Remuneracion = 0, 
+            string TipoEstudio = "", 
+            string Conocimiento = "", 
+            int NroPostulante = 0, 
+            string EstadoOferta = "", 
+            string TipoInformacionAdicional = "", 
+            int nroPagina = 0, 
+            int filasPorPagina = 0)
+        {
+            return adUtp.Excel_ObtenerOfertas(CargoOfrecido, NombreComercial, TipoCargo, Sector, Contrato, AExperiencia, Remuneracion, TipoEstudio, Conocimiento, NroPostulante, EstadoOferta, TipoInformacionAdicional);
+        } 
 
         public DataTable UTP_ObtenerEventosObtenerBuscar(string evento, int nroPagina, int filasPorPagina)
-        //public DataTable UTP_ObtenerEventosObtenerBuscar(string evento)
         {
-
             return adUtp.UTP_ObtenerEventosObtenerBuscar(evento, nroPagina, filasPorPagina);
-            //return adUtp.UTP_ObtenerEventosObtenerBuscar(evento);
         }
 
 
         public DataTable Evento_ListaEstadoEvento()
         {
-
             return adUtp.Evento_ListaEstado();
         }
 
         public DataTable Evento_ListaTipoEvento()
         {
-
             return adUtp.Evento_ListaTipoEvento();
         }
         public DataTable EMPRESA_LISTAEMPRESA()
         {
-
             return adUtp.EMPRESA_LISTAEMPRESA();
         }
 
