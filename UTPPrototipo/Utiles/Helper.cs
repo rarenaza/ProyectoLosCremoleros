@@ -1,13 +1,15 @@
 ﻿using System;
+using System.Data;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.UI.WebControls;
 using System.Web.Mvc;
 using UTP.PortalEmpleabilidad.Logica;
 using UTP.PortalEmpleabilidad.Modelo;
 using System.Security.Cryptography;
 using System.Text;
-
+using System.ComponentModel;
 
 namespace UTPPrototipo.Utiles
 {
@@ -61,6 +63,22 @@ namespace UTPPrototipo.Utiles
             byte[] resultArray = cTransform.TransformFinalBlock(inputArray, 0, inputArray.Length);
             tripleDES.Clear();
             return UTF8Encoding.UTF8.GetString(resultArray);
+        }
+
+        public static void Export2ExcelDownload(DataTable DT, string filename)
+        {
+            HttpResponse Response = HttpContext.Current.Response;
+            Response.Clear();
+            Response.AddHeader("Content-Disposition", String.Format("attachment; filename={0}.xls", filename));
+            Response.ContentType = "application/vnd.ms-excel";
+            Response.Charset = "";
+
+            GridView E = new GridView();
+            E.DataSource = DT;
+            E.DataBind();
+            E.RenderControl(new System.Web.UI.HtmlTextWriter(Response.Output));
+
+            Response.End();
         }
     }
 

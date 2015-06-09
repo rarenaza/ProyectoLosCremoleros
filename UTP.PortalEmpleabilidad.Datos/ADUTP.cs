@@ -144,9 +144,6 @@ namespace UTP.PortalEmpleabilidad.Datos
             cmd.Connection = cnn.cn;
             cnn.Conectar();
 
-
-
-
             SqlDataAdapter da = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
 
@@ -157,9 +154,7 @@ namespace UTP.PortalEmpleabilidad.Datos
             return dt;
         }
 
-
         public DataTable Empresa_BusquedaAvanzada(string NombreComercial, string IdEstadoEmpresa, string IdSector, string RazonSocial, string IdentificadorTributario, int NroOferta, int NroPostulante, int nroPaginaActual, int filasPorPagina)
-        //public DataTable Empresa_BusquedaAvanzada(string NombreComercial, string IdEstadoEmpresa, string IdSector, string RazonSocial, string IdentificadorTributario, string NroOferta, string NroPostulante, int nroPaginaActual, int filasPorPagina)
         {
 
             ADConexion cnn = new ADConexion();
@@ -193,9 +188,45 @@ namespace UTP.PortalEmpleabilidad.Datos
             return dt;
         }
 
+        public DataTable Excel_ObtenerEmpresas(
+            string NombreComercial,
+            string IdEstadoEmpresa,
+            string IdSector,
+            string RazonSocial,
+            string IdentificadorTributario,
+            int NroOferta,
+            int NroPostulante)
+        {
+            DataTable dt = new DataTable();
 
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
 
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Excel_ObtenerEmpresas";
+                cmd.Parameters.Add(new SqlParameter("@Nombre", NombreComercial));
+                cmd.Parameters.Add(new SqlParameter("@Valor", IdEstadoEmpresa));
+                cmd.Parameters.Add(new SqlParameter("@Sector", IdSector));
+                cmd.Parameters.Add(new SqlParameter("@Razon", RazonSocial));
+                cmd.Parameters.Add(new SqlParameter("@IdentificadorTributario", IdentificadorTributario));
+                cmd.Parameters.Add(new SqlParameter("@NroOferta", NroOferta));
+                cmd.Parameters.Add(new SqlParameter("@NroPostulante", NroPostulante));
+                cmd.Connection = conexion;
 
+                conexion.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+                dt = new DataTable();
+
+                da.Fill(dt);
+
+                conexion.Close();
+            }
+
+            return dt;
+        }
 
         public DataTable UTP_ObtenerUltimosConvenios(string Dato)
         {
@@ -944,8 +975,58 @@ namespace UTP.PortalEmpleabilidad.Datos
             return dtResultado;
         }
 
+        public DataTable Excel_ObtenerOfertas(
+            string CargoOfrecido, 
+            string NombreComercial, 
+            string TipoCargo, 
+            string sector, 
+            string Contrato, 
+            int AExperiencia, 
+            int Remuneracion, 
+            string TipoEstudio, 
+            string Conocimiento, 
+            int NroPostulante, 
+            string EstadoOferta, 
+            string TipoInformacionAdicional)
+        {
+            DataTable dt = new DataTable();
+
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Excel_ObtenerOfertas";
+                cmd.Parameters.Add(new SqlParameter("@Cargo", CargoOfrecido));
+                cmd.Parameters.Add(new SqlParameter("@Empresa", NombreComercial));
+                cmd.Parameters.Add(new SqlParameter("@TipoCargo", TipoCargo));
+                cmd.Parameters.Add(new SqlParameter("@Sector", sector));
+                cmd.Parameters.Add(new SqlParameter("@Contrato", Contrato));
+                cmd.Parameters.Add(new SqlParameter("@AExperiencia", AExperiencia));
+                cmd.Parameters.Add(new SqlParameter("@Remuneracion", Remuneracion));
+                cmd.Parameters.Add(new SqlParameter("@TipoDeEstudio", TipoEstudio));
+                cmd.Parameters.Add(new SqlParameter("@Conocimiento", Conocimiento));
+                cmd.Parameters.Add(new SqlParameter("@NroPostulante", NroPostulante));
+                cmd.Parameters.Add(new SqlParameter("@EstadoOferta", EstadoOferta));
+                cmd.Parameters.Add(new SqlParameter("@TipoInformacionAdicional", TipoInformacionAdicional));
+
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+                dt = new DataTable();
+
+                da.Fill(dt);
+
+                conexion.Close();
+            }
+
+            return dt;
+        }
+
         public DataTable UTP_ObtenerEventosObtenerBuscar(string evento, int nroPagina, int filasPorPagina)
-        //public DataTable UTP_ObtenerEventosObtenerBuscar(string evento)
         {
             DataTable dtResultado = new DataTable();
 
@@ -1045,6 +1126,53 @@ namespace UTP.PortalEmpleabilidad.Datos
             }
 
             return dtResultado;
+        }
+
+        public DataTable Excel_ObtenerAlumnos(
+            string Dato,
+            string Estudio, 
+            string Ciclo, 
+            string Sector, 
+            string Sexo,
+            string Distrito, 
+            string TipoEstudio, 
+            string Conocimiento, 
+            string EstadoEstudio, 
+            int Completitud)
+        {
+            DataTable dt = new DataTable();
+
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Excel_ObtenerAlumnos";
+                cmd.Parameters.Add(new SqlParameter("@Estudio", Estudio));
+                cmd.Parameters.Add(new SqlParameter("@Ciclo", Ciclo));
+                cmd.Parameters.Add(new SqlParameter("@Sector", Sector));
+                cmd.Parameters.Add(new SqlParameter("@Dato", Dato));
+                cmd.Parameters.Add(new SqlParameter("@Sexo", Sexo));
+                cmd.Parameters.Add(new SqlParameter("@Distrito", Distrito));
+                cmd.Parameters.Add(new SqlParameter("@TipoEstudio", TipoEstudio));
+                cmd.Parameters.Add(new SqlParameter("@Conocimiento", Conocimiento));
+                cmd.Parameters.Add(new SqlParameter("@EstadoEstudio", EstadoEstudio));
+                cmd.Parameters.Add(new SqlParameter("@Completitud", Completitud));
+
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+                dt = new DataTable();
+
+                da.Fill(dt);
+
+                conexion.Close();
+            }
+
+            return dt;
         }
 
         public DataTable Evento_ListaEstado()
