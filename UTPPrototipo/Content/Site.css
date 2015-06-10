@@ -659,6 +659,7 @@ label-sistema {
 
 .fuente-seccion {
     font-size:12px;
+    text-decoration:underline;
     }
 
 .input-group {
@@ -887,4 +888,8 @@ footer #footer_right {
 }
 .bar-legend {
     margin-left:-38px;
+}
+
+.tooltip-inner {
+    text-align:justify;
 }
