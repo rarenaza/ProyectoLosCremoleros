@@ -75,6 +75,9 @@ namespace UTP.PortalEmpleabilidad.Logica
                 if (oferta.Horario == null) oferta.Horario = string.Empty;
                 if (oferta.CicloMinimoCarreraUTP == null) oferta.CicloMinimoCarreraUTP = 0;
 
+                oferta.Funciones = oferta.Funciones.Replace("@", "");
+                oferta.Competencias = oferta.Competencias.Replace("@", "");
+
                 //Se actualizan las fase de la oferta:
                 foreach (var item in oferta.OfertaFases)
                 {

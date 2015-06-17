@@ -9,17 +9,17 @@
     Paginacion paginacion = (Paginacion)ViewBag.Paginacion;
 }
 <h5>Resultados de la búsqueda</h5>
-<div class="row grilla1-cabecera color-paleta2">
+<div class="row grilla1-cabecera color-paleta3">
     <div class="col-sm-1">Fecha Publicación</div>
     <div class="col-sm-1">Fecha Postulación</div>
     <div class="col-sm-2">Empresa</div>
     <div class="col-sm-2">Cargo</div>
-    <div class="col-sm-1">Tipo Trabajo</div>
-    <div class="col-sm-1">Horario</div>
-    <div class="col-sm-1">Remuneración</div>
+    <div class="col-sm-2">Tipo Trabajo</div>
+    <div class="col-sm-2">Horario</div>
+    <div class="col-sm-1">Sueldo</div>
     <div class="col-sm-1">Msj</div>
-    <div class="col-sm-1">Estado</div>
-    <div class="col-sm-1"></div>
+  <!--  <div class="col-sm-1">Estado</div>
+    <div class="col-sm-1"></div>-->
 </div>
 
 @if (Model.ListaPostulacionesOfertas != null && Model.ListaPostulacionesOfertas.Count > 0)
@@ -35,13 +35,13 @@
                 @*@Html.ActionLink(item.CargoOfrecido, "postulacionOferta2", "Alumno", new { id = Helper.Encriptar(item.IdOferta.ToString()) }, htmlAttributes: new { target = "_blank" })*@
                 @Html.ActionLink(item.CargoOfrecido, "postulacionOferta2", "Alumno", new { id = Helper.Encriptar(item.IdOferta.ToString()) },null)
             </div>
-            <div class="col-sm-1"><span class="valor-palabra">@item.TipoTrabajo</span><span class="valor-icono2">I</span></div>
-            <div class="col-sm-1"><span>@item.Horario</span></div>
+            <div class="col-sm-2"><span class="valor-palabra">@item.TipoTrabajo</span><span class="valor-icono2">I</span></div>
+            <div class="col-sm-2"><span>@Html.UppercaseFirst(item.Horario)</span></div>
             <div class="col-sm-1">
                 @if (item.RemuneracionOfrecida > 0)
                 {
 
-                    <span>@String.Format("{0:###,###,###.#0}", item.RemuneracionOfrecida)</span>
+                    <span>@String.Format("{0:###,###,###}", item.RemuneracionOfrecida)</span>
                 }
                 else
                 {
@@ -49,9 +49,10 @@
                 }
             </div>
             <div class="col-sm-1"><span class="fui fa-2x valor-icono">h</span>&nbsp;&nbsp;<span>@item.Mensajes</span></div>
-            <div class="col-sm-1"><span class="valor-palabra">@item.EstadoOferta</span><span class="valor-icono2">D</span></div>
+            @*<div class="col-sm-1"><span class="valor-palabra">@item.EstadoOferta</span><span class="valor-icono2">D</span></div>*@
             @*<div class="col-sm-1">@Html.ActionLink("Ver más", "postulacionOferta2", "Alumno", new { id = Helper.Encriptar(item.IdOferta.ToString()) }, htmlAttributes: new { target = "_blank" })</div>*@
-            <div class="col-sm-1">@Html.ActionLink("Ver más", "postulacionOferta2", "Alumno", new { id = Helper.Encriptar(item.IdOferta.ToString()) }, null)</div>
+            @*<div class="col-sm-1">@Html.ActionLink("Ver más", "postulacionOferta2", "Alumno", new { id = Helper.Encriptar(item.IdOferta.ToString()) }, null)</div>
+            *@
         </div>
     }
 }

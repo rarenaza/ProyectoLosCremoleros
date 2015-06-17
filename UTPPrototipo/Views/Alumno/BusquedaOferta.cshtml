@@ -30,7 +30,7 @@
                                 </div>
                             </div>
                             <div class="col-md-2">
-                                <button class="btn btn-default color-paleta3 fa fa-search" id="buscar"></button>
+                                <button class="btn btn-default color-paleta2 fa fa-search" id="buscar"></button>
                             </div>
                         </div>
                     </div>
@@ -110,7 +110,7 @@
                                     <span class="form-control" style="padding-top:8px;">Con mensajes para mi</span>
                                 </div>
                                 <br />
-                                <button class="btn btn-default color-paleta3 fa fa-search" id="buscaravanzada"></button>
+                                <button class="btn btn-default color-paleta2 fa fa-search" id="buscaravanzada"></button>
                             </div>
                         </div>
                     </div>
@@ -132,7 +132,7 @@
 <script>
 
     $(document).ready(function () {
-        $("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta4 color-paleta5").addClass("color-paleta3");
+        $("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta4 color-paleta5").addClass("color-paleta2");
         AutoCompleteText('#Ubicacion', '@Url.Action("ListarDistritos", "Alumno")', '#Ubicacion');
         AutoCompleteText('#AreaEmpresa', '@Url.Action("ListarAreasEmpresa", "Alumno")', '#AreaEmpresa');
         AutoCompleteText('#IdEstudio', '@Url.Action("ListarEstudio", "Alumno")', '#IdEstudio');
