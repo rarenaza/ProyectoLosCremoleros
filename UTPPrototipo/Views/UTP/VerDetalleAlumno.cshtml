@@ -195,11 +195,15 @@
     </div>
 
     <br />
-    <div class="row">
-        <div class="col-sm-12" style="text-align:right;">
-            <button class="btn btn-default color-paleta3">Guardar</button>
+    if (ViewBag.Rol != "ROLUTP")
+    {
+        <div class="row">
+            <div class="col-sm-12" style="text-align:right;">
+                <button class="btn btn-default color-paleta3">Guardar</button>
+            </div>
         </div>
-    </div>
+    }
+    
         
 
     <hr />

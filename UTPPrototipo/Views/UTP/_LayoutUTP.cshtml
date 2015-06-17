@@ -118,9 +118,12 @@
                         @*<a class="btn btn-default navbar-btn Boton_pestana color-paleta7" href="..\UTP\Portal" style="padding: 2px 0px 2px 0px; color: white;">Contenido</a>*@
                         <a class="btn btn-default navbar-btn Boton_pestana color-paleta7" href=@Url.Action("Portal", "UTP") style="padding: 2px 0px 2px 0px; color: white;">Contenido</a>
                     </li>
-                    <li>
+                    @if (ViewBag.Rol != "ROLUTP")
+                    {
+                        <li>
                         <a class="btn btn-default navbar-btn Boton_pestana color-paleta8" href=@Url.Action("Sistema", "UTP") style="padding: 2px 0px 2px 0px; color: white;">Sistema</a>
-                    </li>
+                        </li>
+                    }                   
                     <li>
                         <a class="btn btn-default navbar-btn Boton_pestana color-paleta9" href=@Url.Action("Convenios", "UTP") style="padding: 2px 0px 2px 0px; color: white;">Convenios</a>
                     </li>

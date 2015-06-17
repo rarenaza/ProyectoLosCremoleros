@@ -211,12 +211,15 @@
         <button class="btn btn-default color-paleta2" data-toggle="modal" data-target="#nuevaEmpresa">Nueva Empresa</button>
     </div>
 </div>*@
+@if (ViewBag.Rol != "ROLUTP")
+{
+    <div class="col-sm-12">
 
-<div class="col-sm-12">
-
-    <button class="btn btn-default color-paleta2" onclick="EmpresaUTPCrear();">Agregar Empresa</button>
+        <button class="btn btn-default color-paleta2" onclick="EmpresaUTPCrear();">Agregar Empresa</button>
   
-</div>
+    </div>
+}
+
 
 
     @*</div>*@

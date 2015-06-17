@@ -29,14 +29,14 @@ namespace UTPPrototipo.Models.ViewModels.UTP
 
         public List<ListaValor> ListaInformacionAdicional { get; set; }
 
-        
+        public List<ListaValor> ListaCarrera { get; set; }
         public string PalabraClave { get; set; }
         public string Cargo { get; set; }
         public string IdTipoCargoutp { get; set; }
         public string IdSectorutp { get; set; }
         public string IdTipoContratoutp { get; set; }
         public string IdTipoEstudioutp { get; set; }
-
+        public string Carrera { get; set; }
         public string InformacionAdicional { get; set; }
         public string Conocimientos { get; set; }
         public int RemuneracionOfrecida { get; set; }

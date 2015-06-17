@@ -66,15 +66,16 @@
     <br />
     <div id="resultadobusqueda">
     </div>
-
-    <div class="row">
-        <div class="col-sm-12">
-            @* <button class="btn btn-default color-paleta5" >Nuevo Evento</button>*@
-            <a class="btn btn-default color-paleta5" href=@Url.Action("evento", "UTP")>Nuevo Evento</a>
-
-
+    @if (ViewBag.Rol != "ROLUTP")
+    {
+        <div class="row">
+            <div class="col-sm-12">
+                @* <button class="btn btn-default color-paleta5" >Nuevo Evento</button>*@
+                <a class="btn btn-default color-paleta5" href=@Url.Action("evento", "UTP")>Nuevo Evento</a>
+            </div>
         </div>
-    </div>
+    }
+    
     <hr />
 </div>
 
