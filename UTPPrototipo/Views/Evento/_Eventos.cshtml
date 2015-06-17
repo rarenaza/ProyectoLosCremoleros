@@ -5,9 +5,7 @@
         <div class="row" style="border-right:solid;border-color:rgb(220, 220, 220);border-width:1px;">
             <div class="col-sm-12">
                 
-                <h6>Eventos Próximos</h6>
-                <hr />
-
+                <h5>Eventos Próximos</h5>
                 @if (Model.usuarioeventoposible != null && Model.usuarioeventoposible.Count > 0)
                 {
                     <div class="row grilla1-cabecera color-paleta5">
@@ -69,8 +67,8 @@
 
                 @if (Model.usuarioeventoactivo != null && Model.usuarioeventoactivo.Count > 0)
                 {
-                    <h6>Te has inscrito en estos Eventos</h6>
-                    <hr />
+                    <h5>Te has inscrito en estos Eventos</h5>
+                   
                     <div class="row grilla1-cabecera color-paleta5">
                         <div class="col-sm-2">
                             Evento
@@ -130,8 +128,8 @@
 
                 @if (Model.usuarioeventopasado != null && Model.usuarioeventopasado.Count > 0)
                 {
-                    <h6>Participaste en estos Eventos</h6>
-                    <hr />
+                    <h5>Participaste en estos Eventos</h5>
+                   
                     <div class="row grilla1-cabecera color-paleta5">
                         <div class="col-sm-2">
                             Evento

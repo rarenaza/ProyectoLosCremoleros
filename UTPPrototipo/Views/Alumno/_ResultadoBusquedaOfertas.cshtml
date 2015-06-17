@@ -7,20 +7,20 @@
     Paginacion paginacion = (Paginacion)ViewBag.Paginacion;
 }
 
-<h5>Resultados de la búsqueda</h5>
+<h5>Ofertas</h5>
 <div class="row" style="margin:0px 0px 0px 0px;">
     @Html.Hidden("PaginaActual", Model.PaginaActual)
     @Html.Hidden("MaxPagina", Model.MaxPagina)
-    <div class="row grilla1-cabecera color-paleta3">
+    <div class="row grilla1-cabecera color-paleta2">
         <div class="col-sm-1">Fecha Publicación</div>
         <div class="col-sm-2">Empresa</div>
         <div class="col-sm-2">Cargo</div>
         <div class="col-sm-1">Tipo de Trabajo</div>
-        <div class="col-sm-1">Horario</div>
+        <div class="col-sm-2">Horario</div>
         <div class="col-sm-1">Sueldo</div>
         <div class="col-sm-1">Msj</div>
-        <div class="col-sm-2">Cumplimiento</div>
-        <div class="col-sm-1"></div>
+        <div class="col-sm-2">Cumplimiento de Oferta</div>
+   
     </div>
 
     @if (Model.ListaOfertas != null && Model.ListaOfertas.Count > 0)
@@ -38,7 +38,7 @@
                 </div>
                 @*id = Helper.Encriptar(item.IdEmpresa.ToString())*@
                 <div class="col-sm-1"><span class="valor-palabra">@item.DesTipoTrabajo</span><span class="valor-icono2">I</span></div>
-                <div class="col-sm-1"><span>@item.Horario</span></div>
+                <div class="col-sm-2"><span>@item.Horario</span></div>
                 <div class="col-sm-1">
                     @if (item.RemuneracionOfrecida > 0)
                     {
@@ -59,7 +59,7 @@
                     </div>
                 </div>
                 @*<div class="col-sm-1">@Html.ActionLink("Ver más", "postulacionOferta2", "Alumno", new { id = Helper.Encriptar(item.IdOferta.ToString()) }, htmlAttributes: new { target = "_blank" })</div>*@
-                <div class="col-sm-1">@Html.ActionLink("Ver más", "postulacionOferta2", "Alumno", new { id = Helper.Encriptar(item.IdOferta.ToString()) }, null )</div>
+               
             </div>
         }
     }
