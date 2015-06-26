@@ -15,6 +15,7 @@ namespace UTP.PortalEmpleabilidad.Datos
         ADConexion cnn2 = new ADConexion();
         SqlCommand cmd = new SqlCommand();
         SqlCommand cmd2 = new SqlCommand();
+
         public void Insertar(OfertaPostulante ofertapostulante)
         {
             cmd.CommandType = CommandType.StoredProcedure;
@@ -43,6 +44,22 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd2.ExecuteNonQuery();
                 cnn2.Desconectar();
             }
+        }
+
+        public void Actualizar(OfertaPostulante ofertapostulante)
+        {
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "OfertaPostulante_Actualizar";
+            cmd.Connection = cnn.cn;
+            cnn.Conectar();
+            cmd.Parameters.Add(new SqlParameter("@IdOfertaPostulante", SqlDbType.Int)).Value = ofertapostulante.IdOfertaPostulante;
+            cmd.Parameters.Add(new SqlParameter("@IdOferta", SqlDbType.Int)).Value = ofertapostulante.IdOferta;
+            cmd.Parameters.Add(new SqlParameter("@IdAlumno", SqlDbType.Int)).Value = ofertapostulante.IdAlumno;            
+            cmd.Parameters.Add(new SqlParameter("@IdCV", SqlDbType.Int)).Value = ofertapostulante.IdCV;
+            cmd.Parameters.Add(new SqlParameter("@DocumentoCV", ofertapostulante.DocumentoCV));         
+            cmd.Parameters.Add(new SqlParameter("@ModificadoPor", SqlDbType.VarChar, 50)).Value = ofertapostulante.ModificadoPor;
+            cmd.ExecuteNonQuery();
+            cnn.Desconectar();
         }
 
         public DataTable OfertaPostulante_DescaragarCV(int IdAlumno, int IdOferta)
@@ -79,6 +96,27 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.Parameters.Add(new SqlParameter("@PalabraClave", SqlDbType.VarChar, 100)).Value = PalabraClave;
                 cmd.Parameters.Add(new SqlParameter("@PagActual", SqlDbType.Int)).Value = PaginaActual;
                 cmd.Parameters.Add(new SqlParameter("@NumRegistros", SqlDbType.Int)).Value = NumeroRegistros;
+                cmd.Connection = cnn.cn;
+                cnn.Conectar();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                dtResultado = new DataTable();
+                da.Fill(dtResultado);
+                cnn.Desconectar();
+            }
+
+            return dtResultado;
+        }
+
+        public DataTable OfertaPostulantesListar()
+        {
+            DataTable dtResultado = new DataTable();
+
+            using (SqlConnection conexion = new SqlConnection(cnn.Conexion()))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "OfertaPostulante_Listar";
                 cmd.Connection = cnn.cn;
                 cnn.Conectar();
                 SqlDataAdapter da = new SqlDataAdapter(cmd);

@@ -55,6 +55,7 @@ namespace UTP.PortalEmpleabilidad.Logica
             alumno.CreadoPor = "sistema";
 
             string EstudioGrado = "";
+            bool EsEstudiante = false;
             //Tabla 1 = Datos del estudio
             for (int i = 0; i <= dsDatosAlumno.Tables[1].Rows.Count - 1; i++)
             {
@@ -83,6 +84,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                         break;
                     case "Estudi":
                         alumnoEstudioItem.EstadoDelEstudio = "EDEEST";
+                        EsEstudiante = true;
                         break;
                     default:
                         alumnoEstudioItem.EstadoDelEstudio = "EDEEST";
@@ -91,8 +93,13 @@ namespace UTP.PortalEmpleabilidad.Logica
                 alumnoEstudioItem.Observacion = "";
                 alumnoEstudioItem.FechaInicioAno = ConvertirFecha(Convert.ToString(dsDatosAlumno.Tables[1].Rows[i]["FechaInicio"])).Year;
                 alumnoEstudioItem.FechaInicioMes = ConvertirFecha(Convert.ToString(dsDatosAlumno.Tables[1].Rows[i]["FechaInicio"])).Month;
-                alumnoEstudioItem.FechaFinAno = ConvertirFecha(Convert.ToString(dsDatosAlumno.Tables[1].Rows[i]["FechaFinal"])).Year;
-                alumnoEstudioItem.FechaFinMes = ConvertirFecha(Convert.ToString(dsDatosAlumno.Tables[1].Rows[i]["FechaFinal"])).Month;
+
+                //Cuando un alumno es estudiante, las fechas de fin son nulas
+                if (!EsEstudiante)
+                {
+                    alumnoEstudioItem.FechaFinAno = ConvertirFecha(Convert.ToString(dsDatosAlumno.Tables[1].Rows[i]["FechaFinal"])).Year;
+                    alumnoEstudioItem.FechaFinMes = ConvertirFecha(Convert.ToString(dsDatosAlumno.Tables[1].Rows[i]["FechaFinal"])).Month;
+                }
 
                 if (!String.IsNullOrEmpty(Convert.ToString(dsDatosAlumno.Tables[1].Rows[i]["Ciclo"])))
                     alumnoEstudioItem.CicloEquivalente = Convert.ToInt32(dsDatosAlumno.Tables[1].Rows[i]["Ciclo"]);

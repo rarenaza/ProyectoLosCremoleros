@@ -11,48 +11,34 @@
     <!---Cabecera de la página using (Html.BeginForm("_VerDetalleEmpresaDatosGeneralesEditar", "UTP").-->
     @{Html.RenderAction("VistaCabeceraUtp", "UTP");}
 
-        <div id="divDatosGenerales">
+    <div id="divDatosGenerales">
         @using (Ajax.BeginForm("_VerDetalleEmpresaDatosGeneralesEditar", "UTP", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", OnComplete = "mostrarMensaje", UpdateTargetId = "divDatosGenerales" }))
-       
         {
             @Html.AntiForgeryToken()
             <!---Datos de la empresa y logo.-->
             @Html.Action("_VerDetalleEmpresaDatosGenerales", "UTP", new { id = ViewBag.IdEmpresa })
         }
-        </div>
-
-<hr />
-<div class="row">
-    @*<div class="col-sm-6">
-        @Html.Action("_VerDetalleEmpresaUsuarios", "UTP", new { id = ViewBag.IdEmpresa })
-    </div>*@
-    <div class="col-sm-6">
-        @Html.Action("_VerDetalleEmpresaOfertas", "UTP", new { id = ViewBag.IdEmpresa })
     </div>
-    <div class="col-sm-6">
-        @*@Html.Action("_VerDetalleEmpresaMensajes", "UTP", new { id = ViewBag.IdEmpresa })*@
-        <!--INICIO-->
-        <div class="panel-group" id="grupoMensajes" role="tablist" aria-multiselectable="true">
-            <div class="panel panel-default">
-                <div class="panel-heading" role="tab" id="headingOne2">
-                    <h5 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#grupoMensajes" href="#collapseMensajes" aria-expanded="true" aria-controls="collapseOne2" class="fuente-seccion">
-                            Mensajes
-                        </a>
-                    </h5>
-                </div>
-                <div id="collapseMensajes" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne2">
-                    <div class="panel-body">
-                        @Html.Action("_Mensajes", "Mensaje", new { pantalla = Constantes.MENSAJES_UTP_EMPRESA, idEmpresa = ViewBag.IdEmpresa })
-                    </div>
-                </div>
-            </div>
+
+  
+    <div class="row">
+        @*<div class="col-sm-6">
+                @Html.Action("_VerDetalleEmpresaUsuarios", "UTP", new { id = ViewBag.IdEmpresa })
+            </div>*@
+        <div class="col-sm-6">
+            @Html.Action("_VerDetalleEmpresaOfertas", "UTP", new { id = ViewBag.IdEmpresa })
+        </div>
+        <div class="col-sm-6">
+            @*@Html.Action("_VerDetalleEmpresaMensajes", "UTP", new { id = ViewBag.IdEmpresa })*@
+            <!--INICIO-->
+            @Html.Action("_Mensajes", "Mensaje", new { pantalla = Constantes.MENSAJES_UTP_EMPRESA, idEmpresa = ViewBag.IdEmpresa })
+
         </div>
         <!--FIN-->
-       
+
     </div>
-    <hr />
-</div>
+    
+
 
     <div class="row">
         <div class="col-sm-6">
@@ -60,20 +46,20 @@
         </div>
         <div class="col-sm-6">
             @Html.Action("_VerDetalleEmpresaUbicaciones", "UTP", new { id = ViewBag.IdEmpresa })
-
         </div>
         @*<div class="col-sm-6">
-           
-          
-            @Html.Action("_Mensajes", "Mensaje", new { pantalla = Constantes.MENSAJES_UTP_EMPRESA, idEmpresa = ViewBag.IdEmpresa })
-        </div>*@
+
+
+                @Html.Action("_Mensajes", "Mensaje", new { pantalla = Constantes.MENSAJES_UTP_EMPRESA, idEmpresa = ViewBag.IdEmpresa })
+            </div>*@
     </div>
 
-    </div>
+</div>
+
 <script>
 
     $(document).ready(function () {
-        $("#divFinalCabecera").removeClass("color-paleta1 color-paleta3 color-paleta4 color-paleta5 color-paleta6 color-paleta7").addClass("color-paleta2");
+        $("#divFinalCabecera").removeClass("color-paleta1 color-paleta3 color-paleta4 color-paleta5 color-paleta6 color-paleta7").addClass("color-paleta4");
     });
 
     function mostrarMensaje() {

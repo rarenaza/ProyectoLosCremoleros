@@ -10,6 +10,7 @@ using UTP.PortalEmpleabilidad.Modelo;
 using System.Security.Cryptography;
 using System.Text;
 using System.ComponentModel;
+using System.Web.UI;
 
 namespace UTPPrototipo.Utiles
 {
@@ -72,13 +73,38 @@ namespace UTPPrototipo.Utiles
             Response.AddHeader("Content-Disposition", String.Format("attachment; filename={0}.xls", filename));
             Response.ContentType = "application/vnd.ms-excel";
             Response.Charset = "";
+          
+            //Table table = new Table();
 
-            GridView E = new GridView();
+            GridView E = new GridView();                      
             E.DataSource = DT;
             E.DataBind();
+
+            foreach (GridViewRow row in E.Rows)
+                PrepareControlForExport(row);               
+
             E.RenderControl(new System.Web.UI.HtmlTextWriter(Response.Output));
 
             Response.End();
+        }
+
+        private static void PrepareControlForExport(Control control)
+        {
+            for (int i = 0; i < control.Controls.Count; i++)
+            {
+                Control current = control.Controls[i];
+                if (current is CheckBox)
+                {
+                    control.Controls.Remove(current);
+                    control.Controls.AddAt(i, new LiteralControl((current as CheckBox).Checked ? "1" : "0"));
+                }
+
+                if (current.HasControls())
+                {
+                    PrepareControlForExport(current);
+                }
+ 
+            }
         }
     }
 

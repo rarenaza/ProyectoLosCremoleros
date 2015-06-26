@@ -18,6 +18,7 @@ using UTPPrototipo.Utiles;
 using Microsoft.Office.Interop.Word;
 using Novacode;
 using Mustache;
+using UTP.PortalEmpleabilidad.Modelo;
 
 namespace UTPPrototipo.Controllers
 {
@@ -218,6 +219,50 @@ namespace UTPPrototipo.Controllers
     [LogPortal]
     public class PlantillaController : Controller
     {
+        [HttpGet]
+        public ActionResult GenerarPDFMasivo()
+        {
+            return View();
+        }
+
+        [ActionName("GenerarPDFMasivo")]
+        [HttpPost]
+        public ActionResult GenerarPDFMasivo_POST()
+        {
+
+            LNOfertaPostulante objOfertaPostulante = new LNOfertaPostulante();
+            string fileSourcePath = Server.MapPath("~/Plantillas/template.docx");
+
+            System.Data.DataTable dt = objOfertaPostulante.OfertaPostulantesListar();
+
+            OfertaPostulante objOfertaPostulanteBE;
+
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                objOfertaPostulanteBE = new OfertaPostulante();
+                objOfertaPostulante = new LNOfertaPostulante();
+
+                try
+                {
+                    objOfertaPostulanteBE.IdOfertaPostulante = Convert.ToInt32(dt.Rows[i]["IdOfertaPostulante"].ToString());
+                    objOfertaPostulanteBE.IdOferta = Convert.ToInt32(dt.Rows[i]["IdOferta"].ToString());
+                    objOfertaPostulanteBE.IdAlumno = Convert.ToInt32(dt.Rows[i]["IdAlumno"].ToString());
+                    objOfertaPostulanteBE.IdCV = Convert.ToInt32(dt.Rows[i]["IdCV"].ToString());
+                    objOfertaPostulanteBE.ModificadoPor = "SYSTEM";
+
+                    objOfertaPostulanteBE.DocumentoCV = Word2PDF(CrearCurriculum(objOfertaPostulanteBE.IdCV, fileSourcePath).ToArray());
+
+                    objOfertaPostulante.Actualizar(objOfertaPostulanteBE);
+                }
+                catch (Exception)
+                {
+
+                }
+            }
+
+            return Content("");
+        }
+
         // GET: Plantilla
         public ActionResult Index()
         {
@@ -274,6 +319,7 @@ namespace UTPPrototipo.Controllers
             catch(Exception e)
             {
                 output = new byte[] { };
+                throw e;
             }
 
             return output;

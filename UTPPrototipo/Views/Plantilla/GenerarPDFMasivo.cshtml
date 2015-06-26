@@ -1,0 +1,15 @@
+﻿@*@model  IEnumerable<UTPPrototipo.Models.ViewModels.Cuenta.TicketUTP >*@
+
+@using UTP.PortalEmpleabilidad.Modelo
+
+@{
+    Layout = "~/Views/UTP/_LayoutUTP.cshtml";
+    ViewBag.Title = "Mi Portal";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <input type="submit" value="Generar" class="btn btn-default" />
+}
