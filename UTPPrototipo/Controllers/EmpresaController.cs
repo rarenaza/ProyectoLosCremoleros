@@ -247,6 +247,9 @@ namespace UTPPrototipo.Controllers
                     msjAlUsuario.Append(Environment.NewLine);
                 }
 
+                msjAlUsuario.Append("Para cerrar sus ofertas debe ingresar a la Oferta en la sección Administración de Oferta y Cerrar la Oferta. ");
+                msjAlUsuario.Append("Debe repetir este proceso para cada oferta.");
+
                 //En el vista Publicacion.html se lee este TempData y se muestra el mensaje al usuario.
                 TempData["msjOfertasEnOFERCV"] = msjAlUsuario.ToString();
 

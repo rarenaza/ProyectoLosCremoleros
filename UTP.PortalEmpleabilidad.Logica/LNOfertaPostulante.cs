@@ -34,6 +34,11 @@ namespace UTP.PortalEmpleabilidad.Logica
             }
         }
 
+        public void Actualizar(OfertaPostulante ofertapostulante)
+        {
+            adOfertaPostulante.Actualizar(ofertapostulante);
+        }
+
         public byte[] OfertaPostulante_DescaragarCV(int IdAlumno, int IdOferta)
         {
             byte[] file=null;
@@ -76,5 +81,11 @@ namespace UTP.PortalEmpleabilidad.Logica
             }
             return listapostulacion;
         }
+
+        public DataTable OfertaPostulantesListar()
+        {
+            return adOfertaPostulante.OfertaPostulantesListar();
+        }
+
     }
 }

@@ -513,7 +513,7 @@
         </div>
 
     </div>
-    <hr />
+    <br />
     <div class="row">
         <div class="col-sm-12">
             <h5>Postulantes</h5>
@@ -587,25 +587,9 @@
         <div class="col-sm-6">
 
             <!--INICIO-->
-            <div class="panel-group" id="grupoMensajes" role="tablist" aria-multiselectable="true">
-                <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingOne2">
-                        <h5 class="panel-title">
-                            <a data-toggle="collapse" data-parent="#grupoMensajes" href="#collapseMensajes" aria-expanded="true" aria-controls="collapseOne2" class="fuente-seccion">
-                                Mensajes
-                            </a>
-                        </h5>
-                    </div>
-                    <div id="collapseMensajes" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne2">
-                        <div class="panel-body">
+           
                             @Html.Action("_Mensajes", "Mensaje", new { pantalla = Constantes.MENSAJES_UTP_OFERTA, idOferta = Model.IdOferta })
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--FIN-->
-
-
+                    
         </div>
 
     </div>
@@ -615,7 +599,7 @@
 
     $(document).ready(function () {
         //$("#divFinalCabecera").removeClass("color-paleta1 color-paleta3 color-paleta4 color-paleta5 color-paleta6 color-paleta7").addClass("color-paleta2");
-        $("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta3 color-paleta5 color-paleta6 color-paleta7 color-paleta8 color-paleta9").addClass("color-paleta4")
+        $("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta3 color-paleta5 color-paleta6 color-paleta7 color-paleta8 color-paleta9").addClass("color-paleta2")
     });
 
 

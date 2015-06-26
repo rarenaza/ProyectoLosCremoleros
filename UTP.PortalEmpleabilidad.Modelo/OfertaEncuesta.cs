@@ -18,10 +18,10 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string Calificacion { get; set; }
 
         [Required(ErrorMessage=Constantes.MSJ_CAMPO_OBLIGATORIO)]
-        public int NroPostulantes { get; set; }
+        public int? NroPostulantes { get; set; }
 
         [Required(ErrorMessage=Constantes.MSJ_CAMPO_OBLIGATORIO)]
-        public int ContratadosUTP { get; set; }
+        public int? ContratadosUTP { get; set; }
        
         public string ContratadosOtros { get; set; }
 
