@@ -59,3 +59,4 @@ UTP.PortalEmpleabilidad.Datos/bin/Debug/UTP.PortalEmpleabilidad.Datos.dll
 *.dll
 
 !.nuget/NuGet.exe
+*.suo
