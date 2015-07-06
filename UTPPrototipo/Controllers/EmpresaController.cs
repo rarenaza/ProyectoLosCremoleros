@@ -35,9 +35,17 @@ namespace UTPPrototipo.Controllers
         // GET: /Empresa/
         public ActionResult Index()
         {
-            TicketUTP ticketUtp = (TicketUTP)Session["TicketUtp"];
-            ViewBag.Rol = ticketUtp.Rol == "ROLUTP" ? true : false;
+            try
+            {
+                TicketUTP ticketUtp = (TicketUTP)Session["TicketUtp"];
+                ViewBag.Rol = ticketUtp.Rol == "ROLUTP" ? true : false;
+                
+            }
+            catch (Exception)
+            {
+            }
             return View();
+            
         }
 
 
