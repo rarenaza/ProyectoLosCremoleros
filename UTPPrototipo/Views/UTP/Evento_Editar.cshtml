@@ -219,14 +219,18 @@
 
 
                 <br />
-                <div class="row">
-                    @*<div class="col-sm-12" style="text-align:right;">
+                if (ViewBag.Rol != "ROLUTP")
+                {
+                    <div class="row">
+                        @*<div class="col-sm-12" style="text-align:right;">
                             <button class="btn btn-default color-paleta5">Guardar</button>
                         </div>*@
-                    <div class="col-sm-12" style="text-align:right;">
-                        <button class="btn btn-default color-paleta5" type="submit" value="Guardar">Guardar</button>
+                        <div class="col-sm-12" style="text-align:right;">
+                            <button class="btn btn-default color-paleta5" type="submit" value="Guardar">Guardar</button>
                     </div>
-                </div>
+                    </div>
+                }
+                
 
                 @*<div class="col-sm-12" style="text-align:right;">
                         <button class="btn btn-default color-paleta7" type="submit" value="Guardar">Guardar</button>

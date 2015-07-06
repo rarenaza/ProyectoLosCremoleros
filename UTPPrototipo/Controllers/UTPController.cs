@@ -44,12 +44,16 @@ namespace UTPPrototipo.Controllers
         // GET: UTP
         public ActionResult Index()
         {
+            TicketUTP ticketUtp = (TicketUTP)Session["TicketUtp"];
+            ViewBag.Rol = ticketUtp.Rol;
             return View();
         }
 
 
         public ActionResult Portal()
         {
+            TicketUTP ticketUtp = (TicketUTP)Session["TicketUtp"];
+            ViewBag.Rol = ticketUtp.Rol;
             LNContenido ln = new LNContenido();
 
             DataTable dtresultado = ln.ContenidoMenu_Mostrar();
@@ -147,6 +151,10 @@ namespace UTPPrototipo.Controllers
         {
             Session["DataTableToExport"] = lnUtp.EmpresaBusquedaExcel();
 
+            TicketUTP ticketUtp = (TicketUTP)Session["TicketUtp"];
+            ViewBag.Rol = ticketUtp.Rol;
+            //VistaEmpresaListaOpciones utp = new VistaEmpresaListaOpciones();
+
             VistaEmpresListarOfertas utp = new VistaEmpresListarOfertas();
             LNGeneral lngeneral = new LNGeneral();
 
@@ -205,7 +213,8 @@ namespace UTPPrototipo.Controllers
             ViewBag.Paginacion = paginacion;
 
             ViewBag.TipoBusqueda = "Simple";
-
+            TicketUTP ticketUtp = (TicketUTP)Session["TicketUtp"];
+            ViewBag.Rol = ticketUtp.Rol;
             return PartialView("_ResultadoBusquedaEmpresas", lista);
         }
 
@@ -247,7 +256,8 @@ namespace UTPPrototipo.Controllers
 
             ViewBag.Paginacion = paginacion;
             ViewBag.TipoBusqueda = "Avanzada";
-
+            TicketUTP ticketUtp = (TicketUTP)Session["TicketUtp"];
+            ViewBag.Rol = ticketUtp.Rol;
             return PartialView("_ResultadoBusquedaEmpresas", lista);
 
         }
@@ -259,6 +269,8 @@ namespace UTPPrototipo.Controllers
 
         public ActionResult Eventos()
         {
+            TicketUTP ticketUtp = (TicketUTP)Session["TicketUtp"];
+            ViewBag.Rol = ticketUtp.Rol;
             return View();
         }
         public ActionResult BusquedaEventos(string SearchString, int nroPaginaActual = 1)
@@ -311,6 +323,8 @@ namespace UTPPrototipo.Controllers
             VistaAlumno utpAlumno = new VistaAlumno();
             LNGeneral lngeneral = new LNGeneral();
 
+            TicketUTP ticketUtp = (TicketUTP)Session["TicketUtp"];
+            ViewBag.Rol = ticketUtp.Rol;
             //Sector empresarial
 
             //Busca Lista Sector Empresarial
@@ -474,7 +488,8 @@ namespace UTPPrototipo.Controllers
             VistaOferta oferta = new VistaOferta();
             LNGeneral lngeneral = new LNGeneral();
             oferta.ListaTipoCargo = lngeneral.ObtenerListaValor(9);
-
+            TicketUTP ticketUtp = (TicketUTP)Session["TicketUtp"];
+            ViewBag.Rol = ticketUtp.Rol;
             //Tipo de Cargo
             List<SelectListItem> listItemsTipoCargo = new List<SelectListItem>();
             foreach (ListaValor entidad in oferta.ListaTipoCargo)
@@ -553,6 +568,16 @@ namespace UTPPrototipo.Controllers
                 }
             }
 
+            //Lista de Carreras UTP
+            oferta.ListaCarrera = lngeneral.ObtenerListaValor(Constantes.IDLISTA_DE_CARRERA).Where(m => m.IdListaValorPadre == "TEUNIV").ToList();
+            List<SelectListItem> listItemCarrera = new List<SelectListItem>();
+            foreach (ListaValor entidad in oferta.ListaCarrera)
+            {
+                SelectListItem item = new SelectListItem();
+                item.Text = entidad.Valor;
+                listItemCarrera.Add(item);
+            }
+
             //Lista de Combos
 
             ViewBag.ListaTipoCargo = listItemsTipoCargo;
@@ -561,6 +586,7 @@ namespace UTPPrototipo.Controllers
             ViewBag.ListaTipoEstudio = listItemTipoEstudio;
             ViewBag.ListaInformacionAdicional = listItemTipoInformacionAdicional;
             ViewBag.ListaEstadoOferta = listItemEstadoOferta;
+            ViewBag.Carrera = listItemCarrera;
 
             return View(oferta);
         }
@@ -595,23 +621,6 @@ namespace UTPPrototipo.Controllers
         public ActionResult UTP_ObtenerofertasAvanzada(VistaOferta entidad)
         {
 
-            List<OfertaUTP> lista = lnUtp.UTP_ObtenerofertasAvanzada(
-                entidad.CargoOfrecido == null ? "" : entidad.CargoOfrecido,
-                entidad.NombreComercial == null ? "" : entidad.NombreComercial,
-                entidad.IdTipoCargoutp == null ? "" : entidad.IdTipoCargoutp,
-                entidad.IdSectorutp == null ? "" : entidad.IdSectorutp,
-                entidad.IdTipoContratoutp == null ? "" : entidad.IdTipoContratoutp,
-                entidad.AExperiencia,
-                entidad.RemuneracionOfrecida,
-                entidad.IdTipoEstudioutp == null ? "" : entidad.IdTipoEstudioutp,
-                entidad.Conocimientos == null ? "" : entidad.Conocimientos,
-                entidad.NumeroPostulante,
-                entidad.IdEstadoOferta == null ? "" : entidad.IdEstadoOferta,
-                entidad.InformacionAdicional == null ? "" : entidad.InformacionAdicional,
-                entidad.nroPaginaActual,      
-                Constantes.FILAS_POR_PAGINA_UTP
-            );
-
             Session["DataTableToExport"] = lnUtp.OfertaBusquedaExcel(
                 entidad.CargoOfrecido == null ? "" : entidad.CargoOfrecido,
                 entidad.NombreComercial == null ? "" : entidad.NombreComercial,
@@ -626,6 +635,24 @@ namespace UTPPrototipo.Controllers
                 entidad.IdEstadoOferta == null ? "" : entidad.IdEstadoOferta,
                 entidad.InformacionAdicional == null ? "" : entidad.InformacionAdicional
             );
+
+            List<OfertaUTP> lista = lnUtp.UTP_ObtenerofertasAvanzada(entidad.CargoOfrecido == null ? "" : entidad.CargoOfrecido,
+                                                                        entidad.NombreComercial == null ? "" : entidad.NombreComercial,
+                                                                        entidad.IdTipoCargoutp == null ? "" : entidad.IdTipoCargoutp,
+                                                                        entidad.IdSectorutp == null ? "" : entidad.IdSectorutp,
+                                                                        entidad.IdTipoContratoutp == null ? "" : entidad.IdTipoContratoutp,
+                                                                        entidad.AExperiencia,
+                                                                        entidad.RemuneracionOfrecida,
+                                                                        entidad.IdTipoEstudioutp == null ? "" : entidad.IdTipoEstudioutp,
+                                                                        entidad.Conocimientos == null ? "" : entidad.Conocimientos,
+                                                                        entidad.NumeroPostulante,
+                                                                        entidad.IdEstadoOferta == null ? "" : entidad.IdEstadoOferta,
+                                                                        entidad.InformacionAdicional == null ? "" : entidad.InformacionAdicional,
+                                                                        entidad.Carrera == null ? "" : entidad.Carrera,
+                                                                        entidad.nroPaginaActual,
+                                                                        Constantes.FILAS_POR_PAGINA_UTP);
+
+
 
             //Datos para la paginación.
             int cantidadTotal = lista.Count() == 0 ? 0 : lista[0].CantidadTotal;
@@ -1076,6 +1103,8 @@ namespace UTPPrototipo.Controllers
 
         public ActionResult Convenios()
         {
+            TicketUTP ticketUtp = (TicketUTP)Session["TicketUtp"];
+            ViewBag.Rol = ticketUtp.Rol;
             return View();
         }
 
@@ -1236,7 +1265,8 @@ namespace UTPPrototipo.Controllers
             ViewBag.EstadoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_EMPRESA), "IdListaValor", "Valor", empresa.EstadoIdListaValor);
             //Se obtienen sólo los usuarios activos:
             ViewBag.UsuarioEC = new SelectList(lnUsuario.ObtenerUsuariosPorTipo("USERUT"), "NombreUsuario", "NombreCompleto", empresa.UsuarioEC);
-
+            TicketUTP ticketUtp = (TicketUTP)Session["TicketUtp"];
+            ViewBag.Rol = ticketUtp.Rol;
             return PartialView("_VerDetalleEmpresaDatosGenerales", empresa);
         }
 
@@ -1269,7 +1299,8 @@ namespace UTPPrototipo.Controllers
 
             ViewBag.EstadoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_EMPRESA), "IdListaValor", "Valor", empresaActualizada.EstadoIdListaValor);
             ViewBag.UsuarioEC = new SelectList(lnUsuario.ObtenerUsuariosPorTipo("USERUT"), "NombreUsuario", "NombreCompleto", empresaActualizada.UsuarioEC);
-
+            
+            ViewBag.Rol = ticketUtp.Rol;
 
             return PartialView("_VerDetalleEmpresaDatosGenerales", empresaActualizada);
         }
@@ -1287,6 +1318,8 @@ namespace UTPPrototipo.Controllers
 
         public ActionResult Sistema()
         {
+            TicketUTP ticketUtp = (TicketUTP)Session["TicketUtp"];
+            ViewBag.Rol = ticketUtp.Rol;
             return View();
         }
 
@@ -1307,6 +1340,8 @@ namespace UTPPrototipo.Controllers
         }
         public ActionResult Reportes()
         {
+            TicketUTP ticketUtp = (TicketUTP)Session["TicketUtp"];
+            ViewBag.Rol = ticketUtp.Rol;
             return View();
         }
 
@@ -1801,7 +1836,8 @@ namespace UTPPrototipo.Controllers
             ViewBag.DireccionDistrito = new SelectList(lngeneral.ObtenerListaValor(49), "IdListaValor", "Valor", evento.TextDistrito);
 
             // ViewData["Departamento"] = li;
-
+            TicketUTP ticketUtp = (TicketUTP)Session["TicketUtp"];
+            ViewBag.Rol = ticketUtp.Rol;
             return View(evento);
         }
 
@@ -1883,7 +1919,7 @@ namespace UTPPrototipo.Controllers
                 }
                 ViewData["ListaEmpresa"] = empresa;
 
-
+                ViewBag.Rol = ticketUtp.Rol;
                 return View(evento);
 
             }
@@ -1984,7 +2020,8 @@ namespace UTPPrototipo.Controllers
             ViewBag.DireccionRegion = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_Departamento), "IdListaValor", "Valor");
             ViewBag.DireccionCiudad = new SelectList(lnGeneral.ObtenerListaValor(-1), "IdListaValor", "Valor"); //Se envia -1 porque es vacío. Se llena por js.
 
-
+            TicketUTP ticketUtp = (TicketUTP)Session["TicketUtp"];
+            ViewBag.Rol = ticketUtp.Rol;
 
             return View();
 
@@ -2526,7 +2563,8 @@ namespace UTPPrototipo.Controllers
 
             //Se quitan las opciones de oferta borrador y oferta fin de recepción de CV's.
             ViewBag.EstadoOferta = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_OFERTA).Where(a => a.IdListaValor != "OFERBO" && a.IdListaValor != "OFERCV"), "IdListaValor", "Valor", oferta.EstadoOferta);
-
+            TicketUTP ticketUtp = (TicketUTP)Session["TicketUtp"];
+            ViewBag.Rol = ticketUtp.Rol;
             return View(oferta);
         }
         public ActionResult _VerDetalleOferta(string id)
@@ -2543,6 +2581,8 @@ namespace UTPPrototipo.Controllers
             //Se cargan los datos para la clasificación.
             ViewBag.Calificacion = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_OFERTA_CALIFICACION_ENCUESTA), "IdListaValor", "Valor", oferta.Calificacion);
             ViewBag.TipoTrabajoUTP = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_TRABAJO_UTP), "IdListaValor", "Valor", oferta.TipoTrabajoUTP);
+            TicketUTP ticketUtp = (TicketUTP)Session["TicketUtp"];
+            ViewBag.Rol = ticketUtp.Rol;
             return PartialView(oferta);
         }
         [HttpPost]
@@ -2557,7 +2597,8 @@ namespace UTPPrototipo.Controllers
             //Se cargan los datos para la clasificación.
             ViewBag.Calificacion = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_OFERTA_CALIFICACION_ENCUESTA), "IdListaValor", "Valor", oferta.Calificacion);
             ViewBag.TipoTrabajoUTP = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_TRABAJO_UTP), "IdListaValor", "Valor", oferta.TipoTrabajoUTP);
-
+            TicketUTP ticketUtp = (TicketUTP)Session["TicketUtp"];
+            ViewBag.Rol = ticketUtp.Rol;
             return PartialView("_VerDetalleOferta", ofertaActualizada);
         }
 
@@ -3207,6 +3248,8 @@ namespace UTPPrototipo.Controllers
                 alumno.TelefonoCelular = Convert.ToString(dtResultado.Rows[0]["TelefonoCelular"] == DBNull.Value ? null : dtResultado.Rows[0]["TelefonoCelular"]);
 
             }
+            TicketUTP ticketUtp = (TicketUTP)Session["TicketUtp"];
+            ViewBag.Rol = ticketUtp.Rol;
             return View(alumno);
 
             //return View();
@@ -3218,7 +3261,8 @@ namespace UTPPrototipo.Controllers
         {
             //if (ModelState.IsValid)
             //{
-
+            TicketUTP ticketUtp = (TicketUTP)Session["TicketUtp"];
+            ViewBag.Rol = ticketUtp.Rol;
 
             if (lnutpalumno.UTPAlumnos_ActualizarEstadoAlumno(alumno))
             {
@@ -3504,7 +3548,7 @@ namespace UTPPrototipo.Controllers
 
             //Sexo, Roles y Estado
             ViewBag.SexoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_SEXO), "IdListaValor", "Valor");
-            ViewBag.RolIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ROL_USUARIO), "IdListaValor", "Valor");
+            ViewBag.RolIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ROL_USUARIO).Where(m => m.IdListaValor.Contains("ADM") || m.IdListaValor.Contains("T")).ToList(), "IdListaValor", "Valor");
             ViewBag.EstadoUsuarioIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_USUARIO), "IdListaValor", "Valor");
 
             return PartialView("_UsuariosUTPCrear", utpUsuario);
@@ -3582,7 +3626,7 @@ namespace UTPPrototipo.Controllers
 
             //2. Se cargan los combos: Sexo, Roles y Estado
             ViewBag.SexoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_SEXO), "IdListaValor", "Valor", utpUsuario.SexoIdListaValor);
-            ViewBag.RolIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ROL_USUARIO), "IdListaValor", "Valor", utpUsuario.RolIdListaValor);
+            ViewBag.RolIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ROL_USUARIO).Where(m => m.IdListaValor.Contains("ADM") || m.IdListaValor.Contains("T")).ToList(), "IdListaValor", "Valor", utpUsuario.RolIdListaValor);
             ViewBag.EstadoUsuarioIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_USUARIO), "IdListaValor", "Valor", utpUsuario.EstadoUsuarioIdListaValor);
 
             utpUsuario.idcod = nroPaginaActual;
@@ -3807,7 +3851,8 @@ namespace UTPPrototipo.Controllers
 
             ViewBag.Paginacion = paginacion;
             ViewBag.TipoBusqueda = "Simple";
-
+            TicketUTP ticketUtp = (TicketUTP)Session["TicketUtp"];
+            ViewBag.Rol = ticketUtp.Rol;
 
             return PartialView("_ResultadoBusquedaEmpresas", lista);
         }

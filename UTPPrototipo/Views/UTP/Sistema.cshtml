@@ -4,7 +4,8 @@
     ViewBag.Title = "Sistema";
 }
 <link href="~/Content/font-awesome.css" rel="stylesheet" />
-
+@if (ViewBag.Rol != "ROLUTP")
+{
 <div class="container" style="margin-top:2px;">
     <table style="margin-bottom:7px;">
         <tr>
@@ -13,8 +14,16 @@
             </td>
             <td>
                 <select id="selectUusuarios" class="form-control" style="width: 150px;" onchange="cargarUsuarios(this);">
-                    <option value="utp">Usuarios UTP</option>
-                    <option value="empresa">Usuarios Empresa</option>
+                    @if (ViewBag.Rol == "ROLSUT")
+                    {
+                        <option value="empresa">Usuarios Empresa</option>
+                    }
+                    else
+                    {
+                        <option value="utp">Usuarios UTP</option>
+                        <option value="empresa">Usuarios Empresa</option>
+                    }
+                    
                 </select>
             </td>
             <td style="width:500px; padding-bottom:4px">
@@ -32,18 +41,33 @@
         </tr>
     </table>    
     
-    <div id="divListaUsuariosUTP">
-        @Html.Action("_UsuariosUTPLista", "UTP")
+    <div id="divListaUsuariosUTP">        
+        @if (ViewBag.Rol == "ROLSUT")
+        {
+            @Html.Action("_UsuariosEmpresaLista", "UTP", new { nroPaginaActual = 1 , nombre = ""})
+            <script type="text/javascript">
+                $('#textEmp').css("visibility", "visible");
+                $('#btnEmp').css("visibility", "visible");
+                $('#selectUusuarios').prop('disabled', true);
+            </script>            
+        }
+        else
+        {
+            @Html.Action("_UsuariosUTPLista", "UTP")
+        }
     </div>
         <br />  
     <br /> 
     @* CARGA LAS LISTAS DE VALOR *@
+    @if (ViewBag.Rol != "ROLSUT")
+    {
         <div id="divListaPadre">
             @Html.Action("_ListavalorPadre", "UTP")
         </div>
-
+    }
      
     </div>
+}
 
 
 <script>

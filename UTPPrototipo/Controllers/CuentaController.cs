@@ -508,7 +508,7 @@ namespace UTPPrototipo.Controllers
                             ticketUtp.TipoUsuario = Convert.ToString(dsResultado.Tables[3].Rows[0]["TipoUsuario"]);
 
                             ////agrege este campo 
-                            //ticketUtp.Rol = Convert.ToString(dsResultado.Tables[2].Rows[0]["Rol"]);
+                            ticketUtp.Rol = Convert.ToString(dsResultado.Tables[0].Rows[0]["Rol"]);
 
                             Session["TicketUtp"] = ticketUtp;
 

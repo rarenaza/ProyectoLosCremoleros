@@ -87,6 +87,11 @@
                                 <span class="input-group-addon">Año<br />Experiencia</span>
                                 @Html.TextBoxFor(model => model.AExperiencia, new { @class = "form-control", @placeholder = "Buscar Año Experiencia" })
                             </div>
+                            <div class="input-group">
+                                <span class="input-group-addon">Carrera</span>
+                                @Html.DropDownListFor(model => model.Carrera, new SelectList(ViewBag.Carrera, "Text", "Text"), "- Seleccionar -", new { @class = "form-control", @Id = "Carrera" })
+                            </div>
+                            
                             <!--Dejabajo de Registro 2-->
 
                         </div>
@@ -155,8 +160,9 @@
                                 @Html.DropDownListFor(model => model.IdEstadoOferta, new SelectList(ViewBag.ListaEstadoOferta, "Value", "Text"), "- Seleccionar -", new { @class = "form-control" })
                             </div>
                             <br />
-                            <button class="btn btn-default color-paleta2 fa fa-search" id="buscaravanzada"></button>
-                        </div>
+
+                            <button class="btn btn-default color-paleta4 fa fa-search" id="buscaravanzada"></button>
+                        </div>                        
                     </div>
                 </div>
             </div>
@@ -216,11 +222,11 @@
             Conocimientos: $('#Conocimientos').val(),
             NumeroPostulante: $('#NumeroPostulante').val(),
             IdEstadoOferta: $('#IdEstadoOferta').val(),
-            InformacionAdicional: $('#TipoConocimientoIdListaValor').val(),            
+            InformacionAdicional: $('#TipoConocimientoIdListaValor').val(),
+            Carrera: $('#Carrera').val(),
             nroPaginaActual: 1,
         };
         //debugger;
-
         //Cargar("resultadobusqueda", "/UTP/BusquedaAvanzadaEmpresas", oferta);
 
         Cargar("ResultadoBusqueda", '@Url.Action("UTP_ObtenerofertasAvanzada", "UTP")', oferta);
@@ -272,6 +278,7 @@
             NumeroPostulante: $('#NumeroPostulante').val(),
             IdEstadoOferta: $('#IdEstadoOferta').val(),
             InformacionAdicional: $('#TipoConocimientoIdListaValor').val(),
+            Carrera: $('#Carrera').val(),
             nroPaginaActual: nroPagina,
 
         };
