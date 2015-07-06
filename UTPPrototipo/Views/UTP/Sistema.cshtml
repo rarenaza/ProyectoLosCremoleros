@@ -389,8 +389,6 @@
         //console.log(idEmpresa + ' - ' + idEmpresaUsuario);
         var nDocumento = $('#NumeroDocumento').val();
         var tipoDocumento = $('#TipoDocumentoIdListaValor').val();
-        console.log(nDocumento);
-        console.log(tipoDocumento);
         var regex = /^\d{8}$/
         if (tipoDocumento == "TDDNI") {
             if (!(regex.test(nDocumento))) {

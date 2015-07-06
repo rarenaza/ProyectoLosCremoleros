@@ -591,7 +591,15 @@
         $("#FechaFinProceso").datepicker({ dateFormat: 'dd/mm/yy' });
 
     });
-
+    $("#EstadoCarreraUTP").change(function () {
+        if (this.value != "EDEEST") {
+            console.log(this.value);
+            $("#CicloMinimoCarreraUTP").attr('disabled', true);
+        } else {
+            $("#CicloMinimoCarreraUTP").removeAttr('disabled');
+        }
+    });
+    //Scripts de creación.
     //Scripts de creación.
     //$('#btnNuevoEstudiossss').click(function () {
 

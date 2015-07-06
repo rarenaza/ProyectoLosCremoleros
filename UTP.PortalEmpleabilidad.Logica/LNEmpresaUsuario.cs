@@ -17,14 +17,20 @@ namespace UTP.PortalEmpleabilidad.Logica
 
         public void Insertar(EmpresaUsuario empresaUsuario)
         {
+            String spassword = null;
             if (empresaUsuario.TipoDocumentoIdListaValor == null) empresaUsuario.TipoDocumentoIdListaValor = "";
             if (empresaUsuario.NumeroDocumento == null) empresaUsuario.NumeroDocumento = "";
             if (empresaUsuario.SexoIdListaValor == null) empresaUsuario.SexoIdListaValor = "";
             if (empresaUsuario.TelefonoFijo == null) empresaUsuario.TelefonoFijo = "";
             if (empresaUsuario.TelefonoAnexo == null) empresaUsuario.TelefonoAnexo = "";
             if (empresaUsuario.TelefonoCelular == null) empresaUsuario.TelefonoCelular = "";
-
-            adEmpresaUsuario.Insertar(empresaUsuario);        
+            
+                byte[] bytes = Encoding.Default.GetBytes(empresaUsuario.Contrasena);
+                SHA1 sha = new SHA1CryptoServiceProvider();
+                byte[] password = sha.ComputeHash(bytes);
+                spassword = Encoding.Default.GetString(password);
+            
+            adEmpresaUsuario.Insertar(empresaUsuario,spassword);        
         }
 
         public void ActualizarContrasena(string contrasena, string user)

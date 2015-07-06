@@ -37,7 +37,7 @@ namespace UTP.PortalEmpleabilidad.Datos
             return dtResultado;
         }
 
-        public void Insertar(EmpresaUsuario empresaUsuario)
+        public void Insertar(EmpresaUsuario empresaUsuario, String spassword)
         {
             using (SqlConnection conexion = new SqlConnection(cadenaConexion))
             {
@@ -61,7 +61,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.Parameters.Add(new SqlParameter("@TelefonoCelular", empresaUsuario.TelefonoCelular));
                 cmd.Parameters.Add(new SqlParameter("@Rol", empresaUsuario.RolIdListaValor));
                 cmd.Parameters.Add(new SqlParameter("@EstadoUsuario", empresaUsuario.EstadoUsuarioIdListaValor));
-                cmd.Parameters.Add(new SqlParameter("@Contrasena", empresaUsuario.Contrasena));
+                cmd.Parameters.Add(new SqlParameter("@Contrasena", spassword));
                 cmd.Parameters.Add(new SqlParameter("@CreadoPor", empresaUsuario.CreadoPor));
 
                 cmd.Connection = conexion;
