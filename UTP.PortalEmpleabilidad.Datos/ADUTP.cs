@@ -988,7 +988,8 @@ namespace UTP.PortalEmpleabilidad.Datos
             string Conocimiento, 
             int NroPostulante, 
             string EstadoOferta, 
-            string TipoInformacionAdicional)
+            string TipoInformacionAdicional,
+            string Carrera)
         {
             DataTable dt = new DataTable();
 
@@ -1010,6 +1011,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.Parameters.Add(new SqlParameter("@NroPostulante", NroPostulante));
                 cmd.Parameters.Add(new SqlParameter("@EstadoOferta", EstadoOferta));
                 cmd.Parameters.Add(new SqlParameter("@TipoInformacionAdicional", TipoInformacionAdicional));
+                cmd.Parameters.Add(new SqlParameter("@Carrera", Carrera));
 
                 cmd.Connection = conexion;
 
