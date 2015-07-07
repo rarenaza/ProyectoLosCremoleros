@@ -633,7 +633,8 @@ namespace UTPPrototipo.Controllers
                 entidad.Conocimientos == null ? "" : entidad.Conocimientos,
                 entidad.NumeroPostulante,
                 entidad.IdEstadoOferta == null ? "" : entidad.IdEstadoOferta,
-                entidad.InformacionAdicional == null ? "" : entidad.InformacionAdicional
+                entidad.InformacionAdicional == null ? "" : entidad.InformacionAdicional,
+                entidad.Carrera == null ? "" : entidad.Carrera
             );
 
             List<OfertaUTP> lista = lnUtp.UTP_ObtenerofertasAvanzada(entidad.CargoOfrecido == null ? "" : entidad.CargoOfrecido,

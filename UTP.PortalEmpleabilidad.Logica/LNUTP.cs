@@ -454,10 +454,11 @@ namespace UTP.PortalEmpleabilidad.Logica
             int NroPostulante = 0, 
             string EstadoOferta = "", 
             string TipoInformacionAdicional = "", 
+            string Carrera = "",
             int nroPagina = 0, 
             int filasPorPagina = 0)
         {
-            return adUtp.Excel_ObtenerOfertas(CargoOfrecido, NombreComercial, TipoCargo, Sector, Contrato, AExperiencia, Remuneracion, TipoEstudio, Conocimiento, NroPostulante, EstadoOferta, TipoInformacionAdicional);
+            return adUtp.Excel_ObtenerOfertas(CargoOfrecido, NombreComercial, TipoCargo, Sector, Contrato, AExperiencia, Remuneracion, TipoEstudio, Conocimiento, NroPostulante, EstadoOferta, TipoInformacionAdicional, Carrera);
         } 
 
         public DataTable UTP_ObtenerEventosObtenerBuscar(string evento, int nroPagina, int filasPorPagina)
