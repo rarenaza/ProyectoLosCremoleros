@@ -36,10 +36,14 @@
             @item.FechaEvento
         </div>
         <div class="col-sm-2">
-            @*@item.NombreEvento*@
-
-            @*@Html.ActionLink(@item.NombreEvento, "Evento_Editar", new { id = item.IdEvento })*@
-            @Html.ActionLink(@item.NombreEvento, "Evento_Editar", new { id = Helper.Encriptar(item.IdEvento.ToString()) })
+            @if (ViewBag.Rol != "ROLUTP")
+            {
+                @Html.ActionLink(@item.NombreEvento, "Evento_Editar", new { id = Helper.Encriptar(item.IdEvento.ToString()) })
+            }
+            else
+            {
+                @item.NombreEvento
+            }
         </div>
         <div class="col-sm-2">
             @item.LugarEvento

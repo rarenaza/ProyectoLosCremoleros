@@ -450,12 +450,46 @@
             minLength: 1,
             select: function (even, ui) {
                 $(inputtext).val(ui.item.value);
-                cargarDescripcion(ui.item.id);
+                $('#CodigoEmpresa').val(ui.item.id);
+                cargarDescripcionLocacionEmpresa();
                 console.log('seleccionado = ' + ui.item.id);
             }
         });
+
+        
     }
 
+    function cargarDescripcionLocacionEmpresa() {
+
+        var idEmpresa = $('#CodigoEmpresa').val();
+
+        $("#ListaUbicaciones").empty();
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("BuscarDatosEmpresasUTP","UTP")' + '?id=' + idEmpresa, // we are calling json method
+            dataType: 'json',
+
+            success: function (states) {
+                // states contains the JSON formatted list
+                // of states passed from the controller
+
+                $("#ListaUbicaciones").append('<option selected value>-Seleccione-</option>');
+
+                $.each(states, function (i, state) {
+                    $("#ListaUbicaciones").append('<option value="' + state.Value + '">' +
+                        state.Text + '</option>');
+                    // here we are adding option for States
+
+                });
+            },
+            error: function (ex) {
+                alert('Failed to retrieve states.' + ex);
+            }
+        });
+
+    }
+
+   
 </script>
 
 

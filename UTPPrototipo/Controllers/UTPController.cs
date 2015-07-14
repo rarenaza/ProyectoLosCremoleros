@@ -313,6 +313,10 @@ namespace UTPPrototipo.Controllers
 
             ViewBag.Paginacion = paginacion;
             ViewBag.TipoBusqueda = "Simple";
+
+            TicketUTP ticketUtp = (TicketUTP)Session["TicketUtp"];
+            ViewBag.Rol = ticketUtp.Rol;
+
             return PartialView("_ListaUtpEvento", listaEjemplo);
         }
 
@@ -615,6 +619,10 @@ namespace UTPPrototipo.Controllers
 
             ViewBag.Paginacion = paginacion;
             ViewBag.TipoBusqueda = "Simple";
+
+            TicketUTP ticketUtp = (TicketUTP)Session["TicketUtp"];
+            ViewBag.Rol = ticketUtp.Rol;
+
             return PartialView("_ListaUTPOfertas", lista);
         }
 
@@ -668,6 +676,9 @@ namespace UTPPrototipo.Controllers
 
             ViewBag.Paginacion = paginacion;
             ViewBag.TipoBusqueda = "Avanzada";
+
+            TicketUTP ticketUtp = (TicketUTP)Session["TicketUtp"];
+            ViewBag.Rol = ticketUtp.Rol;
 
             return PartialView("_ListaUTPOfertas", lista);
         }
@@ -3890,7 +3901,7 @@ namespace UTPPrototipo.Controllers
             EmpresaUsuario empresaUsuario = new EmpresaUsuario();
             LNEmpresaLocacion lnEmpresaLocacion = new LNEmpresaLocacion();
 
-            ViewBag.ListaUbicaciones = new SelectList(lnEmpresaLocacion.ObtenerLocaciones(0), "IdEmpresaLocacion", "NombreLocacion");
+            ViewBag.ListaUbicaciones = new SelectList(new List<String>());//lnEmpresaLocacion.ObtenerLocaciones(0), "IdEmpresaLocacion", "NombreLocacion");
             ViewBag.SexoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_SEXO), "IdListaValor", "Valor");
             ViewBag.TipoDocumentoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_DOCUMENTO), "IdListaValor", "Valor");
 
@@ -3944,7 +3955,7 @@ namespace UTPPrototipo.Controllers
 
             LNEmpresaLocacion lnEmpresaLocacion = new LNEmpresaLocacion();
 
-            ViewBag.IdEmpresaLocacion = new SelectList(lnEmpresaLocacion.ObtenerLocaciones(empresaUsuario.idEmpresa), "IdEmpresaLocacion", "NombreLocacion", empresaUsuario.IdEmpresaLocacion);
+            ViewBag.IdEmpresaLocacion = new SelectList(lnEmpresaLocacion.ObtenerLocacionesPorIdEmpresa(empresaUsuario.Empresa.IdEmpresa), "IdEmpresaLocacion", "NombreLocacion", empresaUsuario.IdEmpresaLocacion);
             ViewBag.SexoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_SEXO), "IdListaValor", "Valor", empresaUsuario.SexoIdListaValor);
             ViewBag.TipoDocumentoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_DOCUMENTO), "IdListaValor", "Valor", empresaUsuario.TipoDocumentoIdListaValor);
             ViewBag.RolIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ROL_USUARIO, "ROLE"), "IdListaValor", "Valor", empresaUsuario.RolIdListaValor);
@@ -3999,7 +4010,7 @@ namespace UTPPrototipo.Controllers
             //}
             //return PartialView("_AdministrarUsuarioEditar", empresaUsuario);
         }
-
+/*
         public ActionResult BuscarDatosEmpresasUTP(int idempresa)
         {
             //string descripocn = "";
@@ -4024,6 +4035,15 @@ namespace UTPPrototipo.Controllers
 
             return Json(vista, JsonRequestBehavior.AllowGet);
 
+        }*/
+
+        public JsonResult BuscarDatosEmpresasUTP(int id)
+        {
+            LNEmpresaLocacion lnEmpresaLocacion = new LNEmpresaLocacion();
+            List<VistaEmpresaLocacion> listVistaEmpresaLocacion = lnEmpresaLocacion.ObtenerLocacionesPorIdEmpresa(id);
+            //List<SelectListItem> li = new List<SelectListItem>();
+
+            return Json(new SelectList(listVistaEmpresaLocacion, "IdEmpresaLocacion", "NombreLocacion"), JsonRequestBehavior.AllowGet);
         }
 
     }

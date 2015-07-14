@@ -26,6 +26,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string IdTipoCargoutp { get; set; }
         //public DateTime FechaSeguimiento { get; set; }
         public string FechaSeguimiento { get; set; }
+        public string FechaFinRecepcionCV { get; set; }
         public string Comentarios { get; set; }
         //Paginación:
         public int CantidadTotal { get; set; }

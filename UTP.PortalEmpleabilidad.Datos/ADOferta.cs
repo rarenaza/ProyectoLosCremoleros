@@ -367,7 +367,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                     cmd.Parameters.Add(new SqlParameter("@RemuneracionOfrecida", oferta.RemuneracionOfrecida));
                     cmd.Parameters.Add(new SqlParameter("@Horario", oferta.Horario));
                     cmd.Parameters.Add(new SqlParameter("@AreaEmpresa", oferta.AreaEmpresa));
-                    cmd.Parameters.Add(new SqlParameter("@NumeroVacantes", oferta.NumeroVacantes));
+                    cmd.Parameters.Add(new SqlParameter("@NumeroVacantes", (oferta.NumeroVacantes == null ? (object)DBNull.Value : oferta.NumeroVacantes ))); 
                     cmd.Parameters.Add(new SqlParameter("@RequiereExperienciaLaboral", oferta.RequiereExperienciaLaboral));
                     cmd.Parameters.Add(new SqlParameter("@RecibeCorreos", oferta.RecibeCorreosIdListaValor));
                     cmd.Parameters.Add(new SqlParameter("@CreadoPor", oferta.CreadoPor));

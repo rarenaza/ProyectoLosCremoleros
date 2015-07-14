@@ -272,19 +272,31 @@ namespace UTPPrototipo.Controllers
         public FileResult GenerarWord(int idCV)
         {
             LNPlantillaCV lnPlantilla = new LNPlantillaCV();
-            string code = Convert.ToString(lnPlantilla.ObtenerDatosParaPlantilla(idCV).Tables[0].Rows[0]["CodAlumnoUtp"]);
+
+            System.Data.DataTable dtResultado = lnPlantilla.ObtenerDatosParaPlantilla(idCV).Tables[0];
+
+            string nombres = Convert.ToString(dtResultado.Rows[0]["Nombres"]);
+            string apellidos = Convert.ToString(dtResultado.Rows[0]["Apellidos"]);
+            string filename = String.Format("CV - {0} {1}.docx", nombres, apellidos);
+
             string filePath = Server.MapPath("~/Plantillas/template.docx");
 
-            return File(this.CrearCurriculum(idCV, filePath).ToArray(), "application/octet-stream", code + ".docx");
+            return File(this.CrearCurriculum(idCV, filePath).ToArray(), "application/octet-stream", filename);
         }
 
         public FileResult GenerarPDF(int idCV)
         {
             LNPlantillaCV lnPlantilla = new LNPlantillaCV();
-            string code = Convert.ToString(lnPlantilla.ObtenerDatosParaPlantilla(idCV).Tables[0].Rows[0]["CodAlumnoUtp"]);
+
+            System.Data.DataTable dtResultado = lnPlantilla.ObtenerDatosParaPlantilla(idCV).Tables[0];
+
+            string nombres = Convert.ToString(dtResultado.Rows[0]["Nombres"]);
+            string apellidos = Convert.ToString(dtResultado.Rows[0]["Apellidos"]);
+            string filename = String.Format("CV - {0} {1}.pdf", nombres, apellidos);
+
             string fileSourcePath = Server.MapPath("~/Plantillas/template.docx");
 
-            return File(this.Word2PDF(this.CrearCurriculum(idCV, fileSourcePath).ToArray()), "application/octet-stream", code + ".pdf");
+            return File(this.Word2PDF(this.CrearCurriculum(idCV, fileSourcePath).ToArray()), "application/octet-stream", filename);
         }
 
         public byte[] Word2PDF(byte[] file)
@@ -595,9 +607,12 @@ namespace UTPPrototipo.Controllers
             System.Data.DataTable dtResultado = lnPlantilla.ObtenerDocumentoCV(idOfertaPostulanteEntero);
 
             byte[] arrayCV = (byte[])dtResultado.Rows[0]["DocumentoCV"];
-            string codigoAlumno = Convert.ToString(dtResultado.Rows[0]["CodAlumnoUtp"]);
 
-            return File(arrayCV, "application/octet-stream", codigoAlumno + ".pdf");       
+            string nombres = Convert.ToString(dtResultado.Rows[0]["Nombres"]);
+            string apellidos = Convert.ToString(dtResultado.Rows[0]["Apellidos"]);
+            string filename = String.Format("CV - {0} {1}.pdf", nombres, apellidos);
+
+            return File(arrayCV, "application/octet-stream", filename);       
         }
 
         public string ConvertirMes(int nroMes)

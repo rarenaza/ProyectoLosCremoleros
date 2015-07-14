@@ -1,19 +1,25 @@
-﻿@model IEnumerable< UTP.PortalEmpleabilidad.Modelo.Evento>
+﻿@model IEnumerable<UTP.PortalEmpleabilidad.Modelo.Evento>
 
 
-<h5>Eventos</h5>
+<h5>Eventos Próximos</h5>
 
-<div class="col-sm-12">   
+@if (!Model.Any())
+{
+    <h6>No existen eventos próximos</h6>
+}
+
+<div class="col-sm-14">
+
     @foreach (var item in Model)
     {
         <div class="row grilla1-linea fuente-pequeña">
-            <div class="col-sm-12">
+            <div class="col-sm-14">
                 @Html.ActionLink(item.NombreEvento, "Eventos", "Alumno", new { id = item.IdEvento }, null)
             </div>
-            <div class="col-sm-12">
+            <div class="col-sm-14">
                 @Html.DisplayFor(modelItem => item.FechaEventoTexto)
             </div>
-            <div class="col-sm-12">
+            <div class="col-sm-14">
                 @Html.DisplayFor(modelItem => item.LugarEvento)
             </div>
         </div>

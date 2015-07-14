@@ -236,7 +236,7 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="input-group">
-                                            <span class="input-group-addon">Vacantes</span>
+                                            <span class="input-group-addon">(*) Vacantes</span>
                                             @*<input id="NumeroVacantes" name="NumeroVacantes" type="text" class="form-control" placeholder="Número de vacantes para el puesto" value="@Model.NumeroVacantes">*@
                                             @Html.TextBoxFor(m => m.NumeroVacantes, new { @class = "form-control", @placeholder = "Número de vacantes para el puesto" })
                                         </div>
@@ -298,7 +298,7 @@
                                             </div>
                                             @Html.ValidationMessageFor(m => m.EstadoCarreraUTP, "", new { @class = "text-danger" })
                                         </div>
-                                        <div class="col-sm-4">
+                                        <div class="col-sm-4" id="divCicloMinimo">
                                             <div class="input-group">
                                                 <div class="input-group-addon">
                                                     (*) Ciclo<br />Mínimo
@@ -379,7 +379,7 @@
 
                         <div id="collapseFases" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFases">
                             <div class="panel-body fuente-pequeña">
-                                <p>Seleccione las fases para esta Oferta</p>
+                                <p>Seleccione las fases para esta oferta</p>
 
                                 @for (int i = 0; i < Model.OfertaFases.Count(); i++)
                                 {
@@ -590,13 +590,20 @@
         $("#FechaFinRecepcionCV").datepicker({ dateFormat: 'dd/mm/yy' });
         $("#FechaFinProceso").datepicker({ dateFormat: 'dd/mm/yy' });
 
+        $("#EstadoCarreraUTP").trigger('change');
+
     });
     $("#EstadoCarreraUTP").change(function () {
         if (this.value != "EDEEST") {
             console.log(this.value);
-            $("#CicloMinimoCarreraUTP").attr('disabled', true);
+            $("#CicloMinimoCarreraUTP").val('0');
+            //$("#CicloMinimoCarreraUTP").attr('disabled', true);
+            $("#divCicloMinimo").hide();
+            
         } else {
-            $("#CicloMinimoCarreraUTP").removeAttr('disabled');
+            //$("#CicloMinimoCarreraUTP").removeAttr('disabled');
+            $("#CicloMinimoCarreraUTP").show();
+            $("#divCicloMinimo").show();
         }
     });
     //Scripts de creación.

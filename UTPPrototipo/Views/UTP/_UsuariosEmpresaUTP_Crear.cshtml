@@ -197,21 +197,7 @@
 
         AutoCompleteTextBuscarDescripcion('#NombreComercial', '@Url.Action("ListarNombreEmpresa", "UTP")', '#NombreComercial');
 
-
     });
-    function cargarDescripcion(idEmpresa) {
-        var url = '@Url.Action("BuscarDatosEmpresasUTP", "UTP")' + '?idEmpresa=' + idEmpresa;
 
-        $.get(url, function (empresa) {
     
-                     
-
-            $('#CodigoEmpresa').val(empresa["CodigoEmpresa"]);
-       
-            $('#ListaUbicaciones').val(empresa["ListaUbicaciones"]);
-    
-        });
-
-    }
-
 </script>

@@ -54,7 +54,8 @@ namespace UTP.PortalEmpleabilidad.Modelo
  
         public string Horario { get; set; }
         public string AreaEmpresa { get; set; }
-        public int NumeroVacantes { get; set; }
+        [Required(ErrorMessage = Constantes.MSJ_CAMPO_OBLIGATORIO)]
+        public int? NumeroVacantes { get; set; }
         public int RequiereExperienciaLaboral { get; set; }
         public string GradoMinimoEstudio { get; set; }
         public string CreadoPor { get; set; }

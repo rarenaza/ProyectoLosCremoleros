@@ -387,7 +387,16 @@ namespace UTP.PortalEmpleabilidad.Logica
                 oferta.RemuneracionOfrecida = Convert.ToDecimal(dsResultado.Tables[0].Rows[0]["RemuneracionOfrecida"]);
                 oferta.Horario = Convert.ToString(dsResultado.Tables[0].Rows[0]["Horario"]);
                 oferta.AreaEmpresa = Convert.ToString(dsResultado.Tables[0].Rows[0]["AreaEmpresa"]);
-                oferta.NumeroVacantes = Convert.ToInt32(dsResultado.Tables[0].Rows[0]["NumeroVacantes"]);
+
+                if (dsResultado.Tables[0].Rows[0]["NumeroVacantes"] == System.DBNull.Value)
+                {
+                    oferta.NumeroVacantes = null;
+                }
+                else
+                {
+                    oferta.NumeroVacantes = Convert.ToInt32(dsResultado.Tables[0].Rows[0]["NumeroVacantes"]);
+                }
+              
                 oferta.IdEmpresaLocacion = Convert.ToInt32(dsResultado.Tables[0].Rows[0]["IdEmpresaLocacion"]);
                 oferta.RecibeCorreosIdListaValor = Convert.ToString(dsResultado.Tables[0].Rows[0]["RecibeCorreos"]);
                 oferta.FechaFinRecepcionCV = Convert.ToDateTime(dsResultado.Tables[0].Rows[0]["FechaFinRecepcionCV"]);

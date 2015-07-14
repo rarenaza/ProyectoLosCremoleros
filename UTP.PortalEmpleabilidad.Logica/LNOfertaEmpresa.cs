@@ -27,7 +27,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 #region Se llena una lista con todas las fases de la oferta. Se marca las que van de manera obligatoria
 
                 LNGeneral lnGeneral = new LNGeneral();
-                var listaFasesDeLaOferta = lnGeneral.ObtenerListaValor(Constantes.IDLISTA_FASE_OFERTA).OrderBy(m => m.Peso);
+                var listaFasesDeLaOferta = lnGeneral.ObtenerListaValor(Constantes.IDLISTA_FASE_OFERTA).Where(m =>m.EstadoValor.Equals(Constantes.Estado_Activo_ListaValor)).OrderBy(m => m.Peso);
 
                 List<OfertaFase> listaOfertaFase = new List<OfertaFase>();
 
