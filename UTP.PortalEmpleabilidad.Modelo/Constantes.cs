@@ -163,6 +163,8 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public static string NOMBRE_UTP = "Universidad Tecnológica del Perú-UTP";
 
         public const string TICKET_EMITIDO = "EVTKEM";
-        
+
+        public static string Estado_Activo_ListaValor = "Activo";
+        public static string Estado_NoActivo_ListaValor = "No Activo";
     }
 }

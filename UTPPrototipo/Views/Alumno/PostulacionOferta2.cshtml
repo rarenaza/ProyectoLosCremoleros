@@ -196,10 +196,13 @@
                                     <td class="celda-nombre" style="width:70%;">Estado: <strong>@Model.Oferta.EstadoCarreraUTPDescripcion</strong></td>
                                     <td class="celda-datos"></td>
                                 </tr>
+                            @if (Convert.ToInt32(@Model.Oferta.CicloMinimoCarreraUTP) != 0)
+                            {
                                 <tr>
                                     <td class="celda-nombre" style="width:70%;">Ciclo mínimo: <strong>@Model.Oferta.CicloMinimoCarreraUTP</strong></td>
                                     <td class="celda-datos"></td>
                                 </tr>
+                            }
                             </table>
                             <br />
 

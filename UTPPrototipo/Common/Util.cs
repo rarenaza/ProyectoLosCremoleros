@@ -7,7 +7,7 @@ using System.Web.Mvc;
 using UTPPrototipo.Models.ViewModels.Cuenta;
 using System.Web.Routing;
 using UTP.PortalEmpleabilidad.Logica;
-using UTP.PortalEmpleabilidad.Modelo;
+using UTP.PortalEmpleabilidad.Modelo;using System.Web;
 namespace UTPPrototipo.Common
 {
     public class Util
@@ -21,6 +21,18 @@ namespace UTPPrototipo.Common
             }
             return valor;
         }
+
+        public static string ObtenerRolEmpresa()
+        {
+            string valor = string.Empty;
+
+            var currentSession = HttpContext.Current.Session;
+            var myValue = currentSession["TicketEmpresa"];
+
+            TicketEmpresa ticketUtp = (TicketEmpresa)myValue;
+            return ticketUtp.Rol;
+        }
+
     }
 
     public class VerificarSesion : ActionFilterAttribute
@@ -134,4 +146,6 @@ namespace UTPPrototipo.Common
             base.OnActionExecuted(filterContext);
         }
     }
+
+    
 }

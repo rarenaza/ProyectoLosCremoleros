@@ -244,7 +244,7 @@ namespace UTP.PortalEmpleabilidad.Logica
             ADAlumnoCVEstudio acve = new ADAlumnoCVEstudio();
             ADAlumnoCVExperienciaCargo acvs = new ADAlumnoCVExperienciaCargo();
             ADAlumnoCVInformacionAdicional acvc = new ADAlumnoCVInformacionAdicional();
-            acv.Update(alumnocv, PorcentajeCV);
+            
             acve.DesactivarPorCV(alumnocv.IdCV);
             acvs.DesactivarPorCV(alumnocv.IdCV);
             acvc.DesactivarPorCV(alumnocv.IdCV);
@@ -272,9 +272,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 }
             }
 
-
-
-
+            acv.Update(alumnocv, PorcentajeCV);
 
         }
 

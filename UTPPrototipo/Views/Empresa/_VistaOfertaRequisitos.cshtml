@@ -29,10 +29,13 @@
                             <td class="celda-nombre">Estado</td>
                             <td class="celda-datos">@itemCarrera.EstadoDelEstudio.Valor</td>
                         </tr>
-                        <tr>
-                            <td class="celda-nombre">Ciclo mínimo</td>
-                            <td class="celda-datos">@itemCarrera.CicloEstudio</td>
-                        </tr>
+                        @if (Convert.ToInt32(@itemCarrera.CicloEstudio) != 0)
+                        {
+                            <tr>
+                                <td class="celda-nombre">Ciclo mínimo</td>
+                                <td class="celda-datos">@itemCarrera.CicloEstudio</td>
+                            </tr>
+                        }
                     </table>
                     <br />
                     

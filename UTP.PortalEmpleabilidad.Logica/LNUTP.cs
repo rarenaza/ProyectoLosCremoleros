@@ -391,6 +391,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 vista.EjecutivoUTP = Convert.ToString(dtResultado.Rows[i]["EjecutivoUTP"]);
                 vista.Nrocv = Convert.ToString(dtResultado.Rows[i]["Nrocv"]);
                 vista.FechaSeguimiento = Convert.ToString(dtResultado.Rows[i]["FechaSeguimiento"]);
+                vista.FechaFinRecepcionCV = Convert.ToString(dtResultado.Rows[i]["FechaFinRecepcionCV"]);
                 //vista.FechaSeguimiento = Convert.ToDateTime(fila["FechaSeguimiento"] == DBNull.Value? (DateTime?)null :(DateTime)fila["FechaSeguimiento"]);
 
                 vista.Comentarios = Convert.ToString(dtResultado.Rows[i]["TieneComentarios"]);
@@ -426,6 +427,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 vista.EjecutivoUTP = Convert.ToString(dtResultado.Rows[i]["EjecutivoUTP"]);
                 vista.Nrocv = Convert.ToString(dtResultado.Rows[i]["Nrocv"]);
                 vista.FechaSeguimiento = Convert.ToString(dtResultado.Rows[i]["FechaSeguimiento"]);
+                vista.FechaFinRecepcionCV = Convert.ToString(dtResultado.Rows[i]["FechaFinRecepcionCV"]);
                 //vista.FechaSeguimiento = Convert.ToDateTime(fila["FechaSeguimiento"] == DBNull.Value? (DateTime?)null :(DateTime)fila["FechaSeguimiento"]);
 
                 vista.Comentarios = Convert.ToString(dtResultado.Rows[i]["TieneComentarios"]);

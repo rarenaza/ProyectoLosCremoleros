@@ -33,7 +33,7 @@
         # CVs
     </div>
     <div class="col-sm-1">
-        Fecha Seguimiento        
+        Fecha Fin Recepción de CVs
     </div>
     <div class="col-sm-1">
         Estado
@@ -56,14 +56,20 @@
             @item.Clasificación
         </div>
         <div class="col-sm-2">
-            @*@Html.ActionLink(@item.CargoOfrecido, "VerDetalleOferta", new { id = Helper.Encriptar(item.IdOferta.ToString()) }, htmlAttributes: new { target = "_blank" })*@
-            @Html.ActionLink(@item.CargoOfrecido, "VerDetalleOferta", new { id = Helper.Encriptar(item.IdOferta.ToString()) }, null)
-            <br />
-            @*@Html.ActionLink("Vista empresa", "Oferta", "Empresa", new { idOfertaCrypt = Helper.Encriptar(item.IdOferta.ToString()), pantallaCrypt = Helper.Encriptar("UTP") }, htmlAttributes: new { target = "_blank" })*@
-            @Html.ActionLink("Vista empresa", "Oferta", "Empresa", new { idOfertaCrypt = Helper.Encriptar(item.IdOferta.ToString()), pantallaCrypt = Helper.Encriptar("UTP") }, null)
-            <br />
-            @*@Html.ActionLink(" ", "VerOferta", "Home", new { crypt = Helper.Encriptar(item.IdOferta.ToString()) }, htmlAttributes: new { @class = "fa fa-external-link", target = "_blank", title = "Link externo" })*@
-            @Html.ActionLink(" ", "VerOferta", "Home", new { crypt = Helper.Encriptar(item.IdOferta.ToString()) }, htmlAttributes: new { @class = "fa fa-external-link", title = "Link externo" })
+            @if (ViewBag.Rol != "ROLUTP")
+            {
+                @Html.ActionLink(@item.CargoOfrecido, "VerDetalleOferta", new { id = Helper.Encriptar(item.IdOferta.ToString()) }, null)
+                <br />                
+                @Html.ActionLink("Vista empresa", "Oferta", "Empresa", new { idOfertaCrypt = Helper.Encriptar(item.IdOferta.ToString()), pantallaCrypt = Helper.Encriptar("UTP") }, null)
+                <br />               
+                @Html.ActionLink(" ", "VerOferta", "Home", new { crypt = Helper.Encriptar(item.IdOferta.ToString()) }, htmlAttributes: new { @class = "fa fa-external-link", title = "Link externo" })
+            }
+            else
+            {
+                @item.CargoOfrecido
+                <br />
+                @Html.ActionLink(" ", "VerOferta", "Home", new { crypt = Helper.Encriptar(item.IdOferta.ToString()) }, htmlAttributes: new { @class = "fa fa-external-link", title = "Link externo" })
+            }
         </div>
         <div class="col-sm-1">
             @item.NumeroVacantes
@@ -75,7 +81,7 @@
             @item.Nrocv
         </div>
         <div class="col-sm-1">
-            @item.FechaSeguimiento
+            @item.FechaFinRecepcionCV
         </div>        
         <div class="col-sm-1">
             @item.Estado

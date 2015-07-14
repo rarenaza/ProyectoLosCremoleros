@@ -61,8 +61,10 @@
                         @*<a class="btn btn-default navbar-btn Boton_pestana color-paleta3" href="..\Empresa\Hunting" style="padding: 2px 0px 2px 0px; color: white;">Buscar CVs</a>*@
                     </li>
                     <li>
-                        @Html.ActionLink("Mi Empresa", "Administrar", "Empresa", null, new { @class = "btn btn-default navbar-btn Boton_pestana color-paleta4", @style = "padding: 2px 0px 2px 0px; color: white;" })
-
+                            @if (UTPPrototipo.Common.Util.ObtenerRolEmpresa() == "ROLEAD")
+                            {
+                                @Html.ActionLink("Mi Empresa", "Administrar", "Empresa", null, new { @class = "btn btn-default navbar-btn Boton_pestana color-paleta4", @style = "padding: 2px 0px 2px 0px; color: white;" })
+                            }
                         <!--Link demo para generación de plantillas-->
                         
                         @*<a class="btn btn-default navbar-btn Boton_pestana color-paleta4" href="..\Empresa\Administrar" style="padding: 2px 0px 2px 0px; color: white;">Mi Empresa</a>*@

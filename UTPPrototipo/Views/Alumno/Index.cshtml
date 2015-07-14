@@ -8,7 +8,7 @@
 
 <link href="~/Content/font-awesome.css" rel="stylesheet" />
 <div class="container" style="margin-top:2px;">
-    
+
     @{ViewBag.ColapsaDatos = " in";}
     @Html.Partial("_DatosPersonales", Model.Alumno)
     @{Html.RenderAction("AlertaCvAlumno", "Alumno");}
@@ -17,6 +17,31 @@
 
     <div class="row">
         <div class="col-md-3 fuente-pequeña" style="border-right:solid;border-color:rgb(220, 220, 220);border-width:1px;">
+
+            <h5>Ofertas que pueden interesarte</h5>
+            @Html.Partial("_AlumnoUltimasOfertas", Model.ListaOfertas)
+
+        </div>
+        <div class="col-md-6 fuente-pequeña" style="border-right:solid;border-color:rgb(220, 220, 220);border-width:1px;">
+            <!--INICIO-->
+            <div class="panel-group" id="grupoMensajes" role="tablist" aria-multiselectable="true">
+
+                @Html.Action("_Mensajes", "Mensaje", new { pantalla = Constantes.MENSAJES_ALUMNO_INDEX })
+
+            </div>
+            <!--FIN-->
+        </div>
+        <div class="col-md-3 fuente-pequeña">
+            <!--INICIO-->
+            <div class="panel-group" id="grupoEventos" role="tablist" aria-multiselectable="true">
+
+                @Html.Partial("_AlumnoEventos", Model.ListaEventos)
+
+            </div>
+
+            <!--FIN-->
+        </div>
+        <div class="col-md-3 fuente-pequeña">
             @if (Session["ResultadoLogeo"].ToString().Equals(""))
             {
                 @Html.Action("VistaCalendario", "Calendario")
@@ -24,29 +49,8 @@
             else
             {
                 <div class="alert alert-danger" role="alert">@Session["ResultadoLogeo"]</div>
-            }            
-            <h5>Ofertas que pueden interesarte</h5>
-            @Html.Partial("_AlumnoUltimasOfertas", Model.ListaOfertas)
-
+            }
         </div>
-        <div   class="col-md-6 fuente-pequeña" style="border-right:solid;border-color:rgb(220, 220, 220);border-width:1px;">
-            <!--INICIO-->
-            <div class="panel-group" id="grupoMensajes" role="tablist" aria-multiselectable="true">
-             
-                           @Html.Action("_Mensajes", "Mensaje", new { pantalla = Constantes.MENSAJES_ALUMNO_INDEX })
-                    
-            </div>
-            <!--FIN-->
-        </div>
-        <div class="col-md-3 fuente-pequeña">
-            <!--INICIO-->
-            <div class="panel-group" id="grupoEventos" role="tablist" aria-multiselectable="true">
-              
-                            @Html.Partial("_AlumnoEventos", Model.ListaEventos)
-                   
-            </div>
-            <!--FIN-->
-        </div>       
     </div>
     <hr />
     <div class="row">

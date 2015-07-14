@@ -65,37 +65,15 @@ namespace UTP.PortalEmpleabilidad.Logica
 
                 alumnoEstudioItem.TipoDeEstudio = "TEUNIV"; //Realizar función de conversión.
                 EstudioGrado = Convert.ToString(dsDatosAlumno.Tables[1].Rows[i]["Grado"]).Substring(0,6);
-                switch (EstudioGrado)
-                {
-                    case "NO tie":
-                        alumnoEstudioItem.EstadoDelEstudio = "EDEEGR";
-                        break;
-                    case "TITULA":
-                        alumnoEstudioItem.EstadoDelEstudio = "EDETIT";
-                        break;
-                    case "NO es":
-                        alumnoEstudioItem.EstadoDelEstudio = "EDEBAC";
-                        break;
-                    case "EGRESA":
-                        alumnoEstudioItem.EstadoDelEstudio = "EDEEGR";
-                        break;
-                    case "BACHIL":
-                        alumnoEstudioItem.EstadoDelEstudio = "EDEBAC";
-                        break;
-                    case "Estudi":
-                        alumnoEstudioItem.EstadoDelEstudio = "EDEEST";
-                        EsEstudiante = true;
-                        break;
-                    default:
-                        alumnoEstudioItem.EstadoDelEstudio = "EDEEST";
-                        break;
-                }
+
+                alumnoEstudioItem.EstadoDelEstudio = EstudioGrado;
+
                 alumnoEstudioItem.Observacion = "";
                 alumnoEstudioItem.FechaInicioAno = ConvertirFecha(Convert.ToString(dsDatosAlumno.Tables[1].Rows[i]["FechaInicio"])).Year;
                 alumnoEstudioItem.FechaInicioMes = ConvertirFecha(Convert.ToString(dsDatosAlumno.Tables[1].Rows[i]["FechaInicio"])).Month;
 
                 //Cuando un alumno es estudiante, las fechas de fin son nulas
-                if (!EsEstudiante)
+                if (!alumnoEstudioItem.EstadoDelEstudio.Equals("EDEEST"))
                 {
                     alumnoEstudioItem.FechaFinAno = ConvertirFecha(Convert.ToString(dsDatosAlumno.Tables[1].Rows[i]["FechaFinal"])).Year;
                     alumnoEstudioItem.FechaFinMes = ConvertirFecha(Convert.ToString(dsDatosAlumno.Tables[1].Rows[i]["FechaFinal"])).Month;
