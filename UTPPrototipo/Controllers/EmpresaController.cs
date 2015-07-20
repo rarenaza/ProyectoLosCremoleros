@@ -1471,11 +1471,37 @@ namespace UTPPrototipo.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult CerrarOferta(OfertaEncuesta encuesta)
         {
+            LNMensaje lnMensaje = new LNMensaje();
             LNOferta lnOferta = new LNOferta();
+            string correoDe, nombreOferta, deUsuario = "";
             lnOferta.CompletarEncuesta(encuesta);
+            
+            List<OfertaPostulante> postulantes = new List<OfertaPostulante>();
+            postulantes = lnOferta.ObtenerPostulantesPorIdOferta(encuesta.IdOferta);
 
+            DataTable dtDatos = lnOferta.ObtenerDatosParaMensaje(Convert.ToInt32(encuesta.IdOferta));
+            correoDe = Convert.ToString(dtDatos.Rows[0]["CorreoUsuarioEmpresa"]);
+            nombreOferta = Convert.ToString(dtDatos.Rows[0]["NombreOferta"]);
+            deUsuario = Convert.ToString(dtDatos.Rows[0]["UsuarioPropietarioEmpresa"]);
+
+            foreach (var item in postulantes)
+            {
+                Mensaje mensaje = new Mensaje();
+                mensaje.IdOfertaMensaje = item.IdOferta;
+                mensaje.DeUsuario = deUsuario;
+                mensaje.DeUsuarioCorreoElectronico = correoDe;
+                mensaje.ParaUsuarioCorreoElectronico = item.CorreoElectronico;
+                mensaje.ParaUsuario = item.Usuario;
+                mensaje.FechaEnvio = DateTime.Now;
+                mensaje.IdEvento = 0;
+                mensaje.EstadoMensaje = "MSJNOL";  //Pendiente de ser leido
+                mensaje.CreadoPor = deUsuario;
+                mensaje.Asunto = nombreOferta + " - Cierre de Oferta";
+                mensaje.MensajeTexto = "Estimado postulante,</br>"+ 
+                                        "Te comunicamos que el proceso de selección al que postulaste ha culminado.";
+                lnMensaje.Insertar(mensaje);
+            }
             TempData["MsjExitoCerrarOferta"] = "La oferta se ha cerrado con éxito";
-
             //Se redirecciona a la lista de ofertas:
             return RedirectToAction("Publicacion", "Empresa");
         }
