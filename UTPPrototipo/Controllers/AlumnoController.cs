@@ -126,13 +126,21 @@ namespace UTPPrototipo.Controllers
             if (entidad.IdCV > 0)
             {
                 TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
-                entidad.CreadoPor = ticket.Usuario;
-
-                //Se crea el CV en formato Word.
-                string rutaPlantilla = AppDomain.CurrentDomain.BaseDirectory + "Plantillas\\template.docx";
                 PlantillaController plantilla = new PlantillaController();
-                entidad.DocumentoCV = plantilla.Word2PDF(plantilla.CrearCurriculum(entidad.IdCV, rutaPlantilla).ToArray());
-                lnofertapostulante.Insertar(entidad);
+                string rutaPlantilla = AppDomain.CurrentDomain.BaseDirectory + "Plantillas\\template.docx";
+
+                var postulaciones = lnoferta
+                    .ObtenerPostulantesPorIdOferta(entidad.IdOferta)
+                    .FirstOrDefault(p => p.Usuario == ticket.Usuario);
+
+                if (postulaciones == null)
+                {
+                    entidad.CreadoPor = ticket.Usuario;
+                    entidad.DocumentoCV = plantilla
+                        .Word2PDF(plantilla.CrearCurriculum(entidad.IdCV, rutaPlantilla)
+                        .ToArray());
+                    lnofertapostulante.Insertar(entidad);
+                }
             }
             else
             {
