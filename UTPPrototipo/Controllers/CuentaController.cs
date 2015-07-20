@@ -535,23 +535,29 @@ namespace UTPPrototipo.Controllers
                             ticketEmpresa.TipoUsuario = Convert.ToString(dsResultado.Tables[2].Rows[0]["TipoUsuario"]);
                             ticketEmpresa.IdEmpresa = Convert.ToInt32(dsResultado.Tables[2].Rows[0]["IdEmpresa"]);
                             ticketEmpresa.Rol = Convert.ToString(dsResultado.Tables[2].Rows[0]["Rol"]);
-
-                            Session["TicketEmpresa"] = ticketEmpresa;
-
-
-                            //TicketEmpresa tcke2 = (TicketEmpresa)Session["TicketEmpresa"];
-
-                            //REdireccionas al indexl de la empresa
-
-                            Ticket ticket = new Ticket();
-                            ticket.UsuarioNombre = usuario.NombreUsuario;
-                            ticket.IdEmpresa = 1;
-
-                            Session["Ticket"] = ticket;
-
-                            return RedirectToAction("Index", "Empresa");
+                            ticketEmpresa.EstadoEmpresa = Convert.ToString(dsResultado.Tables[2].Rows[0]["EstadoEmpresa"]);
+                            if (ticketEmpresa.EstadoEmpresa == "EMPRAC")
+                            {
+                                Session["TicketEmpresa"] = ticketEmpresa;
 
 
+                                //TicketEmpresa tcke2 = (TicketEmpresa)Session["TicketEmpresa"];
+
+                                //REdireccionas al indexl de la empresa
+
+                                Ticket ticket = new Ticket();
+                                ticket.UsuarioNombre = usuario.NombreUsuario;
+                                ticket.IdEmpresa = 1;
+
+                                Session["Ticket"] = ticket;
+
+                                return RedirectToAction("Index", "Empresa");
+                            }
+                            else
+                            {
+                                if (ticketEmpresa.EstadoEmpresa == "EMPRNO") TempData["UsuarioNoExitoso"] = "Empresa Desactivada, comuníquese con su Administrador";
+                                if (ticketEmpresa.EstadoEmpresa == "EMPRSU") TempData["UsuarioNoExitoso"] = "Empresa Suspendida, comuníquese con su Administrador";
+                            }
 
                         }
                         if (tipoUsuario == "USERAL")
