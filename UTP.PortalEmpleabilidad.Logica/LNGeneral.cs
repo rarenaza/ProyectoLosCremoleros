@@ -322,5 +322,42 @@ namespace UTP.PortalEmpleabilidad.Logica
 
             return lista.OrderBy(m => m.Peso).ToList();
         }
+
+        public void EnviarCorreoOfertasVencidas()
+        {
+            DataTable dtOfertas = adGeneral.OfertasVencidas();            
+            LNMensaje lnMensaje = new LNMensaje();
+            int idOferta = 0;
+            string paraCorreo, paraNombre, nombreOferta = "";
+            
+            foreach (DataRow fila in dtOfertas.Rows)
+            {
+                idOferta = Convert.ToInt32(fila["IdOferta"]);
+                paraCorreo = fila["CorreoElectronico"].ToString();
+                paraNombre = fila["CreadoPor"].ToString();
+                nombreOferta = fila["CargoOfrecido"].ToString();
+
+                Mensaje mensaje = new Mensaje();
+                mensaje.DeUsuarioCorreoElectronico = ConfigurationManager.AppSettings["OfertaCorreoRemitente"];
+                mensaje.ParaUsuarioCorreoElectronico = paraCorreo;
+                mensaje.MensajeTexto = "Estimado Usuario Empresa:</br>" +
+                "Le recordamos que tiene una Oferta Laboral pendiente por cerrar.</br>" +
+                "Por favor, ingrese a la Oferta Laboral en el Portal y en la sección Administración de la Oferta haga clic en el botón 'Cerrar Oferta'.</br></br>" +
+                "Muchas gracias,</br>" +
+                "La Dirección de Empleabilidad";
+                mensaje.Asunto = nombreOferta + " - Cierre de Oferta";
+
+                mensaje.IdOfertaMensaje = idOferta;
+                mensaje.FechaEnvio = DateTime.Now;
+                mensaje.IdEvento = 0;
+                mensaje.EstadoMensaje = "MSJNOL";  //Pendiente de ser leido
+                mensaje.DeUsuario = "UTP";
+                mensaje.CreadoPor = "UTP";
+                mensaje.ParaUsuario = paraNombre;
+
+                lnMensaje.Insertar(mensaje);
+                
+            }
+        }
     }
 }

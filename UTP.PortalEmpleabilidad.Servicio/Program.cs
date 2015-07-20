@@ -22,7 +22,8 @@ namespace UTP.PortalEmpleabilidad.Servicio
             
             //Se llaman a los funciones en la librería Logica.
             lnGeneral.EnviarOfertaCorreosPendientes();
-            lnGeneral.FinalizarOfertasPorFechaDeRecepcion();          
+            lnGeneral.FinalizarOfertasPorFechaDeRecepcion();
+            lnGeneral.EnviarCorreoOfertasVencidas();
 
         }
 
