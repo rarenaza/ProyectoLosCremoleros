@@ -383,7 +383,7 @@ namespace UTPPrototipo.Controllers
                     lastname = Convert.ToString(Person.Rows[0]["Apellidos"]).ToUpper(),
                     document = Convert.ToString(Person.Rows[0]["NumeroDocumento"]),
                     documentType = Convert.ToString(Person.Rows[0]["TipoDocumento"]),
-                    address = Convert.ToString(Person.Rows[0]["Direccion"]),
+                    address = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Convert.ToString(Person.Rows[0]["Direccion"])),
                     district = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Convert.ToString(Person.Rows[0]["DireccionDistrito"])),
                     celphone = String.Join("-", Regex.Split(Convert.ToString(Person.Rows[0]["TelefonoCelular"]), celphonePattern, REGEX).Where(w => w != String.Empty).ToArray()),
                     email = Convert.ToString(Person.Rows[0]["CorreoElectronico"]),
