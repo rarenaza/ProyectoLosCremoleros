@@ -116,7 +116,7 @@ namespace UTPPrototipo.Controllers
         private string Pattern;
         private string ModelPattern;
         private string PointerPattern;
-        private System.Text.RegularExpressions.RegexOptions REGEX = System.Text.RegularExpressions.RegexOptions.ECMAScript;
+        private RegexOptions REGEX = RegexOptions.ECMAScript;
         private MemoryStream Stream;
 
         public Template(string Source, string Pattern = @"{{<regex>}}")
@@ -355,10 +355,12 @@ namespace UTPPrototipo.Controllers
             System.Data.DataTable Experience = Result.Tables[2];
             System.Data.DataTable AditionalInformation = Result.Tables[3];
 
-            MemoryStream stream = new MemoryStream();
-
-            Mustache mustache = new Mustache();
             string blockPattern = @"{{><model>}}";
+            string celphonePattern = @"(\d{3})";
+            RegexOptions REGEX = RegexOptions.ECMAScript;
+
+            MemoryStream stream = new MemoryStream();
+            Mustache mustache = new Mustache();
 
             using (FileStream fileStream = System.IO.File.OpenRead(rutaPlantilla))
             {
@@ -383,7 +385,7 @@ namespace UTPPrototipo.Controllers
                     documentType = Convert.ToString(Person.Rows[0]["TipoDocumento"]),
                     address = Convert.ToString(Person.Rows[0]["Direccion"]),
                     district = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Convert.ToString(Person.Rows[0]["DireccionDistrito"])),
-                    celphone = Convert.ToString(Person.Rows[0]["TelefonoCelular"]),
+                    celphone = String.Join("-", Regex.Split(Convert.ToString(Person.Rows[0]["TelefonoCelular"]), celphonePattern, REGEX).Where(w => w != String.Empty).ToArray()),
                     email = Convert.ToString(Person.Rows[0]["CorreoElectronico"]),
                     emailAlternative = Convert.ToString(Person.Rows[0]["CorreoElectronico2"]),
                     profile = Convert.ToString(Person.Rows[0]["Perfil"]),
