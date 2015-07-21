@@ -101,6 +101,9 @@ namespace UTPPrototipo.Controllers
                 case "default":
                     output = (text == String.Empty ? Regex.Unescape(filterValue) : text);
                     break;
+                case "non-empty":
+                    output = (text != String.Empty ? Regex.Unescape(filterValue) : String.Empty);
+                    break;
             }
 
             return output;
@@ -113,7 +116,7 @@ namespace UTPPrototipo.Controllers
         private string Pattern;
         private string ModelPattern;
         private string PointerPattern;
-        private System.Text.RegularExpressions.RegexOptions REGEX = System.Text.RegularExpressions.RegexOptions.ECMAScript;
+        private RegexOptions REGEX = RegexOptions.ECMAScript;
         private MemoryStream Stream;
 
         public Template(string Source, string Pattern = @"{{<regex>}}")
@@ -352,10 +355,12 @@ namespace UTPPrototipo.Controllers
             System.Data.DataTable Experience = Result.Tables[2];
             System.Data.DataTable AditionalInformation = Result.Tables[3];
 
-            MemoryStream stream = new MemoryStream();
-
-            Mustache mustache = new Mustache();
             string blockPattern = @"{{><model>}}";
+            string celphonePattern = @"(\d{3})";
+            RegexOptions REGEX = RegexOptions.ECMAScript;
+
+            MemoryStream stream = new MemoryStream();
+            Mustache mustache = new Mustache();
 
             using (FileStream fileStream = System.IO.File.OpenRead(rutaPlantilla))
             {
@@ -378,9 +383,9 @@ namespace UTPPrototipo.Controllers
                     lastname = Convert.ToString(Person.Rows[0]["Apellidos"]).ToUpper(),
                     document = Convert.ToString(Person.Rows[0]["NumeroDocumento"]),
                     documentType = Convert.ToString(Person.Rows[0]["TipoDocumento"]),
-                    address = Convert.ToString(Person.Rows[0]["Direccion"]),
+                    address = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Convert.ToString(Person.Rows[0]["Direccion"])),
                     district = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Convert.ToString(Person.Rows[0]["DireccionDistrito"])),
-                    celphone = Convert.ToString(Person.Rows[0]["TelefonoCelular"]),
+                    celphone = String.Join("-", Regex.Split(Convert.ToString(Person.Rows[0]["TelefonoCelular"]), celphonePattern, REGEX).Where(w => w != String.Empty).ToArray()),
                     email = Convert.ToString(Person.Rows[0]["CorreoElectronico"]),
                     emailAlternative = Convert.ToString(Person.Rows[0]["CorreoElectronico2"]),
                     profile = Convert.ToString(Person.Rows[0]["Perfil"]),
@@ -488,17 +493,20 @@ namespace UTPPrototipo.Controllers
                             ? DateTime.Now.Month
                             : Convert.ToInt32(data["FechaFinCargoMes"]);
 
-                        timeOfExperience += (yearEnd - yearStart) * 12 + monthEnd +1 - monthStart;
+                        timeOfExperience += (yearEnd - yearStart) * 12 + monthEnd - monthStart + 1;
                     }
 
                     enterprises.Add(Convert.ToString(enterprise["Empresa"]), new
                     {
                         enterprise = Convert.ToString(enterprise["Empresa"]),
                         enterpriseDescription = Convert.ToString(enterprise["DescripcionEmpresa"]),
-                        enterpriseTimeOfExperience = String.Format("({0} años, {1} meses)", Math.Truncate(timeOfExperience / 12.0), timeOfExperience % 12),
+                        enterpriseTimeOfExperience = (Convert.ToInt32(Math.Truncate(timeOfExperience / 12.0)) == 0)
+                            ? String.Format("({0} " + Pluralize(timeOfExperience % 12, "mes", "es") + ")", timeOfExperience % 12)
+                            : String.Format("({0} " + Pluralize(Convert.ToInt32(Math.Truncate(timeOfExperience / 12.0)), "año") + ", {1} " + Pluralize(timeOfExperience % 12, "mes", "es") + ")", Math.Truncate(timeOfExperience / 12.0), timeOfExperience % 12),
                         enterpriseCountry = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Convert.ToString(enterprise["PaisDescripcion"])),
                         enterpriseCity = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Convert.ToString(enterprise["Ciudad"]))
                     });
+
                     experiences.Add(Convert.ToString(enterprise["Empresa"]), aux);
                 }
 
@@ -517,17 +525,9 @@ namespace UTPPrototipo.Controllers
                         Novacode.Table enterpriseWrapper = experienceWrapper.InsertTableAfterSelf(template.experience.blocks[1]);
 
                         // Render enterprise info
-                        for (int i = 0; i < enterpriseFields.Count() + 1; i++)
+                        foreach (string i in template.experience.inlines)
                         {
-                            doc.ReplaceText(
-                                template.experience.inlines[i],
-                                mustache
-                                    .Compile(template.experience.inlines[i])
-                                    .Render(new
-                                    {
-                                        experience = enterprises[data.Key]
-                                    })
-                            );
+                            doc.ReplaceText(i, mustache.Compile(i).Render(new { experience = enterprises[data.Key] }));
                         }
 
                         Novacode.Table enterpriseExperienceWrapper = enterpriseWrapper.Rows[1].Tables[0];
@@ -597,6 +597,11 @@ namespace UTPPrototipo.Controllers
             }
 
             return stream;
+        }
+        
+        public string Pluralize(int quantity, string text, string suffix = "s")
+        {
+            return quantity != 1 ? text + suffix : text;
         }
 
         public FileResult DescargarDesdeBD(string idOfertaPostulante)
