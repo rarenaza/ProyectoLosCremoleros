@@ -101,6 +101,9 @@ namespace UTPPrototipo.Controllers
                 case "default":
                     output = (text == String.Empty ? Regex.Unescape(filterValue) : text);
                     break;
+                case "non-empty":
+                    output = (text != String.Empty ? Regex.Unescape(filterValue) : String.Empty);
+                    break;
             }
 
             return output;
@@ -517,17 +520,9 @@ namespace UTPPrototipo.Controllers
                         Novacode.Table enterpriseWrapper = experienceWrapper.InsertTableAfterSelf(template.experience.blocks[1]);
 
                         // Render enterprise info
-                        for (int i = 0; i < enterpriseFields.Count() + 1; i++)
+                        foreach (string i in template.experience.inlines)
                         {
-                            doc.ReplaceText(
-                                template.experience.inlines[i],
-                                mustache
-                                    .Compile(template.experience.inlines[i])
-                                    .Render(new
-                                    {
-                                        experience = enterprises[data.Key]
-                                    })
-                            );
+                            doc.ReplaceText(i, mustache.Compile(i).Render(new { experience = enterprises[data.Key] }));
                         }
 
                         Novacode.Table enterpriseExperienceWrapper = enterpriseWrapper.Rows[1].Tables[0];
