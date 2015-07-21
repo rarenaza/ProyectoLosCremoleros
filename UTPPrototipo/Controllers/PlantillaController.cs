@@ -506,6 +506,7 @@ namespace UTPPrototipo.Controllers
                         enterpriseCountry = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Convert.ToString(enterprise["PaisDescripcion"])),
                         enterpriseCity = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Convert.ToString(enterprise["Ciudad"]))
                     });
+
                     experiences.Add(Convert.ToString(enterprise["Empresa"]), aux);
                 }
 
