@@ -493,14 +493,16 @@ namespace UTPPrototipo.Controllers
                             ? DateTime.Now.Month
                             : Convert.ToInt32(data["FechaFinCargoMes"]);
 
-                        timeOfExperience += (yearEnd - yearStart) * 12 + monthEnd +1 - monthStart;
+                        timeOfExperience += (yearEnd - yearStart) * 12 + monthEnd - monthStart + 1;
                     }
 
                     enterprises.Add(Convert.ToString(enterprise["Empresa"]), new
                     {
                         enterprise = Convert.ToString(enterprise["Empresa"]),
                         enterpriseDescription = Convert.ToString(enterprise["DescripcionEmpresa"]),
-                        enterpriseTimeOfExperience = String.Format("({0} años, {1} meses)", Math.Truncate(timeOfExperience / 12.0), timeOfExperience % 12),
+                        enterpriseTimeOfExperience = (Convert.ToInt32(Math.Truncate(timeOfExperience / 12.0)) == 0)
+                            ? String.Format("({0} " + Pluralize(timeOfExperience % 12, "mes", "es") + ")", timeOfExperience % 12)
+                            : String.Format("({0} " + Pluralize(Convert.ToInt32(Math.Truncate(timeOfExperience / 12.0)), "año") + ", {1} " + Pluralize(timeOfExperience % 12, "mes", "es") + ")", Math.Truncate(timeOfExperience / 12.0), timeOfExperience % 12),
                         enterpriseCountry = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Convert.ToString(enterprise["PaisDescripcion"])),
                         enterpriseCity = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Convert.ToString(enterprise["Ciudad"]))
                     });
@@ -594,6 +596,11 @@ namespace UTPPrototipo.Controllers
             }
 
             return stream;
+        }
+        
+        public string Pluralize(int quantity, string text, string suffix = "s")
+        {
+            return quantity != 1 ? text + suffix : text;
         }
 
         public FileResult DescargarDesdeBD(string idOfertaPostulante)
