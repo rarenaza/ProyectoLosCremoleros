@@ -378,7 +378,6 @@ namespace UTPPrototipo.Controllers
 
                 object person = new
                 {
-                    // Informacion basica
                     firstname = Convert.ToString(Person.Rows[0]["Nombres"]).ToUpper(),
                     lastname = Convert.ToString(Person.Rows[0]["Apellidos"]).ToUpper(),
                     document = Convert.ToString(Person.Rows[0]["NumeroDocumento"]),
@@ -429,7 +428,10 @@ namespace UTPPrototipo.Controllers
                             period = ConvertirMes(Convert.ToInt32(data["FechaInicioMes"])) + Convert.ToString(data["FechaInicioAno"]).Substring(2, 2) +
                                 "-" + (data["FechaFinMes"] == DBNull.Value && data["FechaFinAno"] == DBNull.Value
                                     ? "Cont"
-                                    : ConvertirMes(Convert.ToInt32(data["FechaFinMes"])) + Convert.ToString(data["FechaFinAno"]).Substring(2, 2))
+                                    : ConvertirMes(Convert.ToInt32(data["FechaFinMes"])) + Convert.ToString(data["FechaFinAno"]).Substring(2, 2)),
+                            cycle = Convert.ToInt32(data["CicloEquivalente"] == DBNull.Value ? 0 : data["CicloEquivalente"]) == 0
+                                ? String.Empty
+                                : String.Format("{0} Ciclo", Convert.ToInt32(data["CicloEquivalente"]))
                         };
 
                         foreach (string i in template.education.inlines)
@@ -480,7 +482,7 @@ namespace UTPPrototipo.Controllers
                         aux.Add(new
                         {
                             period = period,
-                            office = Convert.ToString(data["NombreCargo"]),
+                            office = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Convert.ToString(data["NombreCargo"])),
                             officeDescription = Convert.ToString(data["DescripcionCargo"])
                         });
 
@@ -604,6 +606,13 @@ namespace UTPPrototipo.Controllers
             return quantity != 1 ? text + suffix : text;
         }
 
+        public string CycleStudy(int cycle)
+        {
+            string[] cycles = new string[] { "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X" };
+
+            return cycle == 0 ? String.Empty : cycles[cycle - 1];
+        }
+
         public FileResult DescargarDesdeBD(string idOfertaPostulante)
         {
             int idOfertaPostulanteEntero = Convert.ToInt32(Helper.Desencriptar(idOfertaPostulante));
@@ -620,11 +629,11 @@ namespace UTPPrototipo.Controllers
             return File(arrayCV, "application/octet-stream", filename);       
         }
 
-        public string ConvertirMes(int nroMes)
+        public string ConvertirMes(int mes)
         {
-            string[] mes = new string[] { "Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Set", "Oct", "Nov", "Dic" };
+            string[] meses = new string[] { "Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Set", "Oct", "Nov", "Dic" };
 
-            return mes[nroMes - 1];
+            return mes == 0 ? String.Empty : meses[mes - 1];
         }
     }
 
