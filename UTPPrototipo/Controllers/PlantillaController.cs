@@ -500,7 +500,7 @@ namespace UTPPrototipo.Controllers
 
                     enterprises.Add(Convert.ToString(enterprise["Empresa"]), new
                     {
-                        enterprise = Convert.ToString(enterprise["Empresa"]),
+                        enterprise = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Convert.ToString(enterprise["Empresa"])),
                         enterpriseDescription = Convert.ToString(enterprise["DescripcionEmpresa"]),
                         enterpriseTimeOfExperience = (Convert.ToInt32(Math.Truncate(timeOfExperience / 12.0)) == 0)
                             ? String.Format("({0} " + Pluralize(timeOfExperience % 12, "mes", "es") + ")", timeOfExperience % 12)
