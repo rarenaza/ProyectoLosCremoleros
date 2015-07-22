@@ -431,7 +431,7 @@ namespace UTPPrototipo.Controllers
                                     : ConvertirMes(Convert.ToInt32(data["FechaFinMes"])) + Convert.ToString(data["FechaFinAno"]).Substring(2, 2)),
                             cycle = Convert.ToInt32(data["CicloEquivalente"] == DBNull.Value ? 0 : data["CicloEquivalente"]) == 0
                                 ? String.Empty
-                                : String.Format("{0} Ciclo", Convert.ToInt32(data["CicloEquivalente"]))
+                                : String.Format("{0} Ciclo", CycleStudy(Convert.ToInt32(data["CicloEquivalente"])))
                         };
 
                         foreach (string i in template.education.inlines)
