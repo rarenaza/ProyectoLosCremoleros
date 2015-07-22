@@ -563,7 +563,7 @@ namespace UTPPrototipo.Controllers
             foreach (ListaValor entidad in oferta.ListaEstadoOferta)
             {
                 //Se quitan los estados Borrador y Fin de Recepeción de CVs
-                if (entidad.IdListaValor != Constantes.OFERTA_ESTADO_BORRADOR && entidad.IdListaValor != Constantes.OFERTA_ESTADO_FINRECEPCIONCVS)
+                if (entidad.IdListaValor != Constantes.OFERTA_ESTADO_BORRADOR /*&& entidad.IdListaValor != Constantes.OFERTA_ESTADO_FINRECEPCIONCVS*/)
                 {
                     SelectListItem item = new SelectListItem();
                     item.Text = entidad.Valor;
