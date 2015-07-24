@@ -48,7 +48,11 @@
                                 @item.SectorEmpresarial
                             </div>
                             <div class="col-sm-2">
-                                @item.Ciudad-@item.NomPais
+                                @if (!String.IsNullOrEmpty(@item.Ciudad))
+                                {
+                                    @(item.Ciudad + "-")
+                                }
+                                @item.NomPais
                             </div>
                         </div>
                     </div>

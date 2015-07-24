@@ -382,8 +382,8 @@ namespace UTPPrototipo.Controllers
                     lastname = Convert.ToString(Person.Rows[0]["Apellidos"]).ToUpper(),
                     document = Convert.ToString(Person.Rows[0]["NumeroDocumento"]),
                     documentType = Convert.ToString(Person.Rows[0]["TipoDocumento"]),
-                    address = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Convert.ToString(Person.Rows[0]["Direccion"])),
-                    district = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Convert.ToString(Person.Rows[0]["DireccionDistrito"])),
+                    address = Helper.TitleCase(Convert.ToString(Person.Rows[0]["Direccion"])),
+                    district = Helper.TitleCase(Convert.ToString(Person.Rows[0]["DireccionDistrito"])),
                     celphone = String.Join("-", Regex.Split(Convert.ToString(Person.Rows[0]["TelefonoCelular"]), celphonePattern, REGEX).Where(w => w != String.Empty).ToArray()),
                     email = Convert.ToString(Person.Rows[0]["CorreoElectronico"]),
                     emailAlternative = Convert.ToString(Person.Rows[0]["CorreoElectronico2"]),
@@ -431,7 +431,8 @@ namespace UTPPrototipo.Controllers
                                     : ConvertirMes(Convert.ToInt32(data["FechaFinMes"])) + Convert.ToString(data["FechaFinAno"]).Substring(2, 2)),
                             cycle = Convert.ToInt32(data["CicloEquivalente"] == DBNull.Value ? 0 : data["CicloEquivalente"]) == 0
                                 ? String.Empty
-                                : String.Format("{0} Ciclo", CycleStudy(Convert.ToInt32(data["CicloEquivalente"])))
+                                : String.Format("{0} Ciclo", CycleStudy(Convert.ToInt32(data["CicloEquivalente"]))),
+                            merit = Convert.ToString(data["Merito"])
                         };
 
                         foreach (string i in template.education.inlines)
@@ -482,7 +483,7 @@ namespace UTPPrototipo.Controllers
                         aux.Add(new
                         {
                             period = period,
-                            office = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Convert.ToString(data["NombreCargo"])),
+                            office = Helper.TitleCase(Convert.ToString(data["NombreCargo"])),
                             officeDescription = Convert.ToString(data["DescripcionCargo"])
                         });
 
@@ -500,13 +501,13 @@ namespace UTPPrototipo.Controllers
 
                     enterprises.Add(Convert.ToString(enterprise["Empresa"]), new
                     {
-                        enterprise = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Convert.ToString(enterprise["Empresa"])),
+                        enterprise = Helper.TitleCase(Convert.ToString(enterprise["Empresa"])),
                         enterpriseDescription = Convert.ToString(enterprise["DescripcionEmpresa"]),
                         enterpriseTimeOfExperience = (Convert.ToInt32(Math.Truncate(timeOfExperience / 12.0)) == 0)
                             ? String.Format("({0} " + Pluralize(timeOfExperience % 12, "mes", "es") + ")", timeOfExperience % 12)
                             : String.Format("({0} " + Pluralize(Convert.ToInt32(Math.Truncate(timeOfExperience / 12.0)), "año") + ", {1} " + Pluralize(timeOfExperience % 12, "mes", "es") + ")", Math.Truncate(timeOfExperience / 12.0), timeOfExperience % 12),
-                        enterpriseCountry = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Convert.ToString(enterprise["PaisDescripcion"])),
-                        enterpriseCity = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(Convert.ToString(enterprise["Ciudad"]))
+                        enterpriseCountry = Helper.TitleCase(Convert.ToString(enterprise["PaisDescripcion"])),
+                        enterpriseCity = Helper.TitleCase(Convert.ToString(enterprise["Ciudad"]))
                     });
 
                     experiences.Add(Convert.ToString(enterprise["Empresa"]), aux);
@@ -608,7 +609,7 @@ namespace UTPPrototipo.Controllers
 
         public string CycleStudy(int cycle)
         {
-            string[] cycles = new string[] { "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X" };
+            string[] cycles = new string[] { "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII" };
 
             return cycle == 0 ? String.Empty : cycles[cycle - 1];
         }
