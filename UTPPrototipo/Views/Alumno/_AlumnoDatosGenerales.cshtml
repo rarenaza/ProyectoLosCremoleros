@@ -39,12 +39,7 @@
                                     else if (x == 3)
                                     {
                                         @Html.CheckBoxFor(y => y.IncluirNombre4)<span>&nbsp;</span>
-                                        string nombre = string.Empty;
-                                        for (int z = x; z < Model.ListaNombres.Length - 1; z++)
-                                        {
-                                            nombre = nombre + " " + Model.ListaNombres[z];
-                                        }
-                                        @nombre<span>&nbsp;</span>
+                                        @Model.ListaNombres[x]<span>&nbsp;</span>
                                     }
                                 }
                                 else

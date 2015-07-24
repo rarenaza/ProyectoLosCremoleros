@@ -11,11 +11,17 @@ using System.Security.Cryptography;
 using System.Text;
 using System.ComponentModel;
 using System.Web.UI;
+using System.Globalization;
 
 namespace UTPPrototipo.Utiles
 {
     public static class Helper
     {
+        public static string TitleCase(string text)
+        {
+            return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(text.ToLower());
+        }
+
         public static List<SelectListItem> DevolverListaItems(List<ListaValor> lista)
         {
             List<SelectListItem> items= new List<SelectListItem>();
