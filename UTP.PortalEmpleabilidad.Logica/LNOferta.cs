@@ -616,6 +616,11 @@ namespace UTP.PortalEmpleabilidad.Logica
             return postulantes;
         }
 
+        public DataTable ObtenerPostulantesPorIdOfertaExcel(int idOferta)
+        {
+            return adOferta.ObtenerPostulantesPorIdOferta(idOferta);
+        }
+
         public List<OfertaFase> Obtener_OfertaFase(int idOferta)
         {
             List<OfertaFase> listaOfertaFase = new List<OfertaFase>();
