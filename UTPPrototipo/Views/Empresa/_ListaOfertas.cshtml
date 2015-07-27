@@ -28,7 +28,7 @@
             <div class="col-xs-3 col-sm-1">CVs Pendientes</div>
             <div class="col-xs-2 col-sm-2">Estado</div>
             <div class="col-xs-2 col-sm-1">Msj</div>
-            <div class="col-xs-2 col-sm-1">Editar</div>
+            <div class="col-xs-2 col-sm-1">Opciones</div>
         </div>
         <!--Detalle-->
         @foreach (var item in Model)
@@ -39,21 +39,18 @@
 
                 </div>
                 <div class="col-xs-3 col-sm-3">
-
                     @{
-            //Sólo se muestra el link cuando la oferta está ACTIVA o FINALIZADA o FIN DE RECEPECION DE CVs
-            if (item.EstadoOfertaIdListaValor == "OFERAC" || item.EstadoOfertaIdListaValor == "OFERFI" || item.EstadoOfertaIdListaValor == "OFERCV")
-            {
-                @*<strong>@Html.ActionLink(item.Cargo, "Oferta", new { idOfertaCrypt = Helper.Encriptar(item.IdOferta.ToString()), pantallaCrypt = Helper.Encriptar("Empresa") }, new { target = "_blank" })</strong>*@
-    <strong>@Html.ActionLink(item.Cargo, "Oferta", new { idOfertaCrypt = Helper.Encriptar(item.IdOferta.ToString()), pantallaCrypt = Helper.Encriptar("Empresa") }, null)</strong>
-            }
-            else
-            {
-                @item.Cargo
-            }
+                        //Sólo se muestra el link cuando la oferta está ACTIVA o FINALIZADA o FIN DE RECEPECION DE CVs
+                        if (item.EstadoOfertaIdListaValor == "OFERAC" || item.EstadoOfertaIdListaValor == "OFERFI" || item.EstadoOfertaIdListaValor == "OFERCV")
+                        {
+                            @*<strong>@Html.ActionLink(item.Cargo, "Oferta", new { idOfertaCrypt = Helper.Encriptar(item.IdOferta.ToString()), pantallaCrypt = Helper.Encriptar("Empresa") }, new { target = "_blank" })</strong>*@
+                            <strong>@Html.ActionLink(item.Cargo, "Oferta", new { idOfertaCrypt = Helper.Encriptar(item.IdOferta.ToString()), pantallaCrypt = Helper.Encriptar("Empresa") }, null)</strong>
+                        }
+                        else
+                        {
+                            @item.Cargo
+                        }
                     }
-
-
                 </div>
                 <div class="col-xs-12 col-sm-2"><span>@item.UsuarioPropietarioEmpresa</span></div>
                 <div class="clearfix visible-xs-block"></div>
@@ -62,21 +59,21 @@
                 <div class="col-xs-2 col-sm-1"><span class="valor-icono2">h&nbsp;</span>@item.MensajesNoLeidos/@item.MensajesTotales</div>
                 <div class="col-xs-2 col-sm-1">
                     @{
-            //El botón editar sólo está activo para los roles: Administrador (ROLEAD), y Usuario (ROLEUS).
-            //Y para las ofertas PENDIENTES DE ACTIVACION (OFERPR) o EN CONSTRUCCION (OFERCO)
-            if ((ticketEmpresa.Rol == "ROLEAD" || ticketEmpresa.Rol == "ROLEUS") &&
-                (item.EstadoOfertaIdListaValor == "OFERPR" || item.EstadoOfertaIdListaValor == "OFERCO"))
-            {
-                @*@Html.ActionLink(" ", "OfertaLaboral", new { id = Helper.Encriptar(item.IdOferta.ToString()) }, new { @class = "btn btn-xs fa fa-pencil color-paleta2", @tooltip = "Editar oferta", @target = "_blank" })*@
-                @Html.ActionLink(" ", "OfertaLaboral", new { id = Helper.Encriptar(item.IdOferta.ToString()) }, new { @class = "btn btn-xs fa fa-pencil color-paleta2", @tooltip = "Editar oferta" })
-            }
-            else
-            {
-                @Html.ActionLink(" ", "OfertaLaboral", new { id = item.IdOferta }, new { @class = "btn btn-xs fa fa-pencil color-paleta2", @disabled = "disabled", @title = "No tiene permisos para ejecutar esta acción." })
-            }
+                        //El botón editar sólo está activo para los roles: Administrador (ROLEAD), y Usuario (ROLEUS).
+                        //Y para las ofertas PENDIENTES DE ACTIVACION (OFERPR) o EN CONSTRUCCION (OFERCO)
+                        if ((ticketEmpresa.Rol == "ROLEAD" || ticketEmpresa.Rol == "ROLEUS") && (item.EstadoOfertaIdListaValor == "OFERPR" || item.EstadoOfertaIdListaValor == "OFERCO"))
+                        {
+                            @*@Html.ActionLink(" ", "OfertaLaboral", new { id = Helper.Encriptar(item.IdOferta.ToString()) }, new { @class = "btn btn-xs fa fa-pencil color-paleta2", @tooltip = "Editar oferta", @target = "_blank" })*@
+                            @Html.ActionLink(" ", "OfertaLaboral", new { id = Helper.Encriptar(item.IdOferta.ToString()) }, new { @class = "btn btn-xs fa fa-pencil color-paleta2", @tooltip = "Editar oferta" })
+                        }
+                        else
+                        {
+                            @Html.ActionLink(" ", "OfertaLaboral", new { id = item.IdOferta }, new { @class = "btn btn-xs fa fa-pencil color-paleta2", @disabled = "disabled", @title = "No tiene permisos para ejecutar esta acción." })
+                        }
                     }
                     @*@Html.ActionLink(" ", "MostrarOferta", new { id = Helper.Encriptar(item.IdOferta.ToString()) }, htmlAttributes: new { @class = "btn btn-xs fa fa-file-o color-paleta2", @target = "_blank", @title = "Vista previa de la oferta" })*@
                     @Html.ActionLink(" ", "MostrarOferta", new { id = Helper.Encriptar(item.IdOferta.ToString()) }, htmlAttributes: new { @class = "btn btn-xs fa fa-file-o color-paleta2", @title = "Vista previa de la oferta" })
+                    @Html.ActionLink(" ", "ExportarPostulantesOferta", new { id = Helper.Encriptar(item.IdOferta.ToString()) }, htmlAttributes: new { @class = "btn btn-xs fa fa-download color-paleta2", @title = "Exportar postulantes de la oferta" })
                 </div>
             </div>
         }

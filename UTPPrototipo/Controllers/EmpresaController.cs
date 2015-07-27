@@ -666,6 +666,14 @@ namespace UTPPrototipo.Controllers
             return PartialView("_VistaNuevasPostulaciones", lista);
         }
 
+        public void ExportarPostulantesOferta(string id)
+        {
+            int idOferta = Convert.ToInt32(Helper.Desencriptar(id));
+            DataTable export = lnOferta.ObtenerPostulantesPorIdOfertaExcel(idOferta);
+
+            Helper.Export2ExcelDownload(export, "Postulantes-Oferta" + idOferta + new DateTime());
+        }
+
         public ActionResult ObtenerNuevosMensajes()
         {
             Ticket ticket = (Ticket)Session["Ticket"];
@@ -681,7 +689,6 @@ namespace UTPPrototipo.Controllers
 
         public ActionResult VistaOfertaAnuncio(Oferta oferta)
         {
-
             return PartialView("_VistaOfertaAnuncio", oferta);
         }
 
