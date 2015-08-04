@@ -2591,7 +2591,7 @@ namespace UTPPrototipo.Controllers
 
             LNGeneral lnGeneral = new LNGeneral();
             //Se cargan los datos para la clasificación.
-            ViewBag.Calificacion = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_OFERTA_CALIFICACION_ENCUESTA), "IdListaValor", "Valor", oferta.Calificacion);
+            ViewBag.SeguimientoCalificacion = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_OFERTA_CALIFICACION_ENCUESTA), "IdListaValor", "Valor", oferta.SeguimientoCalificacion);
             ViewBag.TipoTrabajoUTP = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_TRABAJO_UTP), "IdListaValor", "Valor", oferta.TipoTrabajoUTP);
             TicketUTP ticketUtp = (TicketUTP)Session["TicketUtp"];
             ViewBag.Rol = ticketUtp.Rol;
@@ -2607,7 +2607,7 @@ namespace UTPPrototipo.Controllers
 
             LNGeneral lnGeneral = new LNGeneral();
             //Se cargan los datos para la clasificación.
-            ViewBag.Calificacion = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_OFERTA_CALIFICACION_ENCUESTA), "IdListaValor", "Valor", oferta.Calificacion);
+            ViewBag.SeguimientoCalificacion = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_OFERTA_CALIFICACION_ENCUESTA), "IdListaValor", "Valor", oferta.SeguimientoCalificacion);
             ViewBag.TipoTrabajoUTP = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_TRABAJO_UTP), "IdListaValor", "Valor", oferta.TipoTrabajoUTP);
             TicketUTP ticketUtp = (TicketUTP)Session["TicketUtp"];
             ViewBag.Rol = ticketUtp.Rol;
