@@ -466,11 +466,12 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.Parameters.Add(new SqlParameter("@Contacto", oferta.Contacto));
                 cmd.Parameters.Add(new SqlParameter("@DatosContacto", oferta.DatosContacto));
                 cmd.Parameters.Add(new SqlParameter("@MedioComunicacion", oferta.MedioComunicacion));
-                //Datos de la encuesta:
-                cmd.Parameters.Add(new SqlParameter("@EncuestaCalificacion", oferta.Calificacion));
-                cmd.Parameters.Add(new SqlParameter("@EncuestaNroPostulantes", oferta.NroPostulantes));
-                cmd.Parameters.Add(new SqlParameter("@EncuestaContratadosUTP", oferta.ContratadosUTP));
-                cmd.Parameters.Add(new SqlParameter("@EncuestaContratadosOtros", oferta.ContratadosOtros));
+                //Datos del seguimiento:
+                cmd.Parameters.Add(new SqlParameter("@SeguimientoCalificacion", oferta.SeguimientoCalificacion));
+                cmd.Parameters.Add(new SqlParameter("@SeguimientoNroPostulantes", oferta.SeguimientoNroPostulantes));
+                cmd.Parameters.Add(new SqlParameter("@SeguimientoContratados", oferta.SeguimientoContratados));
+                cmd.Parameters.Add(new SqlParameter("@SeguimientoContratadosOtros", oferta.SeguimientoContratadosOtros));
+
                 cmd.Parameters.Add(new SqlParameter("@TipoTrabajoUTP", oferta.TipoTrabajoUTP));
 
                 cmd.Connection = conexion;

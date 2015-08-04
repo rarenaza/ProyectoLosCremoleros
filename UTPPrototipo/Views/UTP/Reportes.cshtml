@@ -672,14 +672,15 @@
                       container: 'chartAlumnosActivos',
                       color: '#E99522',
                       legend: {
-                          align: 'right',
-                          valign: 'middle',
+                          align: 'center',
+                          valign: 'top',
                           marker: { radius: 0 },
                           values: [
                             { text: 'Alumnos activos', color: '#E99522' },
                             { text: 'Alumnos con CV completo', color: '#C0BA00' }
                           ],                          
-                          toggle:false
+                          toggle: false,
+                          layout: 'x'
                       }, 
                       padding: { bottom: 70 }
                   }, [
@@ -693,8 +694,14 @@
                     {
                         view: 'bar',
                         value: "#inactive#",
-                        color: '#C0BA00',
+                        color: '#C0BA00',                        
                         label: function (o) { return o.inactive; },
+                        yAxis: {
+                            start: 0,
+                            step: 200,
+                            end: 2000,
+                            lines: false
+                        }
                     },
                     {
                         view: 'line',
@@ -724,14 +731,15 @@
                       container: 'chartEmpresasActivas',
                       color: '#3CACC9',
                       legend: {
-                          align: 'right',
-                          valign: 'middle',
+                          align: 'center',
+                          valign: 'top',
                           marker: { radius: 0 },
                           values: [
                             { text: 'Empresas activas', color: '#3CACC9' },
                             { text: 'Ofertas publicadas', color: '#0E9E95' }
                           ],
-                          toggle: false
+                          toggle: false,
+                          layout: 'x'
                       },
                       padding: { bottom: 70 }
                   }, [
@@ -746,6 +754,12 @@
                         view: 'bar',
                         value: "#inactive#",
                         color: '#0E9E95',
+                        yAxis: {
+                            start: 0,
+                            step: 100,
+                            end: 200,
+                            lines: false
+                        },
                         label: function (o) { return o.inactive; },
                     },
                     {
@@ -848,15 +862,30 @@
                           align: 'right',
                           valign: 'middle',
                           template: '#label#',
-                          marker: { radius: 0 }
-                      }, padding: { bottom: 70 }
-                  }, [{
-                      view: 'line',
-                      value: "#value#",
-                      line: { color: '#333' },
-                      label: false,
-                      item: { radius: 0 }
-                  }]
+                          marker: { radius: 0 },
+                          toggle: false
+                      },
+                      padding: { bottom: 70 }
+                  }, [                      
+                        {
+                            view: 'line',
+                            value: "#value#",
+                            line: { color: '#333' },
+                            label: false,
+                            item: { radius: 0 }
+                        },                      
+                        {
+                            view: 'bar',
+                            value: "#inactive#",
+                            color: '#FFFFFF',
+                            yAxis: {
+                                start: 0,
+                                step: 100,
+                                end: 1000
+                            },
+                            label: function (o) { return o.inactive; }                        
+                        }
+                     ]
                 ).draw(data);
                 $("#vacantesOfrecidas").html(datos[2]);
             });
@@ -917,6 +946,17 @@
                         line: { color: '#333' },
                         label: false,
                         item: { radius: 0 }
+                    },
+                    {
+                        view: 'bar',
+                        value: "#inactive#",
+                        color: '#0E9E95',
+                        yAxis: {
+                            start: 0,
+                            step: 10,
+                            end: 100
+                        },
+                        label: function (o) { return o.inactive; },
                     }]
                 ).draw(data);
                 $("#procesosCerrados").html(datos[2]);
@@ -957,6 +997,12 @@
                             view: 'bar',
                             value: "#inactive#",
                             color: '#ddd',
+                            yAxis: {
+                                start: 0,
+                                step: 100,
+                                end: 2000,
+                                lines: false
+                            },
                             label: function (o) { return o.inactive; },
                         },
                         {

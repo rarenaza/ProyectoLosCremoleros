@@ -1473,9 +1473,9 @@ namespace UTPPrototipo.Controllers
         {
             LNMensaje lnMensaje = new LNMensaje();
             LNOferta lnOferta = new LNOferta();
-            string correoDe, nombreOferta, deUsuario = "";
+            //string correoDe, nombreOferta, deUsuario = "";
             lnOferta.CompletarEncuesta(encuesta);
-            
+            /*
             List<OfertaPostulante> postulantes = new List<OfertaPostulante>();
             postulantes = lnOferta.ObtenerPostulantesPorIdOferta(encuesta.IdOferta);
 
@@ -1500,7 +1500,7 @@ namespace UTPPrototipo.Controllers
                 mensaje.MensajeTexto = "Estimado postulante,</br>"+ 
                                         "Te comunicamos que el proceso de selección al que postulaste ha culminado.";
                 lnMensaje.Insertar(mensaje);
-            }
+            }*/
             TempData["MsjExitoCerrarOferta"] = "La oferta se ha cerrado con éxito";
             //Se redirecciona a la lista de ofertas:
             return RedirectToAction("Publicacion", "Empresa");

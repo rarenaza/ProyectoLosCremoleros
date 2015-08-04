@@ -211,7 +211,11 @@
 </html>
 
 <script>
-
+    $(document).ready(function () {
+        $('body').on('focus', ".datepicker", function () {
+            $(this).datepicker({ dateFormat: 'dd/mm/yy' }).val();
+        });
+    });
     function CargarPOSTNull(id, link) {
         $.ajax({
             url: link,

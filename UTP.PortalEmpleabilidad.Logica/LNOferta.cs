@@ -566,10 +566,10 @@ namespace UTP.PortalEmpleabilidad.Logica
                 oferta = new Oferta();
 
                 oferta.IdOferta = Convert.ToInt32(dsResultado.Tables[0].Rows[0]["IdOferta"]);
-                oferta.FechaSeguimiento = Convert.ToDateTime(dsResultado.Tables[0].Rows[0]["FechaSeguimiento"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[0]["FechaSeguimiento"]);
-                oferta.NumeroInvitados = Convert.ToInt32(dsResultado.Tables[0].Rows[0]["NumeroInvitados"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[0]["NumeroInvitados"]);
-                oferta.NumeroEntrevistados = Convert.ToInt32(dsResultado.Tables[0].Rows[0]["NumeroEntrevistados"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[0]["NumeroEntrevistados"]);
-                oferta.NumeroContratados = Convert.ToInt32(dsResultado.Tables[0].Rows[0]["NumeroContratados"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[0]["NumeroContratados"]);
+                oferta.FechaSeguimiento = (dsResultado.Tables[0].Rows[0]["FechaSeguimiento"] == System.DBNull.Value ? (DateTime?)null : Convert.ToDateTime(dsResultado.Tables[0].Rows[0]["FechaSeguimiento"]));
+                oferta.NumeroInvitados = dsResultado.Tables[0].Rows[0]["NumeroInvitados"] == System.DBNull.Value ? (Int32?)null : Convert.ToInt32(dsResultado.Tables[0].Rows[0]["NumeroInvitados"]);
+                oferta.NumeroEntrevistados = dsResultado.Tables[0].Rows[0]["NumeroEntrevistados"] == System.DBNull.Value ? (Int32?)null : Convert.ToInt32(dsResultado.Tables[0].Rows[0]["NumeroEntrevistados"]);
+                oferta.NumeroContratados = dsResultado.Tables[0].Rows[0]["NumeroContratados"] == System.DBNull.Value ? (Int32?)null : Convert.ToInt32(dsResultado.Tables[0].Rows[0]["NumeroContratados"]);
                 oferta.ConvenioRegistrado = Convert.ToBoolean(dsResultado.Tables[0].Rows[0]["ConvenioRegistrado"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[0]["ConvenioRegistrado"]);
                 oferta.Contacto = Convert.ToString(dsResultado.Tables[0].Rows[0]["Contacto"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[0]["Contacto"]);
                 oferta.DatosContacto = Convert.ToString(dsResultado.Tables[0].Rows[0]["DatosContacto"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[0]["DatosContacto"]);
@@ -580,6 +580,14 @@ namespace UTP.PortalEmpleabilidad.Logica
                 oferta.ContratadosUTP = Convert.ToInt32(dsResultado.Tables[0].Rows[0]["EncuestaContratadosUTP"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[0]["EncuestaContratadosUTP"]);
                 oferta.ContratadosOtros = Convert.ToString(dsResultado.Tables[0].Rows[0]["EncuestaContratadosOtros"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[0]["EncuestaContratadosOtros"]);
                 oferta.TipoTrabajoUTP = Convert.ToString(dsResultado.Tables[0].Rows[0]["TipoTrabajoUTP"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[0]["TipoTrabajoUTP"]);
+                //Seguimiento:
+                oferta.SeguimientoCalificacion = Convert.ToString(dsResultado.Tables[0].Rows[0]["SeguimientoCalificacion"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[0]["SeguimientoCalificacion"]);
+                oferta.SeguimientoNroPostulantes = dsResultado.Tables[0].Rows[0]["SeguimientoNroPostulantes"] == System.DBNull.Value ? (Int32?)null : Convert.ToInt32(dsResultado.Tables[0].Rows[0]["SeguimientoNroPostulantes"]);
+                oferta.SeguimientoContratados = dsResultado.Tables[0].Rows[0]["SeguimientoContratados"] == System.DBNull.Value ? (Int32?)null : Convert.ToInt32(dsResultado.Tables[0].Rows[0]["SeguimientoContratados"]);
+                oferta.SeguimientoContratadosOtros = Convert.ToString(dsResultado.Tables[0].Rows[0]["SeguimientoContratadosOtros"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[0]["SeguimientoContratadosOtros"]);
+
+                oferta.TipoTrabajoUTP = Convert.ToString(dsResultado.Tables[0].Rows[0]["TipoTrabajoUTP"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[0]["TipoTrabajoUTP"]);
+
             }
             return oferta;
         }

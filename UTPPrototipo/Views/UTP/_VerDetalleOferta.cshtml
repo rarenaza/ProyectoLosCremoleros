@@ -7,7 +7,7 @@
                 <span class="input-group-addon" style="width:100px;">
                     Fecha de<br />Seguimiento
                 </span>
-                @Html.TextBoxFor(m => m.FechaSeguimiento, "", new { @class = "form-control", @value = Model.FechaSeguimiento.ToString("dd/MM/yyyy HH:mm:ss") })
+                @Html.TextBoxFor(m => m.FechaSeguimiento, "{0:MM/dd/yyyy}", new { @class = "form-control datepicker", @value = (Model.FechaSeguimiento != null ? Model.FechaSeguimiento.Value.ToString("d") : "") })
 
             </div>
         </div>
@@ -18,7 +18,7 @@
                 <span class="input-group-addon" style="width:100px;">
                     N° Postulantes
                 </span>
-                @Html.TextBoxFor(m => m.NroPostulantes, "", new { @class = "form-control" })
+                @Html.TextBoxFor(m => m.SeguimientoNroPostulantes, "", new { @class = "form-control" })
             </div>
         </div>
     </div>
@@ -28,7 +28,7 @@
                 <span class="input-group-addon" style="width:100px;">
                     Calificación CVs
                 </span>
-                @Html.DropDownListFor(m => m.Calificacion, null, "- Seleccione -", htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownListFor(m => m.SeguimientoCalificacion, null, "- Seleccione -", htmlAttributes: new { @class = "form-control" })
                 @*@Html.TextBoxFor(m => m.Calificacion, "", new { @class = "form-control" })*@
             </div>
         </div>
@@ -59,7 +59,7 @@
                 <span class="input-group-addon" style="width:100px;">
                     Contratados<br />UTP
                 </span>
-                @Html.TextBoxFor(m => m.ContratadosUTP, "", new { @class = "form-control" })
+                @Html.TextBoxFor(m => m.SeguimientoContratados, "", new { @class = "form-control" })
             </div>
         </div>
     </div>
@@ -70,7 +70,7 @@
                     Contratados<br />otros
                 </span>
 
-                @Html.TextBoxFor(m => m.ContratadosOtros, "", new { @class = "form-control" })
+                @Html.TextBoxFor(m => m.SeguimientoContratadosOtros, "", new { @class = "form-control" })
             </div>
         </div>
     </div>

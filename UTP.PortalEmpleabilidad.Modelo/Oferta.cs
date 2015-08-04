@@ -113,7 +113,9 @@ namespace UTP.PortalEmpleabilidad.Modelo
 
         public int TotalRegistros { get; set; }
 
-        public DateTime FechaSeguimiento { get; set; }
+        [DataType(DataType.Date)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
+        public DateTime? FechaSeguimiento { get; set; }
         public int? NumeroInvitados { get; set; }
         public int? NumeroEntrevistados { get; set; }
         public int? NumeroContratados { get; set; }
@@ -142,12 +144,15 @@ namespace UTP.PortalEmpleabilidad.Modelo
 
         //Campos para la encuesta:
         public string Calificacion { get; set; }
-
         public int NroPostulantes { get; set; }
-
         public int ContratadosUTP { get; set; }
-
         public string ContratadosOtros { get; set; }
+
+        //Campos para el seguimiento: El seguimiento obtiene los valores a partir de la encuesta
+        public string SeguimientoCalificacion { get; set; }
+        public int? SeguimientoNroPostulantes { get; set; }
+        public int? SeguimientoContratados { get; set; }
+        public string SeguimientoContratadosOtros { get; set; }
 
        public Oferta() {
 
