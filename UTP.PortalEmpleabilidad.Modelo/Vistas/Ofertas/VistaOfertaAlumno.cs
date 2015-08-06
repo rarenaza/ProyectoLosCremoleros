@@ -39,6 +39,7 @@ namespace UTP.PortalEmpleabilidad.Modelo.Vistas.Ofertas
         public string IdTipoTrabajo { get; set; }
         public string IdContrato { get; set; }
         public string IdTipoCargo { get; set; }
+        public string TipoTrabajoUTP { get; set; }
         public int IdAlumno { get; set; }
 
         public Dictionary<int, string> PeriodoPublicacion { get; set; }

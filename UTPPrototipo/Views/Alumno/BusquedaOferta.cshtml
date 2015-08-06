@@ -60,6 +60,10 @@
                                     <span class="input-group-addon">Grado</span>
                                     @Html.DropDownListFor(model => model.IdEstadoEstudio, new SelectList(ViewBag.ListaEstadoEstudio, "Value", "Text"), "- Seleccionar -", new { @class = "form-control" })
                                 </div>
+                                <div class="input-group">
+                                    <span class="input-group-addon">Tipo de trabajo</span>
+                                    @Html.DropDownListFor(model => model.TipoTrabajoUTP, null, "- Seleccione -", htmlAttributes: new { @class = "form-control" })
+                                </div>
                             </div>
                             <div class="col-sm-3">
                                 <div class="input-group">
@@ -117,9 +121,15 @@
                 </div>
             </div>
         </div>
-        <div id="resultadobusqueda">
+        
+        <ul id="offers-tabs" class="nav nav-justified nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#" aria-controls="all" role="tab" data-toggle="tab">Todos</a></li>
+            <li role="presentation"><a href="#" role="tab" aria-controls="entries-position" data-toggle="tab">Posiciones de entrada</a></li>
+            <li role="presentation"><a href="#" role="tab" aria-controls="practices" data-toggle="tab">Prácticas</a></li>
+            <li role="presentation"><a href="#" role="tab" aria-controls="jobs" data-toggle="tab">Empleo</a></li>
+        </ul>
 
-        </div>
+        <div id="ResultadoBusqueda" class="result" style="margin-top: 16px;"></div>
 
     </div>
 
@@ -130,39 +140,38 @@
 }
 
 <script>
-
     $(document).ready(function () {
         $("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta4 color-paleta5").addClass("color-paleta2");
         AutoCompleteText('#Ubicacion', '@Url.Action("ListarDistritos", "Alumno")', '#Ubicacion');
         AutoCompleteText('#AreaEmpresa', '@Url.Action("ListarAreasEmpresa", "Alumno")', '#AreaEmpresa');
         AutoCompleteText('#IdEstudio', '@Url.Action("ListarEstudio", "Alumno")', '#IdEstudio');
 
-        //debugger;
         $("#TipoBusqueda").attr('value', 1);
         var oferta = {
             PalabraClave: $('#PalabraClave').val(),
             IdAlumno: $('#IdAlumno').val(),
+            TipoTrabajoUTP: $('#TipoTrabajoUTP').val(),
             PaginaActual: 1,
             NumeroRegistros: parseInt($("#PagOfertas").val())
-
         };
-        Cargar("resultadobusqueda", '@Url.Action("BusquedaSimpleOferta", "Alumno")', oferta);
-
+        Cargar("ResultadoBusqueda", '@Url.Action("BusquedaSimpleOferta", "Alumno")', oferta);
     });
+
     $('#buscar').click(function () {
-        //debugger;
         $("#TipoBusqueda").attr('value', 1);
         var oferta = {
             PalabraClave: $('#PalabraClave').val(),
             IdAlumno: $('#IdAlumno').val(),
+            TipoTrabajoUTP: $('#TipoTrabajoUTP').val(),
             PaginaActual: 1,
             NumeroRegistros: parseInt($("#PagOfertas").val())
 
         };
-        Cargar("resultadobusqueda", '@Url.Action("BusquedaSimpleOferta", "Alumno")', oferta);
-        //Cargar("resultadobusqueda", "/Alumno/BusquedaSimpleOferta", oferta);
+        Cargar("ResultadoBusqueda", '@Url.Action("BusquedaSimpleOferta", "Alumno")', oferta);
+
         return false;
     });
+
     $('#buscaravanzada').click(function () {
         $("#TipoBusqueda").attr('value', 2);
         var oferta = {
@@ -179,12 +188,13 @@
             Ubicacion: $('#Ubicacion').val(),
             IncluirMensaje: $('#IncluirMensaje:checked').val(),
             IdAlumno: $('#IdAlumno').val(),
+            TipoTrabajoUTP: $('#TipoTrabajoUTP').val(),
             PaginaActual: 1,
             NumeroRegistros: parseInt($("#PagOfertas").val())
 
         };
-        Cargar("resultadobusqueda", '@Url.Action("BusquedaAvanzadaOferta", "Alumno")', oferta);
-        //Cargar("resultadobusqueda", "/Alumno/BusquedaAvanzadaOferta", oferta);
+        Cargar("ResultadoBusqueda", '@Url.Action("BusquedaAvanzadaOferta", "Alumno")', oferta);
+
         return false;
     });
 
@@ -202,27 +212,27 @@
         .error(function (xhr, status) {
             console.log(xhr);
             console.log(status);
-
         })
     }
 
     function buscarPaginacion (nroPagina) {
-        //debugger;
         $("#TipoBusqueda").attr('value', 1);
+
         var oferta = {
             PalabraClave: $('#PalabraClave').val(),
+            TipoTrabajoUTP: $('#TipoTrabajoUTP').val(),
             IdAlumno: $('#IdAlumno').val(),
             PaginaActual: nroPagina,
             NumeroRegistros: parseInt($("#PagOfertas").val())
-
         };
-        Cargar("resultadobusqueda", '@Url.Action("BusquedaSimpleOferta", "Alumno")', oferta);
-        //Cargar("resultadobusqueda", "/Alumno/BusquedaSimpleOferta", oferta);
+        Cargar("ResultadoBusqueda", '@Url.Action("BusquedaSimpleOferta", "Alumno")', oferta);
+
         return false;
     }
 
     function buscarPaginacionAvanzada(nroPagina) {
         $("#TipoBusqueda").attr('value', 2);
+
         var oferta = {
             IdPeriodoPublicacion: $('#IdPeriodoPublicacion').val(),
             IdEstudio: $('#IdEstudio').val(),
@@ -237,15 +247,68 @@
             Ubicacion: $('#Ubicacion').val(),
             IncluirMensaje: $('#IncluirMensaje:checked').val(),
             IdAlumno: $('#IdAlumno').val(),
+            TipoTrabajoUTP: $('#TipoTrabajoUTP').val(),
             PaginaActual: nroPagina,
             NumeroRegistros: parseInt($("#PagOfertas").val())
-
         };
-        Cargar("resultadobusqueda", '@Url.Action("BusquedaAvanzadaOferta", "Alumno")', oferta);
-        //Cargar("resultadobusqueda", "/Alumno/BusquedaAvanzadaOferta", oferta);
+        Cargar("ResultadoBusqueda", '@Url.Action("BusquedaAvanzadaOferta", "Alumno")', oferta);
+
         return false;
     }
 
+    var Offers = {
+        query: function () {
+            return {
+                IdPeriodoPublicacion: $('#IdPeriodoPublicacion').val(),
+                IdEstudio: $('#IdEstudio').val(),
+                IdEstadoEstudio: $('#IdEstadoEstudio').val(),
+                IdSectorEmpresarial: $('#IdSectorEmpresarial').val(),
+                AreaEmpresa: $('#AreaEmpresa').val(),
+                AniosExperiencia: $('#AniosExperiencia').val(),
+                IdTipoTrabajo: $('#IdTipoTrabajo').val(),
+                IdContrato: $('#IdContrato').val(),
+                IdTipoCargo: $('#IdTipoCargo').val(),
+                Sueldo: $('#Sueldo').val(),
+                Ubicacion: $('#Ubicacion').val(),
+                IncluirMensaje: $('#IncluirMensaje:checked').val(),
+                IdAlumno: $('#IdAlumno').val(),
+                TipoTrabajoUTP: $('#TipoTrabajoUTP').val(),
+                PaginaActual: 1,
+                NumeroRegistros: parseInt($("#PagOfertas").val())
+            };
+        },
+        all: function () {
+            $('#TipoTrabajoUTP').val('');
+            Cargar('ResultadoBusqueda', '@Url.Action("BusquedaAvanzadaOferta", "Alumno")', this.query())
+        },
+        entriesPosition: function () {
+            $('#TipoTrabajoUTP').val('TTUPOE');
+            Cargar('ResultadoBusqueda', '@Url.Action("BusquedaAvanzadaOferta", "Alumno")', this.query())
+        },
+        practices: function () {
+            $('#TipoTrabajoUTP').val('TTUPRA');
+            Cargar('ResultadoBusqueda', '@Url.Action("BusquedaAvanzadaOferta", "Alumno")', this.query())
+        },
+        jobs: function () {
+            $('#TipoTrabajoUTP').val('TTUEMP');
+            Cargar('ResultadoBusqueda', '@Url.Action("BusquedaAvanzadaOferta", "Alumno")', this.query())
+        },
+        tabs: function () {
+            var sup = this,
+                wrapperSelector = '#offers-tabs',
+                $allTab = $(wrapperSelector + ' [aria-controls=all]'),
+                $entriesPositionTab = $(wrapperSelector + ' [aria-controls=entries-position]'),
+                $practicesTab = $(wrapperSelector + ' [aria-controls=practices]'),
+                $jobs = $(wrapperSelector + ' [aria-controls=jobs]');
+
+            $allTab.on('click', function (e) { e.preventDefault(); sup.all(); });
+            $entriesPositionTab.on('click', function (e) { e.preventDefault(); sup.entriesPosition(); });
+            $practicesTab.on('click', function (e) { e.preventDefault(); sup.practices(); });
+            $jobs.on('click', function (e) { e.preventDefault(); sup.jobs(); });
+        }
+    };
+
+    Offers.tabs();
 </script>
 
 

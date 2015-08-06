@@ -591,6 +591,7 @@ namespace UTPPrototipo.Controllers
             ViewBag.ListaInformacionAdicional = listItemTipoInformacionAdicional;
             ViewBag.ListaEstadoOferta = listItemEstadoOferta;
             ViewBag.Carrera = listItemCarrera;
+            ViewBag.TipoTrabajoUTP = new SelectList(lngeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_TRABAJO_UTP), "IdListaValor", "Valor", oferta.TipoTrabajoUTP);
 
             return View(oferta);
         }
@@ -599,12 +600,16 @@ namespace UTPPrototipo.Controllers
         {
 
             List<OfertaUTP> lista = lnUtp.UTP_ObtenerOfertasporActivar(
-                entidad.PalabraClave == null ? "" : entidad.PalabraClave, 
+                entidad.PalabraClave == null ? "" : entidad.PalabraClave,
+                entidad.TipoTrabajoUTP == null ? "" : entidad.TipoTrabajoUTP,
                 entidad.nroPaginaActual, 
                 Constantes.FILAS_POR_PAGINA_UTP
             );
 
-            Session["DataTableToExport"] = lnUtp.OfertaBusquedaExcel(entidad.PalabraClave == null ? "" : entidad.PalabraClave);
+            Session["DataTableToExport"] = lnUtp.OfertaBusquedaExcel(
+                entidad.PalabraClave == null ? "" : entidad.PalabraClave,
+                entidad.TipoTrabajoUTP == null ? "" : entidad.TipoTrabajoUTP
+            );
 
             //Datos para la paginación.
             int cantidadTotal = lista.Count() == 0 ? 0 : lista[0].CantidadTotal;
@@ -642,24 +647,28 @@ namespace UTPPrototipo.Controllers
                 entidad.NumeroPostulante,
                 entidad.IdEstadoOferta == null ? "" : entidad.IdEstadoOferta,
                 entidad.InformacionAdicional == null ? "" : entidad.InformacionAdicional,
-                entidad.Carrera == null ? "" : entidad.Carrera
+                entidad.Carrera == null ? "" : entidad.Carrera,
+                entidad.TipoTrabajoUTP == null ? "" : entidad.TipoTrabajoUTP
             );
 
-            List<OfertaUTP> lista = lnUtp.UTP_ObtenerofertasAvanzada(entidad.CargoOfrecido == null ? "" : entidad.CargoOfrecido,
-                                                                        entidad.NombreComercial == null ? "" : entidad.NombreComercial,
-                                                                        entidad.IdTipoCargoutp == null ? "" : entidad.IdTipoCargoutp,
-                                                                        entidad.IdSectorutp == null ? "" : entidad.IdSectorutp,
-                                                                        entidad.IdTipoContratoutp == null ? "" : entidad.IdTipoContratoutp,
-                                                                        entidad.AExperiencia,
-                                                                        entidad.RemuneracionOfrecida,
-                                                                        entidad.IdTipoEstudioutp == null ? "" : entidad.IdTipoEstudioutp,
-                                                                        entidad.Conocimientos == null ? "" : entidad.Conocimientos,
-                                                                        entidad.NumeroPostulante,
-                                                                        entidad.IdEstadoOferta == null ? "" : entidad.IdEstadoOferta,
-                                                                        entidad.InformacionAdicional == null ? "" : entidad.InformacionAdicional,
-                                                                        entidad.Carrera == null ? "" : entidad.Carrera,
-                                                                        entidad.nroPaginaActual,
-                                                                        Constantes.FILAS_POR_PAGINA_UTP);
+            List<OfertaUTP> lista = lnUtp.UTP_ObtenerofertasAvanzada(
+                entidad.CargoOfrecido == null ? "" : entidad.CargoOfrecido,
+                entidad.NombreComercial == null ? "" : entidad.NombreComercial,
+                entidad.IdTipoCargoutp == null ? "" : entidad.IdTipoCargoutp,
+                entidad.IdSectorutp == null ? "" : entidad.IdSectorutp,
+                entidad.IdTipoContratoutp == null ? "" : entidad.IdTipoContratoutp,
+                entidad.AExperiencia,
+                entidad.RemuneracionOfrecida,
+                entidad.IdTipoEstudioutp == null ? "" : entidad.IdTipoEstudioutp,
+                entidad.Conocimientos == null ? "" : entidad.Conocimientos,
+                entidad.NumeroPostulante,
+                entidad.IdEstadoOferta == null ? "" : entidad.IdEstadoOferta,
+                entidad.InformacionAdicional == null ? "" : entidad.InformacionAdicional,
+                entidad.Carrera == null ? "" : entidad.Carrera,
+                entidad.TipoTrabajoUTP == null ? "" : entidad.TipoTrabajoUTP,
+                entidad.nroPaginaActual,
+                Constantes.FILAS_POR_PAGINA_UTP
+            );
 
 
 
