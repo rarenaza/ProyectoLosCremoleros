@@ -370,12 +370,12 @@ namespace UTP.PortalEmpleabilidad.Logica
             return  adUtp.Excel_ObtenerAlumnos(Estudio, Ciclo, Sector, Dato, Sexo, Distrito, TipoEstudio, Conocimiento, EstadoEstudio, Completitud);
         }
 
-        public List<OfertaUTP> UTP_ObtenerOfertasporActivar(string Oferta, int nroPagina, int filasPorPagina)
+        public List<OfertaUTP> UTP_ObtenerOfertasporActivar(string Oferta, string TipoTrabajoUTP, int nroPagina, int filasPorPagina)
         {
             List<OfertaUTP> listaEjemplo = new List<OfertaUTP>();
 
 
-            DataTable dtResultado = adUtp.UTP_ObtenerOfertasporActivar(Oferta, nroPagina, filasPorPagina);
+            DataTable dtResultado = adUtp.UTP_ObtenerOfertasporActivar(Oferta, TipoTrabajoUTP, nroPagina, filasPorPagina);
 
             for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
             {
@@ -406,12 +406,12 @@ namespace UTP.PortalEmpleabilidad.Logica
 
             return listaEjemplo;
         }
-        public List<OfertaUTP> UTP_ObtenerofertasAvanzada(string CargoOfrecido, string NombreComercial, string TipoCargo, string Sector, string Contrato, int AExperiencia, int Remuneracion, string TipoEstudio, string Conocimiento, int NroPostulante, string EstadoOferta, string TipoInformacionAdicional, string Carrera, int nroPagina, int filasPorPagina)
+        public List<OfertaUTP> UTP_ObtenerofertasAvanzada(string CargoOfrecido, string NombreComercial, string TipoCargo, string Sector, string Contrato, int AExperiencia, int Remuneracion, string TipoEstudio, string Conocimiento, int NroPostulante, string EstadoOferta, string TipoInformacionAdicional, string Carrera, string TipoTrabajoUTP, int nroPagina, int filasPorPagina)
         {
             List<OfertaUTP> listaEjemplo = new List<OfertaUTP>();
 
 
-            DataTable dtResultado = adUtp.UTP_ObtenerofertasAvanzada(CargoOfrecido, NombreComercial, TipoCargo, Sector, Contrato, AExperiencia, Remuneracion, TipoEstudio, Conocimiento, NroPostulante, EstadoOferta, TipoInformacionAdicional, Carrera, nroPagina, filasPorPagina);
+            DataTable dtResultado = adUtp.UTP_ObtenerofertasAvanzada(CargoOfrecido, NombreComercial, TipoCargo, Sector, Contrato, AExperiencia, Remuneracion, TipoEstudio, Conocimiento, NroPostulante, EstadoOferta, TipoInformacionAdicional, Carrera, TipoTrabajoUTP, nroPagina, filasPorPagina);
 
             for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
             {
@@ -457,10 +457,11 @@ namespace UTP.PortalEmpleabilidad.Logica
             string EstadoOferta = "", 
             string TipoInformacionAdicional = "", 
             string Carrera = "",
+            string TipoTrabajoUTP = "",
             int nroPagina = 0, 
             int filasPorPagina = 0)
         {
-            return adUtp.Excel_ObtenerOfertas(CargoOfrecido, NombreComercial, TipoCargo, Sector, Contrato, AExperiencia, Remuneracion, TipoEstudio, Conocimiento, NroPostulante, EstadoOferta, TipoInformacionAdicional, Carrera);
+            return adUtp.Excel_ObtenerOfertas(CargoOfrecido, NombreComercial, TipoCargo, Sector, Contrato, AExperiencia, Remuneracion, TipoEstudio, Conocimiento, NroPostulante, EstadoOferta, TipoInformacionAdicional, Carrera, TipoTrabajoUTP);
         } 
 
         public DataTable UTP_ObtenerEventosObtenerBuscar(string evento, int nroPagina, int filasPorPagina)

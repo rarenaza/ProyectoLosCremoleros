@@ -37,6 +37,7 @@ namespace UTPPrototipo.Models.ViewModels.UTP
         public string IdTipoContratoutp { get; set; }
         public string IdTipoEstudioutp { get; set; }
         public string Carrera { get; set; }
+        public string TipoTrabajoUTP { get; set; }
         public string InformacionAdicional { get; set; }
         public string Conocimientos { get; set; }
         public int RemuneracionOfrecida { get; set; }

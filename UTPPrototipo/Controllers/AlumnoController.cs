@@ -356,6 +356,7 @@ namespace UTPPrototipo.Controllers
             ViewBag.ListaTipoTrabajo = listItemsTipoTrabajo;
             ViewBag.ListaContrato = listItemsContrato;
             ViewBag.ListaTipoCargo = listItemsTipoCargo;
+            ViewBag.TipoTrabajoUTP = new SelectList(lngeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_TRABAJO_UTP), "IdListaValor", "Valor", oferta.TipoTrabajoUTP);
 
             return View(oferta);
         }
@@ -385,7 +386,14 @@ namespace UTPPrototipo.Controllers
 
         public ActionResult BusquedaSimpleOferta(VistaOfertaAlumno entidad)
         {
-            entidad.ListaOfertas = lnoferta.BuscarFiltroOfertasAlumno(entidad.IdAlumno, entidad.PalabraClave == null ? "" : entidad.PalabraClave, entidad.PaginaActual, entidad.NumeroRegistros);
+            entidad.ListaOfertas = lnoferta.BuscarFiltroOfertasAlumno(
+                entidad.IdAlumno, 
+                entidad.PalabraClave == null ? "" : entidad.PalabraClave,
+                entidad.TipoTrabajoUTP == null ? "" : entidad.TipoTrabajoUTP,
+                entidad.PaginaActual, 
+                entidad.NumeroRegistros
+            );
+
             if (entidad.ListaOfertas.Count > 0)
             {
                 entidad.MaxPagina = entidad.ListaOfertas[0].TotalRegistros / Constantes.FILAS_POR_PAGINA;
