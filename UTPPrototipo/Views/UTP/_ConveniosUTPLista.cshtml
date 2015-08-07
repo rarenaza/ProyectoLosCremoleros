@@ -1,19 +1,18 @@
-﻿
-
-@model IEnumerable<UTP.PortalEmpleabilidad.Modelo.Vistas.Convenio.VistaUTPListaConvenio>
+﻿@model IEnumerable<UTP.PortalEmpleabilidad.Modelo.Vistas.Convenio.VistaUTPListaConvenio>
 @using UTPPrototipo.Utiles
 <h5>Convenios Registrados</h5>
 <div class="row grilla1-cabecera color-paleta9">
-    <div class="col-sm-1">Id</div>
-    <div class="col-sm-2">Alumno</div>
-    <div class="col-sm-2">Carrera</div>
-    <div class="col-sm-2">Empresa</div>
-    <div class="col-sm-1">Tipo Trabajo</div>
-    <div class="col-sm-1">Duración</div>
+    <div class="col-sm-2">Nombre</div>
+    <div class="col-sm-1">Código</div>
+    <div class="col-sm-1">Carrera</div>
+    <div class="col-sm-1">Ciclo</div>
+    <div class="col-sm-1">Empresa</div>
+    <div class="col-sm-1">Clasificación</div>
+    <div class="col-sm-1">Mes de Inicio</div>
     <div class="col-sm-1">Salario</div>
-    <div class="col-sm-1">Área</div>
-    <div class="col-sm-1">Fecha Ingreso</div>
-
+    <div class="col-sm-1">Cargo</div>
+    <div class="col-sm-1">Fecha de Registro</div>
+    <div class="col-sm-1">EStado</div>
 
 </div>
 
@@ -21,35 +20,42 @@
 {
     <div class="row grilla1-linea">
 
-        <div class="col-sm-1">
-            @item.IdConvenio
-        </div>
         <div class="col-sm-2">
             @*@Html.ActionLink(item.Nombres + " " + item.Apellidos, "Convenio", new { idconvenio = item.IdConvenio })*@
             @*@Html.ActionLink(item.Nombres + " " + item.Apellidos, "Convenio", new { idconvenio = Helper.Encriptar(item.IdConvenio.ToString()) }, htmlAttributes: new { target = "_blank" })*@
             @Html.ActionLink(item.Nombres + " " + item.Apellidos, "Convenio", new { id = Helper.Encriptar(item.IdConvenio.ToString()) }, null)
         </div>
-        <div class="col-sm-2">
+        <div class="col-sm-1">
+            @item.Codigo
+        </div>
+        <div class="col-sm-1">
             @item.Carrera
         </div>
-        <div class="col-sm-2">
+        <div class="col-sm-1">
+            @item.Ciclo
+        </div>
+        <div class="col-sm-1">
             @item.NombreComercial
         </div>
         <div class="col-sm-1">
-            @item.TipoTrabajo
+            @item.Clasificacion
         </div>
         <div class="col-sm-1">
-            @item.DuracionContrato
+            @item.MesInicio
         </div>
         <div class="col-sm-1">
-            @item.SalarioOfrecido
+            S/.@item.SalarioOfrecido
         </div>
         <div class="col-sm-1">
-            @item.AreaEmpresa
+            @item.Cargo
         </div>
         <div class="col-sm-1">
-            @item.FechaIngreso
+            @item.FechaRegistro
         </div>
+        <div class="col-sm-1">
+            @item.Estado
+        </div>
+       
 
     </div>
 }
@@ -58,8 +64,11 @@
 
 <br />
 <div class="col-sm-12" style="text-align:right;">
-    
-    <button class="btn btn-default color-paleta8" onclick="ConvenioUTPCrear();">Nuevo Convenio</button>
+
+
+    <a class="btn btn-default color-paleta8" href=@Url.Action("ConveniosUTPCrear", "UTP")>Nuevo Convenio</a>
+
+    @*<button class="btn btn-default color-paleta8" onclick="ConvenioUTPCrear();">Nuevo Convenio</button>*@
     <!--
         data-toggle="modal" data-target="#Nuevo-usuario"
     -->

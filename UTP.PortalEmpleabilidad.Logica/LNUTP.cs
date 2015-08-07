@@ -76,8 +76,6 @@ namespace UTP.PortalEmpleabilidad.Logica
 
                 vista.IdAlumno = Convert.ToInt32(dtResultado.Rows[i]["IdAlumno"]);
                 vista.Alumno = dtResultado.Rows[i]["Alumno"].ToString();
-               
-
                 listaEjemplo.Add(vista);
             }
 
@@ -235,6 +233,22 @@ namespace UTP.PortalEmpleabilidad.Logica
                         convenio.ModificadoPor = Funciones.ToString(dsResultado.Tables[0].Rows[n]["ModificadoPor"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[n]["ModificadoPor"]);
                         convenio.FechaModificacion = Funciones.ToDateTime(dsResultado.Tables[0].Rows[n]["FechaModificacion"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[n]["FechaModificacion"]);
                         
+                        convenio.FechaInicio = Funciones.ToString(dsResultado.Tables[0].Rows[n]["FechaInicio"]);
+                        convenio.FechaFin = Funciones.ToString(dsResultado.Tables[0].Rows[n]["FechaFin"]);
+                        convenio.FechaRegistro = Funciones.ToString(dsResultado.Tables[0].Rows[n]["FechaRegistro"]);
+                        convenio.EstadoConvenio = Funciones.ToString(dsResultado.Tables[0].Rows[n]["EstadoConvenio"]);
+                        convenio.Clasificacion = Funciones.ToString(dsResultado.Tables[0].Rows[n]["Clasificacion"]);
+                        convenio.EnvioEvaluacionJefe = Funciones.ToString(dsResultado.Tables[0].Rows[n]["EnvioEvaluacionJefe"]);
+                        convenio.EnvioFormatoInformeAlumno = Funciones.ToString(dsResultado.Tables[0].Rows[n]["EnvioFormatoInformeAlumno"]);
+                        convenio.EnvioEvaluacionEvaluador = Funciones.ToString(dsResultado.Tables[0].Rows[n]["EnvioEvaluacionEvaluador"]);
+                        convenio.RecepcionEvaluacionJefe = Funciones.ToString(dsResultado.Tables[0].Rows[n]["RecepcionEvaluacionJefe"]);
+                        convenio.RecepcionInformeAlumno = Funciones.ToString(dsResultado.Tables[0].Rows[n]["RecepcionInformeAlumno"]);
+                        convenio.RecepcionEvaluacionEvaluador = Funciones.ToString(dsResultado.Tables[0].Rows[n]["RecepcionEvaluacionEvaluador"]);
+                        convenio.NotaEvaluacionJefe = Funciones.ToString(dsResultado.Tables[0].Rows[n]["NotaEvaluacionJefe"]);
+                        convenio.EvaluadorAlumno = Funciones.ToString(dsResultado.Tables[0].Rows[n]["EvaluadorAlumno"]);
+                        convenio.NotaEvaluacionEvaluador = Funciones.ToString(dsResultado.Tables[0].Rows[n]["NotaEvaluacionEvaluador"]);
+                        convenio.CodAlumnoUtp = Funciones.ToString(dsResultado.Tables[0].Rows[n]["CodigoAlumno"]);
+                        convenio.MesInicio = Funciones.ToString(dsResultado.Tables[0].Rows[n]["MesInicio"]);
                         
                         break;
                     }

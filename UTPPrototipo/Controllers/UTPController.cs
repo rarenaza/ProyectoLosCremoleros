@@ -1126,6 +1126,7 @@ namespace UTPPrototipo.Controllers
         {
             TicketUTP ticketUtp = (TicketUTP)Session["TicketUtp"];
             ViewBag.Rol = ticketUtp.Rol;
+
             return View();
         }
 
@@ -1152,15 +1153,16 @@ namespace UTPPrototipo.Controllers
                 vista.IdConvenio = Convert.ToInt32(dtResultado.Rows[i]["IdConvenio"]);
                 vista.Nombres = dtResultado.Rows[i]["Nombres"].ToString();
                 vista.Apellidos = dtResultado.Rows[i]["Apellidos"].ToString();
+                vista.Codigo = dtResultado.Rows[i]["CodAlumnoUtp"].ToString();
+                vista.Ciclo = dtResultado.Rows[i]["Ciclo"].ToString();
+                vista.MesInicio = dtResultado.Rows[i]["MesInicio"].ToString();
                 vista.Carrera = dtResultado.Rows[i]["Carrera"].ToString();
                 vista.NombreComercial = dtResultado.Rows[i]["NombreComercial"].ToString();
-                vista.TipoTrabajo = dtResultado.Rows[i]["TipoTrabajo"].ToString();
-                vista.DuracionContrato = Convert.ToInt32(dtResultado.Rows[i]["DuracionContrato"]);
+                vista.Clasificacion = dtResultado.Rows[i]["Clasificacion"].ToString();
                 vista.SalarioOfrecido = Convert.ToDecimal(dtResultado.Rows[i]["SalarioOfrecido"] == System.DBNull.Value ? null : dtResultado.Rows[i]["SalarioOfrecido"]);
-                vista.AreaEmpresa = dtResultado.Rows[i]["AreaEmpresa"].ToString();
-                //vista.FechaIngreso = Convert.ToDateTime(dtResultado.Rows[i]["FechaIngreso"] == System.DBNull.Value ? null : dtResultado.Rows[i]["FechaIngreso"]);
-                vista.FechaIngreso = dtResultado.Rows[i]["FechaIngreso"].ToString();
-
+                vista.Cargo = dtResultado.Rows[i]["CargoOfrecido"].ToString();
+                vista.FechaRegistro = dtResultado.Rows[i]["FechaRegistro"].ToString().Split(' ').First();
+                vista.Estado = dtResultado.Rows[i]["EstadoConvenio"].ToString();
                 listaEjemplo.Add(vista);
             }
 
@@ -1171,7 +1173,7 @@ namespace UTPPrototipo.Controllers
 
 
 
-        public ActionResult _ConveniosUTPCrear()
+        public ActionResult ConveniosUTPCrear()
         {
             //if (idConvenio != null)
             //{
@@ -1186,14 +1188,14 @@ namespace UTPPrototipo.Controllers
 
             ViewBag.TipoTrabajo = new SelectList(lngeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_TRABAJO), "IdListaValor", "Valor");
             ViewBag.FuenteConvenio = new SelectList(lngeneral.ObtenerListaValor(Constantes.IDLISTA_FUENTE_CONVENIO), "IdListaValor", "Valor");
+            ViewBag.EstadoConvenio = new SelectList(lngeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_CONVENIO), "IdListaValor", "Valor");
+            ViewBag.Clasificacion = new SelectList(lngeneral.ObtenerReporteEquivalente(),"DatoOrigen","DatoOrigen");
 
-
-
-            return PartialView("_ConveniosUTPCrear", convenio);
+            return View("ConveniosUTPCrear", convenio);
         }
 
         [HttpPost, ValidateAntiForgeryToken]
-        public ActionResult _ConveniosUTPCrear(Convenio nconvenio)
+        public ActionResult ConveniosUTPCrear(Convenio nconvenio)
         {
 
             TicketUTP ticket = (TicketUTP)Session["TicketUTP"];
@@ -1221,19 +1223,21 @@ namespace UTPPrototipo.Controllers
                 vista.IdConvenio = Convert.ToInt32(dtResultado.Rows[i]["IdConvenio"]);
                 vista.Nombres = dtResultado.Rows[i]["Nombres"].ToString();
                 vista.Apellidos = dtResultado.Rows[i]["Apellidos"].ToString();
+                vista.Codigo = dtResultado.Rows[i]["CodAlumnoUtp"].ToString();
+                vista.Ciclo = dtResultado.Rows[i]["Ciclo"].ToString();
+                vista.MesInicio = dtResultado.Rows[i]["MesInicio"].ToString();
                 vista.Carrera = dtResultado.Rows[i]["Carrera"].ToString();
                 vista.NombreComercial = dtResultado.Rows[i]["NombreComercial"].ToString();
-                vista.TipoTrabajo = dtResultado.Rows[i]["TipoTrabajo"].ToString();
-                vista.DuracionContrato = Convert.ToInt32(dtResultado.Rows[i]["DuracionContrato"]);
+                vista.Clasificacion = dtResultado.Rows[i]["Clasificacion"].ToString();  
                 vista.SalarioOfrecido = Convert.ToDecimal(dtResultado.Rows[i]["SalarioOfrecido"] == System.DBNull.Value ? null : dtResultado.Rows[i]["SalarioOfrecido"]);
-                vista.AreaEmpresa = dtResultado.Rows[i]["AreaEmpresa"].ToString();
-                //vista.FechaIngreso = Convert.ToDateTime(dtResultado.Rows[i]["FechaIngreso"] == System.DBNull.Value ? null : dtResultado.Rows[i]["FechaIngreso"]);
-                vista.FechaIngreso = dtResultado.Rows[i]["FechaIngreso"].ToString();
+                vista.Cargo = dtResultado.Rows[i]["CargoOfrecido"].ToString();
+                vista.FechaRegistro = dtResultado.Rows[i]["FechaRegistro"].ToString();
+                vista.Estado = dtResultado.Rows[i]["EstadoConvenio"].ToString();  
                 listaEjemplo.Add(vista);
             }
 
-            //return View("Convenios", listaEjemplo);
-            return PartialView("_ConveniosUTPLista", listaEjemplo);
+            return View("Convenios");
+            //return PartialView("_ConveniosUTPLista", listaEjemplo);
         }
 
 
@@ -1247,6 +1251,8 @@ namespace UTPPrototipo.Controllers
             ViewBag.TipoTrabajo = new SelectList(lngeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_TRABAJO), "IdListaValor", "Valor", convenio.TipoTrabajo);
             ViewBag.FuenteConvenio = new SelectList(lngeneral.ObtenerListaValor(Constantes.IDLISTA_FUENTE_CONVENIO), "IdListaValor", "Valor", convenio.FuenteConvenio);
             ViewBag.IdExperienciaCargo = new SelectList(convenio.Experiencias, "IdExperienciaCargo", "Experiencia", convenio.IdExperienciaCargo);
+            ViewBag.EstadoConvenio = new SelectList(lngeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_CONVENIO), "IdListaValor", "Valor");
+            ViewBag.Clasificacion = new SelectList(lngeneral.ObtenerReporteEquivalente(), "DatoOrigen", "DatoOrigen");
             return View(convenio);
         }
 
@@ -1261,6 +1267,8 @@ namespace UTPPrototipo.Controllers
             Convenio convenioa = lnUtp.UTP_ObtenerConvenio(convenio.IdConvenio);
             ViewBag.TipoTrabajo = new SelectList(lngeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_TRABAJO), "IdListaValor", "Valor", convenioa.TipoTrabajo);
             ViewBag.FuenteConvenio = new SelectList(lngeneral.ObtenerListaValor(Constantes.IDLISTA_FUENTE_CONVENIO), "IdListaValor", "Valor", convenioa.FuenteConvenio);
+            ViewBag.EstadoConvenio = new SelectList(lngeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_CONVENIO), "IdListaValor", "Valor");
+            ViewBag.Clasificacion = new SelectList(lngeneral.ObtenerReporteEquivalente(), "DatoOrigen", "DatoOrigen");
 
             ViewBag.IdExperienciaCargo = new SelectList(convenioa.Experiencias, "IdExperienciaCargo", "Experiencia", convenioa.IdExperienciaCargo);
             return View(convenioa);
@@ -3730,9 +3738,10 @@ namespace UTPPrototipo.Controllers
                 vista.IdAlumno = Convert.ToInt32(dtResultado.Rows[0]["IdAlumno"]);
                 vista.Carrera = dtResultado.Rows[0]["Carrera"].ToString();
                 vista.Ciclo = Convert.ToInt32(dtResultado.Rows[0]["Ciclo"] == System.DBNull.Value ? null : dtResultado.Rows[0]["Ciclo"]);
-                vista.TelefonoFijoCasa = dtResultado.Rows[0]["TelefonoFijoCasa"].ToString();
+                vista.CorreoAlumno = dtResultado.Rows[0]["CorreoElectronico"].ToString();
                 vista.TelefonoCelular = dtResultado.Rows[0]["TelefonoCelular"].ToString();
-
+                vista.CodAlumnoUtp = dtResultado.Rows[0]["CodAlumnoUtp"].ToString();
+                  
             }
 
             return Json(vista, JsonRequestBehavior.AllowGet);
