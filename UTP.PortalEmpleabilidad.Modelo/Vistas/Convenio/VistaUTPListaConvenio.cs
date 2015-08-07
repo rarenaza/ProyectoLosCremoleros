@@ -20,5 +20,12 @@ namespace UTP.PortalEmpleabilidad.Modelo.Vistas.Convenio
         //public DateTime FechaIngreso { get; set; }
         public string FechaIngreso { get; set; }
         public string PalabraClave { get; set; }
+        public string Codigo { get; set; }
+        public string MesInicio { get; set; }
+        public string Ciclo { get; set; }
+        public string Clasificacion { get; set; }
+        public string Cargo { get; set; }
+        public string FechaRegistro { get; set; }
+        public string Estado { get; set; }
     }
 }

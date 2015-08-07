@@ -4,24 +4,20 @@
     ViewBag.Title = "Empresas";
 }
 <div class="container" style="margin-top:2px;">
-    <div class="panel-group" id="datos-cuenta" role="tablist" aria-multiselectable="true">
-
+    <div class="panel-group" id="datos-convenio" role="tablist" aria-multiselectable="true">
         @{Html.RenderAction("VistaCabeceraUtp", "UTP");}
-
     </div>
+    <h5>Convenio</h5>
 
-    @using (Html.BeginForm("Convenio", "UTP", FormMethod.Post))
+    @using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
-
-        @Html.HiddenFor(m => m.IdConvenio)
         @Html.HiddenFor(m => m.IdAlumno)
         @Html.HiddenFor(m => m.IdEmpresa)
         <script src="~/Scripts/moment.js"></script>
         <script src="~/Scripts/bootstrap-datetimepicker.js"></script>
         <link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
         <input type="hidden" id="IdAlumno">
-        
         <div class="row">
             <div class="col-sm-12">
                 <div class="panel panel-default" style="text-align: left;">
@@ -35,19 +31,12 @@
                     <div id="collapse1" class="panel-collapse collapse in" role="tab" aria-labelledby="heading1">
                         <div class="panel-body">
                             <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">Convenio</span>
-                                        <input class="form-control" readonly value="@Model.IdConvenio" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
                                 <div class="col-sm-9">
                                     <div class="input-group">
                                         <span class="input-group-addon">(*)Nombre<br />y Apellidos</span>
-                                        <input class="form-control" id="Alumno" readonly value="@Model.Nombres @Model.Apellidos">
+                                        @Html.TextBoxFor(m => m.Alumno, htmlAttributes: new { @class = "form-control", @style = "height:34px", @placeholder = "Ingrese nombre o apellido", @id = "Alumno" })
                                     </div>
+                                    @Html.ValidationMessageFor(m => m.Alumno, "", new { @class = "text-danger" })
                                 </div>
                                 <div class="col-sm-3">
                                     <div class="input-group">
@@ -73,6 +62,22 @@
                                     @Html.ValidationMessageFor(m => m.Ciclo, "", new { @class = "text-danger" })
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-sm-9">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">(*)Email</span>
+                                        @Html.TextBoxFor(m => m.CorreoAlumno, htmlAttributes: new { @class = "form-control", @placeholder = "Correo Electrónico" })
+                                    </div>
+                                    @Html.ValidationMessageFor(m => m.CorreoAlumno, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">(*)Teléfono</span>
+                                        @Html.TextBoxFor(m => m.TelefonoCelular, htmlAttributes: new { @class = "form-control", @placeholder = "Teléfono Celular" })
+                                    </div>
+                                    @Html.ValidationMessageFor(m => m.TelefonoCelular, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -93,14 +98,16 @@
                                 <div class="col-sm-4">
                                     <div class="input-group">
                                         <span class="input-group-addon">(*)Empresa</span>
-                                        <input class="form-control" id="Empresa" readonly value="@Model.NombreComercial">
+                                        @Html.TextBoxFor(m => m.NombreComercial, htmlAttributes: new { @class = "form-control", @style = "height:34px", @placeholder = "Empresa", @id = "NombreComercial" })
                                     </div>
+                                    @Html.ValidationMessageFor(m => m.NombreComercial, "", new { @class = "text-danger" })
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="input-group">
-                                        <span class="input-group-addon">RUC</span>
-                                        <input class="form-control" id="SectorEmpresarial" readonly value="@Model.IdentificadorTributario">
+                                        <span class="input-group-addon">(*)RUC</span>
+                                        @Html.TextBoxFor(m => m.IdentificadorTributario, htmlAttributes: new { @class = "form-control", @placeholder = "RUC", @id = "IdentificadorTributario" })
                                     </div>
+                                    @Html.ValidationMessageFor(m => m.IdentificadorTributario, "", new { @class = "text-danger" })
                                 </div>
                                 <div class="col-sm-4">
                                     <div class="input-group">
@@ -151,7 +158,7 @@
                                 <div class="col-sm-4">
                                     <div class="input-group">
                                         <span class="input-group-addon">Mes de<br /> Inicio</span>
-                                        <input class="form-control" id="MesInicio" readonly value="@Model.MesInicio">
+                                        <input class="form-control" id="MesInicio" readonly />
                                     </div>
                                 </div>
                                 <div class="col-sm-8">
@@ -360,53 +367,24 @@
                                     @Html.ValidationMessageFor(m => m.Observaciones, "", new { @class = "text-danger" })
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">Creado<br />Por</span>
-                                        <span class="form-control" id="SectorEmpresarial">@Model.CreadoPor</span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">Fecha<br />Creación</span>
-                                        <span class="form-control" id="SectorEmpresarial">@Model.FechaCreacion</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">Modificado<br />Por</span>
-                                        <span class="form-control" id="SectorEmpresarial">@Model.ModificadoPor</span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">Fecha<br />Modific.</span>
-                                        <span class="form-control" id="SectorEmpresarial">@Model.FechaModificacion</span>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
-            </div>            
-        </div>        
-        <div class="row">
-            <div class="col-sm-12" style="text-align:right;">
-                <button type="submit" class="btn btn-default color-paleta9">Guardar</button>
+            </div>
+            <hr />
+            <div class="row" style="text-align: right;">
+                <button class="btn btn-default color-paleta8">Guardar</button>
             </div>
         </div>
-
     }
-    <hr />
 </div>
 <script>
+
     $(document).ready(function () {
+        $("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta3 color-paleta4 color-paleta5 color-paleta6 color-paleta7 color-paleta8").addClass("color-paleta9");
 
-        $("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta3 color-paleta4 color-paleta5 color-paleta6 color-paleta7 color-paleta8").addClass("color-paleta9")
-
+        AutoCompleteTextVarios('#Alumno', '@Url.Action("ListarAlumnosNombreyCodigo", "UTP")', '#Alumno', 'A');
+        AutoCompleteTextVarios('#NombreComercial', '@Url.Action("ListarNombreEmpresa", "UTP")', '#NombreComercial', 'E');
 
         var $eventStartDate = $("#FechaInicio"),
             $eventEndDate = $("#FechaFin"),
@@ -421,9 +399,6 @@
             $RAlumno = $('#RecepcionInformeAlumno'),
             $REvaluador = $('#RecepcionEvaluacionEvaluador');
 
-
-        //$duration.val(($eventEndDate.data('DateTimePicker').diff($eventStartDate.data('DateTimePicker').date()) / 86400000).toFixed(0) + " días");
-
         $eventStartDate.datetimepicker({ format: "DD/MM/YYYY" });
         $eventEndDate.datetimepicker({ format: "DD/MM/YYYY" });
         $registerDate.datetimepicker({ format: "DD/MM/YYYY" });
@@ -434,8 +409,6 @@
         $RAlumno.datetimepicker({ format: "DD/MM/YYYY" });
         $REvaluador.datetimepicker({ format: "DD/MM/YYYY" });
 
-        $duration.val(($eventEndDate.data('DateTimePicker').date().diff($eventStartDate.data('DateTimePicker').date()) / 86400000).toFixed(0) + " días");
-        
         $eventStartDate.on('dp.change', function (e) {
             $startMonth.val((e.date.format('MMMM')));
             $eventEndDate.data('DateTimePicker').minDate(e.date);
@@ -452,5 +425,31 @@
                 $duration.val((e.date.diff(startDate) / 86400000).toFixed(0) + " días");
             }
         });
+
     });
+
+
+    function cargarDatosAlumno(idAlumno) {
+        var url = '@Url.Action("BuscarDatosAlumno", "UTP")' + '?idAlumno=' + idAlumno;
+
+        $.get(url, function (alumno) {
+            $('#IdAlumno').val(alumno["IdAlumno"]);
+            $('#Carrera').val(alumno["Carrera"]);
+            $('#CorreoAlumno').val(alumno["CorreoAlumno"]);
+            $('#Ciclo').val(alumno["Ciclo"]);
+            $('#TelefonoCelular').val(alumno["TelefonoCelular"]);
+            $('#CodAlumnoUtp').val(alumno["CodAlumnoUtp"]);
+        });
+
+    }
+
+    function cargarDescripcionEmpresa(idEmpresa) {
+        var url = '@Url.Action("BuscarDatosEmpresas","Alumno")' + '?idEmpresa=' + idEmpresa;
+
+        $.get(url, function (empresa) {
+            $('#ValorSectorEmpresarial').val(empresa["ValorSectorEmpresarial"]);
+            $('#IdentificadorTributario').val(empresa["IdentificadorTributario"]);
+            $('#IdEmpresa').val(idEmpresa);
+        });
+    }
 </script>
