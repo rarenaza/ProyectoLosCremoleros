@@ -602,8 +602,7 @@ namespace UTPPrototipo.Controllers
             if (alumno != null && listaalumnoexperienciacargo.Count > 0)
             {
                 listaalumnoexperienciacargo = lnalumnocvexperienciacargo.ObtenerAlumnoCVExperienciaCargoPorIdCV(entidad.IdCV, listaalumnoexperienciacargo);
-            }
-
+            }            
             return PartialView("_AlumnoExperienciaCV", listaalumnoexperienciacargo);
         }
 
@@ -711,6 +710,7 @@ namespace UTPPrototipo.Controllers
 
             ViewBag.SectorEmpresarial = new SelectList(lngeneral.ObtenerListaValor(8), "IdListaValor", "Valor");
             ViewBag.Pais = new SelectList(lngeneral.ObtenerListaValor(17), "IdListaValor", "Valor");
+            ViewBag.Ciudad = new SelectList(lngeneral.ObtenerListaValor(48), "IdListaValor", "Valor");
             ViewBag.TipoCargo = new SelectList(lngeneral.ObtenerListaValor(9), "IdListaValor", "Valor");
             ViewBag.SectorEmpresarial2 = ViewBag.SectorEmpresarial;
             ViewBag.SectorEmpresarial3 = ViewBag.SectorEmpresarial;
@@ -750,6 +750,7 @@ namespace UTPPrototipo.Controllers
                 ViewBag.SectorEmpresarial2 = new SelectList(lngeneral.ObtenerListaValor(8), "IdListaValor", "Valor", alumnoexperiencia.SectorEmpresarial2);
                 ViewBag.SectorEmpresarial3 = new SelectList(lngeneral.ObtenerListaValor(8), "IdListaValor", "Valor", alumnoexperiencia.SectorEmpresarial3);
                 ViewBag.Pais = new SelectList(lngeneral.ObtenerListaValor(17), "IdListaValor", "Valor", alumnoexperiencia.Pais);
+                ViewBag.Ciudad = new SelectList(lngeneral.ObtenerListaValor(48), "IdListaValor", "Valor", alumnoexperiencia.Ciudad);
                 ViewBag.TipoCargo = new SelectList(lngeneral.ObtenerListaValor(9), "IdListaValor", "Valor", alumnoexperiencia.TipoCargo);
                 alumnoexperiencia.Movimiento = 2;
 
@@ -785,6 +786,7 @@ namespace UTPPrototipo.Controllers
             ViewBag.TipoConocimientoIdListaValor = new SelectList(lngeneral.ObtenerListaValor(10), "IdListaValor", "Valor");
             ViewBag.PaisIdListaValor = new SelectList(lngeneral.ObtenerListaValor(17), "IdListaValor", "Valor");
             ViewBag.NivelConocimientoIdListaValor = new SelectList(lngeneral.ObtenerListaValor(16), "IdListaValor", "Valor");
+            ViewBag.Ciudad = new SelectList(lngeneral.ObtenerListaValor(48), "IdListaValor", "Valor");
             alumnoinformacionadicional.IdAlumno = IdAlumno;
             alumnoinformacionadicional.IdCV = IdCV;
             alumnoinformacionadicional.Movimiento = 1;
@@ -817,6 +819,7 @@ namespace UTPPrototipo.Controllers
                 ViewBag.meses = meses;
                 ViewBag.TipoConocimientoIdListaValor = new SelectList(lngeneral.ObtenerListaValor(10), "IdListaValor", "Valor", alumnoinformacionadicional.TipoConocimientoIdListaValor);
                 ViewBag.PaisIdListaValor = new SelectList(lngeneral.ObtenerListaValor(17), "IdListaValor", "Valor", alumnoinformacionadicional.PaisIdListaValor);
+                ViewBag.Ciudad = new SelectList(lngeneral.ObtenerListaValor(48), "IdListaValor", "Valor", alumnoinformacionadicional.Ciudad);
                 ViewBag.NivelConocimientoIdListaValor = new SelectList(lngeneral.ObtenerListaValor(16), "IdListaValor", "Valor", alumnoinformacionadicional.NivelConocimientoIdListaValor);
                 alumnoinformacionadicional.IdAlumno = IdAlumno;
                 alumnoinformacionadicional.IdCV = IdCV;

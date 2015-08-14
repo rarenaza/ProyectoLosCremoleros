@@ -35,8 +35,8 @@ namespace UTP.PortalEmpleabilidad.Modelo
          [Required(ErrorMessage = "Falta el país")]
         public string Pais { get; set; }
 
-        [StringLength(100, ErrorMessage = "Este campo sólo acepta máximo 100 caracteres.")]
-        [RegularExpression(@"[A-ZÀ-ÿa-zÑñ ,.]+", ErrorMessage = "Este campo sólo acepta letras.")]
+        //[StringLength(100, ErrorMessage = "Este campo sólo acepta máximo 100 caracteres.")]
+        //[RegularExpression(@"[A-ZÀ-ÿa-zÑñ ,.]+", ErrorMessage = "Este campo sólo acepta letras.")]
         public string Ciudad { get; set; }
         public string CreadoPor { get; set; }
         public string NombreComercial { get; set; }
@@ -65,7 +65,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string TipoCargo { get; set; }
         ////[Required(ErrorMessage = "Falta la descripción del cargo")]
 
-        [StringLength(350, ErrorMessage = "Este campo sólo acepta máximo 350 caracteres.")]
+        [StringLength(700, ErrorMessage = "Este campo sólo acepta máximo 700 caracteres.")]
         public string DescripcionCargo { get; set; }
         
         public int IdCV { get; set; }
