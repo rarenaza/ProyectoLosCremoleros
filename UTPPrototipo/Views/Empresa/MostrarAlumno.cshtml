@@ -361,7 +361,11 @@
                     </div>
                 </div>
             </div>
-
+            <div class="row" style="text-align:right">
+                <div class="col-sm-12">
+                    @Html.ActionLink("Descargar CV", "GenerarPDF", "Plantilla", new { idCV = Model.alumnocv.IdCV }, null)
+                </div>
+            </div>
         </div>
         <div class="col-md-3">
            
@@ -371,6 +375,7 @@
 <script>
     $(document).ready(function () {
         $("#divFinalCabeceraEmpresa").removeClass("color-paleta1 color-paleta2 color-paleta4 color-paleta5").addClass("color-paleta3");
+        console.log(@Model.alumnocv.IdCV);
     });
 </script>
 

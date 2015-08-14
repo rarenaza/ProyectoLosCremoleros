@@ -81,10 +81,17 @@
                     </div>
                     @Html.ValidationMessageFor(m => m.PaisIdListaValor, "", new { @class = "text-danger" })
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-6" id="divCiudadTexto">
                     <div class="input-group fuente-pequeña">
                         <span class="input-group-addon">Ciudad</span>
-                        @Html.TextBoxFor(m => m.Ciudad, htmlAttributes: new { @class = "form-control", @placeholder = "Ciudad donde lo obtuvo" })
+                        @Html.TextBoxFor(model => model.Ciudad, new { @class = "form-control", @placeholder = "Ciudad donde lo obtuvo" })
+                    </div>
+                    @Html.ValidationMessageFor(m => m.Ciudad, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-6" id="divCiudadCombo" style="display:none;">
+                    <div class=" input-group fuente-pequeña">
+                        <span class="input-group-addon">Ciudad</span>                        
+                        @Html.DropDownListFor(m => m.Ciudad, null, "-Seleccione-", htmlAttributes: new { @class = "form-control" ,@id="CiudadCombo"})
                     </div>
                     @Html.ValidationMessageFor(m => m.Ciudad, "", new { @class = "text-danger" })
                 </div>
@@ -119,17 +126,41 @@
     $(document).ready(function () {
         //$("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta4 color-paleta5").addClass("color-paleta3");
 
+        var idPais = $("#PaisIdListaValor").val();
+        if (idPais == "PAIPER") {
+            $("#divCiudadCombo").css('display', 'block');       //los combos se muestran
+            $("#divCiudadTexto").css('display', 'none');
+        }
         //se obtiene el valor del combo
         var codigoTipoConocimiento = $('#TipoConocimientoIdListaValor').val();
 
         //ESE ES LA CAJA, LA ACCION Y EL CONTROLADOR
         AutoCompleteTextDemo('#Conocimientos', '@Url.Action("ListarDatosEspecificos", "OfertaInformacionAdicional")' + '?codigoTipo=' + codigoTipoConocimiento, '#Conocimientos', '#TipoConocimientoIdListaValor', 'option', 'appendTo', '.eventInsForm');
 
+        $('#CiudadCombo').on('change', function () {
+            var Ciudad = $("#CiudadCombo").val();
+            //Se guarda el valor en el hidden TextoDepartamento.
+            $('#Ciudad').val(Ciudad);
+        });
 
+        window.onbeforeunload = function (e) {
+            return 'Dialog text here.';
+        };
 
+        $('#PaisIdListaValor').on('change', function () {
+            var idPais = $("#PaisIdListaValor").val()
 
+            if (idPais == "PAIPER") {
+                $("#divCiudadCombo").css('display', 'block');       //los combos se muestran
+                $("#divCiudadTexto").css('display', 'none'); //las cajas se ocultan
+            }
+            else {
+                $("#divCiudadCombo").css('display', 'none');        //los combos se ocultan
+                $("#divCiudadTexto").css('display', 'block'); //las cajas se muestran
+            }
+
+        });
     });
-
 
 
 </script>

@@ -9,11 +9,11 @@
     <div class="panel-group" id="datos-cuenta" role="tablist" aria-multiselectable="true">
         @{Html.RenderAction("VistaCabeceraUtp", "UTP");}
     </div>
-
+    <h5 class="clearfix">Evento<a href="@Url.Action("EventoInscritosExportar", "UTP")" class="btn btn-primary pull-right fuente-pequeña" style="margin-top: -12px;"><span class="fa fa-download"></span></a></h5> 
 @*@foreach (var item in Model)
 {*@
     @*<h5>Evento: NOMBRE DEL EVENTO</h5>*@
-    <br />
+   
     <div class="row grilla1-cabecera color-paleta5">
 
         <div class="col-sm-2">
