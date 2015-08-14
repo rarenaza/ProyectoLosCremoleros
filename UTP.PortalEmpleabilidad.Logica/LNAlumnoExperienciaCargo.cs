@@ -17,7 +17,7 @@ namespace UTP.PortalEmpleabilidad.Logica
             List<AlumnoExperienciaCargo> listaAlumnoExperienciaCargo = new List<AlumnoExperienciaCargo>();
 
             DataTable dtResultado = aecd.ObtenerAlumnoExperienciaCargoPorIdAlumno(IdAlumno);
-
+            LNGeneral lngeneral = new LNGeneral();
             if (dtResultado.Rows.Count > 0)
             {
                 for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
@@ -36,7 +36,6 @@ namespace UTP.PortalEmpleabilidad.Logica
                     alumnoexperienciacargo.FechaFinCargoMes = Funciones.ToInt(dtResultado.Rows[i]["FechaFinCargoMes"]);
                     alumnoexperienciacargo.FechaFinCargoAno = Funciones.ToInt(dtResultado.Rows[i]["FechaFinCargoAno"]);
                     alumnoexperienciacargo.IconoTipoCargo = Funciones.ToString(dtResultado.Rows[i]["IconoTipoCargo"]);
-
                     listaAlumnoExperienciaCargo.Add(alumnoexperienciacargo);
                 }
 

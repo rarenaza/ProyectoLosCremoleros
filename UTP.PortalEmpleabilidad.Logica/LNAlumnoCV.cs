@@ -304,7 +304,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                     for (int n = 0; n <= dsResultado.Tables[0].Rows.Count - 1; n++)
                     {
                         //alumnocv.IdOfertaPostulante = Funciones.ToInt(dsResultado.Tables[0].Rows[n]["IdOfertaPostulante"]);
-                        //alumnocv.IdCV = Funciones.ToInt(dsResultado.Tables[0].Rows[n]["IdCV"]);
+                        alumnocv.IdCV = Funciones.ToInt(dsResultado.Tables[0].Rows[n]["IdCV"]);
                         alumnocv.Perfil = Funciones.ToString(dsResultado.Tables[0].Rows[n]["Perfil"]);
                         alumnocv.CodAlumnoUTP = Funciones.ToString(dsResultado.Tables[0].Rows[n]["CodAlumnoUtp"]);
                         alumnocv.Nombres = Funciones.ToString(dsResultado.Tables[0].Rows[n]["Nombres"]);

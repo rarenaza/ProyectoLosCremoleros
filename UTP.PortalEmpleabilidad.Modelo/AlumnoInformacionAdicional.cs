@@ -32,8 +32,8 @@ namespace UTP.PortalEmpleabilidad.Modelo
         [RegularExpression(@"[0-9]+", ErrorMessage = "Este campo sólo acepta años con 4 numeros.")]
         public int? FechaConocimientoHastaAno { get; set; }
         public string NomPais { get; set; }
-        [StringLength(100, ErrorMessage = "Este campo sólo acepta máximo 100 caracteres.")]
-        [RegularExpression(@"[A-ZÀ-ÿa-zÑñ ,.]+", ErrorMessage = "Este campo sólo acepta letras.")]
+        //[StringLength(100, ErrorMessage = "Este campo sólo acepta máximo 100 caracteres.")]
+        //[RegularExpression(@"[A-ZÀ-ÿa-zÑñ ,.]+", ErrorMessage = "Este campo sólo acepta letras.")]
         public string Ciudad { get; set; }
         [StringLength(100, ErrorMessage = "Este campo sólo acepta máximo 100 caracteres.")]
         [RegularExpression(@"[0-9A-ZÀ-ÿa-zÑñ,. ]+", ErrorMessage = "Este campo sólo acepta letras y numeros.")]

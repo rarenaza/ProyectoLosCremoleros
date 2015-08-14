@@ -267,6 +267,11 @@ namespace UTPPrototipo.Controllers
             Helper.Export2ExcelDownload((DataTable)Session["DataTableToExport"], "empresas" + new DateTime());
         }
 
+        public void EventoInscritosExportar()
+        {
+            Helper.Export2ExcelDownload((DataTable)Session["DataTableToExport"], "eventos" + new DateTime());
+        }
+
         public ActionResult Eventos()
         {
             TicketUTP ticketUtp = (TicketUTP)Session["TicketUtp"];
@@ -3528,7 +3533,7 @@ namespace UTPPrototipo.Controllers
             List<EventoAsistente> listaevento = new List<EventoAsistente>();
 
             DataTable dtResultado = lnEventos.UTP_INSCRITOS_EVENTOS(Convert.ToInt32(Id));
-
+            Session["DataTableToExport"] = dtResultado;
             for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
             {
 
