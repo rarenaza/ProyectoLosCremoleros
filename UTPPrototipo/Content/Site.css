@@ -868,8 +868,6 @@ footer #footer_right {
 #footer_right #admin_name, #footer_right #software_name{
     text-align:right;
 }
-
-
 .pie-legend {
     position:absolute;
     left:-5px;    
@@ -894,3 +892,6 @@ footer #footer_right {
     text-align:justify;
 
 }
+[data-toggle=collapse][aria-expanded=true] + .glyphicon:before { content: "\e113"; }
+[data-toggle=collapse][aria-expanded=false] + .glyphicon:before { content: "\e114"; }
+.reportes  [data-toggle=collapse] + .glyphicon { margin-top: -24px; }

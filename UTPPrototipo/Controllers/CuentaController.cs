@@ -108,7 +108,7 @@ namespace UTPPrototipo.Controllers
                         lnUsuario.InsertarToken(result, NombreUsuario, DateTime.Now.AddHours(1), DateTime.Now, ip);
                         
                         Mensaje mensaje = new Mensaje();
-                        mensaje.DeUsuarioCorreoElectronico = "empleabilidad@utp.edu.pe";
+                        mensaje.DeUsuarioCorreoElectronico = "empleos@idat.edu.pe";
                         mensaje.ParaUsuarioCorreoElectronico = Convert.ToString(dsResultado.Tables[2].Rows[0]["CorreoElectronico"]); //Administrador UTP
                         mensaje.Asunto = "Cambio de Contraseña";
                         mensaje.MensajeTexto = "Estimado(a):" + NombreUsuario + "\r\n\r\n" +
@@ -210,7 +210,7 @@ namespace UTPPrototipo.Controllers
                 lnUsuario.InsertarToken(result, NombreUsuario, DateTime.Now.AddHours(1), DateTime.Now, ip);
 
                 Mensaje mensaje = new Mensaje();
-                mensaje.DeUsuarioCorreoElectronico = "empleabilidad@utp.edu.pe";
+                mensaje.DeUsuarioCorreoElectronico = "empleos@idat.edu.pe";
                 mensaje.ParaUsuarioCorreoElectronico = Convert.ToString(dsResultado.Tables[2].Rows[0]["CorreoElectronico"]); //Administrador UTP
                 mensaje.Asunto = "Cambio de Contraseña";
                 mensaje.MensajeTexto = "Estimado(a):" + NombreUsuario + "\r\n\r\n" +
@@ -372,8 +372,8 @@ namespace UTPPrototipo.Controllers
             {
                 try
                 {
-                    service.Credentials = new WebCredentials(usuario.NombreUsuario + "@utp.edu.pe", usuario.Contrasena);
-                    service.AutodiscoverUrl(usuario.NombreUsuario + "@utp.edu.pe", RedirectionUrlValidationCallback);
+                    service.Credentials = new WebCredentials(usuario.NombreUsuario + "@idat.edu.pe", usuario.Contrasena);
+                    service.AutodiscoverUrl(usuario.NombreUsuario + "@idat.edu.pe", RedirectionUrlValidationCallback);
                 }
                 catch (Exception)
                 {

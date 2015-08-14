@@ -60,15 +60,21 @@
                 </div>
                 @Html.ValidationMessageFor(m => m.Pais, "", new { @class = "text-danger" })
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-6" id="divCiudadTexto">
                 <div class="input-group fuente-pequeña">
                     <span class="input-group-addon">Ciudad</span>
-                    @Html.TextBoxFor(m => m.Ciudad, htmlAttributes: new { @class = "form-control", @placeholder = "Ciudad donde trabajó" })
+                    @Html.TextBoxFor(model => model.Ciudad, new { @class = "form-control", @placeholder = "Ciudad donde trabajó"})
                 </div>
                 @Html.ValidationMessageFor(m => m.Ciudad, "", new { @class = "text-danger" })
             </div>
-
-
+            <div class="col-sm-6" id="divCiudadCombo" style="display:none;" >
+                <div class=" input-group fuente-pequeña">
+                <span class="input-group-addon">Ciudad</span>
+                   @Html.DropDownListFor(m => m.Ciudad, null, "-Seleccione-", htmlAttributes: new { @class = "form-control", @id = "CiudadCombo" })
+                @*@Html.DropDownList(m => m.Ciudad, htmlAttributes: new { @class = "form-control", @placeholder = "Ciudad donde trabajó" })*@
+            </div>
+                @Html.ValidationMessageFor(m => m.Ciudad, "", new { @class = "text-danger" })
+            </div>
         </div>
         <div class="row">
             <div class="col-sm-12">
@@ -105,14 +111,13 @@
                 </div>
                 @Html.ValidationMessageFor(m => m.FechaInicioCargoMes, "", new { @class = "text-danger" })
             </div>
-
         </div>
         <div class="row">
             <div class="col-sm-4">
                 <div class="input-group fuente-pequeña">
                     <span class="input-group-addon">Año Fin</span>
                     @if (Model.FechaFinCargoAno == 0) { Model.FechaFinCargoAno = null; }
-                    @Html.TextBoxFor(m => m.FechaFinCargoAno, htmlAttributes: new { @class = "form-control", @placeholder = "Año Fin" })
+                    @Html.TextBoxFor(m => m.FechaFinCargoAno, htmlAttributes: new { @class = "form-control", @placeholder = "Año Fin", @id = "FechaFinCargoAno" })
                 </div>
                 @Html.ValidationMessageFor(m => m.FechaFinCargoAno, "", new { @class = "text-danger" })
             </div>
@@ -120,6 +125,14 @@
                 <div class="input-group fuente-pequeña">
                     <span class="input-group-addon">Mes Fin</span>
                     @Html.DropDownListFor(m => m.FechaFinCargoMes, new SelectList(ViewBag.meses, "Key", "Value"), "Mes de Inicio de cargo", htmlAttributes: new { @class = "form-control" })
+                </div>
+            </div>                    
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="input-group fuente-pequeña">                    
+                    <input type="checkbox" id="ActualmenteTrabajando">
+                    <span> Actualmente Trabajando</span>
                 </div>
             </div>
         </div>
@@ -146,7 +159,52 @@
         $("#divFinalCabecera").removeClass("color-paleta1 color-paleta3 color-paleta4 color-paleta5 color-paleta6 color-paleta7 color-paleta8").addClass("color-paleta2");
 
         AutoCompleteTextBuscarDescripcion('#NombreComercial', '@Url.Action("ListarNombreEmpresa", "UTP")', '#NombreComercial');
+        
+        var fechaFin = $('#FechaFinCargoAno').val(),
+             empresa = $('#NombreComercial').val();
+        if (fechaFin == '' && empresa != '') {
+            $('#ActualmenteTrabajando').attr("checked", "true");
+            $('#FechaFinCargoAno').attr("disabled", "disabled");
+            $('#FechaFinCargoMes').attr("disabled", "disabled");
+        }
 
+        var idPais = $("#Pais").val();
+        if (idPais == "PAIPER") {
+            $("#divCiudadCombo").css('display', 'block');       //los combos se muestran
+            $("#divCiudadTexto").css('display', 'none');
+        }
+        var $ATrabajando = $('#ActualmenteTrabajando');
+        
+        $ATrabajando.change(function () {
+            if (this.checked) {
+                $('#FechaFinCargoAno').attr("disabled", "disabled");
+                $('#FechaFinCargoMes').attr("disabled", "disabled");
+            } 
+            if (!this.checked) {
+                $('#FechaFinCargoAno').removeAttr("disabled");
+                $('#FechaFinCargoMes').removeAttr("disabled");
+            }
+        });
+        $('#CiudadCombo').on('change', function () {
+            var Ciudad = $("#CiudadCombo").val();
+            //Se guarda el valor en el hidden TextoDepartamento.
+            $('#Ciudad').val(Ciudad);
+        });
+        $('#Pais').on('change', function () {
+            var idPais = $("#Pais").val()
+            //alert(idPais);
+            console.log(idPais);
+
+            if (idPais == "PAIPER") {
+                $("#divCiudadCombo").css('display', 'block');       //los combos se muestran
+                $("#divCiudadTexto").css('display', 'none'); //las cajas se ocultan
+            }
+            else {
+                $("#divCiudadCombo").css('display', 'none');        //los combos se ocultan
+                $("#divCiudadTexto").css('display', 'block'); //las cajas se muestran
+            }
+
+        });
     });
 
 
@@ -162,6 +220,10 @@
             $('#SectorEmpresarial2').val(empresa["SectorEmpresarial2"]);
             $('#SectorEmpresarial3').val(empresa["SectorEmpresarial3"]);
             $('#Pais').val(empresa["Pais"]);
+            if (empresa["Pais"] == "PAIPER") {
+                $("#divCiudadCombo").css('display', 'block');       //los combos se muestran
+                $("#divCiudadTexto").css('display', 'none'); //las cajas se ocultan
+            }
             $('#IdEmpresa').val(idEmpresa);
         });
 
