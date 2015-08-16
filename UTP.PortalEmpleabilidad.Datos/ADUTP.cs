@@ -295,25 +295,42 @@ namespace UTP.PortalEmpleabilidad.Datos
                 //Parámetros:
                 cmd.Parameters.Add(new SqlParameter("@IdAlumno", convenio.IdAlumno));
                 cmd.Parameters.Add(new SqlParameter("@Carrera", convenio.Carrera));
-                cmd.Parameters.Add(new SqlParameter("@NivelAcademico", convenio.NivelAcademico));
-                cmd.Parameters.Add(new SqlParameter("@TelefonoFijoCasa", convenio.TelefonoFijoCasa));
+                cmd.Parameters.Add(new SqlParameter("@NivelAcademico", DBNull.Value));
+                cmd.Parameters.Add(new SqlParameter("@TelefonoFijoCasa", "NULL"));
                 cmd.Parameters.Add(new SqlParameter("@TelefonoCelular", convenio.TelefonoCelular));
                 cmd.Parameters.Add(new SqlParameter("@Ciclo", convenio.Ciclo));
                 cmd.Parameters.Add(new SqlParameter("@IdEmpresa", convenio.IdEmpresa));
                 cmd.Parameters.Add(new SqlParameter("@ContactoNombre", convenio.ContactoNombre));
                 cmd.Parameters.Add(new SqlParameter("@ContactoCargo", convenio.ContactoCargo));
                 cmd.Parameters.Add(new SqlParameter("@ContactoCorreoElectronico", convenio.ContactoCorreoElectronico));
-                cmd.Parameters.Add(new SqlParameter("@ContactoTelefono", convenio.ContactoTelefono));
+                cmd.Parameters.Add(new SqlParameter("@ContactoTelefono", "NULL"));
                 cmd.Parameters.Add(new SqlParameter("@ContactoCelular", convenio.ContactoCelular));
-                cmd.Parameters.Add(new SqlParameter("@TipoTrabajo", convenio.TipoTrabajo));
+                cmd.Parameters.Add(new SqlParameter("@TipoTrabajo", "NULL"));
                 cmd.Parameters.Add(new SqlParameter("@DuracionContrato", convenio.DuracionContrato));
                 cmd.Parameters.Add(new SqlParameter("@SalarioOfrecido", convenio.SalarioOfrecido));
                 cmd.Parameters.Add(new SqlParameter("@CargoOfrecido", convenio.CargoOfrecido));
                 cmd.Parameters.Add(new SqlParameter("@AreaEmpresa", convenio.AreaEmpresa));
-                cmd.Parameters.Add(new SqlParameter("@FechaIngreso", convenio.FechaIngreso));
+                cmd.Parameters.Add(new SqlParameter("@FechaIngreso", DBNull.Value));
                 cmd.Parameters.Add(new SqlParameter("@FuenteConvenio", convenio.FuenteConvenio));
                 cmd.Parameters.Add(new SqlParameter("@Observaciones", convenio.Observaciones));
                 cmd.Parameters.Add(new SqlParameter("@CreadoPor", convenio.CreadoPor));
+                cmd.Parameters.Add(new SqlParameter("@FechaInicio", SqlDbType.DateTime)).Value =  convenio.FechaInicio;
+                cmd.Parameters.Add(new SqlParameter("@FechaFin", SqlDbType.DateTime)).Value =  convenio.FechaFin;
+                cmd.Parameters.Add(new SqlParameter("@FechaRegistro", SqlDbType.DateTime)).Value =  convenio.FechaRegistro;
+                cmd.Parameters.Add(new SqlParameter("@EstadoConvenio", convenio.EstadoConvenio));
+                cmd.Parameters.Add(new SqlParameter("@Clasificacion", convenio.Clasificacion));
+                cmd.Parameters.Add(new SqlParameter("@EnvioEvaluacionJefe", SqlDbType.DateTime)).Value =  convenio.EnvioEvaluacionJefe;
+                cmd.Parameters.Add(new SqlParameter("@EnvioFormatoInformeAlumno", SqlDbType.DateTime)).Value =  convenio.EnvioFormatoInformeAlumno;
+                cmd.Parameters.Add(new SqlParameter("@EnvioEvaluacionEvaluador", SqlDbType.DateTime)).Value =  convenio.EnvioEvaluacionEvaluador;
+                cmd.Parameters.Add(new SqlParameter("@RecepcionEvaluacionJefe", SqlDbType.DateTime)).Value =  convenio.RecepcionEvaluacionJefe;
+                cmd.Parameters.Add(new SqlParameter("@RecepcionInformeAlumno", SqlDbType.DateTime)).Value =  convenio.RecepcionInformeAlumno;
+                cmd.Parameters.Add(new SqlParameter("@RecepcionEvaluacionEvaluador",  SqlDbType.DateTime)).Value = convenio.RecepcionEvaluacionEvaluador;
+                cmd.Parameters.Add(new SqlParameter("@NotaEvaluacionJefe", convenio.NotaEvaluacionJefe));
+                cmd.Parameters.Add(new SqlParameter("@EvaluadorAlumno", convenio.EvaluadorAlumno));
+                cmd.Parameters.Add(new SqlParameter("@NotaEvaluacionEvaluador", convenio.NotaEvaluacionEvaluador));
+                cmd.Parameters.Add(new SqlParameter("@CodigoAlumno", convenio.CodAlumnoUtp));
+                cmd.Parameters.Add(new SqlParameter("@MesInicio", convenio.MesInicio));
+                
 
 
                 cmd.Connection = conexion;
@@ -358,6 +375,22 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.Parameters.Add(new SqlParameter("@FuenteConvenio", convenio.FuenteConvenio));
                 cmd.Parameters.Add(new SqlParameter("@NuevaObservacion", convenio.NuevaObservacion));
                 cmd.Parameters.Add(new SqlParameter("@ModificadoPor", convenio.ModificadoPor));
+                cmd.Parameters.Add(new SqlParameter("@FechaInicio", SqlDbType.DateTime)).Value = convenio.FechaInicio;
+                cmd.Parameters.Add(new SqlParameter("@FechaFin", SqlDbType.DateTime)).Value = convenio.FechaFin;
+                cmd.Parameters.Add(new SqlParameter("@FechaRegistro", SqlDbType.DateTime)).Value = convenio.FechaRegistro;
+                cmd.Parameters.Add(new SqlParameter("@EstadoConvenio", convenio.EstadoConvenio));
+                cmd.Parameters.Add(new SqlParameter("@Clasificacion", convenio.Clasificacion));
+                cmd.Parameters.Add(new SqlParameter("@EnvioEvaluacionJefe", SqlDbType.DateTime)).Value = convenio.EnvioEvaluacionJefe;
+                cmd.Parameters.Add(new SqlParameter("@EnvioFormatoInformeAlumno", SqlDbType.DateTime)).Value = convenio.EnvioFormatoInformeAlumno;
+                cmd.Parameters.Add(new SqlParameter("@EnvioEvaluacionEvaluador", SqlDbType.DateTime)).Value = convenio.EnvioEvaluacionEvaluador;
+                cmd.Parameters.Add(new SqlParameter("@RecepcionEvaluacionJefe", SqlDbType.DateTime)).Value = convenio.RecepcionEvaluacionJefe;
+                cmd.Parameters.Add(new SqlParameter("@RecepcionInformeAlumno", SqlDbType.DateTime)).Value = convenio.RecepcionInformeAlumno;
+                cmd.Parameters.Add(new SqlParameter("@RecepcionEvaluacionEvaluador", SqlDbType.DateTime)).Value = convenio.RecepcionEvaluacionEvaluador;
+                cmd.Parameters.Add(new SqlParameter("@NotaEvaluacionJefe", convenio.NotaEvaluacionJefe));
+                cmd.Parameters.Add(new SqlParameter("@EvaluadorAlumno", convenio.EvaluadorAlumno));
+                cmd.Parameters.Add(new SqlParameter("@NotaEvaluacionEvaluador", convenio.NotaEvaluacionEvaluador));
+                cmd.Parameters.Add(new SqlParameter("@CodigoAlumno", convenio.CodAlumnoUtp));
+                cmd.Parameters.Add(new SqlParameter("@MesInicio", convenio.MesInicio));
 
 
                 cmd.Connection = conexion;
@@ -902,7 +935,7 @@ namespace UTP.PortalEmpleabilidad.Datos
             return cantidad;
         }
 
-        public DataTable UTP_ObtenerOfertasporActivar(string oferta, int nroPagina, int filasPorPagina)
+        public DataTable UTP_ObtenerOfertasporActivar(string oferta, string TipoTrabajoUTP, int nroPagina, int filasPorPagina)
         {
             DataTable dtResultado = new DataTable();
 
@@ -913,6 +946,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "UTP_Obtenerofertasporactivar";
                 cmd.Parameters.Add(new SqlParameter("@oferta", oferta));
+                cmd.Parameters.Add(new SqlParameter("@TipoTrabajoUTP", TipoTrabajoUTP));
 
                 //Paginación:
                 cmd.Parameters.Add(new SqlParameter("@NroPaginaActual", nroPagina));
@@ -934,7 +968,7 @@ namespace UTP.PortalEmpleabilidad.Datos
             return dtResultado;
         }
 
-        public DataTable UTP_ObtenerofertasAvanzada(string CargoOfrecido, string NombreComercial, string TipoCargo, string sector, string Contrato, int AExperiencia, int Remuneracion, string TipoEstudio, string Conocimiento, int NroPostulante, string EstadoOferta, string TipoInformacionAdicional, string Carrera, int nroPagina, int filasPorPagina)
+        public DataTable UTP_ObtenerofertasAvanzada(string CargoOfrecido, string NombreComercial, string TipoCargo, string sector, string Contrato, int AExperiencia, int Remuneracion, string TipoEstudio, string Conocimiento, int NroPostulante, string EstadoOferta, string TipoInformacionAdicional, string Carrera, string TipoTrabajoUTP, int nroPagina, int filasPorPagina)
         {
             DataTable dtResultado = new DataTable();
 
@@ -957,6 +991,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.Parameters.Add(new SqlParameter("@EstadoOferta", EstadoOferta));
                 cmd.Parameters.Add(new SqlParameter("@TipoInformacionAdicional", TipoInformacionAdicional));
                 cmd.Parameters.Add(new SqlParameter("@Carrera", Carrera));
+                cmd.Parameters.Add(new SqlParameter("@TipoTrabajoUTP", TipoTrabajoUTP));
                 //Paginación:
                 cmd.Parameters.Add(new SqlParameter("@NroPaginaActual", nroPagina));
                 cmd.Parameters.Add(new SqlParameter("@FilasPorPagina", filasPorPagina));
@@ -990,7 +1025,8 @@ namespace UTP.PortalEmpleabilidad.Datos
             int NroPostulante, 
             string EstadoOferta, 
             string TipoInformacionAdicional,
-            string Carrera)
+            string Carrera,
+            string TipoTrabajoUTP)
         {
             DataTable dt = new DataTable();
 
@@ -1013,6 +1049,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.Parameters.Add(new SqlParameter("@EstadoOferta", EstadoOferta));
                 cmd.Parameters.Add(new SqlParameter("@TipoInformacionAdicional", TipoInformacionAdicional));
                 cmd.Parameters.Add(new SqlParameter("@Carrera", Carrera));
+                cmd.Parameters.Add(new SqlParameter("@TipoTrabajoUTP", TipoTrabajoUTP));
 
                 cmd.Connection = conexion;
 

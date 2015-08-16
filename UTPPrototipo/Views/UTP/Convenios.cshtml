@@ -85,7 +85,7 @@
 
 <script>
     $(document).ready(function () {
-        $("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta3 color-paleta4 color-paleta5 color-paleta6 color-paleta7 color-paleta9").addClass("color-paleta8")
+        $("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta3 color-paleta4 color-paleta5 color-paleta6 color-paleta7 color-paleta8").addClass("color-paleta9")
     });
 </script>
 
@@ -127,7 +127,7 @@
 
 
 <!--Modal para crear usuario-->>
-<div class="modal" id="divModalConvenioUTPCrear" role="dialog" aria-labelledby="Nuevo Usuario" aria-hidden="true">
+@*<div class="modal" id="divModalConvenioUTPCrear" role="dialog" aria-labelledby="Nuevo Usuario" aria-hidden="true">
 
     @using (Ajax.BeginForm("_ConveniosUTPCrear", "UTP", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", UpdateTargetId = "divListaConvenioUTP", OnComplete = "cerrarModal" }))
     {
@@ -138,7 +138,7 @@
         </div>
     }
 
-</div>
+</div>*@
 
 
 <script>
@@ -148,17 +148,17 @@
         //var url = "/UTP/_UsuariosUTPCrear"; //
         var url = '@Url.Action("_ConveniosUTPCrear", "UTP")'
 
-        $.get(url, function (data) {
-            //alert(data);
-            $('#divContenedorConveniosUTPCrear').html(data);
-            $.validator.unobtrusive.parse('#divContenedorConveniosUTPCrear');
+        //$.get(url, function (data) {
+        //    //alert(data);
+        //    $('#divContenedorConveniosUTPCrear').html(data);
+        //    $.validator.unobtrusive.parse('#divContenedorConveniosUTPCrear');
 
-            $('#divModalConvenioUTPCrear').modal('show');
+        //    $('#divModalConvenioUTPCrear').modal('show');
 
-        }).error(function (err) {
-            console.log(err);
-            alert(err);
-        });
+        //}).error(function (err) {
+        //    console.log(err);
+        //    alert(err);
+        //});
     }
 
    

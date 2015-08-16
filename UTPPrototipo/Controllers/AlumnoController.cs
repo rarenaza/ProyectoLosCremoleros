@@ -356,6 +356,7 @@ namespace UTPPrototipo.Controllers
             ViewBag.ListaTipoTrabajo = listItemsTipoTrabajo;
             ViewBag.ListaContrato = listItemsContrato;
             ViewBag.ListaTipoCargo = listItemsTipoCargo;
+            ViewBag.TipoTrabajoUTP = new SelectList(lngeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_TRABAJO_UTP), "IdListaValor", "Valor", oferta.TipoTrabajoUTP);
 
             return View(oferta);
         }
@@ -385,7 +386,14 @@ namespace UTPPrototipo.Controllers
 
         public ActionResult BusquedaSimpleOferta(VistaOfertaAlumno entidad)
         {
-            entidad.ListaOfertas = lnoferta.BuscarFiltroOfertasAlumno(entidad.IdAlumno, entidad.PalabraClave == null ? "" : entidad.PalabraClave, entidad.PaginaActual, entidad.NumeroRegistros);
+            entidad.ListaOfertas = lnoferta.BuscarFiltroOfertasAlumno(
+                entidad.IdAlumno, 
+                entidad.PalabraClave == null ? "" : entidad.PalabraClave,
+                entidad.TipoTrabajoUTP == null ? "" : entidad.TipoTrabajoUTP,
+                entidad.PaginaActual, 
+                entidad.NumeroRegistros
+            );
+
             if (entidad.ListaOfertas.Count > 0)
             {
                 entidad.MaxPagina = entidad.ListaOfertas[0].TotalRegistros / Constantes.FILAS_POR_PAGINA;
@@ -563,6 +571,7 @@ namespace UTPPrototipo.Controllers
                 vista.SectorEmpresarial3 = dtResultado.Rows[0]["SectorEmpresarial3"].ToString();
                 vista.Pais = dtResultado.Rows[0]["Pais"].ToString();
                 vista.ValorSectorEmpresarial = dtResultado.Rows[0]["ValorSectorEmpresarial"].ToString();
+                vista.IdentificadorTributario = dtResultado.Rows[0]["IdentificadorTributario"].ToString();
             }
 
             return Json(vista, JsonRequestBehavior.AllowGet);

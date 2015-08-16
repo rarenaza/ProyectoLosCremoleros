@@ -102,7 +102,25 @@ namespace UTP.PortalEmpleabilidad.Logica
             return adGeneral.Home_ListarDistritos(IDListaValorPadre);
         }
 
+        public List<ReporteEquivalente> ObtenerReporteEquivalente()
+        {
+            List<ReporteEquivalente> lista = new List<ReporteEquivalente>();
 
+            DataTable dtResultado = adGeneral.ObtenerReporteEquivalente();
+
+            foreach (DataRow fila in dtResultado.Rows)
+            {
+                ReporteEquivalente item = new ReporteEquivalente();
+                item.DatoOrigen = Convert.ToString(fila["DatoOrigen"]);
+                item.DatoEquivalente = Convert.ToString(fila["DatoEquivalente"]);
+                item.Orden = Convert.ToString(fila["Orden"]);               
+
+                lista.Add(item);
+            }
+
+            return lista;
+        
+        }
         public List<ListaValor> ObtenerListaValor(int idLista)
         {
             List<ListaValor> lista = new List<ListaValor>();

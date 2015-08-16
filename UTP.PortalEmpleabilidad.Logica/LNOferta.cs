@@ -172,11 +172,11 @@ namespace UTP.PortalEmpleabilidad.Logica
 
             return vistaofertalumno;
         }
-        public List<Oferta> BuscarFiltroOfertasAlumno(int IdAlumno, string PalabraClave, int PagActual, int NumRegistros)
+        public List<Oferta> BuscarFiltroOfertasAlumno(int IdAlumno, string PalabraClave, string TipoTrabajoUTP, int PagActual, int NumRegistros)
         {
             List<Oferta> listaOferta = new List<Oferta>();
 
-            DataTable dtResultado = adOferta.BuscarFiltroOfertasAlumno(IdAlumno, PalabraClave, PagActual, NumRegistros);
+            DataTable dtResultado = adOferta.BuscarFiltroOfertasAlumno(IdAlumno, PalabraClave, TipoTrabajoUTP, PagActual, NumRegistros);
 
             for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
             {

@@ -76,8 +76,6 @@ namespace UTP.PortalEmpleabilidad.Logica
 
                 vista.IdAlumno = Convert.ToInt32(dtResultado.Rows[i]["IdAlumno"]);
                 vista.Alumno = dtResultado.Rows[i]["Alumno"].ToString();
-               
-
                 listaEjemplo.Add(vista);
             }
 
@@ -235,6 +233,22 @@ namespace UTP.PortalEmpleabilidad.Logica
                         convenio.ModificadoPor = Funciones.ToString(dsResultado.Tables[0].Rows[n]["ModificadoPor"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[n]["ModificadoPor"]);
                         convenio.FechaModificacion = Funciones.ToDateTime(dsResultado.Tables[0].Rows[n]["FechaModificacion"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[n]["FechaModificacion"]);
                         
+                        convenio.FechaInicio = Funciones.ToString(dsResultado.Tables[0].Rows[n]["FechaInicio"]);
+                        convenio.FechaFin = Funciones.ToString(dsResultado.Tables[0].Rows[n]["FechaFin"]);
+                        convenio.FechaRegistro = Funciones.ToString(dsResultado.Tables[0].Rows[n]["FechaRegistro"]);
+                        convenio.EstadoConvenio = Funciones.ToString(dsResultado.Tables[0].Rows[n]["EstadoConvenio"]);
+                        convenio.Clasificacion = Funciones.ToString(dsResultado.Tables[0].Rows[n]["Clasificacion"]);
+                        convenio.EnvioEvaluacionJefe = Funciones.ToString(dsResultado.Tables[0].Rows[n]["EnvioEvaluacionJefe"]);
+                        convenio.EnvioFormatoInformeAlumno = Funciones.ToString(dsResultado.Tables[0].Rows[n]["EnvioFormatoInformeAlumno"]);
+                        convenio.EnvioEvaluacionEvaluador = Funciones.ToString(dsResultado.Tables[0].Rows[n]["EnvioEvaluacionEvaluador"]);
+                        convenio.RecepcionEvaluacionJefe = Funciones.ToString(dsResultado.Tables[0].Rows[n]["RecepcionEvaluacionJefe"]);
+                        convenio.RecepcionInformeAlumno = Funciones.ToString(dsResultado.Tables[0].Rows[n]["RecepcionInformeAlumno"]);
+                        convenio.RecepcionEvaluacionEvaluador = Funciones.ToString(dsResultado.Tables[0].Rows[n]["RecepcionEvaluacionEvaluador"]);
+                        convenio.NotaEvaluacionJefe = Funciones.ToString(dsResultado.Tables[0].Rows[n]["NotaEvaluacionJefe"]);
+                        convenio.EvaluadorAlumno = Funciones.ToString(dsResultado.Tables[0].Rows[n]["EvaluadorAlumno"]);
+                        convenio.NotaEvaluacionEvaluador = Funciones.ToString(dsResultado.Tables[0].Rows[n]["NotaEvaluacionEvaluador"]);
+                        convenio.CodAlumnoUtp = Funciones.ToString(dsResultado.Tables[0].Rows[n]["CodigoAlumno"]);
+                        convenio.MesInicio = Funciones.ToString(dsResultado.Tables[0].Rows[n]["MesInicio"]);
                         
                         break;
                     }
@@ -370,12 +384,12 @@ namespace UTP.PortalEmpleabilidad.Logica
             return  adUtp.Excel_ObtenerAlumnos(Estudio, Ciclo, Sector, Dato, Sexo, Distrito, TipoEstudio, Conocimiento, EstadoEstudio, Completitud);
         }
 
-        public List<OfertaUTP> UTP_ObtenerOfertasporActivar(string Oferta, int nroPagina, int filasPorPagina)
+        public List<OfertaUTP> UTP_ObtenerOfertasporActivar(string Oferta, string TipoTrabajoUTP, int nroPagina, int filasPorPagina)
         {
             List<OfertaUTP> listaEjemplo = new List<OfertaUTP>();
 
 
-            DataTable dtResultado = adUtp.UTP_ObtenerOfertasporActivar(Oferta, nroPagina, filasPorPagina);
+            DataTable dtResultado = adUtp.UTP_ObtenerOfertasporActivar(Oferta, TipoTrabajoUTP, nroPagina, filasPorPagina);
 
             for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
             {
@@ -406,12 +420,12 @@ namespace UTP.PortalEmpleabilidad.Logica
 
             return listaEjemplo;
         }
-        public List<OfertaUTP> UTP_ObtenerofertasAvanzada(string CargoOfrecido, string NombreComercial, string TipoCargo, string Sector, string Contrato, int AExperiencia, int Remuneracion, string TipoEstudio, string Conocimiento, int NroPostulante, string EstadoOferta, string TipoInformacionAdicional, string Carrera, int nroPagina, int filasPorPagina)
+        public List<OfertaUTP> UTP_ObtenerofertasAvanzada(string CargoOfrecido, string NombreComercial, string TipoCargo, string Sector, string Contrato, int AExperiencia, int Remuneracion, string TipoEstudio, string Conocimiento, int NroPostulante, string EstadoOferta, string TipoInformacionAdicional, string Carrera, string TipoTrabajoUTP, int nroPagina, int filasPorPagina)
         {
             List<OfertaUTP> listaEjemplo = new List<OfertaUTP>();
 
 
-            DataTable dtResultado = adUtp.UTP_ObtenerofertasAvanzada(CargoOfrecido, NombreComercial, TipoCargo, Sector, Contrato, AExperiencia, Remuneracion, TipoEstudio, Conocimiento, NroPostulante, EstadoOferta, TipoInformacionAdicional, Carrera, nroPagina, filasPorPagina);
+            DataTable dtResultado = adUtp.UTP_ObtenerofertasAvanzada(CargoOfrecido, NombreComercial, TipoCargo, Sector, Contrato, AExperiencia, Remuneracion, TipoEstudio, Conocimiento, NroPostulante, EstadoOferta, TipoInformacionAdicional, Carrera, TipoTrabajoUTP, nroPagina, filasPorPagina);
 
             for (int i = 0; i <= dtResultado.Rows.Count - 1; i++)
             {
@@ -457,10 +471,11 @@ namespace UTP.PortalEmpleabilidad.Logica
             string EstadoOferta = "", 
             string TipoInformacionAdicional = "", 
             string Carrera = "",
+            string TipoTrabajoUTP = "",
             int nroPagina = 0, 
             int filasPorPagina = 0)
         {
-            return adUtp.Excel_ObtenerOfertas(CargoOfrecido, NombreComercial, TipoCargo, Sector, Contrato, AExperiencia, Remuneracion, TipoEstudio, Conocimiento, NroPostulante, EstadoOferta, TipoInformacionAdicional, Carrera);
+            return adUtp.Excel_ObtenerOfertas(CargoOfrecido, NombreComercial, TipoCargo, Sector, Contrato, AExperiencia, Remuneracion, TipoEstudio, Conocimiento, NroPostulante, EstadoOferta, TipoInformacionAdicional, Carrera, TipoTrabajoUTP);
         } 
 
         public DataTable UTP_ObtenerEventosObtenerBuscar(string evento, int nroPagina, int filasPorPagina)

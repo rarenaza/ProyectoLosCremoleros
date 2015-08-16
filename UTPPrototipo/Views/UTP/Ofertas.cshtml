@@ -116,6 +116,12 @@
                                
                             </div>
 
+                            <div class="input-group">
+                                <span class="input-group-addon">Tipo de trabajo</span>
+                                @Html.DropDownListFor(model => model.TipoTrabajoUTP, null, "- Seleccione -", htmlAttributes: new { @class = "form-control" })
+
+                            </div>
+
                             <!--Dejabajo de carrera 2-->
 
                         </div>
@@ -173,10 +179,17 @@
         @*<h5>Ofertas por Activar</h5>*@
 
     </div>
-    <div id="ResultadoBusqueda">
-    </div>
+
+    <ul id="offers-tabs" class="nav nav-justified nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#" aria-controls="all" role="tab" data-toggle="tab">Todos</a></li>
+        <li role="presentation"><a href="#" role="tab" aria-controls="entries-position" data-toggle="tab">Posiciones de entrada</a></li>
+        <li role="presentation"><a href="#" role="tab" aria-controls="practices" data-toggle="tab">Prácticas</a></li>
+        <li role="presentation"><a href="#" role="tab" aria-controls="jobs" data-toggle="tab">Empleo</a></li>
+    </ul>
+
+    <div id="ResultadoBusqueda" class="result" style="margin-top: 16px;"></div>
+
     <br />
-   
 </div>
 <script>
 
@@ -192,19 +205,18 @@
             nroPaginaActual: 1,
         };
 
-        //Cargar("resultadobusqueda", "/UTP/BusquedaSimpleEmpresasActivas", empresa);
-
         Cargar("ResultadoBusqueda", '@Url.Action("BuscarOfertas", "UTP")', oferta);
+
+        Offers.tabs();
     });
 
 
     $('#buscar').click(function () {
         var oferta = {
             PalabraClave: $('#PalabraClave').val(),
+            TipoTrabajoUTP: $('#TipoTrabajoUTP').val(),
             nroPaginaActual: 1,
         };
-
-        //Cargar("resultadobusqueda", "/UTP/BusquedaSimpleEmpresasActivas", empresa);
 
         Cargar("ResultadoBusqueda", '@Url.Action("BuscarOfertas", "UTP")', oferta);
     });
@@ -216,7 +228,7 @@
             CargoOfrecido: $('#CargoOfrecido').val(),
             IdSectorutp: $('#IdSectorutp').val(),
             IdTipoContratoutp: $('#IdTipoContratoutp').val(),
-            AExperiencia: $('#AExperiencia').val(), 
+            AExperiencia: $('#AExperiencia').val(),
             RemuneracionOfrecida: $('#RemuneracionOfrecida').val(),
             IdTipoEstudioutp: $('#IdTipoEstudioutp').val(),
             Conocimientos: $('#Conocimientos').val(),
@@ -224,16 +236,16 @@
             IdEstadoOferta: $('#IdEstadoOferta').val(),
             InformacionAdicional: $('#TipoConocimientoIdListaValor').val(),
             Carrera: $('#Carrera').val(),
+            TipoTrabajoUTP: $('#TipoTrabajoUTP').val(),
             nroPaginaActual: 1,
         };
-        //debugger;
-        //Cargar("resultadobusqueda", "/UTP/BusquedaAvanzadaEmpresas", oferta);
+
+        console.log(oferta);
 
         Cargar("ResultadoBusqueda", '@Url.Action("UTP_ObtenerofertasAvanzada", "UTP")', oferta);
     });
 
     function Cargar(id, link, entidad) {
-        //debugger;
         $.ajax({
             url: link,
             contentType: 'application/json; charset=utf-8',
@@ -243,8 +255,6 @@
         })
         .success(function (result) {
             $("#" + id).html(result);
-            //alert(result);
-            //console.log(result);
         })
         .error(function (xhr, status) {
             console.log(xhr);
@@ -259,7 +269,7 @@
             nroPaginaActual: nroPagina,
 
         };
-        //Cargar("resultadobusqueda", "/UTP/BusquedaSimpleEmpresasActivas", empresa);
+
         Cargar("ResultadoBusqueda", '@Url.Action("BuscarOfertas", "UTP")', oferta);
     }
 
@@ -279,14 +289,63 @@
             IdEstadoOferta: $('#IdEstadoOferta').val(),
             InformacionAdicional: $('#TipoConocimientoIdListaValor').val(),
             Carrera: $('#Carrera').val(),
+            TipoTrabajoUTP: $('#TipoTrabajoUTP').val(),
             nroPaginaActual: nroPagina,
-
         };
 
-        //Cargar("resultadobusqueda", "/UTP/BusquedaAvanzadaEmpresas", oferta);
         Cargar("ResultadoBusqueda", '@Url.Action("UTP_ObtenerofertasAvanzada", "UTP")', oferta);
     }
 
+    var Offers = {
+        query: function() {
+            return {
+                NombreComercial: $('#NombreComercial').val(),
+                IdTipoCargoutp: $('#IdTipoCargoutp').val(),
+                CargoOfrecido: $('#CargoOfrecido').val(),
+                IdSectorutp: $('#IdSectorutp').val(),
+                IdTipoContratoutp: $('#IdTipoContratoutp').val(),
+                AExperiencia: $('#AExperiencia').val(),
+                RemuneracionOfrecida: $('#RemuneracionOfrecida').val(),
+                IdTipoEstudioutp: $('#IdTipoEstudioutp').val(),
+                Conocimientos: $('#Conocimientos').val(),
+                NumeroPostulante: $('#NumeroPostulante').val(),
+                IdEstadoOferta: $('#IdEstadoOferta').val(),
+                InformacionAdicional: $('#TipoConocimientoIdListaValor').val(),
+                Carrera: $('#Carrera').val(),
+                TipoTrabajoUTP: $('#TipoTrabajoUTP').val(),
+                nroPaginaActual: 1,
+            };
+        },
+        all: function () {
+            $('#TipoTrabajoUTP').val('');
+            Cargar('ResultadoBusqueda', '@Url.Action("UTP_ObtenerofertasAvanzada", "UTP")', this.query())
+        },
+        entriesPosition: function () {
+            $('#TipoTrabajoUTP').val('TTUPOE');
+            Cargar('ResultadoBusqueda', '@Url.Action("UTP_ObtenerofertasAvanzada", "UTP")',  this.query())
+        },
+        practices: function () {
+            $('#TipoTrabajoUTP').val('TTUPRA');
+            Cargar('ResultadoBusqueda', '@Url.Action("UTP_ObtenerofertasAvanzada", "UTP")', this.query())
+        },
+        jobs: function () {
+            $('#TipoTrabajoUTP').val('TTUEMP');
+            Cargar('ResultadoBusqueda', '@Url.Action("UTP_ObtenerofertasAvanzada", "UTP")', this.query())
+        },
+        tabs: function () {
+            var sup = this,
+                wrapperSelector = '#offers-tabs',
+                $allTab = $(wrapperSelector + ' [aria-controls=all]'),
+                $entriesPositionTab = $(wrapperSelector + ' [aria-controls=entries-position]'),
+                $practicesTab = $(wrapperSelector + ' [aria-controls=practices]'),
+                $jobs = $(wrapperSelector + ' [aria-controls=jobs]');
 
+            $allTab.on('click', function (e) { e.preventDefault(); sup.all(); });
+            $entriesPositionTab.on('click', function (e) { e.preventDefault(); sup.entriesPosition(); });
+            $practicesTab.on('click', function (e) { e.preventDefault(); sup.practices(); });
+            $jobs.on('click', function (e) { e.preventDefault(); sup.jobs(); });
+        }
+    };
 
+    Offers.tabs();
 </script>

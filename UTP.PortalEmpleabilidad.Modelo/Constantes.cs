@@ -49,6 +49,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public static int IDLISTA_Departamento = 47;
         public static int IDLISTA_Provincia = 48;
         public static int IDLISTA_FUENTE_CONVENIO = 41;
+        public static int IDLISTA_ESTADO_CONVENIO = 42;
 
         public static int IDLISTA_OFERTA_CALIFICACION_ENCUESTA = 51; //Verificar este nro en bd de UTP Producción.
         public static int IDLISTA_TIPO_TRABAJO_UTP = 52;
