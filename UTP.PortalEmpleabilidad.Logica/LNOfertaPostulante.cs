@@ -25,7 +25,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 if (dt.Rows.Count > 0)
                 {
                     Mensaje mensaje = new Mensaje();
-                    mensaje.DeUsuarioCorreoElectronico = "utpempleabilidad@utp.edu.pe";
+                    mensaje.DeUsuarioCorreoElectronico = "empleabilidad@utp.edu.pe";
                     mensaje.ParaUsuarioCorreoElectronico = ofertapostulante.CorreoElectronicoUsuarioEmpresa;
                     mensaje.Asunto = "Nuevo Postulante: " + dt.Rows[0]["Nombres"] + " " + dt.Rows[0]["Apellidos"] + " - Oferta " + ofertapostulante.CargoOfrecido;
                     mensaje.MensajeTexto = "Ha recibido un Postulante nuevo para su Oferta: " + ofertapostulante.CargoOfrecido + "\r\n\r\n" + dt.Rows[0]["Nombres"] + " " + dt.Rows[0]["Apellidos"];

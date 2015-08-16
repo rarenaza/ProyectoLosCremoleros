@@ -459,7 +459,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                 {
                     cmd.Parameters.Add(new SqlParameter("@FechaSeguimiento", oferta.FechaSeguimiento));
                 }
-                cmd.Parameters.Add(new SqlParameter("@NumeroInvitados", oferta.NumeroInvitados));
+                cmd.Parameters.Add(new SqlParameter("@NumeroPostulantes", oferta.NumeroPostulantes));
                 cmd.Parameters.Add(new SqlParameter("@NumeroEntrevistados", oferta.NumeroEntrevistados));
                 cmd.Parameters.Add(new SqlParameter("@NumeroContratados", oferta.NumeroContratados));
                 cmd.Parameters.Add(new SqlParameter("@ConvenioRegistrado", oferta.ConvenioRegistrado));
@@ -468,7 +468,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.Parameters.Add(new SqlParameter("@MedioComunicacion", oferta.MedioComunicacion));
                 //Datos del seguimiento:
                 cmd.Parameters.Add(new SqlParameter("@SeguimientoCalificacion", oferta.SeguimientoCalificacion));
-                cmd.Parameters.Add(new SqlParameter("@SeguimientoNroPostulantes", oferta.SeguimientoNroPostulantes));
+                cmd.Parameters.Add(new SqlParameter("@SeguimientoNroInvitados", oferta.SeguimientoNroInvitados));
                 cmd.Parameters.Add(new SqlParameter("@SeguimientoContratados", oferta.SeguimientoContratados));
                 cmd.Parameters.Add(new SqlParameter("@SeguimientoContratadosOtros", oferta.SeguimientoContratadosOtros));
 
