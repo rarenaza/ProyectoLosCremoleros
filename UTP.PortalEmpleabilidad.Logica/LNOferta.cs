@@ -383,8 +383,15 @@ namespace UTP.PortalEmpleabilidad.Logica
                 oferta.TipoContratoIdListaValor = Convert.ToString(dsResultado.Tables[0].Rows[0]["TipoContrato"]);
                 oferta.TipoContrato.Valor = Convert.ToString(dsResultado.Tables[0].Rows[0]["TipoContratoDescripcion"]);
                 
-                
-                oferta.RemuneracionOfrecida = Convert.ToDecimal(dsResultado.Tables[0].Rows[0]["RemuneracionOfrecida"]);
+                if (dsResultado.Tables[0].Rows[0]["RemuneracionOfrecida"] == System.DBNull.Value)
+                {
+                    oferta.RemuneracionOfrecida = null;
+                }
+                else
+                {
+                    oferta.RemuneracionOfrecida = Convert.ToInt32(dsResultado.Tables[0].Rows[0]["RemuneracionOfrecida"]);
+                }
+
                 oferta.Horario = Convert.ToString(dsResultado.Tables[0].Rows[0]["Horario"]);
                 oferta.AreaEmpresa = Convert.ToString(dsResultado.Tables[0].Rows[0]["AreaEmpresa"]);
 
@@ -425,8 +432,26 @@ namespace UTP.PortalEmpleabilidad.Logica
 
                 oferta.CicloMinimoCarreraUTP = Convert.ToInt32(dsResultado.Tables[0].Rows[0]["CicloMinimoCarreraUTP"]);
                 oferta.EstadoCarreraUTP = Convert.ToString(dsResultado.Tables[0].Rows[0]["EstadoCarreraUTP"]);
-                oferta.ExperienciaGeneral = Convert.ToInt32(dsResultado.Tables[0].Rows[0]["MesesExperienciaTotal"]);
-                oferta.ExperienciaPosicionesSimilares = Convert.ToInt32(dsResultado.Tables[0].Rows[0]["MesesExperienciaTipoTrabajo"]);
+
+
+                if (dsResultado.Tables[0].Rows[0]["MesesExperienciaTotal"] == System.DBNull.Value)
+                {
+                    oferta.ExperienciaGeneral = null;
+                }
+                else
+                {
+                    oferta.ExperienciaGeneral = Convert.ToInt32(dsResultado.Tables[0].Rows[0]["MesesExperienciaTotal"]);
+                }
+
+
+                if (dsResultado.Tables[0].Rows[0]["MesesExperienciaTipoTrabajo"] == System.DBNull.Value)
+                {
+                    oferta.ExperienciaPosicionesSimilares = null;
+                }
+                else
+                {
+                    oferta.ExperienciaPosicionesSimilares = Convert.ToInt32(dsResultado.Tables[0].Rows[0]["MesesExperienciaTipoTrabajo"]);
+                }
 
                 //05MAR15: Para las nuevas ofertas este campo siempre está con data. Se agrega la validación para compatibilidad con ofertas anteriores.
                 oferta.FechaFinProceso = Convert.ToDateTime(dsResultado.Tables[0].Rows[0]["FechaFinProceso"] == System.DBNull.Value ? new DateTime(1, 1, 1900) : dsResultado.Tables[0].Rows[0]["FechaFinProceso"]);
@@ -567,6 +592,7 @@ namespace UTP.PortalEmpleabilidad.Logica
 
                 oferta.IdOferta = Convert.ToInt32(dsResultado.Tables[0].Rows[0]["IdOferta"]);
                 oferta.FechaSeguimiento = (dsResultado.Tables[0].Rows[0]["FechaSeguimiento"] == System.DBNull.Value ? (DateTime?)null : Convert.ToDateTime(dsResultado.Tables[0].Rows[0]["FechaSeguimiento"]));
+                oferta.NumeroPostulantes = dsResultado.Tables[0].Rows[0]["NumeroPostulantes"] == System.DBNull.Value ? (Int32?)null : Convert.ToInt32(dsResultado.Tables[0].Rows[0]["NumeroPostulantes"]);
                 oferta.NumeroInvitados = dsResultado.Tables[0].Rows[0]["NumeroInvitados"] == System.DBNull.Value ? (Int32?)null : Convert.ToInt32(dsResultado.Tables[0].Rows[0]["NumeroInvitados"]);
                 oferta.NumeroEntrevistados = dsResultado.Tables[0].Rows[0]["NumeroEntrevistados"] == System.DBNull.Value ? (Int32?)null : Convert.ToInt32(dsResultado.Tables[0].Rows[0]["NumeroEntrevistados"]);
                 oferta.NumeroContratados = dsResultado.Tables[0].Rows[0]["NumeroContratados"] == System.DBNull.Value ? (Int32?)null : Convert.ToInt32(dsResultado.Tables[0].Rows[0]["NumeroContratados"]);
@@ -582,7 +608,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 oferta.TipoTrabajoUTP = Convert.ToString(dsResultado.Tables[0].Rows[0]["TipoTrabajoUTP"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[0]["TipoTrabajoUTP"]);
                 //Seguimiento:
                 oferta.SeguimientoCalificacion = Convert.ToString(dsResultado.Tables[0].Rows[0]["SeguimientoCalificacion"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[0]["SeguimientoCalificacion"]);
-                oferta.SeguimientoNroPostulantes = dsResultado.Tables[0].Rows[0]["SeguimientoNroPostulantes"] == System.DBNull.Value ? (Int32?)null : Convert.ToInt32(dsResultado.Tables[0].Rows[0]["SeguimientoNroPostulantes"]);
+                oferta.SeguimientoNroInvitados = dsResultado.Tables[0].Rows[0]["SeguimientoNroInvitados"] == System.DBNull.Value ? (Int32?)null : Convert.ToInt32(dsResultado.Tables[0].Rows[0]["SeguimientoNroInvitados"]);
                 oferta.SeguimientoContratados = dsResultado.Tables[0].Rows[0]["SeguimientoContratados"] == System.DBNull.Value ? (Int32?)null : Convert.ToInt32(dsResultado.Tables[0].Rows[0]["SeguimientoContratados"]);
                 oferta.SeguimientoContratadosOtros = Convert.ToString(dsResultado.Tables[0].Rows[0]["SeguimientoContratadosOtros"] == System.DBNull.Value ? null : dsResultado.Tables[0].Rows[0]["SeguimientoContratadosOtros"]);
 
