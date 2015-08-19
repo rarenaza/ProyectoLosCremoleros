@@ -30,6 +30,7 @@
     </SccProvider>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -288,6 +289,7 @@
     <Content Include="Content\imagen\firmabeatriz.png" />
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\jquery-ui.min.css" />
+    <Content Include="Content\idat.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -356,6 +358,7 @@
     <Content Include="fonts\GothamRnd-Bold.svg" />
     <Content Include="fonts\GothamRnd-Book.svg" />
     <Content Include="fonts\GothamRnd-Light.svg" />
+    <Content Include="fonts\simplow00-black-webfont.svg" />
     <Content Include="fonts\UTP FONT ICON.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -366,6 +369,18 @@
     <Content Include="img\demo.bmp" />
     <Content Include="img\empleabilidad\firmaBeatriz.png" />
     <Content Include="img\empleabilidad\PlanoDirEmpleabilidad.jpg" />
+    <Content Include="img\IDAT\bg-home-2.jpg" />
+    <Content Include="img\IDAT\testimonio.png" />
+    <Content Include="img\IDAT\bg-home-1.jpg" />
+    <Content Include="img\IDAT\bg.jpg" />
+    <Content Include="img\IDAT\imparable.png" />
+    <Content Include="img\IDAT\encender.png" />
+    <Content Include="img\IDAT\las-empresas-opinan.png" />
+    <Content Include="img\IDAT\lo-que-se-viene.png" />
+    <Content Include="img\IDAT\logo-intercorp.png" />
+    <Content Include="img\IDAT\logo.png" />
+    <Content Include="img\IDAT\noti-empleos.png" />
+    <Content Include="img\IDAT\que-nos-cuentan.png" />
     <Content Include="img\intercorp.jpg" />
     <Content Include="img\intercorp.png" />
     <Content Include="img\logos\aptitus.jpg" />
@@ -480,6 +495,10 @@
     <Content Include="Content\less\bootstrap-datetimepicker-build.less" />
     <Content Include="Content\less\_bootstrap-datetimepicker.less" />
     <Content Include="Plantillas\template.docx" />
+    <Content Include="fonts\simplow00-black-webfont.eot" />
+    <Content Include="fonts\simplow00-black-webfont.otf" />
+    <Content Include="fonts\simplow00-black-webfont.ttf" />
+    <Content Include="fonts\simplow00-black-webfont.woff" />
     <None Include="Properties\PublishProfiles\PortalV1.pubxml" />
     <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\Chart.min.js" />
@@ -836,6 +855,8 @@
     <Content Include="Scripts\jquery-ui-1.11.2.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
+    <Content Include="Scripts\jquery.cycle2.carousel.min.js" />
+    <Content Include="Scripts\jquery.cycle2.min.js" />
     <Content Include="Scripts\jquery.jcarousel.js" />
     <Content Include="Scripts\jquery-2.1.3.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -1076,6 +1097,16 @@
     <Content Include="Views\Calendario\_VistaCalendario.cshtml" />
     <Content Include="Views\Cuenta\RecuperarClave.cshtml" />
     <Content Include="Views\Cuenta\CambiarClave.cshtml" />
+    <Content Include="Views\Home\Index - Copy.cshtml" />
+    <Content Include="Views\Shared\_LayoutHome.cshtml" />
+    <Content Include="Views\Home\_ViewStart.cshtml" />
+    <Content Include="Views\Home\Contacto - Copy.cshtml" />
+    <Content Include="Views\Shared\Menu.cshtml" />
+    <Content Include="Views\Shared\Footer.cshtml" />
+    <Content Include="Views\Home\Conocenos.cshtml" />
+    <Content Include="Views\Home\Imparable.cshtml" />
+    <Content Include="Views\Home\Empresa.cshtml" />
+    <Content Include="Views\Home\Testimonios - Copy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,35 @@
+﻿@model UTP.PortalEmpleabilidad.Modelo.Mensaje
+@using UTP.PortalEmpleabilidad.Modelo
+
+@{
+    ViewBag.Title = "Empresa";
+}
+
+<body class="enterprise">
+    <section class="enterprise__body">
+        @Html.Partial("Menu")
+        <div class="bg"></div>
+        <section class="enterprise__body__content">
+            <div class="container" style="padding: 24px;">
+                <h1 class="enterprise__body__content__title">te ofrecemos</h1>
+                <div class="enterprise__body__content__tabs">
+                    <ul class="nav nav-tabs" role="tablist">
+                    @{ 
+                        var tabs = (List<Contenido>)(ViewBag.Tabs); 
+                        int activeTab = tabs[0].IdContenido;
+                    }
+                    @foreach(var tab in tabs) {
+                        <li role="presentation" class="@(activeTab == tab.IdContenido ? "active" : "")"><a href="#@tab.IdContenido" aria-controls="@tab.IdContenido" role="tab" data-toggle="tab">@Html.Raw(@tab.Titulo)</a></li>
+                    }
+                    </ul>
+                    <div class="tab-content">
+                    @foreach(var tab in tabs) {
+                        <div role="tabpanel" class="tab-pane @(activeTab == tab.IdContenido ? "active" : "")" id="@tab.IdContenido">@tab.Descripcion</div>
+                    }
+                    </div>
+                </div>
+            </div>
+        </section>
+        @Html.Partial("Footer")
+    </section>
+</body>

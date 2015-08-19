@@ -28,6 +28,7 @@ namespace UTPPrototipo
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/animate.css",
+                      "~/Content/idat.css",
                       "~/Content/site.css",
                       "~/Content/font-awesome.css",
                       "~/Content/UTP-Icons.css"));

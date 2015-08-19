@@ -20,15 +20,15 @@ namespace UTPPrototipo.Controllers
             //service.AutodiscoverUrl("criteriaitdev01@criteriait.onmicrosoft.com", RedirectionUrlValidationCallback);
 
 
-            ExchangeService service = (ExchangeService)Session["Office365"];
+            /*ExchangeService service = (ExchangeService)Session["Office365"];
             FindItemsResults<Appointment> foundAppointments =
         service.FindAppointments(WellKnownFolderName.Calendar,
-            new CalendarView(DateTime.Now, DateTime.Now.AddYears(1),5));
+            new CalendarView(DateTime.Now, DateTime.Now.AddYears(1),5));*/
             
            Calendario calendario = new Calendario();
            List<ItemCalendario> icalendario = new List<ItemCalendario>();
-            foreach (Appointment app in foundAppointments)
-            {
+           /*foreach (Appointment app in foundAppointments)
+           {
                 ItemCalendario i = new ItemCalendario();
                 
                 i.Asunto = app.Subject;                
@@ -38,7 +38,7 @@ namespace UTPPrototipo.Controllers
                 
                 icalendario.Add(i);
                 
-            }
+            }*/
             calendario.ListaItemCalendario = icalendario;
             return PartialView("_VistaCalendario", calendario);
         }  
