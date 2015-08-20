@@ -1,0 +1,14 @@
+﻿<nav class="navigation">
+    <div class="wrapper clearfix">
+        <a href="@Url.Action("Index", "Home")"><img src="~/img/IDAT/logo.png" alt="" class="navigation__logo"></a>
+        <ul class="list navigation__links">
+            <li><a class="@(ViewBag.Title == "Conocenos" ? "active" : "")" href="@Url.Action("Conocenos", "Home")">Conócenos</a></li>
+            <li><a class="@(ViewBag.Title == "Imparable" ? "active" : "")" href="@Url.Action("Imparable", "Home")">Imparable</a></li>
+            <li><a class="@(ViewBag.Title == "Empresa" ? "active" : "")" href="@Url.Action("Empresa", "Home")">Empresa</a></li>
+            <li><a class="@(ViewBag.Title == "Testimonios" ? "active" : "")" href="@Url.Action("Testimonios", "Home")">Testimonios</a></li>
+            <li><a class="@(ViewBag.Title == "Contacto" ? "active" : "")" href="@Url.Action("Contacto", "Home", new { pantalla = UTP.PortalEmpleabilidad.Modelo.Constantes.MENSAJES_INICIO })">Contactanos</a></li>
+            <li><a href="#" data-toggle="modal" data-target="#Modal-ingresar" id="LinkIngresar" onclick="abrirPantallaLogin();"><img src="~/img/IDAT/encender.png" alt="Alternate Text" width="32" /></a></li>
+            <li><a href="https://www.facebook.com/IDAT.InstitutoSuperiorTecnologico?fref=photo" target="_blank"><span class="fui color-icono-facebook menuOpcionesAd" style="font-size:35px;">)</span></a></li>
+        </ul>
+    </div>
+</nav>

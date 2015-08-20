@@ -1,0 +1,137 @@
+﻿<footer class="home__footer footer">
+    <div class="container clearfix">
+        <img src="~/img/IDAT/logo-intercorp.png" alt="" class="footer__logo">
+        <p class="footer__copyright">Instituto superior IDAT Copyright &copy; 2015. Todos los derechos reservados.</p>
+    </div>
+</footer>
+
+<div class="modal" id="Modal-ingresar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" id="boton-cierra-login"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Ingreso de Usuario</h4>
+            </div>
+
+            @if (ViewBag.MensajeDeError == null)
+            {
+                @Html.Action("Autenticar", "Cuenta")
+            }
+
+            <div id="divAutenticar">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="Modal-recuperar-clave" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" id="boton-cierra-login"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Restablecer Contraseña</h4>
+            </div>
+
+            @Html.Action("Restablecer", "Cuenta")
+
+            <div id="divRestablecer">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<form class="modal" action="Cuenta/CambiarClave" id="Modal-cambiar-clave" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title">Usuario: <span></span></h4>
+                <input type="hidden" value="" class="hidden" name="usuario" />
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                            <span class="input-group-addon">(*)<br />Contraseña</span>
+                            <input class="form-control" id="contrasena-text" name="contrasena" type="password"></input>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 fuente-pequeña">
+                        <p>Ingrese una contraseña con al menos 8 caracteres utilizando al menos una letra mayúscula, una minúscula y un dígito.</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="input-group">
+                            <span class="input-group-addon">(*) Repita<br />Contraseña</span>
+                            <input class="form-control" id="repiteContrasena-text" type="password"></input>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12" style="text-align:right;">
+                        @*<button type="button" class="btn btn-default color-paleta4 fuente-pequeña" style="color: white; margin-bottom: 10px;">Guardar</button>*@
+
+                        <button id="btnCambiarClave" type="submit" class="btn btn-default color-paleta4 fuente-pequeña">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@if (TempData["UsuarioNoExitoso"] == "_ClickAqui")
+{
+    <script>
+        document.getElementById("LinkIngresar").click();
+
+    </script>
+
+    TempData["UsuarioNoExitoso"] = null;
+}
+<script>
+    $("#Modal-ingresar").click(function cierraError() {
+
+        if (document.getElementById("boton-login-cierra-error") != null)
+        {
+            document.getElementById("boton-login-cierra-error").click();
+        }
+    });
+
+    function abrirPantallaLogin()
+    {
+        var mensajeError = '@ViewBag.MensajeDeError';
+
+        if (mensajeError != null && mensajeError != '' )
+        {
+            var url = '@Url.Action("Autenticar", "Cuenta")';
+
+            $.get(url, function (data) {
+                $('#divAutenticar').html(data);
+                $.validator.unobtrusive.parse('#divAutenticar');
+                $('#Modal-ingresar').modal('show');
+            });
+
+        }
+    }
+
+    $(document).ready(function () {
+        var target = document.location.hash.replace("#", "");
+        if (target.length) {
+            if (target == "Token") {
+                showModal();
+            }
+        } else {
+            //showModal("no title", "no content");
+        }
+
+        function showModal() {
+            $('#Modal-recuperar-clave').modal('show');
+        }
+    });
+</script>
+
+<script src="~/Scripts/jquery.cycle2.min.js"></script>
+<script src="~/Scripts/jquery.cycle2.carousel.min.js"></script>

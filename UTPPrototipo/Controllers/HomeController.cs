@@ -32,11 +32,6 @@ namespace UTPPrototipo.Controllers
             ViewBag.ListaTestimonios = ln.Contenido_BuscarIndex("5");
 
             return View();
-
-            //List<Contenido> contenido = new List<Contenido>();
-            //string x = "1";
-            //contenido = ln.Contenido_BuscarNoticiasEventosOtros(x);
-            //return View(contenido);
         }
 
         public FileResult Imagen_Index(int id)
@@ -205,25 +200,14 @@ namespace UTPPrototipo.Controllers
 
         public ActionResult Testimonios()
         {
-            List<Contenido> contenido = new List<Contenido>();
-            string x = "5";
-            contenido = ln.Contenido_BuscarNoticiasEventosOtros(x);
+            string MENU_TESTIMONIOS = "5";
+            string MENU_EVENTOS = "7";
+            string MENU_NOTICIAS = "4";
+            ViewBag.Noticias = ln.Contenido_BuscarIndex(MENU_NOTICIAS);
+            ViewBag.Eventos = ln.Contenido_BuscarIndex(MENU_EVENTOS);
+            ViewBag.Testimonios = ln.Contenido_BuscarNoticiasEventosOtros(MENU_TESTIMONIOS);
 
-
-            List<ContenidoVista> contentModel = contenido.Select(item => new ContenidoVista()
-            {
-                Menu = item.Menu,
-                Titulo = item.Titulo,
-                SubTitulo = item.SubTitulo,
-                Descripcion = item.Descripcion,
-                Imagen = item.Imagen,
-                IdContenido = item.IdContenido
-
-            }).ToList();
-            return View(contentModel);
-
-       
-
+            return View();
         }
 
         public FileResult Imagen_Testimonios(int id)
@@ -320,15 +304,8 @@ namespace UTPPrototipo.Controllers
 
 
             return View();
-
-
-            //List<Contenido> contenido = new List<Contenido>();
-            //string x = "4";
-            //contenido = ln.Contenido_Buscar(x);
-
-            //return View(contenido);
-                    
         }
+        
         public FileResult Imagen_Noticia(int id)
         {
             const string alternativePicturePath = @"/Content/Images/question_mark.jpg";
@@ -388,6 +365,7 @@ namespace UTPPrototipo.Controllers
 
             return new FileStreamResult(stream, "image/jpeg");
         } 
+
         public ActionResult Servicios()
         {
             List<Contenido> contenido = new List<Contenido>();
@@ -438,43 +416,45 @@ namespace UTPPrototipo.Controllers
             }
 
             return new FileStreamResult(stream, "image/jpeg");
-        } 
+        }
+
         public ActionResult TerminosDeUso()
         {
             return View();
         }
+
         public ActionResult PoliticasDePrivacidad()
         {
             return View();
         }
+
         public ActionResult FAQ()
         {
             return View();
         }
 
-        
-        //public JsonResult GetCityDistrito(string idDepartamento, string idProvincia)
-        //{
-        //    LNGeneral lnGeneral = new LNGeneral();
-        //    DataTable dtDistritos = lnGeneral.ObtenerListaValor2(Constantes.IDLISTA_Departamento, Constantes.IDLISTA_Provincia);
-           
+        public ActionResult Conocenos()
+        {
+            string MENU_CONOCENOS = "2";
+            ViewBag.Contenido = ln.Contenido_BuscarIndex(MENU_CONOCENOS)[0];
 
-        //    List<SelectListItem> li = new List<SelectListItem>();
+            return View();
+        }
 
-        //    for (int i = 0; i <= dtDistritos.Rows.Count - 1; i++)
-        //    {
-        //        string nombre = dtDistritos.Rows[i]["Distrito"].ToString();
-        //        string valor = dtDistritos.Rows[i]["CodigoDistrito"].ToString();
+        public ActionResult Imparable()
+        {
+            return View();
+        }
 
-        //        SelectListItem item = new SelectListItem() { Text = nombre, Value = valor };
+        public ActionResult Empresa()
+        {
+            string MENU_EMPRESA = "8";
+            ViewBag.Tabs = ln.Contenido_BuscarIndex(MENU_EMPRESA);
 
-        //        li.Add(item);
+            var tabs = (List<Contenido>)(ViewBag.Tabs);
 
-        //    }
-
-        //    return Json(new SelectList(li, "Value", "Text"));
-        //}
-
+            return View();
+        }
 
         public JsonResult GetStateProvincia(string IDListaValorPadre)
         {
@@ -522,6 +502,7 @@ namespace UTPPrototipo.Controllers
 
             return View();
         }
+
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult Registro(VistaRegistroEmpresa empresa)
         {

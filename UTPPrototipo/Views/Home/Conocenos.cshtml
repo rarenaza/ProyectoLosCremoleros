@@ -1,0 +1,43 @@
+﻿@model UTP.PortalEmpleabilidad.Modelo.Mensaje
+@using UTP.PortalEmpleabilidad.Modelo
+
+@{
+    ViewBag.Title = "Conocenos";
+    var contenido = ((Contenido) ViewBag.Contenido);
+}
+
+<body class="know-me">
+    <section class="know-me__body">
+      @Html.Partial("Menu")
+      <div class="bg"></div>
+      <section class="know-me__body__content">
+        <div class="container">
+          <div class="know-me__body__content__info">
+            <h1 class="know-me__body__content__info__title">@Html.Raw(contenido.Titulo)</h1>
+            <h2 class="know-me__body__content__info__subtitle">@Html.Raw(contenido.SubTitulo)</h2>
+            <img src="@Url.Action("Imagen_Diremp", "Home", new { id = @contenido.IdContenido })" alt="" class="know-me__body__content__info__leader">
+            <div class="know-me__body__content__info__content">@Html.Raw(contenido.Descripcion)</div>
+          </div><!--
+          --><div class="know-me__body__content__staff">
+            <div class="know-me__body__content__staff__wrapper">
+              <div class="know-me__body__content__staff__title">STAFF</div>
+              <a href=# id="previous"></a>
+              <div class="cycle-slideshow vertical" data-cycle-fx="carousel" data-cycle-timeout="0" data-cycle-next="#next" data-cycle-prev="#previous" data-cycle-carousel-visible="3" data-cycle-carousel-vertical="true">
+                  <img src="http://malsup.github.io/images/beach1.jpg">
+                  <img src="http://malsup.github.io/images/beach2.jpg">
+                  <img src="http://malsup.github.io/images/beach3.jpg">
+                  <img src="http://malsup.github.io/images/beach4.jpg">
+                  <img src="http://malsup.github.io/images/beach5.jpg">
+                  <img src="http://malsup.github.io/images/beach6.jpg">
+                  <img src="http://malsup.github.io/images/beach7.jpg">
+                  <img src="http://malsup.github.io/images/beach8.jpg">
+                  <img src="http://malsup.github.io/images/beach9.jpg">
+              </div>
+              <a href=# id="next"></a>
+            </div>
+          </div>
+        </div>
+      </section>
+      @Html.Partial("Footer")
+    </section>
+  </body>
