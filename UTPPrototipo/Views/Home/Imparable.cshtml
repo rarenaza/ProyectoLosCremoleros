@@ -1,1 +1,37 @@
-﻿Imparable
+﻿@model UTP.PortalEmpleabilidad.Modelo.Mensaje
+@using UTP.PortalEmpleabilidad.Modelo
+
+@{
+    ViewBag.Title = "Imparable";
+    var slides = (List<Contenido>)(ViewBag.Slides); 
+}
+
+<body class="unstoppable">
+    <section class="unstoppable__body">
+        @Html.Partial("Menu")
+        <div class="bg"></div>
+        <section class="unstoppable__body__content">
+        <div class="container" style="padding: 32px;">
+            <h1 class="unstoppable__body__content__title">te ofrecemos</h1>
+            <div class="unstoppable__body__content__slider">
+            <div class="unstoppable__body__content__slider__buttons">
+                <a href="#" id="previous"></a>
+                <a href="#" id="next"></a>
+            </div>
+            <div class="cycle-slideshow" data-cycle-fx="scrollHorz" data-cycle-timeout="5000" data-cycle-slides=">div" data-cycle-next="#next" data-cycle-prev="#previous">
+                @{
+                    foreach(var slide in slides) {
+                        <div>
+                            <img src="@Url.Action("Imagen_Imparable", "Home", new { id = slide.IdContenido })" alt="">
+                            <h2>@Html.Raw(slide.Titulo)</h2>
+                            @Html.Raw(slide.Descripcion)
+                        </div>
+                    }
+                }
+            </div>
+            </div>
+        </div>
+        </section>
+        @Html.Partial("Footer")
+    </section>
+</body>

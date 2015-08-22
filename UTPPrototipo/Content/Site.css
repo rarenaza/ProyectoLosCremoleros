@@ -411,97 +411,81 @@ input[type="checkbox"].input-validation-error {
 
 
 @media screen and (max-width: 1400px) {
-.LogoUTPPE {
-    width:317px;
-    }
-.LogoUTPPE2 {
-    width:190px;
-
-    }
-.LogoINTERCORP {
-
+    .LogoUTPPE {  width:317px; }
+    .LogoUTPPE2 { width:190px; }
+    .cuerpo-zona-alumno,
+    .cuerpo-zona-empresa { padding-top: 90px; }
 }
-.AreaLogoINTERCORP {
-
-}
-.cuerpo-zona-alumno {
-    padding-top: 78px;
-    }
-.cuerpo-zona-empresa {
-    padding-top: 78px;
-    }
-}
-
 @media screen and (max-width: 1200px) {
-.LogoUTPPE {
-    width:317px;
-    }
-.LogoUTPPE2 {
-    width:190px;
-    }
-.BannerSuperTitulo {
-    font-size: 40px;
-    }
-.BannerTitulo {
-    font-size: 28px;
-    }
-.BannerSubTitulo {
-    font-size: 20px;
-    }
-.BoxTitulo {
-    font-size: 16px;
-    font-family: GothamRnd-Bold;
-    color:black;
-    }
-.BoxTexto {
-    font-size: 12px;
-    font-family: GothamRnd-Light;
-    color:rgb(240, 240, 240);
-    }
-.logo-empresa2 {
-    width:80px;
-    }
+    .LogoUTPPE {
+        width:317px;
+        }
+    .LogoUTPPE2 {
+        width:190px;
+        }
+    .BannerSuperTitulo {
+        font-size: 40px;
+        }
+    .BannerTitulo {
+        font-size: 28px;
+        }
+    .BannerSubTitulo {
+        font-size: 20px;
+        }
+    .BoxTitulo {
+        font-size: 16px;
+        font-family: GothamRnd-Bold;
+        color:black;
+        }
+    .BoxTexto {
+        font-size: 12px;
+        font-family: GothamRnd-Light;
+        color:rgb(240, 240, 240);
+        }
+    .logo-empresa2 {
+        width:80px;
+        }
 }
 
 @media screen and (max-width: 992px) {
-.LogoUTPPE {
-    width:262px;
-    }
-.LogoUTPPE2 {
-    width:157px;
-    }
-.LogoINTERCORP {
-    width:200px;
-    }
-.Boton_pestana {
-    border-radius: 10px 10px 0px 0px;
-    width: 100px;
-    margin-left:2px;
-    }
-.BannerSuperTitulo {
-    font-size: 30px;
-    }
-.BannerTitulo {
-    font-size: 21px;
-    }
-.BannerSubTitulo {
-    font-size: 15px;
-    }
-.cuerpo-zona-publica {
-    padding-top: 108px;
-    }
-.cuerpo-zona-alumno {
-    padding-top: 70px;
-    }
-.cuerpo-zona-empresa {
-    padding-top: 70px;
-    }
-.BoxTitulo {
-    font-size: 20px;
-    }
-.BoxTexto {
-    font-size: 16px;
-    }
+    .LogoUTPPE {
+        width:262px;
+        }
+    .LogoUTPPE2 {
+        width:157px;
+        }
+    .LogoINTERCORP {
+        width:200px;
+        }
+    .Boton_pestana {
+        border-radius: 10px 10px 0px 0px;
+        width: 100px;
+        margin-left:2px;
+        }
+    .BannerSuperTitulo {
+        font-size: 30px;
+        }
+    .BannerTitulo {
+        font-size: 21px;
+        }
+    .BannerSubTitulo {
+        font-size: 15px;
+        }
+    .cuerpo-zona-publica {
+        padding-top: 108px;
+        }
+    .cuerpo-zona-alumno {
+        padding-top: 70px;
+        }
+    .cuerpo-zona-empresa {
+        padding-top: 70px;
+        }
+    .BoxTitulo {
+        font-size: 20px;
+        }
+    .BoxTexto {
+        font-size: 16px;
+        }
 }
 
 
