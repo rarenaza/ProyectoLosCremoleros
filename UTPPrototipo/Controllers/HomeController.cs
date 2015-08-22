@@ -443,7 +443,39 @@ namespace UTPPrototipo.Controllers
 
         public ActionResult Imparable()
         {
+            string MENU_IMPARABLE = "9";
+            ViewBag.Slides = ln.Contenido_BuscarIndex(MENU_IMPARABLE);
+
             return View();
+        }
+
+        public FileResult Imagen_Imparable(int id)
+        {
+            const string alternativePicturePath = @"/Content/Images/question_mark.jpg";
+
+            List<Contenido> Noticia = new List<Contenido>();
+            string x = "9";
+            Noticia = ln.Contenido_BuscarIndex(x);
+            Contenido producto = Noticia.Where(k => k.IdContenido == id).FirstOrDefault();
+
+            MemoryStream stream;
+
+            if (producto != null && producto.Imagen != null)
+            {
+                stream = new MemoryStream(producto.Imagen);
+            }
+            else
+            {
+                stream = new MemoryStream();
+
+                var path = Server.MapPath(alternativePicturePath);
+                var image = new System.Drawing.Bitmap(path);
+
+                image.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
+                stream.Seek(0, SeekOrigin.Begin);
+            }
+
+            return new FileStreamResult(stream, "image/jpeg");
         }
 
         public ActionResult Empresa()

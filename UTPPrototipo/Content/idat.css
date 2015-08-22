@@ -442,6 +442,89 @@ p {
   border-top: 10px solid #f00; margin-top: 8px;
 }
 /* unstoppable */
+.unstoppable__body__content>.container { padding: 32px; }
+.unstoppable__body__content__title {
+  margin: 0;
+  text-transform: uppercase;
+  font-size: 64px;
+  color: #fff;
+}
+.unstoppable__body__content__slider {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 960px;
+  height: 60%;
+  padding-left: 40px;
+  padding-right: 40px;
+  -webkit-transform: translate(-50%,-45%);
+  -moz-transform: translate(-50%,-45%);
+  -ms-transform: translate(-50%,-45%);
+  transform: translate(-50%,-45%);
+  -webkit-transform: translate3d(-50%,-45%,0);
+  -moz-transform: translate3d(-50%,-45%,0);
+  -ms-transform: translate3d(-50%,-45%,0);
+  transform: translate3d(-50%,-45%,0);
+}
+.unstoppable__body__content__slider__buttons {
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  -webkit-transform: translate(0,-50%);
+  -moz-transform: translate(0,-50%);
+  -ms-transform: translate(0,-50%);
+  transform: translate(0,-50%);
+  -webkit-transform: translate3d(0,-50%,0);
+  -moz-transform: translate3d(0,-50%,0);
+  -ms-transform: translate3d(0,-50%,0);
+  transform: translate3d(0,-50%,0);
+  z-index: 9999;
+}
+.unstoppable__body__content__slider__buttons #previous {
+  float: left;
+  width: 0;
+  height: 0;
+  border: 0;
+  border-top: 30px solid transparent !important;
+  border-right: 30px solid red !important;
+  border-bottom: 30px solid transparent !important;
+}
+.unstoppable__body__content__slider__buttons #next {
+  float: right;
+  width: 0;
+  height: 0;
+  border: 0;
+  border-top: 30px solid transparent !important;
+  border-left: 30px solid red !important;
+  border-bottom: 30px solid transparent !important;
+}
+.unstoppable__body__content__slider .cycle-slideshow {
+  height: 100%;
+  background-color: #fff;
+  background-color: rgba(255,255,255,.68);
+  border-top-right-radius: 32px;
+}
+.unstoppable__body__content__slider .cycle-slideshow > div {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 24px;
+}
+.unstoppable__body__content__slider .cycle-slideshow > div h2 {
+    font-family: 'Simplow Black';
+    text-transform: uppercase;
+    color: #f00;
+    margin: 0 0 10px 0;
+}
+.unstoppable__body__content__slider .cycle-slideshow > div img {
+  float: right;
+  width: 300px;
+  height: 80%;
+  margin: 5% 16px;
+  border-top-right-radius: 32px;
+}
 /* testimonials */
 .testimonials__header { position: relative; }
 .testimonials__header__bg {
@@ -536,6 +619,8 @@ p {
 == Oriented more to the visual parts of the things. ==
 == Similar like the state category.                 ==
 =====================================================*/
+.navbar-inverse .navbar-nav:first-child > li > a:hover, 
+.navbar-inverse .navbar-nav:first-child > li > a:focus { background-color: #333; }
 /*
 ================
 == RESPONSIVE ==
