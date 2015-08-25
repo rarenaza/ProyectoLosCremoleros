@@ -63,7 +63,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 alumnoEstudioItem.Institucion = Constantes.NOMBRE_UTP;
                 alumnoEstudioItem.Estudio = Convert.ToString(dsDatosAlumno.Tables[1].Rows[i]["CarreraEgreso"]);
 
-                alumnoEstudioItem.TipoDeEstudio = "TEUNIV"; //Realizar función de conversión.
+                alumnoEstudioItem.TipoDeEstudio = Constantes.TIPO_ESTUDIO_PRINCIPAL; //Realizar función de conversión.
                 EstudioGrado = Convert.ToString(dsDatosAlumno.Tables[1].Rows[i]["Grado"]).Substring(0,6);
 
                 alumnoEstudioItem.EstadoDelEstudio = EstudioGrado;

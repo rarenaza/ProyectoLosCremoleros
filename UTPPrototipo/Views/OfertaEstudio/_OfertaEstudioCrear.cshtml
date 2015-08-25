@@ -95,7 +95,7 @@
 
         $('#TipoDeEstudioIdListaValor').on('change', function () {
             var TipoDeEstudioIdListaValor = $("#TipoDeEstudioIdListaValor").val()
-            if (TipoDeEstudioIdListaValor == "TEUNIV") {
+            if (TipoDeEstudioIdListaValor == Constantes.TIPO_ESTUDIO_PRINCIPAL) {
                 $("#TipoUniversitario").css('display', 'block');  //los combos se muestran
                 $("#TipoOtrosEstudios").css('display', 'none'); //las cajas se ocultan
             }
@@ -113,7 +113,7 @@
     {
         var TipoDeEstudioIdListaValor = $("#TipoDeEstudioIdListaValor").val()
 
-        if (TipoDeEstudioIdListaValor != "TEUNIV") {
+        if (TipoDeEstudioIdListaValor != Constantes.TIPO_ESTUDIO_PRINCIPAL) {
             var estudioTexto = $("#EstudioTexto").val();
 
             if (estudioTexto == "")

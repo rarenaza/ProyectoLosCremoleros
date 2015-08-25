@@ -124,7 +124,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
 
         #region Tipos de Estudio
         public static string TIPO_ESTUDIO_UNIVERSITARIO = "TEUNIV";
-
+        public static string TIPO_ESTUDIO_PRINCIPAL = "TETECN";
         #endregion
 
         #region Colores Pie
@@ -161,7 +161,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
 
         #endregion
 
-        public static string NOMBRE_UTP = "Universidad Tecnológica del Perú-UTP";
+        public static string NOMBRE_UTP = "Instituto IDAT";
 
         public const string TICKET_EMITIDO = "EVTKEM";
 

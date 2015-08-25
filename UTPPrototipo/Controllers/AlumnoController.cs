@@ -1109,7 +1109,7 @@ namespace UTPPrototipo.Controllers
         public JsonResult ListarEstudio(string query)
         {
             LNGeneral lngeneral = new LNGeneral();
-            var resultado = lngeneral.ObtenerListaValorPorIdPadre(Constantes.TIPO_ESTUDIO_UNIVERSITARIO);
+            var resultado = lngeneral.ObtenerListaValorPorIdPadre(Constantes.TIPO_ESTUDIO_PRINCIPAL);
             var result = resultado.Where(s => s.Valor.ToLower().Contains(query.ToLower())).Select(c => new { Value = c.IdListaValor, Label = c.Valor }).ToList();
             return Json(result, JsonRequestBehavior.AllowGet);
         }

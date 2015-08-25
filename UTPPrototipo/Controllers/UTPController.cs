@@ -578,7 +578,7 @@ namespace UTPPrototipo.Controllers
             }
 
             //Lista de Carreras UTP
-            oferta.ListaCarrera = lngeneral.ObtenerListaValor(Constantes.IDLISTA_DE_CARRERA).Where(m => m.IdListaValorPadre == "TEUNIV").ToList();
+            oferta.ListaCarrera = lngeneral.ObtenerListaValor(Constantes.IDLISTA_DE_CARRERA).Where(m => m.IdListaValorPadre == Constantes.TIPO_ESTUDIO_PRINCIPAL).ToList();
             List<SelectListItem> listItemCarrera = new List<SelectListItem>();
             foreach (ListaValor entidad in oferta.ListaCarrera)
             {

@@ -65,7 +65,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 lista.Add(estudio);
             }
 
-            return lista.Where(m => m.TipoDeEstudioIdListaValor != "TEUNIV").ToList();;
+            return lista.Where(m => m.TipoDeEstudioIdListaValor != Constantes.TIPO_ESTUDIO_PRINCIPAL).ToList(); ;
         }
 
         public void Insertar(OfertaEstudio ofertaEstudio)

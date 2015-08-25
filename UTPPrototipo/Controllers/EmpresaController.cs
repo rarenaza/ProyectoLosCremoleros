@@ -69,7 +69,7 @@ namespace UTPPrototipo.Controllers
         public JsonResult ListarEstudio(string query)
         {
             LNGeneral lngeneral = new LNGeneral();
-            var resultado = lngeneral.ObtenerListaValorPorIdPadre(Constantes.TIPO_ESTUDIO_UNIVERSITARIO);
+            var resultado = lngeneral.ObtenerListaValorPorIdPadre(Constantes.TIPO_ESTUDIO_PRINCIPAL);
             var result = resultado.Where(s => s.Valor.ToLower().Contains(query.ToLower())).Select(c => new { Value = c.IdListaValor, Label = c.Valor }).ToList();
             return Json(result, JsonRequestBehavior.AllowGet);
         }
@@ -1521,7 +1521,7 @@ namespace UTPPrototipo.Controllers
         public ActionResult AgregarCarreras(string codigos)
         {
             LNGeneral lnGeneral = new LNGeneral();
-            List<ListaValor> listaCarrerasUTP = lnGeneral.ObtenerListaValor(Constantes.IDLISTA_DE_CARRERA).Where(m => m.IdListaValorPadre == "TEUNIV").ToList();
+            List<ListaValor> listaCarrerasUTP = lnGeneral.ObtenerListaValor(Constantes.IDLISTA_DE_CARRERA).Where(m => m.IdListaValorPadre == Constantes.TIPO_ESTUDIO_PRINCIPAL).ToList();
 
             //Se obtiene la lista actual:
             List<OfertaEstudio> listaSeleccionados = (List<OfertaEstudio>)(Session["CarrerasSeleccionadas"]);
@@ -1534,7 +1534,7 @@ namespace UTPPrototipo.Controllers
                 //Se busca en la lista de la BD:
                 ListaValor carrera = listaCarrerasUTP.Where(m => m.IdListaValor == listaCodigos[i]).FirstOrDefault();
                 OfertaEstudio ofertaEstudio = new OfertaEstudio ();
-                ofertaEstudio.TipoDeEstudioIdListaValor = "TEUNIV"; // listaCodigos[i]; //aca buscar y traer la lista de la BD.
+                ofertaEstudio.TipoDeEstudioIdListaValor = Constantes.TIPO_ESTUDIO_PRINCIPAL; // listaCodigos[i]; //aca buscar y traer la lista de la BD.
                 ofertaEstudio.CodigoCarrera = listaCodigos[i]; //Este código sirve para tenerlo como clave de la lista. Es el código de la carrera.
                 ofertaEstudio.Estudio = carrera.Valor;
                 listaSeleccionados.Add(ofertaEstudio);
@@ -1554,7 +1554,7 @@ namespace UTPPrototipo.Controllers
         public ActionResult QuitarCarreras(string codigos)
         {
             LNGeneral lnGeneral = new LNGeneral();
-            List<ListaValor> listaCarrerasUTP = lnGeneral.ObtenerListaValor(Constantes.IDLISTA_DE_CARRERA).Where(m => m.IdListaValorPadre == "TEUNIV").ToList();
+            List<ListaValor> listaCarrerasUTP = lnGeneral.ObtenerListaValor(Constantes.IDLISTA_DE_CARRERA).Where(m => m.IdListaValorPadre == Constantes.TIPO_ESTUDIO_PRINCIPAL).ToList();
 
             List<OfertaEstudio> listaSeleccionados = (List<OfertaEstudio>)(Session["CarrerasSeleccionadas"]);
             List<ListaValor> listaDisponibles = (List<ListaValor>)(Session["CarrerasDisponibles"]);

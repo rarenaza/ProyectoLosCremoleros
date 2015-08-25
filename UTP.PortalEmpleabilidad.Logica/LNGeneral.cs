@@ -332,7 +332,7 @@ namespace UTP.PortalEmpleabilidad.Logica
 
                 //TEDOCT = Doctorado, TEESCO = Escolar, TEPOST = Post-Grado, TETECN = Técnico, TEUNIV = Grado Universitario
                 //Sólo se agregan los tipos de estudio que son distintos a Escolar y Universitario.
-                if (item.IdListaValor != "TEESCO" && item.IdListaValor != "TEUNIV")
+                if (item.IdListaValor != "TEESCO" && item.IdListaValor != Constantes.TIPO_ESTUDIO_PRINCIPAL)
                 {
                     lista.Add(item);
                 }

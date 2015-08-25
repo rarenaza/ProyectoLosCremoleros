@@ -360,7 +360,7 @@ namespace UTP.PortalEmpleabilidad.Logica
 
             //18FEB: Se obtiene las carreras de UTP y se quitan las ya seleccionadas.
             LNGeneral lnGeneral = new LNGeneral();
-            List<ListaValor> listaCarrerasUTP = lnGeneral.ObtenerListaValor(Constantes.IDLISTA_DE_CARRERA).Where(m => m.IdListaValorPadre == "TEUNIV").ToList(); //Se obtienen todas las carreras
+            List<ListaValor> listaCarrerasUTP = lnGeneral.ObtenerListaValor(Constantes.IDLISTA_DE_CARRERA).Where(m => m.IdListaValorPadre == Constantes.TIPO_ESTUDIO_PRINCIPAL).ToList(); //Se obtienen todas las carreras
 
 
             DataSet dsResultado = adOferta.ObtenerPorId(idOferta);
@@ -455,7 +455,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 estudio.FechaModificacion               = Convert.ToDateTime(filaEstudio["FechaModificacion"]);
                  
                 #region Se separan las carrearas universitarias UTP.
-                if (estudio.TipoDeEstudio.IdListaValor == "TEUNIV") //Tipo de Estudio Universitario de UTP.
+                if (estudio.TipoDeEstudio.IdListaValor == Constantes.TIPO_ESTUDIO_PRINCIPAL) //Tipo de Estudio Universitario de UTP.
                 {
                     var carreraEncontrada = listaCarrerasUTP.Where(m => m.Valor == estudio.Estudio).FirstOrDefault();
 
