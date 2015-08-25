@@ -5,22 +5,23 @@
     ViewBag.Title = "Contacto";
 }
 
-<body class="home">
+<body class="contact">
     <section class="home__body" style="padding-top: 64px;">
         @Html.Partial("Menu")
         <div class="bg"></div>
 
+        <div class="home__body__content">
         @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
+            <div class="container">
 
             <h5 style="text-align:center; margin: 0;"><strong>Contacto</strong></h5>
 
             @Html.HiddenFor(m => m.Pantalla)
-            <hr />
             <div class="row" style="color: #fff;">
                 <div class="col-sm-12">
-                    <h2 class="text-center">Contacto</h2>
+                    <h2 class="text-center">Contáctanos</h2>
                 </div>
                 <div class="col-sm-8 col-sm-push-2">
                     <p>Mensaje</p>
@@ -66,7 +67,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="row">
                 <div class="col-sm-2"></div>
                 <div class="col-sm-8">
@@ -85,18 +85,18 @@
                     </div>
                 </div>
             </div>
-            <hr />
             <div class="row">
                 <div class="col-sm-2"></div>
                 <div class="col-sm-8" style="text-align:right;">
                     <button onclick="return validarDatos();" class="btn btn-default color-paleta1">Enviar Mensaje</button>
                 </div>
             </div>
-
+            </div>
         }
 
         @Html.Partial("Footer")
-    </section>
+       </div>
+    </div>
 
     @{
         //Se valida que exista mensaje de éxito al crear una oferta

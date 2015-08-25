@@ -24,11 +24,12 @@
     </header>
     <section class="testimonials__body">
         <section class="testimonials__body__content">
-            <div style="position: relative; height: 100%;">
-                <div class="bg" style="background-position: 50% 30%;"></div>
-
-                <ul class="home__body__content__publications container list">
-                    <li class="card" style="width: 470px; margin-right: 16px;">
+            <div class="bg"></div>
+            <div class="container">
+                
+                
+                <ul class="home__body__content__publications row">
+                    <li class="card col-lg-6 col-sm-6">
                         <div class="card__wrapper">
                          @{
                             var noticia = ((List<Contenido>)(ViewBag.Noticias))[0];
@@ -43,9 +44,7 @@
                         }
                         </div>
                     </li>
-                    <!--
-                    -->
-                    <li class="card" style="width: 470px;">
+                    <li class="card col-lg-6 col-sm-6">
                         <div class="card__wrapper">
                         @{
                             var evento = ((List<Contenido>)(ViewBag.Eventos))[0];
