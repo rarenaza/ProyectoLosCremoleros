@@ -212,6 +212,11 @@ namespace UTPPrototipo.Controllers
             return View();
         }
 
+        public ActionResult Convenios()
+        {
+            return View();
+        
+        }
         public FileResult Imagen_Testimonios(int id)
         {
             const string alternativePicturePath = @"/Content/Images/question_mark.jpg";

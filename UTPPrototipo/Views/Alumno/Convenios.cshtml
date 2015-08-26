@@ -1,0 +1,78 @@
+﻿@{
+    Layout = "~/Views/Alumno/_LayoutAlumno.cshtml";
+    ViewBag.Title = "Eventos";
+}
+<div class="container fuente-pequeña" style="margin-top:2px;">
+    @{Html.RenderAction("VistaCabecera", "Alumno", new { colapsaDatos = " " });}
+    <div class="row">
+        <div class="col-sm-12">
+
+            <h4 style="text-align:center"><strong><span style="text-decoration: underline;">Convenios de Pr&aacute;cticas</span></strong></h4>
+                <h5><strong>Descripci&oacute;n</strong></h5>
+                <p>Si ingresas a trabajar bajo la modalidad de pr&aacute;cticas pre o profesionales, la empresa te solicitar&aacute; una Carta de Presentaci&oacute;n de la Instituci&oacute;n. Para tramitarla, deber&aacute;s acercarte a Empleabilidad.</p>
+                <p>Posteriormente, la empresa deber&aacute; entregarte un Convenio de Pr&aacute;cticas y un Plan de Capacitaci&oacute;n. De igual manera, tendr&aacute;s que traer dichos documentos a Empleabilidad para su validaci&oacute;n y firma del Representante de IDAT.</p>
+                <h5><strong>Deberes</strong></h5>
+                <ul>
+                    <li>Acogerse al reglamento acad&eacute;mico definido por la instituci&oacute;n.</li>
+                    <li>Reconocer y acatar las normas de la organizaci&oacute;n donde se realice la pr&aacute;ctica.</li>
+                    <li>Respetar la relaci&oacute;n de aprendizaje cumpliendo con los par&aacute;metros, obligaciones y funciones fijadas en el convenio, debido a que el incumplimiento de las condiciones pactadas puede llevar a la finalizaci&oacute;n del proceso de pr&aacute;ctica laboral.</li>
+                </ul>
+                <h5><strong>Derechos</strong></h5>
+                <p>Pr&aacute;cticas Pre Profesionales:</p>
+                <ul>
+                    <li>El periodo m&iacute;nimo es de 6 meses.</li>
+                    <li>El alumno puede realizar sus pr&aacute;cticas mientras se encuentre estudiando.&nbsp;</li>
+                    <li>El horario de trabajo no debe exceder las 30 horas semanales.</li>
+                </ul>
+                <p>Pr&aacute;cticas Profesionales:</p>
+                <ul>
+                    <li>El periodo m&aacute;ximo es de 1 a&ntilde;o.</li>
+                    <li>Es requisito no haber realizado tr&aacute;mite de T&iacute;tulo Profesional.</li>
+                    <li>El horario de trabajo es de 48 horas semanales.&nbsp;</li>
+                </ul>
+            <br />
+            <h4 style="text-align:center"><strong><span style="text-decoration: underline;">Convenios Empresariales</span></strong></h4>
+            
+            <p>Para visualizar a las empresas con las cuales tenemos Convenios vigentes, da clic en el siguiente enlace: <a target="_blank" href="http://www.idat.edu.pe/convenios-empresariales">http://www.idat.edu.pe/convenios-empresariales </a></p>
+            <h5><strong>Documentos (Descargar)</strong></h5>
+            <br />
+            <div class="row">
+                <div class="col-sm-4" style="text-align:center">
+                    <a href="@Url.Action("DescargarConvenioPlantilla", "Plantilla", new { idPlantilla = 4 })" class="btn btn-primary">Ley sobre <br />Modalidades <br />Formativas</a>
+                </div>
+                <div class="col-sm-4" style="text-align:center">
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn dropdown-toggle btn-primary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Modelo de <br />Convenio de <br />Práctica 
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="@Url.Action("DescargarConvenioPlantilla", "Plantilla", new { idPlantilla = 1 })">Pre Profesional</a></li>
+                            <li><a href="@Url.Action("DescargarConvenioPlantilla", "Plantilla", new { idPlantilla = 2 })">Profesional</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-4" style="text-align:center">
+                    <a href="@Url.Action("DescargarConvenioPlantilla", "Plantilla", new { idPlantilla = 3 })" class="btn btn-primary" style="height:74px;padding-top:15px">Plan de <br />Capacitación</a>
+                </div>
+            </div>
+            <p>&nbsp;</p>
+            <h5><strong>CONSIDERACIONES DE LA ESTRUCTURA</strong></h5>           
+            <ul>
+                <li>La informaci&oacute;n va en una sola hoja.</li>
+                <li>Descargar archivos seg&uacute;n recuadros.</li>
+                <li>S&oacute;lo <strong>Desplegable recuadro Modelo de Convenio de Pr&aacute;ctica</strong>, descargar practicas pre profesionales y profesionales.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script>
+    $(document).ready(function () {
+        $("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta3 color-paleta4").addClass("color-paleta9");
+    });
+</script>
