@@ -25,7 +25,8 @@ namespace UTP.PortalEmpleabilidad.Logica
                 if (dt.Rows.Count > 0)
                 {
                     Mensaje mensaje = new Mensaje();
-                    mensaje.DeUsuarioCorreoElectronico = "empleos@idat.edu.pe";
+
+                    mensaje.DeUsuarioCorreoElectronico = Constantes.CORREO_PRINCIPAL;
                     mensaje.ParaUsuarioCorreoElectronico = ofertapostulante.CorreoElectronicoUsuarioEmpresa;
                     mensaje.Asunto = "Nuevo Postulante: " + dt.Rows[0]["Nombres"] + " " + dt.Rows[0]["Apellidos"] + " - Oferta " + ofertapostulante.CargoOfrecido;
                     mensaje.MensajeTexto = "Ha recibido un Postulante nuevo para su Oferta: " + ofertapostulante.CargoOfrecido + "\r\n\r\n" + dt.Rows[0]["Nombres"] + " " + dt.Rows[0]["Apellidos"];
