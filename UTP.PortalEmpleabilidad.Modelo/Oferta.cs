@@ -47,8 +47,9 @@ namespace UTP.PortalEmpleabilidad.Modelo
         //public string TipoContrato { get; set; }
         public int? DuracionContrato { get; set; }
         //public string TipoCargo { get; set; }
-          
-        public decimal RemuneracionOfrecida { get; set; }
+
+        [Required(ErrorMessage = Constantes.MSJ_CAMPO_OBLIGATORIO)]
+        public decimal? RemuneracionOfrecida { get; set; }
        
         public DateTime FechaInicioLabores { get; set; }
  
@@ -116,6 +117,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         [DataType(DataType.Date)]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime? FechaSeguimiento { get; set; }
+        public int? NumeroPostulantes { get; set; }
         public int? NumeroInvitados { get; set; }
         public int? NumeroEntrevistados { get; set; }
         public int? NumeroContratados { get; set; }
@@ -134,10 +136,12 @@ namespace UTP.PortalEmpleabilidad.Modelo
         public string EstadoCarreraUTP { get; set; }
         [Required(ErrorMessage = Constantes.MSJ_CAMPO_OBLIGATORIO)]
         public int? CicloMinimoCarreraUTP { get; set; }
+        [Required(ErrorMessage = Constantes.MSJ_CAMPO_OBLIGATORIO)]
         [RegularExpression(@"[0-9]*\.?[0-9]+", ErrorMessage = "Este campo sólo acepta números.")]
-        public int ExperienciaGeneral { get; set; }
+        public int? ExperienciaGeneral { get; set; }
+        [Required(ErrorMessage = Constantes.MSJ_CAMPO_OBLIGATORIO)]
         [RegularExpression(@"[0-9]*\.?[0-9]+", ErrorMessage = "Este campo sólo acepta números.")]
-        public int ExperienciaPosicionesSimilares { get; set; }
+        public int? ExperienciaPosicionesSimilares { get; set; }
         public bool CumpleExperienciaGeneral { get; set; }
         public bool CumpleExperienciaPosicionesSimilares { get; set; }
         public string EstadoCarreraUTPDescripcion { get; set; }
@@ -150,7 +154,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
 
         //Campos para el seguimiento: El seguimiento obtiene los valores a partir de la encuesta
         public string SeguimientoCalificacion { get; set; }
-        public int? SeguimientoNroPostulantes { get; set; }
+        public int? SeguimientoNroInvitados { get; set; }
         public int? SeguimientoContratados { get; set; }
         public string SeguimientoContratadosOtros { get; set; }
 

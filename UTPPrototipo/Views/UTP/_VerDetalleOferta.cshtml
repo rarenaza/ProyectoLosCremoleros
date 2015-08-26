@@ -7,7 +7,7 @@
                 <span class="input-group-addon" style="width:100px;">
                     Fecha de<br />Seguimiento
                 </span>
-                @Html.TextBoxFor(m => m.FechaSeguimiento, "{0:MM/dd/yyyy}", new { @class = "form-control datepicker", @value = (Model.FechaSeguimiento != null ? Model.FechaSeguimiento.Value.ToString("d") : "") })
+                @Html.TextBoxFor(m => m.FechaSeguimiento, "{0:dd/MM/yyyy}", new { @class = "form-control datepicker", @value = (Model.FechaSeguimiento != null ? Model.FechaSeguimiento.Value.ToString("d") : "") })
 
             </div>
         </div>
@@ -18,7 +18,7 @@
                 <span class="input-group-addon" style="width:100px;">
                     N° Postulantes
                 </span>
-                @Html.TextBoxFor(m => m.SeguimientoNroPostulantes, "", new { @class = "form-control" })
+                @Html.TextBoxFor(m => m.NumeroPostulantes, "", new { @class = "form-control" })
             </div>
         </div>
     </div>
@@ -39,7 +39,7 @@
                 <span class="input-group-addon" style="width:100px;">
                     N° Invitados<br />a Entrevistas
                 </span>
-                @Html.TextBoxFor(m => m.NumeroInvitados, "", new { @class = "form-control" })
+                @Html.TextBoxFor(m => m.SeguimientoNroInvitados, "", new { @class = "form-control" })
             </div>
         </div>
     </div>

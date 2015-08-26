@@ -507,7 +507,7 @@
                         <br />
                         <div style="text-align:center;">
                             <h6># postulaciones a empresas target (acumulado): <strong><span id="postulantesEmpresas"></span></strong></h6>
-                            <h6>Ratio promedio de postulantes citados a entrevista: <strong><span id="ratioPostulantes"></span></strong></h6>
+                            <h6>Ratio promedio de postulantes invitados a entrevista: <strong><span id="ratioPostulantes"></span></strong></h6>
                         </div>
                     </div>
                 </div>
@@ -623,7 +623,7 @@
                         <div style="text-align:center;">
                             <h6># de contratos (acumulados): <strong><span id="contratosAcumulados"></span></strong></h6>
                             <h6># de contratos target: <strong><span id="contratosTarget"></span></strong></h6>
-                            <h6>Ratio de invitados a entrevista: <strong><span id="ratioEntrevistados"></span></strong></h6>
+                            <h6>Ratio de contratados citados a entrevista: <strong><span id="ratioEntrevistados"></span></strong></h6>
                             <h6># de convenios registrados (mes actual): <strong><span id="conveniosDelMes"></span></strong></h6>
                         </div>
                     </div>
@@ -1165,10 +1165,11 @@
                 Chart.Pie({
                     container: 'chartOfertasSegunTipoTrabajoUTP',
                     legend: {
-                        align: 'right',
-                        valign: 'middle',
+                        align: 'center',
+                        valign: 'bottom',
                         template: '#label#',
-                        marker: { radius: 0 }
+                        marker: { radius: 0 },
+                        layout: 'x'
                     }
                 }).draw(data);
 
