@@ -435,7 +435,7 @@
         $REvaluador.datetimepicker({ format: "DD/MM/YYYY" });
 
         $duration.val(($eventEndDate.data('DateTimePicker').date().diff($eventStartDate.data('DateTimePicker').date()) / 86400000).toFixed(0) + " días");
-        
+        $startMonth.val($eventStartDate.data('DateTimePicker').date().format('MMMM'));
         $eventStartDate.on('dp.change', function (e) {
             $startMonth.val((e.date.format('MMMM')));
             $eventEndDate.data('DateTimePicker').minDate(e.date);
