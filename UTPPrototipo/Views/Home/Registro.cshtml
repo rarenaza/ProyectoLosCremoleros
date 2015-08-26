@@ -4,11 +4,12 @@
     ViewBag.Title = "Registro";
 }
 
+<div style="position: relative; padding: 90px 0; background-color: #eee;">
+@Html.Partial("Menu")
 @using (Html.BeginForm())
 {
-
     @Html.AntiForgeryToken()
-    
+
     @Html.HiddenFor(model => Model.TextoDepartamento)
     @Html.HiddenFor(model => Model.TextoCiudad)
     @Html.HiddenFor(model => Model.TextDistrito)
@@ -296,10 +297,10 @@
             </div>
             <br />
         </div>
-
-   
 }
-  
+@Html.Partial("Footer")
+</div>
+
 
 <script>
     //Este bloque sólo debe ir una vez, esto quiere decir que todo lo de adentro se ejecuta cuando toda la pagina se renderiza o muestra al c liente.
