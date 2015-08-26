@@ -487,6 +487,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.CommandText = "OfertaEstudio_EliminarCarrerasUTP";
                         cmd.Parameters.Add(new SqlParameter("@IdOferta", oferta.IdOferta));
+                        cmd.Parameters.Add(new SqlParameter("@TipoDeEstudioPrincipal", Constantes.TIPO_ESTUDIO_PRINCIPAL));
                         cmd.ExecuteNonQuery();
 
                         //4. Se agregan las nuevas carreras:

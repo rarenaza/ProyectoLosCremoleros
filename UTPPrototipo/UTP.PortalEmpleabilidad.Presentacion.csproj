@@ -370,12 +370,17 @@
     <Content Include="img\empleabilidad\firmaBeatriz.png" />
     <Content Include="img\empleabilidad\PlanoDirEmpleabilidad.jpg" />
     <Content Include="img\IDAT\bg-home-2.jpg" />
+    <Content Include="img\IDAT\cerrar-sesion.png" />
+    <Content Include="img\IDAT\encender.png" />
     <Content Include="img\IDAT\favicon.ico" />
+    <Content Include="img\IDAT\ico-home.png" />
+    <Content Include="img\IDAT\ico-programas-in-house.png" />
+    <Content Include="img\IDAT\ico-sedes.png" />
+    <Content Include="img\IDAT\map.png" />
     <Content Include="img\IDAT\testimonio.png" />
     <Content Include="img\IDAT\bg-home-1.jpg" />
     <Content Include="img\IDAT\bg.jpg" />
     <Content Include="img\IDAT\imparable.png" />
-    <Content Include="img\IDAT\encender.png" />
     <Content Include="img\IDAT\las-empresas-opinan.png" />
     <Content Include="img\IDAT\lo-que-se-viene.png" />
     <Content Include="img\IDAT\logo-intercorp.png" />
@@ -1108,6 +1113,7 @@
     <Content Include="Views\Home\Imparable.cshtml" />
     <Content Include="Views\Home\Empresa.cshtml" />
     <Content Include="Views\Home\Testimonios - Copy.cshtml" />
+    <Content Include="Views\Shared\MenuIntra.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

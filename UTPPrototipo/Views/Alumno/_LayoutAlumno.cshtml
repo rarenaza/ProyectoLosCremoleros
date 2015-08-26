@@ -59,7 +59,7 @@
                 </button>
             </div>
             <div class="navbar-collapse collapse" style="border:0px;background-color:transparent;">
-                <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav" style="margin-top: 11px;">
                     <li>
                         @Html.ActionLink("Mi Portal", "Index", "Alumno", null, new { @class = "btn btn-default navbar-btn Boton_pestana color-paleta1", @style = "padding: 2px 0px 2px 0px; color: white;" })
                     </li>
@@ -69,13 +69,8 @@
                     <li>
                         @Html.ActionLink("Ofertas", "BusquedaOferta", "Alumno", null, new { @class = "btn btn-default navbar-btn Boton_pestana color-paleta2", @style = "padding: 2px 0px 2px 0px; color: white;" })
                     </li>
-
-
                     <li>
                         @Html.ActionLink("Mi CV", "MiCV", "Alumno", new { id = 0 }, new { id = 0, @class = "btn btn-default navbar-btn Boton_pestana color-paleta4", @style = "padding: 2px 0px 2px 0px; color: white;" })
-                   
-                   
-                    
                      </li>
                     <li>
                         @*<a class="btn btn-default navbar-btn Boton_pestana color-paleta5" href="..\Alumno\Index" style="padding: 2px 0px 2px 0px; color: white;">Eventos</a>*@
@@ -83,29 +78,7 @@
                     </li>
 
                 </ul>
-                <ul class="nav navbar-nav navbar-right" style="padding-right: 15px; ">
-                    <li>
-                        <a href=@Url.Action("Index","Home") class="fui fa-2x menuOpcionesAd" style="padding: 2px 3px 0px 8px"><span class="color-icono-paleta2 ">%</span></a>
-                    </li>
-
-
-
-
-
-                    <li>
-                        @*<a href="..\Home\Contacto" class="fui fa-2x" style=" padding:2px 3px 0px 8px;"><span class="color-icono-paleta2">:</span></a>*@
-                        <a href=@Url.Action("Contacto", "Home", new { pantalla = UTP.PortalEmpleabilidad.Modelo.Constantes.MENSAJES_ALUMNO_CONTACTO }) class="fui fa-2x menuOpcionesAd" style="padding:2px 3px 0px 8px;"><span class="color-icono-paleta2">:</span></a>
-                        
-                    </li>
-                    <li>
-                        <a href="https://es-es.facebook.com/UTPEmpleabilidad" target="_blank" class="fui fa-2x menuOpcionesAd" style=" padding:2px 3px 0px 8px;"><span class="color-icono-facebook">)</span></a>
-                    </li>
-                    <li>
-                        <a href=@Url.Action("Logout", "Alumno") class="fui fa-2x menuOpcionesAd" style=" padding:2px 10px 0px 10px;"><span class="color-icono-paleta2">*</span></a>
-
-                    </li>
-                </ul>
-
+                @Html.Partial("MenuIntra")
             </div>
             <div id="divFinalCabecera" class="final-cabecera color-paleta1"></div>
         </div>

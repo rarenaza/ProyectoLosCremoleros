@@ -633,7 +633,22 @@ p {
   background-color: rgba(255,255,255,.6);
 }
 /* contact */
+.contact .home__body__content {
+    height: auto;
+    min-height: 100%;
+}
 .contact .home__body__content .container { padding-top: 80px; }
+/* faq */
+.faq { 
+    position: relative; 
+    padding: 90px 0;
+    background-color: #eee;
+}
+.faq h1 {
+    font-family: "Simplow Black";
+    text-transform: uppercase;
+}
+.faq h2 { font-weight: bold; }
 /*
 ===========
 == STATE ==

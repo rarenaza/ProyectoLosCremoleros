@@ -121,6 +121,8 @@ namespace UTPPrototipo.Controllers
         {
             Mensaje mensaje = new Mensaje();
             mensaje.Pantalla = pantalla;
+            mensaje.DeUsuario = Constantes.NOMBRE_UTP;
+            mensaje.DeUsuarioCorreoElectronico = Constantes.CORREO_PRINCIPAL;
 
             if (pantalla == Constantes.MENSAJES_EMPRESA_CONTACTO)
             {
@@ -130,15 +132,15 @@ namespace UTPPrototipo.Controllers
                 mensaje.DeUsuarioCorreoElectronico = ticketEmpresa.CorreoElectronico;
                 mensaje.DeUsuarioNombre = ticketEmpresa.Nombre;
             }
-            else
-                if (pantalla == Constantes.MENSAJES_ALUMNO_CONTACTO)
-                {
-                    TicketAlumno ticketAlumno = (TicketAlumno)Session["TicketAlumno"];
 
-                    mensaje.DeUsuario = ticketAlumno.Usuario;
-                    mensaje.DeUsuarioCorreoElectronico = ticketAlumno.CorreoElectronico;
-                    mensaje.DeUsuarioNombre = ticketAlumno.Nombre;
-                }
+            if (pantalla == Constantes.MENSAJES_ALUMNO_CONTACTO)
+            {
+                TicketAlumno ticketAlumno = (TicketAlumno)Session["TicketAlumno"];
+
+                mensaje.DeUsuario = ticketAlumno.Usuario;
+                mensaje.DeUsuarioCorreoElectronico = ticketAlumno.CorreoElectronico;
+                mensaje.DeUsuarioNombre = ticketAlumno.Nombre;
+            }
 
             ViewBag.Pantalla = pantalla;
 

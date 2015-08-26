@@ -420,10 +420,26 @@ namespace UTP.PortalEmpleabilidad.Logica
 
             return listaEjemplo;
         }
-        public List<OfertaUTP> UTP_ObtenerofertasAvanzada(string CargoOfrecido, string NombreComercial, string TipoCargo, string Sector, string Contrato, int AExperiencia, int Remuneracion, string TipoEstudio, string Conocimiento, int NroPostulante, string EstadoOferta, string TipoInformacionAdicional, string Carrera, string TipoTrabajoUTP, int nroPagina, int filasPorPagina)
+
+        public List<OfertaUTP> UTP_ObtenerofertasAvanzada(
+            string CargoOfrecido, 
+            string NombreComercial, 
+            string TipoCargo, 
+            string Sector, 
+            string Contrato, 
+            int AExperiencia, 
+            int Remuneracion, 
+            string TipoEstudio, 
+            string Conocimiento, 
+            int NroPostulante, 
+            string EstadoOferta, 
+            string TipoInformacionAdicional, 
+            string Carrera, 
+            string TipoTrabajoUTP,
+            int nroPagina, 
+            int filasPorPagina)
         {
             List<OfertaUTP> listaEjemplo = new List<OfertaUTP>();
-
 
             DataTable dtResultado = adUtp.UTP_ObtenerofertasAvanzada(CargoOfrecido, NombreComercial, TipoCargo, Sector, Contrato, AExperiencia, Remuneracion, TipoEstudio, Conocimiento, NroPostulante, EstadoOferta, TipoInformacionAdicional, Carrera, TipoTrabajoUTP, nroPagina, filasPorPagina);
 
@@ -442,13 +458,9 @@ namespace UTP.PortalEmpleabilidad.Logica
                 vista.Nrocv = Convert.ToString(dtResultado.Rows[i]["Nrocv"]);
                 vista.FechaSeguimiento = Convert.ToString(dtResultado.Rows[i]["FechaSeguimiento"]);
                 vista.FechaFinRecepcionCV = Convert.ToString(dtResultado.Rows[i]["FechaFinRecepcionCV"]);
-                //vista.FechaSeguimiento = Convert.ToDateTime(fila["FechaSeguimiento"] == DBNull.Value? (DateTime?)null :(DateTime)fila["FechaSeguimiento"]);
-
                 vista.Comentarios = Convert.ToString(dtResultado.Rows[i]["TieneComentarios"]);
-
                 vista.IdOferta = Convert.ToInt32(dtResultado.Rows[i]["IdOferta"]);
                 vista.Estado = Convert.ToString(dtResultado.Rows[i]["Estado"]);
-
                 vista.CantidadTotal = Convert.ToInt32(dtResultado.Rows[i]["CantidadTotal"]);
 
                 listaEjemplo.Add(vista);
@@ -471,9 +483,7 @@ namespace UTP.PortalEmpleabilidad.Logica
             string EstadoOferta = "", 
             string TipoInformacionAdicional = "", 
             string Carrera = "",
-            string TipoTrabajoUTP = "",
-            int nroPagina = 0, 
-            int filasPorPagina = 0)
+            string TipoTrabajoUTP = "")
         {
             return adUtp.Excel_ObtenerOfertas(CargoOfrecido, NombreComercial, TipoCargo, Sector, Contrato, AExperiencia, Remuneracion, TipoEstudio, Conocimiento, NroPostulante, EstadoOferta, TipoInformacionAdicional, Carrera, TipoTrabajoUTP);
         } 

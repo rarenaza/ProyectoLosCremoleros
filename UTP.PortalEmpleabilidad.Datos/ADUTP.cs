@@ -968,7 +968,23 @@ namespace UTP.PortalEmpleabilidad.Datos
             return dtResultado;
         }
 
-        public DataTable UTP_ObtenerofertasAvanzada(string CargoOfrecido, string NombreComercial, string TipoCargo, string sector, string Contrato, int AExperiencia, int Remuneracion, string TipoEstudio, string Conocimiento, int NroPostulante, string EstadoOferta, string TipoInformacionAdicional, string Carrera, string TipoTrabajoUTP, int nroPagina, int filasPorPagina)
+        public DataTable UTP_ObtenerofertasAvanzada(
+            string CargoOfrecido, 
+            string NombreComercial, 
+            string TipoCargo, 
+            string sector, 
+            string Contrato, 
+            int AExperiencia, 
+            int Remuneracion, 
+            string TipoEstudio, 
+            string Conocimiento, 
+            int NroPostulante, 
+            string EstadoOferta, 
+            string TipoInformacionAdicional, 
+            string Carrera, 
+            string TipoTrabajoUTP,
+            int nroPagina, 
+            int filasPorPagina)
         {
             DataTable dtResultado = new DataTable();
 
@@ -992,6 +1008,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.Parameters.Add(new SqlParameter("@TipoInformacionAdicional", TipoInformacionAdicional));
                 cmd.Parameters.Add(new SqlParameter("@Carrera", Carrera));
                 cmd.Parameters.Add(new SqlParameter("@TipoTrabajoUTP", TipoTrabajoUTP));
+                cmd.Parameters.Add(new SqlParameter("@TipoDeEstudioPrincipal", Constantes.TIPO_ESTUDIO_PRINCIPAL));
                 //Paginación:
                 cmd.Parameters.Add(new SqlParameter("@NroPaginaActual", nroPagina));
                 cmd.Parameters.Add(new SqlParameter("@FilasPorPagina", filasPorPagina));
@@ -1050,6 +1067,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.Parameters.Add(new SqlParameter("@TipoInformacionAdicional", TipoInformacionAdicional));
                 cmd.Parameters.Add(new SqlParameter("@Carrera", Carrera));
                 cmd.Parameters.Add(new SqlParameter("@TipoTrabajoUTP", TipoTrabajoUTP));
+                cmd.Parameters.Add(new SqlParameter("@TipoDeEstudioPrincipal", Constantes.TIPO_ESTUDIO_PRINCIPAL));
 
                 cmd.Connection = conexion;
 
@@ -1440,6 +1458,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.CommandText = "Reporte_Carreras_Sin_Ofertas_de_Practicas";
                 cmd.Parameters.Add(new SqlParameter("@Ano", ano));
                 cmd.Parameters.Add(new SqlParameter("@Mes", mes));
+                cmd.Parameters.Add(new SqlParameter("@TipoDeEstudioPrincipal", Constantes.TIPO_ESTUDIO_PRINCIPAL));
                 cmd.Connection = conexion;
                 conexion.Open();
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -1459,6 +1478,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.CommandText = "Reporte_Carreras_Sin_Ofertas_de_Empleo";
                 cmd.Parameters.Add(new SqlParameter("@Ano", ano));
                 cmd.Parameters.Add(new SqlParameter("@Mes", mes));
+                cmd.Parameters.Add(new SqlParameter("@TipoDeEstudioPrincipal", Constantes.TIPO_ESTUDIO_PRINCIPAL));
                 cmd.Connection = conexion;
                 conexion.Open();
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -1563,6 +1583,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "Reporte_Alumnos_Por_Carrera";
+                cmd.Parameters.Add(new SqlParameter("@TipoDeEstudioPrincipal", Constantes.TIPO_ESTUDIO_PRINCIPAL));
                 cmd.Connection = conexion;
                 conexion.Open();
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -1597,6 +1618,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                 SqlCommand cmd = new SqlCommand();
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "Reporte_Carreras_Mas_Demandadas_Top10";
+                cmd.Parameters.Add(new SqlParameter("@TipoDeEstudioPrincipal", Constantes.TIPO_ESTUDIO_PRINCIPAL));
                 cmd.Connection = conexion;
                 conexion.Open();
                 SqlDataAdapter da = new SqlDataAdapter(cmd);

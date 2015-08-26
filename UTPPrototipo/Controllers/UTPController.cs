@@ -398,7 +398,6 @@ namespace UTPPrototipo.Controllers
                 listItemEstadoEstudio.Add(item);
             }
 
-
             //Lista de Combos
             ViewBag.ListaSectorEmpresarial = listItemSector;
             ViewBag.ListaSexo = listItemSexo;
