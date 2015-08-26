@@ -162,6 +162,7 @@ namespace UTP.PortalEmpleabilidad.Modelo
         #endregion
 
         public static string NOMBRE_UTP = "Instituto IDAT";
+        public static string CORREO_PRINCIPAL = "empleos@idat.edu.pe";
 
         public const string TICKET_EMITIDO = "EVTKEM";
 

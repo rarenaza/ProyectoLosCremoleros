@@ -414,7 +414,7 @@ input[type="checkbox"].input-validation-error {
     .LogoUTPPE {  width:317px; }
     .LogoUTPPE2 { width:190px; }
     .cuerpo-zona-alumno,
-    .cuerpo-zona-empresa { padding-top: 90px; }
+    .cuerpo-zona-empresa { padding-top: 100px; }
 }
 @media screen and (max-width: 1200px) {
     .LogoUTPPE {

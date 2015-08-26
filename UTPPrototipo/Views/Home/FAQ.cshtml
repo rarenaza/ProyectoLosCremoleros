@@ -1,102 +1,76 @@
 ﻿@{
     ViewBag.Title = "FAQ";
 }
-
+<div class="faq">
+@Html.Partial("Menu")
 <div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1>Preguntas Frecuentes</h1>
 
-    <br />
+            <h3>Recomendaciones para el postulante</h3>
+            <ul>
+                <li>Evitar compartir información confidencial o documentación no relacionada con un proceso de selección, como por ejemplo: recibos de compras/servicios, títulos de propiedad y estados de cuenta bancaria.</li>
+                <li>No realizar pagos previos ni acudir a lugares sospechosos para participar en un proceso de reclutamiento.</li>
+                <li>Es de suma importancia contar con un correo electrónico profesional.</li>
+            </ul>
 
-    <div class="jumbotron">
+            <h3>¿Cómo ingreso al Portal?</h3>
+            <ul>
+                <li>Para ingresar al Portal del alumno, debe hacer clic sobre el vínculo “Ingresar” que se encuentra en la sección superior del lado derecho. Una vez hecho esto, aparecerá una ventana solicitando su usuario y clave de acceso. En el campo usuario deberá ingresar su código de alumno, y en clave, la misma que utiliza para los servicios del Instituto (Intranet, Matrícula, Office 365, etc.). Asimismo, deberá escribir el código Captcha (las letras en el cuadro de color gris en medio de la ventana), y por último presionar el botón ingresar.</li>
+            </ul>
 
-        En construcción
+            <h3>¿Qué sucede si no recuerdo mi clave?</h3>
+            <ul>
+                <li>Si es alumno y no recuerda su clave de acceso para los servicios del Instituto, deberá escribir un correo a Mesa de ayuda: mesadeayuda@utp.edu.pe, solicitando el envío de su clave. ¿Cómo genero una nueva clave?</li>
+            </ul>
+            
+            <h3>¿Cómo genero una nueva clave?</h3>
+            <ul>
+                <li>Si es egresado y desea generar una clave de acceso, deberá escribir un correo a Mesa de ayuda: mesadeayuda@utp.edu.pe, solicitando el envío de su clave.</li>
+            </ul>
+            
+            <h3>¿A qué correo llegan los mensajes del Portal de Empleabilidad?</h3>
+            <ul>
+                <li>Los mensajes del Portal llegarán a su correo institucional.</li>
+            </ul>
+ 
+            <h3>¿Es importante subir mi fotografía al currículum vitae?</h3>
+            <ul>
+                <li>Es de gran relevancia publicar su fotografía en el currículum vitae, debido a que esta imagen será la primera impresión para el potencial empleador. Tener en cuenta que la fotografía debe reflejar profesionalismo, ser formal y de preferencia en fondo blanco.</li>
+            </ul>       
 
+            <h3>¿Cómo construyo mi CV online?</h3>
+            <ul>
+                <li>Parte de la información para el CV se obtiene de los Sistemas Bases de IDAT (nombre completo, número de DNI y estudios realizados en el instituto). Dichos datos no podrán ser modificados. Sin embargo, puede complementar su CV con otra información relevante (estudios en otras entidades, manejo de software, idiomas, etc.). Considere tener su CV al 100% de cumplimiento, ya que no podrá postular a ninguna oferta laboral si no cumple con esta condición.</li>
+            </ul>
+                 
+            <h3>¿Puedo modificar mis datos personales?</h3>
+            <ul>
+                <li>Sí, puede modificar su teléfono, correo y dirección.</li>
+            </ul>
+
+            <h3>¿Cómo postulo a una oferta laboral?</h3>
+            <ul>
+                <li>Para postular a un aviso laboral, ingrese a la sección “Ofertas” y escriba la palabra clave del mismo. También, puede seleccionar la opción “Búsqueda avanzada” para filtrar las convocatorias de su interés. Recomendamos esta última opción.</li>
+            </ul>
+
+            <h3>¿Puedo modificar mi CV una vez me haya inscrito en una oferta?</h3>
+            <ul>
+                <li>Si una vez inscrito a una oferta laboral desea modificar la información de su currículum, la empresa siempre verá la última versión online del mismo.</li>
+            </ul>
+
+            <h3>¿La empresa puede escribirme un mensaje sobre mi postulación laboral?</h3>
+            <ul>
+                <li>Sí, la empresa puede escribirle al respecto, siempre y cuando lo crea conveniente. Dicha comunicación, llegará a su Portal y al correo institucional.</li>
+            </ul>
+
+            <h3>¿Puedo escribirle un mensaje a la empresa?</h3>
+            <ul>
+                <li>Para escribirle un mensaje a la empresa, es requisito que haya postulado a una oferta laboral vigente de dicha organización. Asimismo, que la empresa le haya escrito primero. Tener presente que la comunicación deberá referirse al proceso de selección.</li>
+            </ul>
+        </div>
     </div>
 </div>
-
-@*<div class="container">
-        <br />
-        <h4 style="text-align:center;"><strong>FAQ - Respuestas a preguntas frecuentes</strong></h4>
-        <hr />
-        <div class="panel-group" id="FAQ-001" role="tablist" aria-multiselectable="true">
-            <div class="panel panel-default">
-                <div class="panel-heading" role="tab" id="headingFAQ001">
-                    <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#FAQ001" href="#collapseFAQ001" aria-expanded="true" aria-controls="collapseFAQ001">
-                            1. ¿Enim eiusmod high life accusamus?
-                        </a>
-                    </h4>
-                </div>
-                <div id="collapseFAQ001" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFAQ001">
-                    <div class="panel-body">
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="panel-group" id="FAQ-002" role="tablist" aria-multiselectable="true">
-            <div class="panel panel-default">
-                <div class="panel-heading" role="tab" id="headingFAQ002">
-                    <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#FAQ002" href="#collapseFAQ002" aria-expanded="true" aria-controls="collapseFAQ002">
-                            2. ¿Pariatur cliche reprehenderit?
-                        </a>
-                    </h4>
-                </div>
-                <div id="collapseFAQ002" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFAQ002">
-                    <div class="panel-body">
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="panel-group" id="FAQ-003" role="tablist" aria-multiselectable="true">
-            <div class="panel panel-default">
-                <div class="panel-heading" role="tab" id="headingFAQ003">
-                    <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#FAQ003" href="#collapseFAQ003" aria-expanded="true" aria-controls="collapseFAQ003">
-                            3. ¿Wolf moon officia aute?
-                        </a>
-                    </h4>
-                </div>
-                <div id="collapseFAQ003" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFAQ003">
-                    <div class="panel-body">
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="panel-group" id="FAQ-004" role="tablist" aria-multiselectable="true">
-            <div class="panel panel-default">
-                <div class="panel-heading" role="tab" id="headingFAQ004">
-                    <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#FAQ004" href="#collapseFAQ004" aria-expanded="true" aria-controls="collapseFAQ004">
-                            4. ¿Terry richardson ad squid?
-                        </a>
-                    </h4>
-                </div>
-                <div id="collapseFAQ004" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFAQ004">
-                    <div class="panel-body">
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="panel-group" id="FAQ-005" role="tablist" aria-multiselectable="true">
-            <div class="panel panel-default">
-                <div class="panel-heading" role="tab" id="headingFAQ005">
-                    <h4 class="panel-title">
-                        <a data-toggle="collapse" data-parent="#FAQ005" href="#collapseFAQ005" aria-expanded="true" aria-controls="collapseFAQ005">
-                            5. ¿Cliche reprehenderit, enim eiusmod high life?
-                        </a>
-                    </h4>
-                </div>
-                <div id="collapseFAQ005" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFAQ005">
-                    <div class="panel-body">
-                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>*@
-
-
+@Html.Partial("Footer")
+</div>
