@@ -302,6 +302,34 @@ namespace UTPPrototipo.Controllers
             return File(this.Word2PDF(this.CrearCurriculum(idCV, fileSourcePath).ToArray()), "application/octet-stream", filename);
         }
 
+        public FileResult DescargarConvenioPlantilla(int idPlantilla)
+        {
+            byte[] fileBytes = null;
+            string fileName = null;
+            switch (idPlantilla)
+            {
+                case 1:
+                    fileName = "Modelo de Convenio de Prácticas Pre Profesionales.doc";
+                    fileBytes = System.IO.File.ReadAllBytes(Server.MapPath("~/Plantillas/" + fileName));
+                    break;
+                case 2:
+                    fileName = "Modelo de Convenio de Prácticas Profesionales.doc";
+                    fileBytes = System.IO.File.ReadAllBytes(Server.MapPath("~/Plantillas/" + fileName));
+                    break;
+                case 3:
+                    fileName = "Plan de Capacitación.doc";
+                    fileBytes = System.IO.File.ReadAllBytes(Server.MapPath("~/Plantillas/" + fileName));
+                    break;
+                case 4:
+                    fileName = "Ley sobre modalidades formativas laborales.pdf";
+                    fileBytes = System.IO.File.ReadAllBytes(Server.MapPath("~/Plantillas/" + fileName));
+                    break;
+                default:
+                    break;
+            }            
+            return File(fileBytes, "application/octec-stream", fileName);
+        }
+
         public byte[] Word2PDF(byte[] file)
         {
             string dir = AppDomain.CurrentDomain.BaseDirectory + "tmp\\";

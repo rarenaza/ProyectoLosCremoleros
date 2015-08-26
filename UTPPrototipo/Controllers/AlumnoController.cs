@@ -1430,5 +1430,9 @@ namespace UTPPrototipo.Controllers
         {
             return View();
         }
+        public ActionResult Convenios()
+        {
+            return View();
+        }
     }
 }
