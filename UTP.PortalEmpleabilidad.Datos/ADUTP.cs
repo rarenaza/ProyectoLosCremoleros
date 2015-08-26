@@ -390,7 +390,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.Parameters.Add(new SqlParameter("@EvaluadorAlumno", convenio.EvaluadorAlumno));
                 cmd.Parameters.Add(new SqlParameter("@NotaEvaluacionEvaluador", convenio.NotaEvaluacionEvaluador));
                 cmd.Parameters.Add(new SqlParameter("@CodigoAlumno", convenio.CodAlumnoUtp));
-                cmd.Parameters.Add(new SqlParameter("@MesInicio", DBNull.Value));
+                cmd.Parameters.Add(new SqlParameter("@MesInicio", DBNull.Value));  
 
 
                 cmd.Connection = conexion;
