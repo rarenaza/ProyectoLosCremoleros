@@ -940,10 +940,19 @@ namespace UTP.PortalEmpleabilidad.Datos
                     cmd.Parameters.Add(new SqlParameter("@IdOferta", encuesta.IdOferta));
                     cmd.Parameters.Add(new SqlParameter("@Calificacion", encuesta.Calificacion));
                     cmd.Parameters.Add(new SqlParameter("@NroPostulantes", encuesta.NroPostulantes));
-                    cmd.Parameters.Add(new SqlParameter("@ContratadosUTP", encuesta.ContratadosUTP));
-                    cmd.Parameters.Add(new SqlParameter("@ContratadosOtros", encuesta.ContratadosOtros));
+                    cmd.Parameters.Add(new SqlParameter("@ContratadosUTP", DBNull.Value));
+                    cmd.Parameters.Add(new SqlParameter("@ContratadosOtros", DBNull.Value));
                     cmd.Parameters.Add(new SqlParameter("@EstadoOferta", encuesta.Estado));
                     cmd.Parameters.Add(new SqlParameter("@ModificadoPor", encuesta.ModificadoPor));
+                   
+                    cmd.Parameters.Add(new SqlParameter("@EncuestaContratadosIDAT", (encuesta.ContratadosIDAT == "Si" ?  true : false)));
+                    cmd.Parameters.Add(new SqlParameter("@EncuestaNombreYApellidos", encuesta.NombreYApellido));
+                    cmd.Parameters.Add(new SqlParameter("@EncuestaModalidadContrato", encuesta.ModalidadContrato));
+                    cmd.Parameters.Add(new SqlParameter("@EncuestaPuntualidad", encuesta.Puntualidad));
+                    cmd.Parameters.Add(new SqlParameter("@EncuestaImagenPersonal", encuesta.ImagenPersonal));
+                    cmd.Parameters.Add(new SqlParameter("@EncuestaConocimientos", encuesta.Conocimientos));
+                    cmd.Parameters.Add(new SqlParameter("@EncuestaExperiencia", encuesta.Experiencia));
+                    cmd.Parameters.Add(new SqlParameter("@EncuestaDisponibilidad", encuesta.Disponibilidad));
                     
                     cmd.Connection = conexion;
                     conexion.Open();
