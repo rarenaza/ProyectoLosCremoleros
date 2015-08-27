@@ -4021,51 +4021,50 @@ namespace UTPPrototipo.Controllers
             ViewBag.TipoBusqueda = "Simple";
 
             return PartialView("_UsuariosEmpresaLista", lista);
-            //}
-            //else
-            //{
-            //    var errors = ModelState.Select(x => x.Value.Errors)
-            //               .Where(y => y.Count > 0)
-            //               .ToList();
-
-            //    int a = 0;
-            //}
-            //return PartialView("_AdministrarUsuarioEditar", empresaUsuario);
         }
-/*
-        public ActionResult BuscarDatosEmpresasUTP(int idempresa)
-        {
-            //string descripocn = "";
-
-            LNAlumno lnAlumno = new LNAlumno();
-            EmpresaUsuario vista = new EmpresaUsuario();
-            LNEmpresaLocacion lnEmpresaLocacion = new LNEmpresaLocacion();
-
-            DataTable dtResultado = lnAlumno.Utp_BuscarDatosListaEmpresas(idempresa);
-
-            if (dtResultado.Rows.Count > 0)
-            {
-
-                //vista.idEmpresa =Convert.ToInt32 (dtResultado.Rows[0]["IdEmpresa"]);
-
-                vista.CodigoEmpresa = dtResultado.Rows[0]["IdEmpresa"].ToString();
-
-                vista.ListaUbicaciones = dtResultado.Rows[0]["IdEmpresaLocacion"].ToString();
-
-            }
-
-
-            return Json(vista, JsonRequestBehavior.AllowGet);
-
-        }*/
 
         public JsonResult BuscarDatosEmpresasUTP(int id)
         {
             LNEmpresaLocacion lnEmpresaLocacion = new LNEmpresaLocacion();
             List<VistaEmpresaLocacion> listVistaEmpresaLocacion = lnEmpresaLocacion.ObtenerLocacionesPorIdEmpresa(id);
-            //List<SelectListItem> li = new List<SelectListItem>();
 
             return Json(new SelectList(listVistaEmpresaLocacion, "IdEmpresaLocacion", "NombreLocacion"), JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Contacto(string pantalla = "")
+        {
+            Mensaje mensaje = new Mensaje();
+            mensaje.Pantalla = pantalla;
+
+            switch (pantalla) {
+                case Constantes.MENSAJES_EMPRESA_CONTACTO:
+                    TicketEmpresa ticketEmpresa = (TicketEmpresa)Session["TicketEmpresa"];
+
+                    mensaje.DeUsuario = ticketEmpresa.Usuario;
+                    mensaje.DeUsuarioCorreoElectronico = ticketEmpresa.CorreoElectronico;
+                    mensaje.DeUsuarioNombre = ticketEmpresa.Nombre;
+                    break;
+                case Constantes.MENSAJES_ALUMNO_CONTACTO:
+                    TicketAlumno ticketAlumno = (TicketAlumno)Session["TicketAlumno"];
+
+                    mensaje.DeUsuario = ticketAlumno.Usuario;
+                    mensaje.DeUsuarioCorreoElectronico = ticketAlumno.CorreoElectronico;
+                    mensaje.DeUsuarioNombre = ticketAlumno.Nombre;
+                    break;
+                default:
+                    mensaje.DeUsuario = Constantes.NOMBRE_UTP;
+                    mensaje.DeUsuarioCorreoElectronico = Constantes.CORREO_PRINCIPAL;
+                    break;
+            }
+
+            ViewBag.Pantalla = pantalla;
+
+            return View(mensaje);
+        }
+
+        public ActionResult Ubicacion()
+        {
+            return View();
         }
 
     }

@@ -505,6 +505,10 @@
     <Content Include="fonts\simplow00-black-webfont.otf" />
     <Content Include="fonts\simplow00-black-webfont.ttf" />
     <Content Include="fonts\simplow00-black-webfont.woff" />
+    <Content Include="Plantillas\ley-sobre-modalidades-formativas-laborales.pdf" />
+    <Content Include="Plantillas\modelo-de-convenio-de-practicas-pre-profesionales.doc" />
+    <Content Include="Plantillas\modelo-de-convenio-de-practicas-profesionales.doc" />
+    <Content Include="Plantillas\plan-de-capacitacion.doc" />
     <None Include="Properties\PublishProfiles\PortalV1.pubxml" />
     <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\Chart.min.js" />
@@ -1114,6 +1118,10 @@
     <Content Include="Views\Home\Empresa.cshtml" />
     <Content Include="Views\Home\Testimonios - Copy.cshtml" />
     <Content Include="Views\Shared\MenuIntra.cshtml" />
+    <Content Include="Views\UTP\Contacto.cshtml" />
+    <Content Include="Views\UTP\Ubicacion.cshtml" />
+    <Content Include="Views\Shared\MenuIntraEmpresa.cshtml" />
+    <Content Include="Views\Shared\MenuIntraAlumno.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

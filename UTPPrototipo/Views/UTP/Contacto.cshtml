@@ -1,0 +1,116 @@
+﻿@model UTP.PortalEmpleabilidad.Modelo.Mensaje
+@using UTP.PortalEmpleabilidad.Modelo
+@{  
+    ViewBag.Title = "Contacto";
+    switch ((string)ViewBag.Pantalla) 
+    {
+        case Constantes.MENSAJES_ALUMNO_CONTACTO:
+            Layout = "~/Views/Alumno/_LayoutAlumno.cshtml";
+            break;
+        case Constantes.MENSAJES_EMPRESA_CONTACTO: 
+            Layout = "~/Views/Empresa/_LayoutEmpresa.cshtml";
+            break;
+        default: 
+            Layout = "~/Views/UTP/_LayoutUTP.cshtml";
+            break;
+    }
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="container">
+            
+        <div class="col-lg-12">
+        @Html.HiddenFor(m => m.Pantalla)
+        <div class="row" style="color: #333;">
+            <div class="col-sm-12">
+                <h2 class="text-center">Contáctanos</h2>
+            </div>
+            <div class="col-lg-12">
+                <p>Mensaje</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="input-group ">
+                    <span class="input-group-addon ">Nombre</span>
+                    @Html.HiddenFor(m => m.DeUsuarioNombre)
+                    <input type="text" class="form-control fuente-pequeña" placeholder="Ingrese su Correo Electrónico" value="@Model.DeUsuarioNombre" disabled>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="input-group ">
+                    <span class="input-group-addon ">Email</span>
+                    @Html.HiddenFor(m => m.DeUsuario)
+                    @Html.HiddenFor(m => m.DeUsuarioCorreoElectronico)
+                    <input type="text" class="form-control fuente-pequeña" placeholder="Ingrese su Correo Electrónico" value="@Model.DeUsuarioCorreoElectronico" disabled>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="input-group ">
+                    <span class="input-group-addon ">Asunto</span>
+                    <input id="Asunto" type="text" class="form-control" name="Asunto" placeholder="Ingrese el Asunto de su correo">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="input-group ">
+                    <span class="input-group-addon ">Mensaje</span>
+                    <textarea id="MensajeTexto" class="form-control" name="MensajeTexto" placeholder="Ingrese su Mensaje" rows="7"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12" style="text-align:right;">
+                <button onclick="return validarDatos();" class="btn btn-default color-paleta1">Enviar Mensaje</button>
+            </div>
+        </div>
+        </div>
+    </div>
+}
+
+@{
+    //Se valida que exista mensaje de éxito al crear una oferta
+    if (TempData["MsjExitoCrearMensaje"] != null)
+    {
+        <input id="msjExitoCrearMensaje" type="hidden" value="@TempData["MsjExitoCrearMensaje"]" />
+        TempData["MsjExitoCrearMensaje"] = null; //Se establece el valor nuevamente en NULL.
+
+        //Se muestra el script
+        <script>
+            var msjExito = document.getElementById("msjExitoCrearMensaje").value;
+            alert(msjExito);
+
+        </script>
+    }
+
+}
+
+<script>
+
+    function validarDatos() {
+        
+        var asunto = $('#Asunto').val();
+        var mensaje = $('#MensajeTexto').val();
+
+        var mensajeError = "";
+      
+        if (asunto == "") mensajeError += "No ha ingresado el asunto. \r";
+        if (mensaje == "") mensajeError += "No ha ingresado mensaje. \r";
+
+        if (mensajeError == "") {
+            return true;
+        }
+        else {
+            alert(mensajeError);
+            return false;
+        }
+    }
+
+</script>
