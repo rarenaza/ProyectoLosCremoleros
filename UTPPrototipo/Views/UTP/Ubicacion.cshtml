@@ -1,0 +1,46 @@
+﻿@model UTP.PortalEmpleabilidad.Modelo.Mensaje
+@using UTP.PortalEmpleabilidad.Modelo
+@{  
+    ViewBag.Title = "Ubicación";
+    switch ((string)ViewBag.Pantalla) 
+    {
+        case Constantes.MENSAJES_ALUMNO_CONTACTO:
+            Layout = "~/Views/Alumno/_LayoutAlumno.cshtml";
+            break;
+        case Constantes.MENSAJES_EMPRESA_CONTACTO: 
+            Layout = "~/Views/Empresa/_LayoutEmpresa.cshtml";
+            break;
+        default: 
+            Layout = "~/Views/UTP/_LayoutUTP.cshtml";
+            break;
+    }
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="container">
+        <div class="col-lg-12">
+            <div class="row" style="color: #333;">
+                <div class="col-lg-12">
+                    <br />
+                    <br />
+                    <dl>
+                        <dt>Correo:</dt>
+                        <dd>empleos@idat.edu.pe</dd>
+                        <dt>Teléfono:</dt>
+                        <dd>(+511) 315 9600 - Anexos 1977, 1976, 1938, 1993, 2237, 1930.</dd>
+                        <dt>Dirección:</dt>
+                        <dd>Av. Petit Thouars 180, Lima.</dd>
+                    </dl>
+                </div>
+            </div>
+
+            <div class="row" style="margin-bottom: 90px;">
+                <div class="col-lg-12">
+                    <img src="~/img/IDAT/map.png" alt="Alternate Text" width="100%" />
+                </div>
+            </div>
+        </div>
+    </div>
+}

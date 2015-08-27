@@ -309,24 +309,25 @@ namespace UTPPrototipo.Controllers
             switch (idPlantilla)
             {
                 case 1:
-                    fileName = "Modelo de Convenio de Prácticas Pre Profesionales.doc";
+                    fileName = "modelo-de-convenio-de-practicas-pre-profesionales.doc";
                     fileBytes = System.IO.File.ReadAllBytes(Server.MapPath("~/Plantillas/" + fileName));
                     break;
                 case 2:
-                    fileName = "Modelo de Convenio de Prácticas Profesionales.doc";
+                    fileName = "modelo-de-convenio-de-practicas-profesionales.doc";
                     fileBytes = System.IO.File.ReadAllBytes(Server.MapPath("~/Plantillas/" + fileName));
                     break;
                 case 3:
-                    fileName = "Plan de Capacitación.doc";
+                    fileName = "plan-de-capacitacion.doc";
                     fileBytes = System.IO.File.ReadAllBytes(Server.MapPath("~/Plantillas/" + fileName));
                     break;
                 case 4:
-                    fileName = "Ley sobre modalidades formativas laborales.pdf";
+                    fileName = "ley-sobre-modalidades-formativas-laborales.pdf";
                     fileBytes = System.IO.File.ReadAllBytes(Server.MapPath("~/Plantillas/" + fileName));
                     break;
                 default:
                     break;
-            }            
+            }         
+   
             return File(fileBytes, "application/octec-stream", fileName);
         }
 
@@ -355,6 +356,7 @@ namespace UTPPrototipo.Controllers
                 app.Documents.Close();
                 app.Quit();
                 output = System.IO.File.ReadAllBytes(pdf);
+
                 // Clean temporal files
                 System.IO.File.Delete(word);
                 System.IO.File.Delete(pdf);
@@ -624,7 +626,6 @@ namespace UTPPrototipo.Controllers
                 #endregion
 
                 doc.Save();     
-
             }
 
             return stream;
