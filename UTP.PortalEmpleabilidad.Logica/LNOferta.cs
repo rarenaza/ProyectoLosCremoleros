@@ -799,7 +799,7 @@ namespace UTP.PortalEmpleabilidad.Logica
         public void CompletarEncuesta(OfertaEncuesta encuesta)
         {
             if (encuesta.ContratadosOtros == null) encuesta.ContratadosOtros = "";
-
+            
             adOferta.CompletarEncuesta(encuesta);
         }
     }

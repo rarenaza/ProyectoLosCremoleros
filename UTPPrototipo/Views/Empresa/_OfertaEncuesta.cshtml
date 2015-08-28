@@ -37,20 +37,96 @@
 
 
         <div class="form-group">
-            <label>3.	¿Cuántas personas contratadas son de la UTP?</label>
+            <label>3.	¿Contrató alguno de IDAT?</label>
             <br />
-            @Html.TextBoxFor(m => m.ContratadosUTP, new { @class = "form-control", style = "width: 80px;" })
-            @Html.ValidationMessageFor(m => m.ContratadosUTP, "", new { @class = "text-danger" })
+            @Html.RadioButtonFor(a => a.ContratadosIDAT, "Si", new { @id= ""}) &nbsp; Si &nbsp;&nbsp;
+            @Html.RadioButtonFor(a => a.ContratadosIDAT, "No", new { @id = "" }) &nbsp; No
+            @*@Html.TextBoxFor(m => m.ContratadosUTP, new { @class = "form-control", style = "width: 80px;" })*@
+            @Html.ValidationMessageFor(m => m.ContratadosIDAT, "", new { @class = "text-danger" })
         </div>
 
+        <div class="form-group" id="divCiudadCombo" style="display:none;">
+            <div class=" input-group fuente-pequeña">
+                <span class="input-group-addon">Nombres y Apellidos</span>
+                @Html.TextBoxFor(m => m.NombreYApellido, null, htmlAttributes: new { @class = "form-control", @id = "CiudadCombo" })
+            </div>
+            @Html.ValidationMessageFor(m => m.NombreYApellido, "", new { @class = "text-danger" })
+            <br />
+            @Html.RadioButtonFor(a => a.ModalidadContrato, "Practicas", new { @id = "" }) &nbsp; Prácticas &nbsp;&nbsp;
+            @Html.RadioButtonFor(a => a.ModalidadContrato, "Empleo", new { @id = "" }) &nbsp; Empleo &nbsp;&nbsp;
+            @Html.RadioButtonFor(a => a.ModalidadContrato, "Proyecto", new { @id = "" }) &nbsp; Proyecto 
+        </div>
         <div class="form-group">
-            <label>4.	¿De qué otras universidades son las personas que se han contratado para este cargo?</label>
+            <label>4.	En General, qué apreciación le mereció "el postulante IDAT" al momento del proceso de selección.</label>
             <br />
-            @Html.TextBoxFor(m => m.ContratadosOtros, new { @class = "form-control" })
-            @Html.ValidationMessageFor(m => m.ContratadosOtros, "", new { @class = "text-danger" })
-
+            <table class="table table-bordered" >
+                <tbody>
+                    <tr>
+                        <td style="width: 140px;"></td>
+                    @for (int i = 0; i < Model.Calificaciones.Count - 1; i++)
+                    {
+                        <td style="text-align:center">@Model.Calificaciones[i].Valor.Trim()</td>
+                    }
+                    </tr>
+                    <tr>
+                        <td>Puntualidad a la hora de entrevista</td>
+                        @for (int i = 0; i < Model.Calificaciones.Count-1; i++)
+                        {
+                            <td style="text-align:center">
+                                <span>
+                                @Html.RadioButtonFor(a => a.Puntualidad, Model.Calificaciones[i].IdListaValor, new { @style = "vertical-align: text-bottom;" }) 
+                                </span>
+                            </td>
+                        }
+                    </tr>
+                    <tr>
+                        <td>Imagen personal</td>
+                        @for (int i = 0; i < Model.Calificaciones.Count - 1; i++)
+                        {
+                            <td style="text-align:center">
+                                <span>
+                                    @Html.RadioButtonFor(a => a.ImagenPersonal, Model.Calificaciones[i].IdListaValor, new { @style = "vertical-align: text-bottom;" })
+                                </span>
+                            </td>
+                        }
+                    </tr>
+                    <tr>
+                        <td>Conocimientos propios de la carrera</td>
+                        @for (int i = 0; i < Model.Calificaciones.Count - 1; i++)
+                        {
+                            <td style="text-align:center">
+                                <span>
+                                    @Html.RadioButtonFor(a => a.Conocimientos, Model.Calificaciones[i].IdListaValor, new { @style = "vertical-align: text-bottom;" })
+                                </span>
+                            </td>
+                        }
+                    </tr>
+                    <tr>
+                        <td>Experiencia laboral de acuerdo al puesto</td>
+                        @for (int i = 0; i < Model.Calificaciones.Count - 1; i++)
+                        {
+                            <td style="text-align:center">
+                                <span>
+                                    @Html.RadioButtonFor(a => a.Experiencia, Model.Calificaciones[i].IdListaValor, new { @style = "vertical-align: text-bottom;" })
+                                </span>
+                            </td>
+                        }
+                    </tr>
+                    <tr>
+                        <td>Disponibilidad de tiempo</td>
+                        @for (int i = 0; i < Model.Calificaciones.Count - 1; i++)
+                        {
+                            <td style="text-align:center">
+                                <span>
+                                    @Html.RadioButtonFor(a => a.Disponibilidad, Model.Calificaciones[i].IdListaValor, new { @style = "vertical-align: text-bottom;" })
+                                </span>
+                            </td>
+                        }
+                    </tr>                  
+                </tbody>
+            </table>
+            @Html.ValidationMessageFor(m => m.Calificacion, "", new { @class = "text-danger" })
         </div>
-
     </div>
     <div class="modal-footer">
         <div class="row">
@@ -62,7 +138,12 @@
         </div>
     </div>
 </div>
-
+<script>
+    $('[name=ContratadosIDAT]').change(function () {
+        var display = $('[name=ContratadosIDAT]:checked').val();
+        $("#divCiudadCombo").css('display', display == "Si" ? 'block' : 'none');
+    });
+</script>
 
 
 
