@@ -106,7 +106,7 @@ p {
   margin-bottom: 10px;
 }
 .navbar-fixed-top .navbar-collapse,
-.navbar-fixed-bottom .navbar-collapse { max-height: 370px; }
+.navbar-fixed-bottom .navbar-collapse { max-height: 375px; }
 /*
 ============
 == LAYOUT ==
@@ -144,7 +144,7 @@ p {
 }
 .card {
   position: relative;
-  height: 400px;
+  height: 300px;
   overflow: hidden;
 }
 .card__wrapper { 
@@ -180,8 +180,12 @@ p {
   padding: 8px 16px;
   font-weight: 700;
   text-transform: uppercase;
-  color: #fff;
+  color: #f00;
+  background-color: #fff;
+  background-color: rgba(255, 255, 255, .8);
+  border-top-right-radius: 8px;
   border: 2px solid #fff;
+  border: 2px solid rgba(255, 255, 255, .3);
 }
 .bg {
   position: absolute;
@@ -203,25 +207,27 @@ p {
   background-color: rgba(0,0,0,.8);
 }
 /* web */
+.navbar .LogoUTPPE2 { width: 190px !important; }
 .navigation {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 64px;
+  height: 100px;
   background-color: #fff;
 }
 .navigation__logo {
   float: left;
-  height: 64px;
+  height: 91px;
+  margin: 4px 0;
 }
 .navigation__links {
-  margin-top: 8px;
-  line-height: 48px;
+  height: 48px;
+  margin: 26px 0;
 }
 .navigation__links li {
-  margin-left: 16px;
-  margin-right: 16px;
+  margin-left: 24px;
+  margin-right: 24px;
 }
 .navigation__links li a { 
     color: #666; 
@@ -236,12 +242,12 @@ p {
     background-color: #fff;
 }
 .navigation .navbar-collapse.collapse.in {  
-    border-top: 3px solid #f00; 
-    border-bottom: 3px solid #f00; 
+    /*border-top: 3px solid #f00; 
+    border-bottom: 3px solid #f00;*/
 }
 .navigation .navbar-toggle {
     padding: 0;
-    margin: 24px 0 0 0;
+    margin: 42px 0 0 0;
 }
 .navigation .navbar-toggle .icon-bar { background-color: #555; }
 /* footer */
@@ -272,11 +278,11 @@ p {
 .home { overflow-x: hidden; }
 .home__header {
   position: relative;
-  height: 100%;
+  height: 80%;
 }
 .home__header__slider {
   position: absolute;
-  top: 64px;
+  top: 100px;
   right: 0;
   bottom: 0;
   left: 0;
@@ -297,7 +303,7 @@ p {
 .home__header__slider__pager {
   position: absolute;
   bottom: 32px;
-  left: 32px;
+  left: 105px;
   z-index: 9999;
 }
 .home__header__slider__pager div {
@@ -305,8 +311,8 @@ p {
   display: inline-block;
   width: 24px;
   height: 24px;
-  margin-left: 4px;
-  margin-right: 4px;
+  margin-left: 15px;
+  margin-right: 15px;
   background-color: #fff;
   border: 2px solid #f00;
   border-radius: 50%;
@@ -355,17 +361,17 @@ p {
 .home__body__content__publications {
   position: absolute;
   top: 50%;
-  height: 60%;
+  height: auto;
   margin-bottom: 0;
   padding-left: 0;
-  -webkit-transform: translate(0,-60%);
-  -moz-transform: translate(0,-60%);
-  -ms-transform: translate(0,-60%);
-  transform: translate(0,-60%);
-  -webkit-transform: translate3d(0,-60%,0);
-  -moz-transform: translate3d(0,-60%,0);
-  -ms-transform: translate3d(0,-60%,0);
-  transform: translate3d(0,-60%,0);
+  -webkit-transform: translate(0,-50%);
+  -moz-transform: translate(0,-50%);
+  -ms-transform: translate(0,-50%);
+  transform: translate(0,-50%);
+  -webkit-transform: translate3d(0,-50%,0);
+  -moz-transform: translate3d(0,-50%,0);
+  -ms-transform: translate3d(0,-50%,0);
+  transform: translate3d(0,-50%,0);
 }
 .home__body__content__publications .card { margin-bottom: 16px; }
 /* common pages */
@@ -381,7 +387,7 @@ p {
 .testimonials__body__content,
 .enterprise__body__content {
   position: absolute;
-  top: 64px;
+  top: 100px;
   right: 0;
   bottom: 0;
   left: 0;
@@ -542,23 +548,24 @@ p {
     color: #f00;
     margin: 0 0 10px 0;
 }
-.unstoppable__body__content__slider .cycle-slideshow > div img {
+.unstoppable__body__content__slider .cycle-slideshow > div img:not(.not-border) {
   float: right;
   width: 300px;
   height: 80%;
   margin: 5% 16px;
   border-top-right-radius: 32px;
+  border: 2px solid #f00;
 }
 /* testimonials */
 .testimonials__header { position: relative; }
 .testimonials__header__bg {
   width: 100%; 
   min-height: 300px;
-  margin-top: 64px;
+  margin-top: 100px;
 }
 .testimonials__header__slider {
   position: absolute; 
-  top: 60%; 
+  top: 275px; 
   left: 50%; 
   width: 50%; 
   height: 50%; 
@@ -637,7 +644,7 @@ p {
     height: auto;
     min-height: 100%;
 }
-.contact .home__body__content .container { padding-top: 80px; }
+.contact .home__body__content .container { padding-top: 120px; }
 /* faq */
 .faq { 
     position: relative; 
@@ -661,8 +668,8 @@ p {
 .navigation__links li a:focus { color: #f00; }
 .card__hook:hover,
 .card__hook:focus {
-  background-color: #fff;
-  color: #f00;
+  background-color: transparent;
+  color: #fff;
 }
 /*
 ===========
@@ -679,7 +686,17 @@ p {
 ====================================
 == Media queries and breakpoints. ==
 ===================================*/
-.navbar .LogoUTPPE2 { width: 190px !important; }
+@media (max-width: 1200px) {
+    .contact .home__body { height: auto; }
+    .contact .home__body__content { position: relative; }
+    .navigation__links { height: auto; }
+    .navbar-header { float: none; }
+    .navbar-toggle { display: block; }
+    .navbar-collapse { width: 100%; }
+    .navbar-collapse.collapse:not(.in) { display: none !important; }
+    .navbar-nav > li { float: none; } 
+
+}
 @media (max-width: 960px) {
     .home__body,
     .testimonials__body { height: auto; }
