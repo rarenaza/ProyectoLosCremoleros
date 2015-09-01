@@ -125,7 +125,11 @@
                     </tr>                  
                 </tbody>
             </table>
-            @Html.ValidationMessageFor(m => m.Calificacion, "", new { @class = "text-danger" })
+            @Html.ValidationMessageFor(m => m.Puntualidad, "", new { @class = "text-danger" })
+            @Html.ValidationMessageFor(m => m.ImagenPersonal, "", new { @class = "text-danger" })
+            @Html.ValidationMessageFor(m => m.Conocimientos, "", new { @class = "text-danger" })
+            @Html.ValidationMessageFor(m => m.Experiencia, "", new { @class = "text-danger" })
+            @Html.ValidationMessageFor(m => m.Disponibilidad, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="modal-footer">

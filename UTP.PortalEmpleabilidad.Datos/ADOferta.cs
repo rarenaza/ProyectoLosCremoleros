@@ -946,8 +946,8 @@ namespace UTP.PortalEmpleabilidad.Datos
                     cmd.Parameters.Add(new SqlParameter("@ModificadoPor", encuesta.ModificadoPor));
                    
                     cmd.Parameters.Add(new SqlParameter("@EncuestaContratadosIDAT", (encuesta.ContratadosIDAT == "Si" ?  true : false)));
-                    cmd.Parameters.Add(new SqlParameter("@EncuestaNombreYApellidos", encuesta.NombreYApellido));
-                    cmd.Parameters.Add(new SqlParameter("@EncuestaModalidadContrato", encuesta.ModalidadContrato));
+                    cmd.Parameters.Add(new SqlParameter("@EncuestaNombreYApellidos", encuesta.NombreYApellido == null ? DBNull.Value.ToString() : encuesta.NombreYApellido));
+                    cmd.Parameters.Add(new SqlParameter("@EncuestaModalidadContrato", encuesta.ModalidadContrato == null ? DBNull.Value.ToString() : encuesta.ModalidadContrato));
                     cmd.Parameters.Add(new SqlParameter("@EncuestaPuntualidad", encuesta.Puntualidad));
                     cmd.Parameters.Add(new SqlParameter("@EncuestaImagenPersonal", encuesta.ImagenPersonal));
                     cmd.Parameters.Add(new SqlParameter("@EncuestaConocimientos", encuesta.Conocimientos));

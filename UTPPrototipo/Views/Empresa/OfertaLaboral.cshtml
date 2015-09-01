@@ -561,7 +561,7 @@
                 var url = '@Url.Action("FinalizarOferta", "Oferta")' + "?idOferta=" + idOferta + '&estado=OFERPR' + '&pantalla=' + pantalla; //Se envía el estado Pendiente de Activación.
                 //window.history.go(-1);
                 $.get(url, function (data) {
-                    alert("La oferta ha sido publicada y está pendiente de activación por UTP");
+                    alert("La oferta ha sido publicada y está pendiente de activación por IDAT");
                     
                     //Se redirecciona a la lista de ofertas.
                     window.location.href = '@Url.Action("Publicacion","Empresa")';
