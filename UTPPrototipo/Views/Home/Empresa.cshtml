@@ -17,12 +17,12 @@
                 <div class="enterprise__body__content__tabs">
                     <ul class="nav nav-tabs" role="tablist">
                     @foreach(var tab in tabs) {
-                        <li role="presentation" class="@(activeTab == tab.IdContenido ? "active" : "")"><a href="#@tab.IdContenido" aria-controls="@tab.IdContenido" role="tab" data-toggle="tab">@Html.Raw(@tab.Titulo)</a></li>
+                        <li role="presentation" class="@(activeTab == tab.IdContenido ? "active" : "")"><a href="#@tab.IdContenido" aria-controls="@tab.IdContenido" role="tab" data-toggle="tab">@Html.Raw(tab.Titulo)</a></li>
                     }
                     </ul>
                     <div class="tab-content">
                     @foreach(var tab in tabs) {
-                        <div role="tabpanel" class="tab-pane @(activeTab == tab.IdContenido ? "active" : "")" id="@tab.IdContenido">@tab.Descripcion</div>
+                        <div role="tabpanel" class="tab-pane @(activeTab == tab.IdContenido ? "active" : "")" id="@tab.IdContenido">@Html.Raw(tab.Descripcion)</div>
                     }
                     </div>
                 </div>
