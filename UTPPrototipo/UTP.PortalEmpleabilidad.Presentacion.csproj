@@ -369,6 +369,11 @@
     <Content Include="img\demo.bmp" />
     <Content Include="img\empleabilidad\firmaBeatriz.png" />
     <Content Include="img\empleabilidad\PlanoDirEmpleabilidad.jpg" />
+    <Content Include="img\IDAT\1. Procesos Selectivos.jpg" />
+    <Content Include="img\IDAT\2. Pasantias.jpg" />
+    <Content Include="img\IDAT\3. Portal empleos.jpg" />
+    <Content Include="img\IDAT\4. Alianzas Empresariales.jpg" />
+    <Content Include="img\IDAT\5. person.png" />
     <Content Include="img\IDAT\bg-home-2.jpg" />
     <Content Include="img\IDAT\cerrar-sesion.png" />
     <Content Include="img\IDAT\encender.png" />
