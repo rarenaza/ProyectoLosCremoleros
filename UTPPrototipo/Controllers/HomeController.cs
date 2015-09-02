@@ -444,17 +444,48 @@ namespace UTPPrototipo.Controllers
         public ActionResult Conocenos()
         {
             string MENU_CONOCENOS = "2";
+            string STAFF = "10";
             ViewBag.Contenido = ln.Contenido_BuscarIndex(MENU_CONOCENOS)[0];
+            ViewBag.Staff = ln.Contenido_BuscarIndex(STAFF);
 
             return View();
         }
 
-        public ActionResult Imparable()
+        public ActionResult Alumnos()
         {
             string MENU_IMPARABLE = "9";
             ViewBag.Slides = ln.Contenido_BuscarIndex(MENU_IMPARABLE);
 
             return View();
+        }
+
+        public FileResult Imagen_Staff(int id)
+        {
+            const string alternativePicturePath = @"/Content/Images/question_mark.jpg";
+
+            List<Contenido> Noticia = new List<Contenido>();
+            string x = "10";
+            Noticia = ln.Contenido_BuscarIndex(x);
+            Contenido producto = Noticia.Where(k => k.IdContenido == id).FirstOrDefault();
+
+            MemoryStream stream;
+
+            if (producto != null && producto.Imagen != null)
+            {
+                stream = new MemoryStream(producto.Imagen);
+            }
+            else
+            {
+                stream = new MemoryStream();
+
+                var path = Server.MapPath(alternativePicturePath);
+                var image = new System.Drawing.Bitmap(path);
+
+                image.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
+                stream.Seek(0, SeekOrigin.Begin);
+            }
+
+            return new FileStreamResult(stream, "image/jpeg");
         }
 
         public FileResult Imagen_Imparable(int id)

@@ -1114,7 +1114,7 @@
     <Content Include="Views\Shared\Menu.cshtml" />
     <Content Include="Views\Shared\Footer.cshtml" />
     <Content Include="Views\Home\Conocenos.cshtml" />
-    <Content Include="Views\Home\Imparable.cshtml" />
+    <Content Include="Views\Home\Alumnos.cshtml" />
     <Content Include="Views\Home\Empresa.cshtml" />
     <Content Include="Views\Home\Testimonios - Copy.cshtml" />
     <Content Include="Views\Shared\MenuIntra.cshtml" />

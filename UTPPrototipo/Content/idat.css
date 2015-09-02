@@ -91,7 +91,7 @@ html {
 }
 body {
   font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial, sans-serif;;
-  font-size: 14px;
+  font-size: 16px;
 }
 a,
 a:hover {
@@ -224,6 +224,7 @@ p {
 .navigation__links {
   height: 48px;
   margin: 26px 0;
+  font-size: 13px;
 }
 .navigation__links li {
   margin-left: 24px;
@@ -270,10 +271,13 @@ p {
 .footer__copyright {
   float: right;
   margin-top: 8px;
-  line-height: 46px;
+  line-height: 23px;
   color: #fff;
   font-size: .875em;
+  text-align: right;
 }
+.footer__copyright a { color: #fff; }
+.footer__copyright a:hover { text-decoration: underline !important; }
 /* home */
 .home { overflow-x: hidden; }
 .home__header {
@@ -413,9 +417,8 @@ p {
     margin: 0;
 }
 .know-me__body__content__info__leader {
-    width: 240px;
-    height: 320px;
-    margin-top: 24px; 
+    max-width: 400px;
+    margin-top: 32px; 
     margin-right: 24px; 
     float: left;
 }
@@ -423,17 +426,20 @@ p {
 .know-me__body__content__info__content h2 {
     text-transform: uppercase; 
     color: #f00; 
-    margin-top: 32px; 
+    margin-top: 16px; 
     margin-bottom: 0;
 }
-.know-me__body__content__info__content p { color: #fff; }
+.know-me__body__content__info__content p { 
+    font-size: 14px;
+    color: #fff; 
+}
 .know-me__body__content__staff {
     display: inline-block; 
     width: 20%; 
     vertical-align: top;
 }
 .know-me__body__content__staff__wrapper {
-    width: 100px; 
+    width: 200px; 
     margin-left: auto; 
     margin-right: auto; 
     text-align: center; 
@@ -443,11 +449,11 @@ p {
     color: #fc0; 
     font-weight: 900; 
     font-size: 32px; 
-    margin-bottom: 24px;
+    margin-bottom: 8px;
 }
 .know-me__body__content__staff .cycle-slideshow img { 
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 296px;
     padding: 4px; 
 }
 #previous {
@@ -535,6 +541,7 @@ p {
   background-color: #fff;
   background-color: rgba(255,255,255,.68);
   border-top-right-radius: 32px;
+  font-size: 14px;
 }
 .unstoppable__body__content__slider .cycle-slideshow > div {
   position: relative;
@@ -577,6 +584,7 @@ p {
   -moz-transform: translate3d(-50%,-50%,0);
   -ms-transform: translate3d(-50%,-50%,0);
   transform: translate3d(-50%,-50%,0);
+  font-size: 14px;
 }
 .testimonials__header__slider > div {
     width: 100%; 
@@ -638,11 +646,13 @@ p {
   padding: 16px;
   background-color: #fff;
   background-color: rgba(255,255,255,.6);
+  font-size: 14px;
 }
 /* contact */
 .contact .home__body__content {
     height: auto;
     min-height: 100%;
+    font-size: 14px;
 }
 .contact .home__body__content .container { padding-top: 120px; }
 /* faq */
@@ -656,6 +666,9 @@ p {
     text-transform: uppercase;
 }
 .faq h2 { font-weight: bold; }
+/* mixed */
+.fuente-pequeña,
+.grilla1-cabecera { font-size: 12px; }
 /*
 ===========
 == STATE ==
