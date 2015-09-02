@@ -14,7 +14,7 @@
     <div class="collapse navbar-collapse navbar-right" id="menu-home">
         <ul class="nav navbar-nav navigation__links">
         <li><a class="@(ViewBag.Title == "Conocenos" ? "active" : "")" href="@Url.Action("Conocenos", "Home")">Conócenos</a></li>
-        <li><a class="@(ViewBag.Title == "Imparable" ? "active" : "")" href="@Url.Action("Imparable", "Home")">Alumnos</a></li>
+        <li><a class="@(ViewBag.Title == "Alumnos" ? "active" : "")" href="@Url.Action("Alumnos", "Home")">Alumnos</a></li>
         <li><a class="@(ViewBag.Title == "Empresa" ? "active" : "")" href="@Url.Action("Empresa", "Home")">Empresa</a></li>
         <li><a class="@(ViewBag.Title == "Testimonios" ? "active" : "")" href="@Url.Action("Testimonios", "Home")">Testimonios</a></li>
         <li><a class="@(ViewBag.Title == "Contacto" ? "active" : "")" href="@Url.Action("Contacto", "Home", new { pantalla = UTP.PortalEmpleabilidad.Modelo.Constantes.MENSAJES_INICIO })">Contáctanos</a></li>
