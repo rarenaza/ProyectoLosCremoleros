@@ -86,40 +86,40 @@
             <div class="navbar-collapse collapse" style="border:0px;background-color:transparent;">
                 <ul class="nav navbar-nav" style="margin-top: 11px;">
                     <li>
-                        <a class="btn btn-default navbar-btn Boton_pestana color-paleta1" href=@Url.Action("Index", "UTP") style="padding: 2px 0px 2px 0px; color: white;">Mi Portal</a>
+                        <a class="btn btn-default navbar-btn Boton_pestana" id="PestañaIndex" href=@Url.Action("Index", "UTP") style="padding: 2px 0px 2px 0px; color: white; background-color: #669999">Mi Portal</a>
                     </li>
                     <li>
-                        <a class="btn btn-default navbar-btn Boton_pestana color-paleta4" href=@Url.Action("Empresas", "UTP") style="padding: 2px 0px 2px 0px; color: white;">Empresas</a>
+                        <a class="btn btn-default navbar-btn Boton_pestana" id="PestañaEmpresa" href=@Url.Action("Empresas", "UTP") style="padding: 2px 0px 2px 0px; color: white; background-color: #669999">Empresas</a>
                     </li>
                     <li>
-                        <a class="btn btn-default navbar-btn Boton_pestana color-paleta3" href=@Url.Action("Alumnos", "UTP") style="padding: 2px 0px 2px 0px;color:white;">Alumnos</a>
+                        <a class="btn btn-default navbar-btn Boton_pestana" id="PestañaAlumno" href=@Url.Action("Alumnos", "UTP") style="padding: 2px 0px 2px 0px; color: white; background-color: #669999">Alumnos</a>
                     </li>
                     <li>
-                        <a class="btn btn-default navbar-btn Boton_pestana color-paleta2" href=@Url.Action("Ofertas", "UTP") style="padding: 2px 0px 2px 0px; color: white;">Ofertas</a>
+                        <a class="btn btn-default navbar-btn Boton_pestana" id="PestañaOfertas" href=@Url.Action("Ofertas", "UTP") style="padding: 2px 0px 2px 0px; color: white; background-color:#669999">Ofertas</a>
                     </li>
                     <li>
-                        <a class="btn btn-default navbar-btn Boton_pestana color-paleta5" href=@Url.Action("Eventos", "UTP") style="padding: 2px 0px 2px 0px; color: white;">Eventos</a>
+                        <a class="btn btn-default navbar-btn Boton_pestana" id="PestañaEventos" href=@Url.Action("Eventos", "UTP") style="padding: 2px 0px 2px 0px; color: white; background-color: #669999">Eventos</a>
                     </li>
                     <li>
-                        <a class="btn btn-default navbar-btn Boton_pestana color-paleta6" href=@Url.Action("Reportes", "UTP") style="padding: 2px 0px 2px 0px; color: white;">Reportes</a>
+                        <a class="btn btn-default navbar-btn Boton_pestana" id="PestañaReportes" href=@Url.Action("Reportes", "UTP") style="padding: 2px 0px 2px 0px; color: white; background-color: #669999">Reportes</a>
                     </li>
                     <li>
-                        <a class="btn btn-default navbar-btn Boton_pestana color-paleta7" href=@Url.Action("Portal", "UTP") style="padding: 2px 0px 2px 0px; color: white;">Contenido</a>
+                        <a class="btn btn-default navbar-btn Boton_pestana" id="PestañaPortal" href=@Url.Action("Portal", "UTP") style="padding: 2px 0px 2px 0px; color: white; background-color: #669999">Contenido</a>
                     </li>
                     @if (ViewBag.Rol != "ROLUTP")
                     {
                         <li>
-                        <a class="btn btn-default navbar-btn Boton_pestana color-paleta8" href=@Url.Action("Sistema", "UTP") style="padding: 2px 0px 2px 0px; color: white;">Sistema</a>
+                            <a class="btn btn-default navbar-btn Boton_pestana" id="PestañaSistema" href=@Url.Action("Sistema", "UTP") style="padding: 2px 0px 2px 0px; color: white; background-color: #669999">Sistema</a>
                         </li>
                     }                   
                     <li>
-                        <a class="btn btn-default navbar-btn Boton_pestana color-paleta9" href=@Url.Action("Convenios", "UTP") style="padding: 2px 0px 2px 0px; color: white;">Convenios</a>
+                        <a class="btn btn-default navbar-btn Boton_pestana" id="PestañaConvenios" href=@Url.Action("Convenios", "UTP") style="padding: 2px 0px 2px 0px; color: white; background-color: #669999">Convenios</a>
                     </li>
 
                 </ul>
                 @Html.Partial("MenuIntra")
             </div>
-            <div id="divFinalCabecera" class="final-cabecera color-paleta1"></div>
+            <div id="divFinalCabecera" class="final-cabecera" style="background-color:#FF0000"></div>
         </div>
     </div>
     <!--<div class="container body-content">-->

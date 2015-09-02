@@ -61,30 +61,30 @@
             <div class="navbar-collapse collapse" style="border:0px;background-color:transparent;">
                 <ul class="nav navbar-nav" style="margin-top: 11px;">
                     <li>
-                        @Html.ActionLink("Mi Portal", "Index", "Alumno", null, new { @class = "btn btn-default navbar-btn Boton_pestana color-paleta1", @style = "padding: 2px 0px 2px 0px; color: white;" })
+                        @Html.ActionLink("Mi Portal", "Index", "Alumno", null, new { @id = "PestañaIndex", @class = "btn btn-default navbar-btn Boton_pestana color-paleta1", @style = "padding: 2px 0px 2px 0px; color: white; background-color: #669999;" })
                     </li>
                     <li>
-                        @Html.ActionLink("Postulaciones", "Postulacion", "Alumno", null, new { @class = "btn btn-default navbar-btn Boton_pestana color-paleta3", @style = "padding: 2px 0px 2px 0px; color: white;" })
+                        @Html.ActionLink("Postulaciones", "Postulacion", "Alumno", null, new { @id = "PestañaPostulacion", @class = "btn btn-default navbar-btn Boton_pestana color-paleta3", @style = "padding: 2px 0px 2px 0px; color: white; background-color: #669999;" })
                     </li>
                     <li>
-                        @Html.ActionLink("Ofertas", "BusquedaOferta", "Alumno", null, new { @class = "btn btn-default navbar-btn Boton_pestana color-paleta2", @style = "padding: 2px 0px 2px 0px; color: white;" })
+                        @Html.ActionLink("Ofertas", "BusquedaOferta", "Alumno", null, new { @id = "PestañaOfertas", @class = "btn btn-default navbar-btn Boton_pestana color-paleta2", @style = "padding: 2px 0px 2px 0px; color: white; background-color: #669999;" })
                     </li>
                     <li>
-                        @Html.ActionLink("Mi CV", "MiCV", "Alumno", new { id = 0 }, new { id = 0, @class = "btn btn-default navbar-btn Boton_pestana color-paleta4", @style = "padding: 2px 0px 2px 0px; color: white;" })
+                        @Html.ActionLink("Mi CV", "MiCV", "Alumno", new { id = 0 }, new { id = 0, @class = "btn btn-default navbar-btn Boton_pestana color-paleta4", @style = "padding: 2px 0px 2px 0px; color: white; background-color: #669999;" })
                      </li>
                     <li>
                         @*<a class="btn btn-default navbar-btn Boton_pestana color-paleta5" href="..\Alumno\Index" style="padding: 2px 0px 2px 0px; color: white;">Eventos</a>*@
-                        @Html.ActionLink("Eventos", "Eventos", "Alumno", null, new { @class = "btn btn-default navbar-btn Boton_pestana color-paleta5", @style = "padding: 2px 0px 2px 0px; color: white;" })
+                        @Html.ActionLink("Eventos", "Eventos", "Alumno", null, new { @id = "PestañaEventos", @class = "btn btn-default navbar-btn Boton_pestana color-paleta5", @style = "padding: 2px 0px 2px 0px; color: white; background-color: #669999;" })
                     </li>
                     <li>
                         @*<a class="btn btn-default navbar-btn Boton_pestana color-paleta5" href="..\Alumno\Index" style="padding: 2px 0px 2px 0px; color: white;">Eventos</a>*@
-                        @Html.ActionLink("Convenios", "Convenios", "Alumno", null, new { @class = "btn btn-default navbar-btn Boton_pestana color-paleta9", @style = "padding: 2px 0px 2px 0px; color: white;" })
+                        @Html.ActionLink("Convenios", "Convenios", "Alumno", null, new { @id = "PestañaConvenios", @class = "btn btn-default navbar-btn Boton_pestana color-paleta9", @style = "padding: 2px 0px 2px 0px; color: white; background-color: #669999;" })
                     </li>
 
                 </ul>
                 @Html.Partial("MenuIntraAlumno")
             </div>
-            <div id="divFinalCabecera" class="final-cabecera color-paleta1"></div>
+            <div id="divFinalCabecera" class="final-cabecera" style="background-color:#FF0000"></div>
         </div>
     </div>
     <!--<div class="container body-content">-->

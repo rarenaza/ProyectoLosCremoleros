@@ -50,21 +50,21 @@
             <div class="navbar-collapse collapse" style="border:0px;background-color:transparent;">
                 <ul class="nav navbar-nav" style="margin-top: 11px;">
                     <li>
-                        @Html.ActionLink("Mi Cuenta", "Index", "Empresa", null, new { @class = "btn btn-default navbar-btn Boton_pestana color-paleta1", @style = "padding: 2px 0px 2px 0px; color: white;" })
+                        @Html.ActionLink("Mi Cuenta", "Index", "Empresa", null, new { @id = "PestañaIndex", @class = "btn btn-default navbar-btn Boton_pestana color-paleta1", @style = "padding: 2px 0px 2px 0px; color: white; background-color: #669999;" })
                         @*<a class="btn btn-default navbar-btn Boton_pestana color-paleta1" href="..\Empresa\Index" style="padding: 2px 0px 2px 0px;color:white;">Mi Cuenta</a>*@
                     </li>
                     <li>
-                        @Html.ActionLink("Ofertas", "Publicacion", "Empresa", null, new { @class = "btn btn-default navbar-btn Boton_pestana color-paleta2", @style = "padding: 2px 0px 2px 0px; color: white;" })
+                        @Html.ActionLink("Ofertas", "Publicacion", "Empresa", null, new { @id = "PestañaOfertas", @class = "btn btn-default navbar-btn Boton_pestana color-paleta2", @style = "padding: 2px 0px 2px 0px; color: white; background-color: #669999;" })
                         @*<a class="btn btn-default navbar-btn Boton_pestana color-paleta2" href="..\Empresa\Publicacion" style="padding: 2px 0px 2px 0px;color:white;">Ofertas</a>*@
                     </li>
                     <li>
-                        @Html.ActionLink("Head Hunting", "Hunting", "Empresa", null, new { @class = "btn btn-default navbar-btn Boton_pestana color-paleta3", @style = "padding: 2px 0px 2px 0px; color: white;" })
+                        @Html.ActionLink("Head Hunting", "Hunting", "Empresa", null, new { @id = "PestañaHunting", @class = "btn btn-default navbar-btn Boton_pestana color-paleta3", @style = "padding: 2px 0px 2px 0px; color: white; background-color: #669999;" })
                         @*<a class="btn btn-default navbar-btn Boton_pestana color-paleta3" href="..\Empresa\Hunting" style="padding: 2px 0px 2px 0px; color: white;">Buscar CVs</a>*@
                     </li>
                     <li>
                             @if (UTPPrototipo.Common.Util.ObtenerRolEmpresa() == "ROLEAD")
                             {
-                                @Html.ActionLink("Mi Empresa", "Administrar", "Empresa", null, new { @class = "btn btn-default navbar-btn Boton_pestana color-paleta4", @style = "padding: 2px 0px 2px 0px; color: white;" })
+                                @Html.ActionLink("Mi Empresa", "Administrar", "Empresa", null, new { @id = "PestañaEmpresa", @class = "btn btn-default navbar-btn Boton_pestana color-paleta4", @style = "padding: 2px 0px 2px 0px; color: white; background-color: #669999;" })
                             }
                         <!--Link demo para generación de plantillas-->
                         
@@ -72,13 +72,13 @@
                     </li>
                     <li>
                         @*<a class="btn btn-default navbar-btn Boton_pestana color-paleta5" href="..\Empresa\Eventos" style="padding: 2px 0px 2px 0px; color: white;">Eventos</a>*@
-                        @Html.ActionLink("Eventos", "Eventos", "Empresa", null, new { @class = "btn btn-default navbar-btn Boton_pestana color-paleta5", @style = "padding: 2px 0px 2px 0px; color: white;" })
+                        @Html.ActionLink("Eventos", "Eventos", "Empresa", null, new { @id = "PestañaEventos", @class = "btn btn-default navbar-btn Boton_pestana color-paleta5", @style = "padding: 2px 0px 2px 0px; color: white; background-color: #669999;" })
                                   
                     </li>
                 </ul>
                 @Html.Partial("MenuIntraEmpresa")
             </div>
-            <div id="divFinalCabeceraEmpresa" class="final-cabecera color-paleta1"></div>
+            <div id="divFinalCabeceraEmpresa" class="final-cabecera" style="background-color:#FF0000"></div>
         </div>
     </div>
     <!--<div class="container body-content">-->
