@@ -4062,8 +4062,10 @@ namespace UTPPrototipo.Controllers
             return View(mensaje);
         }
 
-        public ActionResult Ubicacion()
+        public ActionResult Ubicacion(string pantalla = "")
         {
+            ViewBag.Pantalla = pantalla;
+
             return View();
         }
 
