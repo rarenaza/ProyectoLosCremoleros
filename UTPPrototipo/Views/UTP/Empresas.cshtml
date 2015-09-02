@@ -236,8 +236,8 @@
 <script>
 
     $(document).ready(function () {
-        $("#divFinalCabecera").removeClass("color-paleta1 color-paleta3 color-paleta4 color-paleta5 color-paleta6 color-paleta7 color-paleta8").addClass("color-paleta4");
-
+        $("#divFinalCabecera").removeClass("color-paleta1 color-paleta3 color-paleta4 color-paleta5 color-paleta6 color-paleta7 color-paleta8").addClass("color-paleta1");
+        $('#PestañaEmpresa').css('backgroundColor', '#f00');
         //AutoCompleteText('#NombreComercial', '@Url.Action("ListarNombreEmpresa", "UTP")', '#NombreComercial');
         AutoCompleteText('#RazonSocial', '@Url.Action("ListarRazonSocial", "UTP")', '#RazonSocial');
 

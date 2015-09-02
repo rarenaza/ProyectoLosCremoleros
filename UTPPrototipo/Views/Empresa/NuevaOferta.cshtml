@@ -439,7 +439,7 @@
     $(document).ready(function () {
         //$("#divFinalCabecera").removeClass("color-paleta1 color-paleta3 color-paleta4 color-paleta5").addClass("color-paleta2");
         $("#divFinalCabeceraEmpresa").removeClass("color-paleta1 color-paleta3 color-paleta4 color-paleta5").addClass("color-paleta2");
-
+        $('#PestañaOfertas').css('backgroundColor', '#f00');
         AutoCompleteText('#Cargo', '@Url.Action("ListarCargo", "Empresa")', '#Cargo');
         AutoCompleteText('#AreaEmpresa', '@Url.Action("ListarAreasEmpresa", "Alumno")', '#AreaEmpresa');
 
