@@ -362,7 +362,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 "Le recordamos que tiene una Oferta Laboral pendiente por cerrar.</br>" +
                 "Por favor, ingrese a la Oferta Laboral en el Portal y en la sección Administración de la Oferta haga clic en el botón 'Cerrar Oferta'.</br></br>" +
                 "Muchas gracias,</br>" +
-                "La Dirección de Empleabilidad";
+                "Área de Empleabilidad";
                 mensaje.Asunto = nombreOferta + " - Cierre de Oferta";
 
                 mensaje.IdOfertaMensaje = idOferta;
