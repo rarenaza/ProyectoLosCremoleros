@@ -1127,6 +1127,8 @@
     <Content Include="Views\UTP\Ubicacion.cshtml" />
     <Content Include="Views\Shared\MenuIntraEmpresa.cshtml" />
     <Content Include="Views\Shared\MenuIntraAlumno.cshtml" />
+    <Content Include="Views\Shared\FooterIntra.cshtml" />
+    <Content Include="Views\Alumno\Convenios.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
