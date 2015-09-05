@@ -301,8 +301,8 @@ namespace UTP.PortalEmpleabilidad.Logica
                 item.ValorUTP = Convert.ToString(fila["ValorUTP"]); ;
                 item.EstadoValor = Convert.ToString(fila["EstadoValor"]); ;
 
-                //EDEEST = estudiante, EDEEGR = egresado, EDEBAC = Bachiller, EDETIT = Titulado.
-                if (item.IdListaValor == "EDEEST" || item.IdListaValor == "EDEEGR" || item.IdListaValor == "EDEBAC" || item.IdListaValor == "EDETIT")
+                //EDEEST = estudiante, EDEEGR = egresado, EDETIT = Titulado.
+                if (item.IdListaValor == "EDEEST" || item.IdListaValor == "EDEEGR" || item.IdListaValor == "EDETIT")
                 { 
                     lista.Add(item);
                 }
