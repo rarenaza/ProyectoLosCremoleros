@@ -13,13 +13,14 @@
 
     <div class="collapse navbar-collapse navbar-right" id="menu-home">
         <ul class="nav navbar-nav navigation__links">
-        <li><a title="Conócenos" class="@(ViewBag.Title == "Conocenos" ? "active" : "")" href="@Url.Action("Conocenos", "Home")">Conócenos</a></li>
-        <li><a title="Alumnos" class="@(ViewBag.Title == "Alumnos" ? "active" : "")" href="@Url.Action("Alumnos", "Home")">Alumnos</a></li>
-        <li><a title="Empresa" class="@(ViewBag.Title == "Empresa" ? "active" : "")" href="@Url.Action("Empresa", "Home")">Empresa</a></li>
-        <li><a title="Testimonios" class="@(ViewBag.Title == "Testimonios" ? "active" : "")" href="@Url.Action("Testimonios", "Home")">Testimonios</a></li>
-        <li><a title="Contáctanos" class="@(ViewBag.Title == "Contacto" ? "active" : "")" href="@Url.Action("Contacto", "Home", new { pantalla = UTP.PortalEmpleabilidad.Modelo.Constantes.MENSAJES_INICIO })">Contáctanos</a></li>
-        <li><a title="Iniciar sesión" href="#" data-toggle="modal" data-target="#Modal-ingresar" id="LinkIngresar" onclick="abrirPantallaLogin();"><img src="~/img/IDAT/encender.png" alt="Alternate Text" width="32" /></a></li>
-        <li><a title="Facebook" href="https://www.facebook.com/groups/1594809107435439/" target="_blank"><span class="fui color-icono-facebook" style="font-size:35px;">)</span></a></li>
+            <li><a title="Conócenos" class="@(ViewBag.Title == "Conocenos" ? "active" : "")" href="@Url.Action("Conocenos", "Home")">Conócenos</a></li>
+            <li><a title="Alumno" class="@(ViewBag.Title == "Alumno" ? "active" : "")" href="@Url.Action("Alumno", "Home")">Alumno</a></li>
+            <li><a title="Empresa" class="@(ViewBag.Title == "Empresa" ? "active" : "")" href="@Url.Action("Empresa", "Home")">Empresa</a></li>
+            <li><a title="Testimonios" class="@(ViewBag.Title == "Testimonios" ? "active" : "")" href="@Url.Action("Testimonios", "Home")">Testimonios</a></li>
+            <li><a title="Contáctanos" class="@(ViewBag.Title == "Contacto" ? "active" : "")" href="@Url.Action("Contacto", "Home", new { pantalla = UTP.PortalEmpleabilidad.Modelo.Constantes.MENSAJES_INICIO })">Contáctanos</a></li>
+            <li style="margin-right: 8px;"><a title="Iniciar sesión" href="#" data-toggle="modal" data-target="#Modal-ingresar" id="LinkIngresar" onclick="abrirPantallaLogin();"><img src="~/img/IDAT/encender.png" alt="Alternate Text" width="32" /></a></li>
+            <li style="margin: 0;"><a title="Trabaja en IDAT" class="" href="#"><img src="~/img/IDAT/trabaja-con-nosotros.png" width="32" /></a></li>
+            <li style="margin-left: 8px;"><a title="Facebook" href="https://www.facebook.com/groups/1594809107435439/" target="_blank"><img src="~/img/IDAT/facebook.png" width="32" /></a></li>
         </ul>
     </div>
 </nav>

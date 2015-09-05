@@ -451,7 +451,7 @@ namespace UTPPrototipo.Controllers
             return View();
         }
 
-        public ActionResult Alumnos()
+        public ActionResult Alumno()
         {
             string MENU_IMPARABLE = "9";
             ViewBag.Slides = ln.Contenido_BuscarIndex(MENU_IMPARABLE);

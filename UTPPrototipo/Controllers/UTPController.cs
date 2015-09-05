@@ -1863,8 +1863,6 @@ namespace UTPPrototipo.Controllers
             //Se establece el valor del departamento en el combo
             LNGeneral lngeneral = new LNGeneral();
             ViewBag.DireccionRegion = new SelectList(lngeneral.ObtenerListaValor(47), "IdListaValor", "Valor", evento.TextoDepartamento);
-            //ViewBag.DireccionCiudad = ObtenerUbigeoPorCodigo(evento.DireccionRegionCodigo, evento.TextoCiudad);
-            //ViewBag.DireccionDistrito = ObtenerUbigeoPorCodigo(evento.DireccionCiudadCodigo, evento.TextDistrito);
             ViewBag.DireccionCiudad = new SelectList(lngeneral.ObtenerListaValor(48), "IdListaValor", "Valor", evento.TextoCiudad);
             ViewBag.DireccionDistrito = new SelectList(lngeneral.ObtenerListaValor(49), "IdListaValor", "Valor", evento.TextDistrito);
 
@@ -1882,11 +1880,9 @@ namespace UTPPrototipo.Controllers
 
 
             TicketUTP ticketUtp = (TicketUTP)Session["TicketUtp"];
-
-
             evento.ModificadoPor = ticketUtp.Usuario;
 
-            if (lnEventos.Evento_Actualizar(evento) == true)
+            if (lnEventos.Evento_Actualizar(evento))
             {
 
                 ViewBag.Message = "Registro Actualizado Correctamente";
@@ -1894,67 +1890,8 @@ namespace UTPPrototipo.Controllers
             }
             else
             {
-
-                //Lista Estado Evento
-                DataTable dtresultadoEstadoEvento = lnUtp.Evento_ListaEstadoEvento();
-
-                List<SelectListItem> estadoEvento = new List<SelectListItem>();
-
-                for (int i = 0; i <= dtresultadoEstadoEvento.Rows.Count - 1; i++)
-                {
-                    string nombre = dtresultadoEstadoEvento.Rows[i]["Valor"].ToString();
-                    string valor = dtresultadoEstadoEvento.Rows[i]["IDListaValor"].ToString();
-
-                    SelectListItem item = new SelectListItem() { Text = nombre, Value = valor };
-
-                    estadoEvento.Add(item);
-
-                }
-                ViewData["ListaEstadoEvento"] = estadoEvento;
-
-                //------------------------------------------------------------
-
-                //LISTA TIPO EVENTO
-
-                DataTable dtresultadoTipoEvento = lnUtp.Evento_ListaTipoEvento();
-
-                List<SelectListItem> TipoEvento = new List<SelectListItem>();
-
-                for (int i = 0; i <= dtresultadoTipoEvento.Rows.Count - 1; i++)
-                {
-                    string nombre = dtresultadoTipoEvento.Rows[i]["Valor"].ToString();
-                    string valor = dtresultadoTipoEvento.Rows[i]["IDListaValor"].ToString();
-
-                    SelectListItem item = new SelectListItem() { Text = nombre, Value = valor };
-
-                    TipoEvento.Add(item);
-
-                }
-                ViewData["ListaTipoEvento"] = TipoEvento;
-
-                //------------------------------------------------------------
-
-                //LISTA EMPRESA
-
-                DataTable dtresultadoEmpresa = lnUtp.EMPRESA_LISTAEMPRESA();
-
-                List<SelectListItem> empresa = new List<SelectListItem>();
-
-                for (int i = 0; i <= dtresultadoEmpresa.Rows.Count - 1; i++)
-                {
-                    string nombre = dtresultadoEmpresa.Rows[i]["NombreComercial"].ToString();
-                    string valor = dtresultadoEmpresa.Rows[i]["IdEmpresa"].ToString();
-
-                    SelectListItem item = new SelectListItem() { Text = nombre, Value = valor };
-
-                    empresa.Add(item);
-
-                }
-                ViewData["ListaEmpresa"] = empresa;
-
-                ViewBag.Rol = ticketUtp.Rol;
-                return View(evento);
-
+                ViewBag.Message = "Registro No Se Actualizo Correctamente";
+                return RedirectToAction("Evento_Editar", new { Id = Helper.Encriptar(evento.IdEvento.ToString()) });
             }
 
         }

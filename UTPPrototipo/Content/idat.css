@@ -144,7 +144,7 @@ p {
 }
 .card {
   position: relative;
-  height: 300px;
+  height: 350px;
   overflow: hidden;
 }
 .card__wrapper { 
@@ -266,6 +266,7 @@ p {
 }
 .footer__logo {
   float: left;
+  line-height: 64px;
   height: 64px;
 }
 .footer__copyright {
@@ -368,14 +369,14 @@ p {
   height: auto;
   margin-bottom: 0;
   padding-left: 0;
-  -webkit-transform: translate(0,-50%);
-  -moz-transform: translate(0,-50%);
-  -ms-transform: translate(0,-50%);
-  transform: translate(0,-50%);
-  -webkit-transform: translate3d(0,-50%,0);
-  -moz-transform: translate3d(0,-50%,0);
-  -ms-transform: translate3d(0,-50%,0);
-  transform: translate3d(0,-50%,0);
+  -webkit-transform: translate(0,-60%);
+  -moz-transform: translate(0,-60%);
+  -ms-transform: translate(0,-60%);
+  transform: translate(0,-60%);
+  -webkit-transform: translate3d(0,-60%,0);
+  -moz-transform: translate3d(0,-60%,0);
+  -ms-transform: translate3d(0,-60%,0);
+  transform: translate3d(0,-60%,0);
 }
 .home__body__content__publications .card { margin-bottom: 16px; }
 /* common pages */
@@ -669,6 +670,8 @@ p {
 /* mixed */
 .fuente-pequeña,
 .grilla1-cabecera { font-size: 12px; }
+#selectCarrerasDisponibles,
+#selectCarrerasSeleccionadas { font-size: 13px; }
 /*
 ===========
 == STATE ==
