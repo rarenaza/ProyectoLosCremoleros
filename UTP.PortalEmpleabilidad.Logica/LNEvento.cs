@@ -53,7 +53,7 @@ namespace UTP.PortalEmpleabilidad.Logica
            if (evento.AsistentesEsperados == null) evento.AsistentesEsperados = 0;
            if (evento.DiasEvento == null) evento.DiasEvento = "";
 
-           if (ad.Evento_Actualizar(evento) == true)
+           if (ad.Evento_Actualizar(evento))
            {
                return true;
            }

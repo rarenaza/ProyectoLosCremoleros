@@ -266,7 +266,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.Parameters.Add(new SqlParameter("@IdEmpresa", SqlDbType.Int)).Value = evento.IdEmpresa;
                 cmd.Parameters.Add(new SqlParameter("@DescripcionEvento", SqlDbType.VarChar, -1)).Value = evento.DescripcionEvento;
                 cmd.Parameters.Add(new SqlParameter("@FechaEvento", SqlDbType.DateTime)).Value = evento.FechaEvento;
-                cmd.Parameters.Add(new SqlParameter("@FechaEventoFin", SqlDbType.DateTime)).Value = evento.FechaEventoFin;
+                cmd.Parameters.Add(new SqlParameter("@FechaEventoFin", SqlDbType.DateTime)).Value = (Object)evento.FechaEventoFin ?? DBNull.Value;
                 cmd.Parameters.Add(new SqlParameter("@DiasEvento", SqlDbType.VarChar, 50)).Value = evento.DiasEvento;
                 cmd.Parameters.Add(new SqlParameter("@FechaEventoTexto", SqlDbType.VarChar, 100)).Value = evento.FechaEventoTexto;
                 cmd.Parameters.Add(new SqlParameter("@LugarEvento", SqlDbType.VarChar, 200)).Value = evento.LugarEvento;

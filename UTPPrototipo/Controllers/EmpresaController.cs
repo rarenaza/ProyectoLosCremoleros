@@ -1428,32 +1428,11 @@ namespace UTPPrototipo.Controllers
             LNOferta lnOferta = new LNOferta();
             
             //Se buscan la ofertas de la empresa que se encuentran en estado OFERCV (Fin de recepción de CVs)
-            List<VistaEmpresaOferta> lista = lnOferta.ObtenerOfertasPorIdEmpresa(ticket.IdEmpresa).Where(p => (p.NombreEstado == Constantes.OFERTA_ESTADO_FINRECEPCIONCVS || p.NombreEstado == Constantes.OFERTA_ESTADO_ACTIVA) && p.FechaFinOferta < DateTime.Now).ToList();
+            List<VistaEmpresaOferta> lista = lnOferta.ObtenerOfertasPorIdEmpresa(ticket.IdEmpresa).Where(p => (p.NombreEstado == Constantes.OFERTA_ESTADO_FINRECEPCIONCVS || p.NombreEstado == Constantes.OFERTA_ESTADO_ACTIVA) && p.FechaFinOferta.AddDays(20) < DateTime.Now).ToList();
 
             return lista;
-
-            ////Si se encuentran filas => se obienen los cargos y se llena una variable temporal.
-            //if (lista.Count() > 0)
-            //{
-            //    StringBuilder ofertasEncontradas = new StringBuilder();
-            //    ofertasEncontradas.Append("Antes de continuar debe cerrar las siguientes ofertas: ");
-            //    ofertasEncontradas.Append(Environment.NewLine);
-
-            //    foreach (var oferta in lista)
-            //    {
-            //        ofertasEncontradas.Append(oferta.CargoOfrecido);
-            //        ofertasEncontradas.Append(Environment.NewLine);
-            //    }
-
-            //    //En el vista Publicacion.html se lee este TempData y se muestra el mensaje al usuario.
-            //    TempData["msjOfertasEnOFERCV"] = ofertasEncontradas.ToString();
-
-            //    //Se redirecciona a la lista de ofertas.
-            //    return RedirectToAction("Publicacion");
-            //}
-           
-            
         }
+
         public ActionResult ListarListaValor(string Id)
         {
             LNGeneral lngeneral = new LNGeneral();
