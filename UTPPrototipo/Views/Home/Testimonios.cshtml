@@ -40,7 +40,7 @@
                                 <p>@Html.Raw(@noticia.SubTitulo)</p>
                                 <p>@Html.Raw(@noticia.Descripcion)</p>
                             </div>
-                            <a href="#" class="card__hook">ver más</a>
+                            <a href="@Url.Action("LasEmpresasOpinan", "Home")" target="_blank" class="card__hook">ver más</a>
                         }
                         </div>
                     </li>
@@ -55,7 +55,7 @@
                                 <p>@Html.Raw(@evento.SubTitulo)</p>
                                 <p>@Html.Raw(@evento.Descripcion)</p>
                             </div>
-                            <a href="#" class="card__hook">ver más</a>
+                            <a href="@Url.Action("CasosDeExitoImparable", "Home")" target="_blank" class="card__hook">ver más</a>
                         }
                         </div>
                     </li>

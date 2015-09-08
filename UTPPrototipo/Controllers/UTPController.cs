@@ -70,7 +70,8 @@ namespace UTPPrototipo.Controllers
                 li.Add(item);
 
             }
-            ViewData["ContenidoMenu"] = li;
+
+            ViewData["ContenidoMenu"] = li.OrderBy(i => i.Text).ToList();
 
             return View();
         }
@@ -832,7 +833,8 @@ namespace UTPPrototipo.Controllers
                 li.Add(item);
 
             }
-            ViewData["ContenidoMenu"] = li;
+
+            ViewData["ContenidoMenu"] = li.OrderBy(i => i.Text).ToList();
 
             DataTable dtPresentacion = lngeneral.Modo_Presentacion(Constantes.IDLISTA_MODO_PRESENTACION);
             List<SelectListItem> lis = new List<SelectListItem>();
