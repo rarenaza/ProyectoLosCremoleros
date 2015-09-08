@@ -1115,16 +1115,13 @@
     <Content Include="Views\Calendario\_VistaCalendario.cshtml" />
     <Content Include="Views\Cuenta\RecuperarClave.cshtml" />
     <Content Include="Views\Cuenta\CambiarClave.cshtml" />
-    <Content Include="Views\Home\Index - Copy.cshtml" />
     <Content Include="Views\Shared\_LayoutHome.cshtml" />
     <Content Include="Views\Home\_ViewStart.cshtml" />
-    <Content Include="Views\Home\Contacto - Copy.cshtml" />
     <Content Include="Views\Shared\Menu.cshtml" />
     <Content Include="Views\Shared\Footer.cshtml" />
     <Content Include="Views\Home\Conocenos.cshtml" />
     <Content Include="Views\Home\Alumno.cshtml" />
     <Content Include="Views\Home\Empresa.cshtml" />
-    <Content Include="Views\Home\Testimonios - Copy.cshtml" />
     <Content Include="Views\Shared\MenuIntra.cshtml" />
     <Content Include="Views\UTP\Contacto.cshtml" />
     <Content Include="Views\UTP\Ubicacion.cshtml" />
@@ -1132,6 +1129,11 @@
     <Content Include="Views\Shared\MenuIntraAlumno.cshtml" />
     <Content Include="Views\Shared\FooterIntra.cshtml" />
     <Content Include="Views\Alumno\Convenios.cshtml" />
+    <Content Include="Views\Home\NotiEmpleos.cshtml" />
+    <Content Include="Views\Home\LoQueSeViene.cshtml" />
+    <Content Include="Views\Home\LasEmpresasOpinan.cshtml" />
+    <Content Include="Views\Home\CasosDeExitoImparable.cshtml" />
+    <Content Include="Views\Home\QueNosCuentan.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
