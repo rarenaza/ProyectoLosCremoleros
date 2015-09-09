@@ -6,12 +6,12 @@
 <div class="panel-group" id="datos-cuenta" role="tablist" aria-multiselectable="true">
     <div class="panel panel-default">
         <div class="panel-heading" role="tab" id="headingOne" style="padding: 2px 2px 2px 6px;">
-            <h5 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne" class="fuente-seccion">
-                    Usuario: @Model.Nombre (@Model.Usuario)
-                </a>
-                <span class="glyphicon pull-right"></span>
-            </h5>
+            <div class="panel-title">
+                <div data-toggle="collapse" data-parent="#accordion" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne" class="fuente-seccion">
+                    <span role="button">Usuario: @Model.Nombre (@Model.Usuario)</span>
+                    <span class="glyphicon pull-right" role="button"></span>
+                </div>
+            </div>
         </div>
         <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
             <div class="panel-body">

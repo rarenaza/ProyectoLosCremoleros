@@ -22,12 +22,12 @@
     <div class="panel-group" id="CriterioBusquedaPostulacion" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default">
             <div class="panel-heading" role="tab" id="CabeceraColapsaBusqueda" style="padding: 2px 2px 2px 6px;">
-                <h5 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#CriterioBusquedaPostulacion" href="#ColapsaBusqueda" aria-expanded="true" aria-controls="ColapsaBusqueda" class="fuente-seccion">
-                        Búsqueda
-                    </a>
-                    <span class="glyphicon pull-right"></span>
-                </h5>
+                <div class="panel-title">
+                    <div data-toggle="collapse" data-parent="#CriterioBusquedaPostulacion" data-target="#ColapsaBusqueda" aria-expanded="true" aria-controls="ColapsaBusqueda" class="fuente-seccion">
+                        <span role="button">Búsqueda</span>
+                        <span class="glyphicon pull-right" role="button"></span>
+                    </div>
+                </div>
             </div>
             <div id="ColapsaBusqueda" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="CabeceraColapsaBusqueda">
                 <div class="panel-body">
@@ -63,12 +63,12 @@
 
         <div class="panel panel-default">
             <div class="panel-heading" role="tab" id="CabeceraColapsaBusquedaAvanzada" style="padding: 2px 2px 2px 6px;">
-                <h5 class="panel-title">
-                    <a class="collapsed fuente-seccion" data-toggle="collapse" data-parent="#CriterioBusquedaPostulacion" href="#ColapsaBusquedaAvanzada" aria-expanded="false" aria-controls="ColapsaBusquedaAvanzada">
-                        Búsqueda avanzada
-                    </a>
-                    <span class="glyphicon pull-right"></span>
-                </h5>
+                <div class="panel-title">
+                    <div class="collapsed fuente-seccion" data-toggle="collapse" data-parent="#CriterioBusquedaPostulacion" data-target="#ColapsaBusquedaAvanzada" aria-expanded="false" aria-controls="ColapsaBusquedaAvanzada">
+                        <span role="button">búsqueda avanzada</span>
+                        <span class="glyphicon pull-right" role="button"></span>
+                    </div>
+                </div>
             </div>
             <div id="ColapsaBusquedaAvanzada" class="panel-collapse collapse" role="tabpanel" aria-labelledby="CabeceraColapsaBusquedaAvanzada">
                 <div class="panel-body fuente-pequeña">
