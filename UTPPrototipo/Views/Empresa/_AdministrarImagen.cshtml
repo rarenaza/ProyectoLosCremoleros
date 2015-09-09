@@ -7,12 +7,12 @@
     <div class="panel-group" id="datos-imagen" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default">
             <div class="panel-heading" role="tab" id="headingLogo" style="padding: 2px 2px 2px 6px;">
-                <h5 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#datos-logo" href="#collapseLogo" aria-expanded="true" aria-controls="collapseLogo" class="fuente-seccion">
-                        Logo - @Model.NombreComercial
-                    </a>
-                    <span class="glyphicon pull-right"></span>
-                </h5>
+                <div class="panel-title">
+                    <div data-toggle="collapse" data-parent="#datos-logo" data-target="#collapseLogo" aria-expanded="true" aria-controls="collapseLogo" class="fuente-seccion">
+                        <span role="button">Logo - @Model.NombreComercial</span>
+                        <span class="glyphicon pull-right" role="button"></span>
+                    </div>
+                </div>
             </div>
             <div id="collapseLogo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingLogo">
                 <div class="panel-body">
