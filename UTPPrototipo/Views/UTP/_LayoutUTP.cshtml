@@ -169,6 +169,68 @@
             $(this).datepicker({ dateFormat: 'dd/mm/yy' }).val();
         });
     });
+
+    var EmpresaExportar = function () {
+        console.log('EmpresaExportar');
+
+        var data = {
+            NombreComercial: $('#NombreComercial').val(),
+            IdEstadoEmpresa: $('#IdEstadoEmpresa').val(),
+            IdSector: $('#IdSector').val(),
+            RazonSocial: $('#RazonSocial').val(),
+            RUC: $('#RUC').val(),
+            NroOferta: $('#NroOferta').val(),
+            NroPostulante: $('#NroPostulante').val(),
+            PalabraClave: $('#PalabraClave').val()
+        };
+
+        window.location.href = '@Url.Action("BusquedaEmpresasExportar", "UTP")?' + $.param(data, true);
+    };
+
+    var AlumnosExportar = function () {
+        console.log('AlumnosExportar');
+
+        var data = {
+            TipoEstudio: $('#TipoEstudio').val(),
+            Alumno: $('#Alumno').val(),
+            Carrera: $('#Carrera').val(),
+            Ciclo: $('#Ciclo').val(),
+            Sexo: $('#Sexo').val(),
+            Distrito: $('#Distrito').val(),
+            SectorEmpresarial: $('#SectorEmpresarial').val(),
+            Conocimientos: $('#Conocimiento').val(),
+            EstadoEstudio: $('#EstadoEstudio').val(),
+            completitud: $('#completitud').val(),
+            PalabraClave: $('#PalabraClave').val()
+        };
+
+        window.location.href = '@Url.Action("BusquedaAlumnosExportar", "UTP")?' + $.param(data, true);
+    };
+
+    var OfertasExportar = function () {
+        console.log('OfertasExportar');
+
+        var data = {
+            NombreComercial: $('#NombreComercial').val(),
+            IdTipoCargoutp: $('#IdTipoCargoutp').val(),
+            CargoOfrecido: $('#CargoOfrecido').val(),
+            IdSectorutp: $('#IdSectorutp').val(),
+            IdTipoContratoutp: $('#IdTipoContratoutp').val(),
+            AExperiencia: $('#AExperiencia').val(),
+            RemuneracionOfrecida: $('#RemuneracionOfrecida').val(),
+            IdTipoEstudioutp: $('#IdTipoEstudioutp').val(),
+            Conocimientos: $('#Conocimientos').val(),
+            NumeroPostulante: $('#NumeroPostulante').val(),
+            IdEstadoOferta: $('#IdEstadoOferta').val(),
+            InformacionAdicional: $('#TipoConocimientoIdListaValor').val(),
+            Carrera: $('#Carrera').val(),
+            TipoTrabajoUTP: $('#TipoTrabajoUTP').val(),
+            PalabraClave: $('#PalabraClave').val()
+        };
+
+        window.location.href = '@Url.Action("BusquedaOfertasExportar", "UTP")?' + $.param(data, true);
+    };
+
     function CargarPOSTNull(id, link) {
         $.ajax({
             url: link,
@@ -188,6 +250,7 @@
 
         })
     }
+
     function CargarPOST(id, link, entidad) {
         $.ajax({
             url: link,
@@ -230,7 +293,6 @@
 
 
     function AutoComplete(inputsearch, urlsearch, inputtext, inputid) {
-        alert(1);
         $(inputsearch).autocomplete({
             source: function (request, response) {
                 $.ajax({
@@ -265,12 +327,8 @@
             }
         });
     }
+
     function AutoCompleteText(inputsearch, urlsearch, inputtext) {
-
-        console.log(inputsearch);
-        console.log(urlsearch);
-        console.log(inputtext);
-
         $(inputsearch).autocomplete({
             source: function (request, response) {
                 $.ajax({
@@ -301,6 +359,7 @@
             }
         });
     }
+
     function AutoCompleteTextVarios(inputsearch, urlsearch, inputtext, tipo) {
         $(inputsearch).autocomplete({
             source: function (request, response) {
@@ -313,8 +372,6 @@
                     dataFilter: function (data) { return data; },
                     success: function (data) {
                         response($.map(data, function (item) {
-                            //console.log(data);
-
                             return {
                                 value: item.Label,
                                 id: item.Value
@@ -338,14 +395,6 @@
 
 
     function AutoCompleteTextDemo(inputsearch, urlsearch, inputtext, combo) {
-
-        console.log(inputsearch);
-        console.log(urlsearch);
-        console.log(combo);
-
-        //var codigoTipoConocimiento = $('#TipoConocimientoIdListaValor').val();
-
-
         $(inputsearch).autocomplete({
             source: function (request, response) {
                 console.log(request);
@@ -391,8 +440,6 @@
                     dataFilter: function (data) { return data; },
                     success: function (data) {
                         response($.map(data, function (item) {
-                            //console.log(data);
-
                             return {
                                 value: item.Label,
                                 id: item.Value

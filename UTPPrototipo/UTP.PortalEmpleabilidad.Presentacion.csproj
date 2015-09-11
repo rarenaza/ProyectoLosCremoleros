@@ -290,6 +290,9 @@
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\jquery-ui.min.css" />
     <Content Include="Content\idat.css" />
+    <Content Include="Content\reports.css" />
+    <Content Include="Content\style.css" />
+    <Content Include="Content\style.min.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -350,6 +353,7 @@
     <Content Include="Content\themes\images\ui-icons_454545_256x240.png" />
     <Content Include="Content\themes\images\ui-icons_888888_256x240.png" />
     <Content Include="Content\themes\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\throbber.gif" />
     <Content Include="Content\UTP-Icons.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\3OF9_NEW.svg" />
@@ -447,6 +451,7 @@
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\bundle.js" />
     <Content Include="Scripts\calendario.js" />
     <Content Include="Scripts\carga.asincrona.js" />
     <Content Include="Plantillas\Plantilla1.docx" />
@@ -873,6 +878,7 @@
     <Content Include="Scripts\jquery-ui-1.11.2.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
+    <Content Include="Scripts\jquery-ui.js" />
     <Content Include="Scripts\jquery.cycle2.carousel.min.js" />
     <Content Include="Scripts\jquery.cycle2.min.js" />
     <Content Include="Scripts\jquery.jcarousel.js" />
@@ -886,6 +892,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\jsEmpresa.js" />
+    <Content Include="Scripts\jstree.js" />
+    <Content Include="Scripts\jstree.min.js" />
     <Content Include="Scripts\less-1.5.1.js" />
     <Content Include="Scripts\less-1.5.1.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
