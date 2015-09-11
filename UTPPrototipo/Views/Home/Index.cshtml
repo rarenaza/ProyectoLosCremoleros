@@ -172,8 +172,10 @@
                 foreach (var itemNoticias in listaNoticias)
                 {
                     <span>
-                        <img src='@Url.Action("Imagen_Noticia", "Home", new { id = @itemNoticias.IdContenido })' style="border:solid;border-width:1px;border-color:rgb(220,220,220);border-radius: 6px 6px 6px 6px;width:100%;" />
-
+                        @if(itemNoticias.Imagen !=null)
+                        { 
+                            <img src='@Url.Action("Imagen_Noticia", "Home", new { id = @itemNoticias.IdContenido })' style="border:solid;border-width:1px;border-color:rgb(220,220,220);border-radius: 6px 6px 6px 6px;width:100%;" />
+                        }
 
                         @*<img src="/Content/imagen/@item.Imagen" height="100" width="100" />*@
 
@@ -200,9 +202,10 @@
                         @*<img src="/Content/imagen/@itemEventos.Imagen" style="border:solid;border-width:1px;border-color:rgb(220,220,220);border-radius: 6px 6px 6px 6px;width:100%;" />*@
 
 
-
-                        <img src='@Url.Action("Imagen_Eventos", "Home", new { id = @itemEventos.IdContenido })' style="border:solid;border-width:1px;border-color:rgb(220,220,220);border-radius: 6px 6px 6px 6px;width:100%;" />
-
+                        @if (itemEventos.Imagen != null)
+                        {
+                            <img src='@Url.Action("Imagen_Eventos", "Home", new { id = @itemEventos.IdContenido })' style="border:solid;border-width:1px;border-color:rgb(220,220,220);border-radius: 6px 6px 6px 6px;width:100%;" />
+                        }
 
                         @*<img src="/Content/imagen/@item.Imagen" height="100" width="100" />*@
 
@@ -240,9 +243,10 @@
                         <div class="row ">
                             <div class="col-sm-6">
 
-
-                                <img src='@Url.Action("Imagen_Testimonios", "Home", new { id = @itemTestimonios.IdContenido })' style="border:solid;border-width:1px;border-color:rgb(220,220,220);border-radius: 6px 6px 6px 6px;width:100%;" />
-
+                                @if (itemTestimonios.Imagen != null)
+                                {
+                                    <img src='@Url.Action("Imagen_Testimonios", "Home", new { id = @itemTestimonios.IdContenido })' style="border:solid;border-width:1px;border-color:rgb(220,220,220);border-radius: 6px 6px 6px 6px;width:100%;" />
+                                }
 
                                 @* <img src="/Content/imagen/@itemTestimonios.Imagen" style="border:solid;border-width:1px;border-color:rgb(220,220,220);border-radius: 6px 6px 6px 6px;width:100%;" />*@
                             </div>

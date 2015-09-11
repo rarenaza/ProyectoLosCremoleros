@@ -295,7 +295,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                 //Parámetros:
                 cmd.Parameters.Add(new SqlParameter("@IdAlumno", convenio.IdAlumno));
                 cmd.Parameters.Add(new SqlParameter("@Carrera", convenio.Carrera));
-                cmd.Parameters.Add(new SqlParameter("@NivelAcademico", DBNull.Value));
+                cmd.Parameters.Add(new SqlParameter("@NivelAcademico", "NULL"));
                 cmd.Parameters.Add(new SqlParameter("@TelefonoFijoCasa", "NULL"));
                 cmd.Parameters.Add(new SqlParameter("@TelefonoCelular", convenio.TelefonoCelular));
                 cmd.Parameters.Add(new SqlParameter("@Ciclo", convenio.Ciclo));
@@ -355,7 +355,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.Parameters.Add(new SqlParameter("@IdConvenio", convenio.IdConvenio));
                 cmd.Parameters.Add(new SqlParameter("@IdAlumno", convenio.IdAlumno));
                 cmd.Parameters.Add(new SqlParameter("@Carrera", convenio.Carrera));
-                cmd.Parameters.Add(new SqlParameter("@NivelAcademico", DBNull.Value));
+                cmd.Parameters.Add(new SqlParameter("@NivelAcademico", "NULL"));
                 cmd.Parameters.Add(new SqlParameter("@TelefonoFijoCasa", "NULL"));
                 cmd.Parameters.Add(new SqlParameter("@TelefonoCelular", convenio.TelefonoCelular));
                 cmd.Parameters.Add(new SqlParameter("@Ciclo", convenio.Ciclo));

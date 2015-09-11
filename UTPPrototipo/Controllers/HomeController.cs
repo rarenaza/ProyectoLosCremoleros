@@ -331,7 +331,7 @@ namespace UTPPrototipo.Controllers
         }
         public FileResult Imagen_Noticia(int id)
         {
-            const string alternativePicturePath = @"/Content/Images/question_mark.jpg";
+            const string alternativePicturePath = @"/Content/Imagen/default.png";
 
             List<Contenido> Noticia = new List<Contenido>();
             string x = "4";
