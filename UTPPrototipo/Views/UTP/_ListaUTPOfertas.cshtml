@@ -9,7 +9,7 @@
     <!--Se obtiene los datos para la paginación.-->
     Paginacion paginacion = (Paginacion)ViewBag.Paginacion;
 }
-<h5 class="clearfix">Ofertas <a href="@Url.Action("BusquedaOfertasExportar", "UTP")" class="btn btn-primary pull-right fuente-pequeña" style="margin-top: -12px;"><span class="fa fa-download"></span></a></h5>
+<h5 class="clearfix">Ofertas <button type="button" class="btn btn-primary pull-right fuente-pequeña" style="margin-top: -12px;" onclick="OfertasExportar()"><span class="fa fa-download"></span></button></h5>
 <div class="row grilla1-cabecera color-paleta2">
     <div class="col-sm-1">
         Fecha Pub
