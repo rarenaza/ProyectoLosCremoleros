@@ -522,6 +522,9 @@
     <Content Include="Plantillas\modelo-de-convenio-de-practicas-pre-profesionales.doc" />
     <Content Include="Plantillas\modelo-de-convenio-de-practicas-profesionales.doc" />
     <Content Include="Plantillas\plan-de-capacitacion.doc" />
+    <Content Include="Plantillas\reglamento-empresa-area-empleabilidad.pdf" />
+    <Content Include="Plantillas\reglamento-estudiante-area-empleabilidad.pdf" />
+    <Content Include="Plantillas\politicas-de-privacidad.pdf" />
     <None Include="Properties\PublishProfiles\PortalV1.pubxml" />
     <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\Chart.min.js" />
