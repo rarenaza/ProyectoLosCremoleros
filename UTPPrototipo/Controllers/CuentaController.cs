@@ -30,6 +30,7 @@ namespace UTPPrototipo.Controllers
         //
         // GET: /Cuenta/
         LNAutenticarUsuario ln = new LNAutenticarUsuario();
+        LNUsuario lnu = new LNUsuario();
         public ActionResult Ingresar()
         {
             return View();
@@ -550,6 +551,9 @@ namespace UTPPrototipo.Controllers
                                 ticket.IdEmpresa = 1;
 
                                 Session["Ticket"] = ticket;
+                                Session["TerminosCondiciones"] = dsResultado.Tables[0].Rows[0]["TerminosCondiciones"] == DBNull.Value ? false : Convert.ToBoolean(
+                                    Convert.ToInt32(dsResultado.Tables[0].Rows[0]["TerminosCondiciones"])
+                                );
 
                                 return RedirectToAction("Index", "Empresa");
                             }
@@ -576,7 +580,9 @@ namespace UTPPrototipo.Controllers
                             ticketAlumno.IdAlumno = Convert.ToInt32(dsResultado.Tables[1].Rows[0]["IdAlumno"]);
 
                             Session["TicketAlumno"] = ticketAlumno;
-
+                            Session["TerminosCondiciones"] = dsResultado.Tables[0].Rows[0]["TerminosCondiciones"] == DBNull.Value ? false : Convert.ToBoolean(
+                                Convert.ToInt32(dsResultado.Tables[0].Rows[0]["TerminosCondiciones"])
+                            );
 
                             //REdireccionas al indexl del alumno
                             return RedirectToAction("Index", "Alumno");
@@ -670,6 +676,13 @@ namespace UTPPrototipo.Controllers
             return RedirectToAction("Index", "Home");
 
 
+        }
+
+        public JsonResult ActualizarTerminosCondiciones(string usuario)
+        {
+            Session["TerminosCondiciones"] = true;
+
+            return Json(lnu.ActualizarTerminosCondiciones(usuario), JsonRequestBehavior.AllowGet);
         }
     }
 }
