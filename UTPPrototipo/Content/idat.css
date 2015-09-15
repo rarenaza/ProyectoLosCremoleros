@@ -366,6 +366,7 @@ p {
 .home__body__content__publications {
   position: absolute;
   top: 50%;
+  width: 100%;
   height: auto;
   margin-bottom: 0;
   padding-left: 0;

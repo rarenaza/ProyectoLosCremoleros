@@ -32,13 +32,13 @@
                     <li class="card col-lg-6 col-sm-6">
                         <div class="card__wrapper">
                          @{
-                            var noticia = ((List<Contenido>)(ViewBag.Noticias))[0];
+                            var contenido = ((List<Contenido>)(ViewBag.Opiniones))[0];
 
                             <h4 class="card__title"><img src="~/img/IDAT/las-empresas-opinan.png" alt="">las empresas opinan</h4>
-                            <p class="card__subtitle">@Html.Raw(@noticia.Titulo)</p>
+                            <p class="card__subtitle">@Html.Raw(@contenido.Titulo)</p>
                             <div class="card__content">
-                                <p>@Html.Raw(@noticia.SubTitulo)</p>
-                                <p>@Html.Raw(@noticia.Descripcion)</p>
+                                <p>@Html.Raw(@contenido.SubTitulo)</p>
+                                <p>@Html.Raw(@contenido.Descripcion)</p>
                             </div>
                             <a href="@Url.Action("LasEmpresasOpinan", "Home")" target="_blank" class="card__hook">ver más</a>
                         }
@@ -47,13 +47,13 @@
                     <li class="card col-lg-6 col-sm-6">
                         <div class="card__wrapper">
                         @{
-                            var evento = ((List<Contenido>)(ViewBag.Eventos))[0];
+                            var cotenido = ((List<Contenido>)(ViewBag.Casos))[0];
 
                             <h4 class="card__title"><img src="~/img/IDAT/imparable.png" alt="">casos de éxito imparable</h4>
-                            <p class="card__subtitle">@Html.Raw(@evento.Titulo)</p>
+                            <p class="card__subtitle">@Html.Raw(@contenido.Titulo)</p>
                             <div class="card__content">
-                                <p>@Html.Raw(@evento.SubTitulo)</p>
-                                <p>@Html.Raw(@evento.Descripcion)</p>
+                                <p>@Html.Raw(@contenido.SubTitulo)</p>
+                                <p>@Html.Raw(@contenido.Descripcion)</p>
                             </div>
                             <a href="@Url.Action("CasosDeExitoImparable", "Home")" target="_blank" class="card__hook">ver más</a>
                         }
