@@ -529,7 +529,7 @@
                 <div class="panel-heading" role="tab" id="heading14">
                     <div class="panel-title">
                         <a class="fuente-seccion" data-toggle="collapse" data-parent="#accordion" href="#collapse14" aria-expanded="false" aria-controls="collapse14">
-                            <h5>Clasificación de CV's Recibidos</h5>
+                            <h5>Clasificación de CV's Recibidos (mensual)</h5>
                         </a>
                     </div>
                 </div>
@@ -623,7 +623,7 @@
                 <div class="panel-heading" role="tab" id="heading16">
                     <div class="panel-title">
                         <a class="fuente-seccion" data-toggle="collapse" data-parent="#accordion" href="#collapse16" aria-expanded="false" aria-controls="collapse16">
-                            <h5>Alumnos activos según carrera</h5>
+                            <h5>Alumnos activos según carrera (acumulado)</h5>
                         </a>
                     </div>
                 </div>
@@ -641,7 +641,7 @@
                 <div class="panel-heading" role="tab" id="heading17">
                     <div class="panel-title">
                         <a class="fuente-seccion" data-toggle="collapse" data-parent="#accordion" href="#collapse17" aria-expanded="false" aria-controls="collapse17">
-                            <h5>Alumnos con CV completo al 100% según carrera</h5>
+                            <h5>Alumnos con CV completo al 100% según carrera (acumulado)</h5>
                         </a>
                     </div>
                 </div>
@@ -858,13 +858,6 @@
                   {
                       container: 'chartVacantesOfrecidas',
                       color: function (o) { return o.value ? '#2ecc71' : '#eeeeee'; },
-                      legend: {
-                          align: 'right',
-                          valign: 'middle',
-                          template: '#label#',
-                          marker: { radius: 0 },
-                          toggle: false
-                      },
                       padding: { bottom: 70 }
                   }, [                      
                         {
@@ -881,7 +874,7 @@
                             yAxis: {
                                 start: 0,
                                 step: 100,
-                                end: 1000
+                                end: 800
                             },
                             label: function (o) { return o.inactive; }                        
                         }
@@ -903,12 +896,7 @@
                     {
                         container: 'chartEmpresasTarget',
                         color: function (o) { return o.value ? '#2ecc71' : '#eeeeee'; },
-                        legend: {
-                            align: 'right',
-                            valign: 'middle',
-                            template: '#label#',
-                            marker: { radius: 0 }
-                        }, padding: { bottom: 70 }
+                        padding: { bottom: 70 }
                     }, [{
                         view: 'line',
                         value: "#value#",
@@ -934,12 +922,7 @@
                     {
                         container: 'chartProcesosCerrados',
                         color: function (o) { return o.value ? '#2ecc71' : '#eeeeee'; },
-                        legend: {
-                            align: 'right',
-                            valign: 'middle',
-                            template: '#label#',
-                            marker: { radius: 0 }
-                        }, padding: { bottom: 70 }
+                        padding: { bottom: 70 }
                     }, [{
                         view: 'line',
                         value: "#value#",

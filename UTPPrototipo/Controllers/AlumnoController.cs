@@ -130,7 +130,7 @@ namespace UTPPrototipo.Controllers
                 string rutaPlantilla = AppDomain.CurrentDomain.BaseDirectory + "Plantillas\\template.docx";
 
                 var postulaciones = lnoferta
-                    .ObtenerPostulantesPorIdOferta(entidad.IdOferta)
+                    .ObtenerPostulantesPorIdOfertaSimple(entidad.IdOferta)
                     .FirstOrDefault(p => p.Usuario == ticket.Usuario);
 
                 if (postulaciones == null)
