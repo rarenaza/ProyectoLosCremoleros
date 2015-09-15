@@ -199,9 +199,9 @@ namespace UTPPrototipo.Controllers
 
         public ActionResult Testimonios()
         {
-            ViewBag.Noticias = ln.Contenido_BuscarIndex(Constantes.CONTENIDO_NOTICIAS);
-            ViewBag.Eventos = ln.Contenido_BuscarIndex(Constantes.CONTENIDO_EVENTOS);
             ViewBag.Testimonios = ln.Contenido_BuscarNoticiasEventosOtros(Constantes.CONTENIDO_TESTIMONIOS);
+            ViewBag.Opiniones = ln.Contenido_BuscarIndex(Constantes.CONTENIDO_EMPRESAS_OPINAN);
+            ViewBag.Casos = ln.Contenido_BuscarIndex(Constantes.CONTENIDO_EXITO_IMPARABLE);
 
             return View();
         }
