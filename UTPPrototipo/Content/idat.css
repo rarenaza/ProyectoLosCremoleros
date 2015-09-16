@@ -574,7 +574,7 @@ p {
 }
 .testimonials__header__slider {
   position: absolute; 
-  top: 275px; 
+  top: 65%; 
   left: 50%; 
   width: 50%; 
   height: 50%; 
