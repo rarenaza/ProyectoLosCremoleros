@@ -15,9 +15,9 @@
                 <div class="modal-dialog modal-lg" style="height: 90%;">
                     <div class="modal-content" style="height: 100%;">
                         <div class="modal-header">
-                            <h4 class="modal-title">Terminos y condiciones</h4>
+                            <h4 class="modal-title">Términos y condiciones</h4>
                         </div>
-                        <div class="modal-body" style="padding: 32px; height: 73.5%; overflow-y: scroll;">
+                        <div class="modal-body" style="padding: 32px; height: 79.5%; overflow-y: scroll;">
                             <h2 style="margin-top: 0;">POLÍTICAS DE PRIVACIDAD</h2>
                             <p>
                                 Agradecemos tu interés en este sitio Web y páginas relacionadas. Tu privacidad es muy
@@ -147,18 +147,17 @@
                             </ol>
                         </div>
                         <div class="modal-footer">
-                            <h5 style="font-weight: bold;">Acepta los terminos y condiciones:</h5>
-                            <a href="@Url.Action("DescargarArchivoEstatico", "UTP", new { archivo = "politicas-de-privacidad.pdf" })" class="btn btn-success pull-left" style="margin-right: 8px;">Descargar - Terminos y condiciones</a>
+                            <a href="@Url.Action("DescargarArchivoEstatico", "UTP", new { archivo = "politicas-de-privacidad.pdf" })" class="btn btn-link pull-left" style="margin-right: 8px;">Descargar - Terminos y condiciones</a>
                             @{
                                 if (ROL == "USEREM") 
                                 {
                                     <script>window.usx = '@(((TicketEmpresa)Session["TicketEmpresa"]).Usuario)';</script>
-                                    <a href="@Url.Action("DescargarArchivoEstatico", "UTP", new { archivo = "reglamento-empresa-area-empleabilidad.pdf" })" class="btn btn-success pull-left">Descargar - Reglamento</a>
+                                    <a href="@Url.Action("DescargarArchivoEstatico", "UTP", new { archivo = "reglamento-empresa-area-empleabilidad.pdf" })" class="btn btn-link pull-left">Descargar - Reglamento</a>
                                 }
                                 if (ROL == "USERAL")
                                 {
                                     <script>window.usx = '@(((TicketAlumno)Session["TicketAlumno"]).Usuario)';</script>
-                                    <a href="@Url.Action("DescargarArchivoEstatico", "UTP", new { archivo = "reglamento-estudiante-area-empleabilidad.pdf" })" class="btn btn-success pull-left">Descargar - Reglamento</a>
+                                    <a href="@Url.Action("DescargarArchivoEstatico", "UTP", new { archivo = "reglamento-estudiante-area-empleabilidad.pdf" })" class="btn btn-link pull-left">Descargar - Reglamento</a>
                                 } 
                             }
                             <div class="pull-right">
