@@ -154,7 +154,7 @@
                                     <script>window.usx = '@(((TicketEmpresa)Session["TicketEmpresa"]).Usuario)';</script>
                                     <a href="@Url.Action("DescargarArchivoEstatico", "UTP", new { archivo = "reglamento-empresa-area-empleabilidad.pdf" })" class="btn btn-link pull-left">Descargar - Reglamento</a>
                                 }
-                                if (ROL == "USERAL")
+                                if (ROL == "USERAL" || ROL != "USEREM")
                                 {
                                     <script>window.usx = '@(((TicketAlumno)Session["TicketAlumno"]).Usuario)';</script>
                                     <a href="@Url.Action("DescargarArchivoEstatico", "UTP", new { archivo = "reglamento-estudiante-area-empleabilidad.pdf" })" class="btn btn-link pull-left">Descargar - Reglamento</a>

@@ -449,6 +449,8 @@ namespace UTPPrototipo.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult Autenticar(Usuario usuario)
         {
+            Session["TerminosCondiciones"] = false;
+
             if (Session["Captcha"] == null || usuario.Captcha ==null || Convert.ToString(Session["Captcha"]) != Convert.ToString(usuario.Captcha).ToLower())
             {
                 TempData["UsuarioNoExitoso"] = "El texto no coincide con la imagen";
