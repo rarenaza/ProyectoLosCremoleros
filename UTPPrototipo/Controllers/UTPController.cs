@@ -1184,7 +1184,7 @@ namespace UTPPrototipo.Controllers
 
             ViewBag.TipoTrabajo = new SelectList(lngeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_TRABAJO), "IdListaValor", "Valor");
             ViewBag.FuenteConvenio = new SelectList(lngeneral.ObtenerListaValor(Constantes.IDLISTA_FUENTE_CONVENIO), "IdListaValor", "Valor");
-            ViewBag.EstadoConvenio = new SelectList(lngeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_CONVENIO), "IdListaValor", "Valor");
+            ViewBag.EstadoConvenio = new SelectList(lngeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_CONVENIO), "IdListaValor", "DescripcionValor");
             ViewBag.Clasificacion = new SelectList(lngeneral.ObtenerReporteEquivalente(),"DatoOrigen","DatoOrigen");
 
             return View("ConveniosUTPCrear", convenio);
@@ -1247,7 +1247,7 @@ namespace UTPPrototipo.Controllers
             ViewBag.TipoTrabajo = new SelectList(lngeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_TRABAJO), "IdListaValor", "Valor", convenio.TipoTrabajo);
             ViewBag.FuenteConvenio = new SelectList(lngeneral.ObtenerListaValor(Constantes.IDLISTA_FUENTE_CONVENIO), "IdListaValor", "Valor", convenio.FuenteConvenio);
             ViewBag.IdExperienciaCargo = new SelectList(convenio.Experiencias, "IdExperienciaCargo", "Experiencia", convenio.IdExperienciaCargo);
-            ViewBag.EstadoConvenio = new SelectList(lngeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_CONVENIO), "IdListaValor", "Valor");
+            ViewBag.EstadoConvenio = new SelectList(lngeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_CONVENIO), "IdListaValor", "DescripcionValor");
             ViewBag.Clasificacion = new SelectList(lngeneral.ObtenerReporteEquivalente(), "DatoOrigen", "DatoOrigen");
             return View(convenio);
         }
@@ -1263,7 +1263,7 @@ namespace UTPPrototipo.Controllers
             Convenio convenioa = lnUtp.UTP_ObtenerConvenio(convenio.IdConvenio);
             ViewBag.TipoTrabajo = new SelectList(lngeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_TRABAJO), "IdListaValor", "Valor", convenioa.TipoTrabajo);
             ViewBag.FuenteConvenio = new SelectList(lngeneral.ObtenerListaValor(Constantes.IDLISTA_FUENTE_CONVENIO), "IdListaValor", "Valor", convenioa.FuenteConvenio);
-            ViewBag.EstadoConvenio = new SelectList(lngeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_CONVENIO), "IdListaValor", "Valor");
+            ViewBag.EstadoConvenio = new SelectList(lngeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_CONVENIO), "IdListaValor", "DescripcionValor");
             ViewBag.Clasificacion = new SelectList(lngeneral.ObtenerReporteEquivalente(), "DatoOrigen", "DatoOrigen");
 
             ViewBag.IdExperienciaCargo = new SelectList(convenioa.Experiencias, "IdExperienciaCargo", "Experiencia", convenioa.IdExperienciaCargo);

@@ -525,6 +525,8 @@
     <Content Include="Plantillas\reglamento-empresa-area-empleabilidad.pdf" />
     <Content Include="Plantillas\reglamento-estudiante-area-empleabilidad.pdf" />
     <Content Include="Plantillas\politicas-de-privacidad.pdf" />
+    <Content Include="Plantillas\manual-alumno.pdf" />
+    <Content Include="Plantillas\manual-empresa.pdf" />
     <None Include="Properties\PublishProfiles\PortalV1.pubxml" />
     <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\Chart.min.js" />

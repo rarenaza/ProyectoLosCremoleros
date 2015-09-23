@@ -650,6 +650,31 @@ namespace UTP.PortalEmpleabilidad.Logica
             return postulantes;
         }
 
+        public List<OfertaPostulante> ObtenerPostulantesPorIdOfertaSimple(int idOferta)
+        {
+            List<OfertaPostulante> postulantes = new List<OfertaPostulante>();
+
+            DataTable dtResultado = adOferta.ObtenerPostulantesPorIdOfertaSimple(idOferta);
+
+            foreach (DataRow fila in dtResultado.Rows)
+            {
+                OfertaPostulante postulante = new OfertaPostulante();
+                postulante.IdAlumno = Convert.ToInt32(fila["IdAlumno"]);
+                postulante.IdOferta = Convert.ToInt32(fila["IdOferta"]);
+                postulante.IdOfertaPostulante = Convert.ToInt32(fila["IdOfertaPostulante"]);
+                postulante.FaseOferta.Valor = Convert.ToString(fila["FaseOfertaDescripcion"]);
+                postulante.FechaPostulacion = Convert.ToDateTime(fila["FechaPostulacion"]);
+                postulante.Alumno = new Alumno() { Nombres = Convert.ToString(fila["AlumnoNombres"]), Apellidos = Convert.ToString(fila["AlumnoApellidos"]) };
+                postulante.CorreoElectronico = Convert.ToString(fila["CorreoElectronico"]);
+                postulante.Usuario = Convert.ToString(fila["Usuario"]);
+                postulante.FaseOferta.Peso = Convert.ToInt32(fila["FasePeso"]);
+
+                postulantes.Add(postulante);
+            }
+
+            return postulantes;
+        }
+
         public DataTable ObtenerPostulantesPorIdOfertaExcel(int idOferta)
         {
             return adOferta.ObtenerPostulantesPorIdOferta(idOferta);
