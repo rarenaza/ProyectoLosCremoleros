@@ -12,7 +12,7 @@ namespace UTP.PortalEmpleabilidad.Datos
 {
     public class ADUTPAlumnos : ADBase
     {
-        public Int32 InsertarDatosDeAlumno(Alumno alumno, Usuario usuario, List <AlumnoEstudio> alumnoEstudio)
+        public Int32 InsertarDatosDeAlumno(Alumno alumno, Usuario usuario, List<AlumnoEstudio> alumnoEstudio)
         {
             int idAlumno = 0;
             using (SqlConnection conexion = new SqlConnection(cadenaConexion))
@@ -37,7 +37,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                     cmd.Parameters.Add(new SqlParameter("@CreadoPor", SqlDbType.VarChar, 20)).Value = usuario.CreadoPor;
 
                     cmd.ExecuteNonQuery();
-                    
+
                     //Alumno:
                     cmd.Parameters.Clear();
                     cmd.CommandType = CommandType.StoredProcedure;
@@ -65,7 +65,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                     cmd.Parameters.Add(new SqlParameter("@CreadoPor", alumno.CreadoPor));
 
                     object resultadoIdAlumno = cmd.ExecuteScalar();
-                    
+
                     if (resultadoIdAlumno != null) idAlumno = Convert.ToInt32(resultadoIdAlumno);
 
 
@@ -89,6 +89,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                         cmd.Parameters.Add(new SqlParameter("@FechaFinAno", alumnoEst.FechaFinAno));
                         cmd.Parameters.Add(new SqlParameter("@CicloEquivalente", alumnoEst.CicloEquivalente));
                         cmd.Parameters.Add(new SqlParameter("@DatoUTP", alumnoEst.DatoUTP));
+                        cmd.Parameters.Add(new SqlParameter("@DatoCargado", alumnoEst.DatoCargado));
                         cmd.Parameters.Add(new SqlParameter("@CreadoPor", alumnoEst.CreadoPor));
 
                         cmd.ExecuteNonQuery();
@@ -100,7 +101,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                     cmd.CommandText = "UTPAlumnos_ActualizarPrimeraSesion";
                     cmd.Parameters.Add(new SqlParameter("@Codigo", alumno.CodAlumnoUTP));
                     cmd.ExecuteNonQuery();
-                   
+
                     transaccion.Commit();
 
                     conexion.Close();
@@ -144,7 +145,7 @@ namespace UTP.PortalEmpleabilidad.Datos
 
         //        conexion.Close();
         //    }
-           
+
         //}
 
         public DataSet ObtenerDatosPorCodigo(string codigo)
@@ -290,7 +291,7 @@ namespace UTP.PortalEmpleabilidad.Datos
 
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "UtpAlumnoMenuMostrar";
-      
+
                 cmd.Connection = conexion;
 
                 conexion.Open();
@@ -321,9 +322,9 @@ namespace UTP.PortalEmpleabilidad.Datos
                 cmd.Parameters.Add(new SqlParameter("@IdAlumno", SqlDbType.Int)).Value = alumno.IdAlumno;
                 cmd.Parameters.Add(new SqlParameter("@EstadoAlumno", SqlDbType.VarChar, 50)).Value = alumno.CodEstadoAlumno;
 
-              
 
-                        cnn.Conectar();
+
+                cnn.Conectar();
                 cmd.ExecuteNonQuery();
                 cmd.Parameters.Clear();
                 cnn.Desconectar();
@@ -391,6 +392,6 @@ namespace UTP.PortalEmpleabilidad.Datos
         }
 
 
-    
+
     }
 }

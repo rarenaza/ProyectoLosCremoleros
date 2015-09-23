@@ -912,6 +912,7 @@
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Views\UTP\_ConveniosUTPCrear.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1116,7 +1117,6 @@
     </Content>
     <Content Include="Views\UTP\Convenios.cshtml" />
     <Content Include="Views\UTP\_ConveniosUTPLista.cshtml" />
-    <Content Include="Views\UTP\_ConveniosUTPCrear.cshtml" />
     <Content Include="Views\Empresa\OfertaLaboral.cshtml" />
     <Content Include="Views\Empresa\_OfertaEncuesta.cshtml" />
     <Content Include="Views\UTP\_VerDetalleOferta.cshtml" />
@@ -1147,6 +1147,7 @@
     <Content Include="Views\Home\LasEmpresasOpinan.cshtml" />
     <Content Include="Views\Home\CasosDeExitoImparable.cshtml" />
     <Content Include="Views\Home\QueNosCuentan.cshtml" />
+    <Content Include="Views\UTP\_AdministrarUsuarioEditar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
