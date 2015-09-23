@@ -93,6 +93,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 oferta.DuracionContrato = Funciones.ToInt(dtResultado.Rows[0]["DuracionContrato"] == System.DBNull.Value ? null : dtResultado.Rows[0]["DuracionContrato"]);
                 oferta.Horario = Funciones.ToString(dtResultado.Rows[0]["Horario"]);
                 oferta.RemuneracionOfrecida = Funciones.ToDecimal(dtResultado.Rows[0]["RemuneracionOfrecida"]);
+                oferta.RemuneracionOfrecidaHasta = Funciones.ToDecimal(dtResultado.Rows[0]["RemuneracionOfrecidaHasta"]);
                 oferta.AreaEmpresa = Funciones.ToString(dtResultado.Rows[0]["AreaEmpresa"]);
                 oferta.NumeroVacantes = Funciones.ToInt(dtResultado.Rows[0]["NumeroVacantes"]);
                 oferta.NombreLocacion = Funciones.ToString(dtResultado.Rows[0]["NombreLocacion"]);
@@ -190,6 +191,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 oferta.DesTipoTrabajo = Funciones.ToString(dtResultado.Rows[i]["DesTipoTrabajo"]);
                 oferta.Horario = Funciones.ToString(dtResultado.Rows[i]["Horario"]);
                 oferta.RemuneracionOfrecida = Funciones.ToDecimal(dtResultado.Rows[i]["RemuneracionOfrecida"]);
+                oferta.RemuneracionOfrecidaHasta = Funciones.ToDecimal(dtResultado.Rows[i]["RemuneracionOfrecidaHasta"]);
                 oferta.Mensaje = Funciones.ToInt(dtResultado.Rows[i]["Mensajes"]);
                 oferta.IdEmpresa = Funciones.ToInt(dtResultado.Rows[i]["IdEmpresa"]);
                 oferta.TotalRegistros = Funciones.ToInt(dtResultado.Rows[i]["CantidadTotal"]);
@@ -238,6 +240,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 oferta.DesTipoTrabajo = Funciones.ToString(dtResultado.Rows[i]["DesTipoTrabajo"]);
                 oferta.Horario = Funciones.ToString(dtResultado.Rows[i]["Horario"]);
                 oferta.RemuneracionOfrecida = Funciones.ToDecimal(dtResultado.Rows[i]["RemuneracionOfrecida"]);
+                oferta.RemuneracionOfrecidaHasta = Funciones.ToDecimal(dtResultado.Rows[i]["RemuneracionOfrecidaHasta"]);
                 oferta.Mensaje = Funciones.ToInt(dtResultado.Rows[i]["Mensajes"]);
                 oferta.IdEmpresa = Funciones.ToInt(dtResultado.Rows[i]["IdEmpresa"]);
                 oferta.TotalRegistros = Funciones.ToInt(dtResultado.Rows[i]["CantidadTotal"]);
@@ -391,6 +394,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 {
                     oferta.RemuneracionOfrecida = Convert.ToInt32(dsResultado.Tables[0].Rows[0]["RemuneracionOfrecida"]);
                 }
+                oferta.RemuneracionOfrecidaHasta = (dsResultado.Tables[0].Rows[0]["RemuneracionOfrecidaHasta"] == System.DBNull.Value) ? (decimal?)null : Convert.ToInt32(dsResultado.Tables[0].Rows[0]["RemuneracionOfrecidaHasta"]);
 
                 oferta.Horario = Convert.ToString(dsResultado.Tables[0].Rows[0]["Horario"]);
                 oferta.AreaEmpresa = Convert.ToString(dsResultado.Tables[0].Rows[0]["AreaEmpresa"]);

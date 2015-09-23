@@ -50,7 +50,8 @@ namespace UTP.PortalEmpleabilidad.Modelo
 
         [Required(ErrorMessage = Constantes.MSJ_CAMPO_OBLIGATORIO)]
         public decimal? RemuneracionOfrecida { get; set; }
-       
+        [Required(ErrorMessage = Constantes.MSJ_CAMPO_OBLIGATORIO)]
+        public decimal? RemuneracionOfrecidaHasta { get; set; }
         public DateTime FechaInicioLabores { get; set; }
  
         public string Horario { get; set; }

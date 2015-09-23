@@ -594,7 +594,7 @@
                                         @if (Model.Oferta.RemuneracionOfrecida > 0)
                                         {
 
-                                            <strong>@String.Format("{0:###,###,###.#0}", Model.Oferta.RemuneracionOfrecida)</strong>
+                                            <strong>@String.Format("{0:###,###,###.#0}", Model.Oferta.RemuneracionOfrecida) - @String.Format("{0:###,###,###.#0}", Model.Oferta.RemuneracionOfrecidaHasta)</strong>
                                         }
                                         else
                                         {
