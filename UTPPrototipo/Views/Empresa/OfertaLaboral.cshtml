@@ -1,4 +1,4 @@
-﻿@model UTP.PortalEmpleabilidad.Modelo.Oferta
+﻿    @model UTP.PortalEmpleabilidad.Modelo.Oferta
 
 @using UTP.PortalEmpleabilidad.Modelo;
 @using UTPPrototipo.Utiles
@@ -226,14 +226,14 @@
                                     <div class="col-sm-6">
                                         <div class="input-group">
                                             <span class="input-group-addon">(*) Sueldo <br />mínimo S/.</span>
-                                           @Html.TextBoxFor(m => m.RemuneracionOfrecida, new { @class = "form-control", @placeholder = "Sueldo mínimo" })
+                                           @Html.TextBoxFor(m => m.RemuneracionOfrecida, new { @class = "form-control", @placeholder = "Sueldo Desde" })
                                             </div>
                                         @Html.ValidationMessageFor(m => m.RemuneracionOfrecida, "", new { @class = "text-danger" })
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="input-group">
                                             <span class="input-group-addon">(*) Sueldo <br />máximo S/.</span>
-                                            @Html.TextBoxFor(m => m.RemuneracionOfrecidaHasta, new { @class = "form-control", @placeholder = "Sueldo máximo" })
+                                            @Html.TextBoxFor(m => m.RemuneracionOfrecidaHasta, new { @class = "form-control", @placeholder = "Sueldo Hasta" })
                                         </div>
                                         @Html.ValidationMessageFor(m => m.RemuneracionOfrecidaHasta, "", new { @class = "text-danger" })
                                     </div>
