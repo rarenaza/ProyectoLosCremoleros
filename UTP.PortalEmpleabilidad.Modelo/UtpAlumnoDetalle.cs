@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace UTP.PortalEmpleabilidad.Modelo
 {
-   public  class UtpAlumnoDetalle
+    public class UtpAlumnoDetalle : VistaOfertaPostulante
     {
         //public int id { get; set; }
         public int IdAlumno { get; set; }
