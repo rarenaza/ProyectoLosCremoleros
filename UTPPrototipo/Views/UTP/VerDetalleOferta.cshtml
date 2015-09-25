@@ -39,185 +39,41 @@
                 </tr>
                 <tr>
                     <td class="celda-nombre">
-                        <span>Cargo</span>
+                        <span>Tipo Trabajo UTP</span>                        
                     </td>
                     <td class="celda-datos">
-                        @Model.CargoOfrecido
-                    </td>
-                </tr>
-                <tr>
-                    <td class="celda-nombre">
-                        <span>Funciones</span>
-                    </td>
-                    <td class="celda-datos">
-                        @Html.Raw(Model.Funciones)
-                    </td>
-                </tr>
-                <tr>
-                    <td class="celda-nombre">
-                        <span>Información Adicional</span>
-                    </td>
-                    <td class="celda-datos">
-                        @Html.Raw(Model.Competencias)
-                    </td>
-                </tr>
-                <tr>
-                    <td class="celda-nombre">
-                        Publicado
-                    </td>
-                    <td class="celda-datos">
-                        @Model.FechaPublicacion
-                    </td>
-                </tr>                
-                <tr>
-                    <td class="celda-nombre">
-                        Recibir CVs hasta
-                    </td>
-                    <td class="celda-datos">                        
-                        @Html.DisplayFor(model => model.FechaFinRecepcionCV)                        
-                    </td>
-                </tr>
-                <tr>
-                    <td class="celda-nombre">
-                        Fin de Oferta
-                    </td>
-                    <td class="celda-datos">
-                        @Html.DisplayFor(model => model.FechaFinProceso)
-                    </td>
-                </tr>
-                <tr>
-                    <td class="celda-nombre">
-                        Tipo Cargo
-                    </td>
-                    <td class="celda-datos">
-                        @Model.TipoCargo.Valor
-                    </td>
-                </tr>
-                <tr>
-                    <td class="celda-nombre">
-                        Tipo Trabajo
-                    </td>
-                    <td class="celda-datos">
-                        @Model.TipoTrabajo.Valor
-                    </td>
-                </tr>
-                <tr>
-                    <td class="celda-nombre">
-                        Tipo Contrato
-                    </td>
-                    <td class="celda-datos">
-                        @Model.TipoContrato.Valor
-                    </td>
-                </tr>
-                <tr>
-                    <td class="celda-nombre">
-                        Duración
-                    </td>
-                    <td class="celda-datos">
-                        @Model.DuracionContrato
-                    </td>
-                </tr>
-                <tr>
-                    <td class="celda-nombre">
-                        Horario
-                    </td>
-                    <td class="celda-datos">
-                        @Model.Horario
-                    </td>
-                </tr>
-                <tr>
-                    <td class="celda-nombre">
-                        Remuneración
-                    </td>
-                    <td class="celda-datos">
-                        @Model.RemuneracionOfrecida
-                    </td>
-                </tr>
-                <tr>
-                    <td class="celda-nombre">
-                        Área
-                    </td>
-                    <td class="celda-datos">
-                        @Model.AreaEmpresa
-                    </td>
-                </tr>
-                <tr>
-                    <td class="celda-nombre">
-                        Vacantes
-                    </td>
-                    <td class="celda-datos">
-                        @Model.NumeroVacantes
-                    </td>
-                </tr>
-                <tr>
-                    <td class="celda-nombre">
-                        Ubicación
-                    </td>
-                    <td class="celda-datos">
-                        @Model.NombreLocacion
-                    </td>
-                </tr>
-                <tr>
-                    <td class="celda-nombre">
-                        Asignado a
-                    </td>
-                    <td class="celda-datos">
-                        @Model.UsuarioPropietarioEmpresa
-                    </td>
-                </tr>
-                <tr>
-                    <td class="celda-nombre">
-                        Creado Por
-                    </td>
-                    <td class="celda-datos">
-                        @Model.CreadoPor
-                    </td>
-                </tr>
-                <tr>
-                    <td class="celda-nombre">
-                        Creado el
-                    </td>
-                    <td class="celda-datos">
-                        @Model.FechaCreacion
-                    </td>
-                </tr>
-                <tr>
-                    <td class="celda-nombre">
-                        Modificado Por
-                    </td>
-                    <td class="celda-datos">
-                        @{
-                            if (Model.FechaModificacion.ToString("yyyyMMdd") != "19000101")
-                            {
-                                @Model.FechaModificacion
-                            }
-                        }
-
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="celda-nombre">
-                        Modificado el
-                    </td>
-                    <td class="celda-datos">
-                        @Model.FechaModificacion
-                    </td>
-                </tr>
-                <tr>
-                    <td class="celda-nombre">
-                        Link externo
-                    </td>
-                    <td class="celda-datos">
-                        @*@Html.ActionLink(" ", "VerOferta", "Home", new { crypt = Helper.Encriptar(Model.IdOferta.ToString()) }, htmlAttributes: new { @class = "fa fa-external-link", target = "_blank", title = "Link externo" })*@
-                        @Html.ActionLink(" ", "VerOferta", "Home", new { crypt = Helper.Encriptar(Model.IdOferta.ToString()) }, htmlAttributes: new { @class = "fa fa-external-link", title = "Link externo" })
+                        <table>
+                            <tr>
+                                <td>@Html.DropDownListFor(m => m.TipoTrabajoUTP, null, "- Seleccione -", htmlAttributes: new { @class = "form-control", @id = "TipoTrabajoUTPFake", @style = "width: 175px;" })</td>
+                                <td>&nbsp;&nbsp;</td>
+                                @if (ViewBag.Rol != "ROLUTP")
+                                {
+                                    <td><button type="button" class="btn btn-default color-paleta2" id="btnGuardarSeguimiento">Guardar</button></td>
+                                }
+                            </tr>
+                        </table>                        
                     </td>
                 </tr>
             </table>
+            <br />
+
+            <div class="panel-group" id="oferta-anuncio" role="tablist" aria-multiselectable="true">
+                @Html.Action("VistaOfertaAnuncio", "Empresa", new { oferta = @Model })
+            </div>
+
+                
+
+            
+        </div>
+        <div class="col-sm-6">
+            <div class="panel-group" id="oferta-requisito" role="tablist" aria-multiselectable="true">
+                @Html.Action("VistaOfertaRequisitos", "Empresa", new { oferta = @Model })
+            </div>
         </div>
 
-
-
+        
+    </div>
+    <div class="row">
         <div class="col-sm-6" id="divDatosOferta">
             @using (Ajax.BeginForm("_VerDetalleOfertaEditar", "UTP", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", OnComplete = "mostrarMensajeSegumiento", UpdateTargetId = "divDatosOferta" }))
             {
@@ -226,296 +82,210 @@
                 @Html.Action("_VerDetalleOferta", "UTP", new { id = ViewBag.IdOferta })
             }
         </div>
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingCVPerfil" style="padding: 2px 2px 2px 6px;">
+                    <h5 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseCVPerfil" aria-expanded="true" aria-controls="collapseCVPerfil" style="font-size:12px;">
+                            Condiciones
+                        </a>
+                    </h5>
+                </div>
+                <div id="collapseCVPerfil" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingCVPerfil">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="input-group fuente-pequeña">
+                                    <table>
+                                        <tr>
+                                            <td class="celda-nombre">
+                                                <span>Cargo</span>
+                                            </td>
+                                            <td class="celda-datos">
+                                                @Model.CargoOfrecido
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="celda-nombre">
+                                                <span>Funciones</span>
+                                            </td>
+                                            <td class="celda-datos">
+                                                @Html.Raw(Model.Funciones)
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="celda-nombre">
+                                                <span>Información Adicional</span>
+                                            </td>
+                                            <td class="celda-datos">
+                                                @Html.Raw(Model.Competencias)
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="celda-nombre">
+                                                Publicado
+                                            </td>
+                                            <td class="celda-datos">
+                                                @Model.FechaPublicacion
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="celda-nombre">
+                                                Recibir CVs hasta
+                                            </td>
+                                            <td class="celda-datos">
+                                                @Html.DisplayFor(model => model.FechaFinRecepcionCV)
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="celda-nombre">
+                                                Fin de Oferta
+                                            </td>
+                                            <td class="celda-datos">
+                                                @Html.DisplayFor(model => model.FechaFinProceso)
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="celda-nombre">
+                                                Tipo Cargo
+                                            </td>
+                                            <td class="celda-datos">
+                                                @Model.TipoCargo.Valor
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="celda-nombre">
+                                                Tipo Trabajo
+                                            </td>
+                                            <td class="celda-datos">
+                                                @Model.TipoTrabajo.Valor
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="celda-nombre">
+                                                Tipo Contrato
+                                            </td>
+                                            <td class="celda-datos">
+                                                @Model.TipoContrato.Valor
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="celda-nombre">
+                                                Duración
+                                            </td>
+                                            <td class="celda-datos">
+                                                @Model.DuracionContrato
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="celda-nombre">
+                                                Horario
+                                            </td>
+                                            <td class="celda-datos">
+                                                @Model.Horario
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="celda-nombre">
+                                                Remuneración
+                                            </td>
+                                            <td class="celda-datos">
+                                                @Model.RemuneracionOfrecida
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="celda-nombre">
+                                                Área
+                                            </td>
+                                            <td class="celda-datos">
+                                                @Model.AreaEmpresa
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="celda-nombre">
+                                                Vacantes
+                                            </td>
+                                            <td class="celda-datos">
+                                                @Model.NumeroVacantes
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="celda-nombre">
+                                                Ubicación
+                                            </td>
+                                            <td class="celda-datos">
+                                                @Model.NombreLocacion
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="celda-nombre">
+                                                Asignado a
+                                            </td>
+                                            <td class="celda-datos">
+                                                @Model.UsuarioPropietarioEmpresa
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="celda-nombre">
+                                                Creado Por
+                                            </td>
+                                            <td class="celda-datos">
+                                                @Model.CreadoPor
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="celda-nombre">
+                                                Creado el
+                                            </td>
+                                            <td class="celda-datos">
+                                                @Model.FechaCreacion
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="celda-nombre">
+                                                Modificado Por
+                                            </td>
+                                            <td class="celda-datos">
+                                                @{
+                                                if (Model.FechaModificacion.ToString("yyyyMMdd") != "19000101")
+                                                {
+                                                    @Model.FechaModificacion
+                                                }
+                                                }
+
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="celda-nombre">
+                                                Modificado el
+                                            </td>
+                                            <td class="celda-datos">
+                                                @Model.FechaModificacion
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="celda-nombre">
+                                                Link externo
+                                            </td>
+                                            <td class="celda-datos">
+                                                @*@Html.ActionLink(" ", "VerOferta", "Home", new { crypt = Helper.Encriptar(Model.IdOferta.ToString()) }, htmlAttributes: new { @class = "fa fa-external-link", target = "_blank", title = "Link externo" })*@
+                                                @Html.ActionLink(" ", "VerOferta", "Home", new { crypt = Helper.Encriptar(Model.IdOferta.ToString()) }, htmlAttributes: new { @class = "fa fa-external-link", title = "Link externo" })
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </div>
+
     <hr />
-    <div class="row">
-        <div class="col-sm-12">
-            <h5>Carreras Requeridas</h5>
-
-            <div class="row grilla1-cabecera color-paleta2">
-                <div class="col-sm-3">
-                    Estudio
-                </div>
-                <div class="col-sm-1">
-                    Tipo
-                </div>
-                <div class="col-sm-2">
-                    Estado
-                </div>
-                <div class="col-sm-1">
-                    Ciclo
-                </div>
-                <div class="col-sm-1">
-                    Estado
-                </div>
-                <div class="col-sm-1">
-                    Creado Por
-                </div>
-                <div class="col-sm-1">
-                    Fecha C
-                </div>
-                <div class="col-sm-1">
-                    Mod. Por
-                </div>
-                <div class="col-sm-1">
-                    Fecha M
-                </div>
-
-            </div>
-
-            @foreach (var item in Model.CarrerasSeleccionadas)
-            {
-                <div class="row grilla1-linea">
-                    <div class="col-sm-3">
-                        @item.Estudio
-                    </div>
-                    <div class="col-sm-1">
-                        @item.TipoDeEstudio.Valor
-                    </div>
-                    <div class="col-sm-2">
-                        @item.EstadoDelEstudio.Valor
-                    </div>
-                    <div class="col-sm-1">
-                        @item.CicloEstudio
-                    </div>
-                    <div class="col-sm-1">
-                        @item.EstadoOfertaEstudio.Valor
-                    </div>
-                    <div class="col-sm-1">
-                        @item.CreadoPor
-                    </div>
-                    <div class="col-sm-1">
-                        @item.FechaCreacion
-                    </div>
-                    <div class="col-sm-1">
-                        @item.ModificadoPor
-                    </div>
-                    <div class="col-sm-1">
-                        @{
-                if (item.FechaModificacion.ToString("yyyyMMdd") != "19000101")
-                {
-                    @item.FechaModificacion
-                }
-                        }
-
-                    </div>
-                </div>
-            }
-
-
-        </div>
-    </div>
-<hr />
-    <div class="row">
-        <div class="col-sm-12">
-            <h5>Otros estudios requeridos</h5>
-
-            <div class="row grilla1-cabecera color-paleta2">
-                <div class="col-sm-3">
-                    Estudio
-                </div>
-                <div class="col-sm-1">
-                    Tipo
-                </div>
-                <div class="col-sm-2">
-                    Estado
-                </div>
-                <div class="col-sm-1">
-                    Ciclo
-                </div>
-                <div class="col-sm-1">
-                    Estado
-                </div>
-                <div class="col-sm-1">
-                    Creado Por
-                </div>
-                <div class="col-sm-1">
-                    Fecha C
-                </div>
-                <div class="col-sm-1">
-                    Mod. Por
-                </div>
-                <div class="col-sm-1">
-                    Fecha M
-                </div>
-
-            </div>
-
-            @foreach (var item in Model.ListaEstudios)
-            {
-                <div class="row grilla1-linea">
-                    <div class="col-sm-3">
-                        @item.Estudio
-                    </div>
-                    <div class="col-sm-1">
-                        @item.TipoDeEstudio.Valor
-                    </div>
-                    <div class="col-sm-2">
-                        @item.EstadoDelEstudio.Valor
-                    </div>
-                    <div class="col-sm-1">
-                        @item.CicloEstudio
-                    </div>
-                    <div class="col-sm-1">
-                        @item.EstadoOfertaEstudio.Valor
-                    </div>
-                    <div class="col-sm-1">
-                        @item.CreadoPor
-                    </div>
-                    <div class="col-sm-1">
-                        @item.FechaCreacion
-                    </div>
-                    <div class="col-sm-1">
-                        @item.ModificadoPor
-                    </div>
-                    <div class="col-sm-1">
-                        @{
-                if (item.FechaModificacion.ToString("yyyyMMdd") != "19000101")
-                {
-                    @item.FechaModificacion
-                }
-                        }
-
-                    </div>
-                </div>
-            }
-
-
-        </div>
-    </div>
-    <hr />
-    <div class="row">
-        <div class="col-sm-12">
-            <h5>Experiencia Requerida</h5>
-
-            <div class="row grilla1-cabecera color-paleta2">
-                <div class="col-sm-5">
-                    Sector Empresarial
-                </div>
-                <div class="col-sm-1">
-                    Años
-                </div>
-                <div class="col-sm-1">
-                    Excl
-                </div>
-                <div class="col-sm-1">
-                    Estado
-                </div>
-                <div class="col-sm-1">
-                    Creado Por
-                </div>
-                <div class="col-sm-1">
-                    Fecha C
-                </div>
-                <div class="col-sm-1">
-                    Mod. Por
-                </div>
-                <div class="col-sm-1">
-                    Fecha M
-                </div>
-
-            </div>
-            @foreach (var item in Model.ListaSectores)
-            {
-                <div class="row grilla1-linea">
-                    <div class="col-sm-5">
-                        @item.SectorEmpresarial.Valor
-                    </div>
-                    <div class="col-sm-1">
-                        @item.AniosTrabajados
-                    </div>
-                    <div class="col-sm-1">
-                         @(@item.ExperienciaExcluyente == true ? "SI" : "NO")                       
-                    </div>
-                    <div class="col-sm-1">
-                        @item.EstadoOfertaSectorEmpresarial.Valor
-                    </div>
-                    <div class="col-sm-1">
-                        @item.CreadoPor
-                    </div>
-                    <div class="col-sm-1">
-                        @item.FechaCreacion
-                    </div>
-                    <div class="col-sm-1">
-                        @item.ModificadoPor
-                    </div>
-                    <div class="col-sm-1">
-                        @item.FechaModificacion
-                    </div>
-                </div>
-            }
-
-        </div>
-    </div>
-    <hr />
-    <div class="row">
-        <div class="col-sm-12">
-            <h5>Información adicional requerida</h5>
-
-            <div class="row grilla1-cabecera color-paleta2">
-                <div class="col-sm-4">
-                    Tipo
-                </div>
-                <div class="col-sm-1">
-                    Conocimiento
-                </div>
-                <div class="col-sm-1">
-                    Nivel
-                </div>
-                <div class="col-sm-1">
-                    Años
-                </div>
-                <div class="col-sm-1">
-                    Estado
-                </div>
-                <div class="col-sm-1">
-                    Creado Por
-                </div>
-                <div class="col-sm-1">
-                    Fecha C
-                </div>
-                <div class="col-sm-1">
-                    Mod. Por
-                </div>
-                <div class="col-sm-1">
-                    Fecha M
-                </div>
-            </div>
-            @foreach (var item in Model.ListaInformacionAdicional)
-            {
-                <div class="row grilla1-linea">
-                    <div class="col-sm-4">
-                        @item.TipoConocimiento.Valor
-                    </div>
-                    <div class="col-sm-1">
-                        @item.Conocimiento
-                    </div>
-                    <div class="col-sm-1">
-                        @item.NivelConocimiento.Valor
-                    </div>
-                    <div class="col-sm-1">
-                        @item.AniosExperiencia
-                    </div>
-                    <div class="col-sm-1">
-                        @item.EstadoOfertaInformacionAdicional.Valor
-                    </div>
-                    <div class="col-sm-1">
-                        @item.CreadoPor
-                    </div>
-                    <div class="col-sm-1">
-                        @item.FechaCreacion
-                    </div>
-                    <div class="col-sm-1">
-                        @item.ModificadoPor
-                    </div>
-                    <div class="col-sm-1">
-                        @item.FechaModificacion
-                    </div>
-                </div>
-            }
-        </div>
-
-    </div>
+    
     <br />
     <div class="row">
         <div class="col-sm-12">
@@ -603,6 +373,12 @@
     $(document).ready(function () {
         //$("#divFinalCabecera").removeClass("color-paleta1 color-paleta3 color-paleta4 color-paleta5 color-paleta6 color-paleta7").addClass("color-paleta2");
         $("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta3 color-paleta5 color-paleta6 color-paleta7 color-paleta8 color-paleta9").addClass("color-paleta2")
+
+        $('#btnGuardarSeguimiento').on('click', function () { $('#divDatosOferta form').submit(); });
+        $('#TipoTrabajoUTPFake').val($('#TipoTrabajoUTP').val());
+        $('#TipoTrabajoUTPFake').on('change', function () {
+            $('#TipoTrabajoUTP')[0].value = this.value;
+        });
     });
 
 

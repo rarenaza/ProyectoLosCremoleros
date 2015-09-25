@@ -72,7 +72,10 @@
                     </div>
                     <div id="collapseOferta" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOferta">
                         <div class="panel-body fuente-pequeña">
+                            <h6><strong>Funciones</strong></h6>
+                            <br />
                             @Html.Raw(Model.Oferta.Funciones)
+                            <h6><strong>Requisitos</strong></h6>
                             <br />
                             @Html.Raw(Model.Oferta.Competencias)
                         </div>
@@ -191,22 +194,7 @@
                                 </div>
                             </div>
                             <br />
-                            <table class="fuente-pequeña" style="width:100%;">
-                                <tr>
-                                    <td class="celda-nombre" style="width:70%;">Estado: <strong>@Model.Oferta.EstadoCarreraUTPDescripcion</strong></td>
-                                    <td class="celda-datos"></td>
-                                </tr>
-                            @if (Convert.ToInt32(@Model.Oferta.CicloMinimoCarreraUTP) != 0)
-                            {
-                                <tr>
-                                    <td class="celda-nombre" style="width:70%;">Ciclo mínimo: <strong>@Model.Oferta.CicloMinimoCarreraUTP</strong></td>
-                                    <td class="celda-datos"></td>
-                                </tr>
-                            }
-                            </table>
-                            <br />
-
-                            <table class="fuente-pequeña" style="width:100%;">
+                            <table class="fuente-pequeña">
                                 @if (Model.ListadoEstudios != null && Model.ListadoEstudios.Count > 0)
                                 {
                                         <!--Carreras UTP-->
@@ -216,7 +204,7 @@
                                         if (Model.ListadoEstudios[i].Tipo == 0 && Model.ListadoEstudios[i].Requisito == "Grado Universitario" && Model.ListadoEstudios[i].Line == 1)
                                         {
                                             <tr>
-                                                <td class="celda-nombre" style="width:70%;">
+                                                <td class="celda-nombre" style="text-align:left">
                                                     <!--Se muestra el siguiente en la lista-->
                                                     <strong>@Model.ListadoEstudios[i + 1].Requisito.Split('-')[0]</strong>
                                                 </td>
@@ -237,11 +225,11 @@
                                             </tr>
                                         }
                                         @*else
-                                        {
-                                            <tr>
-                                                <td colspan="2"><div class="linea_raya"></div></td>
-                                            </tr>
-                                        }*@
+                    {
+                        <tr>
+                            <td colspan="2"><div class="linea_raya"></div></td>
+                        </tr>
+                    }*@
 
                                         i = i + 3;
 
@@ -249,19 +237,37 @@
                                 }
 
                             </table>
-                            <hr />
+                            <br />
+                            <table class="fuente-pequeña">
+                                <tr>
+                                    <td class="celda-nombre">Estado: </td>
+                                    <td class="celda-datos"><strong>@Model.Oferta.EstadoCarreraUTPDescripcion</strong></td>
+                                </tr>
+                            @if (Convert.ToInt32(@Model.Oferta.CicloMinimoCarreraUTP) != 0)
+                            {
+                                <tr>
+                                    <td class="celda-nombre">Ciclo mínimo: </td>
+                                    <td class="celda-datos"><strong>@Model.Oferta.CicloMinimoCarreraUTP</strong></td>
+                                </tr>
+                            }
+                            </table>
+                            <br />
+                            @if (Model.ListaEstudiosOtros.Count > 0)
+                            {
+                                <hr />
                             <div class="row">
                                 <div class="col-md-12">
                                     <strong class="sub-titulo-seccion">Otros Estudios</strong>
                                 </div>
                             </div>
                             <br />
-
-                            <table class="fuente-pequeña" style="width:100%;">
+                            }
+                            
+                            <table class="fuente-pequeña">
                                 @{
                                     string cicloMinimo = "";
                                 }
-                                @if (Model.ListadoEstudios != null && Model.ListadoEstudios.Count > 0)
+                                @if (Model.ListadoEstudios != null && Model.ListaEstudiosOtros.Count > 0)
                                 {
                                         <!--Carreras UTP-->
                                     for (int i = 0; i <= Model.ListadoEstudios.Count - 1; i++)
@@ -290,7 +296,7 @@
                                         if (Model.ListadoEstudios[i].Tipo == 0 && Model.ListadoEstudios[i].Requisito != "Grado Universitario")
                                         {
                                             <tr>
-                                                <td class="celda-nombre" style="width:70%;">
+                                                <td class="celda-nombre">
                                                     <!--Se muestra el siguiente en la lista-->
                                                     <strong>@Model.ListadoEstudios[i].Requisito.Split('-')[0]</strong>
                                                     @{
@@ -345,7 +351,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="celda-nombre" style="width:70%;">
+                                    <td class="celda-nombre">
                                         <strong class="sub-titulo-seccion">General: @Model.Oferta.ExperienciaGeneral meses </strong>
                                     </td>
                                     <td class="celda-datos">
@@ -356,7 +362,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="celda-nombre" style="width:70%;">
+                                    <td class="celda-nombre">
                                         <strong class="sub-titulo-seccion">En posiciones similares: @Model.Oferta.ExperienciaPosicionesSimilares meses</strong>
                                     </td>
                                     <td class="celda-datos">
@@ -364,14 +370,6 @@
                                         {
                                             <span class="valor-palabra si-cumple">Si cumple</span><span class="valor-icono2 si-cumple">g</span>
                                         }
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <hr />
-                                    </td>
-                                    <td>
-                                        <hr />
                                     </td>
                                 </tr>
                                 @if (Model.ListadoSectorEmpresarial != null && Model.ListadoSectorEmpresarial.Count > 0)
@@ -392,7 +390,7 @@
                                         if (item.Tipo == 0)
                                         {
                                             <tr>
-                                                <td class="celda-nombre" style="width:70%;">
+                                                <td class="celda-nombre">
                                                     <strong>@item.Requisito</strong>
                                                 </td>
                                                 <td class="celda-datos">
@@ -449,7 +447,7 @@
                                         if (item.Tipo == 0)
                                         {
                                             <tr>
-                                                <td class="celda-nombre" style="width:70%;">
+                                                <td class="celda-nombre">
                                                     <strong>@item.Requisito</strong>
                                                 </td>
                                                 <td class="celda-datos">

@@ -65,6 +65,7 @@
     <Compile Include="OfertaEncuesta.cs" />
     <Compile Include="OfertaUTP.cs" />
     <Compile Include="Paginacion.cs" />
+    <Compile Include="ReporteEquivalente.cs" />
     <Compile Include="VistaEventosPorUsuario.cs" />
     <Compile Include="EmpresaListaEmpresa.cs" />
     <Compile Include="Auditoria.cs" />
