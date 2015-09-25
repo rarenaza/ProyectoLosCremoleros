@@ -13,10 +13,14 @@
     <!---Cabecera de la página.-->
     @{Html.RenderAction("VistaCabeceraUtpMiPortal", "UTP");}
 
-    <!--  Contenedores de alertas.
-    <div class="alert alert-danger" role="alert">¡Alerta!</div>
-    <div class="alert alert-warning" role="alert">Advertencia</div>
-        -->
+    <ul id="offers-tabs" class="nav nav-justified nav-pills">
+        <li role="presentation" class="active" style="padding: 4px;"><a href="@Url.Action("Ofertas", "UTP", new { Tab = "Todos" })">Todos</a></li>
+        <li role="presentation" class="active" style="padding: 4px;"><a href="@Url.Action("Ofertas", "UTP", new { Tab = "PosicionesDeEntrada" })">Posiciones de entrada</a></li>
+        <li role="presentation" class="active" style="padding: 4px;"><a href="@Url.Action("Ofertas", "UTP", new { Tab = "Practicas" })">Prácticas</a></li>
+        <li role="presentation" class="active" style="padding: 4px;"><a href="@Url.Action("Ofertas", "UTP", new { Tab = "Empleo" })">Empleo</a></li>
+    </ul>
+
+    <br />
 
     <div class="row">
         <div class="col-sm-7">
@@ -34,99 +38,14 @@
         <div class="col-sm-5 fuente-pequeña">
             <!--INICIO-->
             <div class="panel-group" id="grupoMensajes" role="tablist" aria-multiselectable="true">
-      
-                    
-                            @Html.Action("_Mensajes", "Mensaje", new { pantalla = Constantes.MENSAJES_UTP_INDEX })
-                       
-                  
-              
+                @Html.Action("_Mensajes", "Mensaje", new { pantalla = Constantes.MENSAJES_UTP_INDEX })
             </div>
             <!--FIN-->
-           
-
         </div>
-
     </div>
     <div class="col-sm-7 fuente-pequeña">
         <div class="row">
         </div>
-        <!-- Zona de gráficos
-        <hr />
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="input-group">
-                    <span class="input-group-addon">Fecha <br />desde</span>
-                    <input id="CargoOfrecido" name="CargoOfrecido" type="text" class="form-control" placeholder="Fecha desde para Estadísticas">
-
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="input-group">
-                    <span class="input-group-addon">Fecha <br />hasta</span>
-                    <input id="CargoOfrecido" name="CargoOfrecido" type="text" class="form-control" placeholder="Fecha hasta para Estadísticas">
-
-                </div>
-            </div>
-        </div>
-        <hr />
-        <div class="row">
-            <div class="col-sm-6">
-                <img src="~/img/GraficoTemp.png" style="width:100%;" />
-            </div>
-            <div class="col-sm-6">
-                <img src="~/img/GraficoTemp.png" style="width:100%;" />
-            </div>
-        </div>
-        <hr />
-        <div class="row">
-            <div class="col-sm-6 fuente-pequeña" style="border-right:solid;border-color:rgb(220, 220, 220);border-width:1px;">
-                <h5>Estadísticas</h5>
-                <table>
-                    <tr>
-                        <td class="celda-nombre">Estadística 1</td>
-                        <td class="celda-datos">9999</td>
-                    </tr>
-                    <tr>
-                        <td class="celda-nombre">Estadística 2</td>
-                        <td class="celda-datos">9999</td>
-                    </tr>
-                    <tr>
-                        <td class="celda-nombre">Estadística 3</td>
-                        <td class="celda-datos">9999</td>
-                    </tr>
-                    <tr>
-                        <td class="celda-nombre">Estadística 4</td>
-                        <td class="celda-datos">9999</td>
-                    </tr>
-                </table>
-
-            </div>
-            <div class="col-sm-6 fuente-pequeña" style="border-right:solid;border-color:rgb(220, 220, 220);border-width:1px;">
-                <h5>Estadísticas</h5>
-
-                <table>
-                    <tr>
-                        <td class="celda-nombre">Estadística 5</td>
-                        <td class="celda-datos">9999</td>
-                    </tr>
-                    <tr>
-                        <td class="celda-nombre">Estadística 6</td>
-                        <td class="celda-datos">9999</td>
-                    </tr>
-                    <tr>
-                        <td class="celda-nombre">Estadística 7</td>
-                        <td class="celda-datos">9999</td>
-                    </tr>
-                    <tr>
-                        <td class="celda-nombre">Estadística 8</td>
-                        <td class="celda-datos">9999</td>
-                    </tr>
-                </table>
-
-            </div>
-
-        </div>
-        <hr /> -->
     </div>
 </div>
 <script>
