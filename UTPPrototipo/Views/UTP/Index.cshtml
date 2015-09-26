@@ -13,10 +13,14 @@
     <!---Cabecera de la página.-->
     @{Html.RenderAction("VistaCabeceraUtpMiPortal", "UTP");}
 
-    <!--  Contenedores de alertas.
-    <div class="alert alert-danger" role="alert">¡Alerta!</div>
-    <div class="alert alert-warning" role="alert">Advertencia</div>
-        -->
+    <ul id="offers-tabs" class="nav nav-justified nav-pills">
+        <li role="presentation" class="active" style="padding: 4px;"><a href="@Url.Action("Ofertas", "UTP", new { Tab = "Todos" })">Todos</a></li>
+        <li role="presentation" class="active" style="padding: 4px;"><a href="@Url.Action("Ofertas", "UTP", new { Tab = "PosicionesDeEntrada" })">Posiciones de entrada</a></li>
+        <li role="presentation" class="active" style="padding: 4px;"><a href="@Url.Action("Ofertas", "UTP", new { Tab = "Practicas" })">Prácticas</a></li>
+        <li role="presentation" class="active" style="padding: 4px;"><a href="@Url.Action("Ofertas", "UTP", new { Tab = "Empleo" })">Empleo</a></li>
+    </ul>
+
+    <br />
 
     <div class="row">
         <div class="col-sm-7">
