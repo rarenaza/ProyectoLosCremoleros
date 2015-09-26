@@ -8,7 +8,7 @@
             </a>
         </h5>
     </div>
-    <div id="collapseRequisito" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingRequisito">
+    <div id="collapseRequisito" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingRequisito">
         <div class="panel-body fuente-pequeña">
             <div class="row">
                 <div class="col-md-12">
@@ -21,6 +21,15 @@
             }
             @foreach (var itemCarrera in Model.CarrerasSeleccionadas)
             {
+                <table class="fuente-pequeña">
+
+                    <tr>
+                        <td class="celda-nombre">Carrera</td>
+                        <td class="celda-datos">@itemCarrera.Estudio</td>
+                    </tr>
+
+                </table>
+                <br />
                 if (ControlCicloyEstado == 1)
                 {
                     ControlCicloyEstado = 0;
@@ -38,26 +47,19 @@
                         }
                     </table>
                     <br />
-                    
                 }
-                <table class="fuente-pequeña">
-
-                    <tr>
-                        <td class="celda-nombre">Carrera</td>
-                        <td class="celda-datos">@itemCarrera.Estudio</td>
-                    </tr>
-
-                </table>
-
             }
-            <br />
-            <hr />
-            <div class="row">
-                <div class="col-md-12">
-                    <strong class="sub-titulo-seccion">Otros Estudios</strong>
+            @if (Model.ListaEstudios.Count > 0)
+            {
+                <hr />
+                <div class="row">
+                    <div class="col-md-12">
+                        <strong class="sub-titulo-seccion">Otros Estudios</strong>
+                    </div>
                 </div>
-            </div>
-            <br />
+                <br />
+            }
+
 
             @foreach (var itemEstudio in Model.ListaEstudios)
             {
@@ -81,13 +83,16 @@
                 </table>
                 <br />
             }
-
-            <hr />
-            <div class="row">
-                <div class="col-md-12">
-                    <strong class="sub-titulo-seccion">Experiencia</strong>
+            @if (Model.ExperienciaGeneral != null || Model.ExperienciaPosicionesSimilares != null)
+            {
+                <hr />
+                <div class="row">
+                    <div class="col-md-12">
+                        <strong class="sub-titulo-seccion">Experiencia</strong>
+                    </div>
                 </div>
-            </div>
+            }
+
             <br />
             <table class="fuente-pequeña">
                 <tr>
@@ -99,12 +104,15 @@
                     <td class="celda-datos">@Model.ExperienciaPosicionesSimilares</td>
                 </tr>
             </table>
-            <hr />
-            <div class="row">
-                <div class="col-md-12">
-                    <strong class="sub-titulo-seccion">Experiencia por Sector</strong>
+            @if (Model.ListaSectores.Count > 0)
+            {
+                <hr />
+                <div class="row">
+                    <div class="col-md-12">
+                        <strong class="sub-titulo-seccion">Experiencia por Sector</strong>
+                    </div>
                 </div>
-            </div>
+            }
             <br />
             @foreach (var itemSector in Model.ListaSectores)
             {
@@ -119,18 +127,21 @@
                     </tr>
                     <tr>
                         <td class="celda-nombre">Excluyente</td>
-                        <td class="celda-datos">@(itemSector.ExperienciaExcluyente ? "Si" : "No" )</td>
+                        <td class="celda-datos">@(itemSector.ExperienciaExcluyente ? "Si" : "No")</td>
                     </tr>
                 </table>
                 <br />
             }
-
-            <hr />
-            <div class="row">
-                <div class="col-md-12">
-                    <strong class="sub-titulo-seccion">Información Adicional</strong>
+            @if (Model.ListaInformacionAdicional.Count > 0)
+            {
+                <hr />
+                <div class="row">
+                    <div class="col-md-12">
+                        <strong class="sub-titulo-seccion">Información Adicional</strong>
+                    </div>
                 </div>
-            </div>
+            }
+
             <br />
             @foreach (var itemInfoAdicional in Model.ListaInformacionAdicional)
             {

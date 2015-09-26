@@ -359,15 +359,15 @@ namespace UTPPrototipo.Controllers
             Paginacion paginacion = new Paginacion();
             paginacion.NroPaginaActual = nroPaginaActual;
             paginacion.CantidadTotalResultados = cantidadTotal;
-            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA;
-            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA;
-            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA;
+            paginacion.FilasPorPagina = Constantes.FILAS_POR_PAGINA_UTP;
+            paginacion.TotalPaginas = cantidadTotal / Constantes.FILAS_POR_PAGINA_UTP;
+            int residuo = cantidadTotal % Constantes.FILAS_POR_PAGINA_UTP;
             if (residuo > 0) paginacion.TotalPaginas += 1;
 
             ViewBag.Paginacion = paginacion;
             ViewBag.TipoBusqueda = "Simple";
 
-            return lista.OrderByDescending(m => m.FechaEnvio).Skip((nroPaginaActual - 1) * Constantes.FILAS_POR_PAGINA).Take(Constantes.FILAS_POR_PAGINA).ToList();
+            return lista.OrderByDescending(m => m.FechaEnvio).Skip((nroPaginaActual - 1) * Constantes.FILAS_POR_PAGINA_UTP).Take(Constantes.FILAS_POR_PAGINA_UTP).ToList();
         }
        
         [HttpGet]
