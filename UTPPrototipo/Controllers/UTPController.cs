@@ -2525,6 +2525,7 @@ namespace UTPPrototipo.Controllers
 
             //Se quitan las opciones de oferta borrador y oferta fin de recepción de CV's.
             ViewBag.EstadoOferta = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_OFERTA).Where(a => a.IdListaValor != "OFERBO" ), "IdListaValor", "Valor", oferta.EstadoOferta);
+            ViewBag.TipoTrabajoUTP = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_TRABAJO_UTP), "IdListaValor", "Valor", oferta.TipoTrabajoUTP);
             TicketUTP ticketUtp = (TicketUTP)Session["TicketUtp"];
             ViewBag.Rol = ticketUtp.Rol;
             return View(oferta);
@@ -3210,6 +3211,25 @@ namespace UTPPrototipo.Controllers
                 alumno.TelefonoCelular = Convert.ToString(dtResultado.Rows[0]["TelefonoCelular"] == DBNull.Value ? null : dtResultado.Rows[0]["TelefonoCelular"]);
 
             }
+
+            LNAlumnoCV lnAlumnocv = new LNAlumnoCV();
+            int idAlumno = Convert.ToInt32(Helper.Desencriptar(Id));
+            VistaOfertaPostulante vistaofertapostulante = lnAlumnocv.ObtenerDatosCV(idAlumno);
+            alumno.alumnocv = new Alumno();
+            alumno.alumnocv = vistaofertapostulante.alumnocv;
+
+            alumno.alumnoestudiocv = new List<AlumnoEstudio>();
+            alumno.alumnoestudiocv = vistaofertapostulante.alumnoestudiocv;
+
+            alumno.alumnoexperienciacv = new List<AlumnoExperiencia>();
+            alumno.alumnoexperienciacv = vistaofertapostulante.alumnoexperienciacv;
+
+            alumno.alumnoinformacionadicionalcv = new List<AlumnoInformacionAdicional>();
+            alumno.alumnoinformacionadicionalcv = vistaofertapostulante.alumnoinformacionadicionalcv;
+
+            alumno.alumnopostulacionesdata = new List<AlumnoPostulaciones>();
+            alumno.alumnopostulacionesdata = vistaofertapostulante.alumnopostulacionesdata;
+
             TicketUTP ticketUtp = (TicketUTP)Session["TicketUtp"];
             ViewBag.Rol = ticketUtp.Rol;
             return View(alumno);

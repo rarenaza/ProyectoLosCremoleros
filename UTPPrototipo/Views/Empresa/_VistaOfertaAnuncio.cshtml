@@ -1,21 +1,20 @@
 ﻿@model UTP.PortalEmpleabilidad.Modelo.Oferta
 
-    <div class="panel panel-default">
-        <div class="panel-heading" role="tab" id="headingOferta" style="padding: 2px 2px 2px 6px;">
-            <h5 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOferta" aria-expanded="true" aria-controls="collapseOferta" class="fuente-seccion">
-                    @Model.CargoOfrecido
-                </a>
-            </h5>
-        </div>
-        <div id="collapseOferta" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOferta">
-            <div class="panel-body fuente-pequeña">
+<div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingOferta" style="padding: 2px 2px 2px 6px;">
+        <h5 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOferta" aria-expanded="true" aria-controls="collapseOferta" class="fuente-seccion">
+                @Model.CargoOfrecido
+            </a>
+        </h5>
+    </div>
+    <div id="collapseOferta" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOferta">
+        <div class="panel-body fuente-pequeña">
 
-                @Html.Raw(@Model.Funciones)
-                <br />
-                @Html.Raw(@Model.Competencias)
+            @Html.Raw(@Model.Funciones)
+            <br />
+            @Html.Raw(@Model.Competencias)
 
-            </div>
         </div>
     </div>
-
+</div>

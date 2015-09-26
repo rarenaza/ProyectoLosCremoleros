@@ -1,5 +1,4 @@
-﻿
-@model UTP.PortalEmpleabilidad.Modelo.UtpAlumnoDetalle
+﻿@model UTP.PortalEmpleabilidad.Modelo.UtpAlumnoDetalle
 @using UTP.PortalEmpleabilidad.Modelo
 @using UTPPrototipo.Utiles
 
@@ -12,238 +11,555 @@
 <link href="~/Content/font-awesome.css" rel="stylesheet" />
 <div class="container fuente-pequeña" style="margin-top:2px;">
     @*@using (Ajax.BeginForm("VerDetalleAlumno", "UTP", new AjaxOptions() { InsertionMode = InsertionMode.Replace, HttpMethod = "POST", OnComplete = "mostrarMensaje" }))*@
-@using (Html.BeginForm())
-{
-    @Html.HiddenFor(model => model.IdAlumno)
-    @Html.AntiForgeryToken()
-    
-    <!---Cabecera de la página.-->
-    {Html.RenderAction("VistaCabeceraUtp", "UTP");}
-
-
-       <br />
-
-    <div class="row">
-        <div class="col-sm-8">
-            <table>
-                <tr class="linea_raya">
-                    <td class="celda-nombre" style="width:40%;">
-                        Fecha Registro
-                    </td>
-                    <td class="celda-datos">
-                        @*@Html.DisplayFor(m => m.FechaCreacion.ToString("dd/MM/yyyy"))*@
-                        <label>@Model.FechaCreacion.ToString("dd/MM/yyyy")</label>
-                    </td>
-                </tr>
-                <tr class="linea_raya">
-                    <td class="celda-nombre">
-                        Código UTP
-                    </td>
-                    <td class="celda-datos">
-                        @Html.DisplayFor(m => m.CodAlumnoUtp)
-                    </td>
-                </tr>
-                <tr class="linea_raya">
-                    <td class="celda-nombre">
-                        Usuario
-                    </td>
-                    <td class="celda-datos">
-                        @Html.DisplayFor(m => m.Usuario)
-                    </td>
-                </tr>
-                <tr class="linea_raya">
-                    <td class="celda-nombre">
-                        Nombres
-                    </td>
-                    <td class="celda-datos">
-                        @Html.DisplayFor(m => m.Nombres)
-                    </td>
-                </tr>
-                <tr class="linea_raya">
-                    <td class="celda-nombre">
-                        Apellidos
-                    </td>
-                    <td class="celda-datos">
-                        @Html.DisplayFor(m => m.Apellidos)
-                    </td>
-                </tr>
-                <tr class="linea_raya">
-                    <td class="celda-nombre">
-                        Documento Identidad
-                    </td>
-                    <td class="celda-datos">
-                        @Html.DisplayFor(m => m.TipoDocumento): @Html.DisplayFor(m => m.NumeroDocumento)
-                    </td>
-                </tr>
-                <tr class="linea_raya">
-                    <td class="celda-nombre">
-                        Fecha de Nacimiento
-                    </td>
-                    <td class="celda-datos">
-                        @Model.FechaNacimiento.ToString("dd/MM/yyyy")  (@Model.Edad años)
-                    </td>
-                </tr>
-                <tr class="linea_raya">
-                    <td class="celda-nombre">
-                        Sexo
-                    </td>
-                    <td class="celda-datos">
-                        @Html.DisplayFor(m => m.Sexo )
-                    </td>
-                </tr>
-                <tr class="linea_raya">
-                    <td class="celda-nombre">
-                       Dirección
-                    </td>
-                    <td class="celda-datos">
-                        @Html.DisplayFor(m => m.Direccion), @Html.DisplayFor(m => m.DireccionDistrito), @Html.DisplayFor(m => m.DireccionCiudad), @Html.DisplayFor(m => m.DireccionRegion)
-                    </td>
-                </tr>
-                <tr class="linea_raya">
-                    <td class="celda-nombre">
-                        Correo Electronico
-                    </td>
-                    <td class="celda-datos">
-                        @Html.DisplayFor(m => m.CorreoElectronico)
-                    </td>
-                </tr>
-                <tr class="linea_raya">
-                    <td class="celda-nombre">
-                        Correo Electronico 2
-                    </td>
-                    <td class="celda-datos">
-                        @Html.DisplayFor(m => m.CorreoElectronico2)
-                    </td>
-                </tr>
-                <tr class="linea_raya">
-                    <td class="celda-nombre">
-                        Teléfono Fijo Casa
-                    </td>
-                    <td class="celda-datos">
-                        @Html.DisplayFor(m => m.TelefonoFijoCasa)
-                    </td>
-
-                </tr>
-                <tr class="linea_raya">
-                    <td class="celda-nombre">
-                        Teléfono Celular
-                    </td>
-                    <td class="celda-datos">
-                        @Html.DisplayFor(m => m.TelefonoCelular)
-                    </td>
-
-                </tr>
-                <tr class="linea_raya">
-                    <td class="celda-nombre">
-                        Estado
-                    </td>
-                    <td class="celda-datos">
-                        @Html.DropDownList("CodEstadoAlumno", ViewData["UtpAlumnoMenuMostrar"] as List<SelectListItem>, "Seleccione...", new { @class = "form-control", style = "width: 200px;height:20px" })
-                        @Html.ValidationMessageFor(model => model.CodEstadoAlumno)
-                    </td>
-                </tr>
-                <tr class="linea_raya">
-                    <td class="celda-nombre">
-                        Creado Por
-                     
-                    </td>
-                    <td class="celda-datos">
-                        @Html.DisplayFor(m => m.CreadoPor)
-                    </td>
-                </tr>
-                <tr class="linea_raya">
-                    <td class="celda-nombre">
-                        Creado el
-                    </td>
-                    <td class="celda-datos">
-                        @Html.DisplayFor(m => m.FechaCreacion)
-                    </td>
-                </tr>
-                <tr class="linea_raya">
-                    <td class="celda-nombre">
-                        Modificado Por
-                    </td>
-                    <td class="celda-datos">
-                        @Html.DisplayFor(m => m.ModificadoPor)
-                    </td>
-                </tr>
-                <tr class="linea_raya">
-                    <td class="celda-nombre">
-                        Modificado el
-                    </td>
-                    <td class="celda-datos">
-                       @Html.DisplayFor(m => m.FechaModificacion)
-                    </td>
-                </tr>            
-                           
-
-            </table>
-        </div>
-
-        <div class="col-sm-4">
-            <table>
-                <tr class="linea_raya">
-                    <td class="celda-nombre">
-                        Foto
-                    </td>
-                    <td class="celda-datos">
-                        <img alt="" style="width:100%" src='@Url.Action("GetImagenAlumno", "UTP", new { idAlumno = Model.IdAlumno })' />
-                    </td>
-                </tr>
-            </table>
-        </div>
-    </div>
-
-    <br />
-    if (ViewBag.Rol != "ROLUTP")
+    @using (Html.BeginForm())
     {
-        <div class="row">
-            <div class="col-sm-12" style="text-align:right;">
-                <button class="btn btn-default color-paleta3">Guardar</button>
+        @Html.HiddenFor(model => model.IdAlumno)
+        @Html.AntiForgeryToken()
+
+    <!---Cabecera de la página.-->
+        { Html.RenderAction("VistaCabeceraUtp", "UTP"); }
+
+
+        <br />
+
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" style="padding: 2px 2px 2px 6px;" id="headingAlumno">
+                <h5 class="panel-title">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseAlumno" aria-expanded="true" aria-controls="collapseAlumno" class="fuente-seccion">
+                        Alumno - @Html.DisplayFor(m => m.Nombres) @Html.DisplayFor(m => m.Apellidos)
+                    </a>
+                </h5>
+            </div>
+            <div id="collapseAlumno" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingAlumno">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <table>
+                                <tr class="linea_raya">
+                                    <td class="celda-nombre" style="width:40%;">
+                                        Fecha Registro
+                                    </td>
+                                    <td class="celda-datos">
+                                        @*@Html.DisplayFor(m => m.FechaCreacion.ToString("dd/MM/yyyy"))*@
+                                        <label>@Model.FechaCreacion.ToString("dd/MM/yyyy")</label>
+                                    </td>
+                                </tr>
+                                <tr class="linea_raya">
+                                    <td class="celda-nombre">
+                                        Código UTP
+                                    </td>
+                                    <td class="celda-datos">
+                                        @Html.DisplayFor(m => m.CodAlumnoUtp)
+                                    </td>
+                                </tr>
+                                <tr class="linea_raya">
+                                    <td class="celda-nombre">
+                                        Usuario
+                                    </td>
+                                    <td class="celda-datos">
+                                        @Html.DisplayFor(m => m.Usuario)
+                                    </td>
+                                </tr>
+                                <tr class="linea_raya">
+                                    <td class="celda-nombre">
+                                        Nombres
+                                    </td>
+                                    <td class="celda-datos">
+                                        @Html.DisplayFor(m => m.Nombres)
+                                    </td>
+                                </tr>
+                                <tr class="linea_raya">
+                                    <td class="celda-nombre">
+                                        Apellidos
+                                    </td>
+                                    <td class="celda-datos">
+                                        @Html.DisplayFor(m => m.Apellidos)
+                                    </td>
+                                </tr>
+                                <tr class="linea_raya">
+                                    <td class="celda-nombre">
+                                        Documento Identidad
+                                    </td>
+                                    <td class="celda-datos">
+                                        @Html.DisplayFor(m => m.TipoDocumento): @Html.DisplayFor(m => m.NumeroDocumento)
+                                    </td>
+                                </tr>
+                                <tr class="linea_raya">
+                                    <td class="celda-nombre">
+                                        Fecha de Nacimiento
+                                    </td>
+                                    <td class="celda-datos">
+                                        @Model.FechaNacimiento.ToString("dd/MM/yyyy")  (@Model.Edad años)
+                                    </td>
+                                </tr>
+                                <tr class="linea_raya">
+                                    <td class="celda-nombre">
+                                        Sexo
+                                    </td>
+                                    <td class="celda-datos">
+                                        @Html.DisplayFor(m => m.Sexo)
+                                    </td>
+                                </tr>
+                                <tr class="linea_raya">
+                                    <td class="celda-nombre">
+                                        Dirección
+                                    </td>
+                                    <td class="celda-datos">
+                                        @Html.DisplayFor(m => m.Direccion), @Html.DisplayFor(m => m.DireccionDistrito), @Html.DisplayFor(m => m.DireccionCiudad), @Html.DisplayFor(m => m.DireccionRegion)
+                                    </td>
+                                </tr>
+                                <tr class="linea_raya">
+                                    <td class="celda-nombre">
+                                        Correo Electronico
+                                    </td>
+                                    <td class="celda-datos">
+                                        @Html.DisplayFor(m => m.CorreoElectronico)
+                                    </td>
+                                </tr>
+                                <tr class="linea_raya">
+                                    <td class="celda-nombre">
+                                        Correo Electronico 2
+                                    </td>
+                                    <td class="celda-datos">
+                                        @Html.DisplayFor(m => m.CorreoElectronico2)
+                                    </td>
+                                </tr>
+                                <tr class="linea_raya">
+                                    <td class="celda-nombre">
+                                        Teléfono Fijo Casa
+                                    </td>
+                                    <td class="celda-datos">
+                                        @Html.DisplayFor(m => m.TelefonoFijoCasa)
+                                    </td>
+
+                                </tr>
+                                <tr class="linea_raya">
+                                    <td class="celda-nombre">
+                                        Teléfono Celular
+                                    </td>
+                                    <td class="celda-datos">
+                                        @Html.DisplayFor(m => m.TelefonoCelular)
+                                    </td>
+
+                                </tr>
+                                <tr class="linea_raya">
+                                    <td class="celda-nombre">
+                                        Estado
+                                    </td>
+                                    <td class="celda-datos">
+                                        @Html.DropDownList("CodEstadoAlumno", ViewData["UtpAlumnoMenuMostrar"] as List<SelectListItem>, "Seleccione...", new { @class = "form-control", style = "width: 200px;height:20px" })
+                                        @Html.ValidationMessageFor(model => model.CodEstadoAlumno)
+                                    </td>
+                                </tr>
+                                <tr class="linea_raya">
+                                    <td class="celda-nombre">
+                                        Creado Por
+
+                                    </td>
+                                    <td class="celda-datos">
+                                        @Html.DisplayFor(m => m.CreadoPor)
+                                    </td>
+                                </tr>
+                                <tr class="linea_raya">
+                                    <td class="celda-nombre">
+                                        Creado el
+                                    </td>
+                                    <td class="celda-datos">
+                                        @Html.DisplayFor(m => m.FechaCreacion)
+                                    </td>
+                                </tr>
+                                <tr class="linea_raya">
+                                    <td class="celda-nombre">
+                                        Modificado Por
+                                    </td>
+                                    <td class="celda-datos">
+                                        @Html.DisplayFor(m => m.ModificadoPor)
+                                    </td>
+                                </tr>
+                                <tr class="linea_raya">
+                                    <td class="celda-nombre">
+                                        Modificado el
+                                    </td>
+                                    <td class="celda-datos">
+                                        @Html.DisplayFor(m => m.FechaModificacion)
+                                    </td>
+                                </tr>
+
+
+                            </table>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <table>
+                                <tr class="linea_raya">
+                                    <td class="celda-nombre">
+                                        Foto
+                                    </td>
+                                    <td class="celda-datos">
+                                        <img alt="" style="width:100%" src='@Url.Action("GetImagenAlumno", "UTP", new { idAlumno = Model.IdAlumno })' />
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
+
+
+
+        <br />
+        if (ViewBag.Rol != "ROLUTP")
+        {
+            <div class="row">
+                <div class="col-sm-12" style="text-align:right;">
+                    <button class="btn btn-default color-paleta3">Guardar</button>
+                </div>
+            </div>
+        }
+        <br />
+        <div class="panel-group" id="mi-cv-perfil" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingCVPerfil" style="padding: 2px 2px 2px 6px;">
+                    <h5 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseCVPerfil" aria-expanded="true" aria-controls="collapseCVPerfil" style="font-size:12px;">
+                            Perfil
+                        </a>
+                    </h5>
+                </div>
+                <div id="collapseCVPerfil" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingCVPerfil">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="input-group fuente-pequeña">
+                                    @Model.alumnocv.Perfil
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="panel-group" id="mi-cv-educacion" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingCVEducacion" style="padding: 2px 2px 2px 6px;">
+                    <h5 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseCVEducacion" aria-expanded="true" aria-controls="collapseCVEducacion" style="font-size:12px;">
+                            Estudios
+                        </a>
+                    </h5>
+                </div>
+                <div id="collapseCVEducacion" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingCVEducacion">
+                    <div class="panel-body fuente-pequeña">
+                        @if (Model.alumnoestudiocv != null && Model.alumnoestudiocv.Count > 0)
+                        {
+                            foreach (var item in Model.alumnoestudiocv)
+                            {
+                                <div class="row">
+                                    <div class="col-sm-11">
+
+                                        <div class="row">
+                                            <div class=" col-sm-3">
+                                                <strong>@item.FechaInicioMes/@item.FechaInicioAno - @item.FechaFinMes/@item.FechaFinAno</strong>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <span><strong>@item.Institucion</strong></span>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="row">
+
+                                            <div class="col-sm-3">
+
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <strong>@item.Estudio</strong>
+                                            </div>
+
+                                            <div class="col-sm-2">
+                                                @item.EstadoDelEstudio
+                                            </div>
+                                            <div class="col-sm-1">
+                                                @if (item.CicloEquivalente > 0)
+                                                {
+                                                    <span>Cicl.@item.CicloEquivalente</span>
+                                                }
+
+                                            </div>
+                                            <div class="col-sm-2">
+                                                @item.Observacion
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="col-sm-1">
+                                        @if (item.Cumple == 1)
+                                        {
+                                            <span class="fui si-cumple" style="font-size:30px;">g</span>
+                                        }
+                                        else
+                                        {
+                                            if (item.Cumple == 0)
+                                            {
+                                                <span class="fui no-cumple" style="font-size:30px;">l</span>
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                                <hr />
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel-group" id="mi-cv-experiencia-laboral" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingCVExperienciaLaboral" style="padding: 2px 2px 2px 6px;">
+                    <h5 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseCVExperienciaLaboral" aria-expanded="true" aria-controls="collapseCVExperienciaLaboral" style="font-size:12px;">
+                            Experiencia laboral
+                        </a>
+                    </h5>
+                </div>
+                <div id="collapseCVExperienciaLaboral" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingCVExperienciaLaboral">
+                    <div class="panel-body fuente-pequeña">
+
+                        @if (Model.alumnoexperienciacv != null && Model.alumnoexperienciacv.Count > 0)
+                        {
+                            string EmpresaExperiencia = "";
+                            foreach (var item in Model.alumnoexperienciacv)
+                            {
+                                if (item.Empresa != EmpresaExperiencia)
+                                {
+                                    if (EmpresaExperiencia != "")
+                                    {
+                                        <hr />
+                                    }
+
+                                    EmpresaExperiencia = item.Empresa;
+                                    <div class="row">
+                                        <div class="col-sm-11">
+                                            <div class="row">
+                                                <div class="col-sm-3">
+
+                                                </div>
+                                                <div class=" col-sm-9">
+                                                    <span><strong>@item.Empresa.</strong></span>
+                                                </div>
+
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-3">
+
+                                                </div>
+                                                <div class=" col-sm-9">
+                                                    @item.DescripcionEmpresa
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-1">
+                                        </div>
+                                    </div>
+
+                                }
+                                <div class="row">
+                                    <div class="col-sm-11">
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                @item.FechaInicioCargoMes/@item.FechaInicioCargoAno -
+                                                @if (item.FechaFinCargoMes == 0)
+                                                {
+                                                    <span>Actualidad</span>
+                                                }
+                                                else
+                                                {
+                                                    <span>@item.FechaFinCargoMes/@item.FechaFinCargoAno</span>
+                                                }
+                                                @*Queda pendiente calcular Años y Meses*@
+                                                @*<br />(1 año, 11 meses)*@
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <strong>@item.NombreCargo</strong>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                @item.Ciudad-@item.Pais
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                            </div>
+                                            <div class="col-sm-9">
+                                                @Html.Raw(item.DescripcionCargo)
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-1">
+                                        @if (item.Cumple == 1)
+                                        {
+                                            <span class="fui si-cumple" style="font-size:30px;">g</span>
+                                        }
+                                        else
+                                        {
+                                            if (item.Cumple == 0)
+                                            {
+                                                <span class="fui no-cumple" style="font-size:30px;">l</span>
+                                            }
+                                        }
+                                    </div>
+                                </div>
+
+                            }
+                        }
+
+
+                        <div class="row">
+                            <div class="panel-group" id="datos-mas-experiencia" role="tablist" aria-multiselectable="true">
+                                <div class="panel " style="border-width:0px;">
+                                    <div id="collapseMasExperiencia" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingMasExperiencia">
+                                        <div class="panel-body" style="border-width:0px;">
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12" style="text-align:right;">
+                                <a data-toggle="collapse" data-parent="#datos-mas-experiencia" href="#collapseMasExperiencia" aria-expanded="true" aria-controls="collapseMasExperiencia" class="fuente-seccion">
+                                    Ver Más
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel-group" id="cv-informacion-adicional" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingCVInformacionAdicional" style="padding: 2px 2px 2px 6px;">
+                    <h5 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#cv-informacion-adicional" href="#collapseCVInformacionAdicional" aria-expanded="true" aria-controls="collapseCVInformacionAdicional" style="font-size:12px;">
+                            Información Adicional
+                        </a>
+                    </h5>
+                </div>
+                <div id="collapseCVInformacionAdicional" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingCVInformacionAdicional">
+                    <div class="panel-body fuente-pequeña">
+
+                        <br />
+                        @if (Model.alumnoinformacionadicionalcv != null && Model.alumnoinformacionadicionalcv.Count > 0)
+                        {
+
+                            foreach (var item in Model.alumnoinformacionadicionalcv)
+                            {
+                                <div class="row">
+                                    <div class="col-sm-11">
+                                        <div class="row">
+                                            <div class="col-sm-2">
+                                                @item.Conocimiento,
+                                            </div>
+                                            <div class="col-sm-1">
+                                                @item.DesNivelConocimiento,
+                                            </div>
+                                            <div class="col-sm-3">
+                                                @item.InstituciónDeEstudio,
+                                            </div>
+                                            <div class="col-sm-2">
+                                                @item.Ciudad-@item.NomPais,
+                                            </div>
+                                            <div class="col-sm-2">
+                                                @if (item.FechaConocimientoDesdeMes != 0)
+                                                {
+                                                    <span>@item.FechaConocimientoDesdeMes/@item.FechaConocimientoDesdeAno</span>
+                                                }
+                                                @if (item.FechaConocimientoHastaMes != 0)
+                                                {
+                                                    <span>- @item.FechaConocimientoHastaMes/@item.FechaConocimientoHastaAno</span>
+                                                }
+                                                ,
+                                            </div>
+                                            <div class="col-sm-2">
+                                                @if (item.AnosExperiencia > 0)
+                                                {
+                                                    <span>@item.AnosExperiencia año(s)</span>
+                                                }
+                                            </div>
+                                        </div>
+                                        @*<span>ingles, <span class="valor-icono2">x</span><span class="valor-palabra">Nivel Medio</span>, Instituto de Idiomas ICPNA. Lima - Perú, Ene 2009 - Abr 2011.</span>*@
+                                    </div>
+                                    <div class="col-sm-1">
+                                        @if (item.Cumple == 1)
+                                        {
+                                            <span class="fui si-cumple" style="font-size:30px;">g</span>
+                                        }
+                                        else
+                                        {
+                                            if (item.Cumple == 0)
+                                            {
+                                                <span class="fui no-cumple" style="font-size:30px;">l</span>
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                            }
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <hr />
+        @*<div class="row fuente-pequeña">
+                <div class="col-sm-12">
+
+
+                    @{Html.RenderAction("AlumnoUtp_obtenerEstudios", "UTP", new { id = Model.IdAlumno });}
+
+
+                </div>
+            </div>*@
+
     }
-    
-        
-
-    <hr />
-    <div class="row fuente-pequeña">
-        <div class="col-sm-12">
-                 
-           
-            @{Html.RenderAction("AlumnoUtp_obtenerEstudios", "UTP", new { id = Model.IdAlumno });}
-
-    
-        </div>
-    </div>
-    
-}
 
 
-    <hr />
-    <div class="row fuente-pequeña">
-        <div class="col-sm-12">
-            @{Html.RenderAction("AlumnoUtp_obtenerExperiencia", "UTP", new { id = Model.IdAlumno });}
-          
-        </div>
-    </div>
-    <br />
-@*<div class="row">
-    <div class="col-sm-12" style="text-align:right;">
-        <button class="btn btn-default">Guardar</button>
-    </div>
-</div>*@
-    <hr />
-    <div class="row fuente-pequeña">
-        <div class="col-sm-12">
-            @{Html.RenderAction("AlumnoUtp_obtenerInformacionAdicional", "UTP", new { id = Model.IdAlumno });}
-        </div>
-    </div>
+    @*<hr />
+        <div class="row fuente-pequeña">
+            <div class="col-sm-12">
+                @{Html.RenderAction("AlumnoUtp_obtenerExperiencia", "UTP", new { id = Model.IdAlumno });}
+
+            </div>
+        </div>*@
+
+    @*<div class="row">
+            <div class="col-sm-12" style="text-align:right;">
+                <button class="btn btn-default">Guardar</button>
+            </div>
+        </div>*@
+    @*<hr />
+        <div class="row fuente-pequeña">
+            <div class="col-sm-12">
+                @{Html.RenderAction("AlumnoUtp_obtenerInformacionAdicional", "UTP", new { id = Model.IdAlumno });}
+            </div>
+        </div>*@
 
     <div class="row fuente-pequeña">
         <div class="col-sm-6">
-         
-                            @Html.Action("_Mensajes", "Mensaje", new { pantalla = Constantes.MENSAJES_UTP_ALUMNO, usuarioAlumno = Model.Usuario })                            
+
+            @Html.Action("_Mensajes", "Mensaje", new { pantalla = Constantes.MENSAJES_UTP_ALUMNO, usuarioAlumno = Model.Usuario })
         </div>
         <div class="col-sm-6">
             @{Html.RenderAction("AlumnoUtp_obtenerCV", "UTP", new { usuario = Model.Usuario });}
@@ -252,17 +568,17 @@
 
     <br />
     @*<div class="row">
-        <div class="col-sm-12" style="text-align:right;">
-            <button class="btn btn-default">Guardar</button>
-        </div>
-    </div>*@
- </div> 
-    
-    
-    
-    
-    
-    
+            <div class="col-sm-12" style="text-align:right;">
+                <button class="btn btn-default">Guardar</button>
+            </div>
+        </div>*@
+</div>
+
+
+
+
+
+
 <br />
 <br />
 <br />
@@ -280,4 +596,3 @@
     //}
 
 </script>
-
