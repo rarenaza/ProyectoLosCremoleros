@@ -6,9 +6,10 @@
 @{
     Layout = "~/Views/UTP/_LayoutUTP.cshtml";
     ViewBag.Title = "Oferta de Empresa";
+    string Tab = Request.Params.Get("Tab");
 }
 
-
+<script>window.selectedTab = '@Tab';</script>
 
 <link href="~/Content/font-awesome.css" rel="stylesheet" />
 <div class="container" style="margin-top:2px;">
@@ -199,15 +200,6 @@
 
         //ESE ES LA CAJA, LA ACCION Y EL CONTROLADOR
         AutoCompleteTextDemo('#Conocimientos', '@Url.Action("ListarDatosEspecificos", "OfertaInformacionAdicional")' + '?codigoTipo=' + codigoTipoConocimiento, '#Conocimientos', '#TipoConocimientoIdListaValor', 'option', 'appendTo', '.eventInsForm');
-
-        var oferta = {
-            PalabraClave: $('#PalabraClave').val(),
-            nroPaginaActual: 1,
-        };
-
-        Cargar("ResultadoBusqueda", '@Url.Action("BuscarOfertas", "UTP")', oferta);
-
-        Offers.tabs();
     });
 
 
@@ -348,4 +340,14 @@
     };
 
     Offers.tabs();
+
+    var ViewOffersTabs = {
+        selector: '#offers-tabs',
+        Todos: function () { $(this.selector + ' [aria-controls=all]').click(); },
+        PosicionesDeEntrada: function () { $(this.selector + ' [aria-controls=entries-position]').click(); },
+        Practicas: function () { $(this.selector + ' [aria-controls=entries-practices]').click(); },
+        Empledo: function () { $(this.selector + ' [aria-controls=entries-jobs]').click(); }
+    };
+
+    ViewOffersTabs[selectedTab || 'Todos']();
 </script>
