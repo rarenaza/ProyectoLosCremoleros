@@ -52,20 +52,20 @@
     <meta name="description" content="The description of my page" />
     @if (System.Configuration.ConfigurationManager.AppSettings["LogeoProduccion"] != "false")
     {
-    <script>
+        <script>
 
-        (function (i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
-                (i[r].q = i[r].q || []).push(arguments)
-            }, i[r].l = 1 * new Date(); a = s.createElement(o),
-            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+            (function (i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-        ga('create', 'UA-61006808-1', 'auto');
-        ga('send', 'pageview');
+            ga('create', 'UA-61006808-1', 'auto');
+            ga('send', 'pageview');
 
-    </script>
-    }  
+        </script>
+    }
 
 </head>
 <body class="cuerpo-zona-alumno">
@@ -121,9 +121,9 @@
                     @if (ViewBag.Rol != "ROLUTP")
                     {
                         <li>
-                        <a class="btn btn-default navbar-btn Boton_pestana color-paleta8" href=@Url.Action("Sistema", "UTP") style="padding: 2px 0px 2px 0px; color: white;">Sistema</a>
+                            <a class="btn btn-default navbar-btn Boton_pestana color-paleta8" href=@Url.Action("Sistema", "UTP") style="padding: 2px 0px 2px 0px; color: white;">Sistema</a>
                         </li>
-                    }                   
+                    }
                     <li>
                         <a class="btn btn-default navbar-btn Boton_pestana color-paleta9" href=@Url.Action("Convenios", "UTP") style="padding: 2px 0px 2px 0px; color: white;">Convenios</a>
                     </li>
@@ -216,6 +216,68 @@
             $(this).datepicker({ dateFormat: 'dd/mm/yy' }).val();
         });
     });
+
+    var EmpresaExportar = function () {
+        console.log('EmpresaExportar');
+
+        var data = {
+            NombreComercial: $('#NombreComercial').val(),
+            IdEstadoEmpresa: $('#IdEstadoEmpresa').val(),
+            IdSector: $('#IdSector').val(),
+            RazonSocial: $('#RazonSocial').val(),
+            RUC: $('#RUC').val(),
+            NroOferta: $('#NroOferta').val(),
+            NroPostulante: $('#NroPostulante').val(),
+            PalabraClave: $('#PalabraClave').val()
+        };
+
+        window.location.href = '@Url.Action("BusquedaEmpresasExportar", "UTP")?' + $.param(data, true);
+    };
+
+    var AlumnosExportar = function () {
+        console.log('AlumnosExportar');
+
+        var data = {
+            TipoEstudio: $('#TipoEstudio').val(),
+            Alumno: $('#Alumno').val(),
+            Carrera: $('#Carrera').val(),
+            Ciclo: $('#Ciclo').val(),
+            Sexo: $('#Sexo').val(),
+            Distrito: $('#Distrito').val(),
+            SectorEmpresarial: $('#SectorEmpresarial').val(),
+            Conocimientos: $('#Conocimiento').val(),
+            EstadoEstudio: $('#EstadoEstudio').val(),
+            completitud: $('#completitud').val(),
+            PalabraClave: $('#PalabraClave').val()
+        };
+
+        window.location.href = '@Url.Action("BusquedaAlumnosExportar", "UTP")?' + $.param(data, true);
+    };
+
+    var OfertasExportar = function () {
+        console.log('OfertasExportar');
+
+        var data = {
+            NombreComercial: $('#NombreComercial').val(),
+            IdTipoCargoutp: $('#IdTipoCargoutp').val(),
+            CargoOfrecido: $('#CargoOfrecido').val(),
+            IdSectorutp: $('#IdSectorutp').val(),
+            IdTipoContratoutp: $('#IdTipoContratoutp').val(),
+            AExperiencia: $('#AExperiencia').val(),
+            RemuneracionOfrecida: $('#RemuneracionOfrecida').val(),
+            IdTipoEstudioutp: $('#IdTipoEstudioutp').val(),
+            Conocimientos: $('#Conocimientos').val(),
+            NumeroPostulante: $('#NumeroPostulante').val(),
+            IdEstadoOferta: $('#IdEstadoOferta').val(),
+            InformacionAdicional: $('#TipoConocimientoIdListaValor').val(),
+            Carrera: $('#Carrera').val(),
+            TipoTrabajoUTP: $('#TipoTrabajoUTP').val(),
+            PalabraClave: $('#PalabraClave').val()
+        };
+
+        window.location.href = '@Url.Action("BusquedaOfertasExportar", "UTP")?' + $.param(data, true);
+    };
+
     function CargarPOSTNull(id, link) {
         $.ajax({
             url: link,
@@ -235,6 +297,7 @@
 
         })
     }
+
     function CargarPOST(id, link, entidad) {
         $.ajax({
             url: link,
@@ -348,6 +411,7 @@
             }
         });
     }
+
     function AutoCompleteTextVarios(inputsearch, urlsearch, inputtext, tipo) {
         $(inputsearch).autocomplete({
             source: function (request, response) {
@@ -460,7 +524,7 @@
             }
         });
 
-        
+
     }
 
     function cargarDescripcionLocacionEmpresa() {
@@ -493,7 +557,5 @@
 
     }
 
-   
+
 </script>
-
-
