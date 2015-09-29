@@ -70,7 +70,8 @@ namespace UTPPrototipo.Controllers
                 li.Add(item);
 
             }
-            ViewData["ContenidoMenu"] = li;
+
+            ViewData["ContenidoMenu"] = li.OrderBy(i => i.Text).ToList();
 
             return View();
         }
@@ -149,8 +150,6 @@ namespace UTPPrototipo.Controllers
 
         public ActionResult Empresas()
         {
-            Session["DataTableToExport"] = lnUtp.EmpresaBusquedaExcel();
-
             TicketUTP ticketUtp = (TicketUTP)Session["TicketUtp"];
             ViewBag.Rol = ticketUtp.Rol;
             //VistaEmpresaListaOpciones utp = new VistaEmpresaListaOpciones();
@@ -195,8 +194,6 @@ namespace UTPPrototipo.Controllers
                 entidad.nroPaginaActual, Constantes.FILAS_POR_PAGINA_UTP
             );
 
-            Session["DataTableToExport"] = lnUtp.EmpresaBusquedaExcel(entidad.PalabraClave == null ? "" : entidad.PalabraClave);
-
             //Datos para la paginación.
             //Una ves traido la info de la bd, se llenan estos campos del objeto Paginacion
             int cantidadTotal = lista.Count() == 0 ? 0 : lista[0].CantidadTotal;
@@ -222,25 +219,15 @@ namespace UTPPrototipo.Controllers
         public ActionResult BusquedaAvanzadaEmpresas(VistaEmpresListarOfertas entidad)
         {
             List<EmpresaListaEmpresa> lista = lnUtp.EmpresaBusquedaAvanzada(
-                entidad.NombreComercial == null ? "" : entidad.NombreComercial,      
-                entidad.IdEstadoEmpresa == null ? "" : entidad.IdEstadoEmpresa,                       
-                entidad.IdSector == null ? "" : entidad.IdSector,          
-                entidad.RazonSocial == null ? "" : entidad.RazonSocial,                  
-                entidad.RUC == null ? "" : entidad.RUC,                                      
-                entidad.NroOferta,                                               
-                entidad.NroPostulante,                                                        
-                entidad.nroPaginaActual,                                                  
+                entidad.NombreComercial == null ? "" : entidad.NombreComercial,
+                entidad.IdEstadoEmpresa == null ? "" : entidad.IdEstadoEmpresa,
+                entidad.IdSector == null ? "" : entidad.IdSector,
+                entidad.RazonSocial == null ? "" : entidad.RazonSocial,
+                entidad.RUC == null ? "" : entidad.RUC,
+                entidad.NroOferta,
+                entidad.NroPostulante,
+                entidad.nroPaginaActual,
                 Constantes.FILAS_POR_PAGINA_UTP
-            );
-
-            Session["DataTableToExport"] = lnUtp.EmpresaBusquedaExcel(
-                entidad.NombreComercial == null ? "" : entidad.NombreComercial,      
-                entidad.IdEstadoEmpresa == null ? "" : entidad.IdEstadoEmpresa,                       
-                entidad.IdSector == null ? "" : entidad.IdSector,          
-                entidad.RazonSocial == null ? "" : entidad.RazonSocial,                  
-                entidad.RUC == null ? "" : entidad.RUC,                                      
-                entidad.NroOferta,                                               
-                entidad.NroPostulante
             );
 
             int cantidadTotal = lista.Count() == 0 ? 0 : lista[0].CantidadTotal;
@@ -258,13 +245,30 @@ namespace UTPPrototipo.Controllers
             ViewBag.TipoBusqueda = "Avanzada";
             TicketUTP ticketUtp = (TicketUTP)Session["TicketUtp"];
             ViewBag.Rol = ticketUtp.Rol;
-            return PartialView("_ResultadoBusquedaEmpresas", lista);
 
+            return PartialView("_ResultadoBusquedaEmpresas", lista);
         }
 
         public void BusquedaEmpresasExportar()
         {
-            Helper.Export2ExcelDownload((DataTable)Session["DataTableToExport"], "empresas" + new DateTime());
+            var UriQS = Request.QueryString;
+
+            DataTable ToExport = lnUtp.EmpresaBusquedaExcel(
+                UriQS.Get("PalabraClave") != null ? UriQS.Get("PalabraClave").ToString() : UriQS.Get("NombreComercial").ToString(),
+                UriQS.Get("IdEstadoEmpresa").ToString(),
+                UriQS.Get("IdSector").ToString(),
+                UriQS.Get("RazonSocial").ToString(),
+                UriQS.Get("RUC").ToString(),
+                Convert.ToInt32(UriQS.Get("NroOferta")),
+                Convert.ToInt32(UriQS.Get("NroPostulante"))
+            );
+
+            Helper.Export2ExcelDownload(ToExport, "Empresas-" + DateTime.Now.ToString("yyyyMMdd"));
+        }
+
+        public void EventoInscritosExportar()
+        {
+            Helper.Export2ExcelDownload((DataTable)Session["DataTableToExport"], "eventos" + DateTime.Now.ToString("yyyyMMdd"));
         }
 
         public ActionResult Eventos()
@@ -322,8 +326,6 @@ namespace UTPPrototipo.Controllers
 
         public ActionResult Alumnos()
         {
-            Session["DataTableToExport"] = lnUtp.AlumnosBusquedaExcel();
-
             VistaAlumno utpAlumno = new VistaAlumno();
             LNGeneral lngeneral = new LNGeneral();
 
@@ -393,7 +395,6 @@ namespace UTPPrototipo.Controllers
                 listItemEstadoEstudio.Add(item);
             }
 
-
             //Lista de Combos
             ViewBag.ListaSectorEmpresarial = listItemSector;
             ViewBag.ListaSexo = listItemSexo;
@@ -407,12 +408,10 @@ namespace UTPPrototipo.Controllers
         public ActionResult BusquedaAlumnos(VistaAlumno entidad)
         {
             List<AlumnoUTP> lista = lnUtp.UTP_ObtenerUltimosAlumnos(
-                entidad.PalabraClave == null ? "" : entidad.PalabraClave, 
-                entidad.nroPaginaActual, 
+                entidad.PalabraClave == null ? "" : entidad.PalabraClave,
+                entidad.nroPaginaActual,
                 Constantes.FILAS_POR_PAGINA_UTP
             );
-
-            Session["DataTableToExport"] = lnUtp.AlumnosBusquedaExcel(entidad.PalabraClave == null ? "" : entidad.PalabraClave);
 
             //Datos para la paginación.
             int cantidadTotal = lista.Count() == 0 ? 0 : lista[0].CantidadTotal;
@@ -428,6 +427,7 @@ namespace UTPPrototipo.Controllers
 
             ViewBag.Paginacion = paginacion;
             ViewBag.TipoBusqueda = "Simple";
+
             return PartialView("_ListaUTPAlumnos", lista);
         }
 
@@ -436,31 +436,18 @@ namespace UTPPrototipo.Controllers
         {
 
             List<AlumnoUTP> lista = lnUtp.UTP_ObtenerUltimosAlumnosAvanzada(
-                entidad.Carrera == null ? "" : entidad.Carrera,          
-                entidad.Ciclo == null ? "" : entidad.Ciclo,   
-                entidad.SectorEmpresarial == null ? "" : entidad.SectorEmpresarial,
-                entidad.Alumno == null ? "" : entidad.Alumno,    
-                entidad.Sexo == null ? "" : entidad.Sexo,     
-                entidad.Distrito == null ? "" : entidad.Distrito,
-                entidad.TipoEstudio == null ? "" : entidad.TipoEstudio,
-                entidad.Conocimientos == null ? "" : entidad.Conocimientos,
-                entidad.EstadoEstudio == null ? "" : entidad.EstadoEstudio,                              
-                entidad.completitud,                                   
-                entidad.nroPaginaActual,                                    
-                Constantes.FILAS_POR_PAGINA_UTP
-            );
-
-            Session["DataTableToExport"] = lnUtp.AlumnosBusquedaExcel(
-                entidad.Alumno == null ? "" : entidad.Alumno,
                 entidad.Carrera == null ? "" : entidad.Carrera,
                 entidad.Ciclo == null ? "" : entidad.Ciclo,
                 entidad.SectorEmpresarial == null ? "" : entidad.SectorEmpresarial,
+                entidad.Alumno == null ? "" : entidad.Alumno,
                 entidad.Sexo == null ? "" : entidad.Sexo,
                 entidad.Distrito == null ? "" : entidad.Distrito,
                 entidad.TipoEstudio == null ? "" : entidad.TipoEstudio,
                 entidad.Conocimientos == null ? "" : entidad.Conocimientos,
                 entidad.EstadoEstudio == null ? "" : entidad.EstadoEstudio,
-                entidad.completitud
+                entidad.completitud,
+                entidad.nroPaginaActual,
+                Constantes.FILAS_POR_PAGINA_UTP
             );
 
             //Datos para la paginación.
@@ -477,18 +464,32 @@ namespace UTPPrototipo.Controllers
 
             ViewBag.Paginacion = paginacion;
             ViewBag.TipoBusqueda = "Avanzada";
+
             return PartialView("_ListaUTPAlumnos", lista);
         }
 
         public void BusquedaAlumnosExportar()
         {
-            Helper.Export2ExcelDownload((DataTable) Session["DataTableToExport"], "alumnos" + new DateTime());
+            var UriQS = Request.QueryString;
+
+            DataTable ToExport = lnUtp.AlumnosBusquedaExcel(
+                UriQS.Get("PalabraClave") != null ? UriQS.Get("PalabraClave").ToString() : UriQS.Get("Alumno").ToString(),
+                UriQS.Get("Carrera").ToString(),
+                UriQS.Get("Ciclo").ToString(),
+                UriQS.Get("SectorEmpresarial").ToString(),
+                UriQS.Get("Sexo").ToString(),
+                UriQS.Get("Distrito").ToString(),
+                UriQS.Get("TipoEstudio").ToString(),
+                UriQS.Get("Conocimientos").ToString(),
+                UriQS.Get("EstadoEstudio").ToString(),
+                Convert.ToInt32(UriQS.Get("completitud"))
+            );
+
+            Helper.Export2ExcelDownload(ToExport, "Alumnos-" + DateTime.Now.ToString("yyyyMMdd"));
         }
 
         public ActionResult Ofertas()
         {
-            Session["DataTableToExport"] = lnUtp.OfertaBusquedaExcel();
-
             VistaOferta oferta = new VistaOferta();
             LNGeneral lngeneral = new LNGeneral();
             oferta.ListaTipoCargo = lngeneral.ObtenerListaValor(9);
@@ -602,13 +603,8 @@ namespace UTPPrototipo.Controllers
             List<OfertaUTP> lista = lnUtp.UTP_ObtenerOfertasporActivar(
                 entidad.PalabraClave == null ? "" : entidad.PalabraClave,
                 entidad.TipoTrabajoUTP == null ? "" : entidad.TipoTrabajoUTP,
-                entidad.nroPaginaActual, 
+                entidad.nroPaginaActual,
                 Constantes.FILAS_POR_PAGINA_UTP
-            );
-
-            Session["DataTableToExport"] = lnUtp.OfertaBusquedaExcel(
-                entidad.PalabraClave == null ? "" : entidad.PalabraClave,
-                entidad.TipoTrabajoUTP == null ? "" : entidad.TipoTrabajoUTP
             );
 
             //Datos para la paginación.
@@ -633,24 +629,6 @@ namespace UTPPrototipo.Controllers
 
         public ActionResult UTP_ObtenerofertasAvanzada(VistaOferta entidad)
         {
-
-            Session["DataTableToExport"] = lnUtp.OfertaBusquedaExcel(
-                entidad.CargoOfrecido == null ? "" : entidad.CargoOfrecido,
-                entidad.NombreComercial == null ? "" : entidad.NombreComercial,
-                entidad.IdTipoCargoutp == null ? "" : entidad.IdTipoCargoutp,
-                entidad.IdSectorutp == null ? "" : entidad.IdSectorutp,
-                entidad.IdTipoContratoutp == null ? "" : entidad.IdTipoContratoutp,
-                entidad.AExperiencia,
-                entidad.RemuneracionOfrecida,
-                entidad.IdTipoEstudioutp == null ? "" : entidad.IdTipoEstudioutp,
-                entidad.Conocimientos == null ? "" : entidad.Conocimientos,
-                entidad.NumeroPostulante,
-                entidad.IdEstadoOferta == null ? "" : entidad.IdEstadoOferta,
-                entidad.InformacionAdicional == null ? "" : entidad.InformacionAdicional,
-                entidad.Carrera == null ? "" : entidad.Carrera,
-                entidad.TipoTrabajoUTP == null ? "" : entidad.TipoTrabajoUTP
-            );
-
             List<OfertaUTP> lista = lnUtp.UTP_ObtenerofertasAvanzada(
                 entidad.CargoOfrecido == null ? "" : entidad.CargoOfrecido,
                 entidad.NombreComercial == null ? "" : entidad.NombreComercial,
@@ -669,8 +647,6 @@ namespace UTPPrototipo.Controllers
                 entidad.nroPaginaActual,
                 Constantes.FILAS_POR_PAGINA_UTP
             );
-
-
 
             //Datos para la paginación.
             int cantidadTotal = lista.Count() == 0 ? 0 : lista[0].CantidadTotal;
@@ -694,7 +670,26 @@ namespace UTPPrototipo.Controllers
 
         public void BusquedaOfertasExportar()
         {
-            Helper.Export2ExcelDownload((DataTable)Session["DataTableToExport"], "ofertas" + new DateTime());
+            var UriQS = Request.QueryString;
+
+            DataTable ToExport = lnUtp.OfertaBusquedaExcel(
+                UriQS.Get("PalabraClave") != null ? UriQS.Get("PalabraClave").ToString() : UriQS.Get("CargoOfrecido").ToString(),
+                UriQS.Get("NombreComercial").ToString(),
+                UriQS.Get("IdTipoCargoUTP").ToString(),
+                UriQS.Get("IdSectorUTP").ToString(),
+                UriQS.Get("IdTipoContratoUTP").ToString(),
+                Convert.ToInt32(UriQS.Get("AExperiencia")),
+                Convert.ToInt32(UriQS.Get("RemuneracionOfrecida")),
+                UriQS.Get("IdTipoEstudioUTP").ToString(),
+                UriQS.Get("Conocimientos").ToString(),
+                Convert.ToInt32(UriQS.Get("NumeroPostulante")),
+                UriQS.Get("IdEstadoOferta").ToString(),
+                UriQS.Get("InformacionAdicional").ToString(),
+                UriQS.Get("Carrera").ToString(),
+                UriQS.Get("TipoTrabajoUTP").ToString()
+            );
+
+            Helper.Export2ExcelDownload(ToExport, "Ofertas-" + DateTime.Now.ToString("yyyyMMdd"));
         }
 
         [HttpPost]
@@ -828,7 +823,8 @@ namespace UTPPrototipo.Controllers
                 li.Add(item);
 
             }
-            ViewData["ContenidoMenu"] = li;
+
+            ViewData["ContenidoMenu"] = li.OrderBy(i => i.Text).ToList();
 
             DataTable dtPresentacion = lngeneral.Modo_Presentacion(Constantes.IDLISTA_MODO_PRESENTACION);
             List<SelectListItem> lis = new List<SelectListItem>();
@@ -983,7 +979,7 @@ namespace UTPPrototipo.Controllers
             }
             ViewData["ContenidoPestana"] = lis;
 
-             ContenidoVista contenido = new ContenidoVista();
+            ContenidoVista contenido = new ContenidoVista();
 
 
             DataTable dtResultado = ln.ContenidoEDitar_Buscar(id);
@@ -1083,7 +1079,7 @@ namespace UTPPrototipo.Controllers
                 }
                 ViewData["ContenidoMenu"] = li;
 
-                DataTable dtPresentacion= lngeneral.Modo_Presentacion(Constantes.IDLISTA_MODO_PRESENTACION);
+                DataTable dtPresentacion = lngeneral.Modo_Presentacion(Constantes.IDLISTA_MODO_PRESENTACION);
                 List<SelectListItem> lis = new List<SelectListItem>();
                 for (int i = 0; i <= dtPresentacion.Rows.Count - 1; i++)
                 {
@@ -1094,7 +1090,7 @@ namespace UTPPrototipo.Controllers
                     lis.Add(item);
                 }
                 ViewData["ContenidoPestana"] = lis;
-                
+
                 ViewBag.Message = "Error al Actualizar";
                 return View(contenidoHTML);
             }
@@ -1189,7 +1185,7 @@ namespace UTPPrototipo.Controllers
             ViewBag.TipoTrabajo = new SelectList(lngeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_TRABAJO), "IdListaValor", "Valor");
             ViewBag.FuenteConvenio = new SelectList(lngeneral.ObtenerListaValor(Constantes.IDLISTA_FUENTE_CONVENIO), "IdListaValor", "Valor");
             ViewBag.EstadoConvenio = new SelectList(lngeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_CONVENIO), "IdListaValor", "DescripcionValor");
-            ViewBag.Clasificacion = new SelectList(lngeneral.ObtenerReporteEquivalente(),"DatoOrigen","DatoOrigen");
+            ViewBag.Clasificacion = new SelectList(lngeneral.ObtenerReporteEquivalente(), "DatoOrigen", "DatoOrigen");
 
             return View("ConveniosUTPCrear", convenio);
         }
@@ -1228,11 +1224,11 @@ namespace UTPPrototipo.Controllers
                 vista.MesInicio = dtResultado.Rows[i]["MesInicio"].ToString();
                 vista.Carrera = dtResultado.Rows[i]["Carrera"].ToString();
                 vista.NombreComercial = dtResultado.Rows[i]["NombreComercial"].ToString();
-                vista.Clasificacion = dtResultado.Rows[i]["Clasificacion"].ToString();  
+                vista.Clasificacion = dtResultado.Rows[i]["Clasificacion"].ToString();
                 vista.SalarioOfrecido = Convert.ToDecimal(dtResultado.Rows[i]["SalarioOfrecido"] == System.DBNull.Value ? null : dtResultado.Rows[i]["SalarioOfrecido"]);
                 vista.Cargo = dtResultado.Rows[i]["CargoOfrecido"].ToString();
                 vista.FechaRegistro = dtResultado.Rows[i]["FechaRegistro"].ToString();
-                vista.Estado = dtResultado.Rows[i]["EstadoConvenio"].ToString();  
+                vista.Estado = dtResultado.Rows[i]["EstadoConvenio"].ToString();
                 listaEjemplo.Add(vista);
             }
 
@@ -1328,7 +1324,7 @@ namespace UTPPrototipo.Controllers
 
             ViewBag.EstadoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_EMPRESA), "IdListaValor", "Valor", empresaActualizada.EstadoIdListaValor);
             ViewBag.UsuarioEC = new SelectList(lnUsuario.ObtenerUsuariosPorTipo("USERUT"), "NombreUsuario", "NombreCompleto", empresaActualizada.UsuarioEC);
-            
+
             ViewBag.Rol = ticketUtp.Rol;
 
             return PartialView("_VerDetalleEmpresaDatosGenerales", empresaActualizada);
@@ -1523,15 +1519,15 @@ namespace UTPPrototipo.Controllers
             DataTable dsCarrerasPracticas = lnUtp.Reporte_CarrerasSinOfertasDePracticas(ano, mes);
 
             List<ReportesSinOfertas> reportesSinOfertas = new List<ReportesSinOfertas>();
-            
+
             for (int i = 0; i <= dsCarrerasPracticas.Rows.Count - 1; i++)
             {
-                string carrera = dsCarrerasPracticas.Rows[i]["Carrera"].ToString();                
-                ReportesSinOfertas item = new ReportesSinOfertas() { Carrera = carrera};
-                reportesSinOfertas.Add(item);              
+                string carrera = dsCarrerasPracticas.Rows[i]["Carrera"].ToString();
+                ReportesSinOfertas item = new ReportesSinOfertas() { Carrera = carrera };
+                reportesSinOfertas.Add(item);
             }
             return PartialView("_PartialReporte", reportesSinOfertas);
-           
+
         }
 
 
@@ -1548,7 +1544,7 @@ namespace UTPPrototipo.Controllers
                 reportesSinOfertas.Add(item);
             }
             return PartialView("_PartialReporte", reportesSinOfertas);
-            
+
         }
 
         public ActionResult ReporteVacantesOfrecidas()
@@ -1681,7 +1677,7 @@ namespace UTPPrototipo.Controllers
         public ActionResult ReporteAlumnosActivosSegunCarrera()
         {
             DataTable dsAlumnosActivosSegunCarrera = lnUtp.Reporte_AlumnosActivosSegunCarrera();
-            
+
             List<string> meses = new List<string>();
             List<string> VOfertas = new List<string>();
             for (int i = 0; i <= dsAlumnosActivosSegunCarrera.Rows.Count - 1; i++)
@@ -1700,7 +1696,7 @@ namespace UTPPrototipo.Controllers
             //datos.Add(dsAlumnosActivosSegunCarrera.Rows[0]["Estudio"].ToString());
             return Json(datos, JsonRequestBehavior.AllowGet);
         }
-        public ActionResult ReporteCvCompletosSegunCarrera() 
+        public ActionResult ReporteCvCompletosSegunCarrera()
         {
             DataTable dtCvCompletosSegunCarrera = lnUtp.Reporte_CvCompletosSegunCarrera();
 
@@ -1878,11 +1874,9 @@ namespace UTPPrototipo.Controllers
 
 
             TicketUTP ticketUtp = (TicketUTP)Session["TicketUtp"];
-
-
             evento.ModificadoPor = ticketUtp.Usuario;
 
-            if (lnEventos.Evento_Actualizar(evento) == true)
+            if (lnEventos.Evento_Actualizar(evento))
             {
 
                 ViewBag.Message = "Registro Actualizado Correctamente";
@@ -1890,67 +1884,8 @@ namespace UTPPrototipo.Controllers
             }
             else
             {
-
-                //Lista Estado Evento
-                DataTable dtresultadoEstadoEvento = lnUtp.Evento_ListaEstadoEvento();
-
-                List<SelectListItem> estadoEvento = new List<SelectListItem>();
-
-                for (int i = 0; i <= dtresultadoEstadoEvento.Rows.Count - 1; i++)
-                {
-                    string nombre = dtresultadoEstadoEvento.Rows[i]["Valor"].ToString();
-                    string valor = dtresultadoEstadoEvento.Rows[i]["IDListaValor"].ToString();
-
-                    SelectListItem item = new SelectListItem() { Text = nombre, Value = valor };
-
-                    estadoEvento.Add(item);
-
-                }
-                ViewData["ListaEstadoEvento"] = estadoEvento;
-
-                //------------------------------------------------------------
-
-                //LISTA TIPO EVENTO
-
-                DataTable dtresultadoTipoEvento = lnUtp.Evento_ListaTipoEvento();
-
-                List<SelectListItem> TipoEvento = new List<SelectListItem>();
-
-                for (int i = 0; i <= dtresultadoTipoEvento.Rows.Count - 1; i++)
-                {
-                    string nombre = dtresultadoTipoEvento.Rows[i]["Valor"].ToString();
-                    string valor = dtresultadoTipoEvento.Rows[i]["IDListaValor"].ToString();
-
-                    SelectListItem item = new SelectListItem() { Text = nombre, Value = valor };
-
-                    TipoEvento.Add(item);
-
-                }
-                ViewData["ListaTipoEvento"] = TipoEvento;
-
-                //------------------------------------------------------------
-
-                //LISTA EMPRESA
-
-                DataTable dtresultadoEmpresa = lnUtp.EMPRESA_LISTAEMPRESA();
-
-                List<SelectListItem> empresa = new List<SelectListItem>();
-
-                for (int i = 0; i <= dtresultadoEmpresa.Rows.Count - 1; i++)
-                {
-                    string nombre = dtresultadoEmpresa.Rows[i]["NombreComercial"].ToString();
-                    string valor = dtresultadoEmpresa.Rows[i]["IdEmpresa"].ToString();
-
-                    SelectListItem item = new SelectListItem() { Text = nombre, Value = valor };
-
-                    empresa.Add(item);
-
-                }
-                ViewData["ListaEmpresa"] = empresa;
-
-                ViewBag.Rol = ticketUtp.Rol;
-                return View(evento);
-
+                ViewBag.Message = "Registro No Se Actualizo Correctamente";
+                return RedirectToAction("Evento_Editar", new { Id = Helper.Encriptar(evento.IdEvento.ToString()) });
             }
 
         }
@@ -2591,7 +2526,7 @@ namespace UTPPrototipo.Controllers
             LNGeneral lnGeneral = new LNGeneral();
 
             //Se quitan las opciones de oferta borrador y oferta fin de recepción de CV's.
-            ViewBag.EstadoOferta = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_OFERTA).Where(a => a.IdListaValor != "OFERBO" ), "IdListaValor", "Valor", oferta.EstadoOferta);
+            ViewBag.EstadoOferta = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_OFERTA).Where(a => a.IdListaValor != "OFERBO"), "IdListaValor", "Valor", oferta.EstadoOferta);
             ViewBag.TipoTrabajoUTP = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_TRABAJO_UTP), "IdListaValor", "Valor", oferta.TipoTrabajoUTP);
             TicketUTP ticketUtp = (TicketUTP)Session["TicketUtp"];
             ViewBag.Rol = ticketUtp.Rol;
@@ -3278,10 +3213,10 @@ namespace UTPPrototipo.Controllers
                 alumno.TelefonoCelular = Convert.ToString(dtResultado.Rows[0]["TelefonoCelular"] == DBNull.Value ? null : dtResultado.Rows[0]["TelefonoCelular"]);
 
             }
-            
+
             LNAlumnoCV lnAlumnocv = new LNAlumnoCV();
             int idAlumno = Convert.ToInt32(Helper.Desencriptar(Id));
-            VistaOfertaPostulante vistaofertapostulante = lnAlumnocv.ObtenerDatosCV(idAlumno);            
+            VistaOfertaPostulante vistaofertapostulante = lnAlumnocv.ObtenerDatosCV(idAlumno);
             alumno.alumnocv = new Alumno();
             alumno.alumnocv = vistaofertapostulante.alumnocv;
 
@@ -3761,7 +3696,7 @@ namespace UTPPrototipo.Controllers
                 vista.CorreoAlumno = dtResultado.Rows[0]["CorreoElectronico"].ToString();
                 vista.TelefonoCelular = dtResultado.Rows[0]["TelefonoCelular"].ToString();
                 vista.CodAlumnoUtp = dtResultado.Rows[0]["CodAlumnoUtp"].ToString();
-                  
+
             }
 
             return Json(vista, JsonRequestBehavior.AllowGet);
@@ -4048,32 +3983,32 @@ namespace UTPPrototipo.Controllers
             //}
             //return PartialView("_AdministrarUsuarioEditar", empresaUsuario);
         }
-/*
-        public ActionResult BuscarDatosEmpresasUTP(int idempresa)
-        {
-            //string descripocn = "";
+        /*
+                public ActionResult BuscarDatosEmpresasUTP(int idempresa)
+                {
+                    //string descripocn = "";
 
-            LNAlumno lnAlumno = new LNAlumno();
-            EmpresaUsuario vista = new EmpresaUsuario();
-            LNEmpresaLocacion lnEmpresaLocacion = new LNEmpresaLocacion();
+                    LNAlumno lnAlumno = new LNAlumno();
+                    EmpresaUsuario vista = new EmpresaUsuario();
+                    LNEmpresaLocacion lnEmpresaLocacion = new LNEmpresaLocacion();
 
-            DataTable dtResultado = lnAlumno.Utp_BuscarDatosListaEmpresas(idempresa);
+                    DataTable dtResultado = lnAlumno.Utp_BuscarDatosListaEmpresas(idempresa);
 
-            if (dtResultado.Rows.Count > 0)
-            {
+                    if (dtResultado.Rows.Count > 0)
+                    {
 
-                //vista.idEmpresa =Convert.ToInt32 (dtResultado.Rows[0]["IdEmpresa"]);
+                        //vista.idEmpresa =Convert.ToInt32 (dtResultado.Rows[0]["IdEmpresa"]);
 
-                vista.CodigoEmpresa = dtResultado.Rows[0]["IdEmpresa"].ToString();
+                        vista.CodigoEmpresa = dtResultado.Rows[0]["IdEmpresa"].ToString();
 
-                vista.ListaUbicaciones = dtResultado.Rows[0]["IdEmpresaLocacion"].ToString();
+                        vista.ListaUbicaciones = dtResultado.Rows[0]["IdEmpresaLocacion"].ToString();
 
-            }
+                    }
 
 
-            return Json(vista, JsonRequestBehavior.AllowGet);
+                    return Json(vista, JsonRequestBehavior.AllowGet);
 
-        }*/
+                }*/
 
         public JsonResult BuscarDatosEmpresasUTP(int id)
         {

@@ -8,9 +8,9 @@
 @{
     <!--Se obtiene los datos para la paginación.-->
     Paginacion paginacion = (Paginacion)ViewBag.Paginacion;
-    //string rol = ((TicketUTP)Session["TicketUtp"]).Rol;            
+    //string rol = ((TicketUTP)Session["TicketUtp"]).Rol;
 }
-<h5 class="clearfix">Empresas <a href="@Url.Action("BusquedaEmpresasExportar", "UTP")" class="btn btn-primary pull-right fuente-pequeña" style="margin-top: -12px;"><span class="fa fa-download"></span></a></h5> 
+<h5 class="clearfix">Empresas <button type="button" class="btn btn-primary pull-right fuente-pequeña" style="margin-top: -12px;" onclick="EmpresaExportar()"><span class="fa fa-download"></span></button></h5>
 <div class="row grilla1-cabecera color-paleta4">
 
     <div class="col-sm-2">
@@ -58,7 +58,7 @@
                     @Html.ActionLink(@item.NombreComercial, "VerDetalleEmpresa", new { id = Helper.Encriptar(item.IdEmpresa.ToString()) }, null)
                 }
                 else
-                {                
+                {
                     @Html.ActionLink("-- SIN NOMBRE --", "VerDetalleEmpresa", new { id = item.IdEmpresa })
                 }
             }
@@ -66,14 +66,14 @@
             {
                 if (item.NombreComercial != "")
                 {
-                    @item.NombreComercial                                  
+                    @item.NombreComercial
                 }
                 else
                 {
                     @Html.Raw("-- SIN NOMBRE --")
                 }
             }
-    
+
         </div>
         <div class="col-sm-2">
             @item.RazonSocial
@@ -123,7 +123,7 @@
                 if (i1 < 1) { i1 = 1; }
                 if (paginacion.NroPaginaActual > 1)
                 {
-                    
+
                     <li>
                         @if (ViewBag.TipoBusqueda == "Simple")
                         {
@@ -220,19 +220,19 @@
     </nav>
 
 
-@*<div class="row">
-    <div class="col-sm-12" style="text-align:right;">
-        <button class="btn btn-default color-paleta2" data-toggle="modal" data-target="#nuevaEmpresa">Nueva Empresa</button>
-    </div>
-</div>*@
-@if (ViewBag.Rol != "ROLUTP")
-{
-    <div class="col-sm-12">
+    @*<div class="row">
+            <div class="col-sm-12" style="text-align:right;">
+                <button class="btn btn-default color-paleta2" data-toggle="modal" data-target="#nuevaEmpresa">Nueva Empresa</button>
+            </div>
+        </div>*@
+    @if (ViewBag.Rol != "ROLUTP")
+    {
+        <div class="col-sm-12">
 
-        <button class="btn btn-default color-paleta2" onclick="EmpresaUTPCrear();">Agregar Empresa</button>
-  
-    </div>
-}
+            <button class="btn btn-default color-paleta2" onclick="EmpresaUTPCrear();">Agregar Empresa</button>
+
+        </div>
+    }
 
 
 

@@ -9,7 +9,7 @@
     <!--Se obtiene los datos para la paginación.-->
     Paginacion paginacion = (Paginacion)ViewBag.Paginacion;
 }
-<h5 class="clearfix">Ofertas <a href="@Url.Action("BusquedaOfertasExportar", "UTP")" class="btn btn-primary pull-right fuente-pequeña" style="margin-top: -12px;"><span class="fa fa-download"></span></a></h5>
+<h5 class="clearfix">Ofertas <button type="button" class="btn btn-primary pull-right fuente-pequeña" style="margin-top: -12px;" onclick="OfertasExportar()"><span class="fa fa-download"></span></button></h5>
 <div class="row grilla1-cabecera color-paleta2">
     <div class="col-sm-1">
         Fecha Pub
@@ -40,7 +40,7 @@
     </div>
     <div class="col-sm-1">
         Comentarios
-    </div>    
+    </div>
 </div>
 
 @foreach (var item in Model)
@@ -59,9 +59,9 @@
             @if (ViewBag.Rol != "ROLUTP")
             {
                 @Html.ActionLink(@item.CargoOfrecido, "VerDetalleOferta", new { id = Helper.Encriptar(item.IdOferta.ToString()) }, null)
-                <br />                
+                <br />
                 @Html.ActionLink("Vista empresa", "Oferta", "Empresa", new { idOfertaCrypt = Helper.Encriptar(item.IdOferta.ToString()), pantallaCrypt = Helper.Encriptar("UTP") }, null)
-                <br />               
+                <br />
                 @Html.ActionLink(" ", "VerOferta", "Home", new { crypt = Helper.Encriptar(item.IdOferta.ToString()) }, htmlAttributes: new { @class = "fa fa-external-link", title = "Link externo" })
             }
             else
@@ -82,7 +82,7 @@
         </div>
         <div class="col-sm-1">
             @item.FechaFinRecepcionCV
-        </div>        
+        </div>
         <div class="col-sm-1">
             @item.Estado
         </div>
@@ -104,30 +104,30 @@
     <nav class="navbar-right">
         <ul class="pagination">
             @*@{
-                for (int i = 1; i <= paginacion.TotalPaginas; i++)
-                {
-                    if (i == paginacion.NroPaginaActual)
-                    {
-                        <li class="active"><a href="#">@i <span class="sr-only"></span></a></li>
-                    }
-                    else
-                    {
+                                for (int i = 1; i <= paginacion.TotalPaginas; i++)
+                                {
+                                    if (i == paginacion.NroPaginaActual)
+                                    {
+                                        <li class="active"><a href="#">@i <span class="sr-only"></span></a></li>
+                                    }
+                                    else
+                                    {
 
-                        if (ViewBag.TipoBusqueda == "Simple")
-                        {
-                            <li><a href="#" onclick="buscarPaginacion('@i');">@i</a></li>
-                        }
-                        else
-                        {
-                            <li><a href="#" onclick="buscarPaginacionAvanzada('@i');">@i</a></li>
-                        }
-
-
+                                        if (ViewBag.TipoBusqueda == "Simple")
+                                        {
+                                            <li><a href="#" onclick="buscarPaginacion('@i');">@i</a></li>
+                                        }
+                                        else
+                                        {
+                                            <li><a href="#" onclick="buscarPaginacionAvanzada('@i');">@i</a></li>
+                                        }
 
 
-                    }
-                }
-}*@
+
+
+                                    }
+                                }
+                }*@
             @{
                 int i1 = paginacion.NroPaginaActual - 2;
                 if (paginacion.NroPaginaActual + 2 > paginacion.TotalPaginas) { i1 = paginacion.TotalPaginas - 5; }
