@@ -3,7 +3,10 @@
 @{
     Layout = "~/Views/Alumno/_LayoutAlumno.cshtml";
     ViewBag.Title = "Búsqueda de Oferta";
+    string Tab = Request.Params.Get("Tab");
 }
+
+<script>window.selectedTab = '@Tab';</script>
 
 @using (Html.BeginForm())
 {
@@ -146,15 +149,9 @@
         AutoCompleteText('#AreaEmpresa', '@Url.Action("ListarAreasEmpresa", "Alumno")', '#AreaEmpresa');
         AutoCompleteText('#IdEstudio', '@Url.Action("ListarEstudio", "Alumno")', '#IdEstudio');
 
-        $("#TipoBusqueda").attr('value', 1);
-        var oferta = {
-            PalabraClave: $('#PalabraClave').val(),
-            IdAlumno: $('#IdAlumno').val(),
-            TipoTrabajoUTP: $('#TipoTrabajoUTP').val(),
-            PaginaActual: 1,
-            NumeroRegistros: parseInt($("#PagOfertas").val())
-        };
-        Cargar("ResultadoBusqueda", '@Url.Action("BusquedaSimpleOferta", "Alumno")', oferta);
+        //$("#TipoBusqueda").attr('value', 1);
+     
+        //Cargar("ResultadoBusqueda", '@Url.Action("BusquedaSimpleOferta", "Alumno")', oferta);
     });
 
     $('#buscar').click(function () {
@@ -169,7 +166,6 @@
         };
         Cargar("ResultadoBusqueda", '@Url.Action("BusquedaSimpleOferta", "Alumno")', oferta);
 
-        return false;
     });
 
     $('#buscaravanzada').click(function () {
@@ -195,7 +191,6 @@
         };
         Cargar("ResultadoBusqueda", '@Url.Action("BusquedaAvanzadaOferta", "Alumno")', oferta);
 
-        return false;
     });
 
     function Cargar(id, link, entidad) {
@@ -227,7 +222,6 @@
         };
         Cargar("ResultadoBusqueda", '@Url.Action("BusquedaSimpleOferta", "Alumno")', oferta);
 
-        return false;
     }
 
     function buscarPaginacionAvanzada(nroPagina) {
@@ -309,6 +303,16 @@
     };
 
     Offers.tabs();
+
+    var ViewOffersTabs = {
+        selector: '#offers-tabs',
+        Todos: function () { $(this.selector + ' [aria-controls=all]').click(); },
+        PosicionesDeEntrada: function () { $(this.selector + ' [aria-controls=entries-position]').click(); },
+        Practicas: function () { $(this.selector + ' [aria-controls=practices]').click(); },
+        Empleo: function () { $(this.selector + ' [aria-controls=jobs]').click(); }
+    };
+
+    ViewOffersTabs[selectedTab || 'Todos']();
 </script>
 
 
