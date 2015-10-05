@@ -1,0 +1,181 @@
+﻿@using UTPPrototipo.Models.ViewModels.Cuenta;
+
+<div>Área de Empleabilidad | Email: <a href="mailto:empleos@idat.edu.pe">empleos@idat.edu.pe</a> | </div>
+<div>Teléfono: (+51) 315-9600 Anexo 1976, 1977, 1938 | Web: <a href="http://www.idat.edu.pe/empleabilidad" target="_blank">www.idat.edu.pe/empleabilidad</a></div>
+<div>Mesa de Ayuda | Email: <a href="mailto:mesadeayuda@utp.edu.pe">mesadeayuda@utp.edu.pe</a> | Teléfono: (+51) 315-9606 Anexo 1444 | Web: <a href="http://mesadeayuda.utp.edu.pe" target="_blank">mesadeayuda.utp.edu.pe</a></div>
+<div><a href="http://www.idat.edu.pe" target="_blank">IDAT</a> | <a href="@Url.Action("PoliticasDePrivacidad", "Home")" target="_blank">Política de Privacidad</a> | <a href="@Url.Action("TerminosDeUso", "Home")" target="_blank">Términos y Condiciones</a> | <a href="@Url.Action("FAQ", "Home")" target="_blank">FAQ</a></div>
+
+@{
+    var ROL = (string)Session["Rol"];
+    if (ROL != "USERUT")
+    {
+        if (!(bool)Session["TerminosCondiciones"]) 
+        {
+            <div id="terminos-y-condiciones" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" style="color: #333;">
+                <div class="modal-dialog modal-lg" style="height: 90%;">
+                    <div class="modal-content" style="height: 100%;">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Términos y condiciones</h4>
+                        </div>
+                        <div class="modal-body" style="padding: 32px; height: 79.5%; overflow-y: scroll;">
+                            <h2 style="margin-top: 0;">POLÍTICAS DE PRIVACIDAD</h2>
+                            <p>
+                                Agradecemos tu interés en este sitio Web y páginas relacionadas. Tu privacidad es muy
+                                importante para nosotros y, a través de este Aviso de Privacidad (el “Aviso”) queremos que
+                                conozcas cómo y para qué utilizamos la información de nuestros visitantes por lo que te
+                                pedimos que lo leas con atención.
+                            </p>
+                            <p>
+                                La Universidad Tecnológica del Perú S.A.C. (la “Sociedad” o el <strong>Grupo UTP</strong>), promotora de
+                                la Universidad Tecnológica del Perú (la <strong>UTP</strong>) y el Instituto Superior Tecnológico IDAT
+                                (“IDAT”) está comprometida con el respeto a tu privacidad y la Ley de Protección de Datos
+                                Personales (la “Ley 29733”). Toda información que nos brindes, considerada datos personales
+                                de acuerdo a la Ley 29733, será debidamente tratada y conservada bajo nuestra responsabilidad
+                                en sistemas informáticos tanto en el Perú como en el exterior, pudiendo ser también custodiada
+                                en sistemas informáticos ubicados en la nube.
+                            </p>
+                            <p>
+                                El tratamiento y uso de tus datos personales por el Grupo UTP será realizado de conformidad
+                                con las condiciones y fines del presente Aviso, en la medida que has brindado tu
+                                consentimiento, ya sea por la suscripción de un contrato/formulario, inscripción en nuestra web,
+                                aceptación de términos mediante un clic u otro medio similar.
+                            </p>
+                            <p>
+                                En caso de que requiriéramos usar tus datos personales con fines diferentes a los señalados en
+                                el presente Aviso, te contactaremos a fin de recabar tu autorización.
+                            </p>
+                            <ol>
+                                <li>
+                                    <h4>¿PARA QUÉ FINES RECABAMOS Y UTILIZAMOS TUS DATOS PERSONALES?</h4>
+                                    <p>
+                                        Para identificarte, localizarte, comunicarte, contactarte, enviarte información, dar cumplimiento
+                                        a obligaciones que hemos contraído contigo, para elaborar bases de datos que serán utilizadas
+                                        para ofrecerte productos y/o servicios del Grupo UTP que pudieran ser de tu interés y/o de
+                                        terceros que se promocionen o publiciten por tu intermedio, así como su transmisión a terceros
+                                        por cualquier medio que permita la Ley 29733 y demás leyes que resulten aplicables.
+                                    </p>
+                                    <p>
+                                        El uso de los datos personales y datos sensibles tendrá relación directa con el tipo de
+                                        interacción que tengas con el Grupo UTP, ya sea comercial, laboral, civil, mercantil o de
+                                        cualquier otra naturaleza. La temporalidad del manejo de los datos personales y/o datos
+                                        sensibles será indefinida a partir de la fecha en que nos proporcionaste éstos al Grupo UTP.
+                                    </p>
+                                </li>
+                                <li>
+                                    <h4>¿QUÉ DATOS PERSONALES OBTENDREMOS Y DE DÓNDE?</h4>
+                                    <p>
+                                        Para las finalidades señaladas en este Aviso, podemos recabar tus datos personales de distintas
+                                        formas: cuando nos los proporcionas directamente, cuando visitas nuestra web o utilizas
+                                        nuestros servicios en línea y cuando obtenemos información a través de otras fuentes
+                                        permitidas por la Ley 29733.
+                                    </p>
+                                    <p>
+                                        Datos personales que recabamos de forma directa: recabamos tus datos personales de forma
+                                        directa cuando tú nos los proporcionas. Los datos que obtenemos por este medio pueden ser,
+                                        entre otros:
+                                    </p>
+                                    <ul>
+                                        <li>Nombre</li>
+                                        <li>Teléfono</li>
+                                        <li>Domicilio</li>
+                                        <li>Teléfono</li>
+                                        <li>Edad</li>
+                                        <li>Correo electrónico</li>
+                                        <li>Educación</li>
+                                        <li>Sexo</li>
+                                        <li>Estado civil</li>
+                                    </ul>
+                                    <p>
+                                        Datos personales que recabamos de forma indirecta: aquellos que recabamos cuando visitas
+                                        nuestra web o utilizas nuestros servicios en línea, entre otros:
+                                    </p>
+                                    <ul>
+                                        <li>Nombre</li>
+                                        <li>Domicilio</li>
+                                        <li>Teléfono</li>
+                                        <li>Edad</li>
+                                        <li>Correo electrónico</li>
+                                    </ul>
+                                    <p>
+                                        Una vez que entregas al Grupo UTP tus datos personales o sensibles, estos serán conservados
+                                        en diferentes medios seguros que la tecnología permita, cuyo acceso estará limitado solamente
+                                        a las personas físicas y/o jurídicas con las que el Grupo UTP tenga alguna relación. El Grupo
+                                        UTP contará con las medidas de seguridad adecuadas para proteger el uso de tus datos
+                                        personales y/o sensibles por parte de terceros no autorizados. En caso de requerimiento de
+                                        alguna autoridad, tus datos personales y/o sensibles podrán ponerse a disposición de éstas,
+                                        dentro del estricto cumplimiento a la Ley 29733.
+                                    </p>
+                                    <p>
+                                        El tratamiento de tus datos personales, que has puesto a disposición del Grupo UTP bajo
+                                        cualquier forma o circunstancia, podrá ser efectuado de conformidad con los presentes términos
+                                        y condiciones, por lo que desde este momento se entiende que autorizas expresamente al Grupo
+                                        UTP para tal efecto, hasta en tanto no manifiestes tu oposición mediante alguno de los medios
+                                        que indica la Ley 29733.
+                                    </p>
+                                </li>
+                                <li>
+                                    <h4>¿CÓMO ACCEDER O RECTIFICAR SUS DATOS PERSONALES O CANCELAR U OPONERSE A SU USO?</h4>
+                                    <p>
+                                        Tienes derecho a acceder a los datos personales que sobre ti poseemos y a los detalles del
+                                        tratamiento de los mismos, así como a rectificarlos en caso de ser inexactos o incompletos;
+                                        cancelarlos cuando consideres que no se requieren para alguna de las finalidades señaladas en
+                                        el presente Aviso, estén siendo utilizados para finalidades no consentidas o haya finalizado la
+                                        relación contractual o de servicio, o bien, oponerte al tratamiento de los mismos para fines
+                                        específicos. Para hacerlo, deberás dirigir tu solicitud a arco@grupoutp.edu.pe.
+                                    </p>
+                                </li>
+                                <li>
+                                    <h4>DATOS PERSONALES SENSIBLES</h4>
+                                    <p>
+                                        Tratándose de datos personales sensibles, deberás proporcionar al Grupo UTP tu
+                                        consentimiento expreso y por escrito para su tratamiento a través de tu firma autógrafa,
+                                        electrónica o cualquier mecanismo de autenticación que para tal efecto se establezca. De
+                                        cualquier forma, nos comprometemos a no tratar estos datos para fines distintos al contrato o
+                                        acuerdo específico para el que nos los proporcionaste si no contamos con tu consentimiento
+                                        expreso y por escrito.
+                                    </p>
+                                </li>
+                                <li>
+                                    <h4>MODIFICACIONES AL AVISO DE PRIVACIDAD</h4>
+                                    <p>
+                                        Nos reservamos el derecho de efectuar en cualquier momento modificaciones o actualizaciones
+                                        al presente Aviso, para la atención de novedades legislativas, políticas internas o nuevos
+                                        requerimientos para la prestación u ofrecimiento de nuestros servicios o productos.
+                                        Estas modificaciones estarán disponibles al público a través de nuestras páginas de internet.
+                                    </p>
+                                </li>
+                            </ol>
+                        </div>
+                        <div class="modal-footer">
+                            <a href="@Url.Action("DescargarArchivoEstatico", "UTP", new { archivo = "politicas-de-privacidad.pdf" })" class="btn btn-link pull-left" style="margin-right: 8px;">Descargar - Terminos y condiciones</a>
+                            @{
+                                if (ROL == "USEREM") 
+                                {
+                                    <script>window.usx = '@(((TicketEmpresa)Session["TicketEmpresa"]).Usuario)';</script>
+                                    <a href="@Url.Action("DescargarArchivoEstatico", "UTP", new { archivo = "reglamento-empresa-area-empleabilidad.pdf" })" class="btn btn-link pull-left">Descargar - Reglamento</a>
+                                }
+                                if (ROL == "USERAL" || ROL != "USEREM")
+                                {
+                                    <script>window.usx = '@(((TicketAlumno)Session["TicketAlumno"]).Usuario)';</script>
+                                    <a href="@Url.Action("DescargarArchivoEstatico", "UTP", new { archivo = "reglamento-estudiante-area-empleabilidad.pdf" })" class="btn btn-link pull-left">Descargar - Reglamento</a>
+                                } 
+                            }
+                            <div class="pull-right">
+                                <button type="button" class="btn btn-primary" onclick="ActualizarTerminosCondiciones()">Acepto</button>
+                                <a href="@Url.Action("Logout", "UTP")" class="btn btn-danger">No acepto</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script>
+                $('#terminos-y-condiciones').modal({ keyboard: false, backdrop: 'static' });
+                var ActualizarTerminosCondiciones = function () {
+                    $.getJSON('@Url.Action("ActualizarTerminosCondiciones", "Cuenta")', { usuario: usx }, function (ok) {
+                        if (ok) $('#terminos-y-condiciones').modal('hide');
+                    });
+                };
+            </script>
+        }
+    }
+}

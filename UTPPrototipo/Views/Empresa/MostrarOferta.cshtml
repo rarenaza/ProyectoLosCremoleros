@@ -72,7 +72,11 @@
                     </div>
                     <div id="collapseOferta" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOferta">
                         <div class="panel-body fuente-pequeña">
+                            <h6><strong>Funciones</strong></h6>
+                            <br />
                             @Html.Raw(Model.Oferta.Funciones)
+                            <br />
+                            <h6><strong>Requisitos</strong></h6>
                             <br />
                             @Html.Raw(Model.Oferta.Competencias)
                         </div>
@@ -160,37 +164,42 @@
                                     <strong class="sub-titulo-seccion">Carreras</strong>
                                 </div>
                             </div>
-                            <table class="fuente-pequeña" style="width:100%;">
+                            <br />
+                            @foreach (var itemCarrera in Model.ListaEstudiosUTP)
+                            {
+                                <table class="fuente-pequeña">
+                                    <tr>
+                                        <td><strong>@itemCarrera.Estudio</strong></td>
+                                        <td class="celda-datos"></td>
+                                    </tr>
+                                </table>
+                            }
+                            <br />
+                            <table class="fuente-pequeña">
                                 <tr>
-                                    <td class="celda-nombre" style="width:70%;">Estado: <strong>@Model.Oferta.EstadoCarreraUTPDescripcion</strong></td>
-                                    <td class="celda-datos"></td>
+                                    <td class="celda-nombre">Estado: </td>
+                                    <td class="celda-datos"><strong>@Model.Oferta.EstadoCarreraUTPDescripcion</strong></td>
                                 </tr>
                                 @if (Convert.ToInt32(@Model.Oferta.CicloMinimoCarreraUTP) != 0)
-                                { 
+                                {
                                     <tr>
-                                        <td class="celda-nombre" style="width:70%;">Ciclo mínimo: <strong>@Model.Oferta.CicloMinimoCarreraUTP</strong></td>
-                                        <td class="celda-datos"></td>
+                                        <td class="celda-nombre">Ciclo mínimo: </td>
+                                        <td class="celda-datos"><strong>@Model.Oferta.CicloMinimoCarreraUTP</strong></td>
                                     </tr>
                                 }
                             </table>
-                            <br />                          
-                                @foreach (var itemCarrera in Model.ListaEstudiosUTP)
-                                {
-                                    <table class="fuente-pequeña" style="width:100%;">
-                                        <tr>
-                                            <td class="celda-nombre" style="width:70%;">@itemCarrera.Estudio</td>
-                                            <td class="celda-datos"></td>
-                                        </tr>
-                                    </table>
-                                }                                                     
-                            
-                            <hr />
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <strong class="sub-titulo-seccion">Otros Estudios</strong>
+
+                            @if (Model.ListaEstudiosOtros.Count() > 0)
+                            {
+                                <hr />
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <strong class="sub-titulo-seccion">Otros Estudios</strong>
+                                    </div>
                                 </div>
-                            </div>
-                            <br />
+                                <br />
+                            }
+
 
                             @foreach (var itemEstudio in Model.ListaEstudiosOtros)
                             {
@@ -212,78 +221,30 @@
                                         <td class="celda-datos"></td>
                                     </tr>
                                 </table>
-                                
+
                             }
                             <hr />
                             <table class="fuente-pequeña" style="width:100%;">
 
-                                @*@if (Model.ListadoEstudios != null && Model.ListadoEstudios.Count > 0)
-            {
-                <tr>
-                     <td >
-                        <strong class="sub-titulo-seccion">Estudios</strong>
-                    </td>
-                    <td class="celda-datos"></td>
-                </tr>
-                foreach (var item in Model.ListadoEstudios)
-                {
-                    if (item.Tipo == 0)
-                    {
-                        <tr>
-                            <td class="celda-nombre">
-                                <strong>@item.Requisito</strong>
-                            </td>
-                            <td class="celda-datos">
-                            </td>
-                        </tr>
-                    }
-                    else
-                    {
-                        <tr>
-                            <td colspan="2"><div class="linea_raya"></div></td>
-                        </tr>
-                    }
-
-
-                }
-            }*@
                                 <tr>
                                     <td>
                                         <strong class="sub-titulo-seccion">Experiencia</strong>
                                     </td>
                                     <td class="celda-datos"></td>
                                 </tr>
-                                <tr><td><br /></td></tr>
-                                <tr>
-                                    <td class="celda-nombre" style="width:70%;">
-                                        <strong class="sub-titulo-seccion">General: @Model.Oferta.ExperienciaGeneral meses </strong>
-                                    </td>
-                                    <td class="celda-datos">
-                                        @*@if (Model.Oferta.CumpleExperienciaGeneral)
-                    {
-                        <span class="valor-palabra si-cumple">Si cumple</span><span class="valor-icono2 si-cumple">g</span>
-                    }*@
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="celda-nombre" style="width:70%;">
-                                        <strong class="sub-titulo-seccion">En posiciones similares: @Model.Oferta.ExperienciaPosicionesSimilares meses</strong>
-                                    </td>
-                                    <td class="celda-datos">
-                                        @*@if (Model.Oferta.CumpleExperienciaPosicionesSimilares)
-                    {
-                        <span class="valor-palabra si-cumple">Si cumple</span><span class="valor-icono2 si-cumple">g</span>
-                    }*@
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <hr />
-                                    </td>
-                                    <td>
-                                        <hr />
-                                    </td>
-                                </tr>
+
+                                <table class="fuente-pequeña">
+                                    <tr>
+                                        <td class="celda-nombre">General: </td>
+                                        <td class="celda-datos"><strong>@Model.Oferta.ExperienciaGeneral meses</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="celda-nombre">En posiciones similares: </td>
+                                        <td class="celda-datos"><strong>@Model.Oferta.ExperienciaPosicionesSimilares meses</strong></td>
+
+                                    </tr>
+                                </table>
+                                <hr />
                                 @if (Model.ListadoSectorEmpresarial != null && Model.ListadoSectorEmpresarial.Count > 0)
                                 {
                                     <tr>
@@ -292,53 +253,44 @@
                                         </td>
                                         <td class="celda-datos"></td>
                                     </tr>
-                                    <tr>
-                                        <td>
-                                            <br />
-                                        </td>
-                                    </tr>
+                                    <tr><td><br /></td></tr>
                                     foreach (var item in Model.ListadoSectorEmpresarial)
                                     {
                                         if (item.Tipo == 0)
                                         {
                                             <tr>
                                                 <td class="celda-nombre" style="width:70%;">
-                                                    <strong>@item.Requisito</strong>
+                                                    @item.Requisito
                                                 </td>
                                                 <td class="celda-datos">
                                                     @*@if (item.Line == 1)
-                                {
-                                    if (item.Cumplimiento == 1)
-                                    {
-                                        <span class="valor-palabra si-cumple">Si cumple</span><span class="valor-icono2 si-cumple">g</span>
-                                    }
-                                    else
-                                    {
-                                        <span class="valor-palabra no-cumple"><strong>No cumple</strong></span><span class="valor-icono2 no-cumple">l</span>
-                                    }
-                                }*@
+                                                        {
+                                                            if (item.Cumplimiento == 1)
+                                                            {
+                                                                <span class="valor-palabra si-cumple">Si cumple</span><span class="valor-icono2 si-cumple">g</span>
+                                                            }
+                                                            else
+                                                            {
+                                                                <span class="valor-palabra no-cumple"><strong>No cumple</strong></span><span class="valor-icono2 no-cumple">l</span>
+                                                            }
+                                                        }*@
 
                                                 </td>
                                             </tr>
                                         }
                                         @*else
-                                        {
-                                            <tr>
-                                                <td colspan="2"><div class="linea_raya"></div></td>
-                                            </tr>
-                                        }*@
+                                            {
+                                                <tr>
+                                                    <td colspan="2"><div class="linea_raya"></div></td>
+                                                </tr>
+                                            }*@
 
 
                                     }
                                 }
-                                <tr>
-                                    <td>
-                                        <hr />
-                                    </td>
-                                    <td>
-                                        <hr />
-                                    </td>
-                                </tr>
+
+                                <hr />
+
 
                                 @if (Model.ListadoInformacionAdicional != null && Model.ListadoInformacionAdicional.Count > 0)
                                 {
@@ -359,30 +311,18 @@
                                         {
                                             <tr>
                                                 <td class="celda-nombre" style="width:70%;">
-                                                    <strong>@item.Requisito</strong>
+                                                    @item.Requisito
                                                 </td>
-                                                <td class="celda-datos">
-                                                    @*@if (item.Line == 1)
-                                {
-                                    if (item.Cumplimiento == 1)
-                                    {
-                                        <span class="valor-palabra si-cumple">Si cumple</span><span class="valor-icono2 si-cumple">g</span>
-                                    }
-                                    else
-                                    {
-                                        <span class="valor-palabra no-cumple"><strong>No cumple</strong></span><span class="valor-icono2 no-cumple">l</span>
-                                    }
-                                }*@
-
-                                                </td>
+                                                <td class="celda-datos"></td>
+                                                <br />
                                             </tr>
                                         }
                                         @*else
-                                        {
-                                            <tr>
-                                                <td colspan="2"><div class="linea_raya"></div></td>
-                                            </tr>
-                                        }*@
+                                            {
+                                                <tr>
+                                                    <td colspan="2"><div class="linea_raya"></div></td>
+                                                </tr>
+                                            }*@
 
 
                                     }

@@ -367,6 +367,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                     cmd.Parameters.Add(new SqlParameter("@TipoCargo", oferta.TipoCargoIdListaValor)); //
                     cmd.Parameters.Add(new SqlParameter("@CargoOfrecido", oferta.CargoOfrecido));
                     cmd.Parameters.Add(new SqlParameter("@RemuneracionOfrecida" , (oferta.NumeroVacantes == null ? (object)DBNull.Value : oferta.RemuneracionOfrecida )));
+                    cmd.Parameters.Add(new SqlParameter("@RemuneracionOfrecidaHasta", (oferta.NumeroVacantes == null ? (object)DBNull.Value : oferta.RemuneracionOfrecidaHasta)));
                     cmd.Parameters.Add(new SqlParameter("@Horario", oferta.Horario));
                     cmd.Parameters.Add(new SqlParameter("@AreaEmpresa", oferta.AreaEmpresa));
                     cmd.Parameters.Add(new SqlParameter("@NumeroVacantes", (oferta.NumeroVacantes == null ? (object)DBNull.Value : oferta.NumeroVacantes ))); 
@@ -450,6 +451,7 @@ namespace UTP.PortalEmpleabilidad.Datos
                         cmd.Parameters.Add(new SqlParameter("@TipoCargo", oferta.TipoCargoIdListaValor));
                         cmd.Parameters.Add(new SqlParameter("@CargoOfrecido", oferta.CargoOfrecido));
                         cmd.Parameters.Add(new SqlParameter("@RemuneracionOfrecida", oferta.RemuneracionOfrecida));
+                        cmd.Parameters.Add(new SqlParameter("@RemuneracionOfrecidaHasta", oferta.RemuneracionOfrecidaHasta));
                         cmd.Parameters.Add(new SqlParameter("@Horario", oferta.Horario));
                         cmd.Parameters.Add(new SqlParameter("@AreaEmpresa", oferta.AreaEmpresa));
                         cmd.Parameters.Add(new SqlParameter("@NumeroVacantes", oferta.NumeroVacantes));
@@ -622,6 +624,34 @@ namespace UTP.PortalEmpleabilidad.Datos
 
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "Oferta_ObtenerPostulantesPorIdOferta";
+                cmd.Parameters.Add(new SqlParameter("@IdOferta", idOferta));
+
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+
+                dtResultado = new DataTable();
+
+                da.Fill(dtResultado);
+
+                conexion.Close();
+            }
+
+            return dtResultado;
+        }
+
+        public DataTable ObtenerPostulantesPorIdOfertaSimple(int idOferta)
+        {
+            DataTable dtResultado = new DataTable();
+
+            using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Oferta_ObtenerPostulantesPorIdOfertaSimple";
                 cmd.Parameters.Add(new SqlParameter("@IdOferta", idOferta));
 
                 cmd.Connection = conexion;

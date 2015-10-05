@@ -79,5 +79,10 @@ namespace UTP.PortalEmpleabilidad.Logica
 
             return usuarios;
         }
+
+        public bool ActualizarTerminosCondiciones(string usuario)
+        {
+            return adUsuario.ActualizarTerminosCondiciones(usuario);
+        }
     }
 }

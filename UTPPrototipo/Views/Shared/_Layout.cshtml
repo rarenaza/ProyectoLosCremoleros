@@ -97,31 +97,10 @@
     @RenderBody()
     <div>               
         <footer>
-            <!-- start of #footer section -->
-            <style>
-                footer {
-                    height: auto;
-                    overflow: auto;
-                }
-
-                    footer .row:last-child {
-                        padding-top: 0;
-                    }
-            </style>
             <div class="container">
                 <div class="row">
-                    <div id="footer_left" class="span4">
-                    </div>
-                    <div id="footer_center" class="span4">
-                        &nbsp;
-                    </div>
-                </div>
-                <div class="row">
                     <div class="span7" style="padding-left:5px;">
-                        <div>Dirección de Empleabilidad | Email: <a href="mailto:empleos@idat.edu.pe">empleos@idat.edu.pe</a> | </div>
-                        <div>Teléfono: (+51 1) 315-9600 Anexo 1438 | Web: <a href="http://www.idat.edu.pe/empleabilidad/" target="_blank">empleabilidad.utp.edu.pe</a></div>
-                        <div>Mesa de Ayuda | Email: <a href="mailto:mesadeayuda@idat.edu.pe">mesadeayuda@idat.edu.pe</a> | Teléfono: (+51) 315-9606 | Web: <a href="http://mesadeayuda.idat.edu.pe/" target="_blank">mesadeayuda.idat.edu.pe</a></div>
-                        <div>Universidad Tecnológica del Perú | <a href="@Url.Action("PoliticasDePrivacidad", "Home")" target="_blank">Política de Privacidad</a> | <a href="@Url.Action("TerminosDeUso", "Home")" target="_blank">Términos y Condiciones</a> | <a href="@Url.Action("FAQ", "Home")" target="_blank">FAQ</a> | <a href=@Url.Action("Contacto", "Home", new { pantalla = UTP.PortalEmpleabilidad.Modelo.Constantes.MENSAJES_INICIO }) target="_blank">Contáctenos</a></div>
+                        @Html.Partial("FooterIntra")
                         &nbsp;
                     </div>
 

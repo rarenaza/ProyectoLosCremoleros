@@ -12,9 +12,9 @@ namespace UTP.PortalEmpleabilidad.Logica
     public class LNUTPAlumnos
     {
         ADUTPAlumnos adUTPAlumnos = new ADUTPAlumnos();
-  
+
         public DataSet ObtenerDatosPorCodigo(string codigo)
-        {                        
+        {
             return adUTPAlumnos.ObtenerDatosPorCodigo(codigo);
         }
 
@@ -22,7 +22,7 @@ namespace UTP.PortalEmpleabilidad.Logica
         {
             Alumno alumno = new Alumno();
             Usuario usuario = new Usuario();
-            List< AlumnoEstudio> alumnoEstudio = new List< AlumnoEstudio>();
+            List<AlumnoEstudio> alumnoEstudio = new List<AlumnoEstudio>();
 
 
             //Tabla 0 = Datos del alumno y usuario
@@ -36,8 +36,8 @@ namespace UTP.PortalEmpleabilidad.Logica
             alumno.CodAlumnoUTP = Convert.ToString(dsDatosAlumno.Tables[0].Rows[0]["Codigo"]);
             alumno.Nombres = Convert.ToString(dsDatosAlumno.Tables[0].Rows[0]["Nombres"]);
             alumno.Apellidos = Convert.ToString(dsDatosAlumno.Tables[0].Rows[0]["Apellidos"]);
-            alumno.TipoDocumentoIdListaValor = Convert.ToString(dsDatosAlumno.Tables[0].Rows[0]["TipoDocumento"]).Substring(0,2);
-            alumno.NumeroDocumento = Convert.ToString(dsDatosAlumno.Tables[0].Rows[0]["NumeroDocumento"]);            
+            alumno.TipoDocumentoIdListaValor = Convert.ToString(dsDatosAlumno.Tables[0].Rows[0]["TipoDocumento"]).Substring(0, 2);
+            alumno.NumeroDocumento = Convert.ToString(dsDatosAlumno.Tables[0].Rows[0]["NumeroDocumento"]);
             alumno.FechaNacimiento = ConvertirFecha(Convert.ToString(dsDatosAlumno.Tables[0].Rows[0]["FechaNacimiento"]));
             alumno.SexoIdListaValor = Convert.ToString(dsDatosAlumno.Tables[0].Rows[0]["Sexo"]);
             alumno.Direccion = Convert.ToString(dsDatosAlumno.Tables[0].Rows[0]["Direccion"]);
@@ -57,6 +57,9 @@ namespace UTP.PortalEmpleabilidad.Logica
             string EstudioGrado = "";
             bool EsEstudiante = false;
             //Tabla 1 = Datos del estudio
+
+            Boolean bEstudioPrincipal = true;
+
             for (int i = 0; i <= dsDatosAlumno.Tables[1].Rows.Count - 1; i++)
             {
                 AlumnoEstudio alumnoEstudioItem = new AlumnoEstudio();
@@ -64,7 +67,7 @@ namespace UTP.PortalEmpleabilidad.Logica
                 alumnoEstudioItem.Estudio = Convert.ToString(dsDatosAlumno.Tables[1].Rows[i]["CarreraEgreso"]);
 
                 alumnoEstudioItem.TipoDeEstudio = Constantes.TIPO_ESTUDIO_PRINCIPAL; //Realizar función de conversión.
-                EstudioGrado = Convert.ToString(dsDatosAlumno.Tables[1].Rows[i]["Grado"]).Substring(0,6);
+                EstudioGrado = Convert.ToString(dsDatosAlumno.Tables[1].Rows[i]["Grado"]).Substring(0, 6);
 
                 alumnoEstudioItem.EstadoDelEstudio = EstudioGrado;
 
@@ -82,7 +85,10 @@ namespace UTP.PortalEmpleabilidad.Logica
                 if (!String.IsNullOrEmpty(Convert.ToString(dsDatosAlumno.Tables[1].Rows[i]["Ciclo"])))
                     alumnoEstudioItem.CicloEquivalente = Convert.ToInt32(dsDatosAlumno.Tables[1].Rows[i]["Ciclo"]);
 
-                alumnoEstudioItem.DatoUTP = true;
+                alumnoEstudioItem.DatoUTP = bEstudioPrincipal;
+
+                bEstudioPrincipal = false;
+                alumnoEstudioItem.DatoCargado = true;
                 alumnoEstudioItem.CreadoPor = "sistema";
                 alumnoEstudio.Add(alumnoEstudioItem);
             }
@@ -150,7 +156,7 @@ namespace UTP.PortalEmpleabilidad.Logica
             return adUTPAlumnos.AlumnoUtp_obtenerInformacionAdicional(id);
         }
 
-        
+
 
 
     }

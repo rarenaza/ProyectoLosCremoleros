@@ -16,6 +16,7 @@
                   foreach (var itemIndex in ListaIndex)
                   {
                     <div style="background-image: url(@Url.Action("Imagen_Index", "Home", new { id = itemIndex.IdContenido }));"></div>
+                    @Html.Raw(itemIndex.Descripcion)
                   }
               }
             </div>
@@ -29,46 +30,68 @@
                 <ul class="home__body__content__publications row">
                     <li class="card col-lg-4 col-md-4">
                         <div class="card__wrapper">
+                            <h4 class="card__title"><img src="~/img/IDAT/noti-empleos.png" alt="">noti-empleos</h4>
                             @{
-                                var noticia = ((List<Contenido>)(ViewBag.ListaNoticias))[0];
-
-                                <h4 class="card__title"><img src="~/img/IDAT/noti-empleos.png" alt="">noti-empleos</h4>
-                                <p class="card__subtitle">@Html.Raw(@noticia.Titulo)</p>
-                                <div class="card__content">
-                                    <p>@Html.Raw(@noticia.SubTitulo)</p>
-                                    <p>@Html.Raw(@noticia.Descripcion)</p>
-                                </div>
-                                <a href="#" class="card__hook">ver más</a>
+                                var Noticia = ((List<Contenido>)(ViewBag.ListaNoticias));
+                                if (Noticia.Count > 0) 
+                                {
+                                    var noticia = Noticia[0];
+                                    
+                                    <p class="card__subtitle">@Html.Raw(@noticia.Titulo)</p>
+                                    <div class="card__content">
+                                        <p>@Html.Raw(@noticia.SubTitulo)</p>
+                                    </div>
+                                    <a href="@Url.Action("NotiEmpleos", "Home")" target="_blank" class="card__hook">ver más</a>
+                                }
+                                else
+                                {
+                                    <p class="card__subtitle">Sin datos</p>
+                                }
                             }
                         </div>
                     </li>
                     <li class="card col-lg-4 col-md-4">
                         <div class="card__wrapper">
+                            <h4 class="card__title"><img src="~/img/IDAT/lo-que-se-viene.png" alt="">lo que se viene</h4>
                             @{
-                                var evento = ((List<Contenido>)(ViewBag.ListaEventos))[0];
-
-                                <h4 class="card__title"><img src="~/img/IDAT/lo-que-se-viene.png" alt="">lo que se viene</h4>
-                                <p class="card__subtitle">@Html.Raw(@evento.Titulo)</p>
-                                <div class="card__content">
-                                    <p>@Html.Raw(@evento.SubTitulo)</p>
-                                    <p>@Html.Raw(@evento.Descripcion)</p>
-                                </div>
-                                <a href="#" class="card__hook">ver más</a>
-                            }
+                                var Evento = ((List<Contenido>)(ViewBag.ListaEventos));
+                                if (Evento.Count > 0)
+                                {
+                                    var evento = Evento[0];
+                                    
+                                    <p class="card__subtitle">@Html.Raw(@evento.Titulo)</p>
+                                    <div class="card__content">
+                                        <p>@Html.Raw(@evento.SubTitulo)</p>
+                                    </div>
+                                    <a href="@Url.Action("LoQueSeViene", "Home")" target="_blank" class="card__hook">ver más</a>
+                                }
+                                else 
+                                { 
+                                    <p class="card__subtitle">Sin datos</p>
+                                }
+                            }                           
                         </div>
                     </li>
                     <li class="card col-lg-4 col-md-4">
                         <div class="card__wrapper">
+                            <h4 class="card__title"><img src="~/img/IDAT/que-nos-cuentan.png" alt="">qué nos cuentan</h4>
                             @{
-                                var testimonio = ((List<Contenido>)(ViewBag.listaTestimonios))[0];
+                                var Testimonio = ((List<Contenido>)(ViewBag.listaTestimonios));
+                                if (Testimonio.Count > 0) 
+                                {
+                                    var testimonio = Testimonio[0];
 
-                                <h4 class="card__title"><img src="~/img/IDAT/que-nos-cuentan.png" alt="">qué nos cuentan</h4>
-                                <p class="card__subtitle">@Html.Raw(@testimonio.Titulo)</p>
-                                <div class="card__content">
-                                    <p>@Html.Raw(@testimonio.SubTitulo)</p>
-                                    <p>@Html.Raw(@testimonio.Descripcion)</p>
-                                </div>
-                                <a href="@Url.Action("Testimonios", "Home")" class="card__hook">ver más</a>
+                                    <p class="card__subtitle">@Html.Raw(@testimonio.Titulo)</p>
+                                    <div class="card__content">
+                                        <p>@Html.Raw(@testimonio.SubTitulo)</p>
+                                        <p>@Html.Raw(@testimonio.Descripcion)</p>
+                                    </div>
+                                    <a href="@Url.Action("QueNosCuentan", "Home")" target="_blank" class="card__hook">ver más</a>
+                                } 
+                                else
+                                {
+                                    <p class="card__subtitle">Sin datos</p>
+                                }
                             }
                         </div>
                     </li>

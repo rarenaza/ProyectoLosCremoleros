@@ -72,14 +72,14 @@
 
                 if (Model.EstadoTicket == "EVTKPE" && Model.EstadoEvento == "EVSTAC")
                 {
-                    <div class="alert alert-danger alert-dismissible" role="alert">
+                    <!--<div class="alert alert-danger alert-dismissible" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <strong>¡ Imprima Ticket de Registro !</strong> <br />Haga clic en el boton abajo para ver e imprimir su Tiket de acceso al Evento.
-                    </div>
+                    </div>-->
                     
                 }
-                <br />
-                    @Html.ActionLink("Ver Ticket de Acceso", "PaginaTicket", "Evento", new { idEvento = Helper.Encriptar(Model.IdEvento.ToString()), idEventoAsistente = Helper.Encriptar(Model.IdEventoAsistente.ToString()), nombres = Helper.Encriptar(Model.Nombres), apellidos = Helper.Encriptar(Model.Apellidos), valorTipoDocumento = Helper.Encriptar(Model.ValorTipoDocumento), numeroDocumento = Helper.Encriptar(Model.NumeroDocumento)}, new { @class = "btn btn-default color-paleta5", @target = "_blank" })
+                <!--<br />
+                @Html.ActionLink("Ver Ticket de Acceso", "PaginaTicket", "Evento", new { idEvento = Helper.Encriptar(Model.IdEvento.ToString()), idEventoAsistente = Helper.Encriptar(Model.IdEventoAsistente.ToString()), nombres = Helper.Encriptar(Model.Nombres), apellidos = Helper.Encriptar(Model.Apellidos), valorTipoDocumento = Helper.Encriptar(Model.ValorTipoDocumento), numeroDocumento = Helper.Encriptar(Model.NumeroDocumento)}, new { @class = "btn btn-default color-paleta5", @target = "_blank" })-->
             }
             else
             {

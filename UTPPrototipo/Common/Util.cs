@@ -7,7 +7,9 @@ using System.Web.Mvc;
 using UTPPrototipo.Models.ViewModels.Cuenta;
 using System.Web.Routing;
 using UTP.PortalEmpleabilidad.Logica;
-using UTP.PortalEmpleabilidad.Modelo;using System.Web;
+using UTP.PortalEmpleabilidad.Modelo;
+using System.IO;
+
 namespace UTPPrototipo.Common
 {
     public class Util
@@ -32,7 +34,6 @@ namespace UTPPrototipo.Common
             TicketEmpresa ticketUtp = (TicketEmpresa)myValue;
             return ticketUtp.Rol;
         }
-
     }
 
     public class VerificarSesion : ActionFilterAttribute

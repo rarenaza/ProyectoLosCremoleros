@@ -12,6 +12,8 @@ using UTPPrototipo.Common;
 using UTPPrototipo.Models.ViewModels.Cuenta;
 using UTPPrototipo.Models.ViewModels.Empresa;
 using UTPPrototipo.Utiles;
+using System.Configuration;
+
 
 namespace UTPPrototipo.Controllers
 {
@@ -105,29 +107,32 @@ namespace UTPPrototipo.Controllers
         }
         public static void CreateAppointment(ExchangeService service, string fechaInicio, string fechaFin, string lugar, string nombre, string dias)
         {
-            Appointment app = new Appointment(service);
-            app.Subject = nombre;
-            app.Location = lugar;
-
-            DateTime dateInicio = Convert.ToDateTime(fechaInicio);
-            DateTime dateFin = Convert.ToDateTime(fechaFin);
-            TimeSpan timeSpan = dateFin.Subtract(dateInicio);
-            string timeFor = timeSpan.ToString(@"hh\:mm\:ss");
-            var time = TimeSpan.Parse(timeFor);
-            app.Start = dateInicio;
-            app.End = dateInicio.Add(time);
-            //-----
-            if (dias != "")
+            if (ConfigurationManager.AppSettings["LogeoProduccion"] != "false")
             {
-                DayOfTheWeek[] days = stringToDays(dias);
-                app.Recurrence = new Recurrence.WeeklyPattern(app.Start.Date, 1, days);
-                app.Recurrence.StartDate = app.Start.Date;
-                app.Recurrence.EndDate = dateFin;
-            }
+                Appointment app = new Appointment(service);
+                app.Subject = nombre;
+                app.Location = lugar;
 
-            app.IsReminderSet = true;
-            app.ReminderMinutesBeforeStart = 15;            
-            app.Save(SendInvitationsMode.SendToAllAndSaveCopy);
+                DateTime dateInicio = Convert.ToDateTime(fechaInicio);
+                DateTime dateFin = Convert.ToDateTime(fechaFin);
+                TimeSpan timeSpan = dateFin.Subtract(dateInicio);
+                string timeFor = timeSpan.ToString(@"hh\:mm\:ss");
+                var time = TimeSpan.Parse(timeFor);
+                app.Start = dateInicio;
+                app.End = dateInicio.Add(time);
+                //-----
+                if (dias != "")
+                {
+                    DayOfTheWeek[] days = stringToDays(dias);
+                    app.Recurrence = new Recurrence.WeeklyPattern(app.Start.Date, 1, days);
+                    app.Recurrence.StartDate = app.Start.Date;
+                    app.Recurrence.EndDate = dateFin;
+                }
+
+                app.IsReminderSet = true;
+                app.ReminderMinutesBeforeStart = 15;
+                app.Save(SendInvitationsMode.SendToAllAndSaveCopy);
+            }
         }
         private static DayOfTheWeek[] stringToDays(string dias)
         {

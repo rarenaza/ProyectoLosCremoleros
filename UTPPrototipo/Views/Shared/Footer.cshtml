@@ -1,9 +1,14 @@
 ﻿<footer class="home__footer footer">
     <div class="container clearfix">
-        <img src="~/img/IDAT/logo-intercorp.png" alt="" class="footer__logo">
+        <div class="footer__logo">
+            <img src="~/img/IDAT/logo-intercorp.png" alt="Intercorp" width="144">
+            <a href="http//www.idat.edu.pe"><img src="~/img/IDAT/brand.png" alt="IDAT" width="100" /></a>
+        </div>
         <div class="footer__copyright">
-            Instituto Superior Tecnológico IDAT Privado Copyright © 2014 Todos los derechos reservados <br />
-            <a href="@Url.Action("PoliticasDePrivacidad", "Home")" target="_blank">Políticas de Privacidad</a> | <a href="@Url.Action("TerminosDeUso", "Home")" target="_blank">Términos y Condiciones</a>
+            <div>Instituto de Educación Superior Tecnológico Privado IDAT Copyright © 2015 Todos los derechos reservados </div>
+            <div>Área de Empleabilidad | Email: <a href="mailto:empleos@idat.edu.pe">empleos@idat.edu.pe</a> | Teléfono: (+51) 315-9600 Anexo 1976, 1977, 1938 | Web: <a href="http://www.idat.edu.pe/empleabilidad" target="_blank">www.idat.edu.pe/empleabilidad</a></div>
+            <div>Mesa de Ayuda | Email: <a href="mailto:mesadeayuda@utp.edu.pe">mesadeayuda@utp.edu.pe</a> | Teléfono: (+51) 315-9606 Anexo 1444 | Web: <a href="http://mesadeayuda.utp.edu.pe" target="_blank">mesadeayuda.utp.edu.pe</a></div>
+            <div><a href="http://www.idat.edu.pe" target="_blank">IDAT</a> | <a href="@Url.Action("PoliticasDePrivacidad", "Home")" target="_blank">Política de Privacidad</a> | <a href="@Url.Action("TerminosDeUso", "Home")" target="_blank">Términos y Condiciones</a> | <a href="@Url.Action("FAQ", "Home")" target="_blank">FAQ</a></div>
         </div>
     </div>
 </footer>
@@ -15,15 +20,11 @@
                 <button type="button" class="close" data-dismiss="modal" id="boton-cierra-login"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                 <h4 class="modal-title" id="myModalLabel">Ingreso de Usuario</h4>
             </div>
-
             @if (ViewBag.MensajeDeError == null)
             {
                 @Html.Action("Autenticar", "Cuenta")
             }
-
-            <div id="divAutenticar">
-
-            </div>
+            <div id="divAutenticar"></div>
         </div>
     </div>
 </div>

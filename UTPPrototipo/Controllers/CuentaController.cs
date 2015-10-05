@@ -30,6 +30,7 @@ namespace UTPPrototipo.Controllers
         //
         // GET: /Cuenta/
         LNAutenticarUsuario ln = new LNAutenticarUsuario();
+        LNUsuario lnu = new LNUsuario();
         public ActionResult Ingresar()
         {
             return View();
@@ -448,6 +449,8 @@ namespace UTPPrototipo.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult Autenticar(Usuario usuario)
         {
+            Session["TerminosCondiciones"] = false;
+
             if (Session["Captcha"] == null || usuario.Captcha ==null || Convert.ToString(Session["Captcha"]) != Convert.ToString(usuario.Captcha).ToLower())
             {
                 TempData["UsuarioNoExitoso"] = "El texto no coincide con la imagen";
@@ -496,6 +499,7 @@ namespace UTPPrototipo.Controllers
                     //Si la contraseña es válida, recupera los datos del Usuario de acuerdo al tipo, y contruye la session
                     if (contrasenaValida)
                     {
+                        Session["Rol"] = tipoUsuario;
                         if (tipoUsuario == "USERUT")
                         {
                             //Crear un onbjketo TikcetUTP
@@ -511,13 +515,7 @@ namespace UTPPrototipo.Controllers
                             ticketUtp.Rol = Convert.ToString(dsResultado.Tables[0].Rows[0]["Rol"]);
 
                             Session["TicketUtp"] = ticketUtp;
-
-
-                            //TempData["ADMINISTRADORUTP"] = ticketUtp.Rol;
-
-                            //ViewBag.mensaje = ticketUtp.Rol;
-
-
+ 
                             //REdireccionas al indexl de la uitp
                             return RedirectToAction("Index", "UTP");
 
@@ -539,17 +537,16 @@ namespace UTPPrototipo.Controllers
                             if (ticketEmpresa.EstadoEmpresa == "EMPRAC")
                             {
                                 Session["TicketEmpresa"] = ticketEmpresa;
-
-
-                                //TicketEmpresa tcke2 = (TicketEmpresa)Session["TicketEmpresa"];
-
-                                //REdireccionas al indexl de la empresa
+                                Session["TerminosCondiciones"] = dsResultado.Tables[0].Rows[0]["TerminosCondiciones"] == DBNull.Value ? false : Convert.ToBoolean(
+                                   Convert.ToInt32(dsResultado.Tables[0].Rows[0]["TerminosCondiciones"])
+                               );
 
                                 Ticket ticket = new Ticket();
                                 ticket.UsuarioNombre = usuario.NombreUsuario;
                                 ticket.IdEmpresa = 1;
 
                                 Session["Ticket"] = ticket;
+                               
 
                                 return RedirectToAction("Index", "Empresa");
                             }
@@ -562,9 +559,6 @@ namespace UTPPrototipo.Controllers
                         }
                         if (tipoUsuario == "USERAL")
                         {
-                            //Valida la contraseña en el AD.
-
-
                             TicketAlumno ticketAlumno = new TicketAlumno();
                             ticketAlumno.Usuario = Convert.ToString(dsResultado.Tables[1].Rows[0]["Usuario"]);
                             ticketAlumno.Nombre = Convert.ToString(dsResultado.Tables[1].Rows[0]["Nombre"]);
@@ -576,7 +570,9 @@ namespace UTPPrototipo.Controllers
                             ticketAlumno.IdAlumno = Convert.ToInt32(dsResultado.Tables[1].Rows[0]["IdAlumno"]);
 
                             Session["TicketAlumno"] = ticketAlumno;
-
+                            Session["TerminosCondiciones"] = dsResultado.Tables[0].Rows[0]["TerminosCondiciones"] == DBNull.Value ? false : Convert.ToBoolean(
+                                Convert.ToInt32(dsResultado.Tables[0].Rows[0]["TerminosCondiciones"])
+                            );
 
                             //REdireccionas al indexl del alumno
                             return RedirectToAction("Index", "Alumno");
@@ -670,6 +666,13 @@ namespace UTPPrototipo.Controllers
             return RedirectToAction("Index", "Home");
 
 
+        }
+
+        public JsonResult ActualizarTerminosCondiciones(string usuario)
+        {
+            Session["TerminosCondiciones"] = true;
+
+            return Json(lnu.ActualizarTerminosCondiciones(usuario), JsonRequestBehavior.AllowGet);
         }
     }
 }

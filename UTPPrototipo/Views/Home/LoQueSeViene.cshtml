@@ -1,0 +1,37 @@
+﻿@using UTP.PortalEmpleabilidad.Modelo
+
+@{
+    ViewBag.Title = "Lo que se viene";
+    var contenidos = (List<Contenido>)(ViewBag.Contenidos);
+}
+
+<body class="unstoppable">
+    <section class="unstoppable__body">
+        @Html.Partial("Menu")
+        <div class="bg"></div>
+        <section class="unstoppable__body__content">
+            <div class="container" style="padding: 32px;">
+                <h1 class="unstoppable__body__content__title">lo que se viene</h1>
+                <div class="unstoppable__body__content__slider">
+                    <div class="unstoppable__body__content__slider__buttons">
+                        <a href="#" id="previous"></a>
+                        <a href="#" id="next"></a>
+                    </div>
+                    <div class="cycle-slideshow" data-cycle-fx="scrollHorz" data-cycle-timeout="5000" data-cycle-slides=">div" data-cycle-next="#next" data-cycle-prev="#previous">
+                        @{
+                            foreach (var contenido in contenidos)
+                            {
+                                <div>
+                                    <img src="@Url.Action("Imagen", "Home", new { id = contenido.IdContenido, source = Constantes.CONTENIDO_SE_VIENE })" alt="">
+                                    <h2>@Html.Raw(contenido.Titulo)</h2>
+                                    @Html.Raw(contenido.Descripcion)
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </section>
+        @Html.Partial("Footer")
+    </section>
+</body>

@@ -3,12 +3,12 @@
 <div class="panel-group" id="datos-cuenta" role="tablist" aria-multiselectable="true">
     <div class="panel panel-default">
         <div class="panel-heading" role="tab" id="headingOne" style="padding: 2px 2px 2px 6px;">
-            <h5 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne" class="fuente-seccion">
-                    Cuenta - @Model.EmpresaRazonSocial - @Model.UsuarioNombre @Model.UsuarioApellido
-                </a>
-                <span class="glyphicon pull-right"></span>
-            </h5>
+            <div class="panel-title">
+                <div data-toggle="collapse" data-parent="#accordion" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne" class="fuente-seccion">
+                    <span role="button">Cuenta - @Model.EmpresaRazonSocial - @Model.UsuarioNombre @Model.UsuarioApellido</span>
+                    <span class="glyphicon pull-right" role="button"></span>
+                </div>
+            </div>
         </div>
         <div id="collapseOne" class="panel-collapse collapse @ViewBag.EstiloPanel" role="tabpanel" aria-labelledby="headingOne">
             <div class="panel-body fuente-pequeña">
@@ -42,6 +42,7 @@
                         <hr />
                         <div class="row">
                             <div class="col-sm-12" style="text-align:right;">
+                                <a href="@Url.Action("DescargarArchivoEstatico", "UTP", new { archivo = "manual-empresa.pdf" })" class="btn btn-danger pull-left">Descargar manual para empresas <span class="glyphicon glyphicon-download-alt"></span></a>
                                 <button type="button" value="Modificar datos" class="btn btn-default color-paleta1" onclick="modificarDatosUsuario(@Model.IdEmpresaUsuario);">Modificar mis datos ...</button>
                             </div>
                         </div>

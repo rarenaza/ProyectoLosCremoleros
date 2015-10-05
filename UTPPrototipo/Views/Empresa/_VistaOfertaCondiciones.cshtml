@@ -14,7 +14,7 @@
             </a>
         </h5>
     </div>
-    <div id="collapseDetalle" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingDetalle">
+    <div id="collapseDetalle" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingDetalle">
         <div class="panel-body fuente-pequeña">
             <table class="fuente-pequeña">
                 <tr>
@@ -42,12 +42,12 @@
                         <strong>@Model.FechaFinRecepcionCV.ToString("dd/MM/yyyy")</strong>
 
                         @if (ViewBag.Pantalla == "Empresa") //Solo si es de empresa
-                        { 
+                        {
                             <span>
                                 &nbsp;&nbsp;&nbsp;  <!--espacios en blanco--> <!--Si la oferta está finalizada deshabilitar el botón.-->
                                 @if (Model.EstadoOferta == "OFERCV" || Model.EstadoOferta == "OFERFI")
                                 {
-                                    <button class="btn btn-default btn-sm color-paleta2" style="font-size: 10px;" disabled >Postulaciones finalizadas</button>
+                                    <button class="btn btn-default btn-sm color-paleta2" style="font-size: 10px;" disabled>Postulaciones finalizadas</button>
                                 }
                                 else
                                 {
@@ -55,7 +55,7 @@
                                     {
                                         <button id="btnFinalizarOferta" class="btn btn-default btn-sm color-paleta2" style="font-size: 10px;" onclick="finalizarOferta(@Model.IdOferta)">Finalizar postulaciones</button>
                                     }
-                                }                            
+                                }
                             </span>
                         }
                     </td>
@@ -140,7 +140,7 @@
                     <td class="celda-datos">
                         <strong>@Model.NombreLocacion</strong>
                     </td>
-                </tr>               
+                </tr>
             </table>
             <br />
         </div>
@@ -164,10 +164,10 @@
             $.get(url, function (data) {
 
                 $('#btnFinalizarOferta').text("Postulaciones finalizadas");
-                $('#btnFinalizarOferta').attr("disabled", "disabled"); //Se deshabilita el botón.                 
+                $('#btnFinalizarOferta').attr("disabled", "disabled"); //Se deshabilita el botón.
             }).error(function (err)  //Se muestran los errores en la consola.
             {
-                console.log(err);               
+                console.log(err);
             }).then(function ()
             {
                 alert("La oferta ha sido actualizada");

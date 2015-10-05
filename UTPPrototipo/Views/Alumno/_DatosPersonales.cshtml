@@ -10,12 +10,12 @@
         @Html.Hidden("PagOfertasPostulacion", 5)
 
         <div class="panel-heading" role="tab" id="headingOne" style="padding: 2px 2px 2px 6px;">
-            <h5 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne" class="fuente-seccion">
-                    Tu Cuenta - @Model.Nombres @Model.Apellidos
-                </a>
-                <span class="glyphicon pull-right"></span>
-            </h5>
+            <div class="panel-title">
+                <div data-toggle="collapse" data-parent="#accordion" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne" class="fuente-seccion">
+                    <span role="button">Tu Cuenta - @Model.Nombres @Model.Apellidos</span>
+                    <span class="glyphicon pull-right" role="button"></span>
+                </div>
+            </div>
         </div>
         <div id="collapseOne" class="panel-collapse collapse @ViewBag.ColapsaDatos" role="tabpanel" aria-labelledby="headingOne">
             <div class="panel-body fuente-pequeña">
@@ -59,7 +59,7 @@
                         <hr />
                         <div class="row">
                             <div class="col-sm-12" style="text-align:right;">
-                                @*@Html.ActionLink("Modificar Datos ...", "DatosAlumno", "Alumno", new { Id = Model.IdAlumno }, new { @class = "btn btn-default color-paleta1" })*@
+                                <a href="@Url.Action("DescargarArchivoEstatico", "UTP", new { archivo = "manual-alumno.pdf" })" class="btn btn-danger pull-left">Descargar manual para alumnos <span class="glyphicon glyphicon-download-alt"></a>
                                 @Html.ActionLink("Modificar Datos ...", "DatosAlumno", "Alumno",new { Id = Helper.Encriptar(Model.IdAlumno.ToString()) }, new { @class = "btn btn-default color-paleta1" })
                             </div>
                         </div>

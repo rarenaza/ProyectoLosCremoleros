@@ -6,28 +6,26 @@
 @{
     Layout = "~/Views/UTP/_LayoutUTP.cshtml";
     ViewBag.Title = "Oferta de Empresa";
+    string Tab = Request.Params.Get("Tab");
 }
 
-
+<script>window.selectedTab = '@Tab';</script>
 
 <link href="~/Content/font-awesome.css" rel="stylesheet" />
 <div class="container" style="margin-top:2px;">
     <div class="panel-group" id="datos-cuenta" role="tablist" aria-multiselectable="true">
-
         @{Html.RenderAction("VistaCabeceraUtp", "UTP");}
-       
     </div>
-
  
     <div class="panel-group" id="CriterioBusquedaPostulacion" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default">
             <div class="panel-heading" role="tab" id="CabeceraColapsaBusqueda" style="padding: 2px 2px 2px 6px;">
-                <h5 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#CriterioBusquedaPostulacion" href="#ColapsaBusqueda" aria-expanded="true" aria-controls="ColapsaBusqueda" class="fuente-seccion">
-                        Búsqueda
-                    </a>
-                    <span class="glyphicon pull-right"></span>
-                </h5>
+                <div class="panel-title">
+                    <div data-toggle="collapse" data-parent="#CriterioBusquedaPostulacion" data-target="#ColapsaBusqueda" aria-expanded="true" aria-controls="ColapsaBusqueda" class="fuente-seccion">
+                        <span role="button">Búsqueda</span>
+                        <span class="glyphicon pull-right" role="button"></span>
+                    </div>
+                </div>
             </div>
             <div id="ColapsaBusqueda" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="CabeceraColapsaBusqueda">
                 <div class="panel-body">
@@ -53,22 +51,17 @@
                     </table>
                 </div>
             </div>
-
-            
-
-
-
         </div>
 
 
         <div class="panel panel-default">
             <div class="panel-heading" role="tab" id="CabeceraColapsaBusquedaAvanzada" style="padding: 2px 2px 2px 6px;">
-                <h5 class="panel-title">
-                    <a class="collapsed fuente-seccion" data-toggle="collapse" data-parent="#CriterioBusquedaPostulacion" href="#ColapsaBusquedaAvanzada" aria-expanded="false" aria-controls="ColapsaBusquedaAvanzada">
-                        Búsqueda avanzada
-                    </a>
-                    <span class="glyphicon pull-right"></span>
-                </h5>
+                <div class="panel-title">
+                    <div class="collapsed fuente-seccion" data-toggle="collapse" data-parent="#CriterioBusquedaPostulacion" data-target="#ColapsaBusquedaAvanzada" aria-expanded="false" aria-controls="ColapsaBusquedaAvanzada">
+                        <span role="button">búsqueda avanzada</span>
+                        <span class="glyphicon pull-right" role="button"></span>
+                    </div>
+                </div>
             </div>
             <div id="ColapsaBusquedaAvanzada" class="panel-collapse collapse" role="tabpanel" aria-labelledby="CabeceraColapsaBusquedaAvanzada">
                 <div class="panel-body fuente-pequeña">
@@ -175,11 +168,6 @@
                 </div>
             </div>
         </div>
-
-        @*<br />*@
-
-        @*<h5>Ofertas por Activar</h5>*@
-
     </div>
 
     <ul id="offers-tabs" class="nav nav-justified nav-tabs" role="tablist">
@@ -194,7 +182,6 @@
     <br />
 </div>
 <script>
-
     $(document).ready(function () {
         $("#divFinalCabecera").removeClass("color-paleta1 color-paleta2 color-paleta3 color-paleta5 color-paleta6 color-paleta7 color-paleta8 color-paleta9").addClass("color-paleta2")
         $('#PestañaOfertas').css('backgroundColor', '#f00');
@@ -202,15 +189,6 @@
 
         //ESE ES LA CAJA, LA ACCION Y EL CONTROLADOR
         AutoCompleteTextDemo('#Conocimientos', '@Url.Action("ListarDatosEspecificos", "OfertaInformacionAdicional")' + '?codigoTipo=' + codigoTipoConocimiento, '#Conocimientos', '#TipoConocimientoIdListaValor', 'option', 'appendTo', '.eventInsForm');
-
-        var oferta = {
-            PalabraClave: $('#PalabraClave').val(),
-            nroPaginaActual: 1,
-        };
-
-        Cargar("ResultadoBusqueda", '@Url.Action("BuscarOfertas", "UTP")', oferta);
-
-        Offers.tabs();
     });
 
 
@@ -351,4 +329,14 @@
     };
 
     Offers.tabs();
+
+    var ViewOffersTabs = {
+        selector: '#offers-tabs',
+        Todos: function () { $(this.selector + ' [aria-controls=all]').click(); },
+        PosicionesDeEntrada: function () { $(this.selector + ' [aria-controls=entries-position]').click(); },
+        Practicas: function () { $(this.selector + ' [aria-controls=entries-practices]').click(); },
+        Empledo: function () { $(this.selector + ' [aria-controls=entries-jobs]').click(); }
+    };
+
+    ViewOffersTabs[selectedTab || 'Todos']();
 </script>

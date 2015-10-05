@@ -3,12 +3,12 @@
 <div class="panel-group" id="datos-empresa" role="tablist" aria-multiselectable="true">
     <div class="panel panel-default">
         <div class="panel-heading" role="tab" id="headingDatosEmpresa" style="padding: 2px 2px 2px 6px;">
-            <h5 class="panel-title">
-                <a data-toggle="collapse" data-parent="#datos-empresa" href="#collapseDatosEmpresa" aria-expanded="true" aria-controls="collapseDatosEmpresa" class="fuente-seccion">
-                    Datos empresa - @Model.NombreComercial
-                </a>
-                <span class="glyphicon pull-right"></span>
-            </h5>
+            <div class="panel-title">
+                <div data-toggle="collapse" data-parent="#datos-empresa" data-target="#collapseDatosEmpresa" aria-expanded="true" aria-controls="collapseDatosEmpresa" class="fuente-seccion">
+                    <span role="button">Datos empresa - @Model.NombreComercial</span>
+                    <span class="glyphicon pull-right" role="button"></span>
+                </div>
+            </div>
         </div>
         <div id="collapseDatosEmpresa" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingDatosEmpresa">
             <div class="panel-body">

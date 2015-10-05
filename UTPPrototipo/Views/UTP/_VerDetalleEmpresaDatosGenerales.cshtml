@@ -1,251 +1,269 @@
 ﻿@model  UTP.PortalEmpleabilidad.Modelo.Empresa
 
-<h5>Nombre: @Html.DisplayFor(m => m.NombreComercial)</h5>
-
-<br />
-<div class="row">
-
-    @Html.HiddenFor(m => m.IdEmpresa)
-    @Html.HiddenFor(m => m.NombreComercial)
-
-    <div class="col-sm-8">
-        <table>
-            <tr class="linea_raya">
-                <td class="celda-nombre" style="width:40%;">                    
-                    Razón Social
-                </td>
-                <td class="celda-datos">
-                    @Html.DisplayFor(m => m.RazonSocial)
-                </td>
-            </tr>
-            <tr class="linea_raya">
-                <td class="celda-nombre">
-                    País
-                </td>
-                <td class="celda-datos">
-                    @Html.DisplayFor(m => m.Pais.Valor)
-                </td>
-            </tr>
-            <tr class="linea_raya">
-                <td class="celda-nombre">
-                    RUC
-                </td>
-                <td class="celda-datos">
-                    @Html.DisplayFor(m => m.IdentificadorTributario)
-                </td>
-            </tr>
-            <tr class="linea_raya">
-                <td class="celda-nombre">
-                    Descripción
-                </td>
-                <td class="celda-datos">
-                    @Html.DisplayFor(m => m.DescripcionEmpresa)
-                </td>
-            </tr>
-            <tr class="linea_raya">
-                <td class="celda-nombre">
-                    Sitio Web
-                </td>
-                <td class="celda-datos">
-                    @Html.DisplayFor(m => m.SitioWeb)                    
-                </td>
-            </tr>
-            <tr class="linea_raya">
-                <td class="celda-nombre">
-                    Link Video
-                </td>
-                <td class="celda-datos">
-                    @Html.DisplayFor(m => m.LinkVideo)                    
-                </td>
-            </tr>
-            <tr class="linea_raya">
-                <td class="celda-nombre">
-                    Año de Creación
-                </td>
-                <td class="celda-datos">
-                    @Html.DisplayFor(m => m.AnoCreacion)                    
-                </td>
-            </tr>
-            <tr class="linea_raya">
-                <td class="celda-nombre">
-                    Número de Empleados
-                </td>
-                <td class="celda-datos">
-                    @Html.DisplayFor(m => m.NumeroEmpleados.Valor)                    
-                </td>
-            </tr>
-            <tr class="linea_raya">
-                <td class="celda-nombre">
-                    Estado de la Empresa
-                </td>
-                <td class="celda-datos">
-                    @Html.DropDownListFor(m => m.EstadoIdListaValor, null, "- Seleccione Estado de la Empresa -", htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.EstadoIdListaValor)
-                    @*<select>
-                        <option>Activa</option>
-                        <option>Pendiente de aprobación de registro</option>
-                        <option>No Activa</option>
-                        <option>
-                            Suspendida
-                        </option>
-                    </select>*@
-                </td>
-            </tr>
-            <tr class="linea_raya">
-                <td class="celda-nombre">
-                    Sector 1
-                </td>
-                <td class="celda-datos">
-                    @Html.DisplayFor(m => m.SectorEmpresarial.Valor)                                        
-                </td>
-            </tr>
-            <tr class="linea_raya">
-                <td class="celda-nombre">
-                    Sector 2
-                </td>
-                <td class="celda-datos">
-                    @Html.DisplayFor( m => m.SectorEmpresarial2.Valor)
-                </td>
-            </tr>
-            <tr class="linea_raya">
-                <td class="celda-nombre">
-                    Sector 3
-                </td>
-                <td class="celda-datos">
-                    @Html.DisplayFor(m => m.SectorEmpresarial3.Valor)
-                </td>
-            </tr>
-            <tr class="linea_raya">
-                <td class="celda-nombre">
-                    Usuario Ejecutivo de Cuenta
-                </td>
-                <td class="celda-datos">
-                    @Html.DropDownListFor(m => m.UsuarioEC, null, "- Seleccione Usuario -", htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.UsuarioEC)
-
-                    @*<select>
-                        <option>Mario Valentin</option>
-                        <option>José Alvarado</option>
-                        <option>Mario Kalimba</option>
-                        <option>Rosa Benavides</option>
-                    </select>*@
-                </td>
-            </tr>
-            <tr class="linea_raya">
-                <td class="celda-nombre">
-                    Nivel de Facturación
-                </td>
-                <td class="celda-datos">
-                    @Html.TextBoxFor(m => m.NivelDeFacturacion, new { @class = "form-control", @placeholder = "Nivel de Facturación de la Empresa" })
-                    @Html.ValidationMessageFor(model => model.NivelDeFacturacion)
-                </td>
-            </tr>
-            <tr class="linea_raya">
-                <td class="celda-nombre">
-                    Posición en el Sector
-                </td>
-                <td class="celda-datos">
-                    @Html.TextBoxFor(m => m.PosicionEnSector, new { @class = "form-control", @placeholder = "Posición en el Sector" })
-                    @Html.ValidationMessageFor(model => model.PosicionEnSector)
-                </td>
-            </tr>
-            <tr class="linea_raya">
-                <td class="celda-nombre">
-                    Clasificación
-                </td>
-                <td class="celda-datos">
-                    @Html.TextBoxFor(m => m.Clasificacion, new { @class = "form-control", @placeholder = "Clasificación de la Empresa" })
-                </td>
-            </tr>
-            <tr class="linea_raya">
-                <td class="celda-nombre">
-                    Nivel de Relación
-                </td>
-                <td class="celda-datos">
-                    @Html.TextBoxFor(m => m.NivelDeRelacion, new { @class = "form-control", @placeholder = "Nivel de Relación de la Empresa" })
-                </td>
-            </tr>
-            <tr class="linea_raya">
-                <td class="celda-nombre">
-                    Facultad 1
-                </td>
-                <td class="celda-datos">
-                    @Html.TextBoxFor(model => model.FacultadPrincipal, new { @class = "form-control", @placeholder = "Facultad 1" })
-
-                </td>
-            </tr>
-            <tr class="linea_raya">
-                <td class="celda-nombre">
-                    Facultad 2
-                </td>
-                <td class="celda-datos">
-                    @Html.TextBoxFor(m => m.FacultadSecundaria, new { @class = "form-control", @placeholder = "Facultad 2" })
-                </td>
-            </tr>
-            <tr class="linea_raya">
-                <td class="celda-nombre">
-                    Comentarios
-                </td>
-                <td class="celda-datos">
-                    @Html.TextAreaFor(m => m.NuevoComentario, htmlAttributes: new { @class = "form-control", @placeholder = "Agregar un comentario", @rows = "3" })
-                    <br />
-                    <textarea class="form-control" placeholder="Sin Comentarios" rows="8" readonly>@Model.Comentarios</textarea>
-                </td>
-            </tr>
-
-            <tr class="linea_raya">
-                <td class="celda-nombre">
-                    Creado Por
-                </td>
-                <td class="celda-datos">                    
-                    @Html.DisplayFor(m => m.CreadoPor)
-                </td>
-            </tr>
-            <tr class="linea_raya">
-                <td class="celda-nombre">
-                    Creado el
-                </td>
-                <td class="celda-datos">
-                    @Html.DisplayFor(m => m.FechaCreacion)
-                </td>
-            </tr>
-            <tr class="linea_raya">
-                <td class="celda-nombre">
-                    Modificado Por
-                </td>
-                <td class="celda-datos">
-                    @Html.DisplayFor(m => m.ModificadoPor)
-                </td>
-            </tr>
-            <tr class="linea_raya">
-                <td class="celda-nombre">
-                    Modificado el
-                </td>
-                <td class="celda-datos">
-                    @{
-                        if (Model.FechaModificacion.ToString("yyyyMMdd") != "19000101")
-                        {
-                            @Html.DisplayFor(m => m.FechaModificacion)
-                        }
-                    }
-                </td>
-            </tr>
-        </table>
+<div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingCVPerfil" style="padding: 2px 2px 2px 6px;">
+        <h5 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseCVPerfil" aria-expanded="true" aria-controls="collapseCVPerfil" style="font-size:12px;" class="fuente-seccion">
+                Datos Empresa - @Html.DisplayFor(m => m.NombreComercial)
+            </a>
+        </h5>
     </div>
+    <div id="collapseCVPerfil" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingCVPerfil">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="input-group fuente-pequeña">
+                        <div class="row">
 
-    <div class="col-sm-4">
-        <table>
-            <tr class="linea_raya">
-                <td class="celda-nombre">
-                    Logo
-                </td>
-                <td class="celda-datos">
-                    <img alt="" style="width:100%" src='@Url.Action("GetImagenLogoEmpresa", "UTP", new { id = Model.IdEmpresa })' />
-                </td>
-            </tr>
-        </table>
+                            @Html.HiddenFor(m => m.IdEmpresa)
+                            @Html.HiddenFor(m => m.NombreComercial)
+
+                            <div class="col-sm-8">
+                                <table>
+                                    <tr>
+                                        <td class="celda-nombre" style="width:40%;">
+                                            Razón Social
+                                        </td>
+                                        <td class="celda-datos">
+                                            @Html.DisplayFor(m => m.RazonSocial)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="celda-nombre">
+                                            País
+                                        </td>
+                                        <td class="celda-datos">
+                                            @Html.DisplayFor(m => m.Pais.Valor)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="celda-nombre">
+                                            RUC
+                                        </td>
+                                        <td class="celda-datos">
+                                            @Html.DisplayFor(m => m.IdentificadorTributario)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="celda-nombre">
+                                            Descripción
+                                        </td>
+                                        <td class="celda-datos">
+                                            @Html.DisplayFor(m => m.DescripcionEmpresa)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="celda-nombre">
+                                            Sitio Web
+                                        </td>
+                                        <td class="celda-datos">
+                                            @Html.DisplayFor(m => m.SitioWeb)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="celda-nombre">
+                                            Link Video
+                                        </td>
+                                        <td class="celda-datos">
+                                            @Html.DisplayFor(m => m.LinkVideo)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="celda-nombre">
+                                            Año de Creación
+                                        </td>
+                                        <td class="celda-datos">
+                                            @Html.DisplayFor(m => m.AnoCreacion)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="celda-nombre">
+                                            Número de Empleados
+                                        </td>
+                                        <td class="celda-datos">
+                                            @Html.DisplayFor(m => m.NumeroEmpleados.Valor)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="celda-nombre">
+                                            Estado de la Empresa
+                                        </td>
+                                        <td class="celda-datos">
+                                            @Html.DropDownListFor(m => m.EstadoIdListaValor, null, "- Seleccione Estado de la Empresa -", htmlAttributes: new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.EstadoIdListaValor)
+                                            @*<select>
+                                                    <option>Activa</option>
+                                                    <option>Pendiente de aprobación de registro</option>
+                                                    <option>No Activa</option>
+                                                    <option>
+                                                        Suspendida
+                                                    </option>
+                                                </select>*@
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="celda-nombre">
+                                            Sector 1
+                                        </td>
+                                        <td class="celda-datos">
+                                            @Html.DisplayFor(m => m.SectorEmpresarial.Valor)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="celda-nombre">
+                                            Sector 2
+                                        </td>
+                                        <td class="celda-datos">
+                                            @Html.DisplayFor(m => m.SectorEmpresarial2.Valor)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="celda-nombre">
+                                            Sector 3
+                                        </td>
+                                        <td class="celda-datos">
+                                            @Html.DisplayFor(m => m.SectorEmpresarial3.Valor)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="celda-nombre">
+                                            Usuario Ejecutivo de Cuenta
+                                        </td>
+                                        <td class="celda-datos">
+                                            @Html.DropDownListFor(m => m.UsuarioEC, null, "- Seleccione Usuario -", htmlAttributes: new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.UsuarioEC)
+
+                                            @*<select>
+                                                    <option>Mario Valentin</option>
+                                                    <option>José Alvarado</option>
+                                                    <option>Mario Kalimba</option>
+                                                    <option>Rosa Benavides</option>
+                                                </select>*@
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="celda-nombre">
+                                            Nivel de Facturación
+                                        </td>
+                                        <td class="celda-datos">
+                                            @Html.TextBoxFor(m => m.NivelDeFacturacion, new { @class = "form-control", @placeholder = "Nivel de Facturación de la Empresa" })
+                                            @Html.ValidationMessageFor(model => model.NivelDeFacturacion)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="celda-nombre">
+                                            Posición en el Sector
+                                        </td>
+                                        <td class="celda-datos">
+                                            @Html.TextBoxFor(m => m.PosicionEnSector, new { @class = "form-control", @placeholder = "Posición en el Sector" })
+                                            @Html.ValidationMessageFor(model => model.PosicionEnSector)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="celda-nombre">
+                                            Clasificación
+                                        </td>
+                                        <td class="celda-datos">
+                                            @Html.TextBoxFor(m => m.Clasificacion, new { @class = "form-control", @placeholder = "Clasificación de la Empresa" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="celda-nombre">
+                                            Nivel de Relación
+                                        </td>
+                                        <td class="celda-datos">
+                                            @Html.TextBoxFor(m => m.NivelDeRelacion, new { @class = "form-control", @placeholder = "Nivel de Relación de la Empresa" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="celda-nombre">
+                                            Facultad 1
+                                        </td>
+                                        <td class="celda-datos">
+                                            @Html.TextBoxFor(model => model.FacultadPrincipal, new { @class = "form-control", @placeholder = "Facultad 1" })
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="celda-nombre">
+                                            Facultad 2
+                                        </td>
+                                        <td class="celda-datos">
+                                            @Html.TextBoxFor(m => m.FacultadSecundaria, new { @class = "form-control", @placeholder = "Facultad 2" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="celda-nombre">
+                                            Comentarios
+                                        </td>
+                                        <td class="celda-datos">
+                                            @Html.TextAreaFor(m => m.NuevoComentario, htmlAttributes: new { @class = "form-control", @placeholder = "Agregar un comentario", @rows = "3" })
+                                            <br />
+                                            <textarea class="form-control" placeholder="Sin Comentarios" rows="8" readonly>@Model.Comentarios</textarea>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td class="celda-nombre">
+                                            Creado Por
+                                        </td>
+                                        <td class="celda-datos">
+                                            @Html.DisplayFor(m => m.CreadoPor)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="celda-nombre">
+                                            Creado el
+                                        </td>
+                                        <td class="celda-datos">
+                                            @Html.DisplayFor(m => m.FechaCreacion)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="celda-nombre">
+                                            Modificado Por
+                                        </td>
+                                        <td class="celda-datos">
+                                            @Html.DisplayFor(m => m.ModificadoPor)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="celda-nombre">
+                                            Modificado el
+                                        </td>
+                                        <td class="celda-datos">
+                                            @{
+                                                if (Model.FechaModificacion.ToString("yyyyMMdd") != "19000101")
+                                                {
+                                                    @Html.DisplayFor(m => m.FechaModificacion)
+                                                }
+                                            }
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <div class="col-sm-4">
+                                <table>
+                                    <tr>
+                                        <td class="celda-nombre">
+                                            Logo
+                                        </td>
+                                        <td class="celda-datos">
+                                            <img alt="" style="width:100%" src='@Url.Action("GetImagenLogoEmpresa", "UTP", new { id = Model.IdEmpresa })' />
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+
 
 <br />
 @if (ViewBag.Rol != "ROLUTP")
@@ -256,4 +274,3 @@
         </div>
     </div>
 }
-

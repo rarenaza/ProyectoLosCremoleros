@@ -26,7 +26,7 @@ namespace UTP.PortalEmpleabilidad.Datos
 
                 conexion.Open();
 
-                cmd.Parameters.Add(new SqlParameter("@NombreUsuario", nombreUsuario));
+                cmd.Parameters.Add(new SqlParameter("@NombreUsuario", nombreUsuario == null ? "" : nombreUsuario));
 
                 object resultado = cmd.ExecuteScalar();
 
@@ -51,8 +51,8 @@ namespace UTP.PortalEmpleabilidad.Datos
 
                 conexion.Open();
 
-                cmd.Parameters.Add(new SqlParameter("@EmpresaPais", empresaPais));
-                cmd.Parameters.Add(new SqlParameter("@EmpresaRUC", empresaRUC));
+                cmd.Parameters.Add(new SqlParameter("@EmpresaPais", empresaPais == null ? "" : empresaPais));
+                cmd.Parameters.Add(new SqlParameter("@EmpresaRUC", empresaRUC == null ? "" : empresaRUC));
                 object resultado = cmd.ExecuteScalar();
 
                 if (resultado != null) existe = Convert.ToBoolean(resultado);
@@ -73,7 +73,7 @@ namespace UTP.PortalEmpleabilidad.Datos
 
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "Usuario_ObtenerPorTipo";
-                cmd.Parameters.Add(new SqlParameter("@TipoUsuario", tipoUsuario));          
+                cmd.Parameters.Add(new SqlParameter("@TipoUsuario", tipoUsuario == null ? "" : tipoUsuario));          
 
                 cmd.Connection = conexion;
 
@@ -104,11 +104,11 @@ namespace UTP.PortalEmpleabilidad.Datos
 
                     cmd.CommandText = "Token_Empresa_Insertar";
 
-                    cmd.Parameters.Add(new SqlParameter("@IdToken", token));
-                    cmd.Parameters.Add(new SqlParameter("@Usuario", usuario));
+                    cmd.Parameters.Add(new SqlParameter("@IdToken", token == null ? "" : token));
+                    cmd.Parameters.Add(new SqlParameter("@Usuario", usuario == null ? "" : usuario));
                     cmd.Parameters.Add(new SqlParameter("@FechaExpira", fechaExpira));
                     cmd.Parameters.Add(new SqlParameter("@FechaSolicito", fechaSolicito));
-                    cmd.Parameters.Add(new SqlParameter("@Ip", ip));
+                    cmd.Parameters.Add(new SqlParameter("@Ip", ip == null ? "" : ip));
                     cmd.Connection = conexion;
                     cmd.ExecuteNonQuery();
                     conexion.Close();
@@ -131,7 +131,7 @@ namespace UTP.PortalEmpleabilidad.Datos
 
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "Token_Empresa_Obtener";
-                cmd.Parameters.Add(new SqlParameter("@Usuario", usuario));
+                cmd.Parameters.Add(new SqlParameter("@Usuario", usuario == null ? "" : usuario));
 
                 cmd.Connection = conexion;
 
@@ -146,6 +146,35 @@ namespace UTP.PortalEmpleabilidad.Datos
             }
 
             return dtResultado;
+        }
+
+        public bool ActualizarTerminosCondiciones(string usuario)
+        {
+            try
+            {
+                using (SqlConnection conexion = new SqlConnection(cadenaConexion))
+                {
+                    SqlCommand cmd = new SqlCommand();
+
+                    conexion.Open();
+                    cmd = new SqlCommand();
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.CommandText = "Usuario_ActualizarTerminosCondiciones";
+
+                    cmd.Parameters.Add(new SqlParameter("@Usuario", usuario == null ? "" : usuario));
+                    cmd.Connection = conexion;
+                    cmd.ExecuteNonQuery();
+                    conexion.Close();
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
         }
     }
 }

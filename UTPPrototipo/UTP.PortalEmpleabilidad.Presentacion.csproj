@@ -290,6 +290,9 @@
     <Content Include="Content\jquery-ui.css" />
     <Content Include="Content\jquery-ui.min.css" />
     <Content Include="Content\idat.css" />
+    <Content Include="Content\reports.css" />
+    <Content Include="Content\style.css" />
+    <Content Include="Content\style.min.css" />
     <Content Include="Content\themes\base\accordion.css" />
     <Content Include="Content\themes\base\all.css" />
     <Content Include="Content\themes\base\autocomplete.css" />
@@ -350,6 +353,7 @@
     <Content Include="Content\themes\images\ui-icons_454545_256x240.png" />
     <Content Include="Content\themes\images\ui-icons_888888_256x240.png" />
     <Content Include="Content\themes\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\throbber.gif" />
     <Content Include="Content\UTP-Icons.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\3OF9_NEW.svg" />
@@ -369,9 +373,16 @@
     <Content Include="img\demo.bmp" />
     <Content Include="img\empleabilidad\firmaBeatriz.png" />
     <Content Include="img\empleabilidad\PlanoDirEmpleabilidad.jpg" />
+    <Content Include="img\IDAT\1. Procesos Selectivos.jpg" />
+    <Content Include="img\IDAT\2. Pasantias.jpg" />
+    <Content Include="img\IDAT\3. Portal empleos.jpg" />
+    <Content Include="img\IDAT\4. Alianzas Empresariales.jpg" />
+    <Content Include="img\IDAT\5. person.png" />
     <Content Include="img\IDAT\bg-home-2.jpg" />
+    <Content Include="img\IDAT\brand.png" />
     <Content Include="img\IDAT\cerrar-sesion.png" />
     <Content Include="img\IDAT\encender.png" />
+    <Content Include="img\IDAT\facebook.png" />
     <Content Include="img\IDAT\favicon.ico" />
     <Content Include="img\IDAT\ico-home.png" />
     <Content Include="img\IDAT\ico-programas-in-house.png" />
@@ -387,6 +398,7 @@
     <Content Include="img\IDAT\logo.png" />
     <Content Include="img\IDAT\noti-empleos.png" />
     <Content Include="img\IDAT\que-nos-cuentan.png" />
+    <Content Include="img\IDAT\trabaja-con-nosotros.png" />
     <Content Include="img\intercorp.jpg" />
     <Content Include="img\intercorp.png" />
     <Content Include="img\logos\aptitus.jpg" />
@@ -439,6 +451,7 @@
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\bundle.js" />
     <Content Include="Scripts\calendario.js" />
     <Content Include="Scripts\carga.asincrona.js" />
     <Content Include="Plantillas\Plantilla1.docx" />
@@ -509,6 +522,11 @@
     <Content Include="Plantillas\modelo-de-convenio-de-practicas-pre-profesionales.doc" />
     <Content Include="Plantillas\modelo-de-convenio-de-practicas-profesionales.doc" />
     <Content Include="Plantillas\plan-de-capacitacion.doc" />
+    <Content Include="Plantillas\reglamento-empresa-area-empleabilidad.pdf" />
+    <Content Include="Plantillas\reglamento-estudiante-area-empleabilidad.pdf" />
+    <Content Include="Plantillas\politicas-de-privacidad.pdf" />
+    <Content Include="Plantillas\manual-alumno.pdf" />
+    <Content Include="Plantillas\manual-empresa.pdf" />
     <None Include="Properties\PublishProfiles\PortalV1.pubxml" />
     <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\Chart.min.js" />
@@ -865,6 +883,7 @@
     <Content Include="Scripts\jquery-ui-1.11.2.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.js" />
     <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
+    <Content Include="Scripts\jquery-ui.js" />
     <Content Include="Scripts\jquery.cycle2.carousel.min.js" />
     <Content Include="Scripts\jquery.cycle2.min.js" />
     <Content Include="Scripts\jquery.jcarousel.js" />
@@ -878,6 +897,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\jsEmpresa.js" />
+    <Content Include="Scripts\jstree.js" />
+    <Content Include="Scripts\jstree.min.js" />
     <Content Include="Scripts\less-1.5.1.js" />
     <Content Include="Scripts\less-1.5.1.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
@@ -891,6 +912,7 @@
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Views\UTP\_ConveniosUTPCrear.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1095,7 +1117,6 @@
     </Content>
     <Content Include="Views\UTP\Convenios.cshtml" />
     <Content Include="Views\UTP\_ConveniosUTPLista.cshtml" />
-    <Content Include="Views\UTP\_ConveniosUTPCrear.cshtml" />
     <Content Include="Views\Empresa\OfertaLaboral.cshtml" />
     <Content Include="Views\Empresa\_OfertaEncuesta.cshtml" />
     <Content Include="Views\UTP\_VerDetalleOferta.cshtml" />
@@ -1107,21 +1128,26 @@
     <Content Include="Views\Calendario\_VistaCalendario.cshtml" />
     <Content Include="Views\Cuenta\RecuperarClave.cshtml" />
     <Content Include="Views\Cuenta\CambiarClave.cshtml" />
-    <Content Include="Views\Home\Index - Copy.cshtml" />
     <Content Include="Views\Shared\_LayoutHome.cshtml" />
     <Content Include="Views\Home\_ViewStart.cshtml" />
-    <Content Include="Views\Home\Contacto - Copy.cshtml" />
     <Content Include="Views\Shared\Menu.cshtml" />
     <Content Include="Views\Shared\Footer.cshtml" />
     <Content Include="Views\Home\Conocenos.cshtml" />
-    <Content Include="Views\Home\Alumnos.cshtml" />
+    <Content Include="Views\Home\Alumno.cshtml" />
     <Content Include="Views\Home\Empresa.cshtml" />
-    <Content Include="Views\Home\Testimonios - Copy.cshtml" />
     <Content Include="Views\Shared\MenuIntra.cshtml" />
     <Content Include="Views\UTP\Contacto.cshtml" />
     <Content Include="Views\UTP\Ubicacion.cshtml" />
     <Content Include="Views\Shared\MenuIntraEmpresa.cshtml" />
     <Content Include="Views\Shared\MenuIntraAlumno.cshtml" />
+    <Content Include="Views\Shared\FooterIntra.cshtml" />
+    <Content Include="Views\Alumno\Convenios.cshtml" />
+    <Content Include="Views\Home\NotiEmpleos.cshtml" />
+    <Content Include="Views\Home\LoQueSeViene.cshtml" />
+    <Content Include="Views\Home\LasEmpresasOpinan.cshtml" />
+    <Content Include="Views\Home\CasosDeExitoImparable.cshtml" />
+    <Content Include="Views\Home\QueNosCuentan.cshtml" />
+    <Content Include="Views\UTP\_AdministrarUsuarioEditar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
