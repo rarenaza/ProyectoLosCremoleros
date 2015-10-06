@@ -158,6 +158,31 @@
             })
         }
 
+        function CargarPOST_Modified(id, link, entidad,fsucess,fnosucess) {
+            $.ajax({
+                url: link,
+                contentType: 'application/json; charset=utf-8',
+                type: 'POST',
+                data: JSON.stringify(entidad),
+                dataType: 'html'
+            })
+            .success(function (result) {
+                result = $.parseJSON(result);
+                if (result.Success) {
+                    fsucess();
+                }
+                else {
+                    fnosucess();
+                }
+            })
+            .error(function (xhr, status) {
+
+                console.log(xhr);
+                console.log(status);
+
+            })
+        }
+
 
         function CargarGET(id, link) {
             $.ajax({

@@ -127,5 +127,32 @@ namespace UTP.PortalEmpleabilidad.Datos
 
             return dtResultado;
         }
+
+        public Int32 ObtenerPostulacionCumplimiento(int idCv, int idOferta)
+        {
+            Int32 existe = 0;
+
+            using (SqlConnection conexion = new SqlConnection(cnn.Conexion()))
+            {
+                SqlCommand cmd = new SqlCommand();
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "Oferta_ObtenerPostulacionCumplimiento";
+                cmd.Connection = conexion;
+
+                conexion.Open();
+
+                cmd.Parameters.Add(new SqlParameter("@idCV", idCv));
+                cmd.Parameters.Add(new SqlParameter("@idOferta", idOferta));
+
+                object resultado = cmd.ExecuteScalar();
+
+                if (resultado != null) existe = Convert.ToInt32(resultado);
+
+                conexion.Close();
+            }
+
+            return existe;
+        }
     }
 }

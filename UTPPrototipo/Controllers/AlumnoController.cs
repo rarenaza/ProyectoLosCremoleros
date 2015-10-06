@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web;
-using System.Web.Mvc;
+
 using System.Web.UI.WebControls;
 using UTP.PortalEmpleabilidad.Logica;
 using UTP.PortalEmpleabilidad.Modelo;
@@ -15,7 +15,7 @@ using UTPPrototipo.Models.ViewModels.Cuenta;
 using System.Web.Security;
 using UTP.PortalEmpleabilidad.Modelo.Vistas.Alumno;
 using UTPPrototipo.Utiles;
-
+using System.Web.Mvc;
 
 
 namespace UTPPrototipo.Controllers
@@ -122,29 +122,40 @@ namespace UTPPrototipo.Controllers
         public ActionResult PostularOferta(OfertaPostulante entidad)
         {
             ViewBag.MensajePostulacion = "";
+            object result;
 
+            LNOfertaPostulante objOfertaPostulante = new LNOfertaPostulante();
+            TicketAlumno ticket;
             if (entidad.IdCV > 0)
             {
-                TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
-                PlantillaController plantilla = new PlantillaController();
-                string rutaPlantilla = AppDomain.CurrentDomain.BaseDirectory + "Plantillas\\template.docx";
-
-                var postulaciones = lnoferta
-                    .ObtenerPostulantesPorIdOfertaSimple(entidad.IdOferta)
-                    .FirstOrDefault(p => p.Usuario == ticket.Usuario);
-
-                if (postulaciones == null)
+                if (objOfertaPostulante.ObtenerPostulacionCumplimiento(entidad.IdCV, entidad.IdOferta) >= 50)
                 {
-                    entidad.CreadoPor = ticket.Usuario;
-                    entidad.DocumentoCV = plantilla
-                        .Word2PDF(plantilla.CrearCurriculum(entidad.IdCV, rutaPlantilla)
-                        .ToArray());
-                    lnofertapostulante.Insertar(entidad);
+                    ticket = (TicketAlumno)Session["TicketAlumno"];
+                    PlantillaController plantilla = new PlantillaController();
+                    string rutaPlantilla = AppDomain.CurrentDomain.BaseDirectory + "Plantillas\\template.docx";
+
+                    var postulaciones = lnoferta
+                        .ObtenerPostulantesPorIdOfertaSimple(entidad.IdOferta)
+                        .FirstOrDefault(p => p.Usuario == ticket.Usuario);
+
+                    if (postulaciones == null)
+                    {
+                        entidad.CreadoPor = ticket.Usuario;
+                        entidad.DocumentoCV = plantilla
+                            .Word2PDF(plantilla.CrearCurriculum(entidad.IdCV, rutaPlantilla)
+                            .ToArray());
+                        lnofertapostulante.Insertar(entidad);
+
+                        return new JsonResult { Data = new { Success = true, MensajeError = "" }} ;
+                    }
                 }
+                else
+                   // ViewBag.MensajePostulacion = "No cumple con los requisitos mínimos: 50%";
+                    return new JsonResult { Data = new { Success = false, MensajeError = "No cumple con los requisitos mínimos: 50%" }};
             }
             else
             {
-                ViewBag.MensajePostulacion = "XXX";
+                return new JsonResult { Data = new { Success = false, MensajeError = "Debe de seleccionar un CV válido" } };
             }
 
             return View();
