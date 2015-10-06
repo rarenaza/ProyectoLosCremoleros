@@ -88,5 +88,10 @@ namespace UTP.PortalEmpleabilidad.Logica
             return adOfertaPostulante.OfertaPostulantesListar();
         }
 
+        public Int32 ObtenerPostulacionCumplimiento(int idCv, int idOferta)
+        {
+            return adOfertaPostulante.ObtenerPostulacionCumplimiento(idCv, idOferta);
+        }
+
     }
 }
