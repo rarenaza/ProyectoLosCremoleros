@@ -26,6 +26,9 @@
     <div class="col-sm-2">
         Asistente Esperado
     </div>
+    <div class="col-sm-2">
+        Asistentes totales
+    </div>
 </div>
 
 @foreach (var item in Model)
@@ -56,6 +59,9 @@
             </div>*@
         <div class="col-sm-2">
             @item.AsistentesEsperados
+        </div>
+        <div class="col-sm-2">
+            @item.AsistentesTotales
         </div>
     </div>
 }

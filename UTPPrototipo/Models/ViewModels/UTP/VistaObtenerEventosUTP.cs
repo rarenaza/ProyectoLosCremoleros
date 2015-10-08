@@ -13,7 +13,9 @@ namespace UTPPrototipo.Models.ViewModels.UTP
         public string Expositor { get; set; }
         public string DireccionEvento { get; set; }
         public int AsistentesEsperados { get; set; }
+        public int AsistentesTotales { get; set; }
         public string FechaEvento { get; set; }
+        
 
         //Paginación:
         public int CantidadTotal { get; set; }
