@@ -63,5 +63,10 @@ namespace UTP.PortalEmpleabilidad.Logica
      {
          return ad.ValidarAlumno(Usuario);
      }
+
+     public bool ActualizarTerminosCondiciones(string usuario)
+     {
+         return ad.ActualizarTerminosCondiciones(usuario);
+     }
     }
 }

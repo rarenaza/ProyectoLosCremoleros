@@ -4019,5 +4019,13 @@ namespace UTPPrototipo.Controllers
             return Json(new SelectList(listVistaEmpresaLocacion, "IdEmpresaLocacion", "NombreLocacion"), JsonRequestBehavior.AllowGet);
         }
 
+
+        public FileResult DescargarArchivoEstatico(string archivo)
+        {
+            string path = Server.MapPath("~/Plantillas/" + archivo);
+            byte[] bytes = System.IO.File.ReadAllBytes(path);
+
+            return File(bytes, "application/octec-stream", Path.GetFileName(path));
+        }
     }
 }

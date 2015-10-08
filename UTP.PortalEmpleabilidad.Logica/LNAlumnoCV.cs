@@ -207,22 +207,41 @@ namespace UTP.PortalEmpleabilidad.Logica
                     alumnocv.IdPlantillaCV = int.Parse(dtResultado.Rows[i]["IdPlantillaCV"].ToString());
                     listaAlumnoCV.Add(alumnocv);
                 }
-
-
             }
 
             return listaAlumnoCV;
         }
+
+        public void InsertarAlumnoCV(AlumnoCV alumnocv)
+        {
+            ADAlumnoCV objAlumnoCV = new ADAlumnoCV();
+            objAlumnoCV.Insertar(alumnocv);
+        }
+
+
+        public void ObtenerAlumnoCVInicial(Int32 IdAlumno,Int32 idPlantillaCV, String nombreCV,String strUsuario)
+        {
+            AlumnoCV objAlumnoCV = new AlumnoCV();
+
+            objAlumnoCV.IdAlumno = IdAlumno;
+            objAlumnoCV.IdPlantillaCV = idPlantillaCV;
+            objAlumnoCV.NombreCV = nombreCV;
+            objAlumnoCV.IncluirTelefonoFijo = false;
+            objAlumnoCV.IncluirCorreoElectronico2 = false;
+            objAlumnoCV.IncluirFoto = false;
+            objAlumnoCV.IncluirDireccion = false;
+            objAlumnoCV.Perfil = string.Empty;
+            objAlumnoCV.EstadoCV = "CVACT";
+            objAlumnoCV.CreadoPor = strUsuario;
+
+            InsertarAlumnoCV(objAlumnoCV);
+        }
+
         public List<AlumnoCV> ObtenerAlumnoCVPorIdAlumno(AlumnoCV alumnocv)
         {
             List<AlumnoCV> listaAlumnoCV = new List<AlumnoCV>();
             listaAlumnoCV = ObtenerAlumnoCVPorIdAlumno(alumnocv.IdAlumno);
-            if (listaAlumnoCV == null || listaAlumnoCV.Count == 0)
-            {
-                ADAlumnoCV acv = new ADAlumnoCV();
-                acv.Insertar(alumnocv);
-                listaAlumnoCV = ObtenerAlumnoCVPorIdAlumno(alumnocv.IdAlumno);
-            }
+           
             return listaAlumnoCV;
 
         }

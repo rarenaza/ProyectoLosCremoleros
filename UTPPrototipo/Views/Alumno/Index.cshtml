@@ -11,6 +11,16 @@
 
     @{ViewBag.ColapsaDatos = " in";}
     @Html.Partial("_DatosPersonales", Model.Alumno)
+
+    <ul id="offers-tabs" class="nav nav-justified nav-pills">
+        <li role="presentation" class="active" style="padding: 4px;"><a href="@Url.Action("BusquedaOferta", "Alumno", new { Tab = "Todos" })">Todos</a></li>
+        <li role="presentation" class="active" style="padding: 4px;"><a href="@Url.Action("BusquedaOferta", "Alumno", new { Tab = "PosicionesDeEntrada" })">Posiciones de entrada</a></li>
+        <li role="presentation" class="active" style="padding: 4px;"><a href="@Url.Action("BusquedaOferta", "Alumno", new { Tab = "Practicas" })">Prácticas</a></li>
+        <li role="presentation" class="active" style="padding: 4px;"><a href="@Url.Action("BusquedaOferta", "Alumno", new { Tab = "Empleo" })">Empleo</a></li>
+    </ul>
+
+    <br />
+
     @{Html.RenderAction("AlertaCvAlumno", "Alumno");}
     @{Html.RenderAction("AlertaCvAlumnoDia", "Alumno");}
     @{Html.RenderAction("AlertaCvAlumnoMes", "Alumno");}

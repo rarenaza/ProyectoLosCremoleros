@@ -448,6 +448,8 @@ namespace UTPPrototipo.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public ActionResult Autenticar(Usuario usuario)
         {
+            Session["TerminosCondiciones"] = false;
+
             if (Session["Captcha"] == null || usuario.Captcha ==null || Convert.ToString(Session["Captcha"]) != Convert.ToString(usuario.Captcha).ToLower())
             {
                 TempData["UsuarioNoExitoso"] = "El texto no coincide con la imagen";
@@ -496,6 +498,8 @@ namespace UTPPrototipo.Controllers
                     //Si la contraseña es válida, recupera los datos del Usuario de acuerdo al tipo, y contruye la session
                     if (contrasenaValida)
                     {
+                        Session["Rol"] = tipoUsuario;
+
                         if (tipoUsuario == "USERUT")
                         {
                             //Crear un onbjketo TikcetUTP
@@ -539,7 +543,9 @@ namespace UTPPrototipo.Controllers
                             if (ticketEmpresa.EstadoEmpresa == "EMPRAC")
                             {
                                 Session["TicketEmpresa"] = ticketEmpresa;
-
+                                Session["TerminosCondiciones"] = dsResultado.Tables[0].Rows[0]["TerminosCondiciones"] == DBNull.Value ? false : Convert.ToBoolean(
+                                                                  Convert.ToInt32(dsResultado.Tables[0].Rows[0]["TerminosCondiciones"])
+                                                              );
 
                                 //TicketEmpresa tcke2 = (TicketEmpresa)Session["TicketEmpresa"];
 
@@ -576,7 +582,9 @@ namespace UTPPrototipo.Controllers
                             ticketAlumno.IdAlumno = Convert.ToInt32(dsResultado.Tables[1].Rows[0]["IdAlumno"]);
 
                             Session["TicketAlumno"] = ticketAlumno;
-
+                            Session["TerminosCondiciones"] = dsResultado.Tables[0].Rows[0]["TerminosCondiciones"] == DBNull.Value ? false : Convert.ToBoolean(
+                               Convert.ToInt32(dsResultado.Tables[0].Rows[0]["TerminosCondiciones"])
+                           );
 
                             //REdireccionas al indexl del alumno
                             return RedirectToAction("Index", "Alumno");
@@ -603,6 +611,8 @@ namespace UTPPrototipo.Controllers
 
                 //Buscar al usuario en UTPAlumno
                 LNUTPAlumnos lnUTPAlumnos = new LNUTPAlumnos();
+                LNAlumnoCV acv = new LNAlumnoCV();
+
                 DataSet dsDatosAlumno = lnUTPAlumnos.ObtenerDatosPorCodigo(usuario.NombreUsuario);
 
                 if (dsDatosAlumno.Tables[0].Rows.Count > 0)
@@ -623,7 +633,8 @@ namespace UTPPrototipo.Controllers
                         {
                             //Insertar en [Usuario]
                             idAlumno = lnUTPAlumnos.InsertarDatosDeAlumno(dsDatosAlumno);
-
+                            //Se inserta el CV inicial del alumno
+                            acv.ObtenerAlumnoCVInicial(idAlumno, int.Parse(Common.Util.ObtenerSettings("IdPlantillaCV")), Common.Util.ObtenerSettings("NameAlumnoCV"),usuario.NombreUsuario);
                         }
 
                         TicketAlumno ticketAlumno = new TicketAlumno();
@@ -637,6 +648,7 @@ namespace UTPPrototipo.Controllers
                         ticketAlumno.IdAlumno = idAlumno;
 
                         Session["TicketAlumno"] = ticketAlumno;
+
 
                         autenticarExchange(usuario);
                         //Si tiene acceso se redirecciona al portal principal del alumno.
@@ -670,6 +682,13 @@ namespace UTPPrototipo.Controllers
             return RedirectToAction("Index", "Home");
 
 
+        }
+
+        public JsonResult ActualizarTerminosCondiciones(string usuario)
+        {
+            Session["TerminosCondiciones"] = true;
+
+            return Json(ln.ActualizarTerminosCondiciones(usuario), JsonRequestBehavior.AllowGet);
         }
     }
 }

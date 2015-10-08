@@ -427,12 +427,14 @@ namespace UTPPrototipo.Controllers
         #endregion
 
         #region MiCV
-        private VistaPanelAlumnoMiCV VistaMICV(int IdAlumno, int IdCV)
+
+        public void CrearCvInicial(Int32 IdAlumno)
         {
-            //Declaracion de objetos
-            VistaPanelAlumnoMiCV panel = new VistaPanelAlumnoMiCV();
+           
             TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
+
             AlumnoCV alumnocv = new AlumnoCV();
+            LNAlumnoCV acv = new LNAlumnoCV();
             //Lista de Curriculos del Alumno
             alumnocv.IdAlumno = IdAlumno;
             alumnocv.IdPlantillaCV = int.Parse(Common.Util.ObtenerSettings("IdPlantillaCV"));
@@ -444,7 +446,24 @@ namespace UTPPrototipo.Controllers
             alumnocv.Perfil = string.Empty;
             alumnocv.EstadoCV = "CVACT";
             alumnocv.CreadoPor = ticket.Usuario;
-            panel.ListaAlumnoCV = lnAlumnoCV.ObtenerAlumnoCVPorIdAlumno(alumnocv);
+          
+            acv.InsertarAlumnoCV(alumnocv);
+        }
+
+        private VistaPanelAlumnoMiCV VistaMICV(int IdAlumno, int IdCV)
+        {
+            //Declaracion de objetos
+            VistaPanelAlumnoMiCV panel = new VistaPanelAlumnoMiCV();
+            TicketAlumno ticket = (TicketAlumno)Session["TicketAlumno"];
+           
+            List<AlumnoCV> listAlumnoCV = null;
+            listAlumnoCV = lnAlumnoCV.ObtenerAlumnoCVPorIdAlumno(IdAlumno);
+
+            if ((listAlumnoCV == null) || listAlumnoCV.Count()==0)
+                CrearCvInicial(IdAlumno);
+
+            /*Optimizar, no deberia de volver a llamar a este método*/
+            panel.ListaAlumnoCV = lnAlumnoCV.ObtenerAlumnoCVPorIdAlumno(IdAlumno);
 
             //Hallar el ID del Curriculo del alumno
             if (IdCV != 0)

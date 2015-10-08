@@ -85,8 +85,37 @@ namespace UTP.PortalEmpleabilidad.Datos
 
             return dt;
         }
-      
 
+
+
+        public bool ActualizarTerminosCondiciones(string usuario)
+        {
+            try
+            {
+                using (SqlConnection conexion = new SqlConnection(cnn.Conexion()))
+                {
+                    SqlCommand cmd = new SqlCommand();
+
+                    conexion.Open();
+                    cmd = new SqlCommand();
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.CommandText = "Usuario_ActualizarTerminosCondiciones";
+
+                    cmd.Parameters.Add(new SqlParameter("@Usuario", usuario == null ? "" : usuario));
+                    cmd.Connection = conexion;
+                    cmd.ExecuteNonQuery();
+                    conexion.Close();
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
+        }
     }
 
 }

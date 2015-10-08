@@ -480,6 +480,7 @@
     <Content Include="Content\less\bootstrap-datetimepicker-build.less" />
     <Content Include="Content\less\_bootstrap-datetimepicker.less" />
     <Content Include="Plantillas\template.docx" />
+    <Content Include="Plantillas\politicas-de-privacidad.pdf" />
     <None Include="Properties\PublishProfiles\PortalV1.pubxml" />
     <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\Chart.min.js" />
@@ -1076,6 +1077,7 @@
     <Content Include="Views\Calendario\_VistaCalendario.cshtml" />
     <Content Include="Views\Cuenta\RecuperarClave.cshtml" />
     <Content Include="Views\Cuenta\CambiarClave.cshtml" />
+    <Content Include="Views\Shared\FooterIntra.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
