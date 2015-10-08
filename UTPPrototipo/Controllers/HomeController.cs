@@ -592,21 +592,9 @@ namespace UTPPrototipo.Controllers
             ViewBag.TipoDocumentoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_DOCUMENTO), "IdListaValor", "Valor");
             ViewBag.RolIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ROL_USUARIO), "IdListaValor", "Valor");
             ViewBag.EstadoUsuarioIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_ESTADO_USUARIO), "IdListaValor", "Valor");
-            //ViewBag.DireccionDepartamentoLocacion = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_Departamento), "IdListaValor", "Valor");
-
-            DataTable dtDepartamento = lnGeneral.Home_Departamento(Constantes.IDLISTA_Departamento);
-            List<SelectListItem> li = new List<SelectListItem>();
-            for (int i = 0; i <= dtDepartamento.Rows.Count - 1; i++)
-            {
-                string nombre = dtDepartamento.Rows[i]["Valor"].ToString();
-                string valor = dtDepartamento.Rows[i]["IdListaValor"].ToString();
-                SelectListItem item = new SelectListItem() { Text = nombre, Value = valor };
-        
-                li.Add(item);
-            }
-            ViewData["Departamento"] = li;
-
-
+            ViewBag.DireccionDepartamentoLocacion = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_Departamento), "IdListaValor", "Valor");
+            ViewBag.DireccionCiudadLocacion = new SelectList(String.Empty, "IdListaValor", "Valor");
+            ViewBag.DireccionDistritoLocacion = new SelectList(String.Empty, "IdListaValor", "Valor");
 
             return View();
         }
@@ -654,7 +642,6 @@ namespace UTPPrototipo.Controllers
 
                 //validar si el pais es peru, si es asi entonces:
                 
-                
                 //Usuario
                 empresa.RolIdListaValor = "ROLEAD"; //La cuenta es creada como Rol: "Administrador de Empresa"
                 empresa.EstadoUsuarioIdListaValor = "USEUTP"; //El usuario también se encuenta pendiente de activación. Se debe activar al momento que UTP active la cuenta.
@@ -693,17 +680,19 @@ namespace UTPPrototipo.Controllers
                 //Variable temporal para poner el break
                 int a = 0;
             }
+
             LNGeneral lnGeneral = new LNGeneral();
+
             ViewBag.PaisIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_PAIS), "IdListaValor", "Valor", empresa.PaisIdListaValor);
             ViewBag.SectorEmpresarial1IdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_SECTOR_EMPRESARIAL), "IdListaValor", "Valor", empresa.SectorEmpresarial1IdListaValor);            
             ViewBag.TipoLocacionIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_LOCACION), "IdListaValor", "Valor", empresa.TipoLocacionIdListaValor);
             ViewBag.TipoDocumentoIdListaValor = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_TIPO_DOCUMENTO), "IdListaValor", "Valor", empresa.TipoDocumentoIdListaValor);            
-
-
             ViewBag.DireccionDepartamentoLocacion = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_Departamento), "IdListaValor", "Valor", empresa.DireccionDepartamentoLocacion);
-
+            ViewBag.DireccionCiudadLocacion = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_Provincia).Where(p => p.IdListaValorPadre == empresa.DireccionDepartamentoLocacion), "IdListaValor", "Valor", empresa.DireccionCiudadLocacion);
+            ViewBag.DireccionDistritoLocacion = new SelectList(lnGeneral.ObtenerListaValor(Constantes.IDLISTA_DISTRITO_PERU).Where(d => d.IdListaValorPadre == empresa.DireccionCiudadLocacion), "IdListaValor", "Valor", empresa.DireccionDistritoLocacion);
 
             ViewBag.MensajeDeError = mensajeDeError;
+
             return View(empresa);
         }
 

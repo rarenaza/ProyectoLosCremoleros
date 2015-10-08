@@ -121,7 +121,7 @@
                     @*<input type="text" class="form-control fuente-pequeña" placeholder="Ingrese Departamento/Región/Estado">*@
                     @* @Html.TextBoxFor(model => model.DireccionDepartamentoLocacion, new { @class = "form-control", @placeholder = "Ingrese Departamento/Región/Estado" })*@
 
-                    @Html.DropDownList("DireccionDepartamentoLocacion", ViewData["Departamento"] as List<SelectListItem>, "-Seleccione-", new { @class = "form-control", @id = "DireccionDepartamentoLocacion" })
+                    @Html.DropDownList("DireccionDepartamentoLocacion", (SelectList)ViewBag.DireccionDepartamentoLocacion, "-Seleccione-", new { @class = "form-control", @id = "DireccionDepartamentoLocacion" })
                     @*  *@
                 </div>@Html.ValidationMessageFor(model => model.DireccionDepartamentoLocacion, "", new { @class = "text-danger" })
             </div>
@@ -131,7 +131,7 @@
                     @*<input type="text" class="form-control fuente-pequeña" placeholder="Ingrese Ciudad">*@
 
                     @*@Html.TextBoxFor(model => model.DireccionCiudadLocacion, new { @class = "form-control", @placeholder = "Ingrese Ciudad/Provincia" })*@
-                    @Html.DropDownList("DireccionCiudadLocacion", new SelectList(string.Empty, "Value", "Text"), "-Seleccione-", new { @class = "form-control" ,@id="DireccionCiudadLocacion" })
+                    @Html.DropDownList("DireccionCiudadLocacion", (SelectList)ViewBag.DireccionCiudadLocacion, "-Seleccione-", new { @class = "form-control", @id = "DireccionCiudadLocacion" })
 
                     
                 </div>@Html.ValidationMessageFor(model => model.DireccionCiudadLocacion, "", new { @class = "text-danger" })
@@ -144,7 +144,7 @@
 
                     @*<select class="form-control" id="DireccionDistritoLocacion" name="DireccionDistritoLocacion" data-val="true" data-val_required="Falta el distrito"></select>*@
 
-                    @Html.DropDownList("DireccionDistritoLocacion", new SelectList(string.Empty, "Value", "Text"), "-Seleccione-", new { @class = "form-control", @id = "DireccionDistritoLocacion" })
+                    @Html.DropDownList("DireccionDistritoLocacion", (SelectList)ViewBag.DireccionDistritoLocacion, "-Seleccione-", new { @class = "form-control", @id = "DireccionDistritoLocacion" })
 
                     @*@Html.TextBoxFor(model => model.DireccionDistritoLocacion, new { @class = "form-control", @placeholder = "Ingrese Distrito/Comuna" })*@
 
