@@ -184,8 +184,8 @@
     <ul id="offers-tabs" class="nav nav-justified nav-tabs" role="tablist">
         <li role="presentation" class="active"><a href="#" aria-controls="all" role="tab" data-toggle="tab">Todos</a></li>
         <li role="presentation"><a href="#" role="tab" aria-controls="entries-position" data-toggle="tab">Posiciones de entrada</a></li>
-        <li role="presentation"><a href="#" role="tab" aria-controls="practices" data-toggle="tab">Prácticas</a></li>
-        <li role="presentation"><a href="#" role="tab" aria-controls="jobs" data-toggle="tab">Empleo</a></li>
+        <li role="presentation"><a href="#" role="tab" aria-controls="entries-practices" data-toggle="tab">Prácticas</a></li>
+        <li role="presentation"><a href="#" role="tab" aria-controls="entries-jobs" data-toggle="tab">Empleo</a></li>
     </ul>
 
     <div id="ResultadoBusqueda" class="result" style="margin-top: 16px;"></div>
@@ -329,8 +329,8 @@
                 wrapperSelector = '#offers-tabs',
                 $allTab = $(wrapperSelector + ' [aria-controls=all]'),
                 $entriesPositionTab = $(wrapperSelector + ' [aria-controls=entries-position]'),
-                $practicesTab = $(wrapperSelector + ' [aria-controls=practices]'),
-                $jobs = $(wrapperSelector + ' [aria-controls=jobs]');
+                $practicesTab = $(wrapperSelector + ' [aria-controls=entries-practices]'),
+                $jobs = $(wrapperSelector + ' [aria-controls=entries-jobs]');
 
             $allTab.on('click', function (e) { e.preventDefault(); sup.all(); });
             $entriesPositionTab.on('click', function (e) { e.preventDefault(); sup.entriesPosition(); });
